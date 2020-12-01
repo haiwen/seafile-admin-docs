@@ -13,7 +13,7 @@ theme:
   logo: media/seafile-transparent-1024.png
   favicon: media/favicon.ico
   palette:
-    primary: deep orange
+    primary: white
     accent:
 
 plugins:
@@ -25,6 +25,9 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/haiwen/seafile-admin-docs/
+
+extra_css:
+  - stylesheets/extra.css
 
 # Extensions
 markdown_extensions:
