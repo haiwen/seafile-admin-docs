@@ -89,7 +89,7 @@ outputdir = /tmp/
 
 ### Install Libreoffice/UNO
 
-Libreoffice 4.1+ and Python-uno library are required to enable office files online preview.
+Libreoffice 6.2+ and Python-uno library are required to enable office files online preview.
 
 On Ubuntu/Debian:
 
