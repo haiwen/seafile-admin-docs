@@ -45,7 +45,6 @@ markdown_extensions:
 # Page tree
 nav:
   - Overview:
-    - Forward: overview/README.md
     - Seafile Components: overview/components.md
     - File permission management: overview/file_permission_management.md
     - Roadmap: roadmap.md
@@ -162,7 +161,6 @@ nav:
     - WebDAV extension: extension/webdav.md
     - FUSE extension: extension/fuse.md
   - Security and Auditing:
-    - Forward: security/README.md
     - Security features: security/security_features.md
     - Access logs and auditing: security/auditing.md
     - Config fail2ban: security/fail2ban.md
