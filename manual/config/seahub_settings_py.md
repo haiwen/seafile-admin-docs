@@ -311,6 +311,8 @@ ENABLE_DELETE_ACCOUNT = False
 ENABLE_UPDATE_USER_INFO = False
 ENABLE_CHANGE_PASSWORD = False
 
+# Get web api auth token on profile page.
+ENABLE_GET_AUTH_TOKEN_BY_SESSION = True
 ```
 
 ## Pro edition only options
