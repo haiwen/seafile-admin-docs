@@ -21,64 +21,64 @@ Note, you should install Python libraries system wide using root user or sudo mo
 
 * For Ubuntu 16.04/18.04 or Debian 10
 
-  ```sh
-  apt-get install python3 python3-setuptools python3-pip -y
+```sh
+apt-get install python3 python3-setuptools python3-pip -y
 
-  sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy \
-      django-pylibmc django-simple-captcha python3-ldap
+sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy \
+    django-pylibmc django-simple-captcha python3-ldap
 
-  ```
+```
 
 * For CentOS 7/8
 
-  ```sh
-  yum install python3 python3-setuptools python3-pip -y
+```sh
+yum install python3 python3-setuptools python3-pip -y
 
-  sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy \
-      django-pylibmc django-simple-captcha python3-ldap
+sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy \
+    django-pylibmc django-simple-captcha python3-ldap
 
-  ```
+```
 
 #### Seafile-Pro
 
 * For Ubuntu 16.04/18.04 or Debian 10
 
-  ```sh
-  apt-get install python3 python3-setuptools python3-pip -y
+```sh
+apt-get install python3 python3-setuptools python3-pip -y
 
-  sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy \
-      django-pylibmc django-simple-captcha python3-ldap
+sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy \
+    django-pylibmc django-simple-captcha python3-ldap
 
-  ```
+```
 
 * For CentOS 7/8
 
-  ```sh
-  yum install python3 python3-setuptools python3-pip -y
+```sh
+yum install python3 python3-setuptools python3-pip -y
 
-  sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy \
-      django-pylibmc django-simple-captcha python3-ldap
+sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy \
+    django-pylibmc django-simple-captcha python3-ldap
 
-  ```
+```
 
 ### Upgrade to 7.1.x
 
 1. Stop Seafile-7.0.x server.
 2. Start from Seafile 7.0.x, run the script:
 
-   ```sh
-   upgrade/upgrade_7.0_7.1.sh
+```sh
+upgrade/upgrade_7.0_7.1.sh
 
-   ```
+```
 
 3. Clear the Seahub cache:
 
-   ```
-   rm -rf /tmp/seahub_cache # Clear the Seahub cache files from disk.
-   # If you are using the Memcached service, you need to restart the service to clear the Seahub cache.
-   systemctl restart memcached
+```
+rm -rf /tmp/seahub_cache # Clear the Seahub cache files from disk.
+# If you are using the Memcached service, you need to restart the service to clear the Seahub cache.
+systemctl restart memcached
 
-   ```
+```
 
 4. Start Seafile-7.1.x server.
 
