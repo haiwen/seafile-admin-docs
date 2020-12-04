@@ -6,7 +6,7 @@
 
 **Upgrade**
 
-Please check our document for how to upgrade to 7.1: <https://download.seafile.com/published/seafile-manual/upgrade/upgrade_notes_for_7.1.x.md>
+Please check our document for how to upgrade to 7.1: [upgrade notes for 7.1.x](../upgrade/upgrade_notes_for_7.1.x.md)
 
 ### 7.1.9 (2020/12/02)
 
@@ -105,7 +105,7 @@ Please check our document for how to upgrade to 7.1: <https://download.seafile.c
 
 Since seafile-pro 7.0.0, we have upgraded Elasticsearch to 5.6. As Elasticsearch 5.6 relies on the Java 8 environment and can't run with root, you need to run Seafile with a non-root user and upgrade the Java version.
 
-Please check our document for how to upgrade to 7.0: <https://download.seafile.com/published/support/server-upgrade/pro-7.0.md>
+Please check our document for how to upgrade to 7.0: [upgrade notes for 7.0.x](../upgrade/upgrade_notes_for_7.0.x.md)
 
 ### 7.0.19 (2020/09/07)
 
@@ -294,7 +294,7 @@ Version 6.3 also changed the database table for file comments, if you have used 
 
 > Note, this command should be run while Seafile server is running.
 
-Version 6.3 changed '/shib-login' to '/sso'. If you use Shibboleth, you need to to update your Apache/Nginx config. Please check the updated document: <https://manual.seafile.com/deploy/shibboleth_config_v6.3.html>
+Version 6.3 changed '/shib-login' to '/sso'. If you use Shibboleth, you need to to update your Apache/Nginx config. Please check the updated document: [shibboleth config v6.3](../deploy/shibboleth_config_v6.3.md)
 
 Version 6.3 add a new option for file search (`seafevents.conf`):
 
@@ -674,7 +674,7 @@ The configuration of Apache is as following:
 
 ## 6.1
 
-You can follow the document on minor upgrade (<http://manual.seafile.com/deploy/upgrade.html>).
+You can follow the document on minor [upgrade](../deploy/upgrade.md).
 
 ### 6.1.9 （2017.09.28）
 
@@ -701,7 +701,7 @@ You can follow the document on minor upgrade (<http://manual.seafile.com/deploy/
 * Remove deleted libraries in search index
 * Use 30MB as the default value of THUMBNAIL_IMAGE_SIZE_LIMIT
 * \[api] Improve performance when move or copy multiple files/folders
-* \[admin] Support syncing user role from AD/LDAP attribute (<https://manual.seafile.com/deploy_pro/ldap_role_sync.html>)
+* \[admin] Support syncing user role from AD/LDAP attribute ([ldap role sync](../deploy_pro/ldap_role_sync.md))
 * \[admin] Support deleting all outdated invitations at once
 * \[admin] Improve access log
 * \[admin] Support upload seafile-license.txt via web interface (only for single machine deployment)
@@ -769,7 +769,7 @@ System changes:
 
 ## 6.0
 
-You can follow the document on minor upgrade (<http://manual.seafile.com/deploy/upgrade.html>).
+You can follow the document on minor [upgrade](../deploy/upgrade.md).
 
 Special note for upgrading a cluster:
 
@@ -848,7 +848,7 @@ Other
 
 ### 6.0.7 (2017.01.18)
 
-* Set users role from Shibboleth affiliation attribute (<https://manual.seafile.com/deploy/shibboleth_config.html>, search "Affiliation and user role")
+* Set users role from Shibboleth affiliation attribute ([shibboleth config](../deploy/shibboleth_config.md), search "Affiliation and user role")
 * \[fix] Uploading files with special names lets seaf-server crash
 * \[fix] Fix reading database connection pool setting from ccnet.conf and seafile.conf
 * \[fix] Fix total storage integer overflow, which is shown at the info page of admin panel)
@@ -860,7 +860,7 @@ Other
 ### 6.0.6 (2017.01.11)
 
 * Guest invitation: Prevent the same address can be invited multiple times by the same inviter and by multiple inviters
-* Guest invitation: Add an regex to prevent certain email addresses be invited (see <https://github.com/haiwen/seafile-docs/blob/master/deploy_pro/roles_permissions.md#more-about-guest-invitation-feature>)
+* Guest invitation: Add an regex to prevent certain email addresses be invited (see [roles permissions](../deploy_pro/roles_permissions.md#more-about-guest-invitation-feature))
 * Office online: support co-authoring
 * Admin can set users' department and name when creating users
 * Show total number of files and storage in admin info page
