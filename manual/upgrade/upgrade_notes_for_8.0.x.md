@@ -7,13 +7,11 @@ Please always follow the main [upgrade guide](./upgrade.md).
 
 From 8.0, ccnet-server component is removed. But ccnet.conf is still needed.
 
-There are no special steps needed when upgrading from 7.1 to 8.0.
-
-### Deploy
+### Install new Python libraries
 
 Note, you should install Python libraries system wide using root user or sudo mode.
 
-* For Ubuntu 16.04/18.04 or Debian 10
+* For Ubuntu 18.04/20.04 or Debian 10
 
 ```sh
 apt-get install libmysqlclient-dev
