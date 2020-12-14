@@ -36,7 +36,7 @@ You can now set up automatic save by changing the configuration of OnlyOffice.
  }
  ```
 
-Restart OnlyOffice: `supervisorctl restart all` 
+* Restart OnlyOffice: `supervisorctl restart all` 
 
 You can get more info in OnlyOffice's official document: https\://api.onlyoffice.com/editors/save
 
