@@ -20,25 +20,23 @@ When open file with OnlyOffice, OnlyOffice will only send a file save request to
 
 You can now set up automatic save by changing the configuration of OnlyOffice. 
 
-1. Go to the container of onlyoffice/documentserver. 
-2. Open the OnlyOffice configuration file: `/etc/onlyoffice/documentserver/local.json` 
-3. Add this configuration: 
+* Go to the container of onlyoffice/documentserver and open the configuration file: `/etc/onlyoffice/documentserver/local.json` 
+* Add this configuration: 
 
-   ```
-   {
-       "services": {
-           "CoAuthoring": {
-               "autoAssembly": {
-                   "enable": true,
-                   "interval": "5m"
-               }
-           }
-       }
-   }
+```
+{
+    "services": {
+        "CoAuthoring": {
+             "autoAssembly": {
+                 "enable": true,
+                 "interval": "5m"
+             }
+        }
+    }
+ }
+ ```
 
-   ```
-
-4. Restart OnlyOffice: `supervisorctl restart all` 
+Restart OnlyOffice: `supervisorctl restart all` 
 
 You can get more info in OnlyOffice's official document: https\://api.onlyoffice.com/editors/save
 
@@ -46,64 +44,59 @@ You can get more info in OnlyOffice's official document: https\://api.onlyoffice
 
 JWT secret can be used to secure your OnlyOffice server so other people will not be able to use it.（Since 7.1.2）
 
-To enable this feature, you should:
+To enable this feature, you should install a python moduel
 
-1. Install a python moduel.
+```
+pip install pyjwt
+```
 
-   ```
-   pip install pyjwt
+Config seahub_settings.py:
 
-   ```
+```
+ONLYOFFICE_JWT_SECRET = 'your secret string'
+```
 
-2. Config seahub_settings.py:
+Configure OnlyOffice Document server, add your secret string to `/etc/onlyoffice/documentserver/local.json` 
 
-   ```
-   ONLYOFFICE_JWT_SECRET = 'your secret string'
-
-   ```
-
-3. Configure OnlyOffice Document server, add your secret string to `/etc/onlyoffice/documentserver/local.json` 
-
-   ```
-   ...
-   {
-       "services": {
-           "CoAuthoring": {
-               ...
-               "secret": {
-                   "inbox": {
-                       "string": "your secret string"
-                   },
-                   "outbox": {
-                       "string": "your secret string"
-                   },
-               },
-               "token": {
-                   "enable": {
-                       "browser": true,
-                       "request": {
-                           "inbox": true,
-                           "outbox": true
-                       }
-                   }
-               }
-               ...
-           }
+```
+...
+{
+    "services": {
+        "CoAuthoring": {
+            ...
+            "secret": {
+                "inbox": {
+                    "string": "your secret string"
+                },
+                "outbox": {
+                    "string": "your secret string"
+                },
+            },
+            "token": {
+                "enable": {
+                    "browser": true,
+                     "request": {
+                        "inbox": true,
+                        "outbox": true
+                     }
+                }
+            }
+            ...
        }
    }
-   ...     
+}
+...     
 
-   ```
+```
 
-   For more information you can check the official documentation: <https://api.onlyoffice.com/editors/signature/>
+For more information you can check the official documentation: <https://api.onlyoffice.com/editors/signature/>
 
-4. Restart OnlyOffice: `supervisorctl restart all` 
+Restart OnlyOffice: `supervisorctl restart all` 
 
 **NOTE**：To avoid the problem of having to change the configuration file every time the _documentserver_ container is restarted, you can create a locally persistent configuration file `local-production-linux.json` and mount it into _documentserver_ container :
 
 ```
 -v /local/path/to/local-production-linux.json:/etc/onlyoffice/documentserver/local-production-linux.json
-
 ```
 
 ## Configure Seafile Server
