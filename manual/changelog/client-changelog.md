@@ -2,6 +2,14 @@
 
 ## 8.0
 
+### 8.0.1 beta (2020/12/15)
+
+* \[Win] Fix compatibility to previously synced libraries
+* \[Win] Fix failing to run issue
+* Don't stop syncing a library when local folder is unavailable, if option is set
+* \[Win] Fix files with invalid names reappearing problem
+* Use SOCKS5 proxy to resolve domain names
+
 ### 8.0.0 beta (2020/11/28)
 
 * \[Win] Build with Visual Studio 2019 instead of MinGW
