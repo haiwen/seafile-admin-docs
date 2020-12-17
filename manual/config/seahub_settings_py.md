@@ -255,6 +255,27 @@ ENABLE_SHIBBOLETH_LOGIN = True
 
 ```
 
+## OCM
+
+From 8.0.0, Seafile supports [OCM protocol](https://rawgit.com/GEANT/OCM-API/v1/docs.html). With OCM, user can share library to other server whick enabled OCM too.
+
+```python
+# Enable OCM
+ENABLE_OCM = True
+OCM_PROVIDER_ID = '71687320-6219-47af-82f3-32012707a5ae' # server unique id
+OCM_REMOTE_SERVERS = [
+    {
+        "server_name": "dev",
+        "server_url": "https://dev.seafile.com/seahub/", # should ends with '/'
+    },
+    {
+        "server_name": "download",
+        "server_url": "https://download.seafile.com/", # should ends with '/'
+    },
+]
+
+```
+
 ## Other options
 
 ```python
