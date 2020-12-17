@@ -257,7 +257,7 @@ ENABLE_SHIBBOLETH_LOGIN = True
 
 ## OCM
 
-From 8.0.0, Seafile supports [OCM protocol](https://rawgit.com/GEANT/OCM-API/v1/docs.html). With OCM, user can share library to other server whick enabled OCM too.
+From 8.0.0, Seafile supports [OCM protocol](https://rawgit.com/GEANT/OCM-API/v1/docs.html). With OCM, user can share library to other server which enabled OCM too.
 
 ```python
 # Enable OCM
