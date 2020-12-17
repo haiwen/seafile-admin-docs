@@ -24,7 +24,7 @@ OCM_REMOTE_SERVERS = [
 ]
 ```
 
-## Configuration
+## Instructions
 
 #### Share library to other server
 
@@ -33,8 +33,8 @@ In the library sharing dialog, jump to "Share to other server", you can share th
 
 #### View be shared libraries
 
-User can jump to “Shared from other servers” page to view the libraries shared by other servers and cancel the sharing.
+You can jump to “Shared from other servers” page to view the libraries shared by other servers and cancel the sharing.
 ![ocm-list-be-shared-libraries](../images/ocm-list-be-shared-libraries.png)
 
-User can enter the library to view、 download、 and upload files.
+And enter the library to view、 download、 or upload files.
 ![ocm-view-download-upload-files-in-library](../images/ocm-view-download-upload-files-in-library.png)
