@@ -72,7 +72,7 @@ nav:
     - Online File Preview and Edit:
       - LibreOffice Online Integration: deploy/libreoffice_online.md
       - OnlyOffice Integration: deploy/only_office.md
-    - Open cloud mesh: deploy/ocm.md
+    - Open Cloud Mesh: deploy/ocm.md
     - Other Deployment Notes:
       - Start Seafile at System Bootup: deploy/start_seafile_at_system_bootup.md
       - Firewall settings: deploy/using_firewall.md
