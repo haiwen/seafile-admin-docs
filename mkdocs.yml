@@ -157,6 +157,7 @@ nav:
     - Upgrade notes for 6.x.x: upgrade/upgrade_notes_for_6.x.x.md
     - Upgrade notes for 7.0.x: upgrade/upgrade_notes_for_7.0.x.md
     - Upgrade notes for 7.1.x: upgrade/upgrade_notes_for_7.1.x.md
+    - Upgrade notes for 8.0.x: upgrade/upgrade_notes_for_8.0.x.md
   - WebDAV and FUSE extensions:
     - Forward: extension/README.md
     - WebDAV extension: extension/webdav.md
