@@ -4,7 +4,7 @@
 
 ## 8.0
 
-Please check our document for how to upgrade to 8.0: <https://download.seafile.com/published/seafile-manual/upgrade/upgrade_notes_for_8.0.md>
+Please check our document for how to upgrade to 8.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_8.0.x/>
 
 ### 8.0.0 beta (2020/11/27)
 
@@ -24,7 +24,7 @@ Progresql support is dropped as we have rewritten the database access code to re
 
 **Upgrade**
 
-Please check our document for how to upgrade to 7.1: <https://download.seafile.com/published/seafile-manual/upgrade/upgrade_notes_for_7.1.x.md>
+Please check our document for how to upgrade to 7.1: <https://manual.seafile.com/upgrade/upgrade_notes_for_7.1.x/>
 
 ### 7.1.5 (2020/09/22)
 
