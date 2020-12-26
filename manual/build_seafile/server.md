@@ -170,6 +170,7 @@ cd ~/dev/source-code/seahub/
 export PYTHONPATH=/usr/local/lib/python3.6/site-packages/:/root/dev/source-code/seahub/thirdpart:$PYTHONPATH
 export CCNET_CONF_DIR=/root/dev/conf
 export SEAFILE_CONF_DIR=/root/dev/seafile-data
+export SEAFILE_CENTRAL_CONF_DIR=/root/dev/conf
 ```
 
 ### Create seahub database tables
