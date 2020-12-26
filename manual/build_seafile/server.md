@@ -60,7 +60,6 @@ cd ~/dev/source-code
 
 git clone https://github.com/haiwen/libevhtp.git
 git clone https://github.com/haiwen/libsearpc.git
-git clone https://github.com/haiwen/seafobj.git
 git clone https://github.com/haiwen/seafile-server.git
 git clone https://github.com/haiwen/seahub.git
 
@@ -72,9 +71,6 @@ cd ../seafile-server
 git checkout tags/v8.0.0-server -b tag-v8.0.0-server
 
 cd ../seahub
-git checkout tags/v8.0.0-server -b tag-v8.0.0-server
-
-cd ../seafobj
 git checkout tags/v8.0.0-server -b tag-v8.0.0-server
 ```
 
