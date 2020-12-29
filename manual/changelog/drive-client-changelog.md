@@ -1,5 +1,11 @@
 # SeaDrive Client Changelog
 
+### 2.0.10 (2020/12/29)
+
+* \[Win] Add context menu
+* \[Mac] Support Apple Silicon M1 CPU
+* \[Linux] Unmount on exit
+
 ### 2.0.9 (2020/11/20)
 
 * \[Mac] Fix failure to load kernel extension on macOS 11 Big Sur
