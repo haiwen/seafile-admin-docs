@@ -20,7 +20,17 @@ sudo pip3 install future mysqlclient
 
 ```
 
-* For CentOS 7/8
+* For CentOS 7
+
+```sh
+yum install python3-devel mysql-devel gcc gcc-c++ -y
+
+sudo pip3 install future
+sudo pip3 install mysqlclient==2.0.1
+
+```
+
+* For CentOS 8
 
 ```sh
 yum install python3-devel mysql-devel gcc gcc-c++ -y
