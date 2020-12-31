@@ -6,6 +6,12 @@
 
 Please check our document for how to upgrade to 8.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_8.0.x/>
 
+### 8.0.1 (2020/12/31)
+
+* Update translations for help pages
+* Add missing upgrade script
+* Add open cloud mesh feature
+
 ### 8.0.0 beta (2020/11/27)
 
 * Support searching file in a library
