@@ -11,13 +11,20 @@ From 8.0, ccnet-server component is removed. But ccnet.conf is still needed.
 
 Note, you should install Python libraries system wide using root user or sudo mode.
 
-* For Ubuntu 18.04/20.04 or Debian 10
+* For Ubuntu 18.04/20.04
 
 ```sh
 apt-get install libmysqlclient-dev
 
 sudo pip3 install future mysqlclient
+```
 
+* For Debian 10
+
+```sh
+apt-get install  default-libmysqlclient-dev 
+
+sudo pip3 install future mysqlclient
 ```
 
 * For CentOS 7
@@ -27,7 +34,6 @@ yum install python3-devel mysql-devel gcc gcc-c++ -y
 
 sudo pip3 install future
 sudo pip3 install mysqlclient==2.0.1
-
 ```
 
 * For CentOS 8
@@ -36,7 +42,6 @@ sudo pip3 install mysqlclient==2.0.1
 yum install python3-devel mysql-devel gcc gcc-c++ -y
 
 sudo pip3 install future mysqlclient
-
 ```
 
 ### Upgrade to 8.0.x
@@ -46,11 +51,6 @@ sudo pip3 install future mysqlclient
 
 ```sh
 upgrade/upgrade_7.1_8.0.sh
-
 ```
 
 3. Start Seafile-8.0.x server.
-
-## FAQ
-
-
