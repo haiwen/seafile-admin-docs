@@ -49,7 +49,6 @@ nav:
     - Seafile Components: overview/components.md
     - File permission management: overview/file_permission_management.md
     - Roadmap: roadmap.md
-    - FAQ: faq/README.md
     - Contribution: contribution.md
     - Changelog: changelog.md
   - Deploy Seafile under Linux:
