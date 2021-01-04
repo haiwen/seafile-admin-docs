@@ -7,7 +7,7 @@ Please always follow the main [upgrade guide](./upgrade.md).
 
 From 8.0, ccnet-server component is removed. But ccnet.conf is still needed.
 
-### Install new Python libraries
+## Install new Python libraries
 
 Note, you should install Python libraries system wide using root user or sudo mode.
 
@@ -44,7 +44,7 @@ yum install python3-devel mysql-devel gcc gcc-c++ -y
 sudo pip3 install future mysqlclient
 ```
 
-### Upgrade to 8.0.x
+## Upgrade to 8.0.x
 
 1. Stop Seafile-7.1.x server.
 2. Start from Seafile 7.1.x, run the script:
