@@ -6,6 +6,11 @@
 
 Please check our document for how to upgrade to 8.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_8.0.x/>
 
+### 8.0.2 (2021/01/04)
+
+* Fix LDAP problem
+* Fix upgrade script
+
 ### 8.0.1 beta (2021/01/04)
 
 * Update translations for help pages
