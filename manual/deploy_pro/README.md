@@ -24,7 +24,6 @@ Install Seafile Pro Edition
 - [Setup Seafile Professional Server With OpenStack Swift](setup_with_swift.md)
 - [Setup Seafile Professional Server With Ceph](setup_with_ceph.md)
 - [Migrate from File System to Ceph](migrate_to_ceph.md)
-- [Storage Backend Encryption](seaf_encrypt.md)
 - [Data migration between different backends](migrate.md)
 
 ## Search
