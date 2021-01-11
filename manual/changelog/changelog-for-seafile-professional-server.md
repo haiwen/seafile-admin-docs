@@ -8,6 +8,14 @@
 
 Please check our document for how to upgrade to 7.1: [upgrade notes for 7.1.x](../upgrade/upgrade_notes_for_7.1.x.md)
 
+### 7.1.10 (2020/01/11)
+
+* [fix] Fix user can't login in WebDAV via secret key after two-fa is turned on
+* [fix] Enable copy multiple folders/files in read-only libraries
+* [fix] Add back filter functions in admin file access logs
+* Enable setting work number in realtime backup
+* [fix] Fix a bug in multi-tenancy mode when transfer a library from a user to a department
+
 ### 7.1.9 (2020/12/02)
 
 * \[new] Add pagination when listing group/department members
