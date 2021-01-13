@@ -107,31 +107,31 @@ seafile:
 
 If you want to use your own SSL certificate and the volume directory of Seafile data is `/opt/seafile-data`:
 
-* Create a folder `/opt/seafile-data/ssl`, and put your certificate and private key under the ssl directory.
-* Assume your site name is `example.seafile.com`,modify the Nginx configuration file (`/opt/seafile-data/nginx/conf/seafile.nginx.conf`) as follows:
+#### Create a folder `/opt/seafile-data/ssl`, and put your certificate and private key under the ssl directory.
 
-  ```
-  server {
-      listen 80;
-      server_name example.seafile.com default_server;
+#### Assume your site name is `example.seafile.com`,modify the Nginx configuration file (`/opt/seafile-data/nginx/conf/seafile.nginx.conf`) as follows:
 
-      location / {
-          rewrite ^ https://$host$request_uri? permanent;
-      }
-  }
-  server {
-      listen 443;
-      ssl on;
-      ssl_certificate      /shared/ssl/your-ssl-crt.crt;
-      ssl_certificate_key  /shared/ssl/your-ssl-key.key;
-      ssl_ciphers ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!MD5:!DSS;
+```
+server {
+    listen 80;
+    server_name example.seafile.com default_server;
+
+    location / {
+        rewrite ^ https://$host$request_uri? permanent;
+    }
+}
+server {
+    listen 443;
+    ssl on;
+    ssl_certificate      /shared/ssl/your-ssl-crt.crt;
+    ssl_certificate_key  /shared/ssl/your-ssl-key.key;
+    ssl_ciphers ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!MD5:!DSS;
       
-      server_name example.seafile.com;
-      ...
+    server_name example.seafile.com;
+    ...
+```
 
-  ```
-
-* Reload the Nginx configuration file :  `docker exec -it seafile /usr/sbin/nginx -s reload`
+#### Reload the Nginx configuration file :  `docker exec -it seafile /usr/sbin/nginx -s reload`
 
 ### Modify Seafile server configurations
 
@@ -217,55 +217,51 @@ Steps:
 
 Backup Order: Database First or Data Directory First
 
-* backing up Database:
+#### backing up Database:
 
-  ```
-  # It's recommended to backup the database to a separate file each time. Don't overwrite older database backups for at least a week.
-  cd /opt/seafile-backup/databases
-  docker exec -it seafile-mysql mysqldump  -uroot --opt ccnet_db > ccnet_db.sql
-  docker exec -it seafile-mysql mysqldump  -uroot --opt seafile_db > seafile_db.sql
-  docker exec -it seafile-mysql mysqldump  -uroot --opt seahub_db > seahub_db.sql
+```
+# It's recommended to backup the database to a separate file each time. Don't overwrite older database backups for at least a week.
+cd /opt/seafile-backup/databases
+docker exec -it seafile-mysql mysqldump  -uroot --opt ccnet_db > ccnet_db.sql
+docker exec -it seafile-mysql mysqldump  -uroot --opt seafile_db > seafile_db.sql
+docker exec -it seafile-mysql mysqldump  -uroot --opt seahub_db > seahub_db.sql
+```
 
-  ```
+#### Backing up Seafile library data:
 
-* Backing up Seafile library data:
-  * To directly copy the whole data directory
+##### To directly copy the whole data directory
 
-    ```
-    cp -R /opt/seafile-data/seafile /opt/seafile-backup/data/
-    cd /opt/seafile-backup/data && rm -rf ccnet
+```
+cp -R /opt/seafile-data/seafile /opt/seafile-backup/data/
+cd /opt/seafile-backup/data && rm -rf ccnet
+```
 
-    ```
+##### Use rsync to do incremental backup
 
-  * Use rsync to do incremental backup
-
-    ```bash
-    rsync -az /opt/seafile-data/seafile /opt/seafile-backup/data/
-    cd /opt/seafile-backup/data && rm -rf ccnet
-
-    ```
+```bash
+rsync -az /opt/seafile-data/seafile /opt/seafile-backup/data/
+cd /opt/seafile-backup/data && rm -rf ccnet
+```
 
 ### Recovery
 
-* Restore the databases:
+#### Restore the databases:
 
-  ```
-  docker cp /opt/seafile-backup/databases/ccnet_db.sql seafile-mysql:/tmp/ccnet_db.sql
-  docker cp /opt/seafile-backup/databases/seafile_db.sql seafile-mysql:/tmp/seafile_db.sql
-  docker cp /opt/seafile-backup/databases/seahub_db.sql seafile-mysql:/tmp/seahub_db.sql
+```
+docker cp /opt/seafile-backup/databases/ccnet_db.sql seafile-mysql:/tmp/ccnet_db.sql
+docker cp /opt/seafile-backup/databases/seafile_db.sql seafile-mysql:/tmp/seafile_db.sql
+docker cp /opt/seafile-backup/databases/seahub_db.sql seafile-mysql:/tmp/seahub_db.sql
 
-  docker exec -it seafile-mysql /bin/sh -c "mysql -uroot ccnet_db < /tmp/ccnet_db.sql"
-  docker exec -it seafile-mysql /bin/sh -c "mysql -uroot seafile_db < /tmp/seafile_db.sql"
-  docker exec -it seafile-mysql /bin/sh -c "mysql -uroot seahub_db < /tmp/seahub_db.sql"
+docker exec -it seafile-mysql /bin/sh -c "mysql -uroot ccnet_db < /tmp/ccnet_db.sql"
+docker exec -it seafile-mysql /bin/sh -c "mysql -uroot seafile_db < /tmp/seafile_db.sql"
+docker exec -it seafile-mysql /bin/sh -c "mysql -uroot seahub_db < /tmp/seahub_db.sql"
+```
 
-  ```
+#### Restore the seafile data:
 
-* Restore the seafile data:
-
-  ```
-  cp -R /opt/seafile-backup/data/* /opt/seafile-data/seafile/
-
-  ```
+```
+cp -R /opt/seafile-backup/data/* /opt/seafile-data/seafile/
+```
 
 ## Garbage collection
 
@@ -279,7 +275,4 @@ You can run docker commands like "docker exec" to find errors.
 
 ```sh
 docker exec -it seafile /bin/bash
-
 ```
-
-
