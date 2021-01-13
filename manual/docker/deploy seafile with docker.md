@@ -167,50 +167,51 @@ Steps:
 
 Backup Order: Database First or Data Directory First
 
-* backing up Database:
-  ```bash
-  # It's recommended to backup the database to a separate file each time. Don't overwrite older database backups for at least a week.
-  cd /opt/seafile-backup/databases
-  docker exec -it seafile-mysql mysqldump  -uroot --opt ccnet_db > ccnet_db.sql
-  docker exec -it seafile-mysql mysqldump  -uroot --opt seafile_db > seafile_db.sql
-  docker exec -it seafile-mysql mysqldump  -uroot --opt seahub_db > seahub_db.sql
+#### backing up Database:
 
-  ```
+```bash
+# It's recommended to backup the database to a separate file each time. Don't overwrite older database backups for at least a week.
+cd /opt/seafile-backup/databases
+docker exec -it seafile-mysql mysqldump  -uroot --opt ccnet_db > ccnet_db.sql
+docker exec -it seafile-mysql mysqldump  -uroot --opt seafile_db > seafile_db.sql
+docker exec -it seafile-mysql mysqldump  -uroot --opt seahub_db > seahub_db.sql
+```
 
-* Backing up Seafile library data:
-  * To directly copy the whole data directory
-    ```bash
-    cp -R /opt/seafile-data/seafile /opt/seafile-backup/data/
-    cd /opt/seafile-backup/data && rm -rf ccnet
+#### Backing up Seafile library data:
 
-    ```
+##### To directly copy the whole data directory
 
-  * Use rsync to do incremental backup
-    ```bash
-    rsync -az /opt/seafile-data/seafile /opt/seafile-backup/data/
-    cd /opt/seafile-backup/data && rm -rf ccnet
+```bash
+cp -R /opt/seafile-data/seafile /opt/seafile-backup/data/
+cd /opt/seafile-backup/data && rm -rf ccnet
+```
 
-    ```
+##### Use rsync to do incremental backup
+
+```bash
+rsync -az /opt/seafile-data/seafile /opt/seafile-backup/data/
+cd /opt/seafile-backup/data && rm -rf ccnet
+```
 
 ### Recovery
 
-* Restore the databases:
-  ```bash
-  docker cp /opt/seafile-backup/databases/ccnet_db.sql seafile-mysql:/tmp/ccnet_db.sql
-  docker cp /opt/seafile-backup/databases/seafile_db.sql seafile-mysql:/tmp/seafile_db.sql
-  docker cp /opt/seafile-backup/databases/seahub_db.sql seafile-mysql:/tmp/seahub_db.sql
+#### Restore the databases:
 
-  docker exec -it seafile-mysql /bin/sh -c "mysql -uroot ccnet_db < /tmp/ccnet_db.sql"
-  docker exec -it seafile-mysql /bin/sh -c "mysql -uroot seafile_db < /tmp/seafile_db.sql"
-  docker exec -it seafile-mysql /bin/sh -c "mysql -uroot seahub_db < /tmp/seahub_db.sql"
+```bash
+docker cp /opt/seafile-backup/databases/ccnet_db.sql seafile-mysql:/tmp/ccnet_db.sql
+docker cp /opt/seafile-backup/databases/seafile_db.sql seafile-mysql:/tmp/seafile_db.sql
+docker cp /opt/seafile-backup/databases/seahub_db.sql seafile-mysql:/tmp/seahub_db.sql
 
-  ```
+docker exec -it seafile-mysql /bin/sh -c "mysql -uroot ccnet_db < /tmp/ccnet_db.sql"
+docker exec -it seafile-mysql /bin/sh -c "mysql -uroot seafile_db < /tmp/seafile_db.sql"
+docker exec -it seafile-mysql /bin/sh -c "mysql -uroot seahub_db < /tmp/seahub_db.sql"
+```
 
-* Restore the seafile data:
-  ```bash
-  cp -R /opt/seafile-backup/data/* /opt/seafile-data/seafile/
+### Restore the seafile data:
 
-  ```
+```bash
+cp -R /opt/seafile-backup/data/* /opt/seafile-data/seafile/
+```
 
 ## Garbage collection
 
@@ -224,5 +225,4 @@ You can run docker commands like "docker exec" to find errors.
 
 ```sh
 docker exec -it seafile /bin/bash
-
 ```
