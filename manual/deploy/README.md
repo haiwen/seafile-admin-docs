@@ -8,7 +8,7 @@ Here we describe how to deploy Seafile from prebuild binary packages.
 
 ## Deploy Seafile in Production/Enterprise Environment
 
-In production environment we recommend using MySQL as the database and config Seafile web behing Nginx or Apache. For those who are not familiar with Nginx and Apache. We recommend Nginx, since it is easier to config than Apache.
+In production environment we recommend using MySQL as the database and config Seafile web behind Nginx or Apache. For those who are not familiar with Nginx and Apache. We recommend Nginx, since it is easier to config than Apache.
 
 We provide three ways to deploy Seafile services:
 
