@@ -6,7 +6,7 @@
 
 If you are not familiar with docker commands, please refer to [docker documentation](https://docs.docker.com/engine/reference/commandline/cli/).
 
-**Note**: If you want to deploy the Seafile Pro Edition with docker, refor to the [Deploying Seafile-pro with Docker](../deploy_pro/deploy_with_docker.md)
+**Note**: If you want to deploy the Seafile Pro Edition with docker, refer to the [Deploying Seafile-pro with Docker](../deploy_pro/deploy_with_docker.md)
 
 ## For seafile 7.x.x
 
