@@ -3,7 +3,7 @@ This is the document for deploying Seafile open source development environment i
 ## Run a container
 
 ```
-docker run -it -p 8000:8000 -p 8082:8082 --name seafile-ce-env ubuntu:18.04  bash
+docker run -it -p 8000:8000 -p 8082:8082 -p 3000:3000 --name seafile-ce-env ubuntu:18.04  bash
 ```
 
 Note, the following commands are all executed in the seafile-ce-env docker container.
@@ -192,3 +192,51 @@ Then, you can visit <http://127.0.0.1:8000/>  to use Seafile.
 ## The Final Directory Structure
 
 ![Directory Structure](../images/build_seafile_server_directory_structure.jpg)
+
+## More
+
+### Deploy Frontend Development Environment
+
+For deploying frontend development enviroment, you need:
+
+1, checkout seahub to master branch
+
+```
+cd /root/dev/source-code/seahub
+
+git fetch origin master:master
+git checkout master
+```
+
+2, add the following configration to /root/dev/conf/seahub_settings.py
+
+```
+import os
+PROJECT_ROOT = '/root/dev/source-code/seahub'
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'frontend/',
+        'STATS_FILE': os.path.join(PROJECT_ROOT,
+                                   'frontend/webpack-stats.dev.json'),
+    }
+}
+DEBUG = True
+```
+
+3, install js modules
+
+```
+cd /root/dev/source-code/seahub/frontend
+
+npm install
+```
+
+4, npm run dev
+
+```
+cd /root/dev/source-code/seahub/frontend
+
+npm run dev
+```
+
+5, start seaf-server and seahub
