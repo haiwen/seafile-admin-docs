@@ -91,6 +91,9 @@ In order to use this feature, in addition to granting `can_invite_guest` permiss
 
 ```
 ENABLE_GUEST_INVITATION = True
+
+# invitation expire time
+INVITATIONS_TOKEN_AGE = 72 # hours
 ```
 
 After restarting, users who have `can_invite_guest` permission will see "Invite People" section at sidebar of home page.
