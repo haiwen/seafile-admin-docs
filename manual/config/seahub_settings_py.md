@@ -235,6 +235,8 @@ CLOUD_MODE = True
 # Disable global address book
 ENABLE_GLOBAL_ADDRESSBOOK = False
 
+# invitation expire time
+INVITATIONS_TOKEN_AGE = 72 # hours
 ```
 
 ## External authentication
