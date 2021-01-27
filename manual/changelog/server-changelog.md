@@ -6,6 +6,15 @@
 
 Please check our document for how to upgrade to 8.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_8.0.x/>
 
+### 8.0.3 (2021/01/27)
+
+* Users can use secret key to access WebDAV after enabling two-factor authentication
+* Fix fuse
+* Fix navigation side panel in public library on mobile
+* Improve UI of file search
+* Add QR code for sharing links
+* Fix OnlyOffice integration when JWT is enabled
+
 ### 8.0.2 (2021/01/04)
 
 * Fix LDAP problem
