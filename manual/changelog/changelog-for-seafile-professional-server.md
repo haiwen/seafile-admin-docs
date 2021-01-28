@@ -8,6 +8,16 @@
 
 Please check our document for how to upgrade to 7.1: [upgrade notes for 7.1.x](../upgrade/upgrade_notes_for_7.1.x.md)
 
+### 7.1.11 (2020/01/28)
+
+* Add cache for listing libraies request from drive clients
+* Show users' last active time in admin panel
+* Library owner can unlock a file
+* Show image thumbnail in search result
+* WebDAV support range request
+* [fix] Fix WebDAV can't be used with secret when 2FA is enabled
+* [fix] Fix SSO users are not created after login when LDAP is also enabled
+
 ### 7.1.10 (2020/01/11)
 
 * [fix] Fix user can't login in WebDAV via secret key after two-fa is turned on
