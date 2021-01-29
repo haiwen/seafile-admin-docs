@@ -1,5 +1,15 @@
 # SeaDrive Client Changelog
 
+### 2.0.12 (2021/1/29)
+
+* \[Win] Fix crash issue when repeatedly download and cancel download some files
+* \[Win] Fix some cases for creating unexpected conflict files
+* \[Win] Automatically download new files for pinned folders
+* Don't create commits for read-only libraries. Avoid unexpected permission errors.
+* \[Win] Add user names to the shortcut in File Explorer
+* \[Win] Pop notifications when files are created in a category folder
+* \[Win] Make the columns in transfer progress dialog resizable
+
 ### 2.0.10 (2020/12/29)
 
 * \[Win] Add context menu
