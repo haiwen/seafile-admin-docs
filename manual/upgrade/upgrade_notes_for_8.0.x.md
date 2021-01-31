@@ -16,7 +16,7 @@ Note, you should install Python libraries system wide using root user or sudo mo
 ```sh
 apt-get install libmysqlclient-dev
 
-sudo pip3 install future mysqlclient
+sudo pip3 install -U future mysqlclient
 ```
 
 * For Debian 10
