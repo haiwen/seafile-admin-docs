@@ -1,7 +1,5 @@
 # Seafile.conf settings
 
-**Note**: Since Seafile Server 5.0.0, all config files are moved to the central **conf** folder. [Read More](../deploy/new_directory_layout_5_0_0.md).
-
 **Important**: Every entry in this configuration file is **case-sensitive**.
 
 You need to restart seafile and seahub so that your changes take effect.
