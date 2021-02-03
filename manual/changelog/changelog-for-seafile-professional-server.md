@@ -8,7 +8,13 @@
 
 Please check our document for how to upgrade to 7.1: [upgrade notes for 7.1.x](../upgrade/upgrade_notes_for_7.1.x.md)
 
-### 7.1.11 (2020/01/28)
+### 7.1.12 (2021/02/03)
+
+* [fix] Fix listing more than 100+ users in group member management dialog
+* [fix] Fix guest invitation email sending problem
+* ccnet-server and seaf-server close database connection when there are errors
+
+### 7.1.11 (2021/01/28)
 
 * Add cache for listing libraies request from drive clients
 * Show users' last active time in admin panel
