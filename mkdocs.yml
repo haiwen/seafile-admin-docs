@@ -131,8 +131,7 @@ nav:
     - Upgrade from 6.3 to 7.0:
       - Upgrade Seafile Docker CE: docker/6.3 upgrade to 7.0.md
       - Upgrade Seafile Docker Pro: docker/pro-edition/6.3 upgrade to 7.0.md
-    - Upgrade for other versions:
-      - 7.0 to 7.1: docker/upgrade/7.0_7.1.md
+    - Upgrade for other versions: docker/upgrade/upgrade_docker.md
   - Configuration and Customization:
     - Forward: config/README.md
     - ccnet.conf: config/ccnet-conf.md
