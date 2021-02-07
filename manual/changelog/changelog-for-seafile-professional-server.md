@@ -8,6 +8,11 @@
 
 Please check our document for how to upgrade to 7.1: [upgrade notes for 7.1.x](../upgrade/upgrade_notes_for_7.1.x.md)
 
+### 7.1.13 (2021/02/08)
+
+* [fix] Fix file audit logs are not recorded if seaf-server restarted
+* [fix] Fix a crash bug in seaf-server
+
 ### 7.1.12 (2021/02/03)
 
 * [fix] Fix listing more than 100+ users in group member management dialog
