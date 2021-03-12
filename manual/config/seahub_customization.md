@@ -131,4 +131,4 @@ ADDITIONAL_ABOUT_DIALOG_LINKS = {
 
 Result:
 
-![](../images/additional-app-bottom-links.png)
+![](../images/additional-about-dialog-links.png)
