@@ -8,41 +8,40 @@ During upgrading, Seafile upgrade script will create symbolic link automatically
 
 ### Customize Logo
 
-1. Add your logo file to `custom/`
-2. Overwrite `LOGO_PATH` in `seahub_settings.py`
+Add your logo file to `custom/`
 
-   ```python
-   LOGO_PATH = 'custom/mylogo.png'
+Overwrite `LOGO_PATH` in `seahub_settings.py`
 
-   ```
+```python
+LOGO_PATH = 'custom/mylogo.png'
+```
 
-3. Default width and height for logo is 149px and 32px, you may need to change that according to yours.
+Default width and height for logo is 149px and 32px, you may need to change that according to yours.
 
-   ```python
-   LOGO_WIDTH = 149
-   LOGO_HEIGHT = 32
-
-   ```
+```python
+LOGO_WIDTH = 149
+LOGO_HEIGHT = 32
+```
 
 ### Customize Favicon
 
-1. Add your favicon file to `custom/`
-2. Overwrite `FAVICON_PATH` in `seahub_settings.py`
+Add your favicon file to `custom/`
+
+Overwrite `FAVICON_PATH` in `seahub_settings.py`
 
 ```python
 FAVICON_PATH = 'custom/favicon.png'
-
 ```
 
 ### Customize Seahub CSS
 
-1. Add your css file to `custom/`, for example, `custom.css`
-2. Overwrite `BRANDING_CSS` in `seahub_settings.py`
+Add your css file to `custom/`, for example, `custom.css`
 
-   ```python
-   BRANDING_CSS = 'custom/custom.css'
+Overwrite `BRANDING_CSS` in `seahub_settings.py`
 
-   ```
+```python
+BRANDING_CSS = 'custom/custom.css'
+```
 
 You can find a good example of customized css file here: <https://github.com/focmb/seafile_custom_css_green>
 
@@ -54,7 +53,6 @@ First go to the custom folder
 
 ```
 cd <seafile-install-path>/seahub-data/custom
-
 ```
 
 then run the following commands
@@ -63,7 +61,6 @@ then run the following commands
 mkdir templates
 mkdir templates/help
 cp ../../seafile-server-latest/seahub/seahub/help/templates/help/install.html templates/help/
-
 ```
 
 Modify the `templates/help/install.html` file and save it. You will see the new help page.
@@ -74,13 +71,15 @@ You can add an extra note in sharing dialog in seahub_settings.py
 
 ```
 ADDITIONAL_SHARE_DIALOG_NOTE = {
-  'title': 'Attention! Read before shareing files:',
-  'content': 'Do not share personal or confidential official data with **.'
- }
-
+    'title': 'Attention! Read before shareing files:',
+    'content': 'Do not share personal or confidential official data with **.'
+}
 ```
 
 Result:
+
+![](../images/additional-share-dialog-note.png)
+
 
 <img src="https://download.seafile.com/lib/bc427fa6-464c-4712-8e75-6bc08de53f91/file/images/auto-upload/image-1585712416075.png?raw=1" width="386" height="null" />
 
@@ -103,7 +102,6 @@ CUSTOM_NAV_ITEMS = [
      'link': 'http://www.example.com'
     },
 ]
-
 ```
 
 **Note: The **`icon` **field currently only supports icons in Seafile that begin with **`sf2-icon`**. You can find the list of icons here: **<https://github.com/haiwen/seahub/blob/7.0/media/css/seahub.css#L146>
@@ -119,12 +117,11 @@ ADDITIONAL_APP_BOTTOM_LINKS = {
     'seafile': 'https://example.seahub.com/seahub',
     'dtable-web': 'https://example.seahub.com/web'
 }
-
 ```
 
 Result:
 
-<img src="https://download.seafile.com/lib/bc427fa6-464c-4712-8e75-6bc08de53f91/file/images/auto-upload/image-1585712569569.png?raw=1" width="586" height="null" />
+![](../images/additional-app-bottom-links.png)
 
 ## Add more links to about dialog
 
@@ -133,7 +130,6 @@ ADDITIONAL_ABOUT_DIALOG_LINKS = {
     'seafile': 'https://example.seahub.com/seahub',
     'dtable-web': 'https://example.seahub.com/dtable-web'
 }
-
 ```
 
 Result:
