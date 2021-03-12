@@ -80,9 +80,6 @@ Result:
 
 ![](../images/additional-share-dialog-note.png)
 
-
-<img src="https://download.seafile.com/lib/bc427fa6-464c-4712-8e75-6bc08de53f91/file/images/auto-upload/image-1585712416075.png?raw=1" width="386" height="null" />
-
 ## Add custom navigation items
 
 Since Pro 7.0.9, Seafile supports adding some custom navigation entries to the home page for quick access. This requires you to add the following configuration information to the `conf/seahub_settings.py` configuration file:
@@ -134,4 +131,4 @@ ADDITIONAL_ABOUT_DIALOG_LINKS = {
 
 Result:
 
-<img src="https://download.seafile.com/lib/bc427fa6-464c-4712-8e75-6bc08de53f91/file/images/auto-upload/image-1585712631552.png?raw=1" width="610" height="null" />
+![](../images/additional-app-bottom-links.png)
