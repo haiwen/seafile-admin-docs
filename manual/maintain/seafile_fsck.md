@@ -46,11 +46,11 @@ The output looks like:
 [02/13/15 16:21:07] fsck.c(470): Running fsck for repo ca1a860d-e1c1-4a52-8123-0bf9def8697f.
 [02/13/15 16:21:07] fsck.c(413): Checking file system integrity of repo fsck(ca1a860d)...
 [02/13/15 16:21:07] fsck.c(35): Dir 9c09d937397b51e1283d68ee7590cd9ce01fe4c9 is missing.
-[02/13/15 16:21:07] fsck.c(200): Dir /bf/pk/(9c09d937) is curropted.
+[02/13/15 16:21:07] fsck.c(200): Dir /bf/pk/(9c09d937) is corrupted.
 [02/13/15 16:21:07] fsck.c(105): Block 36e3dd8757edeb97758b3b4d8530a4a8a045d3cb is corrupted.
-[02/13/15 16:21:07] fsck.c(178): File /bf/02.1.md(ef37e350) is curropted.
+[02/13/15 16:21:07] fsck.c(178): File /bf/02.1.md(ef37e350) is corrupted.
 [02/13/15 16:21:07] fsck.c(85): Block 650fb22495b0b199cff0f1e1ebf036e548fcb95a is missing.
-[02/13/15 16:21:07] fsck.c(178): File /01.2.md(4a73621f) is curropted.
+[02/13/15 16:21:07] fsck.c(178): File /01.2.md(4a73621f) is corrupted.
 [02/13/15 16:21:07] fsck.c(514): Fsck finished for repo ca1a860d.
 
 ```
