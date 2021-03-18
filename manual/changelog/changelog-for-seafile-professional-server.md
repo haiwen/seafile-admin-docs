@@ -26,12 +26,17 @@ Please check our document for how to upgrade to 8.0: https://manual.seafile.com/
 
 Please check our document for how to upgrade to 7.1: [upgrade notes for 7.1.x](../upgrade/upgrade_notes_for_7.1.x.md)
 
+### 7.1.15 (2021/03/18)
+
+* [fix] Fix sometimes uploading via API returning 400 error
+* Improve file locking handlering for OnlyOffice and Office Online integration
+* [fix] Fix sometimes traffic statistics not correct
+
 ### 7.1.14 (2021/02/26)
 
 * Add importing group members via a xlsx file
 * [fix] Fix a bug in login via Shibboleth
 * [fix] Fix remote wipe
-* [fix] Fix sometimes uploading via API returning 400 error
 * [fix] Fix setting a role's default quota via ADFS login
 
 ### 7.1.13 (2021/02/08)
