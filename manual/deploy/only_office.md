@@ -34,7 +34,7 @@ You can now set up automatic save by changing the configuration of OnlyOffice.
         }
     }
  }
- ```
+```
 
 * Restart OnlyOffice: `supervisorctl restart all` 
 
@@ -85,8 +85,7 @@ Configure OnlyOffice Document server, add your secret string to `/etc/onlyoffice
        }
    }
 }
-...     
-
+...
 ```
 
 For more information you can check the official documentation: <https://api.onlyoffice.com/editors/signature/>
@@ -112,7 +111,6 @@ VERIFY_ONLYOFFICE_CERTIFICATE = False
 ONLYOFFICE_APIJS_URL = 'http{s}://{your OnlyOffice server's domain or IP}/web-apps/apps/api/documents/api.js'
 ONLYOFFICE_FILE_EXTENSION = ('doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx', 'odt', 'fodt', 'odp', 'fodp', 'ods', 'fods')
 ONLYOFFICE_EDIT_FILE_EXTENSION = ('docx', 'pptx', 'xlsx')
-
 ```
 
 Then restart the Seafile Server
@@ -123,7 +121,6 @@ Then restart the Seafile Server
 
 # or
 service seafile-server restart
-
 ```
 
 When you click on a document you should see the new preview page.
@@ -164,7 +161,6 @@ map $http_upgrade $proxy_connection {
         default upgrade;
         "" close;
     }
-
 ```
 
 **Proxy server settings subfolder**
@@ -192,7 +188,6 @@ location /onlyofficeds/ {
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 	}
 ...
-
 ```
 
 #### Configure Apache
@@ -219,7 +214,6 @@ LoadModule setenvif_module modules/mod_setenvif.so
 </IfModule>
 
 ...
-
 ```
 
 Add the following configuration to your seafile apache config file (e.g. `sites-enabled/seafile.conf`) **inside** the `<VirtualHost >` directive at the end.
@@ -244,7 +238,6 @@ Define DS_ADDRESS {your Seafile server's domain or IP}:88
 </Location>
 
 ...
-
 ```
 
 ### Test that DocumentServer is running via SUBFOLDER
@@ -262,7 +255,6 @@ VERIFY_ONLYOFFICE_CERTIFICATE = True
 ONLYOFFICE_APIJS_URL = 'http{s}://{your Seafile server's domain or IP}/{your subdolder}/web-apps/apps/api/documents/api.js'
 ONLYOFFICE_FILE_EXTENSION = ('doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx', 'odt', 'fodt', 'odp', 'fodp', 'ods', 'fods')
 ONLYOFFICE_EDIT_FILE_EXTENSION = ('docx', 'pptx', 'xlsx')
-
 ```
 
 Then restart the Seafile Server
@@ -273,7 +265,6 @@ Then restart the Seafile Server
 
 # or
 service seafile-server restart
-
 ```
 
 When you click on a document you should see the new preview page.
@@ -401,7 +392,6 @@ server {
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     }
 }
-
 ```
 
 ### Complete Apache config EXAMPLE
@@ -487,7 +477,4 @@ LoadModule ssl_module modules/mod_ssl.so
   </Location>
   
 </VirtualHost>
-
 ```
-
-
