@@ -76,6 +76,16 @@ DELETE FROM PermAudit WHERE to_days(now()) - to_days(timestamp) > 90;
 
 ```
 
+### File History
+
+To clean the file history records, login in to MySQL/MariaDB and use the following command:
+
+```
+use seahub_db;
+DELETE FROM FileHistory WHERE to_days(now()) - to_days(timestamp) > 90;
+
+```
+
 ### Outdated Library Data
 
 Since version 6.2, we offer command to clear outdated library records in Seahub database,
