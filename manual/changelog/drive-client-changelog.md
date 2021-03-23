@@ -1,5 +1,14 @@
 # SeaDrive Client Changelog
 
+### 2.0.13 (2021/3/23)
+
+* \[Win] Fix crash issue when multiple accounts with the same name are used
+* \[Win] Improve download speed for large files
+* \[Win] Improvement and bug fixes for context menu
+* \[Win] A few UI fixes
+* \[Win] Support preconfigure cache folder location
+* \[Mac] Fix bug for cleaning cached file/folder
+
 ### 2.0.12 (2021/1/29)
 
 * \[Win] Fix crash issue when repeatedly download and cancel download some files
