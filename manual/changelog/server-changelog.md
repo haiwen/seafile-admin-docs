@@ -13,7 +13,7 @@ Please check our document for how to upgrade to 8.0: <https://manual.seafile.com
 * [fix] Fix running seafile-controller with "seafile-controller -t" 
 * [fix] Fix user search in "Transfering a library" dialog
 * Add "Open via Client" button in file view page
-* Add an API to change a user's email
+* Add an admin API to change a user's email
 
 ### 8.0.3 (2021/01/27)
 
