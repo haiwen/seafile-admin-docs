@@ -6,6 +6,15 @@
 
 Please check our document for how to upgrade to 8.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_8.0.x/>
 
+### 8.0.4 (2021/03/25)
+
+* [fix] Fix a permission denial problem in OCM, if a library is shared to more than two users in another server
+* [fix] Fix a bug in password protected upload link
+* [fix] Fix running seafile-controller with "seafile-controller -t" 
+* [fix] Fix user search in "Transfering a library" dialog
+* Add "Open via Client" button in file view page
+* Add an API to change a user's email
+
 ### 8.0.3 (2021/01/27)
 
 * Users can use secret key to access WebDAV after enabling two-factor authentication
