@@ -24,7 +24,7 @@ Note, you should install Python libraries system wide using root user or sudo mo
 ```sh
 apt-get install python3 python3-setuptools python3-pip -y
 
-sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy \
+sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8 \
     django-pylibmc django-simple-captcha python3-ldap
 
 ```
@@ -34,7 +34,7 @@ sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy \
 ```sh
 yum install python3 python3-setuptools python3-pip -y
 
-sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy \
+sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8 \
     django-pylibmc django-simple-captcha python3-ldap
 
 ```
@@ -46,7 +46,7 @@ sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy \
 ```sh
 apt-get install python3 python3-setuptools python3-pip -y
 
-sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy \
+sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8 \
     django-pylibmc django-simple-captcha python3-ldap
 
 ```
@@ -56,7 +56,7 @@ sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy \
 ```sh
 yum install python3 python3-setuptools python3-pip -y
 
-sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy \
+sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8 \
     django-pylibmc django-simple-captcha python3-ldap
 
 ```
