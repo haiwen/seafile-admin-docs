@@ -35,7 +35,7 @@ yum install python python-setuptools MySQL-python python-urllib3 python-ldap -y
 apt-get update
 apt-get install python3 python3-setuptools python3-pip -y
 
-pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy \
+pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8 \
     django-pylibmc django-simple-captcha python3-ldap
 
 ```
@@ -44,7 +44,7 @@ pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy \
 # on CentOS 8
 yum install python3 python3-setuptools python3-pip -y
 
-pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy \
+pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8 \
     django-pylibmc django-simple-captcha python3-ldap
 
 ```
