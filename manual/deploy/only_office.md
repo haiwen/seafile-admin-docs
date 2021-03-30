@@ -53,44 +53,16 @@ pip install pyjwt
 Config seahub_settings.py:
 
 ```
-ONLYOFFICE_JWT_SECRET = 'your secret string'
+ONLYOFFICE_JWT_SECRET = 'your-secret-string'
 ```
 
-Configure OnlyOffice Document server, add your secret string to `/etc/onlyoffice/documentserver/local.json` 
+Then run OnlyOffice docker image via the following command:
 
 ```
-...
-{
-    "services": {
-        "CoAuthoring": {
-            ...
-            "secret": {
-                "inbox": {
-                    "string": "your secret string"
-                },
-                "outbox": {
-                    "string": "your secret string"
-                },
-            },
-            "token": {
-                "enable": {
-                    "browser": true,
-                     "request": {
-                        "inbox": true,
-                        "outbox": true
-                     }
-                }
-            }
-            ...
-       }
-   }
-}
-...
+sudo docker run -i -t -d -p 80:80 -e JWT_ENABLED=true -e JWT_SECRET=your-secret-string onlyoffice/documentserver
 ```
 
-For more information you can check the official documentation: <https://api.onlyoffice.com/editors/signature/>
-
-Restart OnlyOffice: `supervisorctl restart all` 
+For more information you can check the official documentation: <https://api.onlyoffice.com/editors/signature/> and <https://github.com/ONLYOFFICE/Docker-DocumentServer#available-configuration-parameters>
 
 **NOTE**：To avoid the problem of having to change the configuration file every time the _documentserver_ container is restarted, you can create a locally persistent configuration file `local-production-linux.json` and mount it into _documentserver_ container :
 
