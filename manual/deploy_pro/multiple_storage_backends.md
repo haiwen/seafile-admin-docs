@@ -27,7 +27,7 @@ In Seafile server, a storage backend is represented by the concept of "storage c
 
 commit, fs, and blocks can be stored in different storages. This provides the most flexible way to define storage classes.
 
-As Seafile server before 6.3 version doesn't support multiple storage classes, you have to explicitely enable this new feature and define storage classes with a different syntax than how we define storage backend before.
+As Seafile server before 6.3 version doesn't support multiple storage classes, you have to explicitly enable this new feature and define storage classes with a different syntax than how we define storage backend before.
 
 First, you have to enable this feature in seafile.conf.
 
@@ -41,8 +41,8 @@ memcached_options = --SERVER=<the IP of Memcached Server> --POOL-MIN=10 --POOL-M
 
 ```
 
-* enable_storage_classes ：If this is set to true, storage class feature is enabled. You have to define the storage classes in a JSON file provided in the next configuration option.
-* storage_classes_file：Specifies the path for the JSON file that contains storage class definition.
+* enable_storage_classes ：If this is set to true, the storage class feature is enabled. You must define the storage classes in a JSON file provided in the next configuration option.
+* storage_classes_file：Specifies the path for the JSON file that contains the storage class definition.
 
 The JSON file is an array of objects. Each object defines a storage class. The fields in the definition corresponds to the information we need to specify for a storage class. Below is an example:
 
@@ -85,17 +85,17 @@ The JSON file is an array of objects. Each object defines a storage class. The f
 
 ```
 
-As you may have seen, the `commits`, `fs` and `blocks` information syntax is similar to what used in `[commit_object_backend]`, `[fs_object_backend]` and `[block_backend]` section of seafile.conf.
+As you may have seen, the `commits`, `fs` and `blocks` information syntax is similar to what is used in `[commit_object_backend]`, `[fs_object_backend]` and `[block_backend]` section of seafile.conf.
 
-If you use file system as storage for `fs`, `commits` or `blocks`, you have to explicitely provide the path for the `seafile-data` directory. The objects will be stored in `storage/commits`, `storage/fs`, `storage/blocks` under this path. 
+If you use file system as storage for `fs`, `commits` or `blocks`, you must explicitly provide the path for the `seafile-data` directory. The objects will be stored in `storage/commits`, `storage/fs`, `storage/blocks` under this path. 
 
-_Note_: Currently file system, S3 and Swift backends are supported. Ceph/RADOS is supported since version 7.0.14.
+_Note_: Currently file system, S3 and Swift backends are supported. Ceph/RADOS is also supported since version 7.0.14.
 
 ## Library Mapping Policies
 
 Library mapping policies decide the storage class a library uses. Currently we provide 3 policies for 3 different use cases. The storage class of a library is decided on creation and stored in a database table. The storage class of a library won't change if the mapping policy is changed later.
 
-Before choosing your mapping policy, you need to enable storage classes feature in seahub_settings.py:
+Before choosing your mapping policy, you need to enable the storage classes feature in seahub_settings.py:
 
 ```
 ENABLE_STORAGE_CLASSES = True
@@ -104,7 +104,7 @@ ENABLE_STORAGE_CLASSES = True
 
 ### User Chosen
 
-This policy lets the users to choose which storage class to use when creating a new library. The users can select any storage class that's been defined in the JSON file.
+This policy lets the users choose which storage class to use when creating a new library. The users can select any storage class that's been defined in the JSON file.
 
 To use this policy, add following options in seahub_settings.py:
 
@@ -113,15 +113,15 @@ STORAGE_CLASS_MAPPING_POLICY = 'USER_SELECT'
 
 ```
 
-If you enable storage class support but don't explicitely set `STORAGE_CLASS_MAPPING_POLIICY` in seahub_settings.py, this policy is used by default.
+If you enable storage class support but don't explicitly set `STORAGE_CLASS_MAPPING_POLIICY` in seahub_settings.py, this policy is used by default.
 
 ### Role-based Mapping
 
-Due to storage cost or management consideration, sometimes system admin wants to make different type of users to use different storage backends (or classes). You can configure user's storage classes based on their roles.
+Due to storage cost or management considerations, sometimes a system admin wants to make different type of users use different storage backends (or classes). You can configure a user's storage classes based on their roles.
 
-A new option `storage_ids` is added to the role configuration in `seahub_settings.py` to assign storage classes to each role. If only one storage class is assigned to a role, the users with this role cannot choose storage class for libraries; otherwise, the users can choose storage class if more than one classes are assigned. If no storage class is assigned to a role, the default class specified in the JSON file will be used. 
+A new option `storage_ids` is added to the role configuration in `seahub_settings.py` to assign storage classes to each role. If only one storage class is assigned to a role, the users with this role cannot choose storage class for libraries; otherwise, the users can choose a storage class if more than one class are assigned. If no storage class is assigned to a role, the default class specified in the JSON file will be used. 
 
-Here is sample options in seahub_settings.py to use this policy:
+Here are the sample options in seahub_settings.py to use this policy:
 
 ```
 ENABLE_STORAGE_CLASSES = True
@@ -160,9 +160,9 @@ ENABLED_ROLE_PERMISSIONS = {
 
 ### Library ID Based Mapping
 
-This policy maps libraries to storage classes based on its library ID. The ID of a library is an UUID. In this way, the data in the system can be evenly districuted among the storage classes.
+This policy maps libraries to storage classes based on its library ID. The ID of a library is an UUID. In this way, the data in the system can be evenly distributed among the storage classes.
 
-Note that this policy is not a designed to be a complete distributed storage solution. It doesn't handle automatical migration of library data between storage classes. If you need to add more storage classes to the configuration, existing libraries will stay in their original storage classes. New libraries can be distributed among the new storage classes (backends). You still have to plan about the total storage capacity of your system at the beginning.
+Note that this policy is not a designed to be a complete distributed storage solution. It doesn't handle automatic migration of library data between storage classes. If you need to add more storage classes to the configuration, existing libraries will stay in their original storage classes. New libraries can be distributed among the new storage classes (backends). You still have to plan about the total storage capacity of your system at the beginning.
 
 To use this policy, you first add following options in seahub_settings.py:
 
