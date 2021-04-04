@@ -33,7 +33,7 @@ For MySQL, the databases are created by the administrator, so the names can be d
 
 * ccnet-db: contains user and group information
 * seafile-db: contains library metadata
-* seahub.db: contains tables used by the web front end (seahub)
+* seahub-db: contains tables used by the web front end (seahub)
 
 ## Backup steps
 
