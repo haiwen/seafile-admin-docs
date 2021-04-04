@@ -19,7 +19,7 @@ apt-get install docker-compose -y
 
 ### Download and modify docker-compose.yml
 
-Download [docker-compose.yml](https://download.seafile.com/d/320e8adf90fa43ad8fee/files/?p=/docker/docker-compose.yml) sample file to your host. Then modify the file according to your environtment. The following fields are needed to be modified:
+Download [docker-compose.yml](https://download.seafile.com/d/320e8adf90fa43ad8fee/files/?p=/docker/docker-compose.yml) sample file to your host. Then modify the file according to your environment. The following fields are needed to be modified:
 
 * The password of MySQL root (MYSQL_ROOT_PASSWORD and DB_ROOT_PASSWD)
 * The volume directory of MySQL data (volumes)
