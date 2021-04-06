@@ -15,6 +15,8 @@ Please check our document for how to upgrade to 8.0: https://manual.seafile.com/
 * Improve file locking handling for OnlyOffice and Office Online Server integration
 * [fix] Fix a bug in seaf-gc
 * [fix] Fix wrong links of files in library history details dialog
+* Add "Open via Client" button in file view page
+* Add an admin API to change a user's email
 
 ### 8.0.0 beta (2021/03/02)
 
