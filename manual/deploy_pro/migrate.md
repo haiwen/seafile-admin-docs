@@ -98,6 +98,8 @@ cd ~/haiwen/seafile-server-latest
 
 ```
 
+Finally, you need to stop the seafile service first, and then do an incremental migration.
+
 ## Replace the original seafile.conf
 
 After running the script, we need replace the original seafile.conf with new one:
