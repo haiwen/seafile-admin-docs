@@ -8,6 +8,14 @@
 
 Please check our document for how to upgrade to 8.0: https://manual.seafile.com/upgrade/upgrade_notes_for_8.0.x/
 
+### 8.0.1 (2021/04/07)
+
+* Users can set whether to receive email notifications in the setting page
+* [fix] Fix a bug that sometimes traffic statistics are not correct
+* Improve file locking handling for OnlyOffice and Office Online Server integration
+* [fix] Fix a bug in seaf-gc
+* [fix] Fix wrong links of files in library history details dialog
+
 ### 8.0.0 beta (2021/03/02)
 
 * Add open cloud mesh feature
