@@ -124,6 +124,27 @@ pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8 \
 
 ```
 
+**For Seafile 8.0.x**
+
+```
+# on Debian 10/Ubuntu 18.04
+apt-get update
+apt-get install python3 python3-setuptools python3-pip -y
+
+pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
+    django-pylibmc django-simple-captcha python3-ldap
+
+```
+
+```
+# on CentOS 8
+yum install python3 python3-setuptools python3-pip -y
+
+pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
+    django-pylibmc django-simple-captcha python3-ldap
+
+```
+
 ### Setup
 
 ```
