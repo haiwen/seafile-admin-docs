@@ -99,7 +99,7 @@ sudo yum install poppler-utils
 
 ### Install Python libraries
 
-First make sure your have installed Python 2.7
+First make sure your have installed Python 3.6 or a new version. Then install the following packages:
 
 ```
 sudo easy_install pip
@@ -122,7 +122,7 @@ See [Download and Setup Seafile Server With MySQL](../deploy/using_mysql.md).
 
 ### Get the license
 
-Put the license you got under the top level diretory. In our wiki, we use the diretory `/data/haiwen/` as the top level directory. If you're using the free Pro Edition with three users you don't need a license file.
+If the license you received is not named as `seafile-license.txt`, rename it to `seafile-license.txt`. Then put the license file under the top level diretory. In this manual, we use the diretory `/data/haiwen/` as the top level directory.
 
 ### Download & uncompress Seafile Professional Server
 
