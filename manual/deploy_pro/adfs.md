@@ -47,12 +47,22 @@ These x.509 certs are used to sign and encrypt elements like NameID and Metadata
 
 * For Ubuntu 16.04
 
-
 ```
 sudo apt install libxmlsec1 xmlsec1
-sudo pip install cryptography djangosaml2==0.15.0
+```
+
+* For Seafile 7.1.x
 
 ```
+sudo pip install cryptography djangosaml2==0.18.1
+```
+
+* For Seafile 8.0.x
+
+```
+sudo pip install cryptography djangosaml2>=0.19.0
+```
+
 
 ## Config Seafile
 
