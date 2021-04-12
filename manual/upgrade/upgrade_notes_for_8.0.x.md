@@ -16,7 +16,7 @@ Note, you should install Python libraries system wide using root user or sudo mo
 ```sh
 apt-get install libmysqlclient-dev
 
-sudo pip3 install -U future mysqlclient
+sudo pip3 install -U future mysqlclient sqlalchemy==1.4.3
 ```
 
 * For Debian 10
@@ -24,7 +24,7 @@ sudo pip3 install -U future mysqlclient
 ```sh
 apt-get install  default-libmysqlclient-dev 
 
-sudo pip3 install future mysqlclient
+sudo pip3 install future mysqlclient sqlalchemy==1.4.3
 ```
 
 * For CentOS 7
@@ -33,7 +33,7 @@ sudo pip3 install future mysqlclient
 yum install python3-devel mysql-devel gcc gcc-c++ -y
 
 sudo pip3 install future
-sudo pip3 install mysqlclient==2.0.1
+sudo pip3 install mysqlclient==2.0.1 sqlalchemy==1.4.3
 ```
 
 * For CentOS 8
@@ -41,7 +41,7 @@ sudo pip3 install mysqlclient==2.0.1
 ```sh
 yum install python3-devel mysql-devel gcc gcc-c++ -y
 
-sudo pip3 install future mysqlclient
+sudo pip3 install future mysqlclient sqlalchemy==1.4.3
 ```
 
 ## Upgrade to 8.0.x
