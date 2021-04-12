@@ -54,7 +54,7 @@ We assume you already have deployed Seafile Community Server 1.8.0 under `/data/
 
 ### Get the license
 
-Put the license file you get under the top level directory of your Seafile installation. In our example, it is `/data/haiwen/`.
+If the license you received is not named as seafile-license.txt, rename it to seafile-license.txt. Then put the license file under the top level diretory. In our example, it is `/data/haiwen/`.
 
 ### Download & uncompress Seafile Professional Server
 
