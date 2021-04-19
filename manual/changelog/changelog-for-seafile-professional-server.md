@@ -36,6 +36,14 @@ Please check our document for how to upgrade to 8.0: https://manual.seafile.com/
 
 Please check our document for how to upgrade to 7.1: [upgrade notes for 7.1.x](../upgrade/upgrade_notes_for_7.1.x.md)
 
+### 7.1.16 (2021/04/19)
+
+* [fix] Fix deleting libraries without owner in admin panel
+* Add an API to change a user's email
+* [fix] Fix a bug in storage migration script
+* [fix] Fix a bug that will cause fsck crash
+* [fix] Fix a XSS problem in notification
+
 ### 7.1.15 (2021/03/18)
 
 * [fix] Fix sometimes uploading via API returning 400 error
