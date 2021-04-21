@@ -14,6 +14,11 @@ Please check our document for how to upgrade to 8.0: https://manual.seafile.com/
 * [fix] Enable sending collabration notification emails by default
 * [fix] Recreate a department if it is deleted in LDAP syncing
 * [fix] Fix compatibility with old MariaDB in upgrading SQL statements from version 7.1 to 8.0 
+* [fix] Fix deleting libraries without owner in admin panel
+* Add an API to change a user's email
+* [fix] Fix a bug in storage migration script
+* [fix] Fix a bug that will cause fsck crash
+* [fix] Fix a XSS problem in notification
 
 ### 8.0.1 (2021/04/07)
 
