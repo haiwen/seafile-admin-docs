@@ -8,6 +8,12 @@
 
 Please check our document for how to upgrade to 8.0: https://manual.seafile.com/upgrade/upgrade_notes_for_8.0.x/
 
+### 8.0.2 (2021/04/21)
+
+* [fix] Fix upload files to sub-folders in a sharing link with upload permission
+* [fix] Enable sending collabration notification emails by default
+* [fix] Recreate a department if it is deleted in LDAP syncing
+
 ### 8.0.1 (2021/04/07)
 
 * Users can set whether to receive email notifications in the setting page
