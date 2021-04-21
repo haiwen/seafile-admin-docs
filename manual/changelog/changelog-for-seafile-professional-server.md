@@ -13,6 +13,7 @@ Please check our document for how to upgrade to 8.0: https://manual.seafile.com/
 * [fix] Fix upload files to sub-folders in a sharing link with upload permission
 * [fix] Enable sending collabration notification emails by default
 * [fix] Recreate a department if it is deleted in LDAP syncing
+* [fix] Fix compatibility with old MariaDB in upgrading SQL statements from version 7.1 to 8.0 
 
 ### 8.0.1 (2021/04/07)
 
