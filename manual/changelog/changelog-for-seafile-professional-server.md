@@ -48,6 +48,12 @@ Please check our document for how to upgrade to 8.0: https://manual.seafile.com/
 
 Please check our document for how to upgrade to 7.1: [upgrade notes for 7.1.x](../upgrade/upgrade_notes_for_7.1.x.md)
 
+### 7.1.17 (2021/04/26)
+
+* [fix] Fix manual file lock can't work
+* [fix] Fix webdav file range request
+* Improve OnlyOffice cache handling
+
 ### 7.1.16 (2021/04/19)
 
 * [fix] Fix deleting libraries without owner in admin panel
