@@ -8,6 +8,12 @@
 
 Please check our document for how to upgrade to 8.0: https://manual.seafile.com/upgrade/upgrade_notes_for_8.0.x/
 
+### 8.0.3 (2021/04/27)
+
+* [fix] Fix SAML2 authentication
+* [fix] Fix file locking
+* [fix] Fix anothoer bug in upload files to a sharing link with upload permission
+
 ### 8.0.2 (2021/04/21)
 
 * [fix] Fix upload files to sub-folders in a sharing link with upload permission
