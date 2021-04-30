@@ -132,6 +132,14 @@ http_temp_scan_interval = x
 
 ```
 
+You can set the maximum number of files contained in the repo that supports synchronization through the Seafile client, the default is 100000. When you download a repo, Seafile client will request fs id list, and you can control the timeout period of this request through `fs_id_list_request_timeout` configuration.
+
+```
+[fileserver]
+max_sync_file_count = 100000
+fs_id_list_request_timeout = 300
+```
+
 ## Database configuration
 
 The whole database configuration is stored in the `[database]` section of the configuration file, whether you use SQLite, MySQL or PostgreSQL.
