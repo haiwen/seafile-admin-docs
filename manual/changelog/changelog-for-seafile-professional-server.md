@@ -14,6 +14,14 @@ Please check our document for how to upgrade to 8.0: https://manual.seafile.com/
 * [fix] Fix file locking
 * [fix] Fix anothoer bug in upload files to a sharing link with upload permission
 
+Potential breaking change in Seafile Pro 8.0.3: You can set the maximum number of files contained in a library that can be synced by the Seafile client. The default is 100000. When you download a repo, Seafile client will request fs id list, and you can control the timeout period of this request through `fs_id_list_request_timeout` configuration, which defaults to 5 minutes. These two options are added to prevent long fs-id-list requests from overloading the server. If you have large libraries on the server, this can cause "internal server error" returned to the client. You have to set a large enough limit for these two options.
+
+```
+[fileserver]
+max_sync_file_count = 100000
+fs_id_list_request_timeout = 300
+```
+
 ### 8.0.2 (2021/04/21)
 
 * [fix] Fix upload files to sub-folders in a sharing link with upload permission
@@ -67,6 +75,14 @@ Please check our document for how to upgrade to 7.1: [upgrade notes for 7.1.x](.
 * [fix] Fix a bug in storage migration script
 * [fix] Fix a bug that will cause fsck crash
 * [fix] Fix a XSS problem in notification
+
+Potential breaking change in Seafile Pro 7.1.16: You can set the maximum number of files contained in a library that can be synced by the Seafile client. The default is 100000. When you download a repo, Seafile client will request fs id list, and you can control the timeout period of this request through `fs_id_list_request_timeout` configuration, which defaults to 5 minutes. These two options are added to prevent long fs-id-list requests from overloading the server. If you have large libraries on the server, this can cause "internal server error" returned to the client. You have to set a large enough limit for these two options.
+
+```
+[fileserver]
+max_sync_file_count = 100000
+fs_id_list_request_timeout = 300
+```
 
 ### 7.1.15 (2021/03/18)
 
