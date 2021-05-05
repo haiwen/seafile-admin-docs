@@ -36,6 +36,8 @@ Modify Apache config file:
     DocumentRoot /var/www
     Alias /media  /home/user/haiwen/seafile-server-latest/seahub/media
 
+    AllowEncodedSlashes On
+
     RewriteEngine On
 
     <Location /media>
