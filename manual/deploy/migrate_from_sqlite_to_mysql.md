@@ -12,15 +12,16 @@ Steps to migrate Seafile from SQLite to MySQL:
 
 3. Run `sqlite2mysql.sh`:
 
- ```
+```
 chmod +x sqlite2mysql.sh
 ./sqlite2mysql.sh
 ```
+
 This script will produce three files: `ccnet-db.sql`, `seafile-db.sql`, `seahub-db.sql`.
 
 4. Create 3 databases ccnet_db, seafile_db, seahub_db and seafile user.
 
- ```
+```
 mysql> create database ccnet_db character set = 'utf8';
 mysql> create database seafile_db character set = 'utf8';
 mysql> create database seahub_db character set = 'utf8';
@@ -28,21 +29,21 @@ mysql> create database seahub_db character set = 'utf8';
 
 5. Import ccnet data to MySql.
 
- ```
+```
 mysql> use ccnet_db;
 mysql> source ccnet-db.sql;
 ```
 
 6. Import seafile data to MySql.
 
- ```
+```
 mysql> use seafile_db;
 mysql> source seafile-db.sql;
 ```
 
 7. Import seahub data to MySql.
 
- ```
+```
 mysql> use seahub_db;
 mysql> source seahub-db.sql;
 ```
@@ -51,7 +52,7 @@ mysql> source seahub-db.sql;
 
 Append following lines to [ccnet.conf](../config/ccnet-conf.md):
 
- ```
+```
 [Database]
 ENGINE=mysql
 HOST=127.0.0.1
@@ -64,7 +65,7 @@ Note: Use `127.0.0.1`, don't use `localhost`.
 
 Replace the database section in `seafile.conf` with following lines:
 
- ```
+```
 [database]
 type=mysql
 host=127.0.0.1
@@ -76,7 +77,7 @@ connection_charset=utf8
 
 Append following lines to `seahub_settings.py`:
 
- ```
+```
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -99,7 +100,7 @@ DATABASES = {
 
 User notifications will be cleared during migration due to the slight difference between MySQL and SQLite, if you only see the busy icon when click the notitfications button beside your avatar, please remove `user_notitfications` table manually by:
 
- ```
+```
 use seahub_db;
 delete from notifications_usernotification;
 ```
