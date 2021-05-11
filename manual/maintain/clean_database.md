@@ -24,7 +24,7 @@ DELETE FROM Event WHERE to_days(now()) - to_days(timestamp) > 90;
 
 The corresponding items in UserEvent will deleted automatically by MariaDB when the foreign keys in Event table are deleted.
 
-Since version 7.0, we is using the table Activity intead of Event. Correspondingly, you need to empty the Activity table. 
+Since version 7.0, the table Activity is used intead of Event. Correspondingly, you need to empty the Activity table. 
 
 Use the following command:
 
