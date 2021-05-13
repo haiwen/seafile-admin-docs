@@ -62,6 +62,14 @@ fs_id_list_request_timeout = 300
 
 Please check our document for how to upgrade to 7.1: [upgrade notes for 7.1.x](../upgrade/upgrade_notes_for_7.1.x.md)
 
+### 7.1.18 (2021/05/13)
+
+* [fix] Fix a bug in library list cache
+* [fix] Fix a webdav crash bug
+* [fix] Fix a library can't be synced immidiately after creating
+* [fix] disable max_sync_file_count and fs_id_list_request_timeout options by default
+* [fix] Fix office files can't be viewd with builtin office file preview (caused by incompatible JWT library version)
+
 ### 7.1.17 (2021/04/26)
 
 * [fix] Fix manual file lock can't work
@@ -110,7 +118,7 @@ fs_id_list_request_timeout = 300
 
 ### 7.1.11 (2021/01/28)
 
-* Add cache for listing libraies request from drive clients
+* Add cache for listing libraries request from drive clients
 * Show users' last active time in admin panel
 * Library owner can unlock a file
 * Show image thumbnail in search result
