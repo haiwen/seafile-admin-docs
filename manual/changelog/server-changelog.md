@@ -6,6 +6,18 @@
 
 Please check our document for how to upgrade to 8.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_8.0.x/>
 
+### 8.0.5 (2021/05/14)
+
+* Users can set whether to receive email notifications in the setting page
+* Add "Open via Client" button in file view page
+* Add an admin API to change a user's email
+* [fix] Fix a bug in seaf-gc
+* [fix] Fix wrong links of files in library history details dialog
+* [fix] Fix deleting libraries without owner in admin panel
+* [fix] Fix a XSS problem in notification
+* [fix] Fix JWT token support in OnlyOffice integration
+* [fix] Fix sometimes webdav cache files are not cleaned
+
 ### 8.0.4 (2021/03/25)
 
 * [fix] Fix a permission denial problem in OCM, if a library is shared to more than two users in another server
