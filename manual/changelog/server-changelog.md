@@ -8,7 +8,6 @@ Please check our document for how to upgrade to 8.0: <https://manual.seafile.com
 
 ### 8.0.5 (2021/05/14)
 
-* Users can set whether to receive email notifications in the setting page
 * Add "Open via Client" button in file view page
 * Add an admin API to change a user's email
 * [fix] Fix a bug in seaf-gc
