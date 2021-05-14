@@ -6,7 +6,7 @@
 
 **Upgrade**
 
-Please check our document for how to upgrade to 8.0: https://manual.seafile.com/upgrade/upgrade_notes_for_8.0.x/
+Please check our document for how to upgrade to 8.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_8.0.x/>
 
 ### 8.0.3 (2021/04/27)
 
