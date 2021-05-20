@@ -2,7 +2,7 @@
 
 ## 8.0
 
-### 8.0.1 beta (2020/12/15)
+### 8.0.1 (2020/12/15)
 
 * \[Win] Fix compatibility to previously synced libraries
 * \[Win] Fix failing to run issue
