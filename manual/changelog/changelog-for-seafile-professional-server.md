@@ -8,19 +8,21 @@
 
 Please check our document for how to upgrade to 8.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_8.0.x/>
 
+### 8.0.4 (2021/05/20)
+
+* [fix] Add back virus scan support in uploading link
+* [fix] Fix a bug in seaf-gc
+* [fix] Fix a bug in library list cache
+* [fix] Fix a bug that a libary can't be synced immidiately after creating
+* [fix] Do not show watermark when editing files with Office Online Server
+* [fix] Disable max_sync_files and fs_id_list_timeout options by default
+
 ### 8.0.3 (2021/04/27)
 
 * [fix] Fix SAML2 authentication
 * [fix] Fix file locking
 * [fix] Fix anothoer bug in upload files to a sharing link with upload permission
 
-Potential breaking change in Seafile Pro 8.0.3: You can set the maximum number of files contained in a library that can be synced by the Seafile client. The default is 100000. When you download a repo, Seafile client will request fs id list, and you can control the timeout period of this request through `fs_id_list_request_timeout` configuration, which defaults to 5 minutes. These two options are added to prevent long fs-id-list requests from overloading the server. If you have large libraries on the server, this can cause "internal server error" returned to the client. You have to set a large enough limit for these two options.
-
-```
-[fileserver]
-max_sync_file_count = 100000
-fs_id_list_request_timeout = 300
-```
 
 ### 8.0.2 (2021/04/21)
 
