@@ -2,6 +2,16 @@
 
 ## 8.0
 
+### 8.0.2 (2021/05/21)
+
+* \[Mac] Fix dark mode support
+* Fix bug for updating server address
+* \[Mac] Improve Finder context menu
+* \[Win] Support setting password and expiration when creating links from context menu
+* \[Win] Avoid consuming too much Windows Explorer CPU when copying large folders into library
+* \[Mac, Linux] Pop-up notification when uploading files whose names are invalid on Windows
+* \[Cli] Add --json option for listing libraries
+
 ### 8.0.1 (2020/12/15)
 
 * \[Win] Fix compatibility to previously synced libraries
