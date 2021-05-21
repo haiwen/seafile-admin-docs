@@ -15,7 +15,6 @@ Please check our document for how to upgrade to 8.0: <https://manual.seafile.com
 * [fix] Fix a bug in library list cache
 * [fix] Fix a bug that a libary can't be synced immidiately after creating
 * [fix] Do not show watermark when editing files with Office Online Server
-* [fix] Disable max_sync_files and fs_id_list_timeout options by default
 
 ### 8.0.3 (2021/04/27)
 
