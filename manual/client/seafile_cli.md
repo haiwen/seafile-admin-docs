@@ -119,3 +119,19 @@ Desynchronize a library from seafile server
 seaf-cli desync -d <existing-folder>
 
 ```
+
+## list
+
+List local libraries.
+
+```
+seaf-cli list [-c <config-dir>] [--json]
+```
+
+## list-remote
+
+List remote libraries from seafile server.
+
+```
+seaf-cli list-remote -s <seahub-server-url> -u <username> [-p <password>] [-c <config-dir>] [--json] 
+```
