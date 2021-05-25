@@ -32,58 +32,52 @@ Now upgrade to version 6.1.0.
 
 1. Shutdown Seafile server if it's running
 
-   ```sh
-   cd seafile/seafile-server-latest
-   ./seahub.sh stop
-   ./seafile.sh stop
-   # or via service
-   /etc/init.d/seafile-server stop
-
-   ```
+    ```sh
+    cd seafile/seafile-server-latest
+    ./seahub.sh stop
+    ./seafile.sh stop
+    # or via service
+    /etc/init.d/seafile-server stop
+    ```
 
 2. Check the upgrade scripts in seafile-server-6.1.0 directory.
 
-   ```sh
-   cd seafile/seafile-server-6.1.0
-   ls upgrade/upgrade_*
+    ```sh
+    cd seafile/seafile-server-6.1.0
+    ls upgrade/upgrade_*
+    ```
 
-   ```
+    You will get a list of upgrade files:
 
-   You will get a list of upgrade files:
-
-   ```
-   ...
-   upgrade_5.0_5.1.sh
-   upgrade_5.1_6.0.sh
-   upgrade_6.0_6.1.sh
-
-   ```
+    ```
+    ...
+    upgrade_5.0_5.1.sh
+    upgrade_5.1_6.0.sh
+    upgrade_6.0_6.1.sh
+    ```
 
 3. Start from your current version, run the script(s one by one)
 
-   ```
-   upgrade/upgrade_5.1_6.0.sh
-   upgrade/upgrade_6.0_6.1.sh
-
-   ```
+    ```
+    upgrade/upgrade_5.1_6.0.sh
+    upgrade/upgrade_6.0_6.1.sh
+    ```
 
 4. Start Seafile server
 
-   ```sh
-   cd seafile/seafile-server-latest/
-   ./seafile.sh start
-   ./seahub.sh start # or "./seahub.sh start-fastcgi" if you're using fastcgi
-   # or via service
-   /etc/init.d/seafile-server start
-
-   ```
+    ```sh
+    cd seafile/seafile-server-latest/
+    ./seafile.sh start
+    ./seahub.sh start # or "./seahub.sh start-fastcgi" if you're using fastcgi
+    # or via service
+    /etc/init.d/seafile-server start
+    ```
 
 5. If the new version works fine, the old version can be removed
 
-   ```sh
-   rm -rf seafile-server-5.1.0/
-
-   ```
+    ```sh
+    rm -rf seafile-server-5.1.0/
+    ```
 
 ## Minor version upgrade (e.g. from 6.1.x to 6.2.y)
 
@@ -102,57 +96,51 @@ Now upgrade to version 6.2.0.
 
 1. Shutdown Seafile server if it's running
 
-   ```sh
-   cd seafile/seafile-server-latest
-   ./seahub.sh stop
-   ./seafile.sh stop
-   # or via service
-   /etc/init.d/seafile-server stop
-
-   ```
+    ```sh
+    cd seafile/seafile-server-latest
+    ./seahub.sh stop
+    ./seafile.sh stop
+    # or via service
+    /etc/init.d/seafile-server stop
+    ```
 
 2. Check the upgrade scripts in seafile-server-6.2.0 directory.
 
-   ```sh
-   cd seafile/seafile-server-latest
-   ls upgrade/upgrade_*
-
-   ```
+    ```sh
+    cd seafile/seafile-server-latest
+    ls upgrade/upgrade_*
+    ```
 
    You will get a list of upgrade files:
 
-   ```
-   ...
-   upgrade/upgrade_5.1_6.0.sh
-   upgrade/upgrade_6.0_6.1.sh
-   upgrade/upgrade_6.1_6.2.sh
-
-   ```
+    ```
+    ...
+    upgrade/upgrade_5.1_6.0.sh
+    upgrade/upgrade_6.0_6.1.sh
+    upgrade/upgrade_6.1_6.2.sh
+    ```
 
 3. Start from your current version, run the script(s one by one)
 
-   ```
-   upgrade/upgrade_6.1_6.2.sh
-
-   ```
+    ```
+    upgrade/upgrade_6.1_6.2.sh
+    ```
 
 4. Start Seafile server
 
-   ```sh
-   cd seafile/seafile-server-latest/
-   ./seafile.sh start
-   ./seahub.sh start # or "./seahub.sh start-fastcgi" if you're using fastcgi
-   # or via service
-   /etc/init.d/seafile-server start
-
-   ```
+    ```sh
+    cd seafile/seafile-server-latest/
+    ./seafile.sh start
+    ./seahub.sh start # or "./seahub.sh start-fastcgi" if you're using fastcgi
+    # or via service
+    /etc/init.d/seafile-server start
+    ```
 
 5. If the new version works, the old version can be removed
 
-   ```sh
-   rm -rf seafile-server-6.1.0/
-
-   ```
+    ```sh
+    rm -rf seafile-server-6.1.0/
+    ```
 
 ## Maintenance version upgrade (e.g. from 6.2.2 to 6.2.3)
 
@@ -162,18 +150,14 @@ A maintenance upgrade is for example an upgrade from 6.2.2 to 6.2.3.
 2. For this type of upgrade, you only need to update the symbolic links (for avatar and a few other folders). 
    A script to perform a minor upgrade is provided with Seafile server (for history reasons, the script is called `minor-upgrade.sh`):
 
-   ```sh
-   cd seafile-server-latest
-   upgrade/minor-upgrade.sh
-
-   ```
+    ```sh
+    cd seafile-server-latest
+    upgrade/minor-upgrade.sh
+    ```
 
 3. Start Seafile
 4. If the new version works, the old version can be removed
 
-   ```sh
-   rm -rf seafile-server-6.2.2/
-
-   ```
-
-
+    ```sh
+    rm -rf seafile-server-6.2.2/
+    ```
