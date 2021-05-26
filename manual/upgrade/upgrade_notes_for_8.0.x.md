@@ -44,6 +44,26 @@ yum install python3-devel mysql-devel gcc gcc-c++ -y
 sudo pip3 install future mysqlclient sqlalchemy==1.4.3
 ```
 
+## Change Shibboleth setting
+
+If you are using Shibboleth and have configured `EXTRA_MIDDLEWARE_CLASSES`
+
+```
+EXTRA_MIDDLEWARE_CLASSES = (
+    'shibboleth.middleware.ShibbolethRemoteUserMiddleware',
+)
+```
+
+please change it to `EXTRA_MIDDLEWARE`
+
+```
+EXTRA_MIDDLEWARE = (
+    'shibboleth.middleware.ShibbolethRemoteUserMiddleware',
+)
+```
+
+As [support for old-style middleware using ``settings.MIDDLEWARE_CLASSES`` is removed](https://github.com/django/django/blob/0851933cba7b40e22f5e424c95763dbc27c40aa9/docs/releases/2.0.txt#L854)  since django 2.0.
+
 ## Upgrade to 8.0.x
 
 1. Stop Seafile-7.1.x server.
