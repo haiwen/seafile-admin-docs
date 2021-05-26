@@ -118,7 +118,14 @@ Add the following configuration to seahub_settings.py.
 EXTRA_AUTHENTICATION_BACKENDS = (
     'shibboleth.backends.ShibbolethRemoteUserBackend',
 )
+
+# for 7.1 and below
 EXTRA_MIDDLEWARE_CLASSES = (
+    'shibboleth.middleware.ShibbolethRemoteUserMiddleware',
+)
+
+# for 8.0 and above
+EXTRA_MIDDLEWARE = (
     'shibboleth.middleware.ShibbolethRemoteUserMiddleware',
 )
 
