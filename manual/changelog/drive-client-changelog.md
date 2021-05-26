@@ -1,5 +1,15 @@
 # SeaDrive Client Changelog
 
+### 2.0.14 (2021/5/26)
+
+* \[Win] Fix crash issue when have multiple accounts with the same user names
+* \[Win] Fix potential "cloud operation invalid" error when downloading a file
+* \[Win] Avoid creating unwanted conflict files on restart
+* \[Win] Handle renaming of invalid folder name
+* \[Win] Support auto cleaning cache space
+* \[Win,Mac] Support "seafile://" protocol for opening file with client
+* Report nicer error message when a library is too large to sync
+
 ### 2.0.13 (2021/3/23)
 
 * \[Win] Fix crash issue when multiple accounts with the same name are used
