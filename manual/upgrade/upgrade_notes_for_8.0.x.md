@@ -44,7 +44,7 @@ yum install python3-devel mysql-devel gcc gcc-c++ -y
 sudo pip3 install future mysqlclient sqlalchemy==1.4.3
 ```
 
-## Change Shibboleth setting
+## Change Shibboleth Setting
 
 If you are using Shibboleth and have configured `EXTRA_MIDDLEWARE_CLASSES`
 
