@@ -63,6 +63,12 @@ Please check our document for how to upgrade to 8.0: <https://manual.seafile.com
 
 Please check our document for how to upgrade to 7.1: [upgrade notes for 7.1.x](../upgrade/upgrade_notes_for_7.1.x.md)
 
+### 7.1.19 (2021/06/04)
+
+* [fix] Fix a bug that some threads are set as daemon in seafevents
+* [fix] Improve performance in system admin listing users by removing some redundent code in fetching users' last active time
+* [fix] Fix a bug in password protected sharing link with direct download set (?dl=1)
+
 ### 7.1.18 (2021/05/13)
 
 * [fix] Fix a bug in library list cache
