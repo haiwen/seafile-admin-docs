@@ -29,13 +29,16 @@ Install and configure Qt:
 
 ## How to make msi
 For example, if you want to compile seafile 8.0.0, you can package it like this.
-1. First clone the libsearpc seafile seafile-client code to a directory.
+
+First clone the libsearpc seafile seafile-client code to a directory.
+
 ```bash
 git clone git@github.com:haiwen/libsearpc.git
 git clone git@github.com:haiwen/seafile.git
 git clone git@github.com:haiwen/seafile-client.git
 ```
-2. Pull the code of the specified tag
+
+Then pull the code of the specified tag and build.
 
 ```bash
 cd libsearpc
