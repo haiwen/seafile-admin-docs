@@ -6,6 +6,7 @@ Client
 
 * [Linux](linux.md)
 * [Max OS X](osx.md)
+* [Windows](windows.md)
 
 Server
 
