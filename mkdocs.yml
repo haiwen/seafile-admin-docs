@@ -171,6 +171,7 @@ nav:
       - Linux: build_seafile/linux.md
       - FreeBSD: build_seafile/freebsd.md
       - Mac OS X: build_seafile/osx.md
+      - Windows: build_seafile/windows.md
       - Server: build_seafile/server.md
       - Raspberry Pi: build_seafile/rpi.md
     - Develop env: develop/env.md
