@@ -27,17 +27,6 @@ Install and configure Qt:
 2. Install Qt, choose qt-opensource-windows-x86-5.13.1.exe ([QT download link](http://download.qt.io/archive/qt/)).
 3. Set Qt Visual Studio Tools. The setting is to tell Visual Studio 2019 Qt installation directory. Set Qt Version in Extension->Qt VS Tools-> Qt Options in Visual Studio 2019. Here you need to select the bin directory of Qt. The path of the parent directory. After configuring the Qt installation directory, you also need to set the Qt version used in the project properties of seafile-client. Select properties in the right-click menu of the project, and then select "Qt Project Settings" in the properties dialog box, and select the Version name set in Qt VS Tools just now for Qt Installation.
 
-## Build and run
-
-1. Build Seafile-client
-
-Use git to clone the code and then use vs to compile
-
-```bash
-git clone git@github.com:haiwen/seafile-client.git
-cd seafile-client
-devenv seafile-client.sln /build "Release|x64"
-```
 ## How to make msi
 For example, if you want to compile seafile 8.0.0, you can package it like this.
 1. First clone the libsearpc seafile seafile-client code to a directory.
