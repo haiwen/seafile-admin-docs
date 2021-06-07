@@ -1,5 +1,7 @@
 # Build Seafile Client for Windows
 
+The following compilation steps are only valid for versions 8.0 and above.
+
 ## The development environment
 
 Before compiling and developing, you need to install and configure the development environment
@@ -27,8 +29,6 @@ Install and configure Qt:
 
 ## Build and run
 
-The three source directories of libsearpc, seafile and seafile-client need to be placed under the same parent directory. You need to select the x64 target architecture when compiling.
-
 1. Build Seafile-client
 
 Use git to clone the code and then use vs to compile
@@ -39,7 +39,7 @@ cd seafile-client
 devenv seafile-client.sln /build "Release|x64"
 ```
 ## How to make msi
-For example, if you want to compile seafile 2.0.0, you can package it like this.
+For example, if you want to compile seafile 8.0.0, you can package it like this.
 1. First clone the libsearpc seafile seafile-client code to a directory.
 ```bash
 git clone git@github.com:haiwen/libsearpc.git
@@ -51,17 +51,17 @@ git clone git@github.com:haiwen/seafile-client.git
 ```bash
 cd libsearpc
 git pull origin master:master
-git reset v2.0.0 --hard
+git reset v8.0.0 --hard
 
 cd ../seafile-client
 git pull origin master:master
-git reset v2.0.0 --hard
+git reset v8.0.0 --hard
 
 cd ../seafile
 git pull origin master:master
-git reset v2.0.0 --hard
+git reset v8.0.0 --hard
 
 
 cd scripts/build
-python build-msi-vs.py 2.0.0
+python build-msi-vs.py 8.0.0
 ```
