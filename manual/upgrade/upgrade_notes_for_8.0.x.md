@@ -69,8 +69,8 @@ As [support for old-style middleware using ``settings.MIDDLEWARE_CLASSES`` is re
 1. Stop Seafile-7.1.x server.
 2. Start from Seafile 7.1.x, run the script:
 
-```sh
-upgrade/upgrade_7.1_8.0.sh
-```
+    ```sh
+    upgrade/upgrade_7.1_8.0.sh
+    ```
 
 3. Start Seafile-8.0.x server.
