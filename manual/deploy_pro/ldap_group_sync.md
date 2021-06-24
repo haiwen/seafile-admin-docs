@@ -54,7 +54,9 @@ Below are summary of options for syncing groups:
 * **CREATE_DEPARTMENT_LIBRARY**: If you decide to sync the group as a department, you can set this option to "true". In this way, when the group is synchronized for the first time, a library is automatically created for the department, and the library's name is the department's name.
 * **DEFAULT_DEPARTMENT_QUOTA**: If you decide to sync the group as a department, you can set a default space quota for each department when you synchronize a group for the first time. The quota is set to unlimited if this option is not set. Unit is MB.
 * **DEPT_NAME_ATTR**: Get the department name. You can set this configuration item to an AD field that represents the "department" name, such as "description". The name of the department created by Seafile will be the department name set in the AD field instead of the OU name. Requires Seafile-pro-7.0.11 and above.
-* **DEPT_REPO_PERM: **Set the permissions of the department repo. The default permission is 'rw'. Set permissions for the department repo created during AD synchronization. Requires Seafile-pro-7.0.11 and above.
+* **DEPT_REPO_PERM**: Set the permissions of the department repo. The default permission is 'rw'. Set permissions for the department repo created during AD synchronization. Requires Seafile-pro-7.0.11 and above.
+* **USE_GROUP_MEMBER_RANGE_QUERY**: When a group contains too many members, AD will only return part of them. Set this option to TRUE to make LDAP sync work with large groups.
+* **GROUP_UUID_ATTR**: Since Seafile pro 8.0, UUID is used to identify groups in LDAP/AD servers. Before that, group DN is used. So when a group changes name, the old group will be deleted and a new group will be created. This is not a desirable behavior. With the new mechanism, the rename can be detected and the groups in Seafile remains intact. The default attribute is "ObjectGUID", which is available in AD. For other LDAP servers, please refer to https://ldapwiki.com/wiki/Universally%20Unique%20Identifier .
 
 The search base for groups is the "BASE_DN" set in "\[ldap]" section of ccnet.conf.
 
@@ -116,7 +118,8 @@ Options for syncing departments from OU:
 * **CREATE_DEPARTMENT_LIBRARY**: set to "true", if you want to automatically create a department library with the OU name.
 * **DEFAULT_DEPARTMENT_QUOTA**: default quota for the imported departments in MB. The quota is set to unlimited if this option is not set.
 * **DEPT_NAME_ATTR**: Get the department name. You can set this configuration item to an AD field that represents the "department" name, such as "description". The name of the department created by Seafile will be the department name set in the AD field instead of the OU name. Requires Seafile-pro-7.0.11 and above.
-* **DEPT_REPO_PERM: **Set the permissions of the department repo. The default permission is 'rw'. Set permissions for the department repo created during AD synchronization. Requires Seafile-pro-7.0.11 and above.
+* **DEPT_REPO_PERM**: Set the permissions of the department repo. The default permission is 'rw'. Set permissions for the department repo created during AD synchronization. Requires Seafile-pro-7.0.11 and above.
+* **GROUP_UUID_ATTR**: Since Seafile pro 8.0, UUID is used to identify groups in LDAP/AD servers. Before that, OU DN is used. So when an OU changes name, the old group will be deleted and a new group will be created. This is not a desirable behavior. With the new mechanism, the rename can be detected and the groups in Seafile remains intact. The default attribute is "ObjectGUID", which is available in AD. For other LDAP servers, please refer to https://ldapwiki.com/wiki/Universally%20Unique%20Identifier .
 
 **NOTE**: Before 6.3.8, an old configuration syntax is used for syncing OU as departments. That syntax is no long supported. The old syntax cannot support syncing both groups and OU from AD/LDAP at the same time. However this is necessary for many situations. With the new syntax, you can sync both.
 
