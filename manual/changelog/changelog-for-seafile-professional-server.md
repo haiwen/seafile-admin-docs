@@ -8,6 +8,17 @@
 
 Please check our document for how to upgrade to 8.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_8.0.x/>
 
+### 8.0.5 (2021/06/25)
+
+* Add compatibility with IE11
+* [fix] Fix a bug in seaf-gc for libraries with sub-libraies
+* Enable deleting devices in admin panel
+* Enable setting a user's quota back to 0 (unlimited)
+* Users can now manage its own Web API auth token in profile page
+* Enable a group admin leave a group
+* [fix] Disable editing via sharing link when a file is locked
+
+
 ### 8.0.4 (2021/05/20)
 
 * [fix] Add back virus scan support in uploading link
