@@ -81,6 +81,10 @@ fs_id_list_request_timeout = 300
 
 Please check our document for how to upgrade to 7.1: [upgrade notes for 7.1.x](../upgrade/upgrade_notes_for_7.1.x.md)
 
+### 7.1.20 (2021/07/02)
+
+* [fix] Fix a cache bug for OnlyOffice integration.
+
 ### 7.1.19 (2021/06/04)
 
 * [fix] Fix a bug that some threads are set as daemon in seafevents
