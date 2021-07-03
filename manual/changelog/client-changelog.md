@@ -2,6 +2,11 @@
 
 ## 8.0
 
+### 8.0.3 (2021/07/03)
+
+* \[Mac,Linux] Add option to not show Windows incompatible path notifications
+* \[Linux] Fix compatibility to new GLib versions
+
 ### 8.0.2 (2021/05/21)
 
 * \[Mac] Fix dark mode support
