@@ -97,4 +97,23 @@ cd <install-path>/seafile-server-latest
 
 ```
 
+### Library Sync Tokens
 
+There are two tables in Seafile db that are related to library sync tokens.
+
+* RepoUserToken contains the authentication tokens used for library syncing. Note that a separate token is created for every client (including sync client and SeaDrive.)
+* RepoTokenPeerInfo contains more information about each client token, such as client name, IP address, last sync time etc.
+
+When you have many sync clients connected to the server, these two tables can have large number of rows. Many of them are no longer actively used. You may clean the tokens that are not used in a recent period, by the following SQL query:
+
+```
+delete from repousertoken t, repotokenpeerinfo i where t.token=i.token and sync_time < xxxx;
+```
+
+xxxx is the UNIX timestamp for the time before which tokens will be deleted.
+
+To be safe, you can first check how many tokens will be removed:
+
+```
+select * from repousertoken t, repotokenpeerinfo i where t.token=i.token and sync_time < xxxx;
+```
