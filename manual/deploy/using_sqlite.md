@@ -6,95 +6,73 @@ Visit our [download page](http://www.seafile.com/en/download/#server),  download
 
 Choose one of:
 - Generic Linux
-- Windows
 - Server for Raspberry Pi
 
-```
-#check if your system is x86 (32bit) or x86_64 (64 bit)
-uname -m
-```
 Click the tarball link and save it.
-
 
 ## Deploying and Directory Layout
 
 NOTE: If you place the Seafile data directory in external storage, such as NFS, CIFS mount, you should not use SQLite as the database, but use MySQL instead.
 
-Supposed your organization's name is "haiwen", and you've downloaded seafile-server_1.4.0_* into your home directory. We suggest you to use the following layout for your deployment:
+Supposed you've downloaded seafile-server_8.0.* into your home directory. We suggest you to use the following layout for your deployment:
 ```sh
-mkdir haiwen
-mv seafile-server_* haiwen
-cd haiwen
-# after moving seafile-server_* to this directory
-tar -xzf seafile-server_*
-mkdir installed
-mv seafile-server_* installed
+mkdir /opt/seafile
+mv seafile-server_8.0.* /opt/seafile
+cd /opt/seafile
+tar -xzf seafile-server_8.0.*
 ```
 
 Now you should have the following directory layout
 ```sh
-# tree . -L 2
+root@5575983a9804:/opt/seafile# tree . -L 2
 .
-├── installed
-│   └── seafile-server_1.4.0_x86-64.tar.gz
-└── seafile-server-1.4.0
-    ├── reset-admin.sh
-    ├── runtime
-    ├── seafile
-    ├── seafile.sh
-    ├── seahub
-    ├── seahub.sh
-    ├── setup-seafile.sh
-    └── upgrade
+|-- seafile-server-8.0.*
+|   |-- check_init_admin.py
+|   |-- reset-admin.sh
+|   |-- runtime
+|   |-- seaf-fsck.sh
+|   |-- seaf-fuse.sh
+|   |-- seaf-gc.sh
+|   |-- seafile
+|   |-- seafile.sh
+|   |-- seahub
+|   |-- seahub.sh
+|   |-- setup-seafile-mysql.py
+|   |-- setup-seafile-mysql.sh
+|   |-- setup-seafile.sh
+|   |-- sql
+|   `-- upgrade
+`-- seafile-server_8.0.*_x86-64.tar.gz
 ```
 
 Benefits of this layout are
 
- - We can place all the config files for Seafile server inside "haiwen" directory, making it easier to manage.
- - When you upgrade to a new version of Seafile, you can simply untar the latest package into "haiwen" directory. In this way you can reuse the existing config files in "haiwen" directory and don't need to configure again.
-
+ - We can place all the config files for Seafile server inside "/opt/seafile/conf" directory, making it easier to manage.
+ - When you upgrade to a new version of Seafile, you can simply untar the latest package into "/opt/seafile" directory. In this way you can reuse the existing config files in "/opt/seafile/conf" directory and don't need to configure again.
 
 ## Setting Up Seafile Server
+
 #### Prerequisites
 
 The Seafile server package requires the following packages have been installed in your system
 
-- python 2.7
-- python-setuptools
-- python-ldap
-- python-urllib3
-- python-requests
-- sqlite3
+```
+# on Ubuntu 20.04 server
 
-```
-#on Debian/Ubuntu 14.04 server
-apt-get update
-apt-get install python2.7 libpython2.7 python-setuptools python-ldap python-urllib3 sqlite3 python-requests
-```
+apt-get install -y python3 python3-setuptools python3-pip memcached libmemcached-dev pwgen sqlite3
 
-```
-# on Ubuntu 16.04 server
-# As the default python binary on Ubuntu 16.04 server is python 3, we need to install python (python 2) first.
-apt-get update
-apt-get install python
-apt-get install python2.7 libpython2.7 python-setuptools python-ldap python-urllib3 ffmpeg python-pip sqlite3 python-requests
-pip install Pillow==4.3.0
-pip install moviepy  # used in movie file thumbnails
+pip3 install --timeout=3600 django==2.2.* future Pillow pylibmc captcha jinja2 psd-tools django-pylibmc django-simple-captcha
 ```
 
 ```
 # on CentOS 7
-yum -y install epel-release
-rpm --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro
-yum -y install MySQL-python python-memcached python-ldap python-urllib3 ffmpeg ffmpeg-devel python-requests
-pip install Pillow==4.3.0
-pip install moviepy  # used in movie file thumbnails
+
 ```
 
 #### Setup
 
 ```sh
-cd seafile-server-*
+cd /opt/seafile/seafile-server-8.0.*
 ./setup-seafile.sh  #run the setup script & answer prompted questions
 ```
 
@@ -115,32 +93,54 @@ The script will guide you through the settings of various configuration options.
 Now you should have the following directory layout:
 
 ```sh
-#tree haiwen -L 2
-haiwen
-├── ccnet               # configuration files
-│   ├── mykey.peer
-│   ├── PeerMgr
-│   └── seafile.ini
-├── conf
-│   └── ccnet.conf
-│   └── seafile.conf
-│   └── seahub_settings.py
-├── installed
-│   └── seafile-server_1.4.0_x86-64.tar.gz
-├── seafile-data
-├── seafile-server-1.4.0  # active version
-│   ├── reset-admin.sh
-│   ├── runtime
-│   ├── seafile
-│   ├── seafile.sh
-│   ├── seahub
-│   ├── seahub.sh
-│   ├── setup-seafile.sh
-│   └── upgrade
-├── seafile-server-latest  # symbolic link to seafile-server-1.4.0
-├── seahub-data
-│   └── avatars
-├── seahub.db
+root@5575983a9804:/opt/seafile# tree . -L 2
+.
+|-- ccnet
+|   |-- GroupMgr
+|   |-- OrgMgr
+|   |-- PeerMgr
+|   `-- misc
+|-- conf
+|   |-- __pycache__
+|   |-- ccnet.conf
+|   |-- gunicorn.conf.py
+|   |-- seafdav.conf
+|   |-- seafile.conf
+|   `-- seahub_settings.py
+|-- logs
+|   |-- controller.log
+|   |-- seafile.log
+|   `-- seahub.log
+|-- pids
+|   |-- seaf-server.pid
+|   `-- seahub.pid
+|-- seafile-data
+|   |-- httptemp
+|   |-- library-template
+|   |-- seafile.db
+|   |-- storage
+|   `-- tmpfiles
+|-- seafile-server-8.0.5
+|   |-- check_init_admin.py
+|   |-- reset-admin.sh
+|   |-- runtime
+|   |-- seaf-fsck.sh
+|   |-- seaf-fuse.sh
+|   |-- seaf-gc.sh
+|   |-- seafile
+|   |-- seafile.sh
+|   |-- seahub
+|   |-- seahub.sh
+|   |-- setup-seafile-mysql.py
+|   |-- setup-seafile-mysql.sh
+|   |-- setup-seafile.sh
+|   |-- sql
+|   `-- upgrade
+|-- seafile-server-latest -> seafile-server-8.0.5
+|-- seafile-server_8.0.5_x86-64.tar.gz
+|-- seahub-data
+|   `-- avatars
+`-- seahub.db
 ```
 
 The folder seafile-server-latest is a symbolic link to the current Seafile server folder. When later you upgrade to a new version, the upgrade scripts would update this link to keep it always point to the latest Seafile server folder.
