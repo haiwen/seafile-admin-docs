@@ -68,9 +68,9 @@ pip3 install --timeout=3600 django==2.2.* future Pillow pylibmc captcha jinja2 p
 # on CentOS 8 server
 yum install epel-release -y
 
-yum install python3 python3-setuptools python3-pip memcached libmemcached libffi-devel pwgen curl python3-devel gcc gcc-c++ sqlite3 -y 
+yum install python3 python3-setuptools python3-pip memcached libmemcached libffi-devel pwgen curl python3-devel gcc gcc-c++ sqlite -y 
 
-pip3 install --timeout=3600 django==2.2.* future Pillow pylibmc captcha jinja2 psd-tools django-pylibmc django-simple-captcha
+pip3 install --timeout=3600 django==2.2.* future Pillow pylibmc jinja2 psd-tools django-pylibmc django-simple-captcha captcha
 ```
 
 #### Setup
