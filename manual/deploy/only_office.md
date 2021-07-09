@@ -77,12 +77,15 @@ For more information you can check the official documentation: <https://api.only
 Add the following config option to `seahub_settings.py`.
 
 ```python
-# Enable Only Office
+# Enable OnlyOffice
 ENABLE_ONLYOFFICE = True
 VERIFY_ONLYOFFICE_CERTIFICATE = False
 ONLYOFFICE_APIJS_URL = 'http{s}://{your OnlyOffice server's domain or IP}/web-apps/apps/api/documents/api.js'
 ONLYOFFICE_FILE_EXTENSION = ('doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx', 'odt', 'fodt', 'odp', 'fodp', 'ods', 'fods')
 ONLYOFFICE_EDIT_FILE_EXTENSION = ('docx', 'pptx', 'xlsx')
+
+# Enable force save to let user can save file when he/she press the save button on OnlyOffice file edit page.
+ONLYOFFICE_FORCE_SAVE = True
 ```
 
 Then restart the Seafile Server
