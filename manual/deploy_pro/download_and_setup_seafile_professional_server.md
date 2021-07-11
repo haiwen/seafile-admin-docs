@@ -1,22 +1,21 @@
-# Download and Setup Seafile Professional Server
+# Deployment of Seafile Server Professional Edition
 
-## Preparation
+## Requirements
 
-Now when we release a new version, we will always provide 2 compressed files, for example:
+Seafile Server Professional Edition (Seafile PE) requires 2 cores and 2GB RAM. If elasticsearch is installed on the same server, the minimum requirements are 4 cores and 4 GB RAM.
 
-* _seafile-pro-server_7.1.3_x86-64_Ubuntu.tar.gz_, is compiled in Ubuntu 18.04 enviroment.
-* _seafile-pro-server_7.1.3_x86-64_CentOS.tar.gz_, is compiled in CentOS 7 enviroment.
+Seafile PE can be used without a paid license with up to three users. Licenses for more user can be purchased in the [Seafile Customer Center](https://customer.seafile.com) or contact Seafile Sales at sales@seafile.com or one of [our partners](https://www.seafile.com/en/partner/).
 
-If you are using Ubuntu/Debian server, please use _seafile-pro-server_7.1.3_x86-64_Ubuntu.tar.gz_, for CentOS please use _seafile-pro-server_7.1.3_x86-64.tar.gz_.
+## Setup
 
-### Install thirdpart Requirements
+### Install Python packages
 
-The Seafile server package requires the following packages to be installed on your system:
+Seafile PE requires some Python and pip packages. Seafile prior and including Seafile 7.0 use Python 2, more recent versions rely on Python 3.
 
 **For Seafile 7.0.x**
 
 ```
-# on Ubuntu 16.04
+# on Ubuntu 16.04/Ubuntu 18.04
 apt-get update
 apt-get install python2.7 python-setuptools python-mysqldb python-urllib3 python-ldap -y
 
@@ -31,7 +30,7 @@ yum install python python-setuptools MySQL-python python-urllib3 python-ldap -y
 **For Seafile 7.1.x**
 
 ```
-# on Debian 10/Ubuntu 18.04
+# on Debian 10/Ubuntu 18.04/Ubuntu 20.04
 apt-get update
 apt-get install python3 python3-setuptools python3-pip -y
 
@@ -52,7 +51,7 @@ pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8 \
 **For Seafile 8.0.x**
 
 ```
-# on Debian 10/Ubuntu 18.04
+# on Debian 10/Ubuntu 18.04/Ubuntu 20.04
 apt-get update
 apt-get install python3 python3-setuptools python3-pip -y
 
@@ -70,13 +69,9 @@ pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
 
 ```
 
-For more information please see bellow.
+### Install Java Runtime Environment
 
-### Minimum System Requirements
-
-* A Linux server with 2GB RAM
-
-### Install Java Runtime Environment (JRE)
+Java Runtime Environment (JRE) is a requirement for full text search with elasticsearch.
 
 On Debian:
 
@@ -85,7 +80,7 @@ sudo apt-get install openjdk-8-jre
 
 ```
 
-On Ubuntu 16.04:
+On Ubuntu 16.04/Ubuntu 18.04/Ubuntu 20.04:
 
 ```
 sudo apt-get install openjdk-8-jre
@@ -93,7 +88,7 @@ sudo ln -sf /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java /usr/bin/
 
 ```
 
-On CentOS/Red Hat:
+On CentOS:
 
 ```
 sudo yum install java-1.8.0-openjdk
@@ -111,7 +106,7 @@ sudo apt-get install poppler-utils
 
 ```
 
-On CentOS/Red Hat:
+On CentOS:
 
 ```
 sudo yum install poppler-utils
@@ -139,46 +134,76 @@ sudo pip install setuptools --no-use-wheel --upgrade
 
 See [Download and Setup Seafile Server With MySQL](../deploy/using_mysql.md).
 
-## Download and Setup Seafile Professional Server
+### Create programm directory for Seafile PE
 
-### Get the license
-
-If the license you received is not named as `seafile-license.txt`, rename it to `seafile-license.txt`. Then put the license file under the top level diretory. In this manual, we use the diretory `/data/haiwen/` as the top level directory.
-
-### Download & uncompress Seafile Professional Server
+The standard directory for Seafile's program files is `/opt/seafile`. Create this directory and change into it:
 
 ```
-tar xf seafile-pro-server_7.0.7_x86-64.tar.gz
+mkdir /opt/seafile
+cd /opt/seafile
+
+```
+
+The  program directory can be changed. The standard directory `/opt/seafile` is assumed for the remainder of these instructions. If you decide to put Seafile in another directory, some commmands need to be modified accordingly.
+
+### Get Seafile PE license
+
+Place the license file in Seafile' programm directory `/opt/seafile`.
+
+If the license file's name is not`seafile-license.txt`, rename it. Also make sure the file can be read by the user executing Seafile. If the file has a different name or cannot be read, Seafile PE will not start.
+
+### Download Seafile PE install package
+
+Since Seafile PE 7.0.17, two install packages are available for every version:
+
+* _seafile-pro-server_8.x.x_x86-64_Ubuntu.tar.gz_, compiled in Ubuntu 18.04 enviroment
+* _seafile-pro-server_8.x.x_x86-64_CentOS.tar.gz_, compiled in CentOS 7 enviroment
+
+The former is for installation on Ubuntu/Debian servers, the latter for CentOS.
+
+The install packages are available in the [Seafile Customer Center](https://customer.seafile.com). A user account is necessary, but registration is free.
+
+Download the install package using wget.
+
+
+### Uncompress Seafile PE
+
+The install package is a compressed tarball. Uncompress the package using tar:
+
+```
+tar xf seafile-pro-server_8.0.4_x86-64.tar.gz
 
 ```
 
 Now you have:
 
 ```
-haiwen
+tree -L 1
+seafile
 ├── seafile-license.txt
-└── seafile-pro-server-7.0.7/
+└── seafile-pro-server-8.0.4
+└── seafile-pro-server_8.0.4_x86-64.tar.gz
 
 ```
 
----
+Note: The names of the install packages differ for Seafile CE and Seafile PE. Taking the 8.0.4 64bit version as an example, the names are as follows:
 
-You should notice the difference between the names of the Community Server and Professional Server. Take the 7.0.7 64bit version as an example:
-
-* Seafile Community Server tarball is `seafile-server_7.0.7_x86-86.tar.gz`; After uncompressing, the folder is `seafile-server-7.0.7`
-* Seafile Professional Server tarball is `seafile-pro-server_7.0.7_x86-86.tar.gz`; After uncompressing, the folder is `seafile-pro-server-7.0.7`
+* Seafile CE: `seafile-server_8.0.4_x86-86.tar.gz`; uncompressing into folder `seafile-server-8.0.4`
+* Seafile PE: `seafile-pro-server_8.0.4_x86-86.tar.gz`; uncompressing into folder `seafile-pro-server-8.0.4`
 
 ### Setup
 
 The setup process of Seafile Professional Server is the same as the Seafile Community Server. See [Download and Setup Seafile Server With MySQL](../deploy/using_mysql.md).
 
-If you have any problem with setting up the service, please check [Common problems in setting up Seafile server](../deploy/common_problems_for_setting_up_server.md).
+If you have any problem during the setup up, check [Common problems in setting up Seafile server](../deploy/common_problems_for_setting_up_server.md).
 
-After you have succesfully setup Seafile Professional Server, you have a directory layout like this:
+After you have succesfully setup Seafile PE, the directory layout looks like this:
+
+**For Seafile 7.0.x**
 
 ```
-#tree haiwen -L 2
-haiwen
+#tree -L 2
+.
 ├── seafile-license.txt # license file
 ├── ccnet               # configuration files
 │   ├── mykey.peer
@@ -209,13 +234,69 @@ haiwen
 
 ```
 
+**For Seafile 7.1.x and younger**
+
+```
+#tree -L 2
+.
+├── seafile-license.txt             # license file
+├── ccnet               
+├── conf
+│   └── ccnet.conf
+│   └── gunicorn.conf.py
+│   └── seafdav.conf
+│   └── seafevents.conf
+│   └── seafile.conf
+│   └── seahub_settings.py
+├── pro-data                        # data specific for Seafile PE
+├── seafile-data
+│   └── library-template
+├── seafile-pro-server-8.0.4
+│   ├── check-db-type.py
+│   ├── check_init_admin.py
+│   ├── create-db
+│   ├── index_op.py
+│   ├── migrate.py
+│   ├── migrate-repo.py
+│   ├── migrate-repo.sh
+│   ├── migrate.sh
+│   ├── pro
+│   ├── reset-admin.sh
+│   ├── run_index_master.sh
+│   ├── run_index_worker.sh
+│   ├── runtime
+│   ├── seaf-backup-cmd.py
+│   ├── seaf-backup-cmd.sh
+│   ├── seaf-encrypt.sh
+│   ├── seaf-fsck.sh
+│   ├── seaf-fuse.sh
+│   ├── seaf-gc.sh
+│   ├── seaf-gen-key.sh
+│   ├── seafile
+│   ├── seafile-background-tasks.sh
+│   ├── seafile.sh
+│   ├── seaf-import.sh
+│   ├── seahub
+│   ├── seahub-extra
+│   ├── seahub.sh
+│   ├── setup-seafile-mysql.py
+│   ├── setup-seafile-mysql.sh
+│   ├── setup-seafile.sh
+│   ├── sql
+│   └── upgrade
+├── seahub-data
+│   └── avatars                        # for user avatars
+
+
+```
+
+
+
 ## Performance tuning
 
-If you have more than 50 Seafile users, we highly recommend to [add memcached](../deploy/add_memcached.md). This is going to speedup Seahub (the web front end) significantly.
+For more than 50 users, we recommend [adding memcached](../deploy/add_memcached.md). Memcached increases the response time of Seahub, Seafile's web interface, significantly.
 
-## Done
-
-At this point, the basic setup of Seafile Professional Server is done.
+## FAQ
 
 You may want to read more about Seafile Professional Server:
 
