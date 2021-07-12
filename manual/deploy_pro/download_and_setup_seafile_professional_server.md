@@ -10,6 +10,8 @@ Seafile PE can be used without a paid license with up to three users. Licenses f
 
 ## Setup
 
+These instructions assume that MySQL/MariaDB server and client are installed and a mysql root user can authenticate using the mysql_native_password plugin.
+
 Seafile prior and including Seafile 7.0 use Python 2. More recent versions use on Python 3.
 
 ### Installing prerequisites
@@ -68,7 +70,18 @@ pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8 \
 **For Seafile 8.0.x**
 
 ```
-# Debian 10/Ubuntu 18.04
+# Debian 10
+apt-get update
+apt-get install python3 python3-setuptools python3-pip -y
+
+pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
+    django-pylibmc django-simple-captcha python3-ldap mysqlclient
+```
+
+
+
+```
+# Ubuntu 18.04
 apt-get update
 apt-get install python3 python3-setuptools python3-pip -y
 
@@ -106,8 +119,8 @@ pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
 Java Runtime Environment (JRE) is a requirement for full text search with elasticsearch.
 
 ```
-# Debian
-sudo apt-get install openjdk-8-jre
+# Debian 10
+sudo apt-get install default-jre
 
 ```
 
@@ -147,33 +160,6 @@ sudo apt-get install poppler-utils
 sudo yum install poppler-utils
 
 ```
-
-### Installing Python libraries
-
-**For Seafile 7.1.x and younger **
-
-First make sure your have installed Python 3.6 or a new version. Then install the following packages:
-
-```
-# Debian 10/Ubuntu 18.04
-sudo easy_install pip
-sudo pip install boto
-
-```
-
-If you receive an error about "Wheel installs require setuptools >= ...", run this between the pip and boto lines above
-
-```
-sudo pip install setuptools --no-use-wheel --upgrade
-
-```
-
-
-
-````
-# Ubuntu 20.04
-sudo pip install boto
-````
 
 
 
@@ -222,15 +208,23 @@ Download the install package using wget.
 The install package is a compressed tarball. Uncompress the package using tar:
 
 ```
-tar xf seafile-pro-server_8.0.4_x86-64.tar.gz
+# Debian/Ubuntu
+tar xf seafile-pro-server_8.0.4_x86-64_Ubuntu.tar.gz
 
 ```
+
+```
+# CentOS
+tar xf seafile-pro-server_8.0.4_x86-64_CentOS.tar.gz
+```
+
+
 
 Now you have:
 
 ```
 #tree -L 1
-seafile
+.
 ├── seafile-license.txt
 └── seafile-pro-server-8.0.4
 └── seafile-pro-server_8.0.4_x86-64.tar.gz
@@ -241,8 +235,6 @@ Note: The names of the install packages differ for Seafile CE and Seafile PE. Ta
 
 * Seafile CE: `seafile-server_8.0.4_x86-86.tar.gz`; uncompressing into folder `seafile-server-8.0.4`
 * Seafile PE: `seafile-pro-server_8.0.4_x86-86.tar.gz`; uncompressing into folder `seafile-pro-server-8.0.4`
-
-
 
 ### Setup
 
@@ -267,6 +259,8 @@ After you have succesfully setup Seafile PE, the directory layout looks like thi
 │   └── seafile.conf
 │   └── seahub_settings.py
 │   └── seafevents.conf
+├── logs
+├── pids
 ├── pro-data            			# data specific for professional version
 ├── seafile-data
 ├── seafile-pro-server-7.0.7
@@ -281,6 +275,7 @@ After you have succesfully setup Seafile PE, the directory layout looks like thi
 │   ├── setup-seafile-mysql.py
 │   ├── setup-seafile-mysql.sh
 │   └── upgrade
+├── seafile-server-latest -> seafile-pro-server-7.0.7
 ├── seahub-data
 │   └── avatars         			# for user avatars
 ├── seahub.db
@@ -297,13 +292,35 @@ After you have succesfully setup Seafile PE, the directory layout looks like thi
 ├── conf
 │   └── ccnet.conf
 │   └── gunicorn.conf.py
+│   └── __pycache__
 │   └── seafdav.conf
 │   └── seafevents.conf
 │   └── seafile.conf
 │   └── seahub_settings.py
+├── logs
+│   ├── controller.log
+│   ├── elasticsearch_deprecation.log
+│   ├── elasticsearch_index_indexing_slowlog.log
+│   ├── elasticsearch_index_search_slowlog.log
+│   ├── elasticsearch.log
+│   ├── file_updates_sender.log
+│   ├── index.log
+│   ├── seafevents.log
+│   ├── seafile.log
+│   ├── seahub.log
+│   └── slow_logs
+├── pids
+│   ├── elasticsearch.pid
+│   ├── seafevents.pid
+│   ├── seaf-server.pid
+│   └── seahub.pid
 ├── pro-data                        # data specific for Seafile PE
+│   └── search
 ├── seafile-data
-│   └── library-template
+│   ├── httptemp
+│   ├── library-template
+│   ├── storage
+│   └── tmpfiles
 ├── seafile-pro-server-8.0.4
 │   ├── check-db-type.py
 │   ├── check_init_admin.py
@@ -337,20 +354,23 @@ After you have succesfully setup Seafile PE, the directory layout looks like thi
 │   ├── setup-seafile.sh
 │   ├── sql
 │   └── upgrade
+├── seafile-server-latest -> seafile-pro-server-8.0.4
 ├── seahub-data
 │   └── avatars                        # for user avatars
 
 
 ```
 
+### Tweaking conf files
+
+Two configuration files must be manually modified: ccnet.conf and gunicorn.conf.py
+
+In ccnet.conf, add the port 8000 to the `SERVICE_URL` (i.e., SERVICE_URL = http://1.2.3.4:8000/)
+
+In gunicorn.conf.py, change the bind to "0.0.0.0:8000" (i.e., bind = "0.0.0.0:8000")
+
 
 
 ## Performance tuning
 
 For more than 50 users, we recommend [adding memcached](../deploy/add_memcached.md). Memcached increases the response time of Seahub, Seafile's web interface, significantly.
-
-## FAQ
-
-You may want to read more about Seafile Professional Server:
-
-* [FAQ For Seafile Professional Server](faq_for_seafile_pro_server.md)
