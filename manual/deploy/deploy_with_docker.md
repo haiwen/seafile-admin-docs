@@ -8,11 +8,11 @@ If you are not familiar with docker commands, please refer to [docker documentat
 
 **Note**: If you want to deploy the Seafile Pro Edition with docker, refor to the [Deploying Seafile-pro with Docker](../deploy_pro/deploy_with_docker.md)
 
-## For seafile 7.x.x
+## For seafile 7.x.x or newer
 
 Starting with 7.0, we have adjusted seafile-docker image to use multiple containers. The old image runs MariaDB-Server and Memcached in the same container with Seafile server. Now, we strip the MariaDB-Server and Memcached services from the Seafile image and run them in their respective containers.
 
-If you plan to deploy seafile 7.0, you should refer to the [Deploy Documentation](<../docker/deploy seafile with docker.md>).
+If you plan to deploy seafile 7.0 or newer version, you should refer to the [Deploy Documentation](<../docker/deploy seafile with docker.md>).
 
 If you plan to upgrade 6.3 to 7.0, you can refer to the [Upgrade Documentation](<../docker/6.3 upgrade to 7.0.md>).
 
