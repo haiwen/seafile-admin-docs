@@ -4,6 +4,28 @@
 
 Seafile uses Django 1.5, which requires Python 2.6.5+. Make sure your Python version is 2.7.
 
+#### Seafile fails to start: "failed to run "seaf-server -t" (Ubuntu 20.04)
+
+![image-20210713171856512](C:\Users\RDB\AppData\Roaming\Typora\typora-user-images\image-20210713171856512.png)
+
+The MySQL user seafile uses the mysql_native_password plugin to authenticate. The error message means that the user could not connect to the database.
+
+Connect to the database with the MySQL root user:
+
+```
+#mysql -u root -p
+```
+
+Then change the authentication plugin for the user seafile to mysql_native_password:
+
+```mysql
+mysql> ALTER USER 'seafile'@'127.0.0.1' identified with mysql_native_password by 'PASSWORD';
+```
+
+PASSWORD is the password of the MySQL user seafile. You can find this password in the log file seafile.conf in /opt/seafile/conf.
+
+
+
 #### Seahub.sh can't start, the error message contains: "Could not import settings 'seahub.settings', libpython2.7.so.1.0: can not open shared object file"
 
 You probably encounter this problem in Ubuntu 14.04. Seafile pro edition requires libpython2.7. Install it by:
