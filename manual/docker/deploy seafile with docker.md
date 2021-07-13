@@ -6,7 +6,7 @@
 
 ### Install docker-compose
 
-Seafile v7.x.x image uses docker-compose. You should first install the docker-compose command.
+Seafile v7.x.x (or newer versions) image uses docker-compose. You should first install the docker-compose command.
 
 ```bash
 # for CentOS

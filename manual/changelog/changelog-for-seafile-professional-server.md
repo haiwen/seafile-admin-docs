@@ -81,6 +81,11 @@ fs_id_list_request_timeout = 300
 
 Please check our document for how to upgrade to 7.1: [upgrade notes for 7.1.x](../upgrade/upgrade_notes_for_7.1.x.md)
 
+### 7.1.21 (2021/07/13)
+
+* Make file download link generated for OnlyOffice can be used by multiple times
+* Improve OnlyOffice integration logs
+
 ### 7.1.20 (2021/07/02)
 
 * [fix] Fix a cache bug for OnlyOffice integration.
