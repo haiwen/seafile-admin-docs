@@ -50,7 +50,7 @@ pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8 \
 ```
 # Ubuntu 20.04
 apt-get update
-apt-get install python 3 python3-setuptools python3-pip memcached libmemcached-dev -y
+apt-get install python3 python3-setuptools python3-pip memcached libmemcached-dev -y
 
 pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8 \
     django-pylibmc django-simple-captcha python3-ldap
