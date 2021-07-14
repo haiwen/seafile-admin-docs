@@ -55,7 +55,6 @@ nav:
     - Forward: deploy/README.md
     - Deploy with SQLite: deploy/using_sqlite.md
     - Deploy with MySQL: deploy/using_mysql.md
-    - Deploy with Docker: deploy/deploy_with_docker.md
     - Config Seahub with Nginx: deploy/deploy_with_nginx.md
     - Enabling Https with Nginx: deploy/https_with_nginx.md
     - Config Seahub with Apache: deploy/deploy_with_apache.md
@@ -84,7 +83,6 @@ nav:
   - Deploy Seafile Pro Edition:
     - Forward: deploy_pro/README.md
     - Download and Setup Seafile Professional Server: deploy_pro/download_and_setup_seafile_professional_server.md
-    - Deploy Seafile-pro with Docker: deploy_pro/deploy_with_docker.md
     - Migrate from Seafile Community Server: deploy_pro/migrate_from_seafile_community_server.md
     - Upgrading Seafile Professional Server: deploy_pro/upgrading_seafile_professional_server.md
     - LDAP/AD Integration:
@@ -125,12 +123,12 @@ nav:
       - Import Directory To Seafile: deploy_pro/seaf_import.md
     - License: deploy_pro/seafile_professional_sdition_software_license_agreement.md
   - Deploy Seafile with Docker:
-    - Deploy Seafile with Docker: docker/deploy seafile with docker.md
-    - Deploy Seafile Pro Edition with Docker: docker/pro-edition/Deploy Seafile-pro with Docker.md
-    - Migrate CE to Pro with Docker: docker/pro-edition/Migrate CE to Pro with Docker.md
+    - Deploy Seafile with Docker: docker/deploy_seafile_with_docker.md
+    - Deploy Seafile Pro Edition with Docker: docker/pro-edition/deploy_seafile_pro_with_docker.md
+    - Migrate CE to Pro with Docker: docker/pro-edition/migrate_ce_to_pro_with_docker.md
     - Upgrade from 6.3 to 7.0:
-      - Upgrade Seafile Docker CE: docker/6.3 upgrade to 7.0.md
-      - Upgrade Seafile Docker Pro: docker/pro-edition/6.3 upgrade to 7.0.md
+      - Upgrade Seafile Docker CE: docker/6.3_upgrade_to_7.0.md
+      - Upgrade Seafile Docker Pro: docker/pro-edition/6.3_upgrade_to_7.0.md
     - Upgrade for other versions: docker/upgrade/upgrade_docker.md
   - Configuration and Customization:
     - Forward: config/README.md
