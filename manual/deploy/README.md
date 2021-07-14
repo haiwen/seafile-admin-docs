@@ -12,7 +12,7 @@ In production environment we recommend using MySQL as the database and config Se
 
 We provide three ways to deploy Seafile services:
 
-* Using [Docker](deploy_with_docker.md)
+* Using [Docker](../docker/deploy_seafile_with_docker.md)
 * Using [installation script](https://github.com/haiwen/seafile-server-installer)
 * Manually installing Seafile and setting up database, memcached and Nginx/Apache. See the following section.
 
