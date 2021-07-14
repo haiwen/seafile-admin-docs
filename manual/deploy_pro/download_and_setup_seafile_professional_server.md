@@ -10,7 +10,7 @@ Seafile PE can be used without a paid license with up to three users. Licenses f
 
 ## Setup
 
-These instructions assume that MySQL/MariaDB server and client are installed and a mysql root user can authenticate using the mysql_native_password plugin.
+These instructions assume that MySQL/MariaDB server and client are installed and a mysql root user can authenticate using the mysql_native_password plugin. (For more information, see [Download and Setup Seafile Server With MySQL](../deploy/using_mysql.md).)
 
 Seafile prior and including Seafile 7.0 use Python 2. More recent versions use on Python 3.
 
@@ -60,7 +60,7 @@ pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8 \
 
 ```
 # CentOS 8
-yum install python3 python3-setuptools python3-pip -y
+yum install python3 python3-setuptools python3-pip tar -y
 
 pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8 \
     django-pylibmc django-simple-captcha python3-ldap
@@ -72,7 +72,7 @@ pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8 \
 ```
 # Debian 10
 apt-get update
-apt-get install python3 python3-setuptools python3-pip -y
+apt-get install python3 python3-setuptools python3-pip default-libmysqlclient-dev -y
 
 pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
     django-pylibmc django-simple-captcha python3-ldap mysqlclient
@@ -83,7 +83,7 @@ pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
 ```
 # Ubuntu 18.04
 apt-get update
-apt-get install python3 python3-setuptools python3-pip -y
+apt-get install python3 python3-setuptools python3-pip libmysqlclient-dev -y
 
 pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
     django-pylibmc django-simple-captcha python3-ldap
@@ -95,7 +95,7 @@ pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
 ```
 # Ubuntu 20.04
 apt-get update
-apt-get install python3 python3-setuptools python3-pip memcached libmemcached-dev libmysqlclient-dev -y
+apt-get install python3 python3-setuptools python3-pip libmysqlclient-dev memcached libmemcached-dev -y
 
 pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
     django-pylibmc django-simple-captcha python3-ldap mysqlclient
@@ -105,7 +105,8 @@ pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
 
 ```
 # CentOS 8
-yum install python3 python3-setuptools python3-pip -y
+yum update
+yum install python3 python3-setuptools python3-pip mysql-devel gcc tar -y
 
 pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
     django-pylibmc django-simple-captcha python3-ldap
@@ -120,7 +121,7 @@ Java Runtime Environment (JRE) is a requirement for full text search with elasti
 
 ```
 # Debian 10
-sudo apt-get install default-jre
+sudo apt-get install default-jre -y
 
 ```
 
@@ -128,7 +129,7 @@ sudo apt-get install default-jre
 
 ```
 # Ubuntu 16.04/Ubuntu 18.04/Ubuntu 20.04
-sudo apt-get install openjdk-8-jre
+sudo apt-get install openjdk-8-jre -y
 sudo ln -sf /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java /usr/bin/
 
 ```
@@ -137,7 +138,7 @@ sudo ln -sf /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java /usr/bin/
 
 ```
 # CentOS
-sudo yum install java-1.8.0-openjdk
+sudo yum install java-1.8.0-openjdk -y
 
 ```
 
@@ -149,7 +150,7 @@ The package poppler-utils is required for full text search of pdf files.
 
 ```
 # Ubuntu/Debian
-sudo apt-get install poppler-utils
+sudo apt-get install poppler-utils -y
 
 ```
 
@@ -157,15 +158,9 @@ sudo apt-get install poppler-utils
 
 ```
 # CentOS
-sudo yum install poppler-utils
+sudo yum install poppler-utils -y
 
 ```
-
-
-
-### Installing all libraries required by the Community Edition
-
-See [Download and Setup Seafile Server With MySQL](../deploy/using_mysql.md).
 
 
 
@@ -183,29 +178,67 @@ The  program directory can be changed. The standard directory `/opt/seafile` is 
 
 
 
+### Creating user seafile
+
+Elasticsearch, the indexing server, cannot be run as root. More generally, it is good practice to avoid running applications as root. 
+
+Create a new user and follow the instructions on the screen:
+
+```
+adduser seafile
+```
+
+Change ownership of the created directory to the new user:
+
+```
+chown -R seafile: /opt/seafile
+```
+
+All the following steps are done as user seafile.
+
+Change to user seafile:
+
+```
+su seafile
+```
+
+
+
 ### Activating Seafile PE license
 
-Save the license file in Seafile's programm directory `/opt/seafile`. Make sure that the name is `seafile-license.txt`, rename it. (If the file has a different name or cannot be read, Seafile PE will not start.)
+Save the license file in Seafile's programm directory `/opt/seafile`. Make sure that the name is `seafile-license.txt`. (If the file has a different name or cannot be read, Seafile PE will not start.)
 
 
 
 ### Downloading the Seafile PE install package
 
-Since Seafile PE 7.0.17, two install packages are available for every version in the [Seafile Customer Center](https://customer.seafile.com) (a user account is necessary, but registration is free):
+The install packages for Seafile PE are available for download in the the [Seafile Customer Center](https://customer.seafile.com). To access the Customer Center, a  user account is necessary. The registration is free.
 
-* _seafile-pro-server_8.x.x_x86-64_Ubuntu.tar.gz_, compiled in Ubuntu 18.04 enviroment
-* _seafile-pro-server_8.x.x_x86-64_CentOS.tar.gz_, compiled in CentOS 7 enviroment
+Beginning with Seafile PE 7.0.17, the Seafile Customer Center provides two install packages for every version (using Seafile PE 8.0.4 as an example):
 
-The former is for installation on Ubuntu/Debian servers, the latter for CentOS.
+* _seafile-pro-server_8.0.4_x86-64_Ubuntu.tar.gz_, compiled in Ubuntu 18.04 environment
+* _seafile-pro-server_8.0.4_x86-64_CentOS.tar.gz_, compiled in CentOS 7 environment
 
-Download the install package using wget.
+The former is suitable for installation on Ubuntu/Debian servers, the latter for CentOS servers.
+
+Download the install package using wget (replace the x.x.x with the downloaded version):
+
+```
+# Debian/Ubuntu
+wget -O 'seafile-pro-server_x.x.x_x86-64_Ubuntu.tar.gz' 'VERSION_SPECIFIC_LINK_FROM_SEAFILE_CUSTOMER_CENTER'
+
+# CentOS
+wget -O 'seafile-pro-server_x.x.x_x86-64_CentOS.tar.gz' 'VERSION_SPECIFIC_LINK_FROM_SEAFILE_CUSTOMER_CENTER'
+```
 
 
 
 
 ### Uncompressing Seafile PE
 
-The install package is a compressed tarball. Uncompress the package using tar:
+The install package is downloaded as a compressed tarball which need to be uncompressed.
+
+Uncompress the package using tar:
 
 ```
 # Debian/Ubuntu
@@ -231,18 +264,20 @@ Now you have:
 
 ```
 
-Note: The names of the install packages differ for Seafile CE and Seafile PE. Taking the 8.0.4 64bit version as an example, the names are as follows:
+Note: The names of the install packages differ for Seafile CE and Seafile PE. Using Seafile CE and Seafile PE 8.0.4 as an example, the names are as follows:
 
 * Seafile CE: `seafile-server_8.0.4_x86-86.tar.gz`; uncompressing into folder `seafile-server-8.0.4`
 * Seafile PE: `seafile-pro-server_8.0.4_x86-86.tar.gz`; uncompressing into folder `seafile-pro-server-8.0.4`
 
-### Setup
+
+
+### Setting up Seafile PE
 
 The setup process of Seafile Professional Server is the same as the Seafile Community Server. See [Download and Setup Seafile Server With MySQL](../deploy/using_mysql.md).
 
-If you have any problem during the setup up, check [Common problems in setting up Seafile server](../deploy/common_problems_for_setting_up_server.md).
+If you have any problem during the setup up, check [Common
 
-After you have succesfully setup Seafile PE, the directory layout looks like this:
+After the successful completition of the setup script, the directory layout of Seafile PE looks as follows :
 
 **For Seafile 7.0.x**
 
@@ -368,6 +403,27 @@ Two configuration files must be manually modified: ccnet.conf and gunicorn.conf.
 In ccnet.conf, add the port 8000 to the `SERVICE_URL` (i.e., SERVICE_URL = http://1.2.3.4:8000/)
 
 In gunicorn.conf.py, change the bind to "0.0.0.0:8000" (i.e., bind = "0.0.0.0:8000")
+
+Restart seahub for the config changes to take effect:
+
+```
+#/opt/seafile/seafile-server-latest/seahub.sh restart
+```
+
+ Now you can access Seafile via the web interface at http://1.2.3.4:8000 with 1.2.3.4 being the IP address of your host.
+
+
+
+### Enabling access per HTTPS
+
+It is strongly recommended to switch from unencrypted HTTP (via port 8000) to encrypted HTTPS (via port 443.)
+
+This manual provides instructions for enabling HTTPS for
+
+* [Nginx](https://manual.seafile.com/deploy/https_with_nginx/)
+* [Apache](https://manual.seafile.com/deploy/https_with_apache/)
+
+Before enable HTTPS, install and configure [Nginx](https://manual.seafile.com/deploy/deploy_with_nginx/) and [Apache](https://manual.seafile.com/deploy/deploy_with_apache/) first.
 
 
 
