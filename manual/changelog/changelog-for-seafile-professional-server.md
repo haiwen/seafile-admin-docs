@@ -8,6 +8,17 @@
 
 Please check our document for how to upgrade to 8.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_8.0.x/>
 
+### 8.0.6 (2021/07/15)
+
+* [fix] Fix a cache problem in OnlyOffice integration when automatically saving is used
+* [fix] Once a user quota have been set, I can not set it back to 0 (unlimited)
+* [fix] Fix collabora integration
+* User's can manage his/her Web API Auth Token in profile page
+* A group admin can now leave a group
+* [fix] Fix Lazy loading / pagination breaks image viewer (https://forum.seafile.com/t/lazy-loading-pagination-breaks-image-viewer/14655)
+* seaf-gc can now clean fs object
+* Update included libradios to version 16
+
 ### 8.0.5 (2021/06/25)
 
 * Add compatibility with IE11
