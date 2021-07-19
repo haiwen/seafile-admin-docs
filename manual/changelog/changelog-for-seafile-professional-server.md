@@ -8,6 +8,12 @@
 
 Please check our document for how to upgrade to 8.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_8.0.x/>
 
+### 8.0.7 (2021/07/19)
+
+* Add missing accessibility labels for some links and buttons in file details page
+* [fix] Fix a bug in file zip download when the size of files exceed limit
+* [fix] Fix long WebDAV Secret Yields 500 Error
+
 ### 8.0.6 (2021/07/15)
 
 * [fix] Fix a cache problem in OnlyOffice integration when automatically saving is used
