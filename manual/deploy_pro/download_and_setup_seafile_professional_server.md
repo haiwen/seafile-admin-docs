@@ -2,7 +2,7 @@
 
 ## Requirements
 
-Seafile Server Professional Edition (Seafile PE) requires 2 cores and 2GB RAM. If elasticsearch is installed on the same server, the minimum requirements are 4 cores and 4 GB RAM.
+Seafile Server Professional Edition (Seafile PE) requires a minimum of 2 cores and 2GB RAM. If elasticsearch is installed on the same server, the minimum requirements are 4 cores and 4 GB RAM.
 
 Seafile PE can be used without a paid license with up to three users. Licenses for more user can be purchased in the [Seafile Customer Center](https://customer.seafile.com) or contact Seafile Sales at sales@seafile.com or one of [our partners](https://www.seafile.com/en/partner/).
 
@@ -10,9 +10,9 @@ Seafile PE can be used without a paid license with up to three users. Licenses f
 
 ## Setup
 
-These instructions assume that MySQL/MariaDB server and client are installed and a mysql root user can authenticate using the mysql_native_password plugin. (For more information, see [Download and Setup Seafile Server With MySQL](../deploy/using_mysql.md).)
+These instructions assume that MySQL/MariaDB server and client are installed and a MySQL/MariaDB root user can authenticate using the mysql_native_password plugin. (For more information, see [Download and Setup Seafile Server With MySQL](../deploy/using_mysql.md).)
 
-Seafile prior and including Seafile 7.0 use Python 2. More recent versions use on Python 3.
+Seafile prior to and including Seafile 7.0 use Python 2. More recent versions use on Python 3.
 
 ### Installing prerequisites
 
@@ -20,8 +20,8 @@ Seafile prior and including Seafile 7.0 use Python 2. More recent versions use o
 
 ```
 # Ubuntu 16.04/Ubuntu 18.04
-apt-get update
-apt-get install python2.7 python-setuptools python-mysqldb python-urllib3 python-ldap -y
+sudo apt-get update
+sudo apt-get install python2.7 python-setuptools python-mysqldb python-urllib3 python-ldap -y
 
 ```
 
@@ -29,7 +29,7 @@ apt-get install python2.7 python-setuptools python-mysqldb python-urllib3 python
 
 ```
 # CentOS 7
-yum install python python-setuptools MySQL-python python-urllib3 python-ldap -y
+sudo yum install python python-setuptools python-imaging MySQL-python python-urllib3 python-ldap -y
 
 ```
 
@@ -37,10 +37,10 @@ yum install python python-setuptools MySQL-python python-urllib3 python-ldap -y
 
 ```
 # Debian 10/Ubuntu 18.04
-apt-get update
-apt-get install python3 python3-setuptools python3-pip -y
+sudo apt-get update
+sudo apt-get install python3 python3-setuptools python3-pip -y
 
-pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8 \
+sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8 \
     django-pylibmc django-simple-captcha python3-ldap
 
 ```
@@ -49,10 +49,10 @@ pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8 \
 
 ```
 # Ubuntu 20.04
-apt-get update
-apt-get install python3 python3-setuptools python3-pip memcached libmemcached-dev -y
+sudo apt-get update
+sudo apt-get install python3 python3-setuptools python3-pip memcached libmemcached-dev -y
 
-pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8 \
+sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8 \
     django-pylibmc django-simple-captcha python3-ldap
 ```
 
@@ -60,9 +60,9 @@ pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8 \
 
 ```
 # CentOS 8
-yum install python3 python3-setuptools python3-pip tar -y
+sudo yum install python3 python3-setuptools python3-pip -y
 
-pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8 \
+sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8 \
     django-pylibmc django-simple-captcha python3-ldap
 
 ```
@@ -71,10 +71,10 @@ pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8 \
 
 ```
 # Debian 10
-apt-get update
-apt-get install python3 python3-setuptools python3-pip default-libmysqlclient-dev -y
+sudo apt-get update
+sudo apt-get install python3 python3-setuptools python3-pip default-libmysqlclient-dev -y
 
-pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
+sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
     django-pylibmc django-simple-captcha python3-ldap mysqlclient
 ```
 
@@ -82,10 +82,10 @@ pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
 
 ```
 # Ubuntu 18.04
-apt-get update
-apt-get install python3 python3-setuptools python3-pip libmysqlclient-dev -y
+sudo apt-get update
+sudo apt-get install python3 python3-setuptools python3-pip libmysqlclient-dev -y
 
-pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
+sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
     django-pylibmc django-simple-captcha python3-ldap
 
 ```
@@ -94,10 +94,10 @@ pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
 
 ```
 # Ubuntu 20.04
-apt-get update
-apt-get install python3 python3-setuptools python3-pip libmysqlclient-dev memcached libmemcached-dev -y
+sudo apt-get update
+sudo apt-get install python3 python3-setuptools python3-pip libmysqlclient-dev memcached libmemcached-dev -y
 
-pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
+sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
     django-pylibmc django-simple-captcha python3-ldap mysqlclient
 ```
 
@@ -105,10 +105,9 @@ pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
 
 ```
 # CentOS 8
-yum update
-yum install python3 python3-setuptools python3-pip mysql-devel gcc tar -y
+sudo yum install python3 python3-setuptools python3-pip mysql-devel gcc -y
 
-pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
+sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
     django-pylibmc django-simple-captcha python3-ldap
 
 ```
@@ -275,7 +274,7 @@ Note: The names of the install packages differ for Seafile CE and Seafile PE. Us
 
 The setup process of Seafile Professional Server is the same as the Seafile Community Server. See [Download and Setup Seafile Server With MySQL](../deploy/using_mysql.md).
 
-If you have any problem during the setup up, check [Common
+If you have any problem during the setup up, check [Common problems in setting up Seafile server](../deploy/common_problems_for_setting_up_server.md).
 
 After the successful completition of the setup script, the directory layout of Seafile PE looks as follows :
 
@@ -416,7 +415,7 @@ Restart seahub for the config changes to take effect:
 
 ### Enabling access per HTTPS
 
-It is strongly recommended to switch from unencrypted HTTP (via port 8000) to encrypted HTTPS (via port 443.)
+It is strongly recommended to switch from unencrypted HTTP (via port 8000) to encrypted HTTPS (via port 443).
 
 This manual provides instructions for enabling HTTPS for
 
