@@ -142,6 +142,16 @@ max_sync_file_count = 100000
 fs_id_list_request_timeout = 300
 ```
 
+New in Seafile Pro 8.0.5: If you use cloud storage backend, you can enable the `use_block_cache` configuration to speed up file access. `use_block_cache` the default value is false. Note that this configuration is only effective for downloading files through web page or API, not for synchronized files. The `block_cache_size_limit` configuration is used to limit the size of the cache. `block_cache_size_limit` the default value is 10GB. the `block_cache_file_types` configuration is used to limit the file types that are cached. `block_cache_file_types` the default value is mp4;mov.
+
+```
+[fileserver]
+use_block_cache = true
+# Set block cache size limit to 100MB
+block_cache_size_limit = 100
+block_cache_file_types = mp4;mov
+```
+
 ## Database configuration
 
 The whole database configuration is stored in the `[database]` section of the configuration file, whether you use SQLite, MySQL or PostgreSQL.
