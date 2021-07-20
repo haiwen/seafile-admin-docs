@@ -92,9 +92,9 @@ seaf-gc.sh -r
 
 **In Seafile version 4.1.1 and later, libraries deleted by the users are not immediately removed from the system. Instead, they're moved into a "trash" in the system admin page. Before they're cleared from the trash, their blocks won't be garbage collected.**
 
-### Removing FS
+### Removing FS objects
 
-Since Pro server 8.0.6, you can remove garbage fs, run without the --dry-run option:
+Since Pro server 8.0.6, you can remove garbage fs objects. It should be run without the --dry-run option:
 
 ```
 seaf-gc.sh --rm-fs
