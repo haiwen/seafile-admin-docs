@@ -39,6 +39,31 @@ mv seafile.conf /opt
 
 ```
 
+If you want to migrate to a local file system, the seafile.conf temporary configuration example is as follows:
+
+```
+cat > seafile.conf << EOF
+[commit_object_backend]
+name = fs
+# the dir configuration is the new seafile-data path
+dir = /var/data_backup
+
+[fs_object_backend]
+name = fs
+# the dir configuration is the new seafile-data path
+dir = /var/data_backup
+
+[block_backend]
+name = fs
+# the dir configuration is the new seafile-data path
+dir = /var/data_backup
+
+EOF
+
+mv seafile.conf /opt
+
+```
+
 Repalce the configurations with your own choice.
 
 ## Migrating large number of objects
