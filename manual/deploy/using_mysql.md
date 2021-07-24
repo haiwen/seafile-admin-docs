@@ -220,7 +220,7 @@ Configure your Seafile Server by specifying the following three parameters:
 
 In the next step, choose whether to create new databases for Seafile or to use existing databases. The creation of new databases requires the root password for the SQL server. 
 
-![image-20210723234056427](C:\Users\RDB\AppData\Roaming\Typora\typora-user-images\image-20210723234056427.png)
+![grafik](https://user-images.githubusercontent.com/41058728/126880814-40d63632-fc8f-40dc-862e-059132c2c90c.png)
 
 When choosing "\[1] Create new ccnet/seafile/seahub databases", the script creates these databases and a MySQL user that Seafile Server will use to access them. To this effect, you need to answer these questions:
 
@@ -249,7 +249,7 @@ When choosing "\[2] Use existing ccnet/seafile/seahub databases", this are the p
 
 If the setup is successful, you see the following output:
 
-![image-20210723232102204](C:\Users\RDB\AppData\Roaming\Typora\typora-user-images\image-20210723232102204.png)
+![grafik](https://user-images.githubusercontent.com/41058728/126880825-7cdd308c-f4a6-41cc-81a2-6bc50f950e19.png)
 
 The directory layout then looks as follows:
 
