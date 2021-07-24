@@ -1,78 +1,102 @@
 # Enabling Https with Nginx
 
-Here we suggest you use [Let’s Encrypt](https://letsencrypt.org/getting-started/) to get a certificate from a Certificate Authority (CA). If you use a paid ssl certificate from some authority, just skip the first step.
+When using HTTPS, traffic from and to Seafile Server is encrypted. HTTPS requires a SSL certificate from a Certificate Authority (CA).
 
-### Generate SSL certificate
+For production use, HTTPS is imperative. 
 
-For users who use Let’s Encrypt, you can obtain a valid certificate via [Certbot ACME client](https://certbot.eff.org/)
+Unless you already have a SSL certificate, we recommend that you get your SSL certificate from [Let’s Encrypt](https://letsencrypt.org/). If you have a SSL certificate from another CA, skip the section "Getting a Let's Encrypt certificate".
 
-On Ubuntu systems, the Certbot team maintains a PPA. Once you add it to your list of repositories all you'll need to do is apt-get the following packages.
+## Setup
+
+The configuration of Seafile behind Nginx as a reverse proxy is demonstrated using the sample host name `seafile.example.com`. 
+
+These instructions assume the following requirements:
+
+* Seafile Server Community Edition/Professional Edition and [Nginx](deploy_with_nginx.md) were set up according to the instructions in this manual
+* A host name points at the IP address of the server and the server is available on port 80 and 443
+
+If your setup differs from thes requirements, adjust the following instructions accordingly.
+
+### Getting a Let's Encrypt certificate
+
+Getting a Let's Encrypt certificate is straightforward thanks to [Certbot](https://certbot.eff.org/). Certbot is a free, open source software tool for requesting, receiving, and renewing Let's Encrypt certificates.
+
+First, go to the [Certbot](https://certbot.eff.org/) website and choose your webserver and OS.
+
+![image-20210724215553605](C:\Users\RDB\AppData\Roaming\Typora\typora-user-images\image-20210724215553605.png)
+
+Second, follow the detailed instructions then shown.
+
+![image-20210724215711807](C:\Users\RDB\AppData\Roaming\Typora\typora-user-images\image-20210724215711807.png)
+
+ 
+
+We recommend that you get just a certificate and that you modify the Nginx configuration yourself:
 
 ```bash
-sudo apt-get update
-sudo apt-get install software-properties-common
-sudo add-apt-repository ppa:certbot/certbot
-sudo apt-get update
-sudo apt-get install python-certbot-nginx
+sudo certbot certonly --nginx
 ```
 
-Certbot has an Nginx plugin, which is supported on many platforms, and automates both obtaining and installing certs:
+Follow the instructions on the screen.
 
-```bash
-sudo certbot --nginx
-```
+Upon successful verification, Certbot saves the certificate files in a directory named after the host name in  ```/etc/letsencrypt/live```.
 
-Running this command will get a certificate for you and have Certbot edit your Nginx configuration automatically to serve it. If you're feeling more conservative and would like to make the changes to your Nginx configuration by hand, you can use the certonly subcommand:
+### Enabling SSL module of Nginx (optional)
 
-```bash
-sudo certbot --nginx certonly
-```
-
-To learn more about how to use Certbot you can read threir [documentation](https://certbot.eff.org/docs/).
-
-> If you're using a custom CA to sign your SSL certificate, you have to enable certificate revocation list (CRL) in your certificate. Otherwise http syncing on Windows client may not work. See [this thread](https://forum.seafile-server.org/t/https-syncing-on-windows-machine-using-custom-ca/898) for more information.
-
-### Enable SSL module of Nginx (optional)
-
-If your Nginx does not support SSL, you need to recompile it, the commands are as follows:
+If your Nginx does not support SSL, you need to recompile it. Use the following command:
 
 ```bash
     ./configure --with-http_stub_status_module --with-http_ssl_module
     make && make install
 ```
 
-### Modify Nginx configuration file
+### Modifying Nginx configuration file
 
-Assume you have configured nginx as [Deploy-Seafile-with-nginx](deploy_with_nginx.md). To use https, you need to modify your nginx configuration file.
+Add an  server block for port 443 and a http-to-https redirect to the `seafile.conf` configuration file in `/etc/nginx`.  
+
+This is a (shortened) sample configuration for the host name seafile.example.com:
 
 ```nginx
+log_format seafileformat '$http_x_forwarded_for $remote_addr [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent" $upstream_response_time';
+
 server {
     listen       80;
     server_name  seafile.example.com;
-    rewrite ^ https://$http_host$request_uri? permanent;	# force redirect http to https
+    rewrite ^ https://$http_host$request_uri? permanent;	# forced http to https redirect
 
-    # Enables or disables emitting nginx version on error pages and in the "Server" response header field.
-    server_tokens off;
+    server_tokens off;  # Enables or disables emitting nginx version on error pages and in the "Server" response header field
 }
 
 server {
     listen 443;
     ssl on;
-    ssl_certificate /etc/ssl/cacert.pem;    	# path to your cacert.pem
-    ssl_certificate_key /etc/ssl/privkey.pem;	# path to your privkey.pem
+    ssl_certificate /etc/letsencrypt/live/seafile.example.com/fullchain.pem;    	# path to your fullchain.pem
+    ssl_certificate_key /etc/letsencrypt/live/seafile.example.com/privkey.pem;	# path to your privkey.pem
     server_name seafile.example.com;
     server_tokens off;
-    # ......
-    proxy_pass         http://127.0.0.1:8000;
-    proxy_set_header   Host $host;
-    proxy_set_header   X-Real-IP $remote_addr;
-    proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header   X-Forwarded-Host $server_name;
-    proxy_set_header   X-Forwarded-Proto https;
+    
+    location / {
+    	proxy_pass         http://127.0.0.1:8000;
+    	proxy_set_header   Host $host;
+    	proxy_set_header   X-Real-IP $remote_addr;
+    	proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+    	proxy_set_header   X-Forwarded-Host $server_name;
+    	proxy_read_timeout 1200s;
+    
+    	proxy_set_header   X-Forwarded-Proto https;
 
-    proxy_read_timeout  1200s;
-}
+... # No changes beyond this point compared to the Nginx configuration without HTTPS
+
 ```
+
+Finally, make sure your seafile.conf does not contain syntax errors and restart Nginx for the configuration changes to take effect:
+
+```
+nginx -t
+nginx -s reload
+```
+
+
 
 ### Sample configuration file
 
@@ -191,52 +215,40 @@ If you have WebDAV enabled it is recommended to add the same:
     }
 ```
 
-### Reload Nginx
-```bash
-    nginx -s reload
-```
+### Modifying ccnet.conf
 
-## Modify settings to use https
-
-### ccnet conf
-
-Since you changed from http to https, you need to modify the value of `SERVICE_URL` in [ccnet.conf](../config/ccnet-conf.md). You can also modify `SERVICE_URL` via web UI in "System Admin->Settings". (**Warning**: If you set the value both via Web UI and ccnet.conf, the setting via Web UI will take precedence.)
+Modify the `SERVICE_URL` in [ccnet.conf](../config/ccnet-conf.md) to account for the switch from HTTP to HTTPS. 
 
 ```bash
 SERVICE_URL = https://seafile.example.com
 ```
 
-### seahub_settings.py
+Note: The`SERVICE_URL` can also be modified in Seahub via System Admininstration > Settings.  If `SERVICE_URL` is configured via System Admin and in ccnet.conf, the value in System Admin will take precedence.
 
-You need to add a line in seahub_settings.py to set the value of `FILE_SERVER_ROOT`. You can also modify `FILE_SERVER_ROOT` via web UI in "System Admin->Settings". (**Warning**: If you set the value both via Web UI and seahub_settings.py, the setting via Web UI will take precedence.)
+### Modifying seahub_settings.py
+
+Modify the `FILE_SERVER_ROOT` in [seahub_settings.py](../config/seahub_settings_py/) to account for the switch from HTTP to HTTPS.
 
 ```python
 FILE_SERVER_ROOT = 'https://seafile.example.com/seafhttp'
 ```
 
-### Change Seafile config
+Note: The`FILE_SERVER_ROOT` can also be modified in Seahub via System Admininstration > Settings.  If `FILE_SERVER_ROOT` is configured via System Admin and in seahub_settings.py, the value in System Admin will take precedence.
 
-Update the [configuration](../config/seafile-conf.md#seafile-fileserver-configuration
-) of seafile fileserver is in the `[fileserver]` section of the file `seafile.conf` to local ip `127.0.0.1`
+### Starting Seafile and Seahub
 
-```
-[fileserver]
-# bind address for fileserver
-# default to 0.0.0.0, if deployed without proxy: no access restriction
-# set to 127.0.0.1, if used with local proxy: only access by local
-host = 127.0.0.1
-```
-
-## Start Seafile and Seahub
+Restart the seaf-server and Seahub for the config changes to take effect:
 
 ```bash
-./seafile.sh start
-./seahub.sh start # or "./seahub.sh start-fastcgi" if you're using fastcgi
+su seafile
+cd /opt/seafile/seafile-server-latest
+./seafile.sh restart
+./seahub.sh restart # or "./seahub.sh start-fastcgi" if you're using fastcgi
 ```
 
 ## Additional modern settings for nginx (optional)
 
-### Activate IPv6
+### Activating IPv6
 
 Require IPv6 on server otherwise the server will not start! Also the AAAA dns record is required for IPv6 usage.
 
@@ -245,7 +257,7 @@ listen 443;
 listen [::]:443;
 ```
 
-### Activate HTTP2
+### Activating HTTP2
 
 Activate HTTP2 for more performance. Only available for SSL and nginx version>=1.9.5. Simply add `http2`.
 ```nginx
@@ -262,7 +274,7 @@ Add the HSTS header. If you already visited the https version the next time your
 add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
 ```
 
-### Obfuscate nginx version
+### Obfuscating nginx version
 
 Disable exact server version in header. Prevent scans for vulnerable server.
 **This should be added to every server block, as it shall obfuscate the version of nginx.**

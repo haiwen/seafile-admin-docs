@@ -21,7 +21,7 @@ If your setup differs from thes requirements, adjust the following instructions 
 
 ### Installing Nginx
 
-Install Nginx:
+Install Nginx using the package repositories:
 
 ```bash
 # CentOS
@@ -39,9 +39,26 @@ sudo systemctl start nginx
 sudo systemctl enable nginx
 ```
 
+### Preparing Nginx
 
+The configuration of a proxy server in Nginx differs slightly between CentOS and Debian/Ubuntu. Additionally, the restrictive default settings of SELinux's configuration on CentOS require a modification.
 
-### Configuring Nginx
+#### Preparing Nginx on CentOS
+
+Switch SELinux into permissive mode and perpetuate the setting:
+
+``` bash
+sudo setenforce permissive
+sed -i 's/^SELINUX=.*/SELINUX=permissive/' /etc/selinux/config
+```
+
+Create a configuration file for seafile in `/etc/nginx/conf.d`:
+
+```bash
+touch /etc/nginx/conf.d/seafile.conf
+```
+
+#### Preparing Nginx on Debian/Ubuntu
 
 Create a configuration file for seafile in `/etc/nginx/sites-available/`:
 
@@ -58,11 +75,13 @@ rm /etc/nginx/sites-available/default
 
 Create a symbolic link: 
 
-````
+````bash
 ln -s /etc/nginx/sites-available/seafile.conf /etc/nginx/sites-enabled/seafile.conf
 ````
 
-Copy the following sample Nginx config file into `/etc/nginx/sites-available/seafile.conf` and modify the content to fit your needs:
+### Configuring Nginx
+
+Copy the following sample Nginx config file into the just created `seafile.conf` and modify the content to fit your needs:
 
 ```nginx
 
@@ -141,28 +160,16 @@ The following options must be modified in the CONF file:
 
 Optional customizable options in the seafile.conf are:
 
-* Server listening port (listen)- if Seafile server should be available on a non-standard port
+* Server listening port (listen) - if Seafile server should be available on a non-standard port
 * Proxy pass for location / - if Seahub is configured to start on a different port than 8000
 * Proxy pass for location /seafhttp - if seaf-server is configured to start on a different port than 8082
 * Maximum allowed size of the client request body (client_max_body_size)
 
-The default value for `client_max_body_size` is 1M. Uploading larger files bigger will result in an error message HTTP error code 413 ("Request Entity Too Large"). It is recommended to syncronize the value of client_max_body_size with the parameter `max_upload_size` in section `[fileserver]` of [seafile.conf](../config/seafile-conf.md). Optionally, the value can also be set to 0 to disable this feature.
+The default value for `client_max_body_size` is 1M. Uploading larger files will result in an error message HTTP error code 413 ("Request Entity Too Large"). It is recommended to syncronize the value of client_max_body_size with the parameter `max_upload_size` in section `[fileserver]` of [seafile.conf](../config/seafile-conf.md). Optionally, the value can also be set to 0 to disable this feature. Client uploads are only partly effected by this limit. With a limit of 100 MiB they can safely upload files of any size.
 
-Client uploads are only partly effected by this limit. With a limit of 100 MiB they can safely upload files of any size.
-
-Note for very large files (> 4GB): By default Nginx will buffer large request bodies in temp files. After the body is completely received, Nginx will send the body to the upstream server (seaf-server in our case). But it seems when the file size is very large, the buffering mechanism dosen't work well. It may stop proxying the body in the middle. So if you want to support file uploads larger than 4GB, we suggest to install Nginx version >= 1.8.0 and add the following options to Nginx config file:
-
-```nginx
-    location /seafhttp {
-        ... ...
-        proxy_request_buffering off;
-    }
-```
-
-Finally, make sure your seafile.conf does not contain syntax error and restart Nginx for the configuration changes to take effect:
+Finally, make sure your seafile.conf does not contain syntax errors and restart Nginx for the configuration changes to take effect:
 
 ```bash
-# CentOS/Debian/Ubuntu
 nginx -t
 nginx -s reload
 ```
@@ -175,18 +182,30 @@ The `SERVICE_URL` in [ccnet.conf](../config/ccnet-conf.md) informs Seafile about
 SERVICE_URL = http://seafile.example.com
 ```
 
-Note: The`SERVICE_URL` can also be modified in Seahub via System Admininstration > Settings.  If `SERVICE_URL` is configured via System Admin and in ccnet.conf, the value System Admin will take precedence.
+Note: The`SERVICE_URL` can also be modified in Seahub via System Admininstration > Settings.  If `SERVICE_URL` is configured via System Admin and in ccnet.conf, the value in System Admin will take precedence.
 
 ### Modifying seahub_settings.py
 
-The `FILE_SERVER_ROOT` in [seahub_settings.py](../config/seahub_settings_py/) informs Seafile about the location of and the protocol used by the file server. Change the `FILE_SERVER_ROOT`so as to correspond to your host name (the `http://`and the trailing `/seafhttp`must not be removed):
+The `FILE_SERVER_ROOT` in [seahub_settings.py](../config/seahub_settings_py/) informs Seafile about the location of and the protocol used by the file server. Change the `FILE_SERVER_ROOT`so as to correspond to your host name (the `http://`and the trailing `/seafhttp` must not be removed):
 
 
 ```python
 FILE_SERVER_ROOT = 'http://seafile.example.com/seafhttp'
 ```
 
-Note: The`FILE_SERVER_ROOT` can also be modified in Seahub via System Admininstration > Settings.  If `FILE_SERVER_ROOT` is configured via System Admin and in seahub_settings.py, the value System Admin will take precedence.
+Note: The`FILE_SERVER_ROOT` can also be modified in Seahub via System Admininstration > Settings.  If `FILE_SERVER_ROOT` is configured via System Admin and in seahub_settings.py, the value in System Admin will take precedence.
+
+### Modifying seafile.conf
+
+To improve security, the file server should only be accessible via Nginx.
+
+Add the following line in the [fileserver] block on `seafile.conf` in `/opt/seafile/conf`:
+
+```
+host = 127.0.0.1  ## default port 0.0.0.0
+```
+
+After his change, the file server only accepts requests from Nginx.
 
 ### Starting Seafile and Seahub
 
