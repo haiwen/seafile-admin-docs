@@ -142,6 +142,20 @@ max_sync_file_count = 100000
 fs_id_list_request_timeout = 300
 ```
 
+If you use object storage as storage backend, when a large file is frequently downloaded, the same blocks need to be fetched from the storage backend to Seafile server. This may waste bandwith and cause high load on the internal network. Since Seafile Pro 8.0.5 version, we add block caching to improve the situation. Note that this configuration is only effective for downloading files through web page or API, but not for syncing files.
+
+* To enable this feature, set `use_block_cache` option in the `[fileserver]` group. It's not enabled by default. 
+* The `block_cache_size_limit` option is used to limit the size of the cache. Its default value is 10GB. The blocks are cached in `seafile-data/block-cache` directory. When the total size of cached files exceeds the limit, seaf-server will clean up older files until the size reduces to 70% of the limit. The cleanup interval is 5 minutes. You have to have a good estimate on how much space you need for the cache directory. Otherwise on frequent downloads this directory can be quickly filled up.
+* The `block_cache_file_types` configuration is used to choose the file types that are cached. `block_cache_file_types` the default value is mp4;mov.
+
+```
+[fileserver]
+use_block_cache = true
+# Set block cache size limit to 100MB
+block_cache_size_limit = 100
+block_cache_file_types = mp4;mov
+```
+
 ## Database configuration
 
 The whole database configuration is stored in the `[database]` section of the configuration file, whether you use SQLite, MySQL or PostgreSQL.
