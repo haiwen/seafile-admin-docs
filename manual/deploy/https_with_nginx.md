@@ -22,12 +22,11 @@ If your setup differs from thes requirements, adjust the following instructions 
 Getting a Let's Encrypt certificate is straightforward thanks to [Certbot](https://certbot.eff.org/). Certbot is a free, open source software tool for requesting, receiving, and renewing Let's Encrypt certificates.
 
 First, go to the [Certbot](https://certbot.eff.org/) website and choose your webserver and OS.
-
-![image-20210724215553605](C:\Users\RDB\AppData\Roaming\Typora\typora-user-images\image-20210724215553605.png)
+![grafik](https://user-images.githubusercontent.com/41058728/126880778-ed2e8f13-c781-4448-8803-4919a380ac7c.png)
 
 Second, follow the detailed instructions then shown.
 
-![image-20210724215711807](C:\Users\RDB\AppData\Roaming\Typora\typora-user-images\image-20210724215711807.png)
+![grafik](https://user-images.githubusercontent.com/41058728/126880783-e70f2434-33e7-4af0-9b42-2a1fc0aad973.png)
 
  
 
