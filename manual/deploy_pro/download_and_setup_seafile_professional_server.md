@@ -12,7 +12,7 @@ Seafile PE can be used without a paid license with up to three users. Licenses f
 
 These instructions assume that MySQL/MariaDB server and client are installed and a MySQL/MariaDB root user can authenticate using the mysql_native_password plugin. (For more information, see [Download and Setup Seafile Server With MySQL](../deploy/using_mysql.md).)
 
-Seafile prior to and including Seafile 7.0 use Python 2. More recent versions use on Python 3.
+Seafile prior to and including Seafile 7.0 use Python 2. More recent versions rely on Python 3.
 
 ### Installing prerequisites
 
@@ -105,10 +105,10 @@ sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3
 
 ```
 # CentOS 8
-sudo yum install python3 python3-setuptools python3-pip mysql-devel gcc -y
+sudo yum install python3 python3-setuptools python3-pip python3-devel mysql-devel gcc -y
 
 sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
-    django-pylibmc django-simple-captcha python3-ldap
+    django-pylibmc django-simple-captcha python3-ldap mysqlclient
 
 ```
 
@@ -163,7 +163,7 @@ sudo yum install poppler-utils -y
 
 
 
-### Creating programm directory for Seafile PE
+### Creating the programm directory
 
 The standard directory for Seafile's program files is `/opt/seafile`. Create this directory and change into it:
 
@@ -173,7 +173,7 @@ cd /opt/seafile
 
 ```
 
-The  program directory can be changed. The standard directory `/opt/seafile` is assumed for the remainder of these instructions. If you decide to put Seafile in another directory, some commmands need to be modified accordingly.
+The  program directory can be changed. The standard directory `/opt/seafile` is assumed for the remainder of these instructions. If you decide to put Seafile in another directory, some commands need to be modified accordingly.
 
 
 
@@ -209,7 +209,7 @@ Save the license file in Seafile's programm directory `/opt/seafile`. Make sure 
 
 
 
-### Downloading the Seafile PE install package
+### Downloading the install package
 
 The install packages for Seafile PE are available for download in the the [Seafile Customer Center](https://customer.seafile.com). To access the Customer Center, a  user account is necessary. The registration is free.
 
@@ -230,12 +230,12 @@ wget -O 'seafile-pro-server_x.x.x_x86-64_Ubuntu.tar.gz' 'VERSION_SPECIFIC_LINK_F
 wget -O 'seafile-pro-server_x.x.x_x86-64_CentOS.tar.gz' 'VERSION_SPECIFIC_LINK_FROM_SEAFILE_CUSTOMER_CENTER'
 ```
 
+We use Seafile version 8.0.4 as an example in the remainder of these instructions.
 
 
+### Uncompressing the package
 
-### Uncompressing Seafile PE
-
-The install package is downloaded as a compressed tarball which need to be uncompressed.
+The install package is downloaded as a compressed tarball which needs to be uncompressed.
 
 Uncompress the package using tar:
 
@@ -397,23 +397,29 @@ After the successful completition of the setup script, the directory layout of S
 
 ### Tweaking conf files
 
-Two configuration files must be manually modified: ccnet.conf and gunicorn.conf.py
+Unless you proceed immediately with the installation of a reverse proxy, you need to modify two configuration files: ccnet.conf and gunicorn.conf.py
 
 In ccnet.conf, add the port 8000 to the `SERVICE_URL` (i.e., SERVICE_URL = http://1.2.3.4:8000/)
 
 In gunicorn.conf.py, change the bind to "0.0.0.0:8000" (i.e., bind = "0.0.0.0:8000")
 
-Restart seahub for the config changes to take effect:
+
+
+## Starting Seafile Server
+
+Run the following commands in `/opt/seafile-server-latest`:
 
 ```
-#/opt/seafile/seafile-server-latest/seahub.sh restart
+./seafile.sh start # Start Seafile service
+./seahub.sh start  # Start seahub website, port defaults to 127.0.0.1:8000
+
 ```
 
- Now you can access Seafile via the web interface at http://1.2.3.4:8000 with 1.2.3.4 being the IP address of your host.
+The first time you start Seahub, the script prompts you to create an admin account for your Seafile Server. Enter the email address of the admin user followed by the password.
 
+Now you can access Seafile via the web interface at the host address and port 8000 (e.g., http://1.2.3.4:8000)
 
-
-### Enabling access per HTTPS
+## Enabling access per HTTPS
 
 It is strongly recommended to switch from unencrypted HTTP (via port 8000) to encrypted HTTPS (via port 443).
 
