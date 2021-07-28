@@ -107,7 +107,7 @@ There are two tables in Seafile db that are related to library sync tokens.
 When you have many sync clients connected to the server, these two tables can have large number of rows. Many of them are no longer actively used. You may clean the tokens that are not used in a recent period, by the following SQL query:
 
 ```
-delete from repousertoken t, repotokenpeerinfo i where t.token=i.token and sync_time < xxxx;
+delete t,i from RepoUserToken t, RepoTokenPeerInfo i where t.token=i.token and sync_time < xxxx;
 ```
 
 xxxx is the UNIX timestamp for the time before which tokens will be deleted.
@@ -115,5 +115,5 @@ xxxx is the UNIX timestamp for the time before which tokens will be deleted.
 To be safe, you can first check how many tokens will be removed:
 
 ```
-select * from repousertoken t, repotokenpeerinfo i where t.token=i.token and sync_time < xxxx;
+select * from RepoUserToken t, RepoTokenPeerInfo i where t.token=i.token and sync_time < xxxx;
 ```
