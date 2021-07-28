@@ -38,7 +38,7 @@ sudo certbot certonly --nginx
 
 Follow the instructions on the screen.
 
-Upon successful verification, Certbot saves the certificate files in a directory named after the host name in  ```/etc/letsencrypt/live```.
+Upon successful verification, Certbot saves the certificate files in a directory named after the host name in  ```/etc/letsencrypt/live```. For the host name seafile.example.com, the files are stored in `/etc/letsencrypt/live/seafile.example.com`. 
 
 ### Enabling SSL module of Nginx (optional)
 
@@ -61,16 +61,16 @@ log_format seafileformat '$http_x_forwarded_for $remote_addr [$time_local] "$req
 server {
     listen       80;
     server_name  seafile.example.com;
-    rewrite ^ https://$http_host$request_uri? permanent;	# forced http to https redirect
+    rewrite ^ https://$http_host$request_uri? permanent;	# Forced redirect from HTTP to HTTPS
 
-    server_tokens off;  # Enables or disables emitting nginx version on error pages and in the "Server" response header field
+    server_tokens off;		# Prevents the Nginx version from being displayed in the HTTP response header
 }
 
 server {
     listen 443;
     ssl on;
-    ssl_certificate /etc/letsencrypt/live/seafile.example.com/fullchain.pem;    	# path to your fullchain.pem
-    ssl_certificate_key /etc/letsencrypt/live/seafile.example.com/privkey.pem;	# path to your privkey.pem
+    ssl_certificate /etc/letsencrypt/live/seafile.example.com/fullchain.pem;    # Path to your fullchain.pem
+    ssl_certificate_key /etc/letsencrypt/live/seafile.example.com/privkey.pem;	# Path to your privkey.pem
     server_name seafile.example.com;
     server_tokens off;
     
@@ -93,104 +93,6 @@ Finally, make sure your seafile.conf does not contain syntax errors and restart 
 ```
 nginx -t
 nginx -s reload
-```
-
-
-
-### Sample configuration file
-
-#### Generate DH params
-(this takes some time)
-```bash
-    openssl dhparam 2048 > /etc/nginx/dhparam.pem
-```
-
-Here is the sample configuration file:
-
-```nginx
-    server {
-        listen       80;
-        server_name  seafile.example.com;
-        rewrite ^ https://$http_host$request_uri? permanent;	# force redirect http to https
-        server_tokens off;
-    }
-    server {
-        listen 443;
-        ssl on;
-        ssl_certificate /etc/ssl/cacert.pem;        # path to your cacert.pem
-        ssl_certificate_key /etc/ssl/privkey.pem;	# path to your privkey.pem
-        server_name seafile.example.com;
-        ssl_session_timeout 5m;
-        ssl_session_cache shared:SSL:5m;
-
-        # Diffie-Hellman parameter for DHE ciphersuites, recommended 2048 bits
-        ssl_dhparam /etc/nginx/dhparam.pem;
-
-        # secure settings (A+ at SSL Labs ssltest at time of writing)
-        # see https://wiki.mozilla.org/Security/Server_Side_TLS#Nginx
-        ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
-        ssl_ciphers 'ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-SHA256:DHE-RSA-AES256-SHA:DHE-RSA-CAMELLIA256-SHA:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-RSA-SEED-SHA:DHE-RSA-CAMELLIA128-SHA:HIGH:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS';
-        ssl_prefer_server_ciphers on;
-
-        proxy_set_header X-Forwarded-For $remote_addr;
-
-        add_header Strict-Transport-Security "max-age=31536000; includeSubDomains";
-        server_tokens off;
-
-        location / {
-            proxy_pass         http://127.0.0.1:8000;
-            proxy_set_header   Host $host;
-            proxy_set_header   X-Real-IP $remote_addr;
-            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header   X-Forwarded-Host $server_name;
-            proxy_set_header   X-Forwarded-Proto https;
-
-            access_log      /var/log/nginx/seahub.access.log;
-    	    error_log       /var/log/nginx/seahub.error.log;
-
-            proxy_read_timeout  1200s;
-
-            client_max_body_size 0;
-        }
-# If you are using [FastCGI](http://en.wikipedia.org/wiki/FastCGI),
-# which is not recommended, you should use the following config for location `/`.
-#
-#    location / {
-#         fastcgi_pass    127.0.0.1:8000;
-#         fastcgi_param   SCRIPT_FILENAME     $document_root$fastcgi_script_name;
-#         fastcgi_param   PATH_INFO           $fastcgi_script_name;
-#
-#         fastcgi_param	 SERVER_PROTOCOL	 $server_protocol;
-#         fastcgi_param   QUERY_STRING        $query_string;
-#         fastcgi_param   REQUEST_METHOD      $request_method;
-#         fastcgi_param   CONTENT_TYPE        $content_type;
-#         fastcgi_param   CONTENT_LENGTH      $content_length;
-#         fastcgi_param	 SERVER_ADDR         $server_addr;
-#         fastcgi_param	 SERVER_PORT         $server_port;
-#         fastcgi_param	 SERVER_NAME         $server_name;
-#         fastcgi_param   REMOTE_ADDR         $remote_addr;
-#     	 fastcgi_read_timeout 36000;
-#
-#         client_max_body_size 0;
-#
-#         access_log      /var/log/nginx/seahub.access.log;
-#     	 error_log       /var/log/nginx/seahub.error.log;
-#    }
-
-        location /seafhttp {
-            rewrite ^/seafhttp(.*)$ $1 break;
-            proxy_pass http://127.0.0.1:8082;
-            client_max_body_size 0;
-            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_connect_timeout  36000s;
-            proxy_read_timeout  36000s;
-            proxy_send_timeout  36000s;
-            send_timeout  36000s;
-        }
-        location /media {
-            root /home/user/haiwen/seafile-server-latest/seahub;
-        }
-    }
 ```
 
 ### Large file uploads
@@ -245,7 +147,7 @@ cd /opt/seafile/seafile-server-latest
 ./seahub.sh restart # or "./seahub.sh start-fastcgi" if you're using fastcgi
 ```
 
-## Additional modern settings for nginx (optional)
+## Additional modern settings for Nginx (optional)
 
 ### Activating IPv6
 
@@ -264,23 +166,105 @@ listen 443 http2;
 listen [::]:443 http2;
 ```
 
-## Additional security settings for nginx (optional)
+## Advanced TLS configuration for Nginx (optional)
 
-### Force https on next visit
+The TLS configuration in the sample Nginx configuration file above receives a B overall rating on [SSL Labs](https://www.ssllabs.com/ssltest/). By modifying the TLS configuration in `seafile.conf `,  this rating can be significantly improved. 
 
-Add the HSTS header. If you already visited the https version the next time your browser will directly visit the https site and not the http one. Prevent man-in-the-middle-attacks:
+The following sample Nginx configuration file for the host name seafile.example.com contains additional security-related directives . (Note that this sample file uses a generic path for the SSL certificate files.) Some of the directives require further steps as explained below.
+
+```nginx
+    server {
+        listen       80;
+        server_name  seafile.example.com;
+        rewrite ^ https://$http_host$request_uri? permanent;	# Forced redirect from HTTP to HTTPS
+        server_tokens off;
+    }
+    server {
+        listen 443;
+        ssl on;
+        ssl_certificate /etc/ssl/cacert.pem;        # Path to your cacert.pem
+        ssl_certificate_key /etc/ssl/privkey.pem;	# Path to your privkey.pem
+        server_name seafile.example.com;
+        server_tokens off;
+
+        # HSTS for protection against man-in-the-middle-attacks
+        add_header Strict-Transport-Security "max-age=31536000; includeSubDomains";
+    
+        # DH parameters for Diffie-Hellman key exchange
+        ssl_dhparam /etc/nginx/dhparam.pem;
+
+        # Supported protocols and ciphers for general purpose server with good security and compatability with most clients
+        ssl_protocols TLSv1.2 TLSv1.3;
+        ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
+        ssl_prefer_server_ciphers off;
+    
+    	# Supported protocols and ciphers for server when clients > 5years (i.e., Windows Explorer) must be supported
+        #ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;
+        #ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA:ECDHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES256-SHA256:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:DES-CBC3-SHA;
+        #ssl_prefer_server_ciphers on;
+    
+        ssl_session_timeout 5m;
+        ssl_session_cache shared:SSL:5m;
+
+        location / {
+            proxy_pass         http://127.0.0.1:8000;
+            proxy_set_header   Host $host;
+            proxy_set_header   X-Real-IP $remote_addr;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   X-Forwarded-Host $server_name;
+            proxy_set_header   X-Forwarded-Proto https;
+
+            access_log      /var/log/nginx/seahub.access.log;
+    	    error_log       /var/log/nginx/seahub.error.log;
+
+            proxy_read_timeout  1200s;
+
+            client_max_body_size 0;
+        }
+
+        location /seafhttp {
+            rewrite ^/seafhttp(.*)$ $1 break;
+            proxy_pass http://127.0.0.1:8082;
+            client_max_body_size 0;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_connect_timeout  36000s;
+            proxy_read_timeout  36000s;
+            proxy_send_timeout  36000s;
+            send_timeout  36000s;
+        }
+    
+        location /media {
+            root /home/user/haiwen/seafile-server-latest/seahub;
+        }
+    }
+```
+
+### Enabling HTTP Strict Transport Security
+
+Enable HTTP Strict Transport Security (HSTS) to prevent man-in-the-middle-attacks by adding this directive:
+
 ```nginx
 add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
 ```
 
-### Obfuscating nginx version
+HSTS instructs web browsers to automatically use HTTPS. That means, after the first visit of the HTTPS version of Seahub, the browser will only use https to access the site.
 
-Disable exact server version in header. Prevent scans for vulnerable server.
-**This should be added to every server block, as it shall obfuscate the version of nginx.**
-```nginx
-server_tokens off;
+### Using Perfect Forward Secrecy
+
+Enable Diffie-Hellman (DH) key-exchange. Generate DH parameters and write them in a .pem file using the following command:
+
+```bash
+openssl dhparam 2048 > /etc/nginx/dhparam.pem  # Generates DH parameter of length 2048 bits
 ```
 
-## Test your server
+The generation of the the DH parameters may take some time depending on the server's processing power.
 
-To check your configuration you can use the service from ssllabs: https://www.ssllabs.com/ssltest/index.html .
+Add the following directive in the HTTPS server block:
+
+```
+ssl_dhparam /etc/nginx/dhparam.pem;
+```
+
+### Restricting TLS protocols and ciphers
+
+Disallow the use of old TLS protocols and cipher. Mozilla provides a configuration generator for optimizing the conflicting objectives of security and compabitility. Visit https://wiki.mozilla.org/Security/Server_Side_TLS#Nginx for more Information.
