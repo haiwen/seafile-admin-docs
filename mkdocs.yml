@@ -1,4 +1,4 @@
-site_name: Seafile admin manual
+site_name: Seafile Admin Manual
 site_author: seafile
 docs_dir: ./manual
 site_url: https://haiwen.github.io/seafile-admin-docs/
@@ -51,17 +51,17 @@ nav:
     - Roadmap: roadmap.md
     - Contribution: contribution.md
     - Changelog: changelog.md
-  - Deploy Seafile under Linux:
-    - Forward: deploy/README.md
-    - Deploy with SQLite: deploy/using_sqlite.md
-    - Deploy with MySQL: deploy/using_mysql.md
+  - Seafile Community Setup on Linux:
+    - Outline: deploy/README.md
+    - Installation with SQLite: deploy/using_sqlite.md
+    - Installation with MySQL: deploy/using_mysql.md
     - Config Seahub with Nginx: deploy/deploy_with_nginx.md
     - Enabling Https with Nginx: deploy/https_with_nginx.md
     - Config Seahub with Apache: deploy/deploy_with_apache.md
     - Enabling Https with Apache: deploy/https_with_apache.md
     - LDAP/AD Integration: deploy/using_ldap.md
     - Single Sign On:
-      - Forward: deploy/single_sign_on.md
+      - Outline: deploy/single_sign_on.md
       - Shibboleth Authentication for Seafile v6.2: deploy/shibboleth_config.md
       - Shibboleth Authentication for Seafile v6.3+: deploy/shibboleth_config_v6.3.md
       - OAuth Authentication: deploy/oauth.md
@@ -80,11 +80,10 @@ nav:
       - Deploy Seahub at Non-root domain: deploy/deploy_seahub_at_non-root_domain.md
       - Migrate From SQLite to MySQL: deploy/migrate_from_sqlite_to_mysql.md
     - Common Problems for Setting up Server: faq.md
-  - Deploy Seafile Pro Edition:
-    - Forward: deploy_pro/README.md
-    - Download and Setup Seafile Professional Server: deploy_pro/download_and_setup_seafile_professional_server.md
-    - Migrate from Seafile Community Server: deploy_pro/migrate_from_seafile_community_server.md
-    - Upgrading Seafile Professional Server: deploy_pro/upgrading_seafile_professional_server.md
+  - Seafile Professional Setup on Linux:
+    - Outline: deploy_pro/README.md
+    - Installation: deploy_pro/download_and_setup_seafile_professional_server.md
+    - Migration from Seafile Community: deploy_pro/migrate_from_seafile_community_server.md
     - LDAP/AD Integration:
       - LDAP Configuration for Seafile Pro: deploy_pro/using_ldap_pro.md
       - Importing Groups from LDAP: deploy_pro/ldap_group_sync.md
@@ -94,7 +93,7 @@ nav:
       - Office Online Server Integration: deploy_pro/office_web_app.md
     - File Search: deploy_pro/details_about_file_search.md
     - Virus Scan:
-      - Forward: deploy_pro/virus_scan.md
+      - Outline: deploy_pro/virus_scan.md
       - Run ClamAV as a Daemon: deploy_pro/deploy_clamav_as_daemon.md
       - Virus Scan With Kav4fs: deploy_pro/virus_scan_with_kav4fs.md
     - Storage Backends:
@@ -122,16 +121,16 @@ nav:
       - Real-time Backup Server: deploy_pro/real_time_backup.md
       - Import Directory To Seafile: deploy_pro/seaf_import.md
     - License: deploy_pro/seafile_professional_sdition_software_license_agreement.md
-  - Deploy Seafile with Docker:
-    - Deploy Seafile with Docker: docker/deploy_seafile_with_docker.md
-    - Deploy Seafile Pro Edition with Docker: docker/pro-edition/deploy_seafile_pro_with_docker.md
-    - Migrate CE to Pro with Docker: docker/pro-edition/migrate_ce_to_pro_with_docker.md
+  - Seafile Setup with Docker:
+    - Seafile Community Installation: docker/deploy_seafile_with_docker.md
+    - Seafile Professional Installation: docker/pro-edition/deploy_seafile_pro_with_docker.md
+    - Migration from Seafile Community: docker/pro-edition/migrate_ce_to_pro_with_docker.md
     - Upgrade from 6.3 to 7.0:
       - Upgrade Seafile Docker CE: docker/6.3_upgrade_to_7.0.md
       - Upgrade Seafile Docker Pro: docker/pro-edition/6.3_upgrade_to_7.0.md
     - Upgrade for other versions: docker/upgrade/upgrade_docker.md
   - Configuration and Customization:
-    - Forward: config/README.md
+    - Outline: config/README.md
     - ccnet.conf: config/ccnet-conf.md
     - seafile.conf: config/seafile-conf.md
     - seahub_settings.py: config/seahub_settings_py.md
@@ -139,7 +138,7 @@ nav:
     - Seahub customization: config/seahub_customization.md
     - Email Sending: config/sending_email.md
   - Administration:
-    - Forward: maintain/README.md
+    - Outline: maintain/README.md
     - Account management: maintain/account.md
     - Logs: maintain/logs.md
     - Backup and Recovery: maintain/backup_recovery.md
@@ -147,15 +146,15 @@ nav:
     - Seafile GC: maintain/seafile_gc.md
     - Clean database: maintain/clean_database.md
     - Export report: maintain/export_report.md
-  - Upgrade Seafile server:
-    - Forward: upgrade/upgrade.md
+  - Upgrade Seafile Server:
+    - Outline: upgrade/upgrade.md
     - Upgrade notes for 5.x.x: upgrade/upgrade_notes_for_5.x.x.md
     - Upgrade notes for 6.x.x: upgrade/upgrade_notes_for_6.x.x.md
     - Upgrade notes for 7.0.x: upgrade/upgrade_notes_for_7.0.x.md
     - Upgrade notes for 7.1.x: upgrade/upgrade_notes_for_7.1.x.md
     - Upgrade notes for 8.0.x: upgrade/upgrade_notes_for_8.0.x.md
   - WebDAV and FUSE extensions:
-    - Forward: extension/README.md
+    - Outline: extension/README.md
     - WebDAV extension: extension/webdav.md
     - FUSE extension: extension/fuse.md
   - Security and Auditing:
@@ -163,9 +162,9 @@ nav:
     - Access logs and auditing: security/auditing.md
     - Config fail2ban: security/fail2ban.md
   - Developing:
-    - Forward: develop/README.md
+    - Outline: develop/README.md
     - How to Build Seafile:
-      - Forward: build_seafile/README.md
+      - Outline: build_seafile/README.md
       - Linux: build_seafile/linux.md
       - FreeBSD: build_seafile/freebsd.md
       - Mac OS X: build_seafile/osx.md
@@ -183,4 +182,4 @@ nav:
     - Seafile Community Edition: changelog/server-changelog.md
     - Seafile Professional Edition: changelog/changelog-for-seafile-professional-server.md
     - Seafile Client: changelog/client-changelog.md
-    - Drive Client ChangeLog: changelog/drive-client-changelog.md
+    - Drive Client: changelog/drive-client-changelog.md
