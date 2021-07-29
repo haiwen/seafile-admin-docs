@@ -98,6 +98,10 @@ fs_id_list_request_timeout = 300
 
 Please check our document for how to upgrade to 7.1: [upgrade notes for 7.1.x](../upgrade/upgrade_notes_for_7.1.x.md)
 
+### 7.1.22 (2021/07/29)
+
+* [fix] Fix a UI bug for setting sharing permission
+
 ### 7.1.21 (2021/07/13)
 
 * Make file download link generated for OnlyOffice can be used by multiple times
