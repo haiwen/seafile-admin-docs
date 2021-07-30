@@ -151,7 +151,7 @@ su seafile
 
 ### Downloading the install package
 
-Download the install package from the [download page](https://www.seafile.com/en/download/) on Seafile's website using wget:
+Download the install package from the [download page](https://www.seafile.com/en/download/) on Seafile's website using wget.
 
 We use Seafile CE version 8.0.4 as an example in the rest of this manual.
 
@@ -168,7 +168,7 @@ tar xf seafile-server_8.0.4_x86-64.tar.gz
 Now you have:
 
 ```
-#tree -L 2
+$ tree -L 2
 .
 ├── seafile-server-8.0.4
 │   ├── check_init_admin.py
