@@ -34,6 +34,7 @@ Please check our document for how to upgrade to 8.0: <https://manual.seafile.com
 * Users can now manage its own Web API auth token in profile page
 * Enable a group admin leave a group
 * [fix] Disable editing via sharing link when a file is locked
+* [fileserver] Add block cache option when downloading file from web or API
 
 
 ### 8.0.4 (2021/05/20)
