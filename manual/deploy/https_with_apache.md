@@ -1,63 +1,119 @@
-# Enabling Https with Apache
+# Enabling HTTPS with Apache
 
-Here we suggest you use [Let’s Encrypt](https://letsencrypt.org/getting-started/) to get a certificate from a Certificate Authority (CA). If you use a paid ssl certificate from some authority, just skip the first step.
+After completing the installation of [Seafile Server Community Edition](../deploy/using_mysql/) and [Seafile Server Professional Edition](https://manual.seafile.com/deploy_pro/download_and_setup_seafile_professional_server/), communication between the Seafile server and clients runs over (unencrypted) HTTP. While HTTP is ok for testing purposes, switching to HTTPS is imperative for production use.
 
-### Generate SSL certificate
+HTTPS requires a SSL certificate from a Certificate Authority (CA). Unless you already have a SSL certificate, we recommend that you get your SSL certificate from [Let’s Encrypt](https://letsencrypt.org/) using Certbot. If you have a SSL certificate from another CA, skip the section "Getting a Let's Encrypt certificate".
 
-For users who use Let’s Encrypt, you can obtain a valid certificate via [Certbot ACME client](https://certbot.eff.org/)
+A second requirement is a reverse proxy supporting SSL. [Apache](https://httpd.apache.org/), a popular web server and reverse proxy, is a good option. The full documentation of Apache is available at https://httpd.apache.org/docs/.
 
-On Ubuntu systems, the Certbot team maintains a PPA. Once you add it to your list of repositories all you'll need to do is apt-get the following packages.
+The recommended reverse proxy is Nginx. You find instructions for [enabling HTTPS with Nginx here](../deploy/deploy_with_nginx).
+
+## Setup
+
+The setup of Seafile using Apache as a reverse proxy with HTTPS is demonstrated using the sample host name `seafile.example.com`. 
+
+This manual assumes the following requirements:
+
+* Seafile Server Community Edition/Professional Edition was set up according to the instructions in this manual
+* A host name points at the IP address of the server and the server is available on port 80 and 443
+
+If your setup differs from thes requirements, adjust the following instructions accordingly.
+
+The setup proceeds in two steps: First, Apache is installed. Second, a SSL certificate is integrated in the Apache configuration.
+
+### Installing Apache
+
+Install and enable apache modules:
 
 ```bash
-sudo apt-get update
-sudo apt-get install software-properties-common
-sudo add-apt-repository ppa:certbot/certbot
-sudo apt-get update
-sudo apt-get install python-certbot-apache
+# Ubuntu
+$ sudo a2enmod rewrite
+$ sudo a2enmod proxy_http
 ```
 
-Certbot has a fairly solid beta-quality Apache plugin, which is supported on many platforms, and automates both obtaining and installing certs:
+**Important: Due to the [security advisory](https://www.djangoproject.com/weblog/2013/aug/06/breach-and-django/) published by Django team, we recommend to disable [GZip compression](http://httpd.apache.org/docs/2.2/mod/mod_deflate.html) to mitigate [BREACH attack](http://breachattack.com/). No version earlier than Apache 2.4 should be used.**
 
-```bash
-sudo certbot --apache
+### Configuring Apache
+
+Modify Apache config file. For CentOS, this is `vhost.conf.` For Debian/Ubuntu, this is `sites-enabled/000-default`. 
+
+```apache
+<VirtualHost *:80>
+    ServerName seafile.example.com
+    # Use "DocumentRoot /var/www/html" for CentOS
+    # Use "DocumentRoot /var/www" for Debian/Ubuntu
+    DocumentRoot /var/www
+    Alias /media  /opt/seafile/seafile-server-latest/seahub/media
+
+    AllowEncodedSlashes On
+
+    RewriteEngine On
+
+    <Location /media>
+        Require all granted
+    </Location>
+
+    #
+    # seafile fileserver
+    #
+    ProxyPass /seafhttp http://127.0.0.1:8082
+    ProxyPassReverse /seafhttp http://127.0.0.1:8082
+    RewriteRule ^/seafhttp - [QSA,L]
+
+    #
+    # seahub
+    #
+    SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+    ProxyPreserveHost On
+    ProxyPass / http://127.0.0.1:8000/
+    ProxyPassReverse / http://127.0.0.1:8000/
+</VirtualHost>
 ```
 
-Running this command will get a certificate for you and have Certbot edit your Apache configuration automatically to serve it. If you're feeling more conservative and would like to make the changes to your Apache configuration by hand, you can use the certonly subcommand:
+### Getting a Let's Encrypt certificate
+
+Getting a Let's Encrypt certificate is straightforward thanks to [Certbot](https://certbot.eff.org/). Certbot is a free, open source software tool for requesting, receiving, and renewing Let's Encrypt certificates.
+
+First, go to the [Certbot](https://certbot.eff.org/) website and choose your web server and OS.
+
+![grafik](../images/certbot.png)
+
+Second, follow the detailed instructions then shown.
+
+![grafik](../images/certbot-step2.png)
+
+ 
+
+We recommend that you get just a certificate and that you modify the Apache configuration yourself:
 
 ```bash
 sudo certbot --apache certonly
 ```
 
-To learn more about how to use Certbot you can read threir [documentation](https://certbot.eff.org/docs/).
+Follow the instructions on the screen.
 
-> If you're using a custom CA to sign your SSL certificate, you have to enable certificate revocation list (CRL) in your certificate. Otherwise http syncing on Windows client may not work. See [this thread](https://forum.seafile-server.org/t/https-syncing-on-windows-machine-using-custom-ca/898) for more information.
+Upon successful verification, Certbot saves the certificate files in a directory named after the host name in  ```/etc/letsencrypt/live```. For the host name seafile.example.com, the files are stored in `/etc/letsencrypt/live/seafile.example.com`. 
 
-## Enable https on Seahub
+### Adjusting Apache configuration
 
-Assume you have configured Apache as [Deploy Seafile with
-Apache](deploy_with_apache.md). To use https, you need to enable mod_ssl
+To use HTTPS, you need to enable mod_ssl:
 
 ```bash
-    sudo a2enmod ssl
-```
-
-On Windows, you have to add ssl module to httpd.conf
-```apache
-LoadModule ssl_module modules/mod_ssl.so
+$ sudo a2enmod ssl
 ```
 
 Then modify your Apache configuration file. Here is a sample:
 
 ```apache
 <VirtualHost *:443>
-  ServerName www.myseafile.com
+  ServerName seafile.example.com
   DocumentRoot /var/www
 
   SSLEngine On
-  SSLCertificateFile /path/to/cacert.pem
-  SSLCertificateKeyFile /path/to/privkey.pem
+  SSLCertificateFile /etc/letsencrypt/live/seafile.example.com/fullchain.pem;    # Path to your fullchain.pem
+  SSLCertificateKeyFile /etc/letsencrypt/live/seafile.example.com/privkey.pem;	# Path to your privkey.pem
 
-  Alias /media  /home/user/haiwen/seafile-server-latest/seahub/media
+  Alias /media  /opt/seafile/seafile-server-latest/seahub/media
 
   <Location /media>
     Require all granted
@@ -82,27 +138,62 @@ Then modify your Apache configuration file. Here is a sample:
 </VirtualHost>
 ```
 
-## Modify settings to use https
-
-### ccnet conf
-
-Since you change from http to https, you need to modify the value of "SERVICE_URL" in [ccnet.conf](../config/ccnet-conf.md). You can also modify SERVICE_URL via web UI in "System Admin->Settings". (**Warning**: if you set the value both via Web UI and ccnet.conf, the setting via Web UI will take precedence.)
-
-```python
-SERVICE_URL = https://www.myseafile.com
-```
-
-### seahub_settings.py
-
-You need to add a line in seahub_settings.py to set the value of `FILE_SERVER_ROOT`. You can also modify `FILE_SERVER_ROOT` via web UI in "System Admin->Settings". (**Warning**: if you set the value both via Web UI and seahub_settings.py, the setting via Web UI will take precedence.)
-
-```python
-FILE_SERVER_ROOT = 'https://www.myseafile.com/seafhttp'
-```
-
-## Start Seafile and Seahub
+Finally, make sure the virtual host file does not contain syntax errors and restart Apache for the configuration changes to take effect:
 
 ```bash
-./seafile.sh start
-./seahub.sh start
+sudo service apache2 restart
 ```
+
+### Modifying ccnet.conf
+
+The `SERVICE_URL` in [ccnet.conf](../config/ccnet-conf.md) informs Seafile about the chosen domain, protocol and port. Change the `SERVICE_URL`so as to account for the switch from HTTP to HTTPS and to correspond to your host name (the `http://`must not be removed):
+
+```ini
+SERVICE_URL = https://seafile.example.com
+```
+
+Note: The`SERVICE_URL` can also be modified in Seahub via System Admininstration > Settings.  If `SERVICE_URL` is configured via System Admin and in ccnet.conf, the value in System Admin will take precedence.
+
+### Modifying seahub_settings.py
+
+The `FILE_SERVER_ROOT` in [seahub_settings.py](../config/seahub_settings_py/) informs Seafile about the location of and the protocol used by the file server. Change the `FILE_SERVER_ROOT`so as to account for the switch from HTTP to HTTPS and to correspond to your host name (the trailing `/seafhttp` must not be removed):
+
+```python
+FILE_SERVER_ROOT = 'https://seafile.example.com/seafhttp'
+```
+
+Note: The`FILE_SERVER_ROOT` can also be modified in Seahub via System Admininstration > Settings.  If `FILE_SERVER_ROOT` is configured via System Admin and in seahub_settings.py, the value in System Admin will take precedence.
+
+### Modifying seafile.conf (optional)
+
+To improve security, the file server should only be accessible via Apache.
+
+Add the following line in the [fileserver] block on `seafile.conf` in `/opt/seafile/conf`:
+
+```ini
+host = 127.0.0.1  ## default port 0.0.0.0
+```
+
+After his change, the file server only accepts requests from Apache.
+
+### Starting Seafile and Seahub
+
+Restart the seaf-server and Seahub for the config changes to take effect:
+
+```bash
+$ su seafile
+$ cd /opt/seafile/seafile-server-latest
+$ ./seafile.sh restart
+$ ./seahub.sh restart
+```
+
+## Troubleshooting
+
+If there are problems with paths or files containing spaces, make sure to have at least Apache 2.4.12.
+
+References
+
+ * https://github.com/haiwen/seafile/issues/1258#issuecomment-188866740
+ * https://bugs.launchpad.net/ubuntu/+source/apache2/+bug/1284641
+ * https://bugs.launchpad.net/ubuntu/+source/apache2/+bug/1284641/comments/5
+ * https://svn.apache.org/viewvc/httpd/httpd/tags/2.4.12/CHANGES?view=markup#l45
