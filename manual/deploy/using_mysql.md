@@ -1,18 +1,17 @@
-# Deployment of Seafile Server Community Edition with MySQL/MariaDB
+# Installation of Seafile Server Community Edition with MySQL/MariaDB
 
-This manual explains how to deploy and run Seafile server on a Linux server from a pre-built package using MySQL/MariaDB as database. The deployment has been tested for Debian/Ubuntu and CentOS, but Seafile should also work on other Linux distributions.
+This manual explains how to deploy and run Seafile Server Community Edition (Seafile CE) on a Linux server from a pre-built package using MySQL/MariaDB as database. The deployment has been tested for Debian/Ubuntu and CentOS, but Seafile should also work on other Linux distributions.
 
 **Tip:** If you have little experience with Seafile Server, we recommend that you use an [installation script](https://github.com/haiwen/seafile-server-installer) for deploying Seafile.
 
 ## Requirements
 
-Seafile Server Community Edition (Seafile CE) for x86 architecture requires a minimum of 2 cores and 2GB RAM.
+Seafile CE for x86 architecture requires a minimum of 2 cores and 2GB RAM.
 
 There is a community-supported package for the installation on Raspberry Pi.
 
 ## Setup
 
-Seafile prior to and including Seafile 7.0 use Python 2. More recent versions rely on Python 3.
 
 ### Installing and preparing the SQL database
 
@@ -26,6 +25,8 @@ You can find step-by-step how-tos for installing MySQL and MariaDB in the [tutor
 Seafile uses the mysql_native_password plugin for authentication. The versions of MySQL and MariaDB installed on CentOS 8, Debian 10, and Ubuntu 20.04 use a different authentication plugin by default. It is therefore required to change to authentication plugin to mysql_native_password for the root user prior to the installation of Seafile. The above mentioned tutorials explain how to do it.
 
 ### Installing prerequisites
+
+Seafile prior to and including Seafile 7.0 use Python 2. More recent versions rely on Python 3.
 
 **For Seafile 7.0.x**
 
@@ -385,7 +386,20 @@ pkill -f "seahub"
 
 ```
 
-## Performance turning
+## Enabling HTTPS
+
+It is strongly recommended to switch from unencrypted HTTP (via port 8000) to encrypted HTTPS (via port 443).
+
+This manual provides instructions for enabling HTTPS for the two most popular web servers and reverse proxies:
+
+* [Nginx](https://manual.seafile.com/deploy/https_with_nginx/)
+* [Apache](https://manual.seafile.com/deploy/https_with_apache/)
+
+## Managing a NAT
+
+If you run your Seafile Server in a LAN behind a NAT (i.e., a router provided by your ISP), consult [Installation behind NAT](../deploy/deploy_seafile_behind_nat/) to make your Seafile Server accessible over the internet.
+
+## Performance tuning
 
 If you have more than 50 users, we highly recommand you to [add memcached](../deploy/add_memcached.md). This is going to greatly speed up Seahub (the web frontend).  
 
@@ -419,13 +433,3 @@ Related parameters as follow:
 | seahub dabase name              | \-b              | SEAHUB_DB            | seahub-db                                                                         |
 
 **Note: If both script parameter and environment variable assigned, script parameter has higher priority. If neither script parameter nor environment variable assigned, default value will be used.**
-
-## That's it!
-
-That's it! Now you may want read more about Seafile.
-
-* [Deploy Seafile with Nginx](deploy_with_nginx.md) / [Deploy Seafile with Apache](deploy_with_apache.md)
-* [Enable Https on Seafile Web with Nginx](https_with_nginx.md) / [Enable Https on Seafile Web with Apache](https_with_apache.md)
-* ﻿[Configure Seafile to use LDAP](using_ldap.md)
-* [How to manage the server](../maintain/README.md)
-
