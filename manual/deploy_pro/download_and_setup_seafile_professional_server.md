@@ -1,20 +1,24 @@
-# Deployment of Seafile Server Professional Edition
+# Installation of Seafile Server Professional Edition
+
+This manual explains how to deploy and run Seafile Server Professional Edition (Seafile PE) on a Linux server from a pre-built package using MySQL/MariaDB as database. The deployment has been tested for Debian/Ubuntu and CentOS, but Seafile PE should also work on other Linux distributions.
+
+**Tip:** If you have little experience with Seafile Server, we recommend that you use an installation script for deploying Seafile Server.
 
 ## Requirements
 
-Seafile Server Professional Edition (Seafile PE) requires a minimum of 2 cores and 2GB RAM. If elasticsearch is installed on the same server, the minimum requirements are 4 cores and 4 GB RAM.
+Seafile PE requires a minimum of 2 cores and 2GB RAM. If elasticsearch is installed on the same server, the minimum requirements are 4 cores and 4 GB RAM.
 
 Seafile PE can be used without a paid license with up to three users. Licenses for more user can be purchased in the [Seafile Customer Center](https://customer.seafile.com) or contact Seafile Sales at sales@seafile.com or one of [our partners](https://www.seafile.com/en/partner/).
 
-
-
 ## Setup
 
-These instructions assume that MySQL/MariaDB server and client are installed and a MySQL/MariaDB root user can authenticate using the mysql_native_password plugin. (For more information, see [Download and Setup Seafile Server With MySQL](../deploy/using_mysql.md).)
+### Installing and preparing the SQL database
 
-Seafile prior to and including Seafile 7.0 use Python 2. More recent versions rely on Python 3.
+These instructions assume that MySQL/MariaDB server and client are installed and a MySQL/MariaDB root user can authenticate using the mysql_native_password plugin. (For more information, see [Installation of Seafile Server Community Edition with MySQL/MariaDBL](../deploy/using_mysql.md).)
 
 ### Installing prerequisites
+
+Seafile prior to and including Seafile 7.0 use Python 2. More recent versions rely on Python 3.
 
 **For Seafile 7.0.x**
 
@@ -173,13 +177,13 @@ cd /opt/seafile
 
 ```
 
-The  program directory can be changed. The standard directory `/opt/seafile` is assumed for the remainder of these instructions. If you decide to put Seafile in another directory, some commands need to be modified accordingly.
+The  program directory can be changed. The standard directory `/opt/seafile` is assumed for the rest of this manual. If you decide to put Seafile in another directory, some commands need to be modified accordingly.
 
 
 
 ### Creating user seafile
 
-Elasticsearch, the indexing server, cannot be run as root. More generally, it is good practice to avoid running applications as root. 
+Elasticsearch, the indexing server, cannot be run as root. More generally, it is good practice not to run applications as root. 
 
 Create a new user and follow the instructions on the screen:
 
@@ -203,7 +207,7 @@ su seafile
 
 
 
-### Activating Seafile PE license
+### Placing the Seafile PE license
 
 Save the license file in Seafile's programm directory `/opt/seafile`. Make sure that the name is `seafile-license.txt`. (If the file has a different name or cannot be read, Seafile PE will not start.)
 
@@ -220,7 +224,7 @@ Beginning with Seafile PE 7.0.17, the Seafile Customer Center provides two insta
 
 The former is suitable for installation on Ubuntu/Debian servers, the latter for CentOS servers.
 
-Download the install package using wget (replace the x.x.x with the downloaded version):
+Download the install package using wget (replace the x.x.x with the version you wish to download):
 
 ```
 # Debian/Ubuntu
@@ -255,10 +259,44 @@ tar xf seafile-pro-server_8.0.4_x86-64_CentOS.tar.gz
 Now you have:
 
 ```
-#tree -L 1
+$ tree -L 2 /opt/seafile
 .
 ├── seafile-license.txt
 └── seafile-pro-server-8.0.4
+│   ├── check-db-type.py
+│   ├── check_init_admin.py
+│   ├── create-db
+│   ├── index_op.py
+│   ├── migrate.py
+│   ├── migrate-repo.py
+│   ├── migrate-repo.sh
+│   ├── migrate.sh
+│   ├── pro
+│   ├── remove-objs.py
+│   ├── remove-objs.sh
+│   ├── reset-admin.sh
+│   ├── run_index_master.sh
+│   ├── run_index_worker.sh
+│   ├── runtime
+│   ├── seaf-backup-cmd.py
+│   ├── seaf-backup-cmd.sh
+│   ├── seaf-encrypt.sh
+│   ├── seaf-fsck.sh
+│   ├── seaf-fuse.sh
+│   ├── seaf-gc.sh
+│   ├── seaf-gen-key.sh
+│   ├── seafile
+│   ├── seafile-background-tasks.sh
+│   ├── seafile.sh
+│   ├── seaf-import.sh
+│   ├── seahub
+│   ├── seahub-extra
+│   ├── seahub.sh
+│   ├── setup-seafile-mysql.py
+│   ├── setup-seafile-mysql.sh
+│   ├── setup-seafile.sh
+│   ├── sql
+│   └── upgrade
 └── seafile-pro-server_8.0.4_x86-64.tar.gz
 
 ```
@@ -272,7 +310,7 @@ Note: The names of the install packages differ for Seafile CE and Seafile PE. Us
 
 ### Setting up Seafile PE
 
-The setup process of Seafile Professional Server is the same as the Seafile Community Server. See [Download and Setup Seafile Server With MySQL](../deploy/using_mysql.md).
+The setup process of Seafile PE is the same as the Seafile CE. See [Installation of Seafile Server Community Edition with MySQL/MariaDB](../deploy/using_mysql.md).
 
 If you have any problem during the setup up, check [Common problems in setting up Seafile server](../deploy/common_problems_for_setting_up_server.md).
 
@@ -281,7 +319,7 @@ After the successful completition of the setup script, the directory layout of S
 **For Seafile 7.0.x**
 
 ```
-#tree -L 2
+$ tree -L 2 /opt/seafile
 .
 ├── seafile-license.txt 			# license file
 ├── ccnet               			# configuration files
@@ -319,7 +357,7 @@ After the successful completition of the setup script, the directory layout of S
 **For Seafile 7.1.x and younger**
 
 ```
-#tree -L 2
+$ tree -L 2 /opt/seafile
 .
 ├── seafile-license.txt             # license file
 ├── ccnet               
@@ -392,16 +430,16 @@ After the successful completition of the setup script, the directory layout of S
 ├── seahub-data
 │   └── avatars                        # for user avatars
 
-
 ```
 
 ### Tweaking conf files
 
-Unless you proceed immediately with the installation of a reverse proxy, you need to modify two configuration files: ccnet.conf and gunicorn.conf.py
+Seafile's config files as created by the setup script are prepared for Seafile running behind a reverse proxy.
 
-In ccnet.conf, add the port 8000 to the `SERVICE_URL` (i.e., SERVICE_URL = http://1.2.3.4:8000/)
+To access Seafile's web interface and to create working sharing links without a reverse proxy, you need to modify two configuration files in `/opt/seafile/conf`:
 
-In gunicorn.conf.py, change the bind to "0.0.0.0:8000" (i.e., bind = "0.0.0.0:8000")
+* ccnet.conf: Add port 8000 to the `SERVICE_URL` (i.e., SERVICE_URL = http://1.2.3.4:8000/)
+* gunicorn.conf.py: Change the bind to "0.0.0.0:8000" (i.e., bind = "0.0.0.0:8000")
 
 
 
@@ -417,19 +455,20 @@ Run the following commands in `/opt/seafile-server-latest`:
 
 The first time you start Seahub, the script prompts you to create an admin account for your Seafile Server. Enter the email address of the admin user followed by the password.
 
-Now you can access Seafile via the web interface at the host address and port 8000 (e.g., http://1.2.3.4:8000)
+Now you can access Seafile via the web interface at the host address and port 8000 (e.g., http://1.2.3.4:8000).
 
-## Enabling access per HTTPS
+## Enabling HTTPS
 
 It is strongly recommended to switch from unencrypted HTTP (via port 8000) to encrypted HTTPS (via port 443).
 
-This manual provides instructions for enabling HTTPS for
+This manual provides instructions for enabling HTTPS for the two most popular web servers and reverse proxies:
 
 * [Nginx](https://manual.seafile.com/deploy/https_with_nginx/)
 * [Apache](https://manual.seafile.com/deploy/https_with_apache/)
 
-Before enable HTTPS, install and configure [Nginx](https://manual.seafile.com/deploy/deploy_with_nginx/) and [Apache](https://manual.seafile.com/deploy/deploy_with_apache/) first.
+## Managing a NAT
 
+If you run your Seafile Server in a LAN behind a NAT (i.e., a router provided by your ISP), consult [Installation behind NAT](../deploy/deploy_seafile_behind_nat/) to make your Seafile Server accessible over the internet.
 
 
 ## Performance tuning
