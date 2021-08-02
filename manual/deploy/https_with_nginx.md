@@ -1,21 +1,181 @@
-# Enabling Https with Nginx
+# Enabling HTTPS with Nginx
 
-When using HTTPS, traffic from and to Seafile Server is encrypted. HTTPS requires a SSL certificate from a Certificate Authority (CA).
+After completing the installation of [Seafile Server Community Edition](../deploy/using_mysql/) and [Seafile Server Professional Edition](https://manual.seafile.com/deploy_pro/download_and_setup_seafile_professional_server/), communication between the Seafile server and clients runs over (unencrypted) HTTP. While HTTP is ok for testing purposes, switching to HTTPS is imperative for production use.
 
-For production use, HTTPS is imperative. 
+HTTPS requires a SSL certificate from a Certificate Authority (CA). Unless you already have a SSL certificate, we recommend that you get your SSL certificate from [Let’s Encrypt](https://letsencrypt.org/) using Certbot. If you have a SSL certificate from another CA, skip the section "Getting a Let's Encrypt certificate".
 
-Unless you already have a SSL certificate, we recommend that you get your SSL certificate from [Let’s Encrypt](https://letsencrypt.org/). If you have a SSL certificate from another CA, skip the section "Getting a Let's Encrypt certificate".
+A second requirement is a reverse proxy supporting SSL. [Nginx](http://nginx.org/), a popular and resource-friendly web server and reverse proxy, is a good option.  Nginx's documentation is available at http://nginx.org/en/docs/.
+
+If you prefer Apache, you find instructions for [enabling HTTPS with Apache here](../deploy/deploy_with_apache/).
 
 ## Setup
 
-The configuration of Seafile behind Nginx as a reverse proxy is demonstrated using the sample host name `seafile.example.com`. 
+The setup of Seafile using Nginx as a reverse proxy with HTTPS is demonstrated using the sample host name `seafile.example.com`. 
 
-These instructions assume the following requirements:
+This manual assumes the following requirements:
 
-* Seafile Server Community Edition/Professional Edition and [Nginx](deploy_with_nginx.md) were set up according to the instructions in this manual
+* Seafile Server Community Edition/Professional Edition was set up according to the instructions in this manual
 * A host name points at the IP address of the server and the server is available on port 80 and 443
 
 If your setup differs from thes requirements, adjust the following instructions accordingly.
+
+The setup proceeds in two steps: First, Nginx is installed. Second, a SSL certificate is integrated in the Nginx configuration.
+
+### Installing Nginx
+
+Install Nginx using the package repositories:
+
+```bash
+# CentOS
+$ sudo yum install nginx -y
+
+# Debian/Ubuntu
+$ sudo apt install nginx -y
+```
+
+After the installation, start the server and enable it so that Nginx starts at system boot:
+
+```bash
+# CentOS/Debian/Ubuntu
+$ sudo systemctl start nginx
+$ sudo systemctl enable nginx
+```
+
+### Preparing Nginx
+
+The configuration of a proxy server in Nginx differs slightly between CentOS and Debian/Ubuntu. Additionally, the restrictive default settings of SELinux's configuration on CentOS require a modification.
+
+#### Preparing Nginx on CentOS
+
+Switch SELinux into permissive mode and perpetuate the setting:
+
+``` bash
+$ sudo setenforce permissive
+$ sed -i 's/^SELINUX=.*/SELINUX=permissive/' /etc/selinux/config
+```
+
+Create a configuration file for seafile in `/etc/nginx/conf.d`:
+
+```bash
+$ touch /etc/nginx/conf.d/seafile.conf
+```
+
+#### Preparing Nginx on Debian/Ubuntu
+
+Create a configuration file for seafile in `/etc/nginx/sites-available/`:
+
+```bash
+$ touch /etc/nginx/sites-available/seafile.conf
+```
+
+Delete the default files in `/etc/nginx/sites-enabled/` and `/etc/nginx/sites-available`: 
+
+````bash
+$ rm /etc/nginx/sites-enabled/default
+$ rm /etc/nginx/sites-available/default
+````
+
+Create a symbolic link: 
+
+````bash
+$ ln -s /etc/nginx/sites-available/seafile.conf /etc/nginx/sites-enabled/seafile.conf
+````
+
+### Configuring Nginx
+
+Copy the following sample Nginx config file into the just created `seafile.conf` and modify the content to fit your needs:
+
+```nginx
+log_format seafileformat '$http_x_forwarded_for $remote_addr [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent" $upstream_response_time';
+
+server {
+    listen 80;
+    server_name seafile.example.com;
+
+    proxy_set_header X-Forwarded-For $remote_addr;
+
+    location / {
+         proxy_pass         http://127.0.0.1:8000;
+         proxy_set_header   Host $host;
+         proxy_set_header   X-Real-IP $remote_addr;
+         proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+         proxy_set_header   X-Forwarded-Host $server_name;
+         proxy_read_timeout  1200s;
+
+         # used for view/edit office file via Office Online Server
+         client_max_body_size 0;
+
+         access_log      /var/log/nginx/seahub.access.log seafileformat;
+         error_log       /var/log/nginx/seahub.error.log;
+    }
+
+# If you are using [FastCGI](http://en.wikipedia.org/wiki/FastCGI),
+# which is not recommended, you should use the following config for location `/`.
+#
+#    location / {
+#         fastcgi_pass    127.0.0.1:8000;
+#         fastcgi_param   SCRIPT_FILENAME     $document_root$fastcgi_script_name;
+#         fastcgi_param   PATH_INFO           $fastcgi_script_name;
+#
+#         fastcgi_param	 SERVER_PROTOCOL	 $server_protocol;
+#         fastcgi_param   QUERY_STRING        $query_string;
+#         fastcgi_param   REQUEST_METHOD      $request_method;
+#         fastcgi_param   CONTENT_TYPE        $content_type;
+#         fastcgi_param   CONTENT_LENGTH      $content_length;
+#         fastcgi_param	 SERVER_ADDR         $server_addr;
+#         fastcgi_param	 SERVER_PORT         $server_port;
+#         fastcgi_param	 SERVER_NAME         $server_name;
+#         fastcgi_param   REMOTE_ADDR         $remote_addr;
+#     	 fastcgi_read_timeout 36000;
+#
+#         client_max_body_size 0;
+#
+#         access_log      /var/log/nginx/seahub.access.log;
+#     	 error_log       /var/log/nginx/seahub.error.log;
+#    }
+
+    location /seafhttp {
+        rewrite ^/seafhttp(.*)$ $1 break;
+        proxy_pass http://127.0.0.1:8082;
+        client_max_body_size 0;
+        proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+
+        proxy_connect_timeout  36000s;
+        proxy_read_timeout  36000s;
+        proxy_send_timeout  36000s;
+
+        send_timeout  36000s;
+
+        access_log      /var/log/nginx/seafhttp.access.log seafileformat;
+        error_log       /var/log/nginx/seafhttp.error.log;
+    }
+    location /media {
+        root /opt/seafile/seafile-server-latest/seahub;
+    }
+}
+```
+
+The following options must be modified in the CONF file:
+
+* Server name (server_name)
+
+Optional customizable options in the seafile.conf are:
+
+* Server listening port (listen) - if Seafile server should be available on a non-standard port
+* Proxy pass for location / - if Seahub is configured to start on a different port than 8000
+* Proxy pass for location /seafhttp - if seaf-server is configured to start on a different port than 8082
+* Maximum allowed size of the client request body (client_max_body_size)
+
+The default value for `client_max_body_size` is 1M. Uploading larger files will result in an error message HTTP error code 413 ("Request Entity Too Large"). It is recommended to syncronize the value of client_max_body_size with the parameter `max_upload_size` in section `[fileserver]` of [seafile.conf](../config/seafile-conf.md). Optionally, the value can also be set to 0 to disable this feature. Client uploads are only partly effected by this limit. With a limit of 100 MiB they can safely upload files of any size.
+
+Finally, make sure your seafile.conf does not contain syntax errors and restart Nginx for the configuration changes to take effect:
+
+```bash
+$ nginx -t
+$ nginx -s reload
+```
+
+
 
 ### Getting a Let's Encrypt certificate
 
@@ -33,7 +193,7 @@ Second, follow the detailed instructions then shown.
 We recommend that you get just a certificate and that you modify the Nginx configuration yourself:
 
 ```bash
-sudo certbot certonly --nginx
+$ sudo certbot certonly --nginx
 ```
 
 Follow the instructions on the screen.
@@ -45,7 +205,7 @@ Upon successful verification, Certbot saves the certificate files in a directory
 If your Nginx does not support SSL, you need to recompile it. Use the following command:
 
 ```bash
-    ./configure --with-http_stub_status_module --with-http_ssl_module
+$ ./configure --with-http_stub_status_module --with-http_ssl_module
     make && make install
 ```
 
@@ -118,9 +278,9 @@ If you have WebDAV enabled it is recommended to add the same:
 
 ### Modifying ccnet.conf
 
-Modify the `SERVICE_URL` in [ccnet.conf](../config/ccnet-conf.md) to account for the switch from HTTP to HTTPS. 
+The `SERVICE_URL` in [ccnet.conf](../config/ccnet-conf.md) informs Seafile about the chosen domain, protocol and port. Change the `SERVICE_URL`so as to account for the switch from HTTP to HTTPS and to correspond to your host name (the `http://`must not be removed):
 
-```bash
+```ini
 SERVICE_URL = https://seafile.example.com
 ```
 
@@ -128,7 +288,7 @@ Note: The`SERVICE_URL` can also be modified in Seahub via System Admininstration
 
 ### Modifying seahub_settings.py
 
-Modify the `FILE_SERVER_ROOT` in [seahub_settings.py](../config/seahub_settings_py/) to account for the switch from HTTP to HTTPS.
+The `FILE_SERVER_ROOT` in [seahub_settings.py](../config/seahub_settings_py/) informs Seafile about the location of and the protocol used by the file server. Change the `FILE_SERVER_ROOT`so as to account for the switch from HTTP to HTTPS and to correspond to your host name (the trailing `/seafhttp` must not be removed):
 
 ```python
 FILE_SERVER_ROOT = 'https://seafile.example.com/seafhttp'
@@ -136,15 +296,27 @@ FILE_SERVER_ROOT = 'https://seafile.example.com/seafhttp'
 
 Note: The`FILE_SERVER_ROOT` can also be modified in Seahub via System Admininstration > Settings.  If `FILE_SERVER_ROOT` is configured via System Admin and in seahub_settings.py, the value in System Admin will take precedence.
 
+### Modifying seafile.conf (optional)
+
+To improve security, the file server should only be accessible via Nginx.
+
+Add the following line in the [fileserver] block on `seafile.conf` in `/opt/seafile/conf`:
+
+```ini
+host = 127.0.0.1  ## default port 0.0.0.0
+```
+
+After his change, the file server only accepts requests from Nginx.
+
 ### Starting Seafile and Seahub
 
 Restart the seaf-server and Seahub for the config changes to take effect:
 
 ```bash
-su seafile
-cd /opt/seafile/seafile-server-latest
-./seafile.sh restart
-./seahub.sh restart # or "./seahub.sh start-fastcgi" if you're using fastcgi
+$ su seafile
+$ cd /opt/seafile/seafile-server-latest
+$ ./seafile.sh restart
+$ ./seahub.sh restart # or "./seahub.sh start-fastcgi" if you're using fastcgi
 ```
 
 ## Additional modern settings for Nginx (optional)
@@ -254,14 +426,14 @@ HSTS instructs web browsers to automatically use HTTPS. That means, after the fi
 Enable Diffie-Hellman (DH) key-exchange. Generate DH parameters and write them in a .pem file using the following command:
 
 ```bash
-openssl dhparam 2048 > /etc/nginx/dhparam.pem  # Generates DH parameter of length 2048 bits
+$ openssl dhparam 2048 > /etc/nginx/dhparam.pem  # Generates DH parameter of length 2048 bits
 ```
 
 The generation of the the DH parameters may take some time depending on the server's processing power.
 
 Add the following directive in the HTTPS server block:
 
-```
+```nginx
 ssl_dhparam /etc/nginx/dhparam.pem;
 ```
 
