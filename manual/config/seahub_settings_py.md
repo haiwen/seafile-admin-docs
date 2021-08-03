@@ -325,7 +325,7 @@ ENABLE_GET_AUTH_TOKEN_BY_SESSION = True
 
 # Redirect url when user logout Seafile.
 # Usually configured as Single Logout url.
-LOGOUT_REDIRECT_URL = 'https://www.bing.com'
+LOGOUT_REDIRECT_URL = 'http{s}://www.example-url.com'
 
 ```
 
