@@ -323,6 +323,7 @@ ENABLE_CHANGE_PASSWORD = False
 # Get web api auth token on profile page.
 ENABLE_GET_AUTH_TOKEN_BY_SESSION = True
 
+# Since 8.0.6 CE/PRO version.
 # Url redirected to after user logout Seafile.
 # Usually configured as Single Logout url.
 LOGOUT_REDIRECT_URL = 'http{s}://www.example-url.com'
