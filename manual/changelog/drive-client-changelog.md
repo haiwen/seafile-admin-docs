@@ -1,5 +1,13 @@
 # SeaDrive Client Changelog
 
+### 2.0.15 (2021/7/20)
+
+* \[Win] Fix wrong status icon after a folder is moved to antoher library
+* \[Win] Fix one more potential isssue that can cause "cloud operation invalid" error
+* \[Win] Fix pinning a file in device
+* \[Win] Pop-up notifications when a folder is moved to the category folder
+* \[Linux] Fix build with latets GLib
+
 ### 2.0.14 (2021/5/26)
 
 * \[Win] Fix crash issue when have multiple accounts with the same user names
