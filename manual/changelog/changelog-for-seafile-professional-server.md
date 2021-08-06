@@ -8,6 +8,16 @@
 
 Please check our document for how to upgrade to 8.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_8.0.x/>
 
+### 8.0.8 (2021/08/06)
+
+* [multi-tenancy] Support system Admin to add additional admins to a specific org
+* [fix] Fix zip downloading for large files in cluster
+* [fix] Fix online editing for  files with very long names
+* Improve performance for listing deleted files in trash
+* [fix] Update expire date for new guest invitation if there is an old expired invitation
+* [fix] Fix FORCE_PASSWORD_CHANGE does not force the new user to change their password if the user is added by admin
+* [fix] Fix setting a webdav password when 2FA enabled
+
 ### 8.0.7 (2021/07/19)
 
 * Add missing accessibility labels for some links and buttons in file details page
