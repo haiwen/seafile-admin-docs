@@ -201,16 +201,7 @@ Restart your seafile server and try again. It should work now.
 
   Sometimes the libreoffice process need to be restarted, especially if it's the first time seafile server is running on the server.
 
-  Try to kill the libreoffice process:
-
-  ```sh
-  pkill -f soffice.bin
-
-  ```
-
-  Now try re-opening the preview page in the brower again.
-
-  Also if you are deploying seafile in cluster mode, make sure memcached is working on each server.
+  Try to kill the libreoffice process with `pkill -f soffice.bin`. Then try re-opening the preview page in the brower again. If you are deploying seafile in cluster mode, make sure memcached is working on each server.
 
 * The above solution does not solve my problem.
 
