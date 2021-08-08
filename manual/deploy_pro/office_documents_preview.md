@@ -159,15 +159,15 @@ port = 6000
 
 ## FAQ about Office document preview
 
-* Document preview doesn't work, where to find more information?
+#### Document preview doesn't work, where to find more information?
 
-    You can check the log at logs/seafevents.log
+You can check the log at logs/seafevents.log
 
-* My server is CentOS, and I see errors like "/usr/lib64/libreoffice/program/soffice.bin X11 error: Can't open display", how could I fix it?
+#### My server is CentOS, and I see errors like "/usr/lib64/libreoffice/program/soffice.bin X11 error: Can't open display", how could I fix it?
 
-  This error indicates you have not installed the `libreoffice-headless` package. Install it by `"sudo yum install libreoffice-headless"`.
+This error indicates you have not installed the `libreoffice-headless` package. Install it by `"sudo yum install libreoffice-headless"`.
 
-* Document preview doesn't work on my Ubuntu/Debian server, what can I do?
+#### Document preview doesn't work on my Ubuntu/Debian server, what can I do?
 
 Current office online preview works with libreoffice 4.0-4.2. If the version of libreoffice installed by `apt-get` is too old or too new, you can solve this by:
 
@@ -197,14 +197,14 @@ Restart your seafile server and try again. It should work now.
 
 ```
 
-* The browser displays "document conversion failed", and in the logs I see messages like `[WARNING] failed to convert xxx to ...`, what should I do?
+#### The browser displays "document conversion failed", and in the logs I see messages like `[WARNING] failed to convert xxx to ...`, what should I do?
 
-  Sometimes the libreoffice process need to be restarted, especially if it's the first time seafile server is running on the server.
+Sometimes the libreoffice process need to be restarted, especially if it's the first time seafile server is running on the server.
 
-  Try to kill the libreoffice process with `pkill -f soffice.bin`. Then try re-opening the preview page in the brower again. If you are deploying seafile in cluster mode, make sure memcached is working on each server.
+Try to kill the libreoffice process with `pkill -f soffice.bin`. Then try re-opening the preview page in the brower again. If you are deploying seafile in cluster mode, make sure memcached is working on each server.
 
-* The above solution does not solve my problem.
+#### The above solution does not solve my problem.
 
-  Please check whether the user you run Seafile can correctly start the libreoffice process. There may be permission problems. For example, if you use www-data user to run Seafile, make sure www-data has a home directory and can write to the home directory.
+Please check whether the user you run Seafile can correctly start the libreoffice process. There may be permission problems. For example, if you use www-data user to run Seafile, make sure www-data has a home directory and can write to the home directory.
 
 
