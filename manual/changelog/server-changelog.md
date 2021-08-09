@@ -6,6 +6,15 @@
 
 Please check our document for how to upgrade to 8.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_8.0.x/>
 
+### 8.0.7 (2021/08/09)
+
+* Improve performance for listing deleted files in trash
+* [fix] Update expire date for new guest invitation if there is an old expired invitation
+* [fix] Fix FORCE_PASSWORD_CHANGE does not force the new user to change their password if the user is added by admin
+* [fix] Fix setting a webdav password when 2FA enabled
+* [fix] Fix search in a shared sub-folder
+* [fix] Remove watermark shown in Collabora integration
+
 ### 8.0.6 (2021/07/14)
 
 * [fix] Fix a cache problem in OnlyOffice integration when automatically saving is used
