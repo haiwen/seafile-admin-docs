@@ -99,7 +99,7 @@ cd <install-path>/seafile-server-latest
 For version 7.1 and later
 ```
 cd <install-path>/seafile-server-latest
-./seahub.sh python-env seahub/manage.py python3 clear_invalid_repo_data
+./seahub.sh python-env python3 seahub/manage.py clear_invalid_repo_data
 ```
 
 ### Library Sync Tokens
