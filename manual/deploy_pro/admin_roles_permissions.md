@@ -1,6 +1,6 @@
 # Roles and Permissions Support
 
-Starting from version 6.2.2, you can add/edit roles and permission for administrators. Seafile has four build-in admin roles:
+You can add/edit roles and permission for administrators. Seafile has four build-in admin roles:
 
  1. default_admin, has all permissions.
 
