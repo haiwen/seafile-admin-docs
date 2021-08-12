@@ -1,6 +1,6 @@
 # Setup With OpenStack Swift
 
-Seafile supports OpenStack Swift as storage backend since 5.1.0. This backend uses the native Swift API. Previously users can only use the S3-compatibility layer of Swift. That way is obsolete now. The old documentation is still available [here](setup_with_openstackswift.md).
+This backend uses the native Swift API. Previously users can only use the S3-compatibility layer of Swift. That way is obsolete now. The old documentation is still available [here](setup_with_openstackswift.md).
 
 Since version 6.3, OpenStack Swift v3.0 API is supported.
 

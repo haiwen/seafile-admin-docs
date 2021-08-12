@@ -1,7 +1,5 @@
 # Setup With Ceph
 
-**Note**: Since Seafile Server 5.0.0, all config files are moved to the central **conf** folder. [Read More](../deploy/new_directory_layout_5_0_0.md).
-
 Ceph is a scalable distributed storage system. It's recommended to use Ceph's S3 Gateway (RGW) to integarte with Seafile. Seafile can also use Ceph's RADOS object storage layer for storage backend. But using RADOS requires to link with librados library, which may introduce library incompatibility issues during deployment. Furthermore the S3 Gateway provides easier to manage HTTP based interface. If you want to integrate with S3 gateway, please refer to "Use S3-compatible Object Storage" section in [this documentation](./setup_with_amazon_s3.md). The documentation below is for integrating with RADOS.
 
 ## Copy ceph conf file and client keyring

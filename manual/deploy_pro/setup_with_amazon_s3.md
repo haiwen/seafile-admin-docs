@@ -1,7 +1,5 @@
 # Setup With Amazon S3
 
-**Note**: Since Seafile Server 5.0.0, all config files are moved to the central **conf** folder. [Read More](../deploy/new_directory_layout_5_0_0.md).
-
 ## Prepare
 
 To setup Seafile Professional Server with Amazon S3:
