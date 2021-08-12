@@ -1,7 +1,5 @@
 # Configurable Options
 
-**Note**: Since Seafile Server 5.0.0, all config files have been moved to the central **conf** folder. [Read More](../deploy/new_directory_layout_5_0_0.md).
-
 In the file `seafevents.conf`:
 
 ```
