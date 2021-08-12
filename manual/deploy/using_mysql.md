@@ -403,33 +403,3 @@ If you run your Seafile Server in a LAN behind a NAT (i.e., a router provided by
 
 If you have more than 50 users, we highly recommand you to [add memcached](../deploy/add_memcached.md). This is going to greatly speed up Seahub (the web frontend).  
 
-## Setup in non-interactive way
-
-Since Seafile Pro Edition version 5.1.4, `setup-seafile-mysql.sh` supports auto mode. You can run the setup script in non-interactive by supplying the needed parameters via script parameters or environment variables.
-
-```sh
-cd seafile-server-*
-./setup-seafile-mysql.sh auto [param1] [param2]...
-
-```
-
-Related parameters as follow:
-
-| Option                          | Script parameter | Environment variable | Default value                                                                     |
-| ------------------------------- | ---------------- | -------------------- | --------------------------------------------------------------------------------- |
-| server name                     | \-n              | SERVER_NAME          | hostname -s(short host name)                                                      |
-| server ip or domain             | \-i              | SERVER_IP            | hostname -i(address for the host name)                                            |
-| fileserver port                 | \-p              | FILESERVER_PORT      | 8082                                                                              |
-| seafile data dir                | \-d              | SEAFILE_DIR          | current directory                                                                 |
-| use existing db                 | \-e              | USE_EXISTING_DB      | 0(create new db)                                                                  |
-| mysql server host               | \-o              | MYSQL_HOST           | 127.0.0.1                                                                         |
-| mysql server port               | \-t              | MYSQL_PORT           | 3306                                                                              |
-| mysql root password             | \-r              | MYSQL_ROOT_PASSWD    | no default value(must be set when create new db)                                  |
-| mysql user for seafile          | \-u              | MYSQL_USER           | no default value(must be set)                                                     |
-| password for seafile mysql user | \-w              | MYSQL_USER_PASSWD    | no default value(must be set)                                                     |
-| mysql user host                 | \-q              | MYSQL_USER_HOST      | no default value(must be set when create new db and using non local mysql server) |
-| ccnet dabase name               | \-c              | CCNET_DB             | ccnet-db                                                                          |
-| seafile dabase name             | \-s              | SEAFILE_DB           | seafile-db                                                                        |
-| seahub dabase name              | \-b              | SEAHUB_DB            | seahub-db                                                                         |
-
-**Note: If both script parameter and environment variable assigned, script parameter has higher priority. If neither script parameter nor environment variable assigned, default value will be used.**
