@@ -1,7 +1,5 @@
 # Details about File Search
 
-**Note**: Since Seafile Professional Server 5.0.0, all config files are moved to the central **conf** folder. [Read More](../deploy/new_directory_layout_5_0_0.md).
-
 ## Search Options
 
 The following options can be set in **seafevents.conf** to control the behaviors of file search. You need to restart seafile and seahub to make them take effect.
