@@ -1,8 +1,6 @@
 # Roles and Permissions Support
 
-Starting from version 6.0, you can add/edit roles and permission for users. A role is just a group of users with some pre-defined permissions, you can toggle user roles in user list page at admin panel.
-
-In version 6.0, we support 10 permissions, more permissions will be added later.
+You can add/edit roles and permission for users. A role is just a group of users with some pre-defined permissions, you can toggle user roles in user list page at admin panel.
 
 In version 6.1, we added a new permission `role_quota` which can be used to set quota for a certain role of users. For example, we can set the quota of employee to 100G by adding `'role_quota': '100g'`, and leave other role of users to the default quota.
 
