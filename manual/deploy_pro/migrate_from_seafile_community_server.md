@@ -6,7 +6,7 @@ It's quite likely you have deployed the Seafile Community Server and want to swi
 
 * You can only switch between Community Server and Professional Server of the same minor version.
 
-That means, if you are using Community Server version 1.6, and want to switch to the Professional Server 1.7, you must first upgrade to Community Server version 1.7, and then follow the guides below to switch to the Professional Server 1.7. (The last tiny version number in 1.7.x is not important.)
+That means, if you are using Community Server version 7.0, and want to switch to the Professional Server 7.1, you must first upgrade to Community Server version 7.1, and then follow the guides below to switch to the Professional Server 7.1. (The last tiny version number in 7.1.x is not important.)
 
 ## Preparation
 
@@ -21,7 +21,7 @@ sudo apt-get install openjdk-8-jre
 
 ```
 
-On CentOS/Red Hat:
+On CentOS:
 
 ```
 sudo yum install java-1.8.0-openjdk
@@ -50,42 +50,42 @@ sudo yum install poppler-utils
 
 ## Do the migration
 
-We assume you already have deployed Seafile Community Server 1.8.0 under `/data/haiwen/seafile-server-1.8.0`. 
+We assume you already have deployed Seafile Community Server 7.0.0 under `/opt/seafile/seafile-server-7.0.0`. 
 
 ### Get the license
 
-If the license you received is not named as seafile-license.txt, rename it to seafile-license.txt. Then put the license file under the top level diretory. In our example, it is `/data/haiwen/`.
+If the license you received is not named as seafile-license.txt, rename it to seafile-license.txt. Then put the license file under the top level diretory. In our example, it is `/opt/seafile/`.
 
 ### Download & uncompress Seafile Professional Server
 
-You should uncompress the tarball to the top level directory of your installation, in our example it is `/data/haiwen`.
+You should uncompress the tarball to the top level directory of your installation, in our example it is `/opt/seafile`.
 
 ```
-tar xf seafile-pro-server_1.8.0_x86-64.tar.gz
+tar xf seafile-pro-server_7.0.0_x86-64.tar.gz
 
 ```
 
 Now you have:
 
 ```
-haiwen
+seafile
 ├── seafile-license.txt
-├── seafile-pro-server-1.8.0/
-├── seafile-server-1.8.0/
+├── seafile-pro-server-7.0.0/
+├── seafile-server-7.0.0/
 ├── ccnet/
 ├── seafile-data/
 ├── seahub-data/
-├── seahub.db
-└── seahub_settings.py
+└── conf/
+└── logs/
 
 ```
 
 ---
 
-You should notice the difference between the names of the Community Server and Professional Server. Take the 1.8.0 64bit version as an example:
+You should notice the difference between the names of the Community Server and Professional Server. Take the 7.0.0 64bit version as an example:
 
-* Seafile Community Server tarball is `seafile-server_1.8.0_x86-86.tar.gz`; After uncompressing, the folder is `seafile-server-1.8.0`
-* Seafile Professional Server tarball is `seafile-pro-server_1.8.0_x86-86.tar.gz`; After uncompressing, the folder is `seafile-pro-server-1.8.0`
+* Seafile Community Server tarball is `seafile-server_7.0.0_x86-86.tar.gz`; After uncompressing, the folder is `seafile-server-7.0.0`
+* Seafile Professional Server tarball is `seafile-pro-server_7.0.0_x86-86.tar.gz`; After uncompressing, the folder is `seafile-pro-server-7.0.0`
     
 
 ### Do the migration
@@ -94,7 +94,7 @@ You should notice the difference between the names of the Community Server and P
 
 
 ```
-cd haiwen/seafile-server-1.8.0
+cd haiwen/seafile-server-7.0.0
 ./seafile.sh stop
 ./seahub.sh stop
 
@@ -104,7 +104,7 @@ cd haiwen/seafile-server-1.8.0
 
 
 ```
-cd haiwen/seafile-pro-server-1.8.0/
+cd haiwen/seafile-pro-server-7.0.0/
 ./pro/pro.py setup --migrate
 
 ```
@@ -121,8 +121,8 @@ Now you have:
 ```
 haiwen
 ├── seafile-license.txt
-├── seafile-pro-server-1.8.0/
-├── seafile-server-1.8.0/
+├── seafile-pro-server-7.0.0/
+├── seafile-server-7.0.0/
 ├── ccnet/
 ├── seafile-data/
 ├── seahub-data/
@@ -156,7 +156,7 @@ For the table statement, please check [table statement](./seafile-sql.md).
 ### Start Seafile Professional Server
 
 ```
-cd haiwen/seafile-pro-server-1.8.0
+cd haiwen/seafile-pro-server-7.0.0
 ./seafile.sh start
 ./seahub.sh start
 
@@ -168,7 +168,7 @@ cd haiwen/seafile-pro-server-1.8.0
 
 
 ```
-cd haiwen/seafile-pro-server-1.8.0/
+cd haiwen/seafile-pro-server-7.0.0/
 ./seafile.sh stop
 ./seahub.sh stop
 
@@ -178,7 +178,7 @@ cd haiwen/seafile-pro-server-1.8.0/
 
 
 ```
-cd haiwen/seafile-server-1.8.0/
+cd haiwen/seafile-server-7.0.0/
 ./upgrade/minor-upgrade.sh
 
 ```
@@ -187,7 +187,7 @@ cd haiwen/seafile-server-1.8.0/
 
 
 ```
-cd haiwen/seafile-server-1.8.0/
+cd haiwen/seafile-server-7.0.0/
 ./seafile.sh start
 ./seahub.sh start
 
