@@ -1,6 +1,6 @@
 
 
-> This document is for Seafile Server version 6.3 or above, if the server version is lower than 6.3, please refer to [this document](https://manual.seafile.com/deploy/shibboleth_config.html).
+> This document is for Seafile Server version 6.3 or above
 
 ## Overview
 

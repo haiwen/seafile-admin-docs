@@ -60,8 +60,7 @@ nav:
     - LDAP/AD Integration: deploy/using_ldap.md
     - Single Sign On:
       - Outline: deploy/single_sign_on.md
-      - Shibboleth Authentication for Seafile v6.2: deploy/shibboleth_config.md
-      - Shibboleth Authentication for Seafile v6.3+: deploy/shibboleth_config_v6.3.md
+      - Shibboleth Authentication: deploy/shibboleth_config_v6.3.md
       - OAuth Authentication: deploy/oauth.md
       - Remote User Authentication: deploy/remote_user.md
     - Syslog Integration: deploy/using_syslog.md
