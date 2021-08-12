@@ -6,9 +6,7 @@ With default installation, these internal objects are stored in the server's fil
 
 Note: If you store the seafile-data directory in a battery-backed NAS (like EMC or NetApp), or use S3 backend available in the Pro edition, the internal objects won't be corrupt.
 
-Starting from version 2.0, Seafile server comes with a seaf-fsck tool to help you recover from this corruption (similar to git-fsck tool). This tool recovers any corrupted library back to its last consistent and usable state.
-
-Starting from version 4.1, we provide a seaf-fsck.sh script. The seaf-fsck tool accepts the following arguments:
+We provide a seaf-fsck.sh script to check the integrity of libraries. The seaf-fsck tool accepts the following arguments:
 
 ```
 cd seafile-server-latest
@@ -115,7 +113,7 @@ To skip checking file contents, add the "--shallow" or "-s" option to seaf-fsck.
 
 ## Exporting Libraries to File System
 
-Since version 4.2.0, you can use seaf-fsck to export all the files in libraries to external file system (such as Ext4). This procedure doesn't rely on the seafile database. As long as you have your seafile-data directory, you can always export your files from Seafile to external file system.
+You can use seaf-fsck to export all the files in libraries to external file system (such as Ext4). This procedure doesn't rely on the seafile database. As long as you have your seafile-data directory, you can always export your files from Seafile to external file system.
 
 The command syntax is
 
