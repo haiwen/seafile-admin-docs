@@ -102,3 +102,41 @@ sudo usermod -a -G fuse <your-user-name>
 * Logout your shell and login again
 * Now try `./seaf-fuse.sh start <path>`again.
 
+### How to start seaf-fuse in docker
+
+Only support Linux. Assume we want to mount to `/data/seafile-fuse` in host.
+
+##### Modify docker-compose.yml
+Add the following content
+
+```yml
+  seafile:
+    ...
+    volumes:
+      ...
+      - type: bind
+        source: /data/seafile-fuse
+        target: /seafile-fuse
+        bind:
+          propagation: rshared
+    privileged: true
+    cap_add:
+      - SYS_ADMIN
+```
+
+##### Start seaf-fuse with the script in docker
+Start Seafile server and enter the container
+
+```bash
+docker-compose up -d
+
+docker exec -it seafile bash
+```
+
+Start seaf-fuse in the container
+
+```bash
+cd /opt/seafile/seafile-server-latest/
+
+./seaf-fuse.sh start /seafile-fuse
+```
