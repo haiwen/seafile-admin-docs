@@ -1,5 +1,11 @@
 # SeaDrive Client Changelog
 
+### 2.0.16 (2021/8/13)
+
+* \[Win] Fix failure to delete placeholder files
+* \[Win] Fix failure to create placeholder files when there are duplicate file names with different cases
+* Set Content-Type header in http requests
+
 ### 2.0.15 (2021/7/20)
 
 * \[Win] Fix wrong status icon after a folder is moved to antoher library
