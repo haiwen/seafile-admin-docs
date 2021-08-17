@@ -9,12 +9,11 @@ If you setup seafile server according to our manual, you should have a directory
 
 ```
 haiwen       # Replace the name with your organization name
-  --seafile-server-2.x.x # untar from seafile package
+  --seafile-server-8.0.x # untar from seafile package
   --seafile-data   # seafile configuration and data (if you choose the default)
   --seahub-data    # seahub data
-  --ccnet          # ccnet configuration and data 
-  --seahub.db      # sqlite3 database used by seahub
-  --seahub_settings.py # optional config file for seahub
+  --logs
+  --conf          
 
 ```
 
