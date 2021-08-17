@@ -8,7 +8,7 @@
 
 ### 2.0.15 (2021/7/20)
 
-* \[Win] Fix wrong status icon after a folder is moved to antoher library
+* \[Win] Fix wrong status icon after a folder is moved to another library
 * \[Win] Fix one more potential isssue that can cause "cloud operation invalid" error
 * \[Win] Fix pinning a file in device
 * \[Win] Pop-up notifications when a folder is moved to the category folder
