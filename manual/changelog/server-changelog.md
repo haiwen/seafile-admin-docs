@@ -9,8 +9,7 @@ Please check our document for how to upgrade to 8.0: <https://manual.seafile.com
 ### 8.0.7 (2021/08/09)
 
 * Improve performance for listing deleted files in trash
-* [fix] Update expire date for new guest invitation if there is an old expired invitation
-* [fix] Fix FORCE_PASSWORD_CHANGE does not force the new user to change their password if the user is added by admin
+* [fix] Fix FORCE_PASSWORD_CHANGE does not force the new user to change the password if the user is added by admin
 * [fix] Fix setting a webdav password when 2FA enabled
 * [fix] Fix search in a shared sub-folder
 * [fix] Remove watermark shown in Collabora integration
