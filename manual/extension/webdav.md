@@ -1,12 +1,10 @@
 # WebDAV extension
 
-Seafile WebDAV Server(SeafDAV) is added in seafile server 2.1.0.
-
-In the wiki below, we assume your seafile installation folder is `/data/haiwen`.
+In the document below, we assume your seafile installation folder is `/opt/seatable`.
 
 ## SeafDAV Configuration for 7.1+
 
-The configuration file is `/data/haiwen/conf/seafdav.conf`. If it is not created already, you can just create the file.
+The configuration file is `/opt/seatable/conf/seafdav.conf`. If it is not created already, you can just create the file.
 
 ```
 [WEBDAV]
@@ -82,7 +80,7 @@ If you configure https in Nginx or Apache, you have to configure the reverse pro
 
 ## SeafDAV Configuration for 7.0 or older versions
 
-The configuration file is `/data/haiwen/conf/seafdav.conf`. If it is not created already, you can just create the file.
+The configuration file is `/opt/seatable/conf/seafdav.conf`. If it is not created already, you can just create the file.
 
 ```
 [WEBDAV]
@@ -107,20 +105,8 @@ Every time the configuration is modified, you need to restart seafile server to 
 
 ```
 
-### Sample Configuration 1: No nginx/apache
 
-Your WebDAV client would visit the Seafile WebDAV server at `http://example.com:8080`
-
-```
-[WEBDAV]
-enabled = true
-port = 8080
-fastcgi = false
-share_name = /
-
-```
-
-### Sample Configuration 2: With Nginx
+### Sample Configuration with Nginx
 
 Your WebDAV client would visit the Seafile WebDAV server at `http://example.com/seafdav`
 
@@ -130,48 +116,11 @@ enabled = true
 port = 8080
 fastcgi = true
 share_name = /seafdav
-
 ```
 
-In the above config, the value of '''share_name''' is changed to '''/seafdav''', which is the address suffix you assign to seafdav server.
+In the above config, the value of `share_name` is changed to `/seafdav`, which is the address suffix you assign to seafdav server.
 
-#### Nginx without HTTPS
-
-The corresponding Nginx configuration is (without https):
-
-```
-     location /seafdav {
-        fastcgi_pass    127.0.0.1:8080;
-        fastcgi_param   SCRIPT_FILENAME     $document_root$fastcgi_script_name;
-        fastcgi_param   PATH_INFO           $fastcgi_script_name;
-
-        fastcgi_param   SERVER_PROTOCOL     $server_protocol;
-        fastcgi_param   QUERY_STRING        $query_string;
-        fastcgi_param   REQUEST_METHOD      $request_method;
-        fastcgi_param   CONTENT_TYPE        $content_type;
-        fastcgi_param   CONTENT_LENGTH      $content_length;
-        fastcgi_param   SERVER_ADDR         $server_addr;
-        fastcgi_param   SERVER_PORT         $server_port;
-        fastcgi_param   SERVER_NAME         $server_name;
-        
-        client_max_body_size 0;
-        proxy_connect_timeout  36000s;
-        proxy_read_timeout  36000s;
-        proxy_send_timeout  36000s;
-        send_timeout  36000s;
-        
-        # This option is only available for Nginx >= 1.8.0. See more details below.
-        proxy_request_buffering off;
-
-        access_log      /var/log/nginx/seafdav.access.log;
-        error_log       /var/log/nginx/seafdav.error.log;
-    }
-
-```
-
-#### Nginx with HTTPS
-
-Nginx conf with https\:
+Nginx conf:
 
 ```
      location /seafdav {
@@ -207,117 +156,6 @@ Nginx conf with https\:
 
 By default Nginx will buffer large request body in temp file. After the body is completely received, Nginx will send the body to the upstream server (seafdav in our case). But it seems when file size is very large, the buffering mechanism dosen't work well. It may stop proxying the body in the middle. So if you want to support file upload larger for 4GB, we suggest you install Nginx version >= 1.8.0 and add `proxy_request_buffering off` to Nginx configuration.
 
-### Sample Configuration 3: With Apache
-
-The following configuratioin assumes you use Apache 2.4 or later.
-
-Your WebDAV client would visit the Seafile WebDAV server at `http://example.com/seafdav`
-
-```
-[WEBDAV]
-enabled = true
-port = 8080
-fastcgi = false
-share_name = /seafdav
-
-```
-
-In the above config, the value of '''share_name''' is changed to '''/seafdav''', which is the address suffix you assign to seafdav server. **Note that we do not use fastcgi for Apache.**
-
-Modify Apache config file (site-enabled/000-default):
-
-#### Apache without HTTPS
-
-Based on your apache configuration when you [deploy Seafile with Apache](../deploy/deploy_with_apache.md), add seafdav related config:
-
-```
-<VirtualHost *:80>
-
-    ServerName www.myseafile.com
-    # Use "DocumentRoot /var/www/html" for Centos/Fedora
-    # Use "DocumentRoot /var/www" for Ubuntu/Debian
-    DocumentRoot /var/www
-    Alias /media  /home/user/haiwen/seafile-server-latest/seahub/media
-
-    RewriteEngine On
-
-    <Location /media>
-        Require all granted
-    </Location>
-
-    #
-    # seafile fileserver
-    #
-    ProxyPass /seafhttp http://127.0.0.1:8082
-    ProxyPassReverse /seafhttp http://127.0.0.1:8082
-    RewriteRule ^/seafhttp - [QSA,L]
-
-    #
-    # WebDAV
-    # We use http proxy, since SeafDAV is incompatible with FCGI proxy in Apache 2.4.
-    #
-    ProxyPass /seafdav http://127.0.0.1:8080/seafdav
-    ProxyPassReverse /seafdav http://127.0.0.1:8080/seafdav
-
-    #
-    # seahub
-    #
-    SetEnvIf Request_URI . proxy-fcgi-pathinfo=unescape
-    SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
-    ProxyPreserveHost On
-    ProxyPass / fcgi://127.0.0.1:8000/
-
-</virtualhost>
-
-```
-
-#### Apache with HTTPS
-
-Based on your apache configuration when you [Enable Https on Seafile web with Apache](../deploy/https_with_apache.md), add seafdav related config:
-
-```
-<VirtualHost *:443>
-
-  ServerName www.myseafile.com
-  DocumentRoot /var/www
-
-  SSLEngine On
-  SSLCertificateFile /path/to/cacert.pem
-  SSLCertificateKeyFile /path/to/privkey.pem
-
-  Alias /media  /home/user/haiwen/seafile-server-latest/seahub/media
-
-  <Location /media>
-    ProxyPass !
-    Require all granted
-  </Location>
-
-  RewriteEngine On
-
-  #
-  # seafile fileserver
-  #
-  ProxyPass /seafhttp http://127.0.0.1:8082
-  ProxyPassReverse /seafhttp http://127.0.0.1:8082
-  RewriteRule ^/seafhttp - [QSA,L]
-  
-  #
-  # WebDAV
-  # We use http proxy, since SeafDAV is incompatible with FCGI proxy in Apache 2.4.
-  #
-  ProxyPass /seafdav http://127.0.0.1:8080/seafdav
-  ProxyPassReverse /seafdav http://127.0.0.1:8080/seafdav
-  
-  #
-  # seahub
-  #
-  SetEnvIf Request_URI . proxy-fcgi-pathinfo=unescape
-  SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
-  ProxyPass / fcgi://127.0.0.1:8000/
-
-</virtualhost>
-
-```
 
 ## Notes on Clients
 
