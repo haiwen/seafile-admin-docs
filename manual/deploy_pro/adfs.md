@@ -45,7 +45,7 @@ These x.509 certs are used to sign and encrypt elements like NameID and Metadata
 
 ## Install Requirements on Seafile Server
 
-* For Ubuntu 16.04
+* For Ubuntu 18.04/20.04
 
 ```
 sudo apt install libxmlsec1 xmlsec1
