@@ -54,7 +54,7 @@ sudo apt install libxmlsec1 xmlsec1
 * For Seafile 7.1.x
 
 ```
-sudo pip install cryptography djangosaml2==0.18.1 pysaml2>=4.6.0
+sudo pip install cryptography djangosaml2==0.18.1 pysaml2==4.6.0
 ```
 
 * For Seafile 8.0.x
