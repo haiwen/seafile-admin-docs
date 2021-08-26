@@ -8,6 +8,12 @@
 
 Please check our document for how to upgrade to 8.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_8.0.x/>
 
+### 8.0.9 (2021/08/26)
+
+* Improve title of guest invitation email
+* [fix] Fix a bug that page "admin panel -> logs -> permissions" can't be displayed
+* [fix] Fix a bug in admin search users
+
 ### 8.0.8 (2021/08/06)
 
 * [multi-tenancy] Support system Admin to add additional admins to a specific org
