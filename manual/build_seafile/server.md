@@ -45,6 +45,11 @@ mysqladmin -u root password 123456
 
 sql for create databases
 
+Enter mysql cmdline 
+```
+mysql -u root -p
+```
+reate databases
 ```
 create database ccnet charset utf8;
 create database seafile charset utf8;
