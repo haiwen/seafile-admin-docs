@@ -130,8 +130,17 @@ ENCRYPTED_LIBRARY_VERSION = 2
 # mininum length for password of encrypted library
 REPO_PASSWORD_MIN_LENGTH = 8
 
+# force use password when generate a share/upload link (since version 8.0.9)
+SHARE_LINK_FORCE_USE_PASSWORD = False
+
 # mininum length for password for share link (since version 4.4)
 SHARE_LINK_PASSWORD_MIN_LENGTH = 8
+
+# LEVEL for the password of a share/upload link
+# based on four types of input:
+# num, upper letter, lower letter, other symbols
+# '3' means password must have at least 3 types of the above. (since version 8.0.9)
+SHARE_LINK_PASSWORD_STRENGTH_LEVEL = 3
 
 # Default expire days for share link (since version 6.3.8)
 # Once this value is configured, the user can no longer generate an share link with no expiration time.
