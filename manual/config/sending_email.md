@@ -46,7 +46,8 @@ SERVER_EMAIL = EMAIL_HOST_USER
 
 **Note3**: About using SSL connection (using port 465)
 
-Port 587 is being used to establish a TLS connection and port 465 is being used to establish an SSL connection.  Starting from Django 1.8, it supports both. Until version 5.1 Seafile only supported Django 1.5, which only supports TLS connections. If your email server only supports SSL connections and you are using a Seafile Server version below 5.1, you can find a workaround here: [django-smtp-ssl](https://github.com/bancek/django-smtp-ssl).
+Port 587 is being used to establish a TLS connection and port 465 is being used to establish an SSL connection.  Starting from Django 1.8, it supports both.
+
 
 ## Change the `sender` and `reply to` of email
 
