@@ -8,6 +8,10 @@
 
 Please check our document for how to upgrade to 8.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_8.0.x/>
 
+### 8.0.10 (2021/09/09)
+
+* [fix] Fix a bug in LDAP sync
+
 ### 8.0.9 (2021/08/26)
 
 * Improve title of guest invitation email
