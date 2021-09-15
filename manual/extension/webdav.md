@@ -59,7 +59,14 @@ For Seafdav, the configuration of Nginx is as follows:
         error_log       /var/log/nginx/seafdav.error.log;
     }
 
+    location /:dir_browser {
+        proxy_pass         http://127.0.0.1:8080/:dir_browser;
+    }
+
 ```
+
+Note: `proxy_pass  http://127.0.0.1:8080/:dir_browser` configuration can display the icon of Seafdav through the browser.
+
 
 ### Proxy with Apache
 
@@ -71,7 +78,13 @@ For Seafdav, the configuration of Apache is as follows:
         ProxyPass "http://127.0.0.1:8080/seafdav"
     </Location>
 
+    <Location /:dir_browser>
+        ProxyPass "http://127.0.0.1:8080/:dir_browser"
+    </Location>
+
 ```
+
+Note: `ProxyPass "http://127.0.0.1:8080/:dir_browser"` configuration can display the icon of Seafdav through the browser.
 
 ### HTTPS proxy
 
