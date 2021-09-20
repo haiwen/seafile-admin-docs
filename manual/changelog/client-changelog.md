@@ -2,6 +2,15 @@
 
 ## 8.0
 
+### 8.0.4 (2021/09/22)
+
+* Add a Settings button in the main panel
+* \[CLI] Add an option to use API token for login, instead of password. This is useful for SSO login in CLI.
+* Fix problem recording file sync errors
+* Send proper content-type headers in http requests
+* A few UI fixes
+* \[Linux] Support Debian 11
+
 ### 8.0.3 (2021/07/03)
 
 * \[Mac,Linux] Add option to not show Windows incompatible path notifications
