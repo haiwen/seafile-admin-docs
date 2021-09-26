@@ -8,6 +8,10 @@
 
 Please check our document for how to upgrade to 8.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_8.0.x/>
 
+### 8.0.11 (2021/09/26)
+
+* [fix] Fix a bug in LDAP group sync when using OpenLDAP
+
 ### 8.0.10 (2021/09/09)
 
 * [fix] Fix a bug in LDAP sync
