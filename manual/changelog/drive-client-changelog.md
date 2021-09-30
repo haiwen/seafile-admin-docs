@@ -1,5 +1,12 @@
 # SeaDrive Client Changelog
 
+### 2.0.17 (2021/09/30)
+
+* \[Win] Fix unable to rename libraries
+* \[Win] Avoid repetitively removing and re-downloading libraries in some rare cases
+* \[Win] Add notification when all libraries are loaded on restart
+* \[Win] Fix bug when a library is both shared personally and to a group
+
 ### 2.0.16 (2021/8/13)
 
 * \[Win] Fix failure to delete placeholder files
