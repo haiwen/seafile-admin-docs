@@ -105,7 +105,7 @@ cd seafile/seafile-server-latest
 Check the upgrade scripts in seafile-server-6.2.0 directory.
 
 ```sh
-cd seafile/seafile-server-latest
+cd seafile/seafile-server-6.2.0
 ls upgrade/upgrade_*
 ```
 
@@ -127,9 +127,8 @@ upgrade/upgrade_6.1_6.2.sh
 Start Seafile server
 
 ```sh
-cd seafile/seafile-server-latest/
 ./seafile.sh start
-./seahub.sh start # or "./seahub.sh start-fastcgi" if you're using fastcgi
+./seahub.sh start
 # or via service
 /etc/init.d/seafile-server start
 ```
@@ -149,7 +148,7 @@ A maintenance upgrade is for example an upgrade from 6.2.2 to 6.2.3.
    A script to perform a minor upgrade is provided with Seafile server (for history reasons, the script is called `minor-upgrade.sh`):
 
     ```
-    cd seafile-server-latest/upgrade/ && ./minor-upgrade.sh
+    cd seafile-server-6.2.3/upgrade/ && ./minor-upgrade.sh
     ```
 
 3. Start Seafile
