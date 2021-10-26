@@ -1,5 +1,9 @@
 # SeaDrive Client Changelog
 
+### 2.0.18 (Windows) (2021/10/26)
+
+* Improve library loading speed on restart
+
 ### 2.0.17 (2021/09/30)
 
 * \[Win] Fix unable to rename libraries
