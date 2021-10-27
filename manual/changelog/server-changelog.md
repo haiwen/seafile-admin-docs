@@ -7,11 +7,24 @@
 ### 9.0.0 beta (to be released)
 
 * Upgrade Django to 3.2
-* Rewrite http service in seaf-server with golang and move it to a separate component (turn off by default)
+* Rewrite HTTP service in seaf-server with golang and move it to a separate component (turn off by default)
 * Upgrade PDFjs to new version, support viewing of password protected PDF
 * Use database to store OnlyOffice cache keys
 * Supporting converting files like doc to docx using OnlyOffice for online editing
 * Move SERVICE_URL configuration from ccnet.conf to seahub_settings.py
+
+The new file-server written in golang serves HTTP requests to upload/download/sync files. It provides three advantages:
+
+* The performance is better in a high-concurrency environment and it can handle long requests. Now you can sync libraries with large number of files.
+* Now file zipping and downloading can be done simutaneously. When zip downloading a folder, you don't need to wait until zip is done.
+* Support rate control for file uploading and downloading.
+
+You can turn golang file-server on by adding following configuration in seafile.conf
+
+```
+[fileserver]
+use_go_fileserver = true
+```
 
 
 ## 8.0
