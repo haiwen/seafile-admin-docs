@@ -2,6 +2,18 @@
 
 > You can check Seafile release table to find the lifetime of each release and current supported OS: <https://cloud.seatable.io/dtable/external-links/a85d4221e41344c19566/?tid=0000&vid=0000>
 
+## 9.0
+
+### 9.0.0 beta (to be released)
+
+* Upgrade Django to 3.2
+* Rewrite http service in seaf-server with golang and(turn off by default)
+* Upgrade PDFjs to new version, support viewing of password protected PDF
+* Use database to store OnlyOffice cache keys
+* Supporting converting files like doc to docx using OnlyOffice for online editing
+* Move SERVICE_URL configuration from ccnet.conf to seahub_settings.py
+
+
 ## 8.0
 
 Please check our document for how to upgrade to 8.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_8.0.x/>
