@@ -7,7 +7,7 @@
 ### 9.0.0 beta (to be released)
 
 * Upgrade Django to 3.2
-* Rewrite http service in seaf-server with golang and(turn off by default)
+* Rewrite http service in seaf-server with golang and move it to a separate component (turn off by default)
 * Upgrade PDFjs to new version, support viewing of password protected PDF
 * Use database to store OnlyOffice cache keys
 * Supporting converting files like doc to docx using OnlyOffice for online editing
