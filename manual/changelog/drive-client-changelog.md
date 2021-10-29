@@ -1,5 +1,9 @@
 # SeaDrive Client Changelog
 
+### 2.0.18 (macOS) (2021/10/29)
+
+* Add support for macOS 12
+
 ### 2.0.18 (Windows) (2021/10/26)
 
 * Improve library loading speed on restart
