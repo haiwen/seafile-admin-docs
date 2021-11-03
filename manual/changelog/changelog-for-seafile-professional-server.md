@@ -8,6 +8,11 @@
 
 Please check our document for how to upgrade to 8.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_8.0.x/>
 
+### 8.0.12 (2021/11/03)
+
+* Improve the way to download scan code for sharing links
+* Group admins can search group members now
+
 ### 8.0.11 (2021/09/26)
 
 * [fix] Fix a bug in LDAP group sync when using OpenLDAP
