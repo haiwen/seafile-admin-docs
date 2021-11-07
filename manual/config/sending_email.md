@@ -46,7 +46,8 @@ SERVER_EMAIL = EMAIL_HOST_USER
 
 **Note3**: About using SSL connection (using port 465)
 
-Port 587 is being used to establish a TLS connection and port 465 is being used to establish an SSL connection.  Starting from Django 1.8, it supports both.
+Port 587 is being used to establish a connection using STARTTLS and port 465 is being used to establish an SSL connection.  Starting from Django 1.8, it supports both.
+If you want to use SSL on port 465, set `EMAIL_USE_SSL = True` instead of `EMAIL_USE_TLS`.
 
 
 ## Change the `sender` and `reply to` of email
