@@ -189,7 +189,7 @@ You can assign the port of Seahub by setting the `conf/gunicorn.conf`.
 ./seafile.sh stop
 ```
 
-- modify the value of SERVICE_URL in the file [ccnet.conf](../config/ccnet-conf.md), like this: (assume your ip or domain is 192.168.1.100). You can also modify SERVICE_URL via web UI in "System Admin->Settings". (**Warning**: if you set the value both via Web UI and ccnet.conf, the setting via Web UI will take precedence.)
+- modify the value of SERVICE_URL in the file ccnet.conf (or seahub_settings.py if you use 9.0.0+ version), like this: (assume your ip or domain is 192.168.1.100). You can also modify SERVICE_URL via web UI in "System Admin->Settings". (**Warning**: if you set the value both via Web UI and ccnet.conf, the setting via Web UI will take precedence.)
 
 ```
 SERVICE_URL = http://192.168.1.100:8001
