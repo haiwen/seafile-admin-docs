@@ -26,23 +26,6 @@ Seafile uses the mysql_native_password plugin for authentication. The versions o
 
 ### Installing prerequisites
 
-Seafile prior to and including Seafile 7.0 use Python 2. More recent versions rely on Python 3.
-
-**For Seafile 7.0.x**
-
-```
-# Ubuntu 16.04
-sudo apt-get update
-sudo apt-get install python2.7 python-setuptools python-mysqldb python-urllib3 python-ldap -y
-
-```
-
-```
-# CentOS 7
-sudo yum install python python-setuptools MySQL-python python-urllib3 python-ldap -y
-
-```
-
 **For Seafile 7.1.x**
 
 ```
@@ -115,7 +98,41 @@ sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3
 
 ```
 
-### Creating the programm directory
+**For Seafile 9.0.x**
+
+Note: CentOS 8 is no longer supported.
+
+```
+# Debian 10
+sudo apt-get update
+sudo apt-get install python3 python3-setuptools python3-pip default-libmysqlclient-dev -y
+
+sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
+    django-pylibmc django-simple-captcha python3-ldap mysqlclient
+
+```
+
+```
+# Ubuntu 18.04
+sudo apt-get update
+sudo apt-get install python3 python3-setuptools python3-pip -y
+
+sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
+    django-pylibmc django-simple-captcha python3-ldap
+
+```
+
+```
+# Ubuntu 20.04
+sudo apt-get update
+sudo apt-get install python3 python3-setuptools python3-pip libmysqlclient-dev memcached libmemcached-dev -y
+
+sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
+    django-pylibmc django-simple-captcha python3-ldap mysqlclient
+```
+
+
+### Creating the program directory
 
 The standard directory for Seafile's program files is `/opt/seafile`. Create this directory and change into it:
 
@@ -311,7 +328,8 @@ Seafile's config files as created by the setup script are prepared for Seafile r
 
 To access Seafile's web interface and to create working sharing links without a reverse proxy, you need to modify two configuration files in `/opt/seafile/conf`:
 
-* ccnet.conf: Add port 8000 to the `SERVICE_URL` (i.e., SERVICE_URL = http://1.2.3.4:8000/)
+* seahub_settings.py (if you use 9.0.x): Add port 8000 to the `SERVICE_URL` (i.e., SERVICE_URL = 'http://1.2.3.4:8000/').
+* ccnet.conf (if you use 8.0.x or 7.1.x): Add port 8000 to the `SERVICE_URL` (i.e., SERVICE_URL = http://1.2.3.4:8000/).
 * gunicorn.conf.py: Change the bind to "0.0.0.0:8000" (i.e., bind = "0.0.0.0:8000")
 
 ## Starting Seafile Server
