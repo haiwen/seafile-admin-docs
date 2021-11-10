@@ -8,6 +8,7 @@ Ccnet is the internal RPC framework used by Seafile server and also manages the 
 # This is outside URL for Seahub(Seafile Web). 
 # The domain part (i.e., www.example.com) will be used in generating share links and download/upload file via web.
 # Note: Outside URL means "if you use Nginx, it should be the Nginx's address"
+# Note: SERVICE_URL is moved to seahub_settings.py since 9.0.0
 SERVICE_URL=http://www.example.com:8000
 ```
 
