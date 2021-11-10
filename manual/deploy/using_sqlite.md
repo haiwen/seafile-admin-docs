@@ -181,32 +181,6 @@ you will be redirected to the Login page. Just enter the admin username and pass
 
 #### Run Seahub on another port
 
-If you want to run Seahub on a port other than the default 8000, say 8001, you must:
-
-**Seafile 6.2.x and previous versions**
-
-- stop the Seafile server
-```
-./seahub.sh stop
-./seafile.sh stop
-```
-
-- modify the value of SERVICE_URL in the file [ccnet.conf](../config/ccnet-conf.md), like this: (assume your ip or domain is 192.168.1.100). You can also modify SERVICE_URL via web UI in "System Admin->Settings". (**Warning**: if you set the value both via Web UI and ccnet.conf, the setting via Web UI will take precedence.)
-
-```
-SERVICE_URL = http://192.168.1.100:8001
-```
-
-- restart Seafile server
-```
-./seafile.sh start
-./seahub.sh start 8001
-```
-
-See Seafile [Server Configuration Manual](../config/ccnet-conf.md) for more details about ``ccnet.conf``.
-
-**Seafile 6.3.x and above versions**
-
 You can assign the port of Seahub by setting the `conf/gunicorn.conf`.
 
 - stop the Seafile server
