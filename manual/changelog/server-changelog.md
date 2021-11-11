@@ -4,7 +4,7 @@
 
 ## 9.0
 
-### 9.0.0 beta (to be released)
+### 9.0.0 beta (2021-11-11)
 
 * Upgrade Django to 3.2
 * Rewrite HTTP service in seaf-server with golang and move it to a separate component (turn off by default)
