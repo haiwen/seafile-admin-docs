@@ -122,6 +122,7 @@ nav:
     - Seafile Community Installation: docker/deploy_seafile_with_docker.md
     - Seafile Professional Installation: docker/pro-edition/deploy_seafile_pro_with_docker.md
     - Migration from Seafile Community: docker/pro-edition/migrate_ce_to_pro_with_docker.md
+    - Migrate from non-docker deployment: docker/non_docker_to_docker.md
     - Upgrade from 6.3 to 7.0:
       - Upgrade Seafile Docker CE: docker/6.3_upgrade_to_7.0.md
       - Upgrade Seafile Docker Pro: docker/pro-edition/6.3_upgrade_to_7.0.md
