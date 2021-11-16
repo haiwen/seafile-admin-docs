@@ -76,7 +76,13 @@ import saml2.saml
 CERTS_DIR = '<seafile-install-path>/seahub-data/certs'
 SP_SERVICE_URL = 'https://demo.seafile.com'
 XMLSEC_BINARY = '/usr/bin/xmlsec1'
+
+# for 9.0 and later
+ATTRIBUTE_MAP_DIR = '<seafile-install-path>/seafile-server-latest/seahub/seahub/adfs_auth/attribute-maps'
+
+# for 8.0 and previous
 ATTRIBUTE_MAP_DIR = '<seafile-install-path>/seafile-server-latest/seahub-extra/seahub_extra/adfs_auth/attribute-maps'
+
 SAML_ATTRIBUTE_MAPPING = {
     'DisplayName': ('display_name', ),
     'ContactEmail': ('contact_email', ),
@@ -86,6 +92,11 @@ SAML_ATTRIBUTE_MAPPING = {
 
 ENABLE_ADFS_LOGIN = True
 EXTRA_AUTHENTICATION_BACKENDS = (
+
+    # for 9.0 and later
+    'seahub.adfs_auth.backends.Saml2Backend',
+    
+    # for 8.0 and previous
     'seahub_extra.adfs_auth.backends.Saml2Backend',
 )
 SAML_USE_NAME_ID_AS_USERNAME = True
