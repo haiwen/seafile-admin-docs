@@ -17,6 +17,15 @@ port = 8080
 # If you deploy seafdav behind nginx/apache, you need to modify "share_name".
 share_name = /
 
+# SeafDAV uses Gunicorn as web server.
+# This option maps to Gunicorn's 'workers' setting. https://docs.gunicorn.org/en/stable/settings.html?#workers
+# By default it's set to 5 processes.
+workers = 5
+
+# This option maps to Gunicorn's 'timeout' setting. https://docs.gunicorn.org/en/stable/settings.html?#timeout
+# By default it's set to 1200 seconds, to support large file uploads.
+timeout = 1200
+
 ```
 
 Every time the configuration is modified, you need to restart seafile server to make it take effect.
