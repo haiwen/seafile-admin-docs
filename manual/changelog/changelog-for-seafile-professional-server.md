@@ -8,6 +8,11 @@
 
 Please check our document for how to upgrade to 8.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_8.0.x/>
 
+### 8.0.14 (2021/11/17)
+
+* [fix] Fix hanlding of user disconnect and connect messages from OnlyOffice 
+* [fix] Fix OnlyOffice editing support for anonymous users in sharing links
+
 ### 8.0.12 (2021/11/03)
 
 * Improve the way to download scan code for sharing links
