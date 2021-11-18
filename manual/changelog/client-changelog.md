@@ -2,6 +2,11 @@
 
 ## 8.0
 
+### 8.0.5 (2021/11/18)
+
+* \[Win] Improve German and French translations for context menus
+* \[Linux] Fix crash bug when hovering mouse on the settings button
+
 ### 8.0.4 (2021/09/22)
 
 * Add a Settings button in the main panel
