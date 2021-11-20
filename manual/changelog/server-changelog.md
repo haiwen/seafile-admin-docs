@@ -4,6 +4,10 @@
 
 ## 9.0
 
+### 9.0.1 (2021-11-20)
+
+* Fix OnlyOffice integration
+
 ### 9.0.0 beta (2021-11-11)
 
 * Upgrade Django to 3.2
