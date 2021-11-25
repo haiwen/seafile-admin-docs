@@ -4,7 +4,7 @@
 
 ## 9.0
 
-### 9.0.1 (2021-11-20)
+### 9.0.1 beta (2021-11-20)
 
 * Fix OnlyOffice integration
 
