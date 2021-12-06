@@ -35,6 +35,11 @@ use_go_fileserver = true
 
 Please check our document for how to upgrade to 8.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_8.0.x/>
 
+### 8.0.8 (2021/12/06)
+
+* [fix] Fix a security issue in token check in file syncing
+* [fix] Fix URL encoding problem when view a file's history for files with special characters in file name.
+
 ### 8.0.7 (2021/08/09)
 
 * Improve performance for listing deleted files in trash
