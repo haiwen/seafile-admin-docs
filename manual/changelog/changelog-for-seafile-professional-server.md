@@ -8,6 +8,11 @@
 
 Please check our document for how to upgrade to 8.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_8.0.x/>
 
+### 8.0.15 (2021/12/06)
+
+* If a custom admin role is not found in admin role list, a role with minimal permissions ("audit_admin") will be assigned to the user
+* [fix] Fix a security issue in token check in file syncing
+
 ### 8.0.14 (2021/11/17)
 
 * [fix] Fix hanlding of user disconnect and connect messages from OnlyOffice 
