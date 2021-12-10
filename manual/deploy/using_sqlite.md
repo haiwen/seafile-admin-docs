@@ -61,7 +61,7 @@ The Seafile server package requires the following packages have been installed i
 
 apt-get install -y python3 python3-setuptools python3-pip memcached libmemcached-dev pwgen sqlite3
 
-pip3 install --timeout=3600 django==2.2.* future Pillow pylibmc captcha jinja2 psd-tools django-pylibmc django-simple-captcha
+pip3 install --timeout=3600 django==2.2.* future Pillow pylibmc captcha jinja2 psd-tools django-pylibmc django-simple-captcha pycryptodome==3.12.0
 ```
 
 ```
