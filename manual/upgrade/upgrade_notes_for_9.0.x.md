@@ -30,7 +30,13 @@ use_go_fileserver = true
 
 ## New Python libraries
 
-No new python libraries are needed.
+Note, you should install Python libraries system wide using root user or sudo mode.
+
+* For Ubuntu 18.04/20.04
+
+```sh
+sudo pip3 install pycryptodome==3.12.0
+```
 
 
 ## Upgrade to 9.0.x
