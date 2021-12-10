@@ -4,6 +4,11 @@
 
 ## 9.0
 
+### 9.0.2 (2021-12-10)
+
+* Fix OnlyOffice/Collabora integration when golang http server
+* Enable showing password for encrypted sharing links
+
 ### 9.0.1 beta (2021-11-20)
 
 * Fix OnlyOffice integration
