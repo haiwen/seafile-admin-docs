@@ -102,30 +102,12 @@ sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3
 
 Note: CentOS 8 is no longer supported.
 
+
 ```
-# Debian 10
+# Ubuntu 20.04 (almost the same for Ubuntu 18.04 and Debian 10)
 sudo apt-get update
-sudo apt-get install python3 python3-setuptools python3-pip default-libmysqlclient-dev -y
-
-sudo pip3 install --timeout=3600 django==3.2.* Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
-    django-pylibmc django-simple-captcha python3-ldap mysqlclient pycryptodome==3.12.0 cffi==1.14.0
-
-```
-
-```
-# Ubuntu 18.04
-sudo apt-get update
-sudo apt-get install python3 python3-setuptools python3-pip -y
-
-sudo pip3 install --timeout=3600 django==3.2.* Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
-    django-pylibmc django-simple-captcha python3-ldap pycryptodome==3.12.0 cffi==1.14.0
-
-```
-
-```
-# Ubuntu 20.04
-sudo apt-get update
-sudo apt-get install python3 python3-setuptools python3-pip libmysqlclient-dev memcached libmemcached-dev -y
+sudo apt-get install -y python3 python3-setuptools python3-pip libmysqlclient-dev
+sudo apt-get install -y memcached libmemcached-dev
 
 sudo pip3 install --timeout=3600 django==3.2.* Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
     django-pylibmc django-simple-captcha python3-ldap mysqlclient pycryptodome==3.12.0 cffi==1.14.0
