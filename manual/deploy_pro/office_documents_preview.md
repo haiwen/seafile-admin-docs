@@ -12,7 +12,6 @@ On Ubuntu/Debian:
 
 ```bash
 sudo apt-get install libreoffice libreoffice-script-provider-python
-
 ```
 
 > For older version of Ubuntu: `sudo apt-get install libreoffice python-uno`
@@ -21,7 +20,6 @@ On Centos/RHEL:
 
 ```bash
 sudo yum install libreoffice libreoffice-headless libreoffice-pyuno
-
 ```
 
 For other Linux distributions: [Installation of LibreOffice on Linux](https://wiki.documentfoundation.org/Documentation/Install/Linux#Terminal-Based_Install)
@@ -33,7 +31,6 @@ For example, Chinese users may wish to install the WenQuanYi series of truetype 
 ```bash
 # For ubuntu/debian
 sudo apt-get install ttf-wqy-microhei ttf-wqy-zenhei xfonts-wqy
-
 ```
 
 ### Install poppler-utils
@@ -44,14 +41,12 @@ On Ubuntu/Debian:
 
 ```bash
 sudo apt-get install poppler-utils
-
 ```
 
 On CentOS/Red Hat:
 
 ```bash
 sudo yum install poppler-utils
-
 ```
 
 ### Enable Office Preview
@@ -61,7 +56,6 @@ sudo yum install poppler-utils
 ```conf
 [OFFICE CONVERTER]
 enabled = true
-
 ```
 
 1. After modifying and saving `seafevents.conf`, restart seafile server by `./seafile.sh restart`
@@ -82,10 +76,9 @@ workers = 1
 
 ## where to store the converted office/pdf files. Deafult is /tmp/.
 outputdir = /tmp/
-
 ```
 
-## Version 7.1+
+## Version 7.1.x - 8.0.x
 
 ### Install Libreoffice/UNO
 
@@ -95,7 +88,6 @@ On Ubuntu/Debian:
 
 ```bash
 sudo apt-get install libreoffice libreoffice-script-provider-python
-
 ```
 
 > For older version of Ubuntu: `sudo apt-get install libreoffice python-uno`
@@ -104,7 +96,6 @@ On Centos/RHEL, you need to first remove the default libreoffice in the distribu
 
 ```
 yum remove --setopt=clean_requirements_on_remove=0 libreoffice-* 
-
 ```
 
 Then install version 6.4 or newer ([Installation of LibreOffice on Linux](https://wiki.documentfoundation.org/Documentation/Install/Linux#Terminal-Based_Install)).
@@ -120,7 +111,6 @@ Open file `seafevents.conf`, in the `OFFICE CONVERTER` section:
 enabled = true
 host = 127.0.0.1
 port = 6000
-
 ```
 
 After modifying and saving `seafevents.conf`, restart seafile server by `./seafile.sh restart`
@@ -131,7 +121,6 @@ In `seahub_settings.py`, add the following config
 
 ```
 OFFICE_CONVERTOR_ROOT = 'http://127.0.0.1:6000/'
-
 ```
 
 Open a doc/ppt/xls file on Seahub, you should be about the previewing it in your browser.
@@ -154,7 +143,64 @@ outputdir = /tmp/
 
 host = 127.0.0.1
 port = 6000
+```
 
+## Version 9.0.x or above
+
+We use Docker to deploy LibreOffice as an example, so you need to install Docker and docker-compose on the server in advance (Docker installation is not introduced here).
+
+### Prepare `docker-compose.yml`
+
+Download and change [docker-compose.yml ](https://cloud.seafile.com/f/c050d7a512624e5194d8/).
+
+```
+version: '3.0'
+services:
+  office-preview:
+    image: seafileltd/office-preview:latest
+    container_name: seafile-office-preview
+    ports:
+      - "8089:8089"
+    command: bash start.sh
+    volumes:
+      - /opt/office-preview/shared:/shared  ##宿主机路径可以自定义
+    networks:
+     - seafile-net
+```
+
+### Start `seafile-office-preview` container
+
+```
+docker-compose up -d
+```
+
+Add `/opt/office-preview/shared/office_convertor_settings.py` manually.
+
+```
+# Make sure the SECRET_KEY is the same as value in seahub_settings.py
+SECRET_KEY = "o@^yktib39k+oor2_busbcxqaach_$b5zq-)4l6l39v#8ky5ta"  
+
+WORKERS = 10                   # worker number
+OUTPUT_DIR = '/shared/output'  # output folder in container
+PORT = 8089                    # port in container
+```
+
+Restart `seafile-office-preview` container.
+```
+docker restart  seafile-office-preview
+```
+
+### Config seahub_settings.py
+
+Add the following configuration to `seahub_settings.py`.
+
+```
+OFFICE_CONVERTOR_ROOT = 'http://127.0.0.1:8089'
+```
+
+Restart seahub.
+```
+./seahub.sh restart
 ```
 
 ## FAQ about Office document preview
@@ -175,7 +221,6 @@ Remove the installed libreoffice:
 
 ```
 sudo apt-get remove libreoffice* python-uno python3-uno
-
 ```
 
 Download libreoffice packages from [libreoffice official site](https://downloadarchive.documentfoundation.org/libreoffice/old/)
@@ -187,14 +232,12 @@ tar xf LibreOffice_4.1.6_Linux_x86-64_deb.tar.gz
 cd LibreOffice_4.1.6.2_Linux_x86-64_deb
 cd DEBS
 sudo dpkg -i *.deb
-
 ```
 
 Restart your seafile server and try again. It should work now.
 
 ```
 ./seafile.sh restart
-
 ```
 
 #### The browser displays "document conversion failed", and in the logs I see messages like `[WARNING] failed to convert xxx to ...`, what should I do?
@@ -206,5 +249,3 @@ Try to kill the libreoffice process with `pkill -f soffice.bin`. Then try re-ope
 #### The above solution does not solve my problem.
 
 Please check whether the user you run Seafile can correctly start the libreoffice process. There may be permission problems. For example, if you use www-data user to run Seafile, make sure www-data has a home directory and can write to the home directory.
-
-
