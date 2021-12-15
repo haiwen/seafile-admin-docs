@@ -2,6 +2,44 @@
 
 > You can check Seafile release table to find the lifetime of each release and current supported OS: <https://cloud.seatable.io/dtable/external-links/a85d4221e41344c19566/?tid=0000&vid=0000>
 
+## 9.0
+
+**Upgrade**
+
+Please check our document for how to upgrade to 9.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_9.0.x/>
+
+### 9.0.2 beta (2021/12/15)
+
+* Upgrade Django to 3.2
+* Enable showing password for encrypted sharing links
+* Rewrite HTTP service in seaf-server with golang and move it to a separate component (turn off by default)
+* Upgrade PDFjs to new version, support viewing of password protected PDF
+* Use database to store OnlyOffice cache keys
+* Supporting converting files like doc to docx using OnlyOffice for online editing
+* In sharing link with edit permission, anonymous users can set his/her name in OnlyOffice editing
+* Move SERVICE_URL configuration from ccnet.conf to seahub_settings.py
+
+The new file-server written in golang serves HTTP requests to upload/download/sync files. It provides three advantages:
+
+* The performance is better in a high-concurrency environment and it can handle long requests. Now you can sync libraries with large number of files.
+* Now file zipping and downloading can be done simutaneously. When zip downloading a folder, you don't need to wait until zip is done.
+* Support rate control for file uploading and downloading.
+
+You can turn golang file-server on by adding following configuration in seafile.conf
+
+```
+[fileserver]
+use_go_fileserver = true
+```
+
+### 9.0.1
+
+Deprecated
+
+### 9.0.0
+
+Deprecated
+
 ## 8.0
 
 **Upgrade**
