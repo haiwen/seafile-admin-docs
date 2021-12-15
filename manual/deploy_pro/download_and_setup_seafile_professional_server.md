@@ -101,9 +101,10 @@ sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3
 **For Seafile 9.0.x**
 
 ```
-# on Debian 10/Ubuntu 18.04/Ubuntu 20.04
+# on Ubuntu 20.04 (on Debian 10/Ubuntu 18.04, it is almost the same)
 apt-get update
-apt-get install python3 python3-setuptools python3-pip python3-ldap libmysqlclient-dev  -y
+apt-get install -y python3 python3-setuptools python3-pip python3-ldap libmysqlclient-dev
+apt-get install -y memcached libmemcached-dev
 
 pip3 install --timeout=3600 django==3.2.* future mysqlclient pymysql Pillow pylibmc \ 
 captcha jinja2 sqlalchemy==1.4.3 psd-tools django-pylibmc django-simple-captcha pycryptodome==3.12.0 cffi==1.14.0
