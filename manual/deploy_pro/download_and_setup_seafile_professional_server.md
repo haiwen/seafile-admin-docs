@@ -450,9 +450,9 @@ docker run -d \
            -e "discovery.type=single-node" \
            -e "bootstrap.memory_lock=true" \
            -e "ES_JAVA_OPTS=-Xms1g -Xmx1g" \
-           --restart=always \
            -v /opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data \
            --name es \
+           --restart=always \
            elasticsearch:6.8.20
 ```
 
