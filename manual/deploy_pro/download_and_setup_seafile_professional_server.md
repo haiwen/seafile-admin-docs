@@ -36,18 +36,10 @@ sudo yum install python python-setuptools python-imaging MySQL-python python-url
 **For Seafile 7.1.x**
 
 ```
-# Debian 10/Ubuntu 18.04
+# Ubuntu 20.04 (on Debian 10/Ubuntu 18.04, it is almost the same)
 sudo apt-get update
-sudo apt-get install python3 python3-setuptools python3-pip -y
-
-sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8 \
-    django-pylibmc django-simple-captcha python3-ldap
-```
-
-```
-# Ubuntu 20.04
-sudo apt-get update
-sudo apt-get install python3 python3-setuptools python3-pip memcached libmemcached-dev -y
+sudo apt-get install -y python3 python3-setuptools python3-pip
+sudo apt-get install -y memcached libmemcached-dev
 
 sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8 \
     django-pylibmc django-simple-captcha python3-ldap
@@ -64,27 +56,10 @@ sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8
 **For Seafile 8.0.x**
 
 ```
-# Debian 10
+# Ubuntu 20.04 (on Debian 10/Ubuntu 18.04, it is almost the same)
 sudo apt-get update
-sudo apt-get install python3 python3-setuptools python3-pip default-libmysqlclient-dev -y
-
-sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
-    django-pylibmc django-simple-captcha python3-ldap mysqlclient
-```
-
-```
-# Ubuntu 18.04
-sudo apt-get update
-sudo apt-get install python3 python3-setuptools python3-pip libmysqlclient-dev -y
-
-sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
-    django-pylibmc django-simple-captcha python3-ldap
-```
-
-```
-# Ubuntu 20.04
-sudo apt-get update
-sudo apt-get install python3 python3-setuptools python3-pip libmysqlclient-dev memcached libmemcached-dev -y
+sudo apt-get install -y python3 python3-setuptools python3-pip libmysqlclient-dev
+sudo apt-get install -y memcached libmemcached-dev
 
 sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
     django-pylibmc django-simple-captcha python3-ldap mysqlclient
