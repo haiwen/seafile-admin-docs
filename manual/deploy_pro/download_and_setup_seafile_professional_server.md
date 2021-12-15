@@ -113,9 +113,11 @@ captcha jinja2 sqlalchemy==1.4.3 psd-tools django-pylibmc django-simple-captcha 
 # CentOS 8
 sudo yum install python3 python3-setuptools python3-pip python3-devel mysql-devel gcc -y
 
-sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
+sudo pip3 install --timeout=3600 django==3.2.* Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
     django-pylibmc django-simple-captcha python3-ldap mysqlclient pycryptodome==3.12.0
 ```
+
+Note, we no longer recommend to use native package on CentOS/Redhat system. Using Docker image is recommended instead.
 
 ### Installing Java Runtime Environment
 
