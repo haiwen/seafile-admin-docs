@@ -424,7 +424,7 @@ The first time you start Seahub, the script prompts you to create an admin accou
 
 Now you can access Seafile via the web interface at the host address and port 8000 (e.g., http://1.2.3.4:8000).
 
-### ElasticSearch Integration
+### ElasticSearch
 
 * For Seafile PE 8.0.x and previous versions, the Seafile installation package already includes ElasticSearch, you can directly use it.
 * For Seafile PE 9.0.x and later versions, ElasticSearch needs to be installed and maintained separately (Due to copyright reasons, ElasticSearch 6.8.x cannot be brought into the Seafile package)
@@ -458,7 +458,7 @@ docker run -d \
 
 **NOTE**：seafile PE 9.0.x only supports ElasticSearch 6.8.x version.
 
-#### Config Seafile
+#### Seafile Configuration
 
 Add the following configuration to `seafevents.conf`
 
