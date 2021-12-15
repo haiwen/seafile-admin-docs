@@ -209,7 +209,6 @@ The former is suitable for installation on Ubuntu/Debian servers, the latter for
 
 Download the install package using wget (replace the x.x.x with the version you wish to download):
 
-**NOTE**: Seafile PE 9.0.x version does not support tar package deployment on Centos system, but supports Docker deployment.
 
 ```
 # Debian/Ubuntu
