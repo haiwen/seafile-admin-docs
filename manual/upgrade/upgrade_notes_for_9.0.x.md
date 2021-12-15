@@ -12,7 +12,8 @@ Please always follow the main [upgrade guide](./upgrade.md).
     * Reduce the size of Seafile package
     * You can change ElasticSearch setttings more easily
 3. The built-in Office file preview is now implemented by a separate docker image. This makes is more easy to maintain. We also suggest users to use OnlyOffice as an alternative.
-4. Seafile package for CentOS is no longer maintained. We suggest users to migrate to Docker images.5. We rewrite HTTP service in seaf-server with golang and move it to a separate component (turn off by default)
+4. Seafile community edition package for CentOS is no longer maintained (pro editions will still be maintaied). We suggest users to migrate to Docker images.
+5. We rewrite HTTP service in seaf-server with golang and move it to a separate component (turn off by default)
 
 The new file-server written in golang serves HTTP requests to upload/download/sync files. It provides three advantages:
 
