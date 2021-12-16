@@ -36,7 +36,7 @@ Note, you should install Python libraries system wide using root user or sudo mo
 * For Ubuntu 18.04/20.04
 
 ```sh
-sudo pip3 install pycryptodome==3.12.0
+sudo pip3 install pycryptodome==3.12.0 cffi==1.14.0
 ```
 
 
