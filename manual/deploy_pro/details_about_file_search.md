@@ -12,6 +12,9 @@ enabled = true
 ## The interval the search index is updated. Can be s(seconds), m(minutes), h(hours), d(days)
 interval=10m
 
+## this is for improving the search speed
+highlight = fvh                              
+
 ## If true, indexes the contents of office/pdf files while updating search index
 ## Note: If you change this option from "false" to "true", then you need to clear the search index and update the index again.
 index_office_pdf=false
