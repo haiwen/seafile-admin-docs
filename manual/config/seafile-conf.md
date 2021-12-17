@@ -186,7 +186,7 @@ default_expire_hours = 6
 
 The default is 12 hours.
 
-## Enabled Slow Log
+## Enable Slow Log
 
 Since Seafile-pro-6.3.10, you can enable seaf-server's RPC slow log to do performance analysis.The slow log is enabled by default.
 
@@ -203,3 +203,25 @@ rpc_slow_threshold = 5000
 ```
 
 You can find `seafile_slow_rpc.log` in `logs/slow_logs`. You can also use [log-rotate](../deploy/using_logrotate.md) to rotate the log files. You just need to send `SIGUSR2` to `seaf-server` process. The slow log file will be closed and reopened.
+
+Since 9.0.2 Pro, the signal to trigger log rotation has been changed to `SIGUSR1`. This signal will trigger rotation for all log files opened by seaf-server. You should change your log rotate settings accordingly.
+
+## Enable Access Log
+
+Even though Nginx logs all requests with certain details, such as url, response code, upstream process time, it's sometimes desirable to have more context about the requests, such as the user id for each request. Such information can only be logged from file server itself. Since 9.0.2 Pro, access log feature is added to fileserver.
+
+To enable access log, add below options to seafile.conf:
+
+```
+[fileserver]
+# default to false. If enabled, fileserver-access.log will be written to log directory.
+enable_access_log = true
+```
+
+The log format is as following:
+
+```
+start time - user id - url - response code - process time
+```
+
+You can use `SIGUSR1` to trigger log rotation.
