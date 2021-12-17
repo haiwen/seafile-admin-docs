@@ -448,8 +448,10 @@ Add the following configuration to `seafevents.conf`
 ```
 [INDEX FILES]
 external_es_server = true
-es_host = your elasticsearch server's IP     ## ElasticSearch 服务器ip或者域名
-es_port = 9200                               ## ElasticSearch 容器映射端口
+es_host = your elasticsearch server's IP     ## ElasticSearch IP
+es_port = 9200                          
+interval = 10m
+highlight = fvh                              ## this is for improving the search speed
 ```
 
 Restart Seafile
