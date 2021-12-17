@@ -6,7 +6,7 @@ In the seafile cluster, only one server should run the background tasks, includi
 
 * indexing files for search
 * email notification
-* office documents converts service
+* office documents converts service (Start from 9.0 version, office converts service is moved to a separate docker component)
 * LDAP sync
 * virus scan
 
