@@ -76,7 +76,7 @@ We use Docker to deploy LibreOffice as an example, so you need to install Docker
 
 ### Prepare `docker-compose.yml`
 
-Download and change [docker-compose.yml ](https://cloud.seafile.com/f/c050d7a512624e5194d8/).
+Download and change [docker-compose.yml](./office-preview-yml/docker-compose.yml).
 
 ```
 version: '3.0'
