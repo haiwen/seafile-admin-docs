@@ -1,0 +1,10 @@
+version: '3.0'
+services:
+  office-preview:
+    image: seafileltd/office-preview:latest
+    container_name: seafile-office-preview
+    ports:
+      - "8089:8089"
+    command: bash start.sh
+    volumes:
+      - /opt/office-preview/shared:/shared  # the host path can be customized
