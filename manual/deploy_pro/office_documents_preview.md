@@ -163,9 +163,7 @@ services:
       - "8089:8089"
     command: bash start.sh
     volumes:
-      - /opt/office-preview/shared:/shared  ##宿主机路径可以自定义
-    networks:
-     - seafile-net
+      - /opt/office-preview/shared:/shared  # the host path can be customized
 ```
 
 ### Start `seafile-office-preview` container
