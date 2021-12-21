@@ -121,6 +121,7 @@ nav:
   - Seafile Setup with Docker:
     - Seafile Community Installation: docker/deploy_seafile_with_docker.md
     - Seafile Professional Installation: docker/pro-edition/deploy_seafile_pro_with_docker.md
+    - Seafile Docker Cluster Deployment: docker/cluster/deploy_seafile_cluster_with_docker.md
     - Migration from Seafile Community: docker/pro-edition/migrate_ce_to_pro_with_docker.md
     - Migrate from non-docker deployment: docker/non_docker_to_docker.md
     - Upgrade from 6.3 to 7.0:
