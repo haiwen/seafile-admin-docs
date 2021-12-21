@@ -6,64 +6,21 @@ System: Ubuntu 20.04
 
 docker-compose: 1.25.0
 
-Seafile Server: 2 frontend node, 1 backend node
+Seafile Server: 2 frontend nodes, 1 backend node
 
-Mariadb, Memcached, Elasticsearch are all deployed on the backend node.
+## Deployment preparation
 
-## Deploy Mariadb, Memcached and Elasticsearch
-
-Install docker-compose on the backend node
+Install docker-compose on each node
 
 ```
 $ apt update && apt install docker-compose -y
 
 ```
 
-### MariaDB
-
-Create the mount directory
+Create the three databases ccnet_db, seafile_db, and seahub_db required by Seafile on MariaDB/MySQL, and authorize the \`seafile\` user to be able to access these three databases:
 
 ```
-$ mkdir -p /opt/seafile-mysql/mysql-data
-
-```
-
-Create the docker-compose.yml file
-
-```
-$ cd /opt/seafile-mysql
-$ vim docker-compose.yml
-
-```
-
-```
-version: '2.0'
-services:
-  db:
-    image: mariadb:10.5
-    container_name: seafile-mysql
-    ports:
-      - 172.26.6.23:3306:3306  # Change '172.26.6.23' to the IP of your backend node
-    volumes:
-      - /opt/seafile-mysql/mysql-data:/var/lib/mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=PASSWORD  # Set your MySQL root user's password
-      - MYSQL_LOG_CONSOLE=true
-
-```
-
-Start MariaDB
-
-```
-$ cd /opt/seafile-mysql
-$ docker-compose up -d
-
-```
-
-Create the three databases ccnet_db, seafile_db, and seahub_db required by Seafile on MariaDB, and authorize the \`seafile\` user to be able to access these three databases:
-
-```
-$ mysql -h{your backend node IP} -uroot -pPASSWORD
+$ mysql -h{your mysql host} -u[username] -p[password]
 
 mysql>
 create user 'seafile'@'%' identified by 'PASSWORD';
@@ -80,7 +37,7 @@ GRANT ALL PRIVILEGES ON `seahub_db`.* to 'seafile'@'%';
 
 You also need to create a table in \`seahub_db\`
 
-```none
+```
 mysql>
 use seahub_db;
 CREATE TABLE `avatar_uploaded` (
@@ -91,107 +48,6 @@ CREATE TABLE `avatar_uploaded` (
   `mtime` datetime NOT NULL,
   PRIMARY KEY (`filename_md5`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-```
-
-After the databases are created, the tables needed by seafile need to be imported into the database: [ccnet_db](SQL/ccnet.sql), [seafile_db](SQL/seafile.sql), [seahub_db](SQL/seahub.sql).
-
-### Memcached
-
-Create the mount directory
-
-```
-$ mkdir -p /opt/seafile-memcached
-
-```
-
-Create the docker-compose.yml file
-
-```
-$ cd /opt/seafile-memcached
-$ vim docker-compose.yml
-
-```
-
-```
-version: '2.0'
-services:
-  memcached:
-    image: memcached:1.5.6
-    container_name: seafile-memcached
-    entrypoint: memcached -m 256
-    ports:
-      - 172.26.6.23:11211:11211  # Change '172.26.6.23' to the IP of your backend node
-
-```
-
-Start memcached
-
-```
-$ cd /opt/seafile-memcached
-$ docker-compose up -d
-
-```
-
-Test if can connect to memcached
-
-```
-$ telnet {your backend node IP} 11211
-
-```
-
-### Elasticsearch
-
-Create the mount directory
-
-```
-$ mkdir -p /opt/seafile-elasticsearch/data
-
-```
-
-chmod 777 -R /opt/seafile-elasticsearch/data
-
-Create the docker-compose.yml file
-
-```
-$ cd /opt/seafile-elasticsearch
-$ vim docker-compose.yml
-
-```
-
-```
-version: '2.0'
-services:
-  elasticsearch:
-    image: elasticsearch:6.8.20
-    container_name: seafile-elasticsearch
-    ports:
-      - 172.26.6.23:9200:9200  # Change '172.26.6.23' to the IP of your backend node
-    volumes:
-      - /opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data
-    environment:
-      - discovery.type=single-node
-      - bootstrap.memory_lock=true
-      - ES_JAVA_OPTS=-Xms1g -Xmx1g
-
-```
-
-**Among them, ES_JAVA_OPTS=-Xms1g -Xmx1g is to set the memory used by elasticsearch, which is set according to the memory size of your server.**
-
-**Note ：**Need to pay attention to the version of elasticsearch, the seafile-pro-9.0.x version must correspond to the 6.8.X version of elasticsearch.
-
-Start memcached
-
-```
-$ cd /opt/seafile-elasticsearch
-$ docker-compose up -d
-
-```
-
-Test if elasticsearch is started normally
-
-```
-$ curl http://{your backend node IP}:9200/_cluster/health?pretty
 
 ```
 
@@ -278,19 +134,19 @@ CACHES = {
 CACHES = {
     'default': {
         'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
-        'LOCATION': '{you backend node IP}:11211',
+        'LOCATION': '{you memcached server host}:11211',
     },
 ...
 }
 
 ```
 
-4\. Modify the \[INDEX FILES] configuration option (es_host) in seafevents.conf
+4\. Modify the \[INDEX FILES] configuration options in seafevents.conf
 
 ```
 [INDEX FILES]
-es_port = 9200
-es_host = {you backend node IP}
+es_port = {your elasticsearch server port}
+es_host = {your elasticsearch server host}
 external_es_server = true
 enabled = true
 interval = 10m
@@ -301,8 +157,8 @@ interval = 10m
 5\. Add some configurations in seahub_settings.py
 
 ```python
-SERVICE_URL = 'http{s}://{you backend node IP or your sitename}/'
-FILE_SERVER_ROOT = 'http{s}://{you backend node IP or your sitename}/seafhttp'
+SERVICE_URL = 'http{s}://{your server IP or sitename}/'
+FILE_SERVER_ROOT = 'http{s}://{your server IP or sitename}/seafhttp'
 AVATAR_FILE_STORAGE = 'seahub.base.database_storage.DatabaseStorage'
 
 ```
@@ -312,7 +168,20 @@ AVATAR_FILE_STORAGE = 'seahub.base.database_storage.DatabaseStorage'
 ```
 [cluster]
 enabled = true
-memcached_options = --SERVER={you backend node IP} --POOL-MIN=10 --POOL-MAX=100
+memcached_options = --SERVER={your memcached server host} --POOL-MIN=10 --POOL-MAX=100
+
+```
+
+#### Import the tables of seahub_db, seafile_db and ccnet_db
+
+Enter the container, and then execute the following commands to import tables
+
+```
+$ docker exec -it seafile bash
+
+# mysql -h{your mysql host} -u[username] -p[password]  ccnet_db < /opt/seafile/seafile-server-latest/sql/mysql/ccnet.sql
+# mysql -h{your mysql host} -u[username] -p[password]  seafile_db < /opt/seafile/seafile-server-latest/sql/mysql/seafile.sql
+# mysql -h{your mysql host} -u[username] -p[password]  seahub_db <  /opt/seafile/seafile-server-laster/seahub/sql/mysql.sql
 
 ```
 
@@ -455,7 +324,7 @@ EOF
 
 ```
 
-**Note**: Correctly modify the IP address (Front-End01-IP and Front-End02-IP) of the front-end server in the above configuration file.
+**Note**: Correctly modify the IP address (Front-End01-IP and Front-End02-IP) of the frontend server in the above configuration file.
 
 **Choose one of the above two servers as the master node, and the other as the slave node.**
 
