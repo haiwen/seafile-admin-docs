@@ -8,6 +8,8 @@ docker-compose: 1.25.0
 
 Seafile Server: 2 frontend nodes, 1 backend node
 
+We assume you have already deployed memcache, MariaDB, ElasticSearch in separate machines and use S3 like object storage.
+
 ## Deployment preparation
 
 Install docker-compose on each node
@@ -55,7 +57,7 @@ CREATE TABLE `avatar_uploaded` (
 
 ### Deploy seafile frontend nodes
 
-Install docker-compose on the backend node
+Install docker-compose on the frontend node
 
 ```
 $ apt update && apt install docker-compose -y
@@ -90,7 +92,7 @@ services:
     environment:
       - CLUSTER_SERVER=true
       - CLUSTER_MODE=frontend
-      - TIME_ZONE=Asia/Shanghai  # Optional, default is UTC. Should be uncomment and set to your local time zone.
+      - TIME_ZONE=UTC  # Optional, default is UTC. Should be uncomment and set to your local time zone.
 
 ```
 
@@ -149,6 +151,7 @@ es_port = {your elasticsearch server port}
 es_host = {your elasticsearch server host}
 external_es_server = true
 enabled = true
+highlight = fvh
 interval = 10m
 ...
 
@@ -229,7 +232,7 @@ services:
     environment:
       - CLUSTER_SERVER=true
       - CLUSTER_MODE=backend
-      - TIME_ZONE=Asia/Shanghai  # Optional, default is UTC. Should be uncomment and set to your local time zone.
+      - TIME_ZONE=UTC  # Optional, default is UTC. Should be uncomment and set to your local time zone.
 
 ```
 
@@ -286,7 +289,7 @@ aws_region = eu-central-1
 
 ```
 
-### Deployment load balance
+### Deployment load balance (Optional)
 
 #### Install HAproxy and Keepalived services
 
