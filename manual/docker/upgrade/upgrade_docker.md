@@ -7,3 +7,7 @@ Just download the new image, stop the old docker container, modify the Seafile i
 ## Upgrade from 7.1 to 8.0
 
 Just download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version, then start with docker-compose up.
+
+## Upgrade from 8.0 to 9.0
+
+Just download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version, then start with docker-compose up.
