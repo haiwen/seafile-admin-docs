@@ -90,11 +90,11 @@ seaf-gc.sh -r
 
 ```
 
-**In Seafile version 4.1.1 and later, libraries deleted by the users are not immediately removed from the system. Instead, they're moved into a "trash" in the system admin page. Before they're cleared from the trash, their blocks won't be garbage collected.**
+**Libraries deleted by the users are not immediately removed from the system. Instead, they're moved into a "trash" in the system admin page. Before they're cleared from the trash, their blocks won't be garbage collected.**
 
 ### Removing FS objects
 
-Since Pro server 8.0.6, you can remove garbage fs objects. It should be run without the --dry-run option:
+Since Pro server 8.0.6 and community edition 9.0, you can remove garbage fs objects. It should be run without the --dry-run option:
 
 ```
 seaf-gc.sh --rm-fs
@@ -103,7 +103,7 @@ seaf-gc.sh --rm-fs
 
 ### Using Multiple Threads in GC
 
-Since Pro server 5.1.0, you can specify the thread number in GC. By default,
+You can specify the thread number in GC. By default,
 
 * If storage backend is S3/Swift/Ceph, 10 threads are started to do the GC work.
 * If storage backend is file system, only 1 thread is started.
