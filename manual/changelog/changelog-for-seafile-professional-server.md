@@ -46,6 +46,13 @@ Deprecated
 
 Please check our document for how to upgrade to 8.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_8.0.x/>
 
+### 8.0.16 (2021/12/28)
+
+* [fix] Remove JndiLookup.class from log4j jar in bundled ElasticSearch
+* [fix] Fix a memory leak in seaf-server
+* Use contact email and name in guest invitation revoking email
+* Upgrade bundled mariadb connector c to 3.2.5
+
 ### 8.0.15 (2021/12/06)
 
 * If a custom admin role is not found in admin role list, a role with minimal permissions ("audit_admin") will be assigned to the user
