@@ -8,6 +8,15 @@
 
 Please check our document for how to upgrade to 9.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_9.0.x/>
 
+### 9.0.3 beta (2021/12/28)
+
+* Upgrade ElasticSearch to version 7.x
+* Improve UI of file moving/copying dialog to show folders with long names
+* Expand to the current folder when open file moving/copying dialog
+* [fix] Fix a bug in golang file server log rotate support
+* [fix] Fix a bug in folder download-link and try to download files/folders as zip using golang file server
+* Preserve keyword when expanding search dialog to a separate search page
+
 ### 9.0.2 beta (2021/12/15)
 
 * Upgrade Django to 3.2
