@@ -1,5 +1,10 @@
 # SeaDrive Client Changelog
 
+### 2.0.19 (Windows) (2021/12/29)
+
+* Ignore timestamp changes to .eml files
+* Unregister sync root when user choose to remove account data in uninstallation
+
 ### 2.0.18 (macOS) (2021/10/29)
 
 * Add support for macOS 12
