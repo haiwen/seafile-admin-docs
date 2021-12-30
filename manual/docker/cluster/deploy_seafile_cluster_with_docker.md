@@ -83,7 +83,7 @@ $ vim docker-compose.yml
 version: '2.0'
 services:
   seafile:
-    image: docker.seafile.top/seafileltd/seafile-pro-mc:9.0.2
+    image: docker.seafile.top/seafileltd/seafile-pro-mc:latest
     container_name: seafile
     ports:
       - 80:80
@@ -223,7 +223,7 @@ $ vim docker-compose.yml
 version: '2.0'
 services:
   seafile:
-    image: docker.seafile.top/seafileltd/seafile-pro-mc:9.0.2
+    image: docker.seafile.top/seafileltd/seafile-pro-mc:latest
     container_name: seafile
     ports:
       - 80:80

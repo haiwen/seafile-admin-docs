@@ -25,11 +25,15 @@ docker pull {host}/seafileltd/seafile-pro-mc:latest
 
 ```
 
-You can find the private registry information on the [customer center download page](https://customer.seafile.com/downloads/).
+You can find the private registry information on the [customer center download page](https://customer.seafile.com/downloads/).
 
 ### Download and modify docker-compose.yml
 
-Download [docker-compose.yml](https://download.seafile.com/d/320e8adf90fa43ad8fee/files/?p=/docker/pro-edition/docker-compose.yml) sample file to your host. Then modify the file according to your environtment. The following fields are needed to be modified:
+Seafile 7.1 to 8.0 version download URL: [docker-compose.yml](./7.1_8.0/docker-compose.yml)
+
+Seafile 9.0 and later version download URL: [docker-compose.yml](./docker-compose.yml)
+
+Then modify the file according to your environtment. The following fields are needed to be modified:
 
 * The password of MySQL root (MYSQL_ROOT_PASSWORD and DB_ROOT_PASSWD)
 * The volume directory of MySQL data (volumes)
@@ -51,7 +55,7 @@ Wait for a few minutes for the first time initialization, then visit `http://sea
 
 ### Put your licence file(seafile-license.txt)
 
-If you have a `seafile-license.txt` licence file, simply put it in the volume directory of Seafile data. If the directory is `/opt/seafile-data` So, in your host machine:
+If you have a `seafile-license.txt` licence file, simply put it in the volume directory of Seafile data. If the directory is `/opt/seafile-data` So, in your host machine:
 
 ```
 cp /path/to/seafile-license.txt /opt/seafile-data/seafile/
@@ -135,7 +139,7 @@ server {
 
 ### Modify Seafile server configurations
 
-The config files are under `shared/seafile/conf`. You can modify the configurations according to [Seafile manual](https://manual.seafile.com/)﻿
+The config files are under `shared/seafile/conf`. You can modify the configurations according to [Seafile manual](https://manual.seafile.com/)
 
 After modification, you need to restart the container:
 
