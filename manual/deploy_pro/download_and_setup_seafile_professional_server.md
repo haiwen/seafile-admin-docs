@@ -410,7 +410,7 @@ Now you can access Seafile via the web interface at the host address and port 80
 ## Configing ElasticSearch
 
 * For Seafile PE 8.0.x and previous versions, the Seafile installation package already includes ElasticSearch, you can directly use it.
-* For Seafile PE 9.0.x and later versions, ElasticSearch needs to be installed and maintained separately (Due to copyright reasons, ElasticSearch 6.8.x cannot be brought into the Seafile package)
+* For Seafile PE 9.0.x and later versions, ElasticSearch needs to be installed and maintained separately (Due to copyright reasons, ElasticSearch 7.x cannot be brought into the Seafile package)
 
 ### ElasticSearch Deployment
 
@@ -418,7 +418,7 @@ We use Docker to deploy ElasticSearch as an example, so you need to install Dock
 
 ```
 ## Pull ElasticSearch Image
-docker pull elasticsearch:6.8.20
+docker pull elasticsearch:7.16.2
 ```
 
 ```
@@ -429,17 +429,16 @@ mkdir -p /opt/seafile-elasticsearch/data  && chmod -R 777 /opt/seafile-elasticse
 ```
 ## Start ElasticSearch Container
 docker run -d \
-           -p 9200:9200 \
-           -e "discovery.type=single-node" \
-           -e "bootstrap.memory_lock=true" \
-           -e "ES_JAVA_OPTS=-Xms1g -Xmx1g" \
-           -v /opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data \
-           --name es \
-           --restart=always \
-           elasticsearch:6.8.20
+--name es \
+-p 9200:9200 \
+-e "discovery.type=single-node" -e "bootstrap.memory_lock=true" \
+-e "ES_JAVA_OPTS=-Xms1g -Xmx1g" -e "xpack.security.enabled=false" \
+--restart=always \
+-v /opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data \
+-d elasticsearch:7.16.2
 ```
 
-**NOTE**：seafile PE 9.0.x only supports ElasticSearch 6.8.x version.
+**NOTE**：seafile PE 9.0.x only supports ElasticSearch 7.x version, it’s best to use 7.16.2 and above.
 
 ### Seafile Configuration
 
