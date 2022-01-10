@@ -55,7 +55,7 @@ Deprecated
 
 Please check our document for how to upgrade to 8.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_8.0.x/>
 
-### 8.0.17 (2021/01/08)
+### 8.0.17 (2022/01/10)
 
 * [fix] Remove JndiManager.class, JmsAppender.class and SmtpAppender.class from log4j jar in bundled ElasticSearch
 * [fix] Fix a bug in insert file from library in Markdown editor
