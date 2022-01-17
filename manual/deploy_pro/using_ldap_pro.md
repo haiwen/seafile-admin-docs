@@ -263,11 +263,15 @@ FILTER = memberOf={output of dsquery command}
 
 To use TLS connection to the directory server, you should install a valid SSL certificate on the directory server.
 
-The current version of Seafile Linux server package is compiled on CentOS. We include the ldap client library in the package to maintain compatibility with older Linux distributions. But since different Linux distributions have different path or configuration for OpenSSL library, sometimes Seafile is unable to connect to the directory server with TLS.
+To make sure Seafile server successfully connect to the directory server with TLS, you have to choose the right version of Seafile Pro servers.
+* If you're using Seafile 9.0 or newer, you should use Docker to run Seafile. There should be no problem connecting with TLS as long as SSL certificate on the directory server is valid.
+* If you're using older version of Seafile, you should choose Seafile package based on your OS. For CentOS/RHEL, choose the package for CentOS; for Ubuntu/Debian, choose the package for Ubuntu.
 
-The ldap library (libldap) bundled in the Seafile package is of version 2.4. If your Linux distribution is new enough (like CentOS 6, Debian 7 or Ubuntu 12.04 or above), you can use system's libldap instead.
+The Seafile server package bundles the version of libldap from the OS where it's built. So libldap will try to locate OpenSSL library in the same path as Since different Linux distributions have different path or configuration for OpenSSL library, sometimes Seafile is unable to connect to the directory server with TLS.
 
-On Ubuntu 14.04 and Debian 7/8, moving the bundled ldap related libraries out of the library path should make TLS connection work.
+When Seafile fails to connect with TLS, you may try to install ldap client libraries on your OS and ask Seafile to use them instead.
+
+On Ubuntu and Debian, moving the bundled ldap related libraries out of the library path should make TLS connection work.
 
 ```
 cd ${SEAFILE_INSTALLATION_DIR}/seafile-server-latest/seafile/lib
@@ -276,7 +280,7 @@ mv liblber-2.4.so.2 libldap-2.4.so.2 libsasl2.so.2 libldap_r-2.4.so.2 disabled_l
 
 ```
 
-On CentOS 6, you have to move the libnssutil library:
+On some CentOS systems, you may have to move the libnssutil library as well:
 
 ```
 cd ${SEAFILE_INSTALLATION_DIR}/seafile-server-latest/seafile/lib
