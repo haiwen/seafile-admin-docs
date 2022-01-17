@@ -96,11 +96,9 @@ memcached_options = --SERVER=192.168.1.134 --SERVER=192.168.1.135 --SERVER=192.1
 
 Notice that there is a `--RETRY-TIMEOUT=3600` option in the above config. This option is important for dealing with memcached server failures. After a memcached server in the cluster fails, Seafile server will stop trying to use it for "RETRY-TIMEOUT" (in seconds). You should set this timeout to relatively long time, to prevent Seafile from retrying the failed server frequently, which may lead to frequent request errors for the clients.
 
-## Notes for Ubuntu 16.04 and 18.04
+## Troubleshooting librados incompatibility issues
 
-Since version 5.1.0 version, we upgraded the bundled Ceph rados library to 0.94.6. On Ubuntu 16.04, this causes some incompatibility. To work around this issue, you have to install librados 0.94.6 in the Ubuntu system (from Ceph's official repositories) and let Seafile use the library from system.
-
-As of version 7.1.0, the librados we packaged into the bundle is older than the one provided in system repositories. This leads to incompatibility with the python-rados package on **Ubuntu 18.04**. So it's also needed to remove the bundle librados libraries.
+Since 8.0 version, Seafile bundles librados from Ceph 16. On some systems you may find Seafile fail to connect to your Ceph cluster. In such case, you can usually solve it by removing the bundled librados libraries and use the one installed in the OS.
 
 To do this, you have to remove a few bundled libraries:
 
