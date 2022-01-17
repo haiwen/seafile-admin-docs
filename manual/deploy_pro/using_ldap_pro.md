@@ -264,6 +264,7 @@ FILTER = memberOf={output of dsquery command}
 To use TLS connection to the directory server, you should install a valid SSL certificate on the directory server.
 
 To make sure Seafile server successfully connect to the directory server with TLS, you have to choose the right version of Seafile Pro servers.
+
 * If you're using Seafile 9.0 or newer, you should use Docker to run Seafile. There should be no problem connecting with TLS as long as SSL certificate on the directory server is valid.
 * If you're using older version of Seafile, you should choose Seafile package based on your OS. For CentOS/RHEL, choose the package for CentOS; for Ubuntu/Debian, choose the package for Ubuntu.
 
