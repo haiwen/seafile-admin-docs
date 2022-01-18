@@ -268,7 +268,7 @@ To make sure Seafile server successfully connect to the directory server with TL
 * If you're using Seafile 9.0 or newer, you should use Docker to run Seafile. There should be no problem connecting with TLS as long as SSL certificate on the directory server is valid.
 * If you're using older version of Seafile, you should choose Seafile package based on your OS. For CentOS/RHEL, choose the package for CentOS; for Ubuntu/Debian, choose the package for Ubuntu.
 
-The Seafile server package bundles the version of libldap from the OS where it's built. So libldap will try to locate OpenSSL library in the same path as Since different Linux distributions have different path or configuration for OpenSSL library, sometimes Seafile is unable to connect to the directory server with TLS.
+The Seafile server package bundles the version of libldap from the OS where it's built. So libldap will try to locate OpenSSL library in the same path as the buidling OS. Since different Linux distributions have different path or configuration for OpenSSL library, sometimes Seafile is unable to connect to the directory server with TLS.
 
 When Seafile fails to connect with TLS, you may try to install ldap client libraries on your OS and ask Seafile to use them instead.
 
