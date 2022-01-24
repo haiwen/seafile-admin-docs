@@ -8,7 +8,7 @@ Steps to migrate Seafile from SQLite to MySQL:
 
 1. Stop Seafile and Seahub.
 
-2. Download [sqlite2mysql.sh](https://raw.githubusercontent.com/haiwen/seafile-server/master/scripts/sqlite2mysql.sh) and [sqlite2mysql.py](https://raw.githubusercontent.com/haiwen/seafile-server/master/scripts/sqlite2mysql.py) to the top directory of your Seafile installation path. For example, `/opt/seafile`.
+2. Download [sqlite2mysql.sh](https://raw.githubusercontent.com/haiwen/seahub/master/scripts/sqlite2mysql.sh) and [sqlite2mysql.py](https://raw.githubusercontent.com/haiwen/seahub/master/scripts/sqlite2mysql.py) to the top directory of your Seafile installation path. For example, `/opt/seafile`.
 
 3. Run `sqlite2mysql.sh`:
 
