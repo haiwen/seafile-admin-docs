@@ -8,6 +8,11 @@
 
 Please check our document for how to upgrade to 9.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_9.0.x/>
 
+### 9.0.4 (2022/01/24)
+
+* Users can save files or folders in shared folder link to their own libraries
+* [fix] Fix markdown file print
+
 ### 9.0.3 beta (2021/12/28)
 
 * Upgrade ElasticSearch to version 7.x
