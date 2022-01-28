@@ -152,4 +152,5 @@ For memcache users, please purge the cache there instead by restarting your memc
 
 ```
 
-
+## Using Seafile Client
+When logging in on the Seafile client, the server address should now be http://www.example.com/seafile, not http://www.example.com.
