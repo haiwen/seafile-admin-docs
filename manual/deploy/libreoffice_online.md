@@ -4,7 +4,7 @@ Since Seafile Professional edition 6.0.0, you can integrate Seafile with Collabo
 
 ## Setup LibreOffice Online
 
-Prepare an Ubuntu 16.04 64bit server with [docker](http://www.docker.com/) installed. Assign a domain name to this server, we use *collabora-online.seafile.com* here. Obtain and install valid TLS/SSL certificates for this server, we use [Let’s Encrypt](https://letsencrypt.org/). Then use Nginx to serve collabora online, config file example:
+Prepare an Ubuntu 16.04 64bit server with [docker](http://www.docker.com/) installed. Assign a domain name to this server, we use *collabora-online.seafile.com* here. Obtain and install valid TLS/SSL certificates for this server, we use [Let’s Encrypt](https://letsencrypt.org/). Then use Nginx to serve collabora online, config file example (source https://sdk.collaboraonline.com/docs/installation/Proxy_settings.html):
 
 ```
 server {
@@ -15,23 +15,45 @@ server {
     ssl_certificate_key /etc/letsencrypt/live/collabora-online.seafile.com/privkey.pem;
 
     # static files
-    location ^~ /loleaflet {
-        proxy_pass https://localhost:9980;
+    location ^~ /browser {
+        proxy_pass https://127.0.0.1:9980;
         proxy_set_header Host $http_host;
     }
 
     # WOPI discovery URL
     location ^~ /hosting/discovery {
-        proxy_pass https://localhost:9980;
+        proxy_pass https://127.0.0.1:9980;
         proxy_set_header Host $http_host;
     }
 
-    # websockets, download, presentation and image upload
-    location ^~ /lool {
-        proxy_pass https://localhost:9980;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
+    # Capabilities
+    location ^~ /hosting/capabilities {
+        proxy_pass https://127.0.0.1:9980;
         proxy_set_header Host $http_host;
+    }
+
+    # main websocket
+    location ~ ^/cool/(.*)/ws$ {
+        proxy_pass https://127.0.0.1:9980;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "Upgrade";
+        proxy_set_header Host $http_host;
+        proxy_read_timeout 36000s;
+    }
+
+    # download, presentation and image upload
+    location ~ ^/(c|l)ool {
+        proxy_pass https://127.0.0.1:9980;
+        proxy_set_header Host $http_host;
+    }
+
+    # Admin Console websocket
+    location ^~ /cool/adminws {
+        proxy_pass https://127.0.0.1:9980;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "Upgrade";
+        proxy_set_header Host $http_host;
+        proxy_read_timeout 36000s;
     }
 }
 ```
