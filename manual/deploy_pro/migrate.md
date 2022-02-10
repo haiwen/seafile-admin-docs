@@ -1,6 +1,6 @@
 # Migrate data between different backends
 
-Seafile supports data migration between filesystem, s3, ceph, swift and Alibaba oss (migrating from swift is not supported yet, this support will be added in the future). If you enabled storage backend encryption feature, migration is not supported at the moment.
+Seafile supports data migration between filesystem, s3, ceph, swift and Alibaba oss (migrating from swift is not supported yet, this support will be added in the future).
 
 Data migration takes 3 steps:
 
