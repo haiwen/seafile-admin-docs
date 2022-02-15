@@ -4,6 +4,21 @@
 
 ## 9.0
 
+### 9.0.3 (2022-02-15)
+
+* Enable deleting fs objects in GC
+* Users can save files or folders in shared folder link to their own libraries
+* [fix] Fix language in calendar UI component used when picking date in sharing dialog
+* [fix] Fix markdown file print
+* Improve UI of file moving/copying dialog to show folders with long names
+* Expand to the current folder when open file moving/copying dialog
+* [fix] Fix a bug in golang file server log rotate support
+* [fix] Fix a bug in folder download-link and try to download files/folders as zip using golang file server
+* Show current number of shared users and groups when deleting a library
+* [fix] Fix support for customizing of favicon
+* [fix] Fix printing support of Markdown file
+* [fix] Fix zip-downloading in sharing links when golang file server is used
+
 ### 9.0.2 (2021-12-10)
 
 * Fix OnlyOffice/Collabora integration when golang http server
