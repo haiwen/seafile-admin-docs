@@ -96,8 +96,15 @@ ENABLE_WIKI = True
 # Since version 6.3.8, you can enable this option to let user's to specific a password for WebDAV login.
 # Users login via SSO can use this password to login in WebDAV.
 # Enable the feature. pycryptodome should be installed first.
-# sudo pip install pycryptodome==3.7.2
+# sudo pip install pycryptodome==3.12.0
 ENABLE_WEBDAV_SECRET = True
+WEBDAV_SECRET_MIN_LENGTH = 8
+
+# LEVEL for the password, based on four types of input:
+# num, upper letter, lower letter, other symbols
+# '3' means password must have at least 3 types of the above.
+WEBDAV_SECRET_STRENGTH_LEVEL = 1
+
 
 # Since version 7.0.9, you can force a full user to log in with a two factor authentication.
 # The prerequisite is that the administrator should 'enable two factor authentication' in the 'System Admin -> Settings' page.
