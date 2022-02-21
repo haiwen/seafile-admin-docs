@@ -4,6 +4,12 @@
 
 ## 9.0
 
+### 9.0.4 (2022-02-21)
+
+* [fix] Fix a UI bug in file moving/copying dialog
+* Support admin enforcing a strong password in WebDAV secret
+* [fix] Fix WebDAV error while filename contains special chars
+
 ### 9.0.3 (2022-02-15)
 
 * Enable deleting fs objects in GC
