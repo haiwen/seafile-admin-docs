@@ -1,5 +1,13 @@
 # SeaDrive Client Changelog
 
+### 2.0.20 (2022/03/04)
+
+* \[Win] Avoid creating empty change records
+* \[Win] Fix a bug in cache cleaning: Don't clean files not uploaded yet.
+* Support cache path that contains empty spaces
+* Improve a few permission error messages
+* Show errors when fails to create share links or upload links
+
 ### 2.0.19 (Windows) (2021/12/29)
 
 * Ignore timestamp changes to .eml files
