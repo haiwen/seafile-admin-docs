@@ -2,6 +2,12 @@
 
 ## 8.0
 
+### 8.0.6 (2022/03/04)
+
+* Improve some permission error messages
+* Show errors when fails to create share link or upload link
+* Support compiling with Qt 6.2
+
 ### 8.0.5 (2021/11/18)
 
 * \[Win] Improve German and French translations for context menus
