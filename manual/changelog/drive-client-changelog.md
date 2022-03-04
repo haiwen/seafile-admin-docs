@@ -7,6 +7,7 @@
 * Support cache path that contains empty spaces
 * Improve a few permission error messages
 * Show errors when fails to create share links or upload links
+* Support compiling with Qt 6.2
 
 ### 2.0.19 (Windows) (2021/12/29)
 
