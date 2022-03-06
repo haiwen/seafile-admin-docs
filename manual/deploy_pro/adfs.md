@@ -86,8 +86,7 @@ ATTRIBUTE_MAP_DIR = '<seafile-install-path>/seafile-server-latest/seahub-extra/s
 SAML_ATTRIBUTE_MAPPING = {
     'DisplayName': ('display_name', ),
     'ContactEmail': ('contact_email', ),
-    'Department': ('department', ),
-    'Telephone': ('telephone', ),
+    'Role': ('role', ),
 }
 
 ENABLE_ADFS_LOGIN = True
