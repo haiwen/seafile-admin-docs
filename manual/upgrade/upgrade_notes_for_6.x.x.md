@@ -41,7 +41,7 @@ pip install --upgrade Pillow
 # "build-dep python-imaging" instead of just "libjpeg-dev"
 
 # for Centos 7
-sudo yum install libjpeg-dev
+sudo yum install libjpeg-devel
 pip install --upgrade Pillow
 
 ```
