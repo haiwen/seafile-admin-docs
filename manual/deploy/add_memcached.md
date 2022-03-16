@@ -2,6 +2,8 @@
 
 Seahub caches items (avatars, profiles, etc) on the file system in /tmp/seahub_cache/ by default. You can use memcached instead to improve the performance.
 
+There are more memcached configurations in the Pro edition. Please refer to [Memcached Options for Pro Edition](../deploy_pro/memcached_options.md).
+
 First, make sure `libmemcached` library and development headers are installed on your system.
 
 **For Seafile 7.1+**
