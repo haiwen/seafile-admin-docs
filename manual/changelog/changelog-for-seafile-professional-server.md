@@ -8,6 +8,15 @@
 
 Please check our document for how to upgrade to 9.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_9.0.x/>
 
+### 9.0.5 (2022/03/21)
+
+* Remove unused "related files" feature
+* [fix] Fix zip downloading a folder not having .zip suffix when using golang file server
+* UI improvement of file label feature
+* Show file labels in folder sharing links
+* Improve performance when deleting virtual repos when original repo is deleted
+
+
 ### 9.0.4 (2022/01/24)
 
 * Users can save files or folders in shared folder link to their own libraries
