@@ -1,5 +1,11 @@
 # SeaDrive Client Changelog
 
+### 2.0.21 (Windows) (2021/03/21)
+
+* Don't remove cached folder when logout and remove account, to prevent unintended removal of files.
+* Disallow changing cases for library names.
+* Retry when failed to convert a file/folder to placeholder.
+
 ### 2.0.20 (2022/03/04)
 
 * \[Win] Avoid creating empty change records
