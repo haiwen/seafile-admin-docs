@@ -2,7 +2,7 @@
 
 ### 2.0.21 (Windows) (2021/03/21)
 
-* Don't remove cached folder when logout and remove account, to prevent unintended removal of files.
+* Don't remove cache folder when logout and remove account, to prevent unintended removal of files.
 * Disallow changing cases for library names.
 * Retry when failed to convert a file/folder to placeholder.
 
