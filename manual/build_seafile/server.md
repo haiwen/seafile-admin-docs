@@ -199,13 +199,13 @@ Then, you can visit <http://127.0.0.1:8000/>  to use Seafile.
 
 For deploying frontend development enviroment, you need:
 
-1, checkout seahub to master branch
+1, checkout seahub to 8.0 branch
 
 ```
 cd /root/dev/source-code/seahub
 
-git fetch origin master:master
-git checkout master
+git fetch origin 8.0:8.0
+git checkout 8.0
 ```
 
 2, add the following configration to /root/dev/conf/seahub_settings.py
