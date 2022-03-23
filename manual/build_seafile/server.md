@@ -32,7 +32,7 @@ rm /usr/bin/pip3
 ln -s /usr/local/bin/pip3.6 /usr/bin/pip
 ln -s /usr/local/bin/pip3.6 /usr/bin/pip3
 
-pip install python-cas djangosaml2 cffi sqlalchemy pymysql pillow pycryptodome configparser pylibmc django-pylibmc elasticsearch==5.5.0 elasticsearch-dsl==5.4.0 Django==2.2.14 future captcha django-statici18n django-post_office==3.3.0 django-webpack_loader gunicorn mysqlclient django-picklefield==2.1.1 openpyxl qrcode django-formtools django-simple-captcha djangorestframework==3.11.1 python-dateutil requests pillow pyjwt pycryptodome requests_oauthlib mock nose exam splinter pytest pytest-django
+pip install python-cas djangosaml2 cffi sqlalchemy pymysql pillow pycryptodome configparser pylibmc django-pylibmc elasticsearch==5.5.0 elasticsearch-dsl==5.4.0 Django==2.2.14 future captcha django-statici18n django-post_office==3.3.0 django-webpack_loader==0.7.0 gunicorn mysqlclient django-picklefield==2.1.1 openpyxl qrcode django-formtools django-simple-captcha djangorestframework==3.11.1 python-dateutil requests pillow pyjwt pycryptodome requests_oauthlib mock nose exam splinter pytest pytest-django
 ```
 
 ## Install MariaDB and Create Databases
