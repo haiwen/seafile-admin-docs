@@ -15,7 +15,7 @@ Please check our document for how to upgrade to 9.0: <https://manual.seafile.com
 * UI improvement of file label feature
 * Show file labels in folder sharing links
 * Improve performance when deleting virtual repos when original repo is deleted
-* [fix, security] Fix permission check in deleting a file comment
+* [fix, security] Fix permission check in deleting/editing a file comment
 
 ### 9.0.4 (2022/01/24)
 
