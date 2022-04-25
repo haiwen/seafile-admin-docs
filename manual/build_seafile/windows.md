@@ -111,7 +111,7 @@ Then pull the code of the specified tag and build.
 ```bash
 cd libsearpc
 git pull origin master:master
-git reset v8.0.0 --hard
+git reset v3.2-latest --hard
 
 cd ../seafile-client
 git pull origin master:master
