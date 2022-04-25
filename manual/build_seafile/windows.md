@@ -15,7 +15,7 @@ Before compiling and developing, you need to install and configure the developme
 
 ## Installing third-party libraries
 
-Third-party libraries include:glib, curl, openssl(version1.1.1d), openssl-windows(version1.1.1d-1), libevent, jansson, sqlite3, pthreads, getopt-win32
+Third-party libraries include: glib, curl, openssl(version1.1.1d), openssl-windows(version1.1.1d-1), libevent, jansson, sqlite3, pthreads, getopt-win32
 
 ```
 Install example：`vcpkg.exe install curl[core,openssl]:x64-windows`
@@ -102,8 +102,6 @@ git clone git@github.com:haiwen/seafile-shell-ext.git
 Modify build scripts:
 
 1. open seafile/scripts/build/build-msi-vs.py and modify QT_DIR to your directory of qt.
-2. replace generator_fragment_cmd with generator_fragment_cmd="%s/Paraffin.exe -dir bin -alias bin -gn group_bin fragment.wxs" %(WIX_BIN).
-3. replace new_line = re.sub(r'file_bin\_\[\\d]+', 'seafileapplet.exe', line) with new_line = re.sub(r'file\_\[\\w]+', 'seafileapplet.exe',  line)
 
 Then pull the code of the specified tag and build.
 
