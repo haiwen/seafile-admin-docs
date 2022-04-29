@@ -2,6 +2,11 @@
 
 ## 8.0
 
+### 8.0.7 (2022/04/29)
+
+* Fix "Another copy or move operation is in progress" error when copying items in cloud file browser
+* Fix folder timestamp when all items under a folder is removed
+
 ### 8.0.6 (2022/03/04)
 
 * Improve some permission error messages
