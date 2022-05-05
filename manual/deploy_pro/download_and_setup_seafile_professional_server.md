@@ -97,7 +97,7 @@ sudo pip3 install --timeout=3600 django==3.2.* Pillow pylibmc captcha jinja2 sql
     django-pylibmc django-simple-captcha python3-ldap mysqlclient pycryptodome==3.12.0 cffi==1.14.0
 ```
 
-**NOTE**: The recommended deployment option for Seafile PE on CentOS/Redhat is [Docker](https://manual.seafile.com/docker/pro-edition/deploy_seafile_pro_with_docker/).
+**Note**: The recommended deployment option for Seafile PE on CentOS/Redhat is [Docker](https://manual.seafile.com/docker/pro-edition/deploy_seafile_pro_with_docker/).
 
 ### Installing Java Runtime Environment
 
