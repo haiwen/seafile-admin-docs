@@ -12,6 +12,7 @@
 * [fix] Fix a UI bug when drag and drop a file
 * Improve UI for file tags
 * Improve UI of file comments
+* Show file tags in sharing links
 * Remove the feature of related files as it is not used
 * Support editing of expire time for sharing links
 * Improve SQL performance when deleting a library
