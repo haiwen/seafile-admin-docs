@@ -10,9 +10,11 @@
 * [fix] Fix a bug in work with Python 3.10+
 * [fix] Fix a bug in smart link redict to the file page
 * [fix] Fix a UI bug when drag and drop a file
+* [fix] Fix zip downloading a folder not having .zip suffix when using golang file server
 * Improve UI for file tags
-* Improve UI of file comments
 * Show file tags in sharing links
+* Improve UI of file comments
+* [fix] Fix permission check in deleting/editing a file comment
 * Remove the feature of related files as it is not used
 * Support editing of expire time for sharing links
 * Improve SQL performance when deleting a library
