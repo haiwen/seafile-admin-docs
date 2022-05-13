@@ -4,6 +4,20 @@
 
 ## 9.0
 
+### 9.0.5 (2022-05-13)
+
+* [fix] Fix a bug that sometimes a shared subfolder is unshared automatically by database access error
+* [fix] Fix a bug in work with Python 3.10+
+* [fix] Fix a bug in smart link redict to the file page
+* [fix] Fix a UI bug when drag and drop a file
+* Improve UI for file tags
+* Improve UI of file comments
+* Remove the feature of related files as it is not used
+* Support editing of expire time for sharing links
+* Improve SQL performance when deleting a library
+* Show ISO date and time in file history page instead of showing relative time
+* Add "Visit related snapshot" in the dropdown menu of an entry in file history
+
 ### 9.0.4 (2022-02-21)
 
 * [fix] Fix a UI bug in file moving/copying dialog
