@@ -4,7 +4,7 @@ The Seafile Add-in for Outlook natively supports authentication via username and
 
 Specifically, this is how the add-in makes use of  :
 * Upon click on the SSO button in the add-in, the add-in opens a browser windows and requests `http(s)://SEAFILE_SERVER_URL/outlook/`
-* A php script redirects the request to `http(s)://SEAFILE_SERVER_URL/accounts/login/` including a redirect request to /outlook/ following a successful authentication (http(s)://SEAFILE_SERVER_URL/accounts/login/?next=/jwt-sso/?page=/outlook)
+* A php script redirects the request to `http(s)://SEAFILE_SERVER_URL/accounts/login/` including a redirect request to /outlook/ following a successful authentication (`http(s)://SEAFILE_SERVER_URL/accounts/login/?next=/jwt-sso/?page=/outlook/`)
 * The identity provider returns a JWT token upon authentication
 * The php script returns the API-token to add-in
 * The add-in authorizes all API calls with the API-token
@@ -37,7 +37,7 @@ $ composer require firebase/php-jwt guzzlehttp/guzzle
 
 ## Configuring Seahub
 
-Add this block to the config file seahub_settings.py using a text editor:
+Add this block to the config file `seahub_settings.py` using a text editor:
 
 ```
 ENABLE_JWT_SSO = True
@@ -45,13 +45,13 @@ JWT_SSO_SECRET_KEY = 'SHARED_SECRET'
 ENABLE_SYS_ADMIN_GENERATE_USER_AUTH_TOKEN = True
 ```
 
-Replace SHARED_SECRET by a secret of your own.
+Replace SHARED_SECRET with a secret of your own.
 
 ## Configuring the proxy server
 
 The configuration depends on the proxy server use.
 
-If you use nginx, add the following block to the configuration:
+If you use nginx, add the following location block to the nginx configuration:
 
 ```
 location /outlook {
@@ -69,11 +69,11 @@ location /outlook {
 
 This sample block assumes that php 7.4 is installed. If you have a different php version on your system, modify the version in the fastcgi_pass unix.
 
-Generally speaking, the location and the alias path can be altered. We advise against it unless there are good reasons.
+Note: The location and the alias path can be altered. We advise against it unless there are good reasons.
 
-Finally, check the nginx configuration
+Finally, check the nginx configuration and restart nginx:
 
-````
+```
 $ nginx -t
 $ nginx -s reload
 ```
@@ -111,10 +111,10 @@ First, replace SEAFILE_SERVER_URL with the URL of your Seafile Server and SHARED
 
 Second, add either the user credentials of an Seafile user with admin rights or the API-token of such a user.
 
-In the next step, create the index.php and copy&paste the php script:
+In the next step, create the `index.php` and copy&paste the php script:
 
 ```
-mkdir -p /var/www/outlook-sso/public
+mkdir /var/www/outlook-sso/public
 $ cd /var/www/outlook-sso/public
 $ nano index.php
 ```
@@ -172,21 +172,22 @@ else{ // no jwt-token. therefore redirect to the login page of seafile
 
 ```
 
-The directory layout in /var/www/sso-outlook should now look as follows:
+Note: No replacements are necessary in this file.
+
+The directory layout in `/var/www/sso-outlook/` should now look as follows:
 
 ```
-$ tree -L 2 /var/www/outlook-sso/
-composer.json
-composer.lock
-config.php
-/public
-  index.php
-/vendor
-  autoload.php
-  ...
-  firebase
-  guzzlehttp
-  ...
+$ tree -L 2 /var/www/outlook-sso
+/var/www/outlook-sso/
+├── composer.json
+├── composer.lock
+├── config.php
+├── public
+|   └── index.php
+└── vendor
+    ├── autoload.php
+    ├── composer
+    └── firebase
 ```
 
 
