@@ -1,15 +1,15 @@
 # SSO for Seafile Outlook Add-in
 
-The Seafile Add-in for Outlook natively supports authentication via username and password. In order to authenticate with SSO, the add-in utilizes Seahub's SSO support.
+The Seafile Add-in for Outlook natively supports authentication via username and password. In order to authenticate with SSO, the add-in utilizes SSO support integrated in Seafile's webinterface Seahub.
 
 Specifically, this is how the add-in makes use of  :
 * Upon click on the SSO button in the add-in, the add-in opens a browser windows and requests `http(s)://SEAFILE_SERVER_URL/outlook/`
-* A php script redirects the request to `http(s)://SEAFILE_SERVER_URL/accounts/login/` including a redirect request to /outlook/ following a successful authentication (`http(s)://SEAFILE_SERVER_URL/accounts/login/?next=/jwt-sso/?page=/outlook/`)
+* A PHP script redirects the request to `http(s)://SEAFILE_SERVER_URL/accounts/login/` including a redirect request to /outlook/ following a successful authentication (`http(s)://SEAFILE_SERVER_URL/accounts/login/?next=/jwt-sso/?page=/outlook/`)
 * The identity provider returns a JWT token upon authentication
-* The php script returns the API-token to add-in
+* The PHP script returns the API-token to add-in
 * The add-in authorizes all API calls with the API-token
 
-This document explains how to configure Seafile and the reverse proxy and how to deploy the php script.
+This document explains how to configure Seafile and the reverse proxy and how to deploy the PHP script.
 
 ## Requirements
 
@@ -17,9 +17,9 @@ SSO authentication must be configured in Seafile.
 
 ## Installing prerequisites
 
-The packages php, composer, firebase-jwt, and dotenv must be installed. php can usually be downloaded and installed via the distribution's official repositories. firebase-jwt and dotenv are installed using composer.
+The packages php, composer, firebase-jwt, and dotenv must be installed. PHP can usually be downloaded and installed via the distribution's official repositories. firebase-jwt and dotenv are installed using composer.
 
-First, install php and check the installed version:
+First, install the php package and check the installed version:
 ```
 # Debian/Ubuntu
 $ sudo apt install php-fpm php-curl
@@ -67,7 +67,7 @@ location /outlook {
 }
 ```
 
-This sample block assumes that php 7.4 is installed. If you have a different php version on your system, modify the version in the fastcgi_pass unix.
+This sample block assumes that PHP 7.4 is installed. If you have a different PHP version on your system, modify the version in the fastcgi_pass unix.
 
 Note: The location and the alias path can be altered. We advise against it unless there are good reasons.
 
@@ -79,7 +79,7 @@ $ nginx -s reload
 ```
 
 ## Deploying the SSO request handler
-The php script and corresponding configuration files will be saved in the new directory created earlier. Change into it and add a php config file:
+The PHP script and corresponding configuration files will be saved in the new directory created earlier. Change into it and add a PHP config file:
 
 ```
 $ cd /var/www/outlook-sso
@@ -111,7 +111,7 @@ First, replace SEAFILE_SERVER_URL with the URL of your Seafile Server and SHARED
 
 Second, add either the user credentials of an Seafile user with admin rights or the API-token of such a user.
 
-In the next step, create the `index.php` and copy&paste the php script:
+In the next step, create the `index.php` and copy & paste the PHP script:
 
 ```
 mkdir /var/www/outlook-sso/public
