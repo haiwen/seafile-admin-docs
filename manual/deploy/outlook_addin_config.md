@@ -3,10 +3,10 @@
 The Seafile Add-in for Outlook natively supports authentication via username and password. In order to authenticate with SSO, the add-in utilizes SSO support integrated in Seafile's webinterface Seahub.
 
 Specifically, this is how the add-in makes use of  :
-* Upon click on the SSO button in the add-in, the add-in opens a browser windows and requests `http(s)://SEAFILE_SERVER_URL/outlook/`
-* A PHP script redirects the request to `http(s)://SEAFILE_SERVER_URL/accounts/login/` including a redirect request to /outlook/ following a successful authentication (`http(s)://SEAFILE_SERVER_URL/accounts/login/?next=/jwt-sso/?page=/outlook/`)
+* When clicking the SSO button in the add-in, the add-in opens a browser window and requests `http(s)://SEAFILE_SERVER_URL/outlook/`
+* A PHP script redirects the request to `http(s)://SEAFILE_SERVER_URL/accounts/login/` including a redirect request to /outlook/ following a successful authentication (e.g., `https://demo.seafile.com/accounts/login/?next=/jwt-sso/?page=/outlook/`)
 * The identity provider returns a JWT token upon authentication
-* The PHP script returns the API-token to add-in
+* The PHP script returns the API-token to the add-in
 * The add-in authorizes all API calls with the API-token
 
 This document explains how to configure Seafile and the reverse proxy and how to deploy the PHP script.
@@ -17,7 +17,7 @@ SSO authentication must be configured in Seafile.
 
 ## Installing prerequisites
 
-The packages php, composer, firebase-jwt, and dotenv must be installed. PHP can usually be downloaded and installed via the distribution's official repositories. firebase-jwt and dotenv are installed using composer.
+The packages php, composer, firebase-jwt, and guzzle must be installed. PHP can usually be downloaded and installed via the distribution's official repositories. firebase-jwt and guzzle are installed using composer.
 
 First, install the php package and check the installed version:
 ```
@@ -78,7 +78,7 @@ $ nginx -t
 $ nginx -s reload
 ```
 
-## Deploying the SSO request handler
+## Deploying the PHP script
 The PHP script and corresponding configuration files will be saved in the new directory created earlier. Change into it and add a PHP config file:
 
 ```
@@ -109,7 +109,7 @@ $seafile_admin_token = '';
 
 First, replace SEAFILE_SERVER_URL with the URL of your Seafile Server and SHARED_SECRET with the key used in Configuring Seahub.
 
-Second, add either the user credentials of an Seafile user with admin rights or the API-token of such a user.
+Second, add either the user credentials of a Seafile user with admin rights or the API-token of such a user.
 
 In the next step, create the `index.php` and copy & paste the PHP script:
 
@@ -190,5 +190,7 @@ $ tree -L 2 /var/www/outlook-sso
     └── firebase
 ```
 
+Seafile and Seahub are now configured to support SSO in the Seafile Add-in for Outlook.
 
 # Testing
+You can now test SSO authentication in the add-in. Hit the SSO button in the settings of the Seafile add-in. 
