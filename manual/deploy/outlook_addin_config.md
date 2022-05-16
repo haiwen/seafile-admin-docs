@@ -1,10 +1,19 @@
 # SSO for Seafile Outlook Add-in
 
-The Seafile Add-in for Outlook utilizes the SSO service configured on the Seafile Server it connects to.
+The Seafile Add-in for Outlook natively supports authentication via username and password. In order to authenticate with SSO, the add-in utilizes Seahub's SSO support.
+
+Specifically, this is how the add-in makes use of  :
+* Upon click on the SSO button in the add-in, the add-in opens a browser windows and requests `http(s)://SEAFILE_SERVER_URL/outlook/`
+* A php script redirects the request to `http(s)://SEAFILE_SERVER_URL/accounts/login/` including a redirect request to /outlook/ following a successful authentication (http(s)://SEAFILE_SERVER_URL/accounts/login/?next=/jwt-sso/?page=/outlook)
+* The identity provider returns a JWT token upon authentication
+* The php script returns the API-token to add-in
+* The add-in authorizes all API calls with the API-token
+
+This document explains how to configure Seafile and the reverse proxy and how to deploy the php script.
 
 ## Requirements
 
-SSO authentication must be configured.
+SSO authentication must be configured in Seafile.
 
 ## Installing prerequisites
 
@@ -13,19 +22,20 @@ The packages php, composer, firebase-jwt, and dotenv must be installed. php can 
 First, install php and check the installed version:
 ```
 # Debian/Ubuntu
-$ sudo apt install php-fmp php-curl
+$ sudo apt install php-fpm php-curl
 $ php --version
 ```
 
 Second, install composer. You find an up-to-date install manual at https://getcomposer.org/ for CentOS, Debian, and Ubuntu.
 
-Third, use composer to install firebase-jwt and dotenv:
+Third, use composer to install firebase-jwt and guzzle in a new directory in `/var/www`:
 ```
-$ composer require firebase/php-jwt
-$ composer require vlucas/phpdotenv
+$ mkdir -p /var/www/outlook-sso
+$ cd /var/www/outlook-sso
+$ composer require firebase/php-jwt guzzlehttp/guzzle
 ```
 
-## Configure Seahub
+## Configuring Seahub
 
 Add this block to the config file seahub_settings.py using a text editor:
 
@@ -62,35 +72,122 @@ This sample block assumes that php 7.4 is installed. If you have a different php
 Generally speaking, the location and the alias path can be altered. We advise against it unless there are good reasons.
 
 Finally, check the nginx configuration
+
 ````
 $ nginx -t
 $ nginx -s reload
+```
 
-
-## Installing the SSO request handler
+## Deploying the SSO request handler
+The php script and corresponding configuration files will be saved in the new directory created earlier. Change into it and add a php config file:
 
 ```
-mkdir -p /var/www/outlook-sso
 $ cd /var/www/outlook-sso
-$ git clone datamate-rethink-it/outlook-seafile-sso-php-handler   (wie soll das baby heißen)
-$ mv .env.example .env
-$ nano .env
+$ nano config.php
+```
+
+Paste the following content in the `config.php`:
+
+```
+<?php
+
+# general settings
+$seafile_url = 'SEAFILE_SERVER_URL';
+$jwt_shared_secret = 'SHARED_SECRET';
+
+# Option 1: provide credentials of a seafile admin user
+$seafile_admin_account = [
+    'username' => '',
+    'password' => '',
+];
+
+# Option 2: provide the api-token of a seafile admin user
+$seafile_admin_token = '';
+
+?>
+```
+
+First, replace SEAFILE_SERVER_URL with the URL of your Seafile Server and SHARED_SECRET with the key used in Configuring Seahub.
+
+Second, add either the user credentials of an Seafile user with admin rights or the API-token of such a user.
+
+In the next step, create the index.php and copy&paste the php script:
+
+```
+mkdir -p /var/www/outlook-sso/public
+$ cd /var/www/outlook-sso/public
+$ nano index.php
+```
+
+Paste the following code block:
+
+```
+<?php
+/** IMPORTANT: there is no need to change anything in this file ! **/
+
+require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../config.php';
+
+if(!empty($_GET['jwt-token'])){
+    try {
+        $decoded = Firebase\JWT\JWT::decode($_GET['jwt-token'], new Firebase\JWT\Key($jwt_shared_secret, 'HS256'));
+    }
+    catch (Exception $e){
+        echo json_encode(["error" => "wrong JWT-Token"]);
+        die();
+    }
+
+    try {
+        // init connetion to seafile api
+        $client = new GuzzleHttp\Client(['base_uri' => $seafile_url]);
+
+        // get admin api-token with his credentials (if not set)
+        if(empty($seafile_admin_token)){
+            $request = $client->request('POST', '/api2/auth-token/', ['form_params' => $seafile_admin_account]);
+            $response = json_decode($request->getBody());
+            $seafile_admin_token = $response->token;
+        }
+
+        // get api-token of the user
+        $request = $client->request('POST', '/api/v2.1/admin/generate-user-auth-token/', [
+            'json' => ['email' => $decoded->email],
+            'headers' => ['Authorization' => 'Token '. $seafile_admin_token]
+        ]);
+        $response = json_decode($request->getBody());
+
+        // create the output for the outlook plugin (json like response)
+        echo json_encode([
+            'exp' => $decoded->exp,
+            'email' => $decoded->email,
+            'name' => $decoded->name,
+            'token' => $response->token,
+        ]);
+    } catch (GuzzleHttp\Exception\ClientException $e){
+        echo $e->getResponse()->getBody();
+    }
+}
+else{ // no jwt-token. therefore redirect to the login page of seafile
+    header("Location: ". $seafile_url ."/accounts/login/?next=/jwt-sso/?page=/outlook");
+} ?>
+
+```
 
 The directory layout in /var/www/sso-outlook should now look as follows:
 
+```
+$ tree -L 2 /var/www/outlook-sso/
 composer.json
 composer.lock
-.env
+config.php
 /public
   index.php
-  style.css
 /vendor
   autoload.php
   ...
   firebase
+  guzzlehttp
   ...
-  vlucas
-
+```
 
 
 # Testing
