@@ -1,12 +1,12 @@
 # SSO for Seafile Outlook Add-in
 
-The Seafile Add-in for Outlook natively supports authentication via username and password. In order to authenticate with SSO, the add-in utilizes SSO support integrated in Seafile's webinterface Seahub.
+The Seafile Add-in for Outlook natively supports authentication via username and password. In order to authenticate with SSO, the add-in utilizes SSO support integrated in Seafile's webinterface Seahub. 
 
 Specifically, this is how the add-in makes use of  :
 * When clicking the SSO button in the add-in, the add-in opens a browser window and requests `http(s)://SEAFILE_SERVER_URL/outlook/`
 * A PHP script redirects the request to `http(s)://SEAFILE_SERVER_URL/accounts/login/` including a redirect request to /outlook/ following a successful authentication (e.g., `https://demo.seafile.com/accounts/login/?next=/jwt-sso/?page=/outlook/`)
-* The identity provider returns a JWT token upon authentication
-* The PHP script returns the API-token to the add-in
+* The identity provider signals to Seafile that the user's successful authentication
+* The PHP script sends an API-token to the add-in
 * The add-in authorizes all API calls with the API-token
 
 This document explains how to configure Seafile and the reverse proxy and how to deploy the PHP script.
@@ -15,15 +15,22 @@ This document explains how to configure Seafile and the reverse proxy and how to
 
 SSO authentication must be configured in Seafile.
 
+Seafile Server must be version 8.0 or above.
+
 ## Installing prerequisites
 
 The packages php, composer, firebase-jwt, and guzzle must be installed. PHP can usually be downloaded and installed via the distribution's official repositories. firebase-jwt and guzzle are installed using composer.
 
 First, install the php package and check the installed version:
 ```
-# Debian/Ubuntu
-$ sudo apt install php-fpm php-curl
+# CentOS/RedHat
+$ sudo yum install -y php-fpm php-curl
 $ php --version
+
+# Debian/Ubuntu
+$ sudo apt install -y php-fpm php-curl
+$ php --version
+
 ```
 
 Second, install composer. You find an up-to-date install manual at https://getcomposer.org/ for CentOS, Debian, and Ubuntu.
@@ -69,7 +76,7 @@ location /outlook {
 
 This sample block assumes that PHP 7.4 is installed. If you have a different PHP version on your system, modify the version in the fastcgi_pass unix.
 
-Note: The location and the alias path can be altered. We advise against it unless there are good reasons.
+Note: The alias path can be altered. We advise against it unless there are good reasons. If you do, make sure you modify the path accordingly in all subsequent steps.
 
 Finally, check the nginx configuration and restart nginx:
 
@@ -107,7 +114,7 @@ $seafile_admin_token = '';
 ?>
 ```
 
-First, replace SEAFILE_SERVER_URL with the URL of your Seafile Server and SHARED_SECRET with the key used in Configuring Seahub.
+First, replace SEAFILE_SERVER_URL with the URL of your Seafile Server and SHARED_SECRET with the key used in [Configuring Seahub](../deploy/outlook_addin_config.md/#configuring_seahub).
 
 Second, add either the user credentials of a Seafile user with admin rights or the API-token of such a user.
 
@@ -172,7 +179,7 @@ else{ // no jwt-token. therefore redirect to the login page of seafile
 
 ```
 
-Note: No replacements are necessary in this file.
+Note: Contrary to the config.php, no replacements or modifications are necessary in this file.
 
 The directory layout in `/var/www/sso-outlook/` should now look as follows:
 
@@ -193,4 +200,6 @@ $ tree -L 2 /var/www/outlook-sso
 Seafile and Seahub are now configured to support SSO in the Seafile Add-in for Outlook.
 
 # Testing
-You can now test SSO authentication in the add-in. Hit the SSO button in the settings of the Seafile add-in. 
+You can now test SSO authentication in the add-in. Hit the SSO button in the settings of the Seafile add-in.
+
+
