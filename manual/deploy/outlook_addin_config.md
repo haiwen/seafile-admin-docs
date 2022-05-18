@@ -2,10 +2,10 @@
 
 The Seafile Add-in for Outlook natively supports authentication via username and password. In order to authenticate with SSO, the add-in utilizes SSO support integrated in Seafile's webinterface Seahub. 
 
-Specifically, this is how the add-in makes use of  :
+Specifically, this is how SSO with the add-in works :
 * When clicking the SSO button in the add-in, the add-in opens a browser window and requests `http(s)://SEAFILE_SERVER_URL/outlook/`
 * A PHP script redirects the request to `http(s)://SEAFILE_SERVER_URL/accounts/login/` including a redirect request to /outlook/ following a successful authentication (e.g., `https://demo.seafile.com/accounts/login/?next=/jwt-sso/?page=/outlook/`)
-* The identity provider signals to Seafile that the user's successful authentication
+* The identity provider signals to Seafile the user's successful authentication
 * The PHP script sends an API-token to the add-in
 * The add-in authorizes all API calls with the API-token
 
