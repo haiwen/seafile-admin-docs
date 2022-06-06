@@ -198,7 +198,6 @@ ACTIVATE_AFTER_FIRST_LOGIN = True
 
 This option will automatically activate users when they login to Seafile for the first time.
 
-With these configurations, an imported user can be searched and be shared with folders, but will not consume license until he/she logs in.
 
 ### Reactivating Users
 
