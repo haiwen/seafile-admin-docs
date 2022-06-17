@@ -4,9 +4,17 @@
 
 ## Getting started
 
+### Install docker
+
+Seafile v7.x.x (or newer versions) image uses docker. You should first install docker.
+
+[Install Docker Engine on CentOS](https://docs.docker.com/engine/install/centos/)
+
+[Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
+
 ### Install docker-compose
 
-Seafile v7.x.x (or newer versions) image uses docker-compose. You should first install the docker-compose command.
+Seafile v7.x.x (or newer versions) image uses docker-compose. You should install the docker-compose command.
 
 ```bash
 # for CentOS
@@ -83,6 +91,22 @@ If you want to use your own SSL certificate and the volume directory of Seafile 
 * create a folder `/opt/seafile-data/ssl`, and put your certificate and private key under the ssl directory.
 * Assume your site name is `seafile.example.com`, then your certificate must have the name `seafile.example.com.crt`, and the private key must have the name `seafile.example.com.key`.
 
+If you got the following error when SEAFILE_SERVER_LETSENCRYPT=true is set:
+
+```log
+subprocess.CalledProcessError: Command '/scripts/ssl.sh /shared/ssl cloud.seafile-demo.de' returned non-zero exit status 128.
+```
+
+In /scripts/ssl.sh (script in seafile container), `git clone git://` has to be replaced with `git clone https://`.
+
+Then restart the container:
+
+```shell
+docker-compose restart
+```
+
+Since version 9.0.6, we use acme (not acme-tiny) to get certificate and fix this error.
+
 ### Modify Seafile server configurations
 
 The config files are under `shared/seafile/conf`. You can modify the configurations according to [Seafile manual](https://manual.seafile.com/)
@@ -95,6 +119,12 @@ docker-compose restart
 ```
 
 ### Find logs
+
+To view Seafile docker logs, please use the following command
+
+```shell
+docker-compose logs -f
+```
 
 The Seafile logs are under `shared/logs/seafile` in the docker, or `/opt/seafile-data/logs/seafile` in the server that run the docker.
 
@@ -115,7 +145,7 @@ Enter the username and password according to the prompts. You now have a new adm
 
 ### `/shared`
 
-Placeholder spot for shared volumes. You may elect to store certain persistent information outside of a container, in our case we keep various logfiles and upload directory outside. This allows you to rebuild containers easily without losing important information.
+Placeholder spot for shared volumes. You may elect to store certain persistent information outside of a container, in our case we keep various log files and upload directory outside. This allows you to rebuild containers easily without losing important information.
 
 * /shared/seafile: This is the directory for seafile server configuration and data.
 * /shared/logs: This is the directory for logs.
@@ -137,12 +167,12 @@ docker-compose up -d
 
 ## Backup and recovery
 
-### Struct
+### Structure
 
 We assume your seafile volumns path is in `/opt/seafile-data`. And you want to backup to `/opt/seafile-backup` directory.
 You can create a layout similar to the following in /opt/seafile-backup directory:
 
-```struct
+```
 /opt/seafile-backup
 ---- databases/  MySQL contains database backup files
 ---- data/  Seafile contains backups of the data directory
@@ -151,7 +181,7 @@ You can create a layout similar to the following in /opt/seafile-backup director
 
 The data files to be backed up:
 
-```struct
+```
 /opt/seafile-data/seafile/conf  # configuration files
 /opt/seafile-data/seafile/seafile-data # data of seafile
 /opt/seafile-data/seafile/seahub-data # data of seahub
