@@ -158,7 +158,7 @@ If you got the following error when SEAFILE_SERVER_LETSENCRYPT=true is set:
 subprocess.CalledProcessError: Command '/scripts/ssl.sh /shared/ssl cloud.seafile-demo.de' returned non-zero exit status 128.
 ```
 
-In /scripts/ssl.sh: `git clone git://` has to be replaced with `git clone https://`.
+In /scripts/ssl.sh (script in seafile container), `git clone git://` has to be replaced with `git clone https://`.
 
 Then restart the container:
 
@@ -166,7 +166,7 @@ Then restart the container:
 docker-compose restart
 ```
 
-After versions 9.0.5, we use acme (not acme-tiny) to get certificate and fix this error.
+Since version 9.0.6, we use acme (not acme-tiny) to get certificate and fix this error.
 
 ### Modify Seafile server configurations
 
@@ -326,7 +326,7 @@ You need to manually add the OnlyOffice config to docker-compose.yml
 
 ## Clamav with Docker
 
-After versions 9.0.5, you can deploy Clamav with Docker.
+Since version 9.0.6, you can deploy Clamav with Docker.
 
 You need to manually add the Clamav config to docker-compose.yml
 
