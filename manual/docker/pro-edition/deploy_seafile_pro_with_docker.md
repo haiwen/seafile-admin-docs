@@ -310,14 +310,6 @@ When files are deleted, the blocks comprising those files are not immediately re
 
 The required scripts can be found in the `/scripts` folder of the docker container. To perform garbage collection, simply run `docker exec seafile /scripts/gc.sh`. For the community edition, this process will stop the seafile server, but it is a relatively quick process and the seafile server will start automatically once the process has finished. The Professional supports an online garbage collection.
 
-## Troubleshooting
-
-You can run docker commands like "docker exec" to find errors.
-
-```sh
-docker exec -it seafile /bin/bash
-```
-
 ## OnlyOffice with Docker
 
 You need to manually add the OnlyOffice config to docker-compose.yml
@@ -367,3 +359,44 @@ You need to manually add the Clamav config to docker-compose.yml
 ### Admin Tools
 
 * [Import Directory to Seafile](../../deploy_pro/seaf_import.md)
+
+## FAQ
+
+**You can run docker commands like "docker exec" to find errors.**
+
+```sh
+docker exec -it seafile /bin/bash
+```
+
+**LetsEncrypt SSL certificate is about to expire.**
+
+If the certificate is not renewed automatically, you can execute the following command to manually renew the certificate.
+
+```sh
+/scripts/ssl.sh /shared/ssl/ <your-seafile-domain>
+```
+
+eg: ```/scripts/ssl.sh /shared/ssl/ example.seafile.com```
+
+**SEAFILE_SERVER_LETSENCRYPT=false change to true.**
+
+If you want to change to https after using http, first backup and move the seafile.nginx.conf.
+
+```sh
+mv /opt/seafile/shared/nginx/conf/seafile.nginx.conf /opt/seafile/shared/nginx/conf/seafile.nginx.conf.bak
+```
+
+Starting the new container will automatically apply a certificate.
+
+```sh
+docker-compose down
+docker-compose up -d
+```
+
+You need to manually change http to https in other configuration files, SERVICE_URL and FILE_SERVER_ROOT in the system admin page also need to be modified.
+
+If you have modified the old seafile.nginx.conf, now you can modify the new seafile.nginx.conf as you want. Then execute the following command to make the nginx configuration take effect.
+
+```sh
+docker exec seafile nginx -s reload
+```
