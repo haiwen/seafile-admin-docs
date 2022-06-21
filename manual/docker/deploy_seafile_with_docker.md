@@ -259,4 +259,10 @@ docker exec -it seafile /bin/bash
 
 **LetsEncrypt SSL certificate is about to expire.**
 
-If the certificate is not renewed automatically, you can execute the command /scripts/ssl.sh to manually renew the certificate.
+If the certificate is not renewed automatically, you can execute the following command to manually renew the certificate.
+
+```sh
+/scripts/ssl.sh /shared/ssl/ <your-seafile-domain>
+```
+
+eg: ```/scripts/ssl.sh /shared/ssl/ example.seafile.com```
