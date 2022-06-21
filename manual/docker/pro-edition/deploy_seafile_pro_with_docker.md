@@ -377,3 +377,26 @@ If the certificate is not renewed automatically, you can execute the following c
 ```
 
 eg: ```/scripts/ssl.sh /shared/ssl/ example.seafile.com```
+
+**SEAFILE_SERVER_LETSENCRYPT=false change to true.**
+
+If you want to change to https after using http, first backup and move the seafile.nginx.conf.
+
+```sh
+mv /opt/seafile/shared/nginx/conf/seafile.nginx.conf /opt/seafile/shared/nginx/conf/seafile.nginx.conf.bak
+```
+
+Starting the new container will automatically apply a certificate.
+
+```sh
+docker-compose down
+docker-compose up -d
+```
+
+You need to manually change http to https in other configuration files, SERVICE_URL and FILE_SERVER_ROOT in the system admin page also need to be modified.
+
+If you have modified the old seafile.nginx.conf, now you can modify the new seafile.nginx.conf as you want. Then execute the following command to make the nginx configuration take effect.
+
+```sh
+docker exec seafile nginx -s reload
+```
