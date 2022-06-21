@@ -249,10 +249,14 @@ When files are deleted, the blocks comprising those files are not immediately re
 
 The required scripts can be found in the `/scripts` folder of the docker container. To perform garbage collection, simply run `docker exec seafile /scripts/gc.sh`. For the community edition, this process will stop the seafile server, but it is a relatively quick process and the seafile server will start automatically once the process has finished. The Professional supports an online garbage collection.
 
-## Troubleshooting
+## FAQ
 
-You can run docker commands like "docker exec" to find errors.
+**You can run docker commands like "docker exec" to find errors.**
 
 ```sh
 docker exec -it seafile /bin/bash
 ```
+
+**LetsEncrypt SSL certificate is about to expire.**
+
+If the certificate is not renewed automatically, you can execute the command /scripts/ssl.sh to manually renew the certificate.
