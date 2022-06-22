@@ -4,6 +4,13 @@
 
 ## 9.0
 
+### 9.0.6 (2022-06-22)
+
+* Show table of contents in Markdown sharing link
+* Check if quota exceeded before file uploading in upload sharing link
+* Support import group member via contact email
+* 
+
 ### 9.0.5 (2022-05-13)
 
 * [fix] Fix a bug that sometimes a shared subfolder is unshared automatically by database access error
