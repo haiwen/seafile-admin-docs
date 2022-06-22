@@ -9,7 +9,7 @@
 * Show table of contents in Markdown sharing link
 * Check if quota exceeded before file uploading in upload sharing link
 * Support import group member via contact email
-* 
+
 
 ### 9.0.5 (2022-05-13)
 
