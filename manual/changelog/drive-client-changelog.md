@@ -1,5 +1,11 @@
 # SeaDrive Client Changelog
 
+### 2.0.22 (2022/06/23)
+
+* \[Win] Fix a placeholder size not updated issue.
+* Improving moving files/folders with special characters in names
+* \[Linux] Fix CMake error
+
 ### 2.0.21 (Windows) (2022/03/21)
 
 * Don't remove cache folder when logout and remove account, to prevent unintended removal of files.
