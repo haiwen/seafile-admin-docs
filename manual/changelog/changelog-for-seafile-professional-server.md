@@ -18,7 +18,7 @@ Please check our document for how to upgrade to 9.0: <https://manual.seafile.com
 * Support import group member via contact email
 * [fix] Fix a bug that sometimes a shared subfolder is unshared automatically by database access error
 * [fix] Fix a bug in work with Python 3.10+
-* [fix] Fix a bug in smart link redict to the file page
+* [fix] Fix a bug in smart link redirect to the file page
 * [fix] Fix a UI bug when drag and drop a file
 * Improve UI of file comments
 * [fix] Fix permission check in deleting/editing a file comment
