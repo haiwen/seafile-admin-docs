@@ -56,6 +56,7 @@ Append following lines to [ccnet.conf](../config/ccnet-conf.md):
 [Database]
 ENGINE=mysql
 HOST=127.0.0.1
+PORT = 3306
 USER=root
 PASSWD=root
 DB=ccnet_db
@@ -69,6 +70,7 @@ Replace the database section in `seafile.conf` with following lines:
 [database]
 type=mysql
 host=127.0.0.1
+port = 3306
 user=root
 password=root
 db_name=seafile_db
@@ -85,6 +87,7 @@ DATABASES = {
         'PASSWORD' : 'root',
         'NAME' : 'seahub_db',
         'HOST' : '127.0.0.1',
+        'PORT': '3306',
         # This is only needed for MySQL older than 5.5.5.
         # For MySQL newer than 5.5.5 INNODB is the default already.
         'OPTIONS': {
