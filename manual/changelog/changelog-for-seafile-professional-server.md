@@ -8,6 +8,24 @@
 
 Please check our document for how to upgrade to 9.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_9.0.x/>
 
+### 9.0.6 (2022/07/06)
+
+* Support using custom permission when shareing a department library
+* [fix] Fix a bug in go file-server when working with online GC
+* Add cache for getting locked files and getting folder permission (reduce server load caused by sycing client)
+* Show table of contents in Markdown sharing link
+* Check if quota exceeded before file uploading in upload sharing link
+* Support import group member via contact email
+* [fix] Fix a bug that sometimes a shared subfolder is unshared automatically by database access error
+* [fix] Fix a bug in work with Python 3.10+
+* [fix] Fix a bug in smart link redirect to the file page
+* [fix] Fix a UI bug when drag and drop a file
+* Improve UI of file comments
+* [fix] Fix permission check in deleting/editing a file comment
+* Support editing of expire time for sharing links
+* Show ISO date and time in file history page instead of showing relative time
+* Add "Visit related snapshot" in the dropdown menu of an entry in file history
+
 ### 9.0.5 (2022/03/21)
 
 * Remove unused "related files" feature

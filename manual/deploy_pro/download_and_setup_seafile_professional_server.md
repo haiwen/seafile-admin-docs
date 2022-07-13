@@ -375,15 +375,19 @@ The first time you start Seahub, the script prompts you to create an admin accou
 
 Now you can access Seafile via the web interface at the host address and port 8000 (e.g., http://1.2.3.4:8000).
 
+
 ## Enabling full text search
+
 Seafile uses the indexing server ElasticSearch to enable full text search. In versions prior to Seafile 9.0, Seafile's install packages included ElasticSearch. A separate deployment was not necessary. Due to licensing conditions, ElasticSearch 7.x can no longer be bundled in Seafile's install package. As a consequence, a separate deployment of ElasticSearch is required to enble full text search in Seafile newest version.
 
+
 ### Deploying ElasticSearch
+
 Our recommendation for deploying ElasticSearch is using Docker. Detailed information about installing Docker on various Linux distributions is available at [Docker Docs](https://docs.docker.com/engine/install/).
 
 **Note:** Some virtualization technologies do not support Docker. In this case, ElasticSearch must be installed natively.
 
-Seafile PE 9.0 only supports ElasticSearch 7.x and later. We use ElasticSearch version 7.16.2 as an example in this section. Version 7.16.2 and newer version have been successfully tested with Seafile.
+Seafile PE 9.0 only supports ElasticSearch 7.x. We use ElasticSearch version 7.16.2 as an example in this section. Version 7.16.2 and newer version have been successfully tested with Seafile.
 
 Pull the Docker image:
 ```
