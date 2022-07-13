@@ -6,7 +6,7 @@ This documentation describes how to integrate to ADFS with SAML 2.0 protocol. Th
 
 To use ADFS to log in to your Seafile, you need the following components:
 
-1. A Winodws Server with [ADFS](https://technet.microsoft.com/en-us/library/hh831502.aspx) installed. For configuring and installing ADFS you can see [this article](https://msdn.microsoft.com/en-us/library/gg188612.aspx).
+1. A Windows Server with [ADFS](https://technet.microsoft.com/en-us/library/hh831502.aspx) installed. For configuring and installing ADFS you can see [this article](https://msdn.microsoft.com/en-us/library/gg188612.aspx).
 2. A valid SSL certificate for ADFS server, and here we use **adfs-server.adfs.com** as the domain name example.
 3. A valid SSL certificate for Seafile server, and here we use **demo.seafile.com** as the domain name example.
 
