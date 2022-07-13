@@ -22,7 +22,7 @@ Note, you should install Python libraries system wide using root user or sudo mo
 * For Ubuntu 16.04/18.04 or Debian 10
 
 ```sh
-apt-get install python3 python3-setuptools python3-pip -y
+sudo apt-get install python3 python3-setuptools python3-pip memcached libmemcached-dev -y
 
 sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8 \
     django-pylibmc django-simple-captcha python3-ldap
