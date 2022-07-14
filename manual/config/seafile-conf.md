@@ -186,6 +186,22 @@ default_expire_hours = 6
 
 The default is 12 hours.
 
+Since Seafile-pro-9.0.6, you can add cache for getting locked files and getting folder permission (reduce server load caused by sycing client).
+
+```
+[file_lock]
+use_locked_file_cache = true
+
+```
+
+At the same time, you also need to configure the following memcache options for the cache to take effect:
+
+```
+[memcached]
+memcached_options = --SERVER=<the IP of Memcached Server> --POOL-MIN=10 --POOL-MAX=100
+
+```
+
 ## Enable Slow Log
 
 Since Seafile-pro-6.3.10, you can enable seaf-server's RPC slow log to do performance analysis.The slow log is enabled by default.
@@ -225,3 +241,30 @@ start time - user id - url - response code - process time
 ```
 
 You can use `SIGUSR1` to trigger log rotation.
+
+## Skip block hash
+
+When a large number of files are uploaded through the web page and API, it will be expensive to calculate the hash value based on the content. Since Seafile-pro-9.0.6, you can add the `skip_block_hash` option to use a uuid to calculate a hash value as a block ID.
+
+```
+[fileserver]
+skip_block_hash = true
+
+```
+
+## Go fileserver add profile interface
+
+Since Seafile-9..0.6, you can enable the profile function of go fileserver by adding the following configuration options:
+
+```
+[fileserver]
+password=8kcUz1I2sLaywQhCRtn2x1
+
+```
+
+This interface can be used through the pprof tool of the go.
+
+```
+go tool pprof http://localhost:8082/debug/pprof/heap?password=8kcUz1I2sLaywQhCRtn2x1
+
+```
