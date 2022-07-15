@@ -8,7 +8,7 @@ Please always follow the main [upgrade guide](./upgrade.md).
 9.0 version includes following major changes:
 
 1. SERVICE_URL is moved from ccnet.conf to seahub_settings.py. The upgrade script will read it from ccnet.conf and write to seahub_settings.py
-2. (pro ediiton only) ElasticSearch is upgraded to version 6.8. ElasticSearch needs to be installed and managed individually. (As ElasticSearch changes license since 6.2, it can no longer be included in Seafile package). There are some benefits for ElasticSearch to be managed individually:
+2. (pro edition only) ElasticSearch is upgraded to version 6.8. ElasticSearch needs to be installed and managed individually. (As ElasticSearch changes license since 6.2, it can no longer be included in Seafile package). There are some benefits for ElasticSearch to be managed individually:
     * Reduce the size of Seafile package
     * You can change ElasticSearch setttings more easily
 3. (pro ediiton only) The built-in Office file preview is now implemented by a separate docker image. This makes is more easy to maintain. We also suggest users to use OnlyOffice as an alternative.
