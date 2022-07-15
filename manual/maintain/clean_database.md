@@ -85,6 +85,16 @@ use seahub_db;
 DELETE FROM FileHistory WHERE to_days(now()) - to_days(timestamp) > 90;
 ```
 
+### Command clean_db_records
+
+Since version 8.0, you can use the following command to simultaneously clean up Activity, sysadmin_extra_userloginlog, FileAudit, FileUpdate, FileHistory, PermAudit these 6 tables 90 days ago records:
+
+```
+cd <install-path>/seafile-server-latest
+./seahub.sh python-env python3 seahub/manage.py clean_db_records
+
+```
+
 ### Outdated Library Data
 
 Since version 6.2, we offer command to clear outdated library records in Seahub database,
