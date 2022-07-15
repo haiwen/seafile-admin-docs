@@ -52,7 +52,7 @@ sudo pip3 install pycryptodome==3.12.0 cffi==1.14.0
 3. Start Seafile-9.0.x server.
 
 
-### Update ElasticSearch (pro ediiton only)
+### Update ElasticSearch (pro edition only)
 
 #### Method one, rebuild the index and discard the old index data
 
