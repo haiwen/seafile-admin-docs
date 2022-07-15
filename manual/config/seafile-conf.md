@@ -155,6 +155,12 @@ use_block_cache = true
 block_cache_size_limit = 100
 block_cache_file_types = mp4;mov
 ```
+When a large number of files are uploaded through the web page and API, it will be expensive to calculate block IDs based on the block contents. Since Seafile-pro-9.0.6, you can add the `skip_block_hash` option to use a random string as block ID.
+
+```
+[fileserver]
+skip_block_hash = true
+```
 
 ## Database configuration
 
@@ -174,7 +180,7 @@ max_connections=100
 
 When you configure seafile server to use MySQL, the default connection pool size is 100, which should be enough for most use cases.
 
-## Change File Lock Auto Expire time (Pro edition only)
+## File Locking (Pro edition only)
 
 The Seafile Pro server auto expires file locks after some time, to prevent a locked file being locked for too long. The expire time can be tune in seafile.conf file.
 
@@ -185,6 +191,22 @@ default_expire_hours = 6
 ```
 
 The default is 12 hours.
+
+Since Seafile-pro-9.0.6, you can add cache for getting locked files (reduce server load caused by sycing client).
+
+```
+[file_lock]
+use_locked_file_cache = true
+
+```
+
+At the same time, you also need to configure the following memcache options for the cache to take effect:
+
+```
+[memcached]
+memcached_options = --SERVER=<the IP of Memcached Server> --POOL-MIN=10 --POOL-MAX=100
+
+```
 
 ## Enable Slow Log
 
