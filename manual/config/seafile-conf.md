@@ -155,6 +155,12 @@ use_block_cache = true
 block_cache_size_limit = 100
 block_cache_file_types = mp4;mov
 ```
+When a large number of files are uploaded through the web page and API, it will be expensive to calculate block IDs based on the block contents. Since Seafile-pro-9.0.6, you can add the `skip_block_hash` option to use a random string as block ID.
+
+```
+[fileserver]
+skip_block_hash = true
+```
 
 ## Database configuration
 
@@ -174,7 +180,7 @@ max_connections=100
 
 When you configure seafile server to use MySQL, the default connection pool size is 100, which should be enough for most use cases.
 
-## Change File Lock Auto Expire time (Pro edition only)
+## File Locking (Pro edition only)
 
 The Seafile Pro server auto expires file locks after some time, to prevent a locked file being locked for too long. The expire time can be tune in seafile.conf file.
 
@@ -186,7 +192,7 @@ default_expire_hours = 6
 
 The default is 12 hours.
 
-Since Seafile-pro-9.0.6, you can add cache for getting locked files and getting folder permission (reduce server load caused by sycing client).
+Since Seafile-pro-9.0.6, you can add cache for getting locked files (reduce server load caused by sycing client).
 
 ```
 [file_lock]
@@ -241,30 +247,3 @@ start time - user id - url - response code - process time
 ```
 
 You can use `SIGUSR1` to trigger log rotation.
-
-## Skip block hash
-
-When a large number of files are uploaded through the web page and API, it will be expensive to calculate the hash value based on the content. Since Seafile-pro-9.0.6, you can add the `skip_block_hash` option to use a uuid to calculate a hash value as a block ID.
-
-```
-[fileserver]
-skip_block_hash = true
-
-```
-
-## Go fileserver add profile interface
-
-Since Seafile-9..0.6, you can enable the profile function of go fileserver by adding the following configuration options:
-
-```
-[fileserver]
-password=8kcUz1I2sLaywQhCRtn2x1
-
-```
-
-This interface can be used through the pprof tool of the go.
-
-```
-go tool pprof http://localhost:8082/debug/pprof/heap?password=8kcUz1I2sLaywQhCRtn2x1
-
-```
