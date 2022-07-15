@@ -8,10 +8,10 @@ Please always follow the main [upgrade guide](./upgrade.md).
 9.0 version includes following major changes:
 
 1. SERVICE_URL is moved from ccnet.conf to seahub_settings.py. The upgrade script will read it from ccnet.conf and write to seahub_settings.py
-2. ElasticSearch is upgraded to version 6.8. ElasticSearch needs to be installed and managed individually. (As ElasticSearch changes license since 6.2, it can no longer be included in Seafile package). There are some benefits for ElasticSearch to be managed individually:
+2. (pro ediiton only) ElasticSearch is upgraded to version 6.8. ElasticSearch needs to be installed and managed individually. (As ElasticSearch changes license since 6.2, it can no longer be included in Seafile package). There are some benefits for ElasticSearch to be managed individually:
     * Reduce the size of Seafile package
     * You can change ElasticSearch setttings more easily
-3. The built-in Office file preview is now implemented by a separate docker image. This makes is more easy to maintain. We also suggest users to use OnlyOffice as an alternative.
+3. (pro ediiton only) The built-in Office file preview is now implemented by a separate docker image. This makes is more easy to maintain. We also suggest users to use OnlyOffice as an alternative.
 4. Seafile community edition package for CentOS is no longer maintained (pro editions will still be maintaied). We suggest users to migrate to Docker images.
 5. We rewrite HTTP service in seaf-server with golang and move it to a separate component (turn off by default)
 
@@ -52,7 +52,7 @@ sudo pip3 install pycryptodome==3.12.0 cffi==1.14.0
 3. Start Seafile-9.0.x server.
 
 
-### Update ElasticSearch
+### Update ElasticSearch (pro ediiton only)
 
 #### Method one, rebuild the index and discard the old index data
 
