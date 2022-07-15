@@ -1,5 +1,7 @@
 # Configurable Options
 
+> seafevents.conf is for pro edition only 
+
 In the file `seafevents.conf`:
 
 ```
