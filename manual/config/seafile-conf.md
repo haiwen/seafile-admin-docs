@@ -155,7 +155,7 @@ use_block_cache = true
 block_cache_size_limit = 100
 block_cache_file_types = mp4;mov
 ```
-When a large number of files are uploaded through the web page and API, it will be expensive to calculate block IDs based on the block contents. Since Seafile-pro-9.0.6, you can add the `skip_block_hash` option to use a random string as block ID.
+When a large number of files are uploaded through the web page and API, it will be expensive to calculate block IDs based on the block contents. Since Seafile-pro-9.0.6, you can add the `skip_block_hash` option to use a random string as block ID. Note that this option will prevent fsck from checking block content integrity. You should specify `--shallow` option to fsck to not check content integrity.
 
 ```
 [fileserver]
