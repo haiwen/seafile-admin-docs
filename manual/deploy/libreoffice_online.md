@@ -4,7 +4,7 @@ Since Seafile Professional edition 6.0.0, you can integrate Seafile with Collabo
 
 ## Setup LibreOffice Online
 
-Prepare an Ubuntu 16.04 64bit server with [docker](http://www.docker.com/) installed. Assign a domain name to this server, we use *collabora-online.seafile.com* here. Obtain and install valid TLS/SSL certificates for this server, we use [Let’s Encrypt](https://letsencrypt.org/). Then use Nginx to serve collabora online, config file example (source https://sdk.collaboraonline.com/docs/installation/Proxy_settings.html):
+Prepare an Ubuntu 20.04 or 22.04 64bit server with [docker](http://www.docker.com/) installed. Assign a domain name to this server, we use *collabora-online.seafile.com* here. Obtain and install valid TLS/SSL certificates for this server, we use [Let’s Encrypt](https://letsencrypt.org/). Then use Nginx to serve collabora online, config file example (source https://sdk.collaboraonline.com/docs/installation/Proxy_settings.html):
 
 ```
 server {
@@ -58,18 +58,18 @@ server {
 }
 ```
 
-then use the following command to setup/start Collabora Online:
+then use the following command to setup/start Collabora Online (source https://sdk.collaboraonline.com/docs/installation/CODE_Docker_image.html#code-docker-image):
 
 ```
 docker pull collabora/code
-docker run -t -p 9980:9980 -e "domain=<your-dot-escaped-domain>" --restart always --cap-add MKNOD collabora/code
+docker run -t -d -p 127.0.0.1:9980:9980 -e "aliasgroup1=https://<your-dot-escaped-domain>:443" -e "username=***" -e "password=***" --name code --restart always collabora/code
 ```
 
 **NOTE:** the `domain` args is the domain name of your Seafile server, if your
 Seafile server's domain name is *demo.seafile.com*, the command should be:
 
 ```
-docker run -t -p 9980:9980 -e "domain=demo\.seafile\.com" --restart always --cap-add MKNOD collabora/code
+docker run -t -d -p 127.0.0.1:9980:9980 -e "aliasgroup1=https://demo.seafile.com:443" -e "username=***" -e "password=***" --name code --restart always collabora/code
 ```
 
 For more information about Collabora Online and how to deploy it, please refer to https://www.collaboraoffice.com
