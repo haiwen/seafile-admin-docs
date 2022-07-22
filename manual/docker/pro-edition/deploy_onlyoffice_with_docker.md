@@ -15,7 +15,7 @@ services:
       - /opt/seafile-oods/DocumentServer/logs:/var/log/onlyoffice
       - /opt/seafile-oods/DocumentServer/data:/var/www/onlyoffice/Data
       - /opt/seafile-oods/DocumentServer/lib:/var/lib/onlyoffice
-      - /opt/seafile-oods/DocumentServer/local-productionlinux.json:/etc/onlyoffice/documentserver/local-production-linux.json
+      - /opt/seafile-oods/DocumentServer/local-production-linux.json:/etc/onlyoffice/documentserver/local-production-linux.json
     networks:
       - seafile-net
     environment:
