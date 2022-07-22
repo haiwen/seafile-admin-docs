@@ -330,7 +330,7 @@ MAX_NUMBER_OF_FILES_FOR_FILEUPLOAD = 500
 # Control the language that send email. Default to user's current language.
 # Since version 6.1.1
 SHARE_LINK_EMAIL_LANGUAGE = ''
-Cancel changes
+
 # Interval for browser requests unread notifications
 # Since PRO 6.1.4 or CE 6.1.2
 UNREAD_NOTIFICATIONS_REQUEST_INTERVAL = 3 * 60 # seconds
