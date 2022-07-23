@@ -98,7 +98,7 @@ Add this to seahub_settings.py
 # OnlyOffice
 ENABLE_ONLYOFFICE = True
 VERIFY_ONLYOFFICE_CERTIFICATE = True
-ONLYOFFICE_APIJS_URL = 'http://<your-seafile-doamin>/onlyofficeds/webapps/apps/api/documents/api.js'
+ONLYOFFICE_APIJS_URL = 'http://<your-seafile-doamin>/onlyofficeds/web-apps/apps/api/documents/api.js'
 ONLYOFFICE_FILE_EXTENSION = ('doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx', 'odt',
 'fodt', 'odp', 'fodp', 'ods', 'fods')
 ONLYOFFICE_EDIT_FILE_EXTENSION = ('docx', 'pptx', 'xlsx')
