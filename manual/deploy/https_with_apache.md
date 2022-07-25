@@ -146,7 +146,7 @@ sudo service apache2 restart
 
 ### Modifying ccnet.conf
 
-The `SERVICE_URL` in [ccnet.conf](../config/ccnet-conf.md) informs Seafile about the chosen domain, protocol and port. Change the `SERVICE_URL`so as to account for the switch from HTTP to HTTPS and to correspond to your host name (the `http://`must not be removed):
+The `SERVICE_URL` in [ccnet.conf](../../config/ccnet-conf.md) informs Seafile about the chosen domain, protocol and port. Change the `SERVICE_URL`so as to account for the switch from HTTP to HTTPS and to correspond to your host name (the `http://`must not be removed):
 
 ```ini
 SERVICE_URL = https://seafile.example.com
@@ -156,7 +156,7 @@ Note: The`SERVICE_URL` can also be modified in Seahub via System Admininstration
 
 ### Modifying seahub_settings.py
 
-The `FILE_SERVER_ROOT` in [seahub_settings.py](../config/seahub_settings_py/) informs Seafile about the location of and the protocol used by the file server. Change the `FILE_SERVER_ROOT`so as to account for the switch from HTTP to HTTPS and to correspond to your host name (the trailing `/seafhttp` must not be removed):
+The `FILE_SERVER_ROOT` in [seahub_settings.py](../../config/seahub_settings_py) informs Seafile about the location of and the protocol used by the file server. Change the `FILE_SERVER_ROOT`so as to account for the switch from HTTP to HTTPS and to correspond to your host name (the trailing `/seafhttp` must not be removed):
 
 ```python
 FILE_SERVER_ROOT = 'https://seafile.example.com/seafhttp'
