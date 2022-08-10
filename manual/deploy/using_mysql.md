@@ -110,7 +110,7 @@ sudo apt-get install -y python3 python3-setuptools python3-pip libmysqlclient-de
 sudo apt-get install -y memcached libmemcached-dev
 
 sudo pip3 install --timeout=3600 django==3.2.* Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
-    django-pylibmc django-simple-captcha python3-ldap mysqlclient pycryptodome==3.12.0 cffi==1.14.0
+    django-pylibmc django-simple-captcha python3-ldap mysqlclient pycryptodome==3.12.0 cffi==1.14.0 lxml
 ```
 
 
