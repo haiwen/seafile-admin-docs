@@ -1,5 +1,9 @@
 # SeaDrive Client Changelog
 
+### 2.0.23 (2022/08/18)
+
+* \[Win] Fix problems when renaming libraries in the client
+
 ### 2.0.22 (2022/06/23)
 
 * \[Win] Fix a placeholder size not updated issue.
