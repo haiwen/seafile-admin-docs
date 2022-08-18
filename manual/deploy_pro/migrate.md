@@ -101,6 +101,12 @@ The number of workers can be set to relatively large values, since they're mostl
 
 If you have an encrypted storage backend (a deprecated feature no long supported now), you can use this script to migrate and decrypt the data from that backend to a new one. You can add the `--decrypt` option, which will decrypt the data while reading it, and then write the unencrypted data to the new backend. Note that you need add this option in all stages of the migration.
 
+```
+cd ~/haiwen/seafile-server-latest
+./migrate.sh /opt --decrypt
+
+```
+
 ## Run migrate.sh to initially migrate objects
 
 This step will migrate **most of** objects from the source storage to the destination storage. You don't need to stop Seafile service at this stage as it may take quite long time to finish. Since the service is not stopped, some new objects may be added to the source storage during migration. Those objects will be handled in the next step.
