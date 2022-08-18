@@ -123,6 +123,14 @@ cd ~/haiwen/seafile-server-latest
 
 ```
 
+For data using store crypt, you can add the `--decrypt` option, which will decrypt the data while reading it, and then write the unencrypted data to the new backend.
+
+```
+cd ~/haiwen/seafile-server-latest
+./migrate.sh /opt --decrypt
+
+```
+
 ## Replace the original seafile.conf
 
 After running the script, we need replace the original seafile.conf with new one:

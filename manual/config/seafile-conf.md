@@ -247,3 +247,21 @@ start time - user id - url - response code - process time
 ```
 
 You can use `SIGUSR1` to trigger log rotation.
+
+## Go fileserver add profile interface
+
+Since Seafile-9..0.6, you can enable the profile function of go fileserver by adding the following configuration options:
+
+```
+[fileserver]
+enable_profiling = true
+profile_password = 8kcUz1I2sLaywQhCRtn2x1
+
+```
+
+This interface can be used through the pprof tool of the go.
+
+```
+go tool pprof http://localhost:8082/debug/pprof/heap?password=8kcUz1I2sLaywQhCRtn2x1
+go tool pprof http://localhost:8082/debug/pprof/profile?password=8kcUz1I2sLaywQhCRtn2x1
+```
