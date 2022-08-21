@@ -6,7 +6,7 @@
 
 [Shibboleth](https://shibboleth.net/) is a widely used single sign on (SSO) protocol. Seafile supports authentication via Shibboleth. It allows users from another organization to log in to Seafile without registering an account on the service provider.
 
-In this documentation, we assume the reader is familiar with Shibboleth installation and configuration. For introduction to Shibboleth concepts, please refer to <https://wiki.shibboleth.net/confluence/display/SHIB2/UnderstandingShibboleth> .
+In this documentation, we assume the reader is familiar with Shibboleth installation and configuration. For introduction to Shibboleth concepts, please refer to <https://shibboleth.atlassian.net/wiki/spaces/CONCEPT/overview> .
 
 Shibboleth Service Provider (SP) should be installed on the same server as the Seafile server. The official SP from <https://shibboleth.net/> is implemented as an Apache module. The module handles all Shibboleth authentication details. Seafile server receives authentication information (username) from HTTP request. The username then can be used as login name for the user.
 
@@ -90,7 +90,7 @@ You should create a new virtual host configuration for Shibboleth. And then rest
 
 Installation and configuration of Shibboleth is out of the scope of this documentation. Here are a few references:
 
-* For RedHat, CentOS-7 and SUSE: <https://wiki.shibboleth.net/confluence/display/SP3/LinuxInstall>
+* For RedHat, CentOS-7 and SUSE: <https://shibboleth.atlassian.net/wiki/spaces/SP3/pages/2065335547/LinuxInstall>
 
 #### Configure Shibboleth(SP)
 
@@ -100,7 +100,7 @@ Open `/etc/shibboleth/shibboleth2.xml` and change some property. After you have 
 
 ###### `ApplicationDefaults` element
 
-Change `entityID` and [`REMOTE_USER`](https://wiki.shibboleth.net/confluence/display/SP3/ApplicationDefaults) property:
+Change `entityID` and [`REMOTE_USER`](https://shibboleth.atlassian.net/wiki/spaces/SP3/pages/2063695997/ApplicationDefaults) property:
 
 ```
 <!-- The ApplicationDefaults element is where most of Shibboleth's SAML bits are defined. -->
