@@ -4,6 +4,8 @@ From 8.0.0, Seafile supports [OCM protocol](https://rawgit.com/GEANT/OCM-API/v1/
 
 Seafile currently support sharing between Seafile servers with version greater than 8.0, and sharing from NextCloud to Seafile since 9.0.
 
+*Note that these two functions cannot be enabled at the same time.*
+
 ## Configuration
 
 ### Sharing between Seafile servers
