@@ -22,7 +22,7 @@ sudo pip3 install -U future mysqlclient sqlalchemy==1.4.3
 * For Debian 10
 
 ```sh
-apt-get install  default-libmysqlclient-dev 
+apt-get install  python3-dev default-libmysqlclient-dev 
 
 sudo pip3 install future mysqlclient sqlalchemy==1.4.3
 ```
