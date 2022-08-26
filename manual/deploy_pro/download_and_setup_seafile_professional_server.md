@@ -25,12 +25,12 @@ Seafile prior to and including Seafile 7.0 use Python 2. More recent versions re
 ```
 # Ubuntu 16.04/Ubuntu 18.04
 sudo apt-get update
-sudo apt-get install python2.7 python-setuptools python-mysqldb python-urllib3 python-ldap -y
+sudo apt-get install python2.7 python-setuptools python-mysqldb python-urllib3 python-ldap poppler-utils -y
 ```
 
 ```
 # CentOS 7
-sudo yum install python python-setuptools python-imaging MySQL-python python-urllib3 python-ldap -y
+sudo yum install python python-setuptools python-imaging MySQL-python python-urllib3 python-ldap poppler-utils -y
 ```
 
 **For Seafile 7.1.x**
@@ -40,6 +40,7 @@ sudo yum install python python-setuptools python-imaging MySQL-python python-url
 sudo apt-get update
 sudo apt-get install -y python3 python3-setuptools python3-pip
 sudo apt-get install -y memcached libmemcached-dev
+sudo apt-get install poppler-utils -y
 
 sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8 \
     django-pylibmc django-simple-captcha python3-ldap
@@ -48,6 +49,7 @@ sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8
 ```
 # CentOS 8
 sudo yum install python3 python3-setuptools python3-pip -y
+sudo yum install poppler-utils -y
 
 sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8 \
     django-pylibmc django-simple-captcha python3-ldap
@@ -60,6 +62,7 @@ sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8
 sudo apt-get update
 sudo apt-get install -y python3 python3-setuptools python3-pip libmysqlclient-dev
 sudo apt-get install -y memcached libmemcached-dev
+sudo apt-get install poppler-utils -y
 
 sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
     django-pylibmc django-simple-captcha python3-ldap mysqlclient
@@ -68,6 +71,7 @@ sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3
 ```
 # CentOS 8
 sudo yum install python3 python3-setuptools python3-pip python3-devel mysql-devel gcc -y
+sudo yum install poppler-utils -y
 
 sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
     django-pylibmc django-simple-captcha python3-ldap mysqlclient
@@ -82,7 +86,7 @@ apt-get install -y python3 python3-setuptools python3-pip python3-ldap libmysqlc
 apt-get install -y memcached libmemcached-dev
 
 pip3 install --timeout=3600 django==3.2.* future mysqlclient pymysql Pillow pylibmc \ 
-captcha jinja2 sqlalchemy==1.4.3 psd-tools django-pylibmc django-simple-captcha pycryptodome==3.12.0 cffi==1.14.0
+captcha jinja2 sqlalchemy==1.4.3 psd-tools django-pylibmc django-simple-captcha pycryptodome==3.12.0 cffi==1.14.0 lxml
 ```
 
 ```
@@ -90,10 +94,10 @@ captcha jinja2 sqlalchemy==1.4.3 psd-tools django-pylibmc django-simple-captcha 
 sudo yum install python3 python3-setuptools python3-pip python3-devel mysql-devel gcc -y
 
 sudo pip3 install --timeout=3600 django==3.2.* Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
-    django-pylibmc django-simple-captcha python3-ldap mysqlclient pycryptodome==3.12.0 cffi==1.14.0
+    django-pylibmc django-simple-captcha python3-ldap mysqlclient pycryptodome==3.12.0 cffi==1.14.0 lxml
 ```
 
-Note, we no longer recommend to use native package on CentOS/Redhat system. Using Docker image is recommended instead.
+**Note**: The recommended deployment option for Seafile PE on CentOS/Redhat is [Docker](https://manual.seafile.com/docker/pro-edition/deploy_seafile_pro_with_docker/).
 
 ### Installing Java Runtime Environment
 
@@ -115,22 +119,6 @@ sudo ln -sf /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java /usr/bin/
 ```
 # CentOS
 sudo yum install java-1.8.0-openjdk -y
-```
-
-### Installing poppler-utils
-
-For Seafile PE 8.0.x or lower.
-
-The package poppler-utils is required for full text search of pdf files.
-
-```
-# Ubuntu/Debian
-sudo apt-get install poppler-utils -y
-```
-
-```
-# CentOS
-sudo yum install poppler-utils -y
 ```
 
 ### Creating the programm directory
@@ -257,7 +245,7 @@ $ tree -L 2 /opt/seafile
 
 ```
 
-**NOTE**: The names of the install packages differ for Seafile CE and Seafile PE. Using Seafile CE and Seafile PE 8.0.4 as an example, the names are as follows:
+**Note**: The names of the install packages differ for Seafile CE and Seafile PE. Using Seafile CE and Seafile PE 8.0.4 as an example, the names are as follows:
 
 * Seafile CE: `seafile-server_8.0.4_x86-86.tar.gz`; uncompressing into folder `seafile-server-8.0.4`
 * Seafile PE: `seafile-pro-server_8.0.4_x86-86.tar.gz`; uncompressing into folder `seafile-pro-server-8.0.4`
@@ -268,7 +256,7 @@ The setup process of Seafile PE is the same as the Seafile CE. See [Installation
 
 If you have any problem during the setup up, check [Common problems in setting up Seafile server](../deploy/common_problems_for_setting_up_server.md).
 
-After the successful completition of the setup script, the directory layout of Seafile PE looks as follows :
+After the successful completition of the setup script, the directory layout of Seafile PE looks as follows (some folders only get created after the first start, e.g. `logs`):
 
 **For Seafile 7.0.x**
 
@@ -276,19 +264,19 @@ After the successful completition of the setup script, the directory layout of S
 $ tree -L 2 /opt/seafile
 .
 ├── seafile-license.txt 			# license file
-├── ccnet               			# configuration files
+├── ccnet               			
 │   ├── mykey.peer
 │   ├── PeerMgr
 │   └── seafile.ini
-├── conf
+├── conf                            # configuration files
 │   └── ccnet.conf
 │   └── seafile.conf
 │   └── seahub_settings.py
 │   └── seafevents.conf
-├── logs
-├── pids
-├── pro-data            			# data specific for professional version
-├── seafile-data
+├── logs                            # log files
+├── pids                            # process id files
+├── pro-data            			# data specific for Seafile PE
+├── seafile-data                    # object database
 ├── seafile-pro-server-7.0.7
 │   ├── reset-admin.sh
 │   ├── runtime
@@ -303,19 +291,19 @@ $ tree -L 2 /opt/seafile
 │   └── upgrade
 ├── seafile-server-latest -> seafile-pro-server-7.0.7
 ├── seahub-data
-│   └── avatars         			# for user avatars
-├── seahub.db
+│   └── avatars         			# user avatars
+└── seahub.db
 
 ```
 
-**For Seafile 7.1.x and younger**
+**For Seafile 7.1.x and later**
 
 ```
 $ tree -L 2 /opt/seafile
 .
 ├── seafile-license.txt             # license file
 ├── ccnet               
-├── conf
+├── conf                            # configuration files
 │   └── ccnet.conf
 │   └── gunicorn.conf.py
 │   └── __pycache__
@@ -323,30 +311,10 @@ $ tree -L 2 /opt/seafile
 │   └── seafevents.conf
 │   └── seafile.conf
 │   └── seahub_settings.py
-├── logs
-│   ├── controller.log
-│   ├── elasticsearch_deprecation.log
-│   ├── elasticsearch_index_indexing_slowlog.log
-│   ├── elasticsearch_index_search_slowlog.log
-│   ├── elasticsearch.log
-│   ├── file_updates_sender.log
-│   ├── index.log
-│   ├── seafevents.log
-│   ├── seafile.log
-│   ├── seahub.log
-│   └── slow_logs
-├── pids
-│   ├── elasticsearch.pid
-│   ├── seafevents.pid
-│   ├── seaf-server.pid
-│   └── seahub.pid
+├── logs                            # log files
+├── pids                            # process id files
 ├── pro-data                        # data specific for Seafile PE
-│   └── search
-├── seafile-data
-│   ├── httptemp
-│   ├── library-template
-│   ├── storage
-│   └── tmpfiles
+├── seafile-data                    # object database
 ├── seafile-pro-server-8.0.4
 │   ├── check-db-type.py
 │   ├── check_init_admin.py
@@ -382,7 +350,7 @@ $ tree -L 2 /opt/seafile
 │   └── upgrade
 ├── seafile-server-latest -> seafile-pro-server-8.0.4
 ├── seahub-data
-│   └── avatars                        # for user avatars
+    └── avatars                        # user avatars
 ```
 
 ### Tweaking conf files
@@ -407,28 +375,33 @@ The first time you start Seahub, the script prompts you to create an admin accou
 
 Now you can access Seafile via the web interface at the host address and port 8000 (e.g., http://1.2.3.4:8000).
 
-## Configing ElasticSearch
 
-* For Seafile PE 8.0.x and previous versions, the Seafile installation package already includes ElasticSearch, you can directly use it.
-* For Seafile PE 9.0.x and later versions, ElasticSearch needs to be installed and maintained separately (Due to copyright reasons, ElasticSearch 7.x cannot be brought into the Seafile package)
+## Enabling full text search
 
-### ElasticSearch Deployment
+Seafile uses the indexing server ElasticSearch to enable full text search. In versions prior to Seafile 9.0, Seafile's install packages included ElasticSearch. A separate deployment was not necessary. Due to licensing conditions, ElasticSearch 7.x can no longer be bundled in Seafile's install package. As a consequence, a separate deployment of ElasticSearch is required to enble full text search in Seafile newest version.
 
-We use Docker to deploy ElasticSearch as an example, so you need to install Docker on the server in advance (Docker installation is not introduced here).
 
+### Deploying ElasticSearch
+
+Our recommendation for deploying ElasticSearch is using Docker. Detailed information about installing Docker on various Linux distributions is available at [Docker Docs](https://docs.docker.com/engine/install/).
+
+**Note:** Some virtualization technologies do not support Docker. In this case, ElasticSearch must be installed natively.
+
+Seafile PE 9.0 only supports ElasticSearch 7.x. We use ElasticSearch version 7.16.2 as an example in this section. Version 7.16.2 and newer version have been successfully tested with Seafile.
+
+Pull the Docker image:
 ```
-## Pull ElasticSearch Image
-docker pull elasticsearch:7.16.2
+sudo docker pull elasticsearch:7.16.2
 ```
 
+Create a folder for persistent data created by ElasticSearch and change its permission:
 ```
-## Create ElasticSearch data folder, and change it's permission.
-mkdir -p /opt/seafile-elasticsearch/data  && chmod -R 777 /opt/seafile-elasticsearch/data/
+sudo mkdir -p /opt/seafile-elasticsearch/data  && chmod -R 777 /opt/seafile-elasticsearch/data/
 ```
 
+Now start the ElasticSearch container using the docker run command:
 ```
-## Start ElasticSearch Container
-docker run -d \
+sudo docker run -d \
 --name es \
 -p 9200:9200 \
 -e "discovery.type=single-node" -e "bootstrap.memory_lock=true" \
@@ -438,22 +411,22 @@ docker run -d \
 -d elasticsearch:7.16.2
 ```
 
-**NOTE**：seafile PE 9.0.x only supports ElasticSearch 7.x version, it’s best to use 7.16.2 and above.
 
-### Seafile Configuration
 
-Add the following configuration to `seafevents.conf`
+### Modifying seafevents
+
+Add the following configuration to `seafevents.conf`:
 
 ```
 [INDEX FILES]
-external_es_server = true
-es_host = your elasticsearch server's IP     ## ElasticSearch IP
-es_port = 9200                          
-interval = 10m
-highlight = fvh                              ## this is for improving the search speed
+external_es_server = true                   # required when ElasticSearch on separate host
+es_host = your elasticsearch server's IP    # IP address of ElasticSearch host
+es_port = 9200                              # port of ElasticSearch host
+interval = 10m                              # frequency of index updates in minutes
+highlight = fvh                             # parameter for improving the search performance
 ```
 
-Restart Seafile
+Finally, restart Seafile:
 
 ```
 ./seafile.sh restart  && ./seahub.sh restart 

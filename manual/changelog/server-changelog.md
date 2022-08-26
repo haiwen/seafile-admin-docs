@@ -4,6 +4,45 @@
 
 ## 9.0
 
+### 9.0.7 (2022-08-10)
+
+Note: included lxml library is removed for some compatiblity reason. The library is used in published libraries feature and WebDAV feature. You need to install lxml manually after upgrade to 9.0.7. Use command `pip3 install lxml` to install it.
+
+* A page in published libraries is rendered at the server side to improve loading speed.
+* Upgrade Django from 3.2.6 to 3.2.14
+* Fix a bug in collaboration notice sending via email to users' contact email
+* Support OnlyOffice oform/docxf files
+* Improve user search when sharing a library
+* Admin panel support searching a library via ID prefix
+* [fix] Fix preview PSD images
+* [fix] Fix a bug that office files can't be opened in sharing links via OnlyOffice
+* [fix] Go fileserver: Folder or File is not deletable when there is a spurious utf-8 char inside the filename
+
+
+### 9.0.6 (2022-06-22)
+
+* Show table of contents in Markdown sharing link
+* Check if quota exceeded before file uploading in upload sharing link
+* Support import group member via contact email
+
+
+### 9.0.5 (2022-05-13)
+
+* [fix] Fix a bug that sometimes a shared subfolder is unshared automatically by database access error
+* [fix] Fix a bug in work with Python 3.10+
+* [fix] Fix a bug in smart link redict to the file page
+* [fix] Fix a UI bug when drag and drop a file
+* [fix] Fix zip downloading a folder not having .zip suffix when using golang file server
+* Improve UI for file tags
+* Show file tags in sharing links
+* Improve UI of file comments
+* [fix] Fix permission check in deleting/editing a file comment
+* Remove the feature of related files as it is not used
+* Support editing of expire time for sharing links
+* Improve SQL performance when deleting a library
+* Show ISO date and time in file history page instead of showing relative time
+* Add "Visit related snapshot" in the dropdown menu of an entry in file history
+
 ### 9.0.4 (2022-02-21)
 
 * [fix] Fix a UI bug in file moving/copying dialog

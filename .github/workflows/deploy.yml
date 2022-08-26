@@ -1,7 +1,9 @@
 name: Deploy CI
 
 on:
-  [pull_request, push]
+  push:
+    branches:
+      - master
 
 jobs:
   deploy:

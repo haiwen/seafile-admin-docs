@@ -8,6 +8,44 @@
 
 Please check our document for how to upgrade to 9.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_9.0.x/>
 
+### 9.0.7 (2022/08/11)
+
+Note: included lxml library is removed for some compatiblity reason. The library is used in published libraries feature and WebDAV feature. You need to install lxml manually after upgrade to 9.0.7. Use command `pip3 install lxml` to install it.
+
+* A page in published libraries is rendered at the server side to improve loading speed.
+* Upgrade Django from 3.2.6 to 3.2.14
+* Fix a bug in collaboration notice sending via email to users' contact email
+* Support OnlyOffice oform/docxf files
+* Improve user search when sharing a library
+* Admin panel support searching a library via ID prefix
+* [fix] Fix preview PSD images
+* [fix] Fix a bug that office files can't be opened in sharing links via OnlyOffice
+* [fix] Go fileserver: Folder or File is not deletable when there is a spurious utf-8 char inside the filename
+* [fix] Fix file moving in WebDAV
+* ElasticSearch now support https
+* Support advanced permissions like cloud-preview only, cloud read-write only when shareing a department library
+* [fix] Fix a bug in get library sharing info in multi-tenancy mode
+* [fix] Fix a bug in library list cache used by syncing client
+
+
+### 9.0.6 (2022/07/06)
+
+* Support using custom permission when shareing a department library
+* [fix] Fix a bug in go file-server when working with online GC
+* Add cache for getting locked files and getting folder permission (reduce server load caused by sycing client)
+* Show table of contents in Markdown sharing link
+* Check if quota exceeded before file uploading in upload sharing link
+* Support import group member via contact email
+* [fix] Fix a bug that sometimes a shared subfolder is unshared automatically by database access error
+* [fix] Fix a bug in work with Python 3.10+
+* [fix] Fix a bug in smart link redirect to the file page
+* [fix] Fix a UI bug when drag and drop a file
+* Improve UI of file comments
+* [fix] Fix permission check in deleting/editing a file comment
+* Support editing of expire time for sharing links
+* Show ISO date and time in file history page instead of showing relative time
+* Add "Visit related snapshot" in the dropdown menu of an entry in file history
+
 ### 9.0.5 (2022/03/21)
 
 * Remove unused "related files" feature

@@ -2,6 +2,11 @@
 
 ## 8.0
 
+### 8.0.8 (2022/07/05)
+
+* Allow login with password after loging out an SSO account
+* Add additional log messages when failing to start upload/download
+
 ### 8.0.7 (2022/04/29)
 
 * Fix "Another copy or move operation is in progress" error when copying items in cloud file browser

@@ -37,6 +37,8 @@ LANGUAGES = (
 * `msgfmt -o django.mo django.po`
 * `msgfmt -o djangojs.mo djangojs.po`
 
+**Note:** msgfmt is included in the gettext package.
+
 Additionally, run the following two commands in the seafile-server-latest directory:
 
 * `./seahub.sh python-env python3 seahub/manage.py compilejsi18n -l <lang-code>`

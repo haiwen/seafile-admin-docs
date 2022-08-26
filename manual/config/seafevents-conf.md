@@ -1,5 +1,7 @@
 # Configurable Options
 
+> seafevents.conf is for pro edition only 
+
 In the file `seafevents.conf`:
 
 ```
@@ -49,6 +51,14 @@ index_office_pdf=false
 ## Since version 6.2.0
 ## Unit: MB
 office_file_size_limit = 10
+
+## From 9.0.7 pro, Seafile supports connecting to Elasticsearch through username and password, you need to configure username and password for the Elasticsearch server
+username = elastic           # username to connect to Elasticsearch
+password = elastic_password  # password to connect to Elasticsearch
+
+## From 9.0.7 pro, Seafile supports connecting to elasticsearch via HTTPS, you need to configure HTTPS for the Elasticsearch server
+scheme = https               # The default is http. If the Elasticsearch server is not configured with HTTPS, the scheme and cafile do not need to be configured
+cafile = path/to/cert.pem    # The certificate path for user authentication. If the Elasticsearch server does not enable certificate authentication, do not need to be configured
 
 [SEAHUB EMAIL]
 
