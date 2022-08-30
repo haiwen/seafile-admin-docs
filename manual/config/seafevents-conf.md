@@ -68,18 +68,6 @@ enabled = true
 ## interval of sending Seahub email. Can be s(seconds), m(minutes), h(hours), d(days)
 interval = 30m
 
-
-[OFFICE CONVERTER]
-
-## must be "true" to enable office/pdf online preview
-enabled = true
-
-## how many libreoffice worker processes should run concurrenlty
-workers = 1
-
-## where to store the converted office/pdf files. Deafult is /tmp/.
-outputdir = /tmp/
-
 [EVENTS PUBLISH]
 ## must be "true" to enable publish events messages
 enabled = false
@@ -92,5 +80,9 @@ mq_type = redis
 server = 192.168.1.1
 port = 6379
 password = q!1w@#123
+
+[AUTO DELETION]
+enabled = true     # Default is false, when enabled, users can use file auto deletion feature
+interval = 86400   # The unit is second(s), the default frequency is one day, that is, it runs once a day
 
 ```
