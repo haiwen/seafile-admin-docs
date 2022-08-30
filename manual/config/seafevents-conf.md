@@ -82,7 +82,7 @@ port = 6379
 password = q!1w@#123
 
 [AUTO DELETION]
-enabled = true     # Default is false, when enabled is set to true, old files will be deleted periodically
+enabled = true     # Default is false, when enabled, users can use file auto deletion feature
 interval = 86400   # The unit is second(s), the default frequency is one day, that is, it runs once a day
 
 ```
