@@ -86,3 +86,5 @@ enabled = true     # Default is false, when enabled, users can use file auto del
 interval = 86400   # The unit is second(s), the default frequency is one day, that is, it runs once a day
 
 ```
+
+**NOTE**: [Access the AWS elasticsearch service using HTTPS](../deploy_pro/details_about_file_search.md#access-the-aws-elasticsearch-service-using-https)
