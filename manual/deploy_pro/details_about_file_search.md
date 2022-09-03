@@ -86,6 +86,29 @@ If this does not work, you can try the following steps:
 3. Restart Seafile
 4. Wait one minute then run `./pro/pro.py search --update`
 
+### Access the AWS elasticsearch service using HTTPS
+
+1. Create an elasticsearch service on AWS according to the [documentation](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/gsgcreate-domain.html).
+
+2. Configure the seafevents.conf:
+
+```
+[INDEX FILES]
+enabled = true
+interval = 10m
+index_office_pdf=true
+external_es_server = true
+es_host = your domain endpoint(for example, https://search-my-domain.us-east-1.es.amazonaws.com)
+es_port = 443
+scheme = https
+username = master user
+password = password
+highlight = fvh
+
+```
+
+**NOTE**: The version of the Python third-party package `elasticsearch` cannot be greater than 7.14.0, otherwise the elasticsearch service cannot be accessed: <https://docs.aws.amazon.com/opensearch-service/latest/developerguide/samplecode.html#client-compatibility>, <https://github.com/elastic/elasticsearch-py/pull/1623>.
+
 ### I get no result when I search a keyword
 
 The search index is updated every 10 minutes by default. So before the first index update is performed, you get nothing no matter what you search.
