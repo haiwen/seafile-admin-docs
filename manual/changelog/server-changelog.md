@@ -4,6 +4,14 @@
 
 ## 9.0
 
+### 9.0.8 (2022-09-07)
+
+* [fix] Fix a UI bug in sending sharing link by email
+* [fix] Markdown editor does not properly filter javscript URIs from the href attribute, which results in stored XSS
+* [fix] Fix a bug in OCM sharing
+* [fix] Fix a bug in un-linking a device in admin panel
+
+
 ### 9.0.7 (2022-08-10)
 
 Note: included lxml library is removed for some compatiblity reason. The library is used in published libraries feature and WebDAV feature. You need to install lxml manually after upgrade to 9.0.7. Use command `pip3 install lxml` to install it.
