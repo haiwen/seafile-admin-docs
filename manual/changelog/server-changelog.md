@@ -10,6 +10,7 @@
 * [fix] Markdown editor does not properly filter javscript URIs from the href attribute, which results in stored XSS
 * [fix] Fix a bug in OCM sharing
 * [fix] Fix a bug in un-linking a device in admin panel
+* [fix] Adding URL security check in `/accounts/login` redirect by `?next=` parameter
 
 
 ### 9.0.7 (2022-08-10)
