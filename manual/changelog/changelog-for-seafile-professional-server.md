@@ -8,6 +8,21 @@
 
 Please check our document for how to upgrade to 9.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_9.0.x/>
 
+### 9.0.8 (2022-09-09)
+
+* [fix] Fix a UI bug in sending sharing link by email
+* [fix] Markdown editor does not properly filter javscript URIs from the href attribute, which results in stored XSS
+* [fix] Fix a bug in OCM sharing
+* [fix] Fix a bug in un-linking a device in admin panel
+* [fix] Adding URL security check in /accounts/login redirect by ?next= parameter
+* Improve Onlyoffice document info cache handling
+* [fix] Fix a performance problem in go fileserver
+* When a Custom Sharing Permissions is deleted, removing corresponding shares
+* [fix] Don't show auto-deletion menu item when the feature is not enabled
+* [fix] Fix a bug in reading a role's quota when a user login with SSO
+
+
+
 ### 9.0.7 (2022/08/11)
 
 Note: included lxml library is removed for some compatiblity reason. The library is used in published libraries feature and WebDAV feature. You need to install lxml manually after upgrade to 9.0.7. Use command `pip3 install lxml` to install it.
