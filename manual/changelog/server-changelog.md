@@ -4,6 +4,13 @@
 
 ## 9.0
 
+### 9.0.9 (2022-09-22)
+
+* [fix] Fix a memory leak problem
+* [fix] Fix a bug that will lead to seaf-fsck crash
+* [fix] Fix a stored XSS problem for library names
+* [fix] Disable open a file in OnlyOffice for encrypted libraries when open from trash
+
 ### 9.0.8 (2022-09-07)
 
 * [fix] Fix a UI bug in sending sharing link by email
