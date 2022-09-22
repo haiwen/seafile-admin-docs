@@ -8,6 +8,17 @@
 
 Please check our document for how to upgrade to 9.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_9.0.x/>
 
+### 9.0.9 (2022-09-22)
+
+* [fix] Fix a memory leak problem
+* [fix] Fix a bug that will lead to seaf-fsck crash
+* [fix] Fix a stored XSS problem for library names
+* [fix] Disable open a file in OnlyOffice for encrypted libraries when open from trash
+* [fix] Fix library template feature cannot work for department libraries
+* [fix] Fix file locking display on client for shared sub-folder
+* [fix] Fix a memcached problem in go fileserver
+
+
 ### 9.0.8 (2022-09-09)
 
 * [fix] Fix a UI bug in sending sharing link by email
