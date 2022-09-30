@@ -4,6 +4,14 @@
 
 When you setup seahub website, you should have setup a admin account. After you logged in a admin, you may add/delete users and file libraries.
 
+#### How to change a user's email
+
+If you use an email to identify an user (using email as a user's ID), this email is unchangable. You can set a contact email to that user via Web UI. The user can use the contact email to login and receive notifications.
+
+If you really want to change a user's ID, you should create a new user then use this admin API to migrate the data from old user to the new user: https://download.seafile.com/published/web-api/v2.1-admin/accounts.md#user-content-Migrate%20Account.
+
+
+
 #### Resetting User Password
 
 Administrator can reset password for a user in "System Admin" page.
