@@ -8,6 +8,15 @@
 
 Please check our document for how to upgrade to 9.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_9.0.x/>
 
+### 9.0.10 (2022-10-12)
+
+* Admin list all users API now return last_login and last_access_time
+* [fix] Fix a bug in displaying markdown file in sharing link
+* [fix] Fix notification mails are sent to inactive users
+* [fix] Fix viewing a file in an old snapshot leads to server hickup
+* [fix] Fix an HTTP/500 "Internal server error" when the user sets password containing non-latin characters for sharing links
+
+
 ### 9.0.9 (2022-09-22)
 
 * [fix] Fix a memory leak problem
