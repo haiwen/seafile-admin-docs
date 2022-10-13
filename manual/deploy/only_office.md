@@ -104,7 +104,7 @@ When you click on a document you should see the new preview page.
 
 When you want to deploy OnlyOffice and Seafile on the same server, Seafile should be deployed at the root URL while OnlyOffice should be deployed using a subfolder URL.
 
-URL example for OnlyOffice: <https://seafile.domain.com/onlyofficeds>
+URL example for OnlyOffice: <https://seafile.example.com/onlyofficeds>
 
 **Do NOT CHANGE the SUBFOLDER if not absolutely required for some reason!**
 

@@ -29,7 +29,7 @@ OAUTH_CLIENT_ID = "your-client-id"
 OAUTH_CLIENT_SECRET = "your-client-secret"
 
 # Callback url when user authentication succeeded. Note, the redirect url you input when you register your client application MUST be exactly the same as this value.
-OAUTH_REDIRECT_URL = 'http{s}://your-domain.com/oauth/callback/'
+OAUTH_REDIRECT_URL = 'http{s}://example.com/oauth/callback/'
 
 # The following should NOT be changed if you are using Github as OAuth provider.
 OAUTH_PROVIDER_DOMAIN = 'github.com'
@@ -52,7 +52,7 @@ OAUTH_ENABLE_INSECURE_TRANSPORT = True
 
 OAUTH_CLIENT_ID = "your-client-id"
 OAUTH_CLIENT_SECRET = "your-client-secret"
-OAUTH_REDIRECT_URL = 'http{s}://your-domain.com/oauth/callback/'
+OAUTH_REDIRECT_URL = 'http{s}://example.com/oauth/callback/'
 
 # The following shoud NOT be changed if you are using Google as OAuth provider.
 OAUTH_PROVIDER_DOMAIN = 'google.com'
@@ -76,7 +76,7 @@ OAUTH_ENABLE_INSECURE_TRANSPORT = True
 
 OAUTH_CLIENT_ID = "your-client-id"
 OAUTH_CLIENT_SECRET = "your-client-secret"
-OAUTH_REDIRECT_URL = 'http{s}://your-domain.com/oauth/callback/'
+OAUTH_REDIRECT_URL = 'http{s}://example.com/oauth/callback/'
 
 # The following shoud NOT be changed if you are using Google as OAuth provider.
 OAUTH_PROVIDER_DOMAIN = 'google.com'
