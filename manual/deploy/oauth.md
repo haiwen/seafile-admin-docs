@@ -21,6 +21,9 @@ Add the folllowing configurations to seahub_settings.py:
 ```
 ENABLE_OAUTH = True
 
+# If active new user when he/she login Seafile for the first time, defalut `True`.
+OAUTH_ACTIVATE_USER_AFTER_CREATION
+
 # Usually OAuth works through SSL layer. If your server is not parametrized to allow HTTPS, some method will raise an "oauthlib.oauth2.rfc6749.errors.InsecureTransportError". Set this to `True` to avoid this error.
 OAUTH_ENABLE_INSECURE_TRANSPORT = True
 
