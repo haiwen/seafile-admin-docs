@@ -22,7 +22,7 @@ Add the folllowing configurations to seahub_settings.py:
 ENABLE_OAUTH = True
 
 # If create new user when he/she logs in Seafile for the first time, defalut `True`.
-OAUTH_CREATE_UNKNOWN_USER
+OAUTH_CREATE_UNKNOWN_USER = True
 
 # If active new user when he/she logs in Seafile for the first time, defalut `True`.
 OAUTH_ACTIVATE_USER_AFTER_CREATION = True
