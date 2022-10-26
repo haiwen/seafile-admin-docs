@@ -180,6 +180,8 @@ curl -X PUT -H 'Content-Type: application/json' 'http{s}://{es server IP}:9200/n
 {
   "settings" : {
     "index" : {
+      "number_of_shards" : 5,
+      "number_of_replicas" : 1,
       "analysis" : {
         "analyzer" : {
           "seafile_file_name_ngram_analyzer" : {
