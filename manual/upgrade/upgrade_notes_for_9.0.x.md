@@ -216,8 +216,7 @@ curl -X PUT -H 'Content-Type: application/json' 'http{s}://{es server IP}:9200/n
         }
       },
       "is_dir" : {
-        "type" : "boolean",
-        "index" : false
+        "type" : "boolean"
       },
       "mtime" : {
         "type" : "date"
