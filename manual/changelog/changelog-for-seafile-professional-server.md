@@ -8,6 +8,16 @@
 
 Please check our document for how to upgrade to 9.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_9.0.x/>
 
+### 9.0.11 (2022-10-27)
+
+* [fix] Fix file accessed by seadrive cannot be correctly logged in access log
+* [fix] Fix "document convertion failed” error visiting a shared document with preview only
+* [fix] Fix memory leak when block cache is enabled
+* [fix] Add unique index to repo_id_file_path_md5 in table onlyoffice_onlyofficedockey
+* [fix] Fix the default created ElasticSearch(v7.x) index has only one shard
+* [fix] Fix search in move files dialog not working
+
+
 ### 9.0.10 (2022-10-12)
 
 * Admin list all users API now return last_login and last_access_time
