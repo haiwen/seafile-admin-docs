@@ -8,6 +8,11 @@
 
 Please check our document for how to upgrade to 9.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_9.0.x/>
 
+### 9.0.12 (2022-11-04)
+
+* Enable 'zoom in/out by pinch' for mobile in pdf file view page
+* [fix] Fix recording device information for desktop clients login with SSO
+
 ### 9.0.11 (2022-10-27)
 
 * [fix] Fix file accessed by seadrive cannot be correctly logged in access log
