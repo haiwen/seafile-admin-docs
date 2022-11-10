@@ -6,7 +6,9 @@ The following compilation steps are only valid for versions 8.0 and above.
 
 Before compiling and developing, you need to install and configure the development environment
 
-1. Microsoft Visual Studio 2019 (Windows SDK 10.0.18362.0)
+1. Microsoft Visual Studio 2019 (Windows SDK 10.0.18362.0) including the following modules:
+   * MSVC v142 Build ToolsMSVC v142 Build Tools
+   * C++ 2019 Redistributable-MSMs
 2. Package manager tools: [vcpkg](https://docs.microsoft.com/en-us/cpp/build/vcpkg?view=vs-2019)
 3. Install wix[wix](https://github.com/wixtoolset/wix3/releases/tag/wix3111rtm) to c:/wix
 4. Install paraffin [paraffin](https://github.com/Wintellect/Paraffin/releases) and copy Paraffin.exe to c:/wix/bin
@@ -87,7 +89,7 @@ copy C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Redi
 
 ## How to make msi
 
-For example, if you want to compile seafile 8.0.0, you can package it like this.
+For example, if you want to compile seafile 8.0.9, you can package it like this.
 
 First clone the libsearpc seafile seafile-client code to a directory.
 
@@ -108,19 +110,19 @@ Then pull the code of the specified tag and build.
 ```bash
 cd libsearpc
 git pull origin master:master
-git reset v3.2-latest --hard
+git reset v3.3-latest --hard
 
 cd ../seafile-client
 git pull origin master:master
-git reset v8.0.0 --hard
+git reset v8.0.9 --hard
 
 cd ../seafile-shell-ext
 git pull origin master:master
-git reset v8.0.0 --hard
+git reset seafile-v8.0.9 --hard
 
 cd ../seafile
 git pull origin master:master
-git reset v8.0.0 --hard
+git reset v8.0.9 --hard
 
 cd scripts/build
 python build-msi-vs.py 8.0.0
