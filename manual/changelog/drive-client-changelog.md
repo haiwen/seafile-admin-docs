@@ -1,5 +1,9 @@
 # SeaDrive Client Changelog
 
+### 2.0.24 (macOS) (2022/11/09)
+
+* Support macOS 13
+
 ### 2.0.23 (2022/08/18)
 
 * \[Win] Fix problems when renaming libraries in the client
