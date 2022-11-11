@@ -14,6 +14,7 @@ Please check our document for how to upgrade to 9.0: <https://manual.seafile.com
 * [multi-tenancy] Add statistics for organization admin
 * [multi-tenancy] Support import users from xlsx
 * [fix] Prevent system admin creating libraries with invalid name in admin panel
+* Add "create" permission in custome sharing permission
 * Improve performance in golang file server
 
 
