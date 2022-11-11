@@ -104,7 +104,7 @@ When you click on a document you should see the new preview page.
 
 When you want to deploy OnlyOffice and Seafile on the same server, Seafile should be deployed at the root URL while OnlyOffice should be deployed using a subfolder URL.
 
-URL example for OnlyOffice: <https://seafile.domain.com/onlyofficeds>
+URL example for OnlyOffice: <https://seafile.example.com/onlyofficeds>
 
 **Do NOT CHANGE the SUBFOLDER if not absolutely required for some reason!**
 
@@ -267,7 +267,7 @@ map $http_upgrade $proxy_connection {
 
 server {
         listen       80;
-        server_name  seafile.domain.com;
+        server_name  seafile.example.com;
         rewrite ^ https://$http_host$request_uri? permanent;    # force redirect http to https
         server_tokens off;
 }
@@ -277,7 +277,7 @@ server {
         ssl on;
         ssl_certificate /etc/ssl/cacert.pem;        # path to your cacert.pem
         ssl_certificate_key /etc/ssl/privkey.pem;    # path to your privkey.pem
-        server_name seafile.domain.com;
+        server_name seafile.example.com;
         proxy_set_header X-Forwarded-For $remote_addr;
         add_header Strict-Transport-Security "max-age=31536000; includeSubDomains";
         server_tokens off;
@@ -390,13 +390,13 @@ LoadModule ssl_module modules/mod_ssl.so
 </IfModule>
 
 <VirtualHost *:80>
-    ServerName seafile.domain.com
-    ServerAlias domain.com
-    Redirect permanent / https://seafile.domain.com
+    ServerName seafile.example.com
+    ServerAlias example.com
+    Redirect permanent / https://seafile.example.com
 </VirtualHost>
 
 <VirtualHost *:443>
-  ServerName seafile.domain.com
+  ServerName seafile.example.com
   DocumentRoot /var/www
 
   SSLEngine On
