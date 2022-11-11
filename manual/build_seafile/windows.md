@@ -7,8 +7,8 @@ The following compilation steps are only valid for versions 8.0 and above.
 Before compiling and developing, you need to install and configure the development environment
 
 1. Microsoft Visual Studio 2019 (Windows SDK 10.0.18362.0) including the following modules:
-   * MSVC v142 Build ToolsMSVC v142 Build Tools
-   * C++ 2019 Redistributable-MSMs
+   1. MSVC v142 Build ToolsMSVC v142 Build Tools
+   2. C++ 2019 Redistributable-MSMs
 2. Package manager tools: [vcpkg](https://docs.microsoft.com/en-us/cpp/build/vcpkg?view=vs-2019)
 3. Install wix[wix](https://github.com/wixtoolset/wix3/releases/tag/wix3111rtm) to c:/wix
 4. Install paraffin [paraffin](https://github.com/Wintellect/Paraffin/releases) and copy Paraffin.exe to c:/wix/bin
