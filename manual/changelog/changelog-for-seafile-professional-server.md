@@ -14,7 +14,7 @@ Please check our document for how to upgrade to 9.0: <https://manual.seafile.com
 * [multi-tenancy] Add statistics for organization admin
 * [multi-tenancy] Support import users from xlsx
 * [fix] Prevent system admin creating libraries with invalid name in admin panel
-* Improve zip downloading performance in golang file server
+* Improve performance in golang file server
 
 
 ### 9.0.12 (2022-11-04)
