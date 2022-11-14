@@ -2,6 +2,11 @@
 
 ## 8.0
 
+### 8.0.9 (2022/11/14)
+
+* Add events.log to debug local file changes
+* Change commit process on restart, to avoid potential corruption state
+
 ### 8.0.8 (2022/07/05)
 
 * Allow login with password after loging out an SSO account
