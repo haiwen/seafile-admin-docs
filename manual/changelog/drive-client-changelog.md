@@ -1,5 +1,11 @@
 # SeaDrive Client Changelog
 
+### 2.0.24 (Windows) (2022/11/14)
+
+* Add events.log for debugging local file changes
+* Remove invalid placeholders after re-login (when corresponsiding files were removed on server)
+* Resume creating placehooders when the first sync process was interrupted
+
 ### 2.0.24 (macOS) (2022/11/09)
 
 * Support macOS 13
