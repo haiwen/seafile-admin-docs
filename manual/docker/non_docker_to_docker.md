@@ -64,7 +64,7 @@ cp -r /opt/seafile/conf  /opt/seafile-data/seafile
 cp -r /opt/seafile/seahub-data  /opt/seafile-data/seafile
 ```
 
-Modify the MySQL configuration in `/opt/seafile-data/seafile/conf`, including `ccnet.conf`, `seafile.conf`, `seahub_settings`, change `HOST=127.0.0.1` to `HOST=<local ip>`.
+Modify the MySQL configuration in `/opt/seafile-data/seafile/conf`, including `ccnet.conf`, `seafile.conf`, `seahub_settings`, change `HOST=127.0.0.1` to `HOST=host.docker.internal`.
 
 Modify the memcached configuration in `seahub_settings.py` to use the Docker version of Memcached: change it to `'LOCATION': 'memcached:11211'` (the network name of Docker version of Memcached is `memcached`).
 
