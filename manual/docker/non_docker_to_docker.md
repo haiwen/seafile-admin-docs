@@ -165,6 +165,7 @@ then edit /opt/seafile-data/seafile/conf/ -> ccnet.conf seafile.conf seahub_sett
 service networking reload
 ip a #to check whether the ip is present
 service mysql restart
+ss -tulpen | grep 3306 #to check whether the database listens on the correct IP
 cd /opt/seafile-data/
 docker-compose down
 docker-compose up -d
