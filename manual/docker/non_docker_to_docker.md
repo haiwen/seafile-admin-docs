@@ -132,14 +132,15 @@ docker-compose  up -d
 ```
 
 ## Security
-While it is not possible from inside a docker container to connect to the host database via localhost but via `<local ip>` you also need to bind your databaseserver to that IP. If this IP is public, it is strongly advised to protect your database port with a firewall. Otherwise you databases are reachable via internet.
+While it is not possible from inside a docker container to connect to the host database via localhost but via `<local ip>` you also need to bind your databaseserver to that IP. If this IP is public, it is strongly advised to protect your database port with a firewall. Otherwise your databases are reachable via internet.
 An alternative might be to start another local IP from [RFC 1597](https://tools.ietf.org/html/rfc1597) e.g. `192.168.123.45`. Afterwards you can bind to that IP.
 
 ### iptables
 Following iptables commands protect MariaDB/MySQL:
 ```
-iptables -A INPUT -p tcp -m tcp --dport 3306 -j DROP
-ip6tables -A INPUT -p tcp -m tcp --dport 3306 -j DROP
+iptables -A INPUT -s 172.16.0.0/12 -j ACCEPT #Allow Dockernetworks
+iptables -A INPUT -p tcp -m tcp --dport 3306 -j DROP #Deny Internet
+ip6tables -A INPUT -p tcp -m tcp --dport 3306 -j DROP #Deny Internet
 ```
 Keep in mind this is not bootsafe!
 
