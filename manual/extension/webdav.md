@@ -1,10 +1,10 @@
 # WebDAV extension
 
-In the document below, we assume your seafile installation folder is `/opt/seatable`.
+In the document below, we assume your seafile installation folder is `/opt/seafile`.
 
 ## SeafDAV Configuration for 7.1+
 
-The configuration file is `/opt/seatable/conf/seafdav.conf`. If it is not created already, you can just create the file.
+The configuration file is `/opt/seafile/conf/seafdav.conf`. If it is not created already, you can just create the file.
 
 ```
 [WEBDAV]
@@ -82,14 +82,14 @@ For Seafdav, the configuration of Apache is as follows:
 
 ### HTTPS proxy
 
-If you configure https in Nginx or Apache, you have to configure the reverse proxy to rewrite the `Destination` header's protocol from 'https\:' to 'http\:'. This is a limitation on the WebDAV framework SeafDAV is based on. See more details:
+If you configure https in Nginx or Apache, you have to configure the reverse proxy to rewrite the `Destination` headers protocol from `https` to `http`. This is a limitation on the WebDAV framework SeafDAV is based on. See more details:
 
 * <https://forum.seafile.com/t/seafdav-move-command-causing-502/11582>
 * <https://github.com/mar10/wsgidav/issues/183>
 
 ## SeafDAV Configuration for 7.0 or older versions
 
-The configuration file is `/opt/seatable/conf/seafdav.conf`. If it is not created already, you can just create the file.
+The configuration file is `/opt/seafile/conf/seafdav.conf`. If it is not created already, you can just create the file.
 
 ```
 [WEBDAV]
