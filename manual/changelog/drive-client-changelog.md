@@ -1,5 +1,11 @@
 # SeaDrive Client Changelog
 
+### 2.0.25 (Windows) (2022/12/03)
+
+* Disable removing invalid placeholders logic, to avoid mistakenly removing placeholders
+* Fix a crash issue when fails to register sync root
+* Avoid a potential case where empty commits are created
+
 ### 2.0.24 (Windows) (2022/11/14)
 
 * Add events.log for debugging local file changes
