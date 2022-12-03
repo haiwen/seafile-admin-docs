@@ -7,7 +7,7 @@ You need to install ffmpeg package to let the video thumbnail work correctly:
 **Ubuntu 16.04**
 ```
 # Install ffmpeg
-apt-get update && apt-get -y install ffmpeg
+sudo apt-get update && sudo apt-get -y install ffmpeg
  
 # Now we need to install some modules
 pip install pillow moviepy
@@ -33,7 +33,7 @@ pip install pillow moviepy
 sudo echo "deb http://httpredir.debian.org/debian $(lsb_release -cs)-backports main non-free" > /etc/apt/sources.list.d/debian-backports.list
 
 # Then update the repo and install ffmpeg
-apt-get update && apt-get -y install ffmpeg
+sudo apt-get update && sudo apt-get -y install ffmpeg
 
 # Now we need to install some modules
 pip install pillow moviepy
