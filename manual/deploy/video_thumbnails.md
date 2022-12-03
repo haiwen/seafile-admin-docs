@@ -47,7 +47,7 @@ Now configure accordingly in `seahub_settings.py`
 
 ```python
 # Enable or disable thumbnail for video. ffmpeg and moviepy should be installed first. 
-# For details, please refer to https://manual.seafile.com/deploy/video_thumbnails.html
+# For details, please refer to https://manual.seafile.com/deploy/video_thumbnails/
 # NOTE: since version 6.1
 ENABLE_VIDEO_THUMBNAIL = True
 
