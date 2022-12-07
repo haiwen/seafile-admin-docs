@@ -4,6 +4,19 @@
 
 ## 9.0
 
+### 9.0.10 (2022-12-07)
+
+* Admin list all users API now return last_login and last_access_time
+* [fix] Fix a bug in displaying markdown file in sharing link
+* [fix] Fix notification mails are sent to inactive users
+* [fix] Fix viewing a file in an old snapshot leads to server hickup
+* [fix] Fix an HTTP/500 "Internal server error" when the user sets password containing non-latin characters for sharing links
+* [fix] Fix "document convertion failed” error visiting a shared document with preview only
+* [fix] Fix memory leak when block cache is enabled
+* Enable 'zoom in/out by pinch' for mobile in pdf file view page
+* [fix] Prevent system admin creating libraries with invalid name in admin panel
+* Improve performance in golang file server
+
 ### 9.0.9 (2022-09-22)
 
 * [fix] Fix a memory leak problem
