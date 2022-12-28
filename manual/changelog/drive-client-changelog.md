@@ -1,5 +1,9 @@
 # SeaDrive Client Changelog
 
+### 2.0.26 (2022/12/28)
+
+* Ask for user confirmation when deleting more than 500 files at once
+
 ### 2.0.25 (Windows) (2022/12/03)
 
 * Disable removing invalid placeholders logic, to avoid mistakenly removing placeholders
