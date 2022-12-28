@@ -2,6 +2,11 @@
 
 ## 8.0
 
+### 8.0.10 (2022/12/28)
+
+* Improve handling of moving large folders to avoid potential false deletion of files
+* Ask for user confirmation when deleting more than 500 files at once
+
 ### 8.0.9 (2022/11/14)
 
 * Add events.log to debug local file changes
