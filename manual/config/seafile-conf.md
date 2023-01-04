@@ -162,6 +162,12 @@ When a large number of files are uploaded through the web page and API, it will 
 skip_block_hash = true
 ```
 
+If you want to limit the type of files when uploading files, since Seafile Pro 10.0.0 version, you can set `file_ext_white_list` option in the `[fileserver]` group. This option is a list of file types, only the file types in this list are allowed to be uploaded. It's not enabled by default. 
+
+```
+[fileserver]
+file_ext_white_list = md;mp4;mov
+
 ## Database configuration
 
 The whole database configuration is stored in the `[database]` section of the configuration file, whether you use SQLite, MySQL or PostgreSQL.
