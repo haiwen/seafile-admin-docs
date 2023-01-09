@@ -167,6 +167,7 @@ If you want to limit the type of files when uploading files, since Seafile Pro 1
 ```
 [fileserver]
 file_ext_white_list = md;mp4;mov
+```
 
 ## Database configuration
 
