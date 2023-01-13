@@ -130,3 +130,46 @@ Start Seafile docker and check if everything is okay:
 cd /opt/seafile-data
 docker-compose  up -d
 ```
+
+## Security
+While it is not possible from inside a docker container to connect to the host database via localhost but via `<local ip>` you also need to bind your databaseserver to that IP. If this IP is public, it is strongly advised to protect your database port with a firewall. Otherwise your databases are reachable via internet.
+An alternative might be to start another local IP from [RFC 1597](https://tools.ietf.org/html/rfc1597) e.g. `192.168.123.45`. Afterwards you can bind to that IP.
+
+### iptables
+Following iptables commands protect MariaDB/MySQL:
+```
+iptables -A INPUT -s 172.16.0.0/12 -j ACCEPT #Allow Dockernetworks
+iptables -A INPUT -p tcp -m tcp --dport 3306 -j DROP #Deny Internet
+ip6tables -A INPUT -p tcp -m tcp --dport 3306 -j DROP #Deny Internet
+```
+Keep in mind this is not bootsafe!
+
+### Binding based
+For Debian based Linux Distros you can start a local IP by adding in `/etc/network/interfaces` something like:
+```
+iface eth0 inet static
+  address 192.168.123.45/32
+```
+`eth0` might be `ensXY`. Or if you know how to start a dummy interface, thats even better.
+
+SUSE based is by editing `/etc/sysconfig/network/ifcfg-eth0` (ethXY/ensXY/bondXY)
+
+If using MariaDB the server just can bind to one IP-address (192.158.1.38 or 0.0.0.0 (internet)). So if you bind your MariaDB server to that new address other applications might need some reconfigurement.
+
+In `/etc/mysql/mariadb.conf.d/50-server.cnf` edit the following line to:
+```
+bind-address    = 192.168.123.45
+```
+then edit /opt/seafile-data/seafile/conf/ -> ccnet.conf seafile.conf seahub_settings.py in the Host-Line to that IP and execute the following commands:
+
+```
+service networking reload
+ip a #to check whether the ip is present
+service mysql restart
+ss -tulpen | grep 3306 #to check whether the database listens on the correct IP
+cd /opt/seafile-data/
+docker-compose down
+docker-compose up -d
+
+## restart your applications
+```
