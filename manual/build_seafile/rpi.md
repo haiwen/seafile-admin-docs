@@ -241,19 +241,19 @@ After the script finisheds, we would get a `seafile-server_6.0.1_pi.tar.gz` in `
 
 ### <a id="wiki-test-fresh-install"></a>Test a fresh install
 
-Use the built seafile server package to go over the steps of [Deploying Seafile with SQLite](http://manual.seafile.com/deploy/using_sqlite.html).
+Use the built seafile server package to go over the steps of [Deploying Seafile with SQLite](http://manual.seafile.com/deploy/using_sqlite/).
 
 The test should cover these steps at least:
 
 * The setup process is ok
 * After `seafile.sh start` and `seahub.sh start`, you can login from a browser.
 * Uploading/Downloading files through a web browser works correctly.
-* Seafile [WebDAV](http://manual.seafile.com/extension/webdav.html) server works correctly
+* Seafile [WebDAV](http://manual.seafile.com/extension/webdav/) server works correctly
 
 ### <a id="wiki-test-upgrading"></a> Test upgrading from a previous version
 
 * Download the package of the previous version seafile server, and setup it.
-* Upgrading according to [the manual](http://manual.seafile.com/deploy/upgrade.html)
+* Upgrading according to [the manual](http://manual.seafile.com/deploy/upgrade/)
 * After the upgrade, check the functionality is ok:
   * Uploading/Downloading files through a web browser works correctly.
-  * Seafile [WebDAV](http://manual.seafile.com/extension/webdav.html) server works correctly
+  * Seafile [WebDAV](http://manual.seafile.com/extension/webdav/) server works correctly
