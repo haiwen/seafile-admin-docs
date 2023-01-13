@@ -4,17 +4,17 @@
 
 There are currently five types of emails sent in Seafile:
 
-* User reset his/her password
-* System admin add new member
-* System admin reset user password
-* User send file/folder share link and upload link
+* User resets his/her password
+* System admin adds new member
+* System admin resets user password
+* User sends file/folder share and upload link
 * \[pro] Reminder of unread notifications (It is sent by a background task which is pro edition only)
 
 The first four types of email are sent immediately. The last type is sent by a background task running periodically.
 
 ## Options of Email Sending
 
-Please add the following lines to seahub_settings.py to enable email sending.
+Please add the following lines to `seahub_settings.py` to enable email sending.
 
 ```python
 EMAIL_USE_TLS = False
@@ -81,7 +81,7 @@ interval = 30m
 
 ## Customize email messages
 
-The simplest way to customize the email message is setting the `SITE_NAME` variable in seahub_settings.py. If it is not enough for your case, you can customize the email templates.
+The simplest way to customize the email messages is setting the `SITE_NAME` variable in `seahub_settings.py`. If it is not enough for your case, you can customize the email templates.
 
 **Note:** Subject line may vary between different releases, this is based on Release 5.0.0. Restart Seahub so that your changes take effect.
 
@@ -91,7 +91,7 @@ The simplest way to customize the email message is setting the `SITE_NAME` varia
 
 Note: You can copy email_base.html to `seahub-data/custom/templates/email_base.html` and modify the new one. In this way, the customization will be maintained after upgrade.
 
-### User reset his/her password
+### User resets his/her password
 
 **Subject**
 
@@ -109,7 +109,7 @@ seahub/seahub/auth/forms.py line:127
 
 Note: You can copy password_reset_email.html to `seahub-data/custom/templates/registration/password_reset_email.html` and modify the new one. In this way, the customization will be maintained after upgrade.
 
-### System admin add new member
+### System admin adds new member
 
 **Subject**
 
@@ -127,7 +127,7 @@ send_html_email(_(u'Password has been reset on %s') % SITE_NAME,
 
 Note: You can copy user_add_email.html to `seahub-data/custom/templates/sysadmin/user_add_email.html` and modify the new one. In this way, the customization will be maintained after upgrade.
 
-### System admin reset user password
+### System admin resets user password
 
 **Subject**
 
@@ -145,7 +145,7 @@ send_html_email(_(u'Password has been reset on %s') % SITE_NAME,
 
 Note: You can copy user_reset_email.html to `seahub-data/custom/templates/sysadmin/user_reset_email.html` and modify the new one. In this way, the customization will be maintained after upgrade.
 
-### User send file/folder share link
+### User sends file/folder share link
 
 **Subject**
 
