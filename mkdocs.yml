@@ -133,6 +133,7 @@ nav:
     - Outline: config/README.md
     - ccnet.conf: config/ccnet-conf.md
     - seafile.conf: config/seafile-conf.md
+    - notification.conf: config/notification-conf.md
     - seahub_settings.py: config/seahub_settings_py.md
     - seafevents.conf: config/seafevents-conf.md
     - Seahub customization: config/seahub_customization.md

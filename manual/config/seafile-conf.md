@@ -215,6 +215,22 @@ memcached_options = --SERVER=<the IP of Memcached Server> --POOL-MIN=10 --POOL-M
 
 ```
 
+Since Seafile-pro-10.0.0, you can use redis as the cache by adding the following configuration:
+
+```
+[redis]
+# the ip of redis server
+redis_server = 127.0.0.1
+# the port of redis server
+redis_port = 6379
+# the expire time of redis, the unit is second, default to 24h
+redis_expriy = 86400
+# the max connections of redis, default to 100
+max_connections = 100
+```
+
+If you configure redis and memcache at the same time, then redis will be used as the cache.
+
 ## Enable Slow Log
 
 Since Seafile-pro-6.3.10, you can enable seaf-server's RPC slow log to do performance analysis.The slow log is enabled by default.
@@ -272,4 +288,16 @@ This interface can be used through the pprof tool provided by Go language. See h
 ```
 go tool pprof http://localhost:8082/debug/pprof/heap?password=8kcUz1I2sLaywQhCRtn2x1
 go tool pprof http://localhost:8082/debug/pprof/profile?password=8kcUz1I2sLaywQhCRtn2x1
+```
+
+## Notification server configuration
+Since Seafile 10.0.0, you can enable the notification server by adding the following configuration options:
+
+```
+# notification_token and private_key are required, change it for your need
+[notification]
+# notification_url is the url of notification server
+notification_url = 127.0.0.1:8083
+notification_token = Ub81YvmtWLHGB2
+private_key = M@O8VWUb81YvmtWLHGB2I_V7di5-@0p(MF*GrE!sIws23F
 ```
