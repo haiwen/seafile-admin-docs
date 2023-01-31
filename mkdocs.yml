@@ -119,6 +119,7 @@ nav:
       - Import Directory To Seafile: deploy_pro/seaf_import.md
     - Memcached Options for Pro Edition: deploy_pro/memcached_options.md
     - License: deploy_pro/seafile_professional_sdition_software_license_agreement.md
+    - Notification Server: deploy_pro/notification-server.md
   - Seafile Setup with Docker:
     - Seafile Community Installation: docker/deploy_seafile_with_docker.md
     - Seafile Professional Installation: docker/pro-edition/deploy_seafile_pro_with_docker.md
@@ -133,7 +134,6 @@ nav:
     - Outline: config/README.md
     - ccnet.conf: config/ccnet-conf.md
     - seafile.conf: config/seafile-conf.md
-    - notification.conf: config/notification-conf.md
     - seahub_settings.py: config/seahub_settings_py.md
     - seafevents.conf: config/seafevents-conf.md
     - Seahub customization: config/seahub_customization.md

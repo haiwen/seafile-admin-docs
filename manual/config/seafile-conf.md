@@ -225,7 +225,7 @@ redis_server = 127.0.0.1
 redis_port = 6379
 # the expire time of redis, the unit is second, default to 24h
 redis_expriy = 86400
-# the max connections of redis, default to 100
+# the max number of connections to redis server, default to 100
 max_connections = 100
 ```
 
@@ -294,10 +294,11 @@ go tool pprof http://localhost:8082/debug/pprof/profile?password=8kcUz1I2sLaywQh
 Since Seafile 10.0.0, you can enable the notification server by adding the following configuration options:
 
 ```
-# notification_token and private_key are required, change it for your need
+# notification_token and private_key are required. You should generate them manually.
 [notification]
 # notification_url is the url of notification server
 notification_url = 127.0.0.1:8083
 notification_token = Ub81YvmtWLHGB2
+# private_key is used to generate jwt token
 private_key = M@O8VWUb81YvmtWLHGB2I_V7di5-@0p(MF*GrE!sIws23F
 ```

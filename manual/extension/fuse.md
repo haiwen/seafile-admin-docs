@@ -36,7 +36,7 @@ Since Community server version 4.2.1 and Pro server 4.2.0, the script supports s
 ./seaf-fuse.sh start -o uid=<uid> /data/seafile-fuse
 ```
 
-Since Seafile-pro-10.0.0, you can disable block cache by adding following options:
+The fuse enables the block cache function by default to cache block objects, thereby reducing access to backend storage, but this function will occupy local disk space. Since Seafile-pro-10.0.0, you can disable block cache by adding following options:
 ```
 ./seaf-fuse.sh start --disable-block-cache /data/seafile-fuse
 ```
