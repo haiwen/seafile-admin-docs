@@ -215,22 +215,6 @@ memcached_options = --SERVER=<the IP of Memcached Server> --POOL-MIN=10 --POOL-M
 
 ```
 
-Since Seafile-pro-10.0.0, you can use redis as the cache by adding the following configuration:
-
-```
-[redis]
-# the ip of redis server
-redis_server = 127.0.0.1
-# the port of redis server
-redis_port = 6379
-# the expire time of redis, the unit is second, default to 24h
-redis_expriy = 86400
-# the max number of connections to redis server, default to 100
-max_connections = 100
-```
-
-If you configure redis and memcache at the same time, then redis will be used as the cache.
-
 ## Enable Slow Log
 
 Since Seafile-pro-6.3.10, you can enable seaf-server's RPC slow log to do performance analysis.The slow log is enabled by default.

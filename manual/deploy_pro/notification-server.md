@@ -50,9 +50,7 @@ You can generate notification_token and private_key with the following commandï¼
 openssl rand -base64 16
 
 # generate private_key
-python
->>> from django.core.management import utils
->>> utils.get_random_secret_key()
+openssl rand -base64 32
 
 ```
 
