@@ -1,10 +1,10 @@
-# Details about Notification Server
+# Notification Server Overview
 
-Currently, the status updates of files and libraries on the client and web interface are based on regular queries, and there is a certain delay, so the latest status cannot be reflected in real time. The client needs to periodically refresh the library modification, file locking, subdirectory permissions and other information, causing additional performance overhead to the server.
+Currently, the status updates of files and libraries on the client and web interface are based on polling the server. The latest status cannot be reflected in real time on the client due to polling delays. The client needs to periodically refresh the library modification, file locking, subdirectory permissions and other information, which causes additional performance overhead to the server.
 
 When a directory is opened on the web interface, the lock status of the file cannot be updated in real time, and the page needs to be refreshed.
 
-The notification server is based on the websocket protocol and maintains a two-way communication connection with the client and the web interface. When the above changes occur, seaf-server will notify the notification server of the changes, and then the notification server can notify the client and the web interface in real time. This not only improves the real-time performance, but also reduces the performance overhead of the server.
+The notification server uses websocket protocol and maintains a two-way communication connection with the client or the web interface. When the above changes occur, seaf-server will notify the notification server of the changes. Then the notification server can notify the client or the web interface in real time. This not only improves the real-time performance, but also reduces the performance overhead of the server.
 
 ## Supported update reminder types
 
@@ -36,7 +36,7 @@ host = 127.0.0.1
 port = 8083
 # the log level of notification server
 log_level = info
-# notification_token is used to simply authenticate seafile server
+# notification_token is used to authenticate seafile server
 notification_token = xP7GGgGPVCQu8r0xNJ+k4Q==
 # private_key is used to check whether the request jwt token is valid
 private_key = "M@O8VWUb81YvmtWLHGB2I_V7di5-@0p(MF*GrE!sIws23F
