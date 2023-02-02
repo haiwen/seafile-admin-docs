@@ -45,20 +45,4 @@ If the above option is set, it'll override all other memcached options. If it's 
 
 ## Cache Options after 10.0
 
-Since Seafile-pro-10.0.0, redis cache is supported and `[memcached]` or `[redis]` option group must be configured in seafile.conf.
-
-You can use redis as the cache by adding the following configuration:
-
-```
-[redis]
-# the ip of redis server
-redis_server = 127.0.0.1
-# the port of redis server
-redis_port = 6379
-# the expire time of redis, the unit is second, default to 24h
-redis_expriy = 86400
-# the max number of connections to redis server, default to 100
-max_connections = 100
-```
-
-If you configure `[redis]` and `[memcache]` option group at the same time, then redis will be used as the cache.
+Since Seafile-pro-10.0.0, `[memcached]` option group must be configured in seafile.conf.
