@@ -42,3 +42,7 @@ memcached_options = --SERVER=<the IP of Memcached Server> --POOL-MIN=10 --POOL-M
 ```
 
 If the above option is set, it'll override all other memcached options. If it's not set, the old and existing options will be used. So it's backward compatible.
+
+## Cache Options after 10.0
+
+Since Seafile-pro-10.0.0, `[memcached]` option group must be configured in seafile.conf.
