@@ -350,6 +350,33 @@ ENABLE_GET_AUTH_TOKEN_BY_SESSION = True
 # Usually configured as Single Logout url.
 LOGOUT_REDIRECT_URL = 'http{s}://www.example-url.com'
 
+
+# Enable system admin add T&C, all users need to accept terms before using. Defaults to `False`.
+# Since version 6.0
+ENABLE_TERMS_AND_CONDITIONS = True
+
+# Enable two factor authentication for accounts. Defaults to `False`.
+# Since version 6.0
+ENABLE_TWO_FACTOR_AUTH = True
+
+# Enable user select a template when he/she creates library.
+# When user select a template, Seafile will create folders releated to the pattern automaticly.
+# Since version 6.0
+LIBRARY_TEMPLATES = {
+    'Technology': ['/Develop/Python', '/Test'],
+    'Finance': ['/Current assets', '/Fixed assets/Computer']
+}
+
+# Enable a user to change password in 'settings' page. Default to `True`
+# Since version 6.2.11
+ENABLE_CHANGE_PASSWORD = True
+
+# Enable file comments. Default to `True`
+# Since version 6.2.11
+ENABLE_FILE_COMMENT = True
+
+# If show contact email when search user.
+ENABLE_SHOW_CONTACT_EMAIL_WHEN_SEARCH_USER = True
 ```
 
 ## Pro edition only options
@@ -370,37 +397,10 @@ ENABLE_SHARE_LINK_AUDIT = True
 # Since version 6.0
 ENABLE_UPLOAD_LINK_VIRUS_CHECK = True
 
-# Enable system admin add T&C, all users need to accept terms before using. Defaults to `False`.
-# Since version 6.0
-ENABLE_TERMS_AND_CONDITIONS = True
-
-# Enable two factor authentication for accounts. Defaults to `False`.
-# Since version 6.0
-ENABLE_TWO_FACTOR_AUTH = True
-
-# Enable user select a template when he/she creates library.
-# When user select a template, Seafile will create folders releated to the pattern automaticly.
-# Since version 6.0
-LIBRARY_TEMPLATES = {
-    'Technology': ['/Develop/Python', '/Test'],
-    'Finance': ['/Current assets', '/Fixed assets/Computer']
-}
-
 # Send email to these email addresses when a virus is detected.
 # This list can be any valid email address, not necessarily the emails of Seafile user.
 # Since version 6.0.8
 VIRUS_SCAN_NOTIFY_LIST = ['user_a@seafile.com', 'user_b@seafile.com']
-
-# Enable a user to change password in 'settings' page. Default to `True`
-# Since version 6.2.11
-ENABLE_CHANGE_PASSWORD = True
-
-# Enable file comments. Default to `True`
-# Since version 6.2.11
-ENABLE_FILE_COMMENT = True
-
-# If show contact email when search user.
-ENABLE_SHOW_CONTACT_EMAIL_WHEN_SEARCH_USER = True
 
 ```
 
