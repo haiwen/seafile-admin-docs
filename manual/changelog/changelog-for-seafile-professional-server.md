@@ -1071,7 +1071,7 @@ The configuration of Apache is as following:
 
 ## 6.1
 
-You can follow the document on minor [upgrade](../deploy/upgrade.md).
+You can follow the document on minor [upgrade](../upgrade/upgrade.md).
 
 ### 6.1.9 （2017.09.28）
 
@@ -1166,7 +1166,7 @@ System changes:
 
 ## 6.0
 
-You can follow the document on minor [upgrade](../deploy/upgrade.md).
+You can follow the document on minor [upgrade](../upgrade/upgrade.md).
 
 Special note for upgrading a cluster:
 
