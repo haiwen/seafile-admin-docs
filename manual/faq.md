@@ -77,7 +77,7 @@ If the problem is not fixed, check whether seafile-server-latest point to the co
 
 ### Avatar pictures vanished after upgrading the server, what can I do?
 
-* You need to check whether the "avatars" symbolic link under seahub/media/ is linking to ../../../seahub-data/avatars. If not, you need to correct the link according to the "minor upgrade" section in [Upgrading-Seafile-Server](deploy/upgrade.md).
+* You need to check whether the "avatars" symbolic link under seahub/media/ is linking to ../../../seahub-data/avatars. If not, you need to correct the link according to the "minor upgrade" section in [Upgrading-Seafile-Server](upgrade/upgrade.md).
 * If your avatars link is correct, and avatars are still broken, you may need to refresh Seahub cache using `rm -rf /tmp/seahub_cache/*` or by restarting memcached if being used.
 
 ## Server can't start

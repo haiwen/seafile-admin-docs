@@ -253,7 +253,7 @@ The test should cover these steps at least:
 ### <a id="wiki-test-upgrading"></a> Test upgrading from a previous version
 
 * Download the package of the previous version seafile server, and setup it.
-* Upgrading according to [the manual](http://manual.seafile.com/deploy/upgrade/)
+* Upgrading according to [the manual](http://manual.seafile.com/upgrade/upgrade/)
 * After the upgrade, check the functionality is ok:
   * Uploading/Downloading files through a web browser works correctly.
   * Seafile [WebDAV](http://manual.seafile.com/extension/webdav/) server works correctly
