@@ -17,7 +17,7 @@ The notification server uses websocket protocol and maintains a two-way communic
 Since seafile-10.0.0, you can configure a notification server to send real-time notifications to clients. In order to run the notification server, you need to add the following configurations under seafile.conf：
 
 ```
-# seafile_auth_token and jwt_private_key are required.You should generate them manually.
+# jwt_private_key are required.You should generate it manually.
 [notification]
 enabled = true
 # the ip of notification server
@@ -26,18 +26,13 @@ host = 127.0.0.1
 port = 8083
 # the log level of notification server
 log_level = info
-# seafile_auth_token is used to authenticate seafile server
-seafile_auth_token = xP7GGgGPVCQu8r0xNJ+k4Q==
-# jwt_private_key is used to generate jwt token
+# jwt_private_key is used to generate jwt token and authenticate seafile server
 jwt_private_key = M@O8VWUb81YvmtWLHGB2I_V7di5-@0p(MF*GrE!sIws23F
 ```
 
-You can generate seafile_auth_token and jwt_private_key with the following command：
+You can generate jwt_private_key with the following command：
 
 ```
-# generate seafile_auth_token
-openssl rand -base64 16
-
 # generate jwt_private_key
 openssl rand -base64 32
 
