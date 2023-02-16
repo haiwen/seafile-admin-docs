@@ -63,6 +63,7 @@ nav:
       - Shibboleth Authentication: deploy/shibboleth_config_v6.3.md
       - OAuth Authentication: deploy/oauth.md
       - Remote User Authentication: deploy/remote_user.md
+      - Auto Login to SeaDrive on Windows: deploy/auto_login_seadrive.md
     - Syslog Integration: deploy/using_syslog.md
     - Online File Preview and Edit:
       - LibreOffice Online Integration: deploy/libreoffice_online.md
