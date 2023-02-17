@@ -96,6 +96,7 @@ Then restart the Seafile Server
 
 # or
 service seafile-server restart
+service seahub-server restart
 ```
 
 When you click on a document you should see the new preview page.
