@@ -62,7 +62,7 @@ server {
 After that, you can run notification server with the following command:
 
 ```
-./notif_server.sh start
+./seafile.sh restart
 
 ```
 
