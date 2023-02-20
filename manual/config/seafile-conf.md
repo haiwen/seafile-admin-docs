@@ -92,7 +92,7 @@ max_indexing_threads = 10
 
 ```
 
-When users upload files in the web interface (seahub), file server divides the file into fixed size blocks. Default blocks size for web uploaded files is 1MB. The block size can be set here.
+When users upload files in the web interface (seahub), file server divides the file into fixed size blocks. Default blocks size for web uploaded files is 8MB. The block size can be set here.
 
 ```
 [fileserver]
