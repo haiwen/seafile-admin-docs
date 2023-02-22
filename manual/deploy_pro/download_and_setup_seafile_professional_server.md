@@ -20,41 +20,6 @@ These instructions assume that MySQL/MariaDB server and client are installed and
 
 Seafile prior to and including Seafile 7.0 use Python 2. More recent versions rely on Python 3.
 
-**For Seafile 7.0.x**
-
-```
-# Ubuntu 16.04/Ubuntu 18.04
-sudo apt-get update
-sudo apt-get install python2.7 python-setuptools python-mysqldb python-urllib3 python-ldap poppler-utils -y
-```
-
-```
-# CentOS 7
-sudo yum install python python-setuptools python-imaging MySQL-python python-urllib3 python-ldap poppler-utils -y
-```
-
-**For Seafile 7.1.x**
-
-```
-# Ubuntu 20.04 (on Debian 10/Ubuntu 18.04, it is almost the same)
-sudo apt-get update
-sudo apt-get install -y python3 python3-setuptools python3-pip
-sudo apt-get install -y memcached libmemcached-dev
-sudo apt-get install poppler-utils -y
-
-sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8 \
-    django-pylibmc django-simple-captcha python3-ldap
-```
-
-```
-# CentOS 8
-sudo yum install python3 python3-setuptools python3-pip -y
-sudo yum install poppler-utils -y
-
-sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8 \
-    django-pylibmc django-simple-captcha python3-ldap
-```
-
 **For Seafile 8.0.x**
 
 ```
@@ -97,6 +62,28 @@ sudo pip3 install --timeout=3600 django==3.2.* Pillow pylibmc captcha jinja2 sql
     django-pylibmc django-simple-captcha python3-ldap mysqlclient pycryptodome==3.12.0 cffi==1.14.0 lxml
 ```
 
+**For Seafile 10.0.x**
+
+```
+# on Ubuntu 22.04 (on Ubuntu 20.04/Debian 11/Debian 10, it is almost the same)
+apt-get update
+apt-get install -y python3 python3-setuptools python3-pip python3-ldap libmysqlclient-dev
+apt-get install -y memcached libmemcached-dev
+
+sudo pip3 install --timeout=3600 django==3.2.* future==0.18.* mysqlclient==2.1.* \
+    pymysql pillow==9.3.* pylibmc captcha==0.4 markupsafe==2.0.1 jinja2 sqlalchemy==1.4.3 \
+    psd-tools django-pylibmc django_simple_captcha==0.5.* pycryptodome==3.16.* cffi==1.15.1 lxml
+```
+
+```
+# CentOS 8
+sudo yum install python3 python3-setuptools python3-pip python3-devel mysql-devel gcc -y
+
+sudo pip3 install --timeout=3600 django==3.2.* future==0.18.* mysqlclient==2.1.* \
+    pymysql pillow==9.3.* pylibmc captcha==0.4 markupsafe==2.0.1 jinja2 sqlalchemy==1.4.3 \
+    psd-tools django-pylibmc django_simple_captcha==0.5.* pycryptodome==3.16.* cffi==1.15.1 lxml
+```
+
 **Note**: The recommended deployment option for Seafile PE on CentOS/Redhat is [Docker](https://manual.seafile.com/docker/pro-edition/deploy_seafile_pro_with_docker/).
 
 ### Installing Java Runtime Environment
@@ -106,12 +93,12 @@ For Seafile PE 8.0.x or lower.
 Java Runtime Environment (JRE) is a requirement for full text search with elasticsearch.
 
 ```
-# Debian 10
+# Debian 10/Debian 11
 sudo apt-get install default-jre -y
 ```
 
 ```
-# Ubuntu 16.04/Ubuntu 18.04/Ubuntu 20.04
+# Ubuntu 16.04/Ubuntu 18.04/Ubuntu 20.04/Ubuntu 22.04
 sudo apt-get install openjdk-8-jre -y
 sudo ln -sf /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java /usr/bin/
 ```
