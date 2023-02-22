@@ -26,36 +26,6 @@ Seafile uses the mysql_native_password plugin for authentication. The versions o
 
 ### Installing prerequisites
 
-**For Seafile 7.1.x**
-
-```
-# Debian 10/Ubuntu 18.04
-sudo apt-get update
-sudo apt-get install python3 python3-setuptools python3-pip -y
-
-sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8 \
-    django-pylibmc django-simple-captcha python3-ldap
-
-```
-
-```
-# Ubuntu 20.04
-sudo apt-get update
-sudo apt-get install python3 python3-setuptools python3-pip memcached libmemcached-dev -y
-
-sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8 \
-    django-pylibmc django-simple-captcha python3-ldap
-```
-
-```
-# CentOS 8
-sudo yum install python3 python3-setuptools python3-pip -y
-
-sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.3.8 \
-    django-pylibmc django-simple-captcha python3-ldap
-
-```
-
 **For Seafile 8.0.x**
 
 ```
@@ -113,6 +83,19 @@ sudo pip3 install --timeout=3600 django==3.2.* Pillow pylibmc captcha jinja2 sql
     django-pylibmc django-simple-captcha python3-ldap mysqlclient pycryptodome==3.12.0 cffi==1.14.0 lxml
 ```
 
+**For Seafile 10.0.x**
+
+```
+# Ubuntu 22.04 (almost the same for Ubuntu 20.04 and Debian 11, Debian 10)
+sudo apt-get update
+sudo apt-get install -y python3 python3-setuptools python3-pip libmysqlclient-dev
+sudo apt-get install -y memcached libmemcached-dev
+
+sudo pip3 install --timeout=3600 django==3.2.* future==0.18.* mysqlclient==2.1.* \
+    pymysql pillow==9.3.* pylibmc captcha==0.4 markupsafe==2.0.1 jinja2 sqlalchemy==1.4.3 \
+    psd-tools django-pylibmc django_simple_captcha==0.5.* pycryptodome==3.16.* cffi==1.15.1 lxml
+
+```
 
 ### Creating the program directory
 
