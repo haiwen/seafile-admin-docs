@@ -273,20 +273,3 @@ This interface can be used through the pprof tool provided by Go language. See h
 go tool pprof http://localhost:8082/debug/pprof/heap?password=8kcUz1I2sLaywQhCRtn2x1
 go tool pprof http://localhost:8082/debug/pprof/profile?password=8kcUz1I2sLaywQhCRtn2x1
 ```
-
-## Notification server configuration
-Since Seafile 10.0.0, you can enable the notification server by adding the following configuration options:
-
-```
-# jwt_private_key are required.You should generate it manually.
-[notification]
-enabled = true
-# the ip of notification server
-host = 127.0.0.1
-# the port of notification server
-port = 8083
-# the log level of notification server
-log_level = info
-# jwt_private_key is used to generate jwt token and authenticate seafile server
-jwt_private_key = M@O8VWUb81YvmtWLHGB2I_V7di5-@0p(MF*GrE!sIws23F
-```
