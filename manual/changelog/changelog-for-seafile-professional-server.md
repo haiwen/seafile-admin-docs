@@ -7,6 +7,7 @@
 ### 10.0.0 beta (to be released)
 
 * Update Python dependencies and support Ubuntu 22.04 and Debian 11
+* Update ElasticSearch to 8.0
 * [new] Add a new notification server (document will be provided later)
 * [new] Support downloading/uploading rate limit for a user
 * [new] Watch and get notifications for libraries
