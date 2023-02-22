@@ -2,6 +2,18 @@
 
 > You can check Seafile release table to find the lifetime of each release and current supported OS: <https://cloud.seatable.io/dtable/external-links/a85d4221e41344c19566/?tid=0000&vid=0000>
 
+## 10.0
+
+### 10.0.0 beta (2023-02-22)
+
+* Update Python dependencies and support Ubuntu 22.04 and Debian 11
+* Add a new notification server (document will be provided later)
+* Update WebDAV password to use one-way hash
+* Remove SQL sub queries to improve SQL query speed in seaf-server
+* Show number of shared users/groups if any when deleting a folder
+* Support online playing of .wav files
+
+
 ## 9.0
 
 ### 9.0.10 (2022-12-07)
