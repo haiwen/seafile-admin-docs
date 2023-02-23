@@ -72,7 +72,7 @@ port = 6000
 
 ## Version 9.0.x or above
 
-We use Docker to deploy LibreOffice as an example, so you need to install Docker and docker-compose on the server in advance (Docker installation is not introduced here).
+We use Docker to deploy LibreOffice as an example, so you need to install Docker and docker-compose on the server in advance (Docker installation is not introduced here). The office-preview service needs to be deployed on the same machine as the Seafile service.
 
 ### Prepare `docker-compose.yml`
 
@@ -85,7 +85,7 @@ services:
     image: seafileltd/office-preview:latest
     container_name: seafile-office-preview
     ports:
-      - "8089:8089"
+      - "192.x.x.x:8089:8089"   # 192.x.x.x is the IP address of the machine
     command: bash start.sh
     volumes:
       - /opt/office-preview/shared:/shared  # the host path can be customized
@@ -118,7 +118,7 @@ docker restart  seafile-office-preview
 Add the following configuration to `seahub_settings.py`.
 
 ```
-OFFICE_CONVERTOR_ROOT = 'http://127.0.0.1:8089'
+OFFICE_CONVERTOR_ROOT = 'http://192.x.x.x:8089'   # 192.x.x.x is the IP address of the machine
 ```
 
 Restart seahub.
