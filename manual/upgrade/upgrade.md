@@ -15,6 +15,7 @@ Please check the **upgrade notes** for any special configuration or changes befo
 * [Upgrade notes for 7.1.x](./upgrade_notes_for_7.1.x.md)
 * [Upgrade notes for 8.0.x](./upgrade_notes_for_8.0.x.md)
 * [Upgrade notes for 9.0.x](./upgrade_notes_for_9.0.x.md)
+* [Upgrade notes for 10.0.x](./upgrade_notes_for_10.0.x.md)
 
 ## Major version upgrade (e.g. from 5.x.x to 6.y.y)
 
