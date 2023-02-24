@@ -28,6 +28,16 @@ shards = 10     # default is 5
 ...
 ```
 
+## New Python libraries
+
+Note, you should install Python libraries system wide using root user or sudo mode.
+
+* For Ubuntu 20.04/22.04
+
+```sh
+sudo pip3 install future==0.18.* mysqlclient==2.1.* pillow==9.3.* captcha==0.4 django_simple_captcha==0.5.* pycryptodome==3.16.* cffi==1.15.1
+```
+
 ## Upgrade to 10.0.x
 
 1. Stop Seafile-9.0.x server.
