@@ -86,24 +86,24 @@ Install all these libaries to `/home/pi/dev/seahub_thirdpart`:
 ```
 cd ~/dev/seahub_thirdpart
 export PYTHONPATH=.
-easy_install -d . /tmp/pytz-2016.1.tar.gz
-easy_install -d . /tmp/Django-1.8.10.tar.gz
-easy_install -d . /tmp/django-statici18n-1.1.3.tar.gz
-easy_install -d . /tmp/djangorestframework-3.3.2.tar.gz
-easy_install -d . /tmp/django_compressor-1.4.tar.gz
-easy_install -d . /tmp/jsonfield-1.0.3.tar.gz
-easy_install -d . /tmp/django-post_office-2.0.6.tar.gz
-easy_install -d . /tmp/gunicorn-19.4.5.tar.gz
-easy_install -d . /tmp/flup-1.0.2.tar.gz
-easy_install -d . /tmp/chardet-2.3.0.tar.gz
-easy_install -d . /tmp/python-dateutil-1.5.tar.gz
-easy_install -d . /tmp/six-1.9.0.tar.gz
-easy_install -d . /tmp/django-picklefield-0.3.2.tar.gz
+pip install -t ~/dev/seahub_thirdpart/ /tmp/pytz-2016.1.tar.gz
+pip install -t ~/dev/seahub_thirdpart/ /tmp/Django-1.8.10.tar.gz
+pip install -t ~/dev/seahub_thirdpart/ /tmp/django-statici18n-1.1.3.tar.gz
+pip install -t ~/dev/seahub_thirdpart/ /tmp/djangorestframework-3.3.2.tar.gz
+pip install -t ~/dev/seahub_thirdpart/ /tmp/django_compressor-1.4.tar.gz
+pip install -t ~/dev/seahub_thirdpart/ /tmp/jsonfield-1.0.3.tar.gz
+pip install -t ~/dev/seahub_thirdpart/ /tmp/django-post_office-2.0.6.tar.gz
+pip install -t ~/dev/seahub_thirdpart/ /tmp/gunicorn-19.4.5.tar.gz
+pip install -t ~/dev/seahub_thirdpart/ /tmp/flup-1.0.2.tar.gz
+pip install -t ~/dev/seahub_thirdpart/ /tmp/chardet-2.3.0.tar.gz
+pip install -t ~/dev/seahub_thirdpart/ /tmp/python-dateutil-1.5.tar.gz
+pip install -t ~/dev/seahub_thirdpart/ /tmp/six-1.9.0.tar.gz
+pip install -t ~/dev/seahub_thirdpart/ /tmp/django-picklefield-0.3.2.tar.gz
 wget -O /tmp/django_constance.zip https://github.com/haiwen/django-constance/archive/bde7f7c.zip
-easy_install -d . /tmp/django_constance.zip
-easy_install -d . /tmp/jdcal-1.2.tar.gz
-easy_install -d . /tmp/et_xmlfile-1.0.1.tar.gz
-easy_install -d . /tmp/openpyxl-2.3.0.tar.gz
+pip install -t ~/dev/seahub_thirdpart/ /tmp/django_constance.zip
+pip install -t ~/dev/seahub_thirdpart/ /tmp/jdcal-1.2.tar.gz
+pip install -t ~/dev/seahub_thirdpart/ /tmp/et_xmlfile-1.0.1.tar.gz
+pip install -t ~/dev/seahub_thirdpart/ /tmp/openpyxl-2.3.0.tar.gz
 
 ```
 
