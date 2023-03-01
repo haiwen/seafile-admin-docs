@@ -1,4 +1,4 @@
-# macOS
+# Mac OS X
 
 ## Requirements
 
@@ -71,7 +71,19 @@ In addition to basic setup from compiling requirements, packing a client applica
 
 * install dropDMG
 * import certifications for code signing
-* register username and password to Keychain Access
+* register notarizing username and password to Keychain Access
+
+#### Code Signing
+
+A mac application must be distribution-signed before shipping. More technical details can be found from the [post](https://developer.apple.com/forums/thread/701514#701514021) at developer forums.
+
+Before signing, please make sure to import the distribution certification. Then, the permission of imported key should be changed: right click the imported key in Keychain Access -> select "Get Info" -> select "Access Control" -> choose "Allow all applications to access this item".
+
+Now, executables and frameworks inside the bundle can be signed with the `codesign` command. See the *seafile/scripts/build/build_mac_local.py* script for actual signing commands.
+
+#### Notarization
+
+Notarization is the final step before shipping a DMG installer. The `notarytool` command can be used to submit or staple the installer. See the *seafile/scripts/build/notarize.sh* script for actual notarizing commands.
 
 ### Run packing script
 
