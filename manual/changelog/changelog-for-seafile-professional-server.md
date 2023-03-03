@@ -23,6 +23,11 @@
 
 Please check our document for how to upgrade to 9.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_9.0.x/>
 
+### 9.0.15 (2023-03-01)
+
+* [fix] Fix a bug in seaf-gc for fs object
+* [fix] Fix some bugs in golang fileserver
+
 ### 9.0.14 (2023-01-06)
 
 * [fix] Fix some bugs in golang fileserver
