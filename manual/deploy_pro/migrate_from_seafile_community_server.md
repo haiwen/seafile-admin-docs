@@ -12,6 +12,8 @@ That means, if you are using Community Server version 7.0, and want to switch to
 
 ### Install Java Runtime Environment (JRE)
 
+> Since version 9.0.0, JRE is no longer required to be installed. Elasticsearch needs to be installed and managed individually.
+
 Java 8 or higher is required.
 
 On Ubuntu/Debian:
@@ -28,7 +30,7 @@ sudo yum install java-1.8.0-openjdk
 
 ```
 
-_Note_: Since version 7.0.0, java 1.8 is required, please check your java version by `java -version`. 
+_Note_: Since version 7.0.0, java 1.8 is required, please check your java version by `java -version`.
 
 ### Install poppler-utils
 
