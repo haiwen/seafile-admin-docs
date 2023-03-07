@@ -6,31 +6,9 @@ It's quite likely you have deployed the Seafile Community Server and want to swi
 
 * You can only switch between Community Server and Professional Server of the same minor version.
 
-That means, if you are using Community Server version 7.0, and want to switch to the Professional Server 7.1, you must first upgrade to Community Server version 7.1, and then follow the guides below to switch to the Professional Server 7.1. (The last tiny version number in 7.1.x is not important.)
+That means, if you are using Community Server version 9.0, and want to switch to the Professional Server 10.0, you must first upgrade to Community Server version 10.0, and then follow the guides below to switch to the Professional Server 10.0. (The last tiny version number in 10.0.x is not important.)
 
 ## Preparation
-
-### Install Java Runtime Environment (JRE)
-
-> Since version 9.0.0, JRE is no longer required to be installed. Elasticsearch needs to be installed and managed individually.
-
-Java 8 or higher is required.
-
-On Ubuntu/Debian:
-
-```
-sudo apt-get install openjdk-8-jre
-
-```
-
-On CentOS:
-
-```
-sudo yum install java-1.8.0-openjdk
-
-```
-
-_Note_: Since version 7.0.0, java 1.8 is required, please check your java version by `java -version`.
 
 ### Install poppler-utils
 
@@ -52,7 +30,7 @@ sudo yum install poppler-utils
 
 ## Do the migration
 
-We assume you already have deployed Seafile Community Server 7.0.0 under `/opt/seafile/seafile-server-7.0.0`. 
+We assume you already have deployed Seafile Community Server 10.0.0 under `/opt/seafile/seafile-server-10.0.0`. 
 
 ### Get the license
 
@@ -63,7 +41,7 @@ If the license you received is not named as seafile-license.txt, rename it to se
 You should uncompress the tarball to the top level directory of your installation, in our example it is `/opt/seafile`.
 
 ```
-tar xf seafile-pro-server_7.0.0_x86-64.tar.gz
+tar xf seafile-pro-server_10.0.0_x86-64_Ubuntu.tar.gz
 
 ```
 
@@ -72,8 +50,8 @@ Now you have:
 ```
 seafile
 ├── seafile-license.txt
-├── seafile-pro-server-7.0.0/
-├── seafile-server-7.0.0/
+├── seafile-pro-server-10.0.0/
+├── seafile-server-10.0.0/
 ├── ccnet/
 ├── seafile-data/
 ├── seahub-data/
@@ -84,10 +62,10 @@ seafile
 
 ---
 
-You should notice the difference between the names of the Community Server and Professional Server. Take the 7.0.0 64bit version as an example:
+You should notice the difference between the names of the Community Server and Professional Server. Take the 10.0.0 64bit version as an example:
 
-* Seafile Community Server tarball is `seafile-server_7.0.0_x86-86.tar.gz`; After uncompressing, the folder is `seafile-server-7.0.0`
-* Seafile Professional Server tarball is `seafile-pro-server_7.0.0_x86-86.tar.gz`; After uncompressing, the folder is `seafile-pro-server-7.0.0`
+* Seafile Community Server tarball is `seafile-server_10.0.0_x86-64_Ubuntu.tar.gz`; After uncompressing, the folder is `seafile-server-10.0.0`
+* Seafile Professional Server tarball is `seafile-pro-server_10.0.0_x86-64_Ubuntu.tar.gz`; After uncompressing, the folder is `seafile-pro-server-10.0.0`
     
 
 ### Do the migration
@@ -96,7 +74,7 @@ You should notice the difference between the names of the Community Server and P
 
 
 ```
-cd haiwen/seafile-server-7.0.0
+cd haiwen/seafile-server-10.0.0
 ./seafile.sh stop
 ./seahub.sh stop
 
@@ -106,7 +84,7 @@ cd haiwen/seafile-server-7.0.0
 
 
 ```
-cd haiwen/seafile-pro-server-7.0.0/
+cd haiwen/seafile-pro-server-10.0.0/
 ./pro/pro.py setup --migrate
 
 ```
@@ -123,8 +101,8 @@ Now you have:
 ```
 haiwen
 ├── seafile-license.txt
-├── seafile-pro-server-7.0.0/
-├── seafile-server-7.0.0/
+├── seafile-pro-server-10.0.0/
+├── seafile-server-10.0.0/
 ├── ccnet/
 ├── seafile-data/
 ├── seahub-data/
@@ -134,31 +112,10 @@ haiwen
 
 ```
 
-> **!Note:** If you upgraded from CE 6.3 to CE 7.0 first, then migrated to Pro 7.0. You also need to log in to MySQL server and create the following data tables in `seafile-db` .
-
-```
-FileLockTimestamp
-FileLocks
-FolderGroupPerm
-FolderPermTimestamp
-FolderUserPerm
-GCID
-LastGCID
-OrgGroupRepo
-OrgInnerPubRepo
-OrgRepo
-OrgSharedRepo
-RepoStorageId
-RoleQuota
-
-```
-
-For the table statement, please check [table statement](./seafile-sql.md).
-
 ### Start Seafile Professional Server
 
 ```
-cd haiwen/seafile-pro-server-7.0.0
+cd haiwen/seafile-pro-server-10.0.0
 ./seafile.sh start
 ./seahub.sh start
 
@@ -170,17 +127,17 @@ cd haiwen/seafile-pro-server-7.0.0
 
 
 ```
-cd haiwen/seafile-pro-server-7.0.0/
+cd haiwen/seafile-pro-server-10.0.0/
 ./seafile.sh stop
 ./seahub.sh stop
 
 ```
 
-* Update the avatar directory link just like in [Minor Upgrade](https://github.com/haiwen/seafile/wiki/Upgrading-Seafile-Server#minor-upgrade-like-from-150-to-151)
+* Update the avatar directory link just like in [Maintenance Upgrade](../upgrade/upgrade.md#maintenance-version-upgrade-eg-from-622-to-623)
 
 
 ```
-cd haiwen/seafile-server-7.0.0/
+cd haiwen/seafile-server-10.0.0/
 ./upgrade/minor-upgrade.sh
 
 ```
@@ -189,10 +146,8 @@ cd haiwen/seafile-server-7.0.0/
 
 
 ```
-cd haiwen/seafile-server-7.0.0/
+cd haiwen/seafile-server-10.0.0/
 ./seafile.sh start
 ./seahub.sh start
 
 ```
-
-
