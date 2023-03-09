@@ -38,6 +38,19 @@ Note, you should install Python libraries system wide using root user or sudo mo
 sudo pip3 install future==0.18.* mysqlclient==2.1.* pillow==9.3.* captcha==0.4 django_simple_captcha==0.5.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1
 ```
 
+## Memcached section in the seafile.conf
+
+If you use storage backend or cluster, make sure the memcached section is in the seafile.conf.
+
+Since version 10.0, all memcached options are consolidated to the one below.
+
+Modify the seafile.conf:
+
+```
+[memcached]
+memcached_options = --SERVER=<the IP of Memcached Server> --POOL-MIN=10 --POOL-MAX=100
+```
+
 ## Upgrade to 10.0.x
 
 1. Stop Seafile-9.0.x server.
