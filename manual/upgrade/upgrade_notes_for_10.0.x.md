@@ -35,7 +35,7 @@ Note, you should install Python libraries system wide using root user or sudo mo
 * For Ubuntu 20.04/22.04
 
 ```sh
-sudo pip3 install future==0.18.* mysqlclient==2.1.* pillow==9.3.* captcha==0.4 django_simple_captcha==0.5.* pycryptodome==3.16.* cffi==1.15.1
+sudo pip3 install future==0.18.* mysqlclient==2.1.* pillow==9.3.* captcha==0.4 django_simple_captcha==0.5.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1
 ```
 
 ## Upgrade to 10.0.x
