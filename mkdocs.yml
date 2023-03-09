@@ -114,6 +114,7 @@ nav:
     - Advanced Authentication:
       - Two-factor Authentication: deploy_pro/two_factor_authentication.md
       - ADFS or SAML 2.0: deploy_pro/adfs.md
+      - SAML 2.0 in version 10.0: deploy_pro/saml2_in_10.0.md
       - CAS Authentication: deploy_pro/cas.md
     - Advanced Maintenance Tools:
       - Real-time Backup Server: deploy_pro/real_time_backup.md
