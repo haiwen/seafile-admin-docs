@@ -49,7 +49,7 @@ View where the xmlsec1 binary is situated:
 $ which xmlsec1
 ```
 
-__Note__: If the certificate is **not placed in** `/opt/seafile/seahub-data/certs`, you need to add the following configuration in seahub_settings.py:
+__Note__: If certificates are **not placed in** `/opt/seafile/seahub-data/certs`, you need to add the following configuration in seahub_settings.py:
 
 ```python
 SAML_CERTS_DIR = '/path/to/certs'
