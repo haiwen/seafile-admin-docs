@@ -1,5 +1,7 @@
 # AD Federation Service or SAML 2.0 Integration
 
+Note, this document is for Seafile version 9.0 or below. For version 10.0please follow the new document [SAML 2.0 in version 10.0](./saml2_in_10.0.md).
+
 This documentation describes how to integrate to ADFS with SAML 2.0 protocol. The procedure can also be used to integrate with other SAML 2.0 compliant service with minimal change.
 
 ## Requirements
