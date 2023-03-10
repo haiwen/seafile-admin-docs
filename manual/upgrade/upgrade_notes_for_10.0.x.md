@@ -5,9 +5,40 @@ Please always follow the main [upgrade guide](./upgrade.md).
 
 ## Important release changes
 
-Elasticsearch is upgraded to version 8.x, fixed and improved some issues of file search function.
 
-### custom number of shards
+### Memcached section in the seafile.conf (pro edition only)
+
+If you use storage backend or cluster, make sure the memcached section is in the seafile.conf.
+
+Since version 10.0, all memcached options are consolidated to the one below.
+
+Modify the seafile.conf:
+
+```
+[memcached]
+memcached_options = --SERVER=<the IP of Memcached Server> --POOL-MIN=10 --POOL-MAX=100
+```
+
+### SAML SSO change (pro edition only)
+
+The configuration for SAML SSO in Seafile is greatly simplified. Now only three options are needed:
+
+```
+ENABLE_ADFS_LOGIN = True
+SAML_REMOTE_METADATA_URL = 'https://login.microsoftonline.com/xxx/federationmetadata/2007-06/federationmetadata.xml?appid=xxx'
+SAML_ATTRIBUTE_MAPPING = {
+    'mail': 'contact_email',
+    'name': 'display_name',
+    ...
+}
+```
+
+Please check the new document on [SAML SSO](../deploy_pro/saml2_in_10.0.md)
+
+
+### ElasticSearch change (pro edition only)
+
+Elasticsearch is upgraded to version 8.x, fixed and improved some issues of file search function.
 
 Since elasticsearch 7.x, the default number of shards has changed from 5 to 1, because too many index shards will over-occupy system resources; but when a single shard data is too large, it will also reduce search performance. Starting from version 10.0, Seafile supports customizing the number of shards in the configuration file.
 
@@ -28,6 +59,8 @@ shards = 10     # default is 5
 ...
 ```
 
+
+
 ## New Python libraries
 
 Note, you should install Python libraries system wide using root user or sudo mode.
@@ -38,18 +71,6 @@ Note, you should install Python libraries system wide using root user or sudo mo
 sudo pip3 install future==0.18.* mysqlclient==2.1.* pillow==9.3.* captcha==0.4 django_simple_captcha==0.5.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1
 ```
 
-## Memcached section in the seafile.conf
-
-If you use storage backend or cluster, make sure the memcached section is in the seafile.conf.
-
-Since version 10.0, all memcached options are consolidated to the one below.
-
-Modify the seafile.conf:
-
-```
-[memcached]
-memcached_options = --SERVER=<the IP of Memcached Server> --POOL-MIN=10 --POOL-MAX=100
-```
 
 ## Upgrade to 10.0.x
 
@@ -60,6 +81,8 @@ memcached_options = --SERVER=<the IP of Memcached Server> --POOL-MIN=10 --POOL-M
     ```sh
     upgrade/upgrade_9.0_10.0.sh
     ```
+   
+   If you are using pro edtion, modify memcached option in seafile.conf and SAML SSO configuration if needed.
 
 3. Start Seafile-10.0.x server.
 
