@@ -316,6 +316,37 @@ When files are deleted, the blocks comprising those files are not immediately re
 
 The required scripts can be found in the `/scripts` folder of the docker container. To perform garbage collection, simply run `docker exec seafile /scripts/gc.sh`. For the community edition, this process will stop the seafile server, but it is a relatively quick process and the seafile server will start automatically once the process has finished. The Professional supports an online garbage collection.
 
+## NON_ROOT
+
+Since version 10.0, you can use NON_ROOT to run seafile in docker. (NOTE: Programs such as my_init, nginx do not support NON_ROOT.)
+
+First add the `NON_ROOT=true` to the docker-compose.yml.
+
+```
+seafile:
+    ...
+    environment:
+        ...
+        - NON_ROOT=true
+        ...
+
+```
+
+Then create a seafile user on the host. (NOTE: Do not change the uid and gid.)
+
+```
+groupadd --gid 8000 seafile
+
+useradd --home-dir /home/seafile --create-home --uid 8000 --gid 8000 --shell /bin/sh --skel /dev/null seafile
+```
+
+Starting the new container will use NON_ROOT. (NOTE: Other scripts in docker also required NON_ROOT, e.g. `su seafile -c ./seaf-gc.sh`)
+
+```sh
+docker-compose down
+docker-compose up -d
+```
+
 ## OnlyOffice with Docker
 
 You need to manually add the OnlyOffice config to docker-compose.yml
