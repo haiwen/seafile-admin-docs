@@ -20,28 +20,42 @@ The configuration for logrotate could be like this:
 
 ```
 /home/haiwen/logs/seafile.log
+/home/haiwen/logs/seahub.log
+/home/haiwen/logs/file_updates_sender.log
+/home/haiwen/logs/repo_old_file_auto_del_scan.log
+/home/haiwen/logs/seahub_email_sender.log
+/home/haiwen/logs/work_weixin_notice_sender.log
+/home/haiwen/logs/index.log
+/home/haiwen/logs/content_scan.log
+/home/haiwen/logs/fileserver-access.log
+/home/haiwen/logs/fileserver-error.log
+/home/haiwen/logs/fileserver.log
 {
         daily
         missingok
-        rotate 15
-        compress
-        delaycompress
+        rotate 7
+        # compress
+        # delaycompress
+        dateext
+        dateformat .%Y-%m-%d
         notifempty
+        # create 644 root root
         sharedscripts
         postrotate
-                [ ! -f /home/haiwen/pids/seaf-server.pid ] || kill -USR1 `cat /home/haiwen/pids/seaf-server.pid`
-        endscript
-}
+                if [ -f /home/haiwen/pids/seaf-server.pid ]; then
+                        kill -USR1 `cat /home/haiwen/pids/seaf-server.pid`
+                fi
 
-/home/haiwen/logs/index.log
-{
-	monthly
-	missingok
-	rotate 15
-	compress
-	delaycompress
-	notifempty
-	sharedscripts
+                if [ -f /home/haiwen/pids/fileserver.pid ]; then
+                        kill -USR1 `cat /home/haiwen/pids/fileserver.pid`
+                fi
+
+                if [ -f /home/haiwen/pids/seahub.pid ]; then
+                        kill -HUP `cat /home/haiwen/pids/seahub.pid`
+                fi
+
+                find /home/haiwen/logs/ -mtime +7 -name "*.log*" -exec rm -f {} \;
+        endscript
 }
 
 ```
