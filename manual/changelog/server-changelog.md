@@ -4,6 +4,10 @@
 
 ## 10.0
 
+**Upgrade**
+
+Please check our document for how to upgrade to 10.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_10.0.x/>
+
 ### 10.0.0 beta (2023-02-22)
 
 * Update Python dependencies and support Ubuntu 22.04 and Debian 11
