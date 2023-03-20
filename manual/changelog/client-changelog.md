@@ -4,7 +4,7 @@
 
 ### 9.0.0
 
-* Support notification server
+* Support notification server to update libraries and locked files more timely
 * Support Windows 7/8 again
 * Fix a progress dialog bug in cloud file browser when uploading file larger than 100MB
 
