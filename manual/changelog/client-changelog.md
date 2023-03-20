@@ -1,5 +1,13 @@
 # Seafile Client Changelog
 
+## 9.0
+
+### 9.0.0
+
+* Support notification server
+* Support Windows 7/8 again
+* Fix a progress dialog bug in cloud file browser when uploading file larger than 100MB
+
 ## 8.0
 
 ### 8.0.10 (2022/12/28)
