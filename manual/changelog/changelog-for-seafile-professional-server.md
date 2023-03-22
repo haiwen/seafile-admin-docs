@@ -27,6 +27,10 @@ Please check our document for how to upgrade to 10.0: <https://manual.seafile.co
 
 Please check our document for how to upgrade to 9.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_9.0.x/>
 
+### 9.0.16 (2023-03-22)
+
+* [fix] Fix a bug in clear_invalid_repo_data with virtual repos 
+
 ### 9.0.15 (2023-03-01)
 
 * [fix] Fix a bug in seaf-gc for fs object
