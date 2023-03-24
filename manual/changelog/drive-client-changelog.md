@@ -1,5 +1,16 @@
 # SeaDrive Client Changelog
 
+### 3.0.2 Beta (2023/03/24)
+
+* \[mac] Use File Provider API to implement virtual drive
+* Allow syncing multiple accounts at the same time
+* Support notification server, which makes library and locked files update more timely
+
+### 2.0.27 for Windows (2023/03/24)
+
+* \[win] Update app signing certificate
+* \[win] Fix a potential crash issue
+
 ### 2.0.26 (2022/12/28)
 
 * Ask for user confirmation when deleting more than 500 files at once
