@@ -72,17 +72,12 @@ mkdir -p /opt/seafile-elasticsearch/data  && chmod -R 777 /opt/seafile-elasticse
 
 ```
 
+_Note_: You must properly grant permission to access the es data directory, and run the Elasticsearch container as the root user, refer to [here](https://www.elastic.co/guide/en/elasticsearch/reference/7.16/docker.html#_configuration_files_must_be_readable_by_the_elasticsearch_user).
+
 Start ES docker image
 
 ```
-docker run -d \
---name es \
--p 9200:9200 \
--e "discovery.type=single-node" -e "bootstrap.memory_lock=true" \
--e "ES_JAVA_OPTS=-Xms1g -Xmx1g" -e "xpack.security.enabled=false" \
---restart=always \
--v /opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data \
--d elasticsearch:7.16.2
+docker run -d --name es -p 9200:9200 -e "discovery.type=single-node" -e "bootstrap.memory_lock=true" -e "ES_JAVA_OPTS=-Xms1g -Xmx1g" -e "xpack.security.enabled=false" --restart=always -v /opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data -d elasticsearch:7.16.2
 
 ```
 
@@ -117,16 +112,15 @@ cd seafile-server-latest/
 
 If your data volume is relatively large, it will take a long time to rebuild indexes for all Seafile databases, so you can reindex the existing data. This requires the following steps
 
-* Download and start ElasticSearch 6.8.20
+* Download and start Elasticsearch 7.x
 * Use the existing data to execute ElasticSearch Reindex in order to build an index that can be used in 7.x
-* Download and start ElasticSearch 7.x
 
 The detailed process is as follows
 
 Download ElasticSearch image:
 
 ```
-docker pull elasticsearch:6.8.20
+docker pull elasticsearch:7.16.2
 
 ```
 
@@ -144,10 +138,12 @@ mv  /opt/seafile/pro-data/search/data/*  /opt/seafile-elasticsearch/data/
 chmod -R 777 /opt/seafile-elasticsearch/data/
 ```
 
+_Note_: You must properly grant permission to access the es data directory, and run the Elasticsearch container as the root user, refer to [here](https://www.elastic.co/guide/en/elasticsearch/reference/7.16/docker.html#_configuration_files_must_be_readable_by_the_elasticsearch_user).
+
 Start ES docker image
 
 ```
-docker run -d --name es -p 9200:9200  -e "discovery.type=single-node" -e "bootstrap.memory_lock=true" -e "ES_JAVA_OPTS=-Xms1g -Xmx1g" --restart=always -v /opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data -d elasticsearch:6.8.20
+docker run -d --name es -p 9200:9200 -e "discovery.type=single-node" -e "bootstrap.memory_lock=true" -e "ES_JAVA_OPTS=-Xms1g -Xmx1g" -e "xpack.security.enabled=false" --restart=always -v /opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data -d elasticsearch:7.16.2
 
 ```
 
@@ -262,7 +258,7 @@ curl -X PUT -H 'Content-Type: application/json' 'http{s}://{es server IP}:9200/n
 
 ```
 
-Use the [reindex API](https://www.elastic.co/guide/en/elasticsearch/reference/6.8/docs-reindex.html) to copy documents from the 5.x index into the new index.
+Use the [reindex API](https://www.elastic.co/guide/en/elasticsearch/reference/7.16/docs-reindex.html) to copy documents from the 5.x index into the new index.
 
 ```
 curl -X POST -H 'Content-Type: application/json' 'http{s}://{es server IP}:9200/_reindex/?pretty' -d '
@@ -319,7 +315,7 @@ curl http{s}://{es server IP}:9200/_cluster/health?pretty
 
 ```
 
-Use the [aliases API](https://www.elastic.co/guide/en/elasticsearch/reference/6.8/indices-aliases.html) delete the old index and add an alias with the old index name to the new index.
+Use the [aliases API](https://www.elastic.co/guide/en/elasticsearch/reference/7.16/indices-aliases.html) delete the old index and add an alias with the old index name to the new index.
 
 ```
 curl -X POST -H 'Content-Type: application/json' 'http{s}://{es server IP}:9200/_aliases?pretty' -d '
