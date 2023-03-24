@@ -2,6 +2,10 @@
 
 ## 9.0
 
+### 9.0.1
+
+* \[win] Update app signing certificate
+
 ### 9.0.0
 
 * Support notification server to update libraries and locked files more timely
