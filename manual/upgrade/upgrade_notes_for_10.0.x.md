@@ -107,7 +107,7 @@ mkdir -p /opt/seafile-elasticsearch/data  && chmod -R 777 /opt/seafile-elasticse
 Start ES docker image:
 
 ```
-docker run -d --name es-7.17 -p 9200:9200  -e "discovery.type=single-node" -e "bootstrap.memory_lock=true" -e "ES_JAVA_OPTS=-Xms1g -Xmx1g" -e "xpack.security.enabled=false" --restart=always -v /opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data -d elasticsearch:7.17.9
+sudo docker run -d --name es-7.17 -p 9200:9200  -e "discovery.type=single-node" -e "bootstrap.memory_lock=true" -e "ES_JAVA_OPTS=-Xms1g -Xmx1g" -e "xpack.security.enabled=false" --restart=always -v /opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data -d elasticsearch:7.17.9
 ```
 
 **PS:** `ES_JAVA_OPTS` can be adjusted according to your need.
@@ -302,7 +302,7 @@ $ docker rm es-7.17
 
 $ docker pull elasticsearch:8.6.2
 
-$ docker run -d --name es -p 9200:9200 -e "discovery.type=single-node" -e "bootstrap.memory_lock=true" -e "ES_JAVA_OPTS=-Xms1g -Xmx1g" -e "xpack.security.enabled=false" --restart=always -v /opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data -d elasticsearch:8.6.2
+$ sudo docker run -d --name es -p 9200:9200 -e "discovery.type=single-node" -e "bootstrap.memory_lock=true" -e "ES_JAVA_OPTS=-Xms1g -Xmx1g" -e "xpack.security.enabled=false" --restart=always -v /opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data -d elasticsearch:8.6.2
 ```
 
 #### Method two, rebuild the index and discard the old index data
@@ -322,7 +322,7 @@ mkdir -p /opt/seafile-elasticsearch/data  && chmod -R 777 /opt/seafile-elasticse
 Start ES docker image:
 
 ```
-docker run -d --name es -p 9200:9200 -e "discovery.type=single-node" -e "bootstrap.memory_lock=true" -e "ES_JAVA_OPTS=-Xms1g -Xmx1g" -e "xpack.security.enabled=false" --restart=always -v /opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data -d elasticsearch:8.5.3
+sudo docker run -d --name es -p 9200:9200 -e "discovery.type=single-node" -e "bootstrap.memory_lock=true" -e "ES_JAVA_OPTS=-Xms1g -Xmx1g" -e "xpack.security.enabled=false" --restart=always -v /opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data -d elasticsearch:8.5.3
 ```
 
 2\. Modify the seafevents.conf:
