@@ -84,6 +84,8 @@ services:
   office-preview:
     image: seafileltd/office-preview:latest
     container_name: seafile-office-preview
+    environment:
+      - IGNORE_JWT_CHECK=true   # Usually, seafile and office-perview are deployed on the same machine and communicate through the intranet, so the jwt check can be ignored.
     ports:
       - "192.x.x.x:8089:8089"   # 192.x.x.x is the IP address of the machine
     command: bash start.sh
