@@ -169,6 +169,15 @@ If you want to limit the type of files when uploading files, since Seafile Pro 1
 file_ext_white_list = md;mp4;mov
 ```
 
+Since seafile 10.0.1, when you use go fileserver, you can set `upload_limit` and `download_limit` option in the `[fileserver]` group to limit the speed of file upload and download. It's not enabled by default. 
+
+```
+[fileserver]
+# The unit is in KB/s.
+upload_limit = 100
+download_limit = 100
+```
+
 ## Database configuration
 
 The whole database configuration is stored in the `[database]` section of the configuration file, whether you use SQLite, MySQL or PostgreSQL.
