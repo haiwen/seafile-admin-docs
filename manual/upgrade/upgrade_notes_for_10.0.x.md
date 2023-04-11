@@ -5,6 +5,16 @@ Please always follow the main [upgrade guide](./upgrade.md).
 
 ## Important release changes
 
+### Enable notification server
+
+The notification server enables desktop syncing and drive clients to get notification of library changes immediately using websocket. There are two benefits:
+
+1. Reduce the time for syncing new changes to local
+2. Reduce the load of the server as periodically pulling is removed. There are significant reduction of load when you have 1000+ clients. 
+
+The notification server works with Seafile syncing client 9.0+ and drive client 3.0+.
+
+Please follow the document to enable notification server: https://manual.seafile.com/config/seafile-conf/#notification-server-configuration
 
 ### Memcached section in the seafile.conf (pro edition only)
 
