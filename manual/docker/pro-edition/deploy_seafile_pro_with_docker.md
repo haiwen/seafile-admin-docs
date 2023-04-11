@@ -208,6 +208,22 @@ docker-compose restart
 
 Since version 9.0.6, we use acme (not acme-tiny) to get certificate and fix this error.
 
+Since version 10.0.x, if you want to use a reverse proxy and apply for a certificate outside docker, you can use `FORCE_HTTPS_IN_CONF` to force write `https://<your_host>` in the configuration file.
+
+e.g.
+
+```
+seafile:
+    ...
+    environment:
+        ...
+        - SEAFILE_SERVER_LETSENCRYPT=false
+        - SEAFILE_SERVER_HOSTNAME=seafile.example.com
+        - FORCE_HTTPS_IN_CONF=true
+        ...
+
+```
+
 ## Seafile directory structure
 
 ### `/shared`
