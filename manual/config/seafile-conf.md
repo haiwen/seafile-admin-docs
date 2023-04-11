@@ -299,3 +299,27 @@ log_level = info
 # jwt_private_key is used to generate jwt token and authenticate seafile server
 jwt_private_key = M@O8VWUb81YvmtWLHGB2I_V7di5-@0p(MF*GrE!sIws23F
 ```
+
+If you use nginx, then you also need to add the following configuration for nginx:
+
+```
+server {
+    ...
+
+    location /notification/ping {
+        proxy_pass http://127.0.0.1:8083/ping;
+        access_log      /var/log/nginx/notification.access.log seafileformat;
+        error_log       /var/log/nginx/notification.error.log;
+    }
+    location /notification {
+        proxy_pass http://127.0.0.1:8083/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade \$http_upgrade;
+        proxy_set_header Connection "upgrade";
+        access_log      /var/log/nginx/notification.access.log seafileformat;
+        error_log       /var/log/nginx/notification.error.log;
+    }
+
+    ...
+}
+```
