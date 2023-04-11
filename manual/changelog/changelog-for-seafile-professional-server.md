@@ -8,6 +8,15 @@
 
 Please check our document for how to upgrade to 10.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_10.0.x/>
 
+### 10.0.2 beta (to be released)
+
+* Support generating multiple share links for a file and a folder
+* [fix] Fix a bug in golang file server when zip-downloading a folder in encrypted library
+* [fix] Fix a bug in upgrading script when there is no configuration for Nginx
+* Video player support changing playback speed
+* [fix] Fix a few bugs in notification server
+* [multi-tenancy] Support org admin to changing logo for each organization
+
 ### 10.0.0 beta (to be released)
 
 * Update Python dependencies and support Ubuntu 22.04 and Debian 11
