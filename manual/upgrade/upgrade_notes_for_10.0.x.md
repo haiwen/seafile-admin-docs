@@ -45,6 +45,34 @@ SAML_ATTRIBUTE_MAPPING = {
 
 Please check the new document on [SAML SSO](../deploy_pro/saml2_in_10.0.md)
 
+### Rate control in role settings (pro edition only)
+
+Starting from version 10.0, Seafile allows administrators to configure upload and download speed limits for users with different roles through the following two steps:
+
+1. Configuring rate limiting for different roles in `seahub_settings.py`.
+
+```
+ENABLED_ROLE_PERMISSIONS = {
+    'default': {
+	...
+        'upload_rate_limit': 2000,  # unit: kb/s
+        'download_rate_limit': 4000,
+	...
+    },
+    'guest': {
+	...
+        'upload_rate_limit': 100,
+        'download_rate_limit': 200,
+	...
+    },
+}
+```
+
+2. Run the following command in the `seafile-server-latest` directory to make the configuration take effect.
+
+```
+./seahub.sh python-env python3 seahub/manage.py set_user_role_upload_download_rate_limit
+```
 
 ### ElasticSearch change (pro edition only)
 
