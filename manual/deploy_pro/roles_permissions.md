@@ -157,6 +157,8 @@ ENABLED_ROLE_PERMISSIONS = {
         'storage_ids': [],
         'role_quota': '',
         'can_publish_repo': True,
+        'upload_rate_limit': 2000,  # unit: kb/s
+        'download_rate_limit': 4000,
     },
     'guest': {
         'can_add_repo': False,
@@ -174,6 +176,8 @@ ENABLED_ROLE_PERMISSIONS = {
         'storage_ids': [],
         'role_quota': '',
         'can_publish_repo': False,
+        'upload_rate_limit': 100,
+        'download_rate_limit': 200,
     },
     'employee': {
         'can_add_repo': True,
@@ -191,6 +195,8 @@ ENABLED_ROLE_PERMISSIONS = {
         'storage_ids': [],
         'role_quota': '',
         'can_publish_repo': True,
+        'upload_rate_limit': 500,
+        'download_rate_limit': 800,
     },
 }
 ```
