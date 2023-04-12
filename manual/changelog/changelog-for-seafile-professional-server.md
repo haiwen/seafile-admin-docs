@@ -8,7 +8,11 @@
 
 Please check our document for how to upgrade to 10.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_10.0.x/>
 
-### 10.0.2 beta (to be released)
+### 10.0.3 beta (2023-04-12)
+
+* [fix] Fix a performance issue when displaying many share links for a single file
+
+### 10.0.2 beta (2023-04-12)
 
 * Support generating multiple share links for a file and a folder
 * [fix] Fix a bug in golang file server when zip-downloading a folder in encrypted library
@@ -17,7 +21,7 @@ Please check our document for how to upgrade to 10.0: <https://manual.seafile.co
 * [fix] Fix a few bugs in notification server
 * [multi-tenancy] Support org admin to changing logo for each organization
 
-### 10.0.0 beta (to be released)
+### 10.0.0 beta (2023-04-12)
 
 * Update Python dependencies and support Ubuntu 22.04 and Debian 11
 * Update ElasticSearch to 8.0
