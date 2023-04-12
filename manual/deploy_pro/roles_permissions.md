@@ -2,21 +2,21 @@
 
 You can add/edit roles and permission for users. A role is just a group of users with some pre-defined permissions, you can toggle user roles in user list page at admin panel.
 
-In version 6.1, we added a new permission `role_quota` which can be used to set quota for a certain role of users. For example, we can set the quota of employee to 100G by adding `'role_quota': '100g'`, and leave other role of users to the default quota.
+`role_quota` is used to set quota for a certain role of users. For example, we can set the quota of employee to 100G by adding `'role_quota': '100g'`, and leave other role of users to the default quota.
 
-Since version 6.3.6, we added a new permission `can_add_public_repo`(whether or not you can create a public library, default is "False").
+`can_add_public_repo` is to set whether a role can create a public library, default is "False". **Note:**The `can_add_public_repo` option will not take effect if you configure global `CLOUD_MODE = True`.
 
-Since version 10.0 pro, we added new permissions `upload_rate_limit` and `download_rate_limit` to limit upload and download speed for users with different roles. After configured the rate limit, run the following command in the `seafile-server-latest` directory to make the configuration take effect:
+Since version 10.0, `upload_rate_limit` and `download_rate_limit` are added to limit upload and download speed for users with different roles. **After configured the rate limit, run the following command in the `seafile-server-latest` directory to make the configuration take effect**:
 
 ```
 ./seahub.sh python-env python3 seahub/manage.py set_user_role_upload_download_rate_limit
 ```
 
-**Note:**The `can_add_public_repo` option will not take effect if you configure global `CLOUD_MODE = True`.
 
 The `storage_ids` permission is used for assigning storage backends to users with specific role. More details can be found in [multiple storage backends](multiple_storage_backends.md).
 
 Seafile comes with two build-in roles `default` and `guest`, a default user is a normal user with permissions as followings:
+
 ```
     'default': {
         'can_add_repo': True,
