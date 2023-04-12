@@ -6,6 +6,12 @@ In version 6.1, we added a new permission `role_quota` which can be used to set 
 
 Since version 6.3.6, we added a new permission `can_add_public_repo`(whether or not you can create a public library, default is "False").
 
+Since version 10.0 pro, we added new permissions `upload_rate_limit` and `download_rate_limit` to limit upload and download speed for users with different roles. After configured the rate limit, run the following command in the `seafile-server-latest` directory to make the configuration take effect:
+
+```
+./seahub.sh python-env python3 seahub/manage.py set_user_role_upload_download_rate_limit
+```
+
 **Note:**The `can_add_public_repo` option will not take effect if you configure global `CLOUD_MODE = True`.
 
 The `storage_ids` permission is used for assigning storage backends to users with specific role. More details can be found in [multiple storage backends](multiple_storage_backends.md).
@@ -28,6 +34,8 @@ Seafile comes with two build-in roles `default` and `guest`, a default user is a
         'storage_ids': [],
         'role_quota': '',
         'can_publish_repo': True,
+        'upload_rate_limit': 0,  # unit: kb/s
+        'download_rate_limit': 0,
     },
 ```
 
@@ -49,6 +57,8 @@ While a guest user can only read files/folders in the system, here are the permi
         'storage_ids': [],
         'role_quota': '',
         'can_publish_repo': False,
+        'upload_rate_limit': 0,
+        'download_rate_limit': 0,
     },
 ```
 
@@ -74,6 +84,8 @@ ENABLED_ROLE_PERMISSIONS = {
         'storage_ids': [],
         'role_quota': '',
         'can_publish_repo': True,
+        'upload_rate_limit': 2000,  # unit: kb/s
+        'download_rate_limit': 4000,
     },
     'guest': {
         'can_add_repo': False,
@@ -91,6 +103,8 @@ ENABLED_ROLE_PERMISSIONS = {
         'storage_ids': [],
         'role_quota': '',
         'can_publish_repo': False,
+        'upload_rate_limit': 100,
+        'download_rate_limit': 200,
     }
 }
 ```
