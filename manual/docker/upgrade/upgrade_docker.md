@@ -38,3 +38,9 @@ docker exec seafile nginx -s reload
 ```
 
 A cron job inside the container will automatically renew the certificate.
+
+## Upgrade from 9.0 to 10.0
+
+Just download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version, then start with docker-compose up.
+
+If you want to use Notification server (all edition), or use ElasticSearch, Storage backend, SAML SSO, Rate control (pro edition only), please refer to the manual when upgrading: https://manual.seafile.com/upgrade/upgrade_notes_for_10.0.x
