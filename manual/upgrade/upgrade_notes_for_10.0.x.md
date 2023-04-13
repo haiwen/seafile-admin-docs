@@ -3,6 +3,8 @@
 These notes give additional information about changes.
 Please always follow the main [upgrade guide](./upgrade.md).
 
+For docker based version, please check [upgrade Seafile Docker image](../docker/upgrade/upgrade_docker.md)
+
 ## Important release changes
 
 ### Enable notification server
