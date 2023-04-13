@@ -69,6 +69,7 @@ nav:
       - LibreOffice Online Integration: deploy/libreoffice_online.md
       - OnlyOffice Integration: deploy/only_office.md
     - Open Cloud Mesh: deploy/ocm.md
+    - Notification Server: deploy/notification-server.md
     - Other Deployment Notes:
       - Start Seafile at System Bootup: deploy/start_seafile_at_system_bootup.md
       - Firewall settings: deploy/using_firewall.md
@@ -120,7 +121,6 @@ nav:
       - Real-time Backup Server: deploy_pro/real_time_backup.md
       - Import Directory To Seafile: deploy_pro/seaf_import.md
     - Memcached Options for Pro Edition: deploy_pro/memcached_options.md
-    - Notification Server: deploy_pro/notification-server.md
     - License: deploy_pro/seafile_professional_sdition_software_license_agreement.md
   - Seafile Setup with Docker:
     - Seafile Community Installation: docker/deploy_seafile_with_docker.md

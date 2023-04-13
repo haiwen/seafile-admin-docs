@@ -300,6 +300,14 @@ log_level = info
 jwt_private_key = M@O8VWUb81YvmtWLHGB2I_V7di5-@0p(MF*GrE!sIws23F
 ```
 
+You can generate jwt_private_key with the following command：
+
+```
+# generate jwt_private_key
+openssl rand -base64 32
+
+```
+
 If you use nginx, then you also need to add the following configuration for nginx:
 
 ```
