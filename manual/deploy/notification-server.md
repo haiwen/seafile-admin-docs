@@ -65,6 +65,16 @@ server {
 
 ```
 
+Or add the configuration for Apache:
+
+```
+    ProxyPass /notification/ping  http://127.0.0.1:8083/ping/
+    ProxyPassReverse /notification/ping  http://127.0.0.1:8083/ping/
+
+    ProxyPass /notification  ws://127.0.0.1:8083/
+    ProxyPassReverse /notification ws://127.0.0.1:8083/
+```
+
 After that, you can run notification server with the following command:
 
 ```
