@@ -59,7 +59,7 @@ The system wide configuration path is located at `HKEY_LOCAL_MACHINE/SOFTWARE/Wo
 ### SeaDrive Silent Installation
 
 ```
- .\seadrive-1.0.12.exe /quiet
+msiexec /i seadrive.msi /quiet /qn /log install.log
 
 ```
 
