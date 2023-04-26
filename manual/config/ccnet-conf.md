@@ -22,6 +22,15 @@ When you configure ccnet to use MySQL, the default connection pool size is 100, 
 # Use larger connection pool
 MAX_CONNECTIONS = 200
 ```
+## Using Encrypted Connections
+Since Seafile 10.0.2, you can enable the encrypted connections to the MySQL server by adding the following configuration options:
+```
+[Database]
+USE_SSL = true
+SKIP_VERIFY = false
+CA_PATH = /etc/mysql/ca.pem
+```
+When set `use_ssl` to true and `skip_verify` to false, it will check whether the MySQL server certificate is legal through the CA configured in `ca_path`. The `ca_path` is a trusted CA certificate path for signing MySQL server certificates. When `skip_verify` is true, there is no need to add the `ca_path` option. The MySQL server certificate won't be verified at this time.
 
 ## Changing name of table 'Group'
 
