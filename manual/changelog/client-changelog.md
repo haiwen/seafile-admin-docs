@@ -2,6 +2,15 @@
 
 ## 9.0
 
+### 9.0.2
+
+* \[macOS] Fix UTF-8 encoding issue for file names
+* Persist file sync errors in the UI
+* Fix an issue when removing large number of files from encrypted libraries
+* Remove client version checking
+* Fix resyncing libraries with non-default location
+* Fix UI issue for 2FA
+
 ### 9.0.1
 
 * \[win] Update app signing certificate
