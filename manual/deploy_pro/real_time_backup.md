@@ -1,11 +1,10 @@
 # Seafile Real-Time Backup Server
 
+Note: This feature is deprecated and not recommended to use in production. If you're looking for backup solution:
+* If you're not using object storage, you can follow the instructions in [backup and recovery](../maintain/backup_recovery.md).
+* If you're using object storage, you can use the [migration script](../deploy_pro/migrate.md) to backup the objects.
+
 Backup is the procedure that copies data from a primary server (which is running production service) to a backup server.
-
-Backup is an important procedure to keep data safe. The basic backup procedure described in [this documentation](../maintain/backup_recovery.md) has a few drawbacks:
-
-- The backup is done in fixed "backup windows" (once per day or a few times per day). The latest data written between two backup windows will be lost if the primary server storage is damaged.
-- The backup procedure backup database and data directory separately. In the backup server, some entries in the database may become inconsistent with the data directory. This causes some libraries become "corrupted" after restore.
 
 The real-time backup server uses a syncing algorithm similar to the Seafile desktop client to retrieve data from the primary server. It works as follows:
 
