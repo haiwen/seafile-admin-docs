@@ -4,14 +4,19 @@
 
 The following software packages are required for building Seafile client on macOS:
 
-* XCode
+* XCode (10.2 or later)
+
+    Newer versions of XCode may work, but not tested. Some tweaks may be applied to the build scripts in order to compile or package the application.
+
 * Qt 5.15 (official package)
 * MacPorts
-* libraries and tools
+* Other dependencies
 
-    `sudo port autoconf automake pkgconfig libtool glib2 libevent vala openssl git jansson cmake libwebsockets`
+    The following packages are required to be installed via MacPorts:
 
-Configuration for environment variables are also needed:
+        $ sudo port install autoconf automake pkgconfig libtool glib2 libevent vala openssl git jansson cmake curl libwebsockets
+
+Also, add following lines to the *~/.bash_profile* file:
 
 ```bash
 export PKG_CONFIG_PATH=/opt/local/lib/pkgconfig:/usr/local/lib/pkgconfig
@@ -23,57 +28,74 @@ export LDFLAGS="-L/opt/local/lib -L/usr/local/lib -Wl,-headerpad_max_install_nam
 QT_BASE=$HOME/Qt5.15.2/5.15.2/clang_64
 export PATH=$QT_BASE/bin:$PATH
 export PKG_CONFIG_PATH=$QT_BASE/lib/pkgconfig:$PKG_CONFIG_PATH
-```
-
-## Compiling Sources
-
-### libsearpc
 
 ```
-git clone https://github.com/haiwen/libsearpc.git
 
-cd ./libsearpc
-./autogen.sh
-./configure
-make
-sudo make install
-```
+## Compile & Run
 
-### seafile
+### Clone Source Code
 
-```
-git clone https://github.com/haiwen/seafile.git
+We assume the workspace is located at *~/seafile-workspace*. Then, run following commands in a shell:
 
-cd ./seafile
-./autogen.sh
-./configure
-make
-sudo make install
-```
-
-### seafile-client
+```bash
+$ cd ~/seafile-workspace
+$ git clone https://github.com/haiwen/libsearpc.git
+$ git clone https://github.com/haiwen/seafile.git
+$ git clone https://github.com/haiwen/seafile-client.git
 
 ```
-git clone https://github.com/haiwen/seafile-client.git
 
-cd ./seafile-client
-cmake -G "Unix Makefiles" -S . -B build
+### Compile libsearpc
+
+```bash
+$ cd ~/seafile-workspace/libsearpc
+
+$ ./autogen.sh
+$ ./configure
+$ make
+$ sudo make install
+
+```
+
+### Compile seafile
+
+```bash
+$ cd ~/seafile-workspace/seafile
+
+$ ./autogen.sh
+$ ./configure
+$ make
+$ sudo make install
+
+```
+
+### Compile seafile-client
+
+```bash
+$ cd ~/seafile-workspace/seafile-client
+
+cmake -G "Unix Makefiles" -B build -S .
 cmake --build build --target seafile-applet
+
 ```
 
-then run seafile-applet as `./build/seafile-applet`.
+### Run seafile-applet
 
-## Packing Application
+```bash
+$ cd ~/seafile-workspace/seafile-client/build
+$ ./seafile-applet
 
-### Environment
+```
 
-In addition to basic setup from compiling requirements, packing a client application will also need following setup:
+## Package Application
 
-* install dropDMG
-* import certifications for code signing
-* register notarizing username and password to Keychain Access
+Additonal setups are required for packing Seafile client on macOS:
 
-#### Code Signing
+* dropDMG
+* certifications
+* notarization username and password
+
+### Code Signing
 
 A mac application must be distribution-signed before shipping. More technical details can be found from the [post](https://developer.apple.com/forums/thread/701514#701514021) at developer forums.
 
@@ -81,25 +103,38 @@ Before signing, please make sure to import the distribution certification. Then,
 
 Now, executables and frameworks inside the bundle can be signed with the `codesign` command. See the *seafile/scripts/build/build_mac_local.py* script for actual signing commands.
 
-#### Notarization
+### Notarization
 
 Notarization is the final step before shipping a DMG installer. The `notarytool` command can be used to submit or staple the installer. See the *seafile/scripts/build/notarize.sh* script for actual notarizing commands.
 
-### Run packing script
+### Run Packaging Script
 
-Assuming the layout of folders is similar to:
+Some changes need to be applied to the *seafile/scripts/build/build_mac_local.py* script before running it.
 
-```
-seafile-workspace/
-|- libsearpc/
-|- seafile/
-|- seafile-client/
-```
+* change `'BUILD_SPARKLE_SUPPORT': 'ON',` to `'BUILD_SPARKLE_SUPPORT': 'OFF',`
+* comment out sparkle related lines:
+
+        # for fn in _glob('Contents/Frameworks/Sparkle.framework/Versions/A/Resources/Autoupdate.app/Contents/MacOS/*'):
+        #     do_sign(fn, preserve_entitlemenets=False)
+
+        # for fn in (
+        #         'Contents/Frameworks/Sparkle.framework/Versions/A/Resources/Autoupdate.app',
+        #         'Contents/Frameworks/Sparkle.framework/Versions/A/Sparkle',
+        # ):
+        #    do_sign(join(appdir, fn))
+
+        # copy_sparkle_framework()
+
+* Update altool path in *seafile/scripts/build/notarize.sh*:
+
+        _altool() {
+            xcrun altool "$@"
+        }
 
 Then, run following commands in a shell:
 
-```
-cd seafile-workspace/seafile/scripts/build
-python build-mac-local.py --brand="" --version=1.0.0 --nostrip
+```bash
+$ cd ~/seafile-workspace/seafile/scripts/build
+$ python build-mac-local.py --brand="" --version=1.0.0 --nostrip
 
 ```
