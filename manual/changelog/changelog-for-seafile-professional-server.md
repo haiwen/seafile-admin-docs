@@ -8,6 +8,15 @@
 
 Please check our document for how to upgrade to 10.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_10.0.x/>
 
+### 10.0.4 (2023-05-17)
+
+* Add "Undo" action in the notification toast after deleting files and folders
+* Improve UI of system admin -> department page
+* Support online preview of more audio file formats
+* Support TLS connection to MySQL/MariaDB server
+* [fix] Fix a few bugs in notification server
+* Some other UI improvements
+
 ### 10.0.3 beta (2023-04-12)
 
 * [fix] Fix a performance issue when displaying many share links for a single file
