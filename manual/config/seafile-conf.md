@@ -273,6 +273,20 @@ start time - user id - url - response code - process time
 
 You can use `SIGUSR1` to trigger log rotation.
 
+## Go Fileserver
+
+Seafile 9.0 introduces a new fileserver implemented in Go programming language. To enable it, you can set the options below in seafile.conf:
+
+```
+[fileserver]
+use_go_fileserver = true
+```
+
+Go fileserver has 3 advantages over the traditional fileserver implemented in C language:
+1. Better performance when syncing libraries with large number of files. With C fileserver, syncing large libraries may consume all the worker threads in the server and make the service slow. There is a config option `max_sync_file_count` to limit the size of library to be synced. The default is 100K. With Go fileserver you can set this option to a much higher number, such as 1 million.
+2. Downloading zipped folders on the fly. And there is no limit on the size of the downloaded folder. With C fileserver, the server has to first create a zip file for the downloaded folder then send it to the client. With Go fileserver, the zip file can be created while transferring to the client. The option `max_download_dir_size` is thus no longer needed by Go fileserver.
+3. Since version 10.0 you can also set upload/download rate limits.
+
 ## Profiling Go Fileserver Performance
 
 Since Seafile 9.0.7, you can enable the profile function of go fileserver by adding the following configuration options:
