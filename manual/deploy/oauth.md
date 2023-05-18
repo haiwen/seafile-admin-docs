@@ -4,12 +4,6 @@ Since CE version 6.2.3, Seafile supports user login via [OAuth](https://oauth.ne
 
 Before using OAuth, Seafile administrator should first register an OAuth2 client application on your authorization server, then add some configurations to seahub_settings.py.
 
-And don't forget install thirdparty requirement.
-
-```
-sudo pip install requests_oauthlib
-```
-
 #### Register an OAuth2 client application
 
 Here we use Github as an example. First you should register an OAuth2 client application on Github, [official document from Github](https://developer.github.com/apps/building-integrations/setting-up-and-registering-oauth-apps/registering-oauth-apps/) is very detailed.
