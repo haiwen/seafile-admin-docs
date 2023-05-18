@@ -314,7 +314,7 @@ Since Seafile 10.0.0, you can enable the notification server by adding the follo
 # jwt_private_key are required.You should generate it manually.
 [notification]
 enabled = true
-# the ip of notification server
+# the ip of notification server. (Do not modify the host when using nginx or apache)
 host = 127.0.0.1
 # the port of notification server
 port = 8083
