@@ -1,6 +1,7 @@
 # Seafile Real-Time Backup Server
 
 Note: This feature is deprecated and not recommended to use in production. If you're looking for backup solution:
+
 * If you're not using object storage, you can follow the instructions in [backup and recovery](../maintain/backup_recovery.md).
 * If you're using object storage, you can use the [migration script](../deploy_pro/migrate.md) to backup the objects.
 
