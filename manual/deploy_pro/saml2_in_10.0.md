@@ -30,10 +30,12 @@ Add the following configuration to seahub_settings.py and then restart Seafile:
 
 ```python
 ENABLE_ADFS_LOGIN = True
+LOGIN_REDIRECT_URL = '/saml2/complete/'
 SAML_REMOTE_METADATA_URL = 'https://login.microsoftonline.com/xxx/federationmetadata/2007-06/federationmetadata.xml?appid=xxx'
 SAML_ATTRIBUTE_MAPPING = {
-    'mail': 'contact_email',
-    'name': 'display_name',
+    'name': ('display_name', ),
+    'mail': ('contact_email', ),
+    ...
 }
 ```
 
