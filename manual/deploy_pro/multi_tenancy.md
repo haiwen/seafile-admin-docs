@@ -11,7 +11,7 @@ multi_tenancy = true
 
 #### seahub_settings.py
 
-```
+```python
 CLOUD_MODE = True
 MULTI_TENANCY = True
 
@@ -21,9 +21,11 @@ ORG_ENABLE_ADMIN_CUSTOM_NAME = True  # Default is True, meaning organization nam
 ORG_ENABLE_ADMIN_CUSTOM_LOGO = False  # Default is False, if set to True, organization logo can be customized
 
 ENABLE_MULTI_ADFS = True  # Default is False, if set to True, support per organization custom ADFS/SAML2 login
+LOGIN_REDIRECT_URL = '/saml2/complete/'
 SAML_ATTRIBUTE_MAPPING = {
-    'mail': 'contact_email',
-    'displayName': 'display_name',
+    'name': ('display_name', ),
+    'mail': ('contact_email', ),
+    ...
 }
 ```
 
@@ -35,41 +37,45 @@ Every organization has an URL prefix. This field is *for future usage*. When a u
 
 After creating an organization, the first user will become the admin of that organization. The organization admin can add other users. Note, the system admin can't add users.
 
-## MULTI ADFS
+## Multi-tenancy ADFS/SAML single sign-on login
 
-1\. Install xmlsec1
+### Preparation for ADFS/SAML
+
+**The _system admin_ has to complete the following works.**
+
+**Fisrt**, install xmlsec1 package:
 
 ```
 $ apt update
 $ apt install xmlsec1
 ```
 
-2\. **Sysadmin** prepares certificate directory for organization and generates SP certificate
+**Second**, prepare SP(Seafile) certificate directory and generate SP certificates:
 
-Create certs dir
-
-```
-$ mkdir -p /opt/seafile/seahub-data/certs/<org_id>
-```
-
-**Sysadmin** can generate them by:
+Create sp certs dir
 
 ```
-$ cd /opt/seafile/seahub-data/certs/<org_id>
-$ openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout sp.key -out sp.crt
+$ mkdir -p /opt/seafile/seahub-data/certs
 ```
 
-__Note__: The certificates of different organizations need to be put in different _org_id_ sub-directories.
+Generate the SP certs using the following command:
 
-3\. Configure Seafile
+```
+$ cd /opt/seafile/seahub-data/certs
+$ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout sp.key -out sp.crt
+```
 
-Add the following configuration to seahub_settings.py and then restart Seafile:
+__Note__: The `days` option indicates the validity period of the generated certificate. The unit is day. The system admin needs to update the certificate regularly.
+
+**Finally**, add the following configuration to seahub_settings.py and then restart Seafile:
 
 ```python
-ENABLE_ADFS_LOGIN = True
+ENABLE_MULTI_ADFS = True
+LOGIN_REDIRECT_URL = '/saml2/complete/'
 SAML_ATTRIBUTE_MAPPING = {
-    'mail': 'contact_email',
-    'name': 'display_name',
+    'name': ('display_name', ),
+    'mail': ('contact_email', ),
+    ...
 }
 ```
 
@@ -91,34 +97,56 @@ __Note__: If certificates are **not placed in** `/opt/seafile/seahub-data/certs`
 SAML_CERTS_DIR = '/path/to/certs'
 ```
 
-4\. **Organization admin** Configure Azure SAML
+### Deploy and configure ADFS/SAML single sign-on
 
-Add application: <https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal>
+**The _organization admin_ has to complete the following works.**
 
-Assign users: <https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal-assign-users>
+#### Deploy and configure Microsoft Azure SAML single sign-on app
 
-Set up SSO with SAML: 
+If you use Microsoft Azure SAML app to achieve single sign-on, please follow the steps below:
 
-![](../images/auto-upload/1678350584150.jpg)
+**Firat**, add SAML application and assign users, refer to: [add an Azure AD SAML application](https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal), [create and assign users](https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal-assign-users)
 
-Your _meradate url_, _acs url_, _service url_ might like this:
+**Second**, setup your SAML login URL in the Seafile organization admin interface. The format of the login URL is: https://example.com/org/custom/{custom-part}/, e.g.:
 
-![](../images/auto-upload/image-1671861383531.png)
+![](../images/auto-upload/8c1988cd-1f66-47c9-ac61-650e8245efcf.png)
 
-__Note__: The _org_n4dhr37woadw9uco06sr_ is a customizable string, you can customize according to your own needs: https://example.com/org/custom/{custom-part}/
+**Then**, setup the _Identifier_, _Reply URL_, and _Sign on URL_ of the SAML app based on your login URL, refer to: [enable single sign on for saml application](https://learn.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal-setup-sso). The format of the _Identifier_, _Reply URL_, and _Sign on URL_ are: https://example.com/org/custom/{custom-part}/metadata/, https://example.com/org/custom/{custom-part}/acs/, https://example.com/org/custom/{custom-part}/, e.g.:
 
-5\. Download Azure AD certificate
+![](../images/auto-upload/498c6ae2-9213-4452-9238-676d179c375c.png)
 
-Download base64 format signing certificate, rename to idp.crt.
+__Note__: The {custom-part} of the URL should be 6 to 20 characters, and can only contain alphanumeric characters and hyphens.
 
-![](../images/auto-upload/1678343483221.jpg)
+**Next**, copy the metadata URL of the SAML app:
 
-6\. Configures options related to SAML login
+![](../images/auto-upload/6702c7c7-a205-4b18-91d2-48dd1a1b7b03.png)
 
-**Organization admin** configures options related to SAML login in the organization management interface.
+and paste it into the organization admin interface, e.g:
 
-![](../images/auto-upload/a876234f-dbe8-496b-b447-1ef161ab7c3a.png)
+![](../images/auto-upload/d2252310-0c30-4d88-a553-5711820a65df.png)
 
-![](../images/auto-upload/b4e90b49-e6df-4b11-882c-93aefdb3075c.png)
+**Next**, download the SAML app's certificate and rename to idp.crt:
 
-7\. Open the browser and enter https://example.com/org/custom/{custom-part}/ for single sign-on.
+![](../images/auto-upload/3aa0b19d-46ac-426e-adcc-b3869b0a95a1.png)
+
+and upload the idp.crt in the organization admin interface:
+
+![](../images/auto-upload/5b3ff455-de3f-4585-93d2-8ecc1c7cc0ea.png)
+
+**Next**, [edit saml attributes & claims](https://learn.microsoft.com/en-us/azure/active-directory/develop/saml-claims-customization). Keep the default attributes & claims of SAML app unchanged, the _uid_ attribute must be added, the _mail_ and _name_ attributes are optional, e.g.:
+
+![](../images/auto-upload/abee9c69-f03d-4735-9231-92bd923b9ceb.png)
+
+**Finally**, open the browser and enter your custom login URL into the browser, e.g.:
+
+![](../images/auto-upload/fc85a75e-fde8-43e0-bd88-541adae6c54c.png)
+
+Click the Enter key will jump to the SAML app login page, e.g.:
+
+![](../images/auto-upload/21dc07ae-89a7-4281-be18-566a64bca922.png)
+
+#### Deploy and configure ADFS
+
+If you use Microsoft ADFS to achieve single sign-on, please follow the steps below:
+
+<!-- TODO -->
