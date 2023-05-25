@@ -85,7 +85,7 @@ __Note__: If the xmlsec1 binary is **not located in** `/usr/bin/xmlsec1`, you ne
 SAML_XMLSEC_BINARY_PATH = '/path/to/xmlsec1'
 ```
 
-View where the xmlsec1 binary is situated:
+View where the xmlsec1 binary is located:
 
 ```
 $ which xmlsec1
@@ -111,7 +111,7 @@ If you use Microsoft Azure SAML app to achieve single sign-on, please follow the
 
 ![](../images/auto-upload/8c1988cd-1f66-47c9-ac61-650e8245efcf.png)
 
-**Then**, setup the _Identifier_, _Reply URL_, and _Sign on URL_ of the SAML app based on your login URL, refer to: [enable single sign on for saml application](https://learn.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal-setup-sso). The format of the _Identifier_, _Reply URL_, and _Sign on URL_ are: https://example.com/org/custom/{custom-part}/metadata/, https://example.com/org/custom/{custom-part}/acs/, https://example.com/org/custom/{custom-part}/, e.g.:
+**Then**, setup the _Identifier_, _Reply URL_, and _Sign on URL_ of the SAML app based on your login URL, refer to: [enable single sign on for saml application](https://learn.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal-setup-sso). The format of the _Identifier_, _Reply URL_, and _Sign on URL_ are: https://example.com/org/custom/{custom-part}/saml2/metadata/, https://example.com/org/custom/{custom-part}/saml2/acs/, https://example.com/org/custom/{custom-part}/, e.g.:
 
 ![](../images/auto-upload/498c6ae2-9213-4452-9238-676d179c375c.png)
 
@@ -125,7 +125,7 @@ and paste it into the organization admin interface, e.g:
 
 ![](../images/auto-upload/d2252310-0c30-4d88-a553-5711820a65df.png)
 
-**Next**, download the SAML app's certificate and rename to idp.crt:
+**Next**, download the base64 format SAML app's certificate and rename to idp.crt:
 
 ![](../images/auto-upload/3aa0b19d-46ac-426e-adcc-b3869b0a95a1.png)
 
