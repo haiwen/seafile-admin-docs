@@ -37,7 +37,7 @@ Every organization has an URL prefix. This field is *for future usage*. When a u
 
 After creating an organization, the first user will become the admin of that organization. The organization admin can add other users. Note, the system admin can't add users.
 
-## Multi-tenancy ADFS/SAML single sign-on login
+## ADFS/SAML single sign-on integration in multi-tenancy
 
 ### Preparation for ADFS/SAML
 
@@ -79,7 +79,7 @@ SAML_ATTRIBUTE_MAPPING = {
 }
 ```
 
-__Note__: If the xmlsec1 binary is **not situated in** `/usr/bin/xmlsec1`, you need to add the following configuration in seahub_settings.py:
+__Note__: If the xmlsec1 binary is **not located in** `/usr/bin/xmlsec1`, you need to add the following configuration in seahub_settings.py:
 
 ```python
 SAML_XMLSEC_BINARY_PATH = '/path/to/xmlsec1'
@@ -97,15 +97,15 @@ __Note__: If certificates are **not placed in** `/opt/seafile/seahub-data/certs`
 SAML_CERTS_DIR = '/path/to/certs'
 ```
 
-### Deploy and configure ADFS/SAML single sign-on
+### Integration with ADFS/SAML single sign-on
 
-**The _organization admin_ has to complete the following works.**
+The _organization admin_ has to complete the following works. The detailed steps depends on which ADFS service you use. We provide integration steps for Azure SAML SSO and on-premise ADFS.
 
-#### Deploy and configure Microsoft Azure SAML single sign-on app
+#### Integration with Microsoft Azure SAML single sign-on app
 
 If you use Microsoft Azure SAML app to achieve single sign-on, please follow the steps below:
 
-**Firat**, add SAML application and assign users, refer to: [add an Azure AD SAML application](https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal), [create and assign users](https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal-assign-users)
+**First**, add SAML application and assign users, refer to: [add an Azure AD SAML application](https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal), [create and assign users](https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal-assign-users)
 
 **Second**, setup your SAML login URL in the Seafile organization admin interface. The format of the login URL is: https://example.com/org/custom/{custom-part}/, e.g.:
 
@@ -145,7 +145,7 @@ Click the Enter key will jump to the SAML app login page, e.g.:
 
 ![](../images/auto-upload/21dc07ae-89a7-4281-be18-566a64bca922.png)
 
-#### Deploy and configure ADFS
+#### Integration with on-premise ADFS
 
 If you use Microsoft ADFS to achieve single sign-on, please follow the steps below:
 
