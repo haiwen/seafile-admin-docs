@@ -1,5 +1,21 @@
 # SeaDrive Client Changelog
 
+### 3.0.3 (2023/05/25)
+
+* \[win] Support image thumbnails
+* \[win] Add resync account function, to help fix invalid placeholder issues
+* \[win] Remove entry in explorer when remove an account
+* \[win] Only convert file to placeholder after it's uploaded
+* \[win] Fix a bug that opening a file returns all zeros
+* \[win] Fix a bug that syncing doesn't work when restart SeaDrive with no network connection
+* \[win] Fix seafile_ext64.dll permission
+* Require user confirmation when deleting a library
+* Always display "File Sync Errors" menu item in system tray icon menu
+* \[mac] Provide native Apple Silicon binary
+* \[mac] Upgrade Qt to 6.2.4
+* \[mac] Fix a bug that after downloading file with web browser to SeaDrive, file modification time becomes 1970.
+* \[mac] Add more actions to right-click menu in Finder
+
 ### 3.0.2 Beta (2023/03/24)
 
 * \[mac] Use File Provider API to implement virtual drive
