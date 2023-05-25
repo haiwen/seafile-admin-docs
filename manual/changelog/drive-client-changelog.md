@@ -11,10 +11,10 @@
 * \[win] Fix seafile_ext64.dll permission
 * Require user confirmation when deleting a library
 * Always display "File Sync Errors" menu item in system tray icon menu
-* \[mac] Provide native Apple Silicon binary
-* \[mac] Upgrade Qt to 6.2.4
-* \[mac] Fix a bug that after downloading file with web browser to SeaDrive, file modification time becomes 1970.
-* \[mac] Add more actions to right-click menu in Finder
+* \[mac] (Beta) Provide native Apple Silicon binary
+* \[mac] (Beta) Upgrade Qt to 6.2.4
+* \[mac] (Beta) Fix a bug that after downloading file with web browser to SeaDrive, file modification time becomes 1970.
+* \[mac] (Beta) Add more actions to right-click menu in Finder
 
 ### 3.0.2 Beta (2023/03/24)
 
