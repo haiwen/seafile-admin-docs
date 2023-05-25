@@ -87,28 +87,4 @@ __Note__: If certificates are **not placed in** `/opt/seafile/seahub-data/certs`
 SAML_CERTS_DIR = '/path/to/certs'
 ```
 
-<<<<<<< Updated upstream
-4\. Configure Azure SAML
-
-Add application: <https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal>
-
-Assign users: <https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal-assign-users>
-
-Enable single sign on for saml application: <https://learn.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal-setup-sso>
-
-Custom saml Attributes & Claims <https://learn.microsoft.com/en-us/azure/active-directory/develop/saml-claims-customization>
-
-Set up SSO with SAML: 
-
-![](../images/auto-upload/1678350584150.jpg)
-
-5\. Upload Azure AD certificate
-
-Download base64 format signing certificate, rename to idp.crt, and then put it under the certs directory.
-
-![](../images/auto-upload/1678343483221.jpg)
-
-6\. Log in to the Seafile homepage, click single sign-on, and use the user assigned to Azure SAML to perform a SAML login test.
-=======
 **Finally**, open the browser and enter the Seafile login page, click `Single Sign-On`, and use the user assigned to SAML app to perform a SAML login test.
->>>>>>> Stashed changes
