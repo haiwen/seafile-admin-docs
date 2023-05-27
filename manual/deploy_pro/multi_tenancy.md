@@ -155,6 +155,8 @@ If you use Microsoft ADFS to achieve single sign-on, please follow the steps bel
 
 2. A valid SSL certificate for ADFS server, and here we use `temp.adfs.com` as the domain name example.
 
+3. A valid SSL certificate for Seafile server, and here we use `demo.seafile.com` as the domain name example.
+
 **Second**, setup your ADFS login URL in the Seafile organization admin interface. The format of the login URL is: `https://example.com/org/custom/{custom-part}/`, e.g.:
 
 ![](../images/auto-upload/8c1988cd-1f66-47c9-ac61-650e8245efcf.png)
