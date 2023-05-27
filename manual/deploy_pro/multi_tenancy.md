@@ -149,4 +149,84 @@ Click the Enter key will jump to the SAML app login page, e.g.:
 
 If you use Microsoft ADFS to achieve single sign-on, please follow the steps below:
 
-<!-- TODO -->
+**First**, please make sure the following preparations are done:
+
+1. A Windows Server with [ADFS](https://learn.microsoft.com/en-us/windows-server/identity/active-directory-federation-services) installed. For configuring and installing ADFS you can see [this article](https://learn.microsoft.com/en-us/windows-server/identity/ad-fs/deployment/deploying-a-federation-server-farm).
+
+2. A valid SSL certificate for ADFS server, and here we use `temp.adfs.com` as the domain name example.
+
+**Second**, setup your ADFS login URL in the Seafile organization admin interface. The format of the login URL is: `https://example.com/org/custom/{custom-part}/`, e.g.:
+
+![](../images/auto-upload/8c1988cd-1f66-47c9-ac61-650e8245efcf.png)
+
+**Next**, setup the federation metadata URL of Microsoft ADFS in the organization admin interface. The format of the federation metadata URL is: `https://{your ADFS domain name}/federationmetadata/2007-06/federationmetadata.xml`, e.g:
+
+![](../images/auto-upload/bde53e1b-dfef-4693-bba8-8ec8801627d6.png)
+
+**Next**, download the base64 format certificate and upload it:
+
+* Navigate to the _AD FS_ management window. In the left sidebar menu, navigate to **Services** > **Certificates**. 
+
+* Locate the _Token-signing_ certificate. Right-click the certificate and select **View Certificate**.
+
+![](../images/auto-upload/7a1eead2-272f-40ec-9768-effc1d4f3273.png)
+
+* In the dialog box, select the **Details** tab.
+
+* Click **Copy to File**.
+
+* In the _Certificate Export Wizard_ that opens, click **Next**.
+
+* Select **Base-64 encoded X.509 (.CER)**, then click **Next**.
+
+* Named it **idp.crt**, then click **Next**.
+
+* Click **Finish** to complete the download.
+
+* And then upload the idp.crt in the organization admin interface:
+
+![](../images/auto-upload/7f2b4010-5f50-4184-9d56-fe60d5a5809e.png)
+
+**Next**, add [relying party trust](https://learn.microsoft.com/en-us/windows-server/identity/ad-fs/operations/create-a-relying-party-trust#to-create-a-claims-aware-relying-party-trust-using-federation-metadata):
+
+* Log into the ADFS server and open the ADFS management.
+
+* Under **Actions**, click **Add Relying Party Trust**.
+
+* On the Welcome page, choose **Claims aware** and click **Start**.
+
+* Select **Import data about the relying party published online or on a local network**, type your organization metadate url in **Federation metadata address (host name or URL)**, and then click **Next**. Your organization metadate url format is: `https://example.com/org/custom/{custom-part}/saml2/metadata/`, e.g.:
+
+![](../images/auto-upload/e343f174-e31c-4aba-8f26-2b78927f625c.png)
+
+* On the **Specify Display Name** page type a name in **Display name**, e.g. `Seafile`, under **Notes** type a description for this relying party trust, and then click **Next**.
+
+* In the **Choose an access control policy** window, select **Permit everyone**, then click **Next**.
+
+* Review your settings, then click **Next**. 
+
+* Click **Close**. 
+
+**Next**, create claims rules:
+
+* Open the ADFS management, click **Relying Party Trusts**.
+
+* Right-click your trust, and then click **Edit Claim Issuance Policy**.
+
+* On the **Issuance Transform Rules** tab click **Add Rules**.
+
+* Click the **Claim rule template** dropdown menu and select **Send LDAP Attributes as Claims**, and then click **Next**. 
+
+* In the **Claim rule name** field, type the display name for this rule, such as **Seafile Claim rule**. Click the **Attribute store** dropdown menu and select **Active Directory**. In the **LDAP Attribute** column, click the dropdown menu and select **User-Principal-Name**. In the **Outgoing Claim Type** column, click the dropdown menu and select **UPN**. And then click **Finish**.
+
+* Click **Add Rule** again. 
+
+* Click the **Claim rule template** dropdown menu and select **Transform an Incoming Claim**, and then click **Next**. 
+
+* In the **Claim rule name** field, type the display name for this rule, such as **UPN to Name ID**. Click the **Incoming claim type** dropdown menu and select **UPN**(It must match the **Outgoing Claim Type** in rule `Seafile Claim rule`). Click the **Outgoing claim type** dropdown menu and select **Name ID**. Click the **Outgoing name ID format** dropdown menu and select **Email**. And then click **Finish**.
+
+* Click **OK** to add both new rules.
+
+__Note__: When creating claims rule, you can also select other LDAP Attributes, such as E-Mail-Addresses, depending on your ADFS service.
+
+**Finally**, open the browser and enter your custom login URL into the browser to perform a ADFS login test.
