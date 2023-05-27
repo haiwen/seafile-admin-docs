@@ -63,6 +63,10 @@ Add application: <https://docs.microsoft.com/en-us/azure/active-directory/manage
 
 Assign users: <https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal-assign-users>
 
+Enable single sign on for saml application: <https://learn.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal-setup-sso>
+
+Custom saml Attributes & Claims <https://learn.microsoft.com/en-us/azure/active-directory/develop/saml-claims-customization>
+
 Set up SSO with SAML: 
 
 ![](../images/auto-upload/1678350584150.jpg)
