@@ -1,6 +1,6 @@
 # SAML 2.0 in version 10.0
 
-In this document, we use Microsoft Azure SAML single sign-on app to show how Seafile integrate SAML 2.0. Other SAML 2.0 provider should be similar.
+In this document, we use Microsoft Azure SAML single sign-on app and Microsoft on-premise ADFS to show how Seafile integrate SAML 2.0. Other SAML 2.0 provider should be similar.
 
 ## Preparations for SAML 2.0
 
@@ -28,7 +28,11 @@ $ openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout sp.key -out sp.cr
 
 __Note__: The `days` option indicates the validity period of the generated certificate. The unit is day. The system admin needs to update the certificate regularly.
 
-## Integration with Microsoft Azure SAML single sign-on app
+## Integration with ADFS/SAML single sign-on
+
+### Integration with Microsoft Azure SAML single sign-on app
+
+If you use Microsoft Azure SAML app to achieve single sign-on, please follow the steps below:
 
 **First**, add SAML single sign-on app and assign users, refer to: [add an Azure AD SAML application](https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal), [create and assign users](https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal-assign-users).
 
@@ -88,3 +92,95 @@ SAML_CERTS_DIR = '/path/to/certs'
 ```
 
 **Finally**, open the browser and enter the Seafile login page, click `Single Sign-On`, and use the user assigned to SAML app to perform a SAML login test.
+
+### Integration with on-premise ADFS
+
+If you use Microsoft ADFS to achieve single sign-on, please follow the steps below:
+
+**First**, please make sure the following preparations are done:
+
+1. A Windows Server with [ADFS](https://learn.microsoft.com/en-us/windows-server/identity/active-directory-federation-services) installed. For configuring and installing ADFS you can see [this article](https://learn.microsoft.com/en-us/windows-server/identity/ad-fs/deployment/deploying-a-federation-server-farm).
+
+2. A valid SSL certificate for ADFS server, and here we use `temp.adfs.com` as the domain name example.
+
+3. A valid SSL certificate for Seafile server, and here we use `demo.seafile.com` as the domain name example.
+
+**Second**, download the base64 format certificate and upload it:
+
+* Navigate to the _AD FS_ management window. In the left sidebar menu, navigate to **Services** > **Certificates**. 
+
+* Locate the _Token-signing_ certificate. Right-click the certificate and select **View Certificate**.
+
+![](../images/auto-upload/7a1eead2-272f-40ec-9768-effc1d4f3273.png)
+
+* In the dialog box, select the **Details** tab.
+
+* Click **Copy to File**.
+
+* In the _Certificate Export Wizard_ that opens, click **Next**.
+
+* Select **Base-64 encoded X.509 (.CER)**, then click **Next**.
+
+* Named it **idp.crt**, then click **Next**.
+
+* Click **Finish** to complete the download.
+
+* And then put it under the certs directory(`/opt/seafile/seahub-data/certs`).
+
+**Next**, add the following configurations to seahub_settings.py and then restart Seafile:
+
+```python
+ENABLE_ADFS_LOGIN = True
+LOGIN_REDIRECT_URL = '/saml2/complete/'
+SAML_ATTRIBUTE_MAPPING = {
+    'name': ('display_name', ),
+    'mail': ('contact_email', ),
+    ...
+}
+SAML_REMOTE_METADATA_URL = 'https://temp.adfs.com/federationmetadata/2007-06/federationmetadata.xml'   # The format of the ADFS federation metadata URL is: `https://{your ADFS domain name}/federationmetadata/2007-06/federationmetadata.xml`
+
+```
+
+**Next**, add [relying party trust](https://learn.microsoft.com/en-us/windows-server/identity/ad-fs/operations/create-a-relying-party-trust#to-create-a-claims-aware-relying-party-trust-using-federation-metadata):
+
+* Log into the ADFS server and open the ADFS management.
+
+* Under **Actions**, click **Add Relying Party Trust**.
+
+* On the Welcome page, choose **Claims aware** and click **Start**.
+
+* Select **Import data about the relying party published online or on a local network**, type your metadate url in **Federation metadata address (host name or URL)**, and then click **Next**. Your metadate url format is: `https://example.com/saml2/metadata/`, e.g.:
+
+![](../images/auto-upload/4d6412ee-009e-42df-b0eb-081735d873c5.png)
+
+* On the **Specify Display Name** page type a name in **Display name**, e.g. `Seafile`, under **Notes** type a description for this relying party trust, and then click **Next**.
+
+* In the **Choose an access control policy** window, select **Permit everyone**, then click **Next**.
+
+* Review your settings, then click **Next**. 
+
+* Click **Close**. 
+
+**Next**, create claims rules:
+
+* Open the ADFS management, click **Relying Party Trusts**.
+
+* Right-click your trust, and then click **Edit Claim Issuance Policy**.
+
+* On the **Issuance Transform Rules** tab click **Add Rules**.
+
+* Click the **Claim rule template** dropdown menu and select **Send LDAP Attributes as Claims**, and then click **Next**. 
+
+* In the **Claim rule name** field, type the display name for this rule, such as **Seafile Claim rule**. Click the **Attribute store** dropdown menu and select **Active Directory**. In the **LDAP Attribute** column, click the dropdown menu and select **User-Principal-Name**. In the **Outgoing Claim Type** column, click the dropdown menu and select **UPN**. And then click **Finish**.
+
+* Click **Add Rule** again. 
+
+* Click the **Claim rule template** dropdown menu and select **Transform an Incoming Claim**, and then click **Next**. 
+
+* In the **Claim rule name** field, type the display name for this rule, such as **UPN to Name ID**. Click the **Incoming claim type** dropdown menu and select **UPN**(It must match the **Outgoing Claim Type** in rule `Seafile Claim rule`). Click the **Outgoing claim type** dropdown menu and select **Name ID**. Click the **Outgoing name ID format** dropdown menu and select **Email**. And then click **Finish**.
+
+* Click **OK** to add both new rules.
+
+__Note__: When creating claims rule, you can also select other LDAP Attributes, such as E-Mail-Addresses, depending on your ADFS service.
+
+**Finally**, open the browser and enter the Seafile login page, click `Single Sign-On` to perform ADFS login test.
