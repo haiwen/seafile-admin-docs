@@ -19,6 +19,13 @@ highlight = fvh
 ## Note: If you change this option from "false" to "true", then you need to clear the search index and update the index again.
 index_office_pdf=false
 
+## From 9.0.7 pro, Seafile supports connecting to Elasticsearch through username and password, you need to configure username and password for the Elasticsearch server
+username = elastic           # username to connect to Elasticsearch
+password = elastic_password  # password to connect to Elasticsearch
+
+## From 9.0.7 pro, Seafile supports connecting to elasticsearch via HTTPS, you need to configure HTTPS for the Elasticsearch server
+scheme = https               # The default is http. If the Elasticsearch server is not configured with HTTPS, the scheme and cafile do not need to be configured
+cafile = path/to/cert.pem    # The certificate path for user authentication. If the Elasticsearch server does not enable certificate authentication, do not need to be configured
 ```
 
 ## Enable full text search for Office/PDF files
