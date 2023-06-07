@@ -245,4 +245,4 @@ The format of the logout URL is: `https://example.com/org/custom/{custom-part}/s
 
 ![](../images/auto-upload/1e6326f5-60eb-4720-8e55-c92f6c2f5f68.png)
 
-**Finally**, **Finally**, open the browser and enter the Seafile login page, click `Single Sign-On`. In the new page, enter your email address ending with the company domain name, click the `Log In` button will jump to the ADFS login page.
+**Finally**, open the browser and enter the Seafile login page, click `Single Sign-On`. In the new page, enter your email address ending with the company domain name, click the `Log In` button will jump to the ADFS login page.
