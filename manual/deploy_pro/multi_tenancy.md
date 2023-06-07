@@ -111,9 +111,9 @@ If you use Microsoft Azure SAML app to achieve single sign-on, please follow the
 
 ![](../images/auto-upload/8c1988cd-1f66-47c9-ac61-650e8245efcf.png)
 
-**Then**, setup the _Identifier_, _Reply URL_, and _Sign on URL_ of the SAML app based on your login URL, refer to: [enable single sign on for saml application](https://learn.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal-setup-sso). The format of the _Identifier_, _Reply URL_, and _Sign on URL_ are: https://example.com/org/custom/{custom-part}/saml2/metadata/, https://example.com/org/custom/{custom-part}/saml2/acs/, https://example.com/org/custom/{custom-part}/, e.g.:
+**Then**, setup the _Identifier_, _Reply URL_, _Sign on URL_ and _Logout Url_ of the SAML app based on your login URL, refer to: [enable single sign on for saml application](https://learn.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal-setup-sso). The format of the _Identifier_, _Reply URL_, and _Sign on URL_ are: https://example.com/org/custom/{custom-part}/saml2/metadata/, https://example.com/org/custom/{custom-part}/saml2/acs/, https://example.com/org/custom/{custom-part}/, https://example.com/org/custom/{custom-part}/ls/, e.g.:
 
-![](../images/auto-upload/498c6ae2-9213-4452-9238-676d179c375c.png)
+![](../images/auto-upload/2a6bdc13-88f8-418b-90e3-cba0a67b12e7.png)
 
 __Note__: The {custom-part} of the URL should be 6 to 20 characters, and can only contain alphanumeric characters and hyphens.
 
@@ -137,11 +137,15 @@ and upload the idp.crt in the organization admin interface:
 
 ![](../images/auto-upload/abee9c69-f03d-4735-9231-92bd923b9ceb.png)
 
-**Finally**, open the browser and enter your custom login URL into the browser, e.g.:
+**Finally**, open the browser and enter the Seafile login page, click `Single Sign-On`, e.g.
 
-![](../images/auto-upload/fc85a75e-fde8-43e0-bd88-541adae6c54c.png)
+![](../images/auto-upload/d88fd998-1382-4b1f-901b-60bb5d874c6e.png)
 
-Click the Enter key will jump to the SAML app login page, e.g.:
+in the new page, enter your email address ending with the company domain name, e.g.
+
+![](../images/auto-upload/bfd4a31c-2533-435d-9231-7f187117a139.png)
+
+Click the `Log In` button will jump to the SAML app login page, e.g.:
 
 ![](../images/auto-upload/21dc07ae-89a7-4281-be18-566a64bca922.png)
 
@@ -167,7 +171,7 @@ If you use Microsoft ADFS to achieve single sign-on, please follow the steps bel
 
 **Next**, download the base64 format certificate and upload it:
 
-* Navigate to the _AD FS_ management window. In the left sidebar menu, navigate to **Services** > **Certificates**. 
+* Navigate to the _AD FS_ management window. In the left sidebar menu, navigate to **Services** > **Certificates**.
 
 * Locate the _Token-signing_ certificate. Right-click the certificate and select **View Certificate**.
 
@@ -205,9 +209,9 @@ If you use Microsoft ADFS to achieve single sign-on, please follow the steps bel
 
 * In the **Choose an access control policy** window, select **Permit everyone**, then click **Next**.
 
-* Review your settings, then click **Next**. 
+* Review your settings, then click **Next**.
 
-* Click **Close**. 
+* Click **Close**.
 
 **Next**, create claims rules:
 
@@ -217,13 +221,13 @@ If you use Microsoft ADFS to achieve single sign-on, please follow the steps bel
 
 * On the **Issuance Transform Rules** tab click **Add Rules**.
 
-* Click the **Claim rule template** dropdown menu and select **Send LDAP Attributes as Claims**, and then click **Next**. 
+* Click the **Claim rule template** dropdown menu and select **Send LDAP Attributes as Claims**, and then click **Next**.
 
 * In the **Claim rule name** field, type the display name for this rule, such as **Seafile Claim rule**. Click the **Attribute store** dropdown menu and select **Active Directory**. In the **LDAP Attribute** column, click the dropdown menu and select **User-Principal-Name**. In the **Outgoing Claim Type** column, click the dropdown menu and select **UPN**. And then click **Finish**.
 
-* Click **Add Rule** again. 
+* Click **Add Rule** again.
 
-* Click the **Claim rule template** dropdown menu and select **Transform an Incoming Claim**, and then click **Next**. 
+* Click the **Claim rule template** dropdown menu and select **Transform an Incoming Claim**, and then click **Next**.
 
 * In the **Claim rule name** field, type the display name for this rule, such as **UPN to Name ID**. Click the **Incoming claim type** dropdown menu and select **UPN**(It must match the **Outgoing Claim Type** in rule `Seafile Claim rule`). Click the **Outgoing claim type** dropdown menu and select **Name ID**. Click the **Outgoing name ID format** dropdown menu and select **Email**. And then click **Finish**.
 
@@ -231,4 +235,14 @@ If you use Microsoft ADFS to achieve single sign-on, please follow the steps bel
 
 __Note__: When creating claims rule, you can also select other LDAP Attributes, such as E-Mail-Addresses, depending on your ADFS service.
 
-**Finally**, open the browser and enter your custom login URL into the browser to perform a ADFS login test.
+**Next**, configure the logout page, e.g.:
+
+![](../images/auto-upload/0beb35c6-89ef-4e8c-8956-9b3c74f50aa8.png)
+
+![](../images/auto-upload/3a3281c6-eb25-41c3-b2bb-94d7f9d22eec.png)
+
+The format of the logout URL is: `https://example.com/org/custom/{custom-part}/saml2/ls/`, e.g.:
+
+![](../images/auto-upload/1e6326f5-60eb-4720-8e55-c92f6c2f5f68.png)
+
+**Finally**, **Finally**, open the browser and enter the Seafile login page, click `Single Sign-On`. In the new page, enter your email address ending with the company domain name, click the `Log In` button will jump to the ADFS login page.
