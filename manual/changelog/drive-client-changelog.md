@@ -1,5 +1,11 @@
 # SeaDrive Client Changelog
 
+### 3.0.4 (2023/06/10)
+
+* \[mac] Fix crash bug when adding new account
+* \[mac] Fix crash bug of GUI due to file descriptor leakage
+* Fix status icon display issue
+
 ### 3.0.3 (2023/05/25)
 
 * \[win] Support image thumbnails
