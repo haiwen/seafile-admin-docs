@@ -51,7 +51,7 @@ cd /opt/seafile
 # Seafile PE 7.1 and 8.0
 wget -O "docker-compose.yml" "https://manual.seafile.com/docker/pro-edition/7.1_8.0/docker-compose.yml"
 
-# Seafile PE 9.0
+# Seafile PE 9.0 or later
 wget -O "docker-compose.yml" "https://manual.seafile.com/docker/pro-edition/docker-compose.yml"
 
 nano docker-compose.yml
