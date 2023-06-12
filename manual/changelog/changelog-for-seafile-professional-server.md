@@ -8,6 +8,13 @@
 
 Please check our document for how to upgrade to 10.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_10.0.x/>
 
+### 10.0.5 (2023-06-12)
+
+* [fix] Fix display of tags in the file details side bar
+* [fix] Fix a file name encoding bug in golang file server
+* [fix] Fix a UI bug in setting expiration time for a sharing link
+* Update included POI java library which is used to extracting contents of doc/docx files in indexing
+
 ### 10.0.4 (2023-05-17)
 
 * Add "Undo" action in the notification toast after deleting files and folders
