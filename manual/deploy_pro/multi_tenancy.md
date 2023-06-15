@@ -99,4 +99,4 @@ SAML_CERTS_DIR = '/path/to/certs'
 
 ### Integration with ADFS/SAML single sign-on
 
-Please refer to this document https://help.seafile.com/organization_management/integration_with_ADFS_SAML/
+Please refer to this [document](https://help.seafile.com/organization_management/integration_with_ADFS_SAML/).
