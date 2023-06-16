@@ -84,6 +84,9 @@ After that, you can run notification server with the following command:
 
 ```
 
+## Checking notification server status
+When the notification server is working, you can access `http://127.0.0.1:8083/ping` from your browser, which will answer `{"ret": "pong"}`. If you have a proxy configured, you can access `https://{server}/notification/ping` from your browser instead.
+
 ## Compatible client
 
 1. Seadrive 3.0.1 or later.
