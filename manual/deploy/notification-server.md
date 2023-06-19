@@ -49,13 +49,13 @@ default upgrade;
 }
 
 server {
-    location /notification/ping {
+    location /notification-server/ping {
         proxy_pass http://127.0.0.1:8083/ping;
         access_log      /var/log/nginx/notif.access.log;
         error_log       /var/log/nginx/notif.error.log;
     }
 
-    location /notification {
+    location /notification-server {
         proxy_pass http://127.0.0.1:8083/;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
@@ -70,11 +70,11 @@ server {
 Or add the configuration for Apache:
 
 ```
-    ProxyPass /notification/ping  http://127.0.0.1:8083/ping/
-    ProxyPassReverse /notification/ping  http://127.0.0.1:8083/ping/
+    ProxyPass /notification-server/ping  http://127.0.0.1:8083/ping/
+    ProxyPassReverse /notification-server/ping  http://127.0.0.1:8083/ping/
 
-    ProxyPass /notification  ws://127.0.0.1:8083/
-    ProxyPassReverse /notification ws://127.0.0.1:8083/
+    ProxyPass /notification-server  ws://127.0.0.1:8083/
+    ProxyPassReverse /notification-server ws://127.0.0.1:8083/
 ```
 
 After that, you can run notification server with the following command:
