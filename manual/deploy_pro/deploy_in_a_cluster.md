@@ -191,6 +191,7 @@ You also need to add the settings for backend cloud storage systems to the confi
 * For S3: [Setup With Amazon S3](setup_with_amazon_s3.md)
 * For OpenStack Swift: [Setup With OpenStackSwift](setup_with_openstackswift.md)
 * For Ceph: [Setup With Ceph](setup_with_ceph.md)
+* For OSS: [Setup With Alibaba OSS](setup_with_oss.md)
 
 ### Run and Test the Single Node
 

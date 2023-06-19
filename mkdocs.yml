@@ -99,6 +99,7 @@ nav:
       - Amazon S3 Backend: deploy_pro/setup_with_amazon_s3.md
       - Ceph Backend: deploy_pro/setup_with_ceph.md
       - OpenStack Swift Backend: deploy_pro/setup_with_swift.md
+      - Alibaba OSS: deploy_pro/setup_with_oss.md
       - Multiple Storage Backends: deploy_pro/multiple_storage_backends.md
       - Data migration: deploy_pro/migrate.md
     - Cluster Deployment:
