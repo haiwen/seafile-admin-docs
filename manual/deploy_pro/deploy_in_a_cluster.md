@@ -105,11 +105,11 @@ memcached_options = --SERVER=192.168.1.134 --POOL-MIN=10 --POOL-MAX=100
 
 ```
 
-If you use memcached cluster, the way you setup the memcached cluster and the way to configure it in seafile.conf depend on your Seafile server version. The recommended way to setup memcached clusters can be found [here](memcached_mariadb_cluster.md).
+If you use memcached cluster, the recommended way to setup memcached clusters can be found [here](memcached_mariadb_cluster.md).
 
-**Memcached Configuration after Seafile Pro 6.2.11**
+**Memcached Configuration**
 
-Since version 6.2.11, the recommended way to setup memcached cluster has been changed. You'll setup two memcached server, in active/standby mode. A floating IP address will be assigned to the current active memcached node. So you have to configure the address in seafile.conf accordingly.
+You'll setup two memcached server, in active/standby mode. A floating IP address will be assigned to the current active memcached node. So you have to configure the address in seafile.conf accordingly.
 
 ```
 [cluster]
