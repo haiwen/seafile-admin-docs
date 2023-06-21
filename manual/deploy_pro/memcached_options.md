@@ -45,4 +45,4 @@ If the above option is set, it'll override all other memcached options. If it's 
 
 ## Cache Options after 10.0
 
-Since Seafile-pro-10.0.0, `[memcached]` option group must be configured in seafile.conf.
+Since Seafile-pro-10.0.0, `[memcached]` option group must be configured in seafile.conf. You only need to set this one option to replace all previous memcached related options in seafile.conf.
