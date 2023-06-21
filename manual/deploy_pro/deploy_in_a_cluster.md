@@ -99,32 +99,21 @@ If you use a single memcached server, you have to add the following configuratio
 ```
 [cluster]
 enabled = true
+
+[memcached]
 memcached_options = --SERVER=192.168.1.134 --POOL-MIN=10 --POOL-MAX=100
 
 ```
 
-If you use memcached cluster, the way you setup the memcached cluster and the way to configure it in seafile.conf depend on your Seafile server version. The recommended way to setup memcached clusters can be found [here](memcached_mariadb_cluster.md).
+If you use memcached cluster, the recommended way to setup memcached clusters can be found [here](memcached_mariadb_cluster.md).
 
-**Memcached Configuration before Seafile Pro 6.2.11**
-
-For Seafile server older than 6.2.11, you need to specify all the memcached server addresses in seafile.conf. The format is
+You'll setup two memcached server, in active/standby mode. A floating IP address will be assigned to the current active memcached node. So you have to configure the address in seafile.conf accordingly.
 
 ```
 [cluster]
 enabled = true
-memcached_options = --SERVER=192.168.1.134 --SERVER=192.168.1.135 --SERVER=192.168.1.136 --POOL-MIN=10 --POOL-MAX=100 --RETRY-TIMEOUT=3600
 
-```
-
-Notice that there is a `--RETRY-TIMEOUT=3600` option in the above config. This option is important for dealing with memcached server failures. After a memcached server in the cluster fails, Seafile server will stop trying to use it for "RETRY-TIMEOUT" (in seconds). You should set this timeout to relatively long time, to prevent Seafile from retrying the failed server frequently, which may lead to frequent request errors for the clients.
-
-**Memcached Configuration after Seafile Pro 6.2.11**
-
-Since version 6.2.11, the recommended way to setup memcached cluster has been changed. You'll setup two memcached server, in active/standby mode. A floating IP address will be assigned to the current active memcached node. So you have to configure the address in seafile.conf accordingly.
-
-```
-[cluster]
-enabled = true
+[memcached]
 memcached_options = --SERVER=<floating IP address> --POOL-MIN=10 --POOL-MAX=100
 
 ```
