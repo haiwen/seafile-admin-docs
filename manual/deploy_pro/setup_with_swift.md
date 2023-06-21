@@ -35,7 +35,6 @@ container = seafile-blocks
 auth_host = 192.168.56.31:5000
 auth_ver = v3.0
 region = yourRegion
-memcached_options = --SERVER=192.168.1.134:11211 --POOL-MIN=10 --POOL-MAX=100
 
 [commit_object_backend]
 name = swift
@@ -46,7 +45,6 @@ container = seafile-commits
 auth_host = 192.168.56.31:5000
 auth_ver = v3.0
 region = yourRegion
-memcached_options = --SERVER=192.168.1.134:11211 --POOL-MIN=10 --POOL-MAX=100
 
 [fs_object_backend]
 name = swift
@@ -57,6 +55,8 @@ container = seafile-fs
 auth_host = 192.168.56.31:5000
 auth_ver = v3.0
 region = yourRegion
+
+[memcached]
 memcached_options = --SERVER=192.168.1.134:11211 --POOL-MIN=10 --POOL-MAX=100
 
 ```

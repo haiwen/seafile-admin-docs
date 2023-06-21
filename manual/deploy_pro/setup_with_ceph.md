@@ -60,18 +60,18 @@ Edit `seafile.conf`, add the following lines:
 name = ceph
 ceph_config = /etc/ceph/ceph.conf
 pool = seafile-blocks
-memcached_options = --SERVER=localhost --POOL-MIN=10 --POOL-MAX=100
 
 [commit_object_backend]
 name = ceph
 ceph_config = /etc/ceph/ceph.conf
 pool = seafile-commits
-memcached_options = --SERVER=localhost --POOL-MIN=10 --POOL-MAX=100
 
 [fs_object_backend]
 name = ceph
 ceph_config = /etc/ceph/ceph.conf
 pool = seafile-fs
+
+[memcached]
 memcached_options = --SERVER=localhost --POOL-MIN=10 --POOL-MAX=100
 
 ```
@@ -84,17 +84,6 @@ ceph-admin-node# rados mkpool seafile-commits
 ceph-admin-node# rados mkpool seafile-fs
 
 ```
-
-### Using memcached cluster
-
-In a cluster environment, you may want to use a memcached cluster. In the above configuration, you have to specify all the memcached server node addresses in seafile.conf
-
-```
-memcached_options = --SERVER=192.168.1.134 --SERVER=192.168.1.135 --SERVER=192.168.1.136 --POOL-MIN=10 --POOL-MAX=100 --RETRY-TIMEOUT=3600
-
-```
-
-Notice that there is a `--RETRY-TIMEOUT=3600` option in the above config. This option is important for dealing with memcached server failures. After a memcached server in the cluster fails, Seafile server will stop trying to use it for "RETRY-TIMEOUT" (in seconds). You should set this timeout to relatively long time, to prevent Seafile from retrying the failed server frequently, which may lead to frequent request errors for the clients.
 
 ## Troubleshooting librados incompatibility issues
 
@@ -121,7 +110,6 @@ ceph_config = /etc/ceph/ceph.conf
 # Sepcify Ceph user for Seafile here
 ceph_client_id = seafile
 pool = seafile-blocks
-memcached_options = --SERVER=localhost --POOL-MIN=10 --POOL-MAX=100
 
 [commit_object_backend]
 name = ceph
@@ -129,7 +117,6 @@ ceph_config = /etc/ceph/ceph.conf
 # Sepcify Ceph user for Seafile here
 ceph_client_id = seafile
 pool = seafile-commits
-memcached_options = --SERVER=localhost --POOL-MIN=10 --POOL-MAX=100
 
 [fs_object_backend]
 name = ceph
@@ -137,6 +124,8 @@ ceph_config = /etc/ceph/ceph.conf
 # Sepcify Ceph user for Seafile here
 ceph_client_id = seafile
 pool = seafile-fs
+
+[memcached]
 memcached_options = --SERVER=localhost --POOL-MIN=10 --POOL-MAX=100
 
 ```

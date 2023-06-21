@@ -22,6 +22,7 @@ There are three ways to deploy Seafile Pro Edition. Since version 8.0, the recom
 - [Setup Seafile Professional Server With Amazon S3](setup_with_amazon_s3.md)
 - [Setup Seafile Professional Server With OpenStack Swift](setup_with_swift.md)
 - [Setup Seafile Professional Server With Ceph](setup_with_ceph.md)
+- [Setup Seafile Professional Server With Alibaba OSS](setup_with_oss.md)
 - [Migrate from File System to Ceph](migrate_to_ceph.md)
 - [Data migration between different backends](migrate.md)
 
