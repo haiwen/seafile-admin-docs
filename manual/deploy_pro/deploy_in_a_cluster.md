@@ -107,8 +107,6 @@ memcached_options = --SERVER=192.168.1.134 --POOL-MIN=10 --POOL-MAX=100
 
 If you use memcached cluster, the recommended way to setup memcached clusters can be found [here](memcached_mariadb_cluster.md).
 
-**Memcached Configuration**
-
 You'll setup two memcached server, in active/standby mode. A floating IP address will be assigned to the current active memcached node. So you have to configure the address in seafile.conf accordingly.
 
 ```
