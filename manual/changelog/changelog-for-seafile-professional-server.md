@@ -8,6 +8,13 @@
 
 Please check our document for how to upgrade to 10.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_10.0.x/>
 
+### 10.0.6 (2023-06-27)
+
+* [fix] Fix "all notifications" page link broken when notification server is used
+* [fix] Fix UI bug of notifications dialog
+* [fix] Fix a bug in listing shared out libraries/folders in multi-tenancy mode
+* [fix] Fix a bug in sending emails to admin when finding virus
+
 ### 10.0.5 (2023-06-12)
 
 * [fix] Fix display of tags in the file details side bar
