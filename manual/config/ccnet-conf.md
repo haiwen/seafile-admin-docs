@@ -32,6 +32,13 @@ CA_PATH = /etc/mysql/ca.pem
 ```
 When set `use_ssl` to true and `skip_verify` to false, it will check whether the MySQL server certificate is legal through the CA configured in `ca_path`. The `ca_path` is a trusted CA certificate path for signing MySQL server certificates. When `skip_verify` is true, there is no need to add the `ca_path` option. The MySQL server certificate won't be verified at this time.
 
+## Using unix_socket Authentication Plugin
+Since Seafile 10.0.3 and 10.0.7 Pro, you can use unix_socket authentication plugin provided by MariaDB/MySQL. To enable it, you need to specify the `UNIX_SOCKET` option without user name and password.
+```
+[Database]
+UNIX_SOCKET = /var/run/mysqld/mysqld.sock
+```
+
 ## Changing name of table 'Group'
 
 There is a table named 'Group' in ccnet database, however, 'Group' is the key word in some of databases, you can configure this table name to avoid conflicts if necessary:
