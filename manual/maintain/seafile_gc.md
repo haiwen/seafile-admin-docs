@@ -70,7 +70,7 @@ repo-id3
 
 If you give specific library ids, only those libraries will be checked; otherwise all libraries will be checked.
 
-Notice that at the end of the output there is a "repos have blocks to be removed" section. It contains the list of librareis that have garbage blocks. Later when you run GC without --dry-run option, you can use these libraris ids as input arguments to GC program.
+Notice that at the end of the output there is a "repos have blocks to be removed" section. It contains the list of libraries that have garbage blocks. Later when you run GC without --dry-run option, you can use these libraris ids as input arguments to GC program.
 
 ### Removing Garbage
 
