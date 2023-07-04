@@ -50,30 +50,6 @@ You need to delete the existing search index and recreate it.
 
 ```
 
-## Use existing ElasticSearch server
-
-The search module uses an Elasticsearch server bundled with the Seafile Professional Server. However, you may have an existing Elasticsearch server or cluster running in your company. In this situation, you can change the config file to use your existing ES server or cluster.
-
-This feature was added in Seafile Professional Server 2.0.5.
-
-### Modify the config file
-
-* Edit `seafevents.conf`, add settings in the section **\[index files]** to specify your ES server host and port:
-
-
-```
-[INDEX FILES]
-...
-external_es_server = true
-es_host = 192.168.1.101
-es_port = 9200
-
-```
-
-* `external_es_server`: set to `true` so seafile would not start its own elasticsearch server
-* `es_host`: The ip address of your ES server
-* `es_port`: The listening port of ES server RESTful API. By default it should be `9200`
-
 ## Common problems
 
 ### How to rebuild the index if something went wrong
@@ -155,4 +131,92 @@ Restart the seafile service to make the above changes take effect:
 
 ```
 
+## Distributed indexing
 
+If you use a cluster to deploy Seafile, you can use distributed indexing to realize real-time indexing and improve indexing efficiency. The indexing process is as follows:
+
+![](../images/distributed-indexing.png)
+
+### Install redis and modify configuration files
+
+First, install redis on all frontend nodes(If you use redis cloud service, skip this step and modify the configuration files directly):
+
+For Ubuntu:
+
+```
+$ apt install redis-server
+```
+
+For CentOS:
+
+```
+$ yum install redis
+```
+
+Then, install python redis third-party package on all frontend nodes:
+
+```
+$ pip install redis
+```
+
+Next, modify the `seafevents.conf` on all frontend nodes, add the following config items:
+
+```
+[EVENTS PUBLISH]
+mq_type=redis   # must be redis
+enabled=true
+
+[REDIS]
+server=127.0.0.1   # your redis server host
+port=6379          # your redis server port
+password=xxx       # your redis server password, if not password, do not set this item
+```
+
+Next, modify the `seafevents.conf` on the backend node to disable the scheduled indexing task, because the scheduled indexing task and the distributed indexing task conflict.
+
+```
+[INDEX FILES]
+enabled=true
+     |
+     V
+enabled=false   
+```
+
+Next, restart Seafile to make the configuration take effect:
+
+```
+$ ./seafile.sh restart && ./seahub.sh restart
+```
+
+### Deploy distributed indexing
+
+First, prepare a seafes master node and several seafes slave nodes, the number of slave nodes depends on your needs. Deploy Seafile on these nodes, and copy the configuration files in the `conf` directory from the frontend nodes. The master node and slave nodes do not need to start Seafile, but need to read the configuration files to obtain the necessary information.
+
+Next, create a configuration file `index-master.conf` in the `conf` directory of the master node, e.g.
+
+```
+[DEFAULT]
+mq_type=redis   # must be redis
+
+[REDIS]
+server=127.0.0.1   # your redis server host
+port=6379          # your redis server port
+password=xxx       # your redis server password, if not password, do not set this item
+```
+
+Execute `./run_index_master.sh [start/stop/restart]` in the `seafile-server-last` directory to control the program to start, stop and restart.
+
+Next, create a configuration file `index-slave.conf` in the `conf` directory of all slave master nodes, e.g.
+
+```
+[DEFAULT]
+mq_type=redis     # must be redis
+index_workers=2   # number of threads to create/update indexes, you can increase this value according to your needs
+
+[REDIS]
+server=127.0.0.1   # your redis server host
+port=6379          # your redis server port
+password=xxx       # your redis server password, if not password, do not set this item
+```
+
+Execute `./run_index_worker.sh [start/stop/restart]` in the `seafile-server-last` directory to control the program to start, stop and restart.
