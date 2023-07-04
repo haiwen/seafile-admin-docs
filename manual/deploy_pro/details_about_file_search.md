@@ -50,30 +50,6 @@ You need to delete the existing search index and recreate it.
 
 ```
 
-## Use existing ElasticSearch server
-
-The search module uses an Elasticsearch server bundled with the Seafile Professional Server. However, you may have an existing Elasticsearch server or cluster running in your company. In this situation, you can change the config file to use your existing ES server or cluster.
-
-This feature was added in Seafile Professional Server 2.0.5.
-
-### Modify the config file
-
-* Edit `seafevents.conf`, add settings in the section **\[index files]** to specify your ES server host and port:
-
-
-```
-[INDEX FILES]
-...
-external_es_server = true
-es_host = 192.168.1.101
-es_port = 9200
-
-```
-
-* `external_es_server`: set to `true` so seafile would not start its own elasticsearch server
-* `es_host`: The ip address of your ES server
-* `es_port`: The listening port of ES server RESTful API. By default it should be `9200`
-
 ## Common problems
 
 ### How to rebuild the index if something went wrong
@@ -214,7 +190,7 @@ $ ./seafile.sh restart && ./seahub.sh restart
 
 ### Deploy distributed indexing
 
-First, prepare a seafes master node and several seafes slave nodes, the number of slave nodes depends on your needs. Deploy Seafile on these nodes.
+First, prepare a seafes master node and several seafes slave nodes, the number of slave nodes depends on your needs. Deploy Seafile on these nodes, and copy the configuration files in the `conf` directory from the frontend nodes. The master node and slave nodes do not need to start Seafile, but need to read the configuration files to obtain the necessary information.
 
 Next, create a configuration file `index-master.conf` in the `conf` directory of the master node, e.g.
 
