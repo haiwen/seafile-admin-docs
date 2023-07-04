@@ -155,4 +155,92 @@ Restart the seafile service to make the above changes take effect:
 
 ```
 
+## Distributed indexing
 
+If you use a cluster to deploy Seafile, you can use distributed indexing to realize real-time indexing and improve indexing efficiency. The indexing process is as follows:
+
+![](../images/distributed-indexing.png)
+
+### Install redis and modify configuration files
+
+First, install redis on all frontend nodes(If you use redis cloud service, skip this step and modify the configuration files directly):
+
+For Ubuntu:
+
+```
+$ apt install redis-server
+```
+
+For CentOS:
+
+```
+$ yum install redis
+```
+
+Then, install python redis third-party package on all frontend nodes:
+
+```
+$ pip install redis
+```
+
+Next, modify the `seafevents.conf` on all frontend nodes, add the following config items:
+
+```
+[EVENTS PUBLISH]
+mq_type=redis   # must be redis
+enabled=true
+
+[REDIS]
+server=127.0.0.1   # your redis server host
+port=6379          # your redis server port
+password=xxx       # your redis server password, if not password, do not set this item
+```
+
+Next, modify the `seafevents.conf` on the backend node to disable the scheduled indexing task, because the scheduled indexing task and the distributed indexing task conflict.
+
+```
+[INDEX FILES]
+enabled=true
+     |
+     V
+enabled=false   
+```
+
+Next, restart Seafile to make the configuration take effect:
+
+```
+$ ./seafile.sh restart && ./seahub.sh restart
+```
+
+### Deploy distributed indexing
+
+First, prepare a seafes master node and several seafes slave nodes, the number of slave nodes depends on your needs. Deploy Seafile on these nodes.
+
+Next, create a configuration file `index-master.conf` in the `conf` directory of the master node, e.g.
+
+```
+[DEFAULT]
+mq_type=redis   # must be redis
+
+[REDIS]
+server=127.0.0.1   # your redis server host
+port=6379          # your redis server port
+password=xxx       # your redis server password, if not password, do not set this item
+```
+
+Execute `./run_index_master.sh [start/stop/restart]` in the `seafile-server-last` directory to control the program to start, stop and restart.
+
+Next, create a configuration file `index-slave.conf` in the `conf` directory of all slave master nodes, e.g.
+
+```
+[DEFAULT]
+mq_type=redis     # must be redis
+index_workers=2   # number of threads to create/update indexes, you can increase this value according to your needs
+
+[REDIS]
+server=127.0.0.1   # your redis server host
+port=6379          # your redis server port
+password=xxx       # your redis server password, if not password, do not set this item
+```
+
+Execute `./run_index_worker.sh [start/stop/restart]` in the `seafile-server-last` directory to control the program to start, stop and restart.
