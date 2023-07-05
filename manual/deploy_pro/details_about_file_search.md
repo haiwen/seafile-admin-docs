@@ -227,7 +227,7 @@ Execute `./run_index_worker.sh [start/stop/restart]` in the `seafile-server-last
 
     
 
-#### Some commands in distributed indexing
+### Some commands in distributed indexing
 
 Rebuild search index, execute in the `seafile-server-last` directory:
 
