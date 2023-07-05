@@ -220,3 +220,20 @@ password=xxx       # your redis server password, if not password, do not set thi
 ```
 
 Execute `./run_index_worker.sh [start/stop/restart]` in the `seafile-server-last` directory to control the program to start, stop and restart.
+
+Some commands under distributed indexing:
+
+Rebuild search index, execute in the `seafile-server-last` directory:
+
+```
+$ ./pro/pro.py search --clear
+$ ./run_index_master.sh python-env index_op.py --mode resotre_all_repo
+```
+
+List the number of indexing tasks currently remaining, execute in the `seafile-server-last` directory:
+
+```
+$ ./run_index_master.sh python-env index_op.py --mode show_all_task
+```
+
+The above commands need to be run on the master node.
