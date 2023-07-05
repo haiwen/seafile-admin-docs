@@ -206,7 +206,7 @@ password=xxx       # your redis server password, if not password, do not set thi
 
 Execute `./run_index_master.sh [start/stop/restart]` in the `seafile-server-last` directory to control the program to start, stop and restart.
 
-Next, create a configuration file `index-slave.conf` in the `conf` directory of all slave master nodes, e.g.
+Next, create a configuration file `index-slave.conf` in the `conf` directory of all slave nodes, e.g.
 
 ```
 [DEFAULT]
