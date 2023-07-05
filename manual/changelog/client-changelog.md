@@ -2,7 +2,14 @@
 
 ## 9.0
 
-### 9.0.2
+### 9.0.3 (2023/07/05)
+
+* \[macOS] Provide universial package for Apple Silicon and Intel
+* Some UI improvements
+* Support file number limits for libraries on server
+* Fix error when getting links with extension menu from library root
+
+### 9.0.2 (2023/04/27)
 
 * \[macOS] Fix UTF-8 encoding issue for file names
 * Persist file sync errors in the UI
@@ -11,11 +18,11 @@
 * Fix resyncing libraries with non-default location
 * Fix UI issue for 2FA
 
-### 9.0.1
+### 9.0.1 (2023/03/24)
 
 * \[win] Update app signing certificate
 
-### 9.0.0
+### 9.0.0 (2023/03/20)
 
 * Support notification server to update libraries and locked files more timely
 * Support Windows 7/8 again
