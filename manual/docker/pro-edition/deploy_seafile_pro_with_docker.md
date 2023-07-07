@@ -13,7 +13,7 @@ Seafile PE can be used without a paid license with up to three users. Licenses f
 
 Use the [official installation guide for your OS to install Docker](https://docs.docker.com/engine/install/).
 
-### Installing Cocker Compose
+### Installing Docker Compose
 
 Install the Docker Compose package:
 
