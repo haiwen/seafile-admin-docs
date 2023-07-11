@@ -77,6 +77,42 @@ Or add the configuration for Apache:
     ProxyPassReverse /notification ws://127.0.0.1:8083/
 ```
 
+NOTE: according to [apache ProxyPass document](https://httpd.apache.org/docs/2.4/mod/mod_proxy.html#proxypass)
+
+```
+The configured ProxyPass and ProxyPassMatch rules are checked in the order of configuration. The first rule that matches wins.
+So usually you should sort conflicting ProxyPass rules starting with the longest URLs first.
+Otherwise, later rules for longer URLS will be hidden by any earlier rule which uses a leading substring of the URL. Note that there is some relation with worker sharing.
+```
+
+the final configuration for Apache should be like:
+
+```
+    #
+    # notification server
+    #
+    ProxyPass /notification/ping  http://127.0.0.1:8083/ping/
+    ProxyPassReverse /notification/ping  http://127.0.0.1:8083/ping/
+
+    ProxyPass /notification  ws://127.0.0.1:8083/
+    ProxyPassReverse /notification ws://127.0.0.1:8083/
+
+    #
+    # seafile fileserver
+    #
+    ProxyPass /seafhttp http://127.0.0.1:8082
+    ProxyPassReverse /seafhttp http://127.0.0.1:8082
+    RewriteRule ^/seafhttp - [QSA,L]
+
+    #
+    # seahub
+    #
+    SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+    ProxyPreserveHost On
+    ProxyPass / http://127.0.0.1:8000/
+    ProxyPassReverse / http://127.0.0.1:8000/
+```
+
 After that, you can run notification server with the following command:
 
 ```
