@@ -62,7 +62,7 @@ desync:         desynchronize a library with seafile server
 
 ```
 
-\##More details
+## More details
 
 Seafile client stores all its configure information in a config dir. The default location is `~/.ccnet`. All the commands below accept an option `-c <config-dir>`.
 
