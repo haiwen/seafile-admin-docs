@@ -296,6 +296,14 @@ Go fileserver has 3 advantages over the traditional fileserver implemented in C 
 2. Downloading zipped folders on the fly. And there is no limit on the size of the downloaded folder. With C fileserver, the server has to first create a zip file for the downloaded folder then send it to the client. With Go fileserver, the zip file can be created while transferring to the client. The option `max_download_dir_size` is thus no longer needed by Go fileserver.
 3. Since version 10.0 you can also set upload/download rate limits.
 
+Go fileserver supports in-memory caching of fs objects, on the one hand to avoid repeated creation and destruction of repeatedly accessed objects, on the other hand it will also slow down the speed at which objects are released, which will reduce go's gc mechanism from consuming too much CPU. You can set the size of memory used by fs cache through the following options.
+
+```
+[fileserver]
+# The unit is in M. Default to 2G.
+fs_cache_limit = 100
+```
+
 ## Profiling Go Fileserver Performance
 
 Since Seafile 9.0.7, you can enable the profile function of go fileserver by adding the following configuration options:
