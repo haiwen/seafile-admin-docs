@@ -1,10 +1,10 @@
 # Notification Server Overview
 
-In Seafile Pro edition, the notification server is same as [community edition notification server](../deploy/notification-server.md).
+In Seafile Pro edition, the notification server is the same as [community edition notification server](../deploy/notification-server.md).
 
-For [clustering](./deploy_in_a_cluster.md), You need to deploy notification server on one of the servers, and the nginx of other front-end nodes should forward websockets requests to this node. The notification server configuration corresponding to each node of the cluster is as follows.
+If you enable [clustering](./deploy_in_a_cluster.md), You need to deploy notification server on one of the servers. The reverse proxy (nginx or apache) on other front-end nodes should forward websockets requests to this node. The notification server configuration corresponding to each node of the cluster is as follows.
 
-The notification server configuration of the cluster nodes should be the same:
+The notification server configuration should be the same as in community edition:
 
 ```
 [notification]
@@ -19,7 +19,7 @@ log_level = info
 jwt_private_key = M@O8VWUb81YvmtWLHGB2I_V7di5-@0p(MF*GrE!sIws23F
 ```
 
-The nginx or Apache configuration of the cluster nodes should be the same.
+The nginx or Apache configuration of the cluster nodes should be the same, but forwarding requests to notification server node, instead of a local port.
 
 We generally recommend deploying notification server behind nginx, the notification server can be supported by adding the following nginx configuration:
 
