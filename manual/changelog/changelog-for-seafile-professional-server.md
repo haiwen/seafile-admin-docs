@@ -8,6 +8,10 @@
 
 Please check our document for how to upgrade to 10.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_10.0.x/>
 
+### 10.0.7 (2023-07-25)
+
+* [fix] Fix a memory leak in golang file server
+
 ### 10.0.6 (2023-06-27)
 
 * [fix] Fix "all notifications" page link broken when notification server is used
