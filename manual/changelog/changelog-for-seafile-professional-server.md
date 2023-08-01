@@ -8,6 +8,13 @@
 
 Please check our document for how to upgrade to 10.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_10.0.x/>
 
+### 10.0.8 (2023-08-01)
+
+* [fix] Fix a bug in worker pool management in golang file server
+* Imporve error message when a user log in via SAML in multi-tenancy mode
+* [fix] Fix a bug that causing fsck crash
+* Improve the way how cluster_shared folder is cleaned up
+
 ### 10.0.7 (2023-07-25)
 
 * [fix] Fix a memory leak in golang file server
