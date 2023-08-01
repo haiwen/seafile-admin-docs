@@ -11,7 +11,7 @@ Please check our document for how to upgrade to 10.0: <https://manual.seafile.co
 ### 10.0.8 (2023-08-01)
 
 * [fix] Fix a bug in worker pool management in golang file server
-* Imporve error message when a user log in via SAML in multi-tenancy mode
+* Improve error message when a user log in via SAML in multi-tenancy mode
 * [fix] Fix a bug that causing fsck crash
 * Improve the way how cluster_shared folder is cleaned up
 
