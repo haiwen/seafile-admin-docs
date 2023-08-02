@@ -57,6 +57,11 @@ $ sudo make install
 
 ```
 
+In order to compile universal, you can specify the following option through configure:
+```
+$ ./configure --enable-compile-universal=yes
+```
+
 ### Compile seafile
 
 ```bash
@@ -69,6 +74,11 @@ $ sudo make install
 
 ```
 
+In order to compile universal, you can specify the following option through configure:
+```
+$ ./configure --enable-compile-universal=yes
+```
+
 ### Compile seafile-client
 
 ```bash
@@ -77,6 +87,11 @@ $ cd ~/seafile-workspace/seafile-client
 cmake -G "Unix Makefiles" -B build -S .
 cmake --build build --target seafile-applet
 
+```
+
+In order to compile universal, you can specify the following option through cmake to generate makefiles:
+```
+cmake -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64" -G "Unix Makefiles" -B build -S .
 ```
 
 ### Run seafile-applet
@@ -137,4 +152,11 @@ Then, run following commands in a shell:
 $ cd ~/seafile-workspace/seafile/scripts/build
 $ python build-mac-local.py --brand="" --version=1.0.0 --nostrip
 
+```
+
+In order to build an universal package, you can specify the following option through python script:
+
+```
+# This script depends on python3
+$ python build-mac-local-py3.py --brand="" --version=1.0.0 --nostrip --universal
 ```
