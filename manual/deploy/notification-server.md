@@ -27,6 +27,7 @@ host = 127.0.0.1
 # the port of notification server
 port = 8083
 # the log level of notification server
+# You can set log_level to debug to print messages sent to clients.
 log_level = info
 # jwt_private_key is used to generate jwt token and authenticate seafile server
 jwt_private_key = M@O8VWUb81YvmtWLHGB2I_V7di5-@0p(MF*GrE!sIws23F
