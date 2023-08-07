@@ -1,4 +1,4 @@
-# Notification Server Overview
+# Notification Server in Seafile cluster
 
 In Seafile Pro edition, the notification server is the same as [community edition notification server](../deploy/notification-server.md).
 
