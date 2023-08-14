@@ -4,11 +4,7 @@
 
 ### Install docker
 
-To deploy Seafile with Docker, you should first install docker.
-
-[Install Docker Engine on CentOS](https://docs.docker.com/engine/install/centos/)
-
-[Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
+Use the [official installation guide for your OS to install Docker](https://docs.docker.com/engine/install/).
 
 ### Install docker-compose
 
