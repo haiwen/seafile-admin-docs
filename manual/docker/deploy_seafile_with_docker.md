@@ -1,12 +1,10 @@
 # Deploy Seafile with Docker
 
-> The official Docker image uses multiple containers. If you need to run Seafile and related database in a single container for Synology platform, you can try the docker image provided by community: <https://github.com/codeoutin/seafile7/>
-
 ## Getting started
 
 ### Install docker
 
-Seafile v7.x.x (or newer versions) image uses docker. You should first install docker.
+To deploy Seafile with Docker, you should first install docker.
 
 [Install Docker Engine on CentOS](https://docs.docker.com/engine/install/centos/)
 
@@ -14,7 +12,7 @@ Seafile v7.x.x (or newer versions) image uses docker. You should first install d
 
 ### Install docker-compose
 
-Seafile v7.x.x (or newer versions) image uses docker-compose. You should install the docker-compose command.
+Seafile docker image uses docker-compose. You should install the docker-compose command.
 
 ```bash
 # for CentOS
