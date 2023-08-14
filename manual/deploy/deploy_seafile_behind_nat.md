@@ -44,13 +44,6 @@ component          | default port | protocol
 webserver (http)   | 80           | TCP 
 webserver (https)  | 443          | TCP
 
-If you do not deployed Seafile behind Apache/Nginx you need to configure port forward for all the components listed below. (**not recomended!**)
-
-component  | default port | protocol
------------|--------------|---------
-fileserver | 8082         | TCP 
-seahub     | 8000         | TCP
-
 * If you're not using the default ports, you should adjust the table according to your own customiztion.
 
 ### How to test if your port forwarding is working
@@ -59,10 +52,10 @@ After you have set the port forwarding rules on your router, you can check wheth
 
 - Open a command line prompt
 - Get your WAN IP. A convenient way to get your WAN ip is to visit `http://who.is`, which would show you your WAN IP.
-- Try to connect your seahub server
+- Try to connect your Seafile server
 
 ```bash
-telnet <Your WAN IP> 8000
+telnet <Your WAN IP> 80
 ```
 
 If your port forwarding is working, the command above should succeed. Otherwise, you may get a message saying something like *connection refused* or *connection timeout*.
@@ -78,14 +71,14 @@ If your port forwarding is not working, the reasons may be:
 "SERVICE_URL" in `ccnet.conf` is used to generate the download/upload link for files when you browse files online. Set it using your WAN IP.
 
 ```python
-SERVICE_URL = http://<Your WAN IP>:8000
+SERVICE_URL = https://<Your WAN IP>
 ```
 
 Most routers support NAT loopback. When your access Seafile web from intranet, file download/upload still works even when external IP is used.
 
 ## Use a Dynamic DNS Serivce
 
-### Why use a Dynamic DNS(DDNS)  Service?
+### Why use a Dynamic DNS(DDNS) Service?
 
 Having done all the steps above, you should be able to visit your seahub server outside your LAN by your WAN IP. But for most people, the WAN IP address is likey to change regularly by their ISP(Internet Serice Provider), which makes this approach impratical.
 
@@ -104,7 +97,7 @@ The detailed process is beyond the scope of this wiki. But basically, you should
 After you have setup your DDNS service, you need to modify the `ccnet.conf`:
 
 ```python
-SERVICE_URL = http://<Your dynamic DNS domain>:8000
+SERVICE_URL = https://<Your dynamic DNS domain>
 ```
 
 Restart your seafile server after this.
