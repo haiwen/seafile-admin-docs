@@ -1,5 +1,13 @@
 # SeaDrive Client Changelog
 
+### 3.0.5 (2023/08/15)
+
+* \[win] Fix thumbnail orientation issue
+* \[mac] Add confirmation when move/copy files into root or category folders
+* \[mac] Fix unix socket name too long issue
+* Fix bug when removing folder group permissions when notification server is used
+* Support some new errors returned by newer servers
+
 ### 3.0.4 (2023/06/10)
 
 * \[mac] Fix crash bug when adding new account
