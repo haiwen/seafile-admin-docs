@@ -101,6 +101,22 @@ cd ..
 
 ##### seafile
 
+In order to support notification server, you need to build libwebsockets first.
+```bash
+git clone --branch=v4.3.0 https://github.com/warmcat/libwebsockets
+cd libwebsockets
+mkdir build
+cd build
+cmake ..
+make
+sudo make install
+cd ..
+
+```
+
+You can set `--enable-ws` to no to disable notification server.
+After that, you can build seafile:
+
 ```bash
 cd seafile-${version}/
 ./autogen.sh
