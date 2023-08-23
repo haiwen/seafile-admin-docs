@@ -112,6 +112,18 @@ cd <install-path>/seafile-server-latest
 ./seahub.sh python-env python3 seahub/manage.py clear_invalid_repo_data
 ```
 
+This command has been improved in version 10.0, including:
+
+1. It will clear the invalid data in small batch, avoiding consume too much database resource in a short time.
+
+2. Dry-run mode: if you just want to see how much invalid data can be deleted without actually deleting any data, you can use the dry-run option, e.g.
+
+```
+cd <install-path>/seafile-server-latest
+./seahub.sh python-env python3 seahub/manage.py clear_invalid_repo_data --dry-run=true
+```
+
+
 ### Library Sync Tokens
 
 There are two tables in Seafile db that are related to library sync tokens.
