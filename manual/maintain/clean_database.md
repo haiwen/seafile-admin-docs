@@ -6,13 +6,6 @@
 
 Since version 5.0, we offered command to clear expired session records in Seahub database.
 
-For version 7.0 and earlier
-```
-cd <install-path>/seafile-server-latest
-./seahub.sh python-env seahub/manage.py clearsessions
-```
-
-For version 7.1 and later
 ```
 cd <install-path>/seafile-server-latest
 ./seahub.sh python-env python3 seahub/manage.py clearsessions
@@ -100,17 +93,22 @@ cd <install-path>/seafile-server-latest
 Since version 6.2, we offer command to clear outdated library records in Seahub database,
 e.g. records that are not deleted after a library is deleted. This is because users can restore a deleted library, so we can't delete these records at library deleting time.
 
-For version 7.0 and earlier
-```
-cd <install-path>/seafile-server-latest
-./seahub.sh python-env seahub/manage.py clear_invalid_repo_data
-```
-
-For version 7.1 and later
 ```
 cd <install-path>/seafile-server-latest
 ./seahub.sh python-env python3 seahub/manage.py clear_invalid_repo_data
 ```
+
+This command has been improved in version 10.0, including:
+
+1. It will clear the invalid data in small batch, avoiding consume too much database resource in a short time.
+
+2. Dry-run mode: if you just want to see how much invalid data can be deleted without actually deleting any data, you can use the dry-run option, e.g.
+
+```
+cd <install-path>/seafile-server-latest
+./seahub.sh python-env python3 seahub/manage.py clear_invalid_repo_data --dry-run=true
+```
+
 
 ### Library Sync Tokens
 
