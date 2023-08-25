@@ -8,6 +8,13 @@
 
 Please check our document for how to upgrade to 10.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_10.0.x/>
 
+### 10.0.9 (2023-08-25)
+
+* Add an option to support setting the maximum number of files in a single library
+* [fix] Support for virus scan in golang file server when uploading files via upload links
+* Some UI fixes and improvements
+* Improve script clear_invalid_repo_data.py
+
 ### 10.0.8 (2023-08-01)
 
 * [fix] Fix a bug in worker pool management in golang file server
