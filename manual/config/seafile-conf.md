@@ -23,6 +23,13 @@ default = 2
 
 This setting applies to all users. If you want to set quota for a specific user, you may log in to seahub website as administrator, then set it in "System Admin" page.
 
+Since Pro 10.0.9 version, you can set the maximum number of files allowed in a library, and when this limit is exceeded, files cannot be uploaded to this library. There is no limit by default.
+
+```
+[quota]
+library_file_limit = 100000
+```
+
 ## Default history length limit
 
 If you don't want to keep all file revision history, you may set a default history length limit for all libraries.
