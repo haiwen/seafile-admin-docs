@@ -58,6 +58,7 @@ nano docker-compose.yml
 ```
 
 The following fields merit particular attention:
+
 * The password of MariaDB root (MYSQL_ROOT_PASSWORD and DB_ROOT_PASSWD)
 * The Seafile admin email address (SEAFILE_ADMIN_EMAIL)
 * The Seafile admin password (SEAFILE_ADMIN_PASSWORD)
@@ -70,6 +71,7 @@ The new password for MYSQL_ROOT_PASSWORD and DB_ROOT_PASSWD must be identical.
 To enable HTTPS access - which is required for production use - , enter the SEAFILE_SERVER_HOSTNAME and uncomment port 443 in the configuration of the container seafile. If you want to use Let's Encrypt to obtain a SSL certificate, set SEAFILE_SERVER_LETSENCRYPT to `true` (and do not comment out port 80 because it is required when requesting a Let's Encrypt certificate). If you want to use your own SSL certificate, leave SEAFILE_SERVER_LETSENCRYPT set to `false` and follow the instructions in section [Configuring a Custom SSL Certificate](https://manual.seafile.com/docker/pro-edition/deploy_seafile_pro_with_docker/#configuring-a-custom-ssl-certificate).
 
 Additional customizable options in the Compose file are:
+
 * The volume path for the container db
 * The volume path for the container elasticsearch
 * The volume path for the container seafile
