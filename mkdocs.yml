@@ -57,44 +57,12 @@ nav:
     - Installation with MySQL: deploy/using_mysql.md
     - HTTPS with Nginx: deploy/https_with_nginx.md
     - HTTPS with Apache: deploy/https_with_apache.md
-    - LDAP/AD Integration: deploy/using_ldap.md
-    - Single Sign On:
-      - Outline: deploy/single_sign_on.md
-      - Shibboleth Authentication: deploy/shibboleth_config_v6.3.md
-      - OAuth Authentication: deploy/oauth.md
-      - Remote User Authentication: deploy/remote_user.md
-      - Auto Login to SeaDrive on Windows: deploy/auto_login_seadrive.md
-    - Syslog Integration: deploy/using_syslog.md
-    - Online File Preview and Edit:
-      - LibreOffice Online Integration: deploy/libreoffice_online.md
-      - OnlyOffice Integration: deploy/only_office.md
-    - Open Cloud Mesh: deploy/ocm.md
-    - Notification Server: deploy/notification-server.md
-    - Other Deployment Notes:
-      - Start Seafile at System Bootup: deploy/start_seafile_at_system_bootup.md
-      - Firewall settings: deploy/using_firewall.md
-      - Logrotate: deploy/using_logrotate.md
-      - Add Memcached: deploy/add_memcached.md
-      - Deploy Seafile behind NAT: deploy/deploy_seafile_behind_nat.md
-      - Deploy Seahub at Non-root domain: deploy/deploy_seahub_at_non-root_domain.md
-      - Migrate From SQLite to MySQL: deploy/migrate_from_sqlite_to_mysql.md
+    - Add Memcached: deploy/add_memcached.md
     - Common Problems for Setting up Server: faq.md
   - Seafile Professional Setup on Linux:
     - Outline: deploy_pro/README.md
     - Installation: deploy_pro/download_and_setup_seafile_professional_server.md
-    - Migration from Seafile Community: deploy_pro/migrate_from_seafile_community_server.md
-    - LDAP/AD Integration:
-      - LDAP Configuration for Seafile Pro: deploy_pro/using_ldap_pro.md
-      - Importing Groups from LDAP: deploy_pro/ldap_group_sync.md
-      - Importing Roles from LDAP: deploy_pro/ldap_role_sync.md
-    - Online File Preview and Edit:
-      - Office Documents Preview: deploy_pro/office_documents_preview.md
-      - Office Online Server Integration: deploy_pro/office_web_app.md
-    - File Search: deploy_pro/details_about_file_search.md
-    - Virus Scan:
-      - Outline: deploy_pro/virus_scan.md
-      - Run ClamAV as a Daemon: deploy_pro/deploy_clamav_as_daemon.md
-      - Virus Scan With Kav4fs: deploy_pro/virus_scan_with_kav4fs.md
+    - Migration from Seafile Community: deploy_pro/migrate_from_seafile_community_server.md      
     - Storage Backends:
       - Amazon S3 Backend: deploy_pro/setup_with_amazon_s3.md
       - Ceph Backend: deploy_pro/setup_with_ceph.md
@@ -109,16 +77,6 @@ nav:
       - Notification Server in Cluster: deploy_pro/notification-server.md
       - Setup Seafile cluster with NFS: deploy_pro/setup_seafile_cluster_with_nfs.md
       - Upgrade a cluster: deploy_pro/upgrade_a_cluster.md
-    - Advanced User Management:
-      - Multi-Institutions Support: deploy_pro/multi_institutions.md
-      - Roles and Permissions: deploy_pro/roles_permissions.md
-      - Administrator Roles and Permissions: deploy_pro/admin_roles_permissions.md
-      - Multi-Tenancy Support: deploy_pro/multi_tenancy.md
-    - Advanced Authentication:
-      - Two-factor Authentication: deploy_pro/two_factor_authentication.md
-      - ADFS or SAML 2.0: deploy_pro/adfs.md
-      - SAML 2.0 in version 10.0: deploy_pro/saml2_in_10.0.md
-      - CAS Authentication: deploy_pro/cas.md
     - Advanced Maintenance Tools:
       - Real-time Backup Server: deploy_pro/real_time_backup.md
       - Import Directory To Seafile: deploy_pro/seaf_import.md
@@ -134,6 +92,45 @@ nav:
       - Upgrade Seafile Docker CE: docker/6.3_upgrade_to_7.0.md
       - Upgrade Seafile Docker Pro: docker/pro-edition/6.3_upgrade_to_7.0.md
     - Upgrade for other versions: docker/upgrade/upgrade_docker.md
+  - Advanced Setup Options
+    - Online Office
+      - LibreOffice Online Integration: deploy/libreoffice_online.md
+      - OnlyOffice Integration: deploy/only_office.md
+      - Office Online Server Integration (Pro): deploy_pro/office_web_app.md
+    - Notification Server: deploy/notification-server.md
+    - Two-factor Authentication: deploy_pro/two_factor_authentication.md
+    - LDAP/AD Integration: 
+      - LDAP Integration: deploy/using_ldap.md
+      - LDAP Configuration for Seafile Pro: deploy_pro/using_ldap_pro.md
+      - Importing Groups from LDAP (Pro): deploy_pro/ldap_group_sync.md
+      - Importing Roles from LDAP (Pro): deploy_pro/ldap_role_sync.md
+    - Single Sign On:
+      - Outline: deploy/single_sign_on.md
+      - Shibboleth Authentication: deploy/shibboleth_config_v6.3.md
+      - OAuth Authentication: deploy/oauth.md
+      - Remote User Authentication: deploy/remote_user.md
+      - Auto Login to SeaDrive on Windows: deploy/auto_login_seadrive.md
+      - ADFS or SAML 2.0 (Pro): deploy_pro/adfs.md
+      - SAML 2.0 in version 10.0 (Pro): deploy_pro/saml2_in_10.0.md
+      - CAS Authentication (Pro): deploy_pro/cas.md
+    - Virus Scan (Pro):
+      - Outline: deploy_pro/virus_scan.md
+      - Run ClamAV as a Daemon: deploy_pro/deploy_clamav_as_daemon.md
+      - Virus Scan With Kav4fs: deploy_pro/virus_scan_with_kav4fs.md
+    - Advanced User Management (Pro):
+      - Multi-Institutions Support: deploy_pro/multi_institutions.md
+      - Roles and Permissions: deploy_pro/roles_permissions.md
+      - Administrator Roles and Permissions: deploy_pro/admin_roles_permissions.md
+      - Multi-Tenancy Support: deploy_pro/multi_tenancy.md
+    - Advanced File Search configuration (Pro): deploy_pro/details_about_file_search.md
+    - Migrate From SQLite to MySQL: deploy/migrate_from_sqlite_to_mysql.md
+    - Others Deployment Notes:
+      - Open Cloud Mesh: deploy/ocm.md
+      - Firewall settings: deploy/using_firewall.md
+      - Deploy Seafile behind NAT: deploy/deploy_seafile_behind_nat.md
+      - Deploy Seahub at Non-root domain: deploy/deploy_seahub_at_non-root_domain.md
+      - Start Seafile at System Bootup: deploy/start_seafile_at_system_bootup.md
+      - Logrotate: deploy/using_logrotate.md
   - Configuration and Customization:
     - Outline: config/README.md
     - ccnet.conf: config/ccnet-conf.md
