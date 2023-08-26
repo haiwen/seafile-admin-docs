@@ -92,8 +92,8 @@ nav:
       - Upgrade Seafile Docker CE: docker/6.3_upgrade_to_7.0.md
       - Upgrade Seafile Docker Pro: docker/pro-edition/6.3_upgrade_to_7.0.md
     - Upgrade for other versions: docker/upgrade/upgrade_docker.md
-  - Advanced Setup Options
-    - Online Office
+  - Advanced Setup Options:
+    - Online Office:
       - LibreOffice Online Integration: deploy/libreoffice_online.md
       - OnlyOffice Integration: deploy/only_office.md
       - Office Online Server Integration (Pro): deploy_pro/office_web_app.md
