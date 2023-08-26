@@ -235,11 +235,9 @@ $ tree -L 2 /opt/seafile
 * Seafile CE: `seafile-server_8.0.4_x86-86.tar.gz`; uncompressing into folder `seafile-server-8.0.4`
 * Seafile PE: `seafile-pro-server_8.0.4_x86-86.tar.gz`; uncompressing into folder `seafile-pro-server-8.0.4`
 
-### Setting up Seafile PE
+### Run the setup script
 
 The setup process of Seafile PE is the same as the Seafile CE. See [Installation of Seafile Server Community Edition with MySQL/MariaDB](../deploy/using_mysql.md).
-
-If you have any problem during the setup up, check [Common problems in setting up Seafile server](../deploy/common_problems_for_setting_up_server.md).
 
 After the successful completition of the setup script, the directory layout of Seafile PE looks as follows (some folders only get created after the first start, e.g. `logs`):
 
@@ -300,14 +298,16 @@ $ tree -L 2 /opt/seafile
     └── avatars                        # user avatars
 ```
 
-### Tweaking conf files
+### Setup Memcached
 
-Seafile's config files as created by the setup script are prepared for Seafile running behind a reverse proxy.
+Memcached is mandatory for pro edition. Following the document [adding memcached](memcached_options.md) to setup Memcached.
 
-To access Seafile's web interface and to create working sharing links without a reverse proxy, you need to modify two configuration files in `/opt/seafile/conf`:
+### Enabling HTTP/HTTPS
 
-* ccnet.conf (for Seafile PE 8.0.x or lower): Add port 8000 to the `SERVICE_URL` (i.e., SERVICE_URL = http://1.2.3.4:8000/)
-* gunicorn.conf.py: Change the bind to "0.0.0.0:8000" (i.e., bind = "0.0.0.0:8000")
+You need at least setup HTTP to make Seafile's web interface work. This manual provides instructions for enabling HTTP/HTTPS for the two most popular web servers and reverse proxies:
+
+* [Nginx](https://manual.seafile.com/deploy/https_with_nginx/)
+* [Apache](https://manual.seafile.com/deploy/https_with_apache/)
 
 ## Starting Seafile Server
 
@@ -320,7 +320,7 @@ Run the following commands in `/opt/seafile-server-latest`:
 
 The first time you start Seahub, the script prompts you to create an admin account for your Seafile Server. Enter the email address of the admin user followed by the password.
 
-Now you can access Seafile via the web interface at the host address and port 8000 (e.g., http://1.2.3.4:8000).
+Now you can access Seafile via the web interface at the host address (e.g., http://1.2.3.4:80).
 
 
 ## Enabling full text search
@@ -380,20 +380,3 @@ Finally, restart Seafile:
 ```
 ./seafile.sh restart  && ./seahub.sh restart 
 ```
-
-## Setup Memcached
-
-For more than 50 users, we recommend [adding memcached](memcached_options.md). Memcached increases the response time of Seahub, Seafile's web interface, significantly.
-
-## Enabling HTTPS
-
-It is strongly recommended to switch from unencrypted HTTP (via port 8000) to encrypted HTTPS (via port 443).
-
-This manual provides instructions for enabling HTTPS for the two most popular web servers and reverse proxies:
-
-* [Nginx](https://manual.seafile.com/deploy/https_with_nginx/)
-* [Apache](https://manual.seafile.com/deploy/https_with_apache/)
-
-## Managing a NAT
-
-If you run your Seafile Server in a LAN behind a NAT (i.e., a router provided by your ISP), consult [Installation behind NAT](../deploy/deploy_seafile_behind_nat/) to make your Seafile Server accessible over the internet.

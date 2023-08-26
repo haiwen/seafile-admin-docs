@@ -1,5 +1,7 @@
 # Deploying Seafile with SQLite
 
+> Deploying Seafile with SQLite is deprecated since version 11.0
+
 ## Download binary package
 
 Visit our [download page](http://www.seafile.com/en/download/#server),  download the latest server package.
