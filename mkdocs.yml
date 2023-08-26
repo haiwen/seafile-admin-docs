@@ -62,6 +62,7 @@ nav:
   - Seafile Professional Setup on Linux:
     - Outline: deploy_pro/README.md
     - Installation: deploy_pro/download_and_setup_seafile_professional_server.md
+    - Memcached Options for Pro Edition: deploy_pro/memcached_options.md
     - Migration from Seafile Community: deploy_pro/migrate_from_seafile_community_server.md      
     - Storage Backends:
       - Amazon S3 Backend: deploy_pro/setup_with_amazon_s3.md
@@ -80,7 +81,6 @@ nav:
     - Advanced Maintenance Tools:
       - Real-time Backup Server: deploy_pro/real_time_backup.md
       - Import Directory To Seafile: deploy_pro/seaf_import.md
-    - Memcached Options for Pro Edition: deploy_pro/memcached_options.md
     - License: deploy_pro/seafile_professional_sdition_software_license_agreement.md
   - Seafile Setup with Docker:
     - Seafile Community Installation: docker/deploy_seafile_with_docker.md
