@@ -78,9 +78,6 @@ nav:
       - Notification Server in Cluster: deploy_pro/notification-server.md
       - Setup Seafile cluster with NFS: deploy_pro/setup_seafile_cluster_with_nfs.md
       - Upgrade a cluster: deploy_pro/upgrade_a_cluster.md
-    - Advanced Maintenance Tools:
-      - Real-time Backup Server: deploy_pro/real_time_backup.md
-      - Import Directory To Seafile: deploy_pro/seaf_import.md
     - License: deploy_pro/seafile_professional_sdition_software_license_agreement.md
   - Seafile Setup with Docker:
     - Seafile Community Installation: docker/deploy_seafile_with_docker.md
@@ -130,6 +127,7 @@ nav:
       - Deploy Seahub at Non-root domain: deploy/deploy_seahub_at_non-root_domain.md
       - Start Seafile at System Bootup: deploy/start_seafile_at_system_bootup.md
       - Logrotate: deploy/using_logrotate.md
+      - Real-time Backup Server: deploy_pro/real_time_backup.md
   - Configuration and Customization:
     - Outline: config/README.md
     - ccnet.conf: config/ccnet-conf.md
@@ -148,6 +146,7 @@ nav:
     - Seafile GC: maintain/seafile_gc.md
     - Clean database: maintain/clean_database.md
     - Export report: maintain/export_report.md
+    - Import Directory To Seafile (Pro): deploy_pro/seaf_import.md
   - Upgrade Seafile Server:
     - Outline: upgrade/upgrade.md
     - Upgrade notes for 7.0.x: upgrade/upgrade_notes_for_7.0.x.md
