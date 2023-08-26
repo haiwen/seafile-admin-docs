@@ -4,7 +4,7 @@ There are three types of upgrade, i.e., major version upgrade, minor version upg
 
 * After upgrading, you may need to clean [seahub cache](../deploy/add_memcached.md) if it doesn't behave as expect.
 * If you are using a Docker based deployment, please read [upgrade a Seafile docker instance](upgrade_docker.md)
-* If you are running a **cluster**, please read [upgrade a Seafile cluster](../deploy_pro/upgrade_a_cluster.md).
+* If you are running a **cluster**, please read [upgrade a Seafile cluster](upgrade_a_cluster.md).
 * If you are using a binary package based deployment, please read instructions below.
 
 ## Special upgrade notes
