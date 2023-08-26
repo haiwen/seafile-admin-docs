@@ -1,23 +1,27 @@
 # Upgrade manual
 
-There are three types of upgrade, i.e., major version upgrade, minor version upgrade and maintenance version upgrade. This page contains general instructions for the three types of upgrade. It also contains special notes for each version.
+There are three types of upgrade, i.e., major version upgrade, minor version upgrade and maintenance version upgrade. This page contains general instructions for the three types of upgrade.
 
 * After upgrading, you may need to clean [seahub cache](../deploy/add_memcached.md) if it doesn't behave as expect.
+* If you are using a Docker based deployment, please read [upgrade a Seafile docker instance](upgrade_docker.md)
 * If you are running a **cluster**, please read [upgrade a Seafile cluster](../deploy_pro/upgrade_a_cluster.md).
+* If you are using a binary package based deployment, please read instructions below.
 
 ## Special upgrade notes
 
 Please check the **upgrade notes** for any special configuration or changes before/while upgrading.
 
-* [Upgrade notes for 5.x.x](./upgrade_notes_for_5.x.x.md)
-* [Upgrade notes for 6.x.x](./upgrade_notes_for_6.x.x.md)
 * [Upgrade notes for 7.0.x](./upgrade_notes_for_7.0.x.md)
 * [Upgrade notes for 7.1.x](./upgrade_notes_for_7.1.x.md)
 * [Upgrade notes for 8.0.x](./upgrade_notes_for_8.0.x.md)
 * [Upgrade notes for 9.0.x](./upgrade_notes_for_9.0.x.md)
 * [Upgrade notes for 10.0.x](./upgrade_notes_for_10.0.x.md)
+* [Upgrade notes for 11.0.x](./upgrade_notes_for_11.0.x.md)
 
-## Major version upgrade (e.g. from 5.x.x to 6.y.y)
+
+## Upgrade a binary package based deployment
+
+### Major version upgrade (e.g. from 5.x.x to 6.y.y)
 
 Suppose you are using version 5.1.0 and like to upgrade to version 6.1.0. First download and extract the new version. You should have a directory layout similar to this:
 
@@ -80,7 +84,7 @@ If the new version works fine, the old version can be removed
 rm -rf seafile-server-5.1.0/
 ```
 
-## Minor version upgrade (e.g. from 6.1.x to 6.2.y)
+### Minor version upgrade (e.g. from 6.1.x to 6.2.y)
 
 Suppose you are using version 6.1.0 and like to upgrade to version 6.2.0. First download and extract the new version. You should have a directory layout similar to this:
 
@@ -141,7 +145,7 @@ If the new version works, the old version can be removed
 rm -rf seafile-server-6.1.0/
 ```
 
-## Maintenance version upgrade (e.g. from 6.2.2 to 6.2.3)
+### Maintenance version upgrade (e.g. from 6.2.2 to 6.2.3)
 
 A maintenance upgrade is for example an upgrade from 6.2.2 to 6.2.3.
 

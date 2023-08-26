@@ -1,16 +1,23 @@
 # Upgrade Seafile Docker
 
+For maintenance upgrade, like from version 10.0.1 to version 10.0.4, just download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version, then start with docker-compose up.
+
+For major version upgrade, like from 10.0 to 11.0, see instructions below.
+
+Please check the **upgrade notes** for any special configuration or changes before/while upgrading.
+
+
 ## Upgrade from 10.0 to 11.0
 
-Download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version, then start with docker-compose up.
+Download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version.
 
-Migrate your configuration for LDAP and OAuth if you use the feature according to <https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x>
+Migrate your configuration for LDAP and OAuth according to <https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x>
 
 Start with docker-compose up.
 
 ## Upgrade from 9.0 to 10.0
 
-Just download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version, then start with docker-compose up.
+Download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version, then start with docker-compose up.
 
 If you are using pro edition with ElasticSearch, SAML SSO and storage backend features, follow the upgrading manual on how to update the configuration for these features: <https://manual.seafile.com/upgrade/upgrade_notes_for_10.0.x>
 
