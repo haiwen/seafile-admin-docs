@@ -66,16 +66,101 @@ Note, you should install Python libraries system wide using root user or sudo mo
 
 ## Upgrade to 11.0.x
 
-#### 1) Stop Seafile-10.0.x server.
+### 1) Stop Seafile-10.0.x server.
 
-#### 2) Start from Seafile 11.0.x, run the script:
+### 2) Start from Seafile 11.0.x, run the script:
 
 ```sh
 upgrade/upgrade_10.0_11.0.sh
 ```
-   
-Change configurations for LDAP
 
-Change configuration for OAuth
+### 3）Modify configurations and migrate LDAP records
 
-#### 3) Start Seafile-11.0.x server.
+#### Change configurations for LDAP
+
+The configuration items of LDAP login and LDAP sync tasks are migrated from ccnet.conf to seahub_settings.py. The name of the configuration item is based on the 10.0 version, and the characters 'LDAP\_' or 'MULTI_LDAP_1' are added. Examples are as follows:
+
+```python
+# Basic configuration items, LDAP login, and LDAP sync tasks use these configurations together.
+ENABLE_LDAP = True
+LDAP_SERVER_URL = 'ldap://192.168.0.125'     # The URL of LDAP server
+LDAP_BASE_DN = 'ou=test,dc=seafile,dc=ren'   # The root node of users who can log in to Seafile in the LDAP server
+LDAP_ADMIN_DN = 'administrator@seafile.ren'  # DN of the administrator used to query the LDAP server for information
+LDAP_ADMIN_PASSWORD = 'Hello@123'            # Password of LDAP_ADMIN_DN
+LDAP_PROVIDER = 'ldap'                       # Identify the source of the user, used in the table social_auth_usersocialauth, defaults to 'ldap'
+LDAP_LOGIN_ATTR = 'userPrincipalName'        # User's attribute used to log in to Seafile, can be mail or userPrincipalName, cannot be changed
+LDAP_FILTER = 'memberOf=CN=testgroup,OU=test,DC=seafile,DC=ren'  # Additional filter conditions, users who meet the filter conditions can log in, otherwise they cannot log in
+
+# Common user sync configuration item
+LDAP_USER_FIRST_NAME_ATTR = 'givenName'  # For sync user's first name
+LDAP_USER_LAST_NAME_ATTR = 'sn'          # For sync user's last name
+LDAP_USER_NAME_REVERSE = False           # Whether to reverse the user's first and last name
+IMPORT_NEW_USER = True                   # Whether to import new users when sync user
+ACTIVATE_USER_WHEN_IMPORT = False        # Whether to activate the user when importing new user
+ENABLE_EXTRA_USER_INFO_SYNC = True       # Whether to enable sync of additional user information, including user's full name, department, and Windows login name, etc.
+
+# LDAP sync task period, in minutes
+LDAP_SYNC_INTERVAL = 60
+
+# LDAP sync user configuration items.
+ENABLE_LDAP_USER_SYNC = True             # Whether to enable user sync
+LDAP_USER_OBJECT_CLASS = 'person'        # This is the name of the class used to search for user objects. In Active Directory, it's usually "person". The default value is "person".
+LDAP_DEPT_ATTR = ''                      # LDAP user's department info
+LDAP_UID_ATTR = ''                       # LDAP user's login_id attribute
+LDAP_CONTACT_EMAIL_ATTR = ''             # LDAP user's contact_email attribute
+LDAP_USER_ROLE_ATTR = ''                 # LDAP user's role attribute
+LDAP_AUTO_REACTIVATE_USERS = True        # Whether to auto activate deactivated user
+LDAP_USE_PAGED_RESULT = False            # Whether to use pagination extension, LDAP protocol version 3 supports "paged results" (PR) extension. When you have large number of users, this option can greatly improve the performance of listing users. Most directory server nowadays support this extension.
+
+# Common user sync configuration items
+DEACTIVE_USER_IF_NOTFOUND = False        # Set to "true" if you want to deactivate a user when he/she was deleted in AD server.
+
+# LDAP group sync configuration items.
+ENABLE_LDAP_GROUP_SYNC = True            # Whether to enable group sync
+LDAP_GROUP_FILTER = ''                   # Group sync filter
+LDAP_SYNC_DEPARTMENT_FROM_OU = True      # Whether to enable sync departments from OU.
+LDAP_GROUP_OBJECT_CLASS = 'group'        # This is the name of the class used to search for group objects. In Active Directory, it's usually "group"; in OpenLDAP or others, you may use "groupOfNames","groupOfUniqueNames" or "posixGroup", depends on your LDAP server. The default value is "group".字
+LDAP_GROUP_MEMBER_ATTR = 'member'        # The attribute field to use when loading the group's members. For most directory servers, the attributes is "member", which is the default value.For "posixGroup", it should be set to "memberUid".
+LDAP_USER_ATTR_IN_MEMBERUID = 'uid'      # The user attribute set in 'memberUid' option, which is used in "posixGroup".The default value is "uid".
+LDAP_GROUP_UUID_ATTR = 'objectGUID'      # Used to uniquely identify groups in LDAP
+LDAP_USE_GROUP_MEMBER_RANGE_QUERY = False   # When a group contains too many members, AD will only return part of them. Set this option to TRUE to make LDAP sync work with large groups.
+LDAP_SYNC_GROUP_AS_DEPARTMENT = False    # Whether to sync groups as top-level departments in Seafile
+LDAP_DEPT_NAME_ATTR = ''                 # Used to get the department name.
+LDAP_CREATE_DEPARTMENT_LIBRARY = False   # If you decide to sync the group as a department, you can set this option to "true". In this way, when the group is synchronized for the first time, a library is automatically created for the department, and the library's name is the department's name.
+LDAP_DEPT_REPO_PERM = 'rw'               # Set the permissions of the department repo, default permission is 'rw'.
+LDAP_DEFAULT_DEPARTMENT_QUOTA = -2       #  If you decide to sync the group as a department, you can set a default space quota for each department when you synchronize a group for the first time. The quota is set to unlimited if this option is not set. Unit is MB.
+
+
+DEL_GROUP_IF_NOT_FOUND = False           # Set to "true", sync process will delete the group if not found it in LDAP server.
+DEL_DEPARTMENT_IF_NOT_FOUND = False      # Set to "true", sync process will deleted the department if not found it in LDAP server.
+```
+
+#### Migrate LDAP records
+
+Run the following script to migrate users in `LDAPImported` to `EmailUsers`
+
+
+#### Change configuration for OAuth:
+
+In the new version, the OAuth login configuration should keep the email attribute unchanged to be compatible with new and old user logins. In version 11.0, a new uid attribute is added to be used as a user's external unique ID. The uid will be stored in social_auth_usersocialauth to map to internal virtual ID. For old users, the original  email is used the internal virtual ID. The example is as follows:
+
+```python
+# Version 10.0 or earlier
+OAUTH_ATTRIBUTE_MAP = {
+    "id": (True, "email"),
+    "name": (False, "name"),
+    "email": (False, "contact_email"),
+}
+
+# Since 11.0 version, added 'uid' attribute.
+OAUTH_ATTRIBUTE_MAP = {
+    "id": (True, "email"),  # In the new version, the email attribute configuration should be kept unchanged to be compatible with old and new user logins
+    "uid": (True, "uid"),   # Seafile use 'uid' as the external unique identifier of the user. Different OAuth systems have different attributes, which may be: 'uid' or 'username', etc.
+    "name": (False, "name"),
+    "email": (False, "contact_email"),
+}
+
+```
+
+
+### 3) Start Seafile-11.0.x server.
