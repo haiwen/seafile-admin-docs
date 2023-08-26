@@ -113,6 +113,9 @@ nav:
       - ADFS or SAML 2.0 (Pro): deploy_pro/adfs.md
       - SAML 2.0 in version 10.0 (Pro): deploy_pro/saml2_in_10.0.md
       - CAS Authentication (Pro): deploy_pro/cas.md
+    - WebDAV and FUSE extensions:
+      - WebDAV extension: extension/webdav.md
+      - FUSE extension: extension/fuse.md
     - Virus Scan (Pro):
       - Outline: deploy_pro/virus_scan.md
       - Run ClamAV as a Daemon: deploy_pro/deploy_clamav_as_daemon.md
@@ -156,10 +159,6 @@ nav:
     - Upgrade notes for 9.0.x: upgrade/upgrade_notes_for_9.0.x.md
     - Upgrade notes for 10.0.x: upgrade/upgrade_notes_for_10.0.x.md
     - Upgrade notes for 11.0.x: upgrade/upgrade_notes_for_11.0.x.md
-  - WebDAV and FUSE extensions:
-    - Outline: extension/README.md
-    - WebDAV extension: extension/webdav.md
-    - FUSE extension: extension/fuse.md
   - Security and Auditing:
     - Security features: security/security_features.md
     - Access logs and auditing: security/auditing.md
