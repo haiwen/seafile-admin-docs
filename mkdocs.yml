@@ -91,6 +91,7 @@ nav:
       - LibreOffice Online Integration: deploy/libreoffice_online.md
       - OnlyOffice Integration: deploy/only_office.md
       - Office Online Server Integration (Pro): deploy_pro/office_web_app.md
+    - SeaDoc Integration: extra_setup/setup_seadoc.md
     - Notification Server: deploy/notification-server.md
     - LDAP/AD Integration: 
       - LDAP Integration: deploy/using_ldap.md
