@@ -1,6 +1,6 @@
 # Upgrade Seafile Docker
 
-## Upgrade from 9.0 to 10.0
+## Upgrade from 10.0 to 11.0
 
 Download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version, then start with docker-compose up.
 
