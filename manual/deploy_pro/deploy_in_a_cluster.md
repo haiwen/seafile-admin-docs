@@ -71,7 +71,7 @@ Put the license you get under the top level diretory. In our wiki, we use the di
 ### Download/Uncompress Seafile Professional Server
 
 ```
-tar xf seafile-pro-server_6.1.3_x86-64.tar.gz
+tar xf seafile-pro-server_8.0.0_x86-64.tar.gz
 
 ```
 
@@ -80,7 +80,7 @@ Now you have:
 ```
 haiwen
 ├── seafile-license.txt
-└── seafile-pro-server-6.1.3/
+└── seafile-pro-server-8.0.0/
 
 ```
 
@@ -128,7 +128,7 @@ health_check_port = 12345
 
 #### seahub_settings.py
 
-You must setup and use memcached when deploying Seafile cluster. Refer to ["add memcached"](../deploy/add_memcached.md) to use memcached in Seahub.
+You must setup and use memcached when deploying Seafile cluster. Refer to ["add memcached"](memcached_options.md) to use memcached in Seahub.
 
 Also add following options to seahub_setting.py. These settings tell Seahub to store avatar in database and cache avatar in memcached, and store css CACHE to local memory.
 
@@ -182,6 +182,16 @@ You also need to add the settings for backend cloud storage systems to the confi
 * For Ceph: [Setup With Ceph](setup_with_ceph.md)
 * For OSS: [Setup With Alibaba OSS](setup_with_oss.md)
 
+### Setup Nginx/Apache and HTTP
+
+Nginx/Apache with HTTP need to set it up on each machine running Seafile server. This is make sure only port 80 need to be exposed to load balancer. (HTTPS should be setup at the load balancer)
+
+Please check the following documents on how to setup HTTP with Nginx/Apache. Note, you only the HTTP setup part the the documents. (HTTPS is not needed)
+
+* [Nginx](https://manual.seafile.com/deploy/https_with_nginx/)
+* [Apache](https://manual.seafile.com/deploy/https_with_apache/)
+
+
 ### Run and Test the Single Node
 
 Once you have finished configuring this single node, start it to test if it runs properly:
@@ -195,7 +205,8 @@ cd /data/haiwen/seafile-server-latest
 
 _Note:_ The first time you start seahub, the script would prompt you to create an admin account for your Seafile server.
 
-Open your browser, visit <http://ip-address-of-this-node:8000> and login with the admin account.
+Open your browser, visit `http://ip-address-of-this-node:80` and login with the admin account.
+
 
 ## Configure other nodes
 
@@ -207,16 +218,6 @@ Supposed your Seafile installation directory is `/data/haiwen`, compress this wh
 
 On each node, run `./seafile.sh` and `./seahub.sh` to start Seafile server.
 
-## Setup Nginx/Apache and Https
-
-You'll usually want to use Nginx/Apache and https for web access. You need to set it up on each machine running Seafile server. **Make sure the certificate on all the servers are the same.**
-
-* For Nginx:
-  * [Config Seahub with Nginx](../deploy/deploy_with_nginx.md)
-  * [Enabling Https with Nginx](../deploy/https_with_nginx.md)
-* For Apache:
-  * [Config Seahub with Apache](../deploy/deploy_with_apache.md)
-  * [Enabling Https with Apache](../deploy/https_with_apache.md)
 
 ## Start Seafile Service on boot
 
