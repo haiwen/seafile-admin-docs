@@ -313,23 +313,6 @@ Now you can access Seafile via the web interface at the host address and port 80
 
 Note: On CentOS, the firewall blocks traffic on port 8000 by default.
 
-### Running Seahub on another port
-
-If you want to run Seahub on a port other than the default 8000, say 8001, you must modify the `conf/gunicorn.conf`:
-
-```
-# default localhost:8000
-bind = "0.0.0.0:8001"
-
-```
-
-Then restart the services:
-
-```
-./seafile.sh restart	# restarts seaf-server
-./seahub.sh restart		# restarts seahub
-
-```
 
 ### Troubleshooting
 
@@ -378,9 +361,6 @@ This manual provides instructions for enabling HTTPS for the two most popular we
 * [Nginx](https://manual.seafile.com/deploy/https_with_nginx/)
 * [Apache](https://manual.seafile.com/deploy/https_with_apache/)
 
-## Managing a NAT
-
-If you run your Seafile Server in a LAN behind a NAT (i.e., a router provided by your ISP), consult [Installation behind NAT](../deploy/deploy_seafile_behind_nat/) to make your Seafile Server accessible over the internet.
 
 ## Performance tuning
 
