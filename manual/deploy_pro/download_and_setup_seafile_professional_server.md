@@ -14,11 +14,10 @@ Seafile PE can be used without a paid license with up to three users. Licenses f
 
 ### Installing and preparing the SQL database
 
-These instructions assume that MySQL/MariaDB server and client are installed and a MySQL/MariaDB root user can authenticate using the mysql_native_password plugin. (For more information, see [Installation of Seafile Server Community Edition with MySQL/MariaDBL](../deploy/using_mysql.md).)
+These instructions assume that MySQL/MariaDB server and client are installed and a MySQL/MariaDB root user can authenticate using the mysql_native_password plugin.
 
 ### Installing prerequisites
 
-Seafile prior to and including Seafile 7.0 use Python 2. More recent versions rely on Python 3.
 
 **For Seafile 8.0.x**
 
@@ -88,9 +87,8 @@ sudo pip3 install --timeout=3600 django==3.2.* future==0.18.* mysqlclient==2.1.*
 
 ### Installing Java Runtime Environment
 
-For Seafile PE 8.0.x or lower.
 
-Java Runtime Environment (JRE) is a requirement for full text search with elasticsearch.
+Java Runtime Environment (JRE) is a requirement for full text search with ElasticSearch. It is used in extracting contents from PDF and Office files.
 
 ```
 # Debian 10/Debian 11
@@ -245,44 +243,6 @@ If you have any problem during the setup up, check [Common problems in setting u
 
 After the successful completition of the setup script, the directory layout of Seafile PE looks as follows (some folders only get created after the first start, e.g. `logs`):
 
-**For Seafile 7.0.x**
-
-```
-$ tree -L 2 /opt/seafile
-.
-├── seafile-license.txt 			# license file
-├── ccnet               			
-│   ├── mykey.peer
-│   ├── PeerMgr
-│   └── seafile.ini
-├── conf                            # configuration files
-│   └── ccnet.conf
-│   └── seafile.conf
-│   └── seahub_settings.py
-│   └── seafevents.conf
-├── logs                            # log files
-├── pids                            # process id files
-├── pro-data            			# data specific for Seafile PE
-├── seafile-data                    # object database
-├── seafile-pro-server-7.0.7
-│   ├── reset-admin.sh
-│   ├── runtime
-│   ├── seafile
-│   ├── seafile.sh
-│   ├── seahub
-│   ├── seahub-extra
-│   ├── seahub.sh
-│   ├── setup-seafile.sh
-│   ├── setup-seafile-mysql.py
-│   ├── setup-seafile-mysql.sh
-│   └── upgrade
-├── seafile-server-latest -> seafile-pro-server-7.0.7
-├── seahub-data
-│   └── avatars         			# user avatars
-└── seahub.db
-
-```
-
 **For Seafile 7.1.x and later**
 
 ```
@@ -374,7 +334,10 @@ Our recommendation for deploying ElasticSearch is using Docker. Detailed informa
 
 **Note:** Some virtualization technologies do not support Docker. In this case, ElasticSearch must be installed natively.
 
-Seafile PE 9.0 only supports ElasticSearch 7.x. We use ElasticSearch version 7.16.2 as an example in this section. Version 7.16.2 and newer version have been successfully tested with Seafile.
+Seafile PE 9.0 only supports ElasticSearch 7.x. Seafile PE 10.0 and 11.0 only supports ElasticSearch 8.x.
+
+We use ElasticSearch version 7.16.2 as an example in this section. Version 7.16.2 and newer version have been successfully tested with Seafile.
+
 
 Pull the Docker image:
 ```
@@ -399,7 +362,6 @@ sudo docker run -d \
 ```
 
 
-
 ### Modifying seafevents
 
 Add the following configuration to `seafevents.conf`:
@@ -419,6 +381,10 @@ Finally, restart Seafile:
 ./seafile.sh restart  && ./seahub.sh restart 
 ```
 
+## Setup Memcached
+
+For more than 50 users, we recommend [adding memcached](memcached_options.md). Memcached increases the response time of Seahub, Seafile's web interface, significantly.
+
 ## Enabling HTTPS
 
 It is strongly recommended to switch from unencrypted HTTP (via port 8000) to encrypted HTTPS (via port 443).
@@ -431,7 +397,3 @@ This manual provides instructions for enabling HTTPS for the two most popular we
 ## Managing a NAT
 
 If you run your Seafile Server in a LAN behind a NAT (i.e., a router provided by your ISP), consult [Installation behind NAT](../deploy/deploy_seafile_behind_nat/) to make your Seafile Server accessible over the internet.
-
-## Performance tuning
-
-For more than 50 users, we recommend [adding memcached](../deploy/add_memcached.md). Memcached increases the response time of Seahub, Seafile's web interface, significantly.
