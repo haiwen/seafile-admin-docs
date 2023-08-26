@@ -62,6 +62,7 @@ nav:
   - Seafile Professional Setup on Linux:
     - Outline: deploy_pro/README.md
     - Installation: deploy_pro/download_and_setup_seafile_professional_server.md
+    - Memcached Options for Pro Edition: deploy_pro/memcached_options.md
     - Migration from Seafile Community: deploy_pro/migrate_from_seafile_community_server.md      
     - Storage Backends:
       - Amazon S3 Backend: deploy_pro/setup_with_amazon_s3.md
@@ -80,7 +81,6 @@ nav:
     - Advanced Maintenance Tools:
       - Real-time Backup Server: deploy_pro/real_time_backup.md
       - Import Directory To Seafile: deploy_pro/seaf_import.md
-    - Memcached Options for Pro Edition: deploy_pro/memcached_options.md
     - License: deploy_pro/seafile_professional_sdition_software_license_agreement.md
   - Seafile Setup with Docker:
     - Seafile Community Installation: docker/deploy_seafile_with_docker.md
@@ -113,6 +113,9 @@ nav:
       - ADFS or SAML 2.0 (Pro): deploy_pro/adfs.md
       - SAML 2.0 in version 10.0 (Pro): deploy_pro/saml2_in_10.0.md
       - CAS Authentication (Pro): deploy_pro/cas.md
+    - WebDAV and FUSE extensions:
+      - WebDAV extension: extension/webdav.md
+      - FUSE extension: extension/fuse.md
     - Virus Scan (Pro):
       - Outline: deploy_pro/virus_scan.md
       - Run ClamAV as a Daemon: deploy_pro/deploy_clamav_as_daemon.md
@@ -156,10 +159,6 @@ nav:
     - Upgrade notes for 9.0.x: upgrade/upgrade_notes_for_9.0.x.md
     - Upgrade notes for 10.0.x: upgrade/upgrade_notes_for_10.0.x.md
     - Upgrade notes for 11.0.x: upgrade/upgrade_notes_for_11.0.x.md
-  - WebDAV and FUSE extensions:
-    - Outline: extension/README.md
-    - WebDAV extension: extension/webdav.md
-    - FUSE extension: extension/fuse.md
   - Security and Auditing:
     - Security features: security/security_features.md
     - Access logs and auditing: security/auditing.md
