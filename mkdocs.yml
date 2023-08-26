@@ -95,7 +95,6 @@ nav:
       - OnlyOffice Integration: deploy/only_office.md
       - Office Online Server Integration (Pro): deploy_pro/office_web_app.md
     - Notification Server: deploy/notification-server.md
-    - Two-factor Authentication: deploy_pro/two_factor_authentication.md
     - LDAP/AD Integration: 
       - LDAP Integration: deploy/using_ldap.md
       - LDAP Configuration for Seafile Pro: deploy_pro/using_ldap_pro.md
@@ -142,6 +141,7 @@ nav:
   - Administration:
     - Outline: maintain/README.md
     - Account management: maintain/account.md
+    - Two-factor Authentication: maintain/two_factor_authentication.md
     - Logs: maintain/logs.md
     - Backup and Recovery: maintain/backup_recovery.md
     - Seafile FSCK: maintain/seafile_fsck.md
