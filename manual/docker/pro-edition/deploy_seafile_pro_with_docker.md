@@ -239,16 +239,6 @@ Placeholder spot for shared volumes. You may elect to store certain persistent i
 * /shared/ssl: This is directory for certificate, which does not exist by default.
 * /shared/bootstrap.conf: This file does not exist by default. You can create it by your self, and write the configuration of files similar to the `samples` folder.
 
-## Upgrade
-
-To upgrade to latest version of seafile server:
-
-```sh
-docker pull {host}/seafileltd/seafile-pro-mc:latest
-docker-compose down
-docker-compose up -d
-
-```
 
 ## Backup and Recovery
 
