@@ -85,7 +85,6 @@ nav:
     - Seafile Docker Cluster Deployment: docker/cluster/deploy_seafile_cluster_with_docker.md
     - Migration from Seafile Community: docker/pro-edition/migrate_ce_to_pro_with_docker.md
     - Migrate from non-docker deployment: docker/non_docker_to_docker.md
-    - Upgrade Seafile Docker: docker/upgrade/upgrade_docker.md
   - Advanced Setup Options:
     - LDAP/AD Integration: 
       - LDAP Integration: deploy/using_ldap.md
@@ -153,6 +152,7 @@ nav:
     - Import Directory To Seafile (Pro): deploy_pro/seaf_import.md
   - Upgrade Seafile Server:
     - Outline: upgrade/upgrade.md
+    - Upgrade Seafile Docker: upgrade/upgrade_docker.md
     - Upgrade notes for 7.0.x: upgrade/upgrade_notes_for_7.0.x.md
     - Upgrade notes for 7.1.x: upgrade/upgrade_notes_for_7.1.x.md
     - Upgrade notes for 8.0.x: upgrade/upgrade_notes_for_8.0.x.md
