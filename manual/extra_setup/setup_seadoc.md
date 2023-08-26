@@ -17,3 +17,6 @@ SeaDoc excels at:
 * Building internal Wikis
 
 ## Setup SeaDoc
+
+> Seafile version 11.0 or later is required to work with SeaDoc.
+
