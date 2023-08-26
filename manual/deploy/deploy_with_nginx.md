@@ -174,26 +174,23 @@ nginx -t
 nginx -s reload
 ```
 
-### Modifying ccnet.conf
+### Modify seahub_setting.py
 
-The `SERVICE_URL` in [ccnet.conf](../config/ccnet-conf.md) informs Seafile about the chosen domain, protocol and port. Change the `SERVICE_URL`so as to correspond to your host name (the `http://`must not be removed):
+You need to modify the value of `SERVICE_URL` in [seahub_settings.py](../config/seahub_settings_py.md)
+to let Seafile know the domain you choose. You can also modify SERVICE_URL via web UI in "System Admin->Settings". (**Warning**: if you set the value both via Web UI and seahub_settings.py, the setting via Web UI will take precedence.)
 
 ```python
-SERVICE_URL = http://seafile.example.com
+SERVICE_URL = 'http://www.myseafile.com'
 ```
 
-Note: The`SERVICE_URL` can also be modified in Seahub via System Admininstration > Settings.  If `SERVICE_URL` is configured via System Admin and in ccnet.conf, the value in System Admin will take precedence.
+Note: If you later change the domain assigned to seahub, you also need to change the value of  `SERVICE_URL`.
 
-### Modifying seahub_settings.py
 
-The `FILE_SERVER_ROOT` in [seahub_settings.py](../config/seahub_settings_py/) informs Seafile about the location of and the protocol used by the file server. Change the `FILE_SERVER_ROOT`so as to correspond to your host name (the `http://`and the trailing `/seafhttp` must not be removed):
-
+You need to add a line in `seahub_settings.py` to set the value of `FILE_SERVER_ROOT`. You can also modify `FILE_SERVER_ROOT` via web UI in "System Admin->Settings". (**Warning**: if you set the value both via Web UI and seahub_settings.py, the setting via Web UI will take precedence.)
 
 ```python
 FILE_SERVER_ROOT = 'http://seafile.example.com/seafhttp'
 ```
-
-Note: The`FILE_SERVER_ROOT` can also be modified in Seahub via System Admininstration > Settings.  If `FILE_SERVER_ROOT` is configured via System Admin and in seahub_settings.py, the value in System Admin will take precedence.
 
 ### Modifying seafile.conf
 
