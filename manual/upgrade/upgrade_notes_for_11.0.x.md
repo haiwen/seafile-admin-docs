@@ -183,4 +183,4 @@ OAUTH_ATTRIBUTE_MAP = {
 ```
 
 
-### 3) Start Seafile-11.0.x server.
+### 4) Start Seafile-11.0.x server.
