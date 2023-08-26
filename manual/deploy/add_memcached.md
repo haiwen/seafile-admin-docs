@@ -38,22 +38,3 @@ CACHES = {
 
 ```
 
-
-**For Seafile 7.0.x**
-
-```
-# on Debian/Ubuntu 16.04
-apt-get install memcached libmemcached-dev -y
-
-systemctl enable --now memcached
-
-```
-
-```
-# on CentOS 7
-yum install memcached libffi-devel -y
-
-systemctl enable --now memcached
-
-```
-
