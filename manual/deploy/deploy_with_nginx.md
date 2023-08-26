@@ -189,7 +189,7 @@ Note: If you later change the domain assigned to seahub, you also need to change
 You need to add a line in `seahub_settings.py` to set the value of `FILE_SERVER_ROOT`. You can also modify `FILE_SERVER_ROOT` via web UI in "System Admin->Settings". (**Warning**: if you set the value both via Web UI and seahub_settings.py, the setting via Web UI will take precedence.)
 
 ```python
-FILE_SERVER_ROOT = 'http://www.myseafile.com/seafhttp'
+FILE_SERVER_ROOT = 'http://seafile.example.com/seafhttp'
 ```
 
 ### Modifying seafile.conf
