@@ -31,7 +31,7 @@ The upgrade script will merge ccnet_db.LDAPImported table to ccnet_db.EmailUsers
 
 ### OAuth authentication and other SSO methods
 
-If you use OAuth authentication:
+If you use OAuth authentication, the configuration need to be changed a bit.
 
 If you use SAML, you don't need to change configuration files.
 
@@ -44,8 +44,7 @@ Seafile 11.0 deprecates using SQLite as the database. There are several reasons 
 * Docker deployments - Our official Docker images do not support SQLite. MySQL is the preferred option.
 * Migration difficulties - Migrating SQLite databases to MySQL via SQL translation is unreliable.
 
-To migrate from SQLite database to MySQL database:
-
+To migrate from SQLite database to MySQL database, you can follow the document [Migrate from SQLite to MySQL](../deploy/migrate_from_sqlite_to_mysql.md)
 
 
 ### ElasticSearch change (pro edition only)
@@ -67,15 +66,16 @@ Note, you should install Python libraries system wide using root user or sudo mo
 
 ## Upgrade to 11.0.x
 
-1. Stop Seafile-10.0.x server.
+#### 1) Stop Seafile-10.0.x server.
 
-2. Start from Seafile 11.0.x, run the script:
+#### 2) Start from Seafile 11.0.x, run the script:
 
-    ```sh
-    upgrade/upgrade_10.0_11.0.sh
-    ```
+```sh
+upgrade/upgrade_10.0_11.0.sh
+```
    
-   Change configurations for LDAP and OAuth
+Change configurations for LDAP
 
-3. Start Seafile-11.0.x server.
+Change configuration for OAuth
 
+#### 3) Start Seafile-11.0.x server.
