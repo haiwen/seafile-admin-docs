@@ -1,12 +1,12 @@
 # Upgrade Seafile Docker
 
-## Upgrade from 7.0 to 7.1
+## Upgrade from 9.0 to 10.0
 
 Just download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version, then start with docker-compose up.
 
-## Upgrade from 7.1 to 8.0
+If you are using pro edition with ElasticSearch, SAML SSO and storage backend features, follow the upgrading manual on how to update the configuration for these features: https://manual.seafile.com/upgrade/upgrade_notes_for_10.0.x
 
-Just download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version, then start with docker-compose up.
+If you want to use the new notification server and rate control (pro edition only), please refer to the upgrading manual: https://manual.seafile.com/upgrade/upgrade_notes_for_10.0.x
 
 ## Upgrade from 8.0 to 9.0
 
@@ -39,10 +39,11 @@ docker exec seafile nginx -s reload
 
 A cron job inside the container will automatically renew the certificate.
 
-## Upgrade from 9.0 to 10.0
+## Upgrade from 7.1 to 8.0
 
 Just download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version, then start with docker-compose up.
 
-If you are using pro edition with ElasticSearch, SAML SSO and storage backend features, follow the upgrading manual on how to update the configuration for these features: https://manual.seafile.com/upgrade/upgrade_notes_for_10.0.x
 
-If you want to use the new notification server and rate control (pro edition only), please refer to the upgrading manual: https://manual.seafile.com/upgrade/upgrade_notes_for_10.0.x
+## Upgrade from 7.0 to 7.1
+
+Just download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version, then start with docker-compose up.
