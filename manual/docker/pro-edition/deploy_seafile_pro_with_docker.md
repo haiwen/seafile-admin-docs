@@ -42,7 +42,7 @@ NOTE: Older Seafile PE versions are also available in the repository (back to Se
 
 Download the docker-compose.yml sample file into Seafile's directory and modify the Compose file to fit your environment and settings.
 
-NOTE: The Compose file of Seafile 9.0 is different from that of older versions.
+NOTE: Different versions of Seafile have different compose files.
 
 ```
 mkdir /opt/seafile
@@ -51,8 +51,11 @@ cd /opt/seafile
 # Seafile PE 7.1 and 8.0
 wget -O "docker-compose.yml" "https://manual.seafile.com/docker/pro-edition/7.1_8.0/docker-compose.yml"
 
-# Seafile PE 9.0 or later
-wget -O "docker-compose.yml" "https://manual.seafile.com/docker/pro-edition/docker-compose.yml"
+# Seafile PE 9.0
+wget -O "docker-compose.yml" "https://manual.seafile.com/docker/pro-edition/9.0/docker-compose.yml"
+
+# Seafile PE 10.0
+wget -O "docker-compose.yml" "https://manual.seafile.com/docker/pro-edition/10.0/docker-compose.yml"
 
 nano docker-compose.yml
 ```
