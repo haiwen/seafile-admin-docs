@@ -7,7 +7,11 @@ To setup Seafile Professional Server with Amazon S3:
 - Setup the basic Seafile Professional Server following the guide on [Download and setup Seafile Professional Server](download_and_setup_seafile_professional_server.md)
 - Install the python `boto` library. It's needed to access S3 service.
 ```
+# Version 10.0 or earlier
 sudo easy_install boto
+
+# Since 11.0 version
+sudo easy_install boto3
 ```
 - Install and configure memcached. For best performance, Seafile requires install memcached and enable memcache for objects. We recommend to allocate 128MB memory for memcached. Edit /etc/memcached.conf
 
