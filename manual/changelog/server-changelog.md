@@ -2,6 +2,23 @@
 
 > You can check Seafile release table to find the lifetime of each release and current supported OS: <https://cloud.seatable.io/dtable/external-links/a85d4221e41344c19566/?tid=0000&vid=0000>
 
+## 11.0
+
+**Upgrade**
+
+Please check our document for how to upgrade to 11.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x/>
+
+### 11.0.0 beta (to be released)
+
+* Use a virtual ID to identify a user
+* LDAP login update
+* SAML/Shibboleth/OAuth login update
+* Update Django to version 4.2
+* Update SQLAlchemy to version 2.x
+* Improve UI of PDF view page
+* Add seafevents component
+
+
 ## 10.0
 
 **Upgrade**
