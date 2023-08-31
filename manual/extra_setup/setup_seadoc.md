@@ -50,7 +50,7 @@ apt-get install docker-compose -y
 
 ### Download and modify SeaDoc docker-compose.yml
 
-Download [docker-compose.yml](https://manual.seafile.com/extra_setup/docker-compose.yml) sample file to your host. Then modify the file according to your environment. The following fields are needed to be modified:
+Download [docker-compose.yml](https://manual.seafile.com/extra_setup/sdoc/docker-compose.yml) sample file to your host. Then modify the file according to your environment. The following fields are needed to be modified:
 
 * MySQL host (DB_HOST)
 * MySQL port (DB_PORT)
@@ -89,7 +89,7 @@ sdoc-server:
 
 #### Download and modify seafile.nginx.conf
 
-Download [sdoc-server-nginx-conf](https://manual.seafile.com/extra_setup/sdoc-server-nginx-conf) sample file to your host. Add its contents to the `seafile.nginx.conf` and reload nginx:
+Download [sdoc-server-nginx-conf](https://manual.seafile.com/extra_setup/sdoc/sdoc-server-nginx-conf) sample file to your host. Add its contents to the `seafile.nginx.conf` and reload nginx:
 
 ```sh
 nginx -s reload
@@ -119,7 +119,7 @@ services:
 
 #### Download and modify seafile.nginx.conf
 
-Download [sdoc-server-nginx-conf](https://manual.seafile.com/extra_setup/sdoc-server-nginx-conf) sample file to your host. Add its contents to the `seafile.nginx.conf` and reload nginx:
+Download [sdoc-server-nginx-conf](https://manual.seafile.com/extra_setup/sdoc/sdoc-server-nginx-conf) sample file to your host. Add its contents to the `seafile.nginx.conf` and reload nginx:
 
 ```sh
 nginx -s reload
