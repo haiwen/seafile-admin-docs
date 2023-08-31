@@ -2,7 +2,7 @@ version: "2.0"
 services:
 
   sdoc-server:
-    image: seafileltd/sdoc-server:1.0.0
+    image: seafileltd/sdoc-server:latest
     container_name: sdoc-server
     ports:
       - 80:80
