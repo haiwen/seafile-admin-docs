@@ -1,4 +1,4 @@
-# Upgrade notes for 11.0 (Draft)
+# Upgrade notes for 11.0
 
 These notes give additional information about changes.
 Please always follow the main [upgrade guide](./upgrade.md).
