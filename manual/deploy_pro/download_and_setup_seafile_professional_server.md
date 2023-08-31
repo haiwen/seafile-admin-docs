@@ -83,6 +83,28 @@ sudo pip3 install --timeout=3600 django==3.2.* future==0.18.* mysqlclient==2.1.*
     psd-tools django-pylibmc django_simple_captcha==0.5.* pycryptodome==3.16.* cffi==1.15.1 lxml
 ```
 
+**For Seafile 11.0.x**
+
+```
+# on Ubuntu 22.04 (on Ubuntu 20.04/Debian 11/Debian 10, it is almost the same)
+apt-get update
+apt-get install -y python3 python3-setuptools python3-pip python3-ldap libmysqlclient-dev
+apt-get install -y memcached libmemcached-dev
+
+sudo pip3 install --timeout=3600 django==3.2.* future==0.18.* mysqlclient==2.1.* \
+    pymysql pillow==9.3.* pylibmc captcha==0.4 markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
+    psd-tools django-pylibmc django_simple_captcha==0.5.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 lxml
+```
+
+```
+# CentOS 8
+sudo yum install python3 python3-setuptools python3-pip python3-devel mysql-devel gcc -y
+
+sudo pip3 install --timeout=3600 django==3.2.* future==0.18.* mysqlclient==2.1.* \
+    pymysql pillow==9.3.* pylibmc captcha==0.4 markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
+    psd-tools django-pylibmc django_simple_captcha==0.5.* pycryptodome==3.16.* cffi==1.15.1 lxml
+```
+
 **Note**: The recommended deployment option for Seafile PE on CentOS/Redhat is [Docker](https://manual.seafile.com/docker/pro-edition/deploy_seafile_pro_with_docker/).
 
 ### Installing Java Runtime Environment
