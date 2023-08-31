@@ -7,7 +7,7 @@ repo_name: haiwen/seafile-admin-docs
 repo_url: https://github.com/haiwen/seafile-admin-docs/
 edit_uri: blob/master/manual
 
-copyright: Copyright &copy; 2020 seafile
+copyright: Copyright &copy; 2023 Seafile Ltd.
 
 theme:
   name: material

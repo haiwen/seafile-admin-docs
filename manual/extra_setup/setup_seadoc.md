@@ -31,22 +31,8 @@ create database if not exists sdoc_db charset utf8mb4;
 GRANT ALL PRIVILEGES ON `sdoc_db`.* to `seafile`@`sdoc_server_host`;
 ```
 
-### Install docker
+Note, SeaDoc will only create one database table to store operation logs.
 
-Use the [official installation guide for your OS to install Docker](https://docs.docker.com/engine/install/).
-
-### Install docker-compose
-
-SeaDoc docker image uses docker-compose. You should install the docker-compose command.
-
-```bash
-# for CentOS
-yum install docker-compose -y
-
-# for Ubuntu
-apt-get install docker-compose -y
-
-```
 
 ### Download and modify SeaDoc docker-compose.yml
 
@@ -57,12 +43,12 @@ Download [docker-compose.yml](https://manual.seafile.com/extra_setup/sdoc/docker
 * MySQL user (DB_USER)
 * MySQL password (DB_PASSWD)
 * The volume directory of SeaDoc data (volumes)
-* SeaDoc service url (SDOC_SERVER_HOSTNAME)
-* Seafile service url (SEAHUB_SERVICE_URL)
+* SeaDoc service URL (SDOC_SERVER_HOSTNAME)
+* Seafile service URL (SEAHUB_SERVICE_URL)
 
 ### Deployment method
 
-SeaDoc has three deployment methods
+SeaDoc has three deployment methods:
 
 * Deploy SeaDoc on a new host.
 * SeaDoc and Seafile are deployed on the same host.
@@ -70,7 +56,7 @@ SeaDoc has three deployment methods
 
 ### Deploy SeaDoc on a new host
 
-Just follow the chapter: Start SeaDoc.
+Just follow the section: Start SeaDoc.
 
 ### SeaDoc and Seafile are deployed on the same host
 
@@ -137,7 +123,7 @@ And reload nginx
 nginx -s reload
 ```
 
-Then follow the chapter: Start SeaDoc.
+Then follow the section: Start SeaDoc.
 
 ### SeaDoc and Seafile docker are deployed on the same host
 
@@ -209,7 +195,7 @@ And reload nginx
 nginx -s reload
 ```
 
-Then follow the chapter: Start SeaDoc.
+Then follow the section: Start SeaDoc.
 
 ## Start SeaDoc
 
