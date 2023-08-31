@@ -87,9 +87,51 @@ sdoc-server:
         - "7070:7070"
 ```
 
-#### Download and modify seafile.nginx.conf
+#### Modify seafile.nginx.conf
 
-Download [sdoc-server-nginx-conf](https://manual.seafile.com/extra_setup/sdoc/sdoc-server-nginx-conf) sample file to your host. Add its contents to the `seafile.nginx.conf` and reload nginx:
+Add the following to the `seafile.nginx.conf`:
+
+```
+    location /sdoc-server {
+        add_header Access-Control-Allow-Origin *;
+        add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
+        add_header Access-Control-Allow-Headers "deviceType,token, authorization, content-type";
+        if ($request_method = 'OPTIONS') {
+            add_header Access-Control-Allow-Origin *;
+            add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
+            add_header Access-Control-Allow-Headers "deviceType,token, authorization, content-type";
+            return 204;
+        }
+
+        proxy_pass         http://127.0.0.1:7070;
+        proxy_redirect     off;
+        proxy_set_header   Host              $host;
+        proxy_set_header   X-Real-IP         $remote_addr;
+        proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
+        proxy_set_header   X-Forwarded-Host  $server_name;
+        proxy_set_header   X-Forwarded-Proto $scheme;
+
+        client_max_body_size 100m;
+    }
+
+    location /socket.io {
+        proxy_pass http://127.0.0.1:7070;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_redirect off;
+
+        proxy_buffers 8 32k;
+        proxy_buffer_size 64k;
+
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-NginX-Proxy true;
+    }
+```
+
+And reload nginx
 
 ```sh
 nginx -s reload
@@ -117,9 +159,11 @@ services:
     ...
 ```
 
-#### Download and modify seafile.nginx.conf
+#### Modify seafile.nginx.conf
 
-Download [sdoc-server-nginx-conf](https://manual.seafile.com/extra_setup/sdoc/sdoc-server-nginx-conf) sample file to your host. Add its contents to the `seafile.nginx.conf` and reload nginx:
+Add the nginx configuration to the `seafile.nginx.conf`, the content is the same as above
+
+And reload nginx
 
 ```sh
 nginx -s reload
