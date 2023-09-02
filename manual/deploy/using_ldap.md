@@ -2,6 +2,8 @@
 
 Note: This documentation is for the Community Edition. If you're using Pro Edition, please refer to [the Seafile Pro documentation](../deploy_pro/using_ldap_pro.md).
 
+ For version 11.0, please follow the new document [LDAP in version 11.0](./ldap_in_11.0.md).
+ 
 ## How does LDAP User Management work in Seafile
 
 When Seafile is integrated with LDAP/AD, users in the system can be divided into two tiers:
