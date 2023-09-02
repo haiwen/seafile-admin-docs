@@ -4,15 +4,15 @@ Since CE version 6.2.3, Seafile supports user login via [OAuth](https://oauth.ne
 
 Before using OAuth, Seafile administrator should first register an OAuth2 client application on your authorization server, then add some configurations to seahub_settings.py.
 
-#### Register an OAuth2 client application
+### Register an OAuth2 client application
 
 Here we use Github as an example. First you should register an OAuth2 client application on Github, [official document from Github](https://developer.github.com/apps/building-integrations/setting-up-and-registering-oauth-apps/registering-oauth-apps/) is very detailed.
 
-#### Configuration
+### Configuration
 
 Add the folllowing configurations to seahub_settings.py:
 
-```
+```python
 ENABLE_OAUTH = True
 
 # If create new user when he/she logs in Seafile for the first time, defalut `True`.
@@ -38,15 +38,19 @@ OAUTH_TOKEN_URL = 'https://github.com/login/oauth/access_token'
 OAUTH_USER_INFO_URL = 'https://api.github.com/user'
 OAUTH_SCOPE = ["user",]
 OAUTH_ATTRIBUTE_MAP = {
-    "id": (True, "email"),
+    "id": (True, "email"),  # Please keep the 'email' option unchanged to be compatible with the login of users of version 11.0 and earlier.
     "name": (False, "name"),
     "email": (False, "contact_email"),
+    "uid": (True, "uid"),   # Since 11.0 version, Seafile use 'uid' as the external unique identifier of the user.
+                            # Different OAuth systems have different attributes, which may be: 'uid' or 'username', etc.
+                            # If there is no 'uid' attribute, do not configure this option and keep the 'email' option unchanged,
+                            # to be compatible with the login of users of version 11.0 and earlier.
 }
 ```
 
-###### Sample settings for Google:
+#### Sample settings for Google
 
-```
+```python
 ENABLE_OAUTH = True
 OAUTH_ENABLE_INSECURE_TRANSPORT = True
 
@@ -60,7 +64,9 @@ OAUTH_AUTHORIZATION_URL = 'https://accounts.google.com/o/oauth2/v2/auth'
 OAUTH_TOKEN_URL = 'https://www.googleapis.com/oauth2/v4/token'
 OAUTH_USER_INFO_URL = 'https://www.googleapis.com/oauth2/v1/userinfo'
 OAUTH_SCOPE = [
+    "openid",
     "https://www.googleapis.com/auth/userinfo.email",
+    "https://www.googleapis.com/auth/userinfo.profile",
 ]
 OAUTH_ATTRIBUTE_MAP = {
     "id": (True, "email"),
@@ -69,8 +75,11 @@ OAUTH_ATTRIBUTE_MAP = {
 }
 ```
 
-For some system, like Github, `email` is not the unique identifier for an user, but `id` is in most cases, so we use `id` as settings example in our manual. As Seafile uses email to identify an unique user account for now, so we combine `id` and OAUTH_PROVIDER_DOMAIN, which is google.com in your case, to an email format string and then create this account if not exist. If you want to use `email` info from Google, just change the setting as followings:
-```
+#### Sample settings for Github
+
+For Github, `email` is not the unique identifier for an user, but `id` is in most cases, so we use `id` as settings example in our manual. As Seafile uses email to identify an unique user account for now, so we combine `id` and `OAUTH_PROVIDER_DOMAIN`, which is github.com in your case, to an email format string and then create this account if not exist. Change the setting as followings:
+
+```python
 ENABLE_OAUTH = True
 OAUTH_ENABLE_INSECURE_TRANSPORT = True
 
@@ -78,32 +87,35 @@ OAUTH_CLIENT_ID = "your-client-id"
 OAUTH_CLIENT_SECRET = "your-client-secret"
 OAUTH_REDIRECT_URL = 'http{s}://example.com/oauth/callback/'
 
-# The following shoud NOT be changed if you are using Google as OAuth provider.
-OAUTH_PROVIDER_DOMAIN = 'google.com'
-OAUTH_AUTHORIZATION_URL = 'https://accounts.google.com/o/oauth2/v2/auth'
-OAUTH_TOKEN_URL = 'https://www.googleapis.com/oauth2/v4/token'
-OAUTH_USER_INFO_URL = 'https://www.googleapis.com/oauth2/v1/userinfo'
-OAUTH_SCOPE = [
-    "https://www.googleapis.com/auth/userinfo.email",
-]
+OAUTH_PROVIDER_DOMAIN = 'github.com'
+OAUTH_AUTHORIZATION_URL = 'https://github.com/login/oauth/authorize'
+OAUTH_TOKEN_URL = 'https://github.com/login/oauth/access_token'
+OAUTH_USER_INFO_URL = 'https://api.github.com/user'
+OAUTH_SCOPE = ["user",]
 OAUTH_ATTRIBUTE_MAP = {
-    "email": (True, "email"),
+    "id": (True, "email"),
+    "email": (False, "contact_email"),
     "name": (False, "name"),
 }
 ```
+
+#### Sample settings for GitLab
 
 To enable OAuth via GitLab. Create an application in GitLab (under Admin area->Applications).
 
 Fill in required fields:
 
 - Name: a name you specify
+
 - Redirect URI: The callback url see below `OAUTH_REDIRECT_URL`
+
 - Trusted: Skip confirmation dialog page. Select this to *not* ask the user if he wants to authorize seafile to receive access to his/her account data.
+
 - Scopes: Select `openid` and `read_user` in the scopes list.
 
 Press submit and copy the client id and secret you receive on the confirmation page and use them in this template for your seahub_settings.py:
 
-```
+```python
 ENABLE_OAUTH = True
 OAUTH_CLIENT_ID = "your-client-id"
 OAUTH_CLIENT_SECRET = "your-client-secret"
@@ -120,12 +132,13 @@ OAUTH_ATTRIBUTE_MAP = {
 }
 ```
 
+#### Sample settings for Azure Cloud
+
 For users of Azure Cloud, as there is no `id` field returned from Azure Cloud's user info endpoint, so we use a special configuration for `OAUTH_ATTRIBUTE_MAP` setting (others are the same as Github/Google):
 
-```
+```python
 OAUTH_ATTRIBUTE_MAP = {
     "email": (True, "email"),
-    "id": (False, "not used"),
     "name": (False, "name")
 }
 ```
