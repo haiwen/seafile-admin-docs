@@ -2,6 +2,8 @@
 
 Since version 4.1.0, the Pro Edition supports importing (syncing) groups from LDAP or Active Directory.
 
+For version 11.0, please follow the new document [LDAP in version 11.0](./ldap_in_11.0.md#setting-up-ldap-group-sync-optional).
+
 ## How It Works
 
 The importing or syncing process maps groups from LDAP directory server to groups in Seafile's internal database. This process is one-way.

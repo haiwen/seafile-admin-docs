@@ -1,5 +1,7 @@
 # Configure Seafile Pro Edition to use LDAP
 
+For version 11.0, please follow the new document [LDAP in version 11.0](./ldap_in_11.0.md).
+
 ## How does LDAP User Management works with Seafile
 
 When Seafile is integrated with LDAP/AD, users in the system can be divided into two tiers:

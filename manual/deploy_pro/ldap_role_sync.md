@@ -1,5 +1,7 @@
 # Importing Roles from LDAP/AD
 
+For version 11.0, please follow the new document [LDAP in version 11.0](./ldap_in_11.0.md#importing-roles-from-ldap).
+
 Since version 6.1.5, the Pro Edition supports syncing roles from LDAP or Active Directory.
 
 To enable this feature, add config option `ROLE_NAME_ATTR` to ccnet.conf
