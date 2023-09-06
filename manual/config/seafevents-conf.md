@@ -1,8 +1,21 @@
 # Configurable Options
 
-> seafevents.conf is for pro edition only 
-
 In the file `seafevents.conf`:
+
+```
+[STATISTICS]
+## must be "true" to enable statistics
+enabled = false
+
+[SEAHUB EMAIL]
+## must be "true" to enable user email notifications when there are new unread notifications
+enabled = true
+
+## interval of sending Seahub email. Can be s(seconds), m(minutes), h(hours), d(days)
+interval = 30m
+```
+
+> The following configurations for Pro Edition only
 
 ```
 [FILE HISTORY]
@@ -27,10 +40,6 @@ suffix = md,txt,...
 ## Audit log is disabled default.
 ## Leads to additional SQL tables being filled up, make sure your SQL server is able to handle it.
 enabled = true
-
-[STATISTICS]
-## must be "true" to enable statistics
-enabled = false
 
 [INDEX FILES]
 ## must be "true" to enable search
@@ -59,14 +68,6 @@ password = elastic_password  # password to connect to Elasticsearch
 ## From 9.0.7 pro, Seafile supports connecting to elasticsearch via HTTPS, you need to configure HTTPS for the Elasticsearch server
 scheme = https               # The default is http. If the Elasticsearch server is not configured with HTTPS, the scheme and cafile do not need to be configured
 cafile = path/to/cert.pem    # The certificate path for user authentication. If the Elasticsearch server does not enable certificate authentication, do not need to be configured
-
-[SEAHUB EMAIL]
-
-## must be "true" to enable user email notifications when there are new unread notifications
-enabled = true
-
-## interval of sending Seahub email. Can be s(seconds), m(minutes), h(hours), d(days)
-interval = 30m
 
 [EVENTS PUBLISH]
 ## must be "true" to enable publish events messages
