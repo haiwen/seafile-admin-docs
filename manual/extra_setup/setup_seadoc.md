@@ -78,7 +78,7 @@ sdoc-server:
 Add the following to the `seafile.nginx.conf`:
 
 ```
-    location /sdoc-server {
+    location /sdoc-server/ {
         add_header Access-Control-Allow-Origin *;
         add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
         add_header Access-Control-Allow-Headers "deviceType,token, authorization, content-type";
@@ -89,7 +89,7 @@ Add the following to the `seafile.nginx.conf`:
             return 204;
         }
 
-        proxy_pass         http://127.0.0.1:7070;
+        proxy_pass         http://127.0.0.1:7070/;
         proxy_redirect     off;
         proxy_set_header   Host              $host;
         proxy_set_header   X-Real-IP         $remote_addr;
@@ -142,6 +142,8 @@ services:
       # - 80:80
       # - 443:443
       - 7070:7070
+    networks:
+      - seafile-net
     ...
 ```
 
@@ -150,7 +152,7 @@ services:
 Add the following to the `seafile.nginx.conf`:
 
 ```
-    location /sdoc-server {
+    location /sdoc-server/ {
         add_header Access-Control-Allow-Origin *;
         add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
         add_header Access-Control-Allow-Headers "deviceType,token, authorization, content-type";
@@ -161,7 +163,7 @@ Add the following to the `seafile.nginx.conf`:
             return 204;
         }
 
-        proxy_pass         http://sdoc-server:7070;
+        proxy_pass         http://sdoc-server:7070/;
         proxy_redirect     off;
         proxy_set_header   Host              $host;
         proxy_set_header   X-Real-IP         $remote_addr;

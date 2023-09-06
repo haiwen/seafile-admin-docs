@@ -9,7 +9,7 @@ services:
       # - 443:443
       # - 7070:7070
     volumes:
-      - /tmp/sdoc-server/shared:/shared
+      - /opt/seafile/sdoc-data/:/shared
     environment:
       - DB_HOST=192.168.0.2
       - DB_PORT=3306
