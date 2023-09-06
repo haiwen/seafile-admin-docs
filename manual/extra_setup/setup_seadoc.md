@@ -1,4 +1,4 @@
-# SeaDoc Integration (Draft)
+# SeaDoc Integration
 
 SeaDoc is an online collaborative document editor and workflow management system.
 
