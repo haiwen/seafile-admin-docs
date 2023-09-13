@@ -2,6 +2,13 @@
 
 ## 9.0
 
+### 9.0.4 (2023/09/13)
+
+* \[win] Upgrade to Qt 6.5.2 and OpenSSL 3.0
+* Record an error when fail to checkout a file
+* \[linux] Supports notification server
+* Handles new errors returned by newer servers
+
 ### 9.0.3 (2023/07/05)
 
 * \[macOS] Provide universial package for Apple Silicon and Intel
