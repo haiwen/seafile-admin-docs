@@ -1,5 +1,11 @@
 # SeaDrive Client Changelog
 
+### 3.0.6 (2023/09/15)
+
+* \[win] Upgrade Qt to 6.5.2 and OpenSSL 3.0
+* \[win] Add a tip that re-syncing an account will create a new sync root folder
+* \[mac] Fix a bug that uncaching a file will make it 0-sized
+
 ### 3.0.5 (2023/08/15)
 
 * \[win] Fix thumbnail orientation issue
