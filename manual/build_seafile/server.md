@@ -10,14 +10,25 @@ Note, the following commands are all executed in the seafile-ce-env docker conta
 
 ## Update Source and Install Dependencies.
 
+Update base system and install base dependencies:
+
 ```
 apt-get update && apt-get upgrade -y
 
-apt-get install -y ssh libevent-dev libcurl4-openssl-dev libglib2.0-dev uuid-dev intltool libsqlite3-dev libmysqlclient-dev libarchive-dev libtool libjansson-dev valac libfuse-dev python-dateutil cmake re2c flex sqlite3 python-pip python-simplejson git libssl-dev libldap2-dev libonig-dev vim vim-scripts wget cmake gcc autoconf automake mysql-client librados-dev libxml2-dev curl sudo telnet netcat unzip netbase ca-certificates apt-transport-https build-essential libxslt1-dev libffi-dev libpcre3-dev libz-dev xz-utils nginx pkg-config poppler-utils libmemcached-dev sudo ldap-utils libldap2-dev
+apt-get install -y ssh libevent-dev libcurl4-openssl-dev libglib2.0-dev uuid-dev intltool libsqlite3-dev libmysqlclient-dev libarchive-dev libtool libjansson-dev valac libfuse-dev python3-dateutil cmake re2c flex sqlite3 python-pip python3-simplejson git libssl-dev libldap2-dev libonig-dev vim vim-scripts wget cmake gcc autoconf automake mysql-client librados-dev libxml2-dev curl sudo telnet netcat unzip netbase ca-certificates apt-transport-https build-essential libxslt1-dev libffi-dev libpcre3-dev libz-dev xz-utils nginx pkg-config poppler-utils libmemcached-dev sudo ldap-utils libldap2-dev libjwt-dev
+```
 
-curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+Install Node 16 from nodesource:
+
+```
+curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_16.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
 apt-get install -y nodejs
+```
 
+Install other Python 3 dependencies:
+
+```
 apt-get install -y python3 python3-dev python3-pip python3-setuptools python3-ldap
 
 python3 -m pip install --upgrade pip
@@ -29,7 +40,7 @@ pip3 install Django==4.2.* django-statici18n==2.3.* django_webpack_loader==1.7.*
 
 ```
 apt-get install -y mariadb-server
-service mysql start
+service mariadb start
 mysqladmin -u root password 123456
 ```
 
@@ -153,7 +164,7 @@ seaf-server -c /root/dev/conf -d /root/dev/seafile-data -D all -f -l - &
 ```
 cd ~/dev/source-code/seahub/
 
-export PYTHONPATH=/usr/local/lib/python3.10/site-packages/:/root/dev/source-code/seahub/thirdpart:$PYTHONPATH
+export PYTHONPATH=/usr/local/lib/python2.7/dist-packages/:/root/dev/source-code/seahub/thirdpart:$PYTHONPATH
 export CCNET_CONF_DIR=/root/dev/conf
 export SEAFILE_CONF_DIR=/root/dev/seafile-data
 export SEAFILE_CENTRAL_CONF_DIR=/root/dev/conf
