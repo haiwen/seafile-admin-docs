@@ -13,18 +13,6 @@ Seafile PE can be used without a paid license with up to three users. Licenses f
 
 Use the [official installation guide for your OS to install Docker](https://docs.docker.com/engine/install/).
 
-### Installing Docker Compose
-
-Install the Docker Compose package:
-
-```bash
-# CentOS
-yum install docker-compose -y
-
-# Debian/Ubuntu
-apt-get install docker-compose -y
-```
-
 ### Downloading the Seafile Image
 
 Log into Seafile's private repository and pull the Seafile image:
@@ -92,10 +80,10 @@ chmod 777 -R /opt/seafile-elasticsearch/data
 
 ### Starting the Docker Containers
 
-Run docker-compose in detached mode:
+Run docker compose in detached mode:
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 NOTE: You must run the above command in the directory with the docker-compose.yml.
@@ -110,7 +98,7 @@ If you have a `seafile-license.txt` license file, simply put it in the volume of
 Then restart the container:
 
 ```
-docker-compose restart
+docker compose restart
 ```
 
 ### Reviewing the Deployment
@@ -149,7 +137,7 @@ All Seafile config files are stored in `/opt/seafile-data/seafile/conf`. The ngi
 Any modification of a configuration file requires a restart of Seafile to take effect:
 
 ```
-docker-compose restart
+docker compose restart
 ```
 
 All Seafile log files are stored in `/opt/seafile-data/seafile/logs` whereas all other log files are in `/opt/seafile-data/logs/var-log`.
@@ -208,7 +196,7 @@ In /scripts/ssl.sh (script in seafile container), `git clone git://` has to be r
 Then restart the container:
 
 ```shell
-docker-compose restart
+docker compose restart
 ```
 
 Since version 9.0.6, we use acme (not acme-tiny) to get certificate and fix this error.
@@ -353,8 +341,8 @@ useradd --home-dir /home/seafile --create-home --uid 8000 --gid 8000 --shell /bi
 Restarting the container run Seafile use seafile user. (NOTE: Later when do maintenance, other scripts in docker also required to run as seafile user, e.g. `su seafile -c ./seaf-gc.sh`)
 
 ```sh
-docker-compose down
-docker-compose up -d
+docker compose down
+docker compose up -d
 ```
 
 ## OnlyOffice with Docker
@@ -426,7 +414,7 @@ A: Remove the directories /opt/seafile, /opt/seafile-data, /opt/seafile-elastics
 
 Q: Something goes wrong during the start of the containers. How can I find out more?
 
-A: You can view the docker logs using this command: `docker-compose logs -f`.
+A: You can view the docker logs using this command: `docker compose logs -f`.
 
 Q: I forgot the admin password. How do I create a new admin account?
 
@@ -452,8 +440,8 @@ mv /opt/seafile/shared/nginx/conf/seafile.nginx.conf /opt/seafile/shared/nginx/c
 Starting the new container will automatically apply a certificate.
 
 ```sh
-docker-compose down
-docker-compose up -d
+docker compose down
+docker compose up -d
 ```
 
 You need to manually change http to https in other configuration files, SERVICE_URL and FILE_SERVER_ROOT in the system admin page also need to be modified.

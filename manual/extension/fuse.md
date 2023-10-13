@@ -133,7 +133,7 @@ Add the following content
 Start Seafile server and enter the container
 
 ```bash
-docker-compose up -d
+docker compose up -d
 
 docker exec -it seafile bash
 ```

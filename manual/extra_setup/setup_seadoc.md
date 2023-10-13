@@ -204,7 +204,7 @@ Then follow the section: Start SeaDoc.
 Start SeaDoc server with the following command
 
 ```sh
-docker-compose up -d
+docker compose up -d
 ```
 
 Wait for a few minutes for the first time initialization. Open `sdoc-server-path/sdoc-server/conf/sdoc_server_config.json`, and record `private_key` for modifying Seafile configuration file.
@@ -272,7 +272,7 @@ To upgrade to latest version of SeaDoc server:
 
 ```sh
 docker pull seafileltd/sdoc-server:latest
-docker-compose down
-docker-compose up -d
+docker compose down
+docker compose up -d
 
 ```

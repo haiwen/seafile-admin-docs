@@ -12,13 +12,6 @@ We assume you have already deployed memcache, MariaDB, ElasticSearch in separate
 
 ## Deployment preparation
 
-Install docker-compose on each node
-
-```
-$ apt update && apt install docker-compose -y
-
-```
-
 Create the three databases ccnet_db, seafile_db, and seahub_db required by Seafile on MariaDB/MySQL, and authorize the \`seafile\` user to be able to access these three databases:
 
 ```
@@ -57,13 +50,6 @@ CREATE TABLE `avatar_uploaded` (
 
 ### Deploy seafile frontend nodes
 
-Install docker-compose on the frontend node
-
-```
-$ apt update && apt install docker-compose -y
-
-```
-
 Create the mount directory
 
 ```
@@ -80,7 +66,6 @@ $ vim docker-compose.yml
 ```
 
 ```
-version: '2.0'
 services:
   seafile:
     image: docker.seadrive.org/seafileltd/seafile-pro-mc:latest
@@ -102,7 +87,7 @@ Start the seafile docker container
 
 ```
 $ cd /opt/seafile
-$ docker-compose up -d
+$ docker compose up -d
 
 ```
 
@@ -220,7 +205,6 @@ $ vim docker-compose.yml
 ```
 
 ```
-version: '2.0'
 services:
   seafile:
     image: docker.seadrive.org/seafileltd/seafile-pro-mc:latest
@@ -242,7 +226,7 @@ Start the seafile docker container
 
 ```
 $ cd /opt/seafile
-$ docker-compose up -d
+$ docker compose up -d
 
 ```
 

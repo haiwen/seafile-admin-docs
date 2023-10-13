@@ -6,19 +6,6 @@
 
 Use the [official installation guide for your OS to install Docker](https://docs.docker.com/engine/install/).
 
-### Install docker-compose
-
-Seafile docker image uses docker-compose. You should install the docker-compose command.
-
-```bash
-# for CentOS
-yum install docker-compose -y
-
-# for Ubuntu
-apt-get install docker-compose -y
-
-```
-
 ### Download and modify docker-compose.yml
 
 Download [docker-compose.yml](https://manual.seafile.com/docker/docker-compose.yml) sample file to your host. Then modify the file according to your environment. The following fields are needed to be modified:
@@ -32,7 +19,7 @@ Download [docker-compose.yml](https://manual.seafile.com/docker/docker-compose.y
 Start Seafile server with the following command
 
 ```bash
-docker-compose up -d
+docker compose up -d
 
 ```
 
@@ -96,7 +83,7 @@ In /scripts/ssl.sh (script in seafile container), `git clone git://` has to be r
 Then restart the container:
 
 ```shell
-docker-compose restart
+docker compose restart
 ```
 
 Since version 9.0.6, we use acme (not acme-tiny) to get certificate and fix this error.
@@ -124,7 +111,7 @@ The config files are under `shared/seafile/conf`. You can modify the configurati
 After modification, you need to restart the container:
 
 ```bash
-docker-compose restart
+docker compose restart
 
 ```
 
@@ -133,7 +120,7 @@ docker-compose restart
 To view Seafile docker logs, please use the following command
 
 ```shell
-docker-compose logs -f
+docker compose logs -f
 ```
 
 The Seafile logs are under `shared/logs/seafile` in the docker, or `/opt/seafile-data/logs/seafile` in the server that run the docker.
@@ -276,8 +263,8 @@ useradd --home-dir /home/seafile --create-home --uid 8000 --gid 8000 --shell /bi
 Restarting the container run Seafile use seafile user. (NOTE: Later when do maintenance, other scripts in docker also required to run as seafile user, e.g. `su seafile -c ./seaf-gc.sh`)
 
 ```sh
-docker-compose down
-docker-compose up -d
+docker compose down
+docker compose up -d
 ```
 
 ## FAQ
@@ -309,8 +296,8 @@ mv /opt/seafile/shared/nginx/conf/seafile.nginx.conf /opt/seafile/shared/nginx/c
 Starting the new container will automatically apply a certificate.
 
 ```sh
-docker-compose down
-docker-compose up -d
+docker compose down
+docker compose up -d
 ```
 
 You need to manually change http to https in other configuration files, SERVICE_URL and FILE_SERVER_ROOT in the system admin page also need to be modified.

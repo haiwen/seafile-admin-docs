@@ -72,14 +72,13 @@ port = 6000
 
 ## Version 9.0.x or above
 
-We use Docker to deploy LibreOffice as an example, so you need to install Docker and docker-compose on the server in advance (Docker installation is not introduced here). The office-preview service needs to be deployed on the same machine as the Seafile service.
+We use Docker to deploy LibreOffice as an example, so you need to install Docker on the server in advance (Docker installation is not introduced here). The office-preview service needs to be deployed on the same machine as the Seafile service.
 
 ### Prepare `docker-compose.yml`
 
 Download and change [docker-compose.yml](./office-preview-yml/docker-compose.yml).
 
 ```
-version: '3.0'
 services:
   office-preview:
     image: seafileltd/office-preview:latest
@@ -96,7 +95,7 @@ services:
 ### Start `seafile-office-preview` container
 
 ```
-docker-compose up -d
+docker compose up -d
 ```
 
 Add `/opt/office-preview/shared/office_convertor_settings.py` manually.

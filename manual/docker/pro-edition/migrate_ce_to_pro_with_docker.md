@@ -11,7 +11,7 @@
 ### Stop the Seafile CE
 
 ```sh
-docker-compose down
+docker compose down
 
 ```
 
@@ -37,7 +37,7 @@ The Seafile Pro container needs to be running during the migration process, whic
 Run the following command to run the Seafile-Pro container：
 
 ```sh
-docker-compose up
+docker compose up
 
 ```
 
