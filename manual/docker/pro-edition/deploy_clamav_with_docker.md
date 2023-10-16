@@ -32,8 +32,8 @@ threads = 2
 ## Restart docker container
 
 ```shell
-docker-compose down
-docker-compose up -d 
+docker compose down
+docker compose up -d 
 ```
 
 Wait some minutes until Clamav finished initializing.

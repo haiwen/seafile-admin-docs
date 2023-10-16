@@ -11,14 +11,14 @@ Seafile adds new features in major and minor versions. It is likely that some da
 
 In general, to upgrade a cluster, you need:
 
-1. Download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version. Start with docker-compose up.
+1. Download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version. Start with docker compose up.
 2. Run the upgrade script in container (for example, /opt/seafile/seafile-server-latest/upgrade/upgrade_10_0_11_0.sh) in one frontend node
 3. Update configuration files at each node according to the documentation for each version
 4. Delete old search index in the backend node if needed
 
 ## Maintanence upgrade
 
-Maintanence upgrade only needs to download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version. Start with docker-compose up.
+Maintanence upgrade only needs to download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version. Start with docker compose up.
 
 ## Upgrade from 10.0 to 11.0
 

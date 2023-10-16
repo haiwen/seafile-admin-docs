@@ -108,8 +108,8 @@ ONLYOFFICE_JWT_SECRET = 'your-secret-string'
 ## Restart docker container
 
 ```shell
-docker-compose down
-docker-compose up -d 
+docker compose down
+docker compose up -d 
 ```
 
 Wait some minutes until OnlyOffice finished initializing.

@@ -73,7 +73,6 @@ Modify the memcached configuration in `seahub_settings.py` to use the Docker ver
 Download [docker-compose.yml](https://download.seafile.com/d/320e8adf90fa43ad8fee/files/?p=/docker/docker-compose.yml) to `/opt/seafile-data`. Comment out the db part as below:
 
 ```
-version: '2.0'
 services:
 #  db:
 #    image: mariadb:10.5
@@ -128,7 +127,7 @@ Start Seafile docker and check if everything is okay:
 
 ```
 cd /opt/seafile-data
-docker-compose  up -d
+docker compose  up -d
 ```
 
 ## Security
@@ -168,8 +167,8 @@ ip a #to check whether the ip is present
 service mysql restart
 ss -tulpen | grep 3306 #to check whether the database listens on the correct IP
 cd /opt/seafile-data/
-docker-compose down
-docker-compose up -d
+docker compose down
+docker compose up -d
 
 ## restart your applications
 ```
