@@ -8,6 +8,13 @@
 
 Please check our document for how to upgrade to 10.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_10.0.x/>
 
+### 10.0.10 (2023-10-17)
+
+* [fix] Fix a bug in golang file server that cannot handle sharing permission correctly for departments
+* [fix] Fix a bug Share Link Email Verification cannot work for Italy language
+* [fix] Fix notification server support in golang file server
+* [fix] Fix a bug in search library by ID in admin panel
+
 ### 10.0.9 (2023-08-25)
 
 * Add an option (library_file_limit in seafile.conf) to support setting the maximum number of files in a single library
