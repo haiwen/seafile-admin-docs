@@ -296,6 +296,14 @@ FILE_SERVER_ROOT = 'https://seafile.example.com/seafhttp'
 
 Note: The`FILE_SERVER_ROOT` can also be modified in Seahub via System Admininstration > Settings.  If `FILE_SERVER_ROOT` is configured via System Admin and in seahub_settings.py, the value in System Admin will take precedence.
 
+You also may need to set the CSRF trusted origins. In [seahub_settings.py](../config/seahub_settings_py/) set the `CSRF_TRUSTED_ORIGINS` it an list of origins. The `SERVICE_URL` at least should be part of the trusted origins. For example:
+
+```python
+CSRF_TRUSTED_ORIGINS = [ 'https://seafile.example.com' ]
+```
+
+Note: A common mistake is to have `/` at the end of the origin. Make sure to omit them.
+
 ### Modifying seafile.conf (optional)
 
 To improve security, the file server should only be accessible via Nginx.
