@@ -8,12 +8,19 @@
 
 Please check our document for how to upgrade to 11.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x/>
 
-### 11.0.1 beta (2023-10-18)
+### 11.0.1 beta and SeaDoc 0.2 beta (2023-10-18)
+
+Seafile
 
 * Improve UI of notifications dialog
 * Improve UI of dropdown menus for libraries and files
 * Improve UI for file tags
 * Remove file comment features as they are used very little
+
+SeaDoc
+
+* All major elements like tables, lists are now supported
+* The editor is basically stable to use. Everyone is welcome to try it out.
 
 ### 11.0.0 beta (cancelled)
 
