@@ -8,7 +8,14 @@
 
 Please check our document for how to upgrade to 11.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x/>
 
-### 11.0.0 beta (to be released)
+### 11.0.1 beta (2023-10-18)
+
+* Improve UI of notifications dialog
+* Improve UI of dropdown menus for libraries and files
+* Improve UI for file tags
+* Remove file comment features as they are used very little
+
+### 11.0.0 beta (cancelled)
 
 * Use a virtual ID to identify a user
 * LDAP login update
