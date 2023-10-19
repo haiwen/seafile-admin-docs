@@ -107,3 +107,25 @@ User notifications will be cleared during migration due to the slight difference
 use seahub_db;
 delete from notifications_usernotification;
 ```
+
+## FAQ
+
+#### Encountered `errno: 150 "Foreign key constraint is incorrectly formed"`
+
+This error typically occurs because the current table being created contains a foreign key that references a table whose primary key has not yet been created. Therefore, please check the database table creation order in the SQL file. The correct order is:
+
+```
+auth_user
+auth_group
+auth_permission
+auth_group_permissions
+auth_user_groups
+auth_user_user_permissions
+```
+and
+```
+post_office_emailtemplate
+post_office_email
+post_office_attachment
+post_office_attachment_emails
+```
