@@ -11,11 +11,6 @@ services:
   oods:
     image: onlyoffice/documentserver:latest
     container_name: seafile-oods
-    volumes:
-      - /opt/seafile-oods/DocumentServer/logs:/var/log/onlyoffice
-      - /opt/seafile-oods/DocumentServer/data:/var/www/onlyoffice/Data
-      - /opt/seafile-oods/DocumentServer/lib:/var/lib/onlyoffice
-      - /opt/seafile-oods/DocumentServer/local-production-linux.json:/etc/onlyoffice/documentserver/local-production-linux.json
     networks:
       - seafile-net
     environment:
@@ -99,8 +94,7 @@ Add this to seahub_settings.py
 ENABLE_ONLYOFFICE = True
 VERIFY_ONLYOFFICE_CERTIFICATE = True
 ONLYOFFICE_APIJS_URL = 'http://<your-seafile-doamin>/onlyofficeds/web-apps/apps/api/documents/api.js'
-ONLYOFFICE_FILE_EXTENSION = ('doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx', 'odt',
-'fodt', 'odp', 'fodp', 'ods', 'fods')
+ONLYOFFICE_FILE_EXTENSION = ('doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx', 'odt', 'fodt', 'odp', 'fodp', 'ods', 'fods')
 ONLYOFFICE_EDIT_FILE_EXTENSION = ('docx', 'pptx', 'xlsx')
 ONLYOFFICE_JWT_SECRET = 'your-secret-string'
 ```
