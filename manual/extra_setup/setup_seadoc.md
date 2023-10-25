@@ -71,6 +71,7 @@ sdoc-server:
         # - "80:80"
         # - "443:443"
         - "7070:7070"
+        - "8888:8888"
 ```
 
 #### Modify seafile.nginx.conf
@@ -142,6 +143,7 @@ services:
       # - 80:80
       # - 443:443
       - 7070:7070
+      - 8888:8888
     networks:
       - seafile-net
     ...
@@ -218,6 +220,8 @@ ENABLE_SEADOC = True
 SEADOC_PRIVATE_KEY = '***'  # sdoc-server private_key
 SEADOC_SERVER_URL = 'http://sdoc-server.example.com'  # sdoc-server service url
 # When SeaDoc and Seafile/Seafile docker are deployed on the same host it, SEADOC_SERVER_URL should be 'http://seafile.example.com/sdoc-server'
+FILE_CONVERTER_SERVER_URL = 'http://sdoc-server.example.com/seadoc-converter'  # converter-server url
+# When SeaDoc and Seafile/Seafile docker are deployed on the same host it, FILE_CONVERTER_SERVER_URL should be LAN address 'http://192.168.0.3:8888' or http://sdoc-server:8888
 ```
 
 Restart Seafile server
