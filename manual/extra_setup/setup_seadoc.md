@@ -139,11 +139,11 @@ services:
   sdoc-server:
     image: seafileltd/sdoc-server:latest
     container_name: sdoc-server
-    ports:
+    # ports:
       # - 80:80
       # - 443:443
-      - 7070:7070
-      - 8888:8888
+      # - 7070:7070
+      # - 8888:8888
     networks:
       - seafile-net
     ...
