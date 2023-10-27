@@ -84,7 +84,7 @@ upgrade/upgrade_10.0_11.0.sh
 The configuration items of LDAP login and LDAP sync tasks are migrated from ccnet.conf to seahub_settings.py. The name of the configuration item is based on the 10.0 version, and the characters 'LDAP\_' or 'MULTI_LDAP_1' are added. Examples are as follows:
 
 ```python
-# Basic configuration items, LDAP login, and LDAP sync tasks use these configurations together.
+# Basic configuration items for LDAP login
 ENABLE_LDAP = True
 LDAP_SERVER_URL = 'ldap://192.168.0.125'     # The URL of LDAP server
 LDAP_BASE_DN = 'ou=test,dc=seafile,dc=ren'   # The root node of users who can 
@@ -98,20 +98,22 @@ LDAP_LOGIN_ATTR = 'userPrincipalName'        # User's attribute used to log in t
                                              # can be mail or userPrincipalName, cannot be changed
 LDAP_FILTER = 'memberOf=CN=testgroup,OU=test,DC=seafile,DC=ren'  # Additional filter conditions,
                                              # users who meet the filter conditions can log in, otherwise they cannot log in
-
-# Common user sync configuration item
-LDAP_USER_FIRST_NAME_ATTR = 'givenName'  # For sync user's first name
-LDAP_USER_LAST_NAME_ATTR = 'sn'          # For sync user's last name
+# For update user info when login
+LDAP_USER_FIRST_NAME_ATTR = 'givenName'  # For update user's first name
+LDAP_USER_LAST_NAME_ATTR = 'sn'          # For update user's last name
 LDAP_USER_NAME_REVERSE = False           # Whether to reverse the user's first and last name
 IMPORT_NEW_USER = True                   # Whether to import new users when sync user
-ACTIVATE_USER_WHEN_IMPORT = False        # Whether to activate the user when importing new user
+ACTIVATE_USER_WHEN_IMPORT = True         # Whether to activate the user when importing new user
 ENABLE_EXTRA_USER_INFO_SYNC = True       # Whether to enable sync of additional user information,
                                          # including user's full name, department, and Windows login name, etc.
+```
 
-# LDAP sync task period, in minutes
-LDAP_SYNC_INTERVAL = 60
+Only for Pro Edition:
+```python
+# Configuration items for LDAP sync tasks
+LDAP_SYNC_INTERVAL = 60                  # LDAP sync task period, in minutes
 
-# LDAP sync user configuration items.
+# LDAP user sync configuration items.
 ENABLE_LDAP_USER_SYNC = True             # Whether to enable user sync
 LDAP_USER_OBJECT_CLASS = 'person'        # This is the name of the class used to search for user objects. 
                                          # In Active Directory, it's usually "person". The default value is "person".
@@ -121,8 +123,6 @@ LDAP_CONTACT_EMAIL_ATTR = ''             # LDAP user's contact_email attribute
 LDAP_USER_ROLE_ATTR = ''                 # LDAP user's role attribute
 LDAP_AUTO_REACTIVATE_USERS = True        # Whether to auto activate deactivated user
 LDAP_USE_PAGED_RESULT = False            # Whether to use pagination extension
-
-# Common user sync configuration items
 DEACTIVE_USER_IF_NOTFOUND = False        # Set to "true" if you want to deactivate a user 
                                          # when he/she was deleted in AD server.
 
@@ -138,8 +138,8 @@ LDAP_USER_ATTR_IN_MEMBERUID = 'uid'      # The user attribute set in 'memberUid'
                                          # which is used in "posixGroup".The default value is "uid".
 LDAP_GROUP_UUID_ATTR = 'objectGUID'      # Used to uniquely identify groups in LDAP
 LDAP_USE_GROUP_MEMBER_RANGE_QUERY = False   # When a group contains too many members, 
-                                         # AD will only return part of them. Set this option to TRUE
-                                         # to make LDAP sync work with large groups.
+                                            # AD will only return part of them. Set this option to TRUE
+                                            # to make LDAP sync work with large groups.
 LDAP_SYNC_GROUP_AS_DEPARTMENT = False    # Whether to sync groups as top-level departments in Seafile
 LDAP_DEPT_NAME_ATTR = ''                 # Used to get the department name.
 LDAP_CREATE_DEPARTMENT_LIBRARY = False   # If you decide to sync the group as a department,
@@ -152,8 +152,6 @@ LDAP_DEFAULT_DEPARTMENT_QUOTA = -2       # You can set a default space quota for
                                          # when you synchronize a group for the first time. The 
                                          # quota is set to unlimited if this option is not set.
                                          # Unit is MB.
-
-
 DEL_GROUP_IF_NOT_FOUND = False           # Set to "true", sync process will delete the group if not found it in LDAP server.
 DEL_DEPARTMENT_IF_NOT_FOUND = False      # Set to "true", sync process will deleted the department if not found it in LDAP server.
 ```
