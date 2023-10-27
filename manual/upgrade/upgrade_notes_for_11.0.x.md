@@ -99,6 +99,8 @@ LDAP_LOGIN_ATTR = 'userPrincipalName'        # User's attribute used to log in t
 LDAP_FILTER = 'memberOf=CN=testgroup,OU=test,DC=seafile,DC=ren'  # Additional filter conditions,
                                                                  # users who meet the filter conditions can log in, otherwise they cannot log in
 # For update user info when login
+LDAP_CONTACT_EMAIL_ATTR = ''             # For update user's contact_email
+LDAP_USER_ROLE_ATTR = ''                 # For update user's role
 LDAP_USER_FIRST_NAME_ATTR = 'givenName'  # For update user's first name
 LDAP_USER_LAST_NAME_ATTR = 'sn'          # For update user's last name
 LDAP_USER_NAME_REVERSE = False           # Whether to reverse the user's first and last name
@@ -115,8 +117,6 @@ LDAP_USER_OBJECT_CLASS = 'person'        # This is the name of the class used to
                                          # In Active Directory, it's usually "person". The default value is "person".
 LDAP_DEPT_ATTR = ''                      # LDAP user's department info
 LDAP_UID_ATTR = ''                       # LDAP user's login_id attribute
-LDAP_CONTACT_EMAIL_ATTR = ''             # LDAP user's contact_email attribute
-LDAP_USER_ROLE_ATTR = ''                 # LDAP user's role attribute
 LDAP_AUTO_REACTIVATE_USERS = True        # Whether to auto activate deactivated user
 LDAP_USE_PAGED_RESULT = False            # Whether to use pagination extension
 IMPORT_NEW_USER = True                   # Whether to import new users when sync user
