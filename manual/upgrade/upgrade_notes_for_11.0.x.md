@@ -102,8 +102,6 @@ LDAP_FILTER = 'memberOf=CN=testgroup,OU=test,DC=seafile,DC=ren'  # Additional fi
 LDAP_USER_FIRST_NAME_ATTR = 'givenName'  # For update user's first name
 LDAP_USER_LAST_NAME_ATTR = 'sn'          # For update user's last name
 LDAP_USER_NAME_REVERSE = False           # Whether to reverse the user's first and last name
-IMPORT_NEW_USER = True                   # Whether to import new users when sync user
-ACTIVATE_USER_WHEN_IMPORT = True         # Whether to activate the user when importing new user
 ```
 
 The following configuration items are only for Pro Edition:
@@ -121,6 +119,8 @@ LDAP_CONTACT_EMAIL_ATTR = ''             # LDAP user's contact_email attribute
 LDAP_USER_ROLE_ATTR = ''                 # LDAP user's role attribute
 LDAP_AUTO_REACTIVATE_USERS = True        # Whether to auto activate deactivated user
 LDAP_USE_PAGED_RESULT = False            # Whether to use pagination extension
+IMPORT_NEW_USER = True                   # Whether to import new users when sync user
+ACTIVATE_USER_WHEN_IMPORT = True         # Whether to activate the user when importing new user
 ENABLE_EXTRA_USER_INFO_SYNC = True       # Whether to enable sync of additional user information,
                                          # including user's full name, contact_email, department, and Windows login name, etc.
 DEACTIVE_USER_IF_NOTFOUND = False        # Set to "true" if you want to deactivate a user 
