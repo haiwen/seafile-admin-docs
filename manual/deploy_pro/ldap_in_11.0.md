@@ -24,7 +24,7 @@ Add the following options to `seahub_settings.py`. Examples are as follows:
 
 ```python
 ENABLE_LDAP = True
-LDAP_SERVER_URL = 'ldap://192.168.0.1'     # The URL of LDAP server
+LDAP_SERVER_URL = 'ldap://192.168.0.1'       # The URL of LDAP server
 LDAP_BASE_DN = 'ou=test,dc=seafile,dc=ren'   # The root node of users who can 
                                              # log in to Seafile in the LDAP server
 LDAP_ADMIN_DN = 'administrator@example.com'  # DN of the administrator used 
@@ -73,7 +73,7 @@ Add the following options to `seahub_settings.py`. Examples are as follows:
 ENABLE_LDAP = True
 ......
 
-# LDAP sync user configuration items
+# ldap user sync options.
 LDAP_SYNC_INTERVAL = 60                  # LDAP sync task period, in minutes
 ENABLE_LDAP_USER_SYNC = True             # Whether to enable user sync
 LDAP_USER_OBJECT_CLASS = 'person'        # This is the name of the class used to search for user objects. 
@@ -155,7 +155,7 @@ Before enabling LDAP group sync, you should have configured LDAP authentication.
 The following are LDAP group sync related options:
 
 ```python
-# group sync options.
+# ldap group sync options.
 ENABLE_LDAP_GROUP_SYNC = True            # Whether to enable group sync
 LDAP_GROUP_OBJECT_CLASS = 'group'        # This is the name of the class used to search for group objects.
 LDAP_GROUP_MEMBER_ATTR = 'member'        # The attribute field to use when loading the group's members. 
