@@ -108,9 +108,9 @@ ENABLE_EXTRA_USER_INFO_SYNC = True       # Whether to enable sync of additional 
                                          # including user's full name, department, and Windows login name, etc.
 ```
 
-Only for Pro Edition:
+The following configuration items are only for Pro Edition:
 ```python
-# Configuration items for LDAP sync tasks
+# Configuration items for LDAP sync tasks.
 LDAP_SYNC_INTERVAL = 60                  # LDAP sync task period, in minutes
 
 # LDAP user sync configuration items.
