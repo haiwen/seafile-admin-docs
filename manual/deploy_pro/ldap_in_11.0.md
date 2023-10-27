@@ -37,11 +37,11 @@ LDAP_LOGIN_ATTR = 'userPrincipalName'        # User's attribute used to log in t
                                              # can be mail or userPrincipalName, cannot be changed
 LDAP_CONTACT_EMAIL_ATTR = ''                 # LDAP user's contact_email attribute
 LDAP_USER_ROLE_ATTR = ''                     # LDAP user's role attribute
-LDAP_USER_FIRST_NAME_ATTR = 'givenName'      # For sync user's first name
-LDAP_USER_LAST_NAME_ATTR = 'sn'              # For sync user's last name
+LDAP_USER_FIRST_NAME_ATTR = 'givenName'      # For update user's first name when login
+LDAP_USER_LAST_NAME_ATTR = 'sn'              # For update user's last name when login
 LDAP_USER_NAME_REVERSE = False               # Whether to reverse the user's first and last name
 LDAP_FILTER = 'memberOf=CN=testgroup,OU=test,DC=seafile,DC=ren'  # Additional filter conditions,
-                                             # users who meet the filter conditions can log in, otherwise they cannot log in
+                                                                 # users who meet the filter conditions can log in, otherwise they cannot log in
 
 ```
 
@@ -330,8 +330,8 @@ MULTI_LDAP_1_LOGIN_ATTR = 'userPrincipalName'
 
 ```python
 # Common basic config options
-LDAP_USER_FIRST_NAME_ATTR = 'givenName'      # For sync user's first name
-LDAP_USER_LAST_NAME_ATTR = 'sn'              # For sync user's last name
+LDAP_USER_FIRST_NAME_ATTR = 'givenName'      # For update user's first name when login
+LDAP_USER_LAST_NAME_ATTR = 'sn'              # For update user's last name when login
 LDAP_USER_NAME_REVERSE = False               # Whether to reverse the user's first and last name
 
 # Common user sync options
