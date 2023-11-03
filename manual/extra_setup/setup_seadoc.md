@@ -57,7 +57,7 @@ Note, SeaDoc will only create one database table to store operation logs.
 
 Then follow the section: Start SeaDoc.
 
-### SeaDoc and Seafile are deployed on the same host
+### SeaDoc and Seafile (non docker version) are deployed on the same host
 
 #### Download and modify SeaDoc docker-compose.yml
 
