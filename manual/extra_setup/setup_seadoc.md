@@ -20,21 +20,17 @@ SeaDoc excels at:
 
 > Seafile version 11.0 or later is required to work with SeaDoc.
 
-### Create the SeaDoc database manually
+### Deployment method
 
-SeaDoc and Seafile share the MySQL service.
+SeaDoc has three deployment methods:
 
-Create the database sdoc_db in Seafile MySQL and authorize the user.
+* Deploy SeaDoc on a new host.
+* SeaDoc and Seafile are deployed on the same host.
+* SeaDoc and Seafile docker are deployed on the same host.
 
-```sh
-create database if not exists sdoc_db charset utf8mb4;
-GRANT ALL PRIVILEGES ON `sdoc_db`.* to `seafile`@`sdoc_server_host`;
-```
+### Deploy SeaDoc on a new host
 
-Note, SeaDoc will only create one database table to store operation logs.
-
-
-### Download and modify SeaDoc docker-compose.yml
+#### Download and modify SeaDoc docker-compose.yml
 
 Download [docker-compose.yml](https://manual.seafile.com/extra_setup/sdoc/docker-compose.yml) sample file to your host. Then modify the file according to your environment. The following fields are needed to be modified:
 
@@ -46,21 +42,34 @@ Download [docker-compose.yml](https://manual.seafile.com/extra_setup/sdoc/docker
 * SeaDoc service URL (SDOC_SERVER_HOSTNAME)
 * Seafile service URL (SEAHUB_SERVICE_URL)
 
-### Deployment method
+#### Create the SeaDoc database manually
 
-SeaDoc has three deployment methods:
+SeaDoc and Seafile share the MySQL service.
 
-* Deploy SeaDoc on a new host.
-* SeaDoc and Seafile are deployed on the same host.
-* SeaDoc and Seafile docker are deployed on the same host.
+Create the database sdoc_db in Seafile MySQL and authorize the user.
 
-### Deploy SeaDoc on a new host
+```sh
+create database if not exists sdoc_db charset utf8mb4;
+GRANT ALL PRIVILEGES ON `sdoc_db`.* to `seafile`@`%.%.%.%`;
+```
 
-Just follow the section: Start SeaDoc.
+Note, SeaDoc will only create one database table to store operation logs.
+
+Then follow the section: Start SeaDoc.
 
 ### SeaDoc and Seafile are deployed on the same host
 
-#### Modify docker-compose.yml
+#### Download and modify SeaDoc docker-compose.yml
+
+Download [docker-compose.yml](https://manual.seafile.com/extra_setup/sdoc/docker-compose.yml) sample file to your host. Then modify the file according to your environment. The following fields are needed to be modified:
+
+* MySQL host (DB_HOST)
+* MySQL port (DB_PORT)
+* MySQL user (DB_USER)
+* MySQL password (DB_PASSWD)
+* The volume directory of SeaDoc data (volumes)
+* SeaDoc service URL (SDOC_SERVER_HOSTNAME)
+* Seafile service URL (SEAHUB_SERVICE_URL)
 
 The `ports` need to be modified additionally:
 
@@ -73,6 +82,19 @@ sdoc-server:
         - "7070:7070"
         - "8888:8888"
 ```
+
+#### Create the SeaDoc database manually
+
+SeaDoc and Seafile share the MySQL service.
+
+Create the database sdoc_db in Seafile MySQL and authorize the user.
+
+```sh
+create database if not exists sdoc_db charset utf8mb4;
+GRANT ALL PRIVILEGES ON `sdoc_db`.* to `seafile`@`%.%.%.%`;
+```
+
+Note, SeaDoc will only create one database table to store operation logs.
 
 #### Modify seafile.nginx.conf
 
@@ -128,6 +150,8 @@ Then follow the section: Start SeaDoc.
 
 ### SeaDoc and Seafile docker are deployed on the same host
 
+#### Modify Seafile docker-compose.yml
+
 Add the SeaDoc docker-compose.yml contents to the Seafile docker-compose.yml, and the `ports` need to be modified additionally:
 
 ```yml
@@ -148,6 +172,19 @@ services:
       - seafile-net
     ...
 ```
+
+#### Create the SeaDoc database manually
+
+SeaDoc and Seafile share the MySQL service.
+
+Create the database sdoc_db in Seafile MySQL.
+
+```sh
+create database if not exists sdoc_db charset utf8mb4;
+GRANT ALL PRIVILEGES ON `sdoc_db`.* to `seafile`@`%.%.%.%`;
+```
+
+Note, SeaDoc will only create one database table to store operation logs.
 
 #### Modify seafile.nginx.conf
 
@@ -221,7 +258,7 @@ SEADOC_PRIVATE_KEY = '***'  # sdoc-server private_key
 SEADOC_SERVER_URL = 'https://sdoc-server.example.com'  # sdoc-server service url
 # When SeaDoc and Seafile/Seafile docker are deployed on the same host it, SEADOC_SERVER_URL should be 'https://seafile.example.com/sdoc-server'
 FILE_CONVERTER_SERVER_URL = 'https://sdoc-server.example.com/seadoc-converter'  # converter-server url
-# When SeaDoc and Seafile/Seafile docker are deployed on the same host it, FILE_CONVERTER_SERVER_URL should be LAN address 'http://192.168.0.3:8888' or http://sdoc-server:8888
+# When SeaDoc and Seafile/Seafile docker are deployed on the same host it, FILE_CONVERTER_SERVER_URL should be LAN address 'http://127.0.0.1:8888' or http://sdoc-server:8888
 ```
 
 Restart Seafile server
