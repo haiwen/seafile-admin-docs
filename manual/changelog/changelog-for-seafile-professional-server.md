@@ -13,6 +13,7 @@ Please check our document for how to upgrade to 10.0: <https://manual.seafile.co
 * [fix] Improve error message in SAML login when the IdP have a connection problem
 * [fix] Fix a bug that go fileserver causing client to generate empty commit
 * [fix] Add missing max number of files for a library when uploading via WebDAV
+* [fix] Show which user cannot be imported when importing users to group
 
 ### 10.0.10 (2023-10-17)
 
