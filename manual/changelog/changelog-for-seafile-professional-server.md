@@ -8,6 +8,12 @@
 
 Please check our document for how to upgrade to 10.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_10.0.x/>
 
+### 10.0.11 (2023-11-09)
+
+* [fix] Improve error message in SAML login when the IdP have a connection problem
+* [fix] Fix a bug that go fileserver causing client to generate empty commit
+* [fix] Add missing max number of files for a library when uploading via WebDAV
+
 ### 10.0.10 (2023-10-17)
 
 * [fix] Fix a bug in golang file server that cannot handle sharing permission correctly for departments
