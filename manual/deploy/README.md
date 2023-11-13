@@ -43,4 +43,4 @@ Check [configuration options](../config/README.md) for server config options lik
 
 ## Upgrade Seafile Server
 
-* [Upgrade Seafile server](upgrade.md)
+* [Upgrade Seafile server](../upgrade/upgrade.md)
