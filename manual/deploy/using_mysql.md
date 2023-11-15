@@ -33,7 +33,7 @@ Seafile uses the mysql_native_password plugin for authentication. The versions o
 sudo apt-get update
 sudo apt-get install python3 python3-setuptools python3-pip default-libmysqlclient-dev -y
 
-sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
+sudo pip3 install --timeout=3600 Pillow==9.4.0 pylibmc captcha jinja2 sqlalchemy==1.4.3 \
     django-pylibmc django-simple-captcha python3-ldap mysqlclient
 
 ```
@@ -43,7 +43,7 @@ sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3
 sudo apt-get update
 sudo apt-get install python3 python3-setuptools python3-pip -y
 
-sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
+sudo pip3 install --timeout=3600 Pillow==9.4.0 pylibmc captcha jinja2 sqlalchemy==1.4.3 \
     django-pylibmc django-simple-captcha python3-ldap
 
 ```
@@ -53,7 +53,7 @@ sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3
 sudo apt-get update
 sudo apt-get install python3 python3-setuptools python3-pip libmysqlclient-dev memcached libmemcached-dev -y
 
-sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
+sudo pip3 install --timeout=3600 Pillow==9.4.0 pylibmc captcha jinja2 sqlalchemy==1.4.3 \
     django-pylibmc django-simple-captcha python3-ldap mysqlclient
 ```
 
@@ -63,7 +63,7 @@ sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3
 # CentOS 8
 sudo yum install python3 python3-setuptools python3-pip python3-devel mysql-devel gcc -y
 
-sudo pip3 install --timeout=3600 Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
+sudo pip3 install --timeout=3600 Pillow==9.4.0 pylibmc captcha jinja2 sqlalchemy==1.4.3 \
     django-pylibmc django-simple-captcha python3-ldap mysqlclient
 
 ```
@@ -79,7 +79,7 @@ sudo apt-get update
 sudo apt-get install -y python3 python3-setuptools python3-pip libmysqlclient-dev
 sudo apt-get install -y memcached libmemcached-dev
 
-sudo pip3 install --timeout=3600 django==3.2.* Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 \
+sudo pip3 install --timeout=3600 django==3.2.* Pillow==9.4.0 pylibmc captcha jinja2 sqlalchemy==1.4.3 \
     django-pylibmc django-simple-captcha python3-ldap mysqlclient pycryptodome==3.12.0 cffi==1.14.0 lxml
 ```
 
