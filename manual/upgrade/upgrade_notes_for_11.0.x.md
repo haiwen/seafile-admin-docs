@@ -51,7 +51,20 @@ To migrate from SQLite database to MySQL database, you can follow the document [
 
 Elasticsearch version is not changed in Seafile version 11.0
 
+### New SAML prerequisites (MULTI_TENANCY only)
 
+For Ubuntu 20.04/22.04
+
+```sh
+sudo apt-get update
+sudo apt-get install -y dnsutils
+```
+
+For CentOS 8
+
+```sh
+sudo yum install bind-utils -y
+```
 
 ## New Python libraries
 

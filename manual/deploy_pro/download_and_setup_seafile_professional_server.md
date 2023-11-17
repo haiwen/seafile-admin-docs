@@ -88,7 +88,7 @@ sudo pip3 install --timeout=3600 django==3.2.* future==0.18.* mysqlclient==2.1.*
 ```
 # on Ubuntu 22.04 (on Ubuntu 20.04/Debian 11/Debian 10, it is almost the same)
 apt-get update
-apt-get install -y python3 python3-dev python3-setuptools python3-pip python3-ldap libmysqlclient-dev ldap-utils libldap2-dev
+apt-get install -y python3 python3-dev python3-setuptools python3-pip python3-ldap libmysqlclient-dev ldap-utils libldap2-dev dnsutils
 apt-get install -y memcached libmemcached-dev
 
 sudo pip3 install --timeout=3600 django==3.2.* future==0.18.* mysqlclient==2.1.* \
@@ -98,7 +98,7 @@ sudo pip3 install --timeout=3600 django==3.2.* future==0.18.* mysqlclient==2.1.*
 
 ```
 # CentOS 8
-sudo yum install python3 python3-setuptools python3-pip python3-devel mysql-devel gcc -y
+sudo yum install python3 python3-setuptools python3-pip python3-devel mysql-devel gcc bind-utils -y
 
 sudo pip3 install --timeout=3600 django==3.2.* future==0.18.* mysqlclient==2.1.* \
     pymysql pillow==10.0.* pylibmc captcha==0.4 markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
