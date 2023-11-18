@@ -8,6 +8,27 @@
 
 Please check our document for how to upgrade to 11.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x/>
 
+### 11.0.2 and SeaDoc 0.3 beta (2023-11-20)
+
+Seafile
+
+* Update folder icon
+* The activities page support filter records based on modifiers
+* Add indicator for folders that has been shared out
+* Some small UI fixes
+* [fix] Fix some small bugs in golang file server
+* [fix] Fix LDAP users cannot login via desktop client
+* Add login ID field when exporting users in admin panel
+
+SeaDoc
+
+* Improved file comment feature
+* Improved revision and review feature
+* Support file tags
+* Better support editing list/table/code/image element
+* Support getting link for header element
+
+
 ### 11.0.1 beta and SeaDoc 0.2 beta (2023-10-18)
 
 Seafile
