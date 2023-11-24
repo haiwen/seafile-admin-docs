@@ -256,9 +256,10 @@ Modify seahub_settings.py:
 ENABLE_SEADOC = True
 SEADOC_PRIVATE_KEY = '***'  # sdoc-server private_key
 SEADOC_SERVER_URL = 'https://sdoc-server.example.com'  # sdoc-server service url
-# When SeaDoc and Seafile/Seafile docker are deployed on the same host it, SEADOC_SERVER_URL should be 'https://seafile.example.com/sdoc-server'
+# When SeaDoc and Seafile/Seafile docker are deployed on the same host, SEADOC_SERVER_URL should be 'https://seafile.example.com/sdoc-server'
 FILE_CONVERTER_SERVER_URL = 'https://sdoc-server.example.com/seadoc-converter'  # converter-server url
-# When SeaDoc and Seafile/Seafile docker are deployed on the same host it, FILE_CONVERTER_SERVER_URL should be LAN address 'http://127.0.0.1:8888' or http://sdoc-server:8888
+# When SeaDoc and Seafile are deployed on the same host, FILE_CONVERTER_SERVER_URL should be LAN address 'http://127.0.0.1:8888'
+# When SeaDoc and Seafile docker are deployed on the same host, FILE_CONVERTER_SERVER_URL should be http://sdoc-server:8888
 ```
 
 Restart Seafile server
