@@ -48,8 +48,10 @@ mysql> select email,left(passwd,25) from EmailUser where email = '12ae56789f1e4c
 
 mysql> update EmailUser set passwd = '!' where email = '12ae56789f1e4c8d8e1c31415867317c@auth.local';
 
-mysql> insert into social_auth_usersocialauth ('username', 'provider', 'uid') set ('12ae56789f1e4c8d8e1c31415867317c@auth.local', 'authentik-oauth', 'HR12345');
+mysql> insert into `social_auth_usersocialauth` (`username`, `provider`, `uid`, `extra_data`) values ('12ae56789f1e4c8d8e1c31415867317c@auth.local', 'authentik-oauth', 'HR12345', '');
 ```
+
+__Note__: The `extra_data` field store user's information returned from the provider. For example, when integrating WeChat (a very common single sign-on method in China), some necessary information needs to be stored; for other providers, the `extra_data` field is usually an empty character. Since version 11.0.3-Pro, the default value of the `extra_data` field is `NULL`.
 
 Afterwards the databases should look like this:
 
