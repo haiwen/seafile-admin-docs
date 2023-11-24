@@ -28,6 +28,8 @@ CSRF_COOKIE_SECURE = True
 # https://docs.djangoproject.com/en/3.2/ref/settings/#csrf-cookie-samesite
 CSRF_COOKIE_SAMESITE = 'Strict'
 
+# https://docs.djangoproject.com/en/3.2/ref/settings/#csrf-trusted-origins
+CSRF_TRUSTED_ORIGINS = ['https://www.myseafile.com']
 
 ```
 
