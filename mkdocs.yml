@@ -101,6 +101,7 @@ nav:
       - ADFS or SAML 2.0 (Pro): deploy_pro/adfs.md
       - SAML 2.0 in version 10.0 (Pro): deploy_pro/saml2_in_10.0.md
       - CAS Authentication (Pro): deploy_pro/cas.md
+      - Switch authentication: deploy/auth_switch.md
     - Online Office:
       - LibreOffice Online Integration: deploy/libreoffice_online.md
       - OnlyOffice Integration: deploy/only_office.md

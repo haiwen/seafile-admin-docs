@@ -24,7 +24,7 @@ As an organisation grows and its IT infrastructure matures, the migration from l
 
 1. Configure and test the desired external authentication. Note the name of the `provider` you use in the config file. The user to be migrated should already be able to log in with this new authentication type, but he will be created as a new user with a new unique identifier, so he will not have access to his existing libraries. Note the `uid` from the `social_auth_usersocialauth` table. Delete this new, still empty user again.
 
-2. Determine the `xxx@auth.local` address of the user to be migrated.
+2. Determine the ID of the user to be migrated in ccnet_db.EmailUser. For users created before version 10, the ID should be the user's email, for users created after version 10, the ID should be a string like `xxx@auth.local`.
 
 3. Replace the password hash with an exclamation mark.
 
@@ -51,7 +51,7 @@ mysql> update EmailUser set passwd = '!' where email = '12ae56789f1e4c8d8e1c3141
 mysql> insert into `social_auth_usersocialauth` (`username`, `provider`, `uid`, `extra_data`) values ('12ae56789f1e4c8d8e1c31415867317c@auth.local', 'authentik-oauth', 'HR12345', '');
 ```
 
-__Note__: The `extra_data` field store user's information returned from the provider. For example, when integrating WeChat (a very common single sign-on method in China), some necessary information needs to be stored; for other providers, the `extra_data` field is usually an empty character. Since version 11.0.3-Pro, the default value of the `extra_data` field is `NULL`.
+__Note__: The `extra_data` field store user's information returned from the provider. For most providers, the `extra_data` field is usually an empty character. Since version 11.0.3-Pro, the default value of the `extra_data` field is `NULL`.
 
 Afterwards the databases should look like this:
 
