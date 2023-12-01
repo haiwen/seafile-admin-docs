@@ -86,6 +86,9 @@ ONLYOFFICE_EDIT_FILE_EXTENSION = ('docx', 'pptx', 'xlsx')
 
 # Enable force save to let user can save file when he/she press the save button on OnlyOffice file edit page.
 ONLYOFFICE_FORCE_SAVE = True
+
+# if JWT enabled
+ONLYOFFICE_JWT_SECRET = 'your-secret-string'
 ```
 
 Then restart the Seafile Server
@@ -111,7 +114,7 @@ URL example for OnlyOffice: <https://seafile.example.com/onlyofficeds>
 
 **The subfolder page is only important for communication between Seafile and the DocumentServer, there is nothing except the welcome page (e.g. no overview or settings). Users will need access to it though for the OnlyOffice document server editor to work properly.**
 
-**`/onlyoffice/`****\*\***\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\* cannot be used as subfolder as this path is used for communication between Seafile and Document Server !\*\*
+**`/onlyoffice/`** cannot be used as subfolder as this path is used for communication between Seafile and Document Server !
 
 ### Configure Webserver
 
@@ -162,7 +165,7 @@ location /onlyofficeds/ {
 
         proxy_set_header X-Forwarded-Proto $the_scheme;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-	}
+    }
 ...
 ```
 
@@ -231,6 +234,12 @@ VERIFY_ONLYOFFICE_CERTIFICATE = True
 ONLYOFFICE_APIJS_URL = 'http{s}://{your Seafile server's domain or IP}/{your subdolder}/web-apps/apps/api/documents/api.js'
 ONLYOFFICE_FILE_EXTENSION = ('doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx', 'odt', 'fodt', 'odp', 'fodp', 'ods', 'fods')
 ONLYOFFICE_EDIT_FILE_EXTENSION = ('docx', 'pptx', 'xlsx')
+
+# Enable force save to let user can save file when he/she press the save button on OnlyOffice file edit page.
+ONLYOFFICE_FORCE_SAVE = True
+
+# if JWT enabled
+ONLYOFFICE_JWT_SECRET = 'your-secret-string'
 ```
 
 Then restart the Seafile Server
@@ -288,26 +297,19 @@ server {
     # seahub
     #
     location / {
-        fastcgi_pass    127.0.0.1:8000;
-        fastcgi_param   SCRIPT_FILENAME     $document_root$fastcgi_script_name;
-        fastcgi_param   PATH_INFO           $fastcgi_script_name;
+        proxy_pass http://127.0.0.1:8000/;
+        proxy_read_timeout 310s;
+        proxy_set_header Host $host;
+        proxy_set_header Forwarded "for=$remote_addr;proto=$scheme";
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header Connection "";
+        proxy_http_version 1.1;
 
-        fastcgi_param   SERVER_PROTOCOL        $server_protocol;
-        fastcgi_param   QUERY_STRING        $query_string;
-        fastcgi_param   REQUEST_METHOD      $request_method;
-        fastcgi_param   CONTENT_TYPE        $content_type;
-        fastcgi_param   CONTENT_LENGTH      $content_length;
-        fastcgi_param   SERVER_ADDR         $server_addr;
-        fastcgi_param   SERVER_PORT         $server_port;
-        fastcgi_param   SERVER_NAME         $server_name;
-        fastcgi_param   REMOTE_ADDR         $remote_addr;
-        fastcgi_param   HTTPS               on;
-        fastcgi_param   HTTP_SCHEME         https;
-
-        access_log      /var/log/nginx/seahub.access.log;
-        error_log       /var/log/nginx/seahub.error.log;
-        fastcgi_read_timeout 36000;
         client_max_body_size 0;
+        access_log      /var/log/nginx/seahub.access.log seafileformat;
+        error_log       /var/log/nginx/seahub.error.log;
     }
 
     #
@@ -331,20 +333,16 @@ server {
     # seafdav (webdav)
     #
     location /seafdav {
-        fastcgi_pass    127.0.0.1:8080;
-        fastcgi_param   SCRIPT_FILENAME     $document_root$fastcgi_script_name;
-        fastcgi_param   PATH_INFO           $fastcgi_script_name;
-        fastcgi_param   SERVER_PROTOCOL     $server_protocol;
-        fastcgi_param   QUERY_STRING        $query_string;
-        fastcgi_param   REQUEST_METHOD      $request_method;
-        fastcgi_param   CONTENT_TYPE        $content_type;
-        fastcgi_param   CONTENT_LENGTH      $content_length;
-        fastcgi_param   SERVER_ADDR         $server_addr;
-        fastcgi_param   SERVER_PORT         $server_port;
-        fastcgi_param   SERVER_NAME         $server_name;
-        fastcgi_param   HTTPS               on;
+        proxy_pass         http://127.0.0.1:8080;
+        proxy_set_header   Host $host;
+        proxy_set_header   X-Real-IP $remote_addr;
+        proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header   X-Forwarded-Host $server_name;
+        proxy_set_header   X-Forwarded-Proto $scheme;
+        proxy_read_timeout  1200s;
         client_max_body_size 0;
-        access_log      /var/log/nginx/seafdav.access.log;
+
+        access_log      /var/log/nginx/seafdav.access.log seafileformat;
         error_log       /var/log/nginx/seafdav.error.log;
     }
     
