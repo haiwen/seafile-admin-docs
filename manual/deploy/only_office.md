@@ -453,3 +453,26 @@ LoadModule ssl_module modules/mod_ssl.so
   
 </VirtualHost>
 ```
+
+## FAQ
+
+### Encountering `Download failed.` problem on webpage after upgrade OnlyOffice Docker-DocumentServer to 7.4 or later.
+
+Firstly, run `docker logs -f your-onlyoffice-container-id`, then open an office file. After the "Download failed." error appears on the page, observe the logs for the following error:
+
+```
+==> /var/log/onlyoffice/documentserver/converter/out.log <==
+...
+Error: DNS lookup {local IP} (family:undefined, host:undefined) is not allowed. Because, It is a private IP address.
+...
+```
+
+If it shows this error message and you haven't enabled JWT while using a local network, then it's likely due to an error triggered proactively by OnlyOffice server for enhanced security. (https://github.com/ONLYOFFICE/DocumentServer/issues/2268#issuecomment-1600787905)
+
+So, as mentioned in the post, we highly recommend you enabling JWT in your integrations to fix this problem.
+
+### Encountering `The document security token is not correctly formed.` problem on webpage after upgrade OnlyOffice Docker-DocumentServer to 7.2 or later.
+
+Starting from OnlyOffice Docker-DocumentServer version 7.2, JWT is enabled by default on OnlyOffice server.
+
+So, for security reason, please **Configure OnlyOffice to use JWT Secret**.
