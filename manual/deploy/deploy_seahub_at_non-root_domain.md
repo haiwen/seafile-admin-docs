@@ -1,10 +1,12 @@
-# Deploy Seahub at Non-root domain
+# Deploy Seahub at Non-root domain or on custom port
 
-This documentation will talk about how to deploy Seafile Web using Apache/Nginx at Non-root directory of the website(e.g., www.example.com/seafile/). Please note that the file server path will still be e.g. www.example.com/seafhttp (rather than www.example.com/seafile/seafhttp) because this path is hardcoded in the clients.
+## Non-root Domain
+
+The following will talk about how to deploy Seafile Web using Apache/Nginx at Non-root directory of the website(e.g., www.example.com/seafile/). Please note that the file server path will still be e.g. www.example.com/seafhttp (rather than www.example.com/seafile/seafhttp) because this path is hardcoded in the clients.
 
 **Note:** We assume you have read [Deploy Seafile with nginx](deploy_with_nginx.md) or [Deploy Seafile with apache](deploy_with_apache.md).
 
-## Configure Seahub
+### Configure Seahub
 
 First, we need to overwrite some variables in seahub_settings.py:
 
@@ -15,7 +17,6 @@ COMPRESS_URL = MEDIA_URL
 STATIC_URL = MEDIA_URL + 'assets/'
 SITE_ROOT = '/seafile/'
 LOGIN_URL = '/seafile/accounts/login/'    # NOTE: since version 5.0.4
-
 ```
 
 The webserver will serve static files (js, css, etc), so we just disable `SERVE_STATIC`.
@@ -24,9 +25,9 @@ The webserver will serve static files (js, css, etc), so we just disable `SERVE_
 
 We deploy Seafile at `/seafile/` directory instead of root directory, so we set `SITE_ROOT` to `/seafile/`.
 
-## Modify ccnet.conf and seahub_setting.py
+### Modify ccnet.conf and seahub_setting.py
 
-### Modify ccnet.conf
+#### Modify ccnet.conf
 
 You need to modify the value of `SERVICE_URL` in [ccnet.conf](../config/ccnet-conf.md)
 to let Seafile know the domain you choose.
@@ -38,7 +39,7 @@ SERVICE_URL = http://www.myseafile.com/seafile
 
 Note: If you later change the domain assigned to seahub, you also need to change the value of  `SERVICE_URL`.
 
-### Modify seahub_settings.py
+#### Modify seahub_settings.py
 
 You need to add a line in `seahub_settings.py` to set the value of `FILE_SERVER_ROOT`
 
@@ -46,15 +47,14 @@ You need to add a line in `seahub_settings.py` to set the value of `FILE_SERVER_
 FILE_SERVER_ROOT = 'http://www.myseafile.com/seafhttp'
 
 # for 9.0.16 or after
-SERVICE_URL = http://www.myseafile.com/seafile
-
+SERVICE_URL = 'http://www.myseafile.com/seafile'
 ```
 
 **Note:** The file server path MUST be `/seafhttp` because this path is hardcoded in the clients.
 
-## Webserver configuration
+### Webserver configuration
 
-### Deploy with Nginx
+#### Deploy with Nginx
 
 Then, we need to configure the Nginx:
 
@@ -95,10 +95,9 @@ server {
         root /home/user/haiwen/seafile-server-latest/seahub;
     }
 }
-
 ```
 
-## Deploy with Apache
+### Deploy with Apache
 
 Here is the sample configuration:
 
@@ -131,30 +130,61 @@ Here is the sample configuration:
   ProxyPass /seafile http://127.0.0.1:8000/seafile
   ProxyPassReverse /seafile http://127.0.0.1:8000/seafile
 </VirtualHost>
-
 ```
 
 We use Alias to let Apache serve static files, please change the second argument to your path.
 
-## Clear the cache
+### Clear the cache
 
 By default, Seahub caches some data like the link to the avatar icon in `/tmp/seahub_cache/` (unless memcache is used). We suggest to clear the cache after seafile has been stopped:
 
 ```
 rm -rf /tmp/seahub_cache/
-
 ```
 
 For memcache users, please purge the cache there instead by restarting your memcached server.
 
-## Start Seafile and Seahub
+### Start Seafile and Seahub
 
 ```
 ./seafile.sh start
 ./seahub.sh start
-
 ```
 
-## Using Seafile Client
+### Using Seafile Client
 
 When logging in on the Seafile client, the server address should now be http://www.example.com/seafile, not http://www.example.com.
+
+## Custom Port
+
+Suppose that you want to use 20080 port (http{s}://www.example.com:20080) to serve Seafile, then you must tell Seafile that you are using 20080.
+
+You can achieve this by adding the custom port to the nginx configuration:
+
+```
+server {
+    listen 20080;
+    location / {
+         ...
+         proxy_set_header   Host $host:20080;
+         ...
+    }
+}
+```
+
+for apache
+
+```
+<VirtualHost *:20080>
+    ...
+    RequestHeader set Host %{HTTP_HOST}e:20080
+    ...
+</VirtualHost>
+```
+
+And don't forget to update seahub_settings.py
+
+```python
+# for 9.0.16 or after
+SERVICE_URL = 'http{s}://www.example.com:20080'
+```
