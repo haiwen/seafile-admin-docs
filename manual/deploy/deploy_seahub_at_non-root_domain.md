@@ -32,8 +32,8 @@ You need to modify the value of `SERVICE_URL` in [ccnet.conf](../config/ccnet-co
 to let Seafile know the domain you choose.
 
 ```
+# for 8.0.17 or before
 SERVICE_URL = http://www.myseafile.com/seafile
-
 ```
 
 Note: If you later change the domain assigned to seahub, you also need to change the value of  `SERVICE_URL`.
@@ -44,6 +44,9 @@ You need to add a line in `seahub_settings.py` to set the value of `FILE_SERVER_
 
 ```python
 FILE_SERVER_ROOT = 'http://www.myseafile.com/seafhttp'
+
+# for 9.0.16 or after
+SERVICE_URL = http://www.myseafile.com/seafile
 
 ```
 
