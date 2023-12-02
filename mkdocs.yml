@@ -126,7 +126,7 @@ nav:
       - Open Cloud Mesh: deploy/ocm.md
       - Firewall settings: deploy/using_firewall.md
       - Deploy Seafile behind NAT: deploy/deploy_seafile_behind_nat.md
-      - Deploy Seahub at Non-root domain: deploy/deploy_seahub_at_non-root_domain.md
+      - Deploy Seahub at Non-root domain or on custom port: deploy/deploy_seahub_at_non-root_domain.md
       - Start Seafile at System Bootup: deploy/start_seafile_at_system_bootup.md
       - Logrotate: deploy/using_logrotate.md
       - Config fail2ban: security/fail2ban.md
