@@ -157,7 +157,7 @@ When logging in on the Seafile client, the server address should now be http://w
 
 ## Custom Port
 
-Suppose that you want to use 20080 port (http{s}://www.example.com:20080) to serve Seafile, then you must tell Seafile that you are using 20080.
+Suppose that you want to use 20080 port (`http{s}://www.example.com:20080`) to serve Seafile, then you must tell Seafile that you are using 20080.
 
 You can achieve this by adding the custom port to the nginx configuration:
 
