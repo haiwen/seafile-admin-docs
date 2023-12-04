@@ -1,5 +1,14 @@
 # SeaDrive Client Changelog
 
+### 3.0.7 (2023/12/04)
+
+* Support accessing libraries with invisible sub-folder permissions
+* \[mac] Don't remove cache folders when removing accounts
+* \[mac] Always start extension when restarting the SeaDrive app
+* \[win] Avoid a case that can create empty commits
+* \[win] Make modifying cache location work again
+* Use system proxy settings by default
+
 ### 3.0.6 (2023/09/15)
 
 * \[win] Upgrade Qt to 6.5.2 and OpenSSL 3.0
