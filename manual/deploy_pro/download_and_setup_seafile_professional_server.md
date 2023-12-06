@@ -26,7 +26,7 @@ These instructions assume that MySQL/MariaDB server and client are installed and
 sudo apt-get update
 sudo apt-get install -y python3 python3-setuptools python3-pip libmysqlclient-dev
 sudo apt-get install -y memcached libmemcached-dev
-sudo apt-get install poppler-utils -y
+sudo apt-get install -y poppler-utils
 
 sudo pip3 install --timeout=3600 Pillow==9.4.0 pylibmc captcha jinja2 sqlalchemy==1.4.3 \
     django-pylibmc django-simple-captcha python3-ldap mysqlclient
@@ -48,7 +48,7 @@ sudo pip3 install --timeout=3600 Pillow==9.4.0 pylibmc captcha jinja2 sqlalchemy
 apt-get update
 apt-get install -y python3 python3-setuptools python3-pip python3-ldap libmysqlclient-dev
 apt-get install -y memcached libmemcached-dev
-apt-get install poppler-utils -y
+apt-get install -y poppler-utils
 
 pip3 install --timeout=3600 django==3.2.* future mysqlclient pymysql Pillow pylibmc \ 
 captcha jinja2 sqlalchemy==1.4.3 psd-tools django-pylibmc django-simple-captcha pycryptodome==3.12.0 cffi==1.14.0 lxml
@@ -70,7 +70,7 @@ sudo pip3 install --timeout=3600 django==3.2.* Pillow==9.4.0 pylibmc captcha jin
 apt-get update
 apt-get install -y python3 python3-setuptools python3-pip python3-ldap libmysqlclient-dev
 apt-get install -y memcached libmemcached-dev
-apt-get install poppler-utils -y
+apt-get install -y poppler-utils
 
 sudo pip3 install --timeout=3600 django==3.2.* future==0.18.* mysqlclient==2.1.* \
     pymysql pillow==9.3.* pylibmc captcha==0.4 markupsafe==2.0.1 jinja2 sqlalchemy==1.4.3 \
@@ -94,7 +94,7 @@ sudo pip3 install --timeout=3600 django==3.2.* future==0.18.* mysqlclient==2.1.*
 apt-get update
 apt-get install -y python3 python3-dev python3-setuptools python3-pip python3-ldap libmysqlclient-dev ldap-utils libldap2-dev dnsutils
 apt-get install -y memcached libmemcached-dev
-apt-get install poppler-utils -y
+apt-get install -y poppler-utils
 
 sudo pip3 install --timeout=3600 django==3.2.* future==0.18.* mysqlclient==2.1.* \
     pymysql pillow==10.0.* pylibmc captcha==0.4 markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
