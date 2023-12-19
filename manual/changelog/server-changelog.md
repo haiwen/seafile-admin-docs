@@ -8,6 +8,25 @@
 
 Please check our document for how to upgrade to 11.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x/>
 
+### 11.0.3 and SeaDoc 0.4 beta (2023-12-19)
+
+Seafile
+
+* Use file type icon as favicon for file preview pages
+* More UI fixes and improvements
+* [fix] seafdav.conf workers parameters does not to be used
+
+SeaDoc
+
+* Add templates with predefined stypes for tables
+* Support combining table cells
+* Add callout element
+* Support drag and drop elements
+* Improve file comments
+* Improve file history display by grouping history items
+* More UI fixes and improvements
+
+
 ### 11.0.2 and SeaDoc 0.3 beta (2023-11-20)
 
 Seafile
