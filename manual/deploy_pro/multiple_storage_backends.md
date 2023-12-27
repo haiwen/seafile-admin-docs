@@ -46,43 +46,91 @@ memcached_options = --SERVER=<the IP of Memcached Server> --POOL-MIN=10 --POOL-M
 
 The JSON file is an array of objects. Each object defines a storage class. The fields in the definition corresponds to the information we need to specify for a storage class. Below is an example:
 
-```
+```json
 [
-{
-"storage_id": "hot_storage",
-"name": "Hot Storage",
-"is_default": true,
-"commits": {"backend": "s3", "bucket": "seafile-commits", "key": "ZjoJ8RPNDqP1vcdD60U4wAHwUQf2oJYqxN27oR09", "key_id": "AKIAIOT3GCU5VGCCL44A"},
-"fs": {"backend": "s3", "bucket": "seafile-fs", "key": "ZjoJ8RPNDqP1vcdD60U4wAHwUQf2oJYqxN27oR09", "key_id": "AKIAIOT3GCU5VGCCL44A"},
-"blocks": {"backend": "s3", "bucket": "seafile-blocks", "key": "ZjoJ8RPNDqP1vcdD60U4wAHwUQf2oJYqxN27oR09", "key_id": "AKIAIOT3GCU5VGCCL44A"}
-},
-
-{
-"storage_id": "cold_storage",
-"name": "Cold Storage",
-"is_default": false,
-"fs": {"backend": "fs", "dir": "/storage/seafile/seafile-data"},
-"commits": {"backend": "fs", "dir": "/storage/seafile/seafile-data"},
-"blocks": {"backend": "fs", "dir": "/storage/seafile/seaflle-data"}
-},
-
-{
-"storage_id": "swift_storage",
-"name": "Swift Storage",
-"fs": {"backend": "swift", "tenant": "adminTenant", "user_name": "admin", "password": "openstack", "container": "seafile-commits", "auth_host": "192.168.56.31:5000", "auth_ver": "v2.0"},
-"commits": {"backend": "swift", "tenant": "adminTenant", "user_name": "admin", "password": "openstack", "container": "seafile-fs", "auth_host": "192.168.56.31:5000", "auth_ver": "v2.0"},
-"blocks": {"backend": "swift", "tenant": "adminTenant", "user_name": "admin", "password": "openstack", "container": "seafile-blocks", "auth_host": "192.168.56.31:5000", "auth_ver": "v2.0", "region": "RegionTwo"}
-}
-
-{
-"storage_id": "ceph_storage",
-"name": "ceph Storage",
-"fs": {"backend": "ceph", "ceph_config": "/etc/ceph/ceph.conf", "pool": "seafile-fs"},
-"commits": {"backend": "ceph", "ceph_config": "/etc/ceph/ceph.conf", "pool": "seafile-commits"},
-"blocks": {"backend": "ceph", "ceph_config": "/etc/ceph/ceph.conf", "pool": "seafile-blocks"}
-}
+  {
+    "storage_id": "hot_storage",
+    "name": "Hot Storage",
+    "is_default": true,
+    "commits": {
+      "backend": "s3",
+      "bucket": "seafile-commits",
+      "key": "ZjoJ8RPNDqP1vcdD60U4wAHwUQf2oJYqxN27oR09",
+      "key_id": "AKIAIOT3GCU5VGCCL44A"
+    },
+    "fs": {
+      "backend": "s3",
+      "bucket": "seafile-fs",
+      "key": "ZjoJ8RPNDqP1vcdD60U4wAHwUQf2oJYqxN27oR09",
+      "key_id": "AKIAIOT3GCU5VGCCL44A"
+    },
+    "blocks": {
+      "backend": "s3",
+      "bucket": "seafile-blocks",
+      "key": "ZjoJ8RPNDqP1vcdD60U4wAHwUQf2oJYqxN27oR09",
+      "key_id": "AKIAIOT3GCU5VGCCL44A"
+    }
+  },
+  {
+    "storage_id": "cold_storage",
+    "name": "Cold Storage",
+    "is_default": false,
+    "fs": { "backend": "fs", "dir": "/storage/seafile/seafile-data" },
+    "commits": { "backend": "fs", "dir": "/storage/seafile/seafile-data" },
+    "blocks": { "backend": "fs", "dir": "/storage/seafile/seaflle-data" }
+  },
+  {
+    "storage_id": "swift_storage",
+    "name": "Swift Storage",
+    "fs": {
+      "backend": "swift",
+      "tenant": "adminTenant",
+      "user_name": "admin",
+      "password": "openstack",
+      "container": "seafile-commits",
+      "auth_host": "192.168.56.31:5000",
+      "auth_ver": "v2.0"
+    },
+    "commits": {
+      "backend": "swift",
+      "tenant": "adminTenant",
+      "user_name": "admin",
+      "password": "openstack",
+      "container": "seafile-fs",
+      "auth_host": "192.168.56.31:5000",
+      "auth_ver": "v2.0"
+    },
+    "blocks": {
+      "backend": "swift",
+      "tenant": "adminTenant",
+      "user_name": "admin",
+      "password": "openstack",
+      "container": "seafile-blocks",
+      "auth_host": "192.168.56.31:5000",
+      "auth_ver": "v2.0",
+      "region": "RegionTwo"
+    }
+  },
+  {
+    "storage_id": "ceph_storage",
+    "name": "ceph Storage",
+    "fs": {
+      "backend": "ceph",
+      "ceph_config": "/etc/ceph/ceph.conf",
+      "pool": "seafile-fs"
+    },
+    "commits": {
+      "backend": "ceph",
+      "ceph_config": "/etc/ceph/ceph.conf",
+      "pool": "seafile-commits"
+    },
+    "blocks": {
+      "backend": "ceph",
+      "ceph_config": "/etc/ceph/ceph.conf",
+      "pool": "seafile-blocks"
+    }
+  }
 ]
-
 ```
 
 As you may have seen, the `commits`, `fs` and `blocks` information syntax is similar to what is used in `[commit_object_backend]`, `[fs_object_backend]` and `[block_backend]` section of seafile.conf.
