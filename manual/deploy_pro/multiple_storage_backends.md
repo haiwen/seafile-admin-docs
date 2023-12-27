@@ -12,7 +12,7 @@ To use this feature, you need to:
 1. Define storage classes in seafile.conf.
 2. Enable multiple backend feature in seahub and choose a mapping policy.
 
-## Defining Storage Classes
+## Outline
 
 In Seafile server, a storage backend is represented by the concept of "storage class". A storage class is defined by specifying the following information:
 
@@ -26,6 +26,8 @@ In Seafile server, a storage backend is represented by the concept of "storage c
 * `blocks`：the storage for storing the block objects for this class. It can be any storage that Seafile supports, like file system, ceph, s3.
 
 commit, fs, and blocks can be stored in different storages. This provides the most flexible way to define storage classes.
+
+## Seafile Configuration
 
 As Seafile server before 6.3 version doesn't support multiple storage classes, you have to explicitly enable this new feature and define storage classes with a different syntax than how we define storage backend before.
 
@@ -43,6 +45,37 @@ memcached_options = --SERVER=<the IP of Memcached Server> --POOL-MIN=10 --POOL-M
 
 * enable_storage_classes ：If this is set to true, the storage class feature is enabled. You must define the storage classes in a JSON file provided in the next configuration option.
 * storage_classes_file：Specifies the path for the JSON file that contains the storage class definition.
+
+### Notes for Docker Installs
+
+If installing Seafile as Docker contianers, place the `seafile_storage_classes.json` file on your local disk in a sub-directory of the location that is mounted to the `seafile` container, and set the `storage_classes_file` configuration above to a path ***relative to the `/shared/` directory mounted on the `seafile` container***.  
+
+For example, if the configuration of the `seafile` container in your `docker-compose.yml` file is like the following:
+```yaml
+// docker-compose.yml
+services:
+  // ... omitted for brevity
+  seafile:
+    container_name: seafile
+    // ... omitted for brevity
+    volumes:
+      - /opt/seafile-data:/shared
+```
+
+Then place the JSON file within any sub-directory of `/opt/seafile-data` (such as `/opt/seafile-data/conf/`) and then configure `seafile.conf` like so:
+
+```toml
+[storage]
+enable_storage_classes = true
+storage_classes_file = /shared/conf/seafile_storage_classes.json
+
+[memcached]
+memcached_options = --SERVER=memcached --POOL-MIN=10 --POOL-MAX=100
+```
+
+> By default, the memcached container should be accessible via its container name (`memcached` by default) thanks to it being part of the Docker network created by Docker Compose.
+
+## Defining Storage Backends
 
 The JSON file is an array of objects. Each object defines a storage class. The fields in the definition corresponds to the information we need to specify for a storage class. Below is an example:
 
