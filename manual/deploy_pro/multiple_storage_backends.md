@@ -50,14 +50,12 @@ memcached_options = --SERVER=<the IP of Memcached Server> --POOL-MIN=10 --POOL-M
 
 If installing Seafile as Docker contianers, place the `seafile_storage_classes.json` file on your local disk in a sub-directory of the location that is mounted to the `seafile` container, and set the `storage_classes_file` configuration above to a path ***relative to the `/shared/` directory mounted on the `seafile` container***.  
 
-For example, if the configuration of the `seafile` container in your `docker-compose.yml` file is like the following:
+For example, if the configuration of the `seafile` container in your `docker-compose.yml` file is similar to the following:
 ```yaml
 // docker-compose.yml
 services:
-  // ... omitted for brevity
   seafile:
     container_name: seafile
-    // ... omitted for brevity
     volumes:
       - /opt/seafile-data:/shared
 ```
@@ -108,9 +106,18 @@ The JSON file is an array of objects. Each object defines a storage class. The f
     "storage_id": "cold_storage",
     "name": "Cold Storage",
     "is_default": false,
-    "fs": { "backend": "fs", "dir": "/storage/seafile/seafile-data" },
-    "commits": { "backend": "fs", "dir": "/storage/seafile/seafile-data" },
-    "blocks": { "backend": "fs", "dir": "/storage/seafile/seaflle-data" }
+    "fs": {
+      "backend": "fs",
+      "dir": "/storage/seafile/seafile-data"
+    },
+    "commits": {
+      "backend": "fs",
+      "dir": "/storage/seafile/seafile-data"
+    },
+    "blocks": {
+      "backend": "fs",
+      "dir": "/storage/seafile/seaflle-data"
+    }
   },
   {
     "storage_id": "swift_storage",
@@ -171,6 +178,47 @@ As you may have seen, the `commits`, `fs` and `blocks` information syntax is sim
 If you use file system as storage for `fs`, `commits` or `blocks`, you must explicitly provide the path for the `seafile-data` directory. The objects will be stored in `storage/commits`, `storage/fs`, `storage/blocks` under this path. 
 
 _Note_: Currently file system, S3 and Swift backends are supported. Ceph/RADOS is also supported since version 7.0.14.
+
+The above example shows how to utilize multiple *different types* of storage backends (e.g. cloud and local disks) together simultaneously.  However, they don't have to be different types.  For example, if you simply wanted to use multiple disk mount points within a single Seafile installation, you could define something like the following.  However it's important to note that ***the mount point for all these disks on the system running Seafile, must be somewhere within the directory mapped to `/shared` on the `seafile` container.***  (e.g. `/opt/seafile-data/disk1` and `/opt/seafile-data/disk2` following the example above).
+
+```json
+[
+    {
+        "storage_id": "disk1",
+        "name": "Disk 1",
+        "is_default": false,
+        "fs": {
+            "backend": "fs",
+            "dir": "/shared/disk1"
+        },
+        "commits": {
+            "backend": "fs",
+            "dir": "/shared/disk1"
+        },
+        "blocks": {
+            "backend": "fs",
+            "dir": "/shared/disk1"
+        }
+    },
+    {
+        "storage_id": "disk2",
+        "name": "Disk 2",
+        "is_default": false,
+        "fs": {
+            "backend": "fs",
+            "dir": "/shared/disk2"
+        },
+        "commits": {
+            "backend": "fs",
+            "dir": "/shared/disk2"
+        },
+        "blocks": {
+            "backend": "fs",
+            "dir": "/shared/disk2"
+        }
+    }
+]
+```
 
 ## Library Mapping Policies
 
