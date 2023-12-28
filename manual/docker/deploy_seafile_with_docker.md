@@ -67,10 +67,25 @@ seafile:
 
 ```
 
-If you want to use your own SSL certificate and the volume directory of Seafile data is `/opt/seafile-data`:
+If you want to use your own SSL certificate and the file path on the host is /home/user/your-cert.crt. You can mount the certificate into the docker container by setting the container's volumes variables in the `docker-compose.yml`:
 
-* create a folder `/opt/seafile-data/ssl`, and put your certificate and private key under the ssl directory.
-* Assume your site name is `seafile.example.com`, then your certificate must have the name `seafile.example.com.crt`, and the private key must have the name `seafile.example.com.key`.
+e.g.
+
+```yml
+seafile:
+    ...
+    ports:
+        - "80:80"
+        - "443:443"
+    ...
+    volumes:
+      ...
+      - /home/user/your-cert.crt:/shared/ssl/seafile.example.com.crt;
+      - /home/user/your-key.key:/shared/ssl/seafile.example.com.key;
+    ...
+```
+
+* Assume your site name is `seafile.example.com`, then your certificate must have the name `seafile.example.com.crt`, and the private key must have the name `seafile.example.com.key` in container.
 
 If you got the following error when SEAFILE_SERVER_LETSENCRYPT=true is set:
 
@@ -265,6 +280,29 @@ Restarting the container run Seafile use seafile user. (NOTE: Later when do main
 ```sh
 docker compose down
 docker compose up -d
+```
+
+## Deploy Seafile docker with custom port
+
+Assume your custom port is 8001, when it is a new installation, you only need to modify the docker-compose.yml and start the Seafile docker.
+
+```yml
+  seafile:
+    ...
+    ports:
+      - "8001:80"
+    environment:
+      ...
+      - SEAFILE_SERVER_HOSTNAME=seafile.example.com:8001
+      ...
+    ...
+```
+
+If you have installed the Seafile docker, you also need to modify the docker-compose.yml. And modify the configuration file `conf/seahub_settings.py`, then restart Seafile.
+
+```py
+SERVICE_URL = "http://seafile.example.com:8001"
+FILE_SERVER_ROOT = "http://seafile.example.com:8001/seafhttp"
 ```
 
 ## FAQ
