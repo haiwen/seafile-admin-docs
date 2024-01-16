@@ -8,6 +8,12 @@
 
 Please check our document for how to upgrade to 10.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_10.0.x/>
 
+### 10.0.12 (2024-01-16)
+
+* Improved WOPI-integration of Collabora Online
+* Fix "Share Admin->Links->Share Links" crash when shared link file does not exist anymore
+
+
 ### 10.0.11 (2023-11-09)
 
 * [fix] Improve error message in SAML login when the IdP have a connection problem
