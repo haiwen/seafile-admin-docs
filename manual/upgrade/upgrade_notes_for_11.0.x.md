@@ -66,6 +66,18 @@ For CentOS 8
 sudo yum install bind-utils -y
 ```
 
+### Django CSRF protection issue
+
+Django 4.* has introduced a new check for the origin http header in CSRF verification. It now compares the values of the origin field in HTTP header and the host field in HTTP header. If they are different, an error is triggered.
+
+If you deploy Seafile behind a proxy, or if you use a non-standard port, or if you deploy Seafile in cluster, it is likely the **origin** field in HTTP header received by Django and the **host** field in HTTP header received by Django are different. Because the **host** field in HTTP header is likely to be modified by proxy. This mismatch results in a CSRF error.
+
+You can add CSRF_TRUSTED_ORIGINS to django_web_settings.py to solve the problem:
+
+```
+CSRF_TRUSTED_ORIGINS = ["https://<your-domain>"]
+```
+
 ## New Python libraries
 
 Note, you should install Python libraries system wide using root user or sudo mode.
