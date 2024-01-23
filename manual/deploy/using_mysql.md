@@ -228,9 +228,9 @@ When choosing "\[1] Create new ccnet/seafile/seahub databases", the script creat
 | mysql root password             | Password of the MySQL root account                           | The root password is required to create new databases and a MySQL user |
 | mysql user for Seafile          | MySQL user created by the script, used by Seafile's components to access the databases | Default is seafile; the user is created unless it exists     |
 | mysql password for Seafile user | Password for the user above, written in Seafile's config files | Percent sign ('%') is not allowed                            |
-| database name                   | Name of the database used by ccnet                           | Default is "ccnet-db", the database is created if it does not exist |
-| seafile database name           | Name of the database used by Seafile                         | Default is "seafile-db", the database is created if it does not exist |
-| seahub database name            | Name of the database used by seahub                          | Default is "seahub-db", the database is created if it does not exist |
+| database name                   | Name of the database used by ccnet                           | Default is "ccnet_db", the database is created if it does not exist |
+| seafile database name           | Name of the database used by Seafile                         | Default is "seafile_db", the database is created if it does not exist |
+| seahub database name            | Name of the database used by seahub                          | Default is "seahub_db", the database is created if it does not exist |
 
 When choosing "\[2] Use existing ccnet/seafile/seahub databases", this are the prompts you need to answer: 
 
@@ -240,9 +240,9 @@ When choosing "\[2] Use existing ccnet/seafile/seahub databases", this are the p
 | mysql server port               | TCP port used by MySQL server                                | Default port is 3306; almost every MySQL server uses this port |
 | mysql user for Seafile          | User used by Seafile's components to access the databases    | The user must exists                                         |
 | mysql password for Seafile user | Password for the user above                                  |                                                              |
-| ccnet database name             | Name of the database used by ccnet, default is "ccnet-db"    | The database must exist                                      |
-| seafile database name           | Name of the database used by Seafile, default is "seafile-db" | The database must exist                                      |
-| seahub dabase name              | Name of the database used by Seahub, default is "seahub-db"  | The database must exist                                      |
+| ccnet database name             | Name of the database used by ccnet, default is "ccnet_db"    | The database must exist                                      |
+| seafile database name           | Name of the database used by Seafile, default is "seafile_db" | The database must exist                                      |
+| seahub dabase name              | Name of the database used by Seahub, default is "seahub_db"  | The database must exist                                      |
 
 If the setup is successful, you see the following output:
 

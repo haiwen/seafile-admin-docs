@@ -19,4 +19,4 @@ enabled = true
 ```
 
 
-The audit log data is being saved in `seahub-db`.
+The audit log data is being saved in `seahub_db`.

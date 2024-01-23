@@ -30,9 +30,9 @@ For SQLite, the database files are also under the 'haiwen' directory. The locati
 
 For MySQL, the databases are created by the administrator, so the names can be different from one deployment to another. There are 3 databases:
 
-* ccnet-db: contains user and group information
-* seafile-db: contains library metadata
-* seahub-db: contains tables used by the web front end (seahub)
+* ccnet_db: contains user and group information
+* seafile_db: contains library metadata
+* seahub_db: contains tables used by the web front end (seahub)
 
 ## Backup steps
 
@@ -65,14 +65,14 @@ It's recommended to backup the database to a separate file each time. Don't over
 
 **MySQL**
 
-Assume your database names are `ccnet-db`, `seafile-db` and `seahub-db`. mysqldump automatically locks the tables so you don't need to stop Seafile server when backing up MySQL databases. Since the database tables are usually very small, it won't take long to dump.
+Assume your database names are `ccnet_db`, `seafile_db` and `seahub_db`. mysqldump automatically locks the tables so you don't need to stop Seafile server when backing up MySQL databases. Since the database tables are usually very small, it won't take long to dump.
 
 ```
-mysqldump -h [mysqlhost] -u[username] -p[password] --opt ccnet-db > /backup/databases/ccnet-db.sql.`date +"%Y-%m-%d-%H-%M-%S"`
+mysqldump -h [mysqlhost] -u[username] -p[password] --opt ccnet_db > /backup/databases/ccnet-db.sql.`date +"%Y-%m-%d-%H-%M-%S"`
 
-mysqldump -h [mysqlhost] -u[username] -p[password] --opt seafile-db > /backup/databases/seafile-db.sql.`date +"%Y-%m-%d-%H-%M-%S"`
+mysqldump -h [mysqlhost] -u[username] -p[password] --opt seafile_db > /backup/databases/seafile-db.sql.`date +"%Y-%m-%d-%H-%M-%S"`
 
-mysqldump -h [mysqlhost] -u[username] -p[password] --opt seahub-db > /backup/databases/seahub-db.sql.`date +"%Y-%m-%d-%H-%M-%S"`
+mysqldump -h [mysqlhost] -u[username] -p[password] --opt seahub_db > /backup/databases/seahub-db.sql.`date +"%Y-%m-%d-%H-%M-%S"`
 
 ```
 
@@ -128,9 +128,9 @@ Now with the latest valid database backup files at hand, you can restore them.
 **MySQL**
 
 ```
-mysql -u[username] -p[password] ccnet-db < ccnet-db.sql.2013-10-19-16-00-05
-mysql -u[username] -p[password] seafile-db < seafile-db.sql.2013-10-19-16-00-20
-mysql -u[username] -p[password] seahub-db < seahub-db.sql.2013-10-19-16-01-05
+mysql -u[username] -p[password] ccnet_db < ccnet-db.sql.2013-10-19-16-00-05
+mysql -u[username] -p[password] seafile_db < seafile-db.sql.2013-10-19-16-00-20
+mysql -u[username] -p[password] seahub_db < seahub-db.sql.2013-10-19-16-01-05
 
 ```
 
