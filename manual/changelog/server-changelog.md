@@ -8,6 +8,23 @@
 
 Please check our document for how to upgrade to 11.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x/>
 
+### 11.0.4 and SeaDoc 0.5 beta (2024-01-26)
+
+Seafile
+
+* Add move dir/file, copy dir/file, delete dir/file, rename dir/file APIs for library token based API
+* Support preview of JFIF image format
+* Use user's current language when create Office files in OnlyOffice
+* More UI fixes and improvements
+
+SeaDoc
+
+* Support convert sdoc to docx format
+* Improve UX for internal document linking
+* Support icons in callout element
+* Add Search/Replace feature
+* More UI fixes and improvements
+
 ### 11.0.3 and SeaDoc 0.4 beta (2023-12-19)
 
 Seafile
