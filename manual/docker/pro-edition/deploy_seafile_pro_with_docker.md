@@ -217,6 +217,34 @@ seafile:
 
 ```
 
+## Use an existing mysql-server
+
+If you want to use an existing mysql-server, you can modify the `docker-compose.yml` as follows
+
+```yml
+services:
+  #db:
+    #image: mariadb:10.11
+    #...
+
+  seafile:
+    ...
+    environment:
+        ...
+        - DB_HOST=192.168.0.2
+        - DB_ROOT_PASSWD=mysql_root_password
+        ...
+    depends_on:
+      #- db
+      - memcached
+```
+
+* The entire db chapter needs to be removed
+* The host of MySQL (DB_HOST)
+* The password of MySQL root (DB_ROOT_PASSWD)
+* db in depends_on chapter needs to be removed
+* When Seafile is installed, the user `seafile` will be used to connect to the mysql-server (in conf/seafile.conf). You can remove the `DB_ROOT_PASSWD`.
+
 ## Seafile directory structure
 
 ### `/shared`
