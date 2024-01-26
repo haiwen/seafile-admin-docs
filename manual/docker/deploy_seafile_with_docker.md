@@ -130,7 +130,7 @@ services:
 * The host of MySQL (DB_HOST)
 * The password of MySQL root (DB_ROOT_PASSWD)
 * db in depends_on chapter needs to be removed
-* When Seafile is installed, the user `seafile` will be used to connect to the mysql-server (in conf/seafile.conf). You can remove the `DB_ROOT_PASSWD`.
+* DB_ROOT_PASSWD is needed during installation. Later, after Seafile is installed, the user `seafile` will be used to connect to the mysql-server (in conf/seafile.conf). You can remove the `DB_ROOT_PASSWD`.
 
 ### Modify Seafile server configurations
 
