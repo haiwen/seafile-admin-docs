@@ -1,6 +1,6 @@
-# How to Build Seafile Server Release Package for Raspberry Pi
+# How to Build Seafile Server Release Package
 
-From Seafile 11.0, you can refer to the [seafile-build.sh](https://github.com/haiwen/seafile-docker/tree/master/build) script to compile the Seafile on your own device.
+From Seafile 11.0, you can refer to the [seafile-build.sh](https://github.com/haiwen/seafile-docker/tree/master/build) script to build the Seafile release packge on your own device.
 
 The `seafile-build.sh` compatible with more platforms, including Raspberry Pi, arm-64, x86-64
 
