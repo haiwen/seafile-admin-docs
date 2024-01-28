@@ -170,8 +170,8 @@ nav:
       - Linux: build_seafile/linux.md
       - Mac OS X: build_seafile/osx.md
       - Windows: build_seafile/windows.md
-      - Server: build_seafile/server.md
-      - Raspberry Pi: build_seafile/rpi.md
+      - Server development: build_seafile/server.md
+      - Server binary package: build_seafile/rpi.md
     - Translation: develop/translation.md
     - Web API V2.1: develop/web_api_v2.1.md
     - PHP API: https://github.com/rene-s/Seafile-PHP-SDK
