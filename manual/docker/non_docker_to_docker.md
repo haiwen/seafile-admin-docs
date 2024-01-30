@@ -70,7 +70,7 @@ Modify the memcached configuration in `seahub_settings.py` to use the Docker ver
 
 #### Download and modify docker-compose.yml
 
-Download [docker-compose.yml](https://download.seafile.com/d/320e8adf90fa43ad8fee/files/?p=/docker/docker-compose.yml) to `/opt/seafile-data`. Comment out the db part as below:
+Download [docker-compose.yml](https://manual.seafile.com/docker/pro-edition/10.0/docker-compose.yml) to `/opt/seafile-data`. Comment out the db part as below:
 
 ```
 services:
