@@ -28,6 +28,12 @@ UI Improvements
 * Use file type icon as favicon for file preview pages
 * Support preview of JFIF image format
 
+Pro edition only changes
+
+* Support S3 SSE-C encryption
+* Support a new invisible sub-folder permission
+* Update of online read-write permission, online read-write permission now support the shared user to update/rename/delete files online, making it consistent with normal read-write permission
+
 Other changes
 
 * Remove file comment features as they are used very little (except for SeaDoc)
