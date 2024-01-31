@@ -2,6 +2,38 @@
 
 > You can check Seafile release table to find the lifetime of each release and current supported OS: <https://cloud.seatable.io/dtable/external-links/a85d4221e41344c19566/?tid=0000&vid=0000>
 
+## 11.0
+
+**Upgrade**
+
+Please check our document for how to upgrade to 11.0: https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x/
+
+### 11.0.4 beta and SeaDoc 0.5 (2024-02-01)
+
+Major changes
+
+* Use a virtual ID to identify a user
+* LDAP login update
+* SAML/Shibboleth/OAuth login update
+* Update Django to version 4.2
+* Update SQLAlchemy to version 2.x
+* Add SeaDoc
+  
+UI Improvements
+
+* Improve UI of PDF view page
+* Update folder icon
+* The activities page support filter records based on modifiers
+* Add indicator for folders that has been shared out
+* Use file type icon as favicon for file preview pages
+* Support preview of JFIF image format
+
+Other changes
+
+* Remove file comment features as they are used very little (except for SeaDoc)
+* Add move dir/file, copy dir/file, delete dir/file, rename dir/file APIs for library token based API
+* Use user's current language when create Office files in OnlyOffice
+
 ## 10.0
 
 **Upgrade**
