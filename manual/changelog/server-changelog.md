@@ -8,6 +8,13 @@
 
 Please check our document for how to upgrade to 11.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x/>
 
+### 11.0.5 (2024-01-31)
+
+Seafile
+
+* Fix captcha showing issue
+
+
 ### 11.0.4 and SeaDoc 0.5 beta (2024-01-26)
 
 Seafile
