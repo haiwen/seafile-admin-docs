@@ -46,6 +46,12 @@ Other changes
 
 Please check our document for how to upgrade to 10.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_10.0.x/>
 
+### 10.0.13 (2024-02-05)
+
+* [security] Upgrade pillow dependency from 9.0 to 10.0.
+
+Note, after upgrading to this version, you need to upgrade the Python libraries in your server "pillow==10.0.* captcha==0.5.* django_simple_captcha==0.5.20" 
+
 ### 10.0.12 (2024-01-16)
 
 * Improved WOPI-integration of Collabora Online
