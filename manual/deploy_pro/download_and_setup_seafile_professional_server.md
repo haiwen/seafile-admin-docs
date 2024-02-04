@@ -73,7 +73,7 @@ apt-get install -y memcached libmemcached-dev
 apt-get install -y poppler-utils
 
 sudo pip3 install --timeout=3600 django==3.2.* future==0.18.* mysqlclient==2.1.* \
-    pymysql pillow==10.0.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==1.4.3 \
+    pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==1.4.3 \
     psd-tools django-pylibmc django_simple_captcha==0.5.20 djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 lxml
 ```
 
@@ -83,7 +83,7 @@ sudo yum install python3 python3-setuptools python3-pip python3-devel mysql-deve
 sudo yum install poppler-utils -y
 
 sudo pip3 install --timeout=3600 django==3.2.* future==0.18.* mysqlclient==2.1.* \
-    pymysql pillow==10.0.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==1.4.3 \
+    pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==1.4.3 \
     psd-tools django-pylibmc django_simple_captcha==0.5.20 pycryptodome==3.16.* cffi==1.15.1 lxml
 ```
 
@@ -97,7 +97,7 @@ apt-get install -y memcached libmemcached-dev
 apt-get install -y poppler-utils
 
 sudo pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.* \
-    pymysql pillow==10.0.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
+    pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
     psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 python-ldap==3.4.3 lxml
 ```
 
@@ -109,7 +109,7 @@ apt-get install -y memcached libmemcached-dev
 apt-get install -y poppler-utils
 
 sudo pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.* \
-    pymysql pillow==10.0.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
+    pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
     psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 python-ldap==3.4.3 lxml
 ```
 
@@ -119,7 +119,7 @@ sudo yum install python3 python3-setuptools python3-pip python3-devel mysql-deve
 sudo yum install poppler-utils -y
 
 sudo pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.* \
-    pymysql pillow==10.0.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
+    pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
     psd-tools django-pylibmc django_simple_captcha==0.6.* pycryptodome==3.16.* cffi==1.15.1 python-ldap==3.4.3 lxml
 ```
 
