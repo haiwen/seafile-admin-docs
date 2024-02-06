@@ -87,21 +87,6 @@ seafile:
 
 * Assume your site name is `seafile.example.com`, then your certificate must have the name `seafile.example.com.crt`, and the private key must have the name `seafile.example.com.key` in container.
 
-If you got the following error when SEAFILE_SERVER_LETSENCRYPT=true is set:
-
-```log
-subprocess.CalledProcessError: Command '/scripts/ssl.sh /shared/ssl cloud.seafile-demo.de' returned non-zero exit status 128.
-```
-
-In /scripts/ssl.sh (script in seafile container), `git clone git://` has to be replaced with `git clone https://`.
-
-Then restart the container:
-
-```shell
-docker compose restart
-```
-
-Since version 9.0.6, we use acme (not acme-tiny) to get certificate and fix this error.
 
 Since version 10.0.x, if you want to use a reverse proxy and apply for a certificate outside docker, you can use `FORCE_HTTPS_IN_CONF` to force write `https://<your_host>` in the configuration file.
 
@@ -298,7 +283,7 @@ Assume your custom port is 8001, when it is a new installation, you only need to
     ...
 ```
 
-If you have installed the Seafile docker, you also need to modify the docker-compose.yml. And modify the configuration file `conf/seahub_settings.py`, then restart Seafile.
+If you have installed the Seafile docker, besides modifying the docker-compose.yml, you also need to modify the already generated configuration file `conf/seahub_settings.py`, then restart Seafile:
 
 ```py
 SERVICE_URL = "http://seafile.example.com:8001"
