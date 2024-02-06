@@ -67,26 +67,26 @@ seafile:
 
 ```
 
-If you want to use your own SSL certificate and the volume directory of Seafile data is `/opt/seafile-data`:
+If you want to use your own SSL certificate and the file path on the host is /home/user/your-cert.crt. You can mount the certificate into the docker container by setting the container's volumes variables in the `docker-compose.yml`:
 
-* create a folder `/opt/seafile-data/ssl`, and put your certificate and private key under the ssl directory.
-* Assume your site name is `seafile.example.com`, then your certificate must have the name `seafile.example.com.crt`, and the private key must have the name `seafile.example.com.key`.
+e.g.
 
-If you got the following error when SEAFILE_SERVER_LETSENCRYPT=true is set:
-
-```log
-subprocess.CalledProcessError: Command '/scripts/ssl.sh /shared/ssl cloud.seafile-demo.de' returned non-zero exit status 128.
+```yml
+seafile:
+    ...
+    ports:
+        - "80:80"
+        - "443:443"
+    ...
+    volumes:
+      ...
+      - /home/user/your-cert.crt:/shared/ssl/seafile.example.com.crt;
+      - /home/user/your-key.key:/shared/ssl/seafile.example.com.key;
+    ...
 ```
 
-In /scripts/ssl.sh (script in seafile container), `git clone git://` has to be replaced with `git clone https://`.
+* Assume your site name is `seafile.example.com`, then your certificate must have the name `seafile.example.com.crt`, and the private key must have the name `seafile.example.com.key` in container.
 
-Then restart the container:
-
-```shell
-docker compose restart
-```
-
-Since version 9.0.6, we use acme (not acme-tiny) to get certificate and fix this error.
 
 Since version 10.0.x, if you want to use a reverse proxy and apply for a certificate outside docker, you can use `FORCE_HTTPS_IN_CONF` to force write `https://<your_host>` in the configuration file.
 
@@ -293,6 +293,29 @@ Restarting the container run Seafile use seafile user. (NOTE: Later when do main
 ```sh
 docker compose down
 docker compose up -d
+```
+
+## Deploy Seafile docker with custom port
+
+Assume your custom port is 8001, when it is a new installation, you only need to modify the docker-compose.yml and start the Seafile docker.
+
+```yml
+  seafile:
+    ...
+    ports:
+      - "8001:80"
+    environment:
+      ...
+      - SEAFILE_SERVER_HOSTNAME=seafile.example.com:8001
+      ...
+    ...
+```
+
+If you have installed the Seafile docker, besides modifying the docker-compose.yml, you also need to modify the already generated configuration file `conf/seahub_settings.py`, then restart Seafile:
+
+```py
+SERVICE_URL = "http://seafile.example.com:8001"
+FILE_SERVER_ROOT = "http://seafile.example.com:8001/seafhttp"
 ```
 
 ## FAQ
