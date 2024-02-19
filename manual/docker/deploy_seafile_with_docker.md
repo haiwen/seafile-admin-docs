@@ -27,6 +27,18 @@ Wait for a few minutes for the first time initialization, then visit `http://sea
 
 **NOTE: You should run the above command in a directory with the **`docker-compose.yml`**.**
 
+### Find logs
+
+To view Seafile docker logs, please use the following command
+
+```shell
+docker compose logs -f
+```
+
+The Seafile logs are under `shared/logs/seafile` in the docker, or `/opt/seafile-data/logs/seafile` in the server that run the docker.
+
+The system logs are under `shared/logs/var-log`, or `/opt/seafile-data/logs/var-log` in the server that run the docker.
+
 ## More configuration options
 
 ### Custom admin username and password
@@ -144,18 +156,6 @@ After modification, you need to restart the container:
 docker compose restart
 
 ```
-
-### Find logs
-
-To view Seafile docker logs, please use the following command
-
-```shell
-docker compose logs -f
-```
-
-The Seafile logs are under `shared/logs/seafile` in the docker, or `/opt/seafile-data/logs/seafile` in the server that run the docker.
-
-The system logs are under `shared/logs/var-log`, or `/opt/seafile-data/logs/var-log` in the server that run the docker.
 
 ### Add a new admin
 
