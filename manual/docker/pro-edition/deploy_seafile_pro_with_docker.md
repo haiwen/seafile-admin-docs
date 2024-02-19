@@ -90,15 +90,28 @@ NOTE: You must run the above command in the directory with the docker-compose.ym
 
 Wait a few moment for the database to initialize. You can now access Seafile at the host name specified in the Compose file. (A 502 Bad Gateway error means that the system has not yet completed the initialization.)
 
+### Find logs
+
+To view Seafile docker logs, please use the following command
+
+```shell
+docker compose logs -f
+```
+
+The Seafile logs are under `shared/logs/seafile` in the docker, or `/opt/seafile-data/logs/seafile` in the server that run the docker.
+
+The system logs are under `shared/logs/var-log`, or `/opt/seafile-data/logs/var-log` in the server that run the docker.
+
 ### Activating the Seafile License
 
 If you have a `seafile-license.txt` license file, simply put it in the volume of the Seafile container. The volumne's default path in the Compose file is `/opt/seafile-data`. If you have modified the path, save the license file under your custom path.
 
+Then restart Seafile:
 
-Then restart the container:
+```bash
+docker compose down
 
-```
-docker compose restart
+docker compose up -d
 ```
 
 ### Reviewing the Deployment
