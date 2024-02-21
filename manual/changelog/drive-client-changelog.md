@@ -1,5 +1,14 @@
 # SeaDrive Client Changelog
 
+### 3.0.8 (2024/02/21)
+
+* Support Single-Sign-On with desktop browser
+* \[win] Delete invalid placeholders when re-login to an account
+* \[mac] Adjust the color and size of icons in system tray area
+* \[mac] Upload file execution permission
+* \[mac] Keep messages in notification area
+* \[mac] Fix some syncing issues
+
 ### 3.0.7 (2023/12/04)
 
 * Support accessing libraries with invisible sub-folder permissions
