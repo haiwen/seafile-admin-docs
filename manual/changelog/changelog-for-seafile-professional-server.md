@@ -46,6 +46,12 @@ Other changes
 
 Please check our document for how to upgrade to 10.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_10.0.x/>
 
+### 10.0.14 (2024-02-27)
+
+* Update some translations
+* [Fix] Fix a bug in OnlyOffice desktop editor integration
+* [Fix] Fix a bug in moving file dialog
+
 ### 10.0.13 (2024-02-05)
 
 * [security] Upgrade pillow dependency from 9.0 to 10.0.
