@@ -1,6 +1,8 @@
 # Office Documents Preview with LibreOffice
 
-Seafile Professional Server supports previewing office documents online by converting them to PDF. You can follow these steps to use the feature. If you'd like to edit office files online, you can integrate Seafile with Microsoft Office Online server, LibreOffice online or OnlyOffice.
+> This is a deprecated feature since version 11. Integrating with CollaboraOnline or OnlyOffice is recommended.
+
+Seafile Professional Server supports previewing office documents online by converting them to PDF. You can follow these steps to use the feature. If you'd like to edit office files online, you can integrate Seafile with Microsoft Office Online server, CollaboraOnline or OnlyOffice.
 
 
 ## Version 7.1.x - 8.0.x
