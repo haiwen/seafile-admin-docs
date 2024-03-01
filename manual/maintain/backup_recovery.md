@@ -8,16 +8,15 @@ There are generally two parts of data to backup
 If you setup seafile server according to our manual, you should have a directory layout like:
 
 ```
-haiwen       # Replace the name with your organization name
-  --seafile-server-8.0.x # untar from seafile package
+/opt/seafile
+  --seafile-server-9.0.x # untar from seafile package
   --seafile-data   # seafile configuration and data (if you choose the default)
   --seahub-data    # seahub data
   --logs
-  --conf          
-
+  --conf
 ```
 
-All your library data is stored under the 'haiwen' directory.
+All your library data is stored under the '/opt/seafile' directory.
 
 Seafile also stores some important metadata data in a few databases. The names and locations of these databases depends on which database software you use.
 
@@ -50,7 +49,7 @@ The backup is a three step procedure:
 The second sequence is better in the sense that it avoids library corruption. Like other backup solutions, some new data can be lost in recovery. There is always a backup window.
 However, if your storage backup mechanism can finish quickly enough, using the first sequence can retain more data.
 
-We assume your seafile data directory is in `/data/haiwen`. And you want to backup to `/backup` directory. The `/backup` can be an NFS or Windows share mount exported by another machine, or just an external disk. You can create a layout similar to the following in `/backup` directory:
+We assume your seafile data directory is in `/opt/seafile`. And you want to backup to `/backup` directory. The `/backup` can be an NFS or Windows share mount exported by another machine, or just an external disk. You can create a layout similar to the following in `/backup` directory:
 
 ```
 /backup
@@ -93,13 +92,12 @@ sqlite3 /data/haiwen/seahub.db .dump > /backup/databases/seahub.db.bak.`date +"%
 
 ### Backing up Seafile library data
 
-The data files are all stored in the `/data/haiwen` directory, so just back up the whole directory. You can directly copy the whole directory to the backup destination, or you can use rsync to do incremental backup. 
+The data files are all stored in the `/opt/seafile` directory, so just back up the whole directory. You can directly copy the whole directory to the backup destination, or you can use rsync to do incremental backup. 
 
 To directly copy the whole data directory,
 
 ```
-cp -R /data/haiwen /backup/data/haiwen-`date +"%Y-%m-%d-%H-%M-%S"`
-
+cp -R /opt/seafile /backup/data/seafile-`date +"%Y-%m-%d-%H-%M-%S"`
 ```
 
 This produces a separate copy of the data directory each time. You can delete older backup copies after a new one is completed.
@@ -107,17 +105,17 @@ This produces a separate copy of the data directory each time. You can delete ol
 If you have a lot of data, copying the whole data directory would take long. You can use rsync to do incremental backup.
 
 ```
-rsync -az /data/haiwen /backup/data
+rsync -az /opt/seafile /backup/data
 
 ```
 
-This command backup the data directory to `/backup/data/haiwen`.
+This command backup the data directory to `/backup/data/seafile`.
 
 ## Restore from backup
 
 Now supposed your primary seafile server is broken, you're switching to a new machine. Using the backup data to restore your Seafile instance:
 
-1. Copy `/backup/data/haiwen` to the new machine. Let's assume the seafile deployment location new machine is also `/data/haiwen`.
+1. Copy `/backup/data/seafile` to the new machine. Let's assume the seafile deployment location new machine is also `/opt/seafile`.
 2. Restore the database.
 3. Since database and data are backed up separately, they may become a little inconsistent with each other. To correct the potential inconsistency, run seaf-fsck tool to check data integrity on the new machine. See [seaf-fsck documentation](seafile_fsck.md).
 
