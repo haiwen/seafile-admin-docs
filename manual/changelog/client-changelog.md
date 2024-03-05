@@ -2,6 +2,16 @@
 
 ## 9.0
 
+### 9.0.5 (2024/03/05)
+
+* Support Single-Sign-On with desktop browsers
+* Optimize confilct handling in cloud file browser
+* Improve share link generation UI
+* Use system proxy setting by default
+* \[win] Display warning when syncing a library to network drive or windows share
+* \[mac] Adapt to system style for tray area icons
+* \[mac] Persist notifications to notification area
+
 ### 9.0.4 (2023/09/13)
 
 * \[win] Upgrade to Qt 6.5.2 and OpenSSL 3.0
