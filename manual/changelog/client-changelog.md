@@ -11,6 +11,7 @@
 * \[win] Display warning when syncing a library to network drive or windows share
 * \[mac] Adapt to system style for tray area icons
 * \[mac] Persist notifications to notification area
+* \[linux] Check daemon running when start
 
 ### 9.0.4 (2023/09/13)
 
