@@ -148,7 +148,7 @@ services:
 
 ### Modify Seafile server configurations
 
-The config files are under `shared/seafile/conf`. You can modify the configurations according to [Seafile manual](https://manual.seafile.com/)
+The config files are under `/opt/seafile-data/seafile/conf`. You can modify the configurations according to [Seafile manual](https://manual.seafile.com/)
 
 After modification, you need to restart the container:
 
@@ -167,6 +167,37 @@ docker exec -it seafile /opt/seafile/seafile-server-latest/reset-admin.sh
 ```
 
 Enter the username and password according to the prompts. You now have a new admin account.
+
+### Run Seafile as non root user inside docker
+
+Since version 10.0, you can use run seafile as non root user in docker. (NOTE: Programs such as my_init, Nginx are still run as root inside docker.)
+
+First add the `NON_ROOT=true` to the docker-compose.yml.
+
+```
+seafile:
+    ...
+    environment:
+        ...
+        - NON_ROOT=true
+        ...
+
+```
+
+Then create a seafile user on the host. (NOTE: Do not change the uid and gid.)
+
+```
+groupadd --gid 8000 seafile
+
+useradd --home-dir /home/seafile --create-home --uid 8000 --gid 8000 --shell /bin/sh --skel /dev/null seafile
+```
+
+Restarting the container run Seafile use seafile user. (NOTE: Later when do maintenance, other scripts in docker also required to run as seafile user, e.g. `su seafile -c ./seaf-gc.sh`)
+
+```sh
+docker compose down
+docker compose up -d
+```
 
 ## Seafile directory structure
 
@@ -265,37 +296,6 @@ cp -R /opt/seafile-backup/data/* /opt/seafile-data/seafile/
 When files are deleted, the blocks comprising those files are not immediately removed as there may be other files that reference those blocks (due to the magic of deduplication). To remove them, Seafile requires a ['garbage collection'](https://manual.seafile.com/maintain/seafile_gc/) process to be run, which detects which blocks no longer used and purges them. (NOTE: for technical reasons, the GC process does not guarantee that _every single_ orphan block will be deleted.)
 
 The required scripts can be found in the `/scripts` folder of the docker container. To perform garbage collection, simply run `docker exec seafile /scripts/gc.sh`. For the community edition, this process will stop the seafile server, but it is a relatively quick process and the seafile server will start automatically once the process has finished. The Professional supports an online garbage collection.
-
-## Run Seafile as non root user inside docker
-
-Since version 10.0, you can use run seafile as non root user in docker. (NOTE: Programs such as my_init, Nginx are still run as root inside docker.)
-
-First add the `NON_ROOT=true` to the docker-compose.yml.
-
-```
-seafile:
-    ...
-    environment:
-        ...
-        - NON_ROOT=true
-        ...
-
-```
-
-Then create a seafile user on the host. (NOTE: Do not change the uid and gid.)
-
-```
-groupadd --gid 8000 seafile
-
-useradd --home-dir /home/seafile --create-home --uid 8000 --gid 8000 --shell /bin/sh --skel /dev/null seafile
-```
-
-Restarting the container run Seafile use seafile user. (NOTE: Later when do maintenance, other scripts in docker also required to run as seafile user, e.g. `su seafile -c ./seaf-gc.sh`)
-
-```sh
-docker compose down
-docker compose up -d
-```
 
 ## Deploy Seafile docker with custom port
 
