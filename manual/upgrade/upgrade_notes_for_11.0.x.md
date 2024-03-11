@@ -36,11 +36,13 @@ If you use OAuth authentication, the configuration need to be changed a bit.
 If you use SAML, you don't need to change configuration files.
 
 
-### Deprecating SQLite Database Support
+### Dropped SQLite Database Support
 
-Seafile 11.0 deprecates using SQLite as the database. There are several reasons driving this change:
+Seafile 11.0 **dropped** using SQLite as the database. It is better to migrate from SQLite database to MySQL database before upgrading to version 11.0.
 
-* Focus on collaborative features - SQLite's limitations make advanced concurrency and locking difficult, which collaborative editing requires. Different Seafile components need simultaneous database access.
+There are several reasons driving this change:
+
+* Focus on collaborative features - SQLite's limitations make advanced concurrency and locking difficult, which collaborative editing requires. Different Seafile components need simultaneous database access. Especially after adding seafevents component in version 11.0 for the community edition.
 * Docker deployments - Our official Docker images do not support SQLite. MySQL is the preferred option.
 * Migration difficulties - Migrating SQLite databases to MySQL via SQL translation is unreliable.
 
