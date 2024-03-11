@@ -1,6 +1,6 @@
 # Migrate From SQLite to MySQL
 
-**NOTE**: The tutorial is only available for Seafile CE version.
+**NOTE**: The tutorial is only related to Seafile CE edition.
 
 First make sure the python module for MySQL is installed. On Ubuntu/Debian, use `sudo apt-get install python-mysqldb` or `sudo apt-get install python3-mysqldb` to install it.
 
