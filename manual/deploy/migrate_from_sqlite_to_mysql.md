@@ -15,7 +15,6 @@ Steps to migrate Seafile from SQLite to MySQL:
    chmod +x sqlite2mysql.sh
    ./sqlite2mysql.sh
    ```
-
    This script will produce three files: `ccnet-db.sql`, `seafile-db.sql`, `seahub-db.sql`.
 
 4. Create 3 databases ccnet_db, seafile_db, seahub_db and seafile user.
@@ -44,7 +43,6 @@ Steps to migrate Seafile from SQLite to MySQL:
    ```
 
 8. Modify configure files.
-
    Append following lines to [ccnet.conf](../config/ccnet-conf.md):
    ```
    [Database]
@@ -56,9 +54,7 @@ Steps to migrate Seafile from SQLite to MySQL:
    DB=ccnet_db
    CONNECTION_CHARSET=utf8
    ```
-
    Note: Use `127.0.0.1`, don't use `localhost`.
-
    Replace the database section in `seafile.conf` with following lines:
    ```
    [database]
@@ -70,9 +66,7 @@ Steps to migrate Seafile from SQLite to MySQL:
    db_name=seafile_db
    connection_charset=utf8
    ```
-
    Append following lines to `seahub_settings.py`:
-
    ```
    DATABASES = {
        'default': {
@@ -91,7 +85,7 @@ Steps to migrate Seafile from SQLite to MySQL:
    }
    ```
 
-9. Restart seafile and seahub
+10. Restart seafile and seahub
 
 **NOTE**
 
