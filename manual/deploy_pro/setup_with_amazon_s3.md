@@ -79,7 +79,7 @@ use-sigv4 = True
 
 ### Use HTTPS connections to S3
 
-Since Pro 5.0.4, you can use HTTPS connections to S3. Add the following options to seafile.conf:
+To use HTTPS connections to S3, add the following options to seafile.conf:
 
 ```
 [commit_object_backend]
@@ -110,7 +110,7 @@ Another important note is that you **must not use '.' in your bucket names**. Ot
 
 ### Use server-side encryption with customer-provided keys (SSE-C)
 
-Since Pro 11.0.3, you can use SSE-C to S3. Add the following options to seafile.conf:
+Since Pro 11.0, you can use SSE-C to S3. Add the following options to seafile.conf:
 
 ```
 [commit_object_backend]
