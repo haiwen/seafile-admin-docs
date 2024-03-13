@@ -9,6 +9,12 @@ Seafile PE can be used without a paid license with up to three users. Licenses f
 
 ## Setup
 
+The following assumptions and conventions are used in the rest of this document:
+
+- `/opt/seafile-data` is the directory of Seafile. If you decide to put Seafile in a different directory - which you can - adjust all paths accordingly.
+- Seafile uses two [Docker volumes](https://docs.docker.com/storage/volumes/) for persisting data generated in its database and Seafile Docker container. The volumes' [host paths](https://docs.docker.com/compose/compose-file/compose-file-v3/#volumes) are /opt/seafile-mysql and /opt/seafile-data, respectively. It is not recommended to change these paths. If you do, account for it when following these instructions.
+- All configuration and log files for Seafile and the webserver Nginx are stored in the volume of the Seafile container.
+
 ### Installing Docker
 
 Use the [official installation guide for your OS to install Docker](https://docs.docker.com/engine/install/).
@@ -98,9 +104,9 @@ To view Seafile docker logs, please use the following command
 docker compose logs -f
 ```
 
-The Seafile logs are under `shared/logs/seafile` in the docker, or `/opt/seafile-data/logs/seafile` in the server that run the docker.
+The Seafile logs are under `/shared/logs/seafile` in the docker, or `/opt/seafile-data/logs/seafile` in the server that run the docker.
 
-The system logs are under `shared/logs/var-log`, or `/opt/seafile-data/logs/var-log` in the server that run the docker.
+The system logs are under `/shared/logs/var-log`, or `/opt/seafile-data/logs/var-log` in the server that run the docker.
 
 ### Activating the Seafile License
 
@@ -113,6 +119,18 @@ docker compose down
 
 docker compose up -d
 ```
+
+## Seafile directory structure
+
+### `/opt/seafile-data`
+
+Placeholder spot for /opt/seafile-data volumes. You may elect to store certain persistent information outside of a container, in our case we keep various log files and upload directory outside. This allows you to rebuild containers easily without losing important information.
+
+* /opt/seafile-data/seafile: This is the directory for seafile server configuration 、logs and data.
+  * /opt/seafile-data/seafile/logs: This is the directory that would contain the log files of seafile server processes. For example, you can find seaf-server logs in `/opt/seafile-data/seafile/logs/seafile.log`.
+* /opt/seafile-data/logs: This is the directory for operating system and Nginx logs.
+  * /opt/seafile-data/logs/var-log: This is the directory that would be mounted as `/var/log` inside the container. For example, you can find the nginx logs in `/opt/seafile-data/logs/var-log/nginx/`.
+* /opt/seafile-data/ssl: This is directory for certificate, which does not exist by default.
 
 ### Reviewing the Deployment
 
@@ -289,20 +307,6 @@ docker compose down
 docker compose up -d
 ```
 
-## Seafile directory structure
-
-### `/shared`
-
-Placeholder spot for shared volumes. You may elect to store certain persistent information outside of a container, in our case we keep various log files and upload directory outside. This allows you to rebuild containers easily without losing important information.
-
-* /shared/seafile: This is the directory for seafile server configuration 、logs and data.
-  * /shared/seafile/logs: This is the directory that would contain the log files of seafile server processes. For example, you can find seaf-server logs in `shared/seafile/logs/seafile.log`.
-* /shared/logs: This is the directory for logs.
-  * /shared/logs/var-log: This is the directory that would be mounted as `/var/log` inside the container. For example, you can find the nginx logs in `shared/logs/var-log/nginx/`.
-* /shared/ssl: This is directory for certificate, which does not exist by default.
-* /shared/bootstrap.conf: This file does not exist by default. You can create it by your self, and write the configuration of files similar to the `samples` folder.
-
-
 ## Backup and Recovery
 
 ### Structure
@@ -440,7 +444,7 @@ You need to manually add the Clamav config to docker-compose.yml
 
 ## FAQ
 
-Q: I forgot the SeaTable admin email address/password, how do I create a new admin account?
+Q: I forgot the Seafile admin email address/password, how do I create a new admin account?
 
 A: You can create a new admin account by running
 
@@ -448,7 +452,7 @@ A: You can create a new admin account by running
 docker exec -it seafile /opt/seafile/seafile-server-latest/reset-admin.sh
 ```
 
-The SeaTable service must be up when running the superuser command.
+The Seafile service must be up when running the superuser command.
 
 Q: If, for whatever reason, the installation fails, how do I to start from a clean slate again?
 
@@ -476,7 +480,7 @@ Q: **SEAFILE_SERVER_LETSENCRYPT=false change to true.**
 A: If you want to change to https after using http, first backup and move the seafile.nginx.conf.
 
 ```sh
-mv /opt/seafile/shared/nginx/conf/seafile.nginx.conf /opt/seafile/shared/nginx/conf/seafile.nginx.conf.bak
+mv /opt/seafile-data/nginx/conf/seafile.nginx.conf /opt/seafile-data/nginx/conf/seafile.nginx.conf.bak
 ```
 
 Starting the new container will automatically apply a certificate.
