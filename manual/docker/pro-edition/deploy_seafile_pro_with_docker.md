@@ -128,7 +128,7 @@ Placeholder spot for /opt/seafile-data volumes. You may elect to store certain p
 
 * /opt/seafile-data/seafile: This is the directory for seafile server configuration 、logs and data.
   * /opt/seafile-data/seafile/logs: This is the directory that would contain the log files of seafile server processes. For example, you can find seaf-server logs in `/opt/seafile-data/seafile/logs/seafile.log`.
-* /opt/seafile-data/logs: This is the directory for logs.
+* /opt/seafile-data/logs: This is the directory for operating system and Nginx logs.
   * /opt/seafile-data/logs/var-log: This is the directory that would be mounted as `/var/log` inside the container. For example, you can find the nginx logs in `/opt/seafile-data/logs/var-log/nginx/`.
 * /opt/seafile-data/ssl: This is directory for certificate, which does not exist by default.
 
