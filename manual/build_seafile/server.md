@@ -69,7 +69,7 @@ git clone https://github.com/haiwen/seahub.git
 cd libevhtp/
 git checkout tags/1.1.7 -b tag-1.1.7
 
-cd libsearpc/
+cd ../libsearpc/
 git checkout tags/v3.3-latest -b tag-v3.3-latest
 
 cd ../seafile-server
