@@ -62,6 +62,8 @@ cd ~/dev/source-code
 git clone https://github.com/haiwen/libevhtp.git
 git clone https://github.com/haiwen/libsearpc.git
 git clone https://github.com/haiwen/seafile-server.git
+git clone https://github.com/haiwen/seafevents.git
+git clone https://github.com/haiwen/seafobj.git
 git clone https://github.com/haiwen/seahub.git
 
 cd libevhtp/
@@ -71,6 +73,12 @@ cd libsearpc/
 git checkout tags/v3.3-latest -b tag-v3.3-latest
 
 cd ../seafile-server
+git checkout tags/v11.0.0-server -b tag-v11.0.0-server
+
+cd ../seafevents
+git checkout tags/v11.0.0-server -b tag-v11.0.0-server
+
+cd ../seafobj
 git checkout tags/v11.0.0-server -b tag-v11.0.0-server
 
 cd ../seahub
@@ -119,6 +127,27 @@ CONNECTION_CHARSET = utf8
 CREATE_TABLES = true
 EOF
 
+cat > seafile.conf  <<EOF
+[database]
+type = mysql
+host = localhost
+port = 3306
+user = root
+password = 123456
+db_name = seafile
+connection_charset = utf8
+create_tables = true
+EOF
+
+cat > seafevents.conf  <<EOF
+[DATABASE]
+type = mysql
+username = root
+password = 123456
+name = seahub
+host = localhost
+EOF
+
 cat > seahub_settings.py  <<EOF
 DATABASES = {
     'default': {
@@ -133,56 +162,51 @@ DATABASES = {
 FILE_SERVER_ROOT = 'http://127.0.0.1:8082'
 SERVICE_URL = 'http://127.0.0.1:8000'
 EOF
-
-
-mkdir ~/dev/seafile-data
-cd ~/dev/seafile-data
-
-cat > seafile.conf  <<EOF
-[database]
-type = mysql
-host = localhost
-port = 3306
-user = root
-password = 123456
-db_name = seafile
-connection_charset = utf8
-create_tables = true
-EOF
 ```
 
 ## Start seaf-server
 
 ```
-seaf-server -c /root/dev/conf -d /root/dev/seafile-data -D all -f -l - &
+mkdir -p /root/dev/seafile-data/library-template
+seaf-server -F /root/dev/conf -d /root/dev/seafile-data -l /root/dev/logs/seafile.log >> /root/dev/logs/seafile.log 2>&1 &
 ```
 
-## Start seahub
+## Start seafevents and seahub 
 
 ### Prepare environment variables
 
 ```
-cd ~/dev/source-code/seahub/
-
-export PYTHONPATH=/usr/local/lib/python2.7/dist-packages/:/root/dev/source-code/seahub/thirdpart:$PYTHONPATH
 export CCNET_CONF_DIR=/root/dev/conf
 export SEAFILE_CONF_DIR=/root/dev/seafile-data
 export SEAFILE_CENTRAL_CONF_DIR=/root/dev/conf
+export SEAHUB_DIR=/root/dev/source-code/seahub
+export SEAHUB_LOG_DIR=/root/dev/logs
+export PYTHONPATH=/usr/local/lib/python3.10/dist-packages/:/usr/local/lib/python3.10/site-packages/:/root/dev/source-code/:/root/dev/source-code/seafobj/:/root/dev/source-code/seahub/thirdpart:$PYTHONPATH
 ```
 
-### Create seahub database tables
+### Start seafevents
 
 ```
+cd /root/dev/source-code/seafevents/
+python3 main.py --loglevel=debug --logfile=/root/dev/logs/seafevents.log --config-file /root/dev/conf/seafevents.conf >> /root/dev/logs/seafevents.log 2>&1 &
+```
+
+### Start seahub
+
+#### Create seahub database tables
+
+```
+cd /root/dev/source-code/seahub/
 python3 manage.py migrate
 ```
 
-### Create user
+#### Create user
 
 ```
 python3 manage.py createsuperuser
 ```
 
-### Start seahub
+#### Start seahub
 
 ```
 python3 manage.py runserver 0.0.0.0:8000
