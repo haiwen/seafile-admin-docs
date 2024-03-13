@@ -3,7 +3,7 @@ This is the document for deploying Seafile open source development environment i
 ## Run a container
 
 ```
-docker run -it -p 8000:8000 -p 8082:8082 -p 3000:3000 --name seafile-ce-env ubuntu:22.04 bash
+docker run -it -p 8000:8000 -p 8082:8082 -p 3000:3000 --name seafile-ce-env ubuntu:22.04 bash
 ```
 
 Note, the following commands are all executed in the seafile-ce-env docker container.
@@ -217,7 +217,7 @@ Then, you can visit <http://127.0.0.1:8000/>  to use Seafile.
 
 ## The Final Directory Structure
 
-![Directory Structure](../images/build_seafile_server_directory_structure.jpg)
+![Directory Structure](../images/build_seafile_server_directory_structure.png)
 
 ## More
 
