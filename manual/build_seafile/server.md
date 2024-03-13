@@ -167,6 +167,7 @@ EOF
 ## Start seaf-server
 
 ```
+mkdir /root/dev/logs/
 mkdir -p /root/dev/seafile-data/library-template
 seaf-server -F /root/dev/conf -d /root/dev/seafile-data -l /root/dev/logs/seafile.log >> /root/dev/logs/seafile.log 2>&1 &
 ```
