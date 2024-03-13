@@ -8,6 +8,26 @@
 
 Please check our document for how to upgrade to 11.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x/>
 
+### 11.0.6 and SeaDoc 0.6 beta (2024-03-14)
+
+Seafile
+
+* Fix column view is limited to 100 items
+* Fix LDAP user login for WebDAV
+* Remove the configuration item "ENABLE_FILE_COMMENT" as it is no longer needed
+* Enable copy/move files between encrypted and non-encrypted libraries
+* Forbid creating libraries with Emoji in name
+* Fix some letters in the file name do not fit in height in some dialogs
+* Some other UI fixes and improvements
+* Fix a performance issue in sending file updates report
+
+SeaDoc
+
+* Support convert docx file to sdoc file
+* Support Markdown format in comments
+* Support drag rows/columns in table element and other improvements for table elements
+* Other UI fixes and improvements
+
 ### 11.0.5 (2024-01-31)
 
 Seafile
