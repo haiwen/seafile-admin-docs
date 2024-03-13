@@ -79,7 +79,7 @@ use-sigv4 = True
 
 ### Use HTTPS connections to S3
 
-Since Pro 5.0.4, you can use HTTPS connections to S3. Add the following options to seafile.conf:
+To use HTTPS connections to S3, add the following options to seafile.conf:
 
 ```
 [commit_object_backend]
@@ -107,6 +107,35 @@ sudo ln -s /etc/pki/tls/certs/ca-bundle.crt /etc/pki/tls/cert.pem
 ```
 
 Another important note is that you **must not use '.' in your bucket names**. Otherwise the wildcard certificate for AWS S3 cannot be resolved. This is a limitation on AWS.
+
+### Use server-side encryption with customer-provided keys (SSE-C)
+
+Since Pro 11.0, you can use SSE-C to S3. Add the following options to seafile.conf:
+
+```
+[commit_object_backend]
+name = s3
+......
+use_v4_signature = true
+use_https = true
+sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
+
+[fs_object_backend]
+name = s3
+......
+use_v4_signature = true
+use_https = true
+sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
+
+[block_backend]
+name = s3
+......
+use_v4_signature = true
+use_https = true
+sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
+```
+
+`ssk_c_key` is a 32-byte random string.
 
 ## Use S3-compatible Object Storage
 
