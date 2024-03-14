@@ -1,6 +1,6 @@
 # Deploying Seafile with SQLite
 
-> Deploying Seafile with SQLite is deprecated since version 11.0
+> Deploying Seafile with SQLite is no longer supported since version 11.0
 
 ## Download binary package
 
