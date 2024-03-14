@@ -8,7 +8,7 @@
 
 Please check our document for how to upgrade to 11.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x/>
 
-### 11.0.6 and SeaDoc 0.6 beta (2024-03-14)
+### 11.0.6 (2024-03-14)
 
 Seafile
 
@@ -21,7 +21,7 @@ Seafile
 * Some other UI fixes and improvements
 * Fix a performance issue in sending file updates report
 
-SeaDoc
+SDoc editor 0.6
 
 * Support convert docx file to sdoc file
 * Support Markdown format in comments
@@ -35,7 +35,7 @@ Seafile
 * Fix captcha showing issue
 
 
-### 11.0.4 and SeaDoc 0.5 beta (2024-01-26)
+### 11.0.4 (2024-01-26)
 
 Seafile
 
@@ -44,7 +44,7 @@ Seafile
 * Use user's current language when create Office files in OnlyOffice
 * More UI fixes and improvements
 
-SeaDoc
+SDoc editor 0.5
 
 * Support convert sdoc to docx format
 * Improve UX for internal document linking
@@ -52,7 +52,7 @@ SeaDoc
 * Add Search/Replace feature
 * More UI fixes and improvements
 
-### 11.0.3 and SeaDoc 0.4 beta (2023-12-19)
+### 11.0.3 (2023-12-19)
 
 Seafile
 
@@ -60,7 +60,7 @@ Seafile
 * More UI fixes and improvements
 * [fix] seafdav.conf workers parameters does not to be used
 
-SeaDoc
+SDoc editor 0.4
 
 * Add templates with predefined stypes for tables
 * Support combining table cells
@@ -71,7 +71,7 @@ SeaDoc
 * More UI fixes and improvements
 
 
-### 11.0.2 and SeaDoc 0.3 beta (2023-11-20)
+### 11.0.2 (2023-11-20)
 
 Seafile
 
@@ -83,7 +83,7 @@ Seafile
 * [fix] Fix LDAP users cannot login via desktop client
 * Add login ID field when exporting users in admin panel
 
-SeaDoc
+SDoc editor 0.3
 
 * Improved file comment feature
 * Improved revision and review feature
@@ -92,7 +92,7 @@ SeaDoc
 * Support getting link for header element
 
 
-### 11.0.1 beta and SeaDoc 0.2 beta (2023-10-18)
+### 11.0.1 beta (2023-10-18)
 
 Seafile
 
@@ -101,7 +101,7 @@ Seafile
 * Improve UI for file tags
 * Remove file comment features as they are used very little
 
-SeaDoc
+SDoc editor 0.2
 
 * All major elements like tables, lists are now supported
 * The editor is basically stable to use. Everyone is welcome to try it out.
