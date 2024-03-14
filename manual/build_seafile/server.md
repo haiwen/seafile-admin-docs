@@ -1,9 +1,28 @@
 This is the document for deploying Seafile open source development environment in Ubuntu 2204 docker container.
 
-## Run a container
+## Create persistent directories
+
+Login a linux server as `root` user, then:
 
 ```
-docker run -it -p 8000:8000 -p 8082:8082 -p 3000:3000 --name seafile-ce-env ubuntu:22.04 bash
+mkdir -p /root/seafile-ce-docker/source-code
+mkdir -p /root/seafile-ce-docker/conf
+mkdir -p /root/seafile-ce-docker/logs
+mkdir -p /root/seafile-ce-docker/mysql-data
+mkdir -p /root/seafile-ce-docker/seafile-data/library-template
+```
+
+## Run a container
+
+After [install docker](https://docs.docker.com/engine/install/), start a container to deploy seafile open source development environment.
+
+```
+docker run --mount type=bind,source=/root/seafile-ce-docker/source-code,target=/root/dev/source-code \
+           --mount type=bind,source=/root/seafile-ce-docker/conf,target=/root/dev/conf \
+           --mount type=bind,source=/root/seafile-ce-docker/logs,target=/root/dev/logs \
+           --mount type=bind,source=/root/seafile-ce-docker/seafile-data,target=/root/dev/seafile-data \
+           --mount type=bind,source=/root/seafile-ce-docker/mysql-data,target=/var/lib/mysql \
+           -it -p 8000:8000 -p 8082:8082 -p 3000:3000 --name seafile-ce-env ubuntu:22.04 bash
 ```
 
 Note, the following commands are all executed in the seafile-ce-env docker container.
@@ -41,22 +60,21 @@ pip3 install Django==4.2.* django-statici18n==2.3.* django_webpack_loader==1.7.*
 ```
 apt-get install -y mariadb-server
 service mariadb start
-mysqladmin -u root password 123456
+mysqladmin -u root password your_password
 ```
 
 sql for create databases
 
 ```
-create database ccnet charset utf8;
-create database seafile charset utf8;
-create database seahub charset utf8;
+mysql -uroot -pyour_password -e "CREATE DATABASE ccnet CHARACTER SET utf8;"
+mysql -uroot -pyour_password -e "CREATE DATABASE seafile CHARACTER SET utf8;"
+mysql -uroot -pyour_password -e "CREATE DATABASE seahub CHARACTER SET utf8;"
 ```
 
 ## Download Source Code
 
 ```
 cd ~/
-mkdir -p ~/dev/source-code
 cd ~/dev/source-code
 
 git clone https://github.com/haiwen/libevhtp.git
@@ -112,7 +130,6 @@ ldconfig
 ## Create Conf Files
 
 ```
-mkdir ~/dev/conf
 cd ~/dev/conf
 
 cat > ccnet.conf  <<EOF
@@ -167,8 +184,6 @@ EOF
 ## Start seaf-server
 
 ```
-mkdir /root/dev/logs/
-mkdir -p /root/dev/seafile-data/library-template
 seaf-server -F /root/dev/conf -d /root/dev/seafile-data -l /root/dev/logs/seafile.log >> /root/dev/logs/seafile.log 2>&1 &
 ```
 
