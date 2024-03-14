@@ -43,7 +43,6 @@ Overwrite `BRANDING_CSS` in `seahub_settings.py`
 BRANDING_CSS = 'custom/custom.css'
 ```
 
-You can find a good example of customized css file here: <https://github.com/focmb/seafile_custom_css_green>
 
 ## Customize help page
 
@@ -101,7 +100,7 @@ CUSTOM_NAV_ITEMS = [
 ]
 ```
 
-**Note: The **`icon` **field currently only supports icons in Seafile that begin with **`sf2-icon`**. You can find the list of icons here: **<https://github.com/haiwen/seahub/blob/7.0/media/css/seahub.css#L146>
+**Note: The `icon` field currently only supports icons in Seafile that begin with `sf2-icon`. You can find the list of icons here: <hhttps://github.com/haiwen/seahub/blob/master/media/css/seahub.css>
 
 Then restart the Seahub service to take effect.
 
