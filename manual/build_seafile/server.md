@@ -73,16 +73,16 @@ cd ../libsearpc/
 git checkout tags/v3.3-latest -b tag-v3.3-latest
 
 cd ../seafile-server
-git checkout tags/v11.0.0-server -b tag-v11.0.0-server
+git checkout tags/v11.0.5-server -b tag-v11.0.5-server
 
 cd ../seafevents
-git checkout tags/v11.0.0-server -b tag-v11.0.0-server
+git checkout tags/v11.0.5-server -b tag-v11.0.5-server
 
 cd ../seafobj
-git checkout tags/v11.0.0-server -b tag-v11.0.0-server
+git checkout tags/v11.0.5-server -b tag-v11.0.5-server
 
 cd ../seahub
-git checkout tags/v11.0.0-server -b tag-v11.0.0-server
+git checkout tags/v11.0.5-server -b tag-v11.0.5-server
 ```
 
 ## Compile and Install seaf-server
