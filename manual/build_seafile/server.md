@@ -60,15 +60,15 @@ pip3 install Django==4.2.* django-statici18n==2.3.* django_webpack_loader==1.7.*
 ```
 apt-get install -y mariadb-server
 service mariadb start
-mysqladmin -u root password 123456
+mysqladmin -u root password your_password
 ```
 
 sql for create databases
 
 ```
-mysql -uroot -p123456 -e "CREATE DATABASE ccnet CHARACTER SET utf8;"
-mysql -uroot -p123456 -e "CREATE DATABASE seafile CHARACTER SET utf8;"
-mysql -uroot -p123456 -e "CREATE DATABASE seahub CHARACTER SET utf8;"
+mysql -uroot -pyour_password -e "CREATE DATABASE ccnet CHARACTER SET utf8;"
+mysql -uroot -pyour_password -e "CREATE DATABASE seafile CHARACTER SET utf8;"
+mysql -uroot -pyour_password -e "CREATE DATABASE seahub CHARACTER SET utf8;"
 ```
 
 ## Download Source Code
