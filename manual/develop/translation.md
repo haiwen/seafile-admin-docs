@@ -56,4 +56,51 @@ Steps:
 2. Send a request to join the language translation. 
 3. After accepted by the project maintainer, then you can upload your file or translate online.
 
+## FAQ
 
+### FileNotFoundError
+
+`FileNotFoundError` occurred when executing the command `manage.py collectstatic`.
+
+```log
+FileNotFoundError: [Errno 2] No such file or directory: '/opt/seafile/seafile-server-latest/seahub/frontend/build'
+```
+
+Steps:
+
+1. Modify `STATICFILES_DIRS` in `/opt/seafile/seafile-server-latest/seahub/seahub/settings.py` manually
+
+    ```python
+    STATICFILES_DIRS = (
+        # Put strings here, like "/home/html/static" or "C:/www/django/static".
+        # Always use forward slashes, even on Windows.
+        # Don't forget to use absolute paths, not relative paths.
+        '%s/static' % PROJECT_ROOT,
+    #    '%s/frontend/build' % PROJECT_ROOT,
+    )
+    ```
+
+2. Execute the command
+
+    ```sh
+    ./seahub.sh python-env python3 seahub/manage.py collectstatic --noinput -i admin -i termsandconditions --no-post-process
+    ```
+
+3. Restore `STATICFILES_DIRS` manually
+
+    ```python
+    STATICFILES_DIRS = (
+        # Put strings here, like "/home/html/static" or "C:/www/django/static".
+        # Always use forward slashes, even on Windows.
+        # Don't forget to use absolute paths, not relative paths.
+        '%s/static' % PROJECT_ROOT,
+        '%s/frontend/build' % PROJECT_ROOT,
+    )
+
+4. Restart Seahub
+
+    ```sh
+    ./seahub.sh restart
+    ```
+
+This issue has been fixed since version 11.0
