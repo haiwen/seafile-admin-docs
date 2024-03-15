@@ -340,7 +340,38 @@ $ tree -L 2 /opt/seafile
 
 ### Setup Memcached
 
-Memcached is mandatory for pro edition. Following the document [adding memcached](memcached_options.md) to setup Memcached.
+Memcached is mandatory for pro edition.
+
+Use the following commands to install memcached and corresponding libraies on your system:
+
+```
+# on Debian/Ubuntu 18.04+
+apt-get install memcached libmemcached-dev -y
+pip3 install --timeout=3600 pylibmc django-pylibmc
+
+systemctl enable --now memcached
+```
+
+
+Add the following configuration to `seahub_settings.py`.
+
+```
+CACHES = {
+    'default': {
+        'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
+        'LOCATION': '127.0.0.1:11211',
+    },
+}
+
+```
+
+Add the following configuration to `seafile.conf`:
+
+```
+[memcached]
+memcached_options = --SERVER=<the IP of Memcached Server> --POOL-MIN=10 --POOL-MAX=100
+```
+
 
 ### Enabling HTTP/HTTPS
 

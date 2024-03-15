@@ -313,6 +313,30 @@ GRANT ALL PRIVILEGES ON `seahub_db`.* to `seafile`@localhost;
 
 ```
 
+### Setup Memcached
+
+Use the following commands to install memcached and corresponding libraies on your system:
+
+```
+# on Debian/Ubuntu 18.04+
+apt-get install memcached libmemcached-dev -y
+pip3 install --timeout=3600 pylibmc django-pylibmc
+
+systemctl enable --now memcached
+```
+
+Add the following configuration to `seahub_settings.py`.
+
+```
+CACHES = {
+    'default': {
+        'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
+        'LOCATION': '127.0.0.1:11211',
+    },
+}
+
+```
+
 ### Tweaking conf files
 
 Seafile's config files as created by the setup script are prepared for Seafile running behind a reverse proxy.
