@@ -57,7 +57,6 @@ nav:
     - Installation with MySQL: deploy/using_mysql.md
     - HTTPS with Nginx: deploy/https_with_nginx.md
     - HTTPS with Apache: deploy/https_with_apache.md
-    - Common Problems for Setting up Server: faq.md
   - Seafile Professional Setup on Linux:
     - Outline: deploy_pro/README.md
     - Installation: deploy_pro/download_and_setup_seafile_professional_server.md
