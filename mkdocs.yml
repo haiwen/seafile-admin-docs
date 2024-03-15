@@ -72,7 +72,6 @@ nav:
       - Deploy in a cluster: deploy_pro/deploy_in_a_cluster.md
       - Search and background tasks in a cluster: deploy_pro/enable_search_and_background_tasks_in_a_cluster.md
       - Memcache and MariaDB Cluster: deploy_pro/memcached_mariadb_cluster.md
-      - Notification Server in Cluster: deploy_pro/notification-server.md
       - Setup Seafile cluster with NFS: deploy_pro/setup_seafile_cluster_with_nfs.md
     - License: deploy_pro/seafile_professional_sdition_software_license_agreement.md
   - Seafile Setup with Docker:
