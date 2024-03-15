@@ -175,14 +175,6 @@ Follow the instructions on the screen.
 
 Upon successful verification, Certbot saves the certificate files in a directory named after the host name in  ```/etc/letsencrypt/live```. For the host name seafile.example.com, the files are stored in `/etc/letsencrypt/live/seafile.example.com`. 
 
-### Enabling SSL module of Nginx (optional)
-
-If your Nginx does not support SSL, you need to recompile it. Use the following command:
-
-```bash
-$ ./configure --with-http_stub_status_module --with-http_ssl_module
-    make && make install
-```
 
 ### Modifying Nginx configuration file
 
