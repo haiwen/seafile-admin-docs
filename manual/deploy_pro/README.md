@@ -27,7 +27,4 @@ There are three ways to deploy Seafile Pro Edition. Since version 8.0, the recom
 - [Setup Seafile cluster with NFS](setup_seafile_cluster_with_nfs.md)
 - [Upgrade a cluster](upgrade_a_cluster.md)
 
-## LDAP/AD Integration for Pro
-
-For LDAP/AD Integration, virus scan and other additional setup, refer the section [Advanced Setup Options]
 

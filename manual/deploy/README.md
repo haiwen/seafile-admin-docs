@@ -9,12 +9,11 @@ We provide three ways to deploy Seafile services. Since version 8.0, **Docker is
 ## Manually deployment options
 
 * [Deploying Seafile with MySQL](using_mysql.md)
-* [Deploying Seafile with SQLite](using_sqlite.md), note, deploy Seafile with SQLite is deprecated since version 11.0
+* [Deploying Seafile with SQLite](using_sqlite.md), note, deploy Seafile with SQLite is not supported since version 11.0
 * [Config Seahub with Nginx](deploy_with_nginx.md)
 * [Enabling Https with Nginx](https_with_nginx.md)
 * [Config Seahub with Apache](deploy_with_apache.md)
 * [Enabling Https with Apache](https_with_apache.md)
-* [Add Memcached](add_memcached.md), adding memcached is very important if you have more than 50 users.
 * [Start Seafile at System Bootup](start_seafile_at_system_bootup.md)
 * [Firewall settings](using_firewall.md)
 * [Logrotate](using_logrotate.md)
@@ -33,12 +32,11 @@ Seafile supports a few Single Sign On authentication protocols. See [Single Sign
 * [Deploy Seahub at Non-root domain](deploy_seahub_at_non-root_domain.md)
 * [Migrate From SQLite to MySQL](migrate_from_sqlite_to_mysql.md)
 
-Check [configuration options](../config/README.md) for server config options like enabling user registration.
 
 ## Trouble shooting
 
 1. Read [Seafile Server Components Overview](../overview/components.md) to understand how Seafile server works. This will save you a lot of time.
-2. [Common Problems for Setting up Server](common_problems_for_setting_up_server.md)
+2. Read [FAQ](https://cloud.seatable.io/dtable/external-links/7b976c85f504491cbe8e/)
 3. Go to our [forum](https://forum.seafile.com/) for help.
 
 ## Upgrade Seafile Server
