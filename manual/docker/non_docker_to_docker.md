@@ -1,12 +1,8 @@
 # Migrate from non-docker Seafile deployment to docker
 
-> Note: you must use seafile-mc version 8.0.7-1 or above
+The recommended steps to migrate from non-docker deployment to docker deployment are:
 
-Starting from 9.0, binary packages cannot run on CentOS 7, CentOS 8. If you need to run Seafile on CentOS or some other platforms that are not supported by binary packages, then it is recommended that you first migrate to Docker to run Seafile.
-
-The recommended steps are:
-
-1. Upgrade the version of the binary package to 8.0.x first, and ensure that the system is running normally.
+1. Upgrade the version of the binary package to latest version, and ensure that the system is running normally. (If you running a very old version of Seafile, you can following the [FAQ item](https://cloud.seatable.io/dtable/external-links/7b976c85f504491cbe8e/?tid=0000&vid=0000&row-id=VYQI9DJfRmCv5NggcX4f0Q) to migrate to the latest version)
 2. Close Seafile and native Nginx, Memcached
 3. Create the directory needed for Seafile Docker image to run, and copy some files of the locally deployed Seafile to this directory
 4. Download the docker-compose.yml file and configure Seafile Docker to use non-Docker version configuration information to connect to the old MySQL database and the old seafile-data directory.
@@ -14,7 +10,7 @@ The recommended steps are:
 
 The following document assumes that the deployment path of your non-Docker version of Seafile is /opt/seafile. If you use other paths, before running the command, be careful to modify the command path.
 
-> Note that you can also refer to the Seafile backup and recovery documentation, deploy Seafile Docker on another machine, and then copy the old configuration information, database, and seafile-data to the new machine to complete the migration. The advantage of this is that even if an error occurs during the migration process, the existing system will not be destroyed.
+> Note, you can also refer to the Seafile backup and recovery documentation, deploy Seafile Docker on another machine, and then copy the old configuration information, database, and seafile-data to the new machine to complete the migration. The advantage of this is that even if an error occurs during the migration process, the existing system will not be destroyed.
 
 ## Migrate
 
