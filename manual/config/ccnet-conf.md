@@ -3,14 +3,6 @@
 
 Ccnet is the internal RPC framework used by Seafile server and also manages the user database. A few useful options are in ccnet.conf. Ccnet component is merged into seaf-server in version 7.1, but the configuration file are still needed.
 
-```
-[General]
-# This is outside URL for Seahub(Seafile Web). 
-# The domain part (i.e., www.example.com) will be used in generating share links and download/upload file via web.
-# Note: Outside URL means "if you use Nginx, it should be the Nginx's address"
-# Note: SERVICE_URL is moved to seahub_settings.py since 9.0.0
-SERVICE_URL=http://www.example.com:8000
-```
 
 ## Changing MySQL Connection Pool Size
 
@@ -22,18 +14,24 @@ When you configure ccnet to use MySQL, the default connection pool size is 100, 
 # Use larger connection pool
 MAX_CONNECTIONS = 200
 ```
+
 ## Using Encrypted Connections
+
 Since Seafile 10.0.2, you can enable the encrypted connections to the MySQL server by adding the following configuration options:
+
 ```
 [Database]
 USE_SSL = true
 SKIP_VERIFY = false
 CA_PATH = /etc/mysql/ca.pem
 ```
+
 When set `use_ssl` to true and `skip_verify` to false, it will check whether the MySQL server certificate is legal through the CA configured in `ca_path`. The `ca_path` is a trusted CA certificate path for signing MySQL server certificates. When `skip_verify` is true, there is no need to add the `ca_path` option. The MySQL server certificate won't be verified at this time.
 
 ## Using unix_socket Authentication Plugin
+
 Since Seafile 10.0.3 and 10.0.7 Pro, you can use unix_socket authentication plugin provided by MariaDB/MySQL. To enable it, you need to specify the `UNIX_SOCKET` option without user name and password.
+
 ```
 [Database]
 UNIX_SOCKET = /var/run/mysqld/mysqld.sock
