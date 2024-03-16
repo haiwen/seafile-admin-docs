@@ -119,12 +119,11 @@ nav:
     - Advanced File Search configuration (Pro): deploy_pro/details_about_file_search.md
     - Migrate From SQLite to MySQL: deploy/migrate_from_sqlite_to_mysql.md
     - Others Deployment Notes:
-      - Open Cloud Mesh: deploy/ocm.md
-      - Firewall settings: deploy/using_firewall.md
-      - Deploy Seafile behind NAT: deploy/deploy_seafile_behind_nat.md
-      - Deploy Seahub at Non-root domain or on custom port: deploy/deploy_seahub_at_non-root_domain.md
       - Start Seafile at System Bootup: deploy/start_seafile_at_system_bootup.md
       - Logrotate: deploy/using_logrotate.md
+      - Open Cloud Mesh: deploy/ocm.md
+      - Deploy Seafile behind NAT: deploy/deploy_seafile_behind_nat.md
+      - Deploy Seahub at Non-root domain or on custom port: deploy/deploy_seahub_at_non-root_domain.md
       - Config fail2ban: security/fail2ban.md
       - Real-time Backup Server: deploy_pro/real_time_backup.md
   - Configuration and Customization:
