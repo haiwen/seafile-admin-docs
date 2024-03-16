@@ -1,6 +1,8 @@
 # Start Seafile at System Bootup
 
-## Create systemd service file /etc/systemd/system/seafile.service
+## Seafile component
+
+Create systemd service file /etc/systemd/system/seafile.service
 
 ```
 sudo vim /etc/systemd/system/seafile.service
@@ -29,7 +31,9 @@ WantedBy=multi-user.target
 ```
 
 
-## Create systemd service file /etc/systemd/system/seahub.service
+## Seahub component
+
+Create systemd service file /etc/systemd/system/seahub.service
 
 ```
 sudo vim /etc/systemd/system/seahub.service
@@ -57,7 +61,9 @@ WantedBy=multi-user.target
 ```
 
 
-## Create systemd service file /etc/systemd/system/seafile-client.service (optional)
+## Seafile cli client (optional)
+
+Create systemd service file /etc/systemd/system/seafile-client.service 
 
 You need to create this service file only if you have **seafile**
 console client and you want to run it on system boot.
