@@ -69,6 +69,10 @@ password = elastic_password  # password to connect to Elasticsearch
 scheme = https               # The default is http. If the Elasticsearch server is not configured with HTTPS, the scheme and cafile do not need to be configured
 cafile = path/to/cert.pem    # The certificate path for user authentication. If the Elasticsearch server does not enable certificate authentication, do not need to be configured
 
+## From version 11.0.5 Pro, you can custom ElasticSearch index names for distinct instances when intergrating multiple Seafile servers to a single ElasticSearch Server.
+repo_status_index_name = your-repo-status-index-name  # default is `repo_head`
+repo_files_index_name = your-repo-files-index-name    # default is `repofiles`
+
 [EVENTS PUBLISH]
 ## must be "true" to enable publish events messages
 enabled = false
