@@ -8,7 +8,14 @@
 
 Please check our document for how to upgrade to 11.0: https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x/
 
-### 11.0.4 beta and SeaDoc 0.5 (2024-02-01)
+### 11.0.5 beta (2024-03-19)
+
+* Forbid generating share links for a library if the user has invisible/cloud-read-only permission on the library
+* [fix] Fix a configuration error for Ceph storage (if you don't use S3 interface)
+* [fix] Fix a bug in traffic statistic in golang file server
+* Support use different index names for ElasticSearch
+
+### 11.0.4 beta and SDoc editor 0.5 (2024-02-01)
 
 Major changes
 
