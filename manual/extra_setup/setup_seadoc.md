@@ -246,7 +246,7 @@ Start SeaDoc server with the following command
 docker compose up -d
 ```
 
-Wait for a few minutes for the first time initialization. Open `sdoc-server-path/sdoc-server/conf/sdoc_server_config.json`, and record `private_key` for modifying Seafile configuration file.
+Wait for a few minutes for the first time initialization. Open `/opt/seadoc-server/sdoc-server/conf/sdoc_server_config.json`, and record `private_key` for modifying Seafile configuration file.
 
 ### Configure Seafile
 
@@ -298,15 +298,15 @@ If you want to use your own SSL certificate and the volume directory of SeaDoc d
 * create a folder `/opt/seadoc-data/ssl`, and put your certificate and private key under the ssl directory.
 * Assume your site name is `sdoc-server.example.com`, then your certificate must have the name `sdoc-server.example.com.crt`, and the private key must have the name `sdoc-server.example.com.key`.
 
-## Seafile directory structure
+## SeaDoc directory structure
 
-### `/shared`
+### `/opt/seadoc-data`
 
 Placeholder spot for shared volumes. You may elect to store certain persistent information outside of a container, in our case we keep various log files and upload directory outside. This allows you to rebuild containers easily without losing important information.
 
-* /shared/sdoc-server: This is the directory for SeaDoc server configuration and data.
-* /shared/nginx-logs: This is the directory for nginx logs.
-* /shared/ssl: This is directory for certificate, which does not exist by default.
+* /opt/seadoc-data/sdoc-server: This is the directory for SeaDoc server configuration and data.
+* /opt/seadoc-data/nginx-logs: This is the directory for nginx logs.
+* /opt/seadoc-data/ssl: This is directory for certificate, which does not exist by default.
 
 ## Upgrading SeaDoc server
 
