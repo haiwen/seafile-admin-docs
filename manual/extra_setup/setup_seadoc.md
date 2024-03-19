@@ -246,7 +246,7 @@ Start SeaDoc server with the following command
 docker compose up -d
 ```
 
-Wait for a few minutes for the first time initialization. Open `/opt/seadoc-server/sdoc-server/conf/sdoc_server_config.json`, and record `private_key` for modifying Seafile configuration file.
+Wait for a few minutes for the first time initialization. Open `/opt/seadoc-data/sdoc-server/conf/sdoc_server_config.json`, and record `private_key` for modifying Seafile configuration file.
 
 ### Configure Seafile
 
