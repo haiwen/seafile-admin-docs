@@ -14,6 +14,21 @@ Please check our document for how to upgrade to 11.0: https://manual.seafile.com
 * [fix] Fix a configuration error for Ceph storage (if you don't use S3 interface)
 * [fix] Fix a bug in traffic statistic in golang file server
 * Support use different index names for ElasticSearch
+* Fix column view is limited to 100 items
+* Fix LDAP user login for WebDAV
+* Remove the configuration item "ENABLE_FILE_COMMENT" as it is no longer needed
+* Enable copy/move files between encrypted and non-encrypted libraries
+* Forbid creating libraries with Emoji in name
+* Fix some letters in the file name do not fit in height in some dialogs
+* Fix a performance issue in sending file updates report
+* Some other UI fixes and improvements
+
+SDoc editor 0.6
+
+* Support convert docx file to sdoc file
+* Support Markdown format in comments
+* Support drag rows/columns in table element and other improvements for table elements
+* Other UI fixes and improvements
 
 ### 11.0.4 beta and SDoc editor 0.5 (2024-02-01)
 
