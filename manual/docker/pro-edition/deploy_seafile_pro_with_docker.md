@@ -124,7 +124,7 @@ docker compose up -d
 
 ### `/opt/seafile-data`
 
-Placeholder spot for /opt/seafile-data volumes. You may elect to store certain persistent information outside of a container, in our case we keep various log files and upload directory outside. This allows you to rebuild containers easily without losing important information.
+Placeholder spot for shared volumes. You may elect to store certain persistent information outside of a container, in our case we keep various log files and upload directory outside. This allows you to rebuild containers easily without losing important information.
 
 * /opt/seafile-data/seafile: This is the directory for seafile server configuration 、logs and data.
   * /opt/seafile-data/seafile/logs: This is the directory that would contain the log files of seafile server processes. For example, you can find seaf-server logs in `/opt/seafile-data/seafile/logs/seafile.log`.
