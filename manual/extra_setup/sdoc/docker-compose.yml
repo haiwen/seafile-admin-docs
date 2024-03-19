@@ -9,7 +9,7 @@ services:
       # - 7070:7070
       # - 8888:8888
     volumes:
-      - /opt/seafile/sdoc-data/:/shared
+      - /opt/seadoc-data/:/shared
     environment:
       - DB_HOST=192.168.0.2
       - DB_PORT=3306
