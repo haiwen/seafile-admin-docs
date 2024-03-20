@@ -1,4 +1,4 @@
-# SAML 2.0 in version 10.0
+# SAML 2.0 in version 10.0+
 
 In this document, we use Microsoft Azure SAML single sign-on app and Microsoft on-premise ADFS to show how Seafile integrate SAML 2.0. Other SAML 2.0 provider should be similar.
 
