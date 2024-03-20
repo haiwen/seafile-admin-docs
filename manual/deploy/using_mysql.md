@@ -412,7 +412,4 @@ This manual provides instructions for enabling HTTPS for the two most popular we
 * [Apache](https://manual.seafile.com/deploy/https_with_apache/)
 
 
-## Performance tuning
-
-If you have more than 50 users, we highly recommand you to [add memcached](../deploy/add_memcached.md). This is going to greatly speed up Seahub (the web frontend).  
 
