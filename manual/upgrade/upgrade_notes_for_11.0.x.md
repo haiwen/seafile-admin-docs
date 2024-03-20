@@ -62,11 +62,6 @@ sudo apt-get update
 sudo apt-get install -y dnsutils
 ```
 
-For CentOS 8
-
-```sh
-sudo yum install bind-utils -y
-```
 
 ### Django CSRF protection issue
 
@@ -215,3 +210,9 @@ OAUTH_ATTRIBUTE_MAP = {
 
 
 ### 4) Start Seafile-11.0.x server.
+
+## FAQ
+
+We have documented common issues encountered by users when upgrading to version 11.0 in our [https://cloud.seatable.io/dtable/external-links/7b976c85f504491cbe8e/?tid=0000&vid=0000](FAQ).
+
+If you encounter any issue, please give it a check. 
