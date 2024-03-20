@@ -15,8 +15,9 @@ When Seafile counts the number of users in the system, it only counts the **acti
 The only requirement for Seafile to use LDAP for authentication is that there must be a unique identifier for each user in the LDAP server. Seafile can only use email-address-format user identifiers. So there are usually only two options for this unique identifier:
 
 - Email address: this is the most common choice. Most organizations assign unique email address for each member.
-
 - UserPrincipalName: this is a user attribute only available in Active Directory. It's format is `user-login-name@domain-name`, e.g. `john@example.com`. It's not a real email address, but it works fine as the unique identifier.
+
+Note, the identifier is stored in table `social_auth_usersocialauth` to map the identifier to internal user ID in Seafile.
 
 ### Integration Configuration
 
@@ -30,7 +31,7 @@ LDAP_BASE_DN = 'ou=test,dc=seafile,dc=ren'   # The root node of users who can
 LDAP_ADMIN_DN = 'administrator@example.com'  # DN of the administrator used 
                                              # to query the LDAP server for information.
                                              # For OpenLDAP, it maybe cn=admin,dc=example,dc=com
-LDAP_ADMIN_PASSWORD = 'Hello@123'            # Password of LDAP_ADMIN_DN
+LDAP_ADMIN_PASSWORD = 'yourpassword'         # Password of LDAP_ADMIN_DN
 LDAP_PROVIDER = 'ldap'                       # Identify the source of the user, used in 
                                              # the table social_auth_usersocialauth, defaults to 'ldap'
 LDAP_LOGIN_ATTR = 'userPrincipalName'        # User's attribute used to log in to Seafile, 
