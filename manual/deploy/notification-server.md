@@ -177,7 +177,7 @@ frontend seafile
     option dontlognull
     option forwardfor
     acl notif_ping_request  url_sub -i /notification/ping
-    acl ws_requests  url_sub -i /notification
+    acl ws_requests  url -i /notification
     acl hdr_connection_upgrade hdr(Connection)  -i upgrade
     acl hdr_upgrade_websocket  hdr(Upgrade)     -i websocket
     use_backend ws_backend if hdr_connection_upgrade hdr_upgrade_websocket
