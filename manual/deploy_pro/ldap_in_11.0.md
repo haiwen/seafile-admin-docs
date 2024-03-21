@@ -12,12 +12,12 @@ When Seafile counts the number of users in the system, it only counts the **acti
 
 ## Basic LDAP Integration
 
-The only requirement for Seafile to use LDAP for authentication is that there must be a unique identifier for each user in the LDAP server. Seafile can only use email-address-format user identifiers. So there are usually only two options for this unique identifier:
+The only requirement for Seafile to use LDAP for authentication is that there must be a unique identifier for each user in the LDAP server. This id should also be user-friendly as the users will use it as username when login. Below are some usual options for this unique identifier:
 
 - Email address: this is the most common choice. Most organizations assign unique email address for each member.
 - UserPrincipalName: this is a user attribute only available in Active Directory. It's format is `user-login-name@domain-name`, e.g. `john@example.com`. It's not a real email address, but it works fine as the unique identifier.
 
-Note, the identifier is stored in table `social_auth_usersocialauth` to map the identifier to internal user ID in Seafile.
+Note, the identifier is stored in table `social_auth_usersocialauth` to map the identifier to internal user ID in Seafile. When this ID is changed in LDAP for a user, you only need to update `social_auth_usersocialauth` table.
 
 ### Integration Configuration
 
@@ -34,8 +34,9 @@ LDAP_ADMIN_DN = 'administrator@example.com'  # DN of the administrator used
 LDAP_ADMIN_PASSWORD = 'yourpassword'         # Password of LDAP_ADMIN_DN
 LDAP_PROVIDER = 'ldap'                       # Identify the source of the user, used in 
                                              # the table social_auth_usersocialauth, defaults to 'ldap'
-LDAP_LOGIN_ATTR = 'userPrincipalName'        # User's attribute used to log in to Seafile, 
-                                             # can be mail or userPrincipalName, cannot be changed
+LDAP_LOGIN_ATTR = 'userPrincipalName'        # User's attribute used to log in to Seafile.
+                                             # It should be a unique identifier for the user in LDAP server.
+                                             # Learn more about this id from the descriptions at begining of this section.
 LDAP_CONTACT_EMAIL_ATTR = ''                 # LDAP user's contact_email attribute
 LDAP_USER_ROLE_ATTR = ''                     # LDAP user's role attribute
 LDAP_USER_FIRST_NAME_ATTR = 'givenName'      # For update user's first name when login
@@ -81,8 +82,10 @@ LDAP_USER_OBJECT_CLASS = 'person'        # This is the name of the class used to
                                          # In Active Directory, it's usually "person". The default value is "person".
 LDAP_DEPT_ATTR = ''                      # LDAP user's department info
 LDAP_UID_ATTR = ''                       # LDAP user's login_id attribute
+                                         # In Active Directory, it's usually "sAMAccountName".
 LDAP_AUTO_REACTIVATE_USERS = True        # Whether to auto activate deactivated user
 LDAP_USE_PAGED_RESULT = False            # Whether to use pagination extension
+                                         # It is useful when you have more than 1000 users in LDAP server.
 
 IMPORT_NEW_USER = True                   # Whether to import new users when sync user
 ACTIVATE_USER_WHEN_IMPORT = True         # Whether to activate the user when importing new user
