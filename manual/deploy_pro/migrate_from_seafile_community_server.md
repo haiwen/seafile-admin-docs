@@ -21,12 +21,6 @@ sudo apt-get install poppler-utils
 
 ```
 
-On CentOS/Red Hat:
-
-```
-sudo yum install poppler-utils
-
-```
 
 ## Do the migration
 
@@ -74,7 +68,7 @@ You should notice the difference between the names of the Community Server and P
 
 
 ```
-cd haiwen/seafile-server-10.0.0
+cd seafile/seafile-server-10.0.0
 ./seafile.sh stop
 ./seahub.sh stop
 
@@ -84,7 +78,7 @@ cd haiwen/seafile-server-10.0.0
 
 
 ```
-cd haiwen/seafile-pro-server-10.0.0/
+cd seafile/seafile-pro-server-10.0.0/
 ./pro/pro.py setup --migrate
 
 ```
@@ -99,7 +93,7 @@ The migration script is going to do the following for you:
 Now you have:
 
 ```
-haiwen
+seafile
 ├── seafile-license.txt
 ├── seafile-pro-server-10.0.0/
 ├── seafile-server-10.0.0/
@@ -115,7 +109,7 @@ haiwen
 ### Start Seafile Professional Server
 
 ```
-cd haiwen/seafile-pro-server-10.0.0
+cd seafile/seafile-pro-server-10.0.0
 ./seafile.sh start
 ./seahub.sh start
 
@@ -123,26 +117,26 @@ cd haiwen/seafile-pro-server-10.0.0
 
 ## Switch Back to Community Server
 
-* Stop Seafile Professional Server if it's running
+Stop Seafile Professional Server if it's running
 
 
 ```
-cd haiwen/seafile-pro-server-10.0.0/
+cd seafile/seafile-pro-server-10.0.0/
 ./seafile.sh stop
 ./seahub.sh stop
 
 ```
 
-* Update the avatar directory link just like in [Maintenance Upgrade](../upgrade/upgrade.md#maintenance-version-upgrade-eg-from-622-to-623)
+Run the minor-upgrade script to fix symbolic links
 
 
 ```
-cd haiwen/seafile-server-10.0.0/
+cd seafile/seafile-server-10.0.0/
 ./upgrade/minor-upgrade.sh
 
 ```
 
-* Start Seafile Community Server
+Start Seafile Community Server
 
 
 ```
