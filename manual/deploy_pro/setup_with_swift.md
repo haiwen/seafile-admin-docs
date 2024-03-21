@@ -9,17 +9,7 @@ Since version 6.3, OpenStack Swift v3.0 API is supported.
 To setup Seafile Professional Server with Swift:
 
 * Setup the basic Seafile Professional Server following the guide on [Download and setup Seafile Professional Server](download_and_setup_seafile_professional_server.md)
-* Install and configure memcached. For best performance, Seafile requires install memcached and enable memcache for objects. We recommend to allocate 128MB memory for memcached. Edit /etc/memcached.conf
-
-
-```
-# Start with a cap of 64 megs of memory. It's reasonable, and the daemon default
-# Note that the daemon will grow to this size, but does not start out holding this much
-# memory
-# -m 64
--m 128
-
-```
+* Install and configure memcached or Redis. For best performance, Seafile requires enable memory cache for objects. We recommend to at least allocate 128MB memory for memcached.
 
 ## Modify Seafile.conf
 
@@ -56,10 +46,9 @@ auth_host = 192.168.56.31:5000
 auth_ver = v3.0
 region = yourRegion
 
-[memcached]
-memcached_options = --SERVER=192.168.1.134:11211 --POOL-MIN=10 --POOL-MAX=100
-
 ```
+
+You also need to add [memory cache configurations](/manual/config/seafile-conf.md#cache-pro-edition-only).
 
 The above config is just an example. You should replace the options according to your own environment.
 
@@ -67,7 +56,7 @@ Seafile supports Swift with Keystone as authentication mechanism. The `auth_host
 
 Seafile also supports Tempauth and Swauth since professional edition 6.2.1. The `auth_ver` option should be set to `v1.0`, `tenant` and `region` are no longer needed.
 
-It's recommended to create separate containers for commit, fs, and block objects.
+It's required to create separate containers for commit, fs, and block objects.
 
 ### Use HTTPS connections to Swift
 

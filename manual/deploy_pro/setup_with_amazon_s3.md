@@ -13,15 +13,7 @@ sudo easy_install boto
 # Since 11.0 version
 sudo easy_install boto3
 ```
-- Install and configure memcached. For best performance, Seafile requires install memcached and enable memcache for objects. We recommend to allocate 128MB memory for memcached. Edit /etc/memcached.conf
-
-```
-# Start with a cap of 64 megs of memory. It's reasonable, and the daemon default
-# Note that the daemon will grow to this size, but does not start out holding this much
-# memory
-# -m 64
--m 128
-```
+- Install and configure memcached or Redis. For best performance, Seafile requires enable memory cache for objects. We recommend to at least allocate 128MB memory for memcached or Redis.
 
 ## Modify Seafile.conf
 
@@ -48,12 +40,11 @@ name = s3
 bucket = my-block-objects
 key_id = your-key-id
 key = your-secret-key
-
-[memcached]
-memcached_options = --SERVER=localhost --POOL-MIN=10 --POOL-MAX=100
 ```
 
-It's recommended to create separate buckets for commit, fs, and block objects.
+You also need to add [memory cache configurations](/manual/config/seafile-conf.md#cache-pro-edition-only).
+
+It's required to create separate buckets for commit, fs, and block objects.
 The key_id and key are required to authenticate you to S3. You can find the key_id and key in the "security credentials" section on your AWS account page.
 
 When creating your buckets on S3, please first read [S3 bucket naming rules][1]. Note especially not to use **UPPERCASE** letters in bucket names (don't use camel style names, such as MyCommitOjbects).
@@ -165,14 +156,13 @@ key_id = your-key-id
 key = your-secret-key
 host = 192.168.1.123:8080
 path_style_request = true
-
-[memcached]
-memcached_options = --SERVER=localhost --POOL-MIN=10 --POOL-MAX=100
 ```
 
 `host` is the address and port of the S3-compatible service. You cannot prepend "http" or "https" to the `host` option. By default it'll use http connections. If you want to use https connection, please set `use_https = true` option.
 
 `path_style_request` asks Seafile to use URLs like `https://192.168.1.123:8080/bucketname/object` to access objects. In Amazon S3, the default URL format is in virtual host style, such as `https://bucketname.s3.amazonaws.com/object`. But this style relies on advanced DNS server setup. So most S3-compatible storage systems only implement the path style format.
+
+You also need to add [memory cache configurations](/manual/config/seafile-conf.md#cache-pro-edition-only).
 
 ## Run and Test ##
 

@@ -156,8 +156,13 @@ AVATAR_FILE_STORAGE = 'seahub.base.database_storage.DatabaseStorage'
 ```
 [cluster]
 enabled = true
-memcached_options = --SERVER={your memcached server host} --POOL-MIN=10 --POOL-MAX=100
+```
 
+7\. Add memory cache configuration in seafile.conf
+
+```
+[memcached]
+memcached_options = --SERVER={you memcached server host} --POOL-MIN=10 --POOL-MAX=100
 ```
 
 #### Import the tables of seahub_db, seafile_db and ccnet_db

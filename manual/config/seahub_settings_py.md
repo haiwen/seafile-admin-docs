@@ -6,11 +6,38 @@ Note: You can also modify most of the config items via web interface. The config
 
 Refer to [email sending documentation](sending_email.md).
 
-## Memcached
+## Cache
 
-Seahub caches items(avatars, profiles, etc) on file system by default(/tmp/seahub_cache/). You can replace with Memcached.
+Seahub caches items(avatars, profiles, etc) on file system by default(/tmp/seahub_cache/). You can replace with Memcached or Redis.
 
-Refer to ["add memcached"](../deploy/add_memcached.md).
+### Memcached
+
+```
+# on Debian/Ubuntu 18.04+
+apt-get install memcached libmemcached-dev -y
+pip3 install --timeout=3600 pylibmc django-pylibmc
+
+systemctl enable --now memcached
+```
+
+
+Add the following configuration to `seahub_settings.py`.
+
+```
+CACHES = {
+    'default': {
+        'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
+        'LOCATION': '127.0.0.1:11211',
+    },
+}
+
+```
+
+### Redis
+
+Redis support is added in Pro Edition 11.0.
+
+Please refer to [Django's documentation about using Redis cache](https://docs.djangoproject.com/en/4.2/topics/cache/#redis).
 
 ## Security settings
 

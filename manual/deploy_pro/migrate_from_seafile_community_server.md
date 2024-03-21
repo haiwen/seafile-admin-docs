@@ -112,6 +112,43 @@ haiwen
 
 ```
 
+### Add Memory Cache Configuration
+
+Using memory cache is mandatory in Pro Edition. You may use Memcached or Reids as cache server.
+
+#### Use Memcached
+
+Use the following commands to install memcached and corresponding libraies on your system:
+
+```
+# on Debian/Ubuntu 18.04+
+apt-get install memcached libmemcached-dev -y
+pip3 install --timeout=3600 pylibmc django-pylibmc
+
+systemctl enable --now memcached
+```
+
+
+Add the following configuration to `seahub_settings.py`.
+
+```
+CACHES = {
+    'default': {
+        'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
+        'LOCATION': '127.0.0.1:11211',
+    },
+}
+
+```
+
+#### Use Redis
+
+Redis is supported since version 11.0 Pro Edition.
+
+First, Install Redis with package installers in your OS.
+
+Then refer to [Django's documentation about using Redis cache](https://docs.djangoproject.com/en/4.2/topics/cache/#redis) to add Redis configurations to `seahub_settings.py`.
+
 ### Start Seafile Professional Server
 
 ```

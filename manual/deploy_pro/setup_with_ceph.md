@@ -13,18 +13,9 @@ seafile-machine# sudo scp user@ceph-admin-node:/etc/ceph/ /etc
 
 ## Install and enable memcached
 
-For best performance, Seafile requires install memcached and enable memcache for objects. 
+For best performance, Seafile requires install memcached or redis and enable cache for objects. 
 
-We recommend to allocate 128MB memory for memcached. Edit /etc/memcached.conf
-
-```
-# Start with a cap of 64 megs of memory. It's reasonable, and the daemon default
-# Note that the daemon will grow to this size, but does not start out holding this much
-# memory
-# -m 64
--m 128
-
-```
+We recommend to allocate at least 128MB memory for object cache.
 
 ## Install Python Ceph Library
 
@@ -70,13 +61,11 @@ pool = seafile-commits
 name = ceph
 ceph_config = /etc/ceph/ceph.conf
 pool = seafile-fs
-
-[memcached]
-memcached_options = --SERVER=localhost --POOL-MIN=10 --POOL-MAX=100
-
 ```
 
-It's recommended to create separate pools for commit, fs, and block objects.
+You also need to add [memory cache configurations](/manual/config/seafile-conf.md#cache-pro-edition-only).
+
+It's required to create separate pools for commit, fs, and block objects.
 
 ```
 ceph-admin-node# rados mkpool seafile-blocks
@@ -125,8 +114,8 @@ ceph_config = /etc/ceph/ceph.conf
 ceph_client_id = seafile
 pool = seafile-fs
 
-[memcached]
-memcached_options = --SERVER=localhost --POOL-MIN=10 --POOL-MAX=100
+# Memcached or Reids configs
+......
 
 ```
 
