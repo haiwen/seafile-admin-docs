@@ -14,7 +14,24 @@ Use the [official installation guide for your OS to install Docker](https://docs
 
 ### Download and modify docker-compose.yml
 
-Download [docker-compose.yml](https://manual.seafile.com/docker/docker-compose.yml) sample file to your host. Then modify the file according to your environment. The following fields are needed to be modified:
+Download the docker-compose.yml sample file into Seafile's directory and modify the Compose file to fit your environment and settings.
+
+NOTE: Different versions of Seafile have different compose files.
+
+```
+mkdir /opt/seafile
+cd /opt/seafile
+
+# Seafile CE 10.0
+wget -O "docker-compose.yml" "https://manual.seafile.com/docker/docker-compose/ce/10.0/docker-compose.yml"
+
+# Seafile CE 11.0
+wget -O "docker-compose.yml" "https://manual.seafile.com/docker/docker-compose/ce/11.0/docker-compose.yml"
+
+nano docker-compose.yml
+```
+
+The following fields merit particular attention:
 
 * The password of MySQL root (MYSQL_ROOT_PASSWORD and DB_ROOT_PASSWD)
 * The volume directory of MySQL data (volumes)

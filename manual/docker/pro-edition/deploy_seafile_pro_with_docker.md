@@ -43,13 +43,16 @@ mkdir /opt/seafile
 cd /opt/seafile
 
 # Seafile PE 7.1 and 8.0
-wget -O "docker-compose.yml" "https://manual.seafile.com/docker/pro-edition/7.1_8.0/docker-compose.yml"
+wget -O "docker-compose.yml" "https://manual.seafile.com/docker/docker-compose/pro/7.1_8.0/docker-compose.yml"
 
 # Seafile PE 9.0
-wget -O "docker-compose.yml" "https://manual.seafile.com/docker/pro-edition/9.0/docker-compose.yml"
+wget -O "docker-compose.yml" "https://manual.seafile.com/docker/docker-compose/pro/9.0/docker-compose.yml"
 
 # Seafile PE 10.0
-wget -O "docker-compose.yml" "https://manual.seafile.com/docker/pro-edition/10.0/docker-compose.yml"
+wget -O "docker-compose.yml" "https://manual.seafile.com/docker/docker-compose/pro/10.0/docker-compose.yml"
+
+# Seafile PE 11.0
+wget -O "docker-compose.yml" "https://manual.seafile.com/docker/docker-compose/pro/11.0/docker-compose.yml"
 
 nano docker-compose.yml
 ```
