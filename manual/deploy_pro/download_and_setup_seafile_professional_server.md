@@ -369,7 +369,7 @@ CACHES = {
 
 #### Use Redis
 
-Redis is supported since version 11.0 Pro Edition.
+Redis is supported since version 11.0.
 
 First, Install Redis with package installers in your OS.
 

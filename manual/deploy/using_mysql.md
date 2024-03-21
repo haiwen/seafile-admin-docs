@@ -343,11 +343,12 @@ CACHES = {
 
 #### Use Redis
 
-Redis is supported since version 11.0 Pro Edition.
+Redis is supported since version 11.0.
 
 First, Install Redis with package installers in your OS.
 
 Then refer to [Django's documentation about using Redis cache](https://docs.djangoproject.com/en/4.2/topics/cache/#redis) to add Redis configurations to `seahub_settings.py`.
+
 
 ### Tweaking conf files
 
