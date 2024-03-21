@@ -1,4 +1,4 @@
-_Note:_ Before you try to deploy file search office documents preview, make sure other parts of your seafile cluster are already working, e.g upload/download files in a web browser. Make sure memcached is configured as described in ["Deploy in a cluster"](./deploy_in_a_cluster.md).
+_Note:_ Before you try to deploy file search office documents preview, make sure other parts of your seafile cluster are already working, e.g upload/download files in a web browser. Make sure memory cache is configured as described in ["Deploy in a cluster"](./deploy_in_a_cluster.md).
 
 # Enable search and background tasks in a cluster
 
@@ -148,7 +148,9 @@ For **seafile.conf**:
 ```
 [cluster]
 enabled = true
-memcached_options = --SERVER=<IP of memcached node> --POOL-MIN=10 --POOL-MAX=100
+
+[memcached]
+memcached_options = --SERVER=<you memcached server host> --POOL-MIN=10 --POOL-MAX=100
 
 ```
 
@@ -263,7 +265,9 @@ For **seafile.conf**:
 ```
 [cluster]
 enabled = true
-memcached_options = --SERVER=<IP of memcached node> --POOL-MIN=10 --POOL-MAX=100
+
+[memcached]
+memcached_options = --SERVER=<you memcached server host> --POOL-MIN=10 --POOL-MAX=100
 
 ```
 

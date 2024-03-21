@@ -16,7 +16,7 @@ This architecture scales horizontally. That means, you can handle more traffic b
 
 There are two main components on the Seafile server node: web server (Nginx/Apache) and Seafile app server. The web server passes requests from the clients to Seafile app server. The Seafile app servers work independently. They don't know about each other's state. That means each app server can fail independently without affecting other app server instances. The load balancer is responsible for detecting failure and re-routing requests.
 
-Even though Seafile app servers work independently, they still have to share some session information. All shared session information is stored in memcached. Thus, all Seafile app servers have to connect to the same memcached server (cluster). More details about memcached configuration is available later.
+Even though Seafile app servers work independently, they still have to share some session information. All shared session information is stored in memory cache. Thus, all Seafile app servers have to connect to the same memory cache server (cluster). Since Pro Edition 11.0, both memcached and Redis can be used as memory cache. Before 11.0, only memcached is supported. More details about memory cache configuration is available later.
 
 The background server is the workhorse for various background tasks, including full-text indexing, office file preview, virus scanning, LDAP syncing. It should usually be run on a dedicated server for better performance. Currently only one background task server can be running in the entire cluster. If more than one background servers are running, they may conflict with each others when doing some tasks. If you need HA for background task server, you can consider using [Keepalived](http://www.keepalived.org/) to build a hot backup for it. More details can be found in [background server setup](enable_search_and_background_tasks_in_a_cluster.md).
 
@@ -26,7 +26,7 @@ All app servers have to connect to the same database or database cluster. We rec
 
 There are a few steps to deploy a Seafile cluster:
 
-1. Prepare hardware, operating systems, memcached and database
+1. Prepare hardware, operating systems, memory cache and database
 2. Setup a single Seafile server node
 3. Copy the deployment to other Seafile nodes
 4. Setup Nginx/Apache and firewall rules
@@ -35,11 +35,13 @@ There are a few steps to deploy a Seafile cluster:
 
 ## Preparation
 
-### Hardware, Database, Memcached
+### Hardware, Database, Memory Cache
 
 At least 3 Linux server with at least 4 cores, 8GB RAM. Two servers work as frontend servers, while one server works as background task server. Virtual machines are sufficient for most cases.
 
-In small cluster, you can re-use the 3 Seafile servers to run memcached cluster and MariaDB cluster. For larger clusters, you can have 3 more dedicated server to run memcached cluster and MariaDB cluster. Because the load on these two clusters are not high, they can share the hardware to save cost. Documentation about how to setup memcached cluster and MariaDB cluster can be found [here](memcached_mariadb_cluster.md)
+In small cluster, you can re-use the 3 Seafile servers to run memcached cluster and MariaDB cluster. For larger clusters, you can have 3 more dedicated server to run memcached cluster and MariaDB cluster. Because the load on these two clusters are not high, they can share the hardware to save cost. Documentation about how to setup memcached cluster and MariaDB cluster can be found [here](memcached_mariadb_cluster.md).
+
+Since Pro Edition 11.0, Redis can also be used as memory cache server. But currently only single-node Redis is supported.
 
 ### Install Python libraries
 
@@ -117,6 +119,23 @@ enabled = true
 memcached_options = --SERVER=<floating IP address> --POOL-MIN=10 --POOL-MAX=100
 
 ```
+
+If you are using Redis as cache, add following configurations:
+
+```
+[cluster]
+enabled = true
+
+[redis]
+# your redis server address
+redis_server = 127.0.0.1
+# your redis server port
+redis_port = 6379
+# size of connection pool to redis, default is 100
+max_connections = 100
+```
+
+Currently only single-node Redis is supported. Redis Sentinel or Cluster is not supported yet.
 
 (Optional) The Seafile server also opens a port for the load balancers to run health checks. Seafile by default uses port 11001. You can change this by adding the following config option to `seafile.conf`
 

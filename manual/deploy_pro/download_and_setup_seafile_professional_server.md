@@ -338,9 +338,11 @@ $ tree -L 2 /opt/seafile
     └── avatars                        # user avatars
 ```
 
-### Setup Memcached
+### Setup Memory Cache
 
-Memcached is mandatory for pro edition.
+Memory cache is mandatory for pro edition. You may use Memcached or Reids as cache server.
+
+#### Use Memcached
 
 Use the following commands to install memcached and corresponding libraies on your system:
 
@@ -365,12 +367,13 @@ CACHES = {
 
 ```
 
-Add the following configuration to `seafile.conf`:
+#### Use Redis
 
-```
-[memcached]
-memcached_options = --SERVER=<the IP of Memcached Server> --POOL-MIN=10 --POOL-MAX=100
-```
+Redis is supported since version 11.0 Pro Edition.
+
+First, Install Redis with package installers in your OS.
+
+Then refer to [Django's documentation about using Redis cache](https://docs.djangoproject.com/en/4.2/topics/cache/#redis) to add Redis configurations to `seahub_settings.py`.
 
 
 ### Enabling HTTP/HTTPS

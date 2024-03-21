@@ -54,6 +54,34 @@ expire_days = 60
 
 Seafile uses a system trash, where deleted libraries will be moved to. In this way, accidentally deleted libraries can be recovered by system admin.
 
+## Cache (Pro Edition Only)
+
+Seafile Pro Edition uses memory caches in various cases to improve performance. Some session information is also saved into memory cache to be shared among the cluster nodes. Memcached or Reids can be use for memory cache.
+
+If you use memcached:
+
+```
+[memcached]
+# Replace `localhost` with the memcached address:port if you're using remote memcached
+# POOL-MIN and POOL-MAX is used to control connection pool size. Usually the default is good enough.
+memcached_options = --SERVER=localhost --POOL-MIN=10 --POOL-MAX=100
+
+```
+
+If you use redis:
+
+```
+[redis]
+# your redis server address
+redis_server = 127.0.0.1
+# your redis server port
+redis_port = 6379
+# size of connection pool to redis, default is 100
+max_connections = 100
+```
+
+Redis support is added in Pro Edition 11.0. Currently only single-node Redis is supported. Redis Sentinel or Cluster is not supported yet.
+
 ## Seafile fileserver configuration
 
 The configuration of seafile fileserver is in the `[fileserver]` section of the file `seafile.conf`
@@ -232,7 +260,7 @@ default_expire_hours = 6
 
 The default is 12 hours.
 
-Since Seafile-pro-9.0.6, you can add cache for getting locked files (reduce server load caused by sycing client).
+Since Seafile-pro-9.0.6, you can add cache for getting locked files (reduce server load caused by sync clients).
 
 ```
 [file_lock]
