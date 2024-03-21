@@ -68,6 +68,10 @@ Other changes
 
 Please check our document for how to upgrade to 10.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_10.0.x/>
 
+### 10.0.15 (2024-03-21)
+
+* [Fix] Fix a bug in seaf-gc for FS object
+
 ### 10.0.14 (2024-02-27)
 
 * Update some translations
