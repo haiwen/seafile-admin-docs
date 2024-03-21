@@ -30,20 +30,6 @@ vi /etc/memcached.conf
 service memcached restart
 ```
 
-```
-# Under CentOS 7
-vim /etc/sysconfig/memcached
-
-PORT="11211"
-USER="memcached"
-MAXCONN="1024"
-CACHESIZE="64"
-OPTIONS="-l 0.0.0.0 -m 256"
-
-systemctl restart memcached
-systemctl enable memcached
-```
-
 **NOTE: Please configure memcached to start on system startup.**
 
 Install and configure Keepalived.
@@ -51,9 +37,6 @@ Install and configure Keepalived.
 ```
 # For Ubuntu
 sudo apt-get install keepalived -y
-
-# For CentOS
-sudo yum install keepalived -y
 ```
 
 Modify keepalived config file `/etc/keepalived/keepalived.conf`.
@@ -100,6 +83,7 @@ vrrp_instance VI_1 {
 ```
 
 On standby node
+
 ```
 cat /etc/keepalived/keepalived.conf
 
@@ -142,7 +126,7 @@ vrrp_instance VI_1 {
 
 **NOTE: Please adjust the network device names accordingly. virtual_ipaddress is the floating IP address in use.**
 
-### Setup MariaDB Cluster
+## Setup MariaDB Cluster
 
 MariaDB cluster helps you to remove single point of failure from the cluster architecture. Every update in the database cluster is synchronously replicated to all instances.
 
