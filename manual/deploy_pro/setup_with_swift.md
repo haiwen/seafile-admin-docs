@@ -48,7 +48,7 @@ region = yourRegion
 
 ```
 
-You also need to add [memory cache configurations](/manual/config/seafile-conf/#cache-pro-edition-only).
+You also need to add [memory cache configurations](/config/seafile-conf/#cache-pro-edition-only).
 
 The above config is just an example. You should replace the options according to your own environment.
 
