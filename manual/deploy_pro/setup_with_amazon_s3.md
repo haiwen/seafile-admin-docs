@@ -42,7 +42,7 @@ key_id = your-key-id
 key = your-secret-key
 ```
 
-You also need to add [memory cache configurations](/config/seafile-conf.md#cache-pro-edition-only).
+You also need to add [memory cache configurations](/config/seafile-conf/#cache-pro-edition-only).
 
 It's required to create separate buckets for commit, fs, and block objects.
 The key_id and key are required to authenticate you to S3. You can find the key_id and key in the "security credentials" section on your AWS account page.
@@ -162,7 +162,7 @@ path_style_request = true
 
 `path_style_request` asks Seafile to use URLs like `https://192.168.1.123:8080/bucketname/object` to access objects. In Amazon S3, the default URL format is in virtual host style, such as `https://bucketname.s3.amazonaws.com/object`. But this style relies on advanced DNS server setup. So most S3-compatible storage systems only implement the path style format.
 
-You also need to add [memory cache configurations](/config/seafile-conf.md#cache-pro-edition-only).
+You also need to add [memory cache configurations](/config/seafile-conf/#cache-pro-edition-only).
 
 ## Run and Test ##
 

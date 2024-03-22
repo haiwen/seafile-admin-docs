@@ -34,7 +34,7 @@ key = <your-key>
 region = beijing
 ```
 
-You also need to add [memory cache configurations](/manual/config/seafile-conf/#cache-pro-edition-only).
+You also need to add [memory cache configurations](/config/seafile-conf/#cache-pro-edition-only).
 
 It's required to create separate buckets for commit, fs, and block objects. For performance and to save network traffic costs, you should create buckets within the region where the seafile server is running.
 
@@ -76,4 +76,4 @@ Compared with the configuration under the classic network, the above configurati
 
 `endpoint` is a general option, you can also set it to the OSS access address under the classic network, and it will work as well.
 
-You also need to add [memory cache configurations](/manual/config/seafile-conf/#cache-pro-edition-only).
+You also need to add [memory cache configurations](/config/seafile-conf/#cache-pro-edition-only).
