@@ -194,8 +194,7 @@ server {
 }
 
 server {
-    listen 443;
-    ssl on;
+    listen 443 ssl;
     ssl_certificate /etc/letsencrypt/live/seafile.example.com/fullchain.pem;    # Path to your fullchain.pem
     ssl_certificate_key /etc/letsencrypt/live/seafile.example.com/privkey.pem;	# Path to your privkey.pem
     server_name seafile.example.com;
@@ -317,8 +316,7 @@ The following sample Nginx configuration file for the host name seafile.example.
         server_tokens off;
     }
     server {
-        listen 443;
-        ssl on;
+        listen 443 ssl;
         ssl_certificate /etc/ssl/cacert.pem;        # Path to your cacert.pem
         ssl_certificate_key /etc/ssl/privkey.pem;	# Path to your privkey.pem
         server_name seafile.example.com;
