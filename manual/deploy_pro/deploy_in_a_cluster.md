@@ -41,7 +41,7 @@ At least 3 Linux server with at least 4 cores, 8GB RAM. Two servers work as fron
 
 In small cluster, you can re-use the 3 Seafile servers to run memcached cluster and MariaDB cluster. For larger clusters, you can have 3 more dedicated server to run memcached cluster and MariaDB cluster. Because the load on these two clusters are not high, they can share the hardware to save cost. Documentation about how to setup memcached cluster and MariaDB cluster can be found [here](memcached_mariadb_cluster.md).
 
-Since Pro Edition 11.0, Redis can also be used as memory cache server. But currently only single-node Redis is supported.
+Since version 11.0, Redis can also be used as memory cache server. But currently only single-node Redis is supported.
 
 ### Install Python libraries
 

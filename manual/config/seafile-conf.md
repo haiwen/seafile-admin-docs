@@ -80,7 +80,7 @@ redis_port = 6379
 max_connections = 100
 ```
 
-Redis support is added in Pro Edition 11.0. Currently only single-node Redis is supported. Redis Sentinel or Cluster is not supported yet.
+Redis support is added in version 11.0. Currently only single-node Redis is supported. Redis Sentinel or Cluster is not supported yet.
 
 ## Seafile fileserver configuration
 
