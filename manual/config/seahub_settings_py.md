@@ -35,7 +35,7 @@ CACHES = {
 
 ### Redis
 
-Redis support is added in Pro Edition 11.0.
+Redis support is added in version 11.0.
 
 Please refer to [Django's documentation about using Redis cache](https://docs.djangoproject.com/en/4.2/topics/cache/#redis).
 

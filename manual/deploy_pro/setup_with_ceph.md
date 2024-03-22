@@ -63,7 +63,7 @@ ceph_config = /etc/ceph/ceph.conf
 pool = seafile-fs
 ```
 
-You also need to add [memory cache configurations](/manual/config/seafile-conf.md#cache-pro-edition-only).
+You also need to add [memory cache configurations](/manual/config/seafile-conf/#cache-pro-edition-only).
 
 It's required to create separate pools for commit, fs, and block objects.
 
