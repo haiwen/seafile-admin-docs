@@ -8,10 +8,10 @@ To setup Seafile Professional Server with Amazon S3:
 - Install the python `boto` library. It's needed to access S3 service.
 ```
 # Version 10.0 or earlier
-sudo easy_install boto
+sudo pip install boto
 
 # Since 11.0 version
-sudo easy_install boto3
+sudo pip install boto3
 ```
 - Install and configure memcached or Redis. For best performance, Seafile requires enable memory cache for objects. We recommend to at least allocate 128MB memory for memcached or Redis.
 
