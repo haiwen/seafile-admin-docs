@@ -2,7 +2,7 @@
 
 In the document below, we assume your seafile installation folder is `/opt/seafile`.
 
-## SeafDAV Configuration for 7.1+
+## Config WebDAV extension
 
 The configuration file is `/opt/seafile/conf/seafdav.conf`. If it is not created already, you can just create the file.
 
@@ -37,7 +37,6 @@ Every time the configuration is modified, you need to restart seafile server to 
 
 Your WebDAV client would visit the Seafile WebDAV server at `http://example.com:8080`
 
-**After Seafile 7.1.x, Seafdav does not support Fastcgi, only Wsgi**. So if you want to configure seafdav behind a proxy server, you have to use proxy configuration instead of fastcgi.
 
 In Pro edition 7.1.8 version and community edition 7.1.5, an option is added to append library ID to the library name returned by SeafDAV.
 
@@ -46,7 +45,7 @@ show_repo_id=true
 
 ```
 
-### Proxy with Nginx
+## Proxy with Nginx
 
 For Seafdav, the configuration of Nginx is as follows:
 
@@ -79,91 +78,6 @@ For Seafdav, the configuration of Apache is as follows:
     </Location>
 
 ```
-
-### HTTPS proxy
-
-If you configure https in Nginx or Apache, you have to configure the reverse proxy to rewrite the `Destination` headers protocol from `https` to `http`. This is a limitation on the WebDAV framework SeafDAV is based on. See more details:
-
-* <https://forum.seafile.com/t/seafdav-move-command-causing-502/11582>
-* <https://github.com/mar10/wsgidav/issues/183>
-
-## SeafDAV Configuration for 7.0 or older versions
-
-The configuration file is `/opt/seafile/conf/seafdav.conf`. If it is not created already, you can just create the file.
-
-```
-[WEBDAV]
-
-# Default is false. Change it to true to enable SeafDAV server.
-enabled = true
-
-port = 8080
-
-# Change the value of fastcgi to true if fastcgi is to be used
-fastcgi = false
-
-# If you deploy seafdav behind nginx/apache, you need to modify "share_name".
-share_name = /
-
-```
-
-Every time the configuration is modified, you need to restart seafile server to make it take effect.
-
-```
-./seafile.sh restart
-
-```
-
-
-### Sample Configuration with Nginx
-
-Your WebDAV client would visit the Seafile WebDAV server at `http://example.com/seafdav`
-
-```
-[WEBDAV]
-enabled = true
-port = 8080
-fastcgi = true
-share_name = /seafdav
-```
-
-In the above config, the value of `share_name` is changed to `/seafdav`, which is the address suffix you assign to seafdav server.
-
-Nginx conf:
-
-```
-     location /seafdav {
-        fastcgi_pass    127.0.0.1:8080;
-        fastcgi_param   SCRIPT_FILENAME     $document_root$fastcgi_script_name;
-        fastcgi_param   PATH_INFO           $fastcgi_script_name;
-
-        fastcgi_param   SERVER_PROTOCOL     $server_protocol;
-        fastcgi_param   QUERY_STRING        $query_string;
-        fastcgi_param   REQUEST_METHOD      $request_method;
-        fastcgi_param   CONTENT_TYPE        $content_type;
-        fastcgi_param   CONTENT_LENGTH      $content_length;
-        fastcgi_param   SERVER_ADDR         $server_addr;
-        fastcgi_param   SERVER_PORT         $server_port;
-        fastcgi_param   SERVER_NAME         $server_name;
-        fastcgi_param   HTTPS               on;
-        fastcgi_param   HTTP_SCHEME         https;
-        
-        client_max_body_size 0;
-        proxy_connect_timeout  36000s;
-        proxy_read_timeout  36000s;
-        proxy_send_timeout  36000s;
-        send_timeout  36000s;
-        
-        # This option is only available for Nginx >= 1.8.0. See more details below.
-        proxy_request_buffering off;
-
-        access_log      /var/log/nginx/seafdav.access.log;
-        error_log       /var/log/nginx/seafdav.error.log;
-    }
-
-```
-
-By default Nginx will buffer large request body in temp file. After the body is completely received, Nginx will send the body to the upstream server (seafdav in our case). But it seems when file size is very large, the buffering mechanism dosen't work well. It may stop proxying the body in the middle. So if you want to support file upload larger for 4GB, we suggest you install Nginx version >= 1.8.0 and add `proxy_request_buffering off` to Nginx configuration.
 
 
 ## Notes on Clients
