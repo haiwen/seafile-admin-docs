@@ -312,7 +312,8 @@ docker compose up -d
 
 ## Backup and Recovery
 
-Follow the instructions in [Backup and recovery for Seafile Docker](../../maintain/backup_recovery.md)
+Follow the instructions in [Backup and restore for Seafile Docker](../../maintain/backup_recovery.md)
+
 
 ## Garbage Collection
 
