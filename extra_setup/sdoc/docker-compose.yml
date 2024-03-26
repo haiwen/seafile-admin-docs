@@ -1,0 +1,22 @@
+services:
+
+  sdoc-server:
+    image: seafileltd/sdoc-server:latest
+    container_name: sdoc-server
+    ports:
+      - 80:80
+      # - 443:443
+      # - 7070:7070
+      # - 8888:8888
+    volumes:
+      - /opt/seadoc-data/:/shared
+    environment:
+      - DB_HOST=192.168.0.2
+      - DB_PORT=3306
+      - DB_USER=user
+      - DB_PASSWD=password # Requested, password of MySQL service.
+      - DB_NAME=sdoc_db      
+      - TIME_ZONE=Etc/UTC # Optional, default is UTC. Should be uncomment and set to your local time zone.
+      - SDOC_SERVER_LETSENCRYPT=false # Whether to use https or not.
+      - SDOC_SERVER_HOSTNAME=sdoc-server.example.com # Specifies your host name if https is enabled.
+      - SEAHUB_SERVICE_URL=http://seafile.example.com
