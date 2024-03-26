@@ -173,9 +173,9 @@ The data files to be backed up:
 ```bash
 # It's recommended to backup the database to a separate file each time. Don't overwrite older database backups for at least a week.
 cd /backup/databases
-docker exec -it seafile-mysql mysqldump  -uroot --opt ccnet_db > ccnet_db.sql
-docker exec -it seafile-mysql mysqldump  -uroot --opt seafile_db > seafile_db.sql
-docker exec -it seafile-mysql mysqldump  -uroot --opt seahub_db > seahub_db.sql
+docker exec -it seafile-mysql mysqldump  -uroot -pMYSQL_ROOT_PASSWORD --opt ccnet_db > ccnet_db.sql
+docker exec -it seafile-mysql mysqldump  -uroot -pMYSQL_ROOT_PASSWORD --opt seafile_db > seafile_db.sql
+docker exec -it seafile-mysql mysqldump  -uroot -pMYSQL_ROOT_PASSWORD --opt seahub_db > seahub_db.sql
 ```
 
 ###  Backing up Seafile library data
@@ -201,9 +201,9 @@ docker cp /backup/databases/ccnet_db.sql seafile-mysql:/tmp/ccnet_db.sql
 docker cp /backup/databases/seafile_db.sql seafile-mysql:/tmp/seafile_db.sql
 docker cp /backup/databases/seahub_db.sql seafile-mysql:/tmp/seahub_db.sql
 
-docker exec -it seafile-mysql /bin/sh -c "mysql -uroot ccnet_db < /tmp/ccnet_db.sql"
-docker exec -it seafile-mysql /bin/sh -c "mysql -uroot seafile_db < /tmp/seafile_db.sql"
-docker exec -it seafile-mysql /bin/sh -c "mysql -uroot seahub_db < /tmp/seahub_db.sql"
+docker exec -it seafile-mysql /bin/sh -c "mysql -uroot -pMYSQL_ROOT_PASSWORD ccnet_db < /tmp/ccnet_db.sql"
+docker exec -it seafile-mysql /bin/sh -c "mysql -uroot -pMYSQL_ROOT_PASSWORD seafile_db < /tmp/seafile_db.sql"
+docker exec -it seafile-mysql /bin/sh -c "mysql -uroot -pMYSQL_ROOT_PASSWORD seahub_db < /tmp/seahub_db.sql"
 ```
 
 ### Restore the seafile data
