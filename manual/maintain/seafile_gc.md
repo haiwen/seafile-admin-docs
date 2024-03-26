@@ -101,6 +101,8 @@ seaf-gc.sh --rm-fs
 
 ```
 
+Note: This command has bug before version 10.0.15. It could cause virtual libraries (e.g. shared folders) failing to merge into their parent libraries. Please contact our support team if you are affected by this bug.
+
 ### Using Multiple Threads in GC
 
 You can specify the thread number in GC. By default,
