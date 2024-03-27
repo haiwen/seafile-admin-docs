@@ -41,12 +41,36 @@ OAUTH_ATTRIBUTE_MAP = {
     "id": (True, "email"),  # Please keep the 'email' option unchanged to be compatible with the login of users of version 11.0 and earlier.
     "name": (False, "name"),
     "email": (False, "contact_email"),
-    "uid": (True, "uid"),   # Since 11.0 version, Seafile use 'uid' as the external unique identifier of the user.
-                            # Different OAuth systems have different attributes, which may be: 'uid' or 'username', etc.
-                            # If there is no 'uid' attribute, do not configure this option and keep the 'email' option unchanged,
-                            # to be compatible with the login of users of version 11.0 and earlier.
+    "uid": (True, "uid"),   # Seafile v11.0 + 
 }
 ```
+
+NOTE:  There are some more explanations about the settings of `OAUTH_ATTRIBUTE_MAP`.
+
+This variables describes which claims from the response of the user info endpoint are to be filled into which attributes of the new Seafile user. The format is showing like below:
+
+```python
+OAUTH_ATTRIBUTE_MAP = {
+    <:Attribute in the OAuth provider>: (<:Is required or not in Seafile?>, <:Attribute in Seafile >)
+}
+```
+
+If the remote resource server, like Github, uses email to identify an unique user too, Seafile will use Github id directorily, the OAUTH_ATTRIBUTE_MAP setting for Github should be like this:
+
+```python
+OAUTH_ATTRIBUTE_MAP = {
+    "id": (True, "email"),
+    "name": (False, "name"),
+    "email": (False, "contact_email"),
+  	
+  	'uid / username': (True, "uid") 
+  	
+}
+```
+
+The key part `id` stands for an unique identifier of user in Github, this tells Seafile which attribute remote resoure server uses to indentify its user. The value part  `True` stands for if `email`  required by Seafile. 
+
+On the other hand, since 11.0 version, Seafile use `uid` as the external unique identifier of the user. Different OAuth systems have different attributes, which may be: `uid` or `username`, etc. If there is no uid attribute, do not configure this option and keep the 'email' option unchanged, to be compatible with the login of users of version 11.0 and earlier.
 
 #### Sample settings for Google
 
