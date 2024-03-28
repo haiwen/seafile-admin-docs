@@ -67,18 +67,21 @@ If the remote resource server, like Github, uses email to identify an unique use
 
 ```python
 OAUTH_ATTRIBUTE_MAP = {
-    "id": (True, "email"),
+    "id": (True, "email"), # will be deprecated
+  	'id / uid / username': (True, "uid") 
+  
+  	# extra infos you want to update to Seafile
     "name": (False, "name"),
     "email": (False, "contact_email"),
   	
-  	'uid / username': (True, "uid") 
+  	
   	
 }
 ```
 
 The key part `id` stands for an unique identifier of user in Github, this tells Seafile which attribute remote resoure server uses to indentify its user. The value part  `True` stands for if `email`  required by Seafile. 
 
-On the other hand, since 11.0 version, Seafile use `uid` as the external unique identifier of the user. Different OAuth systems have different attributes, which may be: `uid` or `username`, etc. If there is no uid attribute, do not configure this option and keep the 'email' option unchanged, to be compatible with the login of users of version 11.0 and earlier.
+On the other hand, since 11.0 version, Seafile use `uid` as the external unique identifier of the user. Different OAuth systems have different attributes, which may be: `id` or `uid` or `username`, etc.  And the `email`  config will be deprecated. If you config both, Seafile gives priority to using `uid`.
 
 #### Sample settings for Google
 
