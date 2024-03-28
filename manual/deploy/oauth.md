@@ -81,7 +81,7 @@ OAUTH_ATTRIBUTE_MAP = {
 
 The key part `id` stands for an unique identifier of user in Github, this tells Seafile which attribute remote resoure server uses to indentify its user. The value part  `True` stands for if `email`  required by Seafile. 
 
-On the other hand, since 11.0 version, Seafile use `uid` as the external unique identifier of the user. Different OAuth systems have different attributes, which may be: `id` or `uid` or `username`, etc.  And the `email`  config will be deprecated. If you config both, Seafile gives priority to using `uid`.
+On the other hand, since 11.0 version, Seafile use `uid` as the external unique identifier of the user. Different OAuth systems have different attributes, which may be: `id` or `uid` or `username`, etc.  And the id/email config `id: (True, email)`  will be deprecated. Please use  `id: (True,uid)`  If you config both, Seafile gives priority to using id/uid.  
 
 #### Sample settings for Google
 
