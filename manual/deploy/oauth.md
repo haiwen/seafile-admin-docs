@@ -70,7 +70,7 @@ OAUTH_ATTRIBUTE_MAP = {
     "id": (True, "email"), # will be deprecated
   	'id / uid / username': (True, "uid") 
   
-# extra infos you want to update to Seafile
+	# extra infos you want to update to Seafile
     "name": (False, "name"),
     "email": (False, "contact_email"),
   	
