@@ -32,7 +32,9 @@ OAUTH_CLIENT_SECRET = "your-client-secret"
 OAUTH_REDIRECT_URL = 'http{s}://example.com/oauth/callback/'
 
 # The following should NOT be changed if you are using Github as OAuth provider.
-OAUTH_PROVIDER_DOMAIN = 'github.com'
+OAUTH_PROVIDER_DOMAIN = 'github.com' 
+OAUTH_PROVIDER = 'github.com'
+
 OAUTH_AUTHORIZATION_URL = 'https://github.com/login/oauth/authorize'
 OAUTH_TOKEN_URL = 'https://github.com/login/oauth/access_token'
 OAUTH_USER_INFO_URL = 'https://api.github.com/user'
@@ -45,7 +47,13 @@ OAUTH_ATTRIBUTE_MAP = {
 }
 ```
 
-NOTE:  There are some more explanations about the settings of `OAUTH_ATTRIBUTE_MAP`.
+NOTE:  There are some more explanations about the settings.
+
+**OAUTH_PROVIDER  /  OAUTH_PROVIDER_DOMAIN**
+
+`OAUTH_PROVIDER_DOMAIN` will be deprecated, and it can be replaced by `OAUTH_PROVIDER`. This variable is used in the database to identify third-party providers, either as a domain or as an easy-to-remember string less than 32 characters. 
+
+**OAUTH_ATTRIBUTE_MAP**
 
 This variables describes which claims from the response of the user info endpoint are to be filled into which attributes of the new Seafile user. The format is showing like below:
 
