@@ -32,7 +32,9 @@ OAUTH_CLIENT_SECRET = "your-client-secret"
 OAUTH_REDIRECT_URL = 'http{s}://example.com/oauth/callback/'
 
 # The following should NOT be changed if you are using Github as OAuth provider.
-OAUTH_PROVIDER_DOMAIN = 'github.com'
+OAUTH_PROVIDER_DOMAIN = 'github.com' 
+OAUTH_PROVIDER = 'github.com'
+
 OAUTH_AUTHORIZATION_URL = 'https://github.com/login/oauth/authorize'
 OAUTH_TOKEN_URL = 'https://github.com/login/oauth/access_token'
 OAUTH_USER_INFO_URL = 'https://api.github.com/user'
@@ -41,12 +43,45 @@ OAUTH_ATTRIBUTE_MAP = {
     "id": (True, "email"),  # Please keep the 'email' option unchanged to be compatible with the login of users of version 11.0 and earlier.
     "name": (False, "name"),
     "email": (False, "contact_email"),
-    "uid": (True, "uid"),   # Since 11.0 version, Seafile use 'uid' as the external unique identifier of the user.
-                            # Different OAuth systems have different attributes, which may be: 'uid' or 'username', etc.
-                            # If there is no 'uid' attribute, do not configure this option and keep the 'email' option unchanged,
-                            # to be compatible with the login of users of version 11.0 and earlier.
+    "uid": (True, "uid"),   # Seafile v11.0 + 
 }
 ```
+
+NOTE:  There are some more explanations about the settings.
+
+**OAUTH_PROVIDER  /  OAUTH_PROVIDER_DOMAIN**
+
+`OAUTH_PROVIDER_DOMAIN` will be deprecated, and it can be replaced by `OAUTH_PROVIDER`. This variable is used in the database to identify third-party providers, either as a domain or as an easy-to-remember string less than 32 characters. 
+
+**OAUTH_ATTRIBUTE_MAP**
+
+This variables describes which claims from the response of the user info endpoint are to be filled into which attributes of the new Seafile user. The format is showing like below:
+
+```python
+OAUTH_ATTRIBUTE_MAP = {
+    <:Attribute in the OAuth provider>: (<:Is required or not in Seafile?>, <:Attribute in Seafile >)
+}
+```
+
+If the remote resource server, like Github, uses email to identify an unique user too, Seafile will use Github id directorily, the OAUTH_ATTRIBUTE_MAP setting for Github should be like this:
+
+```python
+OAUTH_ATTRIBUTE_MAP = {
+    "id": (True, "email"), # will be deprecated
+  	'id / uid / username': (True, "uid") 
+  
+	# extra infos you want to update to Seafile
+    "name": (False, "name"),
+    "email": (False, "contact_email"),
+  	
+  	
+  	
+}
+```
+
+The key part `id` stands for an unique identifier of user in Github, this tells Seafile which attribute remote resoure server uses to indentify its user. The value part  `True` stands for if `email`  required by Seafile. 
+
+On the other hand, since 11.0 version, Seafile use `uid` as the external unique identifier of the user. Different OAuth systems have different attributes, which may be: `id` or `uid` or `username`, etc.  And the id/email config `id: (True, email)`  will be deprecated. Please use  `id: (True,uid)`  If you config both, Seafile gives priority to using id/uid.  
 
 #### Sample settings for Google
 
