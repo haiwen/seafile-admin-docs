@@ -208,6 +208,9 @@ OAUTH_ATTRIBUTE_MAP = {
 
 ```
 
+When a user login, Seafile will first use "id -> email" map to find the old user and then create "uid -> uid" map for this old user. After all users login once, you can delete the configuration  `"id": (True, "email")`. You can also manully add records in social_auth_usersocialauth to map extenral uid to old users.
+
+
 
 ### 4) Start Seafile-11.0.x server.
 
