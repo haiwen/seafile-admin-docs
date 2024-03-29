@@ -67,21 +67,32 @@ If the remote resource server, like Github, uses email to identify an unique use
 
 ```python
 OAUTH_ATTRIBUTE_MAP = {
-    "id": (True, "email"), # will be deprecated
-  	'id / uid / username': (True, "uid") 
-  
-	# extra infos you want to update to Seafile
+    "id": (True, "email"), # it is deprecated
+    "uid / id / username": (True, "uid") 
+
+    # extra infos you want to update to Seafile
     "name": (False, "name"),
-    "email": (False, "contact_email"),
-  	
-  	
-  	
+    "email": (False, "contact_email"),	
 }
 ```
 
-The key part `id` stands for an unique identifier of user in Github, this tells Seafile which attribute remote resoure server uses to indentify its user. The value part  `True` stands for if `email`  required by Seafile. 
+The key part `id` stands for an unique identifier of user in Github, this tells Seafile which attribute remote resoure server uses to indentify its user. The value part `True` stands for if this field is mandatory by Seafile.
 
-On the other hand, since 11.0 version, Seafile use `uid` as the external unique identifier of the user. Different OAuth systems have different attributes, which may be: `id` or `uid` or `username`, etc.  And the id/email config `id: (True, email)`  will be deprecated. Please use  `id: (True,uid)`  If you config both, Seafile gives priority to using id/uid.  
+Since 11.0 version, Seafile use `uid` as the external unique identifier of the user. It stores `uid` in table `social_auth_usersocialauth` and map it to internal unique identifier used in Seafile. Different OAuth systems have different attributes, which may be: `id` or `uid` or `username`, etc.  And the id/email config `id: (True, email)`  is deprecated. 
+
+If you upgrade from a version below 11.0, you need to have both fields configured, i.e., you configuration should be like:
+
+```python
+OAUTH_ATTRIBUTE_MAP = {
+    "id": (True, "email"),
+    "uid": (True, "uid") ,
+    "name": (False, "name"),
+    "email": (False, "contact_email"),	
+}
+```
+
+In this way, when a user login, Seafile will first use "id -> email" map to find the old user and then create "uid -> uid" map for this old user. After all users login once, you can delete the configuration  `"id": (True, "email")`.
+
 
 #### Sample settings for Google
 
