@@ -125,7 +125,7 @@ OAUTH_SCOPE = [
     "https://www.googleapis.com/auth/userinfo.profile",
 ]
 OAUTH_ATTRIBUTE_MAP = {
-    "id": (True, "email"),
+    "id": (True, "uid"),
     "name": (False, "name"),
     "email": (False, "contact_email"),
 }
@@ -149,7 +149,7 @@ OAUTH_TOKEN_URL = 'https://github.com/login/oauth/access_token'
 OAUTH_USER_INFO_URL = 'https://api.github.com/user'
 OAUTH_SCOPE = ["user",]
 OAUTH_ATTRIBUTE_MAP = {
-    "id": (True, "email"),
+    "id": (True, 'uid'),
     "email": (False, "contact_email"),
     "name": (False, "name"),
 }
@@ -183,7 +183,7 @@ OAUTH_TOKEN_URL = 'https://gitlab.your-domain/oauth/token'
 OAUTH_USER_INFO_URL = 'https://gitlab.your-domain/api/v4/user'
 OAUTH_SCOPE = ["openid", "read_user"]
 OAUTH_ATTRIBUTE_MAP = {
-    "email": (True, "email"),
+    "email": (True, "uid"),
     "name": (False, "name")
 }
 ```
@@ -194,7 +194,7 @@ For users of Azure Cloud, as there is no `id` field returned from Azure Cloud's 
 
 ```python
 OAUTH_ATTRIBUTE_MAP = {
-    "email": (True, "email"),
+    "email": (True, "uid"),
     "name": (False, "name")
 }
 ```
