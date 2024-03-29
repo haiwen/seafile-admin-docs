@@ -93,6 +93,16 @@ OAUTH_ATTRIBUTE_MAP = {
 
 In this way, when a user login, Seafile will first use "id -> email" map to find the old user and then create "uid -> uid" map for this old user. After all users login once, you can delete the configuration  `"id": (True, "email")`.
 
+If you use a newly deployed 11.0 Seafile instance, you don't need the `"id": (True, "email")` item. Your configuration should be like:
+
+```python
+OAUTH_ATTRIBUTE_MAP = {
+    "uid": (True, "uid") ,
+    "name": (False, "name"),
+    "email": (False, "contact_email"),	
+}
+```
+
 
 #### Sample settings for Google
 
