@@ -10,12 +10,9 @@ We provide three ways to deploy Seafile services. Since version 8.0, **Docker is
 
 * [Deploying Seafile with MySQL](using_mysql.md)
 * [Deploying Seafile with SQLite](using_sqlite.md), note, deploy Seafile with SQLite is not supported since version 11.0
-* [Config Seahub with Nginx](deploy_with_nginx.md)
 * [Enabling Https with Nginx](https_with_nginx.md)
-* [Config Seahub with Apache](deploy_with_apache.md)
 * [Enabling Https with Apache](https_with_apache.md)
 * [Start Seafile at System Bootup](start_seafile_at_system_bootup.md)
-* [Firewall settings](using_firewall.md)
 * [Logrotate](using_logrotate.md)
 
 ## LDAP and AD integration
