@@ -20,7 +20,7 @@ All your library data is stored under the '/opt/seafile' directory.
 
 Seafile also stores some important metadata data in a few databases. The names and locations of these databases depends on which database software you use.
 
-For SQLite, the database files are also under the 'haiwen' directory. The locations are:
+For SQLite, the database files are also under the '/opt/seafile' directory. The locations are:
 
 * ccnet/PeerMgr/usermgr.db: contains user information
 * ccnet/GroupMgr/groupmgr.db: contains group information
@@ -82,13 +82,13 @@ mysqldump -h [mysqlhost] -u[username] -p[password] --opt seahub_db > /backup/dat
 You need to stop Seafile server first before backing up SQLite database.
 
 ```
-sqlite3 /data/haiwen/ccnet/GroupMgr/groupmgr.db .dump > /backup/databases/groupmgr.db.bak.`date +"%Y-%m-%d-%H-%M-%S"`
+sqlite3 /opt/seafile/ccnet/GroupMgr/groupmgr.db .dump > /backup/databases/groupmgr.db.bak.`date +"%Y-%m-%d-%H-%M-%S"`
 
-sqlite3 /data/haiwen/ccnet/PeerMgr/usermgr.db .dump > /backup/databases/usermgr.db.bak.`date +"%Y-%m-%d-%H-%M-%S"`
+sqlite3 /opt/seafile/ccnet/PeerMgr/usermgr.db .dump > /backup/databases/usermgr.db.bak.`date +"%Y-%m-%d-%H-%M-%S"`
 
-sqlite3 /data/haiwen/seafile-data/seafile.db .dump > /backup/databases/seafile.db.bak.`date +"%Y-%m-%d-%H-%M-%S"`
+sqlite3 /opt/seafile/seafile-data/seafile.db .dump > /backup/databases/seafile.db.bak.`date +"%Y-%m-%d-%H-%M-%S"`
 
-sqlite3 /data/haiwen/seahub.db .dump > /backup/databases/seahub.db.bak.`date +"%Y-%m-%d-%H-%M-%S"`
+sqlite3 /opt/seafile/seahub.db .dump > /backup/databases/seahub.db.bak.`date +"%Y-%m-%d-%H-%M-%S"`
 
 ```
 
@@ -137,7 +137,7 @@ mysql -u[username] -p[password] seahub_db < seahub-db.sql.2013-10-19-16-01-05
 **SQLite**
 
 ```
-cd /data/haiwen
+cd /opt/seafile
 mv ccnet/PeerMgr/usermgr.db ccnet/PeerMgr/usermgr.db.old
 mv ccnet/GroupMgr/groupmgr.db ccnet/GroupMgr/groupmgr.db.old
 mv seafile-data/seafile.db seafile-data/seafile.db.old
