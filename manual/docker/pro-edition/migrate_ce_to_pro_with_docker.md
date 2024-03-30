@@ -2,19 +2,13 @@
 
 ## Preparation
 
-1. Make sure you are running the Seafile Community version 7.0.x or newer version, if not please refer to [Upgrade Documentation](../6.3_upgrade_to_7.0.md)。
+1. Make sure you are running a Seafile Community edition that match the latest version of pro edition. For example, if the latest pro edition is version 11.0, you should first upgrade the community edition to version 11.0.
 2. Purchase Seafile Professional license file.
 3. Download the docker-compose.yml of Seafile Pro.
 
 NOTE: Different versions of Seafile have different compose files.
 
 ```sh
-# Seafile PE 7.1 and 8.0
-wget -O "docker-compose.yml" "https://manual.seafile.com/docker/docker-compose/pro/7.1_8.0/docker-compose.yml"
-
-# Seafile PE 9.0
-wget -O "docker-compose.yml" "https://manual.seafile.com/docker/docker-compose/pro/9.0/docker-compose.yml"
-
 # Seafile PE 10.0
 wget -O "docker-compose.yml" "https://manual.seafile.com/docker/docker-compose/pro/10.0/docker-compose.yml"
 
