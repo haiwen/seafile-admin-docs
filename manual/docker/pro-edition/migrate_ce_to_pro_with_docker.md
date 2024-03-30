@@ -2,7 +2,7 @@
 
 ## Preparation
 
-1. Make sure you are running the Seafile Community version 7.0.x, if not please refer to [Upgrade Documentation](https://download.seafile.com/published/seafile-manual/docker/6.3%20upgrade%20to%207.0.md)。
+1. Make sure you are running the Seafile Community version 7.0.x or newer version, if not please refer to [Upgrade Documentation](https://download.seafile.com/published/seafile-manual/docker/6.3%20upgrade%20to%207.0.md)。
 2. Purchase Seafile Professional license file.
 3. Download the [docker-compose.yml](https://download.seafile.com/d/320e8adf90fa43ad8fee/files/?p=/docker/pro-edition/docker-compose.yml) of Seafile Pro.
 
@@ -25,10 +25,11 @@ Copy the `seafile-license.txt` to the volume directory of the Seafile CE's data.
 
 Replace the old `docker-compose.yml` file with the new `docker-compose.yml` file and modify its configuration based on your actual situation:
 
+* The Seafile Pro docker tag must be equal to or newer than the old Seafile CE docker tag.
 * The password of MySQL root (MYSQL_ROOT_PASSWORD and DB_ROOT_PASSWD) should be consistent with the old one;
 * The volume directory of MySQL data (volumes) should be consistent with the old one;
 * The volume directory of Seafile data (volumes) should be consistent with the old one;
-* The volume directory of Elasticsearch data (volumes), this is the directory used to store the Elasticsearch's index data, E.g：`/opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data`；
+* The volume directory of Elasticsearch data (volumes), this is the directory used to store the Elasticsearch's index data, E.g：`/opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data`;
 
 ### Do the migration
 
@@ -48,6 +49,21 @@ docker exec -it seafile /opt/seafile/seafile-server-latest/pro/pro.py setup --mi
 
 ```
 
-**After the migration script runs successfully, restart the Seafile Pro container.**
+After the migration script runs successfully, modify `external_es_server, es_host, es_port` in `/opt/seafile-data/seafile/conf/seafevents.conf` manually.
+
+```conf
+[INDEX FILES]
+external_es_server = true
+es_host = elasticsearch
+es_port = 9200
+enabled = true
+interval = 10m
+```
+
+Restart the Seafile Pro container.
+
+```sh
+docker restart seafile
+```
 
 Now you have a Seafile Professional service.
