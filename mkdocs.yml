@@ -90,7 +90,6 @@ nav:
       - LDAP in version 11.0 (Pro): deploy_pro/ldap_in_11.0.md
     - Single Sign On:
       - Outline: deploy/single_sign_on.md
-      - Shibboleth Authentication: deploy/shibboleth_config_v6.3.md
       - OAuth Authentication: deploy/oauth.md
       - Remote User Authentication: deploy/remote_user.md
       - Auto Login to SeaDrive on Windows: deploy/auto_login_seadrive.md
