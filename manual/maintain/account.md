@@ -4,11 +4,11 @@
 
 When you setup seahub website, you should have setup a admin account. After you logged in a admin, you may add/delete users and file libraries.
 
-#### How to change a user's email
+#### How to change a user's ID
 
-If you use an email to identify an user (using email as a user's ID), this email is unchangable. You can set a contact email to that user via Web UI. The user can use the contact email to login and receive notifications.
+Since version 11.0, if you need to change a user's external ID, you can manually modify database table `social_auth_usersocialauth` to map the new external ID to internal ID.
 
-If you really want to change a user's ID, you should create a new user then use this admin API to migrate the data from old user to the new user: https://download.seafile.com/published/web-api/v2.1-admin/accounts.md#user-content-Migrate%20Account.
+For version below 11.0, if you really want to change a user's ID, you should create a new user then use this admin API to migrate the data from old user to the new user: https://download.seafile.com/published/web-api/v2.1-admin/accounts.md#user-content-Migrate%20Account.
 
 
 

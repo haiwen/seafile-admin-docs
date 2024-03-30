@@ -91,7 +91,7 @@ CUSTOM_NAV_ITEMS = [
     },
     {'icon': 'sf2-icon-wiki-view',
      'desc': 'Custom navigation 2',
-     'link': 'https://download.seafile.com/published/seafile-manual/home.md'
+     'link': 'https://www.seafile.com/help'
     },
     {'icon': 'sf2-icon-wrench',
      'desc': 'Custom navigation 3',
