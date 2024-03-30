@@ -276,6 +276,26 @@ memcached_options = --SERVER=<the IP of Memcached Server> --POOL-MIN=10 --POOL-M
 
 ```
 
+## Storage Backends
+
+You may configure Seafile to use various kinds of object storage backends.
+
+- [S3 or S3-compatible object storage](../deploy_pro/setup_with_amazon_s3.md)
+- [Ceph RADOS](../deploy_pro/setup_with_ceph.md)
+- [Alibaba Cloud OSS](../deploy_pro/setup_with_oss.md)
+- [OpenStack Swift](../deploy_pro/setup_with_swift.md)
+
+You may also configure Seafile to use [multiple storage backends](../deploy_pro/multiple_storage_backends.md) at the same time.
+
+## Cluster
+
+When you deploy Seafile in a cluster, you should add the following configuration:
+
+```
+[cluster]
+enabled = true
+````
+
 ## Enable Slow Log
 
 Since Seafile-pro-6.3.10, you can enable seaf-server's RPC slow log to do performance analysis.The slow log is enabled by default.
