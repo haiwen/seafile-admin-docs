@@ -2,9 +2,25 @@
 
 ## Preparation
 
-1. Make sure you are running the Seafile Community version 7.0.x or newer version, if not please refer to [Upgrade Documentation](https://download.seafile.com/published/seafile-manual/docker/6.3%20upgrade%20to%207.0.md)。
+1. Make sure you are running the Seafile Community version 7.0.x or newer version, if not please refer to [Upgrade Documentation](../6.3_upgrade_to_7.0.md)。
 2. Purchase Seafile Professional license file.
-3. Download the [docker-compose.yml](https://download.seafile.com/d/320e8adf90fa43ad8fee/files/?p=/docker/pro-edition/docker-compose.yml) of Seafile Pro.
+3. Download the docker-compose.yml of Seafile Pro.
+
+NOTE: Different versions of Seafile have different compose files.
+
+```sh
+# Seafile PE 7.1 and 8.0
+wget -O "docker-compose.yml" "https://manual.seafile.com/docker/docker-compose/pro/7.1_8.0/docker-compose.yml"
+
+# Seafile PE 9.0
+wget -O "docker-compose.yml" "https://manual.seafile.com/docker/docker-compose/pro/9.0/docker-compose.yml"
+
+# Seafile PE 10.0
+wget -O "docker-compose.yml" "https://manual.seafile.com/docker/docker-compose/pro/10.0/docker-compose.yml"
+
+# Seafile PE 11.0
+wget -O "docker-compose.yml" "https://manual.seafile.com/docker/docker-compose/pro/11.0/docker-compose.yml"
+```
 
 ## Migrate
 
