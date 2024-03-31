@@ -210,6 +210,7 @@ Add the following line (change the location of your script accordingly!)
 
 The script will then run every Sunday at 2:00 AM.
 
-## GC in the [seafile docker container](https://github.com/haiwen/seafile-docker)
+
+## GC in Seafile docker container
 
 To perform garbage collection inside the seafile docker container, you must run the `/scripts/gc.sh` script. Simply run `docker exec <whatever-your-seafile-container-is-called> /scripts/gc.sh`.
