@@ -21,6 +21,7 @@ The configuration for logrotate could be like this:
 ```
 /opt/seafile/logs/seafile.log
 /opt/seafile/logs/seahub.log
+/opt/seafile/logs/seafdav.log
 /opt/seafile/logs/fileserver-access.log
 /opt/seafile/logs/fileserver-error.log
 /opt/seafile/logs/fileserver.log
@@ -50,6 +51,10 @@ The configuration for logrotate could be like this:
 
                 if [ -f /opt/seafile/pids/seahub.pid ]; then
                         kill -HUP `cat /opt/seafile/pids/seahub.pid`
+                fi
+
+                if [ -f /opt/seafile/pids/seafdav.pid ]; then
+                        kill -HUP `cat /opt/seafile/pids/seafdav.pid`
                 fi
 
                 find /opt/seafile/logs/ -mtime +7 -name "*.log*" -exec rm -f {} \;
