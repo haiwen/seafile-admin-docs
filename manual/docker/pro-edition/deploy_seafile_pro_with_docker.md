@@ -348,8 +348,8 @@ You need to manually add the Clamav config to docker-compose.yml
 * [Setup Seafile Professional Server With Amazon S3](../../deploy_pro/setup_with_amazon_s3.md)
 * [Setup Seafile Professional Server With OpenStack Swift](../../deploy_pro/setup_with_swift.md)
 * [Setup Seafile Professional Server With Ceph](../../deploy_pro/setup_with_ceph.md)
-* [Migrate from File System to Ceph](../../deploy_pro/migrate_to_ceph.md)
 * [Data migration between different backends](../../deploy_pro/migrate.md)
+* [Using multiple storage backends](../../deploy_pro/multiple_storage_backends.md)
 
 ### Online File Preview and Editing
 
