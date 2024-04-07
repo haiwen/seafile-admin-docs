@@ -294,7 +294,7 @@ When you deploy Seafile in a cluster, you should add the following configuration
 ```
 [cluster]
 enabled = true
-````
+```
 
 ## Enable Slow Log
 
