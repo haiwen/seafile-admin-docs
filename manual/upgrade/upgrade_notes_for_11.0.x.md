@@ -33,7 +33,7 @@ The upgrade script will merge ccnet_db.LDAPImported table to ccnet_db.EmailUsers
 
 If you use OAuth authentication, the configuration need to be changed a bit.
 
-If you use SAML, you don't need to change configuration files.
+If you use SAML, you don't need to change configuration files. For SAML2, in version 10, the name_id field is returned from SAML server, and is used as the username (the email field in ccnet_dbEmailUser). In version 11, for old users, Seafile will find the old user and create a name_id to name_id mapping in social_auth_usersocialauth. For new users, Seafile will create a new user with random ID and add a name_id to the random ID mapping in social_auth_usersocialauth.
 
 
 ### Dropped SQLite Database Support
