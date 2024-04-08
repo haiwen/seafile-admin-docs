@@ -313,7 +313,7 @@ ENABLE_SHIBBOLETH_LOGIN = True
 # The benefit of using system browser is that it can support hardware 2FA
 # Since 11.0.0, and sync client 9.0.5, drive client 3.0.8
 CLIENT_SSO_VIA_LOCAL_BROWSER = True   # default is False
-CLIENT_SSO_UUID_EXPIRATION = 5 * 60
+CLIENT_SSO_UUID_EXPIRATION = 5 * 60   # in seconds
 ```
 
 ## Other options
