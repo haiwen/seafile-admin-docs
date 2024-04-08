@@ -291,7 +291,7 @@ CLOUD_MODE = True
 ENABLE_GLOBAL_ADDRESSBOOK = False
 ```
 
-## External authentication
+## Single Sign On
 
 ```python
 # Enable authentication with ADFS
@@ -307,6 +307,12 @@ ENABLE_KRB5_LOGIN = True
 # Default is False
 ENABLE_SHIBBOLETH_LOGIN = True
 
+# Enable client to open an external browser for single sign on
+# When it is false, the old buitin browser is opened for single sign on
+# When it is true, the default browser of the operation system is opened
+# Since 11.0.0, and sync client 9.0.5, drive client 3.0.8
+CLIENT_SSO_VIA_LOCAL_BROWSER = True   # default is False
+CLIENT_SSO_UUID_EXPIRATION = 5 * 60
 ```
 
 ## Other options
