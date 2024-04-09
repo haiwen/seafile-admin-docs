@@ -92,6 +92,7 @@ nav:
       - Outline: deploy/single_sign_on.md
       - OAuth Authentication: deploy/oauth.md
       - Remote User Authentication: deploy/remote_user.md
+      - Shibboleth Authentication: deploy/shibboleth_authentication.md
       - Auto Login to SeaDrive on Windows: deploy/auto_login_seadrive.md
       - SAML 2.0 in version 10.0+ (Pro): deploy_pro/saml2_in_10.0.md
       - SAML 2.0 (old) (Pro): deploy_pro/adfs.md
