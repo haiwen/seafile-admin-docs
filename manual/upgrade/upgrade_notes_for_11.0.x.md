@@ -220,3 +220,12 @@ When a user login, Seafile will first use "id -> email" map to find the old user
 We have documented common issues encountered by users when upgrading to version 11.0 in our [https://cloud.seatable.io/dtable/external-links/7b976c85f504491cbe8e/?tid=0000&vid=0000](FAQ).
 
 If you encounter any issue, please give it a check. 
+
+### Error:Seahub failed to start
+
+```log
+AttributeError: 'NoneType' object has no attribute 'init_db_session_class'
+Error:Seahub failed to start.
+```
+
+If you encounter this error when starting seahub, please check to install [New Python libraries](#new-python-libraries)
