@@ -8,6 +8,23 @@
 
 Please check our document for how to upgrade to 11.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x/>
 
+### 11.0.7 (2024-4-18)
+
+Seafile
+
+* Support log rotate for golang file server and notification server
+* Update UI for upload link
+* Support OnlyOffice version feature
+* Show files' original path in the trash
+
+SDoc editor 0.7
+
+* Improve file comment feature
+* Improve file diff showing
+* Support print a document
+* Improve table editing
+
+
 ### 11.0.6 (2024-03-14)
 
 Seafile
