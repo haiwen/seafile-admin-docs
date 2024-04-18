@@ -144,10 +144,15 @@ After the sync is run, you should see log messages like the following in logs/se
 
 To trigger LDAP sync manually,
 
-```
-cd seafile-server-lastest
+```sh
+cd seafile-server-latest
 ./pro/pro.py ldapsync
 
 ```
 
+For Seafile Docker
 
+```sh
+docker exec -it seafile /opt/seafile/seafile-server-latest/pro/pro.py ldapsync
+
+```
