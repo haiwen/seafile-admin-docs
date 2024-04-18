@@ -218,9 +218,16 @@ To test your LDAP sync configuration, you can run the sync command manually.
 
 To trigger LDAP sync manually,
 
-```
-cd seafile-server-lastest
+```sh
+cd seafile-server-latest
 ./pro/pro.py ldapsync
+
+```
+
+For Seafile Docker
+
+```sh
+docker exec -it seafile /opt/seafile/seafile-server-latest/pro/pro.py ldapsync
 
 ```
 
