@@ -8,6 +8,25 @@
 
 Please check our document for how to upgrade to 11.0: https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x/
 
+### 11.0.6 beta (2024-04-19)
+
+Seafile
+
+* Support log rotate for golang file server and notification server
+* Update UI for upload link
+* Support OnlyOffice version feature
+* Show files' original path in the trash
+* Fix traffic statistics
+* Fix an error in LDAP user sync
+* Add an option DISABLE_ADFS_USER_PWD_LOGIN to prevent SAML users login via email/password
+
+SDoc editor 0.7
+
+* Improve file comment feature
+* Improve file diff showing
+* Support print a document
+* Improve table editing
+
 ### 11.0.5 beta (2024-03-20)
 
 * Forbid generating share links for a library if the user has invisible/cloud-read-only permission on the library
