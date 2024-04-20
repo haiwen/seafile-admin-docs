@@ -8,7 +8,11 @@
 
 Please check our document for how to upgrade to 11.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x/>
 
-### 11.0.7 (2024-4-18)
+### 11.0.8 (2024-04-22)
+
+* Fix a bug in generating sharing links
+
+### 11.0.7 (2024-04-18)
 
 Seafile
 
