@@ -125,7 +125,7 @@ OAUTH_SCOPE = [
     "https://www.googleapis.com/auth/userinfo.profile",
 ]
 OAUTH_ATTRIBUTE_MAP = {
-    "id": (True, "uid"),
+    "sub": (True, "uid"),
     "name": (False, "name"),
     "email": (False, "contact_email"),
 }
