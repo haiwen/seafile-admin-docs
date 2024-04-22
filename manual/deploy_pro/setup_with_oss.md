@@ -77,3 +77,24 @@ Compared with the configuration under the classic network, the above configurati
 `endpoint` is a general option, you can also set it to the OSS access address under the classic network, and it will work as well.
 
 You also need to add [memory cache configurations](/config/seafile-conf/#cache-pro-edition-only).
+
+### Use HTTPS connections to OSS
+
+To use HTTPS connections to OSS, add the following options to seafile.conf:
+
+```
+[commit_object_backend]
+name = oss
+......
+use_https = true
+
+[fs_object_backend]
+name = oss
+......
+use_https = true
+
+[block_backend]
+name = oss
+......
+use_https = true
+```
