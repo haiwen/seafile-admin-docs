@@ -12,7 +12,7 @@ Note:
 * Currently the implementation is '''read-only''', which means you can't modify the files through the mounted folder.
 * One debian/centos systems, you need to be in the "fuse" group to have the permission to mount a FUSE folder.
 
-### How to start seaf-fuse
+## Use seaf-fuse in binary based deployment
 
 Assume we want to mount to `/data/seafile-fuse`.
 
@@ -30,26 +30,20 @@ Note: Before start seaf-fuse, you should have started seafile server with `./sea
 ./seaf-fuse.sh start /data/seafile-fuse
 ```
 
-Since Community server version 4.2.1 and Pro server 4.2.0, the script supports standard mount options for FUSE. For example, you can specify ownership for the mounted folder:
+seaf-fuse supports standard mount options for FUSE. For example, you can specify ownership for the mounted folder:
 
 ```
 ./seaf-fuse.sh start -o uid=<uid> /data/seafile-fuse
 ```
 
 The fuse enables the block cache function by default to cache block objects, thereby reducing access to backend storage, but this function will occupy local disk space. Since Seafile-pro-10.0.0, you can disable block cache by adding following options:
+
 ```
 ./seaf-fuse.sh start --disable-block-cache /data/seafile-fuse
 ```
 
 You can find the complete list of supported options in `man fuse`.
 
-##### Special notes for used with Ceph
-
-If you use Ceph (via librados) as storage backend, you need to add the `-f` option to seaf-fuse.sh, to ask the fuse program not to daemonize. Otherwise the fuse program will have strange "frozen" behaviors when accessing files.
-
-```
-./seaf-fuse.sh start -f /data/seafile-fuse
-```
 
 ##### Stop seaf-fuse
 
@@ -107,11 +101,13 @@ sudo usermod -a -G fuse <your-user-name>
 * Logout your shell and login again
 * Now try `./seaf-fuse.sh start <path>`again.
 
-### How to start seaf-fuse in docker
 
-Only support Linux. Assume we want to mount to `/data/seafile-fuse` in host.
+## Use seaf-fuse in Docker based deployment
+
+Assume we want to mount to `/data/seafile-fuse` in host.
 
 ##### Modify docker-compose.yml
+
 Add the following content
 
 ```yml
@@ -130,6 +126,7 @@ Add the following content
 ```
 
 ##### Start seaf-fuse with the script in docker
+
 Start Seafile server and enter the container
 
 ```bash
