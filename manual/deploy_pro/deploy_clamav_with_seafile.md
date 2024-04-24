@@ -1,39 +1,5 @@
 # Deploy ClamAV with Seafile
 
-## Use ClamAV in binary based deployment
-
-### Install clamav-daemon & clamav-freshclam
-
-```
-apt-get install clamav-daemon clamav-freshclam
-```
-
-You should run Clamd with a root permission to scan any files. 
-Edit the conf `/etc/clamav/clamd.conf`,change the following line:
-
-```
-LocalSocketGroup root
-User root
-```
-
-### Start the clamav-daemon
-
-```
-systemctl start clamav-daemon
-```
-
-* Test the software
-
-```
-$ curl https://www.eicar.org/download/eicar.com.txt | clamdscan -
-```
-
-The output must include:
-
-```
-stream: Eicar-Test-Signature FOUND
-```
-
 ## Use Clamav with Docker based deployment
 
 ### Add Clamav to docker-compose.yml
@@ -75,3 +41,39 @@ docker compose up -d
 Wait some minutes until Clamav finished initializing.
 
 Now Clamav can be used.
+
+
+## Use ClamAV in binary based deployment
+
+### Install clamav-daemon & clamav-freshclam
+
+```
+apt-get install clamav-daemon clamav-freshclam
+```
+
+You should run Clamd with a root permission to scan any files. 
+Edit the conf `/etc/clamav/clamd.conf`,change the following line:
+
+```
+LocalSocketGroup root
+User root
+```
+
+### Start the clamav-daemon
+
+```
+systemctl start clamav-daemon
+```
+
+* Test the software
+
+```
+$ curl https://www.eicar.org/download/eicar.com.txt | clamdscan -
+```
+
+The output must include:
+
+```
+stream: Eicar-Test-Signature FOUND
+```
+
