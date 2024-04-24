@@ -108,7 +108,7 @@ nav:
     - FUSE extension: extension/fuse.md
     - Virus Scan (Pro):
       - Outline: deploy_pro/virus_scan.md
-      - Run ClamAV as a Daemon: deploy_pro/deploy_clamav_as_daemon.md
+      - Deploy ClamAV with Seafile: deploy_pro/deploy_clamav_with_seafile.md
       - Virus Scan With Kav4fs: deploy_pro/virus_scan_with_kav4fs.md
     - Advanced User Management (Pro):
       - Multi-Institutions Support: deploy_pro/multi_institutions.md
