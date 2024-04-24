@@ -1,6 +1,6 @@
 # Deploy ClamAV with Seafile
 
-## Run ClamAV as a Daemon
+## Use ClamAV in binary based deployment
 
 ### Install clamav-daemon & clamav-freshclam
 
@@ -34,7 +34,7 @@ The output must include:
 stream: Eicar-Test-Signature FOUND
 ```
 
-## Deploy Clamav with Docker
+## Use Clamav with Docker based deployment
 
 ### Add Clamav to docker-compose.yml
 
@@ -45,7 +45,7 @@ services:
   ...
 
   av:
-    image: mkodockx/docker-clamav:alpine
+    image: clamav/clamav:latest
     container_name: seafile-clamav
     networks:
       - seafile-net
