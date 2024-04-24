@@ -333,7 +333,7 @@ Since version 9.0.6, you can deploy Clamav with Docker.
 
 You need to manually add the Clamav config to docker-compose.yml
 
-* [Clamav with Docker](deploy_clamav_with_docker.md)
+* [Deploy Clamav with Docker](../../deploy_pro/deploy_clamav_with_seafile.md)
 
 ## Other functions
 
