@@ -1,8 +1,6 @@
 
 # Shibboleth Authentication
 
-> This document is for Seafile Server version 6.3 or above
-
 [Shibboleth](https://shibboleth.net/) is a widely used single sign on (SSO) protocol. Seafile supports authentication via Shibboleth. It allows users from another organization to log in to Seafile without registering an account on the service provider.
 
 In this documentation, we assume the reader is familiar with Shibboleth installation and configuration. For introduction to Shibboleth concepts, please refer to <https://shibboleth.atlassian.net/wiki/spaces/CONCEPT/overview> .
@@ -87,9 +85,8 @@ You should create a new virtual host configuration for Shibboleth. And then rest
 
 #### Install and Configure Shibboleth
 
-Installation and configuration of Shibboleth is out of the scope of this documentation. Here are a few references:
+Installation and configuration of Shibboleth is out of the scope of this documentation. You can refer to the official Shibboleth document.
 
-* For RedHat, CentOS-7 and SUSE: <https://shibboleth.atlassian.net/wiki/spaces/SP3/pages/2065335547/LinuxInstall>
 
 #### Configure Shibboleth(SP)
 
