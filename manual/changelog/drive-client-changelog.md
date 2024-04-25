@@ -1,5 +1,13 @@
 # SeaDrive Client Changelog
 
+### 3.0.9 (2024/04/25)
+
+* Improve handling of exceptional file/folder operations, e.g. creating files in root folder, read-only folders
+* Fixed some crash issues
+* \[mac] Hide "Do not sync" menu item from context menu
+* \[mac] Improved tray icon
+* \[mac] Improved mechanism for preventing more than one seadrive file provider processes from running
+
 ### 3.0.8 (2024/02/21)
 
 * Support Single-Sign-On with desktop browser
