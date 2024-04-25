@@ -19,7 +19,7 @@ services:
       - seafile-net
           
   seafile:
-    image: seafileltd/seafile-mc:latest
+    image: seafileltd/seafile-mc:11.0-latest
     container_name: seafile
     ports:
       - "80:80"
