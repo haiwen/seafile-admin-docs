@@ -21,11 +21,8 @@ enabled = true
 
 ## interval of sending Seahub email. Can be s(seconds), m(minutes), h(hours), d(days)
 interval = 30m
-```
 
-> The following configurations for Pro Edition only
 
-```
 [FILE HISTORY]
 enabled = true
 threshold = 5
@@ -44,6 +41,11 @@ suffix = md,txt,...
 
 ## If you need to modify the file list format, you can add 'suffix = md, txt, ...' configuration items to achieve.
 
+```
+
+## The following configurations for Pro Edition only
+
+```
 [AUDIT]
 ## Audit log is disabled default.
 ## Leads to additional SQL tables being filled up, make sure your SQL server is able to handle it.
