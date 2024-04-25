@@ -15,6 +15,14 @@ enabled = true
 interval = 30m
 ```
 
+Since Seafile 11.0, you can use unix_socket authentication plugin provided by MariaDB/MySQL. If using `localhost`, the unix_socket must be set.
+
+```
+[DATABASE]
+host = localhost
+unix_socket = /var/run/mysqld/mysqld.sock
+```
+
 > The following configurations for Pro Edition only
 
 ```
