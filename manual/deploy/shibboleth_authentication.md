@@ -195,7 +195,6 @@ You can specify the mapping between Shibboleth attributes and Seahub's user prop
 
 ```
 SHIBBOLETH_ATTRIBUTE_MAP  = {
-    "HTTP_EPPN": (False, "username"),
     "HTTP_GIVENNAME": (False, "givenname"),
     "HTTP_SN": (False, "surname"),
     "HTTP_MAIL": (False, "contact_email"),
@@ -219,7 +218,6 @@ To enable this, modify `SHIBBOLETH_ATTRIBUTE_MAP` above and add `Shibboleth-affi
 
 ```
 SHIBBOLETH_ATTRIBUTE_MAP  = {
-    "HTTP_EPPN": (False, "username"),
     "HTTP_GIVENNAME": (False, "givenname"),
     "HTTP_SN": (False, "surname"),
     "HTTP_MAIL": (False, "contact_email"),
