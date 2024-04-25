@@ -3,6 +3,14 @@
 In the file `seafevents.conf`:
 
 ```
+[DATABASE]
+type = mysql
+host = 192.168.0.2
+port = 3306
+username = seafile
+password = password
+name = seahub_db
+
 [STATISTICS]
 ## must be "true" to enable statistics
 enabled = false
@@ -15,11 +23,12 @@ enabled = true
 interval = 30m
 ```
 
-Since Seafile 11.0, you can use unix_socket authentication plugin provided by MariaDB/MySQL. If using `localhost`, the unix_socket must be set.
+Since Seafile 11.0, you can use unix_socket authentication plugin provided by MariaDB/MySQL. To enable it, you need to specify the unix_socket option without user name and password.
 
 ```
 [DATABASE]
-host = localhost
+#user = root
+#password = root
 unix_socket = /var/run/mysqld/mysqld.sock
 ```
 
