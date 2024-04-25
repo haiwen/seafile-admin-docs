@@ -178,7 +178,7 @@ SHIBBOLETH_ATTRIBUTE_MAP = {
     "HTTP_DISPLAYNAME": (False, "display_name"),
     "HTTP_MAIL": (False, "contact_email"),
 }
-EXTRA_MIDDLEWARE_CLASSES = (
+EXTRA_MIDDLEWARE = (
     'shibboleth.middleware.ShibbolethRemoteUserMiddleware',
 )
 EXTRA_AUTHENTICATION_BACKENDS = (
