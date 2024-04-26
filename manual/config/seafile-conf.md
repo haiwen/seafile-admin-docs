@@ -240,14 +240,6 @@ ca_path = /etc/mysql/ca.pem
 ```
 When set `use_ssl` to true and `skip_verify` to false, it will check whether the MySQL server certificate is legal through the CA configured in `ca_path`. The `ca_path` is a trusted CA certificate path for signing MySQL server certificates. When `skip_verify` is true, there is no need to add the `ca_path` option. The MySQL server certificate won't be verified at this time.
 
-Since Seafile 11.0.1 and 11.0.1 Pro, you can use unix_socket authentication plugin provided by MariaDB/MySQL. To enable it, you need to specify the `unix_socket` option without user name and password.
-```
-[database]
-#user = root
-#password = root
-unix_socket = /var/run/mysqld/mysqld.sock
-```
-
 ## File Locking (Pro edition only)
 
 The Seafile Pro server auto expires file locks after some time, to prevent a locked file being locked for too long. The expire time can be tune in seafile.conf file.

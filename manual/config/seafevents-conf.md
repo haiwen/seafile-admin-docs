@@ -23,14 +23,6 @@ enabled = true
 interval = 30m
 ```
 
-Since Seafile 11.0, you can use unix_socket authentication plugin provided by MariaDB/MySQL. To enable it, you need to specify the unix_socket option without password.
-
-```
-[DATABASE]
-#password = password
-unix_socket = /var/run/mysqld/mysqld.sock
-```
-
 > The following configurations for Pro Edition only
 
 ```
