@@ -22,10 +22,6 @@ enabled = true
 ## interval of sending Seahub email. Can be s(seconds), m(minutes), h(hours), d(days)
 interval = 30m
 
-<<<<<<< HEAD
-
-=======
->>>>>>> Update seaf-events.conf document
 [FILE HISTORY]
 enabled = true
 threshold = 5
@@ -43,16 +39,11 @@ suffix = md,txt,...
 ## When set to 0, there is no time limit, which means that each save will generate a separate historical version.
 
 ## If you need to modify the file list format, you can add 'suffix = md, txt, ...' configuration items to achieve.
+
 ```
 
-
-<<<<<<< HEAD
-```
 
 ## The following configurations for Pro Edition only
-=======
-## Pro edition only options
->>>>>>> Update seaf-events.conf document
 
 ```
 [AUDIT]
