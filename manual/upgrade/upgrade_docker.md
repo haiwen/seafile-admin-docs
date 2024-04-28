@@ -9,15 +9,36 @@ Please check the **upgrade notes** for any special configuration or changes befo
 
 ## Upgrade from 10.0 to 11.0
 
-Download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version.
+Download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version. Taking the [community edition](../docker/deploy_seafile_with_docker.md) as an example, you have to modify
 
-Migrate your configuration for LDAP and OAuth according to <https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x>
+```yml
+...
+service:
+    ...
+    seafile:
+        image: seafileltd/seafile-mc:10.0-latest
+        ...
+    ...
+```
+
+to
+
+```yml
+service:
+    ...
+    seafile:
+        image: seafileltd/seafile-mc:11.0-latest
+        ...
+    ...
+```
+
+What's more, you have to migrate configuration for LDAP and OAuth according to <https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x>
 
 Start with docker compose up.
 
 ## Upgrade from 9.0 to 10.0
 
-Download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version, then start with docker compose up.
+Just download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version (see [Upgrade from 10.0 to 11.0](#Upgrade-from-10.0-to-11.0) for the detail), then start with docker compose up.
 
 If you are using pro edition with ElasticSearch, SAML SSO and storage backend features, follow the upgrading manual on how to update the configuration for these features: <https://manual.seafile.com/upgrade/upgrade_notes_for_10.0.x>
 
@@ -25,7 +46,7 @@ If you want to use the new notification server and rate control (pro edition onl
 
 ## Upgrade from 8.0 to 9.0
 
-Just download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version, then start with docker compose up.
+Just download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version (see [Upgrade from 10.0 to 11.0](#Upgrade-from-10.0-to-11.0) for the detail), then start with docker compose up.
 
 ### Let's encrypt SSL certificate
 
@@ -56,9 +77,9 @@ A cron job inside the container will automatically renew the certificate.
 
 ## Upgrade from 7.1 to 8.0
 
-Just download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version, then start with docker compose up.
+Just download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version (see [Upgrade from 10.0 to 11.0](#Upgrade-from-10.0-to-11.0) for the detail), then start with docker compose up.
 
 
 ## Upgrade from 7.0 to 7.1
 
-Just download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version, then start with docker compose up.
+Just download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version (see [Upgrade from 10.0 to 11.0](#Upgrade-from-10.0-to-11.0) for the detail), then start with docker compose up.
