@@ -19,18 +19,18 @@ services:
       - seafile-net
 
   elasticsearch:
-    image: elasticsearch:8.6.2
+    image: elasticsearch:8.13.0
     container_name: seafile-elasticsearch
     environment:
       - discovery.type=single-node
       - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+      - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
       - "xpack.security.enabled=false"
     ulimits:
       memlock:
         soft: -1
         hard: -1
-    mem_limit: 2g
+    mem_limit: 4g
     volumes:
       - /opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data  # Requested, specifies the path to Elasticsearch data persistent store.
     networks:
