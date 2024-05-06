@@ -32,16 +32,10 @@ service:
     ...
 ```
 
-For other third-party images (e.g., mariadb), user can upgrade the images to a newer version by themself:
+ It is also recommended that you upgrade **mariadb** and **memcached** to newer versions as in the v11.0 docker-compose.yml file. Specifically, in version 11.0, we use the following versions:
 
-```yml
-service:
-    ...
-    db:
-        image: mariadb:10.6.17
-        ...
-    ...
-```
+- MariaDB: 10.11
+- Memcached: 1.6.18
 
 What's more, you have to migrate configuration for LDAP and OAuth according to <https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x>
 
