@@ -32,7 +32,7 @@ service:
     ...
 ```
 
-For other third-party images (e.g., mariadb), user can upgrade the image to a newer version by themself:
+For other third-party images (e.g., mariadb), user can upgrade the images to a newer version by themself:
 
 ```yml
 service:
