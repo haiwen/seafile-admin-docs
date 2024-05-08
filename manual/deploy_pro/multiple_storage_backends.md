@@ -169,7 +169,7 @@ The JSON file is an array of objects. Each object defines a storage class. The f
 ]
 ```
 
-As you may have seen, the `commits`, `fs` and `blocks` information syntax is similar to what is used in `[commit_object_backend]`, `[fs_object_backend]` and `[block_backend]` section of seafile.conf.
+As you may have seen, the `commits`, `fs` and `blocks` information syntax is similar to what is used in `[commit_object_backend]`, `[fs_object_backend]` and `[block_backend]` section of seafile.conf. Refer to the detailed syntax in the documentation for the storage you use. For exampe, if you use S3 storage, refer to [S3 Storage](setup_with_amazon_s3.md).
 
 If you use file system as storage for `fs`, `commits` or `blocks`, you must explicitly provide the path for the `seafile-data` directory. The objects will be stored in `storage/commits`, `storage/fs`, `storage/blocks` under this path. 
 
