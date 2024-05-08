@@ -1,130 +1,134 @@
-# Build Seafile Client for Windows
+# Windows
 
-The following compilation steps are only valid for versions 8.0 and above.
+## Environment Setup
 
-## The development environment
+The following setups are required for building and packaging Sync Client on Windows:
 
-Before compiling and developing, you need to install and configure the development environment
+* Visual Studio 2019
+    * Desktop development with C++
+        * MSVC v142
+        * Windows 10 SDK (10.0.19041.0) (installed by default, not used)
+        * Windows 10 SDK (10.0.18362.0)
+    * Universal Windows Platform development
+        * Windows 10 SDK (10.0.18362.0)
+* Qt 6.5
+    * MSVC 2019 64-bit
+    * Qt 5 Compatibility Module
+    * Qt Positioning
+    * Qt Serial Port
+    * Qt WebChannel
+    * Qt WebEngine
+* Qt VS Tools
+* vcpkg
+    * curl\[openssl\]:x64-windows
+    * getopt:x64-windows
+    * glib:x64-windows
+    * jansson:x64-windows
+    * libevent:x64-windows
+    * libwebsockets:x64-windows
+    * openssl:x64-windows
+    * pthreads:x64-windows
+    * sqlite3:x64-windows
+    * zlib:x64-windows
+* Python 3.7
+* [wix](https://github.com/wixtoolset/wix3/releases/tag/wix3111rtm)
+    * install to C:\wix
+* [Paraffin](https://github.com/Wintellect/Paraffin/releases)
+    * copy Paraffin.exe to C:\wix\bin
+* Breakpad
+* Certificates
+    * install to C:\certs
 
-1. Microsoft Visual Studio 2019 (Windows SDK 10.0.18362.0) including modules: MSVC v142 Build ToolsMSVC v142 Build Tools and C++ 2019 Redistributable-MSMs
-2. Package manager tools: [vcpkg](https://docs.microsoft.com/en-us/cpp/build/vcpkg?view=vs-2019)
-3. Install wix[wix](https://github.com/wixtoolset/wix3/releases/tag/wix3111rtm) to c:/wix
-4. Install paraffin [paraffin](https://github.com/Wintellect/Paraffin/releases) and copy Paraffin.exe to c:/wix/bin
-5. Prepare signing certificate seafile.pfx to c:/certs
-6. Create a workspace folder such as c:/workspace, all souce code will be downloaded to this folder.
+### Breakpad
 
-## Installing third-party libraries
+Support for Breakpad can be added by running following steps:
 
-Third-party libraries include: glib, curl, openssl(version1.1.1d), openssl-windows(version1.1.1d-1), libevent, jansson, sqlite3, pthreads, getopt-win32
+* install gyp tool
 
-```
-Install example：`vcpkg.exe install curl[core,openssl]:x64-windows`
+        $ git clone --depth=1 git@github.com:chromium/gyp.git
+        $ python setup.py install
 
-```
+* compile breakpad
 
-Install and configure Qt:
+        $ git clone --depth=1 git@github.com:google/breakpad.git
+        $ cd breakpad
+        $ git clone https://github.com/google/googletest.git testing
+        $ cd ..
+        # create vs solution, this may throw an error "module collections.abc has no attribute OrderedDict", you should open the msvs.py and replace 'collections.abc' with 'collections'.
+        $ gyp –-no-circular-check breakpad\src\client\windows\breakpad_client.gyp
 
-1. Search and install Qt Visual Studio tools in the Visual Studio plugin repository
-2. Install Qt5.15.1 ([QT download link](http://download.qt.io/archive/qt/)).
-3. Configure Qt Visual Studio Tools. This will tell VS about Qt installation path. In VS menu, open Extension -> Qt VS -> Qt Options. Here you can setup Qt versions and the corresponding installation paths. You should set the path to the parent folder of Qt "bin" folder.Configure Qt Visual Studio Tools. This will tell VS about Qt installation path. In VS menu, open Extension -> Qt VS -> Qt Options. Here you can setup Qt versions and the corresponding installation paths. You should set the path to the parent folder of Qt "bin" folder.
-4. Choose Qt version to be used in your project. In VS navigation pane, right click on seafile-client project and choose "Properties". Then click "Qt Project Settings" in the properties dialog. You should select the Qt version you just setup in the last step.Choose Qt version to be used in your project. In VS navigation pane, right click on seafile-client project and choose "Properties". Then click "Qt Project Settings" in the properties dialog. You should select the Qt version you just setup in the last step.
+    * open breakpad_client.sln and configure C++ Language Standard to C++17 and C/C++ ---> Code Generation ---> Runtime Library to Multi-threaded DLL (/MD)
+    * build breakpad
 
-## Install and configure breakpad:
+* compile dump_syms tool
 
-### Install gyp tool
+    create vs solution
 
-Clone gyp
+        gyp –-no-circular-check breakpad\src\tools\windows\tools_windows.gyp
 
-```
-git clone --depth=1 git@github.com:chromium/gyp.git
+    * open tools_windows.sln and build tools_windows
+    * Insert #include in the source file about unique_ptr compilation error and recompile.
+    * build dump_syms
+    * Copy C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Remote Debugger\x64\msdia140.dll to breakpad\src\tools\windows\Release.
 
-```
+* copy VC merge modules
 
-Install gyp 
+        copy C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Redist\MSVC\v142\MergeModules\MergeModules\Microsoft_VC142_CRT_x64.msm C:\packagelib
 
-```
-python setup.py install
+## Building Sync Client
 
-```
-
-### Compile breakpad
-
-```bash
-#clone breakpad
-git clone --depth=1 git@github.com:google/breakpad.git
-cd breakpad
-git clone <https://github.com/google/googletest.git> testing
-cd ..
-#create vs solution, this may throw an error "module collections.abc has no attribute OrderedDict",
-#you should open the msvs.py and replace 'collections.abc' with 'collections'.
-gyp –-no-circular-check breakpad\\src\\client\\windows\\breakpad_client.gyp
-
-```
-
-1. open breakpad_client.sln and configure C++ Language Standard to C++17 and C/C++ ---> Code Generation ---> Runtime Library to  Multi-threaded DLL (/MD)
-2. build breakpad
-
-### Compile dump_syms tool
-
-create vs solution
-
-```
-gyp –-no-circular-check breakpad\\src\\tools\\windows\\tools_windows.gyp
-
-```
-
-1. open tools_windows.sln and build tools_windows
-2. Insert #include\<memory> in the source file about unique_ptr compilation error and recompile.
-3. build dump_syms
-4. Copy C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Common7\\IDE\\Remote Debugger\\x64\\msdia140.dll to breakpad\\src\\tools\\windows\\Release.
-
-### Copy VC merge modules
-
-```
-copy C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Redist\\MSVC\\v142\\MergeModules\\MergeModules\\Microsoft_VC142_CRT_x64.msm C:\\packagelib
+Following directory structures are expected when building Sync Client:
 
 ```
-
-## How to make msi
-
-For example, if you want to compile seafile 8.0.9, you can package it like this.
-
-First clone the libsearpc seafile seafile-client code to a directory.
-
-```bash
-git clone git@github.com:haiwen/libsearpc.git
-git clone git@github.com:haiwen/seafile.git
-git clone git@github.com:haiwen/seafile-client.git
-git clone git@github.com:haiwen/seafile-shell-ext.git
-
+seafile-workspace/
+seafile-workspace/libsearpc/
+seafile-workspace/seafile/
+seafile-workspace/seafile-client/
+seafile-workspace/seafile-shell-ext/
 ```
 
-Modify build scripts:
+### Building
 
-1. open seafile/scripts/build/build-msi-vs.py and modify QT_DIR to your directory of qt.
+Note: the building commands have been included in the packaging script, you can skip building commands while packaging.
 
-Then pull the code of the specified tag and build.
-
-```bash
-cd libsearpc
-git pull origin master:master
-git reset v3.3-latest --hard
-
-cd ../seafile-client
-git pull origin master:master
-git reset v8.0.9 --hard
-
-cd ../seafile-shell-ext
-git pull origin master:master
-git reset seafile-v8.0.9 --hard
-
-cd ../seafile
-git pull origin master:master
-git reset v8.0.9 --hard
-
-cd scripts/build
-python build-msi-vs.py 8.0.0
+To build libsearpc:
 
 ```
+$ cd seafile-workspace/libsearpc/
+$ devenv libsearpc.sln /build "Release|x64"
+```
+
+To build seafile
+
+```
+$ cd seafile-workspace/seafile/
+$ devenv seafile.sln /build "Release|x64"
+$ devenv msi/custom/seafile_custom.sln /build "Release|x64"
+```
+
+To build seafile-client
+
+```
+$ cd seafile-workspace/seafile-client/
+$ devenv third_party/quazip/quazip.sln /build "Release|x64"
+$ devenv seafile-client.sln /build "Release|x64"
+```
+
+To build seafile-shell-ext
+
+```
+$ cd seafile-workspace/seafile-shell-ext/
+$ devenv extensions/seafile_ext.sln /build "Release|x64"
+$ devenv seadrive-thumbnail-ext/seadrive_thumbnail_ext.sln /build "Release|x64"
+```
+
+### Packaging
+
+1. Update the CERTFILE configure in __seafile-workspace/seafile/scripts/build/build-msi-vs.py__ .
+2. Run commands:
 
 
+        $ cd seafile-workspace/seafile-client/third_party/quazip
+        $ devenv quazip.sln /build Release|x64
+        $ cd seafile-workspace/seafile/scripts/build
+        $ python build-msi-vs.py 1.0.0
