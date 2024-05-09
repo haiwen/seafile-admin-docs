@@ -30,6 +30,10 @@ The following setups are required for building and packaging Sync Client on Wind
     * pthreads:x64-windows
     * sqlite3:x64-windows
     * zlib:x64-windows
+
+            # Example of the install command:
+            $ ./vcpkg.exe install curl[core,openssl]:x64-windows
+
 * Python 3.7
 * [wix](https://github.com/wixtoolset/wix3/releases/tag/wix3111rtm)
     * install to C:\wix
@@ -38,6 +42,8 @@ The following setups are required for building and packaging Sync Client on Wind
 * Breakpad
 * Certificates
     * install to C:\certs
+
+    Note: certificates for Windows application are issued by third-party certificate authority.
 
 ### Breakpad
 
@@ -86,6 +92,8 @@ seafile-workspace/seafile/
 seafile-workspace/seafile-client/
 seafile-workspace/seafile-shell-ext/
 ```
+
+The source code of these projects can be downloaded at [github.com/haiwen/libsearpc](https://github.com/haiwen/libsearpc), [github.com/haiwen/seafile](https://github.com/haiwen/seafile), [github.com/haiwen/seafile-client](https://github.com/haiwen/seafile-client), and [github.com/haiwen/seafile-shell-ext](https://github.com/haiwen/seafile-shell-ext).
 
 ### Building
 

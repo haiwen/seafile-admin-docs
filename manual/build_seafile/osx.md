@@ -44,6 +44,8 @@ seafile-workspace/seafile/
 seafile-workspace/seafile-client/
 ```
 
+The source code of these projects can be downloaded at [github.com/haiwen/libsearpc](https://github.com/haiwen/libsearpc), [github.com/haiwen/seafile](https://github.com/haiwen/seafile), and [github.com/haiwen/seafile-client](https://github.com/haiwen/seafile-client).
+
 ### Building
 
 Note: the building commands have been included in the packaging script, you can skip building commands while packaging.
