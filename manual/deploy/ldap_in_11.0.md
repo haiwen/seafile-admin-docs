@@ -28,27 +28,35 @@ Add the following options to `seahub_settings.py`. Examples are as follows:
 
 ```python
 ENABLE_LDAP = True
-LDAP_SERVER_URL = 'ldap://192.168.0.1'     # The URL of LDAP server
-LDAP_BASE_DN = 'ou=test,dc=seafile,dc=ren'   # The root node of users who can 
-                                             # log in to Seafile in the LDAP server
-LDAP_ADMIN_DN = 'administrator@example.com'  # DN of the administrator used 
-                                             # to query the LDAP server for information.
-                                             # For OpenLDAP, it maybe cn=admin,dc=example,dc=com
-LDAP_ADMIN_PASSWORD = 'yourpassword'         # Password of LDAP_ADMIN_DN
-LDAP_PROVIDER = 'ldap'                       # Identify the source of the user, used in 
-                                             # the table social_auth_usersocialauth, defaults to 'ldap'
-LDAP_LOGIN_ATTR = 'userPrincipalName'        # User's attribute used to log in to Seafile.
-                                             # It should be a unique identifier for the user in LDAP server.
-                                             # Learn more about this id from the descriptions at begining of this section.
-LDAP_CONTACT_EMAIL_ATTR = ''                 # LDAP user's contact_email attribute
-LDAP_USER_ROLE_ATTR = ''                     # LDAP user's role attribute
-LDAP_USER_FIRST_NAME_ATTR = 'givenName'      # For sync user's first name
-LDAP_USER_LAST_NAME_ATTR = 'sn'              # For sync user's last name
-LDAP_USER_NAME_REVERSE = False               # Whether to reverse the user's first and last name
-LDAP_FILTER = 'memberOf=CN=testgroup,OU=test,DC=seafile,DC=ren'  # Additional filter conditions,
-                                             # users who meet the filter conditions can log in, otherwise they cannot log in
-
+LDAP_SERVER_URL = 'ldap://192.168.0.1'       
+LDAP_BASE_DN = 'ou=test,dc=seafile,dc=ren'                     
+LDAP_ADMIN_DN = 'administrator@example.com'  
+LDAP_ADMIN_PASSWORD = 'yourpassword'         
+LDAP_PROVIDER = 'ldap'                                     
+LDAP_LOGIN_ATTR = 'userPrincipalName'                                                            
+LDAP_CONTACT_EMAIL_ATTR = ''                
+LDAP_USER_ROLE_ATTR = ''                     
+LDAP_USER_FIRST_NAME_ATTR = 'givenName'     
+LDAP_USER_LAST_NAME_ATTR = 'sn'              
+LDAP_USER_NAME_REVERSE = False               
+LDAP_FILTER = 'memberOf=CN=testgroup,OU=test,DC=seafile,DC=ren' 
 ```
+
+Meaning of some options:
+
+* **LDAP_SERVER_URL:** The URL of LDAP server
+* **LDAP_BASE_DN:**The root node of users who can log in to Seafile in the LDAP server
+* **LDAP_ADMIN_DN:** DN of the administrator used to query the LDAP server for information. For OpenLDAP, it maybe `cn=admin,dc=example,dc=com`
+* **LDAP_ADMIN_PASSWORD:** Password of LDAP_ADMIN_DN
+* **LDAP_PROVIDER:** Identify the source of the user, used in the table social_auth_usersocialauth, defaults by 'ldap'
+* **LDAP_LOGIN_ATTR:** User's attribute used to log in to Seafile. It should be a unique identifier for the user in LDAP server. Learn more about this id from the descriptions at begining of this section.
+* **LDAP_CONTACT_EMAIL_ATTR:** LDAP user's contact_email attribute
+* **LDAP_USER_ROLE_ATTR:** LDAP user's role attribute
+
+* **LDAP_FIRST_NAME_ATTR**: Attribute for user's first name. It's "givenName" by default.
+* **LDAP_LAST_NAME_ATTR**: Attribute for user's last name. It's "sn" by default.
+* **LDAP_USER_NAME_REVERSE**: In some languages, such as Chinese, the display order of the first and last name is reversed. Set this option if you need it.
+* **LDAP_FILTER:** Additioinal filter conditions. Users who meet the filter conditions can log in , otherwise they cannot log in.
 
 Tips for choosing `LDAP_BASE_DN` and `LDAP_ADMIN_DN`:
 
