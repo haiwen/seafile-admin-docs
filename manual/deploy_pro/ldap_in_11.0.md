@@ -30,7 +30,7 @@ LDAP_BASE_DN = 'ou=test,dc=seafile,dc=ren'
 LDAP_ADMIN_DN = 'administrator@example.com'  
 LDAP_ADMIN_PASSWORD = 'yourpassword'         
 LDAP_PROVIDER = 'ldap'                                     
-LDAP_LOGIN_ATTR = 'userPrincipalName'                                                            
+LDAP_LOGIN_ATTR = 'email'                                                            
 LDAP_CONTACT_EMAIL_ATTR = ''                
 LDAP_USER_ROLE_ATTR = ''                     
 LDAP_USER_FIRST_NAME_ATTR = 'givenName'     
@@ -47,7 +47,7 @@ Meaning of some options:
 * **LDAP_ADMIN_PASSWORD:** Password of LDAP_ADMIN_DN
 * **LDAP_PROVIDER:** Identify the source of the user, used in the table social_auth_usersocialauth, defaults by 'ldap'
 * **LDAP_LOGIN_ATTR:** User's attribute used to log in to Seafile. It should be a unique identifier for the user in LDAP server. Learn more about this id from the descriptions at begining of this section.
-* **LDAP_CONTACT_EMAIL_ATTR:** LDAP user's contact_email attribute
+* **LDAP_CONTACT_EMAIL_ATTR:** LDAP user's contact_email attribute. It will be stored as a user's contact email in Seafile.
 * **LDAP_USER_ROLE_ATTR:** LDAP user's role attribute
 
 * **LDAP_FIRST_NAME_ATTR**: Attribute for user's first name. It's "givenName" by default.
@@ -103,7 +103,7 @@ Meaning of some options:
 * **ENABLE_LDAP_USER_SYNC**: set to "true" if you want to enable ldap user synchronization
 * **LDAP_USER_OBJECT_CLASS**: This is the name of the class used to search for user objects. In Active Directory, it's usually "person". The default value is "person".
 * **LDAP_DEPT_ATTR**:  Attribute for depatment info.
-* **LDAP_UID_ATTR**: Attribute for Windows login name. If this is synchronized, users can also log in with their Windows login name. In AD, the attribute `sAMAccountName` can be used as `UID_ATTR`.
+* **LDAP_UID_ATTR**: Attribute for Windows login name. If this is synchronized, users can also log in with their Windows login name. In AD, the attribute `sAMAccountName` can be used as `UID_ATTR`. The attribute will be stored as login_id in Seafile (in seahub_db.profile_profile table).
 * **LDAP_AUTO_REACTIVATE_USERS**: Whether to auto activate deactivated user, default by 'true'
 * **LDAP_USE_PAGED_RESULT:**  Whether to use pagination extension.It is useful when you have more than 1000 users in LDAP server.
 * **IMPORT_NEW_USER:** Whether to import new users when sync user.
