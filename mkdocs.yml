@@ -60,7 +60,7 @@ nav:
   - Seafile Professional Setup on Linux:
     - Outline: deploy_pro/README.md
     - Installation: deploy_pro/download_and_setup_seafile_professional_server.md
-    - Migration from Seafile Community: deploy_pro/migrate_from_seafile_community_server.md      
+    - Migration from Seafile Community: deploy_pro/migrate_from_seafile_community_server.md
     - Storage Backends:
       - Amazon S3 Backend: deploy_pro/setup_with_amazon_s3.md
       - Ceph Backend: deploy_pro/setup_with_ceph.md
@@ -81,7 +81,7 @@ nav:
     - Migration from Seafile Community: docker/pro-edition/migrate_ce_to_pro_with_docker.md
     - Migrate from non-docker deployment: docker/non_docker_to_docker.md
   - Advanced Setup Options:
-    - LDAP/AD Integration: 
+    - LDAP/AD Integration:
       - LDAP Integration: deploy/using_ldap.md
       - LDAP Configuration for Seafile Pro: deploy_pro/using_ldap_pro.md
       - Importing Groups from LDAP (Pro): deploy_pro/ldap_group_sync.md
@@ -162,7 +162,7 @@ nav:
     - How to Build Seafile:
       - Outline: build_seafile/README.md
       - Linux: build_seafile/linux.md
-      - Mac OS X: build_seafile/osx.md
+      - macOS: build_seafile/osx.md
       - Windows: build_seafile/windows.md
       - Server development: build_seafile/server.md
       - Server binary package: build_seafile/rpi.md
