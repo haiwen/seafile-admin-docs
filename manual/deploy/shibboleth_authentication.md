@@ -26,7 +26,7 @@ The configuration includes 3 steps:
 
 We use CentOS 7 as example.
 
-#### Configure Apache
+### Configure Apache
 
 You should create a new virtual host configuration for Shibboleth. And then restart Apache.
 
@@ -83,18 +83,18 @@ You should create a new virtual host configuration for Shibboleth. And then rest
 
 ```
 
-#### Install and Configure Shibboleth
+### Install and Configure Shibboleth
 
 Installation and configuration of Shibboleth is out of the scope of this documentation. You can refer to the official Shibboleth document.
 
 
-#### Configure Shibboleth(SP)
+### Configure Shibboleth(SP)
 
-##### shibboleth2.xml
+#### shibboleth2.xml
 
 Open `/etc/shibboleth/shibboleth2.xml` and change some property. After you have done all the followings, don't forget to restart Shibboleth(SP)
 
-###### `ApplicationDefaults` element
+##### `ApplicationDefaults` element
 
 Change `entityID` and [`REMOTE_USER`](https://shibboleth.atlassian.net/wiki/spaces/SP3/pages/2063695997/ApplicationDefaults) property:
 
@@ -110,7 +110,7 @@ Seahub extracts the username from the `REMOTE_USER` environment variable. So you
 
 In Seafile, only one of the following two attributes can be used for username: `eppn`, and `mail`. `eppn` stands for "Edu Person Principal Name". It is usually the UserPrincipalName attribute in Active Directory. It's not necessarily a valid email address. `mail` is the user's email address. You should set `REMOTE_USER` to either one of these attributes.
 
-###### `SSO` element
+##### `SSO` element
 
 Change `entityID` property:
 
@@ -127,7 +127,7 @@ You can also override entityID on /Login query string, or in RequestMap/htaccess
 
 ```
 
-###### `MetadataProvider` element
+##### `MetadataProvider` element
 
 Change `url` and `backingFilePath` property:
 
@@ -141,11 +141,11 @@ Change `url` and `backingFilePath` property:
 
 ```
 
-##### attribute-map.xml
+#### attribute-map.xml
 
 Open `/etc/shibboleth/attribute-map.xml` and change some property. After you have done all the followings, don't forget to restart Shibboleth(SP)
 
-###### `Attribute` element
+##### `Attribute` element
 
 Uncomment attribute elements for getting more user info:
 
@@ -207,7 +207,7 @@ In the above config, the hash key is Shibboleth attribute name, the second eleme
 
 We also added an option `SHIB_ACTIVATE_AFTER_CREATION` (defaults to `True`) which control the user status after shibboleth connection. If this option set to `False`, user will be inactive after connection, and system admins will be notified by email to activate that account.
 
-#### Affiliation and user role
+### Affiliation and user role
 
 Shibboleth has a field called affiliation. It is a list like: `employee@uni-mainz.de;member@uni-mainz.de;faculty@uni-mainz.de;staff@uni-mainz.de.`
 
@@ -254,14 +254,14 @@ After restarting Apache and Seahub service (`./seahub.sh restart`), you can then
 
 If you encountered problems when login, follow these steps to get debug info (for Seafile pro 6.3.13).
 
-#### Add this setting to `seahub_settings.py`
+### Add this setting to `seahub_settings.py`
 
 ```
 DEBUG = True
 
 ```
 
-#### Change Seafile's code
+### Change Seafile's code
 
 Open `seafile-server-latest/seahub/thirdpart/shibboleth/middleware.py`
 
