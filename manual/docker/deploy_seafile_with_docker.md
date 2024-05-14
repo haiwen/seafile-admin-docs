@@ -219,7 +219,7 @@ seafile:
 
 ```
 
-Then create a seafile user on the host, and modify the owner to seafile in /opt/seafile-data/seafile/. (NOTE: Do not change the uid and gid.)
+Then create a seafile user on the host, and modify the owner to seafile in `/opt/seafile-data/seafile/`. (NOTE: Do not change the uid and gid.)
 
 ```
 groupadd --gid 8000 seafile
@@ -229,7 +229,7 @@ useradd --home-dir /home/seafile --create-home --uid 8000 --gid 8000 --shell /bi
 chown -R seafile:seafile /opt/seafile-data/seafile/
 ```
 
-If the files in/opt/seafile-data/seafile involve operations by other users on the host, we suggest adding `NON-ROOT-CHOWN-FILES=true` to Docker Compose.yml. In this case, every time the seafile service is started, an automatically owner change operation for /opt/seafile-data/seafile/ will be executed. But if you have a large number of files, it will consume a lot of time to start seafile.
+If the files in `/opt/seafile-data/seafile` involve operations by other users on the host, we suggest adding `NON-ROOT-CHOWN-FILES=true` to Docker Compose.yml. In this case, every time the seafile service is started, an automatically owner change operation for `/opt/seafile-data/seafile/` will be executed. But if you have a large number of files, it will consume a lot of time to start seafile.
 
 ```
 seafile:
