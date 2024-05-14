@@ -84,7 +84,7 @@ Having done all the steps above, you should be able to visit your seahub server 
 
 You can use a dynamic DNS(DDNS) Service to overcome this problem. By using a dynamic DNS service, you can visit your seahub by domain name (instead of by IP), and the domain name will always be mapped to your WAN IP address, even if it changes regularly.
 
-There are a dozen of dynmaic DNS service providers on the internet. If you don't know what service to choose We recommend using [www.noip.com](http://www.noip.com) since it performs well in our testing.
+There are a dozen of dynamic DNS service providers on the internet. If you don't know what service to choose, we recommend using [www.noip.com](http://www.noip.com) since it performs well in our testing.
 
 The detailed process is beyond the scope of this wiki. But basically, you should:
 
