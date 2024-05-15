@@ -229,19 +229,6 @@ useradd --home-dir /home/seafile --create-home --uid 8000 --gid 8000 --shell /bi
 chown -R seafile:seafile /opt/seafile-data/seafile/
 ```
 
-If the files in `/opt/seafile-data/seafile` involve operations by other users on the host, we suggest adding `NON-ROOT-CHOWN-FILES=true` to Docker Compose.yml. In this case, every time the seafile service is started, an automatically owner change operation for `/opt/seafile-data/seafile/` will be executed. But if you have a large number of files, it will take a lot of time to start seafile.
-
-```
-seafile:
-    ...
-    environment:
-        ...
-        - NON_ROOT=true
-        - NON_ROOT_CHOWN_FILES=true
-        ...
-
-```
-
 Restarting the container run Seafile use seafile user. (NOTE: Later when do maintenance, other scripts in docker also required to run as seafile user, e.g. `su seafile -c ./seaf-gc.sh`)
 
 ```sh
