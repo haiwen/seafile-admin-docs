@@ -87,7 +87,7 @@ sudo pip3 install --timeout=3600 django==3.2.* future==0.18.* mysqlclient==2.1.*
     psd-tools django-pylibmc django_simple_captcha==0.5.20 pycryptodome==3.16.* cffi==1.15.1 lxml
 ```
 
-**For Seafile 11.0.x**
+**For Seafile 11.0.x (Debian 11, Ubuntu 20.04, Centos 8, etc.)**
 
 ```
 # on Ubuntu 22.04 (on Ubuntu 20.04/Debian 11/Debian 10, it is almost the same)
@@ -124,6 +124,32 @@ sudo pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.*
 ```
 
 **Note**: The recommended deployment option for Seafile PE on CentOS/Redhat is [Docker](https://manual.seafile.com/docker/pro-edition/deploy_seafile_pro_with_docker/).
+
+**For Seafile 11.0.x on Debian 12**
+
+Debian 12 (and most newer distributions) are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables diffeerent versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with "source python-venv/bin/activate".  Also be aware of the changes in [Start Seafile at System Bootup](../deploy/start_seafile_at_system_bootup.md) in this manual.
+
+```
+# Debian 12 (almost the same as Debian 11, but with python virtual environments to keep pip installs from conflicting with apt-get installs)
+sudo apt-get update
+sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip python3-ldap libmysqlclient-dev ldap-utils libldap2-dev dnsutils
+sudo apt-get install -y memcached libmemcached-dev
+sudo apt-get install -y poppler-utils
+
+cd /opt/seafile
+
+# create the vitual environment in the python-venv directory
+python3 -m venv python-venv
+
+# activate the venv
+source python-venv/bin/activate
+# Notice that this will usually change your prompt so you know the venv is active
+
+# install packages into the active venv with pip (sudo isn't needed because this is installing in the venv, not system-wide).
+pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.* \
+    pymysql pillow==10.0.* pylibmc captcha==0.4 markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
+    psd-tools django-pylibmc django_simple_captcha==0.5.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 python-ldap==3.4.3 lxml
+```
 
 ### Installing Java Runtime Environment
 
@@ -385,9 +411,12 @@ You need at least setup HTTP to make Seafile's web interface work. This manual p
 
 ## Starting Seafile Server
 
-Run the following commands in `/opt/seafile-server-latest`:
+Run the following commands in `/opt/seafile/seafile-server-latest`:
 
 ```
+# For installations using python virtual environment, activate it if it isn't already active
+source python-venv/bin/activate
+
 ./seafile.sh start # Start Seafile service
 ./seahub.sh start  # Start seahub website, port defaults to 127.0.0.1:8000
 ```

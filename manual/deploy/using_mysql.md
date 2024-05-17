@@ -97,7 +97,7 @@ sudo pip3 install --timeout=3600 django==3.2.* future==0.18.* mysqlclient==2.1.*
 
 ```
 
-**For Seafile 11.0.x**
+**For Seafile 11.0.x (Debian 11, Ubuntu 22.04, etc.)**
 
 ```
 # Ubuntu 22.04 (almost the same for Ubuntu 20.04 and Debian 11, Debian 10)
@@ -123,12 +123,35 @@ sudo pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.*
 
 ```
 
+**For Seafile 11.0.x on Debian 12**
+
+Debian 12 (and most newer distributions) are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables diffeerent versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with "source python-venv/bin/activate".  Also be aware of the changes in [Start Seafile at System Bootup](./start_seafile_at_system_bootup.md) in this manual.
+
+```
+# Debian 12 (almost the same as Debian 11, but with python virtual environments to keep pip installs from conflicting with apt-get installs)
+sudo apt-get update
+sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmariadb-dev-compat ldap-utils libldap2-dev python3.11-venv
+sudo apt-get install -y memcached libmemcached-dev
+
+cd /opt/seafile
+
+# create the vitual environment in the python-venv directory
+python3 -m venv python-venv
+
+# activate the venv
+source python-venv/bin/activate
+# Notice that this will usually change your prompt so you know the venv is active
+
+# install packages into the active venv with pip (sudo isn't needed because this is installing in the venv, not system-wide).
+pip3 install --timeout=3600  django==4.2.* future==0.18.* mysqlclient==2.1.* pymysql pillow==10.0.* pylibmc captcha==0.4 markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 psd-tools django-pylibmc django_simple_captcha==0.5.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 lxml python-ldap==3.4.3
+```
+
 ### Creating the program directory
 
 The standard directory for Seafile's program files is `/opt/seafile`. Create this directory and change into it:
 
 ```
-mkdir /opt/seafile
+sudo mkdir /opt/seafile
 cd /opt/seafile
 ```
 
@@ -141,13 +164,13 @@ It is good practice not to run applications as root.
 Create a new user and follow the instructions on the screen:
 
 ```
-adduser seafile
+sudo adduser seafile
 ```
 
 Change ownership of the created directory to the new user:
 
 ```
-chown -R seafile: /opt/seafile
+sudo chown -R seafile: /opt/seafile
 ```
 
 All the following steps are done as user seafile.
@@ -212,6 +235,9 @@ Note: While ccnet server was merged into the seafile-server in Seafile 8.0, the 
 Run the script as user seafile:
 
 ```
+# For installations using python virtual environment, activate it if it isn't already active
+source python-venv/bin/activate
+
 cd seafile-server-8.0.4
 ./setup-seafile-mysql.sh
 
@@ -362,9 +388,12 @@ To access Seafile's web interface and to create working sharing links without a 
 
 ## Starting Seafile Server
 
-Run the following commands in `/opt/seafile-server-latest`:
+Run the following commands in `/opt/seafile/seafile-server-latest`:
 
 ```
+# For installations using python virtual environment, activate it if it isn't already active
+source python-venv/bin/activate
+
 ./seafile.sh start # starts seaf-server
 ./seahub.sh start  # starts seahub
 
@@ -410,6 +439,9 @@ pkill -f "seahub"
 ### Restarting
 
 ```
+# For installations using python virtual environment, activate it if it isn't already active
+source python-venv/bin/activate
+
 ./seafile.sh restart
 ./seahub.sh restart
 
