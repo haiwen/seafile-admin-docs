@@ -51,8 +51,8 @@ After=network.target
 
 [Service]
 Type=forking
-ExecStart=${seafile_dir}/run_with_venv.sh seafile.sh start
-ExecStop=${seafile_dir}/seafile-server-latest/seafile.sh stop
+ExecStart=bash ${seafile_dir}/run_with_venv.sh seafile.sh start
+ExecStop=bash ${seafile_dir}/seafile-server-latest/seafile.sh stop
 LimitNOFILE=infinity
 User=seafile
 Group=seafile
@@ -79,8 +79,8 @@ After=network.target seafile.service
 [Service]
 Type=forking
 # change start to start-fastcgi if you want to run fastcgi
-ExecStart=${seafile_dir}/run_with_venv.sh seahub.sh start
-ExecStop=${seafile_dir}/seafile-server-latest/seahub.sh stop
+ExecStart=bash ${seafile_dir}/run_with_venv.sh seahub.sh start
+ExecStop=bash ${seafile_dir}/seafile-server-latest/seahub.sh stop
 User=seafile
 Group=seafile
 

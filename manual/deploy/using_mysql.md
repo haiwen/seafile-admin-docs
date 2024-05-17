@@ -394,7 +394,7 @@ To access Seafile's web interface and to create working sharing links without a 
 
 ## Starting Seafile Server
 
-Run the following commands in `/opt/seafile-server-latest`:
+Run the following commands in `/opt/seafile/seafile-server-latest`:
 
 ```
 # For installations using python virtual environment, activate it if it isn't already active
