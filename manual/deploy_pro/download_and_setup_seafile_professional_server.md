@@ -125,12 +125,12 @@ sudo pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.*
 
 **Note**: The recommended deployment option for Seafile PE on CentOS/Redhat is [Docker](https://manual.seafile.com/docker/pro-edition/deploy_seafile_pro_with_docker/).
 
-**For Seafile 11.0.x on Debian 12**
+**For Seafile 11.0.x on Debian 12 with virtual env**
 
-Debian 12 (and most newer distributions) are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables diffeerent versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with "source python-venv/bin/activate".  Also be aware of the changes in [Start Seafile at System Bootup](../deploy/start_seafile_at_system_bootup.md) in this manual.
+Debian 12 are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables diffeerent versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with "source python-venv/bin/activate".
 
 ```
-# Debian 12 (almost the same as Debian 11, but with python virtual environments to keep pip installs from conflicting with apt-get installs)
+# Debian 12
 sudo apt-get update
 sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip python3-ldap libmysqlclient-dev ldap-utils libldap2-dev dnsutils
 sudo apt-get install -y memcached libmemcached-dev
