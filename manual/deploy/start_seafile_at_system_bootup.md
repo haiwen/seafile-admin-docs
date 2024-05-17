@@ -68,7 +68,7 @@ sudo vim /etc/systemd/system/seahub.service
 
 ```
 
-The content of the file is (please dont forget to change it if you want to run fastcgi):
+The content of the file is:
 
 ```
 [Unit]
@@ -77,7 +77,6 @@ After=network.target seafile.service
 
 [Service]
 Type=forking
-# change start to start-fastcgi if you want to run fastcgi
 ExecStart=bash ${seafile_dir}/run_with_venv.sh seahub.sh start
 ExecStop=bash ${seafile_dir}/seafile-server-latest/seahub.sh stop
 User=seafile
@@ -88,17 +87,6 @@ WantedBy=multi-user.target
 
 ```
 
-### Seafile cli client (optional)
-
-The client doesn't require any packages from pip, so this is the same as for systems without pythong virtual environments.  See that section below.
-
-### Enable service start on system boot
-
-```
-sudo systemctl enable seafile.service
-sudo systemctl enable seahub.service
-sudo systemctl enable seafile-client.service   # optional
-```
 
 ## For systems running systemd without python virtual environment
 
@@ -148,7 +136,7 @@ sudo vim /etc/systemd/system/seahub.service
 
 ```
 
-The content of the file is (please dont forget to change it if you want to run fastcgi):
+The content of the file is:
 
 ```
 [Unit]
@@ -157,7 +145,6 @@ After=network.target seafile.service
 
 [Service]
 Type=forking
-# change start to start-fastcgi if you want to run fastcgi
 ExecStart=${seafile_dir}/seafile-server-latest/seahub.sh start
 ExecStop=${seafile_dir}/seafile-server-latest/seahub.sh stop
 User=seafile
@@ -169,7 +156,7 @@ WantedBy=multi-user.target
 ```
 
 
-### Seafile cli client (optional)
+## Seafile cli client (optional)
 
 Create systemd service file /etc/systemd/system/seafile-client.service 
 
@@ -204,11 +191,10 @@ WantedBy=multi-user.target
 
 ```
 
-### Enable service start on system boot
+## Enable service start on system boot
 
 ```
 sudo systemctl enable seafile.service
 sudo systemctl enable seahub.service
 sudo systemctl enable seafile-client.service   # optional
-
 ```
