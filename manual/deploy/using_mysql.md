@@ -125,7 +125,7 @@ sudo pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.*
 
 **For Seafile 11.0.x on Debian 12**
 
-Debian 12 (and most newer distributions) are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables diffeerent versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with "source python-venv/bin/activate".  Also be aware of the changes in the "Start Seafile at System Bootup" section later in this manual.
+Debian 12 (and most newer distributions) are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables diffeerent versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with "source python-venv/bin/activate".  Also be aware of the changes in [Start Seafile at System Bootup](./start_seafile_at_system_bootup.md) in this manual.
 
 ```
 # Debian 12 (almost the same as Debian 11, but with python virtual environments to keep pip installs from conflicting with apt-get installs)
