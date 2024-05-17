@@ -8,8 +8,7 @@ Create systemd service files, change **${seafile_dir}** to your
 **seafile** (if appropriate). Then you need to reload systemd's daemons:
 **systemctl daemon-reload**.
 
-### Create the script to activate the python virtual environment
-This file goes in the **${seafile_dir}** directory.  Put another way, it does not go in "seafile-server-latest", but the directory above that.  Throughout this manual the examples use /opt/seafile  for this directory, but you might have chosen to use a different directory.
+Firstly, you should create a script to activate the python virtual environment, which goes in the **${seafile_dir}** directory.  Put another way, it does not go in "seafile-server-latest", but the directory above that.  Throughout this manual the examples use /opt/seafile for this directory, but you might have chosen to use a different directory.
 
 ```
 sudo vim /opt/seafile/run_with_venv.sh
@@ -34,7 +33,7 @@ make this script executable
 sudo chmod 755 /opt/seafile/run_with_venv.sh
 ```
 
-### Create systemd service file /etc/systemd/system/seafile.service
+### Seafile component
 
 ```
 sudo vim /etc/systemd/system/seafile.service
@@ -62,7 +61,7 @@ WantedBy=multi-user.target
 
 ```
 
-### Create systemd service file /etc/systemd/system/seahub.service
+### Seahub component
 
 ```
 sudo vim /etc/systemd/system/seahub.service
@@ -89,7 +88,8 @@ WantedBy=multi-user.target
 
 ```
 
-### Create systemd service file /etc/systemd/system/seafile-client.service (optional)
+### Seafile cli client (optional)
+
 The client doesn't require any packages from pip, so this is the same as for systems without pythong virtual environments.  See that section below.
 
 ### Enable service start on system boot
@@ -110,7 +110,7 @@ Create systemd service files, change **${seafile_dir}** to your
 **systemctl daemon-reload**.
 
 
-### Create systemd service file /etc/systemd/system/seafile.service
+### Seafile component
 
 ```
 sudo vim /etc/systemd/system/seafile.service
@@ -139,7 +139,7 @@ WantedBy=multi-user.target
 ```
 
 
-## Seahub component
+### Seahub component
 
 Create systemd service file /etc/systemd/system/seahub.service
 
@@ -169,7 +169,7 @@ WantedBy=multi-user.target
 ```
 
 
-## Seafile cli client (optional)
+### Seafile cli client (optional)
 
 Create systemd service file /etc/systemd/system/seafile-client.service 
 
@@ -204,7 +204,7 @@ WantedBy=multi-user.target
 
 ```
 
-## Enable service start on system boot
+### Enable service start on system boot
 
 ```
 sudo systemctl enable seafile.service

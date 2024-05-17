@@ -136,7 +136,19 @@ sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip pytho
 sudo apt-get install -y memcached libmemcached-dev
 sudo apt-get install -y poppler-utils
 
-## The pip installations will be done below, in the python virtual environment section
+cd /opt/seafile
+
+# create the vitual environment in the python-venv directory
+python3 -m venv python-venv
+
+# activate the venv
+source python-venv/bin/activate
+# Notice that this will usually change your prompt so you know the venv is active
+
+# install packages into the active venv with pip (sudo isn't needed because this is installing in the venv, not system-wide).
+pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.* \
+    pymysql pillow==10.0.* pylibmc captcha==0.4 markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
+    psd-tools django-pylibmc django_simple_captcha==0.5.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 python-ldap==3.4.3 lxml
 ```
 
 ### Installing Java Runtime Environment
@@ -193,24 +205,6 @@ Change to user seafile:
 
 ```
 su seafile
-```
-
-### Create the python virtual environment and install dependencies with pip (Debian 12)
-For newer systems like Debian 12 where we didn't install the depeneencies with pip above, we will install them here.  Older systems can skip this step.
-```
-cd /opt/seafile
-
-# create the vitual environment in the python-venv directory
-python3 -m venv python-venv
-
-# activate the venv
-source python-venv/bin/activate
-# Notice that this will usually change your prompt so you know the venv is active
-
-# install packages into the active venv with pip (sudo isn't needed because this is installing in the venv, not system-wide).
-pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.* \
-    pymysql pillow==10.0.* pylibmc captcha==0.4 markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
-    psd-tools django-pylibmc django_simple_captcha==0.5.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 python-ldap==3.4.3 lxml
 ```
 
 ### Placing the Seafile PE license
