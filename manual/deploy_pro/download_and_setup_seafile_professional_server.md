@@ -435,8 +435,6 @@ Seafile uses the indexing server ElasticSearch to enable full text search. In ve
 
 Our recommendation for deploying ElasticSearch is using Docker. Detailed information about installing Docker on various Linux distributions is available at [Docker Docs](https://docs.docker.com/engine/install/).
 
-**Note:** Some virtualization technologies do not support Docker. In this case, ElasticSearch must be installed natively.
-
 Seafile PE 9.0 only supports ElasticSearch 7.x. Seafile PE 10.0 and 11.0 only supports ElasticSearch 8.x.
 
 We use ElasticSearch version 7.16.2 as an example in this section. Version 7.16.2 and newer version have been successfully tested with Seafile.
@@ -458,7 +456,7 @@ sudo docker run -d \
 --name es \
 -p 9200:9200 \
 -e "discovery.type=single-node" -e "bootstrap.memory_lock=true" \
--e "ES_JAVA_OPTS=-Xms1g -Xmx1g" -e "xpack.security.enabled=false" \
+-e "ES_JAVA_OPTS=-Xms2g -Xmx2g" -e "xpack.security.enabled=false" \
 --restart=always \
 -v /opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data \
 -d elasticsearch:7.16.2
@@ -473,6 +471,7 @@ Add the following configuration to `seafevents.conf`:
 [INDEX FILES]
 external_es_server = true                   # required when ElasticSearch on separate host
 es_host = your elasticsearch server's IP    # IP address of ElasticSearch host
+                                            # use 127.0.0.1 if deployed on the same server
 es_port = 9200                              # port of ElasticSearch host
 interval = 10m                              # frequency of index updates in minutes
 highlight = fvh                             # parameter for improving the search performance

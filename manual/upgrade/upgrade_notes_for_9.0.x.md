@@ -77,7 +77,7 @@ _Note_: You must properly grant permission to access the es data directory, and 
 Start ES docker image
 
 ```
-sudo docker run -d --name es -p 9200:9200 -e "discovery.type=single-node" -e "bootstrap.memory_lock=true" -e "ES_JAVA_OPTS=-Xms1g -Xmx1g" -e "xpack.security.enabled=false" --restart=always -v /opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data -d elasticsearch:7.16.2
+sudo docker run -d --name es -p 9200:9200 -e "discovery.type=single-node" -e "bootstrap.memory_lock=true" -e "ES_JAVA_OPTS=-Xms2g -Xmx2g" -e "xpack.security.enabled=false" --restart=always -v /opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data -d elasticsearch:7.16.2
 
 ```
 
@@ -93,10 +93,10 @@ Modify seafevents.conf
 ```
 [INDEX FILES]
 external_es_server = true
-es_host = your server's IP
+es_host = your server's IP (use 127.0.0.1 is deployed locally)
 es_port = 9200
-
 ```
+
 
 Restart seafile
 
