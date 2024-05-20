@@ -93,7 +93,7 @@ Modify seafevents.conf
 ```
 [INDEX FILES]
 external_es_server = true
-es_host = your server's IP (use 127.0.0.1 is deployed locally)
+es_host = your server's IP (use 127.0.0.1 if deployed locally)
 es_port = 9200
 ```
 
