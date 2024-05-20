@@ -18,7 +18,7 @@ nano /etc/sysctl.conf
 vm.max_map_count=262144
 ```
 
-Seafile PE can be used without a paid license with up to three users. Licenses for more user can be purchased in the [Seafile Customer Center](https://customer.seafile.com) or contact Seafile Sales at sales@seafile.com or one of [our partners](https://www.seafile.com/en/partner/).
+Seafile PE can be used without a paid license with up to three users. Licenses for more user can be purchased in the [Seafile Customer Center](https://customer.seafile.com) or contact Seafile Sales at sales@seafile.com.
 
 ## Setup
 
@@ -81,7 +81,7 @@ The following fields merit particular attention:
 
 The new password for MYSQL_ROOT_PASSWORD and DB_ROOT_PASSWD must be identical.
 
-To enable HTTPS access - which is required for production use - , enter the SEAFILE_SERVER_HOSTNAME and uncomment port 443 in the configuration of the container seafile. If you want to use Let's Encrypt to obtain a SSL certificate, set SEAFILE_SERVER_LETSENCRYPT to `true` (and do not comment out port 80 because it is required when requesting a Let's Encrypt certificate). If you want to use your own SSL certificate, leave SEAFILE_SERVER_LETSENCRYPT set to `false` and follow the instructions in section [Configuring a Custom SSL Certificate](https://manual.seafile.com/docker/pro-edition/deploy_seafile_pro_with_docker/#configuring-a-custom-ssl-certificate).
+To enable HTTPS access (which is required for production use) enter the SEAFILE_SERVER_HOSTNAME and uncomment port 443 in the configuration of the container seafile. If you want to use Let's Encrypt to obtain a SSL certificate, set SEAFILE_SERVER_LETSENCRYPT to `true` (and do not comment out port 80 because it is required when requesting a Let's Encrypt certificate). If you want to use your own SSL certificate, leave SEAFILE_SERVER_LETSENCRYPT set to `false` and follow the instructions in section [Configuring a Custom SSL Certificate](https://manual.seafile.com/docker/pro-edition/deploy_seafile_pro_with_docker/#configuring-a-custom-ssl-certificate).
 
 Additional customizable options in the Compose file are:
 
