@@ -309,11 +309,14 @@ seafile:
         ...
 ```
 
-Then create a seafile user on the host. (NOTE: Do not change the uid and gid.)
+Then create a seafile user on the host, and modify the owner to seafile in `/opt/seafile-data/seafile/`. (NOTE: Do not change the uid and gid.)
 
 ```
 groupadd --gid 8000 seafile
+
 useradd --home-dir /home/seafile --create-home --uid 8000 --gid 8000 --shell /bin/sh --skel /dev/null seafile
+
+chown -R seafile:seafile /opt/seafile-data/seafile/
 ```
 
 Restarting the container run Seafile use seafile user. (NOTE: Later when do maintenance, other scripts in docker also required to run as seafile user, e.g. `su seafile -c ./seaf-gc.sh`)
