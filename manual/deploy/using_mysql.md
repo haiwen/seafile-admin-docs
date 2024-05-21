@@ -130,7 +130,7 @@ Debian 12 are now discouraging system-wide installation of python modules with p
 ```
 # Debian 12
 sudo apt-get update
-sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmariadb-dev-compat ldap-utils libldap2-dev python3.11-venv
+sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmariadb-dev-compat ldap-utils libldap2-dev libsasl2-dev python3.11-venv
 sudo apt-get install -y memcached libmemcached-dev
 
 cd /opt/seafile
