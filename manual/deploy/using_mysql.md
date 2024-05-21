@@ -114,7 +114,7 @@ sudo pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.*
 ```
 # Debian 12
 sudo apt-get update
-sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmariadb-dev-compat libmariadb-dev ldap-utils libldap2-dev libsasl2-dev
+sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmariadb-dev-compat ldap-utils libldap2-dev libsasl2-dev
 sudo apt-get install -y memcached libmemcached-dev
 
 sudo pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.* \
