@@ -6,9 +6,15 @@ Seafile uses HTTP(S) to syncing files between client and server (Since version 4
 
 ## Encrypted Library
 
-Seafile provides a feature called encrypted library to protect your privacy. The file encryption/decryption is performed on client-side when using the desktop client for file synchronization. The password of an encrypted library is not stored on the server. **Even the system admin of the server can't view the file contents - they can however view the metadata [which are currently not encrypted](https://github.com/haiwen/seafile/issues/350).** The metadata includes: the complete list of directory and file names, every files size, the history of editors, when, and what byte ranges were altered.
+Seafile provides a feature called encrypted library to protect your privacy. The file encryption/decryption is performed on client-side when using the desktop client for file synchronization. The password of an encrypted library is not stored on the server. Even the system admin of the server can't view the file contents.
 
-CAUTION: The client side encryption does currently NOT work while using the web browser and the cloud file explorer of the desktop client. When you are browsing encrypted libraries via the web browser or the cloud file explorer, you need to input the password and the server is going to use the password to decrypt the "file key" for the library (see description below) and cache the password in memory for one hour. The plain text password is never stored or cached on the server.
+There are a few limitation about this feature:
+
+1. File metadata is NOT encrypted. The metadata includes: the complete list of directory and file names, every files size, the history of editors, when, and what byte ranges were altered.
+2. The client side encryption does currently NOT work while using the web browser and the cloud file explorer of the desktop client. When you are browsing encrypted libraries via the web browser or the cloud file explorer, you need to input the password and the server is going to use the password to decrypt the "file key" for the library (see description below) and cache the password in memory for one hour. The plain text password is never stored or cached on the server.
+3. If you create an encrypted library on the web interface, the library password and encryption keys will pass through the server. If you want end-to-end protection, you should create encrypted libraries from desktop client only.
+4. For encryption protocol version 3 or newer, each library use its own salt to derive key/iv pairs. However, all files within a library shares the same salt. Likewise, all the files within a library are encrypted with the same key/iv pair. With encryption protocol version <= 2, all libraries use the same salt, but separate key/iv pairs.
+5. Encrypted library doesn't ensure file integrity. For example, the server admin can still partially change the contents of files in an encrypted library. The client is not able to detect such changes to contents.
 
 The client side encryption works on iOS client since version 2.1.6. The Android client support client side encryption since version 2.1.0.
 
