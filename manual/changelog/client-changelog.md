@@ -2,6 +2,17 @@
 
 ## 9.0
 
+### 9.0.6 (2024/05/23)
+
+* Fix sync error icon in main window
+* Handle filename case conflicts better when downloading
+* Improve conflict handling in cloud file browser
+* Add sort library feature in main window
+* Support username and password when use SOCKS5 proxy
+* Requires at least version 2 encryption protocol when syncing an encrypted library (Thanks to Jonas Hofmann and Kien Tuong Truong from ETH Zurich)
+* Change local file permission when recieving unlock event from notification server
+* \[mac] Update system tray icon
+
 ### 9.0.5 (2024/03/05)
 
 * Support Single-Sign-On with desktop browsers
