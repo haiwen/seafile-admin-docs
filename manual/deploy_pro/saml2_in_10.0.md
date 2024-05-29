@@ -9,6 +9,7 @@ In this document, we use Microsoft Azure SAML single sign-on app and Microsoft o
 ```
 $ apt update
 $ apt install xmlsec1
+$ apt install dnsutils  # For multi-tenancy feature
 ```
 
 **Second**, prepare SP(Seafile) certificate directory and SP certificates:
