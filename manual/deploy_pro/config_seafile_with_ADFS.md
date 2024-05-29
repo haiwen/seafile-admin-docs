@@ -206,7 +206,7 @@ SAML_CONFIG = {
  
  1. Incoming claim type should be **E-mail Address** (it must match the Outgoing Claim Type in rule #1).
  
- 1. The Outgoing claim type is **Name ID** (this is requested in Seafile settings policy `            'name_id_format': saml2.saml.NAMEID_FORMAT_EMAILADDRESS`).
+ 1. The Outgoing claim type is **Name ID** (this is required in Seafile settings policy `            'name_id_format': saml2.saml.NAMEID_FORMAT_EMAILADDRESS`).
  
  1. the Outgoing name ID format is **Email**.
  

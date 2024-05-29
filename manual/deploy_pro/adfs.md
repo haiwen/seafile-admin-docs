@@ -234,7 +234,7 @@ SHIBBOLETH_AFFILIATION_ROLE_MAP = {
 8. Select **Transform an Incoming Claim**. 
 9. Give it a name such as **Email to Name ID**.
 10. Incoming claim type should be **E-mail Address** (it must match the Outgoing Claim Type in rule #1).
-11. The Outgoing claim type is **Name ID** (this is requested in Seafile settings policy `'name_id_format': saml2.saml.NAMEID_FORMAT_EMAILADDRESS`).
+11. The Outgoing claim type is **Name ID** (this is required in Seafile settings policy `'name_id_format': saml2.saml.NAMEID_FORMAT_EMAILADDRESS`).
 12. the Outgoing name ID format is **Email**.
 13. **Pass through all claim values** and click **Finish**. 
 
