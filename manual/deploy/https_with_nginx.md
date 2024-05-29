@@ -1,12 +1,12 @@
 # Enabling HTTPS with Nginx
 
-After completing the installation of [Seafile Server Community Edition](../deploy/using_mysql/) and [Seafile Server Professional Edition](https://manual.seafile.com/deploy_pro/download_and_setup_seafile_professional_server/), communication between the Seafile server and clients runs over (unencrypted) HTTP. While HTTP is ok for testing purposes, switching to HTTPS is imperative for production use.
+After completing the installation of [Seafile Server Community Edition](../using_mysql/) and [Seafile Server Professional Edition](https://manual.seafile.com/deploy_pro/download_and_setup_seafile_professional_server/), communication between the Seafile server and clients runs over (unencrypted) HTTP. While HTTP is ok for testing purposes, switching to HTTPS is imperative for production use.
 
 HTTPS requires a SSL certificate from a Certificate Authority (CA). Unless you already have a SSL certificate, we recommend that you get your SSL certificate from [Let’s Encrypt](https://letsencrypt.org/) using Certbot. If you have a SSL certificate from another CA, skip the section "Getting a Let's Encrypt certificate".
 
 A second requirement is a reverse proxy supporting SSL. [Nginx](http://nginx.org/), a popular and resource-friendly web server and reverse proxy, is a good option.  Nginx's documentation is available at http://nginx.org/en/docs/.
 
-If you prefer Apache, you find instructions for [enabling HTTPS with Apache here](../deploy/deploy_with_apache/).
+If you prefer Apache, you find instructions for [enabling HTTPS with Apache here](../https_with_apache/).
 
 ## Setup
 
@@ -136,10 +136,10 @@ The following options must be modified in the CONF file:
 
 Optional customizable options in the seafile.conf are:
 
-* Server listening port (listen) - if Seafile server should be available on a non-standard port
-* Proxy pass for location / - if Seahub is configured to start on a different port than 8000
-* Proxy pass for location /seafhttp - if seaf-server is configured to start on a different port than 8082
-* Maximum allowed size of the client request body (client_max_body_size)
+* Server listening port (`listen`) - if Seafile server should be available on a non-standard port
+* Proxy pass for location `/` - if Seahub is configured to start on a different port than 8000
+* Proxy pass for location `/seafhttp` - if seaf-server is configured to start on a different port than 8082
+* Maximum allowed size of the client request body (`client_max_body_size`)
 
 The default value for `client_max_body_size` is 1M. Uploading larger files will result in an error message HTTP error code 413 ("Request Entity Too Large"). It is recommended to syncronize the value of client_max_body_size with the parameter `max_upload_size` in section `[fileserver]` of [seafile.conf](../config/seafile-conf.md). Optionally, the value can also be set to 0 to disable this feature. Client uploads are only partly effected by this limit. With a limit of 100 MiB they can safely upload files of any size.
 
@@ -173,7 +173,7 @@ $ sudo certbot certonly --nginx
 
 Follow the instructions on the screen.
 
-Upon successful verification, Certbot saves the certificate files in a directory named after the host name in  ```/etc/letsencrypt/live```. For the host name seafile.example.com, the files are stored in `/etc/letsencrypt/live/seafile.example.com`. 
+Upon successful verification, Certbot saves the certificate files in a directory named after the host name in  `/etc/letsencrypt/live`. For the host name seafile.example.com, the files are stored in `/etc/letsencrypt/live/seafile.example.com`. 
 
 
 ### Modifying Nginx configuration file
@@ -245,14 +245,14 @@ If you have WebDAV enabled it is recommended to add the same:
 
 ### Modifying seahub_settings.py
 
-The `SERVICE_URL` in [seahub_settings.py](../config/seahub_settings_py/) informs Seafile about the chosen domain, protocol and port. Change the `SERVICE_URL`so as to account for the switch from HTTP to HTTPS and to correspond to your host name (the `http://`must not be removed):
+The `SERVICE_URL` in [seahub_settings.py](../../config/seahub_settings_py/) informs Seafile about the chosen domain, protocol and port. Change the `SERVICE_URL`so as to account for the switch from HTTP to HTTPS and to correspond to your host name (the `http://` must not be removed):
 
 
 ```python
 SERVICE_URL = 'https://seafile.example.com'
 ```
 
-The `FILE_SERVER_ROOT` in [seahub_settings.py](../config/seahub_settings_py/) informs Seafile about the location of and the protocol used by the file server. Change the `FILE_SERVER_ROOT`so as to account for the switch from HTTP to HTTPS and to correspond to your host name (the trailing `/seafhttp` must not be removed):
+The `FILE_SERVER_ROOT` in [seahub_settings.py](../../config/seahub_settings_py/) informs Seafile about the location of and the protocol used by the file server. Change the `FILE_SERVER_ROOT` so as to account for the switch from HTTP to HTTPS and to correspond to your host name (the trailing `/seafhttp` must not be removed):
 
 ```python
 FILE_SERVER_ROOT = 'https://seafile.example.com/seafhttp'
@@ -264,7 +264,7 @@ Note: The `SERVICE_URL` and `FILE_SERVER_ROOT` can also be modified in Seahub vi
 
 To improve security, the file server should only be accessible via Nginx.
 
-Add the following line in the [fileserver] block on `seafile.conf` in `/opt/seafile/conf`:
+Add the following line in the `[fileserver]` block on `seafile.conf` in `/opt/seafile/conf`:
 
 ```ini
 host = 127.0.0.1  ## default port 0.0.0.0
@@ -304,9 +304,9 @@ listen [::]:443 http2;
 
 ## Advanced TLS configuration for Nginx (optional)
 
-The TLS configuration in the sample Nginx configuration file above receives a B overall rating on [SSL Labs](https://www.ssllabs.com/ssltest/). By modifying the TLS configuration in `seafile.conf `,  this rating can be significantly improved. 
+The TLS configuration in the sample Nginx configuration file above receives a B overall rating on [SSL Labs](https://www.ssllabs.com/ssltest/). By modifying the TLS configuration in `seafile.conf`,  this rating can be significantly improved. 
 
-The following sample Nginx configuration file for the host name seafile.example.com contains additional security-related directives . (Note that this sample file uses a generic path for the SSL certificate files.) Some of the directives require further steps as explained below.
+The following sample Nginx configuration file for the host name seafile.example.com contains additional security-related directives. (Note that this sample file uses a generic path for the SSL certificate files.) Some of the directives require further steps as explained below.
 
 ```nginx
     server {
