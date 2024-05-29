@@ -4,21 +4,21 @@
 
 The following assumptions and conventions are used in the rest of this document:
 
-- `/opt/seafile-data` is the directory of Seafile. If you decide to put Seafile in a different directory - which you can - adjust all paths accordingly.
-- Seafile uses two [Docker volumes](https://docs.docker.com/storage/volumes/) for persisting data generated in its database and Seafile Docker container. The volumes' [host paths](https://docs.docker.com/compose/compose-file/compose-file-v3/#volumes) are /opt/seafile-mysql and /opt/seafile-data, respectively. It is not recommended to change these paths. If you do, account for it when following these instructions.
+- `/opt/seafile-data` is the directory of Seafile. If you decide to put Seafile in a different directory — which you can — adjust all paths accordingly.
+- Seafile uses two [Docker volumes](https://docs.docker.com/storage/volumes/) for persisting data generated in its database and Seafile Docker container. The volumes' [host paths](https://docs.docker.com/compose/compose-file/compose-file-v3/#volumes) are `/opt/seafile-mysql` and `/opt/seafile-data`, respectively. It is not recommended to change these paths. If you do, account for it when following these instructions.
 - All configuration and log files for Seafile and the webserver Nginx are stored in the volume of the Seafile container.
 
 ### Install docker
 
 Use the [official installation guide for your OS to install Docker](https://docs.docker.com/engine/install/).
 
-### Download and modify docker-compose.yml
+### Download and modify `docker-compose.yml`
 
-Download the docker-compose.yml sample file into Seafile's directory and modify the Compose file to fit your environment and settings.
+Download the `docker-compose.yml` sample file into Seafile's directory and modify the Compose file to fit your environment and settings.
 
-NOTE: Different versions of Seafile have different compose files.
+**NOTE:** Different versions of Seafile have different compose files.
 
-```
+```bash
 mkdir /opt/seafile
 cd /opt/seafile
 
@@ -33,7 +33,7 @@ nano docker-compose.yml
 
 The following fields merit particular attention:
 
-* The password of MySQL root (MYSQL_ROOT_PASSWORD and DB_ROOT_PASSWD)
+* The password of MySQL root (`MYSQL_ROOT_PASSWORD` and `DB_ROOT_PASSWD`)
 * The volume directory of MySQL data (volumes)
 * The volume directory of Seafile data (volumes).
 
@@ -43,12 +43,11 @@ Start Seafile server with the following command
 
 ```bash
 docker compose up -d
-
 ```
 
 Wait for a few minutes for the first time initialization, then visit `http://seafile.example.com` to open Seafile Web UI.
 
-**NOTE: You should run the above command in a directory with the **`docker-compose.yml`**.**
+**NOTE:** You should run the above command in a directory with the `docker-compose.yml`.
 
 ## Seafile directory structure
 
@@ -66,7 +65,7 @@ Placeholder spot for shared volumes. You may elect to store certain persistent i
 
 To view Seafile docker logs, please use the following command
 
-```shell
+```bash
 docker compose logs -f
 ```
 
@@ -81,7 +80,7 @@ The system logs are under `/shared/logs/var-log`, or `/opt/seafile-data/logs/var
 The default admin account is `me@example.com` and the password is `asecret`. You can use a different password  by setting the container's environment variables in the `docker-compose.yml`:
 e.g.
 
-```
+```yml
 seafile:
     ...
 
@@ -99,7 +98,7 @@ If you set `SEAFILE_SERVER_LETSENCRYPT` to `true`, the container would request a
 
 e.g.
 
-```
+```yml
 seafile:
     ...
     ports:
@@ -114,7 +113,7 @@ seafile:
 
 ```
 
-If you want to use your own SSL certificate and the file path on the host is /home/user/your-cert.crt. You can mount the certificate into the docker container by setting the container's volumes variables in the `docker-compose.yml`:
+If you want to use your own SSL certificate and the file path on the host is `/home/user/your-cert.crt`. You can mount the certificate into the docker container by setting the container's volumes variables in the `docker-compose.yml`:
 
 e.g.
 
@@ -139,7 +138,7 @@ Since version 10.0.x, if you want to use a reverse proxy and apply for a certifi
 
 e.g.
 
-```
+```yml
 seafile:
     ...
     environment:
@@ -175,11 +174,11 @@ services:
 ```
 
 * The entire db chapter needs to be removed
-* The host of MySQL (DB_HOST)
-* The port of MySQL (DB_PORT)
-* The password of MySQL root (DB_ROOT_PASSWD)
+* The host of MySQL (`DB_HOST`)
+* The port of MySQL (`DB_PORT`)
+* The password of MySQL root (`DB_ROOT_PASSWD`)
 * db in depends_on chapter needs to be removed
-* DB_ROOT_PASSWD is needed during installation. Later, after Seafile is installed, the user `seafile` will be used to connect to the mysql-server (in conf/seafile.conf). You can remove the `DB_ROOT_PASSWD`.
+* `DB_ROOT_PASSWD` is needed during installation. Later, after Seafile is installed, the user `seafile` will be used to connect to the mysql-server (in conf/seafile.conf). You can remove the `DB_ROOT_PASSWD`.
 
 ### Modify Seafile server configurations
 
@@ -189,27 +188,25 @@ After modification, you need to restart the container:
 
 ```bash
 docker compose restart
-
 ```
 
 ### Add a new admin
 
 Ensure the container is running, then enter this command:
 
-```
+```bash
 docker exec -it seafile /opt/seafile/seafile-server-latest/reset-admin.sh
-
 ```
 
 Enter the username and password according to the prompts. You now have a new admin account.
 
 ### Run Seafile as non root user inside docker
 
-Since version 10.0, you can use run seafile as non root user in docker. (NOTE: Programs such as my_init, Nginx are still run as root inside docker.)
+Since version 10.0, you can use run seafile as non root user in docker. (**NOTE:** Programs such as `my_init`, Nginx are still run as `root` inside docker.)
 
-First add the `NON_ROOT=true` to the docker-compose.yml.
+First add the `NON_ROOT=true` to the `docker-compose.yml`.
 
-```
+```yml
 seafile:
     ...
     environment:
@@ -219,9 +216,9 @@ seafile:
 
 ```
 
-Then create a seafile user on the host, and modify the owner to seafile in `/opt/seafile-data/seafile/`. (NOTE: Do not change the uid and gid.)
+Then create a seafile user on the host, and modify the owner to seafile in `/opt/seafile-data/seafile/`. (**NOTE:** Do not change the `uid` and `gid`.)
 
-```
+```bash
 groupadd --gid 8000 seafile
 
 useradd --home-dir /home/seafile --create-home --uid 8000 --gid 8000 --shell /bin/sh --skel /dev/null seafile
@@ -229,9 +226,9 @@ useradd --home-dir /home/seafile --create-home --uid 8000 --gid 8000 --shell /bi
 chown -R seafile:seafile /opt/seafile-data/seafile/
 ```
 
-Restarting the container run Seafile use seafile user. (NOTE: Later when do maintenance, other scripts in docker also required to run as seafile user, e.g. `su seafile -c ./seaf-gc.sh`)
+Restarting the container run Seafile use `seafile` user. (**NOTE:** Later when do maintenance, other scripts in docker also required to run as `seafile` user, e.g. `su seafile -c ./seaf-gc.sh`)
 
-```sh
+```bash
 docker compose down
 docker compose up -d
 ```
@@ -248,7 +245,7 @@ The required scripts can be found in the `/scripts` folder of the docker contain
 
 ## Deploy Seafile docker with custom port
 
-Assume your custom port is 8001, when it is a new installation, you only need to modify the docker-compose.yml and start the Seafile docker.
+Assume your custom port is 8001, when it is a new installation, you only need to modify the `docker-compose.yml` and start the Seafile docker.
 
 ```yml
   seafile:
@@ -262,7 +259,7 @@ Assume your custom port is 8001, when it is a new installation, you only need to
     ...
 ```
 
-If you have installed the Seafile docker, besides modifying the docker-compose.yml, you also need to modify the already generated configuration file `conf/seahub_settings.py`, then restart Seafile:
+If you have installed the Seafile docker, besides modifying the `docker-compose.yml`, you also need to modify the already generated configuration file `conf/seahub_settings.py`, then restart Seafile:
 
 ```py
 SERVICE_URL = "http://seafile.example.com:8001"
@@ -271,40 +268,39 @@ FILE_SERVER_ROOT = "http://seafile.example.com:8001/seafhttp"
 
 ## FAQ
 
-**You can run docker commands like "docker exec" to find errors.**
+### You can run docker commands like `docker exec` to find errors
 
-```sh
+```bash
 docker exec -it seafile /bin/bash
 ```
 
-**LetsEncrypt SSL certificate is about to expire.**
+### LetsEncrypt SSL certificate is about to expire
 
 If the certificate is not renewed automatically, you can execute the following command to manually renew the certificate.
 
-```sh
-/scripts/ssl.sh /shared/ssl/ <your-seafile-domain>
+```bash
+# /scripts/ssl.sh /shared/ssl/ <your-seafile-domain>
+/scripts/ssl.sh /shared/ssl/ example.seafile.com
 ```
 
-eg: ```/scripts/ssl.sh /shared/ssl/ example.seafile.com```
+### Change the environment variable `SEAFILE_SERVER_LETSENCRYPT=false` value to `true`
 
-**SEAFILE_SERVER_LETSENCRYPT=false change to true.**
+If you want to change to https after using http, first backup and move the `seafile.nginx.conf`.
 
-If you want to change to https after using http, first backup and move the seafile.nginx.conf.
-
-```sh
+```bash
 mv /opt/seafile-data/nginx/conf/seafile.nginx.conf /opt/seafile-data/nginx/conf/seafile.nginx.conf.bak
 ```
 
 Starting the new container will automatically apply a certificate.
 
-```sh
+```bash
 docker compose down
 docker compose up -d
 ```
 
-You need to manually change http to https in other configuration files, SERVICE_URL and FILE_SERVER_ROOT in the system admin page also need to be modified.
+You need to manually change http to https in other configuration files, `SERVICE_URL` and `FILE_SERVER_ROOT` in the system admin page also need to be modified.
 
-If you have modified the old seafile.nginx.conf, now you can modify the new seafile.nginx.conf as you want. Then execute the following command to make the nginx configuration take effect.
+If you have modified the old `seafile.nginx.conf`, now you can modify the new `seafile.nginx.conf` as you want. Then execute the following command to make the nginx configuration take effect.
 
 ```sh
 docker exec seafile nginx -s reload
