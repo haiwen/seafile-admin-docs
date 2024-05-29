@@ -42,12 +42,14 @@ The following fields merit particular attention:
 Start Seafile server with the following command
 
 ```bash
-docker compose up -d
+# if `docker-compose.yml` file is in current directory:
+docker-compose up -d
+
+# if `docker-compose.yml` file is elsewhere:
+docker-compose -f /path/to/docker-compose.yml up -d
 ```
 
 Wait for a few minutes for the first time initialization, then visit `http://seafile.example.com` to open Seafile Web UI.
-
-**NOTE:** You should run the above command in a directory with the `docker-compose.yml`.
 
 ## Seafile directory structure
 
