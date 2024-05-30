@@ -65,10 +65,18 @@ Placeholder spot for shared volumes. You may elect to store certain persistent i
 
 ### Find logs
 
-To view Seafile docker logs, please use the following command
+To monitor container logs (from outside of the container), please use the following commands:
 
 ```bash
-docker compose logs -f
+# if the `docker-compose.yml` file is in current directory:
+docker compose logs --follow
+# if the `docker-compose.yml` file is elsewhere:
+docker compose -f /path/to/docker-compose.yml logs --follow
+
+# you can also specify container name:
+docker compose logs seafile --follow
+# or, if the `docker-compose.yml` file is elsewhere:
+docker compose -f /path/to/docker-compose.yml logs seafile --follow
 ```
 
 The Seafile logs are under `/shared/logs/seafile` in the docker, or `/opt/seafile-data/logs/seafile` in the server that run the docker.
