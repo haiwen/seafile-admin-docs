@@ -236,7 +236,13 @@ seafile:
 
 ```
 
-Then create a seafile user on the host, and modify the owner to seafile in `/opt/seafile-data/seafile/`. (**NOTE:** Do not change the `uid` and `gid`.)
+Then modify `/opt/seafile-data/seafile/` permissions.
+
+```bash
+chmod -R a+rwx /opt/seafile-data/seafile/
+```
+
+Note: Before version 11.0.9, you have to create a seafile user on the host, and modify the owner to seafile in `/opt/seafile-data/seafile/`. (**NOTE:** Do not change the `uid` and `gid`.)
 
 ```bash
 groupadd --gid 8000 seafile
