@@ -144,7 +144,9 @@ seafile:
 
 ```
 
-If you want to use your own SSL certificate and the file path on the host is `/home/user/your-cert.crt`. You can mount the certificate into the docker container by setting the container's volumes variables in the `docker-compose.yml`:
+If you want to use your own SSL certificate and the file path on the host is `/home/user/your-cert.crt`. You can mount the certificate into the docker container by setting the container's volumes variables in the `docker-compose.yml`.
+
+⚠️ Assuming your site name is `seafile.example.com`, then your certificate must have the name `seafile.example.com.crt`, and the private key must have the name `seafile.example.com.key` in container.
 
 e.g.
 
@@ -161,8 +163,6 @@ seafile:
       - /opt/seafile-data/your-key.key:/shared/ssl/seafile.example.com.key;
     ...
 ```
-
-* Assume your site name is `seafile.example.com`, then your certificate must have the name `seafile.example.com.crt`, and the private key must have the name `seafile.example.com.key` in container.
 
 ### Use an existing mysql-server
 
