@@ -107,7 +107,7 @@ seafile:
 
 ```
 
-### Let's encrypt SSL certificate
+### Let's Encrypt SSL certificate
 
 If you set `SEAFILE_SERVER_LETSENCRYPT` to `true`, the container would request a letsencrypt-signed SSL certificate for you automatically.
 
@@ -124,6 +124,22 @@ seafile:
         ...
         - SEAFILE_SERVER_LETSENCRYPT=true
         - SEAFILE_SERVER_HOSTNAME=seafile.example.com
+        ...
+
+```
+
+Since version 10.0.x, if you want to use a reverse proxy and apply for a certificate outside docker, you can use `FORCE_HTTPS_IN_CONF` to force write `https://<your_host>` in the configuration file.
+
+e.g.
+
+```yml
+seafile:
+    ...
+    environment:
+        ...
+        - SEAFILE_SERVER_LETSENCRYPT=false
+        - SEAFILE_SERVER_HOSTNAME=seafile.example.com
+        - FORCE_HTTPS_IN_CONF=true
         ...
 
 ```
@@ -147,23 +163,6 @@ seafile:
 ```
 
 * Assume your site name is `seafile.example.com`, then your certificate must have the name `seafile.example.com.crt`, and the private key must have the name `seafile.example.com.key` in container.
-
-
-Since version 10.0.x, if you want to use a reverse proxy and apply for a certificate outside docker, you can use `FORCE_HTTPS_IN_CONF` to force write `https://<your_host>` in the configuration file.
-
-e.g.
-
-```yml
-seafile:
-    ...
-    environment:
-        ...
-        - SEAFILE_SERVER_LETSENCRYPT=false
-        - SEAFILE_SERVER_HOSTNAME=seafile.example.com
-        - FORCE_HTTPS_IN_CONF=true
-        ...
-
-```
 
 ### Use an existing mysql-server
 
