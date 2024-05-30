@@ -83,6 +83,11 @@ The Seafile logs are under `/shared/logs/seafile` in the docker, or `/opt/seafil
 
 The system logs are under `/shared/logs/var-log`, or `/opt/seafile-data/logs/var-log` in the server that run the docker.
 
+To monitor all Seafile logs simultaneously (from outside of the container), run
+```bash
+sudo tail -f $(find /opt/seafile-data/ -type f -name *.log 2>/dev/null)
+```
+
 ## More configuration options
 
 ### Custom admin username and password
