@@ -8,6 +8,23 @@
 
 Please check our document for how to upgrade to 11.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x/>
 
+### 11.0.9 (2024-05-30)
+
+Seafile
+
+* Improve accessibility
+* Support open ODG files with LibreOffice (Collabora Online)
+* Support showing last modified time for folders in WebDAV
+* [fix] Fix "remember me" in 2FA
+
+SDoc editor 0.8
+
+* Support automatically adjusting table width to fit page width
+* Improve comments feature
+* Improve documents shown on mobile
+* More UI fixes and improvements
+
+
 ### 11.0.8 (2024-04-22)
 
 * Fix a bug in generating sharing links
