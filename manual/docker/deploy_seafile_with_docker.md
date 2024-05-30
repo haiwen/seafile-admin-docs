@@ -246,12 +246,14 @@ useradd --home-dir /home/seafile --create-home --uid 8000 --gid 8000 --shell /bi
 chown -R seafile:seafile /opt/seafile-data/seafile/
 ```
 
-Restarting the container run Seafile use `seafile` user. (**NOTE:** Later when do maintenance, other scripts in docker also required to run as `seafile` user, e.g. `su seafile -c ./seaf-gc.sh`)
+Then destroy the containers and run them again:
 
 ```bash
 docker compose down
 docker compose up -d
 ```
+
+Now you can run Seafile as `seafile` user. (**NOTE:** Later, when doing maintenance, other scripts in docker are also required to be run as `seafile` user, e.g. `su seafile -c ./seaf-gc.sh`)
 
 ## Backup and recovery
 
