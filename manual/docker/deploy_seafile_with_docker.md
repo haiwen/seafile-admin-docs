@@ -144,7 +144,7 @@ seafile:
 
 ```
 
-If you want to use your own SSL certificate and the file path on the host is `/home/user/your-cert.crt`. You can mount the certificate into the docker container by setting the container's volumes variables in the `docker-compose.yml`.
+If you want to use your own SSL certificate, you can mount the certificate into the docker container by setting the container's volumes variables in the `docker-compose.yml`.
 
 ⚠️ Assuming your site name is `seafile.example.com`, then your certificate must have the name `seafile.example.com.crt`, and the private key must have the name `seafile.example.com.key` in container.
 
@@ -159,8 +159,8 @@ seafile:
     ...
     volumes:
       ...
-      - /opt/seafile-data/your-cert.crt:/shared/ssl/seafile.example.com.crt;
-      - /opt/seafile-data/your-key.key:/shared/ssl/seafile.example.com.key;
+      - /etc/letsencrypt/live/seafile.example.com/fullchain.pem:/shared/ssl/seafile.example.com.crt
+      - /etc/letsencrypt/live/seafile.example.com/privkey.pem:/shared/ssl/seafile.example.com.key
     environment:
         ...
         - SEAFILE_SERVER_LETSENCRYPT=false
