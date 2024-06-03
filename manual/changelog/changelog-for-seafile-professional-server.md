@@ -6,7 +6,7 @@
 
 **Upgrade**
 
-Please check our document for how to upgrade to 11.0: https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x/
+Please check our document for how to upgrade to 11.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x/>
 
 ### 11.0.7 (2024-06-03)
 
