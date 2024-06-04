@@ -213,6 +213,14 @@ upload_limit = 100
 download_limit = 100
 ```
 
+Since Seafile 11.0.7 Pro, you can ask file server to check virus for every file uploaded with web APIs. Find more options about virus scanning at [virus scan](../deploy_pro/virus_scan.md).
+
+```
+[fileserver]
+# default is false
+check_virus_on_web_upload = true
+```
+
 ## Database configuration
 
 The whole database configuration is stored in the `[database]` section of the configuration file, whether you use SQLite or MySQL.
