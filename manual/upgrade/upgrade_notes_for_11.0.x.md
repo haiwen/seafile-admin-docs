@@ -27,7 +27,7 @@ Benefits of this new implementation:
 * Improved compatibility across different systems. Python code is more portable than the previous C implementation.
 * Consistent handling of users whether they login via LDAP or other methods like email/password.
 
-The upgrade script will merge ccnet_db.LDAPImported table to ccnet_db.EmailUsers table. The setting files need to be changed manually.
+You need to run `migrate_ldapusers.py` script to merge ccnet_db.LDAPImported table to ccnet_db.EmailUsers table. The setting files need to be changed manually. (See more details below)
 
 ### OAuth authentication and other SSO methods
 
