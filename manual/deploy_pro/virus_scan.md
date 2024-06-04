@@ -62,3 +62,20 @@ The file extensions should start with '.'. The extensions are case insensitive. 
 ```
 
 The list you provide will override default list.
+
+## Scanning Files on Upload
+
+You may also configure Seafile to scan files for virus upon the files are uploaded. This only works for files uploaded via web interface or web APIs. Files uploaded with syncing or SeaDrive clients cannot be scanned on upload due to performance consideration.
+
+You may scan files uploaded from shared upload links by adding the option below to `seahub_settings.py`:
+
+```
+ENABLE_UPLOAD_LINK_VIRUS_CHECK = True
+```
+
+Since Pro Edition 11.0.7, you may scan all uploaded files via web APIs by adding the option below to `seafile.conf`:
+
+```
+[fileserver]
+check_virus_on_web_upload = true
+```
