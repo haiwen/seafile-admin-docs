@@ -184,7 +184,14 @@ DEL_DEPARTMENT_IF_NOT_FOUND = False      # Set to "true", sync process will dele
 Run the following script to migrate users in `LDAPImported` to `EmailUsers`
 
 ```sh
+cd <install-path>/seafile-server-latest
 python3 migrate_ldapusers.py
+```
+
+For Seafile docker
+
+```sh
+docker exec -it seafile /usr/bin/python3 /opt/seafile/seafile-server-latest/migrate_ldapusers.py
 ```
 
 #### Change configuration for OAuth:
