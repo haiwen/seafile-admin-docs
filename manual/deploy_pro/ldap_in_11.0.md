@@ -50,8 +50,8 @@ Meaning of some options:
 * **LDAP_CONTACT_EMAIL_ATTR:** LDAP user's contact_email attribute. It will be stored as a user's contact email in Seafile.
 * **LDAP_USER_ROLE_ATTR:** LDAP user's role attribute
 
-* **LDAP_FIRST_NAME_ATTR**: Attribute for user's first name. It's "givenName" by default.
-* **LDAP_LAST_NAME_ATTR**: Attribute for user's last name. It's "sn" by default.
+* **LDAP_USER_FIRST_NAME_ATTR**: Attribute for user's first name. It's "givenName" by default.
+* **LDAP_USER_LAST_NAME_ATTR**: Attribute for user's last name. It's "sn" by default.
 * **LDAP_USER_NAME_REVERSE**: In some languages, such as Chinese, the display order of the first and last name is reversed. Set this option if you need it.
 * **LDAP_FILTER:** Additioinal filter conditions. Users who meet the filter conditions can log in , otherwise they cannot log in.
 
