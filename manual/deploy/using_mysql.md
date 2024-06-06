@@ -112,6 +112,18 @@ sudo pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.*
 ```
 
 ```
+# Ubuntu 24.04
+sudo apt-get update
+sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmysqlclient-dev ldap-utils libldap2-dev
+sudo apt-get install -y memcached libmemcached-dev
+
+sudo pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.* \
+    pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
+    psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.16.0 lxml python-ldap==3.4.3
+
+```
+
+```
 # Debian 12
 sudo apt-get update
 sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmariadb-dev-compat ldap-utils libldap2-dev libsasl2-dev

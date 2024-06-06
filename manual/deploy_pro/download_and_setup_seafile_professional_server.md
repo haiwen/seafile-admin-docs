@@ -87,7 +87,7 @@ sudo pip3 install --timeout=3600 django==3.2.* future==0.18.* mysqlclient==2.1.*
     psd-tools django-pylibmc django_simple_captcha==0.5.20 pycryptodome==3.16.* cffi==1.15.1 lxml
 ```
 
-**For Seafile 11.0.x (Debian 11, Ubuntu 20.04, Centos 8, etc.)**
+**For Seafile 11.0.x (Debian 11, Ubuntu 22.04, Centos 8, etc.)**
 
 ```
 # on Ubuntu 22.04 (on Ubuntu 20.04/Debian 11/Debian 10, it is almost the same)
@@ -99,6 +99,18 @@ apt-get install -y poppler-utils
 sudo pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.* \
     pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
     psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 python-ldap==3.4.3 lxml
+```
+
+```
+# on Ubuntu 24.04
+apt-get update
+apt-get install -y python3 python3-dev python3-setuptools python3-pip python3-ldap libmysqlclient-dev ldap-utils libldap2-dev dnsutils
+apt-get install -y memcached libmemcached-dev
+apt-get install -y poppler-utils
+
+sudo pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.* \
+    pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
+    psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.16.0 python-ldap==3.4.3 lxml
 ```
 
 ```
