@@ -170,7 +170,6 @@ nav:
     - Web API V2.1: develop/web_api_v2.1.md
     - PHP API: https://github.com/rene-s/Seafile-PHP-SDK
     - Data Model: develop/data_model.md
-    - Server Components: develop/server-components.md
   - ChangeLog:
     - Seafile Community Edition: changelog/server-changelog.md
     - Seafile Professional Edition: changelog/changelog-for-seafile-professional-server.md

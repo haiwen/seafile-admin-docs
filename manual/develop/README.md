@@ -13,4 +13,3 @@ Seafile Open API
 Seafile Implement Details
 
 * [Seafile Data Model](data_model.md)
-* [Seafile Server Components](server-components.md)
