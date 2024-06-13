@@ -200,3 +200,23 @@ OAUTH_ATTRIBUTE_MAP = {
 ```
 
 Please see [this tutorial](https://forum.seafile.com/t/oauth-authentification-against-microsoft-office365-azure-cloud/7999) for the complete deployment process of OAuth against Azure Cloud.
+
+###### Sample settings for Gitea:
+
+```
+ENABLE_OAUTH = True
+OAUTH_CLIENT_ID = "your-client-id"
+OAUTH_CLIENT_SECRET = "your-client-secret"
+OAUTH_REDIRECT_URL = 'https://your-seafile/oauth/callback/'
+
+OAUTH_PROVIDER_DOMAIN = 'your-domain'
+OAUTH_AUTHORIZATION_URL = 'https://your-gitea/login/oauth/authorize'
+OAUTH_TOKEN_URL = 'https://your-gitea/login/oauth/access_token'
+OAUTH_USER_INFO_URL = 'https://your-gitea/api/v1/user'
+# Gitea does not support scopes. You still have to define it or else Seahub complains.
+OAUTH_SCOPE = [""]
+OAUTH_ATTRIBUTE_MAP = {
+    "email": (True, "email"),
+    "login": (False, "name"),
+}
+```
