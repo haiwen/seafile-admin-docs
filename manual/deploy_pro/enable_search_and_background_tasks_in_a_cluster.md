@@ -217,6 +217,7 @@ OFFICE_CONVERTOR_ROOT = 'http://<ip of office preview docker service>'
 Type the following commands to start the background node (Note, one additional command `seafile-background-tasks.sh` is needed)
 
 ```shell
+export CLUSTER_MODE=backend
 ./seafile.sh start
 ./seafile-background-tasks.sh start
 
