@@ -237,6 +237,16 @@ Supposed your Seafile installation directory is `/data/haiwen`, compress this wh
 
 On each node, run `./seafile.sh` and `./seahub.sh` to start Seafile server.
 
+### back-end node
+
+In the back-end node, you need to execute the following command to start Seafile server. **CLUSTER_MODE=backend** means this node is seafile backend server.
+
+```bash
+export CLUSTER_MODE=backend
+./seafile.sh start
+./seafile-background-tasks.sh start
+
+```
 
 ## Start Seafile Service on boot
 
