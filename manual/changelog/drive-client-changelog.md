@@ -1,5 +1,12 @@
 # SeaDrive Client Changelog
 
+### 3.0.10 (2024/06/18)
+
+* \[mac] Fix support for using mulitple accounts after macOS 14.4
+* Support accessing libraries with cloud-only sub-folders
+* Support username and password for SOCKS5 proxy
+* Record sync error when fail to download file
+
 ### 3.0.9 (2024/04/25)
 
 * Improve handling of exceptional file/folder operations, e.g. creating files in root folder, read-only folders
