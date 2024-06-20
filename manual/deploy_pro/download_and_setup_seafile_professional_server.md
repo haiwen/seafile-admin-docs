@@ -124,6 +124,7 @@ sudo apt-get update
 sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmariadb-dev-compat ldap-utils libldap2-dev libsasl2-dev python3.11-venv
 sudo apt-get install -y memcached libmemcached-dev
 
+mkdir /opt/seafile
 cd /opt/seafile
 
 # create the vitual environment in the python-venv directory
@@ -140,9 +141,10 @@ pip3 install --timeout=3600  django==4.2.* future==0.18.* mysqlclient==2.1.* pym
 ```
 # Ubuntu 24.04
 sudo apt-get update
-sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmysqlclient-dev ldap-utils libldap2-dev
+sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmysqlclient-dev ldap-utils libldap2-dev python3.12-venv
 sudo apt-get install -y memcached libmemcached-dev
 
+mkdir /opt/seafile
 cd /opt/seafile
 
 # create the vitual environment in the python-venv directory
