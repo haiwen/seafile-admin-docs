@@ -8,6 +8,15 @@
 
 Please check our document for how to upgrade to 11.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x/>
 
+### 11.0.8 (2024-06-20)
+
+* support named groups in SAML claim
+* [fix] Fix CollaboraOnline integration for read-only shares and share links
+* [fix] Fix display issue for ADDITIONAL_SHARE_DIALOG_NOTE
+* [fix] Fix buckets check for ceph and swift backend
+* [fix] Use contact_email in user freeze notifications for system admins
+
+
 ### 11.0.7 (2024-06-03)
 
 Seafile
