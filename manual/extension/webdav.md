@@ -13,9 +13,10 @@ The configuration file is `/opt/seafile/conf/seafdav.conf`. If it is not created
 enabled = true
 
 port = 8080
+debug = true
 
 # If you deploy seafdav behind nginx/apache, you need to modify "share_name".
-share_name = /
+share_name = /seafdav
 
 # SeafDAV uses Gunicorn as web server.
 # This option maps to Gunicorn's 'workers' setting. https://docs.gunicorn.org/en/stable/settings.html?#workers
@@ -25,7 +26,6 @@ workers = 5
 # This option maps to Gunicorn's 'timeout' setting. https://docs.gunicorn.org/en/stable/settings.html?#timeout
 # By default it's set to 1200 seconds, to support large file uploads.
 timeout = 1200
-
 ```
 
 Every time the configuration is modified, you need to restart seafile server to make it take effect.
@@ -35,7 +35,7 @@ Every time the configuration is modified, you need to restart seafile server to 
 
 ```
 
-Your WebDAV client would visit the Seafile WebDAV server at `http://example.com:8080`
+Your WebDAV client would visit the Seafile WebDAV server at `http://example.com:8080/seafdav`
 
 
 In Pro edition 7.1.8 version and community edition 7.1.5, an option is added to append library ID to the library name returned by SeafDAV.
@@ -128,6 +128,35 @@ If not, modify it and restart seafile server.
 ### The client gets "Error: 404 Not Found"
 
 If you deploy SeafDAV behind Nginx/Apache, make sure to change the value of `share_name` as the sample configuration above. Restart your seafile server and try again.
+
+### Can't rename/move file/folder
+
+First, check the `seafdav.log` to see if there is log like the following.
+```
+"MOVE ... -> 502 Bad Gateway
+```
+
+If you have enabled **debug**, there will also be the following log.
+```
+09:47:06.533 - DEBUG   : Raising DAVError 502 Bad Gateway: Source and destination must have the same scheme.
+If you are running behind a reverse proxy, you may have to rewrite the 'Destination' header.
+(See https://github.com/mar10/wsgidav/issues/183)
+
+09:47:06.533 - DEBUG   : Caught (502, "Source and destination must have the same scheme.\nIf you are running behind a reverse proxy, you may have to rewrite the 'Destination' header.\n(See https://github.com/mar10/wsgidav/issues/183)")
+```
+
+This issue usually occurs when you have configured HTTPS, but the request was forwarded, resulting in the `HTTP_X_FORWARDED_PROTO` value in the request received by Seafile not being HTTPS.
+
+You can solve this by manually changing the value of `HTTP_X_FORWARDED_PROTO`. For example, in nginx, change
+```
+proxy_set_header X-Forwarded-Proto $scheme;
+```
+
+to
+
+```
+proxy_set_header X-Forwarded-Proto https;
+```
 
 ### Windows Explorer reports "file size exceeds the limit allowed and cannot be saved"
 
