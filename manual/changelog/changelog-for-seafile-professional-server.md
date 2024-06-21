@@ -115,6 +115,10 @@ Other changes
 
 Please check our document for how to upgrade to 10.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_10.0.x/>
 
+### 10.0.16 (2024-06-21)
+
+* [fix] Fix CollaboraOnline integration for read-only shares and share links
+
 ### 10.0.15 (2024-03-21)
 
 * [Fix] Fix a bug in seaf-gc for FS object
