@@ -8,6 +8,13 @@
 
 Please check our document for how to upgrade to 11.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x/>
 
+
+### 11.0.9 (2024-06-25)
+
+* [fix] Fix a crash problem in golang file server introduced in version 11.0.8
+* Add a new role permission "can_share_repo"
+* Add rate control for password reset for a user
+
 ### 11.0.8 (2024-06-20)
 
 * support named groups in SAML claim
