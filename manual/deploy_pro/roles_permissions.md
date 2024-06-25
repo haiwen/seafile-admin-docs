@@ -14,7 +14,7 @@ Since version 10.0, `upload_rate_limit` and `download_rate_limit` are added to l
 ./seahub.sh python-env python3 seahub/manage.py set_user_role_upload_download_rate_limit
 ```
 
-Since version 11.0.9 pro, `can_share_repo` is added to limit user can NOT share library.
+Since version 11.0.9 pro, `can_share_repo` is added to limit users' ability to share a library.
 
 Seafile comes with two build-in roles `default` and `guest`, a default user is a normal user with permissions as followings:
 
