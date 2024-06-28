@@ -172,9 +172,11 @@ Enter the container, and then execute the following commands to import tables
 ```
 $ docker exec -it seafile bash
 
+# apt-get update && apt-get install -y mysql-client
+
 # mysql -h{your mysql host} -u[username] -p[password]  ccnet_db < /opt/seafile/seafile-server-latest/sql/mysql/ccnet.sql
 # mysql -h{your mysql host} -u[username] -p[password]  seafile_db < /opt/seafile/seafile-server-latest/sql/mysql/seafile.sql
-# mysql -h{your mysql host} -u[username] -p[password]  seahub_db <  /opt/seafile/seafile-server-laster/seahub/sql/mysql.sql
+# mysql -h{your mysql host} -u[username] -p[password]  seahub_db <  /opt/seafile/seafile-server-latest/seahub/sql/mysql.sql
 
 ```
 
