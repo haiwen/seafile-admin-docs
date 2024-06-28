@@ -1,6 +1,6 @@
 # Seafile Docker autostart
 
-Choose one of the following methods.
+You can use one of the following methods to start Seafile container on system bootup.
 
 ## Method 1
 
