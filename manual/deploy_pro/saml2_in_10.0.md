@@ -69,7 +69,9 @@ LOGIN_REDIRECT_URL = '/saml2/complete/'
 SAML_ATTRIBUTE_MAPPING = {
     'name': ('display_name', ),
     'mail': ('contact_email', ),
-    ...
+    'seafile_groups': ('', ), # Optional, set this attribute if you need to synchronize groups/departments.
+     ...
+  	
 }
 SAML_REMOTE_METADATA_URL = 'https://login.microsoftonline.com/xxx/federationmetadata/2007-06/federationmetadata.xml?appid=xxx'   # copy from SAML app
 ```
@@ -136,6 +138,7 @@ LOGIN_REDIRECT_URL = '/saml2/complete/'
 SAML_ATTRIBUTE_MAPPING = {
     'name': ('display_name', ),
     'mail': ('contact_email', ),
+    'seafile_groups': ('', ), # Optional, set this attribute if you need to synchronize groups/departments.
     ...
 }
 SAML_REMOTE_METADATA_URL = 'https://temp.adfs.com/federationmetadata/2007-06/federationmetadata.xml'   # The format of the ADFS federation metadata URL is: `https://{your ADFS domain name}/federationmetadata/2007-06/federationmetadata.xml`
