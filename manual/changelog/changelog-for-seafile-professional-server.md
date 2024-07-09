@@ -9,6 +9,12 @@
 Please check our document for how to upgrade to 11.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x/>
 
 
+### 11.0.10 (2024-07-09)
+
+* [fix] Fix system admin users page when institution feature is enabled
+* Improving logging of search index
+* [fix] Support using contact email in OCM sharing
+
 ### 11.0.9 (2024-06-25)
 
 * [fix] Fix a crash problem in golang file server introduced in version 11.0.8
