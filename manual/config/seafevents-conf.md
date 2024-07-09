@@ -83,6 +83,10 @@ cafile = path/to/cert.pem    # The certificate path for user authentication. If 
 repo_status_index_name = your-repo-status-index-name  # default is `repo_head`
 repo_files_index_name = your-repo-files-index-name    # default is `repofiles`
 
+## The default loglevel is `warning`.
+## Since version 11.0.4
+loglevel = info
+
 [EVENTS PUBLISH]
 ## must be "true" to enable publish events messages
 enabled = false
