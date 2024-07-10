@@ -137,11 +137,11 @@ Notification server is enabled on the remote server xxxx
 
 ## Notification Server in Seafile cluster
 
-In Seafile Pro edition, the notification server is the same as community edition notification server.
+There is no additional features for notification server in the Pro Edition. It works the same as in community edition.
 
-If you enable [clustering](../deploy_pro/deploy_in_a_cluster.md), You need to deploy notification server on one of the servers. The load balancer should forward websockets requests to this node. The notification server configuration corresponding to each node of the cluster is as follows.
+If you enable [clustering](../deploy_pro/deploy_in_a_cluster.md), You need to deploy notification server on one of the servers, or a separate server. The load balancer should forward websockets requests to this node.
 
-The notification server configuration should be the same as in community edition:
+On each Seafile frontend node, the notification server configuration should be the same as in community edition:
 
 ```
 [notification]
@@ -156,13 +156,13 @@ log_level = info
 jwt_private_key = M@O8VWUb81YvmtWLHGB2I_V7di5-@0p(MF*GrE!sIws23F
 ```
 
-You need to configure load balancing according to the following forwarding rules:
+You need to configure load balancer according to the following forwarding rules:
 
 1. Forward `/notification/ping` requests to notification server via http protocol.
 2. Forward websockets requests with URL prefix `/notification` to notification server.
 
-Here is a configuration that uses haproxy to support notification server, and haproxy version needs to be >= 2.0.
-You should use similar configurations for the other load balancers.
+Here is a configuration that uses haproxy to support notification server. Haproxy version needs to be >= 2.0.
+You should use similar configurations for other load balancers.
 
 ```
 #/etc/haproxy/haproxy.cfg
