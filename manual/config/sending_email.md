@@ -55,9 +55,6 @@ If you want to use SSL on port 465, set `EMAIL_USE_SSL = True` instead of `EMAIL
 You can change the sender and reply to field of email by add the following settings to seahub_settings.py. This only affects email sending for file share link.
 
 ```python
-# Replace default from email with user's email or not, defaults to ``False``
-REPLACE_FROM_EMAIL = True
-
 # Set reply-to header to user's email or not, defaults to ``False``. For details,
 # please refer to http://www.w3.org/Protocols/rfc822/
 ADD_REPLY_TO_HEADER = True
