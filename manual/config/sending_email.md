@@ -50,9 +50,9 @@ Port 587 is being used to establish a connection using STARTTLS and port 465 is 
 If you want to use SSL on port 465, set `EMAIL_USE_SSL = True` instead of `EMAIL_USE_TLS`.
 
 
-## Change the `sender` and `reply to` of email
+## Change `reply to` of email
 
-You can change the sender and reply to field of email by add the following settings to seahub_settings.py. This only affects email sending for file share link.
+You can change the reply to field of email by add the following settings to seahub_settings.py. This only affects email sending for file share link.
 
 ```python
 # Set reply-to header to user's email or not, defaults to ``False``. For details,
