@@ -152,7 +152,7 @@ Then follow the section: Start SeaDoc.
 
 #### Modify Seafile docker-compose.yml
 
-Add the SeaDoc docker-compose.yml contents to the Seafile docker-compose.yml, and the `ports` need to be modified additionally:
+Add the SeaDoc [docker-compose.yml](https://manual.seafile.com/extra_setup/sdoc/docker-compose.yml) contents to the Seafile docker-compose.yml, and the `ports` need to be modified additionally:
 
 ```yml
 services:
