@@ -107,6 +107,7 @@ nav:
     - Notification Server: deploy/notification-server.md
     - WebDAV extension: extension/webdav.md
     - FUSE extension: extension/fuse.md
+    - Setup with Kubernetes (K8s): deploy/deploy_with_k8s.md
     - Virus Scan (Pro):
       - Outline: deploy_pro/virus_scan.md
       - Deploy ClamAV with Seafile: deploy_pro/deploy_clamav_with_seafile.md
