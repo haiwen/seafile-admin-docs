@@ -78,6 +78,7 @@ nav:
     - Seafile Community Installation: docker/deploy_seafile_with_docker.md
     - Seafile Professional Installation: docker/pro-edition/deploy_seafile_pro_with_docker.md
     - Seafile Docker Cluster Deployment: docker/cluster/deploy_seafile_cluster_with_docker.md
+    - Setup with Kubernetes (K8s): deploy/deploy_with_k8s.md
     - Migration from Seafile Community: docker/pro-edition/migrate_ce_to_pro_with_docker.md
     - Migrate from non-docker deployment: docker/non_docker_to_docker.md
     - Seafile Docker autostart: docker/seafile_docker_autostart.md
@@ -107,7 +108,6 @@ nav:
     - Notification Server: deploy/notification-server.md
     - WebDAV extension: extension/webdav.md
     - FUSE extension: extension/fuse.md
-    - Setup with Kubernetes (K8s): deploy/deploy_with_k8s.md
     - Virus Scan (Pro):
       - Outline: deploy_pro/virus_scan.md
       - Deploy ClamAV with Seafile: deploy_pro/deploy_clamav_with_seafile.md

@@ -1,10 +1,13 @@
 # Setup with Kubernetes
+
 This manual explains how to deploy and run Seafile Server on a Linux server using Kubernetes (k8s thereafter). 
 
 ## Gettings started 
+
 The two volumes for persisting data, `/opt/seafile-data` and `/opt/seafile-mysql`, are still adopted in this manual. What's more, all k8s YAML files will be placed in `/opt/seafile-k8s-yaml`. It is not recommended to change these paths. If you do, account for it when following these instructions.
 
 ## Install kubectl and k8s control plane
+
 The two tools, **kubectl** and a **k8s control plane** tool (i.e., ***kubeadm***), are required and can be installed with [official installation guide](https://kubernetes.io/docs/tasks/tools/). 
 
 Note that if it is a multi-node deployment, k8s control plane needs to be installed on each node. After installation, you need to start the k8s control plane service on each node and refer to the k8s official manual for [creating a cluster](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/). Since this manual still uses the same image as docker deployment, we need to add the following repository to k8s:
@@ -14,6 +17,7 @@ kubectl create secret docker-registry regcred --docker-server=docker.seadrive.or
 ```
 
 ## YAML
+
 Seafile mainly involves three different services, namely database service, cache service and seafile service. Since these three services do not have a direct dependency relationship, we need to separate them from the entire docker-compose.yml (in this manual, we use [Seafile 11 PRO](../docker/docker-compose/pro/11.0/docker-compose.yml)) and divide them into three pods. For each pod, we need to define a series of YAML files for k8s to read, and we will store these YAMLs in `/opt/seafile-k8s-yaml`. This series of YAML mainly includes **Deployment** for pod management and creation, **Service** for exposing services to the external network, **PersistentVolume** for defining the location of a volume used for persistent storage on the host and **Persistentvolumeclaim** for declaring the use of persistent storage in the container. For futher configuration details, you can refer [the official documents](https://kubernetes.io/docs/tasks/configure-pod-container/).
 
 ### mariadb
@@ -53,6 +57,7 @@ spec:
           persistentVolumeClaim:
             claimName: mariadb-data
 ```
+
 Please replease `MARIADB_ROOT_PASSWORD` to your own mariadb password. In the above Deployment configuration file, no restart policy for the pod is specified. The default restart policy is **Always**. If you need to modify it, add the following to the spec attribute:
 
 ```YAML
@@ -261,6 +266,7 @@ spec:
 ```
 
 ## Deploy pods
+
 You can use following command to deploy pods:
 
 ```shell
