@@ -2,6 +2,18 @@
 
 ## 9.0
 
+### 9.0.7 (2024/07/23)
+
+* Checkout files directly without writing to cache folder first
+* Use user name when creating conflict files
+* Display user name in shared library list
+* Fix "Copy move is already in progress" error in cloud file browser
+* Support server addresses with special characters
+* Fix help links
+* \[mac] Fix crash on first run for Apple Silicon CPUs
+* \[linux] Use AppImage format for release
+* \[linux] Disable deletion confirmation for CLI client
+
 ### 9.0.6 (2024/05/23)
 
 * Fix sync error icon in main window
