@@ -438,4 +438,4 @@ def ldap_role_list_mapping(role_list):
 
 Note: You should only define one of the two functions.
 
-You can rewrite the function (in python) to make your own mapping rules. If the file or function doesn't exist, all roles in `LDAP_USER_ROLE_ATTR` will be synced.
+You can rewrite the function (in python) to make your own mapping rules. If the file or function doesn't exist, the first entry in role_list will be synced.
