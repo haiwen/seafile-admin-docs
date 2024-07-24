@@ -8,6 +8,13 @@
 
 Please check our document for how to upgrade to 11.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x/>
 
+### 11.0.11 (2024-07-24)
+
+* Remove unnecessary warning in seahub_email_sender.log 
+* [fix] Fix a performance issue in sending file activities notification via email
+* Remove REPLACE_FROM_EMAIL setting as most email server does not support it
+* [fix] Fix a bug in LDAP login with multiple OU
+
 
 ### 11.0.10 (2024-07-09)
 
