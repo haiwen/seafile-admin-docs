@@ -407,12 +407,13 @@ To enable this feature, add below option to `seahub_settings.py`, e.g.
 LDAP_USER_ROLE_ATTR = 'title'
 ```
 
-`LDAP_USER_ROLE_ATTR` is the attribute field to configure roles in LDAP. We provide a user-defined function to map the role：Create `custom_functions.py` under conf/ and edit it like:
+`LDAP_USER_ROLE_ATTR` is the attribute field to configure roles in LDAP. You can write a custom function to map the role by creating a file `custom_functions.py` under conf/ and edit it like:
 
 ```python
 # -*- coding: utf-8 -*-
 
-# Parse the first role in AD roles.
+# The AD roles attribute returns a list of roles (role_list).
+# The following function use the first entry in the list.
 def ldap_role_mapping(role):
     if 'staff' in role:
         return 'Staff'
@@ -421,7 +422,8 @@ def ldap_role_mapping(role):
     if 'manager' in role:
         return 'Manager'
 
-# From version 11.0.11-pro, you can parse all AD roles.
+# From version 11.0.11-pro, you can define the following function
+# to calculate a role from the role_list.
 def ldap_role_list_mapping(role_list):
     if not role_list:
         return ''
@@ -434,6 +436,6 @@ def ldap_role_list_mapping(role_list):
             return 'Manager'
 ```
 
-Note: Only choose one of these functions to use.
+Note: You should only define one of the two functions.
 
 You can rewrite the function (in python) to make your own mapping rules. If the file or function doesn't exist, all roles in `LDAP_USER_ROLE_ATTR` will be synced.
