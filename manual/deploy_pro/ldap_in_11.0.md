@@ -412,7 +412,7 @@ LDAP_USER_ROLE_ATTR = 'title'
 ```python
 # -*- coding: utf-8 -*-
 
-
+# Parse the first role in AD roles.
 def ldap_role_mapping(role):
     if 'staff' in role:
         return 'Staff'
@@ -420,6 +420,20 @@ def ldap_role_mapping(role):
         return 'Guest'
     if 'manager' in role:
         return 'Manager'
+
+# From version 11.0.11-pro, you can parse all AD roles.
+def ldap_role_list_mapping(role_list):
+    if not role_list:
+        return ''
+    for role in role_list:
+        if 'staff' in role:
+            return 'Staff'
+        if 'guest' in role:
+            return 'Guest'
+        if 'manager' in role:
+            return 'Manager'
 ```
 
-You can rewrite this function (in python) to make your own mapping rules. If the file or function doesn't exist, all roles in `LDAP_USER_ROLE_ATTR` will be synced.
+Note: Only choose one of these functions to use.
+
+You can rewrite the function (in python) to make your own mapping rules. If the file or function doesn't exist, all roles in `LDAP_USER_ROLE_ATTR` will be synced.
