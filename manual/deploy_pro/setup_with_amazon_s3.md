@@ -51,13 +51,12 @@ aws_region = eu-central-1
 
 You also need to add [memory cache configurations](/config/seafile-conf/#cache-pro-edition-only).
 
-It's required to create separate buckets for commit, fs, and block objects.
+We'll explain the configurations below:
 
-The key_id and key are required to authenticate you to S3. You can find the key_id and key in the "security credentials" section on your AWS account page.
-
-When creating your buckets on S3, please first read [S3 bucket naming rules][1]. Note especially not to use **UPPERCASE** letters in bucket names (don't use camel style names, such as MyCommitOjbects).
-
-Since nowadays most aws regions only support V4 authentication signature, it's mandatory to set `use_v4_signature` to true. The `aws_region` option is also required since it's used in the signature. This is the region you chose when you create the buckets.
+- `bucket`: It's required to create separate buckets for commit, fs, and block objects. When creating your buckets on S3, please first read [S3 bucket naming rules][1]. Note especially not to use **UPPERCASE** letters in bucket names (don't use camel style names, such as MyCommitOjbects).
+- `key_id` and `key`: The key_id and key are required to authenticate you to S3. You can find the key_id and key in the "security credentials" section on your AWS account page.
+- `use_v4_signature`: There are two versions of authentication protocols that can be used with S3 storage. Version 2 is the older one, which may still be supported by some regions; version 4 is the current one used by most regions. If you don't set this option, Seafile will use v2 protocol. It's suggested to use v4 protocol.
+- `aws_region`: If you use v4 protocol, set this option to the region you chose when you create the buckets. If it's not set and you're using v4 protocol, Seafile will use `us-east-1` as the default. This option will be ignored if you use v2 protocol.
 
 For file search and webdav to work with the v4 signature mechanism, you need to add following lines to ~/.boto
 
@@ -108,7 +107,9 @@ bucket = my-commit-objects
 host = <access endpoint for storage provider>
 key_id = your-key-id
 key = your-secret-key
+# v2 authentication protocol will be used if not set
 use_v4_signature = true
+# required for v4 protocol. ignored for v2 protocol.
 aws_region = <region name for storage provider>
 
 [fs_object_backend]
@@ -132,13 +133,13 @@ aws_region = <region name for storage provider>
 
 You also need to add [memory cache configurations](/config/seafile-conf/#cache-pro-edition-only).
 
-It's required to create separate buckets for commit, fs, and block objects.
+We'll explain the configurations below:
 
-The key_id and key are required to authenticate you to S3 storage.
-
-Since most S3-compatible providers only support V4 authentication signature, it's mandatory to set `use_v4_signature` to true. The `aws_region` option is also required since it's used in the signature. This is the region you chose when you create the buckets.
-
-You should usually configure the host to the address for the endpoint given by the storage provider. Otherwise Seafile will use AWS's endpoints by default.
+- `host`: The endpoint by which you access the storage service. Usually it starts with the region name. It's required to provide the host address, otherwise Seafile will use AWS's address.
+- `bucket`: It's required to create separate buckets for commit, fs, and block objects.
+- `key_id` and `key`: The key_id and key are required to authenticate you to S3 storage.
+- `use_v4_signature`: There are two versions of authentication protocols that can be used with S3 storage. Version 2 is the older one, which may still be supported by some cloud providers; version 4 is the current one used by Amazon S3 and is supported by most providers. If you don't set this option, Seafile will use v2 protocol. It's suggested to use v4 protocol.
+- `aws_region`: If you use v4 protocol, set this option to the region you chose when you create the buckets. If it's not set and you're using v4 protocol, Seafile will use `us-east-1` as the default. This option will be ignored if you use v2 protocol.
 
 For file search and webdav to work with the v4 signature mechanism, you need to add following lines to ~/.boto
 
@@ -177,13 +178,19 @@ host = 192.168.1.123:8080
 path_style_request = true
 ```
 
-`host` is the address and port of the S3-compatible service. You cannot prepend "http" or "https" to the `host` option. By default it'll use http connections. If you want to use https connection, please set `use_https = true` option.
-
-`path_style_request` asks Seafile to use URLs like `https://192.168.1.123:8080/bucketname/object` to access objects. In Amazon S3, the default URL format is in virtual host style, such as `https://bucketname.s3.amazonaws.com/object`. But this style relies on advanced DNS server setup. So most S3-compatible storage systems only implement the path style format.
-
-Self-hosted S3 storage usually doesn't support V4 authentication signature. So you don't have to enable it. By default V2 authentication signature will be used.
-
 You also need to add [memory cache configurations](/config/seafile-conf/#cache-pro-edition-only).
+
+We'll explain the configurations below:
+
+- `host`: It is the address and port of the S3-compatible service. You cannot prepend "http" or "https" to the `host` option. By default it'll use http connections. If you want to use https connection, please set `use_https = true` option.
+- `bucket`: It's required to create separate buckets for commit, fs, and block objects.
+- `key_id` and `key`: The key_id and key are required to authenticate you to S3 storage.
+- `path_style_request`: This option asks Seafile to use URLs like `https://192.168.1.123:8080/bucketname/object` to access objects. In Amazon S3, the default URL format is in virtual host style, such as `https://bucketname.s3.amazonaws.com/object`. But this style relies on advanced DNS server setup. So most self-hosted storage systems only implement the path style format. So we recommend to set this option to true.
+
+Below are a few options that are not shown in the example configuration above:
+
+- `use_v4_signature`: There are two versions of authentication protocols that can be used with S3 storage. Version 2 is the protocol supported by most self-hosted storage; version 4 is the current protocol used by AWS S3, but may not be supported by some self-hosted storage. If you don't set this option, Seafile will use v2 protocol. We recommend to use V2 first and if it doesn't work try V4.
+- `aws_region`: If you use v4 protocol, set this option to the region you chose when you create the buckets. If it's not set and you're using v4 protocol, Seafile will use `us-east-1` as the default. This option will be ignored if you use v2 protocol.
 
 ## Use HTTPS connections to S3
 
