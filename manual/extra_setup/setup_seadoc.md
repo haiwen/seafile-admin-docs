@@ -16,6 +16,10 @@ SeaDoc excels at:
 * Creating knowledge base articles and online manuals
 * Building internal Wikis
 
+## Architecture
+
+![SeaDoc](../images/seadoc-arch.png)
+
 ## Setup SeaDoc
 
 > Seafile version 11.0 or later is required to work with SeaDoc.
@@ -318,3 +322,19 @@ docker compose down
 docker compose up -d
 
 ```
+
+## FAQ
+
+### Load doc content error
+
+If this error occurs, please check the logs of Nginx, SeaDoc, Seahub, and Seaf-server. You can refer to the following solutions for troubleshooting.
+
+#### seafile.nginx.conf
+
+Please check whether the configuration correctly proxy the `/sdoc-server/` and `/socket.io`.
+
+eg : IF you found `GET /sdoc-server/...` in seahub.access.log, it means that the request that should have been sent to SeaDoc was mistakenly sent to Seahub.
+
+#### seahub_settings.py
+
+The values of `SEADOC_SERVER_URL` and `FILE_CONVERTER_SERVER_URL` are different in different deployment methods.
