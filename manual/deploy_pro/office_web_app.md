@@ -4,7 +4,7 @@ In Seafile Professional Server Version 4.4.0 (or above), you can use Microsoft O
 
 **Notice**: Seafile only supports Office Online Server 2016 and above.
 
-Seafile's own Office file preview is still the default. To use Office Online Server for preview, please add following config option to seahub_settings.py.
+To use Office Online Server for preview, please add following config option to seahub_settings.py.
 
 ```python
 # Enable Office Online Server

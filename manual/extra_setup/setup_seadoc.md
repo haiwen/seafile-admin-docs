@@ -1,6 +1,6 @@
 # SeaDoc Integration
 
-SeaDoc is an online collaborative document editor and workflow management system.
+SeaDoc is an extension of Seafile that providing an online collaborative document editor.
 
 SeaDoc designed around the following key ideas:
 
