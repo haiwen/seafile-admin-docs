@@ -16,6 +16,19 @@ SeaDoc excels at:
 * Creating knowledge base articles and online manuals
 * Building internal Wikis
 
+## Architecture
+
+The SeaDoc archticture is demonstrated as below:
+
+![SeaDoc](../images/seadoc-arch.png)
+
+Here is the workflow when a user open sdoc file in browser
+
+1. When a user open a sdoc file in the browser, a file loading request will be sent to Nginx, and Nginx proxy the request to SeaDoc server.
+2. SeaDoc server will send the content back if it is already cached, otherwise it sends a request to Seahub.
+3. Seahub loads the content from seaf-server and sends it to SeaDoc server.
+4. After SeaDoc receives the content, it sends the content to the browser.
+
 ## Setup SeaDoc
 
 > Seafile version 11.0 or later is required to work with SeaDoc.
@@ -318,3 +331,19 @@ docker compose down
 docker compose up -d
 
 ```
+
+## FAQ
+
+### Load doc content error
+
+If this error occurs, please check the logs of Nginx, SeaDoc, Seahub, and Seaf-server. You can refer to the following solutions for troubleshooting.
+
+#### seafile.nginx.conf
+
+Please check whether the configuration correctly proxy the `/sdoc-server/` and `/socket.io`.
+
+eg : IF you found `GET /sdoc-server/...` in seahub.access.log, it means that the request that should have been sent to SeaDoc was mistakenly sent to Seahub.
+
+#### seahub_settings.py
+
+The values of `SEADOC_SERVER_URL` and `FILE_CONVERTER_SERVER_URL` are different in different deployment methods.
