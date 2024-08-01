@@ -18,11 +18,15 @@ SeaDoc excels at:
 
 ## Architecture
 
+The SeaDoc archticture is demonstrated as below:
+
 ![SeaDoc](../images/seadoc-arch.png)
 
-1. Open a sdoc file in the browser, and send a request to Nginx, then Nginx proxy to SeaDoc.
-2. SeaDoc needs to load the content, and sends the request to Seahub.
-3. Seahub loads the content from Seaf-server and sends it to SeaDoc.
+Here are workflow when a user open sdoc file in browser
+
+1. When a user open a sdoc file in the browser, a file loading request will be sent to Nginx, and Nginx proxy the request to SeaDoc server.
+2. SeaDoc server will send the content back if it is already cached, otherwise it sends a request to Seahub.
+3. Seahub loads the content from seaf-server and sends it to SeaDoc server.
 4. After SeaDoc receives the content, it sends the content to the browser.
 
 ## Setup SeaDoc
