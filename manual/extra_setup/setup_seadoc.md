@@ -22,7 +22,7 @@ The SeaDoc archticture is demonstrated as below:
 
 ![SeaDoc](../images/seadoc-arch.png)
 
-Here are workflow when a user open sdoc file in browser
+Here is the workflow when a user open sdoc file in browser
 
 1. When a user open a sdoc file in the browser, a file loading request will be sent to Nginx, and Nginx proxy the request to SeaDoc server.
 2. SeaDoc server will send the content back if it is already cached, otherwise it sends a request to Seahub.
