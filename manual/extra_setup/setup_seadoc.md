@@ -20,6 +20,11 @@ SeaDoc excels at:
 
 ![SeaDoc](../images/seadoc-arch.png)
 
+1. Open a sdoc file in the browser, and send a request to Nginx, then Nginx proxy to SeaDoc.
+2. SeaDoc needs to load the content, and sends the request to Seahub.
+3. Seahub loads the content from Seaf-server and sends it to SeaDoc.
+4. After SeaDoc receives the content, it sends the content to the browser.
+
 ## Setup SeaDoc
 
 > Seafile version 11.0 or later is required to work with SeaDoc.
