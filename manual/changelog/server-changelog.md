@@ -8,6 +8,17 @@
 
 Please check our document for how to upgrade to 11.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x/>
 
+### 11.0.10 (2024-08-06)
+
+Seafile
+
+* [fix] Use user's name in reset password email instead of internal ID
+* [fix] Fix SeaDoc incompatible with go fileserver
+* [fix] Fix invited guest cannot be revoke
+* [fix] Fix keyerror when using backup code in two-factor auth
+* [fix] Do not print warning in seaf-server.log when a LDAP user login
+
+
 ### 11.0.9 (2024-05-30)
 
 Seafile
