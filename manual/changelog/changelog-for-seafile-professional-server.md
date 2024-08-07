@@ -8,6 +8,15 @@
 
 Please check our document for how to upgrade to 11.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x/>
 
+### 11.0.12 (2024-08-07)
+
+* [fix] [important] Fix a security bug in WebDAV
+* [fix] Fix S3 backend with V4 protocal and path_style_request
+* [fix] Use user's name in reset password email instead of internal ID
+* [fix] Fix invited guest cannot be revoke
+* [fix] Fix keyerror when using backup code in two-factor auth
+* [fix] Do not print warning in seaf-server.log when a LDAP user login
+
 ### 11.0.11 (2024-07-24)
 
 * Remove unnecessary warning in seahub_email_sender.log 
