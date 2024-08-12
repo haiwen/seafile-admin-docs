@@ -2,6 +2,12 @@
 
 ## 9.0
 
+### 9.0.8 (2024/08/12)
+
+* \[win] Fix a potential crash bug when downloading files
+* \[linux] Fix a few issues in AppImage
+* \[linux] Support using AppImageUpdate to check updates
+
 ### 9.0.7 (2024/07/23)
 
 * Checkout files directly without writing to cache folder first
