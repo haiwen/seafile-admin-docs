@@ -8,6 +8,11 @@
 
 Please check our document for how to upgrade to 11.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x/>
 
+
+### 11.0.12 (2024-08-14)
+
+* Update translations
+
 ### 11.0.11 (2024-08-07)
 
 * [fix] [important] Fix a security bug in WebDAV
