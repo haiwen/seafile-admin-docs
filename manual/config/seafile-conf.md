@@ -73,7 +73,7 @@ If you use redis:
 ```
 [redis]
 # your redis server address
-redis_server = 127.0.0.1
+redis_host = 127.0.0.1
 # your redis server port
 redis_port = 6379
 # size of connection pool to redis, default is 100
