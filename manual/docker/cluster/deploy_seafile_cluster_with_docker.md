@@ -1,5 +1,7 @@
 # Seafile Docker Cluster Deployment
 
+Seafile Docker cluster deployment requires "sticky session" settings in the load balancer. Otherwise sometimes folder download on the web UI can't work properly. Read the [Load Balancer Setting](https://manual.seafile.com/deploy_pro/deploy_in_a_cluster/#load-balancer-setting) for details.
+
 ## Environment
 
 System: Ubuntu 20.04
