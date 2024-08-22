@@ -8,6 +8,14 @@
 
 Please check our document for how to upgrade to 11.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x/>
 
+### 11.0.14 (2024-08-22)
+
+* [fix] Fix a bug that system admin can not share a library in admin panel
+* [fix] Fix a bug when syncing user role in LDAP sync
+* [fix] Fix S3 support configuration
+* [fix] Add redis package in Docker image
+* [fix] Improve client side SSO via local browser
+
 ### 11.0.13 (2024-08-14)
 
 * Update translations
