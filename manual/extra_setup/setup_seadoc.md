@@ -45,7 +45,7 @@ SeaDoc has three deployment methods:
 
 #### Download and modify SeaDoc docker-compose.yml
 
-Download [docker-compose.yml](https://manual.seafile.com/extra_setup/sdoc/docker-compose.yml) sample file to your host. Then modify the file according to your environment. The following fields are needed to be modified:
+Download [docker-compose.yml](https://manual.seafile.com/docker/docker-compose/seadoc/0.8/docker-compose.yml) sample file to your host. Then modify the file according to your environment. The following fields are needed to be modified:
 
 * MySQL host (DB_HOST)
 * MySQL port (DB_PORT)
@@ -74,7 +74,7 @@ Then follow the section: Start SeaDoc.
 
 #### Download and modify SeaDoc docker-compose.yml
 
-Download [docker-compose.yml](https://manual.seafile.com/extra_setup/sdoc/docker-compose.yml) sample file to your host. Then modify the file according to your environment. The following fields are needed to be modified:
+Download [docker-compose.yml](https://manual.seafile.com/docker/docker-compose/seadoc/0.8/docker-compose.yml) sample file to your host. Then modify the file according to your environment. The following fields are needed to be modified:
 
 * MySQL host (DB_HOST)
 * MySQL port (DB_PORT)
@@ -165,7 +165,7 @@ Then follow the section: Start SeaDoc.
 
 #### Modify Seafile docker-compose.yml
 
-Add the SeaDoc [docker-compose.yml](https://manual.seafile.com/extra_setup/sdoc/docker-compose.yml) contents to the Seafile docker-compose.yml, and the `ports` need to be modified additionally:
+Add the SeaDoc [docker-compose.yml](https://manual.seafile.com/docker/docker-compose/seadoc/0.8/docker-compose.yml) contents to the Seafile docker-compose.yml, and the `ports` need to be modified additionally:
 
 ```yml
 services:
@@ -331,6 +331,26 @@ docker compose down
 docker compose up -d
 
 ```
+
+### Upgrade from 0.8 to 1.0 (In progress)
+
+From SeaDoc 1.0, we recommend that you use `.env` and `docker-compose.yml` files for configuration. Download [.env](https://manual.seafile.com/docker/docker-compose/seadoc/1.0/.env) and [docker-compose.yml](https://manual.seafile.com/docker/docker-compose/seadoc/1.0/docker-compose.yml), then modify .env file.
+
+Because version 1.0 is not compatible with the old database table, you need to change DB_NAME to seahub_db.
+
+.env
+
+```yml
+SEADOC_MYSQL_DB_NAME=seahub_db
+```
+
+conf/sdoc_server_config.json
+
+```json
+"database": "seahub_db"
+```
+
+Finally restart SeaDoc.
 
 ## FAQ
 

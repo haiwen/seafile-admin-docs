@@ -6,6 +6,19 @@ For major version upgrade, like from 10.0 to 11.0, see instructions below.
 
 Please check the **upgrade notes** for any special configuration or changes before/while upgrading.
 
+## Upgrade from 11.0 to 12.0 (In progress)
+
+From Seafile Docker 12.0, we recommend that you use `.env` and `docker-compose.yml` files for configuration. Download [.env](https://manual.seafile.com/docker/docker-compose/ce/12.0/.env) and [docker-compose.yml](https://manual.seafile.com/docker/docker-compose/ce/12.0/docker-compose.yml), then modify .env file.
+
+The following fields merit particular attention:
+
+* The password of MySQL root (SEAFILE_MYSQL_ROOT_PASSWORD)
+* The volume directory of MySQL data (SEAFILE_MYSQL_VOLUMES)
+* The volume directory of Seafile data (SEAFILE_VOLUMES).
+
+What's more, according to <https://manual.seafile.com/upgrade/upgrade_notes_for_12.0.x>
+
+Start with docker compose up.
 
 ## Upgrade from 10.0 to 11.0
 
@@ -83,7 +96,6 @@ A cron job inside the container will automatically renew the certificate.
 ## Upgrade from 7.1 to 8.0
 
 Just download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version, then start with docker compose up.
-
 
 ## Upgrade from 7.0 to 7.1
 

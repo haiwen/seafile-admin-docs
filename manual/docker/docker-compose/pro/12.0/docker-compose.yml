@@ -1,0 +1,64 @@
+services:
+  db:
+    image: ${SEAFILE_DB_IMAGE:-mariadb:10.11}
+    container_name: seafile-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${SEAFILE_MYSQL_ROOT_PASSWORD:?Variable is not set or empty}
+      - MYSQL_LOG_CONSOLE=true
+      - MARIADB_AUTO_UPGRADE=1
+    volumes:
+      - "${SEAFILE_MYSQL_VOLUMES:-/opt/seafile-mysql/db}:/var/lib/mysql"
+    networks:
+      - seafile-net
+
+  memcached:
+    image: ${SEAFILE_MEMCACHED_IMAGE:-memcached:1.6.18}
+    container_name: seafile-memcached
+    entrypoint: memcached -m 256
+    networks:
+      - seafile-net
+
+  elasticsearch:
+    image: ${SEAFILE_ELASTICSEARCH_IMAGE:-elasticsearch:8.13.0}
+    container_name: seafile-elasticsearch
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
+      - "xpack.security.enabled=false"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    mem_limit: 4g
+    volumes:
+      - "${SEAFILE_MYSQL_VOLUMES:-/opt/seafile-elasticsearch/data}:/usr/share/elasticsearch/data"
+    networks:
+      - seafile-net
+
+  seafile:
+    image: ${SEAFILE_IMAGE:-docker.seadrive.org/seafileltd/seafile-pro-mc:12.0-latest}
+    container_name: seafile
+    ports:
+      - "80:80"
+      - ${SEAFILE_SSL_PORT:-}:443
+    volumes:
+      - ${SEAFILE_VOLUMES:-/opt/seafile-data}:/shared
+    environment:
+      - DB_HOST=${SEAFILE_MYSQL_DB_HOST:-db}
+      - DB_ROOT_PASSWD=${SEAFILE_MYSQL_ROOT_PASSWORD:?Variable is not set or empty}
+      - TIME_ZONE=${TIME_ZONE:-Etc/UTC}
+      - SEAFILE_ADMIN_EMAIL=${SEAFILE_ADMIN_EMAIL:-me@example.com}
+      - SEAFILE_ADMIN_PASSWORD=${SEAFILE_ADMIN_PASSWORD:-asecret}
+      - SEAFILE_SERVER_HOSTNAME=${SEAFILE_SERVER_HOSTNAME:-example.seafile.com}
+      - SEAFILE_SERVER_LETSENCRYPT=${SEAFILE_SERVER_LETSENCRYPT:-false}
+      - FORCE_HTTPS_IN_CONF=${SEAFILE_FORCE_HTTPS_IN_CONF:-false}
+    depends_on:
+      - db
+      - memcached
+      - elasticsearch
+    networks:
+      - seafile-net
+
+networks:
+  seafile-net:
