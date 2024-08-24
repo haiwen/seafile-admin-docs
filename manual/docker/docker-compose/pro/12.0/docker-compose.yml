@@ -12,14 +12,14 @@ services:
       - seafile-net
 
   memcached:
-    image: ${SEAFILE_MEMCACHED_IMAGE:-memcached:1.6.18}
+    image: ${SEAFILE_MEMCACHED_IMAGE:-memcached:1.6.29}
     container_name: seafile-memcached
     entrypoint: memcached -m 256
     networks:
       - seafile-net
 
   elasticsearch:
-    image: ${SEAFILE_ELASTICSEARCH_IMAGE:-elasticsearch:8.13.0}
+    image: ${SEAFILE_ELASTICSEARCH_IMAGE:-elasticsearch:8.15.0}
     container_name: seafile-elasticsearch
     environment:
       - discovery.type=single-node
@@ -40,7 +40,7 @@ services:
     image: ${SEAFILE_IMAGE:-docker.seadrive.org/seafileltd/seafile-pro-mc:12.0-latest}
     container_name: seafile
     ports:
-      - "80:80"
+      - 80:80
       - ${SEAFILE_SSL_PORT:-}:443
     volumes:
       - ${SEAFILE_VOLUMES:-/opt/seafile-data}:/shared

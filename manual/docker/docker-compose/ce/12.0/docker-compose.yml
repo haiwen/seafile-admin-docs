@@ -12,7 +12,7 @@ services:
       - seafile-net
 
   memcached:
-    image: ${SEAFILE_MEMCACHED_IMAGE:-memcached:1.6.18}
+    image: ${SEAFILE_MEMCACHED_IMAGE:-memcached:1.6.29}
     container_name: seafile-memcached
     entrypoint: memcached -m 256
     networks:
