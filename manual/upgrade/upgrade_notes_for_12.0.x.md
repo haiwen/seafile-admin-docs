@@ -11,7 +11,7 @@ Seafile version 12.0 has four major changes:
 
 * a new redesigned Web UI
 * easy deployment of SeaDoc
-* a new wiki module (still in beta)
+* a new wiki module (still in beta, disabled by default)
 * a new lightweight and fast search engine, SeaSearch. SeaSearch is optional, you can still use ElasticSearch.
 
 ### ElasticSearch change (pro edition only)
