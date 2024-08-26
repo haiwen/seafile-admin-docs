@@ -9,20 +9,20 @@ For docker based version, please check [upgrade Seafile Docker image](./upgrade_
 
 Seafile version 12.0 has four major changes:
 
-* a new redesigned Web UI
-* easy deployment of SeaDoc
-* a new wiki module (still in beta, disabled by default)
-* a new lightweight and fast search engine, SeaSearch. SeaSearch is optional, you can still use ElasticSearch.
+* A redesigned Web UI
+* Easy deployment of SeaDoc
+* A new wiki module (still in beta, disabled by default)
+* A new lightweight and fast search engine, SeaSearch. SeaSearch is optional, you can still use ElasticSearch.
 
 ### ElasticSearch change (pro edition only)
 
-Elasticsearch version is not changed in Seafile version 11.0
+Elasticsearch version is not changed in Seafile version 12.0
 
 ## New Python libraries
 
 Note, you should install Python libraries system wide using root user or sudo mode.
 
-For Ubuntu 20.04/24.04
+For Ubuntu 22.04/24.04
 
 ```sh
 sudo pip3 install future==1.0.* mysqlclient==2.2.* pillow==10.4.* sqlalchemy==2.0.* captcha==0.6.* django_simple_captcha==0.6.* djangosaml2==1.9.* pysaml2==7.3.* pycryptodome==3.20.* cffi==1.17.0 python-ldap==3.4.*
@@ -40,13 +40,16 @@ upgrade/upgrade_11.0_12.0.sh
 
 ### 3) Start Seafile-12.0.x server
 
-## Upgrade SeaDoc from 0.8 to 1.0 (In progress)
 
-SeaDoc 1.0 is based on Seafile 12.0
+## Upgrade SeaDoc from 0.8 to 1.0
+
+If you have deployed SeaDoc extension in version 11.0, please use the following steps to upgrade it to version 1.0.
+
+SeaDoc 1.0 is for working with Seafile 12.0.
 
 ### Change the DB_NAME
 
-From version 1.0, SeaDoc is based on the seahub_db database in Seafile MySQL and is not compatible with the sdoc_db database. You need to change the `DB_NAME` to `seahub_db` in the config file manually.
+From version 1.0, SeaDoc is using seahub_db database to store its operation logs and no longer need an extra database sdoc_db. You need to change the `DB_NAME` to `seahub_db` in the config file manually.
 
 conf/sdoc_server_config.json
 
@@ -54,7 +57,13 @@ conf/sdoc_server_config.json
 "database": "seahub_db"
 ```
 
-### Deploy SeaDoc on a new host
+### Update the docker compose file
+
+In version 1.0, we use env file to configure SeaDoc docker image, instead of modifying the docker-compose.yml file directly.
+
+Use one of the following method to upgrade the docker compose file depends on your current deployment method.
+
+#### For deploy SeaDoc on a separate host
 
 Make sure you have installed Seafile 12.0, then backup old SeaDoc docker-compose.yml file.
 
@@ -79,11 +88,11 @@ Start SeaDoc server with the following command
 docker compose up -d
 ```
 
-### SeaDoc and Seafile (non docker version) are deployed on the same host
+#### SeaDoc and Seafile (non docker version) are deployed on the same host
 
 The upgrade steps are the same as `Deploy SeaDoc on a new host`.
 
-### SeaDoc and Seafile docker are deployed on the same host
+#### SeaDoc and Seafile docker are deployed on the same host
 
 Make sure you have installed Seafile Docker 12.0.
 
