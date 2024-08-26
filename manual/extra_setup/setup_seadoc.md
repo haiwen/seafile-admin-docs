@@ -45,7 +45,7 @@ SeaDoc has three deployment methods:
 
 #### Download and modify SeaDoc docker-compose.yml
 
-Download [docker-compose.yml](https://manual.seafile.com/extra_setup/sdoc/docker-compose.yml) sample file to your host. Then modify the file according to your environment. The following fields are needed to be modified:
+Download [docker-compose.yml](https://manual.seafile.com/docker/docker-compose/seadoc/0.8/docker-compose.yml) sample file to your host. Then modify the file according to your environment. The following fields are needed to be modified:
 
 * MySQL host (DB_HOST)
 * MySQL port (DB_PORT)
@@ -74,7 +74,7 @@ Then follow the section: Start SeaDoc.
 
 #### Download and modify SeaDoc docker-compose.yml
 
-Download [docker-compose.yml](https://manual.seafile.com/extra_setup/sdoc/docker-compose.yml) sample file to your host. Then modify the file according to your environment. The following fields are needed to be modified:
+Download [docker-compose.yml](https://manual.seafile.com/docker/docker-compose/seadoc/0.8/docker-compose.yml) sample file to your host. Then modify the file according to your environment. The following fields are needed to be modified:
 
 * MySQL host (DB_HOST)
 * MySQL port (DB_PORT)
@@ -165,7 +165,7 @@ Then follow the section: Start SeaDoc.
 
 #### Modify Seafile docker-compose.yml
 
-Add the SeaDoc [docker-compose.yml](https://manual.seafile.com/extra_setup/sdoc/docker-compose.yml) contents to the Seafile docker-compose.yml, and the `ports` need to be modified additionally:
+Add the SeaDoc [docker-compose.yml](https://manual.seafile.com/docker/docker-compose/seadoc/0.8/docker-compose.yml) contents to the Seafile docker-compose.yml, and the `ports` need to be modified additionally:
 
 ```yml
 services:
