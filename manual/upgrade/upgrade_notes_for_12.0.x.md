@@ -40,7 +40,6 @@ upgrade/upgrade_11.0_12.0.sh
 
 ### 3) Start Seafile-12.0.x server
 
-
 ## Upgrade SeaDoc from 0.8 to 1.0
 
 If you have deployed SeaDoc extension in version 11.0, please use the following steps to upgrade it to version 1.0.
@@ -67,7 +66,7 @@ Make sure you have installed Seafile 12.0, then backup old SeaDoc docker-compose
 mv docker-compose.yml docker-compose.yml.bak
 ```
 
-Download [.env](https://manual.seafile.com/docker/docker-compose/seadoc/1.0/standalone/.env) and [docker-compose.yml](https://manual.seafile.com/docker/docker-compose/seadoc/1.0/standalone/docker-compose.yml), then modify .env file.
+Download [.env](https://manual.seafile.com/docker/docker-compose/seadoc/1.0/standalone/env) and [docker-compose.yml](https://manual.seafile.com/docker/docker-compose/seadoc/1.0/standalone/docker-compose.yml), then modify .env file.
 
 The following fields merit particular attention:
 
@@ -83,7 +82,6 @@ Start SeaDoc server with the following command
 ```sh
 docker compose up -d
 ```
-
 
 ## FAQ
 

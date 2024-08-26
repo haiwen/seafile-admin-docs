@@ -16,7 +16,7 @@ First, backup the original docker-compose.yml file:
 mv docker-compose.yml docker-compose.yml.bak
 ```
 
-Then download [.env](https://manual.seafile.com/docker/docker-compose/ce/12.0/.env) and [docker-compose.yml](https://manual.seafile.com/docker/docker-compose/ce/12.0/docker-compose.yml), and modify .env file according to the old configuration in `docker-compose.yml.bak`
+Then download [.env](https://manual.seafile.com/docker/docker-compose/ce/12.0/env) and [docker-compose.yml](https://manual.seafile.com/docker/docker-compose/ce/12.0/docker-compose.yml), and modify .env file according to the old configuration in `docker-compose.yml.bak`
 
 The following fields merit particular attention:
 
@@ -56,7 +56,7 @@ Make sure you have installed Seafile 12.0, then backup old SeaDoc docker-compose
 mv docker-compose.yml docker-compose.yml.bak
 ```
 
-Download [.env](https://manual.seafile.com/docker/docker-compose/seadoc/1.0/standalone/.env) and [docker-compose.yml](https://manual.seafile.com/docker/docker-compose/seadoc/1.0/standalone/docker-compose.yml), then modify .env file.
+Download [.env](https://manual.seafile.com/docker/docker-compose/seadoc/1.0/standalone/env) and [docker-compose.yml](https://manual.seafile.com/docker/docker-compose/seadoc/1.0/standalone/docker-compose.yml), then modify .env file.
 
 The following fields merit particular attention:
 
