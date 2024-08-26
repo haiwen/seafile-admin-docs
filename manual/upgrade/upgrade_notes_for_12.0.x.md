@@ -13,6 +13,7 @@ Seafile version 12.0 has four major changes:
 * Easy deployment of SeaDoc
 * A new wiki module (still in beta, disabled by default)
 * A new lightweight and fast search engine, SeaSearch. SeaSearch is optional, you can still use ElasticSearch.
+* WebDAV no longer support login with LDAP account, the user must generate a WebDAV token at the profile page
 
 ### ElasticSearch change (pro edition only)
 
