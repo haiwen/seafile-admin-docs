@@ -8,7 +8,15 @@ Please check the **upgrade notes** for any special configuration or changes befo
 
 ## Upgrade from 11.0 to 12.0 (In progress)
 
-From Seafile Docker 12.0, we recommend that you use `.env` and `docker-compose.yml` files for configuration. Download [.env](https://manual.seafile.com/docker/docker-compose/ce/12.0/.env) and [docker-compose.yml](https://manual.seafile.com/docker/docker-compose/ce/12.0/docker-compose.yml), then modify .env file.
+From Seafile Docker 12.0, we recommend that you use `.env` and `docker-compose.yml` files for configuration.
+
+First, backup the original docker-compose.yml file:
+
+```sh
+mv docker-compose.yml docker-compose.yml.bak
+```
+
+Then download [.env](https://manual.seafile.com/docker/docker-compose/ce/12.0/.env) and [docker-compose.yml](https://manual.seafile.com/docker/docker-compose/ce/12.0/docker-compose.yml), and modify .env file according to the old configuration in `docker-compose.yml.bak`
 
 The following fields merit particular attention:
 
