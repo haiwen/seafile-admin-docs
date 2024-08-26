@@ -16,7 +16,7 @@ The following fields merit particular attention:
 * The volume directory of MySQL data (SEAFILE_MYSQL_VOLUMES)
 * The volume directory of Seafile data (SEAFILE_VOLUMES).
 
-What's more, according to <https://manual.seafile.com/upgrade/upgrade_notes_for_12.0.x>
+What's more, upgrade SeaDoc from 0.8 to 1.0 (In progress) according to <https://manual.seafile.com/upgrade/upgrade_notes_for_12.0.x>
 
 Start with docker compose up.
 
