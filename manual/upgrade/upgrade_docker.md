@@ -40,7 +40,7 @@ In version 1.0, we use env file to configure SeaDoc docker image, instead of mod
 
 Use one of the following method to upgrade the docker compose file depends on your current deployment method.
 
-##### For deploy SeaDoc on a separate host
+##### For deployment where SeaDoc is on a separate host
 
 Make sure you have installed Seafile 12.0, then backup old SeaDoc docker-compose.yml file.
 
@@ -65,7 +65,7 @@ Start SeaDoc server with the following command
 docker compose up -d
 ```
 
-##### SeaDoc and Seafile docker are deployed on the same host
+##### For deployment where SeaDoc and Seafile docker are on the same host
 
 Make sure you have installed Seafile Docker 12.0.
 
@@ -77,7 +77,7 @@ Note: modify the `COMPOSE_FILE` field, and add all other fields.
 COMPOSE_FILE='docker-compose.yml,seadoc.yml'
 
 
-SEADOC_IMAGE=seafileltd/sdoc-server:latest
+SEADOC_IMAGE=seafileltd/sdoc-server:1.0-latest
 SEADOC_VOLUMES=/opt/seadoc-data
 
 SEAFILE_MYSQL_DB_USER=seafile
