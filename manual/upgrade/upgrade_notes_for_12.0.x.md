@@ -26,7 +26,7 @@ Note, you should install Python libraries system wide using root user or sudo mo
 For Ubuntu 22.04/24.04
 
 ```sh
-sudo pip3 install future==1.0.* mysqlclient==2.2.* pillow==10.4.* sqlalchemy==2.0.* gevent==24.2.* greenlet==3.0.* captcha==0.6.* django_simple_captcha==0.6.* djangosaml2==1.9.* pysaml2==7.3.* pycryptodome==3.20.* cffi==1.17.0 python-ldap==3.4.*
+sudo pip3 install future==1.0.* mysqlclient==2.2.* pillow==10.4.* sqlalchemy==2.0.* gevent==24.2.* captcha==0.6.* django_simple_captcha==0.6.* djangosaml2==1.9.* pysaml2==7.3.* pycryptodome==3.20.* cffi==1.17.0 python-ldap==3.4.*
 ```
 
 ## Upgrade to 12.0.x
