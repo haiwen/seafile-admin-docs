@@ -239,10 +239,6 @@ ENABLE_SHARE_LINK_REPORT_ABUSE = True
 Options for online file preview:
 
 ```python
-# Whether to use pdf.js to view pdf files online. Default is `True`,  you can turn it off.
-# NOTE: since version 1.4.
-USE_PDFJS = True
-
 # Online preview maximum file size, defaults to 30M.
 FILE_PREVIEW_MAX_SIZE = 30 * 1024 * 1024
 
@@ -253,9 +249,6 @@ htm, java, js, json, less, make, org, php, pl, properties, py, rb,
 scala, script, sh, sql, txt, text, tex, vi, vim, xhtml, xml, log, csv,
 groovy, rst, patch, go"""
 
-# Enable or disable thumbnails
-# NOTE: since version 4.0.2
-ENABLE_THUMBNAIL = True
 
 # Seafile only generates thumbnails for images smaller than the following size.
 # Since version 6.3.8 pro, suport the psd online preview.
