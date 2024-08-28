@@ -14,7 +14,7 @@ services:
   memcached:
     image: memcached:1.6.18
     container_name: seafile-memcached
-    command: memcached -m 256
+    command: -m 256
     networks:
       - seafile-net
           
