@@ -51,8 +51,13 @@ For Seafdav, the configuration of Nginx is as follows:
 
 ```
 .....
+
     location /seafdav {
-        proxy_pass         http://127.0.0.1:8080/seafdav;
+        rewrite ^/seafdav$ /seafdav/ permanent;
+    }
+
+    location /seafdav/ {
+        proxy_pass         http://127.0.0.1:8080/seafdav/;
         proxy_set_header   Host $host;
         proxy_set_header   X-Real-IP $remote_addr;
         proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -65,6 +70,9 @@ For Seafdav, the configuration of Nginx is as follows:
         error_log       /var/log/nginx/seafdav.error.log;
     }
 
+    location /:dir_browser {
+        proxy_pass         http://127.0.0.1:8080/:dir_browser;
+    }
 ```
 
 ### Proxy with Apache
