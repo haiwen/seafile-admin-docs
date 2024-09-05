@@ -1,8 +1,12 @@
-COMPOSE_FILE='docker-compose.yml'
+COMPOSE_FILE='docker-compose.yml,caddy.yml'
 COMPOSE_PATH_SEPARATOR=','
 
 
 SEADOC_IMAGE=seafileltd/sdoc-server:latest
+SEAFILE_CADDY_IMAGE=lucaslorentz/caddy-docker-proxy:2.9
+
+SEADOC_VOLUMES=/opt/seadoc-data/
+CADDY_VOLUMES=/opt/seafile-caddy
 
 SEAFILE_MYSQL_DB_HOST=192.168.0.2
 SEAFILE_MYSQL_DB_USER=seafile
@@ -11,7 +15,8 @@ SEAFILE_MYSQL_DB_PASSWD=PASSWORD
 TIME_ZONE=Etc/UTC
 
 JWT_PRIVATE_KEY=
-SEAHUB_SERVICE_URL=http://seafile.example.com
-FILE_SERVER_ROOT=http://seafile.example.com/seafhttp
-SEADOC_SERVER_URL=http://seadoc.example.com
 
+SEAFILE_SERVER_HOSTNAME=example.seafile.com
+SEAFILE_SERVER_PROTOCOL=http
+
+SEADOC_SERVER_URL=http://seadoc.seafile.com

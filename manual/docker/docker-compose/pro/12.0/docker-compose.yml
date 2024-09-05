@@ -39,20 +39,21 @@ services:
   seafile:
     image: ${SEAFILE_IMAGE:-docker.seadrive.org/seafileltd/seafile-pro-mc:12.0-latest}
     container_name: seafile
-    ports:
-      - 80:80
-      - ${SEAFILE_SSL_PORT:-}:443
     volumes:
       - ${SEAFILE_VOLUMES:-/opt/seafile-data}:/shared
     environment:
       - DB_HOST=${SEAFILE_MYSQL_DB_HOST:-db}
       - DB_ROOT_PASSWD=${SEAFILE_MYSQL_ROOT_PASSWORD:?Variable is not set or empty}
+      - DB_PASSWD=${SEAFILE_MYSQL_DB_PASSWD:?Variable is not set or empty}
       - TIME_ZONE=${TIME_ZONE:-Etc/UTC}
       - SEAFILE_ADMIN_EMAIL=${SEAFILE_ADMIN_EMAIL:-me@example.com}
       - SEAFILE_ADMIN_PASSWORD=${SEAFILE_ADMIN_PASSWORD:-asecret}
       - SEAFILE_SERVER_HOSTNAME=${SEAFILE_SERVER_HOSTNAME:-example.seafile.com}
-      - SEAFILE_SERVER_LETSENCRYPT=${SEAFILE_SERVER_LETSENCRYPT:-false}
       - FORCE_HTTPS_IN_CONF=${SEAFILE_FORCE_HTTPS_IN_CONF:-false}
+      - JWT_PRIVATE_KEY=${JWT_PRIVATE_KEY:?Variable is not set or empty}
+    labels:
+      caddy: ${SEAFILE_SERVER_PROTOCOL:-http}://${SEAFILE_SERVER_HOSTNAME:?Variable is not set or empty}
+      caddy.reverse_proxy: "{{upstreams 80}}"
     depends_on:
       - db
       - memcached
@@ -62,3 +63,4 @@ services:
 
 networks:
   seafile-net:
+    name: seafile-net
