@@ -1,8 +1,8 @@
 services:
 
-  sdoc-server:
+  seadoc:
     image: ${SEADOC_IMAGE:-seafileltd/sdoc-server:latest}
-    container_name: sdoc-server
+    container_name: seadoc
     volumes:
       - ${SEADOC_VOLUMES:-/opt/seadoc-data/}:/shared
     environment:

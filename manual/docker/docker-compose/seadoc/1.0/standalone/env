@@ -5,8 +5,8 @@ COMPOSE_PATH_SEPARATOR=','
 SEADOC_IMAGE=seafileltd/sdoc-server:latest
 SEAFILE_CADDY_IMAGE=lucaslorentz/caddy-docker-proxy:2.9
 
-SEADOC_VOLUMES=/opt/seadoc-data/
-CADDY_VOLUMES=/opt/seafile-caddy
+SEADOC_VOLUMES=/opt/seadoc-data
+SEAFILE_CADDY_VOLUMES=/opt/seafile-caddy
 
 SEAFILE_MYSQL_DB_HOST=192.168.0.2
 SEAFILE_MYSQL_DB_USER=seafile
@@ -19,4 +19,5 @@ JWT_PRIVATE_KEY=
 SEAFILE_SERVER_HOSTNAME=example.seafile.com
 SEAFILE_SERVER_PROTOCOL=http
 
-SEADOC_SERVER_URL=http://seadoc.seafile.com
+SEADOC_SERVER_HOSTNAME==example.seadoc.com
+SEADOC_SERVER_PROTOCOL=http

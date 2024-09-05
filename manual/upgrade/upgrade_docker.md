@@ -99,13 +99,16 @@ First, backup the original docker-compose.yml file:
 mv docker-compose.yml docker-compose.yml.bak
 ```
 
-Then download [.env](https://manual.seafile.com/docker/docker-compose/ce/12.0/env) and [docker-compose.yml](https://manual.seafile.com/docker/docker-compose/ce/12.0/docker-compose.yml), and modify .env file according to the old configuration in `docker-compose.yml.bak`
+Then download [.env](https://manual.seafile.com/docker/docker-compose/ce/12.0/env) , [docker-compose.yml](https://manual.seafile.com/docker/docker-compose/ce/12.0/docker-compose.yml) and [caddy.yml](https://manual.seafile.com/docker/docker-compose/ce/12.0/caddy.yml), and modify .env file according to the old configuration in `docker-compose.yml.bak`
 
 The following fields merit particular attention:
 
 * The password of MySQL root (SEAFILE_MYSQL_ROOT_PASSWORD)
 * The volume directory of MySQL data (SEAFILE_MYSQL_VOLUMES)
-* The volume directory of Seafile data (SEAFILE_VOLUMES).
+* The volume directory of Seafile data (SEAFILE_VOLUMES)
+* The volume directory of MySQL data (SEAFILE_MYSQL_VOLUMES)
+* The volume directory of Caddy data (SEAFILE_CADDY_VOLUMES)
+* jwt (JWT_PRIVATE_KEY)
 
 Start with docker compose up.
 
@@ -116,31 +119,27 @@ If you have deployed SeaDoc extension in version 11.0, please use the following 
 
 SeaDoc 1.0 is for working with Seafile 12.0.
 
-#### Change the DB_NAME
+### Backup SeaDoc files
 
-From version 1.0, SeaDoc is using seahub_db database to store its operation logs and no longer need an extra database sdoc_db. You need to change the `DB_NAME` to `seahub_db` in the config file manually.
+Stop SeaDoc and backup files
 
-conf/sdoc_server_config.json
+```sh
+docker compose down
 
-```json
-"database": "seahub_db"
+mv /opt/seadoc-data/ /opt/seadoc-data-bak/
 ```
 
 #### Update the docker compose file
 
-In version 1.0, we use env file to configure SeaDoc docker image, instead of modifying the docker-compose.yml file directly.
+In version 1.0, we use .env file to configure SeaDoc docker image, instead of modifying the docker-compose.yml file directly.
 
 Use one of the following method to upgrade the docker compose file depends on your current deployment method.
 
 ##### For deployment where SeaDoc is on a separate host
 
-Make sure you have installed Seafile 12.0, then backup old SeaDoc docker-compose.yml file.
+Make sure you have installed Seafile 12.0.
 
-```sh
-mv docker-compose.yml docker-compose.yml.bak
-```
-
-Download [.env](https://manual.seafile.com/docker/docker-compose/seadoc/1.0/standalone/env) and [docker-compose.yml](https://manual.seafile.com/docker/docker-compose/seadoc/1.0/standalone/docker-compose.yml), then modify .env file.
+Download [.env](https://manual.seafile.com/docker/docker-compose/seadoc/1.0/standalone/env), [docker-compose.yml](https://manual.seafile.com/docker/docker-compose/seadoc/1.0/standalone/docker-compose.yml) and [caddy.yml](https://manual.seafile.com/docker/docker-compose/seadoc/1.0/standalone/caddy.yml), then modify .env file.
 
 The following fields merit particular attention:
 
@@ -148,8 +147,10 @@ The following fields merit particular attention:
 * Seafile MySQL user (SEAFILE_MYSQL_DB_USER)
 * Seafile MySQL password (SEAFILE_MYSQL_DB_PASSWD)
 * The volume directory of SeaDoc data (SEADOC_VOLUMES)
-* SeaDoc service URL (SDOC_SERVER_HOSTNAME)
-* Seafile service URL (SEAHUB_SERVICE_URL)
+* The volume directory of Caddy data (SEAFILE_CADDY_VOLUMES)
+* SeaDoc service URL (SEADOC_SERVER_HOSTNAME)
+* Seafile service URL (SEAFILE_SERVER_HOSTNAME)
+* jwt (JWT_PRIVATE_KEY, the same in Seafile .env)
 
 Start SeaDoc server with the following command
 
@@ -161,29 +162,20 @@ docker compose up -d
 
 Make sure you have installed Seafile Docker 12.0.
 
-Download [seadoc.yml](https://manual.seafile.com/docker/docker-compose/seadoc/1.0/seadoc.yml) to the Seafile path, then modify Seafile .env file.
-
-Note: modify the `COMPOSE_FILE` field, and add all other fields.
+Download [seadoc.yml](https://manual.seafile.com/docker/docker-compose/seadoc/1.0/standalone/seadoc.yml) to the Seafile path, then modify Seafile .env file.
 
 ```env
-COMPOSE_FILE='docker-compose.yml,seadoc.yml'
+COMPOSE_FILE='docker-compose.yml,caddy.yml,seadoc.yml'
 
 
 SEADOC_IMAGE=seafileltd/sdoc-server:1.0-latest
 SEADOC_VOLUMES=/opt/seadoc-data
-
-SEAFILE_MYSQL_DB_USER=seafile
-SEAFILE_MYSQL_DB_PASSWD=PASSWORD
-
-SEAHUB_SERVICE_URL=http://seafile.example.com
 ```
 
 The following fields merit particular attention:
 
-* Seafile MySQL user (SEAFILE_MYSQL_DB_USER)
-* Seafile MySQL password (SEAFILE_MYSQL_DB_PASSWD)
+* add `seadoc.yml` to the `COMPOSE_FILE` field.
 * The volume directory of SeaDoc data (SEADOC_VOLUMES)
-* Seafile service URL (SEAHUB_SERVICE_URL)
 
 Start Seafile server and SeaDoc server with the following command
 

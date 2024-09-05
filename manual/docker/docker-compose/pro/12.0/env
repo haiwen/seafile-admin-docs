@@ -31,4 +31,4 @@ SEAFILE_ADMIN_PASSWORD=asecret
 
 
 SEADOC_IMAGE=seafileltd/sdoc-server:latest
-SEADOC_VOLUMES=/opt/seadoc-data/
+SEADOC_VOLUMES=/opt/seadoc-data
