@@ -99,86 +99,103 @@ First, backup the original docker-compose.yml file:
 mv docker-compose.yml docker-compose.yml.bak
 ```
 
-Then download [.env](https://manual.seafile.com/docker/docker-compose/ce/12.0/env) , [docker-compose.yml](https://manual.seafile.com/docker/docker-compose/ce/12.0/docker-compose.yml) and [caddy.yml](https://manual.seafile.com/docker/docker-compose/ce/12.0/caddy.yml), and modify .env file according to the old configuration in `docker-compose.yml.bak`
+Then download [.env](https://manual.seafile.com/docker/docker-compose/ce/12.0/env), [docker-compose.yml](https://manual.seafile.com/docker/docker-compose/ce/12.0/docker-compose.yml) and [caddy.yml](https://manual.seafile.com/docker/docker-compose/ce/12.0/caddy.yml), and modify .env file according to the old configuration in `docker-compose.yml.bak`
+
+```sh
+wegt -O .env https://manual.seafile.com/docker/docker-compose/ce/12.0/env
+wget https://manual.seafile.com/docker/docker-compose/ce/12.0/docker-compose.yml
+wget https://manual.seafile.com/docker/docker-compose/ce/12.0/caddy.yml
+```
 
 The following fields merit particular attention:
 
-* The password of MySQL root (SEAFILE_MYSQL_ROOT_PASSWORD)
-* The volume directory of MySQL data (SEAFILE_MYSQL_VOLUMES)
-* The volume directory of Seafile data (SEAFILE_VOLUMES)
-* The volume directory of MySQL data (SEAFILE_MYSQL_VOLUMES)
+* The volume directory of Seafile data (SEAFILE_VOLUMES, same as the seafile volumes in the old docker-compose.yml)
+* The volume directory of MySQL data (SEAFILE_MYSQL_VOLUMES, same as the mysql volumes in the old docker-compose.yml)
 * The volume directory of Caddy data (SEAFILE_CADDY_VOLUMES)
-* jwt (JWT_PRIVATE_KEY)
+* The user of MySQL (SEAFILE_MYSQL_DB_USER, `database` - `user` can be found in conf/seafile.conf)
+* The password of MySQL (SEAFILE_MYSQL_DB_PASSWORD, `database` - `password` can be found in seafile.conf)
+* jwt (JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters)
+* SEAFILE_SERVER_HOSTNAME (SEAFILE_SERVER_HOSTNAME, same as the SEAFILE_SERVER_HOSTNAME in the old docker-compose.yml)
+* SEAFILE_SERVER_PROTOCOL (SEAFILE_SERVER_PROTOCOL, use http or https)
+
+If you have used SSL before, you will also need modify the seafile.nginx.conf. Change server listen 443 to 80.
+
+Backup the original seafile.nginx.conf file:
+
+```sh
+cp seafile.nginx.conf seafile.nginx.conf.bak
+```
+
+Remove the `server listen 80` section:
+
+```config
+#server {
+#    listen 80;
+#    server_name _ default_server;
+
+    # allow certbot to connect to challenge location via HTTP Port 80
+    # otherwise renewal request will fail
+#    location /.well-known/acme-challenge/ {
+#        alias /var/www/challenges/;
+#        try_files $uri =404;
+#    }
+
+#    location / {
+#        rewrite ^ https://example.seafile.com$request_uri? permanent;
+#    }
+#}
+```
+
+Change `server listen 443` to `80`:
+
+```config
+server {
+#listen 443 ssl;
+listen 80;
+
+#    ssl_certificate      /shared/ssl/pkg.seafile.top.crt;
+#    ssl_certificate_key  /shared/ssl/pkg.seafile.top.key;
+
+ #   ssl_ciphers ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!MD5:!DSS;
+
+   ...
+```
 
 Start with docker compose up.
-
 
 ### Upgrade SeaDoc from 0.8 to 1.0 for Seafile v12.0
 
 If you have deployed SeaDoc extension in version 11.0, please use the following steps to upgrade it to version 1.0.
 
-SeaDoc 1.0 is for working with Seafile 12.0.
-
-### Backup SeaDoc files
-
-Stop SeaDoc and backup files
-
-```sh
-docker compose down
-
-mv /opt/seadoc-data/ /opt/seadoc-data-bak/
-```
-
-#### Update the docker compose file
+SeaDoc 1.0 is for working with Seafile 12.0. SeaDoc and Seafile are deployed in the same directory.
 
 In version 1.0, we use .env file to configure SeaDoc docker image, instead of modifying the docker-compose.yml file directly.
 
-Use one of the following method to upgrade the docker compose file depends on your current deployment method.
-
-##### For deployment where SeaDoc is on a separate host
-
-Make sure you have installed Seafile 12.0.
-
-Download [.env](https://manual.seafile.com/docker/docker-compose/seadoc/1.0/standalone/env), [docker-compose.yml](https://manual.seafile.com/docker/docker-compose/seadoc/1.0/standalone/docker-compose.yml) and [caddy.yml](https://manual.seafile.com/docker/docker-compose/seadoc/1.0/standalone/caddy.yml), then modify .env file.
-
-The following fields merit particular attention:
-
-* Seafile MySQL host (SEAFILE_MYSQL_DB_HOST)
-* Seafile MySQL user (SEAFILE_MYSQL_DB_USER)
-* Seafile MySQL password (SEAFILE_MYSQL_DB_PASSWORD)
-* The volume directory of SeaDoc data (SEADOC_VOLUMES)
-* The volume directory of Caddy data (SEAFILE_CADDY_VOLUMES)
-* SeaDoc service URL (SEADOC_SERVER_HOSTNAME)
-* Seafile service URL (SEAFILE_SERVER_HOSTNAME)
-* jwt (JWT_PRIVATE_KEY, the same in Seafile .env)
-
-Start SeaDoc server with the following command
+Download [seadoc.yml](https://manual.seafile.com/docker/docker-compose/ce/12.0/seadoc.yml) to the Seafile `docker-compose.yml` directory, then modify Seafile .env file.
 
 ```sh
-docker compose up -d
+wegt https://manual.seafile.com/docker/docker-compose/ce/12.0/seadoc.yml
 ```
-
-##### For deployment where SeaDoc and Seafile docker are on the same host
-
-Make sure you have installed Seafile Docker 12.0.
-
-Download [seadoc.yml](https://manual.seafile.com/docker/docker-compose/seadoc/1.0/standalone/seadoc.yml) to the Seafile path, then modify Seafile .env file.
 
 ```env
 COMPOSE_FILE='docker-compose.yml,caddy.yml,seadoc.yml'
 
-
-SEADOC_IMAGE=seafileltd/sdoc-server:1.0-latest
 SEADOC_VOLUMES=/opt/seadoc-data
+ENABLE_SEADOC=true
+SEADOC_SERVER_URL=http://example.seafile.com/sdoc-server
 ```
 
 The following fields merit particular attention:
 
-* add `seadoc.yml` to the `COMPOSE_FILE` field.
+* Add `seadoc.yml` to the `COMPOSE_FILE` field.
 * The volume directory of SeaDoc data (SEADOC_VOLUMES)
+* Enable SeaDoc (ENABLE_SEADOC)
+* SeaDoc service url (SEADOC_SERVER_URL, hostname + `/sdoc-server`)
 
 Start Seafile server and SeaDoc server with the following command
 
 ```sh
+docker compose down
+
 docker compose up -d
 ```

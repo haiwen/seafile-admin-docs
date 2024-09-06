@@ -2,7 +2,7 @@ COMPOSE_FILE='docker-compose.yml,caddy.yml'
 COMPOSE_PATH_SEPARATOR=','
 
 
-SEADOC_IMAGE=seafileltd/sdoc-server:latest
+SEADOC_IMAGE=seafileltd/sdoc-server:1.0-latest
 SEAFILE_CADDY_IMAGE=lucaslorentz/caddy-docker-proxy:2.9
 
 SEADOC_VOLUMES=/opt/seadoc-data

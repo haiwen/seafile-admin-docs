@@ -28,5 +28,8 @@ SEAFILE_ADMIN_EMAIL=me@example.com
 SEAFILE_ADMIN_PASSWORD=asecret
 
 
-SEADOC_IMAGE=seafileltd/sdoc-server:latest
+SEADOC_IMAGE=seafileltd/sdoc-server:1.0-latest
 SEADOC_VOLUMES=/opt/seadoc-data
+
+ENABLE_SEADOC=false
+SEADOC_SERVER_URL=http://example.seafile.com/sdoc-server

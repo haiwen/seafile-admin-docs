@@ -36,6 +36,8 @@ services:
       - SEAFILE_SERVER_HOSTNAME=${SEAFILE_SERVER_HOSTNAME:-example.seafile.com}
       - FORCE_HTTPS_IN_CONF=${SEAFILE_FORCE_HTTPS_IN_CONF:-false}
       - JWT_PRIVATE_KEY=${JWT_PRIVATE_KEY:?Variable is not set or empty}
+      - ENABLE_SEADOC=${ENABLE_SEADOC:-false}
+      - SEADOC_SERVER_URL=${SEADOC_SERVER_URL:-http://example.example.com/sdoc-server}
     labels:
       caddy: ${SEAFILE_SERVER_PROTOCOL:-http}://${SEAFILE_SERVER_HOSTNAME:?Variable is not set or empty}
       caddy.reverse_proxy: "{{upstreams 80}}"

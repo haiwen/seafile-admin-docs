@@ -1,7 +1,7 @@
 services:
 
   seadoc:
-    image: ${SEADOC_IMAGE:-seafileltd/sdoc-server:latest}
+    image: ${SEADOC_IMAGE:-seafileltd/sdoc-server:1.0-latest}
     container_name: seadoc
     volumes:
       - ${SEADOC_VOLUMES:-/opt/seadoc-data/}:/shared
