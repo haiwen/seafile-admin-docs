@@ -21,9 +21,8 @@ services:
   seafile:
     image: ${SEAFILE_IMAGE:-seafileltd/seafile-mc:12.0-latest}
     container_name: seafile
-    ports:
-      - "80:80"
-      - ${SEAFILE_SSL_PORT:-}:443
+    # ports:
+    #   - "80:80"
     volumes:
       - ${SEAFILE_VOLUMES:-/opt/seafile-data}:/shared
     environment:

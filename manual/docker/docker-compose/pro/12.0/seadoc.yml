@@ -5,6 +5,8 @@ services:
     container_name: seadoc
     volumes:
       - ${SEADOC_VOLUMES:-/opt/seadoc-data/}:/shared
+    # ports:
+    #   - "80:80"
     environment:
       - DB_HOST=${SEAFILE_MYSQL_DB_HOST:-db}
       - DB_PORT=${SEAFILE_MYSQL_DB_PORT:-3306}
