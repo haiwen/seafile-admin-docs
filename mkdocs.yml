@@ -53,7 +53,6 @@ nav:
     - Changelog: changelog.md
   - Seafile Community Setup on Linux:
     - Outline: deploy/README.md
-    - Installation with SQLite: deploy/using_sqlite.md
     - Installation with MySQL: deploy/using_mysql.md
     - HTTPS with Nginx: deploy/https_with_nginx.md
     - HTTPS with Apache: deploy/https_with_apache.md
