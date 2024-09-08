@@ -1,9 +1,8 @@
 # Deploying Seafile
 
-We provide three ways to deploy Seafile services. Since version 8.0, **Docker is the recommended way**.
+We provide two ways to deploy Seafile services. Since version 8.0, **Docker is the recommended way**.
 
 * Using [Docker](../docker/deploy_seafile_with_docker.md)
-* Using [installation script](https://github.com/haiwen/seafile-server-installer)
 * Manually installing Seafile and setting up database, memcached and Nginx/Apache. See the following section.
 
 ## Manually deployment options
