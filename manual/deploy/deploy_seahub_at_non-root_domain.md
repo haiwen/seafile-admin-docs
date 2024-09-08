@@ -1,4 +1,4 @@
-# Deploy Seahub at Non-root domain or on custom port
+# Deploy Seahub at Non-root domain
 
 ## Non-root Domain
 
@@ -11,44 +11,18 @@ The following will talk about how to deploy Seafile Web using Apache/Nginx at No
 First, we need to overwrite some variables in seahub_settings.py:
 
 ```
-SERVE_STATIC = False
 MEDIA_URL = '/seafmedia/'
 COMPRESS_URL = MEDIA_URL
 STATIC_URL = MEDIA_URL + 'assets/'
 SITE_ROOT = '/seafile/'
-LOGIN_URL = '/seafile/accounts/login/'    # NOTE: since version 5.0.4
+LOGIN_URL = '/seafile/accounts/login/'
+FILE_SERVER_ROOT = 'http://www.myseafile.com/seafhttp'
+SERVICE_URL = 'http://www.myseafile.com/seafile'
 ```
-
-The webserver will serve static files (js, css, etc), so we just disable `SERVE_STATIC`.
 
 `MEDIA_URL` can be anything you like, just make sure a trailing slash is appended at the end.
 
 We deploy Seafile at `/seafile/` directory instead of root directory, so we set `SITE_ROOT` to `/seafile/`.
-
-### Modify ccnet.conf and seahub_setting.py
-
-#### Modify ccnet.conf
-
-You need to modify the value of `SERVICE_URL` in [ccnet.conf](../config/ccnet-conf.md)
-to let Seafile know the domain you choose.
-
-```
-# for 8.0.17 or before
-SERVICE_URL = http://www.myseafile.com/seafile
-```
-
-Note: If you later change the domain assigned to seahub, you also need to change the value of  `SERVICE_URL`.
-
-#### Modify seahub_settings.py
-
-You need to add a line in `seahub_settings.py` to set the value of `FILE_SERVER_ROOT`
-
-```python
-FILE_SERVER_ROOT = 'http://www.myseafile.com/seafhttp'
-
-# for 9.0.16 or after
-SERVICE_URL = 'http://www.myseafile.com/seafile'
-```
 
 **Note:** The file server path MUST be `/seafhttp` because this path is hardcoded in the clients.
 
@@ -134,16 +108,6 @@ Here is the sample configuration:
 
 We use Alias to let Apache serve static files, please change the second argument to your path.
 
-### Clear the cache
-
-By default, Seahub caches some data like the link to the avatar icon in `/tmp/seahub_cache/` (unless memcache is used). We suggest to clear the cache after seafile has been stopped:
-
-```
-rm -rf /tmp/seahub_cache/
-```
-
-For memcache users, please purge the cache there instead by restarting your memcached server.
-
 ### Start Seafile and Seahub
 
 ```
@@ -154,37 +118,3 @@ For memcache users, please purge the cache there instead by restarting your memc
 ### Using Seafile Client
 
 When logging in on the Seafile client, the server address should now be http://www.example.com/seafile, not http://www.example.com.
-
-## Custom Port
-
-Suppose that you want to use 20080 port (`http{s}://www.example.com:20080`) to serve Seafile, then you must tell Seafile that you are using 20080.
-
-You can achieve this by adding the custom port to the nginx configuration:
-
-```
-server {
-    listen 20080;
-    location / {
-         ...
-         proxy_set_header   Host $host:20080;
-         ...
-    }
-}
-```
-
-for apache
-
-```
-<VirtualHost *:20080>
-    ...
-    RequestHeader set Host %{HTTP_HOST}e:20080
-    ...
-</VirtualHost>
-```
-
-And don't forget to update seahub_settings.py
-
-```python
-# for 9.0.16 or after
-SERVICE_URL = 'http{s}://www.example.com:20080'
-```
