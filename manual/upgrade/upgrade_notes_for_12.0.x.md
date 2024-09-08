@@ -10,7 +10,7 @@ For docker based version, please check [upgrade Seafile Docker image](./upgrade_
 Seafile version 12.0 has four major changes:
 
 * A redesigned Web UI
-* Easy deployment of SeaDoc
+* A better integration with SeaDoc to provide online notes and documents feature
 * A new wiki module (still in beta, disabled by default)
 * A new lightweight and fast search engine, SeaSearch. SeaSearch is optional, you can still use ElasticSearch.
 * WebDAV no longer support login with LDAP account, the user must generate a WebDAV token at the profile page
