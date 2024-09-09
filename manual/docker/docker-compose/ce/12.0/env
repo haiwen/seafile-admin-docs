@@ -1,4 +1,4 @@
-COMPOSE_FILE='docker-compose.yml,caddy.yml'
+COMPOSE_FILE='seafile-server.yml,caddy.yml'
 COMPOSE_PATH_SEPARATOR=','
 
 
