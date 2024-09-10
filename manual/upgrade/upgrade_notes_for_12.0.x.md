@@ -18,10 +18,10 @@ Other changes:
 * A new lightweight and fast search engine, SeaSearch. SeaSearch is optional, you can still use ElasticSearch.
 * For security reason, WebDAV no longer support login with LDAP account, the user with LDAP account must generate a WebDAV token at the profile page
 
-Deploying SeaDoc and Seafile binary package on the same machine is no longer supported. You can:
+Deploying SeaDoc and Seafile binary package on the same server is no longer supported. You can:
 
-* Deploy SeaDoc on a new machine and integrate it with Seafile.
-* Migrate Seafile to a docker based deployment method and then deploy SeaDoc in the same machine.
+* Deploy SeaDoc on a new server and integrate it with Seafile.
+* Migrate Seafile to a docker based deployment method and then deploy SeaDoc in the same server.
 
 Deploying Seafile with binary package is now deprecated and probably no longer be supported in version 13.0. We recommend you to migrate your existing Seafile deployment to docker based.
 
@@ -56,27 +56,21 @@ upgrade/upgrade_11.0_12.0.sh
 
 If you have deployed SeaDoc extension in version 11.0, please use the following steps to upgrade it to version 1.0.
 
-SeaDoc 1.0 is for working with Seafile 12.0.
+Deploying SeaDoc and Seafile binary package on the same server is no longer supported. You can:
 
-### Change the DB_NAME
+* Deploy SeaDoc on a new server and integrate it with Seafile.
+* Migrate Seafile to a docker based deployment method and then deploy SeaDoc in the same server.
 
-From version 1.0, SeaDoc is using seahub_db database to store its operation logs and no longer need an extra database sdoc_db. You need to change the `DB_NAME` to `seahub_db` in the config file manually.
+If you have deployed SeaDoc extension in version 11.0 on a standalone server, please use the following steps to upgrade it to version 1.0.
 
-conf/sdoc_server_config.json
+### Delete sdoc_db
 
-```json
-"database": "seahub_db"
-```
+From version 1.0, SeaDoc is using seahub_db database to store its operation logs and no longer need an extra database sdoc_db. You can simply delete sdoc_db.
 
-### Update the docker compose file
+
+### Deploy a new SeaDoc server
 
 In version 1.0, we use env file to configure SeaDoc docker image, instead of modifying the docker-compose.yml file directly.
-
-Make sure you have installed Seafile 12.0, then backup old SeaDoc docker-compose.yml file.
-
-```sh
-mv docker-compose.yml docker-compose.yml.bak
-```
 
 Download [.env](https://manual.seafile.com/docker/docker-compose/seadoc/1.0/standalone/env) and [docker-compose.yml](https://manual.seafile.com/docker/docker-compose/seadoc/1.0/standalone/docker-compose.yml), then modify .env file.
 
