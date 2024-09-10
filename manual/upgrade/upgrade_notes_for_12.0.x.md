@@ -18,6 +18,14 @@ Other changes:
 * A new lightweight and fast search engine, SeaSearch. SeaSearch is optional, you can still use ElasticSearch.
 * For security reason, WebDAV no longer support login with LDAP account, the user with LDAP account must generate a WebDAV token at the profile page
 
+Deploying SeaDoc and Seafile binary package on the same machine is no longer supported. You can:
+
+* Deploy SeaDoc on a new machine and integrate it with Seafile.
+* Migrate Seafile to a docker based deployment method and then deploy SeaDoc in the same machine.
+
+Deploying Seafile with binary package is now deprecated and probably no longer be supported in version 13.0. We recommend you to migrate your existing Seafile deployment to docker based.
+
+
 ### ElasticSearch change (pro edition only)
 
 Elasticsearch version is not changed in Seafile version 12.0
