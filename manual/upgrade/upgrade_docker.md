@@ -114,7 +114,7 @@ The following fields merit particular attention:
 * The volume directory of Caddy data (SEAFILE_CADDY_VOLUMES)
 * The user of MySQL (SEAFILE_MYSQL_DB_USER, `database` - `user` can be found in conf/seafile.conf)
 * The password of MySQL (SEAFILE_MYSQL_DB_PASSWORD, `database` - `password` can be found in seafile.conf)
-* jwt (JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters)
+* jwt (JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: `pwgen -s 40 1`)
 * SEAFILE_SERVER_HOSTNAME (SEAFILE_SERVER_HOSTNAME, same as the SEAFILE_SERVER_HOSTNAME in the old docker-compose.yml)
 * SEAFILE_SERVER_PROTOCOL (SEAFILE_SERVER_PROTOCOL, use http or https)
 
