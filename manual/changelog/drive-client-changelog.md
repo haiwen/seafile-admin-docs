@@ -1,5 +1,16 @@
 # SeaDrive Client Changelog
 
+### 3.0.11 (2024/09/10)
+
+* \[win] Reuse cache folder when resync account
+* \[win] Don't download files with case conflicts in file names
+* \[mac] Remove local library metadata when deleting account
+* \[mac] Support uploading app package files
+* \[mac] Support latest TLS protocol
+* \[mac] Fix crash when first start on Apple Silicon
+* \[mac] Fix sync issue when creating a new folder and putting files into it
+* Use usernames as suffix for conflict files, instead of emails
+
 ### 3.0.10 (2024/06/18)
 
 * \[mac] Fix support for using mulitple accounts after macOS 14.4
