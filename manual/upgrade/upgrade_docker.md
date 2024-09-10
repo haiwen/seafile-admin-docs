@@ -167,7 +167,7 @@ listen 80;
 #    ssl_certificate      /shared/ssl/pkg.seafile.top.crt;
 #    ssl_certificate_key  /shared/ssl/pkg.seafile.top.key;
 
- #   ssl_ciphers ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!MD5:!DSS;
+#    ssl_ciphers ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!MD5:!DSS;
 
    ...
 ```
@@ -210,6 +210,43 @@ The following fields merit particular attention:
 * The volume directory of SeaDoc data (SEADOC_VOLUMES)
 * Enable SeaDoc (ENABLE_SEADOC)
 * SeaDoc service url (SEADOC_SERVER_URL, hostname + `/sdoc-server`)
+
+If you have deployed SeaDoc older version, you should remove `/sdoc-server/`, `/socket.io` configs in seafile.nginx.conf file.
+
+```config
+#    location /sdoc-server/ {
+#        add_header Access-Control-Allow-Origin *;
+#        add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
+#        add_header Access-Control-Allow-Headers "deviceType,token, authorization, content-type";
+#        if ($request_method = 'OPTIONS') {
+#            add_header Access-Control-Allow-Origin *;
+#            add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
+#            add_header Access-Control-Allow-Headers "deviceType,token, authorization, content-type";
+#            return 204;
+#        }
+#        proxy_pass         http://sdoc-server:7070/;
+#        proxy_redirect     off;
+#        proxy_set_header   Host              $host;
+#        proxy_set_header   X-Real-IP         $remote_addr;
+#        proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
+#        proxy_set_header   X-Forwarded-Host  $server_name;
+#        proxy_set_header   X-Forwarded-Proto $scheme;
+#        client_max_body_size 100m;
+#    }
+#    location /socket.io {
+#        proxy_pass http://sdoc-server:7070;
+#        proxy_http_version 1.1;
+#        proxy_set_header Upgrade $http_upgrade;
+#        proxy_set_header Connection 'upgrade';
+#        proxy_redirect off;
+#        proxy_buffers 8 32k;
+#        proxy_buffer_size 64k;
+#        proxy_set_header X-Real-IP $remote_addr;
+#        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+#        proxy_set_header Host $http_host;
+#        proxy_set_header X-NginX-Proxy true;
+#    }
+```
 
 Start Seafile server and SeaDoc server with the following command
 
