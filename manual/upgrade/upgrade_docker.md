@@ -101,16 +101,27 @@ mv docker-compose.yml docker-compose.yml.bak
 
 Then download [.env](https://manual.seafile.com/docker/docker-compose/ce/12.0/env), [seafile-server.yml](https://manual.seafile.com/docker/docker-compose/ce/12.0/seafile-server.yml) and [caddy.yml](https://manual.seafile.com/docker/docker-compose/ce/12.0/caddy.yml), and modify .env file according to the old configuration in `docker-compose.yml.bak`
 
+For community edition:
+
 ```sh
 wget -O .env https://manual.seafile.com/docker/docker-compose/ce/12.0/env
 wget https://manual.seafile.com/docker/docker-compose/ce/12.0/seafile-server.yml
 wget https://manual.seafile.com/docker/docker-compose/ce/12.0/caddy.yml
 ```
 
+For pro edition:
+
+```sh
+wget -O .env https://manual.seafile.com/docker/docker-compose/pro/12.0/env
+wget https://manual.seafile.com/docker/docker-compose/pro/12.0/seafile-server.yml
+wget https://manual.seafile.com/docker/docker-compose/pro/12.0/caddy.yml
+```
+
 The following fields merit particular attention:
 
 * The volume directory of Seafile data (SEAFILE_VOLUMES, same as the seafile volumes in the old docker-compose.yml)
 * The volume directory of MySQL data (SEAFILE_MYSQL_VOLUMES, same as the mysql volumes in the old docker-compose.yml)
+* The volume directory of Elasticsearch data (SEAFILE_ELASTICSEARCH_VOLUMES, pro edition only, same as the elasticsearch volumes in the old docker-compose.yml)
 * The volume directory of Caddy data (SEAFILE_CADDY_VOLUMES)
 * The user of MySQL (SEAFILE_MYSQL_DB_USER, `database` - `user` can be found in conf/seafile.conf)
 * The password of MySQL (SEAFILE_MYSQL_DB_PASSWORD, `database` - `password` can be found in seafile.conf)
@@ -173,8 +184,16 @@ In version 1.0, we use .env file to configure SeaDoc docker image, instead of mo
 
 Download [seadoc.yml](https://manual.seafile.com/docker/docker-compose/ce/12.0/seadoc.yml) to the Seafile `seafile-server.yml` directory, then modify Seafile .env file.
 
+For community edition:
+
 ```sh
 wget https://manual.seafile.com/docker/docker-compose/ce/12.0/seadoc.yml
+```
+
+For pro edition:
+
+```sh
+wget https://manual.seafile.com/docker/docker-compose/pro/12.0/seadoc.yml
 ```
 
 ```env
