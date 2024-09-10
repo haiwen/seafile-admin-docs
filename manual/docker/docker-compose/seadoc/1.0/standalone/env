@@ -1,4 +1,4 @@
-COMPOSE_FILE='docker-compose.yml'
+COMPOSE_FILE='seadoc.yml'
 COMPOSE_PATH_SEPARATOR=','
 
 
