@@ -407,7 +407,7 @@ To enable this feature, add below option to `seahub_settings.py`, e.g.
 LDAP_USER_ROLE_ATTR = 'title'
 ```
 
-`LDAP_USER_ROLE_ATTR` is the attribute field to configure roles in LDAP. You can write a custom function to map the role by creating a file `custom_functions.py` under conf/ and edit it like:
+`LDAP_USER_ROLE_ATTR` is the attribute field to configure roles in LDAP. You can write a custom function to map the role by creating a file `seahub_custom_functions.py` under conf/ and edit it like:
 
 ```python
 # -*- coding: utf-8 -*-
