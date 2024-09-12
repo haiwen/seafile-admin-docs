@@ -7,16 +7,19 @@ For docker based version, please check [upgrade Seafile Docker image](./upgrade_
 
 ## Important release changes
 
-Seafile version 12.0 has four major changes:
+Seafile version 12.0 has following major changes:
 
 * A redesigned Web UI
 * SeaDoc is now stable, providing online notes and documents feature
 * A new wiki module (still in beta, disabled by default)
+* A new trash mechanism, that deleted files will be recorded in database for fast listing. In the old version, deleted files are scanned from library history, which is slow.
 
 Other changes:
 
 * A new lightweight and fast search engine, SeaSearch. SeaSearch is optional, you can still use ElasticSearch.
-* For security reason, WebDAV no longer support login with LDAP account, the user with LDAP account must generate a WebDAV token at the profile page
+* [breaking change] For security reason, WebDAV no longer support login with LDAP account, the user with LDAP account must generate a WebDAV token at the profile page
+* [breaking change] The password strength level is now calculated by algorithm. The old USER_PASSWORD_MIN_LENGTH, USER_PASSWORD_STRENGTH_LEVEL is removed. Only USER_STRONG_PASSWORD_REQUIRED is still used.
+* For binary package based installation, a new `.env` file is needed to contain some configuration items. These configuration items need to be shared by different components in Seafile. We name it `.env` to be consistant with docker based installation.
 
 Deploying SeaDoc and Seafile binary package on the same server is no longer supported. You can:
 
