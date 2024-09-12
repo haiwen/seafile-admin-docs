@@ -123,13 +123,13 @@ The following fields merit particular attention:
 * The volume directory of MySQL data (SEAFILE_MYSQL_VOLUMES, same as the mysql volumes in the old docker-compose.yml)
 * The volume directory of Elasticsearch data (SEAFILE_ELASTICSEARCH_VOLUMES, pro edition only, same as the elasticsearch volumes in the old docker-compose.yml)
 * The volume directory of Caddy data (SEAFILE_CADDY_VOLUMES)
-* The user of MySQL (SEAFILE_MYSQL_DB_USER, `database` - `user` can be found in conf/seafile.conf)
-* The password of MySQL (SEAFILE_MYSQL_DB_PASSWORD, `database` - `password` can be found in seafile.conf)
+* The user of MySQL (SEAFILE_MYSQL_DB_USER, `database` - `user` can be found in `conf/seafile.conf`)
+* The password of MySQL (SEAFILE_MYSQL_DB_PASSWORD, `database` - `password` can be found in `conf/seafile.conf`)
 * jwt (JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: `pwgen -s 40 1`)
 * SEAFILE_SERVER_HOSTNAME (SEAFILE_SERVER_HOSTNAME, same as the SEAFILE_SERVER_HOSTNAME in the old docker-compose.yml)
 * SEAFILE_SERVER_PROTOCOL (SEAFILE_SERVER_PROTOCOL, use http or https)
 
-If you have used SSL before, you will also need modify the seafile.nginx.conf. Change server listen 443 to 80.
+SSL is now handled by the caddy server. If you have used SSL before, you will also need modify the seafile.nginx.conf. Change server listen 443 to 80.
 
 Backup the original seafile.nginx.conf file:
 
@@ -178,7 +178,7 @@ Start with docker compose up.
 
 If you have deployed SeaDoc extension in version 11.0, please use the following steps to upgrade it to version 1.0.
 
-SeaDoc 1.0 is for working with Seafile 12.0. SeaDoc and Seafile are deployed in the same directory.
+SeaDoc 1.0 is for working with Seafile 12.0. SeaDoc and Seafile are deployed in the same directory. SeaDoc has no state in itself. You can simplify delete old configuration file and directory of v0.8. Then deploy SeaDoc 1.0 as following.
 
 In version 1.0, we use .env file to configure SeaDoc docker image, instead of modifying the docker-compose.yml file directly.
 
