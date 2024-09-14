@@ -17,9 +17,13 @@ Seafile version 12.0 has following major changes:
 Other changes:
 
 * A new lightweight and fast search engine, SeaSearch. SeaSearch is optional, you can still use ElasticSearch.
-* [breaking change] For security reason, WebDAV no longer support login with LDAP account, the user with LDAP account must generate a WebDAV token at the profile page
-* [breaking change] The password strength level is now calculated by algorithm. The old USER_PASSWORD_MIN_LENGTH, USER_PASSWORD_STRENGTH_LEVEL is removed. Only USER_STRONG_PASSWORD_REQUIRED is still used.
+
+Breaking changes
+
+* For security reason, WebDAV no longer support login with LDAP account, the user with LDAP account must generate a WebDAV token at the profile page
+* The password strength level is now calculated by algorithm. The old USER_PASSWORD_MIN_LENGTH, USER_PASSWORD_STRENGTH_LEVEL is removed. Only USER_STRONG_PASSWORD_REQUIRED is still used.
 * For binary package based installation, a new `.env` file is needed to contain some configuration items. These configuration items need to be shared by different components in Seafile. We name it `.env` to be consistant with docker based installation.
+* [File tags] The current file tags feature is deprecated. We will re-implement a new one in version 13.0 with a new general metadata management module.
 
 Deploying SeaDoc and Seafile binary package on the same server is no longer supported. You can:
 
