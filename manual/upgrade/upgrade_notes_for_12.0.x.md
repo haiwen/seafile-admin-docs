@@ -57,7 +57,17 @@ sudo pip3 install future==1.0.* mysqlclient==2.2.* pillow==10.4.* sqlalchemy==2.
 upgrade/upgrade_11.0_12.0.sh
 ```
 
-### 3) Start Seafile-12.0.x server
+### 3) Create the `.env` file in conf/ directory
+
+conf/.env
+
+```env
+JWT_PRIVATE_KEY=xxx
+```
+
+Note: JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: `pwgen -s 40 1`
+
+### 4) Start Seafile-12.0.x server
 
 ## Upgrade SeaDoc from 0.8 to 1.0
 
