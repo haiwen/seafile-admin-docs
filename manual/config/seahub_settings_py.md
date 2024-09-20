@@ -217,10 +217,6 @@ DISABLE_SYNC_WITH_ANY_FOLDER = True
 # Enable or disable library history setting
 ENABLE_REPO_HISTORY_SETTING = True
 
-# Enable or disable normal user to create organization libraries
-# Since version 5.0.5
-ENABLE_USER_CREATE_ORG_REPO = True
-
 # Enable or disable user share library to any group
 # Since version 6.2.0
 ENABLE_SHARE_TO_ALL_GROUPS = True
