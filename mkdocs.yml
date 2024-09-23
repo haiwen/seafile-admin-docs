@@ -81,6 +81,9 @@ nav:
     - Migration from Seafile Community: docker/pro-edition/migrate_ce_to_pro_with_docker.md
     - Migrate from non-docker deployment: docker/non_docker_to_docker.md
     - Seafile Docker autostart: docker/seafile_docker_autostart.md
+  - Seafile Setup with Docker (v12.0):
+    - Seafile Community Installation (v12.0): docker/deploy_seafile_with_docker_v12.0.md
+    - Seafile Professional Installation (v12.0): docker/pro-edition/deploy_seafile_pro_with_docker_v12.0.md
   - Advanced Setup Options:
     - LDAP/AD Integration:
       - LDAP Integration: deploy/using_ldap.md

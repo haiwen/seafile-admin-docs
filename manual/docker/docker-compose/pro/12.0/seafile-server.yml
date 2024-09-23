@@ -45,6 +45,7 @@ services:
       - ${SEAFILE_VOLUMES:-/opt/seafile-data}:/shared
     environment:
       - DB_HOST=${SEAFILE_MYSQL_DB_HOST:-db}
+      - DB_PORT=${SEAFILE_MYSQL_DB_PORT:-3306}
       - DB_ROOT_PASSWD=${SEAFILE_MYSQL_ROOT_PASSWORD:?Variable is not set or empty}
       - DB_PASSWORD=${SEAFILE_MYSQL_DB_PASSWORD:?Variable is not set or empty}
       - TIME_ZONE=${TIME_ZONE:-Etc/UTC}
@@ -53,6 +54,7 @@ services:
       - SEAFILE_SERVER_HOSTNAME=${SEAFILE_SERVER_HOSTNAME:?Variable is not set or empty}
       - SEAFILE_SERVER_PROTOCOL=${SEAFILE_SERVER_PROTOCOL:-http}
       - SITE_ROOT=${SITE_ROOT:-/}
+      - NON_ROOT=${NON_ROOT:-false}
       - JWT_PRIVATE_KEY=${JWT_PRIVATE_KEY:?Variable is not set or empty}
       - ENABLE_SEADOC=${ENABLE_SEADOC:-false}
       - SEADOC_SERVER_URL=${SEADOC_SERVER_URL:-http://example.example.com/sdoc-server}
