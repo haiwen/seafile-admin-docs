@@ -66,18 +66,18 @@ nano .env
 
 The following fields merit particular attention:
 
-* The volume directory of Seafile data (SEAFILE_VOLUMES)
-* The volume directory of MySQL data (SEAFILE_MYSQL_VOLUMES)
-* The volume directory of Caddy data (SEAFILE_CADDY_VOLUMES)
-* The volume directory of Elasticsearch data (SEAFILE_ELASTICSEARCH_VOLUMES)
-* The root password of MySQL (SEAFILE_MYSQL_ROOT_PASSWORD)
-* The user password of MySQL (SEAFILE_MYSQL_DB_PASSWORD)
-* JWT (JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: `pwgen -s 40 1`)
-* Seafile server hostname (SEAFILE_SERVER_HOSTNAME)
-* Seafile server protocol (SEAFILE_SERVER_PROTOCOL, use http or https)
-* Time zone (TIME_ZONE)
-* Admin username (SEAFILE_ADMIN_EMAIL)
-* Admin password (SEAFILE_ADMIN_PASSWORD)
+- `SEAFILE_VOLUMES`: The volume directory of Seafile data
+- `SEAFILE_MYSQL_VOLUMES`: The volume directory of MySQL data
+- `SEAFILE_CADDY_VOLUMES`: The volume directory of Caddy data
+- `SEAFILE_ELASTICSEARCH_VOLUMES`: The volume directory of Elasticsearch data
+- `SEAFILE_MYSQL_ROOT_PASSWORD`: The `root` password of MySQL
+- `SEAFILE_MYSQL_DB_PASSWORD`: The user `seafile` password of MySQL
+- `JWT`: JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: `pwgen -s 40 1`
+- `SEAFILE_SERVER_HOSTNAME`: Seafile server hostname or domain
+- `SEAFILE_SERVER_PROTOCOL`: Seafile server protocol (http or https)
+- `TIME_ZONE`: Time zone (default UTC)
+- `SEAFILE_ADMIN_EMAIL`: Admin username
+- `SEAFILE_ADMIN_PASSWORD`: Admin password
 
 NOTE: SSL is now handled by the caddy server.
 
