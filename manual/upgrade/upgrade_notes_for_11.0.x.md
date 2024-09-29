@@ -144,7 +144,7 @@ LDAP_AUTO_REACTIVATE_USERS = True        # Whether to auto activate deactivated 
 LDAP_USE_PAGED_RESULT = False            # Whether to use pagination extension
 IMPORT_NEW_USER = True                   # Whether to import new users when sync user
 ACTIVATE_USER_WHEN_IMPORT = True         # Whether to activate the user when importing new user
-ENABLE_EXTRA_USER_INFO_SYNC = True       # Whether to enable sync of additional user information,
+ENABLE_LDAP_EXTRA_USER_INFO_SYNC = True       # Whether to enable sync of additional user information,
                                          # including user's full name, contact_email, department, and Windows login name, etc.
 DEACTIVE_USER_IF_NOTFOUND = False        # Set to "true" if you want to deactivate a user 
                                          # when he/she was deleted in AD server.

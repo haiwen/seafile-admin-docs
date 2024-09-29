@@ -94,7 +94,7 @@ LDAP_USE_PAGED_RESULT = False
 IMPORT_NEW_USER = True                   
 ACTIVATE_USER_WHEN_IMPORT = True         
 DEACTIVE_USER_IF_NOTFOUND = False        
-ENABLE_EXTRA_USER_INFO_SYNC = True       
+ENABLE_LDAP_EXTRA_USER_INFO_SYNC = True       
 ```
 
 Meaning of some options:
@@ -109,7 +109,7 @@ Meaning of some options:
 * **IMPORT_NEW_USER:** Whether to import new users when sync user.
 * **ACTIVE_USER_WHEN_IMPORT:** Whether to activate the user automatically when imported. 
 * **DEACTIVE_USER_IF_NOTFOUND**: set to "true" if you want to deactivate a user when he/she was deleted in AD server.
-* **ENABLE_EXTRA_USER_INFO_SYNC**: Enable synchronization of additional user information, including user's full name, department, and Windows login name, etc.
+* **ENABLE_LDAP_EXTRA_USER_INFO_SYNC**: Enable synchronization of additional user information, including user's full name, department, and Windows login name, etc.
 
 
 
@@ -389,7 +389,7 @@ IMPORT_NEW_USER = True                   # Whether to import new users when sync
 ACTIVATE_USER_WHEN_IMPORT = True         # Whether to activate the user when importing new user
 DEACTIVE_USER_IF_NOTFOUND = False        # Set to "true" if you want to deactivate a user 
                                          # when he/she was deleted in AD server.
-ENABLE_EXTRA_USER_INFO_SYNC = True       # Whether to enable sync of additional user information,
+ENABLE_LDAP_EXTRA_USER_INFO_SYNC = True       # Whether to enable sync of additional user information,
                                          # including user's full name, department, and Windows login name, etc.
 
 # Common group sync options
