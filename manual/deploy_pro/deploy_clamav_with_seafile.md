@@ -68,7 +68,7 @@ systemctl start clamav-daemon
 * Test the software
 
 ```
-$ curl https://www.eicar.org/download/eicar.com.txt | clamdscan -
+$ curl https://secure.eicar.org/eicar.com.txt | clamdscan -
 ```
 
 The output must include:
