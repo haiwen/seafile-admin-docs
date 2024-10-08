@@ -109,6 +109,16 @@ cd <install-path>/seafile-server-latest
 ./seahub.sh python-env python3 seahub/manage.py clear_invalid_repo_data --dry-run=true
 ```
 
+### Trash Data
+
+Since version 12.0, we offer command to clear trash data in Seahub database. 
+
+```
+cd <install-path>/seafile-server-latest
+./seahub.sh python-env python3 seahub/manage.py clean_repo_trash --keep-days 30
+```
+
+* keep-days:  number of days before which the generated trash in database will be cleaned. Default by 90 days.
 
 ### Library Sync Tokens
 
