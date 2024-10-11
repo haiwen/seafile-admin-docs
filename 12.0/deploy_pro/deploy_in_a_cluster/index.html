@@ -1,0 +1,4310 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="seafile">
+      
+      
+        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/deploy_in_a_cluster/">
+      
+      
+        <link rel="prev" href="../migrate/">
+      
+      
+        <link rel="next" href="../enable_search_and_background_tasks_in_a_cluster/">
+      
+      
+      <link rel="icon" href="../../media/favicon.ico">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.18">
+    
+    
+      
+        <title>Deploy in a cluster - Seafile Admin Manual</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#deploy-in-a-cluster" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Seafile Admin Manual" class="md-header__button md-logo" aria-label="Seafile Admin Manual" data-md-component="logo">
+      
+  <img src="../../media/seafile-transparent-1024.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Seafile Admin Manual
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Deploy in a cluster
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/haiwen/seafile-admin-docs/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    haiwen/seafile-admin-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Seafile Admin Manual" class="md-nav__button md-logo" aria-label="Seafile Admin Manual" data-md-component="logo">
+      
+  <img src="../../media/seafile-transparent-1024.png" alt="logo">
+
+    </a>
+    Seafile Admin Manual
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/haiwen/seafile-admin-docs/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    haiwen/seafile-admin-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Overview
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/components/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Seafile Components
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../overview/file_permission_management/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    File permission management
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Roadmap
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contribution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contribution
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Changelog
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Seafile Community Setup on Linux
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Seafile Community Setup on Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Outline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploy/using_mysql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation with MySQL
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploy/https_with_nginx/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPS with Nginx
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploy/https_with_apache/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPS with Apache
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Seafile Professional Setup on Linux
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Seafile Professional Setup on Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Outline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../download_and_setup_seafile_professional_server/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migrate_from_seafile_community_server/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Migration from Seafile Community
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Storage Backends
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Storage Backends
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup_with_amazon_s3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Amazon S3 Backend
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup_with_ceph/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ceph Backend
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup_with_swift/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OpenStack Swift Backend
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup_with_oss/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Alibaba OSS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multiple_storage_backends/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multiple Storage Backends
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migrate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data migration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Cluster Deployment
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            Cluster Deployment
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Deploy in a cluster
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Deploy in a cluster
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preparation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Preparation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hardware-database-memory-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware, Database, Memory Cache
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-python-libraries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install Python libraries
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-a-single-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure a Single Node
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure a Single Node">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-the-license" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get the license
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#downloaduncompress-seafile-professional-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download/Uncompress Seafile Professional Server
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup-seafile" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup Seafile
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup Seafile">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#seafileconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      seafile.conf
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seahub_settingspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      seahub_settings.py
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seafeventsconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      seafevents.conf
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-seahub-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update Seahub Database
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backend-storage-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backend Storage Settings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup-nginxapache-and-http" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup Nginx/Apache and HTTP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-and-test-the-single-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run and Test the Single Node
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-other-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure other nodes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure other nodes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#copy-the-config-to-all-seafile-servers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copy the config to all Seafile servers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#back-end-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      back-end node
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start-seafile-service-on-boot" class="md-nav__link">
+    <span class="md-ellipsis">
+      Start Seafile Service on boot
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#firewall-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Firewall Settings
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#load-balancer-setting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Load Balancer Setting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Load Balancer Setting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-elastic-load-balancer-elb" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS Elastic Load Balancer (ELB)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#haproxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      HAProxy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-how-it-runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      See how it runs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-final-configuration-of-the-front-end-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      The final configuration of the front-end nodes
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enable_search_and_background_tasks_in_a_cluster/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Search and background tasks in a cluster
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memcached_mariadb_cluster/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Memcache and MariaDB Cluster
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup_seafile_cluster_with_nfs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup Seafile cluster with NFS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../seafile_professional_sdition_software_license_agreement/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Seafile Setup with Docker
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Seafile Setup with Docker
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/deploy_seafile_with_docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Seafile Community Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/pro-edition/deploy_seafile_pro_with_docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Seafile Professional Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/cluster/deploy_seafile_cluster_with_docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Seafile Docker Cluster Deployment
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploy/deploy_with_k8s/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup with Kubernetes (K8s)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/pro-edition/migrate_ce_to_pro_with_docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Migration from Seafile Community
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/non_docker_to_docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Migrate from non-docker deployment
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/seafile_docker_autostart/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Seafile Docker autostart
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Advanced Setup Options
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced Setup Options
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    LDAP/AD Integration
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            LDAP/AD Integration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploy/using_ldap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LDAP Integration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../using_ldap_pro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LDAP Configuration for Seafile Pro
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ldap_group_sync/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Importing Groups from LDAP (Pro)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ldap_role_sync/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Importing Roles from LDAP (Pro)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploy/ldap_in_11.0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LDAP in version 11.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ldap_in_11.0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LDAP in version 11.0 (Pro)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Single Sign On
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            Single Sign On
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploy/single_sign_on/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Outline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploy/oauth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OAuth Authentication
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploy/remote_user/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Remote User Authentication
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploy/shibboleth_authentication/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Shibboleth Authentication
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploy/auto_login_seadrive/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Auto Login to SeaDrive on Windows
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../saml2_in_10.0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SAML 2.0 in version 10.0+ (Pro)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adfs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SAML 2.0 (old) (Pro)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CAS Authentication (Pro)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploy/auth_switch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Switch authentication
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Online Office
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            Online Office
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploy/libreoffice_online/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LibreOffice Online Integration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploy/only_office/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OnlyOffice Integration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../office_web_app/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Office Online Server Integration (Pro)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extra_setup/setup_seadoc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SeaDoc Integration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploy/notification-server/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Notification Server
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extension/webdav/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WebDAV extension
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extension/fuse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FUSE extension
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_8" id="__nav_5_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Virus Scan (Pro)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_8">
+            <span class="md-nav__icon md-icon"></span>
+            Virus Scan (Pro)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../virus_scan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Outline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deploy_clamav_with_seafile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deploy ClamAV with Seafile
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../virus_scan_with_kav4fs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Virus Scan With Kav4fs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_9" id="__nav_5_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Advanced User Management (Pro)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_9">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced User Management (Pro)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi_institutions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multi-Institutions Support
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../roles_permissions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Roles and Permissions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_roles_permissions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Administrator Roles and Permissions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi_tenancy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multi-Tenancy Support
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../details_about_file_search/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Advanced File Search configuration (Pro)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploy/migrate_from_sqlite_to_mysql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Migrate From SQLite to MySQL
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_12" id="__nav_5_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Others Deployment Notes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_12">
+            <span class="md-nav__icon md-icon"></span>
+            Others Deployment Notes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploy/start_seafile_at_system_bootup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Start Seafile at System Bootup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploy/using_logrotate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logrotate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploy/ocm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Open Cloud Mesh
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploy/deploy_seafile_behind_nat/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deploy Seafile behind NAT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploy/deploy_seahub_at_non-root_domain/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deploy Seahub at Non-root domain or on custom port
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/fail2ban/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Config fail2ban
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../real_time_backup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Real-time Backup Server
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Configuration and Customization
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Configuration and Customization
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Outline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/ccnet-conf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ccnet.conf
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/seafile-conf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    seafile.conf
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/seahub_settings_py/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    seahub_settings.py
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/seafevents-conf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    seafevents.conf
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/seahub_customization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Seahub customization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/sending_email/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Email Sending
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Administration
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Administration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintain/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Outline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintain/account/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Account management
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintain/two_factor_authentication/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Two-factor Authentication
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/security_features/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Security features
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/auditing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Access logs and auditing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintain/export_report/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Export report
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintain/logs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintain/backup_recovery/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Backup and Recovery
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintain/seafile_fsck/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Seafile FSCK
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintain/seafile_gc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Seafile GC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintain/clean_database/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Clean database
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../seaf_import/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Import Directory To Seafile (Pro)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Upgrade Seafile Server
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Upgrade Seafile Server
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upgrade/upgrade/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Outline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upgrade/upgrade_docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upgrade Seafile Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upgrade/upgrade_a_cluster/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upgrade Seafile Cluster
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upgrade/upgrade_a_cluster_docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upgrade Seafile Cluster (Docker)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upgrade/upgrade_notes_for_7.0.x/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upgrade notes for 7.0.x
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upgrade/upgrade_notes_for_7.1.x/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upgrade notes for 7.1.x
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upgrade/upgrade_notes_for_8.0.x/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upgrade notes for 8.0.x
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upgrade/upgrade_notes_for_9.0.x/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upgrade notes for 9.0.x
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upgrade/upgrade_notes_for_10.0.x/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upgrade notes for 10.0.x
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upgrade/upgrade_notes_for_11.0.x/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upgrade notes for 11.0.x
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upgrade/upgrade_notes_for_12.0.x/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upgrade notes for 12.0.x (In progress)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Developing
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Developing
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../develop/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Outline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    How to Build Seafile
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_2">
+            <span class="md-nav__icon md-icon"></span>
+            How to Build Seafile
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../build_seafile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Outline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../build_seafile/linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../build_seafile/osx/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    macOS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../build_seafile/windows/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Windows
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../build_seafile/server/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Server development
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../build_seafile/rpi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Server binary package
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../develop/translation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Translation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../develop/web_api_v2.1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Web API V2.1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/rene-s/Seafile-PHP-SDK" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PHP API
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../develop/data_model/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Model
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    ChangeLog
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            ChangeLog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/server-changelog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Seafile Community Edition
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/changelog-for-seafile-professional-server/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Seafile Professional Edition
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/client-changelog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Seafile Client
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/drive-client-changelog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Drive Client
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preparation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Preparation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hardware-database-memory-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware, Database, Memory Cache
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-python-libraries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install Python libraries
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-a-single-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure a Single Node
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure a Single Node">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-the-license" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get the license
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#downloaduncompress-seafile-professional-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download/Uncompress Seafile Professional Server
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup-seafile" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup Seafile
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup Seafile">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#seafileconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      seafile.conf
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seahub_settingspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      seahub_settings.py
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seafeventsconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      seafevents.conf
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-seahub-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update Seahub Database
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backend-storage-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backend Storage Settings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup-nginxapache-and-http" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup Nginx/Apache and HTTP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-and-test-the-single-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run and Test the Single Node
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-other-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure other nodes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure other nodes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#copy-the-config-to-all-seafile-servers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copy the config to all Seafile servers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#back-end-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      back-end node
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start-seafile-service-on-boot" class="md-nav__link">
+    <span class="md-ellipsis">
+      Start Seafile Service on boot
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#firewall-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Firewall Settings
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#load-balancer-setting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Load Balancer Setting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Load Balancer Setting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-elastic-load-balancer-elb" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS Elastic Load Balancer (ELB)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#haproxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      HAProxy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-how-it-runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      See how it runs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-final-configuration-of-the-front-end-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      The final configuration of the front-end nodes
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="deploy-in-a-cluster">Deploy in a cluster<a class="headerlink" href="#deploy-in-a-cluster" title="Permanent link">&para;</a></h1>
+<p><strong>Update</strong>: Since Seafile Pro server 6.0.0, cluster deployment requires "sticky session" settings in the load balancer. Otherwise sometimes folder download on the web UI can't work properly. Read the "Load Balancer Setting" section below for details</p>
+<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
+<p>The Seafile cluster solution employs a 3-tier architecture:</p>
+<ul>
+<li>Load balancer tier: Distribute incoming traffic to Seafile servers. HA can be achieved by deploying multiple load balancer instances.</li>
+<li>Seafile server cluster: a cluster of Seafile server instances. If one instance fails, the load balancer will stop handing traffic to it. So HA is achieved.</li>
+<li>Backend storage: Distributed storage cluster, e.g.  S3, Openstack Swift or Ceph.</li>
+</ul>
+<p>This architecture scales horizontally. That means, you can handle more traffic by adding more machines. The architecture is visualized in the following picture.</p>
+<p><img alt="seafile-cluster" src="../../images/seafile-cluster-arch.png" /></p>
+<p>There are two main components on the Seafile server node: web server (Nginx/Apache) and Seafile app server. The web server passes requests from the clients to Seafile app server. The Seafile app servers work independently. They don't know about each other's state. That means each app server can fail independently without affecting other app server instances. The load balancer is responsible for detecting failure and re-routing requests.</p>
+<p>Even though Seafile app servers work independently, they still have to share some session information. All shared session information is stored in memory cache. Thus, all Seafile app servers have to connect to the same memory cache server (cluster). Since Pro Edition 11.0, both memcached and Redis can be used as memory cache. Before 11.0, only memcached is supported. More details about memory cache configuration is available later.</p>
+<p>The background server is the workhorse for various background tasks, including full-text indexing, office file preview, virus scanning, LDAP syncing. It should usually be run on a dedicated server for better performance. Currently only one background task server can be running in the entire cluster. If more than one background servers are running, they may conflict with each others when doing some tasks. If you need HA for background task server, you can consider using <a href="http://www.keepalived.org/">Keepalived</a> to build a hot backup for it. More details can be found in <a href="../enable_search_and_background_tasks_in_a_cluster/">background server setup</a>.</p>
+<p>All Seafile app servers access the same set of user data. The user data has two parts: One in the MySQL database and the other one in the backend storage cluster (S3, Ceph etc.). All app servers serve the data equally to the clients.</p>
+<p>All app servers have to connect to the same database or database cluster. We recommend to use MariaDB Galera Cluster if you need a database cluster.</p>
+<p>There are a few steps to deploy a Seafile cluster:</p>
+<ol>
+<li>Prepare hardware, operating systems, memory cache and database</li>
+<li>Setup a single Seafile server node</li>
+<li>Copy the deployment to other Seafile nodes</li>
+<li>Setup Nginx/Apache and firewall rules</li>
+<li>Setup load balancer</li>
+<li><a href="../enable_search_and_background_tasks_in_a_cluster/">Setup backgroup task node</a></li>
+</ol>
+<h2 id="preparation">Preparation<a class="headerlink" href="#preparation" title="Permanent link">&para;</a></h2>
+<h3 id="hardware-database-memory-cache">Hardware, Database, Memory Cache<a class="headerlink" href="#hardware-database-memory-cache" title="Permanent link">&para;</a></h3>
+<p>At least 3 Linux server with at least 4 cores, 8GB RAM. Two servers work as frontend servers, while one server works as background task server. Virtual machines are sufficient for most cases.</p>
+<p>In small cluster, you can re-use the 3 Seafile servers to run memcached cluster and MariaDB cluster. For larger clusters, you can have 3 more dedicated server to run memcached cluster and MariaDB cluster. Because the load on these two clusters are not high, they can share the hardware to save cost. Documentation about how to setup memcached cluster and MariaDB cluster can be found <a href="../memcached_mariadb_cluster/">here</a>.</p>
+<p>Since version 11.0, Redis can also be used as memory cache server. But currently only single-node Redis is supported.</p>
+<h3 id="install-python-libraries">Install Python libraries<a class="headerlink" href="#install-python-libraries" title="Permanent link">&para;</a></h3>
+<p>On each mode, you need to install some python libraries.</p>
+<p>First make sure your have installed Python 2.7, then:</p>
+<div class="codehilite"><pre><span></span><code>sudo easy_install pip
+sudo pip install boto
+</code></pre></div>
+
+<p>If you receive an error stating "Wheel installs require setuptools &gt;= ...", run this between the pip and boto lines above</p>
+<div class="codehilite"><pre><span></span><code><span class="n">sudo</span><span class="w"> </span><span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">setuptools</span><span class="w"> </span><span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">use</span><span class="o">-</span><span class="n">wheel</span><span class="w"> </span><span class="o">--</span><span class="n">upgrade</span>
+</code></pre></div>
+
+<h2 id="configure-a-single-node">Configure a Single Node<a class="headerlink" href="#configure-a-single-node" title="Permanent link">&para;</a></h2>
+<p>You should make sure the config files on every Seafile server are consistent.</p>
+<h3 id="get-the-license">Get the license<a class="headerlink" href="#get-the-license" title="Permanent link">&para;</a></h3>
+<p>Put the license you get under the top level diretory. In our wiki, we use the diretory <code>/data/haiwen/</code> as the top level directory.</p>
+<h3 id="downloaduncompress-seafile-professional-server">Download/Uncompress Seafile Professional Server<a class="headerlink" href="#downloaduncompress-seafile-professional-server" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code>tar xf seafile-pro-server_8.0.0_x86-64.tar.gz
+</code></pre></div>
+
+<p>Now you have:</p>
+<div class="codehilite"><pre><span></span><code>haiwen
+├── seafile-license.txt
+└── seafile-pro-server-8.0.0/
+</code></pre></div>
+
+<h3 id="setup-seafile">Setup Seafile<a class="headerlink" href="#setup-seafile" title="Permanent link">&para;</a></h3>
+<p>Please follow <a href="../download_and_setup_seafile_professional_server/">Download and Setup Seafile Professional Server With MySQL</a> to setup a single Seafile server node.</p>
+<p>Note: <strong>Use the load balancer's address or domain name for the server address. Don't use the local IP address of each Seafile server machine. This assures the user will always access your service via the load balancers.</strong></p>
+<p>After the setup process is done, you still have to do a few manual changes to the config files.</p>
+<h4 id="seafileconf">seafile.conf<a class="headerlink" href="#seafileconf" title="Permanent link">&para;</a></h4>
+<p>If you use a single memcached server, you have to add the following configuration to <code>seafile.conf</code></p>
+<div class="codehilite"><pre><span></span><code><span class="k">[cluster]</span>
+<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+
+<span class="k">[memcached]</span>
+<span class="na">memcached_options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">--SERVER=192.168.1.134 --POOL-MIN=10 --POOL-MAX=100</span>
+</code></pre></div>
+
+<p>If you use memcached cluster, the recommended way to setup memcached clusters can be found <a href="../memcached_mariadb_cluster/">here</a>.</p>
+<p>You'll setup two memcached server, in active/standby mode. A floating IP address will be assigned to the current active memcached node. So you have to configure the address in seafile.conf accordingly.</p>
+<div class="codehilite"><pre><span></span><code><span class="k">[cluster]</span>
+<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+
+<span class="k">[memcached]</span>
+<span class="na">memcached_options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">--SERVER=&lt;floating IP address&gt; --POOL-MIN=10 --POOL-MAX=100</span>
+</code></pre></div>
+
+<p>If you are using Redis as cache, add following configurations:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">[cluster]</span>
+<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+
+<span class="k">[redis]</span>
+<span class="c1"># your redis server address</span>
+<span class="na">redis_server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">127.0.0.1</span>
+<span class="c1"># your redis server port</span>
+<span class="na">redis_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">6379</span>
+<span class="c1"># size of connection pool to redis, default is 100</span>
+<span class="na">max_connections</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">100</span>
+</code></pre></div>
+
+<p>Currently only single-node Redis is supported. Redis Sentinel or Cluster is not supported yet.</p>
+<p>(Optional) The Seafile server also opens a port for the load balancers to run health checks. Seafile by default uses port 11001. You can change this by adding the following config option to <code>seafile.conf</code></p>
+<div class="codehilite"><pre><span></span><code><span class="k">[cluster]</span>
+<span class="na">health_check_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">12345</span>
+</code></pre></div>
+
+<h4 id="seahub_settingspy">seahub_settings.py<a class="headerlink" href="#seahub_settingspy" title="Permanent link">&para;</a></h4>
+<p>You must setup and use memcached when deploying Seafile cluster. Refer to <a href="memcached_options.md">"add memcached"</a> to use memcached in Seahub.</p>
+<p>Also add following options to seahub_setting.py. These settings tell Seahub to store avatar in database and cache avatar in memcached, and store css CACHE to local memory.</p>
+<div class="codehilite"><pre><span></span><code>AVATAR_FILE_STORAGE = &#39;seahub.base.database_storage.DatabaseStorage&#39;
+</code></pre></div>
+
+<h4 id="seafeventsconf">seafevents.conf<a class="headerlink" href="#seafeventsconf" title="Permanent link">&para;</a></h4>
+<p>Add following to <code>seafevents.conf</code> to disable file indexing service on the local server. The file indexing service should be started on a dedicated background server.</p>
+<div class="codehilite"><pre><span></span><code><span class="k">[INDEX FILES]</span>
+<span class="na">external_es_server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+</code></pre></div>
+
+<p>Here is an example <code>[INDEX FILES]</code> section:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">[INDEX FILES]</span>
+<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+<span class="na">interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">10m</span>
+<span class="na">highlight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">fvh</span><span class="w">     </span><span class="c1"># This configuration is only available for Seafile 6.3.0 pro and above.</span>
+<span class="na">index_office_pdf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+<span class="na">external_es_server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+<span class="na">es_host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">background.seafile.com</span>
+<span class="na">es_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">9200</span>
+</code></pre></div>
+
+<p>Note: <code>enable = true</code> should be left unchanged. For versions older than 6.1, <code>es_port</code> was 9500.</p>
+<h3 id="update-seahub-database">Update Seahub Database<a class="headerlink" href="#update-seahub-database" title="Permanent link">&para;</a></h3>
+<p>In cluster environment, we have to store avatars in the database instead of in a local disk.</p>
+<div class="codehilite"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n n-Quoted">`avatar_uploaded`</span><span class="w"> </span><span class="p">(</span><span class="n n-Quoted">`filename`</span><span class="w"> </span><span class="kt">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="no">NULL</span><span class="p">,</span><span class="w"> </span><span class="n n-Quoted">`filename_md5`</span><span class="w"> </span><span class="kt">CHAR</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="no">NULL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n n-Quoted">`data`</span><span class="w"> </span><span class="kt">MEDIUMTEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="no">NULL</span><span class="p">,</span><span class="w"> </span><span class="n n-Quoted">`size`</span><span class="w"> </span><span class="kt">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="no">NULL</span><span class="p">,</span><span class="w"> </span><span class="n n-Quoted">`mtime`</span><span class="w"> </span><span class="kt">datetime</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="no">NULL</span><span class="p">);</span>
+</code></pre></div>
+
+<h3 id="backend-storage-settings">Backend Storage Settings<a class="headerlink" href="#backend-storage-settings" title="Permanent link">&para;</a></h3>
+<p>You also need to add the settings for backend cloud storage systems to the config files.</p>
+<ul>
+<li>For NFS: <a href="../setup_seafile_cluster_with_nfs/">Setup Seafile cluster with NFS</a></li>
+<li>For S3: <a href="../setup_with_amazon_s3/">Setup With Amazon S3</a></li>
+<li>For OpenStack Swift: <a href="setup_with_openstackswift.md">Setup With OpenStackSwift</a></li>
+<li>For Ceph: <a href="../setup_with_ceph/">Setup With Ceph</a></li>
+<li>For OSS: <a href="../setup_with_oss/">Setup With Alibaba OSS</a></li>
+</ul>
+<h3 id="setup-nginxapache-and-http">Setup Nginx/Apache and HTTP<a class="headerlink" href="#setup-nginxapache-and-http" title="Permanent link">&para;</a></h3>
+<p>Nginx/Apache with HTTP need to set it up on each machine running Seafile server. This is make sure only port 80 need to be exposed to load balancer. (HTTPS should be setup at the load balancer)</p>
+<p>Please check the following documents on how to setup HTTP with Nginx/Apache. Note, you only the HTTP setup part the the documents. (HTTPS is not needed)</p>
+<ul>
+<li><a href="https://manual.seafile.com/deploy/https_with_nginx/">Nginx</a></li>
+<li><a href="https://manual.seafile.com/deploy/https_with_apache/">Apache</a></li>
+</ul>
+<h3 id="run-and-test-the-single-node">Run and Test the Single Node<a class="headerlink" href="#run-and-test-the-single-node" title="Permanent link">&para;</a></h3>
+<p>Once you have finished configuring this single node, start it to test if it runs properly:</p>
+<div class="codehilite"><pre><span></span><code>cd /data/haiwen/seafile-server-latest
+./seafile.sh start
+./seahub.sh start
+</code></pre></div>
+
+<p><em>Note:</em> The first time you start seahub, the script would prompt you to create an admin account for your Seafile server.</p>
+<p>Open your browser, visit <code>http://ip-address-of-this-node:80</code> and login with the admin account.</p>
+<h2 id="configure-other-nodes">Configure other nodes<a class="headerlink" href="#configure-other-nodes" title="Permanent link">&para;</a></h2>
+<p>Now you have one node working fine, let's continue to configure more nodes.</p>
+<h3 id="copy-the-config-to-all-seafile-servers">Copy the config to all Seafile servers<a class="headerlink" href="#copy-the-config-to-all-seafile-servers" title="Permanent link">&para;</a></h3>
+<p>Supposed your Seafile installation directory is <code>/data/haiwen</code>, compress this whole directory into a tarball and copy the tarball to all other Seafile server machines. You can simply uncompress the tarball and use it.</p>
+<p>On each node, run <code>./seafile.sh</code> and <code>./seahub.sh</code> to start Seafile server.</p>
+<h3 id="back-end-node">back-end node<a class="headerlink" href="#back-end-node" title="Permanent link">&para;</a></h3>
+<p>In the back-end node, you need to execute the following command to start Seafile server. <strong>CLUSTER_MODE=backend</strong> means this node is seafile backend server.</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">CLUSTER_MODE</span><span class="o">=</span>backend
+./seafile.sh<span class="w"> </span>start
+./seafile-background-tasks.sh<span class="w"> </span>start
+</code></pre></div>
+
+<h2 id="start-seafile-service-on-boot">Start Seafile Service on boot<a class="headerlink" href="#start-seafile-service-on-boot" title="Permanent link">&para;</a></h2>
+<p>It would be convenient to setup Seafile service to start on system boot. Follow <a href="../../deploy/start_seafile_at_system_bootup/">this documentation</a> to set it up on <strong>all nodes</strong>.</p>
+<h2 id="firewall-settings">Firewall Settings<a class="headerlink" href="#firewall-settings" title="Permanent link">&para;</a></h2>
+<p>Beside <a href="../deploy/using_firewall.md">standard ports of a seafile server</a>, there are 2 firewall rule changes for Seafile cluster:</p>
+<ul>
+<li>On each Seafile server machine, you should open the health check port (default 11001);</li>
+<li>On the memcached server, you should open the port 11211. For security resons only the Seafile servers should be allowed to access this port.</li>
+</ul>
+<h2 id="load-balancer-setting">Load Balancer Setting<a class="headerlink" href="#load-balancer-setting" title="Permanent link">&para;</a></h2>
+<p>Now that your cluster is already running, fire up the load balancer and welcome your users. Since version 6.0.0, Seafile Pro requires "sticky session" settings in the load balancer. You should refer to the manual of your load balancer for how to set up sticky sessions.</p>
+<h3 id="aws-elastic-load-balancer-elb">AWS Elastic Load Balancer (ELB)<a class="headerlink" href="#aws-elastic-load-balancer-elb" title="Permanent link">&para;</a></h3>
+<p>In the AWS ELB management console, after you've added the Seafile server instances to the instance list, you should do two more configurations.</p>
+<p>First you should setup HTTP(S) listeners. Ports 443 and 80 of ELB should be forwarded to the ports 80 or 443 of the Seafile servers.</p>
+<p>Then you setup health check</p>
+<p><img alt="elb-health-check" src="../../images/elb-health-check.png" /></p>
+<p>Refer to <a href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html">AWS documentation</a> about how to setup sticky sessions.</p>
+<h3 id="haproxy">HAProxy<a class="headerlink" href="#haproxy" title="Permanent link">&para;</a></h3>
+<p>This is a sample <code>/etc/haproxy/haproxy.cfg</code>:</p>
+<p>(Assume your health check port is <code>11001</code>)</p>
+<div class="codehilite"><pre><span></span><code><span class="nv">global</span>
+<span class="w">    </span><span class="nv">log</span><span class="w"> </span><span class="mi">127</span>.<span class="mi">0</span>.<span class="mi">0</span>.<span class="mi">1</span><span class="w"> </span><span class="nv">local1</span><span class="w"> </span><span class="nv">notice</span>
+<span class="w">    </span><span class="nv">maxconn</span><span class="w"> </span><span class="mi">4096</span>
+<span class="w">    </span><span class="nv">user</span><span class="w"> </span><span class="nv">haproxy</span>
+<span class="w">    </span><span class="nv">group</span><span class="w"> </span><span class="nv">haproxy</span>
+
+<span class="nv">defaults</span>
+<span class="w">    </span><span class="nv">log</span><span class="w"> </span><span class="nv">global</span>
+<span class="w">    </span><span class="nv">mode</span><span class="w"> </span><span class="nv">http</span>
+<span class="w">    </span><span class="nv">retries</span><span class="w"> </span><span class="mi">3</span>
+<span class="w">    </span><span class="nv">maxconn</span><span class="w"> </span><span class="mi">2000</span>
+<span class="w">    </span><span class="nb">timeout</span><span class="w"> </span><span class="k">connect</span><span class="w"> </span><span class="mi">10000</span>
+<span class="w">    </span><span class="nb">timeout</span><span class="w"> </span><span class="nv">client</span><span class="w"> </span><span class="mi">300000</span>
+<span class="w">    </span><span class="nb">timeout</span><span class="w"> </span><span class="nv">server</span><span class="w"> </span><span class="mi">300000</span>
+
+<span class="nv">listen</span><span class="w"> </span><span class="nv">seafile</span><span class="w"> </span><span class="mi">0</span>.<span class="mi">0</span>.<span class="mi">0</span>.<span class="mi">0</span>:<span class="mi">80</span>
+<span class="w">    </span><span class="nv">mode</span><span class="w"> </span><span class="nv">http</span>
+<span class="w">    </span><span class="nv">option</span><span class="w"> </span><span class="nv">httplog</span>
+<span class="w">    </span><span class="nv">option</span><span class="w"> </span><span class="nv">dontlognull</span>
+<span class="w">    </span><span class="nv">option</span><span class="w"> </span><span class="nv">forwardfor</span>
+<span class="w">    </span><span class="nv">cookie</span><span class="w"> </span><span class="nv">SERVERID</span><span class="w"> </span><span class="nv">insert</span><span class="w"> </span><span class="nv">indirect</span><span class="w"> </span><span class="nv">nocache</span>
+<span class="w">    </span><span class="nv">server</span><span class="w"> </span><span class="nv">seafileserver01</span><span class="w"> </span><span class="mi">192</span>.<span class="mi">168</span>.<span class="mi">1</span>.<span class="mi">165</span>:<span class="mi">80</span><span class="w"> </span><span class="nv">check</span><span class="w"> </span><span class="nv">port</span><span class="w"> </span><span class="mi">11001</span><span class="w"> </span><span class="nv">cookie</span><span class="w"> </span><span class="nv">seafileserver01</span>
+<span class="w">    </span><span class="nv">server</span><span class="w"> </span><span class="nv">seafileserver02</span><span class="w"> </span><span class="mi">192</span>.<span class="mi">168</span>.<span class="mi">1</span>.<span class="mi">200</span>:<span class="mi">80</span><span class="w"> </span><span class="nv">check</span><span class="w"> </span><span class="nv">port</span><span class="w"> </span><span class="mi">11001</span><span class="w"> </span><span class="nv">cookie</span><span class="w"> </span><span class="nv">seafileserver02</span>
+</code></pre></div>
+
+<h2 id="see-how-it-runs">See how it runs<a class="headerlink" href="#see-how-it-runs" title="Permanent link">&para;</a></h2>
+<p>Now you should be able to test your cluster. Open <a href="https://seafile.example.com">https://seafile.example.com</a> in your browser and enjoy. You can also synchronize files with Seafile clients.</p>
+<p>If the above works, the next step would be <a href="../enable_search_and_background_tasks_in_a_cluster/">Enable search and background tasks in a cluster</a>.</p>
+<h2 id="the-final-configuration-of-the-front-end-nodes">The final configuration of the front-end nodes<a class="headerlink" href="#the-final-configuration-of-the-front-end-nodes" title="Permanent link">&para;</a></h2>
+<p>Here is the summary of configurations at the front-end node that related to cluster setup. (for version 7.1+)</p>
+<p>For <strong>seafile.conf</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">[cluster]</span>
+<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+<span class="na">memcached_options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">--SERVER=&lt;IP of memcached node&gt; --POOL-MIN=10 --POOL-MAX=100</span>
+</code></pre></div>
+
+<p>The <code>enabled</code> option will prevent the start of background tasks by <code>./seafile.sh start</code> in the front-end node. The tasks should be explicitly started by <code>./seafile-background-tasks.sh start</code> at the back-end node.</p>
+<p>For <strong>seahub_settings.py</strong>:</p>
+<div class="codehilite"><pre><span></span><code>AVATAR_FILE_STORAGE = &#39;seahub.base.database_storage.DatabaseStorage&#39;
+</code></pre></div>
+
+<p>For <strong>seafevents.conf</strong>:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">[INDEX FILES]</span>
+<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+<span class="na">interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">10m</span>
+<span class="na">highlight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">fvh</span><span class="w">     </span><span class="c1"># This configuration is for improving searching speed</span>
+<span class="na">external_es_server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+<span class="na">es_host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;IP of background node&gt;</span>
+<span class="na">es_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">9200</span>
+</code></pre></div>
+
+<p>The <code>[INDEX FILES]</code> section is needed to let the front-end node know the file search feature is enabled. The <code>external_es_server = true</code> is to tell the front-end node not to start the ElasticSearch but to use the ElasticSearch server at the back-end node.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 Seafile Ltd.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/haiwen/seafile-admin-docs/" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.3220b9d7.min.js"></script>
+      
+    
+  </body>
+</html>
