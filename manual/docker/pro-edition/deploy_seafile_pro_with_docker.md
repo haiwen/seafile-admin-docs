@@ -3,6 +3,7 @@
 This manual explains how to deploy and run Seafile Server Professional Edition (Seafile PE) on a Linux server using Docker and Docker Compose. The deployment has been tested for Debian/Ubuntu and CentOS, but Seafile PE should also work on other Linux distributions.
 
 ## Requirements
+
 Seafile PE requires a minimum of 2 cores and 2GB RAM. If Elasticsearch is installed on the same server, the minimum requirements are 4 cores and 4 GB RAM, and make sure the [mmapfs counts](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules-store.html#mmapfs) do not cause excptions like out of memory, which can be increased by following command (see <https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html> for futher details):
 
 ```shell
@@ -36,62 +37,49 @@ Use the [official installation guide for your OS to install Docker](https://docs
 
 Log into Seafile's private repository and pull the Seafile image:
 
-```
+```bash
 docker login docker.seadrive.org
-docker pull docker.seadrive.org/seafileltd/seafile-pro-mc:latest
+docker pull docker.seadrive.org/seafileltd/seafile-pro-mc:12.0-latest
 ```
 
 When prompted, enter the username and password of the private repository. They are available on the download page in the [Customer Center](https://customer.seafile.com/downloads).
 
-NOTE: Older Seafile PE versions are also available in the repository (back to Seafile 7.0). To pull an older version, replace 'latest' tag by the desired version.
+NOTE: Older Seafile PE versions are also available in the repository (back to Seafile 7.0). To pull an older version, replace '12.0-latest' tag by the desired version.
 
-### Downloading and Modifying docker-compose.yml
+### Downloading and Modifying `.env`
 
-Download the docker-compose.yml sample file into Seafile's directory and modify the Compose file to fit your environment and settings.
+From Seafile Docker 12.0, we recommend that you use `.env`, `seafile-server.yml`  and `caddy.yml` files for configuration.
 
 NOTE: Different versions of Seafile have different compose files.
 
-```
+```bash
 mkdir /opt/seafile
 cd /opt/seafile
 
-# Seafile PE 7.1 and 8.0
-wget -O "docker-compose.yml" "https://manual.seafile.com/docker/docker-compose/pro/7.1_8.0/docker-compose.yml"
+# Seafile PE 12.0
+wget -O .env https://manual.seafile.com/docker/docker-compose/pro/12.0/env
+wget https://manual.seafile.com/docker/docker-compose/pro/12.0/seafile-server.yml
+wget https://manual.seafile.com/docker/docker-compose/pro/12.0/caddy.yml
 
-# Seafile PE 9.0
-wget -O "docker-compose.yml" "https://manual.seafile.com/docker/docker-compose/pro/9.0/docker-compose.yml"
-
-# Seafile PE 10.0
-wget -O "docker-compose.yml" "https://manual.seafile.com/docker/docker-compose/pro/10.0/docker-compose.yml"
-
-# Seafile PE 11.0
-wget -O "docker-compose.yml" "https://manual.seafile.com/docker/docker-compose/pro/11.0/docker-compose.yml"
-
-nano docker-compose.yml
+nano .env
 ```
 
 The following fields merit particular attention:
 
-* The password of MariaDB root (MYSQL_ROOT_PASSWORD and DB_ROOT_PASSWD)
-* The Seafile admin email address (SEAFILE_ADMIN_EMAIL)
-* The Seafile admin password (SEAFILE_ADMIN_PASSWORD)
-* The listening ports of the container seafile 
-* The host name (SEAFILE_SERVER_HOSTNAME)
-* The use of Let's Encrypt for HTTPS (SEAFILE_SERVER_LETSENCRYPT)
+- `SEAFILE_VOLUMES`: The volume directory of Seafile data
+- `SEAFILE_MYSQL_VOLUMES`: The volume directory of MySQL data
+- `SEAFILE_CADDY_VOLUMES`: The volume directory of Caddy data
+- `SEAFILE_ELASTICSEARCH_VOLUMES`: The volume directory of Elasticsearch data
+- `SEAFILE_MYSQL_ROOT_PASSWORD`: The `root` password of MySQL
+- `SEAFILE_MYSQL_DB_PASSWORD`: The user `seafile` password of MySQL
+- `JWT`: JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: `pwgen -s 40 1`
+- `SEAFILE_SERVER_HOSTNAME`: Seafile server hostname or domain
+- `SEAFILE_SERVER_PROTOCOL`: Seafile server protocol (http or https)
+- `TIME_ZONE`: Time zone (default UTC)
+- `SEAFILE_ADMIN_EMAIL`: Admin username
+- `SEAFILE_ADMIN_PASSWORD`: Admin password
 
-The new password for MYSQL_ROOT_PASSWORD and DB_ROOT_PASSWD must be identical.
-
-To enable HTTPS access (which is required for production use) enter the SEAFILE_SERVER_HOSTNAME and uncomment port 443 in the configuration of the container seafile. If you want to use Let's Encrypt to obtain a SSL certificate, set SEAFILE_SERVER_LETSENCRYPT to `true` (and do not comment out port 80 because it is required when requesting a Let's Encrypt certificate). If you want to use your own SSL certificate, leave SEAFILE_SERVER_LETSENCRYPT set to `false` and follow the instructions in section [Configuring a Custom SSL Certificate](https://manual.seafile.com/docker/pro-edition/deploy_seafile_pro_with_docker/#configuring-a-custom-ssl-certificate).
-
-Additional customizable options in the Compose file are:
-
-* The volume path for the container db
-* The volume path for the container elasticsearch
-* The volume path for the container seafile
-* The image tag of the Seafile version to install (image)
-* The time zone (TIME_ZONE)
-
-If you have pulled a particular version, modify the image tag accordingly.
+NOTE: SSL is now handled by the caddy server.
 
 To conclude, set the directory permissions of the Elasticsearch volumne:
 
@@ -108,7 +96,7 @@ Run docker compose in detached mode:
 docker compose up -d
 ```
 
-NOTE: You must run the above command in the directory with the docker-compose.yml.
+NOTE: You must run the above command in the directory with the `.env`.
 
 Wait a few moment for the database to initialize. You can now access Seafile at the host name specified in the Compose file. (A 502 Bad Gateway error means that the system has not yet completed the initialization.)
 
@@ -146,167 +134,60 @@ Placeholder spot for shared volumes. You may elect to store certain persistent i
   * /opt/seafile-data/seafile/logs: This is the directory that would contain the log files of seafile server processes. For example, you can find seaf-server logs in `/opt/seafile-data/seafile/logs/seafile.log`.
 * /opt/seafile-data/logs: This is the directory for operating system and Nginx logs.
   * /opt/seafile-data/logs/var-log: This is the directory that would be mounted as `/var/log` inside the container. For example, you can find the nginx logs in `/opt/seafile-data/logs/var-log/nginx/`.
-* /opt/seafile-data/ssl: This is directory for certificate, which does not exist by default.
 
 ### Reviewing the Deployment
 
-The command `docker container list` should list the four containers specified in the docker-compose.yml.
+The command `docker container list` should list the containers specified in the `.env`.
 
 The directory layout of the Seafile container's volume should look as follows:
 
-```
+```bash
 $ tree /opt/seafile-data -L 2
 /opt/seafile-data
 ├── logs
 │   └── var-log
 ├── nginx
 │   └── conf
-├── seafile
-│   ├── ccnet
-│   ├── conf
-│   ├── logs
-│   ├── pro-data
-│   ├── seafile-data
-│   └── seahub-data
-└── ssl
-    ├── account.conf
-    ├── ca
-    ├── http.header
-    ├── SEAFILE_SERVER_HOSTNAME
-    ├── SEAFILE_SERVER_HOSTNAME.crt
-    └── SEAFILE_SERVER_HOSTNAME.key
+└── seafile
+    ├── ccnet
+    ├── conf
+    ├── logs
+    ├── pro-data
+    ├── seafile-data
+    └── seahub-data
 ```
-
-NOTE: The directory `ssl` does not exist if Let's Encrypt is not used for HTTPS. SEAFILE_SERVER_HOSTNAME substitutes for the host name used in the docker-compose.yml file.
 
 All Seafile config files are stored in `/opt/seafile-data/seafile/conf`. The nginx config file is in `/opt/seafile-data/nginx/conf`.
 
 Any modification of a configuration file requires a restart of Seafile to take effect:
 
-```
+```bash
 docker compose restart
 ```
 
 All Seafile log files are stored in `/opt/seafile-data/seafile/logs` whereas all other log files are in `/opt/seafile-data/logs/var-log`.
 
-## Configuring a Custom SSL Certificate
-
-NOTE: This section is only relevant when you do not want to use a Let's Encrypt certificate, but a certificate of your own.
-
-Create a folder for the certificate:
-
-```
-mkdir /opt/seafile-data/ssl
-```
-
-Save your certificate and private key in this folder.
-
-Modify the nginx configuration `seafile.nginx.conf` in `/opt/seafile-data/nginx/conf` to look like this:
-
-```
-server {
-    listen 80;
-    server_name example.seafile.com default_server;
-
-    location / {
-        rewrite ^ https://$host$request_uri? permanent;
-    }
-}
-server {
-    listen 443;
-    ssl on;
-    ssl_certificate      /shared/ssl/your-ssl-crt.crt;
-    ssl_certificate_key  /shared/ssl/your-ssl-key.key;
-    ssl_ciphers ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+3DES:!aNULL:!MD5:!DSS;
-
-    server_name example.seafile.com;
-    ...
-
-```
-
-Modify the values for server_name, ssl_certificate, and ssl_certificate_key to correspond to your situation.
-
-Now reload the nginx configuration:
-
-```
-docker exec -it seafile /usr/sbin/nginx -s reload
-```
-
-NOTE: If you got the following error when SEAFILE_SERVER_LETSENCRYPT=true is set:
-
-```log
-subprocess.CalledProcessError: Command '/scripts/ssl.sh /shared/ssl cloud.seafile-demo.de' returned non-zero exit status 128.
-```
-
-In /scripts/ssl.sh (script in seafile container), `git clone git://` has to be replaced with `git clone https://`.
-
-Then restart the container:
-
-```shell
-docker compose restart
-```
-
-Since version 9.0.6, we use acme (not acme-tiny) to get certificate and fix this error.
-
-Since version 10.0.x, if you want to use a reverse proxy and apply for a certificate outside docker, you can use `FORCE_HTTPS_IN_CONF` to force write `https://<your_host>` in the configuration file.
-
-e.g.
-
-```
-seafile:
-    ...
-    environment:
-        ...
-        - SEAFILE_SERVER_LETSENCRYPT=false
-        - SEAFILE_SERVER_HOSTNAME=seafile.example.com
-        - FORCE_HTTPS_IN_CONF=true
-        ...
-
-```
-
 ## Use an existing mysql-server
 
-If you want to use an existing mysql-server, you can modify the `docker-compose.yml` as follows
+If you want to use an existing mysql-server, you can modify the `.env` as follows
 
-```yml
-services:
-  #db:
-    #image: mariadb:10.11
-    #...
-
-  seafile:
-    ...
-    environment:
-        ...
-        - DB_HOST=192.168.0.2
-        - DB_PORT=3306
-        - DB_ROOT_PASSWD=mysql_root_password
-        ...
-    depends_on:
-      #- db
-      - memcached
+```env
+SEAFILE_MYSQL_DB_HOST=192.168.0.2
+SEAFILE_MYSQL_DB_PORT=3306
+SEAFILE_MYSQL_ROOT_PASSWORD=ROOT_PASSWORD
+SEAFILE_MYSQL_DB_PASSWORD=PASSWORD
 ```
 
-* The entire db chapter needs to be removed
-* The host of MySQL (DB_HOST)
-* The port of MySQL (DB_PORT)
-* The password of MySQL root (DB_ROOT_PASSWD)
-* db in depends_on chapter needs to be removed
-* When Seafile is installed, the user `seafile` will be used to connect to the mysql-server (in conf/seafile.conf). You can remove the `DB_ROOT_PASSWD`.
+NOTE: `SEAFILE_MYSQL_ROOT_PASSWORD` is needed during installation. Later, after Seafile is installed, the user `seafile` will be used to connect to the mysql-server (SEAFILE_MYSQL_DB_PASSWORD). You can remove the `SEAFILE_MYSQL_ROOT_PASSWORD`.
 
 ## Run Seafile as non root user inside docker
 
-Since version 10.0, you can use run seafile as non root user in docker. (NOTE: Programs such as my_init, Nginx are still run as root inside docker.)
+You can use run seafile as non root user in docker. (**NOTE:** Programs such as `my_init`, Nginx are still run as `root` inside docker.)
 
-First add the `NON_ROOT=true` to the docker-compose.yml.
+First add the `NON_ROOT=true` to the `.env`.
 
-```yml
-seafile:
-    ...
-    environment:
-        ...
-        - NON_ROOT=true
-        ...
+```env
+NON_ROOT=true
 ```
 
 Then modify `/opt/seafile-data/seafile/` permissions.
@@ -315,27 +196,18 @@ Then modify `/opt/seafile-data/seafile/` permissions.
 chmod -R a+rwx /opt/seafile-data/seafile/
 ```
 
-Note: Before version 11.0.7-pro, you have to create a seafile user on the host, and modify the owner to seafile in `/opt/seafile-data/seafile/`. (**NOTE:** Do not change the `uid` and `gid`.)
-
-```bash
-groupadd --gid 8000 seafile
-
-useradd --home-dir /home/seafile --create-home --uid 8000 --gid 8000 --shell /bin/sh --skel /dev/null seafile
-
-chown -R seafile:seafile /opt/seafile-data/seafile/
-```
-
-Restarting the container run Seafile use seafile user. (NOTE: Later when do maintenance, other scripts in docker also required to run as seafile user, e.g. `su seafile -c ./seaf-gc.sh`)
+Then destroy the containers and run them again:
 
 ```bash
 docker compose down
 docker compose up -d
 ```
 
+Now you can run Seafile as `seafile` user. (**NOTE:** Later, when doing maintenance, other scripts in docker are also required to be run as `seafile` user, e.g. `su seafile -c ./seaf-gc.sh`)
+
 ## Backup and Recovery
 
 Follow the instructions in [Backup and restore for Seafile Docker](../../maintain/backup_recovery.md)
-
 
 ## Garbage Collection
 
@@ -345,15 +217,13 @@ The required scripts can be found in the `/scripts` folder of the docker contain
 
 ## OnlyOffice with Docker
 
-You need to manually add the OnlyOffice config to docker-compose.yml
+You need to manually add the OnlyOffice config to `.env`
 
 * [OnlyOffice with Docker](deploy_onlyoffice_with_docker.md)
 
 ## Clamav with Docker
 
-Since version 9.0.6, you can deploy Clamav with Docker.
-
-You need to manually add the Clamav config to docker-compose.yml
+You need to manually add the Clamav config to `.env`
 
 * [Deploy Clamav with Docker](../../deploy_pro/deploy_clamav_with_seafile.md)
 
@@ -392,7 +262,6 @@ You need to manually add the Clamav config to docker-compose.yml
 ### Admin Tools
 
 * [Import Directory to Seafile](../../deploy_pro/seaf_import.md)
-
 
 ## FAQ
 
