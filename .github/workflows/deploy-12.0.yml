@@ -3,7 +3,7 @@ name: Deploy CI
 on:
   push:
     branches:
-      - master
+      - 12.0
 
 jobs:
   deploy:
@@ -17,5 +17,4 @@ jobs:
           python-version: 3.x
       - run: pip install mkdocs-material mkdocs-awesome-pages-plugin mkdocs-material-extensions mike
       - run: cd $GITHUB_WORKSPACE
-      - run: mike deploy --push -u 11.0 latest
-      - run: mike set-default --push latest
+      - run: mike deploy --push -u 12.0
