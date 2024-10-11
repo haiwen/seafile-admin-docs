@@ -20,12 +20,15 @@ theme:
 plugins:
   - search
   - awesome-pages
+  - mike
 
 # Customization
 extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/haiwen/seafile-admin-docs/
+  version:
+    provider: mike
 
 extra_css:
   - stylesheets/extra.css
