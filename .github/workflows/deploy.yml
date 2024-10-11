@@ -1,4 +1,4 @@
-name: Deploy CI
+name: Deploy by version
 
 on:
   push:
@@ -13,6 +13,6 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: 3.x
-      - run: pip install mkdocs-material mkdocs-awesome-pages-plugin mkdocs-material-extensions
+      - run: pip install mkdocs-material mkdocs-awesome-pages-plugin mkdocs-material-extensions mike
       - run: cd $GITHUB_WORKSPACE
-      - run: mkdocs gh-deploy --force
+      - run: mike deploy 11.0 latest
