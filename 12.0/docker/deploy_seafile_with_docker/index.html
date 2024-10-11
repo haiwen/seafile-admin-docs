@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/12.0/docker/deploy_seafile_with_docker/">
       
       
-        <link rel="prev" href="../../deploy_pro/seafile_professional_sdition_software_license_agreement/">
+        <link rel="prev" href="../seafile_docker_structures/">
       
       
         <link rel="next" href="../pro-edition/deploy_seafile_pro_with_docker/">
@@ -960,6 +960,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../seafile_docker_structures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Seafile Docker Structures
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -1172,18 +1193,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#letsencrypt-ssl-certificate-is-about-to-expire" class="md-nav__link">
+  <a href="#about-ssl-and-caddy" class="md-nav__link">
     <span class="md-ellipsis">
-      LetsEncrypt SSL certificate is about to expire
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#change-the-environment-variable-seafile_server_letsencryptfalse-value-to-true" class="md-nav__link">
-    <span class="md-ellipsis">
-      Change the environment variable SEAFILE_SERVER_LETSENCRYPT=false value to true
+      About SSL and Caddy
     </span>
   </a>
   
@@ -3822,18 +3834,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#letsencrypt-ssl-certificate-is-about-to-expire" class="md-nav__link">
+  <a href="#about-ssl-and-caddy" class="md-nav__link">
     <span class="md-ellipsis">
-      LetsEncrypt SSL certificate is about to expire
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#change-the-environment-variable-seafile_server_letsencryptfalse-value-to-true" class="md-nav__link">
-    <span class="md-ellipsis">
-      Change the environment variable SEAFILE_SERVER_LETSENCRYPT=false value to true
+      About SSL and Caddy
     </span>
   </a>
   
@@ -3900,7 +3903,7 @@ nano<span class="w"> </span>.env
 <li><code>SEAFILE_ADMIN_EMAIL</code>: Admin username</li>
 <li><code>SEAFILE_ADMIN_PASSWORD</code>: Admin password</li>
 </ul>
-<p>NOTE: SSL is now handled by the caddy server.</p>
+<p>NOTE: SSL is now handled by the <a href="#about-ssl-and-caddy">caddy server</a> from 12.0.</p>
 <h3 id="start-seafile-server">Start Seafile server<a class="headerlink" href="#start-seafile-server" title="Permanent link">&para;</a></h3>
 <p>Start Seafile server with the following command</p>
 <div class="codehilite"><pre><span></span><code><span class="c1"># if `.env` file is in current directory:</span>
@@ -3987,46 +3990,10 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 <div class="codehilite"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>/bin/bash
 </code></pre></div>
 
-<h3 id="letsencrypt-ssl-certificate-is-about-to-expire">LetsEncrypt SSL certificate is about to expire<a class="headerlink" href="#letsencrypt-ssl-certificate-is-about-to-expire" title="Permanent link">&para;</a></h3>
-<p>If the certificate is not renewed automatically, you can execute the following command to manually renew the certificate.</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># /scripts/ssl.sh /shared/ssl/ &lt;your-seafile-domain&gt;</span>
-/scripts/ssl.sh<span class="w"> </span>/shared/ssl/<span class="w"> </span>example.seafile.com
-</code></pre></div>
-
-<h3 id="change-the-environment-variable-seafile_server_letsencryptfalse-value-to-true">Change the environment variable <code>SEAFILE_SERVER_LETSENCRYPT=false</code> value to <code>true</code><a class="headerlink" href="#change-the-environment-variable-seafile_server_letsencryptfalse-value-to-true" title="Permanent link">&para;</a></h3>
-<ol>
-<li>If you want to change to https after using http, first back up the <code>seafile.nginx.conf</code>:</li>
-</ol>
-<div class="codehilite"><pre><span></span><code>mv<span class="w"> </span>/opt/seafile-data/nginx/conf/seafile.nginx.conf<span class="w"> </span>/opt/seafile-data/nginx/conf/seafile.nginx.conf.bak
-<span class="c1"># or</span>
-mv<span class="w"> </span>/opt/seafile-data/nginx/conf/seafile.nginx.conf<span class="o">{</span>,.bak<span class="o">}</span>
-</code></pre></div>
-
-<ol>
-<li>
-<p>Destroy the containers with <code>docker compose down</code>.</p>
-</li>
-<li>
-<p>Edit <code>docker-compose.yml</code>: change <code>SEAFILE_SERVER_LETSENCRYPT=false</code> value to <code>true</code>.</p>
-</li>
-<li>
-<p>Run <code>docker compose up -d</code> again. The new Seafile container will automatically request for an SSL certificate to be generated and installed.</p>
-</li>
-</ol>
-<p><strong>Notes:</strong></p>
-<ul>
-<li>
-<p>You need to manually change http to https in other configuration files.</p>
-</li>
-<li>
-<p><code>SERVICE_URL</code> and <code>FILE_SERVER_ROOT</code> environment variables in the system admin page also need to be modified.</p>
-</li>
-<li>
-<p>If you have modified the old <code>seafile.nginx.conf</code>, now you can modify the new <code>seafile.nginx.conf</code> as you want. Then execute the following command:</p>
-</li>
-</ul>
-<div class="codehilite"><pre><span></span><code><span class="c1"># test the Nginx configuration and, if OK, reload nginx for configuration to take effect:</span>
-docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>seafile<span class="w"> </span>nginx<span class="w"> </span>-t<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>seafile<span class="w"> </span>nginx<span class="w"> </span>-s<span class="w"> </span>reload
+<h3 id="about-ssl-and-caddy">About SSL and Caddy<a class="headerlink" href="#about-ssl-and-caddy" title="Permanent link">&para;</a></h3>
+<p>From Seafile 12.0, the SSL is handled by <a href="https://caddyserver.com/docs/"><strong><em>Caddy</em></strong></a>. Caddy is a modern open source web server that mainly binds external traffic and internal services in <a href="../seafile_docker_structures/">seafile docker</a>. The default caddy image is <a href="https://github.com/lucaslorentz/caddy-docker-proxy"><code>lucaslorentz/caddy-docker-proxy:2.9</code></a>, which user only needs to correctly configure the following fields in <code>.env</code> to automatically complete the acquisition and update of the certificate:</p>
+<div class="codehilite"><pre><span></span><code><span class="nv">SEAFILE_SERVER_PROTOCOL</span><span class="o">=</span>https
+<span class="nv">SEAFILE_SERVER_HOSTNAME</span><span class="o">=</span>example.com
 </code></pre></div>
 
 

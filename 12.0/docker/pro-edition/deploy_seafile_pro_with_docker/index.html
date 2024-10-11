@@ -963,6 +963,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../seafile_docker_structures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Seafile Docker Structures
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../deploy_seafile_with_docker/" class="md-nav__link">
         
   
@@ -4037,7 +4058,7 @@ nano<span class="w"> </span>.env
 <li><code>SEAFILE_ADMIN_EMAIL</code>: Admin username</li>
 <li><code>SEAFILE_ADMIN_PASSWORD</code>: Admin password</li>
 </ul>
-<p>NOTE: SSL is now handled by the caddy server.</p>
+<p>NOTE: SSL is now handled by the <a href="../../deploy_seafile_with_docker/#about-ssl-and-caddy">caddy server</a> from 12.0.</p>
 <p>To conclude, set the directory permissions of the Elasticsearch volumne:</p>
 <div class="codehilite"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/opt/seafile-elasticsearch/data
 chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>-R<span class="w"> </span>/opt/seafile-elasticsearch/data
@@ -4176,7 +4197,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 <h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
 <p>Q: I forgot the Seafile admin email address/password, how do I create a new admin account?</p>
 <p>A: You can create a new admin account by running</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">docker</span><span class="w"> </span><span class="k">exec</span><span class="w"> </span><span class="o">-</span><span class="nv">it</span><span class="w"> </span><span class="nv">seafile</span><span class="w"> </span><span class="o">/</span><span class="nv">opt</span><span class="o">/</span><span class="nv">seafile</span><span class="o">/</span><span class="nv">seafile</span><span class="o">-</span><span class="nv">server</span><span class="o">-</span><span class="nv">latest</span><span class="o">/</span><span class="nv">reset</span><span class="o">-</span><span class="nv">admin</span>.<span class="nv">sh</span>
+<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>/opt/seafile/seafile-server-latest/reset-admin.sh
 </code></pre></div>
 
 <p>The Seafile service must be up when running the superuser command.</p>
@@ -4186,27 +4207,6 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 <p>A: You can view the docker logs using this command: <code>docker compose logs -f</code>.</p>
 <p>Q: I forgot the admin password. How do I create a new admin account?</p>
 <p>A: Make sure the seafile container is running and enter <code>docker exec -it seafile /opt/seafile/seafile-server-latest/reset-admin.sh</code>.</p>
-<p>Q: The Let's Encrypt SSL certificate is about to expire, how do I renew it?</p>
-<p>A: The SSL certificate should be renewed automatically 30 days prior to its expiration. If the automatic renewal fails, these commands renew the certificate manually:</p>
-<div class="codehilite"><pre><span></span><code>docker exec -it seafile /bin/bash
-/scripts/ssl.sh /shared/ssl/ SEAFILE_SERVER_HOSTNAME
-</code></pre></div>
-
-<p>SEAFILE_SERVER_HOSTNAME is the host name used in the docker-compose.yml.</p>
-<p>Q: <strong>SEAFILE_SERVER_LETSENCRYPT=false change to true.</strong></p>
-<p>A: If you want to change to https after using http, first backup and move the seafile.nginx.conf.</p>
-<div class="codehilite"><pre><span></span><code>mv<span class="w"> </span>/opt/seafile-data/nginx/conf/seafile.nginx.conf<span class="w"> </span>/opt/seafile-data/nginx/conf/seafile.nginx.conf.bak
-</code></pre></div>
-
-<p>Starting the new container will automatically apply a certificate.</p>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
-docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
-
-<p>You need to manually change http to https in other configuration files, SERVICE_URL and FILE_SERVER_ROOT in the system admin page also need to be modified.</p>
-<p>If you have modified the old seafile.nginx.conf, now you can modify the new seafile.nginx.conf as you want. Then execute the following command to make the nginx configuration take effect.</p>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>seafile<span class="w"> </span>nginx<span class="w"> </span>-s<span class="w"> </span>reload
-</code></pre></div>
 
 
 
