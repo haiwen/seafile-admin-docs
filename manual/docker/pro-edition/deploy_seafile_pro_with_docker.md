@@ -79,7 +79,7 @@ The following fields merit particular attention:
 - `SEAFILE_ADMIN_EMAIL`: Admin username
 - `SEAFILE_ADMIN_PASSWORD`: Admin password
 
-NOTE: SSL is now handled by the caddy server.
+NOTE: SSL is now handled by the [caddy server](../deploy_seafile_with_docker.md#about-ssl-and-caddy) from 12.0.
 
 To conclude, set the directory permissions of the Elasticsearch volumne:
 
@@ -269,7 +269,7 @@ Q: I forgot the Seafile admin email address/password, how do I create a new admi
 
 A: You can create a new admin account by running
 
-```
+```shell
 docker exec -it seafile /opt/seafile/seafile-server-latest/reset-admin.sh
 ```
 
@@ -286,35 +286,3 @@ A: You can view the docker logs using this command: `docker compose logs -f`.
 Q: I forgot the admin password. How do I create a new admin account?
 
 A: Make sure the seafile container is running and enter `docker exec -it seafile /opt/seafile/seafile-server-latest/reset-admin.sh`.
-
-Q: The Let's Encrypt SSL certificate is about to expire, how do I renew it?
-
-A: The SSL certificate should be renewed automatically 30 days prior to its expiration. If the automatic renewal fails, these commands renew the certificate manually:
-```
-docker exec -it seafile /bin/bash
-/scripts/ssl.sh /shared/ssl/ SEAFILE_SERVER_HOSTNAME
-```
-SEAFILE_SERVER_HOSTNAME is the host name used in the docker-compose.yml.
-
-Q: **SEAFILE_SERVER_LETSENCRYPT=false change to true.**
-
-A: If you want to change to https after using http, first backup and move the seafile.nginx.conf.
-
-```sh
-mv /opt/seafile-data/nginx/conf/seafile.nginx.conf /opt/seafile-data/nginx/conf/seafile.nginx.conf.bak
-```
-
-Starting the new container will automatically apply a certificate.
-
-```sh
-docker compose down
-docker compose up -d
-```
-
-You need to manually change http to https in other configuration files, SERVICE_URL and FILE_SERVER_ROOT in the system admin page also need to be modified.
-
-If you have modified the old seafile.nginx.conf, now you can modify the new seafile.nginx.conf as you want. Then execute the following command to make the nginx configuration take effect.
-
-```sh
-docker exec seafile nginx -s reload
-```
