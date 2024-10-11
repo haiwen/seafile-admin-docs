@@ -17,4 +17,6 @@ jobs:
           python-version: 3.x
       - run: pip install mkdocs-material mkdocs-awesome-pages-plugin mkdocs-material-extensions mike
       - run: cd $GITHUB_WORKSPACE
-      - run: GIT_COMMITTER_NAME=ci-bot GIT_COMMITTER_EMAIL=ci-bot@seafile.com \ mike deploy --push -u 11.0 latest
+      - run: git config user.name ci-bot
+      - run: git config user.email ci-bot@seafile.com
+      - run: mike deploy --push -u 11.0 latest
