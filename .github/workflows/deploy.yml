@@ -15,4 +15,4 @@ jobs:
           python-version: 3.x
       - run: pip install mkdocs-material mkdocs-awesome-pages-plugin mkdocs-material-extensions mike
       - run: cd $GITHUB_WORKSPACE
-      - run: mike deploy 11.0 latest
+      - run: mike deploy -u 11.0 latest
