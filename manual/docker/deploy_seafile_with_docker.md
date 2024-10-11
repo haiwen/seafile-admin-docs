@@ -44,7 +44,7 @@ The following fields merit particular attention:
 - `SEAFILE_ADMIN_EMAIL`: Admin username
 - `SEAFILE_ADMIN_PASSWORD`: Admin password
 
-NOTE: SSL is now handled by the caddy server.
+NOTE: SSL is now handled by the [caddy server](#about-ssl-and-caddy) from 12.0.
 
 ### Start Seafile server
 
@@ -175,40 +175,11 @@ The required scripts can be found in the `/scripts` folder of the docker contain
 docker exec -it seafile /bin/bash
 ```
 
-### LetsEncrypt SSL certificate is about to expire
+### About SSL and Caddy
 
-If the certificate is not renewed automatically, you can execute the following command to manually renew the certificate.
+From Seafile 12.0, the SSL is handled by [***Caddy***](https://caddyserver.com/docs/). Caddy is a modern open source web server that mainly binds external traffic and internal services in [seafile docker](./seafile_docker_structures.md). The default caddy image is [`lucaslorentz/caddy-docker-proxy:2.9`](https://github.com/lucaslorentz/caddy-docker-proxy), which user only needs to correctly configure the following fields in `.env` to automatically complete the acquisition and update of the certificate:
 
-```bash
-# /scripts/ssl.sh /shared/ssl/ <your-seafile-domain>
-/scripts/ssl.sh /shared/ssl/ example.seafile.com
-```
-
-### Change the environment variable `SEAFILE_SERVER_LETSENCRYPT=false` value to `true`
-
-1. If you want to change to https after using http, first back up the `seafile.nginx.conf`:
-
-```bash
-mv /opt/seafile-data/nginx/conf/seafile.nginx.conf /opt/seafile-data/nginx/conf/seafile.nginx.conf.bak
-# or
-mv /opt/seafile-data/nginx/conf/seafile.nginx.conf{,.bak}
-```
-
-2. Destroy the containers with `docker compose down`.
-
-3. Edit `docker-compose.yml`: change `SEAFILE_SERVER_LETSENCRYPT=false` value to `true`.
-
-4. Run `docker compose up -d` again. The new Seafile container will automatically request for an SSL certificate to be generated and installed.
-
-**Notes:**
-
-- You need to manually change http to https in other configuration files.
-
-- `SERVICE_URL` and `FILE_SERVER_ROOT` environment variables in the system admin page also need to be modified.
-
-- If you have modified the old `seafile.nginx.conf`, now you can modify the new `seafile.nginx.conf` as you want. Then execute the following command:
-
-```bash
-# test the Nginx configuration and, if OK, reload nginx for configuration to take effect:
-docker exec seafile nginx -t && docker exec seafile nginx -s reload
+```shell
+SEAFILE_SERVER_PROTOCOL=https
+SEAFILE_SERVER_HOSTNAME=example.com
 ```
