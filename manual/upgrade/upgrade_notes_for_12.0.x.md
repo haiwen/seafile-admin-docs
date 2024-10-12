@@ -96,7 +96,7 @@ The following fields merit particular attention:
 * Seafile MySQL host (SEAFILE_MYSQL_DB_HOST)
 * Seafile MySQL user (SEAFILE_MYSQL_DB_USER)
 * Seafile MySQL password (SEAFILE_MYSQL_DB_PASSWD)
-* The volume directory of SeaDoc data (SEADOC_VOLUMES)
+* The volume directory of SeaDoc data (SEADOC_VOLUME)
 * SeaDoc service URL (SDOC_SERVER_HOSTNAME)
 * Seafile service URL (SEAHUB_SERVICE_URL)
 

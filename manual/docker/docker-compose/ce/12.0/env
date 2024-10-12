@@ -7,9 +7,9 @@ SEAFILE_DB_IMAGE=mariadb:10.11
 SEAFILE_MEMCACHED_IMAGE=memcached:1.6.29
 SEAFILE_CADDY_IMAGE=lucaslorentz/caddy-docker-proxy:2.9
 
-SEAFILE_VOLUMES=/opt/seafile-data
-SEAFILE_MYSQL_VOLUMES=/opt/seafile-mysql/db
-SEAFILE_CADDY_VOLUMES=/opt/seafile-caddy
+SEAFILE_VOLUME=/opt/seafile-data
+SEAFILE_MYSQL_VOLUME=/opt/seafile-mysql/db
+SEAFILE_CADDY_VOLUME=/opt/seafile-caddy
 
 SEAFILE_MYSQL_DB_HOST=db
 SEAFILE_MYSQL_ROOT_PASSWORD=ROOT_PASSWORD
@@ -28,7 +28,7 @@ SEAFILE_ADMIN_PASSWORD=asecret
 
 
 SEADOC_IMAGE=seafileltd/sdoc-server:1.0-latest
-SEADOC_VOLUMES=/opt/seadoc-data
+SEADOC_VOLUME=/opt/seadoc-data
 
 ENABLE_SEADOC=false
 SEADOC_SERVER_URL=http://example.seafile.com/sdoc-server

@@ -77,7 +77,7 @@ nav:
       - Setup Seafile cluster with NFS: deploy_pro/setup_seafile_cluster_with_nfs.md
     - License: deploy_pro/seafile_professional_sdition_software_license_agreement.md
   - Seafile Setup with Docker:
-    - Seafile Docker Structures: docker/seafile_docker_structures.md
+    - Seafile Docker Overview: docker/seafile_docker_overview.md
     - Seafile Community Installation: docker/deploy_seafile_with_docker.md
     - Seafile Professional Installation: docker/pro-edition/deploy_seafile_pro_with_docker.md
     - Seafile Docker Cluster Deployment: docker/cluster/deploy_seafile_cluster_with_docker.md
