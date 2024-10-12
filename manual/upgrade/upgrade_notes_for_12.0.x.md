@@ -47,7 +47,9 @@ For Ubuntu 22.04/24.04
 sudo pip3 install future==1.0.* mysqlclient==2.2.* pillow==10.4.* sqlalchemy==2.0.* gevent==24.2.* captcha==0.6.* django_simple_captcha==0.6.* djangosaml2==1.9.* pysaml2==7.3.* pycryptodome==3.20.* cffi==1.17.0 python-ldap==3.4.* PyMuPDF==1.24.*
 ```
 
-## Upgrade to 12.0.x
+## Upgrade to 12.0 (for binary installation)
+
+The following instruction is for binary package based installation. If you use Docker based installation, please see [](./upgrade_docker.md)
 
 ### 1) Stop Seafile-11.0.x server
 
@@ -71,40 +73,21 @@ Note: JWT_PRIVATE_KEY, A random string with a length of no less than 32 characte
 
 ## Upgrade SeaDoc from 0.8 to 1.0
 
-If you have deployed SeaDoc extension in version 11.0, please use the following steps to upgrade it to version 1.0.
+If you have deployed SeaDoc v0.8 with Seafile v11.0, you can upgrade it to 1.0 use the following two steps:
 
-Deploying SeaDoc and Seafile binary package on the same server is no longer supported. You can:
+1. Delete sdoc_db.
+2. Re-deploy SeaDoc server. In other words, delete the old SeaDoc deployment and deploy a new SeaDoc server on a separate machine.
 
-* Deploy SeaDoc on a new server and integrate it with Seafile.
-* Migrate Seafile to a docker based deployment method and then deploy SeaDoc in the same server.
-
-If you have deployed SeaDoc extension in version 11.0 on a standalone server, please use the following steps to upgrade it to version 1.0.
+Note, deploying SeaDoc and **Seafile binary package** on the same server is no longer supported. If you really want to deploying SeaDoc and Seafile server on the same machine, you should deploy Seafile server with Docker.
 
 ### Delete sdoc_db
 
-From version 1.0, SeaDoc is using seahub_db database to store its operation logs and no longer need an extra database sdoc_db. You can simply delete sdoc_db.
-
+From version 1.0, SeaDoc is using seahub_db database to store its operation logs and no longer need an extra database sdoc_db. The database tables in seahub_db are created automatically when you upgrade Seafile server from v11.0 to v12.0. You can simply delete sdoc_db.
 
 ### Deploy a new SeaDoc server
 
-In version 1.0, we use env file to configure SeaDoc docker image, instead of modifying the docker-compose.yml file directly.
+Please see the document [Setup SeaDoc](../extra_setup/setup_seadoc.md) to install SeaDoc on a separate machine and integrate with your binary packaged based Seafile server v12.0.
 
-Download [.env](https://manual.seafile.com/docker/docker-compose/seadoc/1.0/standalone/env) and [docker-compose.yml](https://manual.seafile.com/docker/docker-compose/seadoc/1.0/standalone/docker-compose.yml), then modify .env file.
-
-The following fields merit particular attention:
-
-* Seafile MySQL host (SEAFILE_MYSQL_DB_HOST)
-* Seafile MySQL user (SEAFILE_MYSQL_DB_USER)
-* Seafile MySQL password (SEAFILE_MYSQL_DB_PASSWD)
-* The volume directory of SeaDoc data (SEADOC_VOLUME)
-* SeaDoc service URL (SDOC_SERVER_HOSTNAME)
-* Seafile service URL (SEAHUB_SERVICE_URL)
-
-Start SeaDoc server with the following command
-
-```sh
-docker compose up -d
-```
 
 ## FAQ
 
