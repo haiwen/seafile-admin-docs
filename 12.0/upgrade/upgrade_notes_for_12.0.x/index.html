@@ -3043,13 +3043,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#upgrade-to-120x" class="md-nav__link">
+  <a href="#upgrade-to-120-for-binary-installation" class="md-nav__link">
     <span class="md-ellipsis">
-      Upgrade to 12.0.x
+      Upgrade to 12.0 (for binary installation)
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Upgrade to 12.0.x">
+    <nav class="md-nav" aria-label="Upgrade to 12.0 (for binary installation)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3653,13 +3653,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#upgrade-to-120x" class="md-nav__link">
+  <a href="#upgrade-to-120-for-binary-installation" class="md-nav__link">
     <span class="md-ellipsis">
-      Upgrade to 12.0.x
+      Upgrade to 12.0 (for binary installation)
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Upgrade to 12.0.x">
+    <nav class="md-nav" aria-label="Upgrade to 12.0 (for binary installation)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3800,7 +3800,8 @@ Please always follow the main <a href="../upgrade/">upgrade guide</a>.</p>
 <div class="codehilite"><pre><span></span><code>sudo<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> </span><span class="nv">future</span><span class="o">==</span><span class="m">1</span>.0.*<span class="w"> </span><span class="nv">mysqlclient</span><span class="o">==</span><span class="m">2</span>.2.*<span class="w"> </span><span class="nv">pillow</span><span class="o">==</span><span class="m">10</span>.4.*<span class="w"> </span><span class="nv">sqlalchemy</span><span class="o">==</span><span class="m">2</span>.0.*<span class="w"> </span><span class="nv">gevent</span><span class="o">==</span><span class="m">24</span>.2.*<span class="w"> </span><span class="nv">captcha</span><span class="o">==</span><span class="m">0</span>.6.*<span class="w"> </span><span class="nv">django_simple_captcha</span><span class="o">==</span><span class="m">0</span>.6.*<span class="w"> </span><span class="nv">djangosaml2</span><span class="o">==</span><span class="m">1</span>.9.*<span class="w"> </span><span class="nv">pysaml2</span><span class="o">==</span><span class="m">7</span>.3.*<span class="w"> </span><span class="nv">pycryptodome</span><span class="o">==</span><span class="m">3</span>.20.*<span class="w"> </span><span class="nv">cffi</span><span class="o">==</span><span class="m">1</span>.17.0<span class="w"> </span>python-ldap<span class="o">==</span><span class="m">3</span>.4.*<span class="w"> </span><span class="nv">PyMuPDF</span><span class="o">==</span><span class="m">1</span>.24.*
 </code></pre></div>
 
-<h2 id="upgrade-to-120x">Upgrade to 12.0.x<a class="headerlink" href="#upgrade-to-120x" title="Permanent link">&para;</a></h2>
+<h2 id="upgrade-to-120-for-binary-installation">Upgrade to 12.0 (for binary installation)<a class="headerlink" href="#upgrade-to-120-for-binary-installation" title="Permanent link">&para;</a></h2>
+<p>The following instruction is for binary package based installation. If you use Docker based installation, please see <a href="../upgrade_docker/"></a></p>
 <h3 id="1-stop-seafile-110x-server">1) Stop Seafile-11.0.x server<a class="headerlink" href="#1-stop-seafile-110x-server" title="Permanent link">&para;</a></h3>
 <h3 id="2-start-from-seafile-120x-run-the-script">2) Start from Seafile 12.0.x, run the script<a class="headerlink" href="#2-start-from-seafile-120x-run-the-script" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><code>upgrade/upgrade_11.0_12.0.sh
@@ -3814,31 +3815,16 @@ Please always follow the main <a href="../upgrade/">upgrade guide</a>.</p>
 <p>Note: JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: <code>pwgen -s 40 1</code></p>
 <h3 id="4-start-seafile-120x-server">4) Start Seafile-12.0.x server<a class="headerlink" href="#4-start-seafile-120x-server" title="Permanent link">&para;</a></h3>
 <h2 id="upgrade-seadoc-from-08-to-10">Upgrade SeaDoc from 0.8 to 1.0<a class="headerlink" href="#upgrade-seadoc-from-08-to-10" title="Permanent link">&para;</a></h2>
-<p>If you have deployed SeaDoc extension in version 11.0, please use the following steps to upgrade it to version 1.0.</p>
-<p>Deploying SeaDoc and Seafile binary package on the same server is no longer supported. You can:</p>
-<ul>
-<li>Deploy SeaDoc on a new server and integrate it with Seafile.</li>
-<li>Migrate Seafile to a docker based deployment method and then deploy SeaDoc in the same server.</li>
-</ul>
-<p>If you have deployed SeaDoc extension in version 11.0 on a standalone server, please use the following steps to upgrade it to version 1.0.</p>
+<p>If you have deployed SeaDoc v0.8 with Seafile v11.0, you can upgrade it to 1.0 use the following two steps:</p>
+<ol>
+<li>Delete sdoc_db.</li>
+<li>Re-deploy SeaDoc server. In other words, delete the old SeaDoc deployment and deploy a new SeaDoc server on a separate machine.</li>
+</ol>
+<p>Note, deploying SeaDoc and <strong>Seafile binary package</strong> on the same server is no longer supported. If you really want to deploying SeaDoc and Seafile server on the same machine, you should deploy Seafile server with Docker.</p>
 <h3 id="delete-sdoc_db">Delete sdoc_db<a class="headerlink" href="#delete-sdoc_db" title="Permanent link">&para;</a></h3>
-<p>From version 1.0, SeaDoc is using seahub_db database to store its operation logs and no longer need an extra database sdoc_db. You can simply delete sdoc_db.</p>
+<p>From version 1.0, SeaDoc is using seahub_db database to store its operation logs and no longer need an extra database sdoc_db. The database tables in seahub_db are created automatically when you upgrade Seafile server from v11.0 to v12.0. You can simply delete sdoc_db.</p>
 <h3 id="deploy-a-new-seadoc-server">Deploy a new SeaDoc server<a class="headerlink" href="#deploy-a-new-seadoc-server" title="Permanent link">&para;</a></h3>
-<p>In version 1.0, we use env file to configure SeaDoc docker image, instead of modifying the docker-compose.yml file directly.</p>
-<p>Download <a href="https://manual.seafile.com/docker/docker-compose/seadoc/1.0/standalone/env">.env</a> and <a href="https://manual.seafile.com/docker/docker-compose/seadoc/1.0/standalone/docker-compose.yml">docker-compose.yml</a>, then modify .env file.</p>
-<p>The following fields merit particular attention:</p>
-<ul>
-<li>Seafile MySQL host (SEAFILE_MYSQL_DB_HOST)</li>
-<li>Seafile MySQL user (SEAFILE_MYSQL_DB_USER)</li>
-<li>Seafile MySQL password (SEAFILE_MYSQL_DB_PASSWD)</li>
-<li>The volume directory of SeaDoc data (SEADOC_VOLUME)</li>
-<li>SeaDoc service URL (SDOC_SERVER_HOSTNAME)</li>
-<li>Seafile service URL (SEAHUB_SERVICE_URL)</li>
-</ul>
-<p>Start SeaDoc server with the following command</p>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
-
+<p>Please see the document <a href="../../extra_setup/setup_seadoc/">Setup SeaDoc</a> to install SeaDoc on a separate machine and integrate with your binary packaged based Seafile server v12.0.</p>
 <h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
 <p>We have documented common issues encountered by users when upgrading to version 12.0 in our FAQ <a href="https://cloud.seatable.io/dtable/external-links/7b976c85f504491cbe8e/?tid=0000&amp;vid=0000">https://cloud.seatable.io/dtable/external-links/7b976c85f504491cbe8e/?tid=0000&amp;vid=0000</a>.</p>
 <p>If you encounter any issue, please give it a check.</p>
