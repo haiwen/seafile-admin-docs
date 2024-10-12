@@ -119,10 +119,10 @@ wget https://manual.seafile.com/docker/docker-compose/pro/12.0/caddy.yml
 
 The following fields merit particular attention:
 
-* The volume directory of Seafile data (SEAFILE_VOLUMES, same as the seafile volumes in the old docker-compose.yml)
-* The volume directory of MySQL data (SEAFILE_MYSQL_VOLUMES, same as the mysql volumes in the old docker-compose.yml)
-* The volume directory of Elasticsearch data (SEAFILE_ELASTICSEARCH_VOLUMES, pro edition only, same as the elasticsearch volumes in the old docker-compose.yml)
-* The volume directory of Caddy data (SEAFILE_CADDY_VOLUMES)
+* The volume directory of Seafile data (SEAFILE_VOLUME, same as the seafile volumes in the old docker-compose.yml)
+* The volume directory of MySQL data (SEAFILE_MYSQL_VOLUME, same as the mysql volumes in the old docker-compose.yml)
+* The volume directory of Elasticsearch data (SEAFILE_ELASTICSEARCH_VOLUME, pro edition only, same as the elasticsearch volumes in the old docker-compose.yml)
+* The volume directory of Caddy data (SEAFILE_CADDY_VOLUME)
 * The user of MySQL (SEAFILE_MYSQL_DB_USER, `database` - `user` can be found in `conf/seafile.conf`)
 * The password of MySQL (SEAFILE_MYSQL_DB_PASSWORD, `database` - `password` can be found in `conf/seafile.conf`)
 * jwt (JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: `pwgen -s 40 1`)
@@ -199,7 +199,7 @@ wget https://manual.seafile.com/docker/docker-compose/pro/12.0/seadoc.yml
 ```env
 COMPOSE_FILE='seafile-server.yml,caddy.yml,seadoc.yml'
 
-SEADOC_VOLUMES=/opt/seadoc-data
+SEADOC_VOLUME=/opt/seadoc-data
 ENABLE_SEADOC=true
 SEADOC_SERVER_URL=http://example.seafile.com/sdoc-server
 ```
@@ -207,7 +207,7 @@ SEADOC_SERVER_URL=http://example.seafile.com/sdoc-server
 The following fields merit particular attention:
 
 * Add `seadoc.yml` to the `COMPOSE_FILE` field.
-* The volume directory of SeaDoc data (SEADOC_VOLUMES)
+* The volume directory of SeaDoc data (SEADOC_VOLUME)
 * Enable SeaDoc (ENABLE_SEADOC)
 * SeaDoc service url (SEADOC_SERVER_URL, hostname + `/sdoc-server`)
 

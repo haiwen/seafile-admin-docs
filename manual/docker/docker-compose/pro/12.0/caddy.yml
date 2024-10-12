@@ -11,7 +11,7 @@ services:
       - CADDY_INGRESS_NETWORKS=seafile-net
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ${SEAFILE_CADDY_VOLUMES:-/opt/seafile-caddy}:/data/caddy
+      - ${SEAFILE_CADDY_VOLUME:-/opt/seafile-caddy}:/data/caddy
     networks:
       - seafile-net
     healthcheck:
