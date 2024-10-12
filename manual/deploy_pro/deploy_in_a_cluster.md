@@ -147,7 +147,7 @@ health_check_port = 12345
 
 #### seahub_settings.py
 
-You must setup and use memcached when deploying Seafile cluster. Refer to ["add memcached"](memcached_options.md) to use memcached in Seahub.
+You must setup and use memory cache when deploying Seafile cluster. Refer to ["memory cache"](/config/seahub_settings_py/#cache) to configure memory cache in Seahub.
 
 Also add following options to seahub_setting.py. These settings tell Seahub to store avatar in database and cache avatar in memcached, and store css CACHE to local memory.
 
