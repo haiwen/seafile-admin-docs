@@ -4,7 +4,7 @@ services:
     image: ${SEADOC_IMAGE:-seafileltd/sdoc-server:1.0-latest}
     container_name: seadoc
     volumes:
-      - ${SEADOC_VOLUMES:-/opt/seadoc-data/}:/shared
+      - ${SEADOC_VOLUME:-/opt/seadoc-data/}:/shared
     ports:
       - "80:80"
     environment:

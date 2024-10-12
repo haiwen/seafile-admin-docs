@@ -963,11 +963,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../seafile_docker_structures/" class="md-nav__link">
+      <a href="../../seafile_docker_overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Seafile Docker Structures
+    Seafile Docker Overview
   </span>
   
 
@@ -4045,10 +4045,10 @@ nano<span class="w"> </span>.env
 
 <p>The following fields merit particular attention:</p>
 <ul>
-<li><code>SEAFILE_VOLUMES</code>: The volume directory of Seafile data</li>
-<li><code>SEAFILE_MYSQL_VOLUMES</code>: The volume directory of MySQL data</li>
-<li><code>SEAFILE_CADDY_VOLUMES</code>: The volume directory of Caddy data</li>
-<li><code>SEAFILE_ELASTICSEARCH_VOLUMES</code>: The volume directory of Elasticsearch data</li>
+<li><code>SEAFILE_VOLUME</code>: The volume directory of Seafile data, default is <code>/opt/seafile-data</code></li>
+<li><code>SEAFILE_MYSQL_VOLUME</code>: The volume directory of MySQL data, default is <code>/opt/seafile-mysql/db</code></li>
+<li><code>SEAFILE_CADDY_VOLUME</code>: The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's, default is <code>/opt/seafile-caddy</code></li>
+<li><code>SEAFILE_ELASTICSEARCH_VOLUME</code>: The volume directory of Elasticsearch data</li>
 <li><code>SEAFILE_MYSQL_ROOT_PASSWORD</code>: The <code>root</code> password of MySQL</li>
 <li><code>SEAFILE_MYSQL_DB_PASSWORD</code>: The user <code>seafile</code> password of MySQL</li>
 <li><code>JWT</code>: JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: <code>pwgen -s 40 1</code></li>

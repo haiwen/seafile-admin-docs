@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/12.0/docker/deploy_seafile_with_docker/">
       
       
-        <link rel="prev" href="../seafile_docker_structures/">
+        <link rel="prev" href="../seafile_docker_overview/">
       
       
         <link rel="next" href="../pro-edition/deploy_seafile_pro_with_docker/">
@@ -963,11 +963,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../seafile_docker_structures/" class="md-nav__link">
+      <a href="../seafile_docker_overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Seafile Docker Structures
+    Seafile Docker Overview
   </span>
   
 
@@ -3891,9 +3891,9 @@ nano<span class="w"> </span>.env
 
 <p>The following fields merit particular attention:</p>
 <ul>
-<li><code>SEAFILE_VOLUMES</code>: The volume directory of Seafile data</li>
-<li><code>SEAFILE_MYSQL_VOLUMES</code>: The volume directory of MySQL data</li>
-<li><code>SEAFILE_CADDY_VOLUMES</code>: The volume directory of Caddy data</li>
+<li><code>SEAFILE_VOLUME</code>: The volume directory of Seafile data, default is <code>/opt/seafile-data</code></li>
+<li><code>SEAFILE_MYSQL_VOLUME</code>: The volume directory of MySQL data, default is <code>/opt/seafile-mysql/db</code></li>
+<li><code>SEAFILE_CADDY_VOLUME</code>: The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's, default is <code>/opt/seafile-caddy</code></li>
 <li><code>SEAFILE_MYSQL_ROOT_PASSWORD</code>: The user <code>root</code> password of MySQL</li>
 <li><code>SEAFILE_MYSQL_DB_PASSWORD</code>: The user <code>seafile</code> password of MySQL</li>
 <li><code>JWT</code>: JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: <code>pwgen -s 40 1</code></li>
@@ -3991,7 +3991,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 </code></pre></div>
 
 <h3 id="about-ssl-and-caddy">About SSL and Caddy<a class="headerlink" href="#about-ssl-and-caddy" title="Permanent link">&para;</a></h3>
-<p>From Seafile 12.0, the SSL is handled by <a href="https://caddyserver.com/docs/"><strong><em>Caddy</em></strong></a>. Caddy is a modern open source web server that mainly binds external traffic and internal services in <a href="../seafile_docker_structures/">seafile docker</a>. The default caddy image is <a href="https://github.com/lucaslorentz/caddy-docker-proxy"><code>lucaslorentz/caddy-docker-proxy:2.9</code></a>, which user only needs to correctly configure the following fields in <code>.env</code> to automatically complete the acquisition and update of the certificate:</p>
+<p>From Seafile 12.0, the SSL is handled by <a href="https://caddyserver.com/docs/"><strong><em>Caddy</em></strong></a>. Caddy is a modern open source web server that mainly binds external traffic and internal services in <a href="./seafile_docker_structures.md">seafile docker</a>. The default caddy image is <a href="https://github.com/lucaslorentz/caddy-docker-proxy"><code>lucaslorentz/caddy-docker-proxy:2.9</code></a>, which user only needs to correctly configure the following fields in <code>.env</code> to automatically complete the acquisition and update of the certificate:</p>
 <div class="codehilite"><pre><span></span><code><span class="nv">SEAFILE_SERVER_PROTOCOL</span><span class="o">=</span>https
 <span class="nv">SEAFILE_SERVER_HOSTNAME</span><span class="o">=</span>example.com
 </code></pre></div>
