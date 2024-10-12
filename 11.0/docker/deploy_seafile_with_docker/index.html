@@ -3950,10 +3950,10 @@ nano<span class="w"> </span>docker-compose.yml
 <h3 id="start-seafile-server">Start Seafile server<a class="headerlink" href="#start-seafile-server" title="Permanent link">&para;</a></h3>
 <p>Start Seafile server with the following command</p>
 <div class="codehilite"><pre><span></span><code><span class="c1"># if `docker-compose.yml` file is in current directory:</span>
-docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 
 <span class="c1"># if `docker-compose.yml` file is elsewhere:</span>
-docker-compose<span class="w"> </span>-f<span class="w"> </span>/path/to/docker-compose.yml<span class="w"> </span>up<span class="w"> </span>-d
+docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>/path/to/docker-compose.yml<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
 
 <p>Wait for a few minutes for the first time initialization, then visit <code>http://seafile.example.com</code> to open Seafile Web UI.</p>
