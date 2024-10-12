@@ -4,7 +4,7 @@ COMPOSE_PATH_SEPARATOR=','
 
 SEADOC_IMAGE=seafileltd/sdoc-server:1.0-latest
 
-SEADOC_VOLUMES=/opt/seadoc-data
+SEADOC_VOLUME=/opt/seadoc-data
 
 SEAFILE_MYSQL_DB_HOST=192.168.0.2
 SEAFILE_MYSQL_DB_USER=seafile

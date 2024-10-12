@@ -66,10 +66,10 @@ nano .env
 
 The following fields merit particular attention:
 
-- `SEAFILE_VOLUMES`: The volume directory of Seafile data
-- `SEAFILE_MYSQL_VOLUMES`: The volume directory of MySQL data
-- `SEAFILE_CADDY_VOLUMES`: The volume directory of Caddy data
-- `SEAFILE_ELASTICSEARCH_VOLUMES`: The volume directory of Elasticsearch data
+- `SEAFILE_VOLUME`: The volume directory of Seafile data, default is `/opt/seafile-data`
+- `SEAFILE_MYSQL_VOLUME`: The volume directory of MySQL data, default is `/opt/seafile-mysql/db`
+- `SEAFILE_CADDY_VOLUME`: The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's, default is `/opt/seafile-caddy`
+- `SEAFILE_ELASTICSEARCH_VOLUME`: The volume directory of Elasticsearch data
 - `SEAFILE_MYSQL_ROOT_PASSWORD`: The `root` password of MySQL
 - `SEAFILE_MYSQL_DB_PASSWORD`: The user `seafile` password of MySQL
 - `JWT`: JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: `pwgen -s 40 1`
