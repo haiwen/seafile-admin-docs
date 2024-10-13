@@ -126,8 +126,6 @@ nav:
       - Start Seafile at System Bootup: deploy/start_seafile_at_system_bootup.md
       - Logrotate: deploy/using_logrotate.md
       - Open Cloud Mesh: deploy/ocm.md
-      - Deploy Seafile behind NAT: deploy/deploy_seafile_behind_nat.md
-      - Deploy Seahub at Non-root domain or on custom port: deploy/deploy_seahub_at_non-root_domain.md
       - Config fail2ban: security/fail2ban.md
       - Real-time Backup Server: deploy_pro/real_time_backup.md
   - Configuration and Customization:
