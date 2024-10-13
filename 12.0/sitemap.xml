@@ -2,554 +2,546 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/changelog/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/contribution/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/roadmap/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/build_seafile/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/build_seafile/linux/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/build_seafile/osx/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/build_seafile/rpi/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/build_seafile/server/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/build_seafile/windows/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/changelog/changelog-for-seafile-professional-server-old/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/changelog/changelog-for-seafile-professional-server/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/changelog/client-changelog/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/changelog/drive-client-changelog/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/changelog/server-changelog-old/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/changelog/server-changelog/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/config/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/config/ccnet-conf/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/config/customize_email_notifications/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/config/seafevents-conf/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/config/seafile-conf/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/config/seahub_customization/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/config/seahub_settings_py/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/config/sending_email/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/auth_switch/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/auto_login_seadrive/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/common_problems_for_setting_up_server/</loc>
-         <lastmod>2024-10-12</lastmod>
-    </url>
-    <url>
-         <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/deploy_seafile_behind_nat/</loc>
-         <lastmod>2024-10-12</lastmod>
-    </url>
-    <url>
-         <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/deploy_seahub_at_non-root_domain/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/deploy_with_k8s/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/https_with_apache/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/https_with_nginx/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/kerberos_config/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/ldap_in_11.0/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/libreoffice_online/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/migrate_from_sqlite_to_mysql/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/notification-server/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/oauth/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/ocm/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/only_office/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/outlook_addin_config/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/remote_user/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/server/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/server_configuration/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/shibboleth_authentication/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/single_sign_on/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/start_seafile_at_system_bootup/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/using_fuse/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/using_ldap/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/using_logrotate/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/using_mysql/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/using_sqlite/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/using_syslog/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/video_thumbnails/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/adfs/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/admin_roles_permissions/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/cas/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/change_default_java/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/config_seafile_with_ADFS/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/deploy_clamav_with_seafile/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/deploy_in_a_cluster/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/details_about_file_search/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/download_and_setup_seafile_professional_server/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/enable_search_and_background_tasks_in_a_cluster/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/ldap_group_sync/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/ldap_in_11.0/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/ldap_role_sync/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/memcached_mariadb_cluster/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/migrate/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/migrate_from_seafile_community_server/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/multi_institutions/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/multi_tenancy/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/multiple_storage_backends/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/office_documents_preview/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/office_web_app/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/real_time_backup/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/roles_permissions/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/saml2_in_10.0/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/seaf_encrypt/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/seaf_import/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/seafile_professional_sdition_software_license_agreement/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/setup_seafile_cluster_with_nfs/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/setup_with_amazon_s3/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/setup_with_ceph/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/setup_with_oss/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/setup_with_swift/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/terms_and_conditions/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/using_ldap_pro/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/virus_scan/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/virus_scan_with_kav4fs/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/develop/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/develop/data_model/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/develop/translation/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/develop/web_api_v2.1/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/docker/deploy_seafile_with_docker/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/docker/non_docker_to_docker/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/docker/seafile_docker_autostart/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/docker/seafile_docker_overview/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/docker/cluster/deploy_seafile_cluster_with_docker/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/docker/pro-edition/deploy_onlyoffice_with_docker/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/docker/pro-edition/deploy_seafile_pro_with_docker/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/docker/pro-edition/migrate_ce_to_pro_with_docker/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/extension/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/extension/fuse/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/extension/webdav/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/extra_setup/setup_seadoc/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/maintain/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/maintain/account/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/maintain/backup_recovery/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/maintain/clean_database/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/maintain/export_file_access_log/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/maintain/export_report/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/maintain/export_user_storage_report/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/maintain/logs/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/maintain/seafile_fsck/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/maintain/seafile_gc/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/maintain/two_factor_authentication/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/overview/components/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/overview/file_permission_management/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/security/auditing/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/security/fail2ban/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/security/security_features/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/upgrade/ce-7.0/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/upgrade/pro-7.0/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/upgrade/upgrade/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/upgrade/upgrade_a_cluster/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/upgrade/upgrade_a_cluster_docker/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/upgrade/upgrade_docker/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/upgrade/upgrade_notes_for_10.0.x/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/upgrade/upgrade_notes_for_11.0.x/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/upgrade/upgrade_notes_for_12.0.x/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/upgrade/upgrade_notes_for_7.0.x/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/upgrade/upgrade_notes_for_7.1.x/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/upgrade/upgrade_notes_for_8.0.x/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/upgrade/upgrade_notes_for_9.0.x/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/upgrade/upgrade_with_mysql_or_postgresql/</loc>
-         <lastmod>2024-10-12</lastmod>
+         <lastmod>2024-10-13</lastmod>
     </url>
 </urlset>
