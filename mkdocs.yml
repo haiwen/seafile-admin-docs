@@ -127,7 +127,6 @@ nav:
       - Logrotate: deploy/using_logrotate.md
       - Open Cloud Mesh: deploy/ocm.md
       - Config fail2ban: security/fail2ban.md
-      - Real-time Backup Server: deploy_pro/real_time_backup.md
   - Configuration and Customization:
     - Outline: config/README.md
     - ccnet.conf: config/ccnet-conf.md
