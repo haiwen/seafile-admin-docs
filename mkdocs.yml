@@ -87,12 +87,8 @@ nav:
     - Seafile Docker autostart: docker/seafile_docker_autostart.md
   - Advanced Setup Options:
     - LDAP/AD Integration:
-      - LDAP Integration: deploy/using_ldap.md
-      - LDAP Configuration for Seafile Pro: deploy_pro/using_ldap_pro.md
-      - Importing Groups from LDAP (Pro): deploy_pro/ldap_group_sync.md
-      - Importing Roles from LDAP (Pro): deploy_pro/ldap_role_sync.md
-      - LDAP in version 11.0: deploy/ldap_in_11.0.md
-      - LDAP in version 11.0 (Pro): deploy_pro/ldap_in_11.0.md
+      - LDAP Integration: deploy/ldap_in_11.0.md
+      - LDAP Integration (Pro): deploy_pro/ldap_in_11.0.md
     - Single Sign On:
       - Outline: deploy/single_sign_on.md
       - OAuth Authentication: deploy/oauth.md
