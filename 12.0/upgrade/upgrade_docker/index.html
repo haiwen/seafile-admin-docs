@@ -3696,17 +3696,17 @@ wget<span class="w"> </span>https://manual.seafile.com/docker/docker-compose/pro
 
 <p>The following fields merit particular attention:</p>
 <ul>
-<li>The volume directory of Seafile data (SEAFILE_VOLUME, same as the seafile volumes in the old docker-compose.yml)</li>
-<li>The volume directory of MySQL data (SEAFILE_MYSQL_VOLUME, same as the mysql volumes in the old docker-compose.yml)</li>
-<li>The volume directory of Elasticsearch data (SEAFILE_ELASTICSEARCH_VOLUME, pro edition only, same as the elasticsearch volumes in the old docker-compose.yml)</li>
-<li>The volume directory of Caddy data (SEAFILE_CADDY_VOLUME)</li>
-<li>The user of MySQL (SEAFILE_MYSQL_DB_USER, <code>database</code> - <code>user</code> can be found in <code>conf/seafile.conf</code>)</li>
-<li>The password of MySQL (SEAFILE_MYSQL_DB_PASSWORD, <code>database</code> - <code>password</code> can be found in <code>conf/seafile.conf</code>)</li>
-<li>jwt (JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: <code>pwgen -s 40 1</code>)</li>
-<li>SEAFILE_SERVER_HOSTNAME (SEAFILE_SERVER_HOSTNAME, same as the SEAFILE_SERVER_HOSTNAME in the old docker-compose.yml)</li>
-<li>SEAFILE_SERVER_PROTOCOL (SEAFILE_SERVER_PROTOCOL, use http or https)</li>
+<li><code>SEAFILE_VOLUME</code>: The volume directory of Seafile data, default is <code>/opt/seafile-data</code></li>
+<li><code>SEAFILE_MYSQL_VOLUME</code>: The volume directory of MySQL data, default is <code>/opt/seafile-mysql/db</code></li>
+<li><code>SEAFILE_CADDY_VOLUME</code>: The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's, default is <code>/opt/seafile-caddy</code></li>
+<li><code>SEAFILE_ELASTICSEARCH_VOLUME</code>: The volume directory of Elasticsearch data</li>
+<li><code>SEAFILE_MYSQL_ROOT_PASSWORD</code>: The <code>root</code> password of MySQL</li>
+<li><code>SEAFILE_MYSQL_DB_PASSWORD</code>: The user <code>seafile</code> password of MySQL</li>
+<li><code>JWT</code>: JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: <code>pwgen -s 40 1</code></li>
+<li><code>SEAFILE_SERVER_HOSTNAME</code>: Seafile server hostname or domain</li>
+<li><code>SEAFILE_SERVER_PROTOCOL</code>: Seafile server protocol (http or https)</li>
 </ul>
-<p>SSL is now handled by the caddy server. If you have used SSL before, you will also need modify the seafile.nginx.conf. Change server listen 443 to 80.</p>
+<p>SSL is now handled by the <a href="../../docker/deploy_seafile_with_docker/#about-ssl-and-caddy">caddy server</a>. If you have used SSL before, you will also need modify the seafile.nginx.conf. Change server listen 443 to 80.</p>
 <p>Backup the original seafile.nginx.conf file:</p>
 <div class="codehilite"><pre><span></span><code>cp<span class="w"> </span>seafile.nginx.conf<span class="w"> </span>seafile.nginx.conf.bak
 </code></pre></div>
