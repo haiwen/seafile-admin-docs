@@ -4257,23 +4257,48 @@ After synchronization is complete, you can see the user's full name, department 
 <span class="n">MULTI_LDAP_1_ADMIN_PASSWORD</span> <span class="o">=</span> <span class="s1">&#39;Hello@123&#39;</span>
 <span class="n">MULTI_LDAP_1_PROVIDER</span> <span class="o">=</span> <span class="s1">&#39;ldap1&#39;</span>
 <span class="n">MULTI_LDAP_1_LOGIN_ATTR</span> <span class="o">=</span> <span class="s1">&#39;userPrincipalName&#39;</span>
+
+<span class="c1"># Optional configs</span>
+<span class="n">MULTI_LDAP_1_USER_FIRST_NAME_ATTR</span> <span class="o">=</span> <span class="s1">&#39;givenName&#39;</span>
+<span class="n">MULTI_LDAP_1_USER_LAST_NAME_ATTR</span> <span class="o">=</span> <span class="s1">&#39;sn&#39;</span>
+<span class="n">MULTI_LDAP_1_USER_NAME_REVERSE</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">ENABLE_MULTI_LDAP_1_EXTRA_USER_INFO_SYNC</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="n">MULTI_LDAP_1_FILTER</span> <span class="o">=</span> <span class="s1">&#39;memberOf=CN=testgroup,OU=test,DC=seafile,DC=ren&#39;</span> 
+<span class="n">MULTI_LDAP_1_USE_PAGED_RESULT</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">MULTI_LDAP_1_FOLLOW_REFERRALS</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">ENABLE_MULTI_LDAP_1_USER_SYNC</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">ENABLE_MULTI_LDAP_1_GROUP_SYNC</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">MULTI_LDAP_1_SYNC_DEPARTMENT_FROM_OU</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="n">MULTI_LDAP_1_USER_OBJECT_CLASS</span> <span class="o">=</span> <span class="s1">&#39;person&#39;</span>
+<span class="n">MULTI_LDAP_1_DEPT_ATTR</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">MULTI_LDAP_1_UID_ATTR</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">MULTI_LDAP_1_CONTACT_EMAIL_ATTR</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">MULTI_LDAP_1_USER_ROLE_ATTR</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">MULTI_LDAP_1_AUTO_REACTIVATE_USERS</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="n">MULTI_LDAP_1_GROUP_OBJECT_CLASS</span> <span class="o">=</span> <span class="s1">&#39;group&#39;</span>
+<span class="n">MULTI_LDAP_1_GROUP_FILTER</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">MULTI_LDAP_1_GROUP_MEMBER_ATTR</span> <span class="o">=</span> <span class="s1">&#39;member&#39;</span>
+<span class="n">MULTI_LDAP_1_GROUP_UUID_ATTR</span> <span class="o">=</span> <span class="s1">&#39;objectGUID&#39;</span>
+<span class="n">MULTI_LDAP_1_CREATE_DEPARTMENT_LIBRARY</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">MULTI_LDAP_1_DEPT_REPO_PERM</span> <span class="o">=</span> <span class="s1">&#39;rw&#39;</span>
+<span class="n">MULTI_LDAP_1_DEFAULT_DEPARTMENT_QUOTA</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+<span class="n">MULTI_LDAP_1_SYNC_GROUP_AS_DEPARTMENT</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">MULTI_LDAP_1_USE_GROUP_MEMBER_RANGE_QUERY</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">MULTI_LDAP_1_USER_ATTR_IN_MEMBERUID</span> <span class="o">=</span> <span class="s1">&#39;uid&#39;</span>
+<span class="n">MULTI_LDAP_1_DEPT_NAME_ATTR</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 <span class="o">......</span>
 </code></pre></div>
 
 <p><strong>Note</strong>: There are still some shared config options are used for all LDAP servers, as follows:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Common basic config options</span>
-<span class="n">LDAP_USER_FIRST_NAME_ATTR</span> <span class="o">=</span> <span class="s1">&#39;givenName&#39;</span>      <span class="c1"># For update user&#39;s first name when login</span>
-<span class="n">LDAP_USER_LAST_NAME_ATTR</span> <span class="o">=</span> <span class="s1">&#39;sn&#39;</span>              <span class="c1"># For update user&#39;s last name when login</span>
-<span class="n">LDAP_USER_NAME_REVERSE</span> <span class="o">=</span> <span class="kc">False</span>               <span class="c1"># Whether to reverse the user&#39;s first and last name</span>
-
-<span class="c1"># Common user sync options</span>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Common user sync options</span>
 <span class="n">LDAP_SYNC_INTERVAL</span> <span class="o">=</span> <span class="mi">60</span>
 <span class="n">IMPORT_NEW_USER</span> <span class="o">=</span> <span class="kc">True</span>                   <span class="c1"># Whether to import new users when sync user</span>
 <span class="n">ACTIVATE_USER_WHEN_IMPORT</span> <span class="o">=</span> <span class="kc">True</span>         <span class="c1"># Whether to activate the user when importing new user</span>
 <span class="n">DEACTIVE_USER_IF_NOTFOUND</span> <span class="o">=</span> <span class="kc">False</span>        <span class="c1"># Set to &quot;true&quot; if you want to deactivate a user </span>
                                          <span class="c1"># when he/she was deleted in AD server.</span>
-<span class="n">ENABLE_EXTRA_USER_INFO_SYNC</span> <span class="o">=</span> <span class="kc">True</span>       <span class="c1"># Whether to enable sync of additional user information,</span>
-                                         <span class="c1"># including user&#39;s full name, department, and Windows login name, etc.</span>
 
 <span class="c1"># Common group sync options</span>
 <span class="n">DEL_GROUP_IF_NOT_FOUND</span> <span class="o">=</span> <span class="kc">False</span>           <span class="c1"># Set to &quot;true&quot;, sync process will delete the group if not found it in LDAP server.</span>
