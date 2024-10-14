@@ -1,6 +1,6 @@
 # Seafile Docker overview
 
-Seafile Docker consists of the following components:
+Seafile docker based installation consist of the following components (docker images):
 
 - Seafile server: Seafile core services, see [Seafile Components](../overview/components.md) for the details.
 - Sdoc server: SeaDoc server, provide a lightweight online collaborative document editor, see [SeaDoc](../extra_setup/setup_seadoc.md#architecture) for the details.

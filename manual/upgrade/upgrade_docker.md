@@ -119,17 +119,17 @@ wget https://manual.seafile.com/docker/docker-compose/pro/12.0/caddy.yml
 
 The following fields merit particular attention:
 
-* The volume directory of Seafile data (SEAFILE_VOLUME, same as the seafile volumes in the old docker-compose.yml)
-* The volume directory of MySQL data (SEAFILE_MYSQL_VOLUME, same as the mysql volumes in the old docker-compose.yml)
-* The volume directory of Elasticsearch data (SEAFILE_ELASTICSEARCH_VOLUME, pro edition only, same as the elasticsearch volumes in the old docker-compose.yml)
-* The volume directory of Caddy data (SEAFILE_CADDY_VOLUME)
-* The user of MySQL (SEAFILE_MYSQL_DB_USER, `database` - `user` can be found in `conf/seafile.conf`)
-* The password of MySQL (SEAFILE_MYSQL_DB_PASSWORD, `database` - `password` can be found in `conf/seafile.conf`)
-* jwt (JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: `pwgen -s 40 1`)
-* SEAFILE_SERVER_HOSTNAME (SEAFILE_SERVER_HOSTNAME, same as the SEAFILE_SERVER_HOSTNAME in the old docker-compose.yml)
-* SEAFILE_SERVER_PROTOCOL (SEAFILE_SERVER_PROTOCOL, use http or https)
+- `SEAFILE_VOLUME`: The volume directory of Seafile data, default is `/opt/seafile-data`
+- `SEAFILE_MYSQL_VOLUME`: The volume directory of MySQL data, default is `/opt/seafile-mysql/db`
+- `SEAFILE_CADDY_VOLUME`: The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's, default is `/opt/seafile-caddy`
+- `SEAFILE_ELASTICSEARCH_VOLUME`: The volume directory of Elasticsearch data
+- `SEAFILE_MYSQL_ROOT_PASSWORD`: The `root` password of MySQL
+- `SEAFILE_MYSQL_DB_PASSWORD`: The user `seafile` password of MySQL
+- `JWT`: JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: `pwgen -s 40 1`
+- `SEAFILE_SERVER_HOSTNAME`: Seafile server hostname or domain
+- `SEAFILE_SERVER_PROTOCOL`: Seafile server protocol (http or https)
 
-SSL is now handled by the caddy server. If you have used SSL before, you will also need modify the seafile.nginx.conf. Change server listen 443 to 80.
+SSL is now handled by the [caddy server](../docker/deploy_seafile_with_docker.md#about-ssl-and-caddy). If you have used SSL before, you will also need modify the seafile.nginx.conf. Change server listen 443 to 80.
 
 Backup the original seafile.nginx.conf file:
 
