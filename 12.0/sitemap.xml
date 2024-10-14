@@ -217,15 +217,7 @@
          <lastmod>2024-10-14</lastmod>
     </url>
     <url>
-         <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/adfs/</loc>
-         <lastmod>2024-10-14</lastmod>
-    </url>
-    <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/admin_roles_permissions/</loc>
-         <lastmod>2024-10-14</lastmod>
-    </url>
-    <url>
-         <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy_pro/cas/</loc>
          <lastmod>2024-10-14</lastmod>
     </url>
     <url>
@@ -481,14 +473,6 @@
          <lastmod>2024-10-14</lastmod>
     </url>
     <url>
-         <loc>https://haiwen.github.io/seafile-admin-docs/12.0/upgrade/ce-7.0/</loc>
-         <lastmod>2024-10-14</lastmod>
-    </url>
-    <url>
-         <loc>https://haiwen.github.io/seafile-admin-docs/12.0/upgrade/pro-7.0/</loc>
-         <lastmod>2024-10-14</lastmod>
-    </url>
-    <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/upgrade/upgrade/</loc>
          <lastmod>2024-10-14</lastmod>
     </url>
@@ -530,10 +514,6 @@
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/upgrade/upgrade_notes_for_9.0.x/</loc>
-         <lastmod>2024-10-14</lastmod>
-    </url>
-    <url>
-         <loc>https://haiwen.github.io/seafile-admin-docs/12.0/upgrade/upgrade_with_mysql_or_postgresql/</loc>
          <lastmod>2024-10-14</lastmod>
     </url>
 </urlset>
