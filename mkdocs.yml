@@ -141,7 +141,6 @@ nav:
     - Seafile FSCK: maintain/seafile_fsck.md
     - Seafile GC: maintain/seafile_gc.md
     - Clean database: maintain/clean_database.md
-    - Import Directory To Seafile (Pro): deploy_pro/seaf_import.md
   - Upgrade Seafile Server:
     - Outline: upgrade/upgrade.md
     - Upgrade Seafile Docker: upgrade/upgrade_docker.md
