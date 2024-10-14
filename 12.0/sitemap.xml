@@ -109,10 +109,6 @@
          <lastmod>2024-10-14</lastmod>
     </url>
     <url>
-         <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/common_problems_for_setting_up_server/</loc>
-         <lastmod>2024-10-14</lastmod>
-    </url>
-    <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/deploy_with_k8s/</loc>
          <lastmod>2024-10-14</lastmod>
     </url>
@@ -198,10 +194,6 @@
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/using_mysql/</loc>
-         <lastmod>2024-10-14</lastmod>
-    </url>
-    <url>
-         <loc>https://haiwen.github.io/seafile-admin-docs/12.0/deploy/using_sqlite/</loc>
          <lastmod>2024-10-14</lastmod>
     </url>
     <url>
