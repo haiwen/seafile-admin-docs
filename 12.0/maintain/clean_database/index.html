@@ -3514,57 +3514,50 @@
 <h1 id="clean-database">Clean Database<a class="headerlink" href="#clean-database" title="Permanent link">&para;</a></h1>
 <h2 id="seahub">Seahub<a class="headerlink" href="#seahub" title="Permanent link">&para;</a></h2>
 <h3 id="session">Session<a class="headerlink" href="#session" title="Permanent link">&para;</a></h3>
-<p>Since version 5.0, we offered command to clear expired session records in Seahub database.</p>
+<p>Use the following command to clear expired session records in Seahub database:</p>
 <div class="codehilite"><pre><span></span><code>cd &lt;install-path&gt;/seafile-server-latest
 ./seahub.sh python-env python3 seahub/manage.py clearsessions
 </code></pre></div>
 
 <h3 id="activity">Activity<a class="headerlink" href="#activity" title="Permanent link">&para;</a></h3>
-<p>To clean the activity records, login in to MySQL/MariaDB and use the following command:</p>
-<div class="codehilite"><pre><span></span><code>use seahub_db;
-DELETE FROM Event WHERE to_days(now()) - to_days(timestamp) &gt; 90;
-</code></pre></div>
-
-<p>The corresponding items in UserEvent will deleted automatically by MariaDB when the foreign keys in Event table are deleted.</p>
-<p>Since version 7.0, the table Activity is used intead of Event. Correspondingly, you need to empty the Activity table. </p>
-<p>Use the following command:</p>
+<p>Use the following command to clear the activity records:</p>
 <div class="codehilite"><pre><span></span><code>use seahub_db;
 DELETE FROM Activity WHERE to_days(now()) - to_days(timestamp) &gt; 90;
 </code></pre></div>
 
 <p>The corresponding items in UserActivity will deleted automatically by MariaDB when the foreign keys in Activity table are deleted.</p>
 <h3 id="login">Login<a class="headerlink" href="#login" title="Permanent link">&para;</a></h3>
-<p>To clean the login records, login in to MySQL/MariaDB and use the following command:</p>
+<p>Use the following command to clean the login records:</p>
 <div class="codehilite"><pre><span></span><code>use seahub_db;
 DELETE FROM sysadmin_extra_userloginlog WHERE to_days(now()) - to_days(login_date) &gt; 90;
 </code></pre></div>
 
 <h3 id="file-access">File Access<a class="headerlink" href="#file-access" title="Permanent link">&para;</a></h3>
-<p>To clean the file access records, login in to MySQL/MariaDB and use the following command:</p>
+<p>Use the following command to clean the file access records:</p>
 <div class="codehilite"><pre><span></span><code>use seahub_db;
 DELETE FROM FileAudit WHERE to_days(now()) - to_days(timestamp) &gt; 90;
 </code></pre></div>
 
 <h3 id="file-update">File Update<a class="headerlink" href="#file-update" title="Permanent link">&para;</a></h3>
-<p>To clean the file update records, login in to MySQL/MariaDB and use the following command:</p>
+<p>Use the following command to clean the file update records:</p>
 <div class="codehilite"><pre><span></span><code>use seahub_db;
 DELETE FROM FileUpdate WHERE to_days(now()) - to_days(timestamp) &gt; 90;
 </code></pre></div>
 
 <h3 id="permisson">Permisson<a class="headerlink" href="#permisson" title="Permanent link">&para;</a></h3>
-<p>To clean the permisson records, login in to MySQL/MariaDB and use the following command:</p>
+<p>Use the following command to clean the permission change audit records:</p>
 <div class="codehilite"><pre><span></span><code>use seahub_db;
 DELETE FROM PermAudit WHERE to_days(now()) - to_days(timestamp) &gt; 90;
 </code></pre></div>
 
 <h3 id="file-history">File History<a class="headerlink" href="#file-history" title="Permanent link">&para;</a></h3>
-<p>To clean the file history records, login in to MySQL/MariaDB and use the following command:</p>
+<p>Use the following command to clean the file history records:</p>
 <div class="codehilite"><pre><span></span><code>use seahub_db;
 DELETE FROM FileHistory WHERE to_days(now()) - to_days(timestamp) &gt; 90;
 </code></pre></div>
 
 <h3 id="command-clean_db_records">Command clean_db_records<a class="headerlink" href="#command-clean_db_records" title="Permanent link">&para;</a></h3>
-<p>Since version 8.0, you can use the following command to simultaneously clean up Activity, sysadmin_extra_userloginlog, FileAudit, FileUpdate, FileHistory, PermAudit these 6 tables 90 days ago records:</p>
+<p>Use the following command to simultaneously clean up table records of Activity, sysadmin_extra_userloginlog, FileAudit, FileUpdate, FileHistory, PermAudit, FileTrash 90 days ago:</p>
 <div class="codehilite"><pre><span></span><code>cd &lt;install-path&gt;/seafile-server-latest
 ./seahub.sh python-env python3 seahub/manage.py clean_db_records
 </code></pre></div>
