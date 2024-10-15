@@ -67,22 +67,9 @@ use seahub_db;
 DELETE FROM FileHistory WHERE to_days(now()) - to_days(timestamp) > 90;
 ```
 
-### Trash Data
-
-Since version 12.0, library trash is recorded in database instead of scanning library history.
-
-Use the following command to clean the trash records:
-
-```
-cd <install-path>/seafile-server-latest
-./seahub.sh python-env python3 seahub/manage.py clean_repo_trash --keep-days 30
-```
-
-* keep-days:  number of days before which the generated trash in database will be cleaned. Default by 90 days.
-
 ### Command clean_db_records
 
-Since version 8.0, you can use the following command to simultaneously clean up Activity, sysadmin_extra_userloginlog, FileAudit, FileUpdate, FileHistory, PermAudit these 6 tables 90 days ago records:
+Use the following command to simultaneously clean up table records of Activity, sysadmin_extra_userloginlog, FileAudit, FileUpdate, FileHistory, PermAudit, FileTrash 90 days ago:
 
 ```
 cd <install-path>/seafile-server-latest
