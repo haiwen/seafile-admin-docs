@@ -4,7 +4,7 @@
 
 ### Session
 
-Since version 5.0, we offered command to clear expired session records in Seahub database.
+Use the following command to clear expired session records in Seahub database:
 
 ```
 cd <install-path>/seafile-server-latest
@@ -13,18 +13,7 @@ cd <install-path>/seafile-server-latest
 
 ### Activity
 
-To clean the activity records, login in to MySQL/MariaDB and use the following command:
-
-```
-use seahub_db;
-DELETE FROM Event WHERE to_days(now()) - to_days(timestamp) > 90;
-```
-
-The corresponding items in UserEvent will deleted automatically by MariaDB when the foreign keys in Event table are deleted.
-
-Since version 7.0, the table Activity is used intead of Event. Correspondingly, you need to empty the Activity table. 
-
-Use the following command:
+Use the following command to clear the activity records:
 
 ```
 use seahub_db;
@@ -35,7 +24,7 @@ The corresponding items in UserActivity will deleted automatically by MariaDB wh
 
 ### Login
 
-To clean the login records, login in to MySQL/MariaDB and use the following command:
+Use the following command to clean the login records:
 
 ```
 use seahub_db;
@@ -44,7 +33,7 @@ DELETE FROM sysadmin_extra_userloginlog WHERE to_days(now()) - to_days(login_dat
 
 ### File Access
 
-To clean the file access records, login in to MySQL/MariaDB and use the following command:
+Use the following command to clean the file access records:
 
 ```
 use seahub_db;
@@ -53,7 +42,7 @@ DELETE FROM FileAudit WHERE to_days(now()) - to_days(timestamp) > 90;
 
 ### File Update
 
-To clean the file update records, login in to MySQL/MariaDB and use the following command:
+Use the following command to clean the file update records:
 
 ```
 use seahub_db;
@@ -62,7 +51,7 @@ DELETE FROM FileUpdate WHERE to_days(now()) - to_days(timestamp) > 90;
 
 ### Permisson
 
-To clean the permisson records, login in to MySQL/MariaDB and use the following command:
+Use the following command to clean the permission change audit records:
 
 ```
 use seahub_db;
@@ -71,7 +60,7 @@ DELETE FROM PermAudit WHERE to_days(now()) - to_days(timestamp) > 90;
 
 ### File History
 
-To clean the file history records, login in to MySQL/MariaDB and use the following command:
+Use the following command to clean the file history records:
 
 ```
 use seahub_db;
@@ -80,12 +69,11 @@ DELETE FROM FileHistory WHERE to_days(now()) - to_days(timestamp) > 90;
 
 ### Command clean_db_records
 
-Since version 8.0, you can use the following command to simultaneously clean up Activity, sysadmin_extra_userloginlog, FileAudit, FileUpdate, FileHistory, PermAudit these 6 tables 90 days ago records:
+Use the following command to simultaneously clean up table records of Activity, sysadmin_extra_userloginlog, FileAudit, FileUpdate, FileHistory, PermAudit, FileTrash 90 days ago:
 
 ```
 cd <install-path>/seafile-server-latest
 ./seahub.sh python-env python3 seahub/manage.py clean_db_records
-
 ```
 
 ### Outdated Library Data
@@ -108,6 +96,7 @@ This command has been improved in version 10.0, including:
 cd <install-path>/seafile-server-latest
 ./seahub.sh python-env python3 seahub/manage.py clear_invalid_repo_data --dry-run=true
 ```
+
 
 
 ### Library Sync Tokens
