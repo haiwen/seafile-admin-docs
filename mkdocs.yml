@@ -123,6 +123,7 @@ nav:
       - Config fail2ban: security/fail2ban.md
   - Configuration and Customization:
     - Outline: config/README.md
+    - .env: config/env.md
     - ccnet.conf: config/ccnet-conf.md
     - seafile.conf: config/seafile-conf.md
     - seahub_settings.py: config/seahub_settings_py.md
