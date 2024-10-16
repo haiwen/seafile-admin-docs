@@ -1,0 +1,23 @@
+---
+services:
+
+  onlyoffice:
+    image: ${ONLYOFFICE_IMAGE:-onlyoffice/documentserver:8.1.0.1}
+    restart: unless-stopped
+    container_name: onlyoffice
+    environment:
+      - JWT_ENABLED=${ONLYOFFICE_JWT_ENABLED:-true}
+      - JWT_SECRET=${ONLYOFFICE_JWT_SECRET:?Variable is not set or empty}
+    volumes:
+      - ${ONLYOFFICE_VOLUME:-/opt/onlyoffice}/logs:/var/log/onlyoffice
+      - ${ONLYOFFICE_VOLUME:-/opt/onlyoffice}/data:/var/www/onlyoffice/Data
+      - ${ONLYOFFICE_VOLUME:-/opt/onlyoffice}/lib:/var/lib/onlyoffice
+    labels:
+      caddy: ${SEAFILE_SERVER_PROTOCOL:-http}://${SEAFILE_SERVER_HOSTNAME:?Variable is not set or empty}
+      caddy.reverse_proxy: "/onlyofficeds/* { to onlyoffice:80 }"
+    networks:
+      - seafile-net
+
+networks:
+  seafile-net:
+    name: seafile-net

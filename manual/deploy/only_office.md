@@ -8,7 +8,29 @@ In a cluster setup we recommend a dedicated DocumentServer host or a DocumentSer
 
 ## Deployment of OnlyOffice
 
-For a quick and easy installation, we suggest you use [ONLYOFFICE/Docker-DocumentServer](https://github.com/ONLYOFFICE/Docker-DocumentServer).
+Download the `onlyoffice.yml`
+
+```shell
+wget https://manual.seafile.com/12/docker/docker-compose/onlyoffice.yml
+```
+
+insert `onlyoffice.yml` into `COMPOSE_FILE` list, and add configurations of onlyoffice in `.env` file. The terms within `<>` have been set up.
+
+```shell
+COMPOSE_FILE='seafile-server.yml,caddy.yml,onlyoffice.yml'
+
+# Onlyoffice image
+ONLYOFFICE_IMAGE=onlyoffice/documentserver:8.1.0.1
+
+# Persistent storage directory of Onlyoffice
+ONLYOFFICE_VOLUME=/opt/onlyoffice
+
+# Enable jwt or not
+ONLYOFFICE_JWT_ENABLED=true
+
+# jwt secret
+ONLYOFFICE_JWT_SECRET=<your jwt secret>
+```
 
 ### Test that OnlyOffice is running
 
