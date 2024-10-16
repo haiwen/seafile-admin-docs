@@ -81,10 +81,13 @@ wget https://manual.seafile.com/docker/docker-compose/ce/12.0/seadoc.yml
 wget https://manual.seafile.com/docker/docker-compose/pro/12.0/seadoc.yml
 ```
 
-Modify `.env`, and insert `seadoc.yml` into `COMPOSE_FILE`
+Modify `.env`, and insert `seadoc.yml` into `COMPOSE_FILE`, and enable SeaDoc server
 
 ```shell
 COMPOSE_FILE='seafile-server.yml,caddy.yml,seadoc.yml'
+
+ENABLE_SEADOC=false
+SEADOC_SERVER_URL=http://example.seafile.com/sdoc-server
 ```
 
 #### Create the SeaDoc database manually
@@ -108,28 +111,6 @@ Start SeaDoc server with the following command
 docker compose up -d
 ```
 
-Wait for a few minutes for the first time initialization. Open `/opt/seadoc-data/sdoc-server/conf/sdoc_server_config.json`, and record `private_key` for modifying Seafile configuration file.
-
-### Configure Seafile
-
-Modify seahub_settings.py:
-
-```python
-ENABLE_SEADOC = True
-SEADOC_PRIVATE_KEY = '***'  # sdoc-server private_key
-SEADOC_SERVER_URL = 'https://sdoc-server.example.com'  # sdoc-server service url
-# When SeaDoc and Seafile/Seafile docker are deployed on the same host, SEADOC_SERVER_URL should be 'https://seafile.example.com/sdoc-server'
-FILE_CONVERTER_SERVER_URL = 'https://sdoc-server.example.com/seadoc-converter'  # converter-server url
-# When SeaDoc and Seafile are deployed on the same host, FILE_CONVERTER_SERVER_URL should be LAN address 'http://127.0.0.1:8888'
-# When SeaDoc and Seafile docker are deployed on the same host, FILE_CONVERTER_SERVER_URL should be http://sdoc-server:8888
-```
-
-Restart Seafile server
-
-```sh
-./seahub.sh restart
-```
-
 Now you can use SeaDoc!
 
 ## SeaDoc directory structure
@@ -142,23 +123,13 @@ Placeholder spot for shared volumes. You may elect to store certain persistent i
 * /opt/seadoc-data/nginx-logs: This is the directory for nginx logs.
 * /opt/seadoc-data/ssl: This is directory for certificate, which does not exist by default.
 
-## Upgrading SeaDoc server
-
-To upgrade to latest version of SeaDoc server:
-
-```sh
-docker pull seafileltd/sdoc-server:latest
-docker compose down
-docker compose up -d
-
-```
-
 ## FAQ
 
-### Load doc content error
+### About SSL
 
-If this error occurs, please check the logs of Nginx, SeaDoc, Seahub, and Seaf-server. You can refer to the following solutions for troubleshooting.
+From Seafile 12.0, the SSL is handled by [***Caddy***](https://caddyserver.com/docs/). Caddy is a modern open source web server that mainly binds external traffic and internal services in [seafile docker](./seafile_docker_structures.md). The default caddy image is [`lucaslorentz/caddy-docker-proxy:2.9`](https://github.com/lucaslorentz/caddy-docker-proxy), which user only needs to correctly configure the following fields in `.env` to automatically complete the acquisition and update of the certificate:
 
-#### seahub_settings.py
-
-The values of `SEADOC_SERVER_URL` and `FILE_CONVERTER_SERVER_URL` are different in different deployment methods.
+```shell
+SEAFILE_SERVER_PROTOCOL=https
+SEAFILE_SERVER_HOSTNAME=example.com
+```
