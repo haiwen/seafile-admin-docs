@@ -24,9 +24,9 @@ The SeaDoc archticture is demonstrated as below:
 
 Here is the workflow when a user open sdoc file in browser
 
-1. When a user open a sdoc file in the browser, a file loading request will be sent to Nginx, and Nginx proxy the request to SeaDoc server.
+1. When a user open a sdoc file in the browser, a file loading request will be sent to Caddy, and Caddy proxy the request to SeaDoc server (see [Seafile instance archticture](../docker/seafile_docker_overview.md) for the details).
 2. SeaDoc server will send the content back if it is already cached, otherwise it sends a request to Seahub.
-3. Seahub loads the content from seaf-server and sends it to SeaDoc server.
+3. Seahub loads the content from Seafile-server, then sends it to SeaDoc server and write the file to the cache at the same time.
 4. After SeaDoc receives the content, it sends the content to the browser.
 
 ## Setup SeaDoc
@@ -35,11 +35,10 @@ Here is the workflow when a user open sdoc file in browser
 
 ### Deployment method
 
-SeaDoc has three deployment methods:
+SeaDoc has the following deployment methods:
 
-* Deploy SeaDoc on a new host.
-* SeaDoc and Seafile are deployed on the same host.
-* SeaDoc and Seafile docker are deployed on the same host.
+- Deploy SeaDoc on a new host.
+- SeaDoc and Seafile docker are deployed on the same host.
 
 ### Deploy SeaDoc on a new host
 
@@ -47,13 +46,13 @@ SeaDoc has three deployment methods:
 
 Download [docker-compose.yml](https://manual.seafile.com/docker/docker-compose/seadoc/0.8/docker-compose.yml) sample file to your host. Then modify the file according to your environment. The following fields are needed to be modified:
 
-* MySQL host (DB_HOST)
-* MySQL port (DB_PORT)
-* MySQL user (DB_USER)
-* MySQL password (DB_PASSWD)
-* The volume directory of SeaDoc data (volumes)
-* SeaDoc service URL (SDOC_SERVER_HOSTNAME)
-* Seafile service URL (SEAHUB_SERVICE_URL)
+- `DB_HOST`: MySQL host
+- `DB_PORT`: MySQL port
+- `DB_USER`: MySQL user
+- `DB_PASSWD`: MySQL password
+- `volumes`: The volume directory of SeaDoc data
+- `SDOC_SERVER_HOSTNAME`: SeaDoc service URL
+- `SEAHUB_SERVICE_URL`: Seafile service URL
 
 #### Create the SeaDoc database manually
 
@@ -67,123 +66,25 @@ GRANT ALL PRIVILEGES ON `sdoc_db`.* to `seafile`@`%.%.%.%`;
 ```
 
 Note, SeaDoc will only create one database table to store operation logs.
-
-Then follow the section: Start SeaDoc.
-
-### SeaDoc and Seafile (non docker version) are deployed on the same host
-
-#### Download and modify SeaDoc docker-compose.yml
-
-Download [docker-compose.yml](https://manual.seafile.com/docker/docker-compose/seadoc/0.8/docker-compose.yml) sample file to your host. Then modify the file according to your environment. The following fields are needed to be modified:
-
-* MySQL host (DB_HOST)
-* MySQL port (DB_PORT)
-* MySQL user (DB_USER)
-* MySQL password (DB_PASSWD)
-* The volume directory of SeaDoc data (volumes)
-* SeaDoc service URL (SDOC_SERVER_HOSTNAME)
-* Seafile service URL (SEAHUB_SERVICE_URL)
-
-The `ports` need to be modified additionally:
-
-```yml
-sdoc-server:
-    ...
-    ports:
-        # - "80:80"
-        # - "443:443"
-        - "7070:7070"
-        - "8888:8888"
-```
-
-#### Create the SeaDoc database manually
-
-SeaDoc and Seafile share the MySQL service.
-
-Create the database sdoc_db in Seafile MySQL and authorize the user.
-
-```sh
-create database if not exists sdoc_db charset utf8mb4;
-GRANT ALL PRIVILEGES ON `sdoc_db`.* to `seafile`@`%.%.%.%`;
-```
-
-Note, SeaDoc will only create one database table to store operation logs.
-
-#### Modify seafile.nginx.conf
-
-Add the following to the `seafile.nginx.conf`:
-
-```
-    location /sdoc-server/ {
-        add_header Access-Control-Allow-Origin *;
-        add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
-        add_header Access-Control-Allow-Headers "deviceType,token, authorization, content-type";
-        if ($request_method = 'OPTIONS') {
-            add_header Access-Control-Allow-Origin *;
-            add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
-            add_header Access-Control-Allow-Headers "deviceType,token, authorization, content-type";
-            return 204;
-        }
-
-        proxy_pass         http://127.0.0.1:7070/;
-        proxy_redirect     off;
-        proxy_set_header   Host              $host;
-        proxy_set_header   X-Real-IP         $remote_addr;
-        proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
-        proxy_set_header   X-Forwarded-Host  $server_name;
-        proxy_set_header   X-Forwarded-Proto $scheme;
-
-        client_max_body_size 100m;
-    }
-
-    location /socket.io {
-        proxy_pass http://127.0.0.1:7070;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_redirect off;
-
-        proxy_buffers 8 32k;
-        proxy_buffer_size 64k;
-
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header Host $http_host;
-        proxy_set_header X-NginX-Proxy true;
-    }
-```
-
-And reload nginx
-
-```sh
-nginx -s reload
-```
 
 Then follow the section: Start SeaDoc.
 
 ### SeaDoc and Seafile docker are deployed on the same host
 
-#### Modify Seafile docker-compose.yml
+#### Download the seadoc.yml and integrate SeaDoc in Seafile docker
 
-Add the SeaDoc [docker-compose.yml](https://manual.seafile.com/docker/docker-compose/seadoc/0.8/docker-compose.yml) contents to the Seafile docker-compose.yml, and the `ports` need to be modified additionally:
+```shell
+# for community edition
+wget https://manual.seafile.com/docker/docker-compose/ce/12.0/seadoc.yml
 
-```yml
-services:
-  ...
-  seafile:
-    ...
+# for pro edition
+wget https://manual.seafile.com/docker/docker-compose/pro/12.0/seadoc.yml
+```
 
-  sdoc-server:
-    image: seafileltd/sdoc-server:latest
-    container_name: sdoc-server
-    # ports:
-      # - 80:80
-      # - 443:443
-      # - 7070:7070
-      # - 8888:8888
-    networks:
-      - seafile-net
-    ...
+Modify `.env`, and insert `seadoc.yml` into `COMPOSE_FILE`
+
+```shell
+COMPOSE_FILE='seafile-server.yml,caddy.yml,seadoc.yml'
 ```
 
 #### Create the SeaDoc database manually
@@ -198,58 +99,6 @@ GRANT ALL PRIVILEGES ON `sdoc_db`.* to `seafile`@`%.%.%.%`;
 ```
 
 Note, SeaDoc will only create one database table to store operation logs.
-
-#### Modify seafile.nginx.conf
-
-Add the following to the `seafile.nginx.conf`:
-
-```
-    location /sdoc-server/ {
-        add_header Access-Control-Allow-Origin *;
-        add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
-        add_header Access-Control-Allow-Headers "deviceType,token, authorization, content-type";
-        if ($request_method = 'OPTIONS') {
-            add_header Access-Control-Allow-Origin *;
-            add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
-            add_header Access-Control-Allow-Headers "deviceType,token, authorization, content-type";
-            return 204;
-        }
-
-        proxy_pass         http://sdoc-server:7070/;
-        proxy_redirect     off;
-        proxy_set_header   Host              $host;
-        proxy_set_header   X-Real-IP         $remote_addr;
-        proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
-        proxy_set_header   X-Forwarded-Host  $server_name;
-        proxy_set_header   X-Forwarded-Proto $scheme;
-
-        client_max_body_size 100m;
-    }
-
-    location /socket.io {
-        proxy_pass http://sdoc-server:7070;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_redirect off;
-
-        proxy_buffers 8 32k;
-        proxy_buffer_size 64k;
-
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header Host $http_host;
-        proxy_set_header X-NginX-Proxy true;
-    }
-```
-
-And reload nginx
-
-```sh
-nginx -s reload
-```
-
-Then follow the section: Start SeaDoc.
 
 ## Start SeaDoc
 
@@ -283,34 +132,6 @@ Restart Seafile server
 
 Now you can use SeaDoc!
 
-## More configuration options
-
-### Let's encrypt SSL certificate
-
-If you set `SDOC_SERVER_LETSENCRYPT` to `true`, the container would request a letsencrypt-signed SSL certificate for you automatically.
-
-e.g.
-
-```
-sdoc-server:
-    ...
-    ports:
-        - "80:80"
-        - "443:443"
-    ...
-    environment:
-        ...
-        - SDOC_SERVER_LETSENCRYPT=true
-        - SDOC_SERVER_HOSTNAME=sdoc-server.seafile.com
-        ...
-
-```
-
-If you want to use your own SSL certificate and the volume directory of SeaDoc data is `/opt/seadoc-data`:
-
-* create a folder `/opt/seadoc-data/ssl`, and put your certificate and private key under the ssl directory.
-* Assume your site name is `sdoc-server.example.com`, then your certificate must have the name `sdoc-server.example.com.crt`, and the private key must have the name `sdoc-server.example.com.key`.
-
 ## SeaDoc directory structure
 
 ### `/opt/seadoc-data`
@@ -337,12 +158,6 @@ docker compose up -d
 ### Load doc content error
 
 If this error occurs, please check the logs of Nginx, SeaDoc, Seahub, and Seaf-server. You can refer to the following solutions for troubleshooting.
-
-#### seafile.nginx.conf
-
-Please check whether the configuration correctly proxy the `/sdoc-server/` and `/socket.io`.
-
-eg : IF you found `GET /sdoc-server/...` in seahub.access.log, it means that the request that should have been sent to SeaDoc was mistakenly sent to Seahub.
 
 #### seahub_settings.py
 
