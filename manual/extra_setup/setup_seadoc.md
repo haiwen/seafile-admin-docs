@@ -87,7 +87,7 @@ Modify `.env`, and insert `seadoc.yml` into `COMPOSE_FILE`, and enable SeaDoc se
 COMPOSE_FILE='seafile-server.yml,caddy.yml,seadoc.yml'
 
 ENABLE_SEADOC=false
-SEADOC_SERVER_URL=http://example.seafile.com/sdoc-server
+SEADOC_SERVER_URL=https://example.seafile.com/sdoc-server
 ```
 
 #### Create the SeaDoc database manually
