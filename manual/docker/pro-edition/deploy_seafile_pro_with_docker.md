@@ -69,7 +69,7 @@ The following fields merit particular attention:
 - `SEAFILE_VOLUME`: The volume directory of Seafile data, default is `/opt/seafile-data`
 - `SEAFILE_MYSQL_VOLUME`: The volume directory of MySQL data, default is `/opt/seafile-mysql/db`
 - `SEAFILE_CADDY_VOLUME`: The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's, default is `/opt/seafile-caddy`
-- `SEAFILE_ELASTICSEARCH_VOLUME`: The volume directory of Elasticsearch data
+- `SEAFILE_ELASTICSEARCH_VOLUME`: The volume directory of Elasticsearch data, default is `/opt/seafile-elasticsearch/data`
 - `SEAFILE_MYSQL_ROOT_PASSWORD`: The `root` password of MySQL
 - `SEAFILE_MYSQL_DB_USER`: The user of MySQL (`database` - `user` can be found in `conf/seafile.conf`)
 - `SEAFILE_MYSQL_DB_PASSWORD`: The user `seafile` password of MySQL
