@@ -6,6 +6,14 @@ You can deploy OnlyOffice and Seafile in the same machine with same domain or us
 
 In a cluster setup we recommend a dedicated DocumentServer host or a DocumentServer Cluster on a different subdomain. 
 
+## Generate JWT-Token (shared secret)
+
+Secure communication between Seafile and OnlyOffice is granted by a shared secret.
+
+```shell
+pwgen -s 40 1
+```
+
 ## Deployment of OnlyOffice
 
 Download the `onlyoffice.yml`
@@ -14,11 +22,9 @@ Download the `onlyoffice.yml`
 wget https://manual.seafile.com/12/docker/docker-compose/onlyoffice.yml
 ```
 
-insert `onlyoffice.yml` into `COMPOSE_FILE` list, and add configurations of onlyoffice in `.env` file. The terms within `<>` have been set up.
+insert `onlyoffice.yml` into `COMPOSE_FILE` list (i.e., `COMPOSE_FILE='...,onlyoffice.yml'`), and add the following configurations of onlyoffice in `.env` file.
 
 ```shell
-COMPOSE_FILE='seafile-server.yml,caddy.yml,onlyoffice.yml'
-
 # Onlyoffice image
 ONLYOFFICE_IMAGE=onlyoffice/documentserver:8.1.0.1
 
@@ -32,9 +38,25 @@ ONLYOFFICE_JWT_ENABLED=true
 ONLYOFFICE_JWT_SECRET=<your jwt secret>
 ```
 
+Also modify `seahub_settings.py`
+
+```py
+ENABLE_ONLYOFFICE = True
+ONLYOFFICE_APIJS_URL = 'https://seafile.example.com/web-apps/apps/api/documents/api.js'
+ONLYOFFICE_FILE_EXTENSION = ('doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx', 'odt', 'fodt', 'odp', 'fodp', 'ods', 'fods', 'csv', 'ppsx', 'pps')
+ONLYOFFICE_JWT_SECRET = '<your jwt secret>'
+```
+
+For more information you can check the official documentation: <https://api.onlyoffice.com/editors/signature/> and <https://github.com/ONLYOFFICE/Docker-DocumentServer#available-configuration-parameters>
+
 ### Test that OnlyOffice is running
 
-After the installation process is finished, visit this page to make sure you have deployed OnlyOffice successfully: `http{s}://{your OnlyOffice server's domain or IP}/welcome`, you will get **Document Server is running** info at this page.
+```shell
+docker-compose down
+docker-compose up -d
+```
+
+After the installation process is finished, visit this page to make sure you have deployed OnlyOffice successfully: `http{s}://{your Seafile server's domain or IP}/onlyoffice/welcome`, you will get **Document Server is running** info at this page.
 
 ### Configure OnlyOffice to automatically save
 
@@ -62,71 +84,7 @@ You can now set up automatic save by changing the configuration of OnlyOffice.
 
 You can get more info in OnlyOffice's official document: https\://api.onlyoffice.com/editors/save
 
-### Configure OnlyOffice to use JWT Secret
-
-JWT secret can be used to secure your OnlyOffice server so other people will not be able to use it.（Since 7.1.2）
-
-To enable this feature, you should install a python moduel
-
-```
-pip install pyjwt
-```
-
-Config seahub_settings.py:
-
-```
-ONLYOFFICE_JWT_SECRET = 'your-secret-string'
-```
-
-Then run OnlyOffice docker image via the following command:
-
-```
-sudo docker run -i -t -d -p 80:80 -e JWT_ENABLED=true -e JWT_SECRET=your-secret-string onlyoffice/documentserver
-```
-
-For more information you can check the official documentation: <https://api.onlyoffice.com/editors/signature/> and <https://github.com/ONLYOFFICE/Docker-DocumentServer#available-configuration-parameters>
-
-**NOTE**：To avoid the problem of having to change the configuration file every time the _documentserver_ container is restarted, you can create a locally persistent configuration file `local-production-linux.json` and mount it into _documentserver_ container :
-
-```
--v /local/path/to/local-production-linux.json:/etc/onlyoffice/documentserver/local-production-linux.json
-```
-
-## Configure Seafile Server
-
-> For OnlyOffice is deployed in a separate machine with a different domain.
-
-Add the following config option to `seahub_settings.py`.
-
-```python
-# Enable OnlyOffice
-ENABLE_ONLYOFFICE = True
-VERIFY_ONLYOFFICE_CERTIFICATE = False
-ONLYOFFICE_APIJS_URL = 'http{s}://{your OnlyOffice server's domain or IP}/web-apps/apps/api/documents/api.js'
-ONLYOFFICE_FILE_EXTENSION = ('doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx', 'odt', 'fodt', 'odp', 'fodp', 'ods', 'fods')
-ONLYOFFICE_EDIT_FILE_EXTENSION = ('docx', 'pptx', 'xlsx')
-
-# Enable force save to let user can save file when he/she press the save button on OnlyOffice file edit page.
-ONLYOFFICE_FORCE_SAVE = True
-
-# if JWT enabled
-ONLYOFFICE_JWT_SECRET = 'your-secret-string'
-```
-
-Then restart the Seafile Server
-
-```
-./seafile.sh restart
-./seahub.sh restart
-
-# or
-service seafile-server restart
-service seahub-server restart
-```
-
-When you click on a document you should see the new preview page.
-
-## Config Seafile and OnlyOffice in the same machine
+## Config Seafile and OnlyOffice 
 
 When you want to deploy OnlyOffice and Seafile on the same server, Seafile should be deployed at the root URL while OnlyOffice should be deployed using a subfolder URL.
 

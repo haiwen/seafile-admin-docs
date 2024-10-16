@@ -57,9 +57,9 @@ mkdir /opt/seafile
 cd /opt/seafile
 
 # Seafile PE 12.0
-wget -O .env https://manual.seafile.com/docker/docker-compose/pro/12.0/env
-wget https://manual.seafile.com/docker/docker-compose/pro/12.0/seafile-server.yml
-wget https://manual.seafile.com/docker/docker-compose/pro/12.0/caddy.yml
+wget -O .env https://manual.seafile.com/12.0/docker/docker-compose/pro/env
+wget https://manual.seafile.com/12.0/docker/docker-compose/pro/seafile-server.yml
+wget https://manual.seafile.com/12.0/docker/docker-compose/pro/caddy.yml
 
 nano .env
 ```
