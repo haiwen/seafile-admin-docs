@@ -4,7 +4,7 @@
 
 There are three config files in the community edition:
 
-* [.env](env.md): contains the components and environment variables  settings of Seafile-docker instance
+* [environment variables](env.md): contains the components and environment variables settings of Seafile-docker instance
 * [ccnet.conf](ccnet-conf.md): contains the LDAP settings
 * [seafile.conf](seafile-conf.md): contains settings for seafile daemon and fileserver.
 * [seahub_settings.py](seahub_settings_py.md): contains settings for Seahub
