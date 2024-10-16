@@ -63,7 +63,7 @@ SEADOC_SERVER_URL=http://example.seafile.com/sdoc-server
 - `SEAFILE_MYSQL_VOLUME`: The volume directory of MySQL data, default is `/opt/seafile-mysql/db`.
 - `SEAFILE_CADDY_VOLUME`: The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's, default is `/opt/seafile-caddy`.
 - `SEAFILE_ELASTICSEARCH_VOLUME`: Only valid in pro edition. The volume directory of Elasticsearch data, default is `/opt/seafile-elasticsearch/data`.
-- `SEADOC_VOLUME`: Only valid after integrating [SeaDoc](../extra_setup/setup_seadoc.md). The volume directory of SeaDoc server data, default is `/opt/seadoc-data`.
+- `SEADOC_VOLUME`: Only valid after integrating [SeaDoc](../extra_setup/setup_seadoc.md). The volume directory of [SeaDoc server data](../extra_setup/setup_seadoc.md#seadoc-directory-structure), default is `/opt/seadoc-data`.
 
 ## Mysql configurations
 
