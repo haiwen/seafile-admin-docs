@@ -113,11 +113,3 @@ If your LDAP service supports TLS connections, you can configure `LDAP_SERVER_UR
 ```python
 LDAP_SERVER_URL = 'ldaps://192.168.0.1:636/'
 ```
-
-### SSO and LDAP users use the same uid
-
-If you use both ldap and SSO (enable LDAP user sync with ADFS/OAuth), and the uids of ldap and sso users are the same, you can configure `SSO_LDAP_USE_SAME_UID = True` to make different authentication methods point to the same Seafile user.
-
-```python
-SSO_LDAP_USE_SAME_UID = True
-```
