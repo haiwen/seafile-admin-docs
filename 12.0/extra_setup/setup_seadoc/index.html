@@ -3694,10 +3694,10 @@ GRANT<span class="w"> </span>ALL<span class="w"> </span>PRIVILEGES<span class="w
 <h3 id="seadoc-and-seafile-docker-are-deployed-on-the-same-host">SeaDoc and Seafile docker are deployed on the same host<a class="headerlink" href="#seadoc-and-seafile-docker-are-deployed-on-the-same-host" title="Permanent link">&para;</a></h3>
 <h4 id="download-the-seadocyml-and-integrate-seadoc-in-seafile-docker">Download the seadoc.yml and integrate SeaDoc in Seafile docker<a class="headerlink" href="#download-the-seadocyml-and-integrate-seadoc-in-seafile-docker" title="Permanent link">&para;</a></h4>
 <div class="codehilite"><pre><span></span><code><span class="c1"># for community edition</span>
-wget<span class="w"> </span>https://manual.seafile.com/docker/docker-compose/ce/12.0/seadoc.yml
+wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/docker-compose/ce/seadoc.yml
 
 <span class="c1"># for pro edition</span>
-wget<span class="w"> </span>https://manual.seafile.com/docker/docker-compose/pro/12.0/seadoc.yml
+wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/docker-compose/pro/seadoc.yml
 </code></pre></div>
 
 <p>Modify <code>.env</code>, and insert <code>seadoc.yml</code> into <code>COMPOSE_FILE</code>, and enable SeaDoc server</p>
