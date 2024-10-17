@@ -422,6 +422,16 @@ DEL_GROUP_IF_NOT_FOUND = False           # Set to "true", sync process will dele
 DEL_DEPARTMENT_IF_NOT_FOUND = False      # Set to "true", sync process will deleted the department if not found it in LDAP server.
 ```
 
+### SSO and LDAP users use the same uid
+
+If you sync users from LDAP to Seafile, when the user login via SSO (ADFS or OAuth), you want Seafile to find the existing account for this user instead of creating a new one, you can set `SSO_LDAP_USE_SAME_UID = True`:
+
+```python
+SSO_LDAP_USE_SAME_UID = True
+```
+
+Note, here the UID means the unique user ID, in LDAP it is the attribute you use for `LDAP_LOGIN_ATTR` (not `LDAP_UID_ATTR`), in ADFS it is `uid` attribute. You need make sure you use the same attribute for the two settings.
+
 ## Importing Roles from LDAP
 
 Seafile Pro Edition supports syncing roles from LDAP or Active Directory.
