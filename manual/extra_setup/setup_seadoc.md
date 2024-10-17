@@ -75,10 +75,10 @@ Then follow the section: Start SeaDoc.
 
 ```shell
 # for community edition
-wget https://manual.seafile.com/docker/docker-compose/ce/12.0/seadoc.yml
+wget https://manual.seafile.com/12.0/docker/docker-compose/ce/seadoc.yml
 
 # for pro edition
-wget https://manual.seafile.com/docker/docker-compose/pro/12.0/seadoc.yml
+wget https://manual.seafile.com/12.0/docker/docker-compose/pro/seadoc.yml
 ```
 
 Modify `.env`, and insert `seadoc.yml` into `COMPOSE_FILE`, and enable SeaDoc server
