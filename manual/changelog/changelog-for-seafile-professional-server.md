@@ -8,6 +8,15 @@
 
 Please check our document for how to upgrade to 11.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x/>
 
+### 11.0.15 (2024-10-17)
+
+* [fix] Check the length of email in login form, preventing too long input
+* [fix] Use user name instead of user ID in email content
+* [fix] auth-token API also prevent brute force attack
+* [fix] Fix invite people in multi-tenancy mode
+* [fix] Add option SSO_LDAP_USE_SAME_UID
+
+
 ### 11.0.14 (2024-08-22)
 
 * [fix] Fix a bug that system admin can not share a library in admin panel
