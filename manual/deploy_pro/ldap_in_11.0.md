@@ -372,30 +372,65 @@ MULTI_LDAP_1_ADMIN_DN = 'administrator@example.top'
 MULTI_LDAP_1_ADMIN_PASSWORD = 'Hello@123'
 MULTI_LDAP_1_PROVIDER = 'ldap1'
 MULTI_LDAP_1_LOGIN_ATTR = 'userPrincipalName'
+
+# Optional configs
+MULTI_LDAP_1_USER_FIRST_NAME_ATTR = 'givenName'
+MULTI_LDAP_1_USER_LAST_NAME_ATTR = 'sn'
+MULTI_LDAP_1_USER_NAME_REVERSE = False
+ENABLE_MULTI_LDAP_1_EXTRA_USER_INFO_SYNC = True
+
+MULTI_LDAP_1_FILTER = 'memberOf=CN=testgroup,OU=test,DC=seafile,DC=ren' 
+MULTI_LDAP_1_USE_PAGED_RESULT = False
+MULTI_LDAP_1_FOLLOW_REFERRALS = True
+ENABLE_MULTI_LDAP_1_USER_SYNC = True
+ENABLE_MULTI_LDAP_1_GROUP_SYNC = True
+MULTI_LDAP_1_SYNC_DEPARTMENT_FROM_OU = True
+
+MULTI_LDAP_1_USER_OBJECT_CLASS = 'person'
+MULTI_LDAP_1_DEPT_ATTR = ''
+MULTI_LDAP_1_UID_ATTR = ''
+MULTI_LDAP_1_CONTACT_EMAIL_ATTR = ''
+MULTI_LDAP_1_USER_ROLE_ATTR = ''
+MULTI_LDAP_1_AUTO_REACTIVATE_USERS = True
+
+MULTI_LDAP_1_GROUP_OBJECT_CLASS = 'group'
+MULTI_LDAP_1_GROUP_FILTER = ''
+MULTI_LDAP_1_GROUP_MEMBER_ATTR = 'member'
+MULTI_LDAP_1_GROUP_UUID_ATTR = 'objectGUID'
+MULTI_LDAP_1_CREATE_DEPARTMENT_LIBRARY = False
+MULTI_LDAP_1_DEPT_REPO_PERM = 'rw'
+MULTI_LDAP_1_DEFAULT_DEPARTMENT_QUOTA = -2
+MULTI_LDAP_1_SYNC_GROUP_AS_DEPARTMENT = False
+MULTI_LDAP_1_USE_GROUP_MEMBER_RANGE_QUERY = False
+MULTI_LDAP_1_USER_ATTR_IN_MEMBERUID = 'uid'
+MULTI_LDAP_1_DEPT_NAME_ATTR = ''
 ......
 ```
 
 **Note**: There are still some shared config options are used for all LDAP servers, as follows:
 
 ```python
-# Common basic config options
-LDAP_USER_FIRST_NAME_ATTR = 'givenName'      # For update user's first name when login
-LDAP_USER_LAST_NAME_ATTR = 'sn'              # For update user's last name when login
-LDAP_USER_NAME_REVERSE = False               # Whether to reverse the user's first and last name
-
 # Common user sync options
 LDAP_SYNC_INTERVAL = 60
 IMPORT_NEW_USER = True                   # Whether to import new users when sync user
 ACTIVATE_USER_WHEN_IMPORT = True         # Whether to activate the user when importing new user
 DEACTIVE_USER_IF_NOTFOUND = False        # Set to "true" if you want to deactivate a user 
                                          # when he/she was deleted in AD server.
-ENABLE_EXTRA_USER_INFO_SYNC = True       # Whether to enable sync of additional user information,
-                                         # including user's full name, department, and Windows login name, etc.
 
 # Common group sync options
 DEL_GROUP_IF_NOT_FOUND = False           # Set to "true", sync process will delete the group if not found it in LDAP server.
 DEL_DEPARTMENT_IF_NOT_FOUND = False      # Set to "true", sync process will deleted the department if not found it in LDAP server.
 ```
+
+### SSO and LDAP users use the same uid
+
+If you sync users from LDAP to Seafile, when the user login via SSO (ADFS or OAuth), you want Seafile to find the existing account for this user instead of creating a new one, you can set `SSO_LDAP_USE_SAME_UID = True`:
+
+```python
+SSO_LDAP_USE_SAME_UID = True
+```
+
+Note, here the UID means the unique user ID, in LDAP it is the attribute you use for `LDAP_LOGIN_ATTR` (not `LDAP_UID_ATTR`), in ADFS it is `uid` attribute. You need make sure you use the same attribute for the two settings.
 
 ## Importing Roles from LDAP
 
