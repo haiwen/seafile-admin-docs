@@ -179,6 +179,12 @@ DEL_GROUP_IF_NOT_FOUND = False           # Set to "true", sync process will dele
 DEL_DEPARTMENT_IF_NOT_FOUND = False      # Set to "true", sync process will deleted the department if not found it in LDAP server.
 ```
 
+If you use both ldap and SSO (enable LDAP user sync with ADFS/OAuth), and the uids of ldap and sso users are the same, you can configure `SSO_LDAP_USE_SAME_UID = True` to make different authentication methods point to the same Seafile user.
+
+```python
+SSO_LDAP_USE_SAME_UID = True
+```
+
 #### Migrate LDAP records
 
 Run the following script to migrate users in `LDAPImported` to `EmailUsers`
