@@ -430,7 +430,7 @@ If you sync users from LDAP to Seafile, when the user login via SSO (ADFS or OAu
 SSO_LDAP_USE_SAME_UID = True
 ```
 
-Note, here the UID means the unique user ID, in LDAP it is the attribute you use for `LDAP_LOGIN_ATTR`, in ADFS it is `uid` attribute. You need make sure you use the same attribute for the two settings.
+Note, here the UID means the unique user ID, in LDAP it is the attribute you use for `LDAP_LOGIN_ATTR` (not `LDAP_UID_ATTR`), in ADFS it is `uid` attribute. You need make sure you use the same attribute for the two settings.
 
 ## Importing Roles from LDAP
 
