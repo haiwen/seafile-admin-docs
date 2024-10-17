@@ -3931,7 +3931,7 @@ sudo pip install boto
 </code></pre></div>
 
 <h4 id="seahub_settingspy">seahub_settings.py<a class="headerlink" href="#seahub_settingspy" title="Permanent link">&para;</a></h4>
-<p>You must setup and use memcached when deploying Seafile cluster. Refer to <a href="memcached_options.md">"add memcached"</a> to use memcached in Seahub.</p>
+<p>You must setup and use memory cache when deploying Seafile cluster. Refer to <a href="/config/seahub_settings_py/#cache">"memory cache"</a> to configure memory cache in Seahub.</p>
 <p>Also add following options to seahub_setting.py. These settings tell Seahub to store avatar in database and cache avatar in memcached, and store css CACHE to local memory.</p>
 <div class="codehilite"><pre><span></span><code>AVATAR_FILE_STORAGE = &#39;seahub.base.database_storage.DatabaseStorage&#39;
 </code></pre></div>
