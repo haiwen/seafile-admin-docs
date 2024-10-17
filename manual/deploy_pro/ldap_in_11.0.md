@@ -424,11 +424,13 @@ DEL_DEPARTMENT_IF_NOT_FOUND = False      # Set to "true", sync process will dele
 
 ### SSO and LDAP users use the same uid
 
-If you use both ldap and SSO (enable LDAP user sync with ADFS/OAuth), and the uids of ldap and sso users are the same, you can configure `SSO_LDAP_USE_SAME_UID = True` to make different authentication methods point to the same Seafile user.
+If you sync users from LDAP to Seafile, when the user login via SSO (ADFS or OAuth), you want Seafile to find the existing account for this user instead of creating a new one, you can set `SSO_LDAP_USE_SAME_UID = True`:
 
 ```python
 SSO_LDAP_USE_SAME_UID = True
 ```
+
+Note, here the UID means the unique user ID, in LDAP it is the attribute you use for `LDAP_LOGIN_ATTR`, in ADFS it is `uid` attribute. You need make sure you use the same attribute for the two settings.
 
 ## Importing Roles from LDAP
 
