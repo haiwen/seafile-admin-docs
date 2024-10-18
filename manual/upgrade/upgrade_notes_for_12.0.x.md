@@ -65,7 +65,7 @@ conf/.env
 
 ```env
 JWT_PRIVATE_KEY=xxx
-SEAFILE_SERVER_PROTOCOL=http
+SEAFILE_SERVER_PROTOCOL=https
 SEAFILE_SERVER_HOSTNAME=seafile.example.com
 ```
 
