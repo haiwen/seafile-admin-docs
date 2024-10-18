@@ -92,7 +92,7 @@ use_https = true
 sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
 ```
 
-`ssk_c_key` is a string of 32 characters.
+`sse_c_key` is a string of 32 characters.
 
 You can generate `sse_c_key` with the following command：
 ```
