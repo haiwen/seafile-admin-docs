@@ -5,16 +5,13 @@ There are two ways to deploy Seafile Pro Edition. Since version 8.0, the recomme
 - Method 1: [Deploy Seafile with Docker](../docker/pro-edition/deploy_seafile_pro_with_docker.md)
 - Method 2: [Download and Setup Seafile Professional Server Step by Step](download_and_setup_seafile_professional_server.md)
 
-## Migration and Upgrading
+## Migration from community edition
 
-- [Migrate from Seafile Community Server](migrate_from_seafile_community_server.md)
-- [Upgrade Seafile Professional Server](upgrading_seafile_professional_server.md)
+- [Migrate from Seafile Community edition](migrate_from_seafile_community_server.md)
 
-## S3/OpenSwift/Ceph Storage Backends
+## S3 Storage Backends
 
-- [Setup Seafile Professional Server With Amazon S3](setup_with_amazon_s3.md)
-- [Setup Seafile Professional Server With Ceph](setup_with_ceph.md)
-- [Setup Seafile Professional Server With Alibaba OSS](setup_with_oss.md)
+- [Setup Seafile Professional Server With S3](setup_with_amazon_s3.md)
 - [Setup Seafile Professional Server With OpenStack Swift](setup_with_swift.md)
 - [Data migration between different backends](migrate.md)
 - [Using multiple storage backends](multiple_storage_backends.md)
@@ -24,6 +21,6 @@ There are two ways to deploy Seafile Pro Edition. Since version 8.0, the recomme
 - [Deploy seafile servers in a cluster](deploy_in_a_cluster.md)
 - [Enable search and background tasks in a cluster](enable_search_and_background_tasks_in_a_cluster.md)
 - [Setup Seafile cluster with NFS](setup_seafile_cluster_with_nfs.md)
-- [Upgrade a cluster](upgrade_a_cluster.md)
+
 
 

@@ -1,6 +1,6 @@
 # Deploying Seafile
 
-We provide two ways to deploy Seafile services. Since version 8.0, **Docker is the recommended way**.
+We provide two ways to deploy Seafile services. **Docker is the recommended way**. Since version 12.0, binary based deployment for community edition is deprecated and will not be supported in a future release.
 
 * Using [Docker](../docker/deploy_seafile_with_docker.md)
 * Manually installing Seafile and setting up database, memcached and Nginx/Apache. See the following section.
@@ -13,20 +13,6 @@ We provide two ways to deploy Seafile services. Since version 8.0, **Docker is t
 * [Enabling Https with Apache](https_with_apache.md)
 * [Start Seafile at System Bootup](start_seafile_at_system_bootup.md)
 * [Logrotate](using_logrotate.md)
-
-## LDAP and AD integration
-
-[LDAP/AD Integration](using_ldap.md)
-
-## Single Sign On
-
-Seafile supports a few Single Sign On authentication protocols. See [Single Sign On](single_sign_on.md) for a summary.
-
-## Other Deployment Issues
-
-* [Deploy Seafile behind NAT](deploy_seafile_behind_nat.md)
-* [Deploy Seahub at Non-root domain](deploy_seahub_at_non-root_domain.md)
-* [Migrate From SQLite to MySQL](migrate_from_sqlite_to_mysql.md)
 
 
 ## Trouble shooting
