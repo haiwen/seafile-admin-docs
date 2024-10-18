@@ -91,13 +91,6 @@ nav:
       - Outline: deploy_pro/README.md
       - Installation: deploy_pro/download_and_setup_seafile_professional_server.md
       - Migration from Seafile Community: deploy_pro/migrate_from_seafile_community_server.md
-      - Storage Backends:
-        - Amazon S3 Backend: deploy_pro/setup_with_amazon_s3.md
-        - Ceph Backend: deploy_pro/setup_with_ceph.md
-        - OpenStack Swift Backend: deploy_pro/setup_with_swift.md
-        - Alibaba OSS: deploy_pro/setup_with_oss.md
-        - Multiple Storage Backends: deploy_pro/multiple_storage_backends.md
-        - Data migration: deploy_pro/migrate.md
       - Cluster deployment:
         - Deploy in a cluster: deploy_pro/deploy_in_a_cluster.md
         - Search and background tasks in a cluster: deploy_pro/enable_search_and_background_tasks_in_a_cluster.md
@@ -109,19 +102,27 @@ nav:
       - Logrotate: deploy/using_logrotate.md
       - Config fail2ban: security/fail2ban.md
     - Migrate From SQLite to MySQL: deploy/migrate_from_sqlite_to_mysql.md
-  - Setup extensions:
+  - Advanced Setup:
+    - Storage Backends:
+      - S3 Backend: deploy_pro/setup_with_amazon_s3.md
+      - Ceph Backend: deploy_pro/setup_with_ceph.md
+      - OpenStack Swift Backend: deploy_pro/setup_with_swift.md
+      - Alibaba OSS: deploy_pro/setup_with_oss.md
+      - Multiple Storage Backends: deploy_pro/multiple_storage_backends.md
+      - Data migration: deploy_pro/migrate.md
+    - Extra Seafile components:
+      - SeaDoc Integration: extra_setup/setup_seadoc.md
+      - Notification Server: deploy/notification-server.md
+      - WebDAV extension: extension/webdav.md
+      - FUSE extension: extension/fuse.md
     - Online Office:
       - LibreOffice Online Integration: deploy/libreoffice_online.md
       - OnlyOffice Integration: deploy/only_office.md
       - Office Online Server Integration (Pro): deploy_pro/office_web_app.md
-    - SeaDoc Integration: extra_setup/setup_seadoc.md
-    - Notification Server: deploy/notification-server.md
-    - WebDAV extension: extension/webdav.md
-    - FUSE extension: extension/fuse.md
     - Virus Scan (Pro):
       - Outline: deploy_pro/virus_scan.md
-      - Deploy ClamAV with Seafile: deploy_pro/deploy_clamav_with_seafile.md
-      - Virus Scan With Kav4fs: deploy_pro/virus_scan_with_kav4fs.md
+      - Virus scan with ClamAV: deploy_pro/deploy_clamav_with_seafile.md
+      - Virus scan with Kav4fs: deploy_pro/virus_scan_with_kav4fs.md
   - Configuration:
     - Authentication & Users:
       - LDAP/AD Integration:
