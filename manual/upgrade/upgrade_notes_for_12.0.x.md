@@ -69,6 +69,8 @@ conf/.env
 
 ```env
 JWT_PRIVATE_KEY=xxx
+SEAFILE_SERVER_PROTOCOL=https
+SEAFILE_SERVER_HOSTNAME=seafile.example.com
 ```
 
 Note: JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: `pwgen -s 40 1`
