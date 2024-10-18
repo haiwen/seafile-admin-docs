@@ -82,12 +82,12 @@ nav:
     - Migrate from non-docker deployment: docker/non_docker_to_docker.md
     - Seafile Docker autostart: docker/seafile_docker_autostart.md
   - Setup (binary):
-    - Seafile Community Setup on Linux:
+    - Seafile Community Setup:
       - Outline: deploy/README.md
-      - Installation with MySQL: deploy/using_mysql.md
+      - Installation: deploy/using_mysql.md
       - HTTPS with Nginx: deploy/https_with_nginx.md
       - HTTPS with Apache: deploy/https_with_apache.md
-    - Seafile Professional Setup on Linux:
+    - Seafile Professional Setup:
       - Outline: deploy_pro/README.md
       - Installation: deploy_pro/download_and_setup_seafile_professional_server.md
       - Migration from Seafile Community: deploy_pro/migrate_from_seafile_community_server.md
