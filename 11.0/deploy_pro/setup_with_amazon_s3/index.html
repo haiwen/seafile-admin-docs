@@ -3713,7 +3713,11 @@ sudo pip install boto3
 <span class="na">sse_c_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P</span>
 </code></pre></div>
 
-<p><code>ssk_c_key</code> is a 32-byte random string.</p>
+<p><code>sse_c_key</code> is a string of 32 characters.</p>
+<p>You can generate <code>sse_c_key</code> with the following command：</p>
+<div class="codehilite"><pre><span></span><code>openssl rand -base64 24
+</code></pre></div>
+
 <h2 id="other-public-hosted-s3-storage">Other Public Hosted S3 Storage<a class="headerlink" href="#other-public-hosted-s3-storage" title="Permanent link">&para;</a></h2>
 <p>There are other S3-compatible cloud storage providers in the market, such as Blackblaze and Wasabi. Configuration for those providers are just a bit different from AWS. We don't assure the following configuration works for all providers. If you have problems please contact our support.</p>
 <p>Edit <code>seafile.conf</code>, add the following lines:</p>
