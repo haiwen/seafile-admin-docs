@@ -65,7 +65,7 @@ SEADOC_SERVER_URL=http://example.seafile.com/sdoc-server
 - `SEAFILE_ELASTICSEARCH_VOLUME`: Only valid in pro edition. The volume directory of Elasticsearch data, default is `/opt/seafile-elasticsearch/data`.
 - `SEADOC_VOLUME`: Only valid after integrating [SeaDoc](../extra_setup/setup_seadoc.md). The volume directory of [SeaDoc server data](../extra_setup/setup_seadoc.md#seadoc-directory-structure), default is `/opt/seadoc-data`.
 
-## Mysql configurations
+## MySQL configurations
 
 - `SEAFILE_MYSQL_DB_HOST`: The host address of Mysql, default is the pre-defined service name `db` in Seafile-docker instance.
 - `SEAFILE_MYSQL_ROOT_PASSWORD`: The `root` password of MySQL.
