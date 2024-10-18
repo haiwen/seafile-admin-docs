@@ -104,7 +104,7 @@ nav:
         - Memcache and MariaDB Cluster: deploy_pro/memcached_mariadb_cluster.md
         - Setup Seafile cluster with NFS: deploy_pro/setup_seafile_cluster_with_nfs.md
       - License: deploy_pro/seafile_professional_sdition_software_license_agreement.md
-    - Other deployment notes
+    - Other deployment notes:
       - Start Seafile at System Bootup: deploy/start_seafile_at_system_bootup.md
       - Logrotate: deploy/using_logrotate.md
       - Config fail2ban: security/fail2ban.md
