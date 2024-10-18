@@ -98,12 +98,17 @@ nav:
         - Alibaba OSS: deploy_pro/setup_with_oss.md
         - Multiple Storage Backends: deploy_pro/multiple_storage_backends.md
         - Data migration: deploy_pro/migrate.md
-      - Cluster Deployment:
+      - Cluster deployment:
         - Deploy in a cluster: deploy_pro/deploy_in_a_cluster.md
         - Search and background tasks in a cluster: deploy_pro/enable_search_and_background_tasks_in_a_cluster.md
         - Memcache and MariaDB Cluster: deploy_pro/memcached_mariadb_cluster.md
         - Setup Seafile cluster with NFS: deploy_pro/setup_seafile_cluster_with_nfs.md
       - License: deploy_pro/seafile_professional_sdition_software_license_agreement.md
+    - Other deployment notes
+      - Start Seafile at System Bootup: deploy/start_seafile_at_system_bootup.md
+      - Logrotate: deploy/using_logrotate.md
+      - Config fail2ban: security/fail2ban.md
+    - Migrate From SQLite to MySQL: deploy/migrate_from_sqlite_to_mysql.md
   - Setup extensions:
     - Online Office:
       - LibreOffice Online Integration: deploy/libreoffice_online.md
@@ -117,15 +122,8 @@ nav:
       - Outline: deploy_pro/virus_scan.md
       - Deploy ClamAV with Seafile: deploy_pro/deploy_clamav_with_seafile.md
       - Virus Scan With Kav4fs: deploy_pro/virus_scan_with_kav4fs.md
-    - Advanced File Search configuration (Pro): deploy_pro/details_about_file_search.md
-    - Migrate From SQLite to MySQL: deploy/migrate_from_sqlite_to_mysql.md
-    - Others Deployment Notes:
-      - Start Seafile at System Bootup: deploy/start_seafile_at_system_bootup.md
-      - Logrotate: deploy/using_logrotate.md
-      - Open Cloud Mesh: deploy/ocm.md
-      - Config fail2ban: security/fail2ban.md
   - Configuration:
-    - Authentication:
+    - Authentication & Users:
       - LDAP/AD Integration:
         - LDAP Integration: deploy/ldap_in_11.0.md
         - LDAP Integration (Pro): deploy_pro/ldap_in_11.0.md
@@ -142,7 +140,9 @@ nav:
         - Roles and Permissions: deploy_pro/roles_permissions.md
         - Administrator Roles and Permissions: deploy_pro/admin_roles_permissions.md
         - Multi-Tenancy Support: deploy_pro/multi_tenancy.md
-    - Available Configuration Options:
+    - Advanced File Search configuration (Pro): deploy_pro/details_about_file_search.md
+    - Open Cloud Mesh: deploy/ocm.md
+    - Available configuration options:
       - Outline: config/README.md
       - Environment variables: config/env.md
       - ccnet.conf: config/ccnet-conf.md

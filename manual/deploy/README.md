@@ -21,6 +21,3 @@ We provide two ways to deploy Seafile services. **Docker is the recommended way*
 2. Read [FAQ](https://cloud.seatable.io/dtable/external-links/7b976c85f504491cbe8e/)
 3. Go to our [forum](https://forum.seafile.com/) for help.
 
-## Upgrade Seafile Server
-
-* [Upgrade Seafile server](../upgrade/upgrade.md)
