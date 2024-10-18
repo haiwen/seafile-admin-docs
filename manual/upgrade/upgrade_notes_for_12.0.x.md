@@ -1,4 +1,8 @@
-# Upgrade notes for 12.0 (In progress)
+---
+status: new
+---
+
+# Upgrade notes for 12.0
 
 These notes give additional information about changes.
 Please always follow the main [upgrade guide](./upgrade.md).

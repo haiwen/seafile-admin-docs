@@ -89,7 +89,7 @@ Just download the new image, stop the old docker container, modify the Seafile i
 Just download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version, then start with docker compose up.
 
 
-## Upgrade from 11.0 to 12.0 (In progress)
+## Upgrade from 11.0 to 12.0
 
 From Seafile Docker 12.0, we recommend that you use `.env` and `seafile-server.yml` files for configuration.
 

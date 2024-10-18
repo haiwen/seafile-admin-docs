@@ -13,16 +13,25 @@ theme:
   name: material
   logo: media/seafile-transparent-1024.png
   favicon: media/favicon.ico
-  palette:
-    primary: white
-    accent:
   features:
+    - navigation.sections
     - navigation.tabs
     - navigation.top
     - search.suggest
     - search.highlight
+    - search.share
 
-
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
 
 plugins:
   - search
@@ -36,6 +45,8 @@ extra:
       link: https://github.com/haiwen/seafile-admin-docs/
   version:
     provider: mike
+  status:
+    new: Work in progress
 
 extra_css:
   - stylesheets/extra.css
@@ -94,17 +105,6 @@ nav:
         - Setup Seafile cluster with NFS: deploy_pro/setup_seafile_cluster_with_nfs.md
       - License: deploy_pro/seafile_professional_sdition_software_license_agreement.md
   - Setup extensions:
-    - LDAP/AD Integration:
-      - LDAP Integration: deploy/ldap_in_11.0.md
-      - LDAP Integration (Pro): deploy_pro/ldap_in_11.0.md
-    - Single Sign On:
-      - Outline: deploy/single_sign_on.md
-      - OAuth Authentication: deploy/oauth.md
-      - Remote User Authentication: deploy/remote_user.md
-      - Shibboleth Authentication: deploy/shibboleth_authentication.md
-      - Auto Login to SeaDrive on Windows: deploy/auto_login_seadrive.md
-      - SAML 2.0 (Pro): deploy_pro/saml2_in_10.0.md
-      - Switch authentication: deploy/auth_switch.md
     - Online Office:
       - LibreOffice Online Integration: deploy/libreoffice_online.md
       - OnlyOffice Integration: deploy/only_office.md
@@ -117,11 +117,6 @@ nav:
       - Outline: deploy_pro/virus_scan.md
       - Deploy ClamAV with Seafile: deploy_pro/deploy_clamav_with_seafile.md
       - Virus Scan With Kav4fs: deploy_pro/virus_scan_with_kav4fs.md
-    - Advanced User Management (Pro):
-      - Multi-Institutions Support: deploy_pro/multi_institutions.md
-      - Roles and Permissions: deploy_pro/roles_permissions.md
-      - Administrator Roles and Permissions: deploy_pro/admin_roles_permissions.md
-      - Multi-Tenancy Support: deploy_pro/multi_tenancy.md
     - Advanced File Search configuration (Pro): deploy_pro/details_about_file_search.md
     - Migrate From SQLite to MySQL: deploy/migrate_from_sqlite_to_mysql.md
     - Others Deployment Notes:
@@ -130,14 +125,32 @@ nav:
       - Open Cloud Mesh: deploy/ocm.md
       - Config fail2ban: security/fail2ban.md
   - Configuration:
-    - Outline: config/README.md
-    - Environment variables: config/env.md
-    - ccnet.conf: config/ccnet-conf.md
-    - seafile.conf: config/seafile-conf.md
-    - seahub_settings.py: config/seahub_settings_py.md
-    - seafevents.conf: config/seafevents-conf.md
-    - Seahub customization: config/seahub_customization.md
-    - Email Sending: config/sending_email.md
+    - Authentication:
+      - LDAP/AD Integration:
+        - LDAP Integration: deploy/ldap_in_11.0.md
+        - LDAP Integration (Pro): deploy_pro/ldap_in_11.0.md
+      - Single Sign On:
+        - Outline: deploy/single_sign_on.md
+        - OAuth Authentication: deploy/oauth.md
+        - Remote User Authentication: deploy/remote_user.md
+        - Shibboleth Authentication: deploy/shibboleth_authentication.md
+        - Auto Login to SeaDrive on Windows: deploy/auto_login_seadrive.md
+        - SAML 2.0 (Pro): deploy_pro/saml2_in_10.0.md
+        - Switch authentication: deploy/auth_switch.md
+      - Advanced User Management (Pro):
+        - Multi-Institutions Support: deploy_pro/multi_institutions.md
+        - Roles and Permissions: deploy_pro/roles_permissions.md
+        - Administrator Roles and Permissions: deploy_pro/admin_roles_permissions.md
+        - Multi-Tenancy Support: deploy_pro/multi_tenancy.md
+    - Available Configuration Options:
+      - Outline: config/README.md
+      - Environment variables: config/env.md
+      - ccnet.conf: config/ccnet-conf.md
+      - seafile.conf: config/seafile-conf.md
+      - seahub_settings.py: config/seahub_settings_py.md
+      - seafevents.conf: config/seafevents-conf.md
+      - Seahub customization: config/seahub_customization.md
+      - Email Sending: config/sending_email.md
   - Administration:
     - Outline: maintain/README.md
     - Account management: maintain/account.md
@@ -161,7 +174,7 @@ nav:
     - Upgrade notes for 9.0.x: upgrade/upgrade_notes_for_9.0.x.md
     - Upgrade notes for 10.0.x: upgrade/upgrade_notes_for_10.0.x.md
     - Upgrade notes for 11.0.x: upgrade/upgrade_notes_for_11.0.x.md
-    - Upgrade notes for 12.0.x (In progress): upgrade/upgrade_notes_for_12.0.x.md
+    - Upgrade notes for 12.0.x: upgrade/upgrade_notes_for_12.0.x.md
   - Developing:
     - Outline: develop/README.md
     - How to Build Seafile:
