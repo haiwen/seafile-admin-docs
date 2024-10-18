@@ -16,6 +16,13 @@ theme:
   palette:
     primary: white
     accent:
+  features:
+    - navigation.tabs
+    - navigation.top
+    - search.suggest
+    - search.highlight
+
+
 
 plugins:
   - search
@@ -48,44 +55,45 @@ markdown_extensions:
 
 # Page tree
 nav:
-  - Overview:
+  - Introduction:
     - Seafile Components: overview/components.md
     - File permission management: overview/file_permission_management.md
     - Roadmap: roadmap.md
     - Contribution: contribution.md
     - Changelog: changelog.md
-  - Seafile Community Setup on Linux:
-    - Outline: deploy/README.md
-    - Installation with MySQL: deploy/using_mysql.md
-    - HTTPS with Nginx: deploy/https_with_nginx.md
-    - HTTPS with Apache: deploy/https_with_apache.md
-  - Seafile Professional Setup on Linux:
-    - Outline: deploy_pro/README.md
-    - Installation: deploy_pro/download_and_setup_seafile_professional_server.md
-    - Migration from Seafile Community: deploy_pro/migrate_from_seafile_community_server.md
-    - Storage Backends:
-      - Amazon S3 Backend: deploy_pro/setup_with_amazon_s3.md
-      - Ceph Backend: deploy_pro/setup_with_ceph.md
-      - OpenStack Swift Backend: deploy_pro/setup_with_swift.md
-      - Alibaba OSS: deploy_pro/setup_with_oss.md
-      - Multiple Storage Backends: deploy_pro/multiple_storage_backends.md
-      - Data migration: deploy_pro/migrate.md
-    - Cluster Deployment:
-      - Deploy in a cluster: deploy_pro/deploy_in_a_cluster.md
-      - Search and background tasks in a cluster: deploy_pro/enable_search_and_background_tasks_in_a_cluster.md
-      - Memcache and MariaDB Cluster: deploy_pro/memcached_mariadb_cluster.md
-      - Setup Seafile cluster with NFS: deploy_pro/setup_seafile_cluster_with_nfs.md
-    - License: deploy_pro/seafile_professional_sdition_software_license_agreement.md
-  - Seafile Setup with Docker:
+  - Setup:
     - Seafile Docker Overview: docker/seafile_docker_overview.md
-    - Seafile Community Installation: docker/deploy_seafile_with_docker.md
-    - Seafile Professional Installation: docker/pro-edition/deploy_seafile_pro_with_docker.md
+    - Setup community edition with Docker: docker/deploy_seafile_with_docker.md
+    - Setup pro edition with Docker: docker/pro-edition/deploy_seafile_pro_with_docker.md
     - Seafile Docker Cluster Deployment: docker/cluster/deploy_seafile_cluster_with_docker.md
     - Setup with Kubernetes (K8s): deploy/deploy_with_k8s.md
     - Migration from Seafile Community: docker/pro-edition/migrate_ce_to_pro_with_docker.md
     - Migrate from non-docker deployment: docker/non_docker_to_docker.md
     - Seafile Docker autostart: docker/seafile_docker_autostart.md
-  - Advanced Setup Options:
+  - Setup (binary):
+    - Seafile Community Setup on Linux:
+      - Outline: deploy/README.md
+      - Installation with MySQL: deploy/using_mysql.md
+      - HTTPS with Nginx: deploy/https_with_nginx.md
+      - HTTPS with Apache: deploy/https_with_apache.md
+    - Seafile Professional Setup on Linux:
+      - Outline: deploy_pro/README.md
+      - Installation: deploy_pro/download_and_setup_seafile_professional_server.md
+      - Migration from Seafile Community: deploy_pro/migrate_from_seafile_community_server.md
+      - Storage Backends:
+        - Amazon S3 Backend: deploy_pro/setup_with_amazon_s3.md
+        - Ceph Backend: deploy_pro/setup_with_ceph.md
+        - OpenStack Swift Backend: deploy_pro/setup_with_swift.md
+        - Alibaba OSS: deploy_pro/setup_with_oss.md
+        - Multiple Storage Backends: deploy_pro/multiple_storage_backends.md
+        - Data migration: deploy_pro/migrate.md
+      - Cluster Deployment:
+        - Deploy in a cluster: deploy_pro/deploy_in_a_cluster.md
+        - Search and background tasks in a cluster: deploy_pro/enable_search_and_background_tasks_in_a_cluster.md
+        - Memcache and MariaDB Cluster: deploy_pro/memcached_mariadb_cluster.md
+        - Setup Seafile cluster with NFS: deploy_pro/setup_seafile_cluster_with_nfs.md
+      - License: deploy_pro/seafile_professional_sdition_software_license_agreement.md
+  - Setup extensions:
     - LDAP/AD Integration:
       - LDAP Integration: deploy/ldap_in_11.0.md
       - LDAP Integration (Pro): deploy_pro/ldap_in_11.0.md
@@ -121,7 +129,7 @@ nav:
       - Logrotate: deploy/using_logrotate.md
       - Open Cloud Mesh: deploy/ocm.md
       - Config fail2ban: security/fail2ban.md
-  - Configuration and Customization:
+  - Configuration:
     - Outline: config/README.md
     - Environment variables: config/env.md
     - ccnet.conf: config/ccnet-conf.md
@@ -142,7 +150,7 @@ nav:
     - Seafile FSCK: maintain/seafile_fsck.md
     - Seafile GC: maintain/seafile_gc.md
     - Clean database: maintain/clean_database.md
-  - Upgrade Seafile Server:
+  - Upgrade:
     - Outline: upgrade/upgrade.md
     - Upgrade Seafile Docker: upgrade/upgrade_docker.md
     - Upgrade Seafile Cluster: upgrade/upgrade_a_cluster.md
