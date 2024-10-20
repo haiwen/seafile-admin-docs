@@ -1,6 +1,6 @@
 # Introduction
 
-Seafile is an open source cloud storage system for file sync, share and document collaboration.
+Seafile is an open source cloud storage system for file sync, share and document collaboration. SeaDoc is an extension of Seafile that providing a lightweight online collaborative document feature.
 
 
 ## LICENSE

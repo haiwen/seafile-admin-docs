@@ -71,7 +71,6 @@ nav:
     - File permission management: overview/file_permission_management.md
     - Roadmap: roadmap.md
     - Contribution: contribution.md
-    - Changelog: changelog.md
   - Setup:
     - Seafile Docker Overview: docker/seafile_docker_overview.md
     - Setup community edition with Docker: docker/deploy_seafile_with_docker.md
