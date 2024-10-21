@@ -48,7 +48,7 @@ NOTE: Older Seafile PE versions are also available in the repository (back to Se
 
 ### Downloading and Modifying `.env`
 
-From Seafile Docker 12.0, we recommend that you use `.env`, `seafile-server.yml`  and `caddy.yml` files for configuration.
+From Seafile Docker 12.0, we use `.env`, `seafile-server.yml`  and `caddy.yml` files for configuration.
 
 NOTE: Different versions of Seafile have different compose files.
 
@@ -216,53 +216,6 @@ When files are deleted, the blocks comprising those files are not immediately re
 
 The required scripts can be found in the `/scripts` folder of the docker container. To perform garbage collection, simply run `docker exec seafile /scripts/gc.sh`. For the community edition, this process will stop the seafile server, but it is a relatively quick process and the seafile server will start automatically once the process has finished. The Professional supports an online garbage collection.
 
-## OnlyOffice with Docker
-
-You need to manually add the OnlyOffice config to `.env`
-
-* [OnlyOffice with Docker](deploy_onlyoffice_with_docker.md)
-
-## Clamav with Docker
-
-You need to manually add the Clamav config to `.env`
-
-* [Deploy Clamav with Docker](../../deploy_pro/deploy_clamav_with_seafile.md)
-
-## Other functions
-
-### LDAP/AD Integration for Pro
-
-* [Configure LDAP in Seafile Pro](../../deploy_pro/using_ldap_pro.md)
-* [Syncing Groups from LDAP/AD](../../deploy_pro/ldap_group_sync.md)
-* [Syncing Roles from LDAP/AD](../../deploy_pro/ldap_role_sync.md)
-
-### S3/OpenSwift/Ceph Storage Backends
-
-* [Setup Seafile Professional Server With Amazon S3](../../deploy_pro/setup_with_amazon_s3.md)
-* [Setup Seafile Professional Server With OpenStack Swift](../../deploy_pro/setup_with_swift.md)
-* [Setup Seafile Professional Server With Ceph](../../deploy_pro/setup_with_ceph.md)
-* [Data migration between different backends](../../deploy_pro/migrate.md)
-* [Using multiple storage backends](../../deploy_pro/multiple_storage_backends.md)
-
-### Online File Preview and Editing
-
-* [Enable Office/PDF Documents Online Preview](../../deploy_pro/office_documents_preview.md)
-* [Integrating with Office Online Server](../../deploy_pro/office_web_app.md)
-
-### Advanced User Management
-
-* [Multi-Institutions Support](../../deploy_pro/multi_institutions.md)
-* [Roles and Permissions](../../deploy_pro/roles_permissions.md)
-
-### Advanced Authentication
-
-* [Two-factor Authentication](../../deploy_pro/two_factor_authentication.md)
-* [ADFS or SAML 2.0](../../deploy_pro/adfs.md)
-* [CAS](../../deploy_pro/cas.md)
-
-### Admin Tools
-
-* [Import Directory to Seafile](../../deploy_pro/seaf_import.md)
 
 ## FAQ
 
