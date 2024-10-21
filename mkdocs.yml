@@ -73,14 +73,25 @@ nav:
     - Roadmap: roadmap.md
     - Contribution: contribution.md
   - Setup:
-    - Seafile Docker Overview: docker/seafile_docker_overview.md
-    - Setup community edition with Docker: docker/deploy_seafile_with_docker.md
-    - Setup pro edition with Docker: docker/pro-edition/deploy_seafile_pro_with_docker.md
-    - Seafile Docker Cluster Deployment: docker/cluster/deploy_seafile_cluster_with_docker.md
-    - Setup with Kubernetes (K8s): deploy/deploy_with_k8s.md
-    - Migration from Seafile Community: docker/pro-edition/migrate_ce_to_pro_with_docker.md
-    - Migrate from non-docker deployment: docker/non_docker_to_docker.md
-    - Seafile Docker autostart: docker/seafile_docker_autostart.md
+    - Overview: docker/seafile_docker_overview.md
+    - Single node installation:
+      - Setup community edition with Docker: docker/deploy_seafile_with_docker.md
+      - Setup pro edition with Docker: docker/pro-edition/deploy_seafile_pro_with_docker.md
+    - Advanced topics:
+      - Storage Backends:
+        - S3 Backend: deploy_pro/setup_with_amazon_s3.md
+        - Ceph Backend: deploy_pro/setup_with_ceph.md
+        - OpenStack Swift Backend: deploy_pro/setup_with_swift.md
+        - Alibaba OSS: deploy_pro/setup_with_oss.md
+        - Multiple Storage Backends: deploy_pro/multiple_storage_backends.md
+        - Data migration: deploy_pro/migrate.md
+      - Seafile Docker autostart: docker/seafile_docker_autostart.md
+    - Cluster installation:
+      - Seafile Docker Cluster Deployment: docker/cluster/deploy_seafile_cluster_with_docker.md
+      - Setup with Kubernetes (K8s): deploy/deploy_with_k8s.md
+    - Migration:
+      - Migration from Seafile Community: docker/pro-edition/migrate_ce_to_pro_with_docker.md
+      - Migrate from non-docker deployment: docker/non_docker_to_docker.md
   - Setup (binary):
     - Seafile Community Setup:
       - Outline: deploy/README.md
@@ -102,14 +113,7 @@ nav:
       - Logrotate: deploy/using_logrotate.md
       - Config fail2ban: security/fail2ban.md
     - Migrate From SQLite to MySQL: deploy/migrate_from_sqlite_to_mysql.md
-  - Advanced Setup:
-    - Storage Backends:
-      - S3 Backend: deploy_pro/setup_with_amazon_s3.md
-      - Ceph Backend: deploy_pro/setup_with_ceph.md
-      - OpenStack Swift Backend: deploy_pro/setup_with_swift.md
-      - Alibaba OSS: deploy_pro/setup_with_oss.md
-      - Multiple Storage Backends: deploy_pro/multiple_storage_backends.md
-      - Data migration: deploy_pro/migrate.md
+  - Extensions:
     - Extra Seafile components:
       - SeaDoc Integration: extra_setup/setup_seadoc.md
       - Notification Server: deploy/notification-server.md
