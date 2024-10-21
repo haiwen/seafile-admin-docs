@@ -16,7 +16,7 @@
         <link rel="prev" href="../seafile_docker_overview/">
       
       
-        <link rel="next" href="../../deploy_pro/setup_with_amazon_s3/">
+        <link rel="next" href="../pro-edition/deploy_seafile_pro_with_docker/">
       
       
       <link rel="icon" href="../../media/favicon.ico">
@@ -869,15 +869,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#use-an-existing-mysql-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      Use an existing mysql-server
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#modify-seafile-server-configurations" class="md-nav__link">
     <span class="md-ellipsis">
       Modify Seafile server configurations
@@ -890,15 +881,6 @@
   <a href="#add-a-new-admin" class="md-nav__link">
     <span class="md-ellipsis">
       Add a new admin
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#run-seafile-as-non-root-user-inside-docker" class="md-nav__link">
-    <span class="md-ellipsis">
-      Run Seafile as non root user inside docker
     </span>
   </a>
   
@@ -976,7 +958,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pro-edition/deploy_seafile_pro_with_docker.md" class="md-nav__link">
+      <a href="../pro-edition/deploy_seafile_pro_with_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1227,6 +1209,48 @@
   
   <span class="md-ellipsis">
     Seafile Docker autostart
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deploy_seafile_with_an_existing_mysql_server/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deploy with an existing MySQL server
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../run_seafile_as_non_root_user_inside_docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Run Seafile as non root user inside docker
   </span>
   
 
@@ -4316,15 +4340,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#use-an-existing-mysql-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      Use an existing mysql-server
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#modify-seafile-server-configurations" class="md-nav__link">
     <span class="md-ellipsis">
       Modify Seafile server configurations
@@ -4337,15 +4352,6 @@
   <a href="#add-a-new-admin" class="md-nav__link">
     <span class="md-ellipsis">
       Add a new admin
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#run-seafile-as-non-root-user-inside-docker" class="md-nav__link">
-    <span class="md-ellipsis">
-      Run Seafile as non root user inside docker
     </span>
   </a>
   
@@ -4504,15 +4510,6 @@ docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> 
 </code></pre></div>
 
 <h2 id="more-configuration-options">More configuration options<a class="headerlink" href="#more-configuration-options" title="Permanent link">&para;</a></h2>
-<h3 id="use-an-existing-mysql-server">Use an existing mysql-server<a class="headerlink" href="#use-an-existing-mysql-server" title="Permanent link">&para;</a></h3>
-<p>If you want to use an existing mysql-server, you can modify the <code>.env</code> as follows</p>
-<div class="codehilite"><pre><span></span><code>SEAFILE_MYSQL_DB_HOST=192.168.0.2
-SEAFILE_MYSQL_DB_PORT=3306
-SEAFILE_MYSQL_ROOT_PASSWORD=ROOT_PASSWORD
-SEAFILE_MYSQL_DB_PASSWORD=PASSWORD
-</code></pre></div>
-
-<p>NOTE: <code>SEAFILE_MYSQL_ROOT_PASSWORD</code> is needed during installation. Later, after Seafile is installed, the user <code>seafile</code> will be used to connect to the mysql-server (SEAFILE_MYSQL_DB_PASSWORD). You can remove the <code>SEAFILE_MYSQL_ROOT_PASSWORD</code>.</p>
 <h3 id="modify-seafile-server-configurations">Modify Seafile server configurations<a class="headerlink" href="#modify-seafile-server-configurations" title="Permanent link">&para;</a></h3>
 <p>The config files are under <code>/opt/seafile-data/seafile/conf</code>. You can modify the configurations according to <a href="https://manual.seafile.com/">Seafile manual</a></p>
 <p>After modification, you need to restart the container:</p>
@@ -4525,22 +4522,6 @@ SEAFILE_MYSQL_DB_PASSWORD=PASSWORD
 </code></pre></div>
 
 <p>Enter the username and password according to the prompts. You now have a new admin account.</p>
-<h3 id="run-seafile-as-non-root-user-inside-docker">Run Seafile as non root user inside docker<a class="headerlink" href="#run-seafile-as-non-root-user-inside-docker" title="Permanent link">&para;</a></h3>
-<p>You can use run seafile as non root user in docker. (<strong>NOTE:</strong> Programs such as <code>my_init</code>, Nginx are still run as <code>root</code> inside docker.)</p>
-<p>First add the <code>NON_ROOT=true</code> to the <code>.env</code>.</p>
-<div class="codehilite"><pre><span></span><code>NON_ROOT=true
-</code></pre></div>
-
-<p>Then modify <code>/opt/seafile-data/seafile/</code> permissions.</p>
-<div class="codehilite"><pre><span></span><code>chmod<span class="w"> </span>-R<span class="w"> </span>a+rwx<span class="w"> </span>/opt/seafile-data/seafile/
-</code></pre></div>
-
-<p>Then destroy the containers and run them again:</p>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
-docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
-
-<p>Now you can run Seafile as <code>seafile</code> user. (<strong>NOTE:</strong> Later, when doing maintenance, other scripts in docker are also required to be run as <code>seafile</code> user, e.g. <code>su seafile -c ./seaf-gc.sh</code>)</p>
 <h2 id="backup-and-recovery">Backup and recovery<a class="headerlink" href="#backup-and-recovery" title="Permanent link">&para;</a></h2>
 <p>Follow the instructions in <a href="../../maintain/backup_recovery/">Backup and restore for Seafile Docker</a></p>
 <h2 id="garbage-collection">Garbage collection<a class="headerlink" href="#garbage-collection" title="Permanent link">&para;</a></h2>

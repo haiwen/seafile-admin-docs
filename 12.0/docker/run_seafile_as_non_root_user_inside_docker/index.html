@@ -10,9 +10,13 @@
         <meta name="author" content="seafile">
       
       
-        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/12.0/docker/deploy_seafile_pro_with_docker/">
+        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/12.0/docker/run_seafile_as_non_root_user_inside_docker/">
       
       
+        <link rel="prev" href="../deploy_seafile_with_an_existing_mysql_server/">
+      
+      
+        <link rel="next" href="../cluster/deploy_seafile_cluster_with_docker/">
       
       
       <link rel="icon" href="../../media/favicon.ico">
@@ -20,7 +24,7 @@
     
     
       
-        <title>Installation of Seafile Server Professional Edition with Docker - Seafile Admin Manual</title>
+        <title>Run Seafile as non root user inside docker - Seafile Admin Manual</title>
       
     
     
@@ -74,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#installation-of-seafile-server-professional-edition-with-docker" class="md-skip">
+        <a href="#run-seafile-as-non-root-user-inside-docker" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Installation of Seafile Server Professional Edition with Docker
+              Run Seafile as non root user inside docker
             
           </span>
         </div>
@@ -241,10 +245,12 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../seafile_docker_overview/" class="md-tabs__link">
           
   
@@ -618,25 +624,30 @@
       
   
   
+    
   
   
+  
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -647,7 +658,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Setup
@@ -687,17 +698,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
         
           
-          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -743,7 +757,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pro-edition/deploy_seafile_pro_with_docker.md" class="md-nav__link">
+      <a href="../pro-edition/deploy_seafile_pro_with_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -769,25 +783,30 @@
                 
   
   
+    
   
   
+  
     
     
     
       
       
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
         
           
-          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -798,7 +817,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_3">
             <span class="md-nav__icon md-icon"></span>
             Advanced topics
@@ -1000,6 +1019,58 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deploy_seafile_with_an_existing_mysql_server/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deploy with an existing MySQL server
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Run Seafile as non root user inside docker
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1020,17 +1091,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
         
           
-          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -1110,17 +1184,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
         
           
-          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -3982,170 +4059,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#requirements" class="md-nav__link">
-    <span class="md-ellipsis">
-      Requirements
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#setup" class="md-nav__link">
-    <span class="md-ellipsis">
-      Setup
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Setup">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#installing-docker" class="md-nav__link">
-    <span class="md-ellipsis">
-      Installing Docker
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#downloading-the-seafile-image" class="md-nav__link">
-    <span class="md-ellipsis">
-      Downloading the Seafile Image
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#downloading-and-modifying-env" class="md-nav__link">
-    <span class="md-ellipsis">
-      Downloading and Modifying .env
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#starting-the-docker-containers" class="md-nav__link">
-    <span class="md-ellipsis">
-      Starting the Docker Containers
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#find-logs" class="md-nav__link">
-    <span class="md-ellipsis">
-      Find logs
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#activating-the-seafile-license" class="md-nav__link">
-    <span class="md-ellipsis">
-      Activating the Seafile License
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#seafile-directory-structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      Seafile directory structure
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Seafile directory structure">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#optseafile-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      /opt/seafile-data
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#reviewing-the-deployment" class="md-nav__link">
-    <span class="md-ellipsis">
-      Reviewing the Deployment
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#use-an-existing-mysql-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      Use an existing mysql-server
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#run-seafile-as-non-root-user-inside-docker" class="md-nav__link">
-    <span class="md-ellipsis">
-      Run Seafile as non root user inside docker
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#backup-and-recovery" class="md-nav__link">
-    <span class="md-ellipsis">
-      Backup and Recovery
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#garbage-collection" class="md-nav__link">
-    <span class="md-ellipsis">
-      Garbage Collection
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#faq" class="md-nav__link">
-    <span class="md-ellipsis">
-      FAQ
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -4162,139 +4075,7 @@
   
 
 
-<h1 id="installation-of-seafile-server-professional-edition-with-docker">Installation of Seafile Server Professional Edition with Docker<a class="headerlink" href="#installation-of-seafile-server-professional-edition-with-docker" title="Permanent link">&para;</a></h1>
-<p>This manual explains how to deploy and run Seafile Server Professional Edition (Seafile PE) on a Linux server using Docker and Docker Compose. The deployment has been tested for Debian/Ubuntu and CentOS, but Seafile PE should also work on other Linux distributions.</p>
-<h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
-<p>Seafile PE requires a minimum of 2 cores and 2GB RAM. If Elasticsearch is installed on the same server, the minimum requirements are 4 cores and 4 GB RAM, and make sure the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules-store.html#mmapfs">mmapfs counts</a> do not cause excptions like out of memory, which can be increased by following command (see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html</a> for futher details):</p>
-<div class="codehilite"><pre><span></span><code>sysctl<span class="w"> </span>-w<span class="w"> </span>vm.max_map_count<span class="o">=</span><span class="m">262144</span><span class="w"> </span><span class="c1">#run as root</span>
-</code></pre></div>
-
-<p>or modify <strong>/etc/sysctl.conf</strong> and reboot to set this value permanently:</p>
-<div class="codehilite"><pre><span></span><code>nano<span class="w"> </span>/etc/sysctl.conf
-
-<span class="c1"># modify vm.max_map_count</span>
-vm.max_map_count<span class="o">=</span><span class="m">262144</span>
-</code></pre></div>
-
-<p>Seafile PE can be used without a paid license with up to three users. Licenses for more user can be purchased in the <a href="https://customer.seafile.com">Seafile Customer Center</a> or contact Seafile Sales at sales@seafile.com.</p>
-<h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
-<p>The following assumptions and conventions are used in the rest of this document:</p>
-<ul>
-<li><code>/opt/seafile-data</code> is the directory of Seafile. If you decide to put Seafile in a different directory - which you can - adjust all paths accordingly.</li>
-<li>Seafile uses two <a href="https://docs.docker.com/storage/volumes/">Docker volumes</a> for persisting data generated in its database and Seafile Docker container. The volumes' <a href="https://docs.docker.com/compose/compose-file/compose-file-v3/#volumes">host paths</a> are /opt/seafile-mysql and /opt/seafile-data, respectively. It is not recommended to change these paths. If you do, account for it when following these instructions.</li>
-<li>All configuration and log files for Seafile and the webserver Nginx are stored in the volume of the Seafile container.</li>
-</ul>
-<h3 id="installing-docker">Installing Docker<a class="headerlink" href="#installing-docker" title="Permanent link">&para;</a></h3>
-<p>Use the <a href="https://docs.docker.com/engine/install/">official installation guide for your OS to install Docker</a>.</p>
-<h3 id="downloading-the-seafile-image">Downloading the Seafile Image<a class="headerlink" href="#downloading-the-seafile-image" title="Permanent link">&para;</a></h3>
-<p>Log into Seafile's private repository and pull the Seafile image:</p>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>login<span class="w"> </span>docker.seadrive.org
-docker<span class="w"> </span>pull<span class="w"> </span>docker.seadrive.org/seafileltd/seafile-pro-mc:12.0-latest
-</code></pre></div>
-
-<p>When prompted, enter the username and password of the private repository. They are available on the download page in the <a href="https://customer.seafile.com/downloads">Customer Center</a>.</p>
-<p>NOTE: Older Seafile PE versions are also available in the repository (back to Seafile 7.0). To pull an older version, replace '12.0-latest' tag by the desired version.</p>
-<h3 id="downloading-and-modifying-env">Downloading and Modifying <code>.env</code><a class="headerlink" href="#downloading-and-modifying-env" title="Permanent link">&para;</a></h3>
-<p>From Seafile Docker 12.0, we use <code>.env</code>, <code>seafile-server.yml</code>  and <code>caddy.yml</code> files for configuration.</p>
-<p>NOTE: Different versions of Seafile have different compose files.</p>
-<div class="codehilite"><pre><span></span><code>mkdir<span class="w"> </span>/opt/seafile
-<span class="nb">cd</span><span class="w"> </span>/opt/seafile
-
-<span class="c1"># Seafile PE 12.0</span>
-wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/12.0/docker/docker-compose/pro/env
-wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/docker-compose/pro/seafile-server.yml
-wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/docker-compose/pro/caddy.yml
-
-nano<span class="w"> </span>.env
-</code></pre></div>
-
-<p>The following fields merit particular attention:</p>
-<ul>
-<li><code>SEAFILE_VOLUME</code>: The volume directory of Seafile data, default is <code>/opt/seafile-data</code></li>
-<li><code>SEAFILE_MYSQL_VOLUME</code>: The volume directory of MySQL data, default is <code>/opt/seafile-mysql/db</code></li>
-<li><code>SEAFILE_CADDY_VOLUME</code>: The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's, default is <code>/opt/seafile-caddy</code></li>
-<li><code>SEAFILE_ELASTICSEARCH_VOLUME</code>: The volume directory of Elasticsearch data, default is <code>/opt/seafile-elasticsearch/data</code></li>
-<li><code>SEAFILE_MYSQL_ROOT_PASSWORD</code>: The <code>root</code> password of MySQL</li>
-<li><code>SEAFILE_MYSQL_DB_USER</code>: The user of MySQL (<code>database</code> - <code>user</code> can be found in <code>conf/seafile.conf</code>)</li>
-<li><code>SEAFILE_MYSQL_DB_PASSWORD</code>: The user <code>seafile</code> password of MySQL</li>
-<li><code>JWT</code>: JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: <code>pwgen -s 40 1</code></li>
-<li><code>SEAFILE_SERVER_HOSTNAME</code>: Seafile server hostname or domain</li>
-<li><code>SEAFILE_SERVER_PROTOCOL</code>: Seafile server protocol (http or https)</li>
-<li><code>TIME_ZONE</code>: Time zone (default UTC)</li>
-<li><code>SEAFILE_ADMIN_EMAIL</code>: Admin username</li>
-<li><code>SEAFILE_ADMIN_PASSWORD</code>: Admin password</li>
-</ul>
-<p>NOTE: SSL is now handled by the <a href="../deploy_seafile_with_docker.md#about-ssl-and-caddy">caddy server</a> from 12.0.</p>
-<p>To conclude, set the directory permissions of the Elasticsearch volumne:</p>
-<div class="codehilite"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/opt/seafile-elasticsearch/data
-chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>-R<span class="w"> </span>/opt/seafile-elasticsearch/data
-</code></pre></div>
-
-<h3 id="starting-the-docker-containers">Starting the Docker Containers<a class="headerlink" href="#starting-the-docker-containers" title="Permanent link">&para;</a></h3>
-<p>Run docker compose in detached mode:</p>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
-
-<p>NOTE: You must run the above command in the directory with the <code>.env</code>.</p>
-<p>Wait a few moment for the database to initialize. You can now access Seafile at the host name specified in the Compose file. (A 502 Bad Gateway error means that the system has not yet completed the initialization.)</p>
-<h3 id="find-logs">Find logs<a class="headerlink" href="#find-logs" title="Permanent link">&para;</a></h3>
-<p>To view Seafile docker logs, please use the following command</p>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>-f
-</code></pre></div>
-
-<p>The Seafile logs are under <code>/shared/logs/seafile</code> in the docker, or <code>/opt/seafile-data/logs/seafile</code> in the server that run the docker.</p>
-<p>The system logs are under <code>/shared/logs/var-log</code>, or <code>/opt/seafile-data/logs/var-log</code> in the server that run the docker.</p>
-<h3 id="activating-the-seafile-license">Activating the Seafile License<a class="headerlink" href="#activating-the-seafile-license" title="Permanent link">&para;</a></h3>
-<p>If you have a <code>seafile-license.txt</code> license file, simply put it in the volume of the Seafile container. The volumne's default path in the Compose file is <code>/opt/seafile-data</code>. If you have modified the path, save the license file under your custom path.</p>
-<p>Then restart Seafile:</p>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
-
-docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
-
-<h2 id="seafile-directory-structure">Seafile directory structure<a class="headerlink" href="#seafile-directory-structure" title="Permanent link">&para;</a></h2>
-<h3 id="optseafile-data"><code>/opt/seafile-data</code><a class="headerlink" href="#optseafile-data" title="Permanent link">&para;</a></h3>
-<p>Placeholder spot for shared volumes. You may elect to store certain persistent information outside of a container, in our case we keep various log files and upload directory outside. This allows you to rebuild containers easily without losing important information.</p>
-<ul>
-<li>/opt/seafile-data/seafile: This is the directory for seafile server configuration 、logs and data.</li>
-<li>/opt/seafile-data/seafile/logs: This is the directory that would contain the log files of seafile server processes. For example, you can find seaf-server logs in <code>/opt/seafile-data/seafile/logs/seafile.log</code>.</li>
-<li>/opt/seafile-data/logs: This is the directory for operating system and Nginx logs.</li>
-<li>/opt/seafile-data/logs/var-log: This is the directory that would be mounted as <code>/var/log</code> inside the container. For example, you can find the nginx logs in <code>/opt/seafile-data/logs/var-log/nginx/</code>.</li>
-</ul>
-<h3 id="reviewing-the-deployment">Reviewing the Deployment<a class="headerlink" href="#reviewing-the-deployment" title="Permanent link">&para;</a></h3>
-<p>The command <code>docker container list</code> should list the containers specified in the <code>.env</code>.</p>
-<p>The directory layout of the Seafile container's volume should look as follows:</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>tree<span class="w"> </span>/opt/seafile-data<span class="w"> </span>-L<span class="w"> </span><span class="m">2</span>
-/opt/seafile-data
-├──<span class="w"> </span>logs
-│<span class="w">   </span>└──<span class="w"> </span>var-log
-├──<span class="w"> </span>nginx
-│<span class="w">   </span>└──<span class="w"> </span>conf
-└──<span class="w"> </span>seafile
-<span class="w">    </span>├──<span class="w"> </span>ccnet
-<span class="w">    </span>├──<span class="w"> </span>conf
-<span class="w">    </span>├──<span class="w"> </span>logs
-<span class="w">    </span>├──<span class="w"> </span>pro-data
-<span class="w">    </span>├──<span class="w"> </span>seafile-data
-<span class="w">    </span>└──<span class="w"> </span>seahub-data
-</code></pre></div>
-
-<p>All Seafile config files are stored in <code>/opt/seafile-data/seafile/conf</code>. The nginx config file is in <code>/opt/seafile-data/nginx/conf</code>.</p>
-<p>Any modification of a configuration file requires a restart of Seafile to take effect:</p>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart
-</code></pre></div>
-
-<p>All Seafile log files are stored in <code>/opt/seafile-data/seafile/logs</code> whereas all other log files are in <code>/opt/seafile-data/logs/var-log</code>.</p>
-<h2 id="use-an-existing-mysql-server">Use an existing mysql-server<a class="headerlink" href="#use-an-existing-mysql-server" title="Permanent link">&para;</a></h2>
-<p>If you want to use an existing mysql-server, you can modify the <code>.env</code> as follows</p>
-<div class="codehilite"><pre><span></span><code>SEAFILE_MYSQL_DB_HOST=192.168.0.2
-SEAFILE_MYSQL_DB_PORT=3306
-SEAFILE_MYSQL_ROOT_PASSWORD=ROOT_PASSWORD
-SEAFILE_MYSQL_DB_PASSWORD=PASSWORD
-</code></pre></div>
-
-<p>NOTE: <code>SEAFILE_MYSQL_ROOT_PASSWORD</code> is needed during installation. Later, after Seafile is installed, the user <code>seafile</code> will be used to connect to the mysql-server (SEAFILE_MYSQL_DB_PASSWORD). You can remove the <code>SEAFILE_MYSQL_ROOT_PASSWORD</code>.</p>
-<h2 id="run-seafile-as-non-root-user-inside-docker">Run Seafile as non root user inside docker<a class="headerlink" href="#run-seafile-as-non-root-user-inside-docker" title="Permanent link">&para;</a></h2>
+<h1 id="run-seafile-as-non-root-user-inside-docker">Run Seafile as non root user inside docker<a class="headerlink" href="#run-seafile-as-non-root-user-inside-docker" title="Permanent link">&para;</a></h1>
 <p>You can use run seafile as non root user in docker. (<strong>NOTE:</strong> Programs such as <code>my_init</code>, Nginx are still run as <code>root</code> inside docker.)</p>
 <p>First add the <code>NON_ROOT=true</code> to the <code>.env</code>.</p>
 <div class="codehilite"><pre><span></span><code>NON_ROOT=true
@@ -4310,24 +4091,6 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 </code></pre></div>
 
 <p>Now you can run Seafile as <code>seafile</code> user. (<strong>NOTE:</strong> Later, when doing maintenance, other scripts in docker are also required to be run as <code>seafile</code> user, e.g. <code>su seafile -c ./seaf-gc.sh</code>)</p>
-<h2 id="backup-and-recovery">Backup and Recovery<a class="headerlink" href="#backup-and-recovery" title="Permanent link">&para;</a></h2>
-<p>Follow the instructions in <a href="../../maintain/backup_recovery.md">Backup and restore for Seafile Docker</a></p>
-<h2 id="garbage-collection">Garbage Collection<a class="headerlink" href="#garbage-collection" title="Permanent link">&para;</a></h2>
-<p>When files are deleted, the blocks comprising those files are not immediately removed as there may be other files that reference those blocks (due to the magic of deduplication). To remove them, Seafile requires a <a href="https://manual.seafile.com/maintain/seafile_gc/">'garbage collection'</a> process to be run, which detects which blocks no longer used and purges them. (NOTE: for technical reasons, the GC process does not guarantee that <em>every single</em> orphan block will be deleted.)</p>
-<p>The required scripts can be found in the <code>/scripts</code> folder of the docker container. To perform garbage collection, simply run <code>docker exec seafile /scripts/gc.sh</code>. For the community edition, this process will stop the seafile server, but it is a relatively quick process and the seafile server will start automatically once the process has finished. The Professional supports an online garbage collection.</p>
-<h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
-<p>Q: I forgot the Seafile admin email address/password, how do I create a new admin account?</p>
-<p>A: You can create a new admin account by running</p>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>/opt/seafile/seafile-server-latest/reset-admin.sh
-</code></pre></div>
-
-<p>The Seafile service must be up when running the superuser command.</p>
-<p>Q: If, for whatever reason, the installation fails, how do I to start from a clean slate again?</p>
-<p>A: Remove the directories /opt/seafile, /opt/seafile-data, /opt/seafile-elasticsearch, and /opt/seafile-mysql and start again.</p>
-<p>Q: Something goes wrong during the start of the containers. How can I find out more?</p>
-<p>A: You can view the docker logs using this command: <code>docker compose logs -f</code>.</p>
-<p>Q: I forgot the admin password. How do I create a new admin account?</p>
-<p>A: Make sure the seafile container is running and enter <code>docker exec -it seafile /opt/seafile/seafile-server-latest/reset-admin.sh</code>.</p>
 
 
 
