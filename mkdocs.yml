@@ -86,6 +86,8 @@ nav:
         - Multiple Storage Backends: deploy_pro/multiple_storage_backends.md
         - Data migration: deploy_pro/migrate.md
       - Seafile Docker autostart: docker/seafile_docker_autostart.md
+      - Deploy with an existing MySQL server: docker/deploy_seafile_with_an_existing_mysql_server.md
+      - Run Seafile as non root user inside docker: docker/run_seafile_as_non_root_user_inside_docker.md
     - Cluster installation:
       - Seafile Docker Cluster Deployment: docker/cluster/deploy_seafile_cluster_with_docker.md
       - Setup with Kubernetes (K8s): deploy/deploy_with_k8s.md
