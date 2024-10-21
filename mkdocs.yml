@@ -75,8 +75,8 @@ nav:
   - Setup:
     - Overview: docker/seafile_docker_overview.md
     - Single node installation:
-      - Setup community edition with Docker: docker/deploy_seafile_with_docker.md
-      - Setup pro edition with Docker: docker/pro-edition/deploy_seafile_pro_with_docker.md
+      - Setup community edition: docker/deploy_seafile_with_docker.md
+      - Setup pro edition: docker/pro-edition/deploy_seafile_pro_with_docker.md
     - Advanced topics:
       - Storage Backends:
         - S3 Backend: deploy_pro/setup_with_amazon_s3.md
