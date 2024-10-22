@@ -2,7 +2,7 @@
 
 You can add/edit roles and permission for users. A role is just a group of users with some pre-defined permissions, you can toggle user roles in user list page at admin panel.
 
-`role_quota` is used to set quota for a certain role of users. For example, we can set the quota of employee to 100G by adding `'role_quota': '100g'`, and leave other role of users to the default quota.
+`role_quota` is used to set quota for a certain role of users, the smallest unit supported by `role_quota` is `mb`. For example, we can set the quota of employee to 100G by adding `'role_quota': '100g'`, and leave other role of users to the default quota.
 
 `can_add_public_repo` is to set whether a role can create a public library, default is "False". **Note:**The `can_add_public_repo` option will not take effect if you configure global `CLOUD_MODE = True`.
 
