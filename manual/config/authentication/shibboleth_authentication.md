@@ -211,7 +211,7 @@ We also added an option `SHIB_ACTIVATE_AFTER_CREATION` (defaults to `True`) whic
 
 Shibboleth has a field called affiliation. It is a list like: `employee@uni-mainz.de;member@uni-mainz.de;faculty@uni-mainz.de;staff@uni-mainz.de.`
 
-We are able to set user role from Shibboleth. Details about user role, please refer to [*Roles and Permissions*](../advanced_user_management/roles_permissions.md)
+We are able to set user role from Shibboleth. Details about user role, please refer to [*Roles and Permissions*](./roles_permissions.md)
 
 
 To enable this, modify `SHIBBOLETH_ATTRIBUTE_MAP` above and add `Shibboleth-affiliation` field, you may need to change `Shibboleth-affiliation` according to your Shibboleth SP attributes.

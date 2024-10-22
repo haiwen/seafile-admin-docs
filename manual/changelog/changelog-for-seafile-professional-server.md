@@ -1536,7 +1536,7 @@ Other
 ### 6.0.6 (2017.01.11)
 
 * Guest invitation: Prevent the same address can be invited multiple times by the same inviter and by multiple inviters
-* Guest invitation: Add an regex to prevent certain email addresses be invited (see [roles permissions](../config/authentication/advanced_user_management/roles_permissions.md#more-about-guest-invitation-feature))
+* Guest invitation: Add an regex to prevent certain email addresses be invited (see [roles permissions](../config/authentication/roles_permissions.md#more-about-guest-invitation-feature))
 * Office online: support co-authoring
 * Admin can set users' department and name when creating users
 * Show total number of files and storage in admin info page

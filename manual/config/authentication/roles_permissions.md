@@ -6,7 +6,7 @@ You can add/edit roles and permission for users. A role is just a group of users
 
 `can_add_public_repo` is to set whether a role can create a public library, default is "False". **Note:**The `can_add_public_repo` option will not take effect if you configure global `CLOUD_MODE = True`.
 
-The `storage_ids` permission is used for assigning storage backends to users with specific role. More details can be found in [multiple storage backends](../../../setup/advanced_topics/storage_backends/multiple_storage_backends.md).
+The `storage_ids` permission is used for assigning storage backends to users with specific role. More details can be found in [multiple storage backends](../../../setup/advanced_topics/multiple_storage_backends.md).
 
 Since version 10.0, `upload_rate_limit` and `download_rate_limit` are added to limit upload and download speed for users with different roles. **After configured the rate limit, run the following command in the `seafile-server-latest` directory to make the configuration take effect**:
 

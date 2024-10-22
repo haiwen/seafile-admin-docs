@@ -1,6 +1,6 @@
 # Configure Seafile to use LDAP
 
-Note: This documentation is for the Community Edition. If you're using Pro Edition, please refer to [the Seafile Pro documentation](../pro/ldap_in_11.0.md).
+Note: This documentation is for the Community Edition. If you're using Pro Edition, please refer to [the Seafile Pro documentation](./ldap_in_11.0_pro.md).
 
 ## How does LDAP User Management work in Seafile
 

@@ -280,12 +280,12 @@ memcached_options = --SERVER=<the IP of Memcached Server> --POOL-MIN=10 --POOL-M
 
 You may configure Seafile to use various kinds of object storage backends.
 
-- [S3 or S3-compatible object storage](../../setup/advanced_topics/storage_backends/setup_with_amazon_s3.md)
-- [Ceph RADOS](../../setup/advanced_topics/storage_backends/setup_with_ceph.md)
-- [Alibaba Cloud OSS](../../setup/advanced_topics/storage_backends/setup_with_oss.md)
-- [OpenStack Swift](../../setup/advanced_topics/storage_backends/setup_with_swift.md)
+- [S3 or S3-compatible object storage](../../setup/advanced_topics/setup_with_amazon_s3.md)
+- [Ceph RADOS](../../setup/advanced_topics/setup_with_ceph.md)
+- [Alibaba Cloud OSS](../../setup/advanced_topics/setup_with_oss.md)
+- [OpenStack Swift](../../setup/advanced_topics/setup_with_swift.md)
 
-You may also configure Seafile to use [multiple storage backends](../../setup/advanced_topics/storage_backends/multiple_storage_backends.md) at the same time.
+You may also configure Seafile to use [multiple storage backends](../../setup/advanced_topics/multiple_storage_backends.md) at the same time.
 
 ## Cluster
 

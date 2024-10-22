@@ -196,10 +196,10 @@ CREATE TABLE `avatar_uploaded` (`filename` TEXT NOT NULL, `filename_md5` CHAR(32
 You also need to add the settings for backend cloud storage systems to the config files.
 
 * For NFS: [Setup Seafile cluster with NFS](setup_seafile_cluster_with_nfs.md)
-* For S3: [Setup With Amazon S3](../../../setup/advanced_topics/storage_backends/setup_with_amazon_s3.md)
-* For OpenStack Swift: [Setup With OpenStackSwift](../../../setup/advanced_topics/storage_backends/setup_with_swift.md)
-* For Ceph: [Setup With Ceph](../../../setup/advanced_topics/storage_backends/setup_with_ceph.md)
-* For OSS: [Setup With Alibaba OSS](../../../setup/advanced_topics/storage_backends/setup_with_oss.md)
+* For S3: [Setup With Amazon S3](../../../setup/advanced_topics/setup_with_amazon_s3.md)
+* For OpenStack Swift: [Setup With OpenStackSwift](../../../setup/advanced_topics/setup_with_swift.md)
+* For Ceph: [Setup With Ceph](../../../setup/advanced_topics/setup_with_ceph.md)
+* For OSS: [Setup With Alibaba OSS](../../../setup/advanced_topics/setup_with_oss.md)
 
 ### Setup Nginx/Apache and HTTP
 

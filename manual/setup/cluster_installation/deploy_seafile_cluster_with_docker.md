@@ -1,6 +1,6 @@
 # Seafile Docker Cluster Deployment
 
-Seafile Docker cluster deployment requires "sticky session" settings in the load balancer. Otherwise sometimes folder download on the web UI can't work properly. Read the [Load Balancer Setting](../../setup_binary/pro/cluster/deploy_in_a_cluster.md#load-balancer-setting) for details.
+Seafile Docker cluster deployment requires "sticky session" settings in the load balancer. Otherwise sometimes folder download on the web UI can't work properly. Read the [Load Balancer Setting](../../setup_binary/pro/deploy_in_a_cluster.md#load-balancer-setting) for details.
 
 ## Environment
 

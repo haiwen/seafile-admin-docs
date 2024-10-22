@@ -79,12 +79,12 @@ nav:
       - Setup pro edition: setup/single_node_installation/setup_pro_edition.md
     - Advanced topics:
       - Storage Backends:
-        - S3 Backend: setup/advanced_topics/storage_backends/setup_with_amazon_s3.md
-        - Ceph Backend: setup/advanced_topics/storage_backends/setup_with_ceph.md
-        - OpenStack Swift Backend: setup/advanced_topics/storage_backends/setup_with_swift.md
-        - Alibaba OSS: setup/advanced_topics/storage_backends/setup_with_oss.md
-        - Multiple Storage Backends: setup/advanced_topics/storage_backends/multiple_storage_backends.md
-        - Data migration: setup/advanced_topics/storage_backends/migrate.md
+        - S3 Backend: setup/advanced_topics/setup_with_amazon_s3.md
+        - Ceph Backend: setup/advanced_topics/setup_with_ceph.md
+        - OpenStack Swift Backend: setup/advanced_topics/setup_with_swift.md
+        - Alibaba OSS: setup/advanced_topics/setup_with_oss.md
+        - Multiple Storage Backends: setup/advanced_topics/multiple_storage_backends.md
+        - Data migration: setup/advanced_topics/migrate.md
       - Seafile Docker autostart: setup/advanced_topics/seafile_docker_autostart.md
       - Deploy with an existing MySQL server: setup/advanced_topics/deploy_seafile_with_an_existing_mysql_server.md
       - Run Seafile as non root user inside docker: setup/advanced_topics/run_seafile_as_non_root_user_inside_docker.md
@@ -105,10 +105,10 @@ nav:
       - Installation: setup_binary/pro/installation.md
       - Migration from Seafile Community: setup_binary/pro/migrate_from_seafile_community_server.md
       - Cluster deployment:
-        - Deploy in a cluster: setup_binary/pro/cluster/deploy_in_a_cluster.md
-        - Search and background tasks in a cluster: setup_binary/pro/cluster/enable_search_and_background_tasks_in_a_cluster.md
-        - Memcache and MariaDB Cluster: setup_binary/pro/cluster/memcached_mariadb_cluster.md
-        - Setup Seafile cluster with NFS: setup_binary/pro/cluster/setup_seafile_cluster_with_nfs.md
+        - Deploy in a cluster: setup_binary/pro/deploy_in_a_cluster.md
+        - Search and background tasks in a cluster: setup_binary/pro/enable_search_and_background_tasks_in_a_cluster.md
+        - Memcache and MariaDB Cluster: setup_binary/pro/memcached_mariadb_cluster.md
+        - Setup Seafile cluster with NFS: setup_binary/pro/setup_seafile_cluster_with_nfs.md
       - License: setup_binary/pro/seafile_professional_sdition_software_license_agreement.md
     - Other deployment notes:
       - Start Seafile at System Bootup: setup_binary/other_deployment_notes/start_seafile_at_system_bootup.md
@@ -132,21 +132,21 @@ nav:
   - Configuration:
     - Authentication & Users:
       - LDAP/AD Integration:
-        - LDAP Integration: config/authentication/ldap/ce/ldap_in_11.0.md
-        - LDAP Integration (Pro): config/authentication/ldap/pro/ldap_in_11.0.md
+        - LDAP Integration: config/authentication/ldap_in_11.0_ce.md
+        - LDAP Integration (Pro): config/authentication/ldap_in_11.0_pro.md
       - Single Sign On:
-        - Outline: config/authentication/sso/single_sign_on.md
-        - OAuth Authentication: config/authentication/sso/oauth.md
-        - Remote User Authentication: config/authentication/sso/remote_user.md
-        - Shibboleth Authentication: config/authentication/sso/shibboleth_authentication.md
-        - Auto Login to SeaDrive on Windows: config/authentication/sso/auto_login_seadrive.md
-        - SAML 2.0 (Pro): config/authentication/sso/saml2_in_10.0.md
-        - Switch authentication: config/authentication/sso/auth_switch.md
+        - Outline: config/authentication/single_sign_on.md
+        - OAuth Authentication: config/authentication/oauth.md
+        - Remote User Authentication: config/authentication/remote_user.md
+        - Shibboleth Authentication: config/authentication/shibboleth_authentication.md
+        - Auto Login to SeaDrive on Windows: config/authentication/auto_login_seadrive.md
+        - SAML 2.0 (Pro): config/authentication/saml2_in_10.0.md
+        - Switch authentication: config/authentication/auth_switch.md
       - Advanced User Management (Pro):
-        - Multi-Institutions Support: config/authentication/advanced_user_management/multi_institutions.md
-        - Roles and Permissions: config/authentication/advanced_user_management/roles_permissions.md
-        - Administrator Roles and Permissions: config/authentication/advanced_user_management/admin_roles_permissions.md
-        - Multi-Tenancy Support: config/authentication/advanced_user_management/multi_tenancy.md
+        - Multi-Institutions Support: config/authentication/multi_institutions.md
+        - Roles and Permissions: config/authentication/roles_permissions.md
+        - Administrator Roles and Permissions: config/authentication/admin_roles_permissions.md
+        - Multi-Tenancy Support: config/authentication/multi_tenancy.md
     - Advanced File Search configuration (Pro): config/authentication/details_about_file_search.md
     - Open Cloud Mesh: config/authentication/ocm.md
     - Available configuration options:

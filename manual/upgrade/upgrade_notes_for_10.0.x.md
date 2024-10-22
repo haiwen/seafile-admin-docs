@@ -46,7 +46,7 @@ SAML_ATTRIBUTE_MAPPING = {
 }
 ```
 
-Please check the new document on [SAML SSO](../config/authentication/sso/saml2_in_10.0.md)
+Please check the new document on [SAML SSO](../config/authentication/saml2_in_10.0.md)
 
 ### Rate control in role settings (pro edition only)
 
