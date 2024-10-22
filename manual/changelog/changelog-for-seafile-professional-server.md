@@ -6,7 +6,7 @@
 
 **Upgrade**
 
-Please check our document for how to upgrade to 11.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x/>
+Please check our document for how to upgrade to [11.0](../upgrade/upgrade_notes_for_11.0.x.md)
 
 ### 11.0.15 (2024-10-17)
 
@@ -163,7 +163,7 @@ Other changes
 
 **Upgrade**
 
-Please check our document for how to upgrade to 10.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_10.0.x/>
+Please check our document for how to upgrade to [10.0](../upgrade/upgrade_notes_for_10.0.x.md).
 
 ### 10.0.16 (2024-06-21)
 
@@ -276,7 +276,7 @@ Note, after upgrading to this version, you need to upgrade the Python libraries 
 
 **Upgrade**
 
-Please check our document for how to upgrade to 9.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_9.0.x/>
+Please check our document for how to upgrade to [9.0](../upgrade/upgrade_notes_for_9.0.x.md).
 
 ### 9.0.16 (2023-03-22)
 
@@ -448,7 +448,7 @@ Deprecated
 
 **Upgrade**
 
-Please check our document for how to upgrade to 8.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_8.0.x/>
+Please check our document for how to upgrade to [8.0](../upgrade/upgrade_notes_for_8.0.x.md).
 
 ### 8.0.17 (2022/01/10)
 
@@ -591,7 +591,7 @@ fs_id_list_request_timeout = 300
 
 **Upgrade**
 
-Please check our document for how to upgrade to 7.1: [upgrade notes for 7.1.x](../upgrade/upgrade_notes_for_7.1.x.md)
+Please check our document for how to upgrade to [7.1](../upgrade/upgrade_notes_for_7.1.x.md).
 
 ### 7.1.22 (2021/07/29)
 
@@ -781,7 +781,7 @@ fs_id_list_request_timeout = 300
 
 Since seafile-pro 7.0.0, we have upgraded Elasticsearch to 5.6. As Elasticsearch 5.6 relies on the Java 8 environment and can't run with root, you need to run Seafile with a non-root user and upgrade the Java version.
 
-Please check our document for how to upgrade to 7.0: [upgrade notes for 7.0.x](../upgrade/upgrade_notes_for_7.0.x.md)
+Please check our document for how to upgrade to [7.0](../upgrade/upgrade_notes_for_7.0.x.md).
 
 ### 7.0.19 (2020/09/07)
 
@@ -1536,7 +1536,7 @@ Other
 ### 6.0.6 (2017.01.11)
 
 * Guest invitation: Prevent the same address can be invited multiple times by the same inviter and by multiple inviters
-* Guest invitation: Add an regex to prevent certain email addresses be invited (see [roles permissions](../deploy_pro/roles_permissions.md#more-about-guest-invitation-feature))
+* Guest invitation: Add an regex to prevent certain email addresses be invited (see [roles permissions](../config/authentication/advanced_user_management/roles_permissions.md#more-about-guest-invitation-feature))
 * Office online: support co-authoring
 * Admin can set users' department and name when creating users
 * Show total number of files and storage in admin info page

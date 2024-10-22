@@ -67,109 +67,109 @@ markdown_extensions:
 # Page tree
 nav:
   - Introduction:
-    - Introduction: README.md
-    - Seafile Components: overview/components.md
-    - File permission management: overview/file_permission_management.md
-    - Roadmap: roadmap.md
-    - Contribution: contribution.md
+    - Introduction: introduction/README.md
+    - Seafile Components: introduction/components.md
+    - File permission management: introduction/file_permission_management.md
+    - Roadmap: introduction/roadmap.md
+    - Contribution: introduction/contribution.md
   - Setup:
-    - Overview: docker/seafile_docker_overview.md
+    - Overview: setup/overview.md
     - Single node installation:
-      - Setup community edition: docker/deploy_seafile_with_docker.md
-      - Setup pro edition: docker/pro-edition/deploy_seafile_pro_with_docker.md
+      - Setup community edition: setup/single_node_installation/setup_community_edition.md
+      - Setup pro edition: setup/single_node_installation/setup_pro_edition.md
     - Advanced topics:
       - Storage Backends:
-        - S3 Backend: deploy_pro/setup_with_amazon_s3.md
-        - Ceph Backend: deploy_pro/setup_with_ceph.md
-        - OpenStack Swift Backend: deploy_pro/setup_with_swift.md
-        - Alibaba OSS: deploy_pro/setup_with_oss.md
-        - Multiple Storage Backends: deploy_pro/multiple_storage_backends.md
-        - Data migration: deploy_pro/migrate.md
-      - Seafile Docker autostart: docker/seafile_docker_autostart.md
-      - Deploy with an existing MySQL server: docker/deploy_seafile_with_an_existing_mysql_server.md
-      - Run Seafile as non root user inside docker: docker/run_seafile_as_non_root_user_inside_docker.md
+        - S3 Backend: setup/advanced_topics/storage_backends/setup_with_amazon_s3.md
+        - Ceph Backend: setup/advanced_topics/storage_backends/setup_with_ceph.md
+        - OpenStack Swift Backend: setup/advanced_topics/storage_backends/setup_with_swift.md
+        - Alibaba OSS: setup/advanced_topics/storage_backends/setup_with_oss.md
+        - Multiple Storage Backends: setup/advanced_topics/storage_backends/multiple_storage_backends.md
+        - Data migration: setup/advanced_topics/storage_backends/migrate.md
+      - Seafile Docker autostart: setup/advanced_topics/seafile_docker_autostart.md
+      - Deploy with an existing MySQL server: setup/advanced_topics/deploy_seafile_with_an_existing_mysql_server.md
+      - Run Seafile as non root user inside docker: setup/advanced_topics/run_seafile_as_non_root_user_inside_docker.md
     - Cluster installation:
-      - Seafile Docker Cluster Deployment: docker/cluster/deploy_seafile_cluster_with_docker.md
-      - Setup with Kubernetes (K8s): deploy/deploy_with_k8s.md
+      - Seafile Docker Cluster Deployment: setup/cluster_installation/deploy_seafile_cluster_with_docker.md
+      - Setup with Kubernetes (K8s): setup/cluster_installation/deploy_with_k8s.md
     - Migration:
-      - Migration from Seafile Community: docker/pro-edition/migrate_ce_to_pro_with_docker.md
-      - Migrate from non-docker deployment: docker/non_docker_to_docker.md
+      - Migration from Seafile Community: setup/migration/migrate_ce_to_pro_with_docker.md
+      - Migrate from non-docker deployment: setup/migration/non_docker_to_docker.md
   - Setup (binary):
     - Seafile Community Setup:
-      - Outline: deploy/README.md
-      - Installation: deploy/using_mysql.md
-      - HTTPS with Nginx: deploy/https_with_nginx.md
-      - HTTPS with Apache: deploy/https_with_apache.md
+      - Outline: setup_binary/ce/README.md
+      - Installation: setup_binary/ce/installation.md
+      - HTTPS with Nginx: setup_binary/ce/https_with_nginx.md
+      - HTTPS with Apache: setup_binary/ce/https_with_apache.md
     - Seafile Professional Setup:
-      - Outline: deploy_pro/README.md
-      - Installation: deploy_pro/download_and_setup_seafile_professional_server.md
-      - Migration from Seafile Community: deploy_pro/migrate_from_seafile_community_server.md
+      - Outline: setup_binary/pro/README.md
+      - Installation: setup_binary/pro/installation.md
+      - Migration from Seafile Community: setup_binary/pro/migrate_from_seafile_community_server.md
       - Cluster deployment:
-        - Deploy in a cluster: deploy_pro/deploy_in_a_cluster.md
-        - Search and background tasks in a cluster: deploy_pro/enable_search_and_background_tasks_in_a_cluster.md
-        - Memcache and MariaDB Cluster: deploy_pro/memcached_mariadb_cluster.md
-        - Setup Seafile cluster with NFS: deploy_pro/setup_seafile_cluster_with_nfs.md
-      - License: deploy_pro/seafile_professional_sdition_software_license_agreement.md
+        - Deploy in a cluster: setup_binary/pro/cluster/deploy_in_a_cluster.md
+        - Search and background tasks in a cluster: setup_binary/pro/cluster/enable_search_and_background_tasks_in_a_cluster.md
+        - Memcache and MariaDB Cluster: setup_binary/pro/cluster/memcached_mariadb_cluster.md
+        - Setup Seafile cluster with NFS: setup_binary/pro/cluster/setup_seafile_cluster_with_nfs.md
+      - License: setup_binary/pro/seafile_professional_sdition_software_license_agreement.md
     - Other deployment notes:
-      - Start Seafile at System Bootup: deploy/start_seafile_at_system_bootup.md
-      - Logrotate: deploy/using_logrotate.md
-      - Config fail2ban: security/fail2ban.md
-    - Migrate From SQLite to MySQL: deploy/migrate_from_sqlite_to_mysql.md
+      - Start Seafile at System Bootup: setup_binary/other_deployment_notes/start_seafile_at_system_bootup.md
+      - Logrotate: setup_binary/other_deployment_notes/using_logrotate.md
+      - Config fail2ban: setup_binary/other_deployment_notes/fail2ban.md
+      - Migrate From SQLite to MySQL: setup_binary/other_deployment_notes/migrate_from_sqlite_to_mysql.md
   - Extensions:
     - Extra Seafile components:
-      - SeaDoc Integration: extra_setup/setup_seadoc.md
-      - Notification Server: deploy/notification-server.md
-      - WebDAV extension: extension/webdav.md
-      - FUSE extension: extension/fuse.md
+      - SeaDoc Integration: extension/extra_components/setup_seadoc.md
+      - Notification Server: extension/extra_components/notification-server.md
+      - WebDAV extension: extension/extra_components/webdav.md
+      - FUSE extension: extension/extra_components/fuse.md
     - Online Office:
-      - LibreOffice Online Integration: deploy/libreoffice_online.md
-      - OnlyOffice Integration: deploy/only_office.md
-      - Office Online Server Integration (Pro): deploy_pro/office_web_app.md
+      - LibreOffice Online Integration: extension/online_office/libreoffice_online.md
+      - OnlyOffice Integration: extension/online_office/only_office.md
+      - Office Online Server Integration (Pro): extension/online_office/office_web_app.md
     - Virus Scan (Pro):
-      - Outline: deploy_pro/virus_scan.md
-      - Virus scan with ClamAV: deploy_pro/deploy_clamav_with_seafile.md
-      - Virus scan with Kav4fs: deploy_pro/virus_scan_with_kav4fs.md
+      - Outline: extension/virus_scan/virus_scan.md
+      - Virus scan with ClamAV: extension/virus_scan/deploy_clamav_with_seafile.md
+      - Virus scan with Kav4fs: extension/virus_scan/virus_scan_with_kav4fs.md
   - Configuration:
     - Authentication & Users:
       - LDAP/AD Integration:
-        - LDAP Integration: deploy/ldap_in_11.0.md
-        - LDAP Integration (Pro): deploy_pro/ldap_in_11.0.md
+        - LDAP Integration: config/authentication/ldap/ce/ldap_in_11.0.md
+        - LDAP Integration (Pro): config/authentication/ldap/pro/ldap_in_11.0.md
       - Single Sign On:
-        - Outline: deploy/single_sign_on.md
-        - OAuth Authentication: deploy/oauth.md
-        - Remote User Authentication: deploy/remote_user.md
-        - Shibboleth Authentication: deploy/shibboleth_authentication.md
-        - Auto Login to SeaDrive on Windows: deploy/auto_login_seadrive.md
-        - SAML 2.0 (Pro): deploy_pro/saml2_in_10.0.md
-        - Switch authentication: deploy/auth_switch.md
+        - Outline: config/authentication/sso/single_sign_on.md
+        - OAuth Authentication: config/authentication/sso/oauth.md
+        - Remote User Authentication: config/authentication/sso/remote_user.md
+        - Shibboleth Authentication: config/authentication/sso/shibboleth_authentication.md
+        - Auto Login to SeaDrive on Windows: config/authentication/sso/auto_login_seadrive.md
+        - SAML 2.0 (Pro): config/authentication/sso/saml2_in_10.0.md
+        - Switch authentication: config/authentication/sso/auth_switch.md
       - Advanced User Management (Pro):
-        - Multi-Institutions Support: deploy_pro/multi_institutions.md
-        - Roles and Permissions: deploy_pro/roles_permissions.md
-        - Administrator Roles and Permissions: deploy_pro/admin_roles_permissions.md
-        - Multi-Tenancy Support: deploy_pro/multi_tenancy.md
-    - Advanced File Search configuration (Pro): deploy_pro/details_about_file_search.md
-    - Open Cloud Mesh: deploy/ocm.md
+        - Multi-Institutions Support: config/authentication/advanced_user_management/multi_institutions.md
+        - Roles and Permissions: config/authentication/advanced_user_management/roles_permissions.md
+        - Administrator Roles and Permissions: config/authentication/advanced_user_management/admin_roles_permissions.md
+        - Multi-Tenancy Support: config/authentication/advanced_user_management/multi_tenancy.md
+    - Advanced File Search configuration (Pro): config/authentication/details_about_file_search.md
+    - Open Cloud Mesh: config/authentication/ocm.md
     - Available configuration options:
-      - Outline: config/README.md
-      - Environment variables: config/env.md
-      - ccnet.conf: config/ccnet-conf.md
-      - seafile.conf: config/seafile-conf.md
-      - seahub_settings.py: config/seahub_settings_py.md
-      - seafevents.conf: config/seafevents-conf.md
-      - Seahub customization: config/seahub_customization.md
-      - Email Sending: config/sending_email.md
+      - Outline: config/seafile_config/README.md
+      - Environment variables: config/seafile_config/env.md
+      - ccnet.conf: config/seafile_config/ccnet-conf.md
+      - seafile.conf: config/seafile_config/seafile-conf.md
+      - seahub_settings.py: config/seafile_config/seahub_settings_py.md
+      - seafevents.conf: config/seafile_config/seafevents-conf.md
+      - Seahub customization: config/seafile_config/seahub_customization.md
+      - Email Sending: config/seafile_config/sending_email.md
   - Administration:
-    - Outline: maintain/README.md
-    - Account management: maintain/account.md
-    - Two-factor Authentication: maintain/two_factor_authentication.md
-    - Security features: security/security_features.md
-    - Access logs and auditing: security/auditing.md
-    - Export report: maintain/export_report.md
-    - Logs: maintain/logs.md
-    - Backup and Recovery: maintain/backup_recovery.md
-    - Seafile FSCK: maintain/seafile_fsck.md
-    - Seafile GC: maintain/seafile_gc.md
-    - Clean database: maintain/clean_database.md
+    - Outline: administration/README.md
+    - Account management: administration/account.md
+    - Two-factor Authentication: administration/two_factor_authentication.md
+    - Security features: administration/security_features.md
+    - Access logs and auditing: administration/auditing.md
+    - Export report: administration/export_report.md
+    - Logs: administration/logs.md
+    - Backup and Recovery: administration/backup_recovery.md
+    - Seafile FSCK: administration/seafile_fsck.md
+    - Seafile GC: administration/seafile_gc.md
+    - Clean database: administration/clean_database.md
   - Upgrade:
     - Outline: upgrade/upgrade.md
     - Upgrade Seafile Docker: upgrade/upgrade_docker.md
@@ -185,12 +185,12 @@ nav:
   - Developing:
     - Outline: develop/README.md
     - How to Build Seafile:
-      - Outline: build_seafile/README.md
-      - Linux: build_seafile/linux.md
-      - macOS: build_seafile/osx.md
-      - Windows: build_seafile/windows.md
-      - Server development: build_seafile/server.md
-      - Server binary package: build_seafile/rpi.md
+      - Outline: develop/build_seafile/README.md
+      - Linux: develop/build_seafile/linux.md
+      - macOS: develop/build_seafile/osx.md
+      - Windows: develop/build_seafile/windows.md
+      - Server development: develop/build_seafile/server.md
+      - Server binary package: develop/build_seafile/rpi.md
     - Translation: develop/translation.md
     - Web API V2.1: develop/web_api_v2.1.md
     - PHP API: https://github.com/rene-s/Seafile-PHP-SDK

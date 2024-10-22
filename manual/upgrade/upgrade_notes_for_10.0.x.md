@@ -16,7 +16,7 @@ The notification server enables desktop syncing and drive clients to get notific
 
 The notification server works with Seafile syncing client 9.0+ and drive client 3.0+.
 
-Please follow the document to enable notification server: https://manual.seafile.com/config/seafile-conf/#notification-server-configuration
+Please follow the document to [enable notification server](../extension/extra_components/notification-server.md)
 
 ### Memcached section in the seafile.conf (pro edition only)
 
@@ -46,7 +46,7 @@ SAML_ATTRIBUTE_MAPPING = {
 }
 ```
 
-Please check the new document on [SAML SSO](../deploy_pro/saml2_in_10.0.md)
+Please check the new document on [SAML SSO](../config/authentication/sso/saml2_in_10.0.md)
 
 ### Rate control in role settings (pro edition only)
 

@@ -9,7 +9,7 @@ Please check the **upgrade notes** for any special configuration or changes befo
 
 ## Upgrade from 10.0 to 11.0
 
-Download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version. Taking the [community edition](../docker/deploy_seafile_with_docker.md) as an example, you have to modify
+Download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version. Taking the [community edition](../setup/single_node_installation/setup_community_edition.md) as an example, you have to modify
 
 ```yml
 ...
@@ -37,7 +37,7 @@ service:
 - MariaDB: 10.11
 - Memcached: 1.6.18
 
-What's more, you have to migrate configuration for LDAP and OAuth according to <https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x>
+What's more, you have to migrate configuration for LDAP and OAuth according to [here](upgrade_notes_for_11.0.x.md)
 
 Start with docker compose up.
 
@@ -45,9 +45,9 @@ Start with docker compose up.
 
 Just download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version, then start with docker compose up.
 
-If you are using pro edition with ElasticSearch, SAML SSO and storage backend features, follow the upgrading manual on how to update the configuration for these features: <https://manual.seafile.com/upgrade/upgrade_notes_for_10.0.x>
+If you are using pro edition with ElasticSearch, SAML SSO and storage backend features, follow the upgrading manual on how to update the configuration for these [features](upgrade_notes_for_10.0.x.md).
 
-If you want to use the new notification server and rate control (pro edition only), please refer to the upgrading manual: <https://manual.seafile.com/upgrade/upgrade_notes_for_10.0.x>
+If you want to use the new notification server and rate control (pro edition only), please refer to the [upgrading manual](upgrade_notes_for_10.0.x.md).
 
 ## Upgrade from 8.0 to 9.0
 
@@ -99,22 +99,22 @@ First, backup the original docker-compose.yml file:
 mv docker-compose.yml docker-compose.yml.bak
 ```
 
-Then download [.env](https://manual.seafile.com/docker/docker-compose/ce/12.0/env), [seafile-server.yml](https://manual.seafile.com/docker/docker-compose/ce/12.0/seafile-server.yml) and [caddy.yml](https://manual.seafile.com/docker/docker-compose/ce/12.0/caddy.yml), and modify .env file according to the old configuration in `docker-compose.yml.bak`
+Then download [.env](../docker/ce/env), [seafile-server.yml](../docker/ce/seafile-server.yml) and [caddy.yml](../docker/ce/caddy.yml), and modify .env file according to the old configuration in `docker-compose.yml.bak`
 
 For community edition:
 
 ```sh
-wget -O .env https://manual.seafile.com/docker/docker-compose/ce/12.0/env
-wget https://manual.seafile.com/docker/docker-compose/ce/12.0/seafile-server.yml
-wget https://manual.seafile.com/docker/docker-compose/ce/12.0/caddy.yml
+wget -O .env https://manual.seafile.com/12.0/docker/ce/env
+wget https://manual.seafile.com/12.0/docker/ce/seafile-server.yml
+wget https://manual.seafile.com/12.0/docker/ce/caddy.yml
 ```
 
 For pro edition:
 
 ```sh
-wget -O .env https://manual.seafile.com/docker/docker-compose/pro/12.0/env
-wget https://manual.seafile.com/docker/docker-compose/pro/12.0/seafile-server.yml
-wget https://manual.seafile.com/docker/docker-compose/pro/12.0/caddy.yml
+wget -O .env https://manual.seafile.com/12.0/docker/pro/env
+wget https://manual.seafile.com/12.0/docker/pro/seafile-server.yml
+wget https://manual.seafile.com/12.0/docker/pro/caddy.yml
 ```
 
 The following fields merit particular attention:
@@ -129,7 +129,7 @@ The following fields merit particular attention:
 - `SEAFILE_SERVER_HOSTNAME`: Seafile server hostname or domain
 - `SEAFILE_SERVER_PROTOCOL`: Seafile server protocol (http or https)
 
-SSL is now handled by the [caddy server](../docker/deploy_seafile_with_docker.md#about-ssl-and-caddy). If you have used SSL before, you will also need modify the seafile.nginx.conf. Change server listen 443 to 80.
+SSL is now handled by the [caddy server](../setup/single_node_installation/setup_community_edition.md#about-ssl-and-caddy). If you have used SSL before, you will also need modify the seafile.nginx.conf. Change server listen 443 to 80.
 
 Backup the original seafile.nginx.conf file:
 
@@ -182,18 +182,18 @@ SeaDoc 1.0 is for working with Seafile 12.0. SeaDoc and Seafile are deployed in 
 
 In version 1.0, we use .env file to configure SeaDoc docker image, instead of modifying the docker-compose.yml file directly.
 
-Download [seadoc.yml](https://manual.seafile.com/docker/docker-compose/ce/12.0/seadoc.yml) to the Seafile `seafile-server.yml` directory, then modify Seafile .env file.
+Download [seadoc.yml](../docker/ce/seadoc.yml) to the Seafile `seafile-server.yml` directory, then modify Seafile .env file.
 
 For community edition:
 
 ```sh
-wget https://manual.seafile.com/docker/docker-compose/ce/12.0/seadoc.yml
+wget https://manual.seafile.com/12.0/docker/ce/seadoc.yml
 ```
 
 For pro edition:
 
 ```sh
-wget https://manual.seafile.com/docker/docker-compose/pro/12.0/seadoc.yml
+wget https://manual.seafile.com/12.0/docker/pro/seadoc.yml
 ```
 
 ```env

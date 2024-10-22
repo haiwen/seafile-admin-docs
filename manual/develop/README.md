@@ -2,8 +2,8 @@
 
 Build Seafile
 
-* [How to Build Seafile](../build_seafile/README.md)
-* [How to Setup Development Environment](env.md)
+* [How to Build Seafile](./build_seafile/README.md)
+* [How to Setup Development Environment](../config/seafile_config/env.md)
 
 Seafile Open API
 
