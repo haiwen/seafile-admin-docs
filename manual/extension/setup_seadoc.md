@@ -44,7 +44,7 @@ SeaDoc has the following deployment methods:
 
 #### Download and modify seadoc.yml
 
-Download [seadoc.yml](../docker/seadoc/1.0/seadoc.yml) sample file to your host. Then modify the file according to your environment. The following fields are needed to be modified:
+Download [seadoc.yml](../docker/seadoc/1.0/standalone/seadoc.yml) sample file to your host. Then modify the file according to your environment. The following fields are needed to be modified:
 
 - `DB_HOST`: MySQL host
 - `DB_PORT`: MySQL port
