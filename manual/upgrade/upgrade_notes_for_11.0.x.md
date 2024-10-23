@@ -47,7 +47,7 @@ There are several reasons driving this change:
 * Docker deployments - Our official Docker images do not support SQLite. MySQL is the preferred option.
 * Migration difficulties - Migrating SQLite databases to MySQL via SQL translation is unreliable.
 
-To migrate from SQLite database to MySQL database, you can follow the document [Migrate from SQLite to MySQL](../setup_binary/other_deployment_notes/migrate_from_sqlite_to_mysql.md). If you have issues in the migration, just post a thread in our forum. We are glad to help you.
+To migrate from SQLite database to MySQL database, you can follow the document [Migrate from SQLite to MySQL](../setup_binary/migrate_from_sqlite_to_mysql.md). If you have issues in the migration, just post a thread in our forum. We are glad to help you.
 
 
 ### ElasticSearch change (pro edition only)

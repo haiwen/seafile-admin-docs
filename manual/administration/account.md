@@ -16,7 +16,7 @@ For version below 11.0, if you really want to change a user's ID, you should cre
 
 Administrator can reset password for a user in "System Admin" page.
 
-In a private server, the default settings doesn't support users to reset their password by email. If you want to enable this, you have first to [set up notification email](../config/seafile_config/sending_email.md).
+In a private server, the default settings doesn't support users to reset their password by email. If you want to enable this, you have first to [set up notification email](../config/sending_email.md).
 
 #### Forgot Admin Account or Password?
 
@@ -25,4 +25,4 @@ Your data will not be deleted from the admin account, this only unlocks and chan
 
 #### User Quota Notice
 
-Under the seafile-server-latest directory, run `./seahub.sh python-env python seahub/manage.py check_user_quota` , when the user quota exceeds 90%, an email will be sent. If you want to enable this, you have first to [set up notification email](../config/seafile_config/sending_email.md).
+Under the seafile-server-latest directory, run `./seahub.sh python-env python seahub/manage.py check_user_quota` , when the user quota exceeds 90%, an email will be sent. If you want to enable this, you have first to [set up notification email](../config/sending_email.md).
