@@ -67,7 +67,7 @@ markdown_extensions:
 # Page tree
 nav:
   - Introduction:
-    - Introduction: introduction/README.md
+    - Introduction: README.md
     - Seafile Components: introduction/components.md
     - File permission management: introduction/file_permission_management.md
     - Roadmap: introduction/roadmap.md
