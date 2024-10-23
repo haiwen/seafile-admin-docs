@@ -45,7 +45,7 @@ SEADOC_SERVER_URL=http://example.seafile.com/sdoc-server
 
 ### Components configurations
 
-- `COMPOSE_FILE`: `.yml` files for components of [Seafile-docker](../docker/seafile_docker_overview.md), each `.yml` must be separated by the symbol defined in `COMPOSE_PATH_SEPARATOR`. The core components are involved in `seafile-server.yml` and `caddy.yml` which must be taken in this term.
+- `COMPOSE_FILE`: `.yml` files for components of [Seafile-docker](../setup/overview.md), each `.yml` must be separated by the symbol defined in `COMPOSE_PATH_SEPARATOR`. The core components are involved in `seafile-server.yml` and `caddy.yml` which must be taken in this term.
 - `COMPOSE_PATH_SEPARATOR`: The symbol used to separate the `.yml` files in term `COMPOSE_FILE`, default is ','.
 
 ### Docker images configurations
@@ -55,7 +55,7 @@ SEADOC_SERVER_URL=http://example.seafile.com/sdoc-server
 - `SEAFILE_MEMCACHED_IMAGE`: Cached server image, default is `memcached:1.6.29`
 - `SEAFILE_ELASTICSEARCH_IMAGE`: Only valid in pro edition. The elasticsearch image, default is `elasticsearch:8.15.0`.
 - `SEAFILE_CADDY_IMAGE`: Caddy server image, default is `lucaslorentz/caddy-docker-proxy:2.9`.
-- `SEADOC_IMAGE`: Only valid after integrating [SeaDoc](../extra_setup/setup_seadoc.md). SeaDoc server image, default is `seafileltd/sdoc-server:1.0-latest`.
+- `SEADOC_IMAGE`: Only valid after integrating [SeaDoc](../extension/setup_seadoc.md). SeaDoc server image, default is `seafileltd/sdoc-server:1.0-latest`.
 
 ### Persistent Volume Configurations
 
@@ -63,7 +63,7 @@ SEADOC_SERVER_URL=http://example.seafile.com/sdoc-server
 - `SEAFILE_MYSQL_VOLUME`: The volume directory of MySQL data, default is `/opt/seafile-mysql/db`.
 - `SEAFILE_CADDY_VOLUME`: The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's, default is `/opt/seafile-caddy`.
 - `SEAFILE_ELASTICSEARCH_VOLUME`: Only valid in pro edition. The volume directory of Elasticsearch data, default is `/opt/seafile-elasticsearch/data`.
-- `SEADOC_VOLUME`: Only valid after integrating [SeaDoc](../extra_setup/setup_seadoc.md). The volume directory of [SeaDoc server data](../extra_setup/setup_seadoc.md#seadoc-directory-structure), default is `/opt/seadoc-data`.
+- `SEADOC_VOLUME`: Only valid after integrating [SeaDoc](../extension/setup_seadoc.md). The volume directory of [SeaDoc server data](../extension/setup_seadoc.md#seadoc-directory-structure), default is `/opt/seadoc-data`.
 
 ## MySQL configurations
 

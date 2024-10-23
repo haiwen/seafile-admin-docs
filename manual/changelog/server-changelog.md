@@ -6,7 +6,7 @@
 
 **Upgrade**
 
-Please check our document for how to upgrade to 11.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x/>
+Please check our document for how to upgrade to [11.0](../upgrade/upgrade_notes_for_11.0.x.md)
 
 
 ### 11.0.12 (2024-08-14)
@@ -180,7 +180,7 @@ SDoc editor 0.2
 
 **Upgrade**
 
-Please check our document for how to upgrade to 10.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_10.0.x/>
+Please check our document for how to upgrade to [10.0](../upgrade/upgrade_notes_for_10.0.x.md).
 
 ### 10.0.1 (2023-04-11)
 
@@ -326,7 +326,7 @@ use_go_fileserver = true
 
 ## 8.0
 
-Please check our document for how to upgrade to 8.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_8.0.x/>
+Please check our document for how to upgrade to [8.0](../upgrade/upgrade_notes_for_8.0.x.md).
 
 ### 8.0.8 (2021/12/06)
 
@@ -409,7 +409,7 @@ Progresql support is dropped as we have rewritten the database access code to re
 
 **Upgrade**
 
-Please check our document for how to upgrade to 7.1: <https://manual.seafile.com/upgrade/upgrade_notes_for_7.1.x/>
+Please check our document for how to upgrade to [7.1](../upgrade/upgrade_notes_for_7.1.x.md).
 
 ### 7.1.5 (2020/09/22)
 

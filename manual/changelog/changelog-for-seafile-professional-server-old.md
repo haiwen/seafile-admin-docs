@@ -53,7 +53,7 @@ LDAP improvements and fixes
 
 * Only import LDAP users to Seafile internal database upon login
 * Only list imported LDAP users in "organization->members"
-* Add option to not import users via LDAP Sync (Only update information for already imported users). The option name is IMPORT_NEW_USER. See document <http://manual.seafile.com/deploy/ldap_user_sync.html>
+* Add option to not import users via LDAP Sync (Only update information for already imported users). The option name is IMPORT_NEW_USER. See document <http://manual.seafile.com/deploy/ldap_user_sync.html> (url might deprecated)
 
 ### 4.4.3 (2015.10.20)
 
@@ -292,7 +292,7 @@ Platform
 Pro only updates
 
 * Support syncing any sub-folder in the desktop client
-* Add audit log, see <http://manual.seafile.com/security/auditing.html>. This feature is turned off by default. To turn it on, see <http://manual.seafile.com/deploy_pro/configurable_options.html>
+* Add audit log, see <http://manual.seafile.com/security/auditing.html> (url might deprecated). This feature is turned off by default. To turn it on, see <http://manual.seafile.com/deploy_pro/configurable_options.html> (url might deprecated)
 * Syncing LDAP groups
 * Add permission setting for a sub-folder (beta)
 

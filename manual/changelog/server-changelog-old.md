@@ -4,7 +4,7 @@
 
 **Note when upgrade to 5.0 from 4.4**
 
-You can follow the document on major upgrade (<http://manual.seafile.com/deploy/upgrade.html>)
+You can follow the document on major upgrade (<http://manual.seafile.com/deploy/upgrade.html>) (url might deprecated)
 
 In Seafile 5.0, we have moved all config files to folder `conf`, including:
 

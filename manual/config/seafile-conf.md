@@ -213,7 +213,7 @@ upload_limit = 100
 download_limit = 100
 ```
 
-Since Seafile 11.0.7 Pro, you can ask file server to check virus for every file uploaded with web APIs. Find more options about virus scanning at [virus scan](../deploy_pro/virus_scan.md).
+Since Seafile 11.0.7 Pro, you can ask file server to check virus for every file uploaded with web APIs. Find more options about virus scanning at [virus scan](../extension/virus_scan.md).
 
 ```
 [fileserver]
@@ -280,12 +280,12 @@ memcached_options = --SERVER=<the IP of Memcached Server> --POOL-MIN=10 --POOL-M
 
 You may configure Seafile to use various kinds of object storage backends.
 
-- [S3 or S3-compatible object storage](../deploy_pro/setup_with_amazon_s3.md)
-- [Ceph RADOS](../deploy_pro/setup_with_ceph.md)
-- [Alibaba Cloud OSS](../deploy_pro/setup_with_oss.md)
-- [OpenStack Swift](../deploy_pro/setup_with_swift.md)
+- [S3 or S3-compatible object storage](../setup/setup_with_amazon_s3.md)
+- [Ceph RADOS](../setup/setup_with_ceph.md)
+- [Alibaba Cloud OSS](../setup/setup_with_oss.md)
+- [OpenStack Swift](../setup/setup_with_swift.md)
 
-You may also configure Seafile to use [multiple storage backends](../deploy_pro/multiple_storage_backends.md) at the same time.
+You may also configure Seafile to use [multiple storage backends](../setup/setup_with_multiple_storage_backends.md) at the same time.
 
 ## Cluster
 
@@ -312,7 +312,7 @@ rpc_slow_threshold = 5000
 
 ```
 
-You can find `seafile_slow_rpc.log` in `logs/slow_logs`. You can also use [log-rotate](../deploy/using_logrotate.md) to rotate the log files. You just need to send `SIGUSR2` to `seaf-server` process. The slow log file will be closed and reopened.
+You can find `seafile_slow_rpc.log` in `logs/slow_logs`. You can also use [log-rotate](../setup_binary/using_logrotate.md) to rotate the log files. You just need to send `SIGUSR2` to `seaf-server` process. The slow log file will be closed and reopened.
 
 Since 9.0.2 Pro, the signal to trigger log rotation has been changed to `SIGUSR1`. This signal will trigger rotation for all log files opened by seaf-server. You should change your log rotate settings accordingly.
 

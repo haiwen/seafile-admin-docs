@@ -92,7 +92,7 @@ From version 1.0, SeaDoc is using seahub_db database to store its operation logs
 
 ### Deploy a new SeaDoc server
 
-Please see the document [Setup SeaDoc](../extra_setup/setup_seadoc.md) to install SeaDoc on a separate machine and integrate with your binary packaged based Seafile server v12.0.
+Please see the document [Setup SeaDoc](../extension/setup_seadoc.md) to install SeaDoc on a separate machine and integrate with your binary packaged based Seafile server v12.0.
 
 
 ## FAQ

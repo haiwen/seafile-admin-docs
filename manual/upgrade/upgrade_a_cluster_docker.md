@@ -22,14 +22,14 @@ Maintanence upgrade only needs to download the new image, stop the old docker co
 
 ## Upgrade from 10.0 to 11.0
 
-Migrate your configuration for LDAP and OAuth according to <https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x>
+Migrate your configuration for LDAP and OAuth according to [here](upgrade_notes_for_11.0.x.md)
 
 ## Upgrade from 9.0 to 10.0
 
-If you are using with ElasticSearch, SAML SSO and storage backend features, follow the upgrading manual on how to update the configuration for these features: <https://manual.seafile.com/upgrade/upgrade_notes_for_10.0.x>
+If you are using with ElasticSearch, SAML SSO and storage backend features, follow the upgrading manual on how to update the configuration for [these features](upgrade_notes_for_10.0.x.md).
 
-If you want to use the new notification server and rate control (pro edition only), please refer to the upgrading manual: <https://manual.seafile.com/upgrade/upgrade_notes_for_10.0.x>
+If you want to use the new notification server and rate control (pro edition only), please refer to the [upgrading manual](upgrade_notes_for_10.0.x.md).
 
 ## Upgrade from 8.0 to 9.0
 
-If you are using with ElasticSearch, follow the upgrading manual on how to update the configuration: <https://manual.seafile.com/upgrade/upgrade_notes_for_9.0.x>
+If you are using with ElasticSearch, follow the upgrading manual on how to [update the configuration](upgrade_notes_for_9.0.x.md).
