@@ -970,7 +970,7 @@ Version 6.3 also changed the database table for file comments, if you have used 
 
 > Note, this command should be run while Seafile server is running.
 
-Version 6.3 changed '/shib-login' to '/sso'. If you use Shibboleth, you need to to update your Apache/Nginx config. Please check the updated document: [shibboleth config v6.3](../deploy/shibboleth_config_v6.3.md)
+Version 6.3 changed '/shib-login' to '/sso'. If you use Shibboleth, you need to to update your Apache/Nginx config. Please check the updated document: [shibboleth config v6.3](../config/shibboleth_authentication.md)
 
 Version 6.3 add a new option for file search (`seafevents.conf`):
 
