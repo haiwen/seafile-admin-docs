@@ -44,7 +44,7 @@ spec:
           image: mariadb:10.11
           env:
             - name: MARIADB_ROOT_PASSWORD
-              value: "db_dev"
+              value: "db_password"
             - name: MARIADB_AUTO_UPGRADE
               value: "true"
           ports:
@@ -187,12 +187,12 @@ spec:
             - name: DB_HOST
               value: "mariadb"
             - name: DB_ROOT_PASSWD
-              value: "db_dev" #db's password
+              value: "db_password" #db's password
             - name: TIME_ZONE
               value: "Europe/Berlin"
-            - name: SEAFILE_ADMIN_EMAIL
+            - name: SEAFILE_ADMIN_INIT_EMAIL
               value: "admin@seafile.com" #admin email
-            - name: SEAFILE_ADMIN_PASSWORD
+            - name: SEAFILE_ADMIN_INIT_PASSWORD
               value: "admin_password" #admin password
             - name: SEAFILE_SERVER_LETSENCRYPT
               value: "false"

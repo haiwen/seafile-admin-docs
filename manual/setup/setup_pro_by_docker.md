@@ -70,15 +70,15 @@ The following fields merit particular attention:
 - `SEAFILE_MYSQL_VOLUME`: The volume directory of MySQL data, default is `/opt/seafile-mysql/db`
 - `SEAFILE_CADDY_VOLUME`: The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's, default is `/opt/seafile-caddy`
 - `SEAFILE_ELASTICSEARCH_VOLUME`: The volume directory of Elasticsearch data, default is `/opt/seafile-elasticsearch/data`
-- `SEAFILE_MYSQL_ROOT_PASSWORD`: The `root` password of MySQL
+- `SEAFILE_MYSQL_INIT_ROOT_PASSWORD`: The `root` password of MySQL
 - `SEAFILE_MYSQL_DB_USER`: The user of MySQL (`database` - `user` can be found in `conf/seafile.conf`)
 - `SEAFILE_MYSQL_DB_PASSWORD`: The user `seafile` password of MySQL
 - `JWT`: JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: `pwgen -s 40 1`
 - `SEAFILE_SERVER_HOSTNAME`: Seafile server hostname or domain
 - `SEAFILE_SERVER_PROTOCOL`: Seafile server protocol (http or https)
 - `TIME_ZONE`: Time zone (default UTC)
-- `SEAFILE_ADMIN_EMAIL`: Admin username
-- `SEAFILE_ADMIN_PASSWORD`: Admin password
+- `SEAFILE_ADMIN_INIT_EMAIL`: Admin username
+- `SEAFILE_ADMIN_INIT_PASSWORD`: Admin password
 
 NOTE: SSL is now handled by the [caddy server](./setup_ce_by_docker.md#about-ssl-and-caddy) from 12.0.
 

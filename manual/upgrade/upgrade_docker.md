@@ -123,7 +123,7 @@ The following fields merit particular attention:
 - `SEAFILE_MYSQL_VOLUME`: The volume directory of MySQL data, default is `/opt/seafile-mysql/db`
 - `SEAFILE_CADDY_VOLUME`: The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's, default is `/opt/seafile-caddy`
 - `SEAFILE_ELASTICSEARCH_VOLUME`: The volume directory of Elasticsearch data
-- `SEAFILE_MYSQL_ROOT_PASSWORD`: The `root` password of MySQL
+- `SEAFILE_MYSQL_INIT_ROOT_PASSWORD`: The `root` password of MySQL
 - `SEAFILE_MYSQL_DB_PASSWORD`: The user `seafile` password of MySQL
 - `JWT`: JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: `pwgen -s 40 1`
 - `SEAFILE_SERVER_HOSTNAME`: Seafile server hostname or domain
