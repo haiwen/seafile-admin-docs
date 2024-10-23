@@ -15,6 +15,7 @@ Please check our document for how to upgrade to 11.0: <https://manual.seafile.co
 * [fix] auth-token API also prevent brute force attack
 * [fix] Fix invite people in multi-tenancy mode
 * [fix] Add option SSO_LDAP_USE_SAME_UID
+* [fix] [API] Add quota and member_limit parameters when adding an org in multi-tenancy mode
 
 
 ### 11.0.14 (2024-08-22)
