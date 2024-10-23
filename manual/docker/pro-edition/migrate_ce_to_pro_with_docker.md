@@ -10,10 +10,10 @@ NOTE: Different versions of Seafile have different compose files.
 
 ```sh
 # Seafile PE 10.0
-wget -O "docker-compose.yml" "https://manual.seafile.com/docker/docker-compose/pro/10.0/docker-compose.yml"
+wget -O "docker-compose.yml" "https://manual.seafile.com/11.0/docker/docker-compose/pro/10.0/docker-compose.yml"
 
 # Seafile PE 11.0
-wget -O "docker-compose.yml" "https://manual.seafile.com/docker/docker-compose/pro/11.0/docker-compose.yml"
+wget -O "docker-compose.yml" "https://manual.seafile.com/11.0/docker/docker-compose/pro/11.0/docker-compose.yml"
 ```
 
 ## Migrate

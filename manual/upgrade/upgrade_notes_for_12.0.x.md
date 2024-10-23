@@ -89,7 +89,7 @@ From version 1.0, SeaDoc is using seahub_db database to store its operation logs
 
 In version 1.0, we use env file to configure SeaDoc docker image, instead of modifying the docker-compose.yml file directly.
 
-Download [.env](https://manual.seafile.com/docker/docker-compose/seadoc/1.0/standalone/env) and [docker-compose.yml](https://manual.seafile.com/docker/docker-compose/seadoc/1.0/standalone/docker-compose.yml), then modify .env file.
+Download [.env](https://manual.seafile.com/11.0/docker/docker-compose/seadoc/1.0/standalone/env) and [docker-compose.yml](https://manual.seafile.com/11.0/docker/docker-compose/seadoc/1.0/standalone/docker-compose.yml), then modify .env file.
 
 The following fields merit particular attention:
 
