@@ -99,22 +99,22 @@ First, backup the original docker-compose.yml file:
 mv docker-compose.yml docker-compose.yml.bak
 ```
 
-Then download [.env](https://manual.seafile.com/docker/docker-compose/ce/12.0/env), [seafile-server.yml](https://manual.seafile.com/docker/docker-compose/ce/12.0/seafile-server.yml) and [caddy.yml](https://manual.seafile.com/docker/docker-compose/ce/12.0/caddy.yml), and modify .env file according to the old configuration in `docker-compose.yml.bak`
+Then download [.env](https://manual.seafile.com/11.0/docker/docker-compose/ce/12.0/env), [seafile-server.yml](https://manual.seafile.com/11.0/docker/docker-compose/ce/12.0/seafile-server.yml) and [caddy.yml](https://manual.seafile.com/11.0/docker/docker-compose/ce/12.0/caddy.yml), and modify .env file according to the old configuration in `docker-compose.yml.bak`
 
 For community edition:
 
 ```sh
-wget -O .env https://manual.seafile.com/docker/docker-compose/ce/12.0/env
-wget https://manual.seafile.com/docker/docker-compose/ce/12.0/seafile-server.yml
-wget https://manual.seafile.com/docker/docker-compose/ce/12.0/caddy.yml
+wget -O .env https://manual.seafile.com/11.0/docker/docker-compose/ce/12.0/env
+wget https://manual.seafile.com/11.0/docker/docker-compose/ce/12.0/seafile-server.yml
+wget https://manual.seafile.com/11.0/docker/docker-compose/ce/12.0/caddy.yml
 ```
 
 For pro edition:
 
 ```sh
-wget -O .env https://manual.seafile.com/docker/docker-compose/pro/12.0/env
-wget https://manual.seafile.com/docker/docker-compose/pro/12.0/seafile-server.yml
-wget https://manual.seafile.com/docker/docker-compose/pro/12.0/caddy.yml
+wget -O .env https://manual.seafile.com/11.0/docker/docker-compose/pro/12.0/env
+wget https://manual.seafile.com/11.0/docker/docker-compose/pro/12.0/seafile-server.yml
+wget https://manual.seafile.com/11.0/docker/docker-compose/pro/12.0/caddy.yml
 ```
 
 The following fields merit particular attention:
@@ -182,18 +182,18 @@ SeaDoc 1.0 is for working with Seafile 12.0. SeaDoc and Seafile are deployed in 
 
 In version 1.0, we use .env file to configure SeaDoc docker image, instead of modifying the docker-compose.yml file directly.
 
-Download [seadoc.yml](https://manual.seafile.com/docker/docker-compose/ce/12.0/seadoc.yml) to the Seafile `seafile-server.yml` directory, then modify Seafile .env file.
+Download [seadoc.yml](https://manual.seafile.com/11.0/docker/docker-compose/ce/12.0/seadoc.yml) to the Seafile `seafile-server.yml` directory, then modify Seafile .env file.
 
 For community edition:
 
 ```sh
-wget https://manual.seafile.com/docker/docker-compose/ce/12.0/seadoc.yml
+wget https://manual.seafile.com/11.0/docker/docker-compose/ce/12.0/seadoc.yml
 ```
 
 For pro edition:
 
 ```sh
-wget https://manual.seafile.com/docker/docker-compose/pro/12.0/seadoc.yml
+wget https://manual.seafile.com/11.0/docker/docker-compose/pro/12.0/seadoc.yml
 ```
 
 ```env

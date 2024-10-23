@@ -23,10 +23,10 @@ mkdir /opt/seafile
 cd /opt/seafile
 
 # Seafile CE 10.0
-wget -O "docker-compose.yml" "https://manual.seafile.com/docker/docker-compose/ce/10.0/docker-compose.yml"
+wget -O "docker-compose.yml" "https://manual.seafile.com/11.0/docker/docker-compose/ce/10.0/docker-compose.yml"
 
 # Seafile CE 11.0
-wget -O "docker-compose.yml" "https://manual.seafile.com/docker/docker-compose/ce/11.0/docker-compose.yml"
+wget -O "docker-compose.yml" "https://manual.seafile.com/11.0/docker/docker-compose/ce/11.0/docker-compose.yml"
 
 nano docker-compose.yml
 ```
