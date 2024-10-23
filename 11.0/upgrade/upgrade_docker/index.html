@@ -3723,17 +3723,17 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 <div class="codehilite"><pre><span></span><code>mv<span class="w"> </span>docker-compose.yml<span class="w"> </span>docker-compose.yml.bak
 </code></pre></div>
 
-<p>Then download <a href="https://manual.seafile.com/docker/docker-compose/ce/12.0/env">.env</a>, <a href="https://manual.seafile.com/docker/docker-compose/ce/12.0/seafile-server.yml">seafile-server.yml</a> and <a href="https://manual.seafile.com/docker/docker-compose/ce/12.0/caddy.yml">caddy.yml</a>, and modify .env file according to the old configuration in <code>docker-compose.yml.bak</code></p>
+<p>Then download <a href="https://manual.seafile.com/11.0/docker/docker-compose/ce/12.0/env">.env</a>, <a href="https://manual.seafile.com/11.0/docker/docker-compose/ce/12.0/seafile-server.yml">seafile-server.yml</a> and <a href="https://manual.seafile.com/11.0/docker/docker-compose/ce/12.0/caddy.yml">caddy.yml</a>, and modify .env file according to the old configuration in <code>docker-compose.yml.bak</code></p>
 <p>For community edition:</p>
-<div class="codehilite"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/docker/docker-compose/ce/12.0/env
-wget<span class="w"> </span>https://manual.seafile.com/docker/docker-compose/ce/12.0/seafile-server.yml
-wget<span class="w"> </span>https://manual.seafile.com/docker/docker-compose/ce/12.0/caddy.yml
+<div class="codehilite"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/11.0/docker/docker-compose/ce/12.0/env
+wget<span class="w"> </span>https://manual.seafile.com/11.0/docker/docker-compose/ce/12.0/seafile-server.yml
+wget<span class="w"> </span>https://manual.seafile.com/11.0/docker/docker-compose/ce/12.0/caddy.yml
 </code></pre></div>
 
 <p>For pro edition:</p>
-<div class="codehilite"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/docker/docker-compose/pro/12.0/env
-wget<span class="w"> </span>https://manual.seafile.com/docker/docker-compose/pro/12.0/seafile-server.yml
-wget<span class="w"> </span>https://manual.seafile.com/docker/docker-compose/pro/12.0/caddy.yml
+<div class="codehilite"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/11.0/docker/docker-compose/pro/12.0/env
+wget<span class="w"> </span>https://manual.seafile.com/11.0/docker/docker-compose/pro/12.0/seafile-server.yml
+wget<span class="w"> </span>https://manual.seafile.com/11.0/docker/docker-compose/pro/12.0/caddy.yml
 </code></pre></div>
 
 <p>The following fields merit particular attention:</p>
@@ -3789,13 +3789,13 @@ wget<span class="w"> </span>https://manual.seafile.com/docker/docker-compose/pro
 <p>If you have deployed SeaDoc extension in version 11.0, please use the following steps to upgrade it to version 1.0.</p>
 <p>SeaDoc 1.0 is for working with Seafile 12.0. SeaDoc and Seafile are deployed in the same directory. SeaDoc has no state in itself. You can simplify delete old configuration file and directory of v0.8. Then deploy SeaDoc 1.0 as following.</p>
 <p>In version 1.0, we use .env file to configure SeaDoc docker image, instead of modifying the docker-compose.yml file directly.</p>
-<p>Download <a href="https://manual.seafile.com/docker/docker-compose/ce/12.0/seadoc.yml">seadoc.yml</a> to the Seafile <code>seafile-server.yml</code> directory, then modify Seafile .env file.</p>
+<p>Download <a href="https://manual.seafile.com/11.0/docker/docker-compose/ce/12.0/seadoc.yml">seadoc.yml</a> to the Seafile <code>seafile-server.yml</code> directory, then modify Seafile .env file.</p>
 <p>For community edition:</p>
-<div class="codehilite"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/docker/docker-compose/ce/12.0/seadoc.yml
+<div class="codehilite"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/11.0/docker/docker-compose/ce/12.0/seadoc.yml
 </code></pre></div>
 
 <p>For pro edition:</p>
-<div class="codehilite"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/docker/docker-compose/pro/12.0/seadoc.yml
+<div class="codehilite"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/11.0/docker/docker-compose/pro/12.0/seadoc.yml
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code>COMPOSE_FILE=&#39;seafile-server.yml,caddy.yml,seadoc.yml&#39;
