@@ -165,7 +165,7 @@ Other changes
 
 Please check our document for how to upgrade to 10.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_10.0.x/>
 
-### 11.0.17 (2024-10-23)
+### 10.0.17 (2024-10-23)
 
 This release is for Docker image only
 
