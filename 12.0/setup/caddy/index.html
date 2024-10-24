@@ -10,13 +10,13 @@
         <meta name="author" content="seafile">
       
       
-        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/12.0/setup_binary/outline_pro/">
+        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/12.0/setup/caddy/">
       
       
-        <link rel="prev" href="../https_with_apache/">
+        <link rel="prev" href="../overview/">
       
       
-        <link rel="next" href="../installation_pro/">
+        <link rel="next" href="../setup_ce_by_docker/">
       
       
       <link rel="icon" href="../../media/favicon.ico">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Outline - Seafile Admin Manual</title>
+        <title>HTTPS and Caddy - Seafile Admin Manual</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#deploy-seafile-pro-edition" class="md-skip">
+        <a href="#https-and-caddy" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Outline
+              HTTPS and Caddy
             
           </span>
         </div>
@@ -245,11 +245,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../setup/overview/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../overview/" class="md-tabs__link">
           
   
   Setup
@@ -263,21 +265,17 @@
         
   
   
-    
-  
   
     
     
       
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../outline_ce/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../setup_binary/outline_ce/" class="md-tabs__link">
           
   
   Setup (binary)
@@ -626,25 +624,30 @@
       
   
   
+    
   
   
+  
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -655,7 +658,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Setup
@@ -669,7 +672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/overview/" class="md-nav__link">
+      <a href="../overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -687,10 +690,19 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../setup/caddy/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -699,6 +711,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -716,17 +729,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
         
           
-          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -751,7 +767,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_ce_by_docker/" class="md-nav__link">
+      <a href="../setup_ce_by_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -772,7 +788,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_pro_by_docker/" class="md-nav__link">
+      <a href="../setup_pro_by_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -806,17 +822,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
         
           
-          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -881,7 +900,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_with_amazon_s3/" class="md-nav__link">
+      <a href="../setup_with_amazon_s3/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -902,7 +921,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_with_ceph/" class="md-nav__link">
+      <a href="../setup_with_ceph/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -923,7 +942,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_with_swift/" class="md-nav__link">
+      <a href="../setup_with_swift/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -944,7 +963,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_with_oss/" class="md-nav__link">
+      <a href="../setup_with_oss/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -965,7 +984,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_with_multiple_storage_backends/" class="md-nav__link">
+      <a href="../setup_with_multiple_storage_backends/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -986,7 +1005,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/migrate_backends_data/" class="md-nav__link">
+      <a href="../migrate_backends_data/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1015,7 +1034,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/seafile_docker_autostart/" class="md-nav__link">
+      <a href="../seafile_docker_autostart/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1036,7 +1055,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_with_an_existing_mysql_server/" class="md-nav__link">
+      <a href="../setup_with_an_existing_mysql_server/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1057,7 +1076,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/run_seafile_as_non_root_user_inside_docker/" class="md-nav__link">
+      <a href="../run_seafile_as_non_root_user_inside_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1091,17 +1110,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
         
           
-          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -1126,7 +1148,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/cluster_deploy_with_docker/" class="md-nav__link">
+      <a href="../cluster_deploy_with_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1147,7 +1169,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/cluster_deploy_with_k8s/" class="md-nav__link">
+      <a href="../cluster_deploy_with_k8s/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1181,17 +1203,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
         
           
-          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -1216,7 +1241,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/migrate_ce_to_pro_with_docker/" class="md-nav__link">
+      <a href="../migrate_ce_to_pro_with_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1237,7 +1262,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/migrate_non_docker_to_docker/" class="md-nav__link">
+      <a href="../migrate_non_docker_to_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1270,30 +1295,25 @@
       
   
   
-    
   
   
-  
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1304,7 +1324,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Setup (binary)
@@ -1323,20 +1343,17 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
         
           
-          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1361,7 +1378,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../outline_ce/" class="md-nav__link">
+      <a href="../../setup_binary/outline_ce/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1382,7 +1399,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation_ce/" class="md-nav__link">
+      <a href="../../setup_binary/installation_ce/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1403,7 +1420,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../https_with_nginx/" class="md-nav__link">
+      <a href="../../setup_binary/https_with_nginx/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1424,7 +1441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../https_with_apache/" class="md-nav__link">
+      <a href="../../setup_binary/https_with_apache/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1450,30 +1467,25 @@
                 
   
   
-    
   
   
-  
     
     
     
       
       
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
         
           
-          
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1484,7 +1496,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_2">
             <span class="md-nav__icon md-icon"></span>
             Seafile Professional Setup
@@ -1495,30 +1507,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Outline
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../setup_binary/outline_pro/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1527,53 +1519,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#migration-from-community-edition" class="md-nav__link">
-    <span class="md-ellipsis">
-      Migration from community edition
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#s3-storage-backends" class="md-nav__link">
-    <span class="md-ellipsis">
-      S3 Storage Backends
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cluster" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cluster
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1586,7 +1531,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation_pro/" class="md-nav__link">
+      <a href="../../setup_binary/installation_pro/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1607,7 +1552,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../migrate_from_seafile_community_server/" class="md-nav__link">
+      <a href="../../setup_binary/migrate_from_seafile_community_server/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1668,7 +1613,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../deploy_in_a_cluster/" class="md-nav__link">
+      <a href="../../setup_binary/deploy_in_a_cluster/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1689,7 +1634,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../enable_search_and_background_tasks_in_a_cluster/" class="md-nav__link">
+      <a href="../../setup_binary/enable_search_and_background_tasks_in_a_cluster/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1710,7 +1655,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../memcached_mariadb_cluster/" class="md-nav__link">
+      <a href="../../setup_binary/memcached_mariadb_cluster/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1731,7 +1676,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup_seafile_cluster_with_nfs/" class="md-nav__link">
+      <a href="../../setup_binary/setup_seafile_cluster_with_nfs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1760,7 +1705,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../seafile_professional_sdition_software_license_agreement/" class="md-nav__link">
+      <a href="../../setup_binary/seafile_professional_sdition_software_license_agreement/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1794,20 +1739,17 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
         
           
-          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1832,7 +1774,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../start_seafile_at_system_bootup/" class="md-nav__link">
+      <a href="../../setup_binary/start_seafile_at_system_bootup/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1853,7 +1795,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../using_logrotate/" class="md-nav__link">
+      <a href="../../setup_binary/using_logrotate/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1874,7 +1816,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../fail2ban/" class="md-nav__link">
+      <a href="../../setup_binary/fail2ban/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1895,7 +1837,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../migrate_from_sqlite_to_mysql/" class="md-nav__link">
+      <a href="../../setup_binary/migrate_from_sqlite_to_mysql/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4136,41 +4078,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#migration-from-community-edition" class="md-nav__link">
-    <span class="md-ellipsis">
-      Migration from community edition
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#s3-storage-backends" class="md-nav__link">
-    <span class="md-ellipsis">
-      S3 Storage Backends
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cluster" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cluster
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -4187,29 +4094,15 @@
   
 
 
-<h1 id="deploy-seafile-pro-edition">Deploy Seafile Pro Edition<a class="headerlink" href="#deploy-seafile-pro-edition" title="Permanent link">&para;</a></h1>
-<p>There are two ways to deploy Seafile Pro Edition. Since version 8.0, the recommend way to install Seafile Pro Edition is using Docker.</p>
-<ul>
-<li>Method 1: Deploy Seafile with <a href="../../setup/setup_pro_by_docker/">Docker</a></li>
-<li>Method 2: <a href="../installation_pro/">Download and Setup Seafile Professional Server Step by Step</a></li>
-</ul>
-<h2 id="migration-from-community-edition">Migration from community edition<a class="headerlink" href="#migration-from-community-edition" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="../migrate_from_seafile_community_server/">Migrate from Seafile Community edition</a></li>
-</ul>
-<h2 id="s3-storage-backends">S3 Storage Backends<a class="headerlink" href="#s3-storage-backends" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="../../setup/setup_with_amazon_s3/">Setup Seafile Professional Server With S3</a></li>
-<li><a href="../../setup/setup_with_swift/">Setup Seafile Professional Server With OpenStack Swift</a></li>
-<li><a href="../../setup/migrate_backends_data/">Data migration between different backends</a></li>
-<li><a href="../../setup/setup_with_multiple_storage_backends/">Using multiple storage backends</a></li>
-</ul>
-<h2 id="cluster">Cluster<a class="headerlink" href="#cluster" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="../deploy_in_a_cluster/">Deploy seafile servers in a cluster</a></li>
-<li><a href="../enable_search_and_background_tasks_in_a_cluster/">Enable search and background tasks in a cluster</a></li>
-<li><a href="../setup_seafile_cluster_with_nfs/">Setup Seafile cluster with NFS</a></li>
-</ul>
+<h1 id="https-and-caddy">HTTPS and Caddy<a class="headerlink" href="#https-and-caddy" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>From Seafile 12.0, the HTTPS in deployment from Docker is handled by <a href="https://caddyserver.com/docs/"><strong><em>Caddy</em></strong></a>. The default caddy image used of Seafile docker is <a href="https://github.com/lucaslorentz/caddy-docker-proxy"><code>lucaslorentz/caddy-docker-proxy:2.9</code></a>.</p>
+</blockquote>
+<p>Caddy is a modern open source web server that mainly binds external traffic and internal services in <a href="../overview/">seafile docker</a>. In addition to the advantages of traditional proxy components (e.g., <em>nginx</em>), Caddy also makes it easier for users to complete the acquisite and update of HTTPS certificates by providing simpler configurations. </p>
+<p>To engage HTTPS, users only needs to correctly configure the following fields in <code>.env</code>:</p>
+<div class="codehilite"><pre><span></span><code><span class="nv">SEAFILE_SERVER_PROTOCOL</span><span class="o">=</span>https
+<span class="nv">SEAFILE_SERVER_HOSTNAME</span><span class="o">=</span>example.com
+</code></pre></div>
 
 
 
