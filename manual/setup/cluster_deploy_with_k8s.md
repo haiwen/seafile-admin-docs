@@ -190,9 +190,9 @@ spec:
               value: "db_password" #db's password
             - name: TIME_ZONE
               value: "Europe/Berlin"
-            - name: SEAFILE_ADMIN_INIT_EMAIL
+            - name: INIT_SEAFILE_ADMIN_EMAIL
               value: "admin@seafile.com" #admin email
-            - name: SEAFILE_ADMIN_INIT_PASSWORD
+            - name: INIT_SEAFILE_ADMIN_PASSWORD
               value: "admin_password" #admin password
             - name: SEAFILE_SERVER_LETSENCRYPT
               value: "false"
