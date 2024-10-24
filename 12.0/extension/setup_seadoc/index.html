@@ -1991,19 +1991,19 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#deploy-seadoc-on-a-new-host" class="md-nav__link">
+  <a href="#seadoc-and-seafile-docker-are-deployed-on-the-same-host" class="md-nav__link">
     <span class="md-ellipsis">
-      Deploy SeaDoc on a new host
+      SeaDoc and Seafile docker are deployed on the same host
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Deploy SeaDoc on a new host">
+    <nav class="md-nav" aria-label="SeaDoc and Seafile docker are deployed on the same host">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#download-and-modify-seadocyml" class="md-nav__link">
+  <a href="#download-the-seadocyml-and-integrate-seadoc-in-seafile-docker" class="md-nav__link">
     <span class="md-ellipsis">
-      Download and modify seadoc.yml
+      Download the seadoc.yml and integrate SeaDoc in Seafile docker
     </span>
   </a>
   
@@ -2024,19 +2024,19 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#seadoc-and-seafile-docker-are-deployed-on-the-same-host" class="md-nav__link">
+  <a href="#deploy-seadoc-on-a-new-host" class="md-nav__link">
     <span class="md-ellipsis">
-      SeaDoc and Seafile docker are deployed on the same host
+      Deploy SeaDoc on a new host
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="SeaDoc and Seafile docker are deployed on the same host">
+    <nav class="md-nav" aria-label="Deploy SeaDoc on a new host">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#download-the-seadocyml-and-integrate-seadoc-in-seafile-docker" class="md-nav__link">
+  <a href="#download-and-modify-seadocyml" class="md-nav__link">
     <span class="md-ellipsis">
-      Download the seadoc.yml and integrate SeaDoc in Seafile docker
+      Download and modify seadoc.yml
     </span>
   </a>
   
@@ -4279,19 +4279,19 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#deploy-seadoc-on-a-new-host" class="md-nav__link">
+  <a href="#seadoc-and-seafile-docker-are-deployed-on-the-same-host" class="md-nav__link">
     <span class="md-ellipsis">
-      Deploy SeaDoc on a new host
+      SeaDoc and Seafile docker are deployed on the same host
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Deploy SeaDoc on a new host">
+    <nav class="md-nav" aria-label="SeaDoc and Seafile docker are deployed on the same host">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#download-and-modify-seadocyml" class="md-nav__link">
+  <a href="#download-the-seadocyml-and-integrate-seadoc-in-seafile-docker" class="md-nav__link">
     <span class="md-ellipsis">
-      Download and modify seadoc.yml
+      Download the seadoc.yml and integrate SeaDoc in Seafile docker
     </span>
   </a>
   
@@ -4312,19 +4312,19 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#seadoc-and-seafile-docker-are-deployed-on-the-same-host" class="md-nav__link">
+  <a href="#deploy-seadoc-on-a-new-host" class="md-nav__link">
     <span class="md-ellipsis">
-      SeaDoc and Seafile docker are deployed on the same host
+      Deploy SeaDoc on a new host
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="SeaDoc and Seafile docker are deployed on the same host">
+    <nav class="md-nav" aria-label="Deploy SeaDoc on a new host">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#download-the-seadocyml-and-integrate-seadoc-in-seafile-docker" class="md-nav__link">
+  <a href="#download-and-modify-seadocyml" class="md-nav__link">
     <span class="md-ellipsis">
-      Download the seadoc.yml and integrate SeaDoc in Seafile docker
+      Download and modify seadoc.yml
     </span>
   </a>
   
@@ -4446,9 +4446,9 @@
 <p>Here is the workflow when a user open sdoc file in browser</p>
 <ol>
 <li>When a user open a sdoc file in the browser, a file loading request will be sent to Caddy, and Caddy proxy the request to SeaDoc server (see <a href="../../setup/overview/">Seafile instance archticture</a> for the details).</li>
-<li>SeaDoc server will send the content back if it is already cached, otherwise it sends a request to Seahub.</li>
-<li>Seahub loads the content from Seafile-server, then sends it to SeaDoc server and write the file to the cache at the same time.</li>
-<li>After SeaDoc receives the content, it sends the content to the browser.</li>
+<li>SeaDoc server will send the file's content back if it is already cached, otherwise SeaDoc serve will sends a request to Seafile server.</li>
+<li>Seafile server loads the content, then sends it to SeaDoc server and write it to the cache at the same time.</li>
+<li>After SeaDoc receives the content, it will be sent to the browser.</li>
 </ol>
 <h2 id="setup-seadoc">Setup SeaDoc<a class="headerlink" href="#setup-seadoc" title="Permanent link">&para;</a></h2>
 <blockquote>
@@ -4457,30 +4457,9 @@
 <h3 id="deployment-method">Deployment method<a class="headerlink" href="#deployment-method" title="Permanent link">&para;</a></h3>
 <p>SeaDoc has the following deployment methods:</p>
 <ul>
-<li>Deploy SeaDoc on a new host.</li>
-<li>SeaDoc and Seafile docker are deployed on the same host.</li>
+<li><a href="#seadoc-and-seafile-docker-are-deployed-on-the-same-host">SeaDoc and Seafile docker are deployed on the same host</a>.</li>
+<li><a href="#deploy-seadoc-on-a-new-host">Deploy SeaDoc on a new host</a>.</li>
 </ul>
-<h3 id="deploy-seadoc-on-a-new-host">Deploy SeaDoc on a new host<a class="headerlink" href="#deploy-seadoc-on-a-new-host" title="Permanent link">&para;</a></h3>
-<h4 id="download-and-modify-seadocyml">Download and modify seadoc.yml<a class="headerlink" href="#download-and-modify-seadocyml" title="Permanent link">&para;</a></h4>
-<p>Download <a href="../../docker/seadoc/1.0/standalone/seadoc.yml">seadoc.yml</a> sample file to your host. Then modify the file according to your environment. The following fields are needed to be modified:</p>
-<ul>
-<li><code>DB_HOST</code>: MySQL host</li>
-<li><code>DB_PORT</code>: MySQL port</li>
-<li><code>DB_USER</code>: MySQL user</li>
-<li><code>DB_PASSWD</code>: MySQL password</li>
-<li><code>volumes</code>: The volume directory of SeaDoc data</li>
-<li><code>SDOC_SERVER_HOSTNAME</code>: SeaDoc service URL</li>
-<li><code>SEAHUB_SERVICE_URL</code>: Seafile service URL</li>
-</ul>
-<h4 id="create-the-seadoc-database-manually">Create the SeaDoc database manually<a class="headerlink" href="#create-the-seadoc-database-manually" title="Permanent link">&para;</a></h4>
-<p>SeaDoc and Seafile share the MySQL service.</p>
-<p>Create the database sdoc_db in Seafile MySQL and authorize the user.</p>
-<div class="codehilite"><pre><span></span><code>create<span class="w"> </span>database<span class="w"> </span><span class="k">if</span><span class="w"> </span>not<span class="w"> </span>exists<span class="w"> </span>sdoc_db<span class="w"> </span>charset<span class="w"> </span>utf8mb4<span class="p">;</span>
-GRANT<span class="w"> </span>ALL<span class="w"> </span>PRIVILEGES<span class="w"> </span>ON<span class="w"> </span><span class="sb">`</span>sdoc_db<span class="sb">`</span>.*<span class="w"> </span>to<span class="w"> </span><span class="sb">`</span>seafile<span class="sb">`</span>@<span class="sb">`</span>%.%.%.%<span class="sb">`</span><span class="p">;</span>
-</code></pre></div>
-
-<p>Note, SeaDoc will only create one database table to store operation logs.</p>
-<p>Then follow the section: Start SeaDoc.</p>
 <h3 id="seadoc-and-seafile-docker-are-deployed-on-the-same-host">SeaDoc and Seafile docker are deployed on the same host<a class="headerlink" href="#seadoc-and-seafile-docker-are-deployed-on-the-same-host" title="Permanent link">&para;</a></h3>
 <h4 id="download-the-seadocyml-and-integrate-seadoc-in-seafile-docker">Download the seadoc.yml and integrate SeaDoc in Seafile docker<a class="headerlink" href="#download-the-seadocyml-and-integrate-seadoc-in-seafile-docker" title="Permanent link">&para;</a></h4>
 <div class="codehilite"><pre><span></span><code><span class="c1"># for community edition</span>
@@ -4497,7 +4476,7 @@ wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/pro/seadoc.ym
 <span class="nv">SEADOC_SERVER_URL</span><span class="o">=</span>https://example.seafile.com/sdoc-server
 </code></pre></div>
 
-<h4 id="create-the-seadoc-database-manually_1">Create the SeaDoc database manually<a class="headerlink" href="#create-the-seadoc-database-manually_1" title="Permanent link">&para;</a></h4>
+<h4 id="create-the-seadoc-database-manually">Create the SeaDoc database manually<a class="headerlink" href="#create-the-seadoc-database-manually" title="Permanent link">&para;</a></h4>
 <p>SeaDoc and Seafile share the MySQL service.</p>
 <p>Create the database sdoc_db in Seafile MySQL.</p>
 <div class="codehilite"><pre><span></span><code>create<span class="w"> </span>database<span class="w"> </span><span class="k">if</span><span class="w"> </span>not<span class="w"> </span>exists<span class="w"> </span>sdoc_db<span class="w"> </span>charset<span class="w"> </span>utf8mb4<span class="p">;</span>
@@ -4505,6 +4484,27 @@ GRANT<span class="w"> </span>ALL<span class="w"> </span>PRIVILEGES<span class="w
 </code></pre></div>
 
 <p>Note, SeaDoc will only create one database table to store operation logs.</p>
+<h3 id="deploy-seadoc-on-a-new-host">Deploy SeaDoc on a new host<a class="headerlink" href="#deploy-seadoc-on-a-new-host" title="Permanent link">&para;</a></h3>
+<h4 id="download-and-modify-seadocyml">Download and modify seadoc.yml<a class="headerlink" href="#download-and-modify-seadocyml" title="Permanent link">&para;</a></h4>
+<p>Download <a href="../../docker/seadoc/1.0/standalone/seadoc.yml">seadoc.yml</a> sample file to your host. Then modify the file according to your environment. The following fields are needed to be modified:</p>
+<ul>
+<li><code>DB_HOST</code>: MySQL host</li>
+<li><code>DB_PORT</code>: MySQL port</li>
+<li><code>DB_USER</code>: MySQL user</li>
+<li><code>DB_PASSWD</code>: MySQL password</li>
+<li><code>volumes</code>: The volume directory of SeaDoc data</li>
+<li><code>SDOC_SERVER_HOSTNAME</code>: SeaDoc service URL</li>
+<li><code>SEAHUB_SERVICE_URL</code>: Seafile service URL</li>
+</ul>
+<h4 id="create-the-seadoc-database-manually_1">Create the SeaDoc database manually<a class="headerlink" href="#create-the-seadoc-database-manually_1" title="Permanent link">&para;</a></h4>
+<p>SeaDoc and Seafile share the MySQL service.</p>
+<p>Create the database sdoc_db in Seafile MySQL and authorize the user.</p>
+<div class="codehilite"><pre><span></span><code>create<span class="w"> </span>database<span class="w"> </span><span class="k">if</span><span class="w"> </span>not<span class="w"> </span>exists<span class="w"> </span>sdoc_db<span class="w"> </span>charset<span class="w"> </span>utf8mb4<span class="p">;</span>
+GRANT<span class="w"> </span>ALL<span class="w"> </span>PRIVILEGES<span class="w"> </span>ON<span class="w"> </span><span class="sb">`</span>sdoc_db<span class="sb">`</span>.*<span class="w"> </span>to<span class="w"> </span><span class="sb">`</span>seafile<span class="sb">`</span>@<span class="sb">`</span>%.%.%.%<span class="sb">`</span><span class="p">;</span>
+</code></pre></div>
+
+<p>Note, SeaDoc will only create one database table to store operation logs.</p>
+<p>Then follow the section: Start SeaDoc.</p>
 <h2 id="start-seadoc">Start SeaDoc<a class="headerlink" href="#start-seadoc" title="Permanent link">&para;</a></h2>
 <p>Start SeaDoc server with the following command</p>
 <div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
