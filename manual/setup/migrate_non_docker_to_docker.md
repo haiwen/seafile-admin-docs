@@ -47,6 +47,8 @@ systemctl restart mariadb
 
 #### Create the required directories for Seafile Docker image
 
+By default, we take `/opt/seafile-data` as example.
+
 ```
 mkdir -p /opt/seafile-data/seafile
 ```
@@ -64,58 +66,30 @@ Modify the MySQL configuration in `/opt/seafile-data/seafile/conf`, including `c
 
 Modify the memcached configuration in `seahub_settings.py` to use the Docker version of Memcached: change it to `'LOCATION': 'memcached:11211'` (the network name of Docker version of Memcached is `memcached`).
 
-#### Download and modify docker-compose.yml
+#### Download and modify Seafile-docker yml
 
-Download [docker-compose.yml](https://manual.seafile.com/docker/pro-edition/10.0/docker-compose.yml) to `/opt/seafile-data`. Comment out the db part as below:
+We recommond you download Seafile-docker yml into `/opt/seafile-data`
 
-```
-services:
-#  db:
-#    image: mariadb:10.5
-#    container_name: seafile-mysql
-#    environment:
-#      - MYSQL_ROOT_PASSWORD=db_password  # Required, set the root's password of MySQL service.
-#      - MYSQL_LOG_CONSOLE=true
-#    volumes:
-#      - /opt/seafile-mysql/db:/var/lib/mysql  # Required, specifies the path to MySQL data persistent store.
-#    networks:
-#      - seafile-net
+```sh
+mkdir -p /opt/seafile-data
+cd /opt/seafile-data
+# e.g., pro edition
+wget -O .env https://manual.seafile.com/12.0/docker/pro/env
+wget https://manual.seafile.com/12.0/docker/pro/seafile-server.yml
+wget https://manual.seafile.com/12.0/docker/pro/caddy.yml
 
-.........
-   depends_on:
-#     - db             
-      - memcached
-.........
+nano .env
 ```
 
-### Configure Seafile Docker to use the old seafile-data
+After downloading relative configuration files, you should also modify the `.env` by following steps
 
-There are two ways to let Seafile Docker to use the old seafile-data
+- Follow [here](./setup_with_an_existing_mysql_server.md) to setup the database user infomations.
 
-#### Method 1
+- Mount the old Seafile data to the new Seafile server
 
-You can copy or move the old seafile-data folder (`/opt/seafile/seafile-data`) to `/opt/seafile-data/seafile` (So you will have `/opt/seafile-data/seafile/seafile-data`)
-
-#### Method 2
-
-You can mount the old seafile-data folder (`/opt/seafile/seafile-data`) to Seafile docker container directly:
-
+```sh
+SEAFILE_VOLUME=<old-Seafile-data>
 ```
-.........
-
-    seafile:
-    image: seafileltd/seafile-mc:8.0.7-1
-    container_name: seafile
-    ports:
-      - "80:80"
-#      - "443:443"  # If https is enabled, cancel the comment.
-    volumes:
-      - /opt/seafile-data:/shared
-      - /opt/seafile/seafile-data:/shared/seafile/seafile-data
-  .......
-```
-
-The added line `- /opt/seafile/seafile-data:/shared/seafile/seafile-data` mount `/opt/seafile/seafile-data` to `/shared/seafile/seafile-data` in docker.
 
 ### Start Seafile docker
 

@@ -74,6 +74,7 @@ nav:
     - Contribution: introduction/contribution.md
   - Setup:
     - Overview: setup/overview.md
+    - HTTPS and Caddy: setup/caddy.md
     - Single node installation:
       - Setup community edition: setup/setup_ce_by_docker.md
       - Setup pro edition: setup/setup_pro_by_docker.md

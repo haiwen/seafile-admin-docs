@@ -45,8 +45,6 @@ The following fields merit particular attention:
 - `INIT_SEAFILE_ADMIN_EMAIL`: Admin username
 - `INIT_SEAFILE_ADMIN_PASSWORD`: Admin password
 
-NOTE: SSL is now handled by the [caddy server](#about-ssl-and-caddy) from 12.0.
-
 ### Start Seafile server
 
 Start Seafile server with the following command
@@ -136,13 +134,4 @@ The required scripts can be found in the `/scripts` folder of the docker contain
 
 ```bash
 docker exec -it seafile /bin/bash
-```
-
-### About SSL and Caddy
-
-From Seafile 12.0, the SSL is handled by [***Caddy***](https://caddyserver.com/docs/). Caddy is a modern open source web server that mainly binds external traffic and internal services in [seafile docker](./overview.md). The default caddy image is [`lucaslorentz/caddy-docker-proxy:2.9`](https://github.com/lucaslorentz/caddy-docker-proxy), which user only needs to correctly configure the following fields in `.env` to automatically complete the acquisition and update of the certificate:
-
-```shell
-SEAFILE_SERVER_PROTOCOL=https
-SEAFILE_SERVER_HOSTNAME=example.com
 ```

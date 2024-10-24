@@ -8,7 +8,7 @@ We provide two ways to deploy Seafile services. **Docker is the recommended way*
 ## Manually deployment options
 
 * [Deploying Seafile with MySQL](installation_ce.md)
-* Deploying Seafile with SQLite, note, deploy Seafile with SQLite is not supported since version 11.0
+* Deploying Seafile with SQLite, note, deploy Seafile with SQLite is **not supported** since version 11.0
 * [Enabling Https with Nginx](https_with_nginx.md)
 * [Enabling Https with Apache](https_with_apache.md)
 * [Start Seafile at System Bootup](start_seafile_at_system_bootup.md)
