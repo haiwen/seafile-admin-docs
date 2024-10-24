@@ -25,9 +25,9 @@ The SeaDoc archticture is demonstrated as below:
 Here is the workflow when a user open sdoc file in browser
 
 1. When a user open a sdoc file in the browser, a file loading request will be sent to Caddy, and Caddy proxy the request to SeaDoc server (see [Seafile instance archticture](../setup/overview.md) for the details).
-2. SeaDoc server will send the content back if it is already cached, otherwise it sends a request to Seahub.
-3. Seahub loads the content from Seafile-server, then sends it to SeaDoc server and write the file to the cache at the same time.
-4. After SeaDoc receives the content, it sends the content to the browser.
+2. SeaDoc server will send the file's content back if it is already cached, otherwise SeaDoc serve will sends a request to Seafile server.
+3. Seafile server loads the content, then sends it to SeaDoc server and write to the cache at the same time.
+4. After SeaDoc receives the content, it will be sent to the browser.
 
 ## Setup SeaDoc
 
@@ -37,8 +37,10 @@ Here is the workflow when a user open sdoc file in browser
 
 SeaDoc has the following deployment methods:
 
-- Deploy SeaDoc on a new host.
-- SeaDoc and Seafile docker are deployed on the same host.
+- [SeaDoc and Seafile docker are deployed on the same host](#seadoc-and-seafile-docker-are-deployed-on-the-same-host).
+- [Deploy SeaDoc on a new host](#deploy-seadoc-on-a-new-host).
+
+### SeaDoc and Seafile docker are deployed on the same host
 
 ### Deploy SeaDoc on a new host
 
@@ -69,7 +71,6 @@ Note, SeaDoc will only create one database table to store operation logs.
 
 Then follow the section: Start SeaDoc.
 
-### SeaDoc and Seafile docker are deployed on the same host
 
 #### Download the seadoc.yml and integrate SeaDoc in Seafile docker
 
