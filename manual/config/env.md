@@ -19,7 +19,7 @@ SEAFILE_ELASTICSEARCH_VOLUME=/opt/seafile-elasticsearch/data # pro edition only
 SEAFILE_CADDY_VOLUME=/opt/seafile-caddy
 
 SEAFILE_MYSQL_DB_HOST=db
-SEAFILE_MYSQL_ROOT_PASSWORD=ROOT_PASSWORD
+INIT_SEAFILE_MYSQL_ROOT_PASSWORD=ROOT_PASSWORD
 SEAFILE_MYSQL_DB_USER=seafile
 SEAFILE_MYSQL_DB_PASSWORD=PASSWORD
 
@@ -30,8 +30,8 @@ JWT_PRIVATE_KEY=
 SEAFILE_SERVER_HOSTNAME=example.seafile.com
 SEAFILE_SERVER_PROTOCOL=https
 
-SEAFILE_ADMIN_EMAIL=me@example.com
-SEAFILE_ADMIN_PASSWORD=asecret
+INIT_SEAFILE_ADMIN_EMAIL=me@example.com
+INIT_SEAFILE_ADMIN_PASSWORD=asecret
 
 
 SEADOC_IMAGE=seafileltd/sdoc-server:1.0-latest
@@ -68,7 +68,7 @@ SEADOC_SERVER_URL=http://example.seafile.com/sdoc-server
 ## MySQL configurations
 
 - `SEAFILE_MYSQL_DB_HOST`: The host address of Mysql, default is the pre-defined service name `db` in Seafile-docker instance.
-- `SEAFILE_MYSQL_ROOT_PASSWORD`: The `root` password of MySQL.
+- `INIT_SEAFILE_MYSQL_ROOT_PASSWORD`: The `root` password of MySQL.
 - `SEAFILE_MYSQL_DB_USER`: The user of MySQL (`database` - `user` can be found in `conf/seafile.conf`).
 - `SEAFILE_MYSQL_DB_PASSWORD`: The user `seafile` password of MySQL.
 
@@ -79,8 +79,8 @@ SEADOC_SERVER_URL=http://example.seafile.com/sdoc-server
 - `SEAFILE_SERVER_HOSTNAME`: Seafile server hostname or domain
 - `SEAFILE_SERVER_PROTOCOL`: Seafile server protocol (http or https)
 - `TIME_ZONE`: Time zone (default UTC)
-- `SEAFILE_ADMIN_EMAIL`: Admin username
-- `SEAFILE_ADMIN_PASSWORD`: Admin password
+- `INIT_SEAFILE_ADMIN_EMAIL`: Admin username
+- `INIT_SEAFILE_ADMIN_PASSWORD`: Admin password
 
 ## SeaDoc configurations (only valid after integrating SeaDoc)
 

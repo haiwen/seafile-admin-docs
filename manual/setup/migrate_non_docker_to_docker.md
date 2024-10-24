@@ -74,7 +74,7 @@ services:
 #    image: mariadb:10.5
 #    container_name: seafile-mysql
 #    environment:
-#      - MYSQL_ROOT_PASSWORD=db_dev  # Required, set the root's password of MySQL service.
+#      - MYSQL_ROOT_PASSWORD=db_password  # Required, set the root's password of MySQL service.
 #      - MYSQL_LOG_CONSOLE=true
 #    volumes:
 #      - /opt/seafile-mysql/db:/var/lib/mysql  # Required, specifies the path to MySQL data persistent store.
