@@ -123,7 +123,8 @@ The following fields merit particular attention:
 - `SEAFILE_MYSQL_VOLUME`: The volume directory of MySQL data, default is `/opt/seafile-mysql/db`
 - `SEAFILE_CADDY_VOLUME`: The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's, default is `/opt/seafile-caddy`
 - `SEAFILE_ELASTICSEARCH_VOLUME`: The volume directory of Elasticsearch data
-- `INIT_SEAFILE_MYSQL_ROOT_PASSWORD`: The `root` password of MySQL
+- `SEAFILE_MYSQL_DB_HOST`: The host of MySQL
+- `SEAFILE_MYSQL_DB_USER`: The user of MySQL, default is `seafile`
 - `SEAFILE_MYSQL_DB_PASSWORD`: The user `seafile` password of MySQL
 - `JWT`: JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: `pwgen -s 40 1`
 - `SEAFILE_SERVER_HOSTNAME`: Seafile server hostname or domain
@@ -176,82 +177,17 @@ Start with docker compose up.
 
 ### Upgrade SeaDoc from 0.8 to 1.0 for Seafile v12.0
 
-If you have deployed SeaDoc extension in version 11.0, please use the following steps to upgrade it to version 1.0.
+If you have deployed SeaDoc v0.8 with Seafile v11.0, you can upgrade it to 1.0 use the following two steps:
 
-SeaDoc 1.0 is for working with Seafile 12.0. SeaDoc and Seafile are deployed in the same directory. SeaDoc has no state in itself. You can simplify delete old configuration file and directory of v0.8. Then deploy SeaDoc 1.0 as following.
+1. Delete sdoc_db.
+2. Re-deploy SeaDoc server. In other words, delete the old SeaDoc deployment and deploy a new SeaDoc server on a separate machine.
 
-In version 1.0, we use .env file to configure SeaDoc docker image, instead of modifying the docker-compose.yml file directly.
+Note, deploying SeaDoc and **Seafile binary package** on the same server is no longer supported. If you really want to deploying SeaDoc and Seafile server on the same machine, you should deploy Seafile server with Docker.
 
-Download [seadoc.yml](../docker/ce/seadoc.yml) to the Seafile `seafile-server.yml` directory, then modify Seafile .env file.
+#### Delete sdoc_db
 
-For community edition:
+From version 1.0, SeaDoc is using seahub_db database to store its operation logs and no longer need an extra database sdoc_db. The database tables in seahub_db are created automatically when you upgrade Seafile server from v11.0 to v12.0. You can simply delete sdoc_db.
 
-```sh
-wget https://manual.seafile.com/12.0/docker/ce/seadoc.yml
-```
+#### Deploy a new SeaDoc server
 
-For pro edition:
-
-```sh
-wget https://manual.seafile.com/12.0/docker/pro/seadoc.yml
-```
-
-```env
-COMPOSE_FILE='seafile-server.yml,caddy.yml,seadoc.yml'
-
-SEADOC_VOLUME=/opt/seadoc-data
-ENABLE_SEADOC=true
-SEADOC_SERVER_URL=http://example.seafile.com/sdoc-server
-```
-
-The following fields merit particular attention:
-
-* Add `seadoc.yml` to the `COMPOSE_FILE` field.
-* The volume directory of SeaDoc data (SEADOC_VOLUME)
-* Enable SeaDoc (ENABLE_SEADOC)
-* SeaDoc service url (SEADOC_SERVER_URL, hostname + `/sdoc-server`)
-
-If you have deployed SeaDoc older version, you should remove `/sdoc-server/`, `/socket.io` configs in seafile.nginx.conf file.
-
-```config
-#    location /sdoc-server/ {
-#        add_header Access-Control-Allow-Origin *;
-#        add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
-#        add_header Access-Control-Allow-Headers "deviceType,token, authorization, content-type";
-#        if ($request_method = 'OPTIONS') {
-#            add_header Access-Control-Allow-Origin *;
-#            add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
-#            add_header Access-Control-Allow-Headers "deviceType,token, authorization, content-type";
-#            return 204;
-#        }
-#        proxy_pass         http://sdoc-server:7070/;
-#        proxy_redirect     off;
-#        proxy_set_header   Host              $host;
-#        proxy_set_header   X-Real-IP         $remote_addr;
-#        proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
-#        proxy_set_header   X-Forwarded-Host  $server_name;
-#        proxy_set_header   X-Forwarded-Proto $scheme;
-#        client_max_body_size 100m;
-#    }
-#    location /socket.io {
-#        proxy_pass http://sdoc-server:7070;
-#        proxy_http_version 1.1;
-#        proxy_set_header Upgrade $http_upgrade;
-#        proxy_set_header Connection 'upgrade';
-#        proxy_redirect off;
-#        proxy_buffers 8 32k;
-#        proxy_buffer_size 64k;
-#        proxy_set_header X-Real-IP $remote_addr;
-#        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-#        proxy_set_header Host $http_host;
-#        proxy_set_header X-NginX-Proxy true;
-#    }
-```
-
-Start Seafile server and SeaDoc server with the following command
-
-```sh
-docker compose down
-
-docker compose up -d
-```
+Please see the document [Setup SeaDoc](../extension/setup_seadoc.md) to install SeaDoc on a separate machine and integrate with your binary packaged based Seafile server v12.0.

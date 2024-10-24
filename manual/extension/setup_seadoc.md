@@ -40,7 +40,7 @@ SeaDoc has the following deployment methods:
 
 ## SeaDoc and Seafile docker are deployed on the same host
 
-### Download the seadoc.yml and integrate SeaDoc in Seafile docker
+Download the `seadoc.yml` and integrate SeaDoc in Seafile docker.
 
 ```shell
 # for community edition
@@ -69,7 +69,7 @@ Now you can use SeaDoc!
 
 ## Deploy SeaDoc on a new host
 
-### Download and modify seadoc.yml
+Download and modify the `.env` and `seadoc.yml` files.
 
 Download [seadoc.yml](../docker/seadoc/1.0/standalone/seadoc.yml) and [.env](../docker/seadoc/1.0/standalone/env) sample files to your host. Then modify the `.env` file according to your environment. The following fields are needed to be modified:
 
@@ -95,7 +95,7 @@ Now you can use SeaDoc!
 
 ## SeaDoc directory structure
 
-### `/opt/seadoc-data`
+`/opt/seadoc-data`
 
 Placeholder spot for shared volumes. You may elect to store certain persistent information outside of a container, in our case we keep various log files outside. This allows you to rebuild containers easily without losing important information.
 
