@@ -3462,6 +3462,39 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Upgrade SeaDoc from 0.8 to 1.0 for Seafile v12.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#delete-sdoc_db" class="md-nav__link">
+    <span class="md-ellipsis">
+      Delete sdoc_db
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-seadoc-configs-in-seafilenginxconf-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Remove SeaDoc configs in seafile.nginx.conf file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploy-a-new-seadoc-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploy a new SeaDoc server
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -4242,6 +4275,39 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Upgrade SeaDoc from 0.8 to 1.0 for Seafile v12.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#delete-sdoc_db" class="md-nav__link">
+    <span class="md-ellipsis">
+      Delete sdoc_db
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-seadoc-configs-in-seafilenginxconf-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Remove SeaDoc configs in seafile.nginx.conf file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploy-a-new-seadoc-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploy a new SeaDoc server
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -4351,7 +4417,8 @@ wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/pro/caddy.yml
 <li><code>SEAFILE_MYSQL_VOLUME</code>: The volume directory of MySQL data, default is <code>/opt/seafile-mysql/db</code></li>
 <li><code>SEAFILE_CADDY_VOLUME</code>: The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's, default is <code>/opt/seafile-caddy</code></li>
 <li><code>SEAFILE_ELASTICSEARCH_VOLUME</code>: The volume directory of Elasticsearch data</li>
-<li><code>INIT_SEAFILE_MYSQL_ROOT_PASSWORD</code>: The <code>root</code> password of MySQL</li>
+<li><code>SEAFILE_MYSQL_DB_HOST</code>: The host of MySQL</li>
+<li><code>SEAFILE_MYSQL_DB_USER</code>: The user of MySQL, default is <code>seafile</code></li>
 <li><code>SEAFILE_MYSQL_DB_PASSWORD</code>: The user <code>seafile</code> password of MySQL</li>
 <li><code>JWT</code>: JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: <code>pwgen -s 40 1</code></li>
 <li><code>SEAFILE_SERVER_HOSTNAME</code>: Seafile server hostname or domain</li>
@@ -4395,32 +4462,16 @@ wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/pro/caddy.yml
 
 <p>Start with docker compose up.</p>
 <h3 id="upgrade-seadoc-from-08-to-10-for-seafile-v120">Upgrade SeaDoc from 0.8 to 1.0 for Seafile v12.0<a class="headerlink" href="#upgrade-seadoc-from-08-to-10-for-seafile-v120" title="Permanent link">&para;</a></h3>
-<p>If you have deployed SeaDoc extension in version 11.0, please use the following steps to upgrade it to version 1.0.</p>
-<p>SeaDoc 1.0 is for working with Seafile 12.0. SeaDoc and Seafile are deployed in the same directory. SeaDoc has no state in itself. You can simplify delete old configuration file and directory of v0.8. Then deploy SeaDoc 1.0 as following.</p>
-<p>In version 1.0, we use .env file to configure SeaDoc docker image, instead of modifying the docker-compose.yml file directly.</p>
-<p>Download <a href="../../docker/ce/seadoc.yml">seadoc.yml</a> to the Seafile <code>seafile-server.yml</code> directory, then modify Seafile .env file.</p>
-<p>For community edition:</p>
-<div class="codehilite"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/ce/seadoc.yml
-</code></pre></div>
-
-<p>For pro edition:</p>
-<div class="codehilite"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/pro/seadoc.yml
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>COMPOSE_FILE=&#39;seafile-server.yml,caddy.yml,seadoc.yml&#39;
-
-SEADOC_VOLUME=/opt/seadoc-data
-ENABLE_SEADOC=true
-SEADOC_SERVER_URL=http://example.seafile.com/sdoc-server
-</code></pre></div>
-
-<p>The following fields merit particular attention:</p>
-<ul>
-<li>Add <code>seadoc.yml</code> to the <code>COMPOSE_FILE</code> field.</li>
-<li>The volume directory of SeaDoc data (SEADOC_VOLUME)</li>
-<li>Enable SeaDoc (ENABLE_SEADOC)</li>
-<li>SeaDoc service url (SEADOC_SERVER_URL, hostname + <code>/sdoc-server</code>)</li>
-</ul>
+<p>If you have deployed SeaDoc v0.8 with Seafile v11.0, you can upgrade it to 1.0 use the following two steps:</p>
+<ol>
+<li>Delete sdoc_db.</li>
+<li>Remove SeaDoc configs in seafile.nginx.conf file.</li>
+<li>Re-deploy SeaDoc server. In other words, delete the old SeaDoc deployment and deploy a new SeaDoc server on a separate machine.</li>
+</ol>
+<p>Note, deploying SeaDoc and <strong>Seafile binary package</strong> on the same server is no longer supported. If you really want to deploying SeaDoc and Seafile server on the same machine, you should deploy Seafile server with Docker.</p>
+<h4 id="delete-sdoc_db">Delete sdoc_db<a class="headerlink" href="#delete-sdoc_db" title="Permanent link">&para;</a></h4>
+<p>From version 1.0, SeaDoc is using seahub_db database to store its operation logs and no longer need an extra database sdoc_db. The database tables in seahub_db are created automatically when you upgrade Seafile server from v11.0 to v12.0. You can simply delete sdoc_db.</p>
+<h4 id="remove-seadoc-configs-in-seafilenginxconf-file">Remove SeaDoc configs in seafile.nginx.conf file<a class="headerlink" href="#remove-seadoc-configs-in-seafilenginxconf-file" title="Permanent link">&para;</a></h4>
 <p>If you have deployed SeaDoc older version, you should remove <code>/sdoc-server/</code>, <code>/socket.io</code> configs in seafile.nginx.conf file.</p>
 <div class="codehilite"><pre><span></span><code><span class="err">#</span><span class="w">    </span><span class="nx">location</span><span class="w"> </span><span class="o">/</span><span class="nx">sdoc</span><span class="o">-</span><span class="nx">server</span><span class="o">/</span><span class="w"> </span><span class="p">{</span>
 <span class="err">#</span><span class="w">        </span><span class="nx">add_header</span><span class="w"> </span><span class="nx">Access</span><span class="o">-</span><span class="nx">Control</span><span class="o">-</span><span class="nx">Allow</span><span class="o">-</span><span class="nx">Origin</span><span class="w"> </span><span class="o">*</span><span class="p">;</span>
@@ -4456,11 +4507,8 @@ SEADOC_SERVER_URL=http://example.seafile.com/sdoc-server
 <span class="err">#</span><span class="w">    </span><span class="p">}</span>
 </code></pre></div>
 
-<p>Start Seafile server and SeaDoc server with the following command</p>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
-
-docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
+<h4 id="deploy-a-new-seadoc-server">Deploy a new SeaDoc server<a class="headerlink" href="#deploy-a-new-seadoc-server" title="Permanent link">&para;</a></h4>
+<p>Please see the document <a href="../../extension/setup_seadoc/">Setup SeaDoc</a> to install SeaDoc on a separate machine and integrate with your binary packaged based Seafile server v12.0.</p>
 
 
 

@@ -1987,21 +1987,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="SeaDoc and Seafile docker are deployed on the same host">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#download-the-seadocyml-and-integrate-seadoc-in-seafile-docker" class="md-nav__link">
-    <span class="md-ellipsis">
-      Download the seadoc.yml and integrate SeaDoc in Seafile docker
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -2011,21 +1996,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Deploy SeaDoc on a new host">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#download-and-modify-seadocyml" class="md-nav__link">
-    <span class="md-ellipsis">
-      Download and modify seadoc.yml
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -2034,21 +2004,6 @@
       SeaDoc directory structure
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="SeaDoc directory structure">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#optseadoc-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      /opt/seadoc-data
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -4233,21 +4188,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="SeaDoc and Seafile docker are deployed on the same host">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#download-the-seadocyml-and-integrate-seadoc-in-seafile-docker" class="md-nav__link">
-    <span class="md-ellipsis">
-      Download the seadoc.yml and integrate SeaDoc in Seafile docker
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -4257,21 +4197,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Deploy SeaDoc on a new host">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#download-and-modify-seadocyml" class="md-nav__link">
-    <span class="md-ellipsis">
-      Download and modify seadoc.yml
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -4280,21 +4205,6 @@
       SeaDoc directory structure
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="SeaDoc directory structure">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#optseadoc-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      /opt/seadoc-data
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -4376,7 +4286,7 @@
 <p>Seafile version 11.0 or later is required to work with SeaDoc.</p>
 </blockquote>
 <h2 id="seadoc-and-seafile-docker-are-deployed-on-the-same-host">SeaDoc and Seafile docker are deployed on the same host<a class="headerlink" href="#seadoc-and-seafile-docker-are-deployed-on-the-same-host" title="Permanent link">&para;</a></h2>
-<h3 id="download-the-seadocyml-and-integrate-seadoc-in-seafile-docker">Download the seadoc.yml and integrate SeaDoc in Seafile docker<a class="headerlink" href="#download-the-seadocyml-and-integrate-seadoc-in-seafile-docker" title="Permanent link">&para;</a></h3>
+<p>Download the <code>seadoc.yml</code> and integrate SeaDoc in Seafile docker.</p>
 <div class="codehilite"><pre><span></span><code><span class="c1"># for community edition</span>
 wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/ce/seadoc.yml
 
@@ -4397,7 +4307,7 @@ wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/pro/seadoc.ym
 
 <p>Now you can use SeaDoc!</p>
 <h2 id="deploy-seadoc-on-a-new-host">Deploy SeaDoc on a new host<a class="headerlink" href="#deploy-seadoc-on-a-new-host" title="Permanent link">&para;</a></h2>
-<h3 id="download-and-modify-seadocyml">Download and modify seadoc.yml<a class="headerlink" href="#download-and-modify-seadocyml" title="Permanent link">&para;</a></h3>
+<p>Download and modify the <code>.env</code> and <code>seadoc.yml</code> files.</p>
 <p>Download <a href="../../docker/seadoc/1.0/standalone/seadoc.yml">seadoc.yml</a> and <a href="../../docker/seadoc/1.0/standalone/env">.env</a> sample files to your host. Then modify the <code>.env</code> file according to your environment. The following fields are needed to be modified:</p>
 <ul>
 <li><code>SEADOC_VOLUME</code>: The volume directory of SeaDoc data</li>
@@ -4417,7 +4327,7 @@ wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/pro/seadoc.ym
 <p>Then bind SeaDoc server url and ip in the load balance(or reverse proxy) configuration.</p>
 <p>Now you can use SeaDoc!</p>
 <h2 id="seadoc-directory-structure">SeaDoc directory structure<a class="headerlink" href="#seadoc-directory-structure" title="Permanent link">&para;</a></h2>
-<h3 id="optseadoc-data"><code>/opt/seadoc-data</code><a class="headerlink" href="#optseadoc-data" title="Permanent link">&para;</a></h3>
+<p><code>/opt/seadoc-data</code></p>
 <p>Placeholder spot for shared volumes. You may elect to store certain persistent information outside of a container, in our case we keep various log files outside. This allows you to rebuild containers easily without losing important information.</p>
 <ul>
 <li>/opt/seadoc-data/logs: This is the directory for SeaDoc logs.</li>
