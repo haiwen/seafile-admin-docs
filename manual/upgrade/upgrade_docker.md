@@ -180,13 +180,53 @@ Start with docker compose up.
 If you have deployed SeaDoc v0.8 with Seafile v11.0, you can upgrade it to 1.0 use the following two steps:
 
 1. Delete sdoc_db.
-2. Re-deploy SeaDoc server. In other words, delete the old SeaDoc deployment and deploy a new SeaDoc server on a separate machine.
+2. Remove SeaDoc configs in seafile.nginx.conf file.
+3. Re-deploy SeaDoc server. In other words, delete the old SeaDoc deployment and deploy a new SeaDoc server on a separate machine.
 
 Note, deploying SeaDoc and **Seafile binary package** on the same server is no longer supported. If you really want to deploying SeaDoc and Seafile server on the same machine, you should deploy Seafile server with Docker.
 
 #### Delete sdoc_db
 
 From version 1.0, SeaDoc is using seahub_db database to store its operation logs and no longer need an extra database sdoc_db. The database tables in seahub_db are created automatically when you upgrade Seafile server from v11.0 to v12.0. You can simply delete sdoc_db.
+
+#### Remove SeaDoc configs in seafile.nginx.conf file
+
+If you have deployed SeaDoc older version, you should remove `/sdoc-server/`, `/socket.io` configs in seafile.nginx.conf file.
+
+```config
+#    location /sdoc-server/ {
+#        add_header Access-Control-Allow-Origin *;
+#        add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
+#        add_header Access-Control-Allow-Headers "deviceType,token, authorization, content-type";
+#        if ($request_method = 'OPTIONS') {
+#            add_header Access-Control-Allow-Origin *;
+#            add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
+#            add_header Access-Control-Allow-Headers "deviceType,token, authorization, content-type";
+#            return 204;
+#        }
+#        proxy_pass         http://sdoc-server:7070/;
+#        proxy_redirect     off;
+#        proxy_set_header   Host              $host;
+#        proxy_set_header   X-Real-IP         $remote_addr;
+#        proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
+#        proxy_set_header   X-Forwarded-Host  $server_name;
+#        proxy_set_header   X-Forwarded-Proto $scheme;
+#        client_max_body_size 100m;
+#    }
+#    location /socket.io {
+#        proxy_pass http://sdoc-server:7070;
+#        proxy_http_version 1.1;
+#        proxy_set_header Upgrade $http_upgrade;
+#        proxy_set_header Connection 'upgrade';
+#        proxy_redirect off;
+#        proxy_buffers 8 32k;
+#        proxy_buffer_size 64k;
+#        proxy_set_header X-Real-IP $remote_addr;
+#        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+#        proxy_set_header Host $http_host;
+#        proxy_set_header X-NginX-Proxy true;
+#    }
+```
 
 #### Deploy a new SeaDoc server
 
