@@ -43,7 +43,7 @@ systemctl enable docker-compose.service
 
 ## Method 2
 
-Add configuration `restart: unless-stopped` for each container in [components of Seafile docker](../setup/overview.md). Take `seafile-server.yml` for example
+Add configuration `restart: unless-stopped` for each container in [components of Seafile docker](./overview.md). Take `seafile-server.yml` for example
 
 ```
 services:
