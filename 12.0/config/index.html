@@ -2885,9 +2885,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#common-customization-tasks" class="md-nav__link">
+  <a href="#the-design-of-configure-options" class="md-nav__link">
     <span class="md-ellipsis">
-      Common Customization Tasks
+      The design of configure options
     </span>
   </a>
   
@@ -4121,9 +4121,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#common-customization-tasks" class="md-nav__link">
+  <a href="#the-design-of-configure-options" class="md-nav__link">
     <span class="md-ellipsis">
-      Common Customization Tasks
+      The design of configure options
     </span>
   </a>
   
@@ -4149,23 +4149,31 @@
 
 <h1 id="server-configuration-and-customization">Server Configuration and Customization<a class="headerlink" href="#server-configuration-and-customization" title="Permanent link">&para;</a></h1>
 <h2 id="config-files">Config Files<a class="headerlink" href="#config-files" title="Permanent link">&para;</a></h2>
-<p>There are three config files in the community edition:</p>
+<p>The config files used in Seafile include:</p>
 <ul>
-<li><a href="env/">environment variables</a>: contains the components and environment variables settings of Seafile-docker instance</li>
-<li><a href="ccnet-conf/">ccnet.conf</a>: contains the LDAP settings</li>
+<li><a href=".env.md">environment variables</a>: contains environment variables, the items here are shared between different components.</li>
+<li><a href="ccnet-conf/">ccnet.conf</a>: contains some settings for connection to ccnet_db.</li>
 <li><a href="seafile-conf/">seafile.conf</a>: contains settings for seafile daemon and fileserver.</li>
 <li><a href="seahub_settings_py/">seahub_settings.py</a>: contains settings for Seahub</li>
-<li><a href="seafevents-conf/">seafevents.conf</a>: contains settings for background tasks and file search</li>
+<li><a href="seafevents-conf/">seafevents.conf</a>: contains settings for background tasks and file search.</li>
 </ul>
 <p>You can also modify most of the config items via web interface.The config items are saved in database table (seahub-db/constance_config). They have a higher priority over the items in config files.</p>
 <p><img alt="Seafile Config via Web" src="../images/seafile-server-config.png" /></p>
-<h2 id="common-customization-tasks">Common Customization Tasks<a class="headerlink" href="#common-customization-tasks" title="Permanent link">&para;</a></h2>
+<h2 id="the-design-of-configure-options">The design of configure options<a class="headerlink" href="#the-design-of-configure-options" title="Permanent link">&para;</a></h2>
+<p>There are now three places you can config Seafile server:</p>
 <ul>
-<li><a href="sending_email/">Options for sending email</a></li>
-<li><a href="seahub_customization/">Customize web inferface</a></li>
-<li>User Management Options: refer to <a href="seahub_settings_py/">seahub_settings.py</a></li>
-<li>Quota and Download/Upload Limits: refer to <a href="seafile-conf/">seafile.conf</a></li>
+<li>environment variables</li>
+<li>config files</li>
+<li>via web interface</li>
 </ul>
+<p>Environment variables also have three categories:</p>
+<ul>
+<li>Initialization variables that used to generate config files when Seafile server run for the first time.</li>
+<li>Variables that shared and used by multiple components of Seafile server.</li>
+<li>Variables that used both in generate config files and later also needed for some components that have no corresponding config file.</li>
+</ul>
+<p>The variables in the first category can be deleted after initialization. In the future, we will make more components can read config from environment variables, so that the third category is no longer needed.</p>
+<p>The web interface has the highest priority, then the environment variables, then the config files. In practise, you can disable settings via web interface for simplicity.</p>
 
 
 
