@@ -80,8 +80,6 @@ The following fields merit particular attention:
 - `INIT_SEAFILE_ADMIN_EMAIL`: Admin username
 - `INIT_SEAFILE_ADMIN_PASSWORD`: Admin password
 
-NOTE: SSL is now handled by the [caddy server](./setup_ce_by_docker.md#about-ssl-and-caddy) from 12.0.
-
 To conclude, set the directory permissions of the Elasticsearch volumne:
 
 ```bash

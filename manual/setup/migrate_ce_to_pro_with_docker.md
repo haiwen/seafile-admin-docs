@@ -4,16 +4,10 @@
 
 1. Make sure you are running a Seafile Community edition that match the latest version of pro edition. For example, if the latest pro edition is version 11.0, you should first upgrade the community edition to version 11.0.
 2. Purchase Seafile Professional license file.
-3. Download the docker-compose.yml of Seafile Pro.
-
-NOTE: Different versions of Seafile have different compose files.
+3. Download the `seafile-server.yml` of Seafile Pro.
 
 ```sh
-# Seafile PE 10.0
-wget -O "docker-compose.yml" "https://manual.seafile.com/docker/docker-compose/pro/10.0/docker-compose.yml"
-
-# Seafile PE 11.0
-wget -O "docker-compose.yml" "https://manual.seafile.com/docker/docker-compose/pro/11.0/docker-compose.yml"
+wget "https://manual.seafile.com/12.0/docker/pro/seafile-server.yml"
 ```
 
 ## Migrate
@@ -36,9 +30,10 @@ Copy the `seafile-license.txt` to the volume directory of the Seafile CE's data.
 Replace the old `docker-compose.yml` file with the new `docker-compose.yml` file and modify its configuration based on your actual situation:
 
 * The Seafile Pro docker tag must be equal to or newer than the old Seafile CE docker tag.
-* The password of MySQL root (MYSQL_ROOT_PASSWORD and DB_ROOT_PASSWD) should be consistent with the old one;
+* The certificate of MySQL users (e.g., `MYSQL_ROOT_PASSWORD` and `DB_ROOT_PASSWD`) should be consistent with the old;
 * The volume directory of MySQL data (volumes) should be consistent with the old one;
 * The volume directory of Seafile data (volumes) should be consistent with the old one;
+* The volume directory of Caddy data (volumes) should be consistent with the old one;
 * The volume directory of Elasticsearch data (volumes), this is the directory used to store the Elasticsearch's index data, E.g：`/opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data`;
 
 ### Do the migration

@@ -130,7 +130,7 @@ The following fields merit particular attention:
 - `SEAFILE_SERVER_HOSTNAME`: Seafile server hostname or domain
 - `SEAFILE_SERVER_PROTOCOL`: Seafile server protocol (http or https)
 
-SSL is now handled by the [caddy server](../setup/setup_ce_by_docker.md#about-ssl-and-caddy). If you have used SSL before, you will also need modify the seafile.nginx.conf. Change server listen 443 to 80.
+SSL is now handled by the [caddy server](../setup/caddy.md). If you have used SSL before, you will also need modify the seafile.nginx.conf. Change server listen 443 to 80.
 
 Backup the original seafile.nginx.conf file:
 
