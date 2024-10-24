@@ -42,36 +42,6 @@ SeaDoc has the following deployment methods:
 
 ### SeaDoc and Seafile docker are deployed on the same host
 
-### Deploy SeaDoc on a new host
-
-#### Download and modify seadoc.yml
-
-Download [seadoc.yml](../docker/seadoc/1.0/standalone/seadoc.yml) sample file to your host. Then modify the file according to your environment. The following fields are needed to be modified:
-
-- `DB_HOST`: MySQL host
-- `DB_PORT`: MySQL port
-- `DB_USER`: MySQL user
-- `DB_PASSWD`: MySQL password
-- `volumes`: The volume directory of SeaDoc data
-- `SDOC_SERVER_HOSTNAME`: SeaDoc service URL
-- `SEAHUB_SERVICE_URL`: Seafile service URL
-
-#### Create the SeaDoc database manually
-
-SeaDoc and Seafile share the MySQL service.
-
-Create the database sdoc_db in Seafile MySQL and authorize the user.
-
-```sh
-create database if not exists sdoc_db charset utf8mb4;
-GRANT ALL PRIVILEGES ON `sdoc_db`.* to `seafile`@`%.%.%.%`;
-```
-
-Note, SeaDoc will only create one database table to store operation logs.
-
-Then follow the section: Start SeaDoc.
-
-
 #### Download the seadoc.yml and integrate SeaDoc in Seafile docker
 
 ```shell
@@ -103,6 +73,37 @@ GRANT ALL PRIVILEGES ON `sdoc_db`.* to `seafile`@`%.%.%.%`;
 ```
 
 Note, SeaDoc will only create one database table to store operation logs.
+
+
+### Deploy SeaDoc on a new host
+
+#### Download and modify seadoc.yml
+
+Download [seadoc.yml](../docker/seadoc/1.0/standalone/seadoc.yml) sample file to your host. Then modify the file according to your environment. The following fields are needed to be modified:
+
+- `DB_HOST`: MySQL host
+- `DB_PORT`: MySQL port
+- `DB_USER`: MySQL user
+- `DB_PASSWD`: MySQL password
+- `volumes`: The volume directory of SeaDoc data
+- `SDOC_SERVER_HOSTNAME`: SeaDoc service URL
+- `SEAHUB_SERVICE_URL`: Seafile service URL
+
+#### Create the SeaDoc database manually
+
+SeaDoc and Seafile share the MySQL service.
+
+Create the database sdoc_db in Seafile MySQL and authorize the user.
+
+```sh
+create database if not exists sdoc_db charset utf8mb4;
+GRANT ALL PRIVILEGES ON `sdoc_db`.* to `seafile`@`%.%.%.%`;
+```
+
+Note, SeaDoc will only create one database table to store operation logs.
+
+Then follow the section: Start SeaDoc.
+
 
 ## Start SeaDoc
 
