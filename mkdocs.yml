@@ -14,6 +14,8 @@ theme:
   logo: media/seafile-transparent-1024.png
   favicon: media/favicon.ico
   features:
+    - navigation.footer
+    - navigation.tracking
     - navigation.sections
     - navigation.tabs
     - navigation.top
@@ -63,6 +65,11 @@ markdown_extensions:
   - markdown.extensions.toc:
       permalink: true
       toc_depth: "1-4"
+  - pymdownx.superfences: # allows 1) nesting of fences 2) custom fences 3) disable indented code
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
 
 # Page tree
 nav:
@@ -128,7 +135,7 @@ nav:
       - Office Online Server Integration (Pro): extension/office_web_app.md
     - Virus Scan (Pro):
       - Outline: extension/virus_scan.md
-      - Virus scan with ClamAV: extension/deploy_clamav_with_seafile.md
+      - Virus scan with ClamAV: extension/virus_scan_with_clamav.md
       - Virus scan with Kav4fs: extension/virus_scan_with_kav4fs.md
   - Configuration:
     - Authentication & Users:

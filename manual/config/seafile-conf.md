@@ -223,7 +223,9 @@ check_virus_on_web_upload = true
 
 ## Database configuration
 
-The whole database configuration is stored in the `[database]` section of the configuration file, whether you use SQLite or MySQL.
+The configurations of database are stored in the `[database]` section.
+
+> From Seafile 11.0, the *SQLite* is not supported.
 
 ```
 [database]
@@ -240,12 +242,14 @@ max_connections=100
 When you configure seafile server to use MySQL, the default connection pool size is 100, which should be enough for most use cases.
 
 Since Seafile 10.0.2, you can enable the encrypted connections to the MySQL server by adding the following configuration options:
+
 ```
 [database]
 use_ssl = true
 skip_verify = false
 ca_path = /etc/mysql/ca.pem
 ```
+
 When set `use_ssl` to true and `skip_verify` to false, it will check whether the MySQL server certificate is legal through the CA configured in `ca_path`. The `ca_path` is a trusted CA certificate path for signing MySQL server certificates. When `skip_verify` is true, there is no need to add the `ca_path` option. The MySQL server certificate won't be verified at this time.
 
 ## File Locking (Pro edition only)

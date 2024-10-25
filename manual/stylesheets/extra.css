@@ -53,3 +53,7 @@
 .md-nav__item {
   padding-left: 16px;
 }
+
+.md-nav__item--section {
+  margin-top: 2em;
+}
