@@ -108,7 +108,7 @@ sudo yum install poppler-utils -y
 
 sudo pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.* \
     pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
-    psd-tools django-pylibmc django_simple_captcha==0.6.* pycryptodome==3.16.* cffi==1.15.1 python-ldap==3.4.3 lxml
+    psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.5.* pycryptodome==3.16.* cffi==1.15.1 python-ldap==3.4.3 lxml
 ```
 
 **Note**: The recommended deployment option for Seafile PE on CentOS/Redhat is [Docker](https://manual.seafile.com/docker/pro-edition/deploy_seafile_pro_with_docker/).
