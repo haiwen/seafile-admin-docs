@@ -315,9 +315,9 @@ CLIENT_SSO_UUID_EXPIRATION = 5 * 60   # in seconds
 ```python
 # This is outside URL for Seahub(Seafile Web). 
 # The domain part (i.e., www.example.com) will be used in generating share links and download/upload file via web.
-# Note: Outside URL means "if you use Nginx, it should be the Nginx's address"
 # Note: SERVICE_URL is moved to seahub_settings.py since 9.0.0
-SERVICE_URL = 'http://www.example.com:8000'
+# Note: SERVICE_URL is no longer used since version 12.0
+# SERVICE_URL = 'https://seafile.example.com:'
 
 # Disable settings via Web interface in system admin->settings
 # Default is True
