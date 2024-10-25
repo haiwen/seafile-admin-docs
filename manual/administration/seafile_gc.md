@@ -10,10 +10,6 @@ The GC program cleans up two types of unused blocks:
 1. Blocks that no library references to, that is, the blocks belong to deleted libraries;
 2. If you set history length limit on some libraries, the out-dated blocks in those libraries will also be removed.
 
-**Before running GC, you must shutdown the Seafile program on your server if you use the community edition. For professional edition, online GC operation is supported. If you use Professional edition, you don't need to shutdown the Seafile program if you are using MySQL.**
-This is because new blocks written into Seafile while GC is running may be mistakenly deleted by the GC program.
-
-At the bottom of the page there is a script that you can use to run the cleanup manually or e.g. once a week with as cronjob.
 
 ## Run GC
 
@@ -129,86 +125,6 @@ A simple pattern to divide the workload among multiple GC servers is to assign l
 seaf-gc.sh --id-prefix a123
 
 ```
-
-## GC cleanup script for Community Version
-
-To use this script you need:
-
-* Setup the seafile-service file at '/etc/init.d/seafile-server'
-* Files of seafile setup need to be owner by 'seafile:nogroup' or 'seafile:seafile'
-* Run the script with sudo or as root
-* Put the script into crontab of a root user
-
-Create the script file (change the location to your liking):
-
-```
-touch /opt/haiwen/seafile/cleanupScript.sh
-
-```
-
-Use your favorite text editor and paste the following code:
-
-```
-#!/bin/bash
-
-#####
-# Uncomment the following line if you rather want to run the script manually.
-# Display usage if the script is not run as root user
-#        if [[ $USER != "root" ]]; then
-#                echo "This script must be run as root user!"
-#                exit 1
-#        fi
-#
-# echo "Super User detected!!"
-# read -p "Press [ENTER] to start the procedure, this will stop the seafile server!!"
-#####
-
-# stop the server
-echo Stopping the Seafile-Server...
-systemctl stop seafile.service
-systemctl stop seahub.service
-
-echo Giving the server some time to shut down properly....
-sleep 20
-
-# run the cleanup
-echo Seafile cleanup started...
-sudo -u seafile $pathtoseafile/seafile-server-latest/seaf-gc.sh
-
-echo Giving the server some time....
-sleep 10
-
-# start the server again
-echo Starting the Seafile-Server...
-systemctl start seafile.service
-systemctl start seahub.service
-
-echo Seafile cleanup done!
-
-```
-
-Make sure that the script has been given execution rights, to do that run this command.
-
-```
-sudo chmod +x /path/to/yourscript.sh
-
-```
-
-Then open crontab with the root user
-
-```
-crontab -e
-
-```
-
-Add the following line (change the location of your script accordingly!)
-
-```
-0 2 * * Sun /opt/haiwen/seafile/cleanupScript.sh
-
-```
-
-The script will then run every Sunday at 2:00 AM.
 
 
 ## GC in Seafile docker container

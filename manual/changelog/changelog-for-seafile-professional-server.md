@@ -165,6 +165,13 @@ Other changes
 
 Please check our document for how to upgrade to [10.0](../upgrade/upgrade_notes_for_10.0.x.md).
 
+
+### 10.0.17 (2024-10-23)
+
+This release is for Docker image only
+
+* [fix] Update the version of sqlalchemy to make "activities" page work. The bug was introduced in v10.0.16.
+
 ### 10.0.16 (2024-06-21)
 
 * [fix] Fix CollaboraOnline integration for read-only shares and share links
