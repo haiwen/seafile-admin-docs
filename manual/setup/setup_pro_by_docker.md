@@ -197,6 +197,3 @@ Q: Something goes wrong during the start of the containers. How can I find out m
 
 A: You can view the docker logs using this command: `docker compose logs -f`.
 
-Q: I forgot the admin password. How do I create a new admin account?
-
-A: Make sure the seafile container is running and enter `docker exec -it seafile /opt/seafile/seafile-server-latest/reset-admin.sh`.
