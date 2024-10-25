@@ -4683,9 +4683,9 @@ ENABLE_REPO_SNAPSHOT_LABEL = False
 <h2 id="other-options">Other options<a class="headerlink" href="#other-options" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="c1"># This is outside URL for Seahub(Seafile Web). </span>
 <span class="c1"># The domain part (i.e., www.example.com) will be used in generating share links and download/upload file via web.</span>
-<span class="c1"># Note: Outside URL means &quot;if you use Nginx, it should be the Nginx&#39;s address&quot;</span>
 <span class="c1"># Note: SERVICE_URL is moved to seahub_settings.py since 9.0.0</span>
-<span class="n">SERVICE_URL</span> <span class="o">=</span> <span class="s1">&#39;http://www.example.com:8000&#39;</span>
+<span class="c1"># Note: SERVICE_URL is no longer used since version 12.0</span>
+<span class="c1"># SERVICE_URL = &#39;https://seafile.example.com:&#39;</span>
 
 <span class="c1"># Disable settings via Web interface in system admin-&gt;settings</span>
 <span class="c1"># Default is True</span>
