@@ -886,29 +886,14 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="More configuration options">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#modify-seafile-server-configurations" class="md-nav__link">
-    <span class="md-ellipsis">
-      Modify Seafile server configurations
-    </span>
-  </a>
-  
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#add-a-new-admin" class="md-nav__link">
     <span class="md-ellipsis">
       Add a new admin
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -936,21 +921,6 @@
       FAQ
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="FAQ">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#you-can-run-docker-commands-like-docker-exec-to-find-errors" class="md-nav__link">
-    <span class="md-ellipsis">
-      You can run docker commands like docker exec to find errors
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -4348,29 +4318,14 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="More configuration options">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#modify-seafile-server-configurations" class="md-nav__link">
-    <span class="md-ellipsis">
-      Modify Seafile server configurations
-    </span>
-  </a>
-  
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#add-a-new-admin" class="md-nav__link">
     <span class="md-ellipsis">
       Add a new admin
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -4399,21 +4354,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="FAQ">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#you-can-run-docker-commands-like-docker-exec-to-find-errors" class="md-nav__link">
-    <span class="md-ellipsis">
-      You can run docker commands like docker exec to find errors
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
     </ul>
@@ -4438,7 +4378,7 @@
 <h2 id="getting-started">Getting started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h2>
 <p>The following assumptions and conventions are used in the rest of this document:</p>
 <ul>
-<li><code>/opt/seafile-data</code> is the directory of Seafile. If you decide to put Seafile in a different directory — which you can — adjust all paths accordingly.</li>
+<li><code>/opt/seafile</code> is the directory for store Seafile docker compose files. If you decide to put Seafile in a different directory — which you can — adjust all paths accordingly.</li>
 <li>Seafile uses two <a href="https://docs.docker.com/storage/volumes/">Docker volumes</a> for persisting data generated in its database and Seafile Docker container. The volumes' <a href="https://docs.docker.com/compose/compose-file/compose-file-v3/#volumes">host paths</a> are <code>/opt/seafile-mysql</code> and <code>/opt/seafile-data</code>, respectively. It is not recommended to change these paths. If you do, account for it when following these instructions.</li>
 <li>All configuration and log files for Seafile and the webserver Nginx are stored in the volume of the Seafile container.</li>
 </ul>
@@ -4508,12 +4448,8 @@ docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> 
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>tail<span class="w"> </span>-f<span class="w"> </span><span class="k">$(</span>find<span class="w"> </span>/opt/seafile-data/<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-name<span class="w"> </span>*.log<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="k">)</span>
 </code></pre></div>
 <h2 id="more-configuration-options">More configuration options<a class="headerlink" href="#more-configuration-options" title="Permanent link">&para;</a></h2>
-<h3 id="modify-seafile-server-configurations">Modify Seafile server configurations<a class="headerlink" href="#modify-seafile-server-configurations" title="Permanent link">&para;</a></h3>
-<p>The config files are under <code>/opt/seafile-data/seafile/conf</code>. You can modify the configurations according to <a href="https://manual.seafile.com/">Seafile manual</a></p>
-<p>After modification, you need to restart the container:</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart
-</code></pre></div>
-<h3 id="add-a-new-admin">Add a new admin<a class="headerlink" href="#add-a-new-admin" title="Permanent link">&para;</a></h3>
+<p>The config files are under <code>/opt/seafile-data/seafile/conf</code>. You can modify the configurations according to <a href="../../config/">configuration section</a></p>
+<h2 id="add-a-new-admin">Add a new admin<a class="headerlink" href="#add-a-new-admin" title="Permanent link">&para;</a></h2>
 <p>Ensure the container is running, then enter this command:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>/opt/seafile/seafile-server-latest/reset-admin.sh
 </code></pre></div>
@@ -4521,12 +4457,22 @@ docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> 
 <h2 id="backup-and-recovery">Backup and recovery<a class="headerlink" href="#backup-and-recovery" title="Permanent link">&para;</a></h2>
 <p>Follow the instructions in <a href="../../administration/backup_recovery/">Backup and restore for Seafile Docker</a></p>
 <h2 id="garbage-collection">Garbage collection<a class="headerlink" href="#garbage-collection" title="Permanent link">&para;</a></h2>
-<p>When files are deleted, the blocks comprising those files are not immediately removed as there may be other files that reference those blocks (due to the magic of deduplication). To remove them, Seafile requires a <a href="../../administration/seafile_gc/">'garbage collection'</a> process to be run, which detects which blocks no longer used and purges them. (<strong>NOTE:</strong> for technical reasons, the GC process does not guarantee that <em>every single</em> orphan block will be deleted.)</p>
+<p>When files are deleted, the blocks comprising those files are not immediately removed as there may be other files that reference those blocks (due to the magic of deduplication). To remove them, Seafile requires a <a href="../../administration/seafile_gc/">'garbage collection'</a> process to be run, which detects which blocks no longer used and purges them.</p>
 <p>The required scripts can be found in the <code>/scripts</code> folder of the docker container. To perform garbage collection, simply run <code>docker exec seafile /scripts/gc.sh</code>.</p>
 <h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
-<h3 id="you-can-run-docker-commands-like-docker-exec-to-find-errors">You can run docker commands like <code>docker exec</code> to find errors<a class="headerlink" href="#you-can-run-docker-commands-like-docker-exec-to-find-errors" title="Permanent link">&para;</a></h3>
+<p>Q: If I want enter into the Docker container, which command I can use?</p>
+<p>A: You can enter into the docker container using the command:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>/bin/bash
 </code></pre></div>
+<p>Q: I forgot the Seafile admin email address/password, how do I create a new admin account?</p>
+<p>A: You can create a new admin account by running</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>/opt/seafile/seafile-server-latest/reset-admin.sh
+</code></pre></div>
+<p>The Seafile service must be up when running the superuser command.</p>
+<p>Q: If, for whatever reason, the installation fails, how do I to start from a clean slate again?</p>
+<p>A: Remove the directories /opt/seafile, /opt/seafile-data and /opt/seafile-mysql and start again.</p>
+<p>Q: Something goes wrong during the start of the containers. How can I find out more?</p>
+<p>A: You can view the docker logs using this command: <code>docker compose logs -f</code>.</p>
 
 
 
