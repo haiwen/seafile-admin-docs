@@ -8,7 +8,7 @@ There are currently five types of emails sent in Seafile:
 * System admin adds new member
 * System admin resets user password
 * User sends file/folder share and upload link
-* \[pro] Reminder of unread notifications (It is sent by a background task which is pro edition only)
+* Reminder of unread notifications
 
 The first four types of email are sent immediately. The last type is sent by a background task running periodically.
 
@@ -17,28 +17,16 @@ The first four types of email are sent immediately. The last type is sent by a b
 Please add the following lines to `seahub_settings.py` to enable email sending.
 
 ```python
-EMAIL_USE_TLS = False
+EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.example.com'        # smpt server
 EMAIL_HOST_USER = 'username@example.com'    # username and domain
 EMAIL_HOST_PASSWORD = 'password'    # password
-EMAIL_PORT = 25
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-SERVER_EMAIL = EMAIL_HOST_USER
-
-```
-
-If you are using Gmail as email server, use following lines:
-
-```python
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'username@gmail.com'
-EMAIL_HOST_PASSWORD = 'password'
 EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
 
 ```
+
 
 **Note**: If your email service still does not work, you can checkout the log file `logs/seahub.log` to see what may cause the problem. For a complete email notification list, please refer to [email notification list](customize_email_notifications.md).
 
@@ -61,7 +49,7 @@ ADD_REPLY_TO_HEADER = True
 
 ```
 
-## Config background email sending task (Pro Edition Only)
+## Config background email sending task
 
 The background task will run periodically to check whether an user have new unread notifications. If there are any, it will send a reminder email to that user. The background email sending task is controlled by `seafevents.conf`.
 
