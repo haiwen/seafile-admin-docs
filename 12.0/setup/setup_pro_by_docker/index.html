@@ -4426,7 +4426,7 @@ vm.max_map_count<span class="o">=</span><span class="m">262144</span>
 <h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
 <p>The following assumptions and conventions are used in the rest of this document:</p>
 <ul>
-<li><code>/opt/seafile-data</code> is the directory of Seafile. If you decide to put Seafile in a different directory - which you can - adjust all paths accordingly.</li>
+<li><code>/opt/seafile</code> is the directory of Seafile for storing Seafile docker files. If you decide to put Seafile in a different directory, adjust all paths accordingly.</li>
 <li>Seafile uses two <a href="https://docs.docker.com/storage/volumes/">Docker volumes</a> for persisting data generated in its database and Seafile Docker container. The volumes' <a href="https://docs.docker.com/compose/compose-file/compose-file-v3/#volumes">host paths</a> are /opt/seafile-mysql and /opt/seafile-data, respectively. It is not recommended to change these paths. If you do, account for it when following these instructions.</li>
 <li>All configuration and log files for Seafile and the webserver Nginx are stored in the volume of the Seafile container.</li>
 </ul>
@@ -4525,9 +4525,13 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 <h2 id="backup-and-recovery">Backup and Recovery<a class="headerlink" href="#backup-and-recovery" title="Permanent link">&para;</a></h2>
 <p>Follow the instructions in <a href="../../administration/backup_recovery/">Backup and restore for Seafile Docker</a></p>
 <h2 id="garbage-collection">Garbage Collection<a class="headerlink" href="#garbage-collection" title="Permanent link">&para;</a></h2>
-<p>When files are deleted, the blocks comprising those files are not immediately removed as there may be other files that reference those blocks (due to the magic of deduplication). To remove them, Seafile requires a <a href="../../administration/seafile_gc/">'garbage collection'</a> process to be run, which detects which blocks no longer used and purges them. (NOTE: for technical reasons, the GC process does not guarantee that <em>every single</em> orphan block will be deleted.)</p>
+<p>When files are deleted, the blocks comprising those files are not immediately removed as there may be other files that reference those blocks (due to the magic of deduplication). To remove them, Seafile requires a <a href="../../administration/seafile_gc/">'garbage collection'</a> process to be run, which detects which blocks no longer used and purges them.</p>
 <p>The required scripts can be found in the <code>/scripts</code> folder of the docker container. To perform garbage collection, simply run <code>docker exec seafile /scripts/gc.sh</code>.</p>
 <h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
+<p>Q: If I want enter into the Docker container, which command I can use?</p>
+<p>A: You can enter into the docker container using the command:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>/bin/bash
+</code></pre></div>
 <p>Q: I forgot the Seafile admin email address/password, how do I create a new admin account?</p>
 <p>A: You can create a new admin account by running</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>/opt/seafile/seafile-server-latest/reset-admin.sh
