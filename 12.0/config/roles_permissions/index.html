@@ -2194,7 +2194,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4206,182 +4206,176 @@
 <p><code>can_add_public_repo</code> is to set whether a role can create a public library, default is "False". <strong>Note:</strong>The <code>can_add_public_repo</code> option will not take effect if you configure global <code>CLOUD_MODE = True</code>.</p>
 <p>The <code>storage_ids</code> permission is used for assigning storage backends to users with specific role. More details can be found in <a href="../../setup/setup_with_multiple_storage_backends/">multiple storage backends</a>.</p>
 <p>Since version 10.0, <code>upload_rate_limit</code> and <code>download_rate_limit</code> are added to limit upload and download speed for users with different roles. <strong>After configured the rate limit, run the following command in the <code>seafile-server-latest</code> directory to make the configuration take effect</strong>:</p>
-<div class="codehilite"><pre><span></span><code><span class="o">./</span><span class="n">seahub</span><span class="o">.</span><span class="n">sh</span><span class="w"> </span><span class="n">python</span><span class="o">-</span><span class="n">env</span><span class="w"> </span><span class="n">python3</span><span class="w"> </span><span class="n">seahub</span><span class="o">/</span><span class="n">manage</span><span class="o">.</span><span class="n">py</span><span class="w"> </span><span class="n">set_user_role_upload_download_rate_limit</span>
+<div class="highlight"><pre><span></span><code>./seahub.sh python-env python3 seahub/manage.py set_user_role_upload_download_rate_limit
 </code></pre></div>
-
 <p>Since version 11.0.9 pro, <code>can_share_repo</code> is added to limit users' ability to share a library.</p>
 <p>Seafile comes with two build-in roles <code>default</code> and <code>guest</code>, a default user is a normal user with permissions as followings:</p>
-<div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="s1">&#39;default&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="s1">&#39;can_add_repo&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_share_repo&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_add_group&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_view_org&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_add_public_repo&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_use_global_address_book&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_generate_share_link&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_generate_upload_link&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_send_share_link_mail&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_invite_guest&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_connect_with_android_clients&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_connect_with_ios_clients&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_connect_with_desktop_clients&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;storage_ids&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
-<span class="w">        </span><span class="s1">&#39;role_quota&#39;</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_publish_repo&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;upload_rate_limit&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">  </span><span class="c1"># unit: kb/s</span>
-<span class="w">        </span><span class="s1">&#39;download_rate_limit&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">    </span><span class="p">},</span>
+<div class="highlight"><pre><span></span><code>    &#39;default&#39;: {
+        &#39;can_add_repo&#39;: True,
+        &#39;can_share_repo&#39;: True,
+        &#39;can_add_group&#39;: True,
+        &#39;can_view_org&#39;: True,
+        &#39;can_add_public_repo&#39;: False,
+        &#39;can_use_global_address_book&#39;: True,
+        &#39;can_generate_share_link&#39;: True,
+        &#39;can_generate_upload_link&#39;: True,
+        &#39;can_send_share_link_mail&#39;: True,
+        &#39;can_invite_guest&#39;: False,
+        &#39;can_connect_with_android_clients&#39;: True,
+        &#39;can_connect_with_ios_clients&#39;: True,
+        &#39;can_connect_with_desktop_clients&#39;: True,
+        &#39;storage_ids&#39;: [],
+        &#39;role_quota&#39;: &#39;&#39;,
+        &#39;can_publish_repo&#39;: True,
+        &#39;upload_rate_limit&#39;: 0,  # unit: kb/s
+        &#39;download_rate_limit&#39;: 0,
+    },
 </code></pre></div>
-
-<p>While a guest user can only read files/folders in the system, here are the permissions for a guest user:</p>
-<div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="s1">&#39;guest&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="s1">&#39;can_add_repo&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_share_repo&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_add_group&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_view_org&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_add_public_repo&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_use_global_address_book&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_generate_share_link&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_generate_upload_link&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_send_share_link_mail&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_invite_guest&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_connect_with_android_clients&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_connect_with_ios_clients&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_connect_with_desktop_clients&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;storage_ids&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
-<span class="w">        </span><span class="s1">&#39;role_quota&#39;</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_publish_repo&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;upload_rate_limit&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;download_rate_limit&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">    </span><span class="p">},</span>
-</code></pre></div>
-
+<p>While a guest user can only read files/folders in the system, here are the permissions for a guest user:
+<div class="highlight"><pre><span></span><code>    &#39;guest&#39;: {
+        &#39;can_add_repo&#39;: False,
+        &#39;can_share_repo&#39;: False,
+        &#39;can_add_group&#39;: False,
+        &#39;can_view_org&#39;: False,
+        &#39;can_add_public_repo&#39;: False,
+        &#39;can_use_global_address_book&#39;: False,
+        &#39;can_generate_share_link&#39;: False,
+        &#39;can_generate_upload_link&#39;: False,
+        &#39;can_send_share_link_mail&#39;: False,
+        &#39;can_invite_guest&#39;: False,
+        &#39;can_connect_with_android_clients&#39;: False,
+        &#39;can_connect_with_ios_clients&#39;: False,
+        &#39;can_connect_with_desktop_clients&#39;: False,
+        &#39;storage_ids&#39;: [],
+        &#39;role_quota&#39;: &#39;&#39;,
+        &#39;can_publish_repo&#39;: False,
+        &#39;upload_rate_limit&#39;: 0,
+        &#39;download_rate_limit&#39;: 0,
+    },
+</code></pre></div></p>
 <h2 id="edit-build-in-roles">Edit build-in roles<a class="headerlink" href="#edit-build-in-roles" title="Permanent link">&para;</a></h2>
 <p>If you want to edit the permissions of build-in roles, e.g. default users can invite guest, guest users can view repos in organization, you can add following lines to <code>seahub_settings.py</code> with corresponding permissions set to <code>True</code>.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">ENABLED_ROLE_PERMISSIONS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="s1">&#39;default&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="s1">&#39;can_add_repo&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_share_repo&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_add_group&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_view_org&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_add_public_repo&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_use_global_address_book&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_generate_share_link&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_generate_upload_link&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_send_share_link_mail&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_invite_guest&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_connect_with_android_clients&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_connect_with_ios_clients&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_connect_with_desktop_clients&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;storage_ids&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
-<span class="w">        </span><span class="s1">&#39;role_quota&#39;</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_publish_repo&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;upload_rate_limit&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">  </span><span class="c1"># unit: kb/s</span>
-<span class="w">        </span><span class="s1">&#39;download_rate_limit&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">4000</span><span class="p">,</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="s1">&#39;guest&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="s1">&#39;can_add_repo&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_share_repo&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_add_group&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_view_org&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_add_public_repo&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_use_global_address_book&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_generate_share_link&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_generate_upload_link&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_send_share_link_mail&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_invite_guest&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_connect_with_android_clients&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_connect_with_ios_clients&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_connect_with_desktop_clients&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;storage_ids&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
-<span class="w">        </span><span class="s1">&#39;role_quota&#39;</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_publish_repo&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;upload_rate_limit&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;download_rate_limit&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code>ENABLED_ROLE_PERMISSIONS = {
+    &#39;default&#39;: {
+        &#39;can_add_repo&#39;: True,
+        &#39;can_share_repo&#39;: True,
+        &#39;can_add_group&#39;: True,
+        &#39;can_view_org&#39;: True,
+        &#39;can_add_public_repo&#39;: False,
+        &#39;can_use_global_address_book&#39;: True,
+        &#39;can_generate_share_link&#39;: True,
+        &#39;can_generate_upload_link&#39;: True,
+        &#39;can_send_share_link_mail&#39;: True,
+        &#39;can_invite_guest&#39;: True,
+        &#39;can_connect_with_android_clients&#39;: True,
+        &#39;can_connect_with_ios_clients&#39;: True,
+        &#39;can_connect_with_desktop_clients&#39;: True,
+        &#39;storage_ids&#39;: [],
+        &#39;role_quota&#39;: &#39;&#39;,
+        &#39;can_publish_repo&#39;: True,
+        &#39;upload_rate_limit&#39;: 2000,  # unit: kb/s
+        &#39;download_rate_limit&#39;: 4000,
+    },
+    &#39;guest&#39;: {
+        &#39;can_add_repo&#39;: False,
+        &#39;can_share_repo&#39;: False,
+        &#39;can_add_group&#39;: False,
+        &#39;can_view_org&#39;: True,
+        &#39;can_add_public_repo&#39;: False,
+        &#39;can_use_global_address_book&#39;: False,
+        &#39;can_generate_share_link&#39;: False,
+        &#39;can_generate_upload_link&#39;: False,
+        &#39;can_send_share_link_mail&#39;: False,
+        &#39;can_invite_guest&#39;: False,
+        &#39;can_connect_with_android_clients&#39;: False,
+        &#39;can_connect_with_ios_clients&#39;: False,
+        &#39;can_connect_with_desktop_clients&#39;: False,
+        &#39;storage_ids&#39;: [],
+        &#39;role_quota&#39;: &#39;&#39;,
+        &#39;can_publish_repo&#39;: False,
+        &#39;upload_rate_limit&#39;: 100,
+        &#39;download_rate_limit&#39;: 200,
+    }
+}
 </code></pre></div>
-
 <h3 id="more-about-guest-invitation-feature">More about guest invitation feature<a class="headerlink" href="#more-about-guest-invitation-feature" title="Permanent link">&para;</a></h3>
 <p>An user who has <code>can_invite_guest</code> permission can invite people outside of the organization as guest.</p>
 <p>In order to use this feature, in addition to granting <code>can_invite_guest</code> permission to the user, add the  following line to <code>seahub_settings.py</code>,</p>
-<div class="codehilite"><pre><span></span><code>ENABLE_GUEST_INVITATION = True
+<div class="highlight"><pre><span></span><code>ENABLE_GUEST_INVITATION = True
 
-<span class="gh">#</span> invitation expire time
+# invitation expire time
 INVITATIONS_TOKEN_AGE = 72 # hours
 </code></pre></div>
-
 <p>After restarting, users who have <code>can_invite_guest</code> permission will see "Invite People" section at sidebar of home page.</p>
 <p>Users can invite a guest user by providing his/her email address, system will email the invite link to the user.</p>
 <p><strong>Tip:</strong> If you want to block certain email addresses for the invitation, you can define a blacklist, e.g.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">INVITATION_ACCEPTER_BLACKLIST</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">&quot;a@a.com&quot;, &quot;*@a-a-a.com&quot;, r&quot;.*@(foo|bar).com&quot;, </span><span class="o">]</span>
+<div class="highlight"><pre><span></span><code>INVITATION_ACCEPTER_BLACKLIST = [&quot;a@a.com&quot;, &quot;*@a-a-a.com&quot;, r&quot;.*@(foo|bar).com&quot;, ]
 </code></pre></div>
-
 <p>After that, email address "a@a.com", any email address ends with "@a-a-a.com" and any email address ends with "@foo.com" or "@bar.com" will not be allowed.</p>
 <h2 id="add-custom-roles">Add custom roles<a class="headerlink" href="#add-custom-roles" title="Permanent link">&para;</a></h2>
 <p>If you want to add a new role and assign some users with this role, e.g. new role <code>employee</code> can invite guest and can create public library and have all other permissions a default user has, you can add following lines to <code>seahub_settings.py</code></p>
-<div class="codehilite"><pre><span></span><code><span class="n">ENABLED_ROLE_PERMISSIONS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="s1">&#39;default&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="s1">&#39;can_add_repo&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_share_repo&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_add_group&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_view_org&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_add_public_repo&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_use_global_address_book&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_generate_share_link&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_generate_upload_link&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_send_share_link_mail&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_invite_guest&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_connect_with_android_clients&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_connect_with_ios_clients&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_connect_with_desktop_clients&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;storage_ids&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
-<span class="w">        </span><span class="s1">&#39;role_quota&#39;</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_publish_repo&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;upload_rate_limit&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">  </span><span class="c1"># unit: kb/s</span>
-<span class="w">        </span><span class="s1">&#39;download_rate_limit&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">4000</span><span class="p">,</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="s1">&#39;guest&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="s1">&#39;can_add_repo&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_share_repo&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_add_group&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_view_org&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_add_public_repo&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_use_global_address_book&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_generate_share_link&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_generate_upload_link&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_send_share_link_mail&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_invite_guest&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_connect_with_android_clients&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_connect_with_ios_clients&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_connect_with_desktop_clients&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;storage_ids&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
-<span class="w">        </span><span class="s1">&#39;role_quota&#39;</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_publish_repo&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">False</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;upload_rate_limit&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;download_rate_limit&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="s1">&#39;employee&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="s1">&#39;can_add_repo&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_share_repo&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_add_group&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_view_org&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_add_public_repo&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_use_global_address_book&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_generate_share_link&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_generate_upload_link&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_send_share_link_mail&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_invite_guest&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_connect_with_android_clients&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_connect_with_ios_clients&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_connect_with_desktop_clients&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;storage_ids&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
-<span class="w">        </span><span class="s1">&#39;role_quota&#39;</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;can_publish_repo&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">True</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;upload_rate_limit&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;download_rate_limit&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">800</span><span class="p">,</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code>ENABLED_ROLE_PERMISSIONS = {
+    &#39;default&#39;: {
+        &#39;can_add_repo&#39;: True,
+        &#39;can_share_repo&#39;: True,
+        &#39;can_add_group&#39;: True,
+        &#39;can_view_org&#39;: True,
+        &#39;can_add_public_repo&#39;: False,
+        &#39;can_use_global_address_book&#39;: True,
+        &#39;can_generate_share_link&#39;: True,
+        &#39;can_generate_upload_link&#39;: True,
+        &#39;can_send_share_link_mail&#39;: True,
+        &#39;can_invite_guest&#39;: False,
+        &#39;can_connect_with_android_clients&#39;: True,
+        &#39;can_connect_with_ios_clients&#39;: True,
+        &#39;can_connect_with_desktop_clients&#39;: True,
+        &#39;storage_ids&#39;: [],
+        &#39;role_quota&#39;: &#39;&#39;,
+        &#39;can_publish_repo&#39;: True,
+        &#39;upload_rate_limit&#39;: 2000,  # unit: kb/s
+        &#39;download_rate_limit&#39;: 4000,
+    },
+    &#39;guest&#39;: {
+        &#39;can_add_repo&#39;: False,
+        &#39;can_share_repo&#39;: False,
+        &#39;can_add_group&#39;: False,
+        &#39;can_view_org&#39;: False,
+        &#39;can_add_public_repo&#39;: False,
+        &#39;can_use_global_address_book&#39;: False,
+        &#39;can_generate_share_link&#39;: False,
+        &#39;can_generate_upload_link&#39;: False,
+        &#39;can_send_share_link_mail&#39;: False,
+        &#39;can_invite_guest&#39;: False,
+        &#39;can_connect_with_android_clients&#39;: False,
+        &#39;can_connect_with_ios_clients&#39;: False,
+        &#39;can_connect_with_desktop_clients&#39;: False,
+        &#39;storage_ids&#39;: [],
+        &#39;role_quota&#39;: &#39;&#39;,
+        &#39;can_publish_repo&#39;: False,
+        &#39;upload_rate_limit&#39;: 100,
+        &#39;download_rate_limit&#39;: 200,
+    },
+    &#39;employee&#39;: {
+        &#39;can_add_repo&#39;: True,
+        &#39;can_share_repo&#39;: True,
+        &#39;can_add_group&#39;: True,
+        &#39;can_view_org&#39;: True,
+        &#39;can_add_public_repo&#39;: True,
+        &#39;can_use_global_address_book&#39;: True,
+        &#39;can_generate_share_link&#39;: True,
+        &#39;can_generate_upload_link&#39;: True,
+        &#39;can_send_share_link_mail&#39;: True,
+        &#39;can_invite_guest&#39;: True,
+        &#39;can_connect_with_android_clients&#39;: True,
+        &#39;can_connect_with_ios_clients&#39;: True,
+        &#39;can_connect_with_desktop_clients&#39;: True,
+        &#39;storage_ids&#39;: [],
+        &#39;role_quota&#39;: &#39;&#39;,
+        &#39;can_publish_repo&#39;: True,
+        &#39;upload_rate_limit&#39;: 500,
+        &#39;download_rate_limit&#39;: 800,
+    },
+}
 </code></pre></div>
 
 
@@ -4412,6 +4406,46 @@ INVITATIONS_TOKEN_AGE = 72 # hours
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../multi_institutions/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Multi-Institutions Support">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Multi-Institutions Support
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../admin_roles_permissions/" class="md-footer__link md-footer__link--next" aria-label="Next: Administrator Roles and Permissions">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Administrator Roles and Permissions
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4454,7 +4488,7 @@ INVITATIONS_TOKEN_AGE = 72 # hours
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

@@ -2190,7 +2190,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4514,36 +4514,32 @@ Please always follow the main <a href="../upgrade/">upgrade guide</a>.</p>
 <p>Elasticsearch version is not changed in Seafile version 11.0</p>
 <h3 id="new-saml-prerequisites-multi_tenancy-only">New SAML prerequisites (MULTI_TENANCY only)<a class="headerlink" href="#new-saml-prerequisites-multi_tenancy-only" title="Permanent link">&para;</a></h3>
 <p>For Ubuntu 20.04/22.04</p>
-<div class="codehilite"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
 sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>dnsutils
 </code></pre></div>
-
 <h3 id="django-csrf-protection-issue">Django CSRF protection issue<a class="headerlink" href="#django-csrf-protection-issue" title="Permanent link">&para;</a></h3>
 <p>Django 4.* has introduced a new check for the origin http header in CSRF verification. It now compares the values of the origin field in HTTP header and the host field in HTTP header. If they are different, an error is triggered.</p>
 <p>If you deploy Seafile behind a proxy, or if you use a non-standard port, or if you deploy Seafile in cluster, it is likely the <strong>origin</strong> field in HTTP header received by Django and the <strong>host</strong> field in HTTP header received by Django are different. Because the <strong>host</strong> field in HTTP header is likely to be modified by proxy. This mismatch results in a CSRF error.</p>
 <p>You can add CSRF_TRUSTED_ORIGINS to seahub_settings.py to solve the problem:</p>
-<div class="codehilite"><pre><span></span><code>CSRF_TRUSTED_ORIGINS = [&quot;https://&lt;your-domain&gt;&quot;]
+<div class="highlight"><pre><span></span><code>CSRF_TRUSTED_ORIGINS = [&quot;https://&lt;your-domain&gt;&quot;]
 </code></pre></div>
-
 <h2 id="new-python-libraries">New Python libraries<a class="headerlink" href="#new-python-libraries" title="Permanent link">&para;</a></h2>
 <p>Note, you should install Python libraries system wide using root user or sudo mode.</p>
 <p>For Ubuntu 20.04/22.04</p>
-<div class="codehilite"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
 sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>python3-dev<span class="w"> </span>ldap-utils<span class="w"> </span>libldap2-dev
 
 sudo<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> </span><span class="nv">future</span><span class="o">==</span><span class="m">0</span>.18.*<span class="w"> </span><span class="nv">mysqlclient</span><span class="o">==</span><span class="m">2</span>.1.*<span class="w"> </span><span class="nv">pillow</span><span class="o">==</span><span class="m">10</span>.2.*<span class="w"> </span><span class="nv">sqlalchemy</span><span class="o">==</span><span class="m">2</span>.0.18<span class="w"> </span><span class="nv">captcha</span><span class="o">==</span><span class="m">0</span>.5.*<span class="w"> </span><span class="nv">django_simple_captcha</span><span class="o">==</span><span class="m">0</span>.6.*<span class="w"> </span><span class="nv">djangosaml2</span><span class="o">==</span><span class="m">1</span>.5.*<span class="w"> </span><span class="nv">pysaml2</span><span class="o">==</span><span class="m">7</span>.2.*<span class="w"> </span><span class="nv">pycryptodome</span><span class="o">==</span><span class="m">3</span>.16.*<span class="w"> </span><span class="nv">cffi</span><span class="o">==</span><span class="m">1</span>.15.1<span class="w"> </span>python-ldap<span class="o">==</span><span class="m">3</span>.4.3
 </code></pre></div>
-
 <h2 id="upgrade-to-110x">Upgrade to 11.0.x<a class="headerlink" href="#upgrade-to-110x" title="Permanent link">&para;</a></h2>
 <h3 id="1-stop-seafile-100x-server">1) Stop Seafile-10.0.x server.<a class="headerlink" href="#1-stop-seafile-100x-server" title="Permanent link">&para;</a></h3>
 <h3 id="2-start-from-seafile-110x-run-the-script">2) Start from Seafile 11.0.x, run the script:<a class="headerlink" href="#2-start-from-seafile-110x-run-the-script" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>upgrade/upgrade_10.0_11.0.sh
+<div class="highlight"><pre><span></span><code>upgrade/upgrade_10.0_11.0.sh
 </code></pre></div>
-
 <h3 id="3modify-configurations-and-migrate-ldap-records">3）Modify configurations and migrate LDAP records<a class="headerlink" href="#3modify-configurations-and-migrate-ldap-records" title="Permanent link">&para;</a></h3>
 <h4 id="change-configurations-for-ldap">Change configurations for LDAP<a class="headerlink" href="#change-configurations-for-ldap" title="Permanent link">&para;</a></h4>
 <p>The configuration items of LDAP login and LDAP sync tasks are migrated from ccnet.conf to seahub_settings.py. The name of the configuration item is based on the 10.0 version, and the characters 'LDAP_' or 'MULTI_LDAP_1' are added. Examples are as follows:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Basic configuration items for LDAP login</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Basic configuration items for LDAP login</span>
 <span class="n">ENABLE_LDAP</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">LDAP_SERVER_URL</span> <span class="o">=</span> <span class="s1">&#39;ldap://192.168.0.125&#39;</span>     <span class="c1"># The URL of LDAP server</span>
 <span class="n">LDAP_BASE_DN</span> <span class="o">=</span> <span class="s1">&#39;ou=test,dc=seafile,dc=ren&#39;</span>   <span class="c1"># The root node of users who can </span>
@@ -4564,9 +4560,8 @@ sudo<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> 
 <span class="n">LDAP_USER_LAST_NAME_ATTR</span> <span class="o">=</span> <span class="s1">&#39;sn&#39;</span>          <span class="c1"># For update user&#39;s last name</span>
 <span class="n">LDAP_USER_NAME_REVERSE</span> <span class="o">=</span> <span class="kc">False</span>           <span class="c1"># Whether to reverse the user&#39;s first and last name</span>
 </code></pre></div>
-
-<p>The following configuration items are only for Pro Edition:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Configuration items for LDAP sync tasks.</span>
+<p>The following configuration items are only for Pro Edition:
+<div class="highlight"><pre><span></span><code><span class="c1"># Configuration items for LDAP sync tasks.</span>
 <span class="n">LDAP_SYNC_INTERVAL</span> <span class="o">=</span> <span class="mi">60</span>                  <span class="c1"># LDAP sync task period, in minutes</span>
 
 <span class="c1"># LDAP user sync configuration items.</span>
@@ -4612,26 +4607,22 @@ sudo<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> 
                                          <span class="c1"># Unit is MB.</span>
 <span class="n">DEL_GROUP_IF_NOT_FOUND</span> <span class="o">=</span> <span class="kc">False</span>           <span class="c1"># Set to &quot;true&quot;, sync process will delete the group if not found it in LDAP server.</span>
 <span class="n">DEL_DEPARTMENT_IF_NOT_FOUND</span> <span class="o">=</span> <span class="kc">False</span>      <span class="c1"># Set to &quot;true&quot;, sync process will deleted the department if not found it in LDAP server.</span>
-</code></pre></div>
-
+</code></pre></div></p>
 <p>If you sync users from LDAP to Seafile, when the user login via SSO (ADFS or OAuth), you want Seafile to find the existing account for this user instead of creating a new one, you can set <code>SSO_LDAP_USE_SAME_UID = True</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">SSO_LDAP_USE_SAME_UID</span> <span class="o">=</span> <span class="kc">True</span>
+<div class="highlight"><pre><span></span><code><span class="n">SSO_LDAP_USE_SAME_UID</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div>
-
 <p>Note, here the UID means the unique user ID, in LDAP it is the attribute you use for <code>LDAP_LOGIN_ATTR</code> (not <code>LDAP_UID_ATTR</code>), in ADFS it is <code>uid</code> attribute. You need make sure you use the same attribute for the two settings.</p>
 <h4 id="migrate-ldap-records">Migrate LDAP records<a class="headerlink" href="#migrate-ldap-records" title="Permanent link">&para;</a></h4>
 <p>Run the following script to migrate users in <code>LDAPImported</code> to <code>EmailUsers</code></p>
-<div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>&lt;install-path&gt;/seafile-server-latest
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>&lt;install-path&gt;/seafile-server-latest
 python3<span class="w"> </span>migrate_ldapusers.py
 </code></pre></div>
-
 <p>For Seafile docker</p>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>/usr/bin/python3<span class="w"> </span>/opt/seafile/seafile-server-latest/migrate_ldapusers.py
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>/usr/bin/python3<span class="w"> </span>/opt/seafile/seafile-server-latest/migrate_ldapusers.py
 </code></pre></div>
-
 <h4 id="change-configuration-for-oauth">Change configuration for OAuth:<a class="headerlink" href="#change-configuration-for-oauth" title="Permanent link">&para;</a></h4>
 <p>In the new version, the OAuth login configuration should keep the email attribute unchanged to be compatible with new and old user logins. In version 11.0, a new uid attribute is added to be used as a user's external unique ID. The uid will be stored in social_auth_usersocialauth to map to internal virtual ID. For old users, the original  email is used the internal virtual ID. The example is as follows:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Version 10.0 or earlier</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Version 10.0 or earlier</span>
 <span class="n">OAUTH_ATTRIBUTE_MAP</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">),</span>
     <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">),</span>
@@ -4646,7 +4637,6 @@ python3<span class="w"> </span>migrate_ldapusers.py
     <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;contact_email&quot;</span><span class="p">),</span>
 <span class="p">}</span>
 </code></pre></div>
-
 <p>When a user login, Seafile will first use "id -&gt; email" map to find the old user and then create "uid -&gt; uid" map for this old user. After all users login once, you can delete the configuration  <code>"id": (True, "email")</code>. You can also manully add records in social_auth_usersocialauth to map extenral uid to old users.</p>
 <h3 id="4-start-seafile-110x-server">4) Start Seafile-11.0.x server.<a class="headerlink" href="#4-start-seafile-110x-server" title="Permanent link">&para;</a></h3>
 <h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
@@ -4681,6 +4671,46 @@ python3<span class="w"> </span>migrate_ldapusers.py
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../upgrade_notes_for_10.0.x/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Upgrade notes for 10.0.x">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Upgrade notes for 10.0.x
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../upgrade_notes_for_12.0.x/" class="md-footer__link md-footer__link--next" aria-label="Next: Upgrade notes for 12.0.x">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Upgrade notes for 12.0.x
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4723,7 +4753,7 @@ python3<span class="w"> </span>migrate_ldapusers.py
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

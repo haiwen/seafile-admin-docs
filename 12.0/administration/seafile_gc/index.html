@@ -2190,7 +2190,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4270,66 +4270,61 @@
 <h2 id="run-gc">Run GC<a class="headerlink" href="#run-gc" title="Permanent link">&para;</a></h2>
 <h3 id="dry-run-mode">Dry-run Mode<a class="headerlink" href="#dry-run-mode" title="Permanent link">&para;</a></h3>
 <p>To see how much garbage can be collected without actually removing any garbage, use the dry-run option:</p>
-<div class="codehilite"><pre><span></span><code>seaf-gc.sh --dry-run [repo-id1] [repo-id2] ...
+<div class="highlight"><pre><span></span><code>seaf-gc.sh --dry-run [repo-id1] [repo-id2] ...
 </code></pre></div>
-
 <p>The output should look like:</p>
-<div class="codehilite"><pre><span></span><code>[<span class="mi">03</span><span class="o">/</span><span class="mi">19</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">19</span>:<span class="mi">41</span>:<span class="mi">49</span>]<span class="w"> </span><span class="nv">seafserv</span><span class="o">-</span><span class="nv">gc</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">115</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">GC</span><span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="nv">repo</span><span class="w"> </span><span class="nv">My</span><span class="w"> </span><span class="nv">Library</span><span class="ss">(</span><span class="nv">ffa57d93</span><span class="ss">)</span>
-[<span class="mi">03</span><span class="o">/</span><span class="mi">19</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">19</span>:<span class="mi">41</span>:<span class="mi">49</span>]<span class="w"> </span><span class="nv">gc</span><span class="o">-</span><span class="nv">core</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">394</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">GC</span><span class="w"> </span><span class="nv">started</span>.<span class="w"> </span><span class="nv">Total</span><span class="w"> </span><span class="nv">block</span><span class="w"> </span><span class="nv">number</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="mi">265</span>.
-[<span class="mi">03</span><span class="o">/</span><span class="mi">19</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">19</span>:<span class="mi">41</span>:<span class="mi">49</span>]<span class="w"> </span><span class="nv">gc</span><span class="o">-</span><span class="nv">core</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">75</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">GC</span><span class="w"> </span><span class="nv">index</span><span class="w"> </span><span class="nv">size</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="mi">1024</span><span class="w"> </span><span class="nv">Byte</span>.
-[<span class="mi">03</span><span class="o">/</span><span class="mi">19</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">19</span>:<span class="mi">41</span>:<span class="mi">49</span>]<span class="w"> </span><span class="nv">gc</span><span class="o">-</span><span class="nv">core</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">408</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Populating</span><span class="w"> </span><span class="nv">index</span>.
-[<span class="mi">03</span><span class="o">/</span><span class="mi">19</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">19</span>:<span class="mi">41</span>:<span class="mi">49</span>]<span class="w"> </span><span class="nv">gc</span><span class="o">-</span><span class="nv">core</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">262</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Populating</span><span class="w"> </span><span class="nv">index</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">repo</span><span class="w"> </span><span class="nv">ffa57d93</span>.
-[<span class="mi">03</span><span class="o">/</span><span class="mi">19</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">19</span>:<span class="mi">41</span>:<span class="mi">49</span>]<span class="w"> </span><span class="nv">gc</span><span class="o">-</span><span class="nv">core</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">308</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Traversed</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="nv">commits</span>,<span class="w"> </span><span class="mi">265</span><span class="w"> </span><span class="nv">blocks</span>.
-[<span class="mi">03</span><span class="o">/</span><span class="mi">19</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">19</span>:<span class="mi">41</span>:<span class="mi">49</span>]<span class="w"> </span><span class="nv">gc</span><span class="o">-</span><span class="nv">core</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">440</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Scanning</span><span class="w"> </span><span class="nv">unused</span><span class="w"> </span><span class="nv">blocks</span>.
-[<span class="mi">03</span><span class="o">/</span><span class="mi">19</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">19</span>:<span class="mi">41</span>:<span class="mi">49</span>]<span class="w"> </span><span class="nv">gc</span><span class="o">-</span><span class="nv">core</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">472</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">GC</span><span class="w"> </span><span class="nv">finished</span>.<span class="w"> </span><span class="mi">265</span><span class="w"> </span><span class="nv">blocks</span><span class="w"> </span><span class="nv">total</span>,<span class="w"> </span><span class="nv">about</span><span class="w"> </span><span class="mi">265</span><span class="w"> </span><span class="nv">reachable</span><span class="w"> </span><span class="nv">blocks</span>,<span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="nv">blocks</span><span class="w"> </span><span class="nv">can</span><span class="w"> </span><span class="nv">be</span><span class="w"> </span><span class="nv">removed</span>.
+<div class="highlight"><pre><span></span><code>[03/19/15 19:41:49] seafserv-gc.c(115): GC version 1 repo My Library(ffa57d93)
+[03/19/15 19:41:49] gc-core.c(394): GC started. Total block number is 265.
+[03/19/15 19:41:49] gc-core.c(75): GC index size is 1024 Byte.
+[03/19/15 19:41:49] gc-core.c(408): Populating index.
+[03/19/15 19:41:49] gc-core.c(262): Populating index for repo ffa57d93.
+[03/19/15 19:41:49] gc-core.c(308): Traversed 5 commits, 265 blocks.
+[03/19/15 19:41:49] gc-core.c(440): Scanning unused blocks.
+[03/19/15 19:41:49] gc-core.c(472): GC finished. 265 blocks total, about 265 reachable blocks, 0 blocks can be removed.
 
-[<span class="mi">03</span><span class="o">/</span><span class="mi">19</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">19</span>:<span class="mi">41</span>:<span class="mi">49</span>]<span class="w"> </span><span class="nv">seafserv</span><span class="o">-</span><span class="nv">gc</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">115</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">GC</span><span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="nv">repo</span><span class="w"> </span><span class="nv">aa</span><span class="ss">(</span><span class="nv">f3d0a8d0</span><span class="ss">)</span>
-[<span class="mi">03</span><span class="o">/</span><span class="mi">19</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">19</span>:<span class="mi">41</span>:<span class="mi">49</span>]<span class="w"> </span><span class="nv">gc</span><span class="o">-</span><span class="nv">core</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">394</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">GC</span><span class="w"> </span><span class="nv">started</span>.<span class="w"> </span><span class="nv">Total</span><span class="w"> </span><span class="nv">block</span><span class="w"> </span><span class="nv">number</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="mi">5</span>.
-[<span class="mi">03</span><span class="o">/</span><span class="mi">19</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">19</span>:<span class="mi">41</span>:<span class="mi">49</span>]<span class="w"> </span><span class="nv">gc</span><span class="o">-</span><span class="nv">core</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">75</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">GC</span><span class="w"> </span><span class="nv">index</span><span class="w"> </span><span class="nv">size</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="mi">1024</span><span class="w"> </span><span class="nv">Byte</span>.
-[<span class="mi">03</span><span class="o">/</span><span class="mi">19</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">19</span>:<span class="mi">41</span>:<span class="mi">49</span>]<span class="w"> </span><span class="nv">gc</span><span class="o">-</span><span class="nv">core</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">408</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Populating</span><span class="w"> </span><span class="nv">index</span>.
-[<span class="mi">03</span><span class="o">/</span><span class="mi">19</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">19</span>:<span class="mi">41</span>:<span class="mi">49</span>]<span class="w"> </span><span class="nv">gc</span><span class="o">-</span><span class="nv">core</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">262</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Populating</span><span class="w"> </span><span class="nv">index</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">repo</span><span class="w"> </span><span class="nv">f3d0a8d0</span>.
-[<span class="mi">03</span><span class="o">/</span><span class="mi">19</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">19</span>:<span class="mi">41</span>:<span class="mi">49</span>]<span class="w"> </span><span class="nv">gc</span><span class="o">-</span><span class="nv">core</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">308</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Traversed</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="nv">commits</span>,<span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="nv">blocks</span>.
-[<span class="mi">03</span><span class="o">/</span><span class="mi">19</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">19</span>:<span class="mi">41</span>:<span class="mi">49</span>]<span class="w"> </span><span class="nv">gc</span><span class="o">-</span><span class="nv">core</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">264</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Populating</span><span class="w"> </span><span class="nv">index</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">sub</span><span class="o">-</span><span class="nv">repo</span><span class="w"> </span><span class="mi">9217622</span><span class="nv">a</span>.
-[<span class="mi">03</span><span class="o">/</span><span class="mi">19</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">19</span>:<span class="mi">41</span>:<span class="mi">49</span>]<span class="w"> </span><span class="nv">gc</span><span class="o">-</span><span class="nv">core</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">308</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Traversed</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="nv">commits</span>,<span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="nv">blocks</span>.
-[<span class="mi">03</span><span class="o">/</span><span class="mi">19</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">19</span>:<span class="mi">41</span>:<span class="mi">49</span>]<span class="w"> </span><span class="nv">gc</span><span class="o">-</span><span class="nv">core</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">440</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Scanning</span><span class="w"> </span><span class="nv">unused</span><span class="w"> </span><span class="nv">blocks</span>.
-[<span class="mi">03</span><span class="o">/</span><span class="mi">19</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">19</span>:<span class="mi">41</span>:<span class="mi">49</span>]<span class="w"> </span><span class="nv">gc</span><span class="o">-</span><span class="nv">core</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">472</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">GC</span><span class="w"> </span><span class="nv">finished</span>.<span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="nv">blocks</span><span class="w"> </span><span class="nv">total</span>,<span class="w"> </span><span class="nv">about</span><span class="w"> </span><span class="mi">9</span><span class="w"> </span><span class="nv">reachable</span><span class="w"> </span><span class="nv">blocks</span>,<span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="nv">blocks</span><span class="w"> </span><span class="nv">can</span><span class="w"> </span><span class="nv">be</span><span class="w"> </span><span class="nv">removed</span>.
+[03/19/15 19:41:49] seafserv-gc.c(115): GC version 1 repo aa(f3d0a8d0)
+[03/19/15 19:41:49] gc-core.c(394): GC started. Total block number is 5.
+[03/19/15 19:41:49] gc-core.c(75): GC index size is 1024 Byte.
+[03/19/15 19:41:49] gc-core.c(408): Populating index.
+[03/19/15 19:41:49] gc-core.c(262): Populating index for repo f3d0a8d0.
+[03/19/15 19:41:49] gc-core.c(308): Traversed 8 commits, 5 blocks.
+[03/19/15 19:41:49] gc-core.c(264): Populating index for sub-repo 9217622a.
+[03/19/15 19:41:49] gc-core.c(308): Traversed 4 commits, 4 blocks.
+[03/19/15 19:41:49] gc-core.c(440): Scanning unused blocks.
+[03/19/15 19:41:49] gc-core.c(472): GC finished. 5 blocks total, about 9 reachable blocks, 0 blocks can be removed.
 
-[<span class="mi">03</span><span class="o">/</span><span class="mi">19</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">19</span>:<span class="mi">41</span>:<span class="mi">49</span>]<span class="w"> </span><span class="nv">seafserv</span><span class="o">-</span><span class="nv">gc</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">115</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">GC</span><span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="nv">repo</span><span class="w"> </span><span class="nv">test2</span><span class="ss">(</span><span class="nv">e7d26d93</span><span class="ss">)</span>
-[<span class="mi">03</span><span class="o">/</span><span class="mi">19</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">19</span>:<span class="mi">41</span>:<span class="mi">49</span>]<span class="w"> </span><span class="nv">gc</span><span class="o">-</span><span class="nv">core</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">394</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">GC</span><span class="w"> </span><span class="nv">started</span>.<span class="w"> </span><span class="nv">Total</span><span class="w"> </span><span class="nv">block</span><span class="w"> </span><span class="nv">number</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="mi">507</span>.
-[<span class="mi">03</span><span class="o">/</span><span class="mi">19</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">19</span>:<span class="mi">41</span>:<span class="mi">49</span>]<span class="w"> </span><span class="nv">gc</span><span class="o">-</span><span class="nv">core</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">75</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">GC</span><span class="w"> </span><span class="nv">index</span><span class="w"> </span><span class="nv">size</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="mi">1024</span><span class="w"> </span><span class="nv">Byte</span>.
-[<span class="mi">03</span><span class="o">/</span><span class="mi">19</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">19</span>:<span class="mi">41</span>:<span class="mi">49</span>]<span class="w"> </span><span class="nv">gc</span><span class="o">-</span><span class="nv">core</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">408</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Populating</span><span class="w"> </span><span class="nv">index</span>.
-[<span class="mi">03</span><span class="o">/</span><span class="mi">19</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">19</span>:<span class="mi">41</span>:<span class="mi">49</span>]<span class="w"> </span><span class="nv">gc</span><span class="o">-</span><span class="nv">core</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">262</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Populating</span><span class="w"> </span><span class="nv">index</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">repo</span><span class="w"> </span><span class="nv">e7d26d93</span>.
-[<span class="mi">03</span><span class="o">/</span><span class="mi">19</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">19</span>:<span class="mi">41</span>:<span class="mi">49</span>]<span class="w"> </span><span class="nv">gc</span><span class="o">-</span><span class="nv">core</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">308</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Traversed</span><span class="w"> </span><span class="mi">577</span><span class="w"> </span><span class="nv">commits</span>,<span class="w"> </span><span class="mi">507</span><span class="w"> </span><span class="nv">blocks</span>.
-[<span class="mi">03</span><span class="o">/</span><span class="mi">19</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">19</span>:<span class="mi">41</span>:<span class="mi">49</span>]<span class="w"> </span><span class="nv">gc</span><span class="o">-</span><span class="nv">core</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">440</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Scanning</span><span class="w"> </span><span class="nv">unused</span><span class="w"> </span><span class="nv">blocks</span>.
-[<span class="mi">03</span><span class="o">/</span><span class="mi">19</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">19</span>:<span class="mi">41</span>:<span class="mi">49</span>]<span class="w"> </span><span class="nv">gc</span><span class="o">-</span><span class="nv">core</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">472</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">GC</span><span class="w"> </span><span class="nv">finished</span>.<span class="w"> </span><span class="mi">507</span><span class="w"> </span><span class="nv">blocks</span><span class="w"> </span><span class="nv">total</span>,<span class="w"> </span><span class="nv">about</span><span class="w"> </span><span class="mi">507</span><span class="w"> </span><span class="nv">reachable</span><span class="w"> </span><span class="nv">blocks</span>,<span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="nv">blocks</span><span class="w"> </span><span class="nv">can</span><span class="w"> </span><span class="nv">be</span><span class="w"> </span><span class="nv">removed</span>.
+[03/19/15 19:41:49] seafserv-gc.c(115): GC version 1 repo test2(e7d26d93)
+[03/19/15 19:41:49] gc-core.c(394): GC started. Total block number is 507.
+[03/19/15 19:41:49] gc-core.c(75): GC index size is 1024 Byte.
+[03/19/15 19:41:49] gc-core.c(408): Populating index.
+[03/19/15 19:41:49] gc-core.c(262): Populating index for repo e7d26d93.
+[03/19/15 19:41:49] gc-core.c(308): Traversed 577 commits, 507 blocks.
+[03/19/15 19:41:49] gc-core.c(440): Scanning unused blocks.
+[03/19/15 19:41:49] gc-core.c(472): GC finished. 507 blocks total, about 507 reachable blocks, 0 blocks can be removed.
 
-[<span class="mi">03</span><span class="o">/</span><span class="mi">19</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">19</span>:<span class="mi">41</span>:<span class="mi">50</span>]<span class="w"> </span><span class="nv">seafserv</span><span class="o">-</span><span class="nv">gc</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">124</span><span class="ss">)</span>:<span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nv">Repos</span><span class="w"> </span><span class="nv">deleted</span><span class="w"> </span><span class="nv">by</span><span class="w"> </span><span class="nv">users</span><span class="w"> </span><span class="o">===</span>
-[<span class="mi">03</span><span class="o">/</span><span class="mi">19</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">19</span>:<span class="mi">41</span>:<span class="mi">50</span>]<span class="w"> </span><span class="nv">seafserv</span><span class="o">-</span><span class="nv">gc</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">145</span><span class="ss">)</span>:<span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nv">GC</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">finished</span><span class="w"> </span><span class="o">===</span>
+[03/19/15 19:41:50] seafserv-gc.c(124): === Repos deleted by users ===
+[03/19/15 19:41:50] seafserv-gc.c(145): === GC is finished ===
 
-[<span class="mi">03</span><span class="o">/</span><span class="mi">19</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">19</span>:<span class="mi">41</span>:<span class="mi">50</span>]<span class="w"> </span><span class="nv">Following</span><span class="w"> </span><span class="nv">repos</span><span class="w"> </span><span class="nv">have</span><span class="w"> </span><span class="nv">blocks</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">be</span><span class="w"> </span><span class="nv">removed</span>:
-<span class="nv">repo</span><span class="o">-</span><span class="nv">id1</span>
-<span class="nv">repo</span><span class="o">-</span><span class="nv">id2</span>
-<span class="nv">repo</span><span class="o">-</span><span class="nv">id3</span>
+[03/19/15 19:41:50] Following repos have blocks to be removed:
+repo-id1
+repo-id2
+repo-id3
 </code></pre></div>
-
 <p>If you give specific library ids, only those libraries will be checked; otherwise all libraries will be checked.</p>
 <p>Notice that at the end of the output there is a "repos have blocks to be removed" section. It contains the list of libraries that have garbage blocks. Later when you run GC without --dry-run option, you can use these libraris ids as input arguments to GC program.</p>
 <h3 id="removing-garbage">Removing Garbage<a class="headerlink" href="#removing-garbage" title="Permanent link">&para;</a></h3>
 <p>To actually remove garbage blocks, run without the --dry-run option:</p>
-<div class="codehilite"><pre><span></span><code>seaf-gc.sh [repo-id1] [repo-id2] ...
+<div class="highlight"><pre><span></span><code>seaf-gc.sh [repo-id1] [repo-id2] ...
 </code></pre></div>
-
 <p>If libraries ids are specified, only those libraries will be checked for garbage.</p>
 <p>As described before, there are two types of garbage blocks to be removed. Sometimes just removing the first type of blocks (those that belong to deleted libraries) is good enough. In this case, the GC program won't bother to check the libraries for outdated historic blocks. The "-r" option implements this feature:</p>
-<div class="codehilite"><pre><span></span><code>seaf-gc.sh -r
+<div class="highlight"><pre><span></span><code>seaf-gc.sh -r
 </code></pre></div>
-
 <p><strong>Libraries deleted by the users are not immediately removed from the system. Instead, they're moved into a "trash" in the system admin page. Before they're cleared from the trash, their blocks won't be garbage collected.</strong></p>
 <h3 id="removing-fs-objects">Removing FS objects<a class="headerlink" href="#removing-fs-objects" title="Permanent link">&para;</a></h3>
 <p>Since Pro server 8.0.6 and community edition 9.0, you can remove garbage fs objects. It should be run without the --dry-run option:</p>
-<div class="codehilite"><pre><span></span><code>seaf-gc.sh --rm-fs
+<div class="highlight"><pre><span></span><code>seaf-gc.sh --rm-fs
 </code></pre></div>
-
 <p>Note: This command has bug before Pro Edition 10.0.15 and Community Edition 11.0.7. It could cause virtual libraries (e.g. shared folders) failing to merge into their parent libraries. Please avoid using this option in the affected versions. Please contact our support team if you are affected by this bug.</p>
 <h3 id="using-multiple-threads-in-gc">Using Multiple Threads in GC<a class="headerlink" href="#using-multiple-threads-in-gc" title="Permanent link">&para;</a></h3>
 <p>You can specify the thread number in GC. By default,</p>
@@ -4338,16 +4333,14 @@
 <li>If storage backend is file system, only 1 thread is started.</li>
 </ul>
 <p>You can specify the thread number in with "-t" option. "-t" option can be used together with all other options. Each thread will do GC on one library. For example, the following command will use 20 threads to GC all libraries:</p>
-<div class="codehilite"><pre><span></span><code>seaf-gc.sh -t 20
+<div class="highlight"><pre><span></span><code>seaf-gc.sh -t 20
 </code></pre></div>
-
 <p>Since the threads are concurrent, the output of each thread may mix with each others. Library ID is printed in each line of output.</p>
 <h3 id="run-gc-based-on-library-id-prefix">Run GC based on library ID prefix<a class="headerlink" href="#run-gc-based-on-library-id-prefix" title="Permanent link">&para;</a></h3>
 <p>Since GC usually runs quite slowly as it needs to traverse the entire library history. You can use multiple threads to run GC in parallel. For even larger deployments, it's also desirable to run GC on multiple server in parallel.</p>
 <p>A simple pattern to divide the workload among multiple GC servers is to assign libraries to servers based on library ID. Since Pro edition 7.1.5, this is supported. You can add "--id-prefix" option to seaf-gc.sh, to specify the library ID prefix. For example, the below command will only process libraries having "a123" as ID prefix.</p>
-<div class="codehilite"><pre><span></span><code>seaf-gc.sh --id-prefix a123
+<div class="highlight"><pre><span></span><code>seaf-gc.sh --id-prefix a123
 </code></pre></div>
-
 <h2 id="gc-in-seafile-docker-container">GC in Seafile docker container<a class="headerlink" href="#gc-in-seafile-docker-container" title="Permanent link">&para;</a></h2>
 <p>To perform garbage collection inside the seafile docker container, you must run the <code>/scripts/gc.sh</code> script. Simply run <code>docker exec &lt;whatever-your-seafile-container-is-called&gt; /scripts/gc.sh</code>.</p>
 
@@ -4379,6 +4372,46 @@
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../seafile_fsck/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Seafile FSCK">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Seafile FSCK
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../clean_database/" class="md-footer__link md-footer__link--next" aria-label="Next: Clean database">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Clean database
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4421,7 +4454,7 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

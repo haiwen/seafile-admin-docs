@@ -2190,7 +2190,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4452,56 +4452,50 @@ Please always follow the main <a href="../upgrade/">upgrade guide</a>.</p>
 <ul>
 <li>For Ubuntu 16.04/18.04 or Debian 10</li>
 </ul>
-<div class="codehilite"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>python3<span class="w"> </span>python3-setuptools<span class="w"> </span>python3-pip<span class="w"> </span>memcached<span class="w"> </span>libmemcached-dev<span class="w"> </span>-y
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>python3<span class="w"> </span>python3-setuptools<span class="w"> </span>python3-pip<span class="w"> </span>memcached<span class="w"> </span>libmemcached-dev<span class="w"> </span>-y
 
 sudo<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> </span>--timeout<span class="o">=</span><span class="m">3600</span><span class="w"> </span><span class="nv">Pillow</span><span class="o">==</span><span class="m">9</span>.4.0<span class="w"> </span>pylibmc<span class="w"> </span>captcha<span class="w"> </span>jinja2<span class="w"> </span><span class="nv">sqlalchemy</span><span class="o">==</span><span class="m">1</span>.3.8<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>django-pylibmc<span class="w"> </span>django-simple-captcha<span class="w"> </span>python3-ldap
 </code></pre></div>
-
 <ul>
 <li>For CentOS 7/8</li>
 </ul>
-<div class="codehilite"><pre><span></span><code>yum<span class="w"> </span>install<span class="w"> </span>python3<span class="w"> </span>python3-setuptools<span class="w"> </span>python3-pip<span class="w"> </span>-y
+<div class="highlight"><pre><span></span><code>yum<span class="w"> </span>install<span class="w"> </span>python3<span class="w"> </span>python3-setuptools<span class="w"> </span>python3-pip<span class="w"> </span>-y
 
 sudo<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> </span>--timeout<span class="o">=</span><span class="m">3600</span><span class="w"> </span><span class="nv">Pillow</span><span class="o">==</span><span class="m">9</span>.4.0<span class="w"> </span>pylibmc<span class="w"> </span>captcha<span class="w"> </span>jinja2<span class="w"> </span><span class="nv">sqlalchemy</span><span class="o">==</span><span class="m">1</span>.3.8<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>django-pylibmc<span class="w"> </span>django-simple-captcha<span class="w"> </span>python3-ldap
 </code></pre></div>
-
 <h4 id="seafile-pro">Seafile-Pro<a class="headerlink" href="#seafile-pro" title="Permanent link">&para;</a></h4>
 <ul>
 <li>For Ubuntu 16.04/18.04 or Debian 10</li>
 </ul>
-<div class="codehilite"><pre><span></span><code>apt-get<span class="w"> </span>install<span class="w"> </span>python3<span class="w"> </span>python3-setuptools<span class="w"> </span>python3-pip<span class="w"> </span>-y
+<div class="highlight"><pre><span></span><code>apt-get<span class="w"> </span>install<span class="w"> </span>python3<span class="w"> </span>python3-setuptools<span class="w"> </span>python3-pip<span class="w"> </span>-y
 
 sudo<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> </span>--timeout<span class="o">=</span><span class="m">3600</span><span class="w"> </span><span class="nv">Pillow</span><span class="o">==</span><span class="m">9</span>.4.0<span class="w"> </span>pylibmc<span class="w"> </span>captcha<span class="w"> </span>jinja2<span class="w"> </span><span class="nv">sqlalchemy</span><span class="o">==</span><span class="m">1</span>.3.8<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>django-pylibmc<span class="w"> </span>django-simple-captcha<span class="w"> </span>python3-ldap
 </code></pre></div>
-
 <ul>
 <li>For CentOS 7/8</li>
 </ul>
-<div class="codehilite"><pre><span></span><code>yum<span class="w"> </span>install<span class="w"> </span>python3<span class="w"> </span>python3-setuptools<span class="w"> </span>python3-pip<span class="w"> </span>-y
+<div class="highlight"><pre><span></span><code>yum<span class="w"> </span>install<span class="w"> </span>python3<span class="w"> </span>python3-setuptools<span class="w"> </span>python3-pip<span class="w"> </span>-y
 
 sudo<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> </span>--timeout<span class="o">=</span><span class="m">3600</span><span class="w"> </span><span class="nv">Pillow</span><span class="o">==</span><span class="m">9</span>.4.0<span class="w"> </span>pylibmc<span class="w"> </span>captcha<span class="w"> </span>jinja2<span class="w"> </span><span class="nv">sqlalchemy</span><span class="o">==</span><span class="m">1</span>.3.8<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>django-pylibmc<span class="w"> </span>django-simple-captcha<span class="w"> </span>python3-ldap
 </code></pre></div>
-
 <h3 id="upgrade-to-71x">Upgrade to 7.1.x<a class="headerlink" href="#upgrade-to-71x" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Stop Seafile-7.0.x server.</li>
 <li>Start from Seafile 7.0.x, run the script:</li>
 </ol>
-<div class="codehilite"><pre><span></span><code>upgrade/upgrade_7.0_7.1.sh
+<div class="highlight"><pre><span></span><code>upgrade/upgrade_7.0_7.1.sh
 </code></pre></div>
-
 <ol>
 <li>Clear the Seahub cache:</li>
 </ol>
-<div class="codehilite"><pre><span></span><code>rm -rf /tmp/seahub_cache # Clear the Seahub cache files from disk.
-<span class="gh">#</span> If you are using the Memcached service, you need to restart the service to clear the Seahub cache.
+<div class="highlight"><pre><span></span><code>rm -rf /tmp/seahub_cache # Clear the Seahub cache files from disk.
+# If you are using the Memcached service, you need to restart the service to clear the Seahub cache.
 systemctl restart memcached
 </code></pre></div>
-
 <ol>
 <li>Start Seafile-7.1.x server.</li>
 </ol>
@@ -4510,39 +4504,36 @@ systemctl restart memcached
 <p>This means that if you are using Seafdav functionality and have deployed Nginx or Apache reverse proxy. You need to change Fastcgi to Wsgi.</p>
 <h4 id="for-nginx">For Nginx<a class="headerlink" href="#for-nginx" title="Permanent link">&para;</a></h4>
 <p>For Seafdav, the configuration of Nginx is as follows:</p>
-<div class="codehilite"><pre><span></span><code><span class="o">.....</span>
-<span class="w">    </span><span class="n">location</span><span class="w"> </span><span class="o">/</span><span class="n">seafdav</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">proxy_pass</span><span class="w">         </span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">seafdav</span><span class="p">;</span>
-<span class="w">        </span><span class="n">proxy_set_header</span><span class="w">   </span><span class="n">Host</span><span class="w"> </span><span class="o">$</span><span class="n">host</span><span class="p">;</span>
-<span class="w">        </span><span class="n">proxy_set_header</span><span class="w">   </span><span class="n">X</span><span class="o">-</span><span class="n">Real</span><span class="o">-</span><span class="n">IP</span><span class="w"> </span><span class="o">$</span><span class="n">remote_addr</span><span class="p">;</span>
-<span class="w">        </span><span class="n">proxy_set_header</span><span class="w">   </span><span class="n">X</span><span class="o">-</span><span class="n">Forwarded</span><span class="o">-</span><span class="n">For</span><span class="w"> </span><span class="o">$</span><span class="n">proxy_add_x_forwarded_for</span><span class="p">;</span>
-<span class="w">        </span><span class="n">proxy_set_header</span><span class="w">   </span><span class="n">X</span><span class="o">-</span><span class="n">Forwarded</span><span class="o">-</span><span class="n">Host</span><span class="w"> </span><span class="o">$</span><span class="n">server_name</span><span class="p">;</span>
-<span class="w">        </span><span class="n">proxy_set_header</span><span class="w">   </span><span class="n">X</span><span class="o">-</span><span class="n">Forwarded</span><span class="o">-</span><span class="n">Proto</span><span class="w"> </span><span class="o">$</span><span class="n">scheme</span><span class="p">;</span>
-<span class="w">        </span><span class="n">proxy_read_timeout</span><span class="w">  </span><span class="mi">1200</span><span class="n">s</span><span class="p">;</span>
-<span class="w">        </span><span class="n">client_max_body_size</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code>.....
+    location /seafdav {
+        proxy_pass         http://127.0.0.1:8080/seafdav;
+        proxy_set_header   Host $host;
+        proxy_set_header   X-Real-IP $remote_addr;
+        proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header   X-Forwarded-Host $server_name;
+        proxy_set_header   X-Forwarded-Proto $scheme;
+        proxy_read_timeout  1200s;
+        client_max_body_size 0;
 
-<span class="w">        </span><span class="n">access_log</span><span class="w">      </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">seafdav</span><span class="o">.</span><span class="n">access</span><span class="o">.</span><span class="n">log</span><span class="w"> </span><span class="n">seafileformat</span><span class="p">;</span>
-<span class="w">        </span><span class="n">error_log</span><span class="w">       </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">seafdav</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">log</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
+        access_log      /var/log/nginx/seafdav.access.log seafileformat;
+        error_log       /var/log/nginx/seafdav.error.log;
+    }
 </code></pre></div>
-
 <h4 id="for-apache">For Apache<a class="headerlink" href="#for-apache" title="Permanent link">&para;</a></h4>
 <p>For Seafdav, the configuration of Apache is as follows:</p>
-<div class="codehilite"><pre><span></span><code>......
-<span class="w">    </span><span class="nt">&lt;Location</span><span class="w"> </span><span class="err">/seafdav</span><span class="nt">&gt;</span>
-<span class="w">        </span>ProxyPass<span class="w"> </span>&quot;http://127.0.0.1:8080/seafdav&quot;
-<span class="w">    </span><span class="nt">&lt;/Location&gt;</span>
+<div class="highlight"><pre><span></span><code>......
+    &lt;Location /seafdav&gt;
+        ProxyPass &quot;http://127.0.0.1:8080/seafdav&quot;
+    &lt;/Location&gt;
 </code></pre></div>
-
 <h3 id="builtin-office-file-preview">Builtin office file preview<a class="headerlink" href="#builtin-office-file-preview" title="Permanent link">&para;</a></h3>
 <p>The implementation of builtin office file preview has been changed. You should update your configuration according to:</p>
 <p><a href="https://download.seafile.com/published/seafile-manual/deploy_pro/office_documents_preview.md#user-content-Version%207.1+">https://download.seafile.com/published/seafile-manual/deploy_pro/office_documents_preview.md#user-content-Version%207.1+</a></p>
 <h3 id="if-you-are-using-ceph-backend">If you are using Ceph backend<a class="headerlink" href="#if-you-are-using-ceph-backend" title="Permanent link">&para;</a></h3>
 <p>If you are using Ceph storage backend, you need to install new python library.</p>
 <p>On Debian/Ubuntu (Seafile 7.1+):</p>
-<div class="codehilite"><pre><span></span><code>sudo apt-get install python3-rados
+<div class="highlight"><pre><span></span><code>sudo apt-get install python3-rados
 </code></pre></div>
-
 <h3 id="login-page-customization">Login Page Customization<a class="headerlink" href="#login-page-customization" title="Permanent link">&para;</a></h3>
 <p>If you have customized the login page or other html pages, as we have removed some old javascript libraries, your customized pages may not work anymore. Please try to re-customize based on the newest version.</p>
 <h3 id="user-name-encoding-issue-with-shibboleth-login">User name encoding issue with Shibboleth login<a class="headerlink" href="#user-name-encoding-issue-with-shibboleth-login" title="Permanent link">&para;</a></h3>
@@ -4551,34 +4542,31 @@ systemctl restart memcached
 </blockquote>
 <p>We have two customers reported that after upgrading to version 7.1, users login via Shibboleth single sign on have a wrong name if the name contains a special character. We suspect it is a Shibboleth problem as it does not sending the name in UTF-8 encoding to Seafile. (<a href="https://issues.shibboleth.net/jira/browse/SSPCPP-2">https://issues.shibboleth.net/jira/browse/SSPCPP-2</a>)</p>
 <p>The solution is to modify the code in seahub/thirdpart/shibboleth/middleware.py:</p>
-<div class="codehilite"><pre><span></span><code><span class="mf">158</span><span class="w">         </span><span class="kr">if</span><span class="w"> </span><span class="n">nickname</span><span class="mf">.</span><span class="n">strip</span><span class="p">():</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">set</span><span class="w"> </span><span class="n">nickname</span><span class="w"> </span><span class="n">when</span><span class="w"> </span><span class="n">it</span><span class="err">&#39;</span><span class="n">s</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">empty</span>
-<span class="mf">159</span><span class="w">             </span><span class="n">p</span><span class="mf">.</span><span class="n">nickname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nickname</span>
+<div class="highlight"><pre><span></span><code>158         if nickname.strip():  # set nickname when it&#39;s not empty
+159             p.nickname = nickname
 
-<span class="kr">to</span><span class="w"> </span>
+to 
 
-<span class="mf">158</span><span class="w">         </span><span class="kr">if</span><span class="w"> </span><span class="n">nickname</span><span class="mf">.</span><span class="n">strip</span><span class="p">():</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">set</span><span class="w"> </span><span class="n">nickname</span><span class="w"> </span><span class="n">when</span><span class="w"> </span><span class="n">it</span><span class="err">&#39;</span><span class="n">s</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">empty</span>
-<span class="mf">159</span><span class="w">             </span><span class="n">p</span><span class="mf">.</span><span class="n">nickname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nickname</span><span class="mf">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&quot;iso-8859-1”).decode(&#39;utf8&#39;)</span>
+158         if nickname.strip():  # set nickname when it&#39;s not empty
+159             p.nickname = nickname.encode(&quot;iso-8859-1”).decode(&#39;utf8&#39;)
 </code></pre></div>
-
 <p>If you have this problem too, please let us know.</p>
 <h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
 <h3 id="sql-error-during-upgrade">SQL Error during upgrade<a class="headerlink" href="#sql-error-during-upgrade" title="Permanent link">&para;</a></h3>
 <p>The upgrade script will try to create a missing table and remove an used index. The following SQL errors are jus warnings and can be ignored:</p>
-<div class="codehilite"><pre><span></span><code><span class="o">[</span><span class="n">INFO</span><span class="o">]</span><span class="w"> </span><span class="n">updating</span><span class="w"> </span><span class="n">seahub</span><span class="w"> </span><span class="k">database</span><span class="p">...</span>
-<span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">seafile</span><span class="o">/</span><span class="n">seafile</span><span class="o">-</span><span class="n">server</span><span class="o">-</span><span class="mf">7.1.1</span><span class="o">/</span><span class="n">seahub</span><span class="o">/</span><span class="n">thirdpart</span><span class="o">/</span><span class="n">pymysql</span><span class="o">/</span><span class="n">cursors</span><span class="p">.</span><span class="nl">py</span><span class="p">:</span><span class="mi">170</span><span class="err">:</span><span class="w"> </span><span class="nl">Warning</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="mi">1050</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;Table &#39;base_reposecretkey&#39; already exists&quot;</span><span class="p">)</span>
-<span class="w">  </span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">_query</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-<span class="o">[</span><span class="n">WARNING</span><span class="o">]</span><span class="w"> </span><span class="n">Failed</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">execute</span><span class="w"> </span><span class="k">sql</span><span class="err">:</span><span class="w"> </span><span class="p">(</span><span class="mi">1091</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;Can&#39;t DROP &#39;drafts_draft_origin_file_uuid_7c003c98_uniq&#39;; check that column/key exists&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>[INFO] updating seahub database...
+/opt/seafile/seafile-server-7.1.1/seahub/thirdpart/pymysql/cursors.py:170: Warning: (1050, &quot;Table &#39;base_reposecretkey&#39; already exists&quot;)
+  result = self._query(query)
+[WARNING] Failed to execute sql: (1091, &quot;Can&#39;t DROP &#39;drafts_draft_origin_file_uuid_7c003c98_uniq&#39;; check that column/key exists&quot;)
 </code></pre></div>
-
 <h3 id="internal-server-error-after-upgrade-to-version-71">Internal server error after upgrade to version 7.1<a class="headerlink" href="#internal-server-error-after-upgrade-to-version-71" title="Permanent link">&para;</a></h3>
 <p>Please check whether the seahub process is running in your server. If it is running, there should be an error log in seahub.log for internal server error.</p>
 <p>If seahub process is not running, you can modify conf/gunicorn.conf, change <code>daemon = True</code>  to <code>daemon = False</code>  , then run ./seahub.sh again. If there are missing Python dependencies, the error will be reported in the terminal.</p>
 <p>The most common issue is that you use an old memcache configuration that depends on python-memcache. The new way is</p>
-<div class="codehilite"><pre><span></span><code><span class="s">&#39;BACKEND&#39;</span><span class="p">:</span> <span class="s">&#39;django_pylibmc.memcached.PyLibMCCache&#39;</span>
+<div class="highlight"><pre><span></span><code>&#39;BACKEND&#39;: &#39;django_pylibmc.memcached.PyLibMCCache&#39;
 </code></pre></div>
-
 <p>The old way is</p>
-<div class="codehilite"><pre><span></span><code><span class="s">&#39;BACKEND&#39;</span><span class="p">:</span> <span class="s">&#39;django.core.cache.backends.memcached.MemcachedCache&#39;</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code>&#39;BACKEND&#39;: &#39;django.core.cache.backends.memcached.MemcachedCache&#39;,
 </code></pre></div>
 
 
@@ -4609,6 +4597,46 @@ systemctl restart memcached
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../upgrade_notes_for_7.0.x/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Upgrade notes for 7.0.x">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Upgrade notes for 7.0.x
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../upgrade_notes_for_8.0.x/" class="md-footer__link md-footer__link--next" aria-label="Next: Upgrade notes for 8.0.x">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Upgrade notes for 8.0.x
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4651,7 +4679,7 @@ systemctl restart memcached
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

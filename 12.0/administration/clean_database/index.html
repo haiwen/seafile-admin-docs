@@ -2190,7 +2190,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4334,60 +4334,51 @@
 <h2 id="seahub">Seahub<a class="headerlink" href="#seahub" title="Permanent link">&para;</a></h2>
 <h3 id="session">Session<a class="headerlink" href="#session" title="Permanent link">&para;</a></h3>
 <p>Use the following command to clear expired session records in Seahub database:</p>
-<div class="codehilite"><pre><span></span><code>cd &lt;install-path&gt;/seafile-server-latest
+<div class="highlight"><pre><span></span><code>cd &lt;install-path&gt;/seafile-server-latest
 ./seahub.sh python-env python3 seahub/manage.py clearsessions
 </code></pre></div>
-
 <h3 id="activity">Activity<a class="headerlink" href="#activity" title="Permanent link">&para;</a></h3>
 <p>Use the following command to clear the activity records:</p>
-<div class="codehilite"><pre><span></span><code>use seahub_db;
+<div class="highlight"><pre><span></span><code>use seahub_db;
 DELETE FROM Activity WHERE to_days(now()) - to_days(timestamp) &gt; 90;
 </code></pre></div>
-
 <p>The corresponding items in UserActivity will deleted automatically by MariaDB when the foreign keys in Activity table are deleted.</p>
 <h3 id="login">Login<a class="headerlink" href="#login" title="Permanent link">&para;</a></h3>
 <p>Use the following command to clean the login records:</p>
-<div class="codehilite"><pre><span></span><code>use seahub_db;
+<div class="highlight"><pre><span></span><code>use seahub_db;
 DELETE FROM sysadmin_extra_userloginlog WHERE to_days(now()) - to_days(login_date) &gt; 90;
 </code></pre></div>
-
 <h3 id="file-access">File Access<a class="headerlink" href="#file-access" title="Permanent link">&para;</a></h3>
 <p>Use the following command to clean the file access records:</p>
-<div class="codehilite"><pre><span></span><code>use seahub_db;
+<div class="highlight"><pre><span></span><code>use seahub_db;
 DELETE FROM FileAudit WHERE to_days(now()) - to_days(timestamp) &gt; 90;
 </code></pre></div>
-
 <h3 id="file-update">File Update<a class="headerlink" href="#file-update" title="Permanent link">&para;</a></h3>
 <p>Use the following command to clean the file update records:</p>
-<div class="codehilite"><pre><span></span><code>use seahub_db;
+<div class="highlight"><pre><span></span><code>use seahub_db;
 DELETE FROM FileUpdate WHERE to_days(now()) - to_days(timestamp) &gt; 90;
 </code></pre></div>
-
 <h3 id="permisson">Permisson<a class="headerlink" href="#permisson" title="Permanent link">&para;</a></h3>
 <p>Use the following command to clean the permission change audit records:</p>
-<div class="codehilite"><pre><span></span><code>use seahub_db;
+<div class="highlight"><pre><span></span><code>use seahub_db;
 DELETE FROM PermAudit WHERE to_days(now()) - to_days(timestamp) &gt; 90;
 </code></pre></div>
-
 <h3 id="file-history">File History<a class="headerlink" href="#file-history" title="Permanent link">&para;</a></h3>
 <p>Use the following command to clean the file history records:</p>
-<div class="codehilite"><pre><span></span><code>use seahub_db;
+<div class="highlight"><pre><span></span><code>use seahub_db;
 DELETE FROM FileHistory WHERE to_days(now()) - to_days(timestamp) &gt; 90;
 </code></pre></div>
-
 <h3 id="command-clean_db_records">Command clean_db_records<a class="headerlink" href="#command-clean_db_records" title="Permanent link">&para;</a></h3>
 <p>Use the following command to simultaneously clean up table records of Activity, sysadmin_extra_userloginlog, FileAudit, FileUpdate, FileHistory, PermAudit, FileTrash 90 days ago:</p>
-<div class="codehilite"><pre><span></span><code>cd &lt;install-path&gt;/seafile-server-latest
+<div class="highlight"><pre><span></span><code>cd &lt;install-path&gt;/seafile-server-latest
 ./seahub.sh python-env python3 seahub/manage.py clean_db_records
 </code></pre></div>
-
 <h3 id="outdated-library-data">Outdated Library Data<a class="headerlink" href="#outdated-library-data" title="Permanent link">&para;</a></h3>
 <p>Since version 6.2, we offer command to clear outdated library records in Seahub database,
 e.g. records that are not deleted after a library is deleted. This is because users can restore a deleted library, so we can't delete these records at library deleting time.</p>
-<div class="codehilite"><pre><span></span><code>cd &lt;install-path&gt;/seafile-server-latest
+<div class="highlight"><pre><span></span><code>cd &lt;install-path&gt;/seafile-server-latest
 ./seahub.sh python-env python3 seahub/manage.py clear_invalid_repo_data
 </code></pre></div>
-
 <p>This command has been improved in version 10.0, including:</p>
 <ol>
 <li>
@@ -4397,10 +4388,9 @@ e.g. records that are not deleted after a library is deleted. This is because us
 <p>Dry-run mode: if you just want to see how much invalid data can be deleted without actually deleting any data, you can use the dry-run option, e.g.</p>
 </li>
 </ol>
-<div class="codehilite"><pre><span></span><code>cd &lt;install-path&gt;/seafile-server-latest
+<div class="highlight"><pre><span></span><code>cd &lt;install-path&gt;/seafile-server-latest
 ./seahub.sh python-env python3 seahub/manage.py clear_invalid_repo_data --dry-run=true
 </code></pre></div>
-
 <h3 id="library-sync-tokens">Library Sync Tokens<a class="headerlink" href="#library-sync-tokens" title="Permanent link">&para;</a></h3>
 <p>There are two tables in Seafile db that are related to library sync tokens.</p>
 <ul>
@@ -4408,12 +4398,11 @@ e.g. records that are not deleted after a library is deleted. This is because us
 <li>RepoTokenPeerInfo contains more information about each client token, such as client name, IP address, last sync time etc.</li>
 </ul>
 <p>When you have many sync clients connected to the server, these two tables can have large number of rows. Many of them are no longer actively used. You may clean the tokens that are not used in a recent period, by the following SQL query:</p>
-<div class="codehilite"><pre><span></span><code>delete t,i from RepoUserToken t, RepoTokenPeerInfo i where t.token=i.token and sync_time &lt; xxxx;
+<div class="highlight"><pre><span></span><code>delete t,i from RepoUserToken t, RepoTokenPeerInfo i where t.token=i.token and sync_time &lt; xxxx;
 </code></pre></div>
-
 <p>xxxx is the UNIX timestamp for the time before which tokens will be deleted.</p>
 <p>To be safe, you can first check how many tokens will be removed:</p>
-<div class="codehilite"><pre><span></span><code>select * from RepoUserToken t, RepoTokenPeerInfo i where t.token=i.token and sync_time &lt; xxxx;
+<div class="highlight"><pre><span></span><code>select * from RepoUserToken t, RepoTokenPeerInfo i where t.token=i.token and sync_time &lt; xxxx;
 </code></pre></div>
 
 
@@ -4444,6 +4433,46 @@ e.g. records that are not deleted after a library is deleted. This is because us
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../seafile_gc/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Seafile GC">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Seafile GC
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../upgrade/upgrade/" class="md-footer__link md-footer__link--next" aria-label="Next: Outline">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Outline
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4486,7 +4515,7 @@ e.g. records that are not deleted after a library is deleted. This is because us
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

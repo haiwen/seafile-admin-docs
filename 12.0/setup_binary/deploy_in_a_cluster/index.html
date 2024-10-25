@@ -2505,7 +2505,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4678,98 +4678,86 @@
 <h3 id="install-python-libraries">Install Python libraries<a class="headerlink" href="#install-python-libraries" title="Permanent link">&para;</a></h3>
 <p>On each mode, you need to install some python libraries.</p>
 <p>First make sure your have installed Python 2.7, then:</p>
-<div class="codehilite"><pre><span></span><code>sudo easy_install pip
+<div class="highlight"><pre><span></span><code>sudo easy_install pip
 sudo pip install boto
 </code></pre></div>
-
 <p>If you receive an error stating "Wheel installs require setuptools &gt;= ...", run this between the pip and boto lines above</p>
-<div class="codehilite"><pre><span></span><code><span class="n">sudo</span><span class="w"> </span><span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">setuptools</span><span class="w"> </span><span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">use</span><span class="o">-</span><span class="n">wheel</span><span class="w"> </span><span class="o">--</span><span class="n">upgrade</span>
+<div class="highlight"><pre><span></span><code>sudo pip install setuptools --no-use-wheel --upgrade
 </code></pre></div>
-
 <h2 id="configure-a-single-node">Configure a Single Node<a class="headerlink" href="#configure-a-single-node" title="Permanent link">&para;</a></h2>
 <p>You should make sure the config files on every Seafile server are consistent.</p>
 <h3 id="get-the-license">Get the license<a class="headerlink" href="#get-the-license" title="Permanent link">&para;</a></h3>
 <p>Put the license you get under the top level diretory. In our wiki, we use the diretory <code>/data/haiwen/</code> as the top level directory.</p>
 <h3 id="downloaduncompress-seafile-professional-server">Download/Uncompress Seafile Professional Server<a class="headerlink" href="#downloaduncompress-seafile-professional-server" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>tar xf seafile-pro-server_8.0.0_x86-64.tar.gz
+<div class="highlight"><pre><span></span><code>tar xf seafile-pro-server_8.0.0_x86-64.tar.gz
 </code></pre></div>
-
 <p>Now you have:</p>
-<div class="codehilite"><pre><span></span><code>haiwen
+<div class="highlight"><pre><span></span><code>haiwen
 ├── seafile-license.txt
 └── seafile-pro-server-8.0.0/
 </code></pre></div>
-
 <h3 id="setup-seafile">Setup Seafile<a class="headerlink" href="#setup-seafile" title="Permanent link">&para;</a></h3>
 <p>Please follow <a href="../installation_pro/">Download and Setup Seafile Professional Server With MySQL</a> to setup a single Seafile server node.</p>
 <p>Note: <strong>Use the load balancer's address or domain name for the server address. Don't use the local IP address of each Seafile server machine. This assures the user will always access your service via the load balancers.</strong></p>
 <p>After the setup process is done, you still have to do a few manual changes to the config files.</p>
 <h4 id="seafileconf">seafile.conf<a class="headerlink" href="#seafileconf" title="Permanent link">&para;</a></h4>
 <p>If you use a single memcached server, you have to add the following configuration to <code>seafile.conf</code></p>
-<div class="codehilite"><pre><span></span><code><span class="k">[cluster]</span>
-<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+<div class="highlight"><pre><span></span><code>[cluster]
+enabled = true
 
-<span class="k">[memcached]</span>
-<span class="na">memcached_options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">--SERVER=192.168.1.134 --POOL-MIN=10 --POOL-MAX=100</span>
+[memcached]
+memcached_options = --SERVER=192.168.1.134 --POOL-MIN=10 --POOL-MAX=100
 </code></pre></div>
-
 <p>If you use memcached cluster, the recommended way to setup memcached clusters can be found <a href="../memcached_mariadb_cluster/">here</a>.</p>
 <p>You'll setup two memcached server, in active/standby mode. A floating IP address will be assigned to the current active memcached node. So you have to configure the address in seafile.conf accordingly.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[cluster]</span>
-<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+<div class="highlight"><pre><span></span><code>[cluster]
+enabled = true
 
-<span class="k">[memcached]</span>
-<span class="na">memcached_options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">--SERVER=&lt;floating IP address&gt; --POOL-MIN=10 --POOL-MAX=100</span>
+[memcached]
+memcached_options = --SERVER=&lt;floating IP address&gt; --POOL-MIN=10 --POOL-MAX=100
 </code></pre></div>
-
 <p>If you are using Redis as cache, add following configurations:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[cluster]</span>
-<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+<div class="highlight"><pre><span></span><code>[cluster]
+enabled = true
 
-<span class="k">[redis]</span>
-<span class="c1"># your redis server address</span>
-<span class="na">redis_server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">127.0.0.1</span>
-<span class="c1"># your redis server port</span>
-<span class="na">redis_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">6379</span>
-<span class="c1"># size of connection pool to redis, default is 100</span>
-<span class="na">max_connections</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">100</span>
+[redis]
+# your redis server address
+redis_server = 127.0.0.1
+# your redis server port
+redis_port = 6379
+# size of connection pool to redis, default is 100
+max_connections = 100
 </code></pre></div>
-
 <p>Currently only single-node Redis is supported. Redis Sentinel or Cluster is not supported yet.</p>
 <p>(Optional) The Seafile server also opens a port for the load balancers to run health checks. Seafile by default uses port 11001. You can change this by adding the following config option to <code>seafile.conf</code></p>
-<div class="codehilite"><pre><span></span><code><span class="k">[cluster]</span>
-<span class="na">health_check_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">12345</span>
+<div class="highlight"><pre><span></span><code>[cluster]
+health_check_port = 12345
 </code></pre></div>
-
 <h4 id="seahub_settingspy">seahub_settings.py<a class="headerlink" href="#seahub_settingspy" title="Permanent link">&para;</a></h4>
 <p>You must setup and use memory cache when deploying Seafile cluster. Refer to <a href="../../config/seahub_settings_py/#cache">"memory cache"</a> to configure memory cache in Seahub.</p>
 <p>Also add following options to seahub_setting.py. These settings tell Seahub to store avatar in database and cache avatar in memcached, and store css CACHE to local memory.</p>
-<div class="codehilite"><pre><span></span><code>AVATAR_FILE_STORAGE = &#39;seahub.base.database_storage.DatabaseStorage&#39;
+<div class="highlight"><pre><span></span><code>AVATAR_FILE_STORAGE = &#39;seahub.base.database_storage.DatabaseStorage&#39;
 </code></pre></div>
-
 <h4 id="seafeventsconf">seafevents.conf<a class="headerlink" href="#seafeventsconf" title="Permanent link">&para;</a></h4>
 <p>Add following to <code>seafevents.conf</code> to disable file indexing service on the local server. The file indexing service should be started on a dedicated background server.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[INDEX FILES]</span>
-<span class="na">external_es_server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+<div class="highlight"><pre><span></span><code>[INDEX FILES]
+external_es_server = true
 </code></pre></div>
-
 <p>Here is an example <code>[INDEX FILES]</code> section:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[INDEX FILES]</span>
-<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">10m</span>
-<span class="na">highlight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">fvh</span><span class="w">     </span><span class="c1"># This configuration is only available for Seafile 6.3.0 pro and above.</span>
-<span class="na">index_office_pdf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">external_es_server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">es_host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">background.seafile.com</span>
-<span class="na">es_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">9200</span>
+<div class="highlight"><pre><span></span><code>[INDEX FILES]
+enabled = true
+interval = 10m
+highlight = fvh     # This configuration is only available for Seafile 6.3.0 pro and above.
+index_office_pdf = true
+external_es_server = true
+es_host = background.seafile.com
+es_port = 9200
 </code></pre></div>
-
 <p>Note: <code>enable = true</code> should be left unchanged. For versions older than 6.1, <code>es_port</code> was 9500.</p>
 <h3 id="update-seahub-database">Update Seahub Database<a class="headerlink" href="#update-seahub-database" title="Permanent link">&para;</a></h3>
 <p>In cluster environment, we have to store avatars in the database instead of in a local disk.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n n-Quoted">`avatar_uploaded`</span><span class="w"> </span><span class="p">(</span><span class="n n-Quoted">`filename`</span><span class="w"> </span><span class="kt">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="no">NULL</span><span class="p">,</span><span class="w"> </span><span class="n n-Quoted">`filename_md5`</span><span class="w"> </span><span class="kt">CHAR</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="no">NULL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n n-Quoted">`data`</span><span class="w"> </span><span class="kt">MEDIUMTEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="no">NULL</span><span class="p">,</span><span class="w"> </span><span class="n n-Quoted">`size`</span><span class="w"> </span><span class="kt">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="no">NULL</span><span class="p">,</span><span class="w"> </span><span class="n n-Quoted">`mtime`</span><span class="w"> </span><span class="kt">datetime</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="no">NULL</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code>CREATE TABLE `avatar_uploaded` (`filename` TEXT NOT NULL, `filename_md5` CHAR(32) NOT NULL PRIMARY KEY, `data` MEDIUMTEXT NOT NULL, `size` INTEGER NOT NULL, `mtime` datetime NOT NULL);
 </code></pre></div>
-
 <h3 id="backend-storage-settings">Backend Storage Settings<a class="headerlink" href="#backend-storage-settings" title="Permanent link">&para;</a></h3>
 <p>You also need to add the settings for backend cloud storage systems to the config files.</p>
 <ul>
@@ -4788,11 +4776,10 @@ sudo pip install boto
 </ul>
 <h3 id="run-and-test-the-single-node">Run and Test the Single Node<a class="headerlink" href="#run-and-test-the-single-node" title="Permanent link">&para;</a></h3>
 <p>Once you have finished configuring this single node, start it to test if it runs properly:</p>
-<div class="codehilite"><pre><span></span><code>cd /data/haiwen/seafile-server-latest
+<div class="highlight"><pre><span></span><code>cd /data/haiwen/seafile-server-latest
 ./seafile.sh start
 ./seahub.sh start
 </code></pre></div>
-
 <p><em>Note:</em> The first time you start seahub, the script would prompt you to create an admin account for your Seafile server.</p>
 <p>Open your browser, visit <code>http://ip-address-of-this-node:80</code> and login with the admin account.</p>
 <h2 id="configure-other-nodes">Configure other nodes<a class="headerlink" href="#configure-other-nodes" title="Permanent link">&para;</a></h2>
@@ -4802,11 +4789,10 @@ sudo pip install boto
 <p>On each node, run <code>./seafile.sh</code> and <code>./seahub.sh</code> to start Seafile server.</p>
 <h3 id="back-end-node">back-end node<a class="headerlink" href="#back-end-node" title="Permanent link">&para;</a></h3>
 <p>In the back-end node, you need to execute the following command to start Seafile server. <strong>CLUSTER_MODE=backend</strong> means this node is seafile backend server.</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">CLUSTER_MODE</span><span class="o">=</span>backend
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">CLUSTER_MODE</span><span class="o">=</span>backend
 ./seafile.sh<span class="w"> </span>start
 ./seafile-background-tasks.sh<span class="w"> </span>start
 </code></pre></div>
-
 <h2 id="start-seafile-service-on-boot">Start Seafile Service on boot<a class="headerlink" href="#start-seafile-service-on-boot" title="Permanent link">&para;</a></h2>
 <p>It would be convenient to setup Seafile service to start on system boot. Follow <a href="../start_seafile_at_system_bootup/">this documentation</a> to set it up on <strong>all nodes</strong>.</p>
 <h2 id="firewall-settings">Firewall Settings<a class="headerlink" href="#firewall-settings" title="Permanent link">&para;</a></h2>
@@ -4827,57 +4813,53 @@ sudo pip install boto
 <h3 id="haproxy">HAProxy<a class="headerlink" href="#haproxy" title="Permanent link">&para;</a></h3>
 <p>This is a sample <code>/etc/haproxy/haproxy.cfg</code>:</p>
 <p>(Assume your health check port is <code>11001</code>)</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">global</span>
-<span class="w">    </span><span class="nv">log</span><span class="w"> </span><span class="mi">127</span>.<span class="mi">0</span>.<span class="mi">0</span>.<span class="mi">1</span><span class="w"> </span><span class="nv">local1</span><span class="w"> </span><span class="nv">notice</span>
-<span class="w">    </span><span class="nv">maxconn</span><span class="w"> </span><span class="mi">4096</span>
-<span class="w">    </span><span class="nv">user</span><span class="w"> </span><span class="nv">haproxy</span>
-<span class="w">    </span><span class="nv">group</span><span class="w"> </span><span class="nv">haproxy</span>
+<div class="highlight"><pre><span></span><code>global
+    log 127.0.0.1 local1 notice
+    maxconn 4096
+    user haproxy
+    group haproxy
 
-<span class="nv">defaults</span>
-<span class="w">    </span><span class="nv">log</span><span class="w"> </span><span class="nv">global</span>
-<span class="w">    </span><span class="nv">mode</span><span class="w"> </span><span class="nv">http</span>
-<span class="w">    </span><span class="nv">retries</span><span class="w"> </span><span class="mi">3</span>
-<span class="w">    </span><span class="nv">maxconn</span><span class="w"> </span><span class="mi">2000</span>
-<span class="w">    </span><span class="nb">timeout</span><span class="w"> </span><span class="k">connect</span><span class="w"> </span><span class="mi">10000</span>
-<span class="w">    </span><span class="nb">timeout</span><span class="w"> </span><span class="nv">client</span><span class="w"> </span><span class="mi">300000</span>
-<span class="w">    </span><span class="nb">timeout</span><span class="w"> </span><span class="nv">server</span><span class="w"> </span><span class="mi">300000</span>
+defaults
+    log global
+    mode http
+    retries 3
+    maxconn 2000
+    timeout connect 10000
+    timeout client 300000
+    timeout server 300000
 
-<span class="nv">listen</span><span class="w"> </span><span class="nv">seafile</span><span class="w"> </span><span class="mi">0</span>.<span class="mi">0</span>.<span class="mi">0</span>.<span class="mi">0</span>:<span class="mi">80</span>
-<span class="w">    </span><span class="nv">mode</span><span class="w"> </span><span class="nv">http</span>
-<span class="w">    </span><span class="nv">option</span><span class="w"> </span><span class="nv">httplog</span>
-<span class="w">    </span><span class="nv">option</span><span class="w"> </span><span class="nv">dontlognull</span>
-<span class="w">    </span><span class="nv">option</span><span class="w"> </span><span class="nv">forwardfor</span>
-<span class="w">    </span><span class="nv">cookie</span><span class="w"> </span><span class="nv">SERVERID</span><span class="w"> </span><span class="nv">insert</span><span class="w"> </span><span class="nv">indirect</span><span class="w"> </span><span class="nv">nocache</span>
-<span class="w">    </span><span class="nv">server</span><span class="w"> </span><span class="nv">seafileserver01</span><span class="w"> </span><span class="mi">192</span>.<span class="mi">168</span>.<span class="mi">1</span>.<span class="mi">165</span>:<span class="mi">80</span><span class="w"> </span><span class="nv">check</span><span class="w"> </span><span class="nv">port</span><span class="w"> </span><span class="mi">11001</span><span class="w"> </span><span class="nv">cookie</span><span class="w"> </span><span class="nv">seafileserver01</span>
-<span class="w">    </span><span class="nv">server</span><span class="w"> </span><span class="nv">seafileserver02</span><span class="w"> </span><span class="mi">192</span>.<span class="mi">168</span>.<span class="mi">1</span>.<span class="mi">200</span>:<span class="mi">80</span><span class="w"> </span><span class="nv">check</span><span class="w"> </span><span class="nv">port</span><span class="w"> </span><span class="mi">11001</span><span class="w"> </span><span class="nv">cookie</span><span class="w"> </span><span class="nv">seafileserver02</span>
+listen seafile 0.0.0.0:80
+    mode http
+    option httplog
+    option dontlognull
+    option forwardfor
+    cookie SERVERID insert indirect nocache
+    server seafileserver01 192.168.1.165:80 check port 11001 cookie seafileserver01
+    server seafileserver02 192.168.1.200:80 check port 11001 cookie seafileserver02
 </code></pre></div>
-
 <h2 id="see-how-it-runs">See how it runs<a class="headerlink" href="#see-how-it-runs" title="Permanent link">&para;</a></h2>
 <p>Now you should be able to test your cluster. Open <a href="https://seafile.example.com">https://seafile.example.com</a> in your browser and enjoy. You can also synchronize files with Seafile clients.</p>
 <p>If the above works, the next step would be <a href="../enable_search_and_background_tasks_in_a_cluster/">Enable search and background tasks in a cluster</a>.</p>
 <h2 id="the-final-configuration-of-the-front-end-nodes">The final configuration of the front-end nodes<a class="headerlink" href="#the-final-configuration-of-the-front-end-nodes" title="Permanent link">&para;</a></h2>
 <p>Here is the summary of configurations at the front-end node that related to cluster setup. (for version 7.1+)</p>
 <p>For <strong>seafile.conf</strong>:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[cluster]</span>
-<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">memcached_options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">--SERVER=&lt;IP of memcached node&gt; --POOL-MIN=10 --POOL-MAX=100</span>
+<div class="highlight"><pre><span></span><code>[cluster]
+enabled = true
+memcached_options = --SERVER=&lt;IP of memcached node&gt; --POOL-MIN=10 --POOL-MAX=100
 </code></pre></div>
-
 <p>The <code>enabled</code> option will prevent the start of background tasks by <code>./seafile.sh start</code> in the front-end node. The tasks should be explicitly started by <code>./seafile-background-tasks.sh start</code> at the back-end node.</p>
 <p>For <strong>seahub_settings.py</strong>:</p>
-<div class="codehilite"><pre><span></span><code>AVATAR_FILE_STORAGE = &#39;seahub.base.database_storage.DatabaseStorage&#39;
+<div class="highlight"><pre><span></span><code>AVATAR_FILE_STORAGE = &#39;seahub.base.database_storage.DatabaseStorage&#39;
 </code></pre></div>
-
 <p>For <strong>seafevents.conf</strong>:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[INDEX FILES]</span>
-<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">10m</span>
-<span class="na">highlight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">fvh</span><span class="w">     </span><span class="c1"># This configuration is for improving searching speed</span>
-<span class="na">external_es_server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">es_host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;IP of background node&gt;</span>
-<span class="na">es_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">9200</span>
+<div class="highlight"><pre><span></span><code>[INDEX FILES]
+enabled = true
+interval = 10m
+highlight = fvh     # This configuration is for improving searching speed
+external_es_server = true
+es_host = &lt;IP of background node&gt;
+es_port = 9200
 </code></pre></div>
-
 <p>The <code>[INDEX FILES]</code> section is needed to let the front-end node know the file search feature is enabled. The <code>external_es_server = true</code> is to tell the front-end node not to start the ElasticSearch but to use the ElasticSearch server at the back-end node.</p>
 
 
@@ -4908,6 +4890,46 @@ sudo pip install boto
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../migrate_from_seafile_community_server/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Migration from Seafile Community">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Migration from Seafile Community
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../enable_search_and_background_tasks_in_a_cluster/" class="md-footer__link md-footer__link--next" aria-label="Next: Search and background tasks in a cluster">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Search and background tasks in a cluster
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4950,7 +4972,7 @@ sudo pip install boto
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

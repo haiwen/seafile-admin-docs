@@ -2190,7 +2190,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4521,29 +4521,25 @@
 <li>A raspberry pi with raspian distribution installed.</li>
 </ul>
 <h3 id="install-packages"><a id="wiki-install-packages"></a> Install packages<a class="headerlink" href="#install-packages" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">build</span><span class="o">-</span><span class="n">essential</span>
-<span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">libevent</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libcurl4</span><span class="o">-</span><span class="n">openssl</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libglib2</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">uuid</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">intltool</span><span class="w"> </span><span class="n">libsqlite3</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libmysqlclient</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libarchive</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libtool</span><span class="w"> </span><span class="n">libjansson</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">valac</span><span class="w"> </span><span class="n">libfuse</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">re2c</span><span class="w"> </span><span class="n">flex</span><span class="w"> </span><span class="n">python</span><span class="o">-</span><span class="n">setuptools</span><span class="w"> </span><span class="n">cmake</span>
+<div class="highlight"><pre><span></span><code>sudo apt-get install build-essential
+sudo apt-get install libevent-dev libcurl4-openssl-dev libglib2.0-dev uuid-dev intltool libsqlite3-dev libmysqlclient-dev libarchive-dev libtool libjansson-dev valac libfuse-dev re2c flex python-setuptools cmake
 </code></pre></div>
-
 <h3 id="compile-development-libraries"><a id="wiki-compile-dev-libs"></a> Compile development libraries<a class="headerlink" href="#compile-development-libraries" title="Permanent link">&para;</a></h3>
 <h4 id="libevhtp">libevhtp<a class="headerlink" href="#libevhtp" title="Permanent link">&para;</a></h4>
 <p>libevhtp is a http server libary on top of libevent. It's used in seafile file server.</p>
-<div class="codehilite"><pre><span></span><code>git clone https://www.github.com/haiwen/libevhtp.git
+<div class="highlight"><pre><span></span><code>git clone https://www.github.com/haiwen/libevhtp.git
 cd libevhtp
 cmake -DEVHTP_DISABLE_SSL=ON -DEVHTP_BUILD_SHARED=OFF .
 make
 sudo make install
 </code></pre></div>
-
 <p>After compiling all the libraries, run <code>ldconfig</code> to update the system libraries cache:</p>
-<div class="codehilite"><pre><span></span><code>sudo ldconfig
+<div class="highlight"><pre><span></span><code>sudo ldconfig
 </code></pre></div>
-
 <h3 id="install-python-libraries"><a id="wiki-install-python-libs"></a> Install python libraries<a class="headerlink" href="#install-python-libraries" title="Permanent link">&para;</a></h3>
 <p>Create a new directory <code>/home/pi/dev/seahub_thirdpart</code>:</p>
-<div class="codehilite"><pre><span></span><code>mkdir -p ~/dev/seahub_thirdpart
+<div class="highlight"><pre><span></span><code>mkdir -p ~/dev/seahub_thirdpart
 </code></pre></div>
-
 <p>Download these tarballs to <code>/tmp/</code>:</p>
 <ul>
 <li><a href="https://pypi.python.org/packages/source/p/pytz/pytz-2016.1.tar.gz">pytz</a></li>
@@ -4568,28 +4564,27 @@ sudo make install
 <li><a href="https://pypi.python.org/packages/87/16/99038537dc58c87b136779c0e06d46887ff5104eb8c64989aac1ec8cba81/qrcode-5.3.tar.gz">qrcode</a></li>
 </ul>
 <p>Install all these libaries to <code>/home/pi/dev/seahub_thirdpart</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">cd</span><span class="w"> </span><span class="o">~/</span><span class="n">dev</span><span class="o">/</span><span class="n">seahub_thirdpart</span>
-<span class="k">export</span><span class="w"> </span><span class="n">PYTHONPATH</span><span class="o">=.</span>
-<span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="o">~/</span><span class="n">dev</span><span class="o">/</span><span class="n">seahub_thirdpart</span><span class="o">/</span><span class="w"> </span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">pytz</span><span class="o">-</span><span class="mf">2016.1</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
-<span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="o">~/</span><span class="n">dev</span><span class="o">/</span><span class="n">seahub_thirdpart</span><span class="o">/</span><span class="w"> </span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">Django</span><span class="o">-</span><span class="mf">1.8</span><span class="o">.</span><span class="mf">10.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
-<span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="o">~/</span><span class="n">dev</span><span class="o">/</span><span class="n">seahub_thirdpart</span><span class="o">/</span><span class="w"> </span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">django</span><span class="o">-</span><span class="n">statici18n</span><span class="o">-</span><span class="mf">1.1</span><span class="o">.</span><span class="mf">3.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
-<span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="o">~/</span><span class="n">dev</span><span class="o">/</span><span class="n">seahub_thirdpart</span><span class="o">/</span><span class="w"> </span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">djangorestframework</span><span class="o">-</span><span class="mf">3.3</span><span class="o">.</span><span class="mf">2.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
-<span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="o">~/</span><span class="n">dev</span><span class="o">/</span><span class="n">seahub_thirdpart</span><span class="o">/</span><span class="w"> </span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">django_compressor</span><span class="o">-</span><span class="mf">1.4</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
-<span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="o">~/</span><span class="n">dev</span><span class="o">/</span><span class="n">seahub_thirdpart</span><span class="o">/</span><span class="w"> </span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">jsonfield</span><span class="o">-</span><span class="mf">1.0</span><span class="o">.</span><span class="mf">3.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
-<span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="o">~/</span><span class="n">dev</span><span class="o">/</span><span class="n">seahub_thirdpart</span><span class="o">/</span><span class="w"> </span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">django</span><span class="o">-</span><span class="n">post_office</span><span class="o">-</span><span class="mf">2.0</span><span class="o">.</span><span class="mf">6.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
-<span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="o">~/</span><span class="n">dev</span><span class="o">/</span><span class="n">seahub_thirdpart</span><span class="o">/</span><span class="w"> </span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">gunicorn</span><span class="o">-</span><span class="mf">19.4</span><span class="o">.</span><span class="mf">5.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
-<span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="o">~/</span><span class="n">dev</span><span class="o">/</span><span class="n">seahub_thirdpart</span><span class="o">/</span><span class="w"> </span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">flup</span><span class="o">-</span><span class="mf">1.0</span><span class="o">.</span><span class="mf">2.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
-<span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="o">~/</span><span class="n">dev</span><span class="o">/</span><span class="n">seahub_thirdpart</span><span class="o">/</span><span class="w"> </span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">chardet</span><span class="o">-</span><span class="mf">2.3</span><span class="o">.</span><span class="mf">0.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
-<span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="o">~/</span><span class="n">dev</span><span class="o">/</span><span class="n">seahub_thirdpart</span><span class="o">/</span><span class="w"> </span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">dateutil</span><span class="o">-</span><span class="mf">1.5</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
-<span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="o">~/</span><span class="n">dev</span><span class="o">/</span><span class="n">seahub_thirdpart</span><span class="o">/</span><span class="w"> </span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">six</span><span class="o">-</span><span class="mf">1.9</span><span class="o">.</span><span class="mf">0.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
-<span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="o">~/</span><span class="n">dev</span><span class="o">/</span><span class="n">seahub_thirdpart</span><span class="o">/</span><span class="w"> </span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">django</span><span class="o">-</span><span class="n">picklefield</span><span class="o">-</span><span class="mf">0.3</span><span class="o">.</span><span class="mf">2.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
-<span class="n">wget</span><span class="w"> </span><span class="o">-</span><span class="n">O</span><span class="w"> </span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">django_constance</span><span class="o">.</span><span class="n">zip</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">haiwen</span><span class="o">/</span><span class="n">django</span><span class="o">-</span><span class="n">constance</span><span class="o">/</span><span class="n">archive</span><span class="o">/</span><span class="n">bde7f7c</span><span class="o">.</span><span class="n">zip</span>
-<span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="o">~/</span><span class="n">dev</span><span class="o">/</span><span class="n">seahub_thirdpart</span><span class="o">/</span><span class="w"> </span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">django_constance</span><span class="o">.</span><span class="n">zip</span>
-<span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="o">~/</span><span class="n">dev</span><span class="o">/</span><span class="n">seahub_thirdpart</span><span class="o">/</span><span class="w"> </span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">jdcal</span><span class="o">-</span><span class="mf">1.2</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
-<span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="o">~/</span><span class="n">dev</span><span class="o">/</span><span class="n">seahub_thirdpart</span><span class="o">/</span><span class="w"> </span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">et_xmlfile</span><span class="o">-</span><span class="mf">1.0</span><span class="o">.</span><span class="mf">1.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
-<span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="o">~/</span><span class="n">dev</span><span class="o">/</span><span class="n">seahub_thirdpart</span><span class="o">/</span><span class="w"> </span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">openpyxl</span><span class="o">-</span><span class="mf">2.3</span><span class="o">.</span><span class="mf">0.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<div class="highlight"><pre><span></span><code>cd ~/dev/seahub_thirdpart
+export PYTHONPATH=.
+pip install -t ~/dev/seahub_thirdpart/ /tmp/pytz-2016.1.tar.gz
+pip install -t ~/dev/seahub_thirdpart/ /tmp/Django-1.8.10.tar.gz
+pip install -t ~/dev/seahub_thirdpart/ /tmp/django-statici18n-1.1.3.tar.gz
+pip install -t ~/dev/seahub_thirdpart/ /tmp/djangorestframework-3.3.2.tar.gz
+pip install -t ~/dev/seahub_thirdpart/ /tmp/django_compressor-1.4.tar.gz
+pip install -t ~/dev/seahub_thirdpart/ /tmp/jsonfield-1.0.3.tar.gz
+pip install -t ~/dev/seahub_thirdpart/ /tmp/django-post_office-2.0.6.tar.gz
+pip install -t ~/dev/seahub_thirdpart/ /tmp/gunicorn-19.4.5.tar.gz
+pip install -t ~/dev/seahub_thirdpart/ /tmp/flup-1.0.2.tar.gz
+pip install -t ~/dev/seahub_thirdpart/ /tmp/chardet-2.3.0.tar.gz
+pip install -t ~/dev/seahub_thirdpart/ /tmp/python-dateutil-1.5.tar.gz
+pip install -t ~/dev/seahub_thirdpart/ /tmp/six-1.9.0.tar.gz
+pip install -t ~/dev/seahub_thirdpart/ /tmp/django-picklefield-0.3.2.tar.gz
+wget -O /tmp/django_constance.zip https://github.com/haiwen/django-constance/archive/bde7f7c.zip
+pip install -t ~/dev/seahub_thirdpart/ /tmp/django_constance.zip
+pip install -t ~/dev/seahub_thirdpart/ /tmp/jdcal-1.2.tar.gz
+pip install -t ~/dev/seahub_thirdpart/ /tmp/et_xmlfile-1.0.1.tar.gz
+pip install -t ~/dev/seahub_thirdpart/ /tmp/openpyxl-2.3.0.tar.gz
 </code></pre></div>
-
 <h2 id="prepare-seafile-source-code"><a id="wiki-prepare-seafile-source-code"></a>Prepare seafile source code<a class="headerlink" href="#prepare-seafile-source-code" title="Permanent link">&para;</a></h2>
 <p>To build seafile server, there are four sub projects involved:</p>
 <ul>
@@ -4611,13 +4606,12 @@ sudo make install
 <li>libsearpc would have the <code>v3.0-latest</code> tag (libsearpc has been quite stable and basically has no further development, so the tag is always <code>v3.0-latest</code>)</li>
 </ul>
 <p>First setup the <code>PKG_CONFIG_PATH</code> enviroment variable (So we don't need to make and make install libsearpc/ccnet/seafile into the system):</p>
-<div class="codehilite"><pre><span></span><code><span class="k">export</span><span class="w"> </span><span class="n">PKG_CONFIG_PATH</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">pi</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">seafile</span><span class="o">/</span><span class="n">lib</span><span class="p">:</span><span class="o">$</span><span class="n">PKG_CONFIG_PATH</span>
-<span class="k">export</span><span class="w"> </span><span class="n">PKG_CONFIG_PATH</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">pi</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">libsearpc</span><span class="p">:</span><span class="o">$</span><span class="n">PKG_CONFIG_PATH</span>
-<span class="k">export</span><span class="w"> </span><span class="n">PKG_CONFIG_PATH</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">pi</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ccnet</span><span class="p">:</span><span class="o">$</span><span class="n">PKG_CONFIG_PATH</span>
+<div class="highlight"><pre><span></span><code>export PKG_CONFIG_PATH=/home/pi/dev/seafile/lib:$PKG_CONFIG_PATH
+export PKG_CONFIG_PATH=/home/pi/dev/libsearpc:$PKG_CONFIG_PATH
+export PKG_CONFIG_PATH=/home/pi/dev/ccnet:$PKG_CONFIG_PATH
 </code></pre></div>
-
 <h3 id="libsearpc">libsearpc<a class="headerlink" href="#libsearpc" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>cd ~/dev
+<div class="highlight"><pre><span></span><code>cd ~/dev
 git clone https://github.com/haiwen/libsearpc.git
 cd libsearpc
 git reset --hard v3.0-latest
@@ -4625,9 +4619,8 @@ git reset --hard v3.0-latest
 ./configure
 make dist
 </code></pre></div>
-
 <h3 id="ccnet">ccnet<a class="headerlink" href="#ccnet" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>cd ~/dev
+<div class="highlight"><pre><span></span><code>cd ~/dev
 git clone https://github.com/haiwen/ccnet-server.git
 cd ccnet
 git reset --hard v6.0.1-server
@@ -4635,9 +4628,8 @@ git reset --hard v6.0.1-server
 ./configure
 make dist
 </code></pre></div>
-
 <h3 id="seafile">seafile<a class="headerlink" href="#seafile" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>cd ~/dev
+<div class="highlight"><pre><span></span><code>cd ~/dev
 git clone https://github.com/haiwen/seafile-server.git
 cd seafile
 git reset --hard v6.0.1-server
@@ -4645,33 +4637,29 @@ git reset --hard v6.0.1-server
 ./configure
 make dist
 </code></pre></div>
-
 <h3 id="seahub">seahub<a class="headerlink" href="#seahub" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="n">cd</span><span class="w"> </span><span class="o">~/</span><span class="n">dev</span>
-<span class="n">git</span><span class="w"> </span><span class="n">clone</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">haiwen</span><span class="o">/</span><span class="n">seahub</span><span class="o">.</span><span class="n">git</span>
-<span class="n">cd</span><span class="w"> </span><span class="n">seahub</span>
-<span class="n">git</span><span class="w"> </span><span class="n">reset</span><span class="w"> </span><span class="o">--</span><span class="n">hard</span><span class="w"> </span><span class="n">v6</span><span class="o">.</span><span class="mf">0.1</span><span class="o">-</span><span class="n">server</span>
-<span class="o">./</span><span class="n">tools</span><span class="o">/</span><span class="n">gen</span><span class="o">-</span><span class="n">tarball</span><span class="o">.</span><span class="n">py</span><span class="w"> </span><span class="o">--</span><span class="n">version</span><span class="o">=</span><span class="mf">6.0</span><span class="o">.</span><span class="mi">1</span><span class="w"> </span><span class="o">--</span><span class="n">branch</span><span class="o">=</span><span class="n">HEAD</span>
+<div class="highlight"><pre><span></span><code>cd ~/dev
+git clone https://github.com/haiwen/seahub.git
+cd seahub
+git reset --hard v6.0.1-server
+./tools/gen-tarball.py --version=6.0.1 --branch=HEAD
 </code></pre></div>
-
 <h3 id="seafobj">seafobj<a class="headerlink" href="#seafobj" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>cd ~/dev
+<div class="highlight"><pre><span></span><code>cd ~/dev
 git clone https://github.com/haiwen/seafobj.git
 cd seafobj
 git reset --hard v6.0.1-server
 make dist
 </code></pre></div>
-
 <h3 id="seafdav">seafdav<a class="headerlink" href="#seafdav" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>cd ~/dev
+<div class="highlight"><pre><span></span><code>cd ~/dev
 git clone https://github.com/haiwen/seafdav.git
 cd seafdav
 git reset --hard v6.0.1-server
 make
 </code></pre></div>
-
 <h3 id="copy-the-source-tar-balls-to-the-same-folder">Copy the source tar balls to the same folder<a class="headerlink" href="#copy-the-source-tar-balls-to-the-same-folder" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>mkdir ~/seafile-sources
+<div class="highlight"><pre><span></span><code>mkdir ~/seafile-sources
 cp ~/dev/libsearpc/libsearpc-&lt;version&gt;-tar.gz ~/seafile-sources
 cp ~/dev/ccnet/ccnet-&lt;version&gt;-tar.gz ~/seafile-sources
 cp ~/dev/seafile/seafile-&lt;version&gt;-tar.gz ~/seafile-sources
@@ -4680,13 +4668,11 @@ cp ~/dev/seahub/seahub-&lt;version&gt;-tar.gz ~/seafile-sources
 cp ~/dev/seafobj/seafobj.tar.gz ~/seafile-sources
 cp ~/dev/seafdav/seafdav.tar.gz ~/seafile-sources
 </code></pre></div>
-
 <h3 id="run-the-packaging-script"><a id="wiki-run-pkg-script"></a> Run the packaging script<a class="headerlink" href="#run-the-packaging-script" title="Permanent link">&para;</a></h3>
 <p>Now we have all the tarballs prepared, we can run the <code>build-server.py</code> script to build the server package.</p>
-<div class="codehilite"><pre><span></span><code>mkdir ~/seafile-server-pkgs
+<div class="highlight"><pre><span></span><code>mkdir ~/seafile-server-pkgs
 ~/dev/seafile/scripts/build-server.py --libsearpc_version=&lt;libsearpc_version&gt; --ccnet_version=&lt;ccnet_version&gt; --seafile_version=&lt;seafile_version&gt; --seahub_version=&lt;seahub_version&gt; --srcdir=  --thirdpartdir=/home/pi/dev/seahub_thirdpart --srcdir=/home/pi/seafile-sources --outputdir=/home/pi/seafile-server-pkgs
 </code></pre></div>
-
 <p>After the script finisheds, we would get a <code>seafile-server_6.0.1_pi.tar.gz</code> in <code>~/seafile-server-pkgs</code> folder.</p>
 <h2 id="test-the-built-package"><a id="wiki-test-built-pkg"></a> Test the built package<a class="headerlink" href="#test-the-built-package" title="Permanent link">&para;</a></h2>
 <h3 id="test-a-fresh-install"><a id="wiki-test-fresh-install"></a>Test a fresh install<a class="headerlink" href="#test-a-fresh-install" title="Permanent link">&para;</a></h3>
@@ -4737,6 +4723,46 @@ cp ~/dev/seafdav/seafdav.tar.gz ~/seafile-sources
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../server/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Server development">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Server development
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../translation/" class="md-footer__link md-footer__link--next" aria-label="Next: Translation">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Translation
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
@@ -4778,7 +4804,7 @@ cp ~/dev/seafdav/seafdav.tar.gz ~/seafile-sources
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

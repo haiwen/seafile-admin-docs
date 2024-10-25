@@ -2194,7 +2194,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4324,7 +4324,7 @@
 <p>Note, the identifier is stored in table <code>social_auth_usersocialauth</code> to map the identifier to internal user ID in Seafile. When this ID is changed in LDAP for a user, you only need to update <code>social_auth_usersocialauth</code> table.</p>
 <h3 id="basic-configuration-items">Basic configuration items<a class="headerlink" href="#basic-configuration-items" title="Permanent link">&para;</a></h3>
 <p>Add the following options to <code>seahub_settings.py</code>. Examples are as follows:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">ENABLE_LDAP</span> <span class="o">=</span> <span class="kc">True</span>
+<div class="highlight"><pre><span></span><code><span class="n">ENABLE_LDAP</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">LDAP_SERVER_URL</span> <span class="o">=</span> <span class="s1">&#39;ldap://192.168.0.1&#39;</span>       
 <span class="n">LDAP_BASE_DN</span> <span class="o">=</span> <span class="s1">&#39;ou=test,dc=seafile,dc=ren&#39;</span>                     
 <span class="n">LDAP_ADMIN_DN</span> <span class="o">=</span> <span class="s1">&#39;administrator@example.com&#39;</span>  
@@ -4338,7 +4338,6 @@
 <span class="n">LDAP_USER_NAME_REVERSE</span> <span class="o">=</span> <span class="kc">False</span>               
 <span class="n">LDAP_FILTER</span> <span class="o">=</span> <span class="s1">&#39;memberOf=CN=testgroup,OU=test,DC=seafile,DC=ren&#39;</span> 
 </code></pre></div>
-
 <p>Meaning of some options:</p>
 <ul>
 <li><strong>LDAP_SERVER_URL:</strong> The URL of LDAP server</li>
@@ -4378,16 +4377,14 @@
 <h2 id="advanced-ldap-integration-options">Advanced LDAP Integration Options<a class="headerlink" href="#advanced-ldap-integration-options" title="Permanent link">&para;</a></h2>
 <h3 id="multiple-base">Multiple BASE<a class="headerlink" href="#multiple-base" title="Permanent link">&para;</a></h3>
 <p>Multiple base DN is useful when your company has more than one OUs to use Seafile. You can specify a list of base DN in the <code>LDAP_BASE_DN</code> option. The DNs are separated by ";", e.g.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">LDAP_BASE_DN</span> <span class="o">=</span> <span class="s1">&#39;ou=developers,dc=example,dc=com;ou=marketing,dc=example,dc=com&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">LDAP_BASE_DN</span> <span class="o">=</span> <span class="s1">&#39;ou=developers,dc=example,dc=com;ou=marketing,dc=example,dc=com&#39;</span>
 </code></pre></div>
-
 <h3 id="additional-search-filter">Additional Search Filter<a class="headerlink" href="#additional-search-filter" title="Permanent link">&para;</a></h3>
 <p>Search filter is very useful when you have a large organization but only a portion of people want to use Seafile. The filter can be given by setting <code>LDAP_FILTER</code> option. The value of this option follows standard LDAP search filter syntax (https://msdn.microsoft.com/en-us/library/aa746475(v=vs.85).aspx).</p>
 <p>The final filter used for searching for users is <code>(&amp;($LOGIN_ATTR=*)($LDAP_FILTER))</code>. <code>$LOGIN_ATTR</code> and <code>$LDAP_FILTER</code> will be replaced by your option values.</p>
 <p>For example, add below option to <code>seahub_settings.py</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">LDAP_FILTER</span> <span class="o">=</span> <span class="s1">&#39;memberOf=CN=group,CN=developers,DC=example,DC=com&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">LDAP_FILTER</span> <span class="o">=</span> <span class="s1">&#39;memberOf=CN=group,CN=developers,DC=example,DC=com&#39;</span>
 </code></pre></div>
-
 <p>The final search filter would be <code>(&amp;(mail=*)(memberOf=CN=group,CN=developers,DC=example,DC=com))</code></p>
 <p>Note that the case of attribute names in the above example is significant. The <code>memberOf</code> attribute is only available in Active Directory.</p>
 <h3 id="limiting-seafile-users-to-a-group-in-active-directory">Limiting Seafile Users to a Group in Active Directory<a class="headerlink" href="#limiting-seafile-users-to-a-group-in-active-directory" title="Permanent link">&para;</a></h3>
@@ -4400,12 +4397,11 @@
 <p>Add below option to <code>seahub_settings.py</code>:</p>
 </li>
 </ol>
-<div class="codehilite"><pre><span></span><code><span class="n">LDAP_FILTER</span> <span class="o">=</span> <span class="s1">&#39;memberOf={output of dsquery command}&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">LDAP_FILTER</span> <span class="o">=</span> <span class="s1">&#39;memberOf={output of dsquery command}&#39;</span>
 </code></pre></div>
-
 <h3 id="using-tls-connection-to-ldap-server">Using TLS connection to LDAP server<a class="headerlink" href="#using-tls-connection-to-ldap-server" title="Permanent link">&para;</a></h3>
 <p>If your LDAP service supports TLS connections, you can configure <code>LDAP_SERVER_URL</code> as the access address of the ldaps protocol to use TLS to connect to the LDAP service, for example:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">LDAP_SERVER_URL</span> <span class="o">=</span> <span class="s1">&#39;ldaps://192.168.0.1:636/&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">LDAP_SERVER_URL</span> <span class="o">=</span> <span class="s1">&#39;ldaps://192.168.0.1:636/&#39;</span>
 </code></pre></div>
 
 
@@ -4436,6 +4432,46 @@
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../extension/virus_scan_with_kav4fs/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Virus scan with Kav4fs">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Virus scan with Kav4fs
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../ldap_in_11.0_pro/" class="md-footer__link md-footer__link--next" aria-label="Next: LDAP Integration (Pro)">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                LDAP Integration (Pro)
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4478,7 +4514,7 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

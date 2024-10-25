@@ -2194,7 +2194,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4438,57 +4438,56 @@
 <p>We use CentOS 7 as example.</p>
 <h3 id="configure-apache">Configure Apache<a class="headerlink" href="#configure-apache" title="Permanent link">&para;</a></h3>
 <p>You should create a new virtual host configuration for Shibboleth. And then restart Apache.</p>
-<div class="codehilite"><pre><span></span><code><span class="nt">&lt;IfModule</span> <span class="err">mod_ssl.c</span><span class="nt">&gt;</span>
-<span class="w">    </span><span class="nt">&lt;VirtualHost</span> <span class="err">_default_:443</span><span class="nt">&gt;</span>
-<span class="w">        </span>ServerName<span class="w"> </span>your-seafile-domain
-<span class="w">        </span>DocumentRoot<span class="w"> </span>/var/www
-<span class="w">        </span>Alias<span class="w"> </span>/media<span class="w"> </span>/opt/seafile/seafile-server-latest/seahub/media
+<div class="highlight"><pre><span></span><code>&lt;IfModule mod_ssl.c&gt;
+    &lt;VirtualHost _default_:443&gt;
+        ServerName your-seafile-domain
+        DocumentRoot /var/www
+        Alias /media /opt/seafile/seafile-server-latest/seahub/media
 
-<span class="w">        </span>ErrorLog<span class="w"> </span><span class="cp">${</span><span class="n">APACHE_LOG_DIR</span><span class="cp">}</span>/seahub.error.log
-<span class="w">        </span>CustomLog<span class="w"> </span><span class="cp">${</span><span class="n">APACHE_LOG_DIR</span><span class="cp">}</span>/seahub.access.log<span class="w"> </span>combined
+        ErrorLog ${APACHE_LOG_DIR}/seahub.error.log
+        CustomLog ${APACHE_LOG_DIR}/seahub.access.log combined
 
-<span class="w">        </span>SSLEngine<span class="w"> </span>on
-<span class="w">        </span>SSLCertificateFile<span class="w">  </span>/path/to/ssl-cert.pem
-<span class="w">        </span>SSLCertificateKeyFile<span class="w"> </span>/path/to/ssl-key.pem
+        SSLEngine on
+        SSLCertificateFile  /path/to/ssl-cert.pem
+        SSLCertificateKeyFile /path/to/ssl-key.pem
 
-<span class="w">        </span><span class="nt">&lt;Location</span> <span class="err">/Shibboleth.sso</span><span class="nt">&gt;</span>
-<span class="w">            </span>SetHandler<span class="w"> </span>shib
-<span class="w">            </span>AuthType<span class="w"> </span>shibboleth
-<span class="w">            </span>ShibRequestSetting<span class="w"> </span>requireSession<span class="w"> </span>1
-<span class="w">            </span>Require<span class="w"> </span>valid-user
-<span class="w">        </span><span class="nt">&lt;/Location&gt;</span>
+        &lt;Location /Shibboleth.sso&gt;
+            SetHandler shib
+            AuthType shibboleth
+            ShibRequestSetting requireSession 1
+            Require valid-user
+        &lt;/Location&gt;
 
-<span class="w">        </span><span class="nt">&lt;Location</span> <span class="err">/sso</span><span class="nt">&gt;</span>
-<span class="w">            </span>SetHandler<span class="w"> </span>shib
-<span class="w">            </span>AuthType<span class="w"> </span>shibboleth
-<span class="w">            </span>ShibUseHeaders<span class="w"> </span>On
-<span class="w">            </span>ShibRequestSetting<span class="w"> </span>requireSession<span class="w"> </span>1
-<span class="w">            </span>Require<span class="w"> </span>valid-user
-<span class="w">        </span><span class="nt">&lt;/Location&gt;</span>
+        &lt;Location /sso&gt;
+            SetHandler shib
+            AuthType shibboleth
+            ShibUseHeaders On
+            ShibRequestSetting requireSession 1
+            Require valid-user
+        &lt;/Location&gt;
 
-<span class="w">        </span>RewriteEngine<span class="w"> </span>On
-<span class="w">        </span><span class="nt">&lt;Location</span> <span class="err">/media</span><span class="nt">&gt;</span>
-<span class="w">            </span>Require<span class="w"> </span>all<span class="w"> </span>granted
-<span class="w">        </span><span class="nt">&lt;/Location&gt;</span>
+        RewriteEngine On
+        &lt;Location /media&gt;
+            Require all granted
+        &lt;/Location&gt;
 
-<span class="w">        </span>#<span class="w"> </span>seafile<span class="w"> </span>fileserver
-<span class="w">        </span>ProxyPass<span class="w"> </span>/seafhttp<span class="w"> </span>http://127.0.0.1:8082
-<span class="w">        </span>ProxyPassReverse<span class="w"> </span>/seafhttp<span class="w"> </span>http://127.0.0.1:8082
-<span class="w">        </span>RewriteRule<span class="w"> </span>^/seafhttp<span class="w"> </span>-<span class="w"> </span>[QSA,L]
+        # seafile fileserver
+        ProxyPass /seafhttp http://127.0.0.1:8082
+        ProxyPassReverse /seafhttp http://127.0.0.1:8082
+        RewriteRule ^/seafhttp - [QSA,L]
 
-<span class="w">        </span>#<span class="w"> </span>seahub
-<span class="w">        </span>SetEnvIf<span class="w"> </span>Authorization<span class="w"> </span>&quot;(.*)&quot;<span class="w"> </span>HTTP_AUTHORIZATION=$1
-<span class="w">        </span>ProxyPass<span class="w"> </span>/<span class="w"> </span>http://127.0.0.1:8000/
-<span class="w">        </span>ProxyPassReverse<span class="w"> </span>/<span class="w"> </span>http://127.0.0.1:8000/
+        # seahub
+        SetEnvIf Authorization &quot;(.*)&quot; HTTP_AUTHORIZATION=$1
+        ProxyPass / http://127.0.0.1:8000/
+        ProxyPassReverse / http://127.0.0.1:8000/
 
-<span class="w">        </span>#<span class="w"> </span>for<span class="w"> </span>http
-<span class="w">        </span>#<span class="w"> </span>RequestHeader<span class="w"> </span>set<span class="w"> </span>REMOTE_USER<span class="w"> </span>%{REMOTE_USER}e
-<span class="w">        </span>#<span class="w"> </span>for<span class="w"> </span>https
-<span class="w">        </span>RequestHeader<span class="w"> </span>set<span class="w"> </span>REMOTE_USER<span class="w"> </span>%{REMOTE_USER}s
-<span class="w">    </span><span class="nt">&lt;/VirtualHost&gt;</span>
-<span class="nt">&lt;/IfModule&gt;</span>
+        # for http
+        # RequestHeader set REMOTE_USER %{REMOTE_USER}e
+        # for https
+        RequestHeader set REMOTE_USER %{REMOTE_USER}s
+    &lt;/VirtualHost&gt;
+&lt;/IfModule&gt;
 </code></pre></div>
-
 <h3 id="install-and-configure-shibboleth">Install and Configure Shibboleth<a class="headerlink" href="#install-and-configure-shibboleth" title="Permanent link">&para;</a></h3>
 <p>Installation and configuration of Shibboleth is out of the scope of this documentation. You can refer to the official Shibboleth document.</p>
 <h3 id="configure-shibbolethsp">Configure Shibboleth(SP)<a class="headerlink" href="#configure-shibbolethsp" title="Permanent link">&para;</a></h3>
@@ -4496,68 +4495,63 @@
 <p>Open <code>/etc/shibboleth/shibboleth2.xml</code> and change some property. After you have done all the followings, don't forget to restart Shibboleth(SP)</p>
 <h5 id="applicationdefaults-element"><code>ApplicationDefaults</code> element<a class="headerlink" href="#applicationdefaults-element" title="Permanent link">&para;</a></h5>
 <p>Change <code>entityID</code> and <a href="https://shibboleth.atlassian.net/wiki/spaces/SP3/pages/2063695997/ApplicationDefaults"><code>REMOTE_USER</code></a> property:</p>
-<div class="codehilite"><pre><span></span><code><span class="o">&lt;!--</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">ApplicationDefaults</span><span class="w"> </span><span class="n">element</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">where</span><span class="w"> </span><span class="n">most</span><span class="w"> </span><span class="kr">of</span><span class="w"> </span><span class="n">Shibboleth</span><span class="s">&#39;s SAML bits are defined. --&gt;</span>
-<span class="s">&lt;ApplicationDefaults entityID=&quot;</span><span class="n">https</span><span class="o">://</span><span class="n">your</span><span class="o">-</span><span class="n">seafile</span><span class="o">-</span><span class="n">domain</span><span class="o">/</span><span class="n">sso</span><span class="s">&quot;</span>
-<span class="s">    REMOTE_USER=&quot;</span><span class="n">mail</span><span class="s">&quot;</span>
-<span class="s">    cipherSuites=&quot;</span><span class="n">DEFAULT</span><span class="o">:!</span><span class="nf">EXP</span><span class="o">:!</span><span class="n">LOW</span><span class="o">:!</span><span class="n">aNULL</span><span class="o">:!</span><span class="n">eNULL</span><span class="o">:!</span><span class="n">DES</span><span class="o">:!</span><span class="n">IDEA</span><span class="o">:!</span><span class="n">SEED</span><span class="o">:!</span><span class="n">RC4</span><span class="o">:!</span><span class="mi">3</span><span class="n">DES</span><span class="o">:!</span><span class="n">kRSA</span><span class="o">:!</span><span class="n">SSLv2</span><span class="o">:!</span><span class="n">SSLv3</span><span class="o">:!</span><span class="n">TLSv1</span><span class="o">:!</span><span class="n">TLSv1</span><span class="mf">.1</span><span class="s">&quot;&gt;</span>
+<div class="highlight"><pre><span></span><code>&lt;!-- The ApplicationDefaults element is where most of Shibboleth&#39;s SAML bits are defined. --&gt;
+&lt;ApplicationDefaults entityID=&quot;https://your-seafile-domain/sso&quot;
+    REMOTE_USER=&quot;mail&quot;
+    cipherSuites=&quot;DEFAULT:!EXP:!LOW:!aNULL:!eNULL:!DES:!IDEA:!SEED:!RC4:!3DES:!kRSA:!SSLv2:!SSLv3:!TLSv1:!TLSv1.1&quot;&gt;
 </code></pre></div>
-
 <p>Seahub extracts the username from the <code>REMOTE_USER</code> environment variable. So you should modify your SP's shibboleth2.xml config file, so that Shibboleth translates your desired attribute into <code>REMOTE_USER</code> environment variable.</p>
 <p>In Seafile, only one of the following two attributes can be used for username: <code>eppn</code>, and <code>mail</code>. <code>eppn</code> stands for "Edu Person Principal Name". It is usually the UserPrincipalName attribute in Active Directory. It's not necessarily a valid email address. <code>mail</code> is the user's email address. You should set <code>REMOTE_USER</code> to either one of these attributes.</p>
 <h5 id="sso-element"><code>SSO</code> element<a class="headerlink" href="#sso-element" title="Permanent link">&para;</a></h5>
 <p>Change <code>entityID</code> property:</p>
-<div class="codehilite"><pre><span></span><code><span class="cm">&lt;!--</span>
-<span class="cm">Configures SSO for a default IdP. To properly allow for &gt;1 IdP, remove</span>
-<span class="cm">entityID property and adjust discoveryURL to point to discovery service.</span>
-<span class="cm">You can also override entityID on /Login query string, or in RequestMap/htaccess.</span>
-<span class="cm">--&gt;</span>
-<span class="nt">&lt;SSO</span><span class="w"> </span><span class="na">entityID=</span><span class="s">&quot;https://your-IdP-domain&quot;</span><span class="nt">&gt;</span>
-<span class="w">     </span><span class="cm">&lt;!--discoveryProtocol=&quot;SAMLDS&quot; discoveryURL=&quot;https://wayf.ukfederation.org.uk/DS&quot;--&gt;</span>
-<span class="w">  </span>SAML2
-<span class="nt">&lt;/SSO&gt;</span>
+<div class="highlight"><pre><span></span><code>&lt;!--
+Configures SSO for a default IdP. To properly allow for &gt;1 IdP, remove
+entityID property and adjust discoveryURL to point to discovery service.
+You can also override entityID on /Login query string, or in RequestMap/htaccess.
+--&gt;
+&lt;SSO entityID=&quot;https://your-IdP-domain&quot;&gt;
+     &lt;!--discoveryProtocol=&quot;SAMLDS&quot; discoveryURL=&quot;https://wayf.ukfederation.org.uk/DS&quot;--&gt;
+  SAML2
+&lt;/SSO&gt;
 </code></pre></div>
-
 <h5 id="metadataprovider-element"><code>MetadataProvider</code> element<a class="headerlink" href="#metadataprovider-element" title="Permanent link">&para;</a></h5>
 <p>Change <code>url</code> and <code>backingFilePath</code> property:</p>
-<div class="codehilite"><pre><span></span><code><span class="p">&lt;!</span><span class="o">--</span><span class="w"> </span><span class="nx">Example</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">remotely</span><span class="w"> </span><span class="nx">supplied</span><span class="w"> </span><span class="nx">batch</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">signed</span><span class="w"> </span><span class="nx">metadata</span><span class="p">.</span><span class="w"> </span><span class="o">--</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nx">MetadataProvider</span><span class="w"> </span><span class="k">type</span><span class="p">=</span><span class="s">&quot;XML&quot;</span><span class="w"> </span><span class="nx">validate</span><span class="p">=</span><span class="s">&quot;true&quot;</span>
-<span class="w">            </span><span class="nx">url</span><span class="p">=</span><span class="s">&quot;http://your-IdP-metadata-url&quot;</span>
-<span class="w">      </span><span class="nx">backingFilePath</span><span class="p">=</span><span class="s">&quot;your-IdP-metadata.xml&quot;</span><span class="w"> </span><span class="nx">maxRefreshDelay</span><span class="p">=</span><span class="s">&quot;7200&quot;</span><span class="p">&gt;</span>
-<span class="w">    </span><span class="p">&lt;</span><span class="nx">MetadataFilter</span><span class="w"> </span><span class="k">type</span><span class="p">=</span><span class="s">&quot;RequireValidUntil&quot;</span><span class="w"> </span><span class="nx">maxValidityInterval</span><span class="p">=</span><span class="s">&quot;2419200&quot;</span><span class="o">/</span><span class="p">&gt;</span>
-<span class="w">    </span><span class="p">&lt;</span><span class="nx">MetadataFilter</span><span class="w"> </span><span class="k">type</span><span class="p">=</span><span class="s">&quot;Signature&quot;</span><span class="w"> </span><span class="nx">certificate</span><span class="p">=</span><span class="s">&quot;fedsigner.pem&quot;</span><span class="w"> </span><span class="nx">verifyBackup</span><span class="p">=</span><span class="s">&quot;false&quot;</span><span class="o">/</span><span class="p">&gt;</span>
+<div class="highlight"><pre><span></span><code>&lt;!-- Example of remotely supplied batch of signed metadata. --&gt;
+&lt;MetadataProvider type=&quot;XML&quot; validate=&quot;true&quot;
+            url=&quot;http://your-IdP-metadata-url&quot;
+      backingFilePath=&quot;your-IdP-metadata.xml&quot; maxRefreshDelay=&quot;7200&quot;&gt;
+    &lt;MetadataFilter type=&quot;RequireValidUntil&quot; maxValidityInterval=&quot;2419200&quot;/&gt;
+    &lt;MetadataFilter type=&quot;Signature&quot; certificate=&quot;fedsigner.pem&quot; verifyBackup=&quot;false&quot;/&gt;
 </code></pre></div>
-
 <h4 id="attribute-mapxml">attribute-map.xml<a class="headerlink" href="#attribute-mapxml" title="Permanent link">&para;</a></h4>
 <p>Open <code>/etc/shibboleth/attribute-map.xml</code> and change some property. After you have done all the followings, don't forget to restart Shibboleth(SP)</p>
 <h5 id="attribute-element"><code>Attribute</code> element<a class="headerlink" href="#attribute-element" title="Permanent link">&para;</a></h5>
 <p>Uncomment attribute elements for getting more user info:</p>
-<div class="codehilite"><pre><span></span><code><span class="o">&lt;!--</span><span class="w"> </span><span class="n">Older</span><span class="w"> </span><span class="n">LDAP</span><span class="o">-</span><span class="n">defined</span><span class="w"> </span><span class="n">attributes</span><span class="w"> </span><span class="p">(</span><span class="n">SAML</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="n">names</span><span class="w"> </span><span class="n">followed</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">SAML</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">names</span><span class="p">)...</span><span class="w"> </span><span class="o">--&gt;</span>
-<span class="o">&lt;</span><span class="n">Attribute</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;urn:oid:2.16.840.1.113730.3.1.241&quot;</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="s">&quot;displayName&quot;</span><span class="o">/&gt;</span>
-<span class="o">&lt;</span><span class="n">Attribute</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;urn:oid:0.9.2342.19200300.100.1.3&quot;</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="s">&quot;mail&quot;</span><span class="o">/&gt;</span>
+<div class="highlight"><pre><span></span><code>&lt;!-- Older LDAP-defined attributes (SAML 2.0 names followed by SAML 1 names)... --&gt;
+&lt;Attribute name=&quot;urn:oid:2.16.840.1.113730.3.1.241&quot; id=&quot;displayName&quot;/&gt;
+&lt;Attribute name=&quot;urn:oid:0.9.2342.19200300.100.1.3&quot; id=&quot;mail&quot;/&gt;
 
-<span class="o">&lt;</span><span class="n">Attribute</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;urn:mace:dir:attribute-def:displayName&quot;</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="s">&quot;displayName&quot;</span><span class="o">/&gt;</span>
-<span class="o">&lt;</span><span class="n">Attribute</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;urn:mace:dir:attribute-def:mail&quot;</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="s">&quot;mail&quot;</span><span class="o">/&gt;</span>
+&lt;Attribute name=&quot;urn:mace:dir:attribute-def:displayName&quot; id=&quot;displayName&quot;/&gt;
+&lt;Attribute name=&quot;urn:mace:dir:attribute-def:mail&quot; id=&quot;mail&quot;/&gt;
 </code></pre></div>
-
 <h4 id="upload-shibbolethsps-metadata">Upload Shibboleth(SP)'s metadata<a class="headerlink" href="#upload-shibbolethsps-metadata" title="Permanent link">&para;</a></h4>
 <p>After restarting Apache, you should be able to get the Service Provider metadata by accessing <a href="https://your-seafile-domain/Shibboleth.sso/Metadata">https://your-seafile-domain/Shibboleth.sso/Metadata</a>. This metadata should be uploaded to the Identity Provider (IdP) server.</p>
 <h2 id="configure-seahub">Configure Seahub<a class="headerlink" href="#configure-seahub" title="Permanent link">&para;</a></h2>
 <p>Add the following configuration to seahub_settings.py.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">ENABLE_SHIB_LOGIN</span> <span class="o">=</span> <span class="n">True</span>
-<span class="n">SHIBBOLETH_USER_HEADER</span> <span class="o">=</span> <span class="s">&#39;HTTP_REMOTE_USER&#39;</span>
-<span class="o">#</span> <span class="n">basic</span> <span class="n">user</span> <span class="n">attributes</span>
-<span class="n">SHIBBOLETH_ATTRIBUTE_MAP</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">&quot;HTTP_DISPLAYNAME&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">False</span><span class="p">,</span> <span class="s">&quot;display_name&quot;</span><span class="p">),</span>
-    <span class="s">&quot;HTTP_MAIL&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">False</span><span class="p">,</span> <span class="s">&quot;contact_email&quot;</span><span class="p">),</span>
-<span class="p">}</span>
-<span class="n">EXTRA_MIDDLEWARE</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="s">&#39;shibboleth.middleware.ShibbolethRemoteUserMiddleware&#39;</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">EXTRA_AUTHENTICATION_BACKENDS</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="s">&#39;shibboleth.backends.ShibbolethRemoteUserBackend&#39;</span><span class="p">,</span>
-<span class="p">)</span>
+<div class="highlight"><pre><span></span><code>ENABLE_SHIB_LOGIN = True
+SHIBBOLETH_USER_HEADER = &#39;HTTP_REMOTE_USER&#39;
+# basic user attributes
+SHIBBOLETH_ATTRIBUTE_MAP = {
+    &quot;HTTP_DISPLAYNAME&quot;: (False, &quot;display_name&quot;),
+    &quot;HTTP_MAIL&quot;: (False, &quot;contact_email&quot;),
+}
+EXTRA_MIDDLEWARE = (
+    &#39;shibboleth.middleware.ShibbolethRemoteUserMiddleware&#39;,
+)
+EXTRA_AUTHENTICATION_BACKENDS = (
+    &#39;shibboleth.backends.ShibbolethRemoteUserBackend&#39;,
+)
 </code></pre></div>
-
 <p>Seahub can process additional user attributes from Shibboleth. These attributes are saved into Seahub's database, as user's properties. They're all not mandatory. The internal user properties Seahub now supports are:</p>
 <ul>
 <li>givenname</li>
@@ -4566,21 +4560,20 @@
 <li>institution: used to identify user's institution</li>
 </ul>
 <p>You can specify the mapping between Shibboleth attributes and Seahub's user properties in seahub_settings.py:</p>
-<div class="codehilite"><pre><span></span><code>SHIBBOLETH_ATTRIBUTE_MAP  = {
+<div class="highlight"><pre><span></span><code>SHIBBOLETH_ATTRIBUTE_MAP  = {
     &quot;HTTP_GIVENNAME&quot;: (False, &quot;givenname&quot;),
     &quot;HTTP_SN&quot;: (False, &quot;surname&quot;),
     &quot;HTTP_MAIL&quot;: (False, &quot;contact_email&quot;),
     &quot;HTTP_ORGANIZATION&quot;: (False, &quot;institution&quot;),
 }
 </code></pre></div>
-
 <p>In the above config, the hash key is Shibboleth attribute name, the second element in the hash value is Seahub's property name. You can adjust the Shibboleth attribute name for your own needs. <strong><em>Note that you may have to change attribute-map.xml in your Shibboleth SP, so that the desired attributes are passed to Seahub. And you have to make sure the IdP sends these attributes to the SP.</em></strong></p>
 <p>We also added an option <code>SHIB_ACTIVATE_AFTER_CREATION</code> (defaults to <code>True</code>) which control the user status after shibboleth connection. If this option set to <code>False</code>, user will be inactive after connection, and system admins will be notified by email to activate that account.</p>
 <h3 id="affiliation-and-user-role">Affiliation and user role<a class="headerlink" href="#affiliation-and-user-role" title="Permanent link">&para;</a></h3>
 <p>Shibboleth has a field called affiliation. It is a list like: <code>employee@uni-mainz.de;member@uni-mainz.de;faculty@uni-mainz.de;staff@uni-mainz.de.</code></p>
 <p>We are able to set user role from Shibboleth. Details about user role, please refer to <a href="../roles_permissions/"><em>Roles and Permissions</em></a></p>
 <p>To enable this, modify <code>SHIBBOLETH_ATTRIBUTE_MAP</code> above and add <code>Shibboleth-affiliation</code> field, you may need to change <code>Shibboleth-affiliation</code> according to your Shibboleth SP attributes.</p>
-<div class="codehilite"><pre><span></span><code>SHIBBOLETH_ATTRIBUTE_MAP  = {
+<div class="highlight"><pre><span></span><code>SHIBBOLETH_ATTRIBUTE_MAP  = {
     &quot;HTTP_GIVENNAME&quot;: (False, &quot;givenname&quot;),
     &quot;HTTP_SN&quot;: (False, &quot;surname&quot;),
     &quot;HTTP_MAIL&quot;: (False, &quot;contact_email&quot;),
@@ -4588,61 +4581,55 @@
     &quot;HTTP_Shibboleth-affiliation&quot;: (False, &quot;affiliation&quot;),
 }
 </code></pre></div>
-
 <p>Then add new config to define affiliation role map,</p>
-<div class="codehilite"><pre><span></span><code><span class="n">SHIBBOLETH_AFFILIATION_ROLE_MAP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{</span>
-<span class="w">    </span><span class="s1">&#39;employee@uni-mainz.de&#39;</span><span class="err">:</span><span class="w"> </span><span class="s1">&#39;staff&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;member@uni-mainz.de&#39;</span><span class="err">:</span><span class="w"> </span><span class="s1">&#39;staff&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;student@uni-mainz.de&#39;</span><span class="err">:</span><span class="w"> </span><span class="s1">&#39;student&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;employee@hu-berlin.de&#39;</span><span class="err">:</span><span class="w"> </span><span class="s1">&#39;guest&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;patterns&#39;</span><span class="err">:</span><span class="w"> </span><span class="p">(</span>
-<span class="w">        </span><span class="p">(</span><span class="s1">&#39;*@hu-berlin.de&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;guest1&#39;</span><span class="p">),</span>
-<span class="w">        </span><span class="p">(</span><span class="s1">&#39;*@*.de&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;guest2&#39;</span><span class="p">),</span>
-<span class="w">        </span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;guest&#39;</span><span class="p">),</span>
-<span class="w">    </span><span class="p">),</span>
-<span class="err">}</span>
+<div class="highlight"><pre><span></span><code>SHIBBOLETH_AFFILIATION_ROLE_MAP = {
+    &#39;employee@uni-mainz.de&#39;: &#39;staff&#39;,
+    &#39;member@uni-mainz.de&#39;: &#39;staff&#39;,
+    &#39;student@uni-mainz.de&#39;: &#39;student&#39;,
+    &#39;employee@hu-berlin.de&#39;: &#39;guest&#39;,
+    &#39;patterns&#39;: (
+        (&#39;*@hu-berlin.de&#39;, &#39;guest1&#39;),
+        (&#39;*@*.de&#39;, &#39;guest2&#39;),
+        (&#39;*&#39;, &#39;guest&#39;),
+    ),
+}
 </code></pre></div>
-
 <p>After Shibboleth login, Seafile should calcualte user's role from affiliation and SHIBBOLETH_AFFILIATION_ROLE_MAP.</p>
 <h2 id="verify">Verify<a class="headerlink" href="#verify" title="Permanent link">&para;</a></h2>
 <p>After restarting Apache and Seahub service (<code>./seahub.sh restart</code>), you can then test the shibboleth login workflow.</p>
 <h2 id="debug">Debug<a class="headerlink" href="#debug" title="Permanent link">&para;</a></h2>
 <p>If you encountered problems when login, follow these steps to get debug info (for Seafile pro 6.3.13).</p>
 <h3 id="add-this-setting-to-seahub_settingspy">Add this setting to <code>seahub_settings.py</code><a class="headerlink" href="#add-this-setting-to-seahub_settingspy" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>DEBUG = True
+<div class="highlight"><pre><span></span><code>DEBUG = True
 </code></pre></div>
-
 <h3 id="change-seafiles-code">Change Seafile's code<a class="headerlink" href="#change-seafiles-code" title="Permanent link">&para;</a></h3>
 <p>Open <code>seafile-server-latest/seahub/thirdpart/shibboleth/middleware.py</code></p>
 <p>Insert the following code in line 59</p>
-<div class="codehilite"><pre><span></span><code>    assert False
+<div class="highlight"><pre><span></span><code>    assert False
 </code></pre></div>
-
 <p>Insert the following code in line 65</p>
-<div class="codehilite"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="nv">not</span><span class="w"> </span><span class="nv">username</span>:
-<span class="w">    </span><span class="nv">assert</span><span class="w"> </span><span class="nv">False</span>
+<div class="highlight"><pre><span></span><code>if not username:
+    assert False
 </code></pre></div>
-
 <p>The complete code after these changes is as follows:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1">#Locate the remote user header.</span>
-<span class="c1"># import pprint; pprint.pprint(request.META)</span>
-<span class="k">try</span><span class="p">:</span>
-<span class="w">    </span><span class="n">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">request</span><span class="o">.</span><span class="n">META</span><span class="p">[</span><span class="n">SHIB_USER_HEADER</span><span class="p">]</span>
-<span class="k">except</span><span class="w"> </span><span class="n">KeyError</span><span class="p">:</span>
-<span class="w">    </span><span class="k">assert</span><span class="w"> </span><span class="kc">False</span>
-<span class="w">    </span><span class="c1"># If specified header doesn&#39;t exist then return (leaving</span>
-<span class="w">    </span><span class="c1"># request.user set to AnonymousUser by the</span>
-<span class="w">    </span><span class="c1"># AuthenticationMiddleware).</span>
-<span class="w">    </span><span class="k">return</span>
+<div class="highlight"><pre><span></span><code>#Locate the remote user header.
+# import pprint; pprint.pprint(request.META)
+try:
+    username = request.META[SHIB_USER_HEADER]
+except KeyError:
+    assert False
+    # If specified header doesn&#39;t exist then return (leaving
+    # request.user set to AnonymousUser by the
+    # AuthenticationMiddleware).
+    return
 
-<span class="k">if</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">username</span><span class="p">:</span>
-<span class="w">    </span><span class="k">assert</span><span class="w"> </span><span class="kc">False</span>
+if not username:
+    assert False
 
-<span class="n">p_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ccnet_api</span><span class="o">.</span><span class="n">get_primary_id</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
-<span class="k">if</span><span class="w"> </span><span class="n">p_id</span><span class="w"> </span><span class="ow">is</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="n">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_id</span>
+p_id = ccnet_api.get_primary_id(username)
+if p_id is not None:
+    username = p_id
 </code></pre></div>
-
 <p>Then restart Seafile and relogin, you will see debug info in web page.</p>
 
 
@@ -4673,6 +4660,46 @@
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../remote_user/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Remote User Authentication">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Remote User Authentication
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../auto_login_seadrive/" class="md-footer__link md-footer__link--next" aria-label="Next: Auto Login to SeaDrive on Windows">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Auto Login to SeaDrive on Windows
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4715,7 +4742,7 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

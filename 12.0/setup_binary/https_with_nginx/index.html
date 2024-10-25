@@ -2443,7 +2443,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4539,48 +4539,41 @@
 <p>The setup proceeds in two steps: First, Nginx is installed. Second, a SSL certificate is integrated in the Nginx configuration.</p>
 <h3 id="installing-nginx">Installing Nginx<a class="headerlink" href="#installing-nginx" title="Permanent link">&para;</a></h3>
 <p>Install Nginx using the package repositories:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># CentOS</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># CentOS</span>
 $<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>nginx<span class="w"> </span>-y
 
 <span class="c1"># Debian/Ubuntu</span>
 $<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>nginx<span class="w"> </span>-y
 </code></pre></div>
-
 <p>After the installation, start the server and enable it so that Nginx starts at system boot:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># CentOS/Debian/Ubuntu</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># CentOS/Debian/Ubuntu</span>
 $<span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>nginx
 $<span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>nginx
 </code></pre></div>
-
 <h3 id="preparing-nginx">Preparing Nginx<a class="headerlink" href="#preparing-nginx" title="Permanent link">&para;</a></h3>
 <p>The configuration of a proxy server in Nginx differs slightly between CentOS and Debian/Ubuntu. Additionally, the restrictive default settings of SELinux's configuration on CentOS require a modification.</p>
 <h4 id="preparing-nginx-on-centos">Preparing Nginx on CentOS<a class="headerlink" href="#preparing-nginx-on-centos" title="Permanent link">&para;</a></h4>
 <p>Switch SELinux into permissive mode and perpetuate the setting:</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>setenforce<span class="w"> </span>permissive
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>setenforce<span class="w"> </span>permissive
 $<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/^SELINUX=.*/SELINUX=permissive/&#39;</span><span class="w"> </span>/etc/selinux/config
 </code></pre></div>
-
 <p>Create a configuration file for seafile in <code>/etc/nginx/conf.d</code>:</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>touch<span class="w"> </span>/etc/nginx/conf.d/seafile.conf
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>touch<span class="w"> </span>/etc/nginx/conf.d/seafile.conf
 </code></pre></div>
-
 <h4 id="preparing-nginx-on-debianubuntu">Preparing Nginx on Debian/Ubuntu<a class="headerlink" href="#preparing-nginx-on-debianubuntu" title="Permanent link">&para;</a></h4>
 <p>Create a configuration file for seafile in <code>/etc/nginx/sites-available/</code>:</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>touch<span class="w"> </span>/etc/nginx/sites-available/seafile.conf
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>touch<span class="w"> </span>/etc/nginx/sites-available/seafile.conf
 </code></pre></div>
-
 <p>Delete the default files in <code>/etc/nginx/sites-enabled/</code> and <code>/etc/nginx/sites-available</code>: </p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>rm<span class="w"> </span>/etc/nginx/sites-enabled/default
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>rm<span class="w"> </span>/etc/nginx/sites-enabled/default
 $<span class="w"> </span>rm<span class="w"> </span>/etc/nginx/sites-available/default
 </code></pre></div>
-
 <p>Create a symbolic link: </p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>/etc/nginx/sites-available/seafile.conf<span class="w"> </span>/etc/nginx/sites-enabled/seafile.conf
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>/etc/nginx/sites-available/seafile.conf<span class="w"> </span>/etc/nginx/sites-enabled/seafile.conf
 </code></pre></div>
-
 <h3 id="configuring-nginx">Configuring Nginx<a class="headerlink" href="#configuring-nginx" title="Permanent link">&para;</a></h3>
 <p>Copy the following sample Nginx config file into the just created <code>seafile.conf</code> and modify the content to fit your needs:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">log_format</span><span class="w"> </span><span class="s">seafileformat</span><span class="w"> </span><span class="s">&#39;</span><span class="nv">$http_x_forwarded_for</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="w"> </span><span class="s">[</span><span class="nv">$time_local]</span><span class="w"> </span><span class="s">&quot;</span><span class="nv">$request&quot;</span><span class="w"> </span><span class="nv">$status</span><span class="w"> </span><span class="nv">$body_bytes_sent</span><span class="w"> </span><span class="s">&quot;</span><span class="nv">$http_referer&quot;</span><span class="w"> </span><span class="s">&quot;</span><span class="nv">$http_user_agent&quot;</span><span class="w"> </span><span class="nv">$upstream_response_time&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">log_format</span><span class="w"> </span><span class="s">seafileformat</span><span class="w"> </span><span class="s">&#39;</span><span class="nv">$http_x_forwarded_for</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="w"> </span><span class="s">[</span><span class="nv">$time_local]</span><span class="w"> </span><span class="s">&quot;</span><span class="nv">$request&quot;</span><span class="w"> </span><span class="nv">$status</span><span class="w"> </span><span class="nv">$body_bytes_sent</span><span class="w"> </span><span class="s">&quot;</span><span class="nv">$http_referer&quot;</span><span class="w"> </span><span class="s">&quot;</span><span class="nv">$http_user_agent&quot;</span><span class="w"> </span><span class="nv">$upstream_response_time&#39;</span><span class="p">;</span>
 
 <span class="k">server</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="mi">80</span><span class="p">;</span>
@@ -4623,7 +4616,6 @@ $<span class="w"> </span>rm<span class="w"> </span>/etc/nginx/sites-available/de
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-
 <p>The following options must be modified in the CONF file:</p>
 <ul>
 <li>Server name (server_name)</li>
@@ -4637,10 +4629,9 @@ $<span class="w"> </span>rm<span class="w"> </span>/etc/nginx/sites-available/de
 </ul>
 <p>The default value for <code>client_max_body_size</code> is 1M. Uploading larger files will result in an error message HTTP error code 413 ("Request Entity Too Large"). It is recommended to syncronize the value of client_max_body_size with the parameter <code>max_upload_size</code> in section <code>[fileserver]</code> of <a href="../../config/seafile-conf/">seafile.conf</a>. Optionally, the value can also be set to 0 to disable this feature. Client uploads are only partly effected by this limit. With a limit of 100 MiB they can safely upload files of any size.</p>
 <p>Finally, make sure your seafile.conf does not contain syntax errors and restart Nginx for the configuration changes to take effect:</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>nginx<span class="w"> </span>-t
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>nginx<span class="w"> </span>-t
 $<span class="w"> </span>nginx<span class="w"> </span>-s<span class="w"> </span>reload
 </code></pre></div>
-
 <h3 id="getting-a-lets-encrypt-certificate">Getting a Let's Encrypt certificate<a class="headerlink" href="#getting-a-lets-encrypt-certificate" title="Permanent link">&para;</a></h3>
 <p>Getting a Let's Encrypt certificate is straightforward thanks to <a href="https://certbot.eff.org/">Certbot</a>. Certbot is a free, open source software tool for requesting, receiving, and renewing Let's Encrypt certificates.</p>
 <p>First, go to the <a href="https://certbot.eff.org/">Certbot</a> website and choose your webserver and OS.
@@ -4648,15 +4639,14 @@ $<span class="w"> </span>nginx<span class="w"> </span>-s<span class="w"> </span>
 <p>Second, follow the detailed instructions then shown.</p>
 <p><img alt="grafik" src="../../images/certbot-step2.png" /></p>
 <p>We recommend that you get just a certificate and that you modify the Nginx configuration yourself:</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>certbot<span class="w"> </span>certonly<span class="w"> </span>--nginx
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>certbot<span class="w"> </span>certonly<span class="w"> </span>--nginx
 </code></pre></div>
-
 <p>Follow the instructions on the screen.</p>
 <p>Upon successful verification, Certbot saves the certificate files in a directory named after the host name in  <code>/etc/letsencrypt/live</code>. For the host name seafile.example.com, the files are stored in <code>/etc/letsencrypt/live/seafile.example.com</code>. </p>
 <h3 id="modifying-nginx-configuration-file">Modifying Nginx configuration file<a class="headerlink" href="#modifying-nginx-configuration-file" title="Permanent link">&para;</a></h3>
 <p>Add an  server block for port 443 and a http-to-https redirect to the <code>seafile.conf</code> configuration file in <code>/etc/nginx</code>.  </p>
 <p>This is a (shortened) sample configuration for the host name seafile.example.com:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">log_format</span><span class="w"> </span><span class="s">seafileformat</span><span class="w"> </span><span class="s">&#39;</span><span class="nv">$http_x_forwarded_for</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="w"> </span><span class="s">[</span><span class="nv">$time_local]</span><span class="w"> </span><span class="s">&quot;</span><span class="nv">$request&quot;</span><span class="w"> </span><span class="nv">$status</span><span class="w"> </span><span class="nv">$body_bytes_sent</span><span class="w"> </span><span class="s">&quot;</span><span class="nv">$http_referer&quot;</span><span class="w"> </span><span class="s">&quot;</span><span class="nv">$http_user_agent&quot;</span><span class="w"> </span><span class="nv">$upstream_response_time&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">log_format</span><span class="w"> </span><span class="s">seafileformat</span><span class="w"> </span><span class="s">&#39;</span><span class="nv">$http_x_forwarded_for</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="w"> </span><span class="s">[</span><span class="nv">$time_local]</span><span class="w"> </span><span class="s">&quot;</span><span class="nv">$request&quot;</span><span class="w"> </span><span class="nv">$status</span><span class="w"> </span><span class="nv">$body_bytes_sent</span><span class="w"> </span><span class="s">&quot;</span><span class="nv">$http_referer&quot;</span><span class="w"> </span><span class="s">&quot;</span><span class="nv">$http_user_agent&quot;</span><span class="w"> </span><span class="nv">$upstream_response_time&#39;</span><span class="p">;</span>
 
 <span class="k">server</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kn">listen</span><span class="w">       </span><span class="mi">80</span><span class="p">;</span>
@@ -4685,69 +4675,59 @@ $<span class="w"> </span>nginx<span class="w"> </span>-s<span class="w"> </span>
 
 <span class="kn">...</span><span class="w"> </span><span class="c1"># No changes beyond this point compared to the Nginx configuration without HTTPS</span>
 </code></pre></div>
-
 <p>Finally, make sure your seafile.conf does not contain syntax errors and restart Nginx for the configuration changes to take effect:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">nginx</span><span class="w"> </span><span class="o">-</span><span class="n">t</span>
-<span class="n">nginx</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="n">reload</span>
+<div class="highlight"><pre><span></span><code>nginx -t
+nginx -s reload
 </code></pre></div>
-
 <h3 id="large-file-uploads">Large file uploads<a class="headerlink" href="#large-file-uploads" title="Permanent link">&para;</a></h3>
 <p>Tip for uploading very large files (&gt; 4GB): By default Nginx will buffer large request body in temp file. After the body is completely received, Nginx will send the body to the upstream server (seaf-server in our case). But it seems when file size is very large, the buffering mechanism dosen't work well. It may stop proxying the body in the middle. So if you want to support file upload larger for 4GB, we suggest you install Nginx version &gt;= 1.8.0 and add the following options to Nginx config file:</p>
-<div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="k">location</span><span class="w"> </span><span class="s">/seafhttp</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="k">location</span><span class="w"> </span><span class="s">/seafhttp</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="kn">...</span><span class="w"> </span><span class="s">...</span>
 <span class="w">        </span><span class="s">proxy_request_buffering</span><span class="w"> </span><span class="no">off</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 </code></pre></div>
-
 <p>If you have WebDAV enabled it is recommended to add the same:</p>
-<div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="k">location</span><span class="w"> </span><span class="s">/seafdav</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="k">location</span><span class="w"> </span><span class="s">/seafdav</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="kn">...</span><span class="w"> </span><span class="s">...</span>
 <span class="w">        </span><span class="s">proxy_request_buffering</span><span class="w"> </span><span class="no">off</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 </code></pre></div>
-
 <h3 id="modifying-seahub_settingspy">Modifying seahub_settings.py<a class="headerlink" href="#modifying-seahub_settingspy" title="Permanent link">&para;</a></h3>
 <p>The <code>SERVICE_URL</code> in <a href="../../config/seahub_settings_py/">seahub_settings.py</a> informs Seafile about the chosen domain, protocol and port. Change the <code>SERVICE_URL</code>so as to account for the switch from HTTP to HTTPS and to correspond to your host name (the <code>http://</code> must not be removed):</p>
-<div class="codehilite"><pre><span></span><code><span class="n">SERVICE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://seafile.example.com&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">SERVICE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://seafile.example.com&#39;</span>
 </code></pre></div>
-
 <p>The <code>FILE_SERVER_ROOT</code> in <a href="../../config/seahub_settings_py/">seahub_settings.py</a> informs Seafile about the location of and the protocol used by the file server. Change the <code>FILE_SERVER_ROOT</code> so as to account for the switch from HTTP to HTTPS and to correspond to your host name (the trailing <code>/seafhttp</code> must not be removed):</p>
-<div class="codehilite"><pre><span></span><code><span class="n">FILE_SERVER_ROOT</span> <span class="o">=</span> <span class="s1">&#39;https://seafile.example.com/seafhttp&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">FILE_SERVER_ROOT</span> <span class="o">=</span> <span class="s1">&#39;https://seafile.example.com/seafhttp&#39;</span>
 </code></pre></div>
-
 <p>Note: The <code>SERVICE_URL</code> and <code>FILE_SERVER_ROOT</code> can also be modified in Seahub via System Admininstration &gt; Settings.  If they are configured via System Admin and in seahub_settings.py, the value in System Admin will take precedence.</p>
 <h3 id="modifying-seafileconf-optional">Modifying seafile.conf (optional)<a class="headerlink" href="#modifying-seafileconf-optional" title="Permanent link">&para;</a></h3>
 <p>To improve security, the file server should only be accessible via Nginx.</p>
 <p>Add the following line in the <code>[fileserver]</code> block on <code>seafile.conf</code> in <code>/opt/seafile/conf</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="na">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">127.0.0.1</span><span class="w">  </span><span class="c1">## default port 0.0.0.0</span>
+<div class="highlight"><pre><span></span><code><span class="na">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">127.0.0.1</span><span class="w">  </span><span class="c1">## default port 0.0.0.0</span>
 </code></pre></div>
-
 <p>After his change, the file server only accepts requests from Nginx.</p>
 <h3 id="starting-seafile-and-seahub">Starting Seafile and Seahub<a class="headerlink" href="#starting-seafile-and-seahub" title="Permanent link">&para;</a></h3>
 <p>Restart the seaf-server and Seahub for the config changes to take effect:</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>su<span class="w"> </span>seafile
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>su<span class="w"> </span>seafile
 $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest
 $<span class="w"> </span>./seafile.sh<span class="w"> </span>restart
 $<span class="w"> </span>./seahub.sh<span class="w"> </span>restart<span class="w"> </span><span class="c1"># or &quot;./seahub.sh start-fastcgi&quot; if you&#39;re using fastcgi</span>
 </code></pre></div>
-
 <h2 id="additional-modern-settings-for-nginx-optional">Additional modern settings for Nginx (optional)<a class="headerlink" href="#additional-modern-settings-for-nginx-optional" title="Permanent link">&para;</a></h2>
 <h3 id="activating-ipv6">Activating IPv6<a class="headerlink" href="#activating-ipv6" title="Permanent link">&para;</a></h3>
 <p>Require IPv6 on server otherwise the server will not start! Also the AAAA dns record is required for IPv6 usage.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">listen</span><span class="w"> </span><span class="mi">443</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">listen</span><span class="w"> </span><span class="mi">443</span><span class="p">;</span>
 <span class="k">listen</span><span class="w"> </span><span class="s">[::]:443</span><span class="p">;</span>
 </code></pre></div>
-
 <h3 id="activating-http2">Activating HTTP2<a class="headerlink" href="#activating-http2" title="Permanent link">&para;</a></h3>
-<p>Activate HTTP2 for more performance. Only available for SSL and nginx version&gt;=1.9.5. Simply add <code>http2</code>.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">listen</span><span class="w"> </span><span class="mi">443</span><span class="w"> </span><span class="s">http2</span><span class="p">;</span>
+<p>Activate HTTP2 for more performance. Only available for SSL and nginx version&gt;=1.9.5. Simply add <code>http2</code>.
+<div class="highlight"><pre><span></span><code><span class="k">listen</span><span class="w"> </span><span class="mi">443</span><span class="w"> </span><span class="s">http2</span><span class="p">;</span>
 <span class="k">listen</span><span class="w"> </span><span class="s">[::]:443</span><span class="w"> </span><span class="s">http2</span><span class="p">;</span>
-</code></pre></div>
-
+</code></pre></div></p>
 <h2 id="advanced-tls-configuration-for-nginx-optional">Advanced TLS configuration for Nginx (optional)<a class="headerlink" href="#advanced-tls-configuration-for-nginx-optional" title="Permanent link">&para;</a></h2>
 <p>The TLS configuration in the sample Nginx configuration file above receives a B overall rating on <a href="https://www.ssllabs.com/ssltest/">SSL Labs</a>. By modifying the TLS configuration in <code>seafile.conf</code>,  this rating can be significantly improved. </p>
 <p>The following sample Nginx configuration file for the host name seafile.example.com contains additional security-related directives. (Note that this sample file uses a generic path for the SSL certificate files.) Some of the directives require further steps as explained below.</p>
-<div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="k">server</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="k">server</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="kn">listen</span><span class="w">       </span><span class="mi">80</span><span class="p">;</span>
 <span class="w">        </span><span class="kn">server_name</span><span class="w">  </span><span class="s">seafile.example.com</span><span class="p">;</span>
 <span class="w">        </span><span class="kn">rewrite</span><span class="w"> </span><span class="s">^</span><span class="w"> </span><span class="s">https://</span><span class="nv">$http_host$request_uri?</span><span class="w"> </span><span class="s">permanent</span><span class="p">;</span><span class="w">    </span><span class="c1"># Forced redirect from HTTP to HTTPS</span>
@@ -4811,23 +4791,19 @@ $<span class="w"> </span>./seahub.sh<span class="w"> </span>restart<span class="
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 </code></pre></div>
-
 <h3 id="enabling-http-strict-transport-security">Enabling HTTP Strict Transport Security<a class="headerlink" href="#enabling-http-strict-transport-security" title="Permanent link">&para;</a></h3>
 <p>Enable HTTP Strict Transport Security (HSTS) to prevent man-in-the-middle-attacks by adding this directive:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">add_header</span><span class="w"> </span><span class="s">Strict-Transport-Security</span><span class="w"> </span><span class="s">&quot;max-age=31536000</span><span class="p">;</span><span class="w"> </span><span class="k">includeSubDomains&quot;</span><span class="w"> </span><span class="s">always</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">add_header</span><span class="w"> </span><span class="s">Strict-Transport-Security</span><span class="w"> </span><span class="s">&quot;max-age=31536000</span><span class="p">;</span><span class="w"> </span><span class="k">includeSubDomains&quot;</span><span class="w"> </span><span class="s">always</span><span class="p">;</span>
 </code></pre></div>
-
 <p>HSTS instructs web browsers to automatically use HTTPS. That means, after the first visit of the HTTPS version of Seahub, the browser will only use https to access the site.</p>
 <h3 id="using-perfect-forward-secrecy">Using Perfect Forward Secrecy<a class="headerlink" href="#using-perfect-forward-secrecy" title="Permanent link">&para;</a></h3>
 <p>Enable Diffie-Hellman (DH) key-exchange. Generate DH parameters and write them in a .pem file using the following command:</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>openssl<span class="w"> </span>dhparam<span class="w"> </span><span class="m">2048</span><span class="w"> </span>&gt;<span class="w"> </span>/etc/nginx/dhparam.pem<span class="w">  </span><span class="c1"># Generates DH parameter of length 2048 bits</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>openssl<span class="w"> </span>dhparam<span class="w"> </span><span class="m">2048</span><span class="w"> </span>&gt;<span class="w"> </span>/etc/nginx/dhparam.pem<span class="w">  </span><span class="c1"># Generates DH parameter of length 2048 bits</span>
 </code></pre></div>
-
 <p>The generation of the the DH parameters may take some time depending on the server's processing power.</p>
 <p>Add the following directive in the HTTPS server block:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">ssl_dhparam</span><span class="w"> </span><span class="s">/etc/nginx/dhparam.pem</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">ssl_dhparam</span><span class="w"> </span><span class="s">/etc/nginx/dhparam.pem</span><span class="p">;</span>
 </code></pre></div>
-
 <h3 id="restricting-tls-protocols-and-ciphers">Restricting TLS protocols and ciphers<a class="headerlink" href="#restricting-tls-protocols-and-ciphers" title="Permanent link">&para;</a></h3>
 <p>Disallow the use of old TLS protocols and cipher. Mozilla provides a configuration generator for optimizing the conflicting objectives of security and compabitility. Visit https://wiki.mozilla.org/Security/Server_Side_TLS#Nginx for more Information.</p>
 
@@ -4859,6 +4835,46 @@ $<span class="w"> </span>./seahub.sh<span class="w"> </span>restart<span class="
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../installation_ce/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Installation">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Installation
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../https_with_apache/" class="md-footer__link md-footer__link--next" aria-label="Next: HTTPS with Apache">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                HTTPS with Apache
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4901,7 +4917,7 @@ $<span class="w"> </span>./seahub.sh<span class="w"> </span>restart<span class="
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

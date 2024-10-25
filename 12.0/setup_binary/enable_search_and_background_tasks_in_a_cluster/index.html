@@ -2376,7 +2376,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4407,25 +4407,21 @@
 <p>If you following the steps on settings up a cluster, node B and node C should have already be configed as frontend node. You can copy the configuration of node B as a base for node A. Then do the following steps:</p>
 <h4 id="install-dependencies-java-libreoffice">Install Dependencies (Java, LibreOffice)<a class="headerlink" href="#install-dependencies-java-libreoffice" title="Permanent link">&para;</a></h4>
 <p>On Ubuntu/Debian:</p>
-<div class="codehilite"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>openjdk-8-jre<span class="w"> </span>libreoffice<span class="w"> </span>python-uno<span class="w"> </span><span class="c1"># or python3-uno for ubuntu 16.04+</span>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>openjdk-8-jre<span class="w"> </span>libreoffice<span class="w"> </span>python-uno<span class="w"> </span><span class="c1"># or python3-uno for ubuntu 16.04+</span>
 </code></pre></div>
-
 <p>On CentOS/Red Hat:</p>
-<div class="codehilite"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>java-1.8.0-openjdk
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>java-1.8.0-openjdk
 sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>libreoffice<span class="w"> </span>libreoffice-headless<span class="w"> </span>libreoffice-pyuno
 </code></pre></div>
-
 <p>Edit <strong>seafevents.conf</strong> and ensure this line does NOT exist:</p>
-<div class="codehilite"><pre><span></span><code>external_es_server = true
+<div class="highlight"><pre><span></span><code>external_es_server = true
 </code></pre></div>
-
 <p>Edit <strong>seafevents.conf</strong>, adding the following configuration:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[OFFICE CONVERTER]</span>
-<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;ip of node background&gt;</span>
-<span class="na">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">6000</span>
+<div class="highlight"><pre><span></span><code>[OFFICE CONVERTER]
+enabled = true
+host = &lt;ip of node background&gt;
+port = 6000
 </code></pre></div>
-
 <p>host is the IP address of background node, make sure the front end nodes can access the background node via IP:6000 .</p>
 <p>Edit <strong>seafile.conf</strong> to enable virus scan according to <a href="../../extension/virus_scan/">virus scan document</a></p>
 <h4 id="edit-the-firewall-rules">Edit the firewall rules<a class="headerlink" href="#edit-the-firewall-rules" title="Permanent link">&para;</a></h4>
@@ -4433,153 +4429,137 @@ sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> <
 <h3 id="configure-other-nodes">Configure Other Nodes<a class="headerlink" href="#configure-other-nodes" title="Permanent link">&para;</a></h3>
 <p>On nodes B and C, you need to:</p>
 <p>Edit <code>seafevents.conf</code>, add the following lines:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[INDEX FILES]</span>
-<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">external_es_server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">es_host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;ip of node A&gt;</span>
-<span class="na">es_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">9200</span>
+<div class="highlight"><pre><span></span><code>[INDEX FILES]
+enabled = true
+external_es_server = true
+es_host = &lt;ip of node A&gt;
+es_port = 9200
 
-<span class="k">[OFFICE CONVERTER]</span>
-<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;ip of node background&gt;</span>
-<span class="na">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">6000</span>
+[OFFICE CONVERTER]
+enabled = true
+host = &lt;ip of node background&gt;
+port = 6000
 </code></pre></div>
-
 <p>Edit <strong>seahub_settings.py</strong> and add a line:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">OFFICE_CONVERTOR_ROOT</span> <span class="o">=</span> <span class="s1">&#39;http://&lt;ip of node background&gt;:6000&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">OFFICE_CONVERTOR_ROOT</span> <span class="o">=</span> <span class="s1">&#39;http://&lt;ip of node background&gt;:6000&#39;</span>
 </code></pre></div>
-
 <h3 id="start-the-background-node">Start the background node<a class="headerlink" href="#start-the-background-node" title="Permanent link">&para;</a></h3>
 <p>Type the following commands to start the background node (Note, one additional command <code>seafile-background-tasks.sh</code> is needed)</p>
-<div class="codehilite"><pre><span></span><code>./seafile.sh<span class="w"> </span>start
+<div class="highlight"><pre><span></span><code>./seafile.sh<span class="w"> </span>start
 ./seafile-background-tasks.sh<span class="w"> </span>start
 </code></pre></div>
-
 <p>To stop the background node, type:</p>
-<div class="codehilite"><pre><span></span><code>./seafile-background-tasks.sh<span class="w"> </span>stop
+<div class="highlight"><pre><span></span><code>./seafile-background-tasks.sh<span class="w"> </span>stop
 ./seafile.sh<span class="w"> </span>stop
 </code></pre></div>
-
 <p>You should also configure Seafile background tasks to start on system bootup. For systemd based OS, you can add <code>/etc/systemd/system/seafile-background-tasks.service</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[Unit]</span>
-<span class="na">Description</span><span class="o">=</span><span class="s">Seafile Background Tasks Server</span>
-<span class="na">After</span><span class="o">=</span><span class="s">network.target seahub.service</span>
+<div class="highlight"><pre><span></span><code>[Unit]
+Description=Seafile Background Tasks Server
+After=network.target seahub.service
 
-<span class="k">[Service]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">forking</span>
-<span class="na">ExecStart</span><span class="o">=</span><span class="s">/opt/seafile/seafile-server-latest/seafile-background-tasks.sh start</span>
-<span class="na">ExecStop</span><span class="o">=</span><span class="s">/opt/seafile/seafile-server-latest/seafile-background-tasks.sh stop</span>
-<span class="na">User</span><span class="o">=</span><span class="s">root</span>
-<span class="na">Group</span><span class="o">=</span><span class="s">root</span>
+[Service]
+Type=forking
+ExecStart=/opt/seafile/seafile-server-latest/seafile-background-tasks.sh start
+ExecStop=/opt/seafile/seafile-server-latest/seafile-background-tasks.sh stop
+User=root
+Group=root
 
-<span class="k">[Install]</span>
-<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+[Install]
+WantedBy=multi-user.target
 </code></pre></div>
-
 <p>Then enable this task in systemd:</p>
-<div class="codehilite"><pre><span></span><code>systemctl enable seafile-background-tasks.service
+<div class="highlight"><pre><span></span><code>systemctl enable seafile-background-tasks.service
 </code></pre></div>
-
 <h3 id="the-final-configuration-of-the-background-node">The final configuration of the background node<a class="headerlink" href="#the-final-configuration-of-the-background-node" title="Permanent link">&para;</a></h3>
 <p>Here is the summary of configurations at the background node that related to clustering setup.</p>
 <p>For <strong>seafile.conf</strong>:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[cluster]</span>
-<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+<div class="highlight"><pre><span></span><code>[cluster]
+enabled = true
 
-<span class="k">[memcached]</span>
-<span class="na">memcached_options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">--SERVER=&lt;you memcached server host&gt; --POOL-MIN=10 --POOL-MAX=100</span>
+[memcached]
+memcached_options = --SERVER=&lt;you memcached server host&gt; --POOL-MIN=10 --POOL-MAX=100
 </code></pre></div>
-
 <p>For <strong>seafevents.conf</strong>:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[INDEX FILES]</span>
-<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">10m</span>
-<span class="na">highlight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">fvh</span><span class="w">  </span><span class="c1"># this is for improving the search speed</span>
+<div class="highlight"><pre><span></span><code>[INDEX FILES]
+enabled = true
+interval = 10m
+highlight = fvh  # this is for improving the search speed
 
-<span class="k">[OFFICE CONVERTER]</span>
-<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;ip of node background&gt;</span>
-<span class="na">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">6000</span>
+[OFFICE CONVERTER]
+enabled = true
+host = &lt;ip of node background&gt;
+port = 6000
 </code></pre></div>
-
 <h2 id="90">9.0+<a class="headerlink" href="#90" title="Permanent link">&para;</a></h2>
 <h3 id="configuring-node-a-the-backend-node_1">Configuring Node A (the backend node)<a class="headerlink" href="#configuring-node-a-the-backend-node_1" title="Permanent link">&para;</a></h3>
 <p>If you following the steps on settings up a cluster, node B and node C should have already be configed as frontend node. You can copy the configuration of node B as a base for node A. Then do the following steps:</p>
 <p>Since 9.0, ElasticSearch program is not part of Seafile package. You should deploy ElasticSearch service seperately. Then edit <code>seafevents.conf</code>, add the following lines:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[INDEX FILES]</span>
-<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">external_es_server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">es_host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;ip of elastic search service&gt;</span>
-<span class="na">es_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">9200</span>
-<span class="na">interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">10m</span>
-<span class="na">highlight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">fvh</span><span class="w">  </span><span class="c1"># this is for improving the search speed</span>
+<div class="highlight"><pre><span></span><code>[INDEX FILES]
+enabled = true
+external_es_server = true
+es_host = &lt;ip of elastic search service&gt;
+es_port = 9200
+interval = 10m
+highlight = fvh  # this is for improving the search speed
 </code></pre></div>
-
 <p>Edit <strong>seafile.conf</strong> to enable virus scan according to <a href="../../extension/virus_scan/">virus scan document</a></p>
 <h3 id="configure-other-nodes_1">Configure Other Nodes<a class="headerlink" href="#configure-other-nodes_1" title="Permanent link">&para;</a></h3>
 <p>On nodes B and C, you need to:</p>
 <p>Edit <code>seafevents.conf</code>, add the following lines:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[INDEX FILES]</span>
-<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">external_es_server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">es_host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;ip of elastic search service&gt;</span>
-<span class="na">es_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">9200</span>
+<div class="highlight"><pre><span></span><code>[INDEX FILES]
+enabled = true
+external_es_server = true
+es_host = &lt;ip of elastic search service&gt;
+es_port = 9200
 </code></pre></div>
-
 <p>Edit <strong>seahub_settings.py</strong> and add a line:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">OFFICE_CONVERTOR_ROOT</span> <span class="o">=</span> <span class="s1">&#39;http://&lt;ip of office preview docker service&gt;&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">OFFICE_CONVERTOR_ROOT</span> <span class="o">=</span> <span class="s1">&#39;http://&lt;ip of office preview docker service&gt;&#39;</span>
 </code></pre></div>
-
 <h3 id="start-the-background-node_1">Start the background node<a class="headerlink" href="#start-the-background-node_1" title="Permanent link">&para;</a></h3>
 <p>Type the following commands to start the background node (Note, one additional command <code>seafile-background-tasks.sh</code> is needed)</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">CLUSTER_MODE</span><span class="o">=</span>backend
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">CLUSTER_MODE</span><span class="o">=</span>backend
 ./seafile.sh<span class="w"> </span>start
 ./seafile-background-tasks.sh<span class="w"> </span>start
 </code></pre></div>
-
 <p>To stop the background node, type:</p>
-<div class="codehilite"><pre><span></span><code>./seafile-background-tasks.sh<span class="w"> </span>stop
+<div class="highlight"><pre><span></span><code>./seafile-background-tasks.sh<span class="w"> </span>stop
 ./seafile.sh<span class="w"> </span>stop
 </code></pre></div>
-
 <p>You should also configure Seafile background tasks to start on system bootup. For systemd based OS, you can add <code>/etc/systemd/system/seafile-background-tasks.service</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[Unit]</span>
-<span class="na">Description</span><span class="o">=</span><span class="s">Seafile Background Tasks Server</span>
-<span class="na">After</span><span class="o">=</span><span class="s">network.target seafile.service</span>
+<div class="highlight"><pre><span></span><code>[Unit]
+Description=Seafile Background Tasks Server
+After=network.target seafile.service
 
-<span class="k">[Service]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">forking</span>
-<span class="na">ExecStart</span><span class="o">=</span><span class="s">/opt/seafile/seafile-server-latest/seafile-background-tasks.sh start</span>
-<span class="na">ExecStop</span><span class="o">=</span><span class="s">/opt/seafile/seafile-server-latest/seafile-background-tasks.sh stop</span>
-<span class="na">User</span><span class="o">=</span><span class="s">root</span>
-<span class="na">Group</span><span class="o">=</span><span class="s">root</span>
+[Service]
+Type=forking
+ExecStart=/opt/seafile/seafile-server-latest/seafile-background-tasks.sh start
+ExecStop=/opt/seafile/seafile-server-latest/seafile-background-tasks.sh stop
+User=root
+Group=root
 
-<span class="k">[Install]</span>
-<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+[Install]
+WantedBy=multi-user.target
 </code></pre></div>
-
 <p>Then enable this task in systemd:</p>
-<div class="codehilite"><pre><span></span><code>systemctl enable seafile-background-tasks.service
+<div class="highlight"><pre><span></span><code>systemctl enable seafile-background-tasks.service
 </code></pre></div>
-
 <h3 id="the-final-configuration-of-the-background-node_1">The final configuration of the background node<a class="headerlink" href="#the-final-configuration-of-the-background-node_1" title="Permanent link">&para;</a></h3>
 <p>Here is the summary of configurations at the background node that related to clustering setup.</p>
 <p>For <strong>seafile.conf</strong>:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[cluster]</span>
-<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+<div class="highlight"><pre><span></span><code>[cluster]
+enabled = true
 
-<span class="k">[memcached]</span>
-<span class="na">memcached_options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">--SERVER=&lt;you memcached server host&gt; --POOL-MIN=10 --POOL-MAX=100</span>
+[memcached]
+memcached_options = --SERVER=&lt;you memcached server host&gt; --POOL-MIN=10 --POOL-MAX=100
 </code></pre></div>
-
 <p>For <strong>seafevents.conf</strong>:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[INDEX FILES]</span>
-<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">external_es_server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">es_host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;ip of elastic search service&gt;</span>
-<span class="na">es_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">9200</span>
-<span class="na">interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">10m</span>
-<span class="na">highlight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">fvh</span><span class="w">  </span><span class="c1"># this is for improving the search speed</span>
+<div class="highlight"><pre><span></span><code>[INDEX FILES]
+enabled = true
+external_es_server = true
+es_host = &lt;ip of elastic search service&gt;
+es_port = 9200
+interval = 10m
+highlight = fvh  # this is for improving the search speed
 </code></pre></div>
 
 
@@ -4613,6 +4593,46 @@ sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> <
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../deploy_in_a_cluster/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Deploy in a cluster">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Deploy in a cluster
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../memcached_mariadb_cluster/" class="md-footer__link md-footer__link--next" aria-label="Next: Memcache and MariaDB Cluster">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Memcache and MariaDB Cluster
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4655,7 +4675,7 @@ sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> <
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

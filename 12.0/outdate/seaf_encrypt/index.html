@@ -2184,7 +2184,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4162,61 +4162,55 @@
 <h2 id="configure-storage-backend-encryption">Configure Storage Backend Encryption<a class="headerlink" href="#configure-storage-backend-encryption" title="Permanent link">&para;</a></h2>
 <h3 id="generate-key-and-iv">Generate Key and IV<a class="headerlink" href="#generate-key-and-iv" title="Permanent link">&para;</a></h3>
 <p>Go to <INSTALL_PATH>/seafile-server-latest, execute <code>./seaf-gen-key.sh -h</code>. it will print the following usage information:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">usage</span><span class="w"> </span><span class="o">:</span>
-<span class="n">seaf</span><span class="o">-</span><span class="n">gen</span><span class="o">-</span><span class="n">key</span><span class="o">.</span><span class="na">sh</span>
-<span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="o">&lt;</span><span class="n">file</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">write</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="n">iv</span><span class="o">,</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="o">./</span><span class="n">seaf</span><span class="o">-</span><span class="n">key</span><span class="o">.</span><span class="na">txt</span><span class="o">&gt;</span>
+<div class="highlight"><pre><span></span><code>usage :
+seaf-gen-key.sh
+ -p &lt;file path to write key iv, default ./seaf-key.txt&gt;
 </code></pre></div>
-
 <p>By default, the key/iv pair will be saved to a file named seaf-key.txt in the current directory. You can use '-p' option to change the path.</p>
 <h3 id="configure-a-freshly-installed-seafile-server">Configure a freshly installed Seafile Server<a class="headerlink" href="#configure-a-freshly-installed-seafile-server" title="Permanent link">&para;</a></h3>
 <p>Add the following configuration to seafile.conf:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[store_crypt]</span>
-<span class="na">key_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;the key file path generated in previous section&gt;</span>
+<div class="highlight"><pre><span></span><code>[store_crypt]
+key_path = &lt;the key file path generated in previous section&gt;
 </code></pre></div>
-
 <p>Now the encryption feature should be working.</p>
 <h3 id="migrating-existing-seafile-server">Migrating Existing Seafile Server<a class="headerlink" href="#migrating-existing-seafile-server" title="Permanent link">&para;</a></h3>
 <p>If you have existing data in the Seafile server, you have to migrate/encrypt the existing data. <strong>You must stop Seafile server before migrating the data.</strong></p>
 <h4 id="create-directories-for-encrypted-data">Create Directories for Encrypted Data<a class="headerlink" href="#create-directories-for-encrypted-data" title="Permanent link">&para;</a></h4>
 <p>Create new configuration and data directories for the encrypted data.</p>
-<div class="codehilite"><pre><span></span><code><span class="nx">cd</span><span class="w"> </span><span class="nx">seafile</span><span class="o">-</span><span class="nx">server</span><span class="o">-</span><span class="nx">latest</span>
-<span class="nx">cp</span><span class="w"> </span><span class="o">-</span><span class="nx">r</span><span class="w"> </span><span class="nx">conf</span><span class="w"> </span><span class="nx">conf</span><span class="o">-</span><span class="nx">enc</span>
-<span class="nx">mkdir</span><span class="w"> </span><span class="nx">seafile</span><span class="o">-</span><span class="nx">data</span><span class="o">-</span><span class="nx">enc</span>
-<span class="nx">cp</span><span class="w"> </span><span class="o">-</span><span class="nx">r</span><span class="w"> </span><span class="nx">seafile</span><span class="o">-</span><span class="nx">data</span><span class="o">/</span><span class="kn">library</span><span class="o">-</span><span class="nx">template</span><span class="w"> </span><span class="nx">seafile</span><span class="o">-</span><span class="nx">data</span><span class="o">-</span><span class="nx">enc</span>
-<span class="err">#</span><span class="w"> </span><span class="nx">If</span><span class="w"> </span><span class="nx">you</span><span class="w"> </span><span class="nx">use</span><span class="w"> </span><span class="nx">SQLite</span><span class="w"> </span><span class="nx">database</span>
-<span class="nx">cp</span><span class="w"> </span><span class="nx">seafile</span><span class="o">-</span><span class="nx">data</span><span class="o">/</span><span class="nx">seafile</span><span class="p">.</span><span class="nx">db</span><span class="w"> </span><span class="nx">seafile</span><span class="o">-</span><span class="nx">data</span><span class="o">-</span><span class="nx">enc</span><span class="o">/</span>
+<div class="highlight"><pre><span></span><code>cd seafile-server-latest
+cp -r conf conf-enc
+mkdir seafile-data-enc
+cp -r seafile-data/library-template seafile-data-enc
+# If you use SQLite database
+cp seafile-data/seafile.db seafile-data-enc/
 </code></pre></div>
-
 <h4 id="edit-config-files">Edit Config Files<a class="headerlink" href="#edit-config-files" title="Permanent link">&para;</a></h4>
 <p>If you configured S3/Swift/Ceph backend, edit <INSTALL_PATH>/conf-enc/seafile.conf. You must use a different bucket/container/pool to store the encrypted data.</p>
 <p>Then add the following configuration to <INSTALL_PATH>/conf-enc/seafile.conf</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[store_crypt]</span>
-<span class="na">key_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;the key file path generated in previous section&gt;</span>
+<div class="highlight"><pre><span></span><code>[store_crypt]
+key_path = &lt;the key file path generated in previous section&gt;
 </code></pre></div>
-
 <h4 id="migrate-the-data">Migrate the Data<a class="headerlink" href="#migrate-the-data" title="Permanent link">&para;</a></h4>
 <p>Go to <INSTALL_PATH>/seafile-server-latest, use the seaf-encrypt.sh script to migrate the data.</p>
 <p>Run <code>./seaf-encrypt.sh -f ../conf-enc -e ../seafile-data-enc</code>,</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">Starting</span><span class="w"> </span><span class="nv">seaf</span><span class="o">-</span><span class="nv">encrypt</span>,<span class="w"> </span><span class="nv">please</span><span class="w"> </span><span class="k">wait</span><span class="w"> </span>...
-[<span class="mi">04</span><span class="o">/</span><span class="mi">26</span><span class="o">/</span><span class="mi">16</span><span class="w"> </span><span class="mi">06</span>:<span class="mi">59</span>:<span class="mi">40</span>]<span class="w"> </span><span class="nv">seaf</span><span class="o">-</span><span class="nv">encrypt</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">444</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Start</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">encrypt</span><span class="w"> </span><span class="mi">57</span><span class="w"> </span><span class="nv">block</span><span class="w"> </span><span class="nv">among</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="nv">repo</span>.
-[<span class="mi">04</span><span class="o">/</span><span class="mi">26</span><span class="o">/</span><span class="mi">16</span><span class="w"> </span><span class="mi">06</span>:<span class="mi">59</span>:<span class="mi">40</span>]<span class="w"> </span><span class="nv">seaf</span><span class="o">-</span><span class="nv">encrypt</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">444</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Start</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">encrypt</span><span class="w"> </span><span class="mi">102</span><span class="w"> </span><span class="nv">fs</span><span class="w"> </span><span class="nv">among</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="nv">repo</span>.
-[<span class="mi">04</span><span class="o">/</span><span class="mi">26</span><span class="o">/</span><span class="mi">16</span><span class="w"> </span><span class="mi">06</span>:<span class="mi">59</span>:<span class="mi">41</span>]<span class="w"> </span><span class="nv">seaf</span><span class="o">-</span><span class="nv">encrypt</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">454</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Success</span><span class="w"> </span><span class="nv">encrypt</span><span class="w"> </span><span class="nv">all</span><span class="w"> </span><span class="nv">fs</span>.
-[<span class="mi">04</span><span class="o">/</span><span class="mi">26</span><span class="o">/</span><span class="mi">16</span><span class="w"> </span><span class="mi">06</span>:<span class="mi">59</span>:<span class="mi">40</span>]<span class="w"> </span><span class="nv">seaf</span><span class="o">-</span><span class="nv">encrypt</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">444</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Start</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">encrypt</span><span class="w"> </span><span class="mi">66</span><span class="w"> </span><span class="nv">commit</span><span class="w"> </span><span class="nv">among</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="nv">repo</span>.
-[<span class="mi">04</span><span class="o">/</span><span class="mi">26</span><span class="o">/</span><span class="mi">16</span><span class="w"> </span><span class="mi">06</span>:<span class="mi">59</span>:<span class="mi">41</span>]<span class="w"> </span><span class="nv">seaf</span><span class="o">-</span><span class="nv">encrypt</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">454</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Success</span><span class="w"> </span><span class="nv">encrypt</span><span class="w"> </span><span class="nv">all</span><span class="w"> </span><span class="nv">commit</span>.
-[<span class="mi">04</span><span class="o">/</span><span class="mi">26</span><span class="o">/</span><span class="mi">16</span><span class="w"> </span><span class="mi">06</span>:<span class="mi">59</span>:<span class="mi">41</span>]<span class="w"> </span><span class="nv">seaf</span><span class="o">-</span><span class="nv">encrypt</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">454</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Success</span><span class="w"> </span><span class="nv">encrypt</span><span class="w"> </span><span class="nv">all</span><span class="w"> </span><span class="nv">block</span>.
-<span class="nv">seaf</span><span class="o">-</span><span class="nv">encrypt</span><span class="w"> </span><span class="nv">run</span><span class="w"> </span><span class="nv">done</span>
-<span class="nv">Done</span>.
+<div class="highlight"><pre><span></span><code>Starting seaf-encrypt, please wait ...
+[04/26/16 06:59:40] seaf-encrypt.c(444): Start to encrypt 57 block among 12 repo.
+[04/26/16 06:59:40] seaf-encrypt.c(444): Start to encrypt 102 fs among 12 repo.
+[04/26/16 06:59:41] seaf-encrypt.c(454): Success encrypt all fs.
+[04/26/16 06:59:40] seaf-encrypt.c(444): Start to encrypt 66 commit among 12 repo.
+[04/26/16 06:59:41] seaf-encrypt.c(454): Success encrypt all commit.
+[04/26/16 06:59:41] seaf-encrypt.c(454): Success encrypt all block.
+seaf-encrypt run done
+Done.
 </code></pre></div>
-
 <p>If there are error messages after executing seaf-encrypt.sh, you can fix the problem and run the script again. Objects that have already been migrated will not be copied again.</p>
 <h4 id="clean-up">Clean Up<a class="headerlink" href="#clean-up" title="Permanent link">&para;</a></h4>
 <p>Go to <INSTALL_PATH>, execute following commands:</p>
-<div class="codehilite"><pre><span></span><code>mv conf conf-bak
+<div class="highlight"><pre><span></span><code>mv conf conf-bak
 mv seafile-data seafile-data-bak
 mv conf-enc conf
 mv seafile-data-enc seafile-data
 </code></pre></div>
-
 <p>Restart Seafile Server. If everything works okay, you can remove the backup directories.</p>
 
 
@@ -4247,6 +4241,8 @@ mv seafile-data-enc seafile-data
       </main>
       
         <footer class="md-footer">
+  
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4289,7 +4285,7 @@ mv seafile-data-enc seafile-data
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

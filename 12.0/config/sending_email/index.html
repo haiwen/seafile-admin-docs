@@ -2194,7 +2194,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4355,7 +4355,7 @@
 <p>The first four types of email are sent immediately. The last type is sent by a background task running periodically.</p>
 <h2 id="options-of-email-sending">Options of Email Sending<a class="headerlink" href="#options-of-email-sending" title="Permanent link">&para;</a></h2>
 <p>Please add the following lines to <code>seahub_settings.py</code> to enable email sending.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">EMAIL_USE_TLS</span> <span class="o">=</span> <span class="kc">False</span>
+<div class="highlight"><pre><span></span><code><span class="n">EMAIL_USE_TLS</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="n">EMAIL_HOST</span> <span class="o">=</span> <span class="s1">&#39;smtp.example.com&#39;</span>        <span class="c1"># smpt server</span>
 <span class="n">EMAIL_HOST_USER</span> <span class="o">=</span> <span class="s1">&#39;username@example.com&#39;</span>    <span class="c1"># username and domain</span>
 <span class="n">EMAIL_HOST_PASSWORD</span> <span class="o">=</span> <span class="s1">&#39;password&#39;</span>    <span class="c1"># password</span>
@@ -4363,9 +4363,8 @@
 <span class="n">DEFAULT_FROM_EMAIL</span> <span class="o">=</span> <span class="n">EMAIL_HOST_USER</span>
 <span class="n">SERVER_EMAIL</span> <span class="o">=</span> <span class="n">EMAIL_HOST_USER</span>
 </code></pre></div>
-
 <p>If you are using Gmail as email server, use following lines:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">EMAIL_USE_TLS</span> <span class="o">=</span> <span class="kc">True</span>
+<div class="highlight"><pre><span></span><code><span class="n">EMAIL_USE_TLS</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">EMAIL_HOST</span> <span class="o">=</span> <span class="s1">&#39;smtp.gmail.com&#39;</span>
 <span class="n">EMAIL_HOST_USER</span> <span class="o">=</span> <span class="s1">&#39;username@gmail.com&#39;</span>
 <span class="n">EMAIL_HOST_PASSWORD</span> <span class="o">=</span> <span class="s1">&#39;password&#39;</span>
@@ -4373,7 +4372,6 @@
 <span class="n">DEFAULT_FROM_EMAIL</span> <span class="o">=</span> <span class="n">EMAIL_HOST_USER</span>
 <span class="n">SERVER_EMAIL</span> <span class="o">=</span> <span class="n">EMAIL_HOST_USER</span>
 </code></pre></div>
-
 <p><strong>Note</strong>: If your email service still does not work, you can checkout the log file <code>logs/seahub.log</code> to see what may cause the problem. For a complete email notification list, please refer to <a href="../customize_email_notifications/">email notification list</a>.</p>
 <p><strong>Note2</strong>: If you want to use the email service without authentication leaf <code>EMAIL_HOST_USER</code> and <code>EMAIL_HOST_PASSWORD</code> <strong>blank</strong> (<code>''</code>). (But notice that the emails then will be sent without a <code>From:</code> address.)</p>
 <p><strong>Note3</strong>: About using SSL connection (using port 465)</p>
@@ -4381,22 +4379,20 @@
 If you want to use SSL on port 465, set <code>EMAIL_USE_SSL = True</code> instead of <code>EMAIL_USE_TLS</code>.</p>
 <h2 id="change-reply-to-of-email">Change <code>reply to</code> of email<a class="headerlink" href="#change-reply-to-of-email" title="Permanent link">&para;</a></h2>
 <p>You can change the reply to field of email by add the following settings to seahub_settings.py. This only affects email sending for file share link.</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Set reply-to header to user&#39;s email or not, defaults to ``False``. For details,</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Set reply-to header to user&#39;s email or not, defaults to ``False``. For details,</span>
 <span class="c1"># please refer to http://www.w3.org/Protocols/rfc822/</span>
 <span class="n">ADD_REPLY_TO_HEADER</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div>
-
 <h2 id="config-background-email-sending-task-pro-edition-only">Config background email sending task (Pro Edition Only)<a class="headerlink" href="#config-background-email-sending-task-pro-edition-only" title="Permanent link">&para;</a></h2>
 <p>The background task will run periodically to check whether an user have new unread notifications. If there are any, it will send a reminder email to that user. The background email sending task is controlled by <code>seafevents.conf</code>.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[SEAHUB EMAIL]</span>
+<div class="highlight"><pre><span></span><code>[SEAHUB EMAIL]
 
-<span class="c1">## must be &quot;true&quot; to enable user email notifications when there are new unread notifications</span>
-<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+## must be &quot;true&quot; to enable user email notifications when there are new unread notifications
+enabled = true
 
-<span class="c1">## interval of sending seahub email. Can be s(seconds), m(minutes), h(hours), d(days)</span>
-<span class="na">interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">30m</span>
+## interval of sending seahub email. Can be s(seconds), m(minutes), h(hours), d(days)
+interval = 30m
 </code></pre></div>
-
 <h2 id="customize-email-messages">Customize email messages<a class="headerlink" href="#customize-email-messages" title="Permanent link">&para;</a></h2>
 <p>The simplest way to customize the email messages is setting the <code>SITE_NAME</code> variable in <code>seahub_settings.py</code>. If it is not enough for your case, you can customize the email templates.</p>
 <p><strong>Note:</strong> Subject line may vary between different releases, this is based on Release 5.0.0. Restart Seahub so that your changes take effect.</p>
@@ -4406,37 +4402,34 @@ If you want to use SSL on port 465, set <code>EMAIL_USE_SSL = True</code> instea
 <h3 id="user-resets-hisher-password">User resets his/her password<a class="headerlink" href="#user-resets-hisher-password" title="Permanent link">&para;</a></h3>
 <p><strong>Subject</strong></p>
 <p>seahub/seahub/auth/forms.py line:127</p>
-<div class="codehilite"><pre><span></span><code>        <span class="n">send_html_email</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s2">&quot;Reset Password on </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">)</span> <span class="o">%</span> <span class="n">site_name</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code>        <span class="n">send_html_email</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s2">&quot;Reset Password on </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">)</span> <span class="o">%</span> <span class="n">site_name</span><span class="p">,</span>
                   <span class="n">email_template_name</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">[</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">])</span>
 </code></pre></div>
-
 <p><strong>Body</strong></p>
 <p><a href="https://github.com/haiwen/seahub/blob/master/seahub/templates/registration/password_reset_email.html">seahub/seahub/templates/registration/password_reset_email.html</a></p>
 <p>Note: You can copy password_reset_email.html to <code>seahub-data/custom/templates/registration/password_reset_email.html</code> and modify the new one. In this way, the customization will be maintained after upgrade.</p>
 <h3 id="system-admin-adds-new-member">System admin adds new member<a class="headerlink" href="#system-admin-adds-new-member" title="Permanent link">&para;</a></h3>
 <p><strong>Subject</strong></p>
 <p>seahub/seahub/views/sysadmin.py line:424</p>
-<div class="codehilite"><pre><span></span><code><span class="n">send_html_email</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="n">u</span><span class="s1">&#39;Password has been reset on %s&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">SITE_NAME</span><span class="p">,</span>
-<span class="w">            </span><span class="s1">&#39;sysadmin/user_reset_email.html&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">,</span><span class="w"> </span><span class="k">None</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="n">email</span><span class="o">]</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code>send_html_email(_(u&#39;Password has been reset on %s&#39;) % SITE_NAME,
+            &#39;sysadmin/user_reset_email.html&#39;, c, None, [email])
 </code></pre></div>
-
 <p><strong>Body</strong></p>
 <p><a href="https://github.com/haiwen/seahub/blob/master/seahub/templates/sysadmin/user_add_email.html">seahub/seahub/templates/sysadmin/user_add_email.html</a></p>
 <p>Note: You can copy user_add_email.html to <code>seahub-data/custom/templates/sysadmin/user_add_email.html</code> and modify the new one. In this way, the customization will be maintained after upgrade.</p>
 <h3 id="system-admin-resets-user-password">System admin resets user password<a class="headerlink" href="#system-admin-resets-user-password" title="Permanent link">&para;</a></h3>
 <p><strong>Subject</strong></p>
 <p>seahub/seahub/views/sysadmin.py line:1224</p>
-<div class="codehilite"><pre><span></span><code><span class="n">send_html_email</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;Password has been reset on </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">)</span> <span class="o">%</span> <span class="n">SITE_NAME</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code><span class="n">send_html_email</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;Password has been reset on </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">)</span> <span class="o">%</span> <span class="n">SITE_NAME</span><span class="p">,</span>
             <span class="s1">&#39;sysadmin/user_reset_email.html&#39;</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">[</span><span class="n">email</span><span class="p">])</span>
 </code></pre></div>
-
 <p><strong>Body</strong></p>
 <p><a href="https://github.com/haiwen/seahub/blob/master/seahub/templates/sysadmin/user_reset_email.html">seahub/seahub/templates/sysadmin/user_reset_email.html</a></p>
 <p>Note: You can copy user_reset_email.html to <code>seahub-data/custom/templates/sysadmin/user_reset_email.html</code> and modify the new one. In this way, the customization will be maintained after upgrade.</p>
 <h3 id="user-sends-filefolder-share-link">User sends file/folder share link<a class="headerlink" href="#user-sends-filefolder-share-link" title="Permanent link">&para;</a></h3>
 <p><strong>Subject</strong></p>
 <p>seahub/seahub/share/views.py line:913</p>
-<div class="codehilite"><pre><span></span><code><span class="k">try</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">try</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">file_shared_type</span> <span class="o">==</span> <span class="s1">&#39;f&#39;</span><span class="p">:</span>
         <span class="n">c</span><span class="p">[</span><span class="s1">&#39;file_shared_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_</span><span class="p">(</span><span class="sa">u</span><span class="s2">&quot;file&quot;</span><span class="p">)</span>
         <span class="n">send_html_email</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;A file is shared to you on </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">)</span> <span class="o">%</span> <span class="n">SITE_NAME</span><span class="p">,</span>
@@ -4451,18 +4444,16 @@ If you want to use SSL on port 465, set <code>EMAIL_USE_SSL = True</code> instea
                         <span class="n">c</span><span class="p">,</span> <span class="n">from_email</span><span class="p">,</span> <span class="p">[</span><span class="n">to_email</span><span class="p">],</span>
                         <span class="n">reply_to</span><span class="o">=</span><span class="n">reply_to</span><span class="p">)</span>
 </code></pre></div>
-
 <p><strong>Body</strong></p>
 <p><a href="https://github.com/haiwen/seahub/blob/master/seahub/templates/shared_link_email.html">seahub/seahub/templates/shared_link_email.html</a></p>
 <p><a href="https://github.com/haiwen/seahub/blob/master/seahub/templates/shared_upload_link_email.html">seahub/seahub/templates/shared_upload_link_email.html</a></p>
 <p>Note: You can copy shared_link_email.html to <code>seahub-data/custom/templates/shared_link_email.html</code> and modify the new one. In this way, the customization will be maintained after upgrade.</p>
 <h3 id="reminder-of-unread-notifications">Reminder of unread notifications<a class="headerlink" href="#reminder-of-unread-notifications" title="Permanent link">&para;</a></h3>
 <p><strong>Subject</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="n">send_html_email</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s1">&#39;New notice on </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">)</span> <span class="o">%</span> <span class="n">settings</span><span class="o">.</span><span class="n">SITE_NAME</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code><span class="n">send_html_email</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s1">&#39;New notice on </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">)</span> <span class="o">%</span> <span class="n">settings</span><span class="o">.</span><span class="n">SITE_NAME</span><span class="p">,</span>
                                 <span class="s1">&#39;notifications/notice_email.html&#39;</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span>
                                 <span class="kc">None</span><span class="p">,</span> <span class="p">[</span><span class="n">to_user</span><span class="p">])</span>
 </code></pre></div>
-
 <p><strong>Body</strong></p>
 <p><a href="https://github.com/haiwen/seahub/blob/master/seahub/notifications/templates/notifications/notice_email.html">seahub/seahub/notifications/templates/notifications/notice_email.html</a></p>
 
@@ -4494,6 +4485,46 @@ If you want to use SSL on port 465, set <code>EMAIL_USE_SSL = True</code> instea
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../seahub_customization/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Seahub customization">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Seahub customization
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../administration/" class="md-footer__link md-footer__link--next" aria-label="Next: Outline">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Outline
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4536,7 +4567,7 @@ If you want to use SSL on port 465, set <code>EMAIL_USE_SSL = True</code> instea
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

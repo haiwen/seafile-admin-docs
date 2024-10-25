@@ -2194,7 +2194,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4273,35 +4273,33 @@
 <h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
 <p>This example shows how to migrate the user with the username <code>12ae56789f1e4c8d8e1c31415867317c@auth.local</code> from local database authentication to OAuth. The OAuth authentication is configured in <code>seahub_settings.py</code> with the provider name <code>authentik-oauth</code>. The <code>uid</code> of the user inside the Identity Provider is <code>HR12345</code>.</p>
 <p>This is what the database looks like before these commands must be executed:</p>
-<div class="codehilite"><pre><span></span><code><span class="c">mysql</span><span class="nv">&gt;</span><span class="c"> select email</span><span class="nt">,</span><span class="c">left(passwd</span><span class="nt">,</span><span class="c">25) from EmailUser where email = &#39;12ae56789f1e4c8d8e1c31415867317c@auth</span><span class="nt">.</span><span class="c">local&#39;;</span>
-<span class="nb">+---------------------------------------------+------------------------------+</span>
-<span class="c">| email                                       | left(passwd</span><span class="nt">,</span><span class="c">25)              |</span>
-<span class="nb">+---------------------------------------------+------------------------------+</span>
-<span class="c">| 12ae56789f1e4c8d8e1c31415867317c@auth</span><span class="nt">.</span><span class="c">local | PBKDF2SHA256$10000$4cdda6</span><span class="nt">...</span><span class="c"> |</span>
-<span class="nb">+---------------------------------------------+------------------------------+</span>
+<div class="highlight"><pre><span></span><code>mysql&gt; select email,left(passwd,25) from EmailUser where email = &#39;12ae56789f1e4c8d8e1c31415867317c@auth.local&#39;;
++---------------------------------------------+------------------------------+
+| email                                       | left(passwd,25)              |
++---------------------------------------------+------------------------------+
+| 12ae56789f1e4c8d8e1c31415867317c@auth.local | PBKDF2SHA256$10000$4cdda6... |
++---------------------------------------------+------------------------------+
 
-<span class="c">mysql</span><span class="nv">&gt;</span><span class="c"> update EmailUser set passwd = &#39;!&#39; where email = &#39;12ae56789f1e4c8d8e1c31415867317c@auth</span><span class="nt">.</span><span class="c">local&#39;;</span>
+mysql&gt; update EmailUser set passwd = &#39;!&#39; where email = &#39;12ae56789f1e4c8d8e1c31415867317c@auth.local&#39;;
 
-<span class="c">mysql</span><span class="nv">&gt;</span><span class="c"> insert into `social_auth_usersocialauth` (`username`</span><span class="nt">,</span><span class="c"> `provider`</span><span class="nt">,</span><span class="c"> `uid`</span><span class="nt">,</span><span class="c"> `extra_data`) values (&#39;12ae56789f1e4c8d8e1c31415867317c@auth</span><span class="nt">.</span><span class="c">local&#39;</span><span class="nt">,</span><span class="c"> &#39;authentik</span><span class="nb">-</span><span class="c">oauth&#39;</span><span class="nt">,</span><span class="c"> &#39;HR12345&#39;</span><span class="nt">,</span><span class="c"> &#39;&#39;);</span>
+mysql&gt; insert into `social_auth_usersocialauth` (`username`, `provider`, `uid`, `extra_data`) values (&#39;12ae56789f1e4c8d8e1c31415867317c@auth.local&#39;, &#39;authentik-oauth&#39;, &#39;HR12345&#39;, &#39;&#39;);
 </code></pre></div>
-
 <p><strong>Note</strong>: The <code>extra_data</code> field store user's information returned from the provider. For most providers, the <code>extra_data</code> field is usually an empty character. Since version 11.0.3-Pro, the default value of the <code>extra_data</code> field is <code>NULL</code>.</p>
 <p>Afterwards the databases should look like this:</p>
-<div class="codehilite"><pre><span></span><code><span class="c">mysql</span><span class="nv">&gt;</span><span class="c"> select email</span><span class="nt">,</span><span class="c">passwd from EmailUser where email = &#39;12ae56789f1e4c8d8e1c31415867317c@auth</span><span class="nt">.</span><span class="c">local&#39;;</span>
-<span class="nb">+---------------------------------------------+-------</span><span class="c"> </span><span class="nb">+</span>
-<span class="c">| email                                       | passwd |</span>
-<span class="nb">+---------------------------------------------+--------+</span>
-<span class="c">| 12ae56789f1e4c8d8e1c31415867317c@auth</span><span class="nt">.</span><span class="c">local | !      |</span>
-<span class="nb">+---------------------------------------------+--------+</span>
+<div class="highlight"><pre><span></span><code>mysql&gt; select email,passwd from EmailUser where email = &#39;12ae56789f1e4c8d8e1c31415867317c@auth.local&#39;;
++---------------------------------------------+------- +
+| email                                       | passwd |
++---------------------------------------------+--------+
+| 12ae56789f1e4c8d8e1c31415867317c@auth.local | !      |
++---------------------------------------------+--------+
 
-<span class="c">mysql</span><span class="nv">&gt;</span><span class="c"> select username</span><span class="nt">,</span><span class="c">provider</span><span class="nt">,</span><span class="c">uid from social_auth_usersocialauth where username = &#39;12ae56789f1e4c8d8e1c31415867317c@auth</span><span class="nt">.</span><span class="c">local&#39;;</span>
-<span class="nb">+---------------------------------------------+-----------------+---------+</span>
-<span class="c">| username                                    | provider        | uid     |</span>
-<span class="nb">+---------------------------------------------+-----------------+---------+</span>
-<span class="c">| 12ae56789f1e4c8d8e1c31415867317c@auth</span><span class="nt">.</span><span class="c">local | authentik</span><span class="nb">-</span><span class="c">oauth | HR12345 |</span>
-<span class="nb">+---------------------------------------------+-----------------+---------+</span>
+mysql&gt; select username,provider,uid from social_auth_usersocialauth where username = &#39;12ae56789f1e4c8d8e1c31415867317c@auth.local&#39;;
++---------------------------------------------+-----------------+---------+
+| username                                    | provider        | uid     |
++---------------------------------------------+-----------------+---------+
+| 12ae56789f1e4c8d8e1c31415867317c@auth.local | authentik-oauth | HR12345 |
++---------------------------------------------+-----------------+---------+
 </code></pre></div>
-
 <h2 id="migrating-from-one-external-authentication-to-another">Migrating from one external authentication to another<a class="headerlink" href="#migrating-from-one-external-authentication-to-another" title="Permanent link">&para;</a></h2>
 <p>First configure the two external authentications and test them with a dummy user. Then, to migrate all the existing users you only need to make changes to the <code>social_auth_usersocialauth</code> table. No entries need to be deleted or created. You only need to modify the existing ones. The <code>xxx@auth.local</code> remains the same, you only need to replace the <code>provider</code> and the <code>uid</code>.</p>
 <h2 id="migrating-from-external-authentication-to-local-user-database">Migrating from external authentication to local user database<a class="headerlink" href="#migrating-from-external-authentication-to-local-user-database" title="Permanent link">&para;</a></h2>
@@ -4337,6 +4335,46 @@
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../saml2_in_10.0/" class="md-footer__link md-footer__link--prev" aria-label="Previous: SAML 2.0 (Pro)">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                SAML 2.0 (Pro)
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../multi_institutions/" class="md-footer__link md-footer__link--next" aria-label="Next: Multi-Institutions Support">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Multi-Institutions Support
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4379,7 +4417,7 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

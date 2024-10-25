@@ -2332,7 +2332,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4311,68 +4311,61 @@ Create systemd service files, change <strong>${seafile_dir}</strong> to your
 <strong>systemctl daemon-reload</strong>.</li>
 </ul>
 <p>Firstly, you should create a script to activate the python virtual environment, which goes in the <strong>${seafile_dir}</strong> directory.  Put another way, it does not go in "seafile-server-latest", but the directory above that.  Throughout this manual the examples use /opt/seafile for this directory, but you might have chosen to use a different directory.</p>
-<div class="codehilite"><pre><span></span><code>sudo vim /opt/seafile/run_with_venv.sh
+<div class="highlight"><pre><span></span><code>sudo vim /opt/seafile/run_with_venv.sh
 </code></pre></div>
-
 <p>The content of the file is:</p>
-<div class="codehilite"><pre><span></span><code><span class="ch">#!/bin/bash</span>
-<span class="c1"># Activate the python virtual environment (venv) before starting one of the seafile scripts</span>
+<p><div class="highlight"><pre><span></span><code>#!/bin/bash
+# Activate the python virtual environment (venv) before starting one of the seafile scripts
 
-<span class="nv">dir_name</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>dirname<span class="w"> </span><span class="nv">$0</span><span class="k">)</span><span class="s2">&quot;</span>
-<span class="nb">source</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">dir_name</span><span class="si">}</span><span class="s2">/python-venv/bin/activate&quot;</span>
-<span class="nv">script</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
-<span class="nb">shift</span><span class="w"> </span><span class="m">1</span>
+dir_name=&quot;$(dirname $0)&quot;
+source &quot;${dir_name}/python-venv/bin/activate&quot;
+script=&quot;$1&quot;
+shift 1
 
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">dir_name</span><span class="si">}</span><span class="s2">/seafile-server-latest/</span><span class="si">${</span><span class="nv">script</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
-<span class="s2">&quot;</span><span class="si">${</span><span class="nv">dir_name</span><span class="si">}</span><span class="s2">/seafile-server-latest/</span><span class="si">${</span><span class="nv">script</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+echo &quot;${dir_name}/seafile-server-latest/${script}&quot; &quot;$@&quot;
+&quot;${dir_name}/seafile-server-latest/${script}&quot; &quot;$@&quot;
 </code></pre></div>
-
-<p>make this script executable</p>
-<div class="codehilite"><pre><span></span><code>sudo chmod 755 /opt/seafile/run_with_venv.sh
-</code></pre></div>
-
+make this script executable
+<div class="highlight"><pre><span></span><code>sudo chmod 755 /opt/seafile/run_with_venv.sh
+</code></pre></div></p>
 <h3 id="seafile-component">Seafile component<a class="headerlink" href="#seafile-component" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>sudo vim /etc/systemd/system/seafile.service
+<div class="highlight"><pre><span></span><code>sudo vim /etc/systemd/system/seafile.service
 </code></pre></div>
-
 <p>The content of the file is:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[Unit]</span>
-<span class="na">Description</span><span class="o">=</span><span class="s">Seafile</span>
-<span class="c1"># add mysql.service or postgresql.service depending on your database to the line below</span>
-<span class="na">After</span><span class="o">=</span><span class="s">network.target</span>
+<div class="highlight"><pre><span></span><code>[Unit]
+Description=Seafile
+# add mysql.service or postgresql.service depending on your database to the line below
+After=network.target
 
-<span class="k">[Service]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">forking</span>
-<span class="na">ExecStart</span><span class="o">=</span><span class="s">bash ${seafile_dir}/run_with_venv.sh seafile.sh start</span>
-<span class="na">ExecStop</span><span class="o">=</span><span class="s">bash ${seafile_dir}/seafile-server-latest/seafile.sh stop</span>
-<span class="na">LimitNOFILE</span><span class="o">=</span><span class="s">infinity</span>
-<span class="na">User</span><span class="o">=</span><span class="s">seafile</span>
-<span class="na">Group</span><span class="o">=</span><span class="s">seafile</span>
+[Service]
+Type=forking
+ExecStart=bash ${seafile_dir}/run_with_venv.sh seafile.sh start
+ExecStop=bash ${seafile_dir}/seafile-server-latest/seafile.sh stop
+LimitNOFILE=infinity
+User=seafile
+Group=seafile
 
-<span class="k">[Install]</span>
-<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+[Install]
+WantedBy=multi-user.target
 </code></pre></div>
-
 <h3 id="seahub-component">Seahub component<a class="headerlink" href="#seahub-component" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>sudo vim /etc/systemd/system/seahub.service
+<div class="highlight"><pre><span></span><code>sudo vim /etc/systemd/system/seahub.service
 </code></pre></div>
-
 <p>The content of the file is:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[Unit]</span>
-<span class="na">Description</span><span class="o">=</span><span class="s">Seafile hub</span>
-<span class="na">After</span><span class="o">=</span><span class="s">network.target seafile.service</span>
+<div class="highlight"><pre><span></span><code>[Unit]
+Description=Seafile hub
+After=network.target seafile.service
 
-<span class="k">[Service]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">forking</span>
-<span class="na">ExecStart</span><span class="o">=</span><span class="s">bash ${seafile_dir}/run_with_venv.sh seahub.sh start</span>
-<span class="na">ExecStop</span><span class="o">=</span><span class="s">bash ${seafile_dir}/seafile-server-latest/seahub.sh stop</span>
-<span class="na">User</span><span class="o">=</span><span class="s">seafile</span>
-<span class="na">Group</span><span class="o">=</span><span class="s">seafile</span>
+[Service]
+Type=forking
+ExecStart=bash ${seafile_dir}/run_with_venv.sh seahub.sh start
+ExecStop=bash ${seafile_dir}/seafile-server-latest/seahub.sh stop
+User=seafile
+Group=seafile
 
-<span class="k">[Install]</span>
-<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+[Install]
+WantedBy=multi-user.target
 </code></pre></div>
-
 <h2 id="for-systems-running-systemd-without-python-virtual-environment">For systems running systemd without python virtual environment<a class="headerlink" href="#for-systems-running-systemd-without-python-virtual-environment" title="Permanent link">&para;</a></h2>
 <ul>
 <li>For example Debian 8 through Debian 11, Linux Ubuntu 15.04 and newer</li>
@@ -4382,77 +4375,71 @@ Create systemd service files, change <strong>${seafile_dir}</strong> to your
 <strong>seafile</strong> (if appropriate). Then you need to reload systemd's daemons:
 <strong>systemctl daemon-reload</strong>.</p>
 <h3 id="seafile-component_1">Seafile component<a class="headerlink" href="#seafile-component_1" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>sudo vim /etc/systemd/system/seafile.service
+<div class="highlight"><pre><span></span><code>sudo vim /etc/systemd/system/seafile.service
 </code></pre></div>
-
 <p>The content of the file is:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[Unit]</span>
-<span class="na">Description</span><span class="o">=</span><span class="s">Seafile</span>
-<span class="c1"># add mysql.service or postgresql.service depending on your database to the line below</span>
-<span class="na">After</span><span class="o">=</span><span class="s">network.target</span>
+<div class="highlight"><pre><span></span><code>[Unit]
+Description=Seafile
+# add mysql.service or postgresql.service depending on your database to the line below
+After=network.target
 
-<span class="k">[Service]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">forking</span>
-<span class="na">ExecStart</span><span class="o">=</span><span class="s">${seafile_dir}/seafile-server-latest/seafile.sh start</span>
-<span class="na">ExecStop</span><span class="o">=</span><span class="s">${seafile_dir}/seafile-server-latest/seafile.sh stop</span>
-<span class="na">LimitNOFILE</span><span class="o">=</span><span class="s">infinity</span>
-<span class="na">User</span><span class="o">=</span><span class="s">seafile</span>
-<span class="na">Group</span><span class="o">=</span><span class="s">seafile</span>
+[Service]
+Type=forking
+ExecStart=${seafile_dir}/seafile-server-latest/seafile.sh start
+ExecStop=${seafile_dir}/seafile-server-latest/seafile.sh stop
+LimitNOFILE=infinity
+User=seafile
+Group=seafile
 
-<span class="k">[Install]</span>
-<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+[Install]
+WantedBy=multi-user.target
 </code></pre></div>
-
 <h3 id="seahub-component_1">Seahub component<a class="headerlink" href="#seahub-component_1" title="Permanent link">&para;</a></h3>
 <p>Create systemd service file /etc/systemd/system/seahub.service</p>
-<div class="codehilite"><pre><span></span><code>sudo vim /etc/systemd/system/seahub.service
+<div class="highlight"><pre><span></span><code>sudo vim /etc/systemd/system/seahub.service
 </code></pre></div>
-
 <p>The content of the file is:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[Unit]</span>
-<span class="na">Description</span><span class="o">=</span><span class="s">Seafile hub</span>
-<span class="na">After</span><span class="o">=</span><span class="s">network.target seafile.service</span>
+<div class="highlight"><pre><span></span><code>[Unit]
+Description=Seafile hub
+After=network.target seafile.service
 
-<span class="k">[Service]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">forking</span>
-<span class="na">ExecStart</span><span class="o">=</span><span class="s">${seafile_dir}/seafile-server-latest/seahub.sh start</span>
-<span class="na">ExecStop</span><span class="o">=</span><span class="s">${seafile_dir}/seafile-server-latest/seahub.sh stop</span>
-<span class="na">User</span><span class="o">=</span><span class="s">seafile</span>
-<span class="na">Group</span><span class="o">=</span><span class="s">seafile</span>
+[Service]
+Type=forking
+ExecStart=${seafile_dir}/seafile-server-latest/seahub.sh start
+ExecStop=${seafile_dir}/seafile-server-latest/seahub.sh stop
+User=seafile
+Group=seafile
 
-<span class="k">[Install]</span>
-<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+[Install]
+WantedBy=multi-user.target
 </code></pre></div>
-
 <h2 id="seafile-cli-client-optional">Seafile cli client (optional)<a class="headerlink" href="#seafile-cli-client-optional" title="Permanent link">&para;</a></h2>
 <p>Create systemd service file /etc/systemd/system/seafile-client.service </p>
 <p>You need to create this service file only if you have <strong>seafile</strong>
 console client and you want to run it on system boot.</p>
-<div class="codehilite"><pre><span></span><code>sudo vim /etc/systemd/system/seafile-client.service
+<div class="highlight"><pre><span></span><code>sudo vim /etc/systemd/system/seafile-client.service
 </code></pre></div>
-
 <p>The content of the file is:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[Unit]</span>
-<span class="na">Description</span><span class="o">=</span><span class="s">Seafile client</span>
-<span class="c1"># Uncomment the next line you are running seafile client on the same computer as server</span>
-<span class="c1"># After=seafile.service</span>
-<span class="c1"># Or the next one in other case</span>
-<span class="c1"># After=network.target</span>
+<div class="highlight"><pre><span></span><code>[Unit]
+Description=Seafile client
+# Uncomment the next line you are running seafile client on the same computer as server
+# After=seafile.service
+# Or the next one in other case
+# After=network.target
 
-<span class="k">[Service]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">oneshot</span>
-<span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/bin/seaf-cli start</span>
-<span class="na">ExecStop</span><span class="o">=</span><span class="s">/usr/bin/seaf-cli stop</span>
-<span class="na">RemainAfterExit</span><span class="o">=</span><span class="s">yes</span>
-<span class="na">User</span><span class="o">=</span><span class="s">seafile</span>
-<span class="na">Group</span><span class="o">=</span><span class="s">seafile</span>
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/seaf-cli start
+ExecStop=/usr/bin/seaf-cli stop
+RemainAfterExit=yes
+User=seafile
+Group=seafile
 
-<span class="k">[Install]</span>
-<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+[Install]
+WantedBy=multi-user.target
 </code></pre></div>
-
 <h2 id="enable-service-start-on-system-boot">Enable service start on system boot<a class="headerlink" href="#enable-service-start-on-system-boot" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code>sudo systemctl enable seafile.service
+<div class="highlight"><pre><span></span><code>sudo systemctl enable seafile.service
 sudo systemctl enable seahub.service
 sudo systemctl enable seafile-client.service   # optional
 </code></pre></div>
@@ -4485,6 +4472,46 @@ sudo systemctl enable seafile-client.service   # optional
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../seafile_professional_sdition_software_license_agreement/" class="md-footer__link md-footer__link--prev" aria-label="Previous: License">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                License
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../using_logrotate/" class="md-footer__link md-footer__link--next" aria-label="Next: Logrotate">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Logrotate
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4527,7 +4554,7 @@ sudo systemctl enable seafile-client.service   # optional
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

@@ -2190,7 +2190,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4255,13 +4255,12 @@
 <p>2. Edit the files using an UTF-8 editor.</p>
 <p>3. Save your changes. </p>
 <p>4. (Only necessary when you created a new language code folder) Add a new entry for your language to the language block in the <code>/seafile-server-latest/seahub/seahub/settings.py</code> file and save it. </p>
-<div class="codehilite"><pre><span></span><code>LANGUAGES = (
+<div class="highlight"><pre><span></span><code>LANGUAGES = (
     ...
     (&#39;ru&#39;, &#39;Русский&#39;),
     ...
 )
 </code></pre></div>
-
 <p>5. (Only necessary when you edited either django.po or djangojs.po) Apply the changes made in django.po and djangojs.po by running the following two commands in <code>/seafile-server-latest/seahub/locale/&lt;lang-code&gt;/LC_MESSAGES</code>:</p>
 <ul>
 <li><code>msgfmt -o django.mo django.po</code></li>
@@ -4285,27 +4284,25 @@
 <h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
 <h3 id="filenotfounderror">FileNotFoundError<a class="headerlink" href="#filenotfounderror" title="Permanent link">&para;</a></h3>
 <p><code>FileNotFoundError</code> occurred when executing the command <code>manage.py collectstatic</code>.</p>
-<div class="codehilite"><pre><span></span><code>FileNotFoundError: [Errno 2] No such file or directory: &#39;/opt/seafile/seafile-server-latest/seahub/frontend/build&#39;
+<div class="highlight"><pre><span></span><code>FileNotFoundError: [Errno 2] No such file or directory: &#39;/opt/seafile/seafile-server-latest/seahub/frontend/build&#39;
 </code></pre></div>
-
 <p>Steps:</p>
 <ol>
 <li>
 <p>Modify <code>STATICFILES_DIRS</code> in <code>/opt/seafile/seafile-server-latest/seahub/seahub/settings.py</code> manually</p>
-<p>```python
-STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    '%s/static' % PROJECT_ROOT,</p>
-<h1 id="sfrontendbuild-project_root">'%s/frontend/build' % PROJECT_ROOT,<a class="headerlink" href="#sfrontendbuild-project_root" title="Permanent link">&para;</a></h1>
-<p>)
-```</p>
+<div class="highlight"><pre><span></span><code><span class="n">STATICFILES_DIRS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="c1"># Put strings here, like &quot;/home/html/static&quot; or &quot;C:/www/django/static&quot;.</span>
+    <span class="c1"># Always use forward slashes, even on Windows.</span>
+    <span class="c1"># Don&#39;t forget to use absolute paths, not relative paths.</span>
+    <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">/static&#39;</span> <span class="o">%</span> <span class="n">PROJECT_ROOT</span><span class="p">,</span>
+<span class="c1">#    &#39;%s/frontend/build&#39; % PROJECT_ROOT,</span>
+<span class="p">)</span>
+</code></pre></div>
 </li>
 <li>
 <p>Execute the command</p>
-<p><code>sh
-./seahub.sh python-env python3 seahub/manage.py collectstatic --noinput -i admin -i termsandconditions --no-post-process</code></p>
+<div class="highlight"><pre><span></span><code>./seahub.sh<span class="w"> </span>python-env<span class="w"> </span>python3<span class="w"> </span>seahub/manage.py<span class="w"> </span>collectstatic<span class="w"> </span>--noinput<span class="w"> </span>-i<span class="w"> </span>admin<span class="w"> </span>-i<span class="w"> </span>termsandconditions<span class="w"> </span>--no-post-process
+</code></pre></div>
 </li>
 <li>
 <p>Restore <code>STATICFILES_DIRS</code> manually</p>
@@ -4320,8 +4317,8 @@ STATICFILES_DIRS = (
 </li>
 <li>
 <p>Restart Seahub</p>
-<p><code>sh
-./seahub.sh restart</code></p>
+<div class="highlight"><pre><span></span><code>./seahub.sh<span class="w"> </span>restart
+</code></pre></div>
 </li>
 </ol>
 <p>This issue has been fixed since version 11.0</p>
@@ -4354,6 +4351,46 @@ STATICFILES_DIRS = (
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../rpi/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Server binary package">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Server binary package
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../web_api_v2.1/" class="md-footer__link md-footer__link--next" aria-label="Next: Web API V2.1">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Web API V2.1
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4396,7 +4433,7 @@ STATICFILES_DIRS = (
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

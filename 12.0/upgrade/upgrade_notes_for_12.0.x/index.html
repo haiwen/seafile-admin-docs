@@ -2190,7 +2190,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4416,23 +4416,20 @@ Please always follow the main <a href="../upgrade/">upgrade guide</a>.</p>
 <h2 id="new-python-libraries">New Python libraries<a class="headerlink" href="#new-python-libraries" title="Permanent link">&para;</a></h2>
 <p>Note, you should install Python libraries system wide using root user or sudo mode.</p>
 <p>For Ubuntu 22.04/24.04</p>
-<div class="codehilite"><pre><span></span><code>sudo<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> </span><span class="nv">future</span><span class="o">==</span><span class="m">1</span>.0.*<span class="w"> </span><span class="nv">mysqlclient</span><span class="o">==</span><span class="m">2</span>.2.*<span class="w"> </span><span class="nv">pillow</span><span class="o">==</span><span class="m">10</span>.4.*<span class="w"> </span><span class="nv">sqlalchemy</span><span class="o">==</span><span class="m">2</span>.0.*<span class="w"> </span><span class="nv">gevent</span><span class="o">==</span><span class="m">24</span>.2.*<span class="w"> </span><span class="nv">captcha</span><span class="o">==</span><span class="m">0</span>.6.*<span class="w"> </span><span class="nv">django_simple_captcha</span><span class="o">==</span><span class="m">0</span>.6.*<span class="w"> </span><span class="nv">djangosaml2</span><span class="o">==</span><span class="m">1</span>.9.*<span class="w"> </span><span class="nv">pysaml2</span><span class="o">==</span><span class="m">7</span>.3.*<span class="w"> </span><span class="nv">pycryptodome</span><span class="o">==</span><span class="m">3</span>.20.*<span class="w"> </span><span class="nv">cffi</span><span class="o">==</span><span class="m">1</span>.17.0<span class="w"> </span>python-ldap<span class="o">==</span><span class="m">3</span>.4.*<span class="w"> </span><span class="nv">PyMuPDF</span><span class="o">==</span><span class="m">1</span>.24.*
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> </span><span class="nv">future</span><span class="o">==</span><span class="m">1</span>.0.*<span class="w"> </span><span class="nv">mysqlclient</span><span class="o">==</span><span class="m">2</span>.2.*<span class="w"> </span><span class="nv">pillow</span><span class="o">==</span><span class="m">10</span>.4.*<span class="w"> </span><span class="nv">sqlalchemy</span><span class="o">==</span><span class="m">2</span>.0.*<span class="w"> </span><span class="nv">gevent</span><span class="o">==</span><span class="m">24</span>.2.*<span class="w"> </span><span class="nv">captcha</span><span class="o">==</span><span class="m">0</span>.6.*<span class="w"> </span><span class="nv">django_simple_captcha</span><span class="o">==</span><span class="m">0</span>.6.*<span class="w"> </span><span class="nv">djangosaml2</span><span class="o">==</span><span class="m">1</span>.9.*<span class="w"> </span><span class="nv">pysaml2</span><span class="o">==</span><span class="m">7</span>.3.*<span class="w"> </span><span class="nv">pycryptodome</span><span class="o">==</span><span class="m">3</span>.20.*<span class="w"> </span><span class="nv">cffi</span><span class="o">==</span><span class="m">1</span>.17.0<span class="w"> </span>python-ldap<span class="o">==</span><span class="m">3</span>.4.*<span class="w"> </span><span class="nv">PyMuPDF</span><span class="o">==</span><span class="m">1</span>.24.*
 </code></pre></div>
-
 <h2 id="upgrade-to-120-for-binary-installation">Upgrade to 12.0 (for binary installation)<a class="headerlink" href="#upgrade-to-120-for-binary-installation" title="Permanent link">&para;</a></h2>
 <p>The following instruction is for binary package based installation. If you use Docker based installation, please see <a href="../upgrade_docker/"></a></p>
 <h3 id="1-stop-seafile-110x-server">1) Stop Seafile-11.0.x server<a class="headerlink" href="#1-stop-seafile-110x-server" title="Permanent link">&para;</a></h3>
 <h3 id="2-start-from-seafile-120x-run-the-script">2) Start from Seafile 12.0.x, run the script<a class="headerlink" href="#2-start-from-seafile-120x-run-the-script" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>upgrade/upgrade_11.0_12.0.sh
+<div class="highlight"><pre><span></span><code>upgrade/upgrade_11.0_12.0.sh
 </code></pre></div>
-
 <h3 id="3-create-the-env-file-in-conf-directory">3) Create the <code>.env</code> file in conf/ directory<a class="headerlink" href="#3-create-the-env-file-in-conf-directory" title="Permanent link">&para;</a></h3>
 <p>conf/.env</p>
-<div class="codehilite"><pre><span></span><code>JWT_PRIVATE_KEY=xxx
+<div class="highlight"><pre><span></span><code>JWT_PRIVATE_KEY=xxx
 SEAFILE_SERVER_PROTOCOL=https
 SEAFILE_SERVER_HOSTNAME=seafile.example.com
 </code></pre></div>
-
 <p>Note: JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: <code>pwgen -s 40 1</code></p>
 <h3 id="4-start-seafile-120x-server">4) Start Seafile-12.0.x server<a class="headerlink" href="#4-start-seafile-120x-server" title="Permanent link">&para;</a></h3>
 <h2 id="upgrade-seadoc-from-08-to-10">Upgrade SeaDoc from 0.8 to 1.0<a class="headerlink" href="#upgrade-seadoc-from-08-to-10" title="Permanent link">&para;</a></h2>
@@ -4482,6 +4479,46 @@ SEAFILE_SERVER_HOSTNAME=seafile.example.com
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../upgrade_notes_for_11.0.x/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Upgrade notes for 11.0.x">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Upgrade notes for 11.0.x
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../develop/" class="md-footer__link md-footer__link--next" aria-label="Next: Outline">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Outline
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
@@ -4523,7 +4560,7 @@ SEAFILE_SERVER_HOSTNAME=seafile.example.com
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

@@ -2344,7 +2344,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4335,11 +4335,10 @@
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
 <h4 id="change-to-right-time-zone-in-seahub_settingspy">Change to right Time Zone in seahub_settings.py<a class="headerlink" href="#change-to-right-time-zone-in-seahub_settingspy" title="Permanent link">&para;</a></h4>
 <p><strong><em>WARNING: Without this your Fail2Ban filter will not work.</em></strong></p>
-<p>You need to add the following settings to seahub_settings.py but change it to your own time zone.</p>
-<div class="codehilite"><pre><span></span><code> # TimeZone
+<p>You need to add the following settings to seahub_settings.py but change it to your own time zone.
+<div class="highlight"><pre><span></span><code> # TimeZone
  TIME_ZONE = &#39;Europe/Stockholm&#39;
-</code></pre></div>
-
+</code></pre></div></p>
 <h4 id="copy-and-edit-jaillocal-file">Copy and edit jail.local file<a class="headerlink" href="#copy-and-edit-jaillocal-file" title="Permanent link">&para;</a></h4>
 <p><strong><em>WARNING: this file may override some parameters from your <code>jail.conf</code> file</em></strong></p>
 <p>Edit <code>jail.local</code> with :
@@ -4347,93 +4346,86 @@
 * logpath (e.g. <code>/home/yourusername/logs/seahub.log</code>) ;
 * maxretry (default to 3 is equivalent to 9 real attemps in seafile, because one line is written every 3 failed authentications into seafile logs).</p>
 <h4 id="create-the-file-jaillocal-in-etcfail2ban-with-the-following-content">Create the file <code>jail.local</code> in <code>/etc/fail2ban</code> with the following content:<a class="headerlink" href="#create-the-file-jaillocal-in-etcfail2ban-with-the-following-content" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="ow">All</span><span class="w"> </span><span class="n">standard</span><span class="w"> </span><span class="n">jails</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="n">configuration</span><span class="w"> </span><span class="n">located</span>
-<span class="err">#</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">fail2ban</span><span class="o">/</span><span class="n">jail</span><span class="p">.</span><span class="n">conf</span>
+<div class="highlight"><pre><span></span><code># All standard jails are in the file configuration located
+# /etc/fail2ban/jail.conf
 
-<span class="err">#</span><span class="w"> </span><span class="n">Warning</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">may</span><span class="w"> </span><span class="n">override</span><span class="w"> </span><span class="ow">any</span><span class="w"> </span><span class="n">other</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.</span><span class="w"> </span><span class="n">banaction</span><span class="p">,</span>
-<span class="err">#</span><span class="w"> </span><span class="k">action</span><span class="p">,</span><span class="w"> </span><span class="n">port</span><span class="p">,</span><span class="w"> </span><span class="n">logpath</span><span class="p">,</span><span class="w"> </span><span class="n">etc</span><span class="p">)</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="k">section</span><span class="w"> </span><span class="k">within</span><span class="w"> </span><span class="n">jail</span><span class="p">.</span><span class="k">local</span>
+# Warning you may override any other parameter (e.g. banaction,
+# action, port, logpath, etc) in that section within jail.local
 
-<span class="err">#</span><span class="w"> </span><span class="n">Change</span><span class="w"> </span><span class="n">logpath</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="nf">log</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">seafile</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.</span><span class="w"> </span><span class="n">seahub</span><span class="p">.</span><span class="nf">log</span><span class="p">)</span>
-<span class="err">#</span><span class="w"> </span><span class="n">Also</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">change</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nf">max</span><span class="w"> </span><span class="n">retry</span><span class="w"> </span><span class="nf">var</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="w"> </span><span class="n">attemps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="n">written</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">the</span>
-<span class="err">#</span><span class="w"> </span><span class="n">seafile</span><span class="w"> </span><span class="nf">log</span><span class="p">)</span>
-<span class="err">#</span><span class="w"> </span><span class="n">So</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">maxrety</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="n">times</span><span class="w"> </span><span class="k">before</span><span class="w"> </span><span class="n">his</span><span class="w"> </span><span class="n">IP</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">banned</span>
+# Change logpath with your file log used by seafile (e.g. seahub.log)
+# Also you can change the max retry var (3 attemps = 1 line written in the
+# seafile log)
+# So with this maxrety to 1, the user can try 3 times before his IP is banned
 
-<span class="o">[</span><span class="n">seafile</span><span class="o">]</span>
+[seafile]
 
-<span class="n">enabled</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="k">true</span>
-<span class="n">port</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">http</span><span class="p">,</span><span class="n">https</span>
-<span class="k">filter</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">seafile</span><span class="o">-</span><span class="n">auth</span>
-<span class="n">logpath</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">yourusername</span><span class="o">/</span><span class="n">logs</span><span class="o">/</span><span class="n">seahub</span><span class="p">.</span><span class="nf">log</span>
-<span class="n">maxretry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span>
+enabled  = true
+port     = http,https
+filter   = seafile-auth
+logpath  = /home/yourusername/logs/seahub.log
+maxretry = 3
 </code></pre></div>
-
 <h4 id="create-the-fail2ban-filter-file-seafile-authconf-in-etcfail2banfilterd-with-the-following-content">Create the fail2ban filter file <code>seafile-auth.conf</code> in <code>/etc/fail2ban/filter.d</code> with the following content:<a class="headerlink" href="#create-the-fail2ban-filter-file-seafile-authconf-in-etcfail2banfilterd-with-the-following-content" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">Fail2Ban</span><span class="w"> </span><span class="k">filter</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">seafile</span>
-<span class="err">#</span>
+<div class="highlight"><pre><span></span><code># Fail2Ban filter for seafile
+#
 
-<span class="o">[</span><span class="n">INCLUDES</span><span class="o">]</span>
+[INCLUDES]
 
-<span class="err">#</span><span class="w"> </span><span class="k">Read</span><span class="w"> </span><span class="n">common</span><span class="w"> </span><span class="n">prefixes</span><span class="p">.</span><span class="w"> </span><span class="k">If</span><span class="w"> </span><span class="ow">any</span><span class="w"> </span><span class="n">customizations</span><span class="w"> </span><span class="n">available</span><span class="w"> </span><span class="o">--</span><span class="w"> </span><span class="k">read</span><span class="w"> </span><span class="n">them</span><span class="w"> </span><span class="k">from</span>
-<span class="err">#</span><span class="w"> </span><span class="n">common</span><span class="p">.</span><span class="k">local</span>
-<span class="k">before</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">common</span><span class="p">.</span><span class="n">conf</span>
+# Read common prefixes. If any customizations available -- read them from
+# common.local
+before = common.conf
 
-<span class="o">[</span><span class="n">Definition</span><span class="o">]</span>
+[Definition]
 
-<span class="n">_daemon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seaf</span><span class="o">-</span><span class="n">server</span>
+_daemon = seaf-server
 
-<span class="n">failregex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Login</span><span class="w"> </span><span class="n">attempt</span><span class="w"> </span><span class="k">limit</span><span class="w"> </span><span class="n">reached</span><span class="p">.</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nl">ip</span><span class="p">:</span><span class="w"> </span><span class="o">&lt;</span><span class="k">HOST</span><span class="o">&gt;</span>
+failregex = Login attempt limit reached.*, ip: &lt;HOST&gt;
 
-<span class="n">ignoreregex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+ignoreregex = 
 
-<span class="err">#</span><span class="w"> </span><span class="n">DEV</span><span class="w"> </span><span class="nl">Notes</span><span class="p">:</span>
-<span class="err">#</span>
-<span class="err">#</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="err">:</span><span class="w">     </span><span class="mi">2015</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">20</span><span class="w"> </span><span class="mi">15</span><span class="err">:</span><span class="mi">20</span><span class="err">:</span><span class="mi">32</span><span class="p">,</span><span class="mi">402</span><span class="w"> </span><span class="o">[</span><span class="n">WARNING</span><span class="o">]</span><span class="w"> </span><span class="n">seahub</span><span class="p">.</span><span class="n">auth</span><span class="p">.</span><span class="nl">views</span><span class="p">:</span><span class="mi">155</span><span class="w"> </span><span class="n">login</span><span class="w"> </span><span class="n">Login</span><span class="w"> </span><span class="n">attempt</span><span class="w"> </span><span class="k">limit</span><span class="w"> </span><span class="n">reached</span><span class="p">,</span><span class="w"> </span><span class="nl">username</span><span class="p">:</span><span class="w"> </span><span class="o">&lt;</span><span class="k">user</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="nl">ip</span><span class="p">:</span><span class="w"> </span><span class="mf">1.2.3.4</span><span class="p">,</span><span class="w"> </span><span class="nl">attemps</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
-<span class="err">#</span><span class="w">       </span><span class="mi">2015</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">20</span><span class="w"> </span><span class="mi">17</span><span class="err">:</span><span class="mi">04</span><span class="err">:</span><span class="mi">32</span><span class="p">,</span><span class="mi">235</span><span class="w"> </span><span class="o">[</span><span class="n">WARNING</span><span class="o">]</span><span class="w"> </span><span class="n">seahub</span><span class="p">.</span><span class="n">auth</span><span class="p">.</span><span class="nl">views</span><span class="p">:</span><span class="mi">163</span><span class="w"> </span><span class="n">login</span><span class="w"> </span><span class="n">Login</span><span class="w"> </span><span class="n">attempt</span><span class="w"> </span><span class="k">limit</span><span class="w"> </span><span class="n">reached</span><span class="p">,</span><span class="w"> </span><span class="nl">ip</span><span class="p">:</span><span class="w"> </span><span class="mf">1.2.3.4</span><span class="p">,</span><span class="w"> </span><span class="nl">attempts</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
+# DEV Notes:
+#
+# pattern :     2015-10-20 15:20:32,402 [WARNING] seahub.auth.views:155 login Login attempt limit reached, username: &lt;user&gt;, ip: 1.2.3.4, attemps: 3
+#       2015-10-20 17:04:32,235 [WARNING] seahub.auth.views:163 login Login attempt limit reached, ip: 1.2.3.4, attempts: 3
 </code></pre></div>
-
 <h4 id="restart-fail2ban">Restart fail2ban<a class="headerlink" href="#restart-fail2ban" title="Permanent link">&para;</a></h4>
 <p>Finally, just restart fail2ban and check your firewall (iptables for me) :</p>
-<div class="codehilite"><pre><span></span><code><span class="n">sudo</span><span class="w"> </span><span class="n">fail2ban</span><span class="o">-</span><span class="n">client</span><span class="w"> </span><span class="n">reload</span>
-<span class="n">sudo</span><span class="w"> </span><span class="n">iptables</span><span class="w"> </span><span class="o">-</span><span class="n">S</span>
+<div class="highlight"><pre><span></span><code>sudo fail2ban-client reload
+sudo iptables -S
 </code></pre></div>
-
 <p>Fail2ban will create a new chain for this jail.
 So you should see these new lines :</p>
-<div class="codehilite"><pre><span></span><code>...
-<span class="o">-</span><span class="nv">N</span><span class="w"> </span><span class="nv">fail2ban</span><span class="o">-</span><span class="nv">seafile</span>
+<div class="highlight"><pre><span></span><code>...
+-N fail2ban-seafile
 ...
-<span class="o">-</span><span class="nv">A</span><span class="w"> </span><span class="nv">fail2ban</span><span class="o">-</span><span class="nv">seafile</span><span class="w"> </span><span class="o">-</span><span class="nv">j</span><span class="w"> </span><span class="k">RETURN</span>
+-A fail2ban-seafile -j RETURN
 </code></pre></div>
-
 <h2 id="tests">Tests<a class="headerlink" href="#tests" title="Permanent link">&para;</a></h2>
 <p>To do a simple test (but you have to be an administrator on your seafile server) go to your seafile webserver URL and try 3 authentications with a wrong password.</p>
 <p>Actually, when you have done that, you are banned from http and https ports in iptables, thanks to fail2ban.</p>
 <p>To check that :</p>
 <p>on fail2ban</p>
-<div class="codehilite"><pre><span></span><code><span class="n">denis</span><span class="nv">@myserver</span><span class="err">:</span><span class="o">~</span><span class="err">$</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="n">fail2ban</span><span class="o">-</span><span class="n">client</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="n">seafile</span>
-<span class="n">Status</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nl">jail</span><span class="p">:</span><span class="w"> </span><span class="n">seafile</span>
-<span class="o">|-</span><span class="w"> </span><span class="k">filter</span>
-<span class="o">|</span><span class="w">  </span><span class="o">|-</span><span class="w"> </span><span class="k">File</span><span class="w"> </span><span class="nl">list</span><span class="p">:</span><span class="w">    </span><span class="o">/</span><span class="n">home</span><span class="o">/&lt;</span><span class="n">youruser</span><span class="o">&gt;/</span><span class="n">logs</span><span class="o">/</span><span class="n">seahub</span><span class="p">.</span><span class="nf">log</span>
-<span class="o">|</span><span class="w">  </span><span class="o">|-</span><span class="w"> </span><span class="n">Currently</span><span class="w"> </span><span class="nl">failed</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
-<span class="o">|</span><span class="w">  </span><span class="err">`</span><span class="o">-</span><span class="w"> </span><span class="n">Total</span><span class="w"> </span><span class="nl">failed</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
-<span class="err">`</span><span class="o">-</span><span class="w"> </span><span class="k">action</span>
-<span class="w">   </span><span class="o">|-</span><span class="w"> </span><span class="n">Currently</span><span class="w"> </span><span class="nl">banned</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
-<span class="w">   </span><span class="o">|</span><span class="w">  </span><span class="err">`</span><span class="o">-</span><span class="w"> </span><span class="n">IP</span><span class="w"> </span><span class="nl">list</span><span class="p">:</span><span class="w">   </span><span class="mf">1.2.3.4</span>
-<span class="w">   </span><span class="err">`</span><span class="o">-</span><span class="w"> </span><span class="n">Total</span><span class="w"> </span><span class="nl">banned</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<div class="highlight"><pre><span></span><code>denis@myserver:~$ sudo fail2ban-client status seafile
+Status for the jail: seafile
+|- filter
+|  |- File list:    /home/&lt;youruser&gt;/logs/seahub.log
+|  |- Currently failed: 0
+|  `- Total failed: 1
+`- action
+   |- Currently banned: 1
+   |  `- IP list:   1.2.3.4
+   `- Total banned: 1
 </code></pre></div>
-
 <p>on iptables :</p>
-<div class="codehilite"><pre><span></span><code>sudo iptables -S
+<div class="highlight"><pre><span></span><code>sudo iptables -S
 
 ...
 -A fail2ban-seafile -s 1.2.3.4/32 -j REJECT --reject-with icmp-port-unreachable
 ...
 </code></pre></div>
-
 <p>To unban your IP address, just execute this command :</p>
-<div class="codehilite"><pre><span></span><code>sudo fail2ban-client set seafile unbanip 1.2.3.4
+<div class="highlight"><pre><span></span><code>sudo fail2ban-client set seafile unbanip 1.2.3.4
 </code></pre></div>
-
 <h2 id="note">Note<a class="headerlink" href="#note" title="Permanent link">&para;</a></h2>
 <p>As three (3) failed attempts to login will result in one line added in seahub.log a Fail2Ban jail with the settings maxretry = 3 is the same as nine (9) failed attempts to login.</p>
 
@@ -4465,6 +4457,46 @@ So you should see these new lines :</p>
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../using_logrotate/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Logrotate">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Logrotate
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../migrate_from_sqlite_to_mysql/" class="md-footer__link md-footer__link--next" aria-label="Next: Migrate From SQLite to MySQL">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Migrate From SQLite to MySQL
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4507,7 +4539,7 @@ So you should see these new lines :</p>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

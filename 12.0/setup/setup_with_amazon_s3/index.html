@@ -2320,7 +2320,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4279,47 +4279,43 @@
 <p>To setup Seafile Professional Server with Amazon S3:</p>
 <ul>
 <li>Setup the basic Seafile Professional Server following the guide on <a href="../../setup_binary/installation_pro/">Download and setup Seafile Professional Server</a></li>
-<li>Install the python <code>boto</code> library. It's needed to access S3 service.</li>
-</ul>
-<div class="codehilite"><pre><span></span><code># Version 10.0 or earlier
+<li>Install the python <code>boto</code> library. It's needed to access S3 service.
+<div class="highlight"><pre><span></span><code># Version 10.0 or earlier
 sudo pip install boto
 
 # Since 11.0 version
 sudo pip install boto3
-</code></pre></div>
-
-<ul>
+</code></pre></div></li>
 <li>Install and configure memcached or Redis. For best performance, Seafile requires enable memory cache for objects. We recommend to at least allocate 128MB memory for memcached or Redis.</li>
 </ul>
 <p>The configuration options differ for different S3 storage. We'll describe the configurations in separate sections.</p>
 <h2 id="aws-s3">AWS S3<a class="headerlink" href="#aws-s3" title="Permanent link">&para;</a></h2>
 <p>AWS S3 is the original S3 storage provider. </p>
 <p>Edit <code>seafile.conf</code>, add the following lines:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[commit_object_backend]</span>
-<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">s3</span>
-<span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">my-commit-objects</span>
-<span class="na">key_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your-key-id</span>
-<span class="na">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your-secret-key</span>
-<span class="na">use_v4_signature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">aws_region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">eu-central-1</span>
+<div class="highlight"><pre><span></span><code>[commit_object_backend]
+name = s3
+bucket = my-commit-objects
+key_id = your-key-id
+key = your-secret-key
+use_v4_signature = true
+aws_region = eu-central-1
 
-<span class="k">[fs_object_backend]</span>
-<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">s3</span>
-<span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">my-fs-objects</span>
-<span class="na">key_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your-key-id</span>
-<span class="na">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your-secret-key</span>
-<span class="na">use_v4_signature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">aws_region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">eu-central-1</span>
+[fs_object_backend]
+name = s3
+bucket = my-fs-objects
+key_id = your-key-id
+key = your-secret-key
+use_v4_signature = true
+aws_region = eu-central-1
 
-<span class="k">[block_backend]</span>
-<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">s3</span>
-<span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">my-block-objects</span>
-<span class="na">key_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your-key-id</span>
-<span class="na">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your-secret-key</span>
-<span class="na">use_v4_signature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">aws_region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">eu-central-1</span>
+[block_backend]
+name = s3
+bucket = my-block-objects
+key_id = your-key-id
+key = your-secret-key
+use_v4_signature = true
+aws_region = eu-central-1
 </code></pre></div>
-
 <p>You also need to add <a href="../../config/seafile-conf/#cache-pro-edition-only">memory cache configurations</a>.</p>
 <p>We'll explain the configurations below:</p>
 <ul>
@@ -4329,68 +4325,65 @@ sudo pip install boto3
 <li><code>aws_region</code>: If you use v4 protocol, set this option to the region you chose when you create the buckets. If it's not set and you're using v4 protocol, Seafile will use <code>us-east-1</code> as the default. This option will be ignored if you use v2 protocol.</li>
 </ul>
 <p>For file search and webdav to work with the v4 signature mechanism, you need to add following lines to ~/.boto</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[s3]</span>
-<span class="na">use-sigv4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">True</span>
+<div class="highlight"><pre><span></span><code>[s3]
+use-sigv4 = True
 </code></pre></div>
-
 <h3 id="use-server-side-encryption-with-customer-provided-keys-sse-c">Use server-side encryption with customer-provided keys (SSE-C)<a class="headerlink" href="#use-server-side-encryption-with-customer-provided-keys-sse-c" title="Permanent link">&para;</a></h3>
 <p>Since Pro 11.0, you can use SSE-C to S3. Add the following options to seafile.conf:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[commit_object_backend]</span>
-<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">s3</span>
-<span class="na">......</span>
-<span class="na">use_v4_signature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">use_https</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">sse_c_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P</span>
+<div class="highlight"><pre><span></span><code>[commit_object_backend]
+name = s3
+......
+use_v4_signature = true
+use_https = true
+sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
 
-<span class="k">[fs_object_backend]</span>
-<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">s3</span>
-<span class="na">......</span>
-<span class="na">use_v4_signature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">use_https</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">sse_c_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P</span>
+[fs_object_backend]
+name = s3
+......
+use_v4_signature = true
+use_https = true
+sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
 
-<span class="k">[block_backend]</span>
-<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">s3</span>
-<span class="na">......</span>
-<span class="na">use_v4_signature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">use_https</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">sse_c_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P</span>
+[block_backend]
+name = s3
+......
+use_v4_signature = true
+use_https = true
+sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
 </code></pre></div>
-
 <p><code>ssk_c_key</code> is a 32-byte random string.</p>
 <h2 id="other-public-hosted-s3-storage">Other Public Hosted S3 Storage<a class="headerlink" href="#other-public-hosted-s3-storage" title="Permanent link">&para;</a></h2>
 <p>There are other S3-compatible cloud storage providers in the market, such as Blackblaze and Wasabi. Configuration for those providers are just a bit different from AWS. We don't assure the following configuration works for all providers. If you have problems please contact our support.</p>
 <p>Edit <code>seafile.conf</code>, add the following lines:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[commit_object_backend]</span>
-<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">s3</span>
-<span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">my-commit-objects</span>
-<span class="na">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;access endpoint for storage provider&gt;</span>
-<span class="na">key_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your-key-id</span>
-<span class="na">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your-secret-key</span>
-<span class="c1"># v2 authentication protocol will be used if not set</span>
-<span class="na">use_v4_signature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="c1"># required for v4 protocol. ignored for v2 protocol.</span>
-<span class="na">aws_region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;region name for storage provider&gt;</span>
+<div class="highlight"><pre><span></span><code>[commit_object_backend]
+name = s3
+bucket = my-commit-objects
+host = &lt;access endpoint for storage provider&gt;
+key_id = your-key-id
+key = your-secret-key
+# v2 authentication protocol will be used if not set
+use_v4_signature = true
+# required for v4 protocol. ignored for v2 protocol.
+aws_region = &lt;region name for storage provider&gt;
 
-<span class="k">[fs_object_backend]</span>
-<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">s3</span>
-<span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">my-fs-objects</span>
-<span class="na">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;access endpoint for storage provider&gt;</span>
-<span class="na">key_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your-key-id</span>
-<span class="na">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your-secret-key</span>
-<span class="na">use_v4_signature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">aws_region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;region name for storage provider&gt;</span>
+[fs_object_backend]
+name = s3
+bucket = my-fs-objects
+host = &lt;access endpoint for storage provider&gt;
+key_id = your-key-id
+key = your-secret-key
+use_v4_signature = true
+aws_region = &lt;region name for storage provider&gt;
 
-<span class="k">[block_backend]</span>
-<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">s3</span>
-<span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">my-block-objects</span>
-<span class="na">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;access endpoint for storage provider&gt;</span>
-<span class="na">key_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your-key-id</span>
-<span class="na">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your-secret-key</span>
-<span class="na">use_v4_signature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">aws_region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;region name for storage provider&gt;</span>
+[block_backend]
+name = s3
+bucket = my-block-objects
+host = &lt;access endpoint for storage provider&gt;
+key_id = your-key-id
+key = your-secret-key
+use_v4_signature = true
+aws_region = &lt;region name for storage provider&gt;
 </code></pre></div>
-
 <p>You also need to add <a href="../../config/seafile-conf/#cache-pro-edition-only">memory cache configurations</a>.</p>
 <p>We'll explain the configurations below:</p>
 <ul>
@@ -4401,37 +4394,35 @@ sudo pip install boto3
 <li><code>aws_region</code>: If you use v4 protocol, set this option to the region you chose when you create the buckets. If it's not set and you're using v4 protocol, Seafile will use <code>us-east-1</code> as the default. This option will be ignored if you use v2 protocol.</li>
 </ul>
 <p>For file search and webdav to work with the v4 signature mechanism, you need to add following lines to ~/.boto</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[s3]</span>
-<span class="na">use-sigv4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">True</span>
+<div class="highlight"><pre><span></span><code>[s3]
+use-sigv4 = True
 </code></pre></div>
-
 <h2 id="self-hosted-s3-storage">Self-hosted S3 Storage<a class="headerlink" href="#self-hosted-s3-storage" title="Permanent link">&para;</a></h2>
 <p>Many self-hosted object storage systems are now compatible with the S3 API, such as OpenStack Swift and Ceph's RADOS Gateway. You can use these S3-compatible storage systems as backend for Seafile. Here is an example config:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[commit_object_backend]</span>
-<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">s3</span>
-<span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">my-commit-objects</span>
-<span class="na">key_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your-key-id</span>
-<span class="na">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your-secret-key</span>
-<span class="na">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">192.168.1.123:8080</span>
-<span class="na">path_style_request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+<div class="highlight"><pre><span></span><code>[commit_object_backend]
+name = s3
+bucket = my-commit-objects
+key_id = your-key-id
+key = your-secret-key
+host = 192.168.1.123:8080
+path_style_request = true
 
-<span class="k">[fs_object_backend]</span>
-<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">s3</span>
-<span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">my-fs-objects</span>
-<span class="na">key_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your-key-id</span>
-<span class="na">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your-secret-key</span>
-<span class="na">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">192.168.1.123:8080</span>
-<span class="na">path_style_request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+[fs_object_backend]
+name = s3
+bucket = my-fs-objects
+key_id = your-key-id
+key = your-secret-key
+host = 192.168.1.123:8080
+path_style_request = true
 
-<span class="k">[block_backend]</span>
-<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">s3</span>
-<span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">my-block-objects</span>
-<span class="na">key_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your-key-id</span>
-<span class="na">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your-secret-key</span>
-<span class="na">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">192.168.1.123:8080</span>
-<span class="na">path_style_request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+[block_backend]
+name = s3
+bucket = my-block-objects
+key_id = your-key-id
+key = your-secret-key
+host = 192.168.1.123:8080
+path_style_request = true
 </code></pre></div>
-
 <p>You also need to add <a href="../../config/seafile-conf/#cache-pro-edition-only">memory cache configurations</a>.</p>
 <p>We'll explain the configurations below:</p>
 <ul>
@@ -4447,28 +4438,26 @@ sudo pip install boto3
 </ul>
 <h2 id="use-https-connections-to-s3">Use HTTPS connections to S3<a class="headerlink" href="#use-https-connections-to-s3" title="Permanent link">&para;</a></h2>
 <p>To use HTTPS connections to S3, add the following options to seafile.conf:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[commit_object_backend]</span>
-<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">s3</span>
-<span class="na">......</span>
-<span class="na">use_https</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+<div class="highlight"><pre><span></span><code>[commit_object_backend]
+name = s3
+......
+use_https = true
 
-<span class="k">[fs_object_backend]</span>
-<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">s3</span>
-<span class="na">......</span>
-<span class="na">use_https</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+[fs_object_backend]
+name = s3
+......
+use_https = true
 
-<span class="k">[block_backend]</span>
-<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">s3</span>
-<span class="na">......</span>
-<span class="na">use_https</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+[block_backend]
+name = s3
+......
+use_https = true
 </code></pre></div>
-
 <p>Because the server package is built on CentOS 6, if you're using Debian/Ubuntu, you have to copy the system CA bundle to CentOS's CA bundle path. Otherwise Seafile can't find the CA bundle so that the SSL connection will fail.</p>
-<div class="codehilite"><pre><span></span><code>sudo mkdir -p /etc/pki/tls/certs
+<div class="highlight"><pre><span></span><code>sudo mkdir -p /etc/pki/tls/certs
 sudo cp /etc/ssl/certs/ca-certificates.crt /etc/pki/tls/certs/ca-bundle.crt
 sudo ln -s /etc/pki/tls/certs/ca-bundle.crt /etc/pki/tls/cert.pem
 </code></pre></div>
-
 <p>Another important note is that you <strong>must not use '.' in your bucket names</strong>. Otherwise the wildcard certificate for AWS S3 cannot be resolved. This is a limitation on AWS.</p>
 <h2 id="run-and-test">Run and Test<a class="headerlink" href="#run-and-test" title="Permanent link">&para;</a></h2>
 <p>Now you can start Seafile by <code>./seafile.sh start</code> and <code>./seahub.sh start</code> and visit the website.</p>
@@ -4501,6 +4490,46 @@ sudo ln -s /etc/pki/tls/certs/ca-bundle.crt /etc/pki/tls/cert.pem
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../setup_pro_by_docker/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Setup pro edition">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Setup pro edition
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../setup_with_ceph/" class="md-footer__link md-footer__link--next" aria-label="Next: Ceph Backend">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Ceph Backend
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4543,7 +4572,7 @@ sudo ln -s /etc/pki/tls/certs/ca-bundle.crt /etc/pki/tls/cert.pem
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

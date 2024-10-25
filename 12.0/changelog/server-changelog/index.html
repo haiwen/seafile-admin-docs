@@ -2190,7 +2190,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -6106,10 +6106,9 @@
 <li>Support rate control for file uploading and downloading.</li>
 </ul>
 <p>You can turn golang file-server on by adding following configuration in seafile.conf</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[fileserver]</span>
-<span class="na">use_go_fileserver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+<div class="highlight"><pre><span></span><code>[fileserver]
+use_go_fileserver = true
 </code></pre></div>
-
 <h2 id="80">8.0<a class="headerlink" href="#80" title="Permanent link">&para;</a></h2>
 <p>Please check our document for how to upgrade to <a href="../../upgrade/upgrade_notes_for_8.0.x/">8.0</a>.</p>
 <h3 id="808-20211206">8.0.8 (2021/12/06)<a class="headerlink" href="#808-20211206" title="Permanent link">&para;</a></h3>
@@ -6321,9 +6320,8 @@
 <p>With this upgrade, the fast-cgi mode is no longer supported. You need to config Seafile behind Nginx/Apache in WSGI mode.</p>
 <p>The way to run Seahub in another port is also changed. You need to modify the configuration file <code>conf/gunicorn.conf</code> instead of running <code>./seahub.sh start &lt;another-port&gt;</code>.</p>
 <p>Version 6.3 also changed the database table for file comments, if you have used this feature, you need migrate old file comments using the following commends after upgrading to 6.3:</p>
-<div class="codehilite"><pre><span></span><code>./seahub.sh python-env seahub/manage.py migrate_file_comment
+<div class="highlight"><pre><span></span><code>./seahub.sh python-env seahub/manage.py migrate_file_comment
 </code></pre></div>
-
 <blockquote>
 <p>Note, this command should be run while Seafile server is running.</p>
 </blockquote>
@@ -6396,29 +6394,27 @@
 <li>Restart Seahub with <code>./seahub.sh start</code> instead of <code>./seahub.sh start-fastcgi</code></li>
 </ol>
 <p>The configuration of Nginx is as following:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">location</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">{</span>
-<span class="w">         </span><span class="n">proxy_pass</span><span class="w">         </span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">8000</span><span class="p">;</span>
-<span class="w">         </span><span class="n">proxy_set_header</span><span class="w">   </span><span class="n">Host</span><span class="w"> </span><span class="o">$</span><span class="n">host</span><span class="p">;</span>
-<span class="w">         </span><span class="n">proxy_set_header</span><span class="w">   </span><span class="n">X</span><span class="o">-</span><span class="n">Real</span><span class="o">-</span><span class="n">IP</span><span class="w"> </span><span class="o">$</span><span class="n">remote_addr</span><span class="p">;</span>
-<span class="w">         </span><span class="n">proxy_set_header</span><span class="w">   </span><span class="n">X</span><span class="o">-</span><span class="n">Forwarded</span><span class="o">-</span><span class="n">For</span><span class="w"> </span><span class="o">$</span><span class="n">proxy_add_x_forwarded_for</span><span class="p">;</span>
-<span class="w">         </span><span class="n">proxy_set_header</span><span class="w">   </span><span class="n">X</span><span class="o">-</span><span class="n">Forwarded</span><span class="o">-</span><span class="n">Host</span><span class="w"> </span><span class="o">$</span><span class="n">server_name</span><span class="p">;</span>
-<span class="w">         </span><span class="n">proxy_read_timeout</span><span class="w">  </span><span class="mi">1200</span><span class="n">s</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code>location / {
+         proxy_pass         http://127.0.0.1:8000;
+         proxy_set_header   Host $host;
+         proxy_set_header   X-Real-IP $remote_addr;
+         proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+         proxy_set_header   X-Forwarded-Host $server_name;
+         proxy_read_timeout  1200s;
 
-<span class="w">         </span><span class="c1"># used for view/edit office file via Office Online Server</span>
-<span class="w">         </span><span class="n">client_max_body_size</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+         # used for view/edit office file via Office Online Server
+         client_max_body_size 0;
 
-<span class="w">         </span><span class="n">access_log</span><span class="w">      </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">seahub</span><span class="o">.</span><span class="n">access</span><span class="o">.</span><span class="n">log</span><span class="p">;</span>
-<span class="w">         </span><span class="n">error_log</span><span class="w">       </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">seahub</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">log</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
+         access_log      /var/log/nginx/seahub.access.log;
+         error_log       /var/log/nginx/seahub.error.log;
+    }
 </code></pre></div>
-
 <p>The configuration of Apache is as following:</p>
-<div class="codehilite"><pre><span></span><code>    # seahub
+<div class="highlight"><pre><span></span><code>    # seahub
     SetEnvIf Authorization &quot;(.*)&quot; HTTP_AUTHORIZATION=$1
     ProxyPass / http://127.0.0.1:8000/
     ProxyPassReverse / http://127.0.0.1:8000/
 </code></pre></div>
-
 <h3 id="625-20180123">6.2.5 (2018/01/23)<a class="headerlink" href="#625-20180123" title="Permanent link">&para;</a></h3>
 <ul>
 <li>[fix] Fix OAuth bug</li>
@@ -6486,17 +6482,16 @@
 </ul>
 <h2 id="61">6.1<a class="headerlink" href="#61" title="Permanent link">&para;</a></h2>
 <p>If you upgrade from 6.0 and you'd like to use the feature video thumbnail, you need to install ffmpeg package:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># for ubuntu 16.04</span>
-<span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">ffmpeg</span>
-<span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">pillow</span><span class="w"> </span><span class="n">moviepy</span>
+<div class="highlight"><pre><span></span><code># for ubuntu 16.04
+apt-get install ffmpeg
+pip install pillow moviepy
 
-<span class="c1"># for Centos 7</span>
-<span class="n">yum</span><span class="w"> </span><span class="o">-</span><span class="n">y</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">epel</span><span class="o">-</span><span class="n">release</span>
-<span class="n">rpm</span><span class="w"> </span><span class="o">--</span><span class="kn">import</span><span class="w"> </span><span class="nn">http</span><span class="p">:</span><span class="o">//</span><span class="n">li</span><span class="o">.</span><span class="n">nux</span><span class="o">.</span><span class="n">ro</span><span class="o">/</span><span class="n">download</span><span class="o">/</span><span class="n">nux</span><span class="o">/</span><span class="n">RPM</span><span class="o">-</span><span class="n">GPG</span><span class="o">-</span><span class="n">KEY</span><span class="o">-</span><span class="n">nux</span><span class="o">.</span><span class="n">ro</span>
-<span class="n">yum</span><span class="w"> </span><span class="o">-</span><span class="n">y</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">ffmpeg</span><span class="w"> </span><span class="n">ffmpeg</span><span class="o">-</span><span class="n">devel</span>
-<span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">pillow</span><span class="w"> </span><span class="n">moviepy</span>
+# for Centos 7
+yum -y install epel-release
+rpm --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro
+yum -y install ffmpeg ffmpeg-devel
+pip install pillow moviepy
 </code></pre></div>
-
 <h3 id="612-20170815">6.1.2 (2017.08.15)<a class="headerlink" href="#612-20170815" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Use user's language as lang setting for OnlyOffice</li>
@@ -6680,12 +6675,11 @@
 <li>The group message <strong>reply</strong> function is removed, and the old reply messages will not be shown with the new UI</li>
 </ul>
 <p>Note: when upgrade from 5.1.3 or lower version to 5.1.4+, you need to install python-urllib3 (or python2-urllib3 for Arch Linux) manually:</p>
-<div class="codehilite"><pre><span></span><code>#<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">Ubuntu</span>
-<span class="nv">sudo</span><span class="w"> </span><span class="nv">apt</span><span class="o">-</span><span class="nv">get</span><span class="w"> </span><span class="nv">install</span><span class="w">  </span><span class="nv">python</span><span class="o">-</span><span class="nv">urllib3</span>
-#<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">CentOS</span>
-<span class="nv">sudo</span><span class="w"> </span><span class="nv">yum</span><span class="w"> </span><span class="nv">install</span><span class="w"> </span><span class="nv">python</span><span class="o">-</span><span class="nv">urllib3</span>
+<div class="highlight"><pre><span></span><code># for Ubuntu
+sudo apt-get install  python-urllib3
+# for CentOS
+sudo yum install python-urllib3
 </code></pre></div>
-
 <h3 id="514-20160723">5.1.4 (2016.07.23)<a class="headerlink" href="#514-20160723" title="Permanent link">&para;</a></h3>
 <ul>
 <li>[fix] Fix seaf-fsck.sh --export fails without database</li>
@@ -6779,6 +6773,46 @@
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../develop/data_model/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Data Model">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Data Model
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../changelog-for-seafile-professional-server/" class="md-footer__link md-footer__link--next" aria-label="Next: Seafile Professional Edition">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Seafile Professional Edition
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
@@ -6820,7 +6854,7 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

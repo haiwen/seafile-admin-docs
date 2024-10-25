@@ -16,7 +16,7 @@
         <link rel="prev" href="../office_web_app/">
       
       
-        <link rel="next" href="../deploy_clamav_with_seafile/">
+        <link rel="next" href="../virus_scan_with_clamav/">
       
       
       <link rel="icon" href="../../media/favicon.ico">
@@ -2257,7 +2257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4154,61 +4154,54 @@
 <h1 id="virus-scan">Virus Scan<a class="headerlink" href="#virus-scan" title="Permanent link">&para;</a></h1>
 <p>Seafile can scan uploaded files for malicious content in the background. When configured to run periodically, the scan process scans all existing libraries on the server. In each scan, the process only scans newly uploaded/updated files since the last scan. For each file, the process executes a user-specified virus scan command to check whether the file is a virus or not. Most anti-virus programs provide command line utility for Linux.</p>
 <p>To enable this feature, add the following options to <code>seafile.conf</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[virus_scan]</span>
-<span class="na">scan_command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">(command for checking virus)</span>
-<span class="na">virus_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">(command exit codes when file is virus)</span>
-<span class="na">nonvirus_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">(command exit codes when file is not virus)</span>
-<span class="na">scan_interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">(scanning interval, in unit of minutes, default to 60 minutes)</span>
+<div class="highlight"><pre><span></span><code>[virus_scan]
+scan_command = (command for checking virus)
+virus_code = (command exit codes when file is virus)
+nonvirus_code = (command exit codes when file is not virus)
+scan_interval = (scanning interval, in unit of minutes, default to 60 minutes)
 </code></pre></div>
-
 <p>More details about the options:</p>
 <ul>
 <li>On Linux/Unix, most virus scan commands returns specific exit codes for virus and non-virus. You should consult the manual of your anti-virus program for more information.</li>
 </ul>
 <p>An example for ClamAV (http://www.clamav.net/) is provided below:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[virus_scan]</span>
-<span class="na">scan_command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">clamscan</span>
-<span class="na">virus_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span>
-<span class="na">nonvirus_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0</span>
+<div class="highlight"><pre><span></span><code>[virus_scan]
+scan_command = clamscan
+virus_code = 1
+nonvirus_code = 0
 </code></pre></div>
-
 <p>To test whether your configuration works, you can trigger a scan manually:</p>
-<div class="codehilite"><pre><span></span><code>cd seafile-server-latest
+<div class="highlight"><pre><span></span><code>cd seafile-server-latest
 ./pro/pro.py virus_scan
 </code></pre></div>
-
 <p>If a virus was detected, you can see scan records and delete infected files on the Virus Scan page in the admin area.
 <img alt="virus-scan" src="../../images/virus-scan.png" /></p>
-<p><strong>INFO</strong>: If you directly use clamav command line tool to scan files, scanning files will takes a lot of time. If you want to speed it up, we recommend to run Clamav as a daemon. Please refer to <a href="../deploy_clamav_with_seafile/">Run ClamAV as a Daemon</a></p>
-<p>When run Clamav as a daemon, the <code>scan_command</code> should be <code>clamdscan</code> in <code>seafile.conf</code>. An example for Clamav-daemon is provided below:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[virus_scan]</span>
-<span class="na">scan_command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">clamdscan</span>
-<span class="na">virus_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span>
-<span class="na">nonvirus_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0</span>
-</code></pre></div>
-
+<p><strong>INFO</strong>: If you directly use clamav command line tool to scan files, scanning files will takes a lot of time. If you want to speed it up, we recommend to run Clamav as a daemon. Please refer to <a href="../virus_scan_with_clamav/">Run ClamAV as a Daemon</a></p>
+<p>When run Clamav as a daemon, the <code>scan_command</code> should be <code>clamdscan</code> in <code>seafile.conf</code>. An example for Clamav-daemon is provided below:
+<div class="highlight"><pre><span></span><code>[virus_scan]
+scan_command = clamdscan
+virus_code = 1
+nonvirus_code = 0
+</code></pre></div></p>
 <p>Since Pro edition 6.0.0, a few more options are added to provide finer grained control for virus scan.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[virus_scan]</span>
-<span class="na">......</span>
-<span class="na">scan_size_limit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">(size limit for files to be scanned)</span><span class="w"> </span><span class="c1"># The unit is MB.</span>
-<span class="na">scan_skip_ext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">(a comma (&#39;,&#39;) separated list of file extensions to be ignored)</span>
-<span class="na">threads</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">(number of concurrent threads for scan, one thread for one file, default to 4)</span>
+<div class="highlight"><pre><span></span><code>[virus_scan]
+......
+scan_size_limit = (size limit for files to be scanned) # The unit is MB.
+scan_skip_ext = (a comma (&#39;,&#39;) separated list of file extensions to be ignored)
+threads = (number of concurrent threads for scan, one thread for one file, default to 4)
 </code></pre></div>
-
 <p>The file extensions should start with '.'. The extensions are case insensitive. By default, files with following extensions will be ignored:</p>
-<div class="codehilite"><pre><span></span><code><span class="na">.bmp</span><span class="p">,</span><span class="w"> </span><span class="no">.gif</span><span class="p">,</span><span class="w"> </span><span class="no">.ico</span><span class="p">,</span><span class="w"> </span><span class="no">.png</span><span class="p">,</span><span class="w"> </span><span class="no">.jpg</span><span class="p">,</span><span class="w"> </span><span class="no">.mp3</span><span class="p">,</span><span class="w"> </span><span class="no">.mp4</span><span class="p">,</span><span class="w"> </span><span class="no">.wav</span><span class="p">,</span><span class="w"> </span><span class="no">.avi</span><span class="p">,</span><span class="w"> </span><span class="no">.rmvb</span><span class="p">,</span><span class="w"> </span><span class="no">.mkv</span>
+<div class="highlight"><pre><span></span><code>.bmp, .gif, .ico, .png, .jpg, .mp3, .mp4, .wav, .avi, .rmvb, .mkv
 </code></pre></div>
-
 <p>The list you provide will override default list.</p>
 <h2 id="scanning-files-on-upload">Scanning Files on Upload<a class="headerlink" href="#scanning-files-on-upload" title="Permanent link">&para;</a></h2>
 <p>You may also configure Seafile to scan files for virus upon the files are uploaded. This only works for files uploaded via web interface or web APIs. Files uploaded with syncing or SeaDrive clients cannot be scanned on upload due to performance consideration.</p>
 <p>You may scan files uploaded from shared upload links by adding the option below to <code>seahub_settings.py</code>:</p>
-<div class="codehilite"><pre><span></span><code>ENABLE_UPLOAD_LINK_VIRUS_CHECK = True
+<div class="highlight"><pre><span></span><code>ENABLE_UPLOAD_LINK_VIRUS_CHECK = True
 </code></pre></div>
-
 <p>Since Pro Edition 11.0.7, you may scan all uploaded files via web APIs by adding the option below to <code>seafile.conf</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[fileserver]</span>
-<span class="na">check_virus_on_web_upload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+<div class="highlight"><pre><span></span><code>[fileserver]
+check_virus_on_web_upload = true
 </code></pre></div>
 
 
@@ -4239,6 +4232,46 @@
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../office_web_app/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Office Online Server Integration (Pro)">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Office Online Server Integration (Pro)
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../virus_scan_with_clamav/" class="md-footer__link md-footer__link--next" aria-label="Next: Virus scan with ClamAV">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Virus scan with ClamAV
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4281,7 +4314,7 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

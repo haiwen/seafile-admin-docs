@@ -2335,7 +2335,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4323,15 +4323,14 @@
 <p>The setup proceeds in two steps: First, Apache is installed. Second, a SSL certificate is integrated in the Apache configuration.</p>
 <h3 id="installing-apache">Installing Apache<a class="headerlink" href="#installing-apache" title="Permanent link">&para;</a></h3>
 <p>Install and enable apache modules:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Ubuntu</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Ubuntu</span>
 $<span class="w"> </span>sudo<span class="w"> </span>a2enmod<span class="w"> </span>rewrite
 $<span class="w"> </span>sudo<span class="w"> </span>a2enmod<span class="w"> </span>proxy_http
 </code></pre></div>
-
 <p><strong>Important: Due to the <a href="https://www.djangoproject.com/weblog/2013/aug/06/breach-and-django/">security advisory</a> published by Django team, we recommend to disable <a href="http://httpd.apache.org/docs/2.2/mod/mod_deflate.html">GZip compression</a> to mitigate <a href="http://breachattack.com/">BREACH attack</a>. No version earlier than Apache 2.4 should be used.</strong></p>
 <h3 id="configuring-apache">Configuring Apache<a class="headerlink" href="#configuring-apache" title="Permanent link">&para;</a></h3>
 <p>Modify Apache config file. For CentOS, this is <code>vhost.conf.</code> For Debian/Ubuntu, this is <code>sites-enabled/000-default</code>. </p>
-<div class="codehilite"><pre><span></span><code><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="s">*:80</span><span class="nt">&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="s">*:80</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nb">ServerName</span><span class="w"> </span>seafile.example.com
 <span class="w">    </span><span class="c"># Use &quot;DocumentRoot /var/www/html&quot; for CentOS</span>
 <span class="w">    </span><span class="c"># Use &quot;DocumentRoot /var/www&quot; for Debian/Ubuntu</span>
@@ -4362,7 +4361,6 @@ $<span class="w"> </span>sudo<span class="w"> </span>a2enmod<span class="w"> </s
 <span class="w">    </span><span class="nb">ProxyPassReverse</span><span class="w"> </span>/<span class="w"> </span>http://127.0.0.1:8000/
 <span class="nt">&lt;/VirtualHost&gt;</span>
 </code></pre></div>
-
 <h3 id="getting-a-lets-encrypt-certificate">Getting a Let's Encrypt certificate<a class="headerlink" href="#getting-a-lets-encrypt-certificate" title="Permanent link">&para;</a></h3>
 <p>Getting a Let's Encrypt certificate is straightforward thanks to <a href="https://certbot.eff.org/">Certbot</a>. Certbot is a free, open source software tool for requesting, receiving, and renewing Let's Encrypt certificates.</p>
 <p>First, go to the <a href="https://certbot.eff.org/">Certbot</a> website and choose your web server and OS.</p>
@@ -4370,18 +4368,16 @@ $<span class="w"> </span>sudo<span class="w"> </span>a2enmod<span class="w"> </s
 <p>Second, follow the detailed instructions then shown.</p>
 <p><img alt="grafik" src="../../images/certbot-step2.png" /></p>
 <p>We recommend that you get just a certificate and that you modify the Apache configuration yourself:</p>
-<div class="codehilite"><pre><span></span><code>sudo<span class="w"> </span>certbot<span class="w"> </span>--apache<span class="w"> </span>certonly
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>certbot<span class="w"> </span>--apache<span class="w"> </span>certonly
 </code></pre></div>
-
 <p>Follow the instructions on the screen.</p>
 <p>Upon successful verification, Certbot saves the certificate files in a directory named after the host name in  <code>/etc/letsencrypt/live</code>. For the host name seafile.example.com, the files are stored in <code>/etc/letsencrypt/live/seafile.example.com</code>. </p>
 <h3 id="adjusting-apache-configuration">Adjusting Apache configuration<a class="headerlink" href="#adjusting-apache-configuration" title="Permanent link">&para;</a></h3>
 <p>To use HTTPS, you need to enable mod_ssl:</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>a2enmod<span class="w"> </span>ssl
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>a2enmod<span class="w"> </span>ssl
 </code></pre></div>
-
 <p>Then modify your Apache configuration file. Here is a sample:</p>
-<div class="codehilite"><pre><span></span><code><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="s">*:443</span><span class="nt">&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="s">*:443</span><span class="nt">&gt;</span>
 <span class="w">  </span><span class="nb">ServerName</span><span class="w"> </span>seafile.example.com
 <span class="w">  </span><span class="nb">DocumentRoot</span><span class="w"> </span><span class="sx">/var/www</span>
 
@@ -4413,36 +4409,30 @@ $<span class="w"> </span>sudo<span class="w"> </span>a2enmod<span class="w"> </s
 <span class="w">  </span><span class="nb">ProxyPassReverse</span><span class="w"> </span>/<span class="w"> </span>http://127.0.0.1:8000/
 <span class="nt">&lt;/VirtualHost&gt;</span>
 </code></pre></div>
-
 <p>Finally, make sure the virtual host file does not contain syntax errors and restart Apache for the configuration changes to take effect:</p>
-<div class="codehilite"><pre><span></span><code>sudo<span class="w"> </span>service<span class="w"> </span>apache2<span class="w"> </span>restart
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>service<span class="w"> </span>apache2<span class="w"> </span>restart
 </code></pre></div>
-
 <h3 id="modifying-seahub_settingspy">Modifying seahub_settings.py<a class="headerlink" href="#modifying-seahub_settingspy" title="Permanent link">&para;</a></h3>
 <p>The <code>SERVICE_URL</code> in <a href="../../config/seahub_settings_py/">seahub_settings.py</a> informs Seafile about the chosen domain, protocol and port. Change the <code>SERVICE_URL</code>so as to account for the switch from HTTP to HTTPS and to correspond to your host name (the <code>http://</code>must not be removed):</p>
-<div class="codehilite"><pre><span></span><code><span class="n">SERVICE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://seafile.example.com&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">SERVICE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://seafile.example.com&#39;</span>
 </code></pre></div>
-
 <p>The <code>FILE_SERVER_ROOT</code> in <a href="../../config/seahub_settings_py/">seahub_settings.py</a> informs Seafile about the location of and the protocol used by the file server. Change the <code>FILE_SERVER_ROOT</code>so as to account for the switch from HTTP to HTTPS and to correspond to your host name (the trailing <code>/seafhttp</code> must not be removed):</p>
-<div class="codehilite"><pre><span></span><code><span class="n">FILE_SERVER_ROOT</span> <span class="o">=</span> <span class="s1">&#39;https://seafile.example.com/seafhttp&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">FILE_SERVER_ROOT</span> <span class="o">=</span> <span class="s1">&#39;https://seafile.example.com/seafhttp&#39;</span>
 </code></pre></div>
-
 <p>Note: The <code>SERVICE_URL</code> and <code>FILE_SERVER_ROOT</code> can also be modified in Seahub via System Admininstration &gt; Settings.  If they are configured via System Admin and in seahub_settings.py, the value in System Admin will take precedence.</p>
 <h3 id="modifying-seafileconf-optional">Modifying seafile.conf (optional)<a class="headerlink" href="#modifying-seafileconf-optional" title="Permanent link">&para;</a></h3>
 <p>To improve security, the file server should only be accessible via Apache.</p>
 <p>Add the following line in the [fileserver] block on <code>seafile.conf</code> in <code>/opt/seafile/conf</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="na">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">127.0.0.1</span><span class="w">  </span><span class="c1">## default port 0.0.0.0</span>
+<div class="highlight"><pre><span></span><code><span class="na">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">127.0.0.1</span><span class="w">  </span><span class="c1">## default port 0.0.0.0</span>
 </code></pre></div>
-
 <p>After his change, the file server only accepts requests from Apache.</p>
 <h3 id="starting-seafile-and-seahub">Starting Seafile and Seahub<a class="headerlink" href="#starting-seafile-and-seahub" title="Permanent link">&para;</a></h3>
 <p>Restart the seaf-server and Seahub for the config changes to take effect:</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>su<span class="w"> </span>seafile
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>su<span class="w"> </span>seafile
 $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest
 $<span class="w"> </span>./seafile.sh<span class="w"> </span>restart
 $<span class="w"> </span>./seahub.sh<span class="w"> </span>restart
 </code></pre></div>
-
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
 <p>If there are problems with paths or files containing spaces, make sure to have at least Apache 2.4.12.</p>
 <p>References</p>
@@ -4481,6 +4471,46 @@ $<span class="w"> </span>./seahub.sh<span class="w"> </span>restart
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../https_with_nginx/" class="md-footer__link md-footer__link--prev" aria-label="Previous: HTTPS with Nginx">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                HTTPS with Nginx
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../outline_pro/" class="md-footer__link md-footer__link--next" aria-label="Next: Outline">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Outline
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4523,7 +4553,7 @@ $<span class="w"> </span>./seahub.sh<span class="w"> </span>restart
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

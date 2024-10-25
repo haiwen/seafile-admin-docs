@@ -2184,7 +2184,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4090,28 +4090,26 @@
 <h1 id="video-thumbnails">Video thumbnails<a class="headerlink" href="#video-thumbnails" title="Permanent link">&para;</a></h1>
 <h3 id="install-ffmpeg-package">Install ffmpeg package<a class="headerlink" href="#install-ffmpeg-package" title="Permanent link">&para;</a></h3>
 <p>You need to install ffmpeg package to let the video thumbnail work correctly:</p>
-<p><strong>Ubuntu 16.04</strong></p>
-<div class="codehilite"><pre><span></span><code># Install ffmpeg
+<p><strong>Ubuntu 16.04</strong>
+<div class="highlight"><pre><span></span><code># Install ffmpeg
 sudo apt-get update &amp;&amp; sudo apt-get -y install ffmpeg
 
 # Now we need to install some modules
 pip install pillow moviepy
-</code></pre></div>
+</code></pre></div></p>
+<p><strong>Centos 7</strong>
+<div class="highlight"><pre><span></span><code># We need to activate the epel repos
+yum -y install epel-release
+rpm --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro
 
-<p><strong>Centos 7</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># We need to activate the epel repos</span>
-<span class="n">yum</span><span class="w"> </span><span class="o">-</span><span class="n">y</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">epel</span><span class="o">-</span><span class="n">release</span>
-<span class="n">rpm</span><span class="w"> </span><span class="o">--</span><span class="kn">import</span><span class="w"> </span><span class="nn">http</span><span class="p">:</span><span class="o">//</span><span class="n">li</span><span class="o">.</span><span class="n">nux</span><span class="o">.</span><span class="n">ro</span><span class="o">/</span><span class="n">download</span><span class="o">/</span><span class="n">nux</span><span class="o">/</span><span class="n">RPM</span><span class="o">-</span><span class="n">GPG</span><span class="o">-</span><span class="n">KEY</span><span class="o">-</span><span class="n">nux</span><span class="o">.</span><span class="n">ro</span>
+# Then update the repo and install ffmpeg
+yum -y install ffmpeg ffmpeg-devel
 
-<span class="c1"># Then update the repo and install ffmpeg</span>
-<span class="n">yum</span><span class="w"> </span><span class="o">-</span><span class="n">y</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">ffmpeg</span><span class="w"> </span><span class="n">ffmpeg</span><span class="o">-</span><span class="n">devel</span>
-
-<span class="c1"># Now we need to install some modules</span>
-<span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">pillow</span><span class="w"> </span><span class="n">moviepy</span>
-</code></pre></div>
-
-<p><strong>Debian Jessie</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Add backports repo to /etc/apt/sources.list.d/</span>
+# Now we need to install some modules
+pip install pillow moviepy
+</code></pre></div></p>
+<p><strong>Debian Jessie</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Add backports repo to /etc/apt/sources.list.d/</span>
 <span class="c1"># e.g. the following repo works (June 2017)</span>
 <span class="n">sudo</span> <span class="n">echo</span> <span class="s2">&quot;deb http://httpredir.debian.org/debian $(lsb_release -cs)-backports main non-free&quot;</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apt</span><span class="o">/</span><span class="n">sources</span><span class="o">.</span><span class="n">list</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">debian</span><span class="o">-</span><span class="n">backports</span><span class="o">.</span><span class="n">list</span>
 
@@ -4120,11 +4118,10 @@ pip install pillow moviepy
 
 <span class="c1"># Now we need to install some modules</span>
 <span class="n">pip</span> <span class="n">install</span> <span class="n">pillow</span> <span class="n">moviepy</span>
-</code></pre></div>
-
+</code></pre></div></p>
 <h3 id="configure-seafile-to-create-thumbnails">Configure Seafile to create thumbnails<a class="headerlink" href="#configure-seafile-to-create-thumbnails" title="Permanent link">&para;</a></h3>
 <p>Now configure accordingly in <code>seahub_settings.py</code></p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Enable or disable thumbnail for video. ffmpeg and moviepy should be installed first. </span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Enable or disable thumbnail for video. ffmpeg and moviepy should be installed first. </span>
 <span class="c1"># For details, please refer to https://manual.seafile.com/deploy/video_thumbnails/</span>
 <span class="c1"># NOTE: since version 6.1</span>
 <span class="n">ENABLE_VIDEO_THUMBNAIL</span> <span class="o">=</span> <span class="kc">True</span>
@@ -4164,6 +4161,8 @@ pip install pillow moviepy
       </main>
       
         <footer class="md-footer">
+  
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4206,7 +4205,7 @@ pip install pillow moviepy
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

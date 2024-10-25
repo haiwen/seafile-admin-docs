@@ -2184,7 +2184,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4137,48 +4137,46 @@
 </ol>
 <p>You can generate them by:</p>
 <p>```
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout sp.key -out sp.crt</p>
-<div class="codehilite"><pre><span></span><code><span class="n"> These x.509 certs are used to sign and encrypt elements like NameID and Metadata for SAML. </span>
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout sp.key -out sp.crt
+<div class="highlight"><pre><span></span><code> These x.509 certs are used to sign and encrypt elements like NameID and Metadata for SAML. 
 
-<span class="n"> Then copy these two files to **&lt;seafile-install-path&gt;/seahub-data/certs**. (if the certs folder not exists, create it.)</span>
+ Then copy these two files to **&lt;seafile-install-path&gt;/seahub-data/certs**. (if the certs folder not exists, create it.)
 
-<span class="n">2. x.509 cert from IdP (Identity Provider)</span>
+2. x.509 cert from IdP (Identity Provider)
 
-<span class="n"> 1. Log into the ADFS server and open the ADFS management.</span>
+ 1. Log into the ADFS server and open the ADFS management.
 
-<span class="n"> 1. Double click **Service** and choose **Certificates**.</span>
+ 1. Double click **Service** and choose **Certificates**.
 
-<span class="n"> 1. Export the **Token-Signing** certificate:</span>
+ 1. Export the **Token-Signing** certificate:
 
-<span class="n">    1. Right-click the certificate and select **View Certificate**.</span>
-<span class="n">    1. Select the **Details** tab.</span>
-<span class="n">    1. Click **Copy to File** (select **DER encoded binary X.509**).</span>
+    1. Right-click the certificate and select **View Certificate**.
+    1. Select the **Details** tab.
+    1. Click **Copy to File** (select **DER encoded binary X.509**).
 
-<span class="n"> 1. Convert this certificate to PEM format, rename it to **idp.crt**</span>
+ 1. Convert this certificate to PEM format, rename it to **idp.crt**
 
-<span class="n"> 1. Then copy it to **&lt;seafile-install-path&gt;/seahub-data/certs**.</span>
+ 1. Then copy it to **&lt;seafile-install-path&gt;/seahub-data/certs**.
 
-<span class="c">### Prepare IdP Metadata File</span>
+### Prepare IdP Metadata File
 
-<span class="n">1. Open https://adfs-server.adfs.com/federationmetadata/2007-06/federationmetadata.xml</span>
+1. Open https://adfs-server.adfs.com/federationmetadata/2007-06/federationmetadata.xml
 
-<span class="n">1. Save this xml file, rename it to **idp_federation_metadata.xml**</span>
+1. Save this xml file, rename it to **idp_federation_metadata.xml**
 
-<span class="n">1. Copy it to **&lt;seafile-install-path&gt;/seahub-data/certs**.</span>
+1. Copy it to **&lt;seafile-install-path&gt;/seahub-data/certs**.
 
-<span class="c">### Install Requirements on Seafile Server</span>
+### Install Requirements on Seafile Server
 
-<span class="n">- For Ubuntu 16.04</span>
+- For Ubuntu 16.04
 </code></pre></div>
-
-<p>sudo apt install xmlsec1
-sudo pip install cryptography djangosaml2==0.15.0</p>
-<div class="codehilite"><pre><span></span><code><span class="gu">##</span># Config Seafile
+sudo apt install xmlsec1
+sudo pip install cryptography djangosaml2==0.15.0
+<div class="highlight"><pre><span></span><code>### Config Seafile
 
 Add the following lines to **seahub_settings.py**
 </code></pre></div>
-
-<p>from os import path
+from os import path
 import saml2
 import saml2.saml</p>
 <h1 id="update-following-lines-according-to-your-situation">update following lines according to your situation<a class="headerlink" href="#update-following-lines-according-to-your-situation" title="Permanent link">&para;</a></h1>
@@ -4389,6 +4387,8 @@ SAML_CONFIG = {
       
         <footer class="md-footer">
   
+    
+  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
@@ -4430,7 +4430,7 @@ SAML_CONFIG = {
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

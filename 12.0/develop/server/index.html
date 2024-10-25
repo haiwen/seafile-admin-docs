@@ -2190,7 +2190,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4484,59 +4484,52 @@
 <p>This is the document for deploying Seafile open source development environment in Ubuntu 2204 docker container.</p>
 <h2 id="create-persistent-directories">Create persistent directories<a class="headerlink" href="#create-persistent-directories" title="Permanent link">&para;</a></h2>
 <p>Login a linux server as <code>root</code> user, then:</p>
-<div class="codehilite"><pre><span></span><code><span class="nx">mkdir</span><span class="w"> </span><span class="o">-</span><span class="nx">p</span><span class="w"> </span><span class="o">/</span><span class="nx">root</span><span class="o">/</span><span class="nx">seafile</span><span class="o">-</span><span class="nx">ce</span><span class="o">-</span><span class="nx">docker</span><span class="o">/</span><span class="nx">source</span><span class="o">-</span><span class="nx">code</span>
-<span class="nx">mkdir</span><span class="w"> </span><span class="o">-</span><span class="nx">p</span><span class="w"> </span><span class="o">/</span><span class="nx">root</span><span class="o">/</span><span class="nx">seafile</span><span class="o">-</span><span class="nx">ce</span><span class="o">-</span><span class="nx">docker</span><span class="o">/</span><span class="nx">conf</span>
-<span class="nx">mkdir</span><span class="w"> </span><span class="o">-</span><span class="nx">p</span><span class="w"> </span><span class="o">/</span><span class="nx">root</span><span class="o">/</span><span class="nx">seafile</span><span class="o">-</span><span class="nx">ce</span><span class="o">-</span><span class="nx">docker</span><span class="o">/</span><span class="nx">logs</span>
-<span class="nx">mkdir</span><span class="w"> </span><span class="o">-</span><span class="nx">p</span><span class="w"> </span><span class="o">/</span><span class="nx">root</span><span class="o">/</span><span class="nx">seafile</span><span class="o">-</span><span class="nx">ce</span><span class="o">-</span><span class="nx">docker</span><span class="o">/</span><span class="nx">mysql</span><span class="o">-</span><span class="nx">data</span>
-<span class="nx">mkdir</span><span class="w"> </span><span class="o">-</span><span class="nx">p</span><span class="w"> </span><span class="o">/</span><span class="nx">root</span><span class="o">/</span><span class="nx">seafile</span><span class="o">-</span><span class="nx">ce</span><span class="o">-</span><span class="nx">docker</span><span class="o">/</span><span class="nx">seafile</span><span class="o">-</span><span class="nx">data</span><span class="o">/</span><span class="kn">library</span><span class="o">-</span><span class="nx">template</span>
+<div class="highlight"><pre><span></span><code>mkdir -p /root/seafile-ce-docker/source-code
+mkdir -p /root/seafile-ce-docker/conf
+mkdir -p /root/seafile-ce-docker/logs
+mkdir -p /root/seafile-ce-docker/mysql-data
+mkdir -p /root/seafile-ce-docker/seafile-data/library-template
 </code></pre></div>
-
 <h2 id="run-a-container">Run a container<a class="headerlink" href="#run-a-container" title="Permanent link">&para;</a></h2>
 <p>After <a href="https://docs.docker.com/engine/install/">install docker</a>, start a container to deploy seafile open source development environment.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">docker</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="o">--</span><span class="n">mount</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="n">bind</span><span class="p">,</span><span class="n">source</span><span class="o">=/</span><span class="n">root</span><span class="o">/</span><span class="n">seafile</span><span class="o">-</span><span class="n">ce</span><span class="o">-</span><span class="n">docker</span><span class="o">/</span><span class="n">source</span><span class="o">-</span><span class="n">code</span><span class="p">,</span><span class="n">target</span><span class="o">=/</span><span class="n">root</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">source</span><span class="o">-</span><span class="n">code</span><span class="w"> </span>\
-<span class="w">           </span><span class="o">--</span><span class="n">mount</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="n">bind</span><span class="p">,</span><span class="n">source</span><span class="o">=/</span><span class="n">root</span><span class="o">/</span><span class="n">seafile</span><span class="o">-</span><span class="n">ce</span><span class="o">-</span><span class="n">docker</span><span class="o">/</span><span class="n">conf</span><span class="p">,</span><span class="n">target</span><span class="o">=/</span><span class="n">root</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">conf</span><span class="w"> </span>\
-<span class="w">           </span><span class="o">--</span><span class="n">mount</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="n">bind</span><span class="p">,</span><span class="n">source</span><span class="o">=/</span><span class="n">root</span><span class="o">/</span><span class="n">seafile</span><span class="o">-</span><span class="n">ce</span><span class="o">-</span><span class="n">docker</span><span class="o">/</span><span class="n">logs</span><span class="p">,</span><span class="n">target</span><span class="o">=/</span><span class="n">root</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">logs</span><span class="w"> </span>\
-<span class="w">           </span><span class="o">--</span><span class="n">mount</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="n">bind</span><span class="p">,</span><span class="n">source</span><span class="o">=/</span><span class="n">root</span><span class="o">/</span><span class="n">seafile</span><span class="o">-</span><span class="n">ce</span><span class="o">-</span><span class="n">docker</span><span class="o">/</span><span class="n">seafile</span><span class="o">-</span><span class="n">data</span><span class="p">,</span><span class="n">target</span><span class="o">=/</span><span class="n">root</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">seafile</span><span class="o">-</span><span class="n">data</span><span class="w"> </span>\
-<span class="w">           </span><span class="o">--</span><span class="n">mount</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="n">bind</span><span class="p">,</span><span class="n">source</span><span class="o">=/</span><span class="n">root</span><span class="o">/</span><span class="n">seafile</span><span class="o">-</span><span class="n">ce</span><span class="o">-</span><span class="n">docker</span><span class="o">/</span><span class="n">mysql</span><span class="o">-</span><span class="n">data</span><span class="p">,</span><span class="n">target</span><span class="o">=/</span><span class="k">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mysql</span><span class="w"> </span>\
-<span class="w">           </span><span class="o">-</span><span class="n">it</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">8000</span><span class="p">:</span><span class="mi">8000</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">8082</span><span class="p">:</span><span class="mi">8082</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">3000</span><span class="p">:</span><span class="mi">3000</span><span class="w"> </span><span class="o">--</span><span class="n">name</span><span class="w"> </span><span class="n">seafile</span><span class="o">-</span><span class="n">ce</span><span class="o">-</span><span class="n">env</span><span class="w"> </span><span class="n">ubuntu</span><span class="p">:</span><span class="mf">22.04</span><span class="w"> </span><span class="n">bash</span>
+<div class="highlight"><pre><span></span><code>docker run --mount type=bind,source=/root/seafile-ce-docker/source-code,target=/root/dev/source-code \
+           --mount type=bind,source=/root/seafile-ce-docker/conf,target=/root/dev/conf \
+           --mount type=bind,source=/root/seafile-ce-docker/logs,target=/root/dev/logs \
+           --mount type=bind,source=/root/seafile-ce-docker/seafile-data,target=/root/dev/seafile-data \
+           --mount type=bind,source=/root/seafile-ce-docker/mysql-data,target=/var/lib/mysql \
+           -it -p 8000:8000 -p 8082:8082 -p 3000:3000 --name seafile-ce-env ubuntu:22.04 bash
 </code></pre></div>
-
 <p>Note, the following commands are all executed in the seafile-ce-env docker container.</p>
 <h2 id="update-source-and-install-dependencies">Update Source and Install Dependencies.<a class="headerlink" href="#update-source-and-install-dependencies" title="Permanent link">&para;</a></h2>
 <p>Update base system and install base dependencies:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">update</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">upgrade</span><span class="w"> </span><span class="o">-</span><span class="n">y</span>
+<div class="highlight"><pre><span></span><code>apt-get update &amp;&amp; apt-get upgrade -y
 
-<span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="o">-</span><span class="n">y</span><span class="w"> </span><span class="n">ssh</span><span class="w"> </span><span class="n">libevent</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libcurl4</span><span class="o">-</span><span class="n">openssl</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libglib2</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">uuid</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">intltool</span><span class="w"> </span><span class="n">libsqlite3</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libmysqlclient</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libarchive</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libtool</span><span class="w"> </span><span class="n">libjansson</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">valac</span><span class="w"> </span><span class="n">libfuse</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">python3</span><span class="o">-</span><span class="n">dateutil</span><span class="w"> </span><span class="n">cmake</span><span class="w"> </span><span class="n">re2c</span><span class="w"> </span><span class="n">flex</span><span class="w"> </span><span class="n">sqlite3</span><span class="w"> </span><span class="n">python3</span><span class="o">-</span><span class="n">pip</span><span class="w"> </span><span class="n">python3</span><span class="o">-</span><span class="n">simplejson</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="n">libssl</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libldap2</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libonig</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">vim</span><span class="w"> </span><span class="n">vim</span><span class="o">-</span><span class="n">scripts</span><span class="w"> </span><span class="n">wget</span><span class="w"> </span><span class="n">cmake</span><span class="w"> </span><span class="n">gcc</span><span class="w"> </span><span class="n">autoconf</span><span class="w"> </span><span class="n">automake</span><span class="w"> </span><span class="n">mysql</span><span class="o">-</span><span class="n">client</span><span class="w"> </span><span class="n">librados</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libxml2</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">curl</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="n">telnet</span><span class="w"> </span><span class="n">netcat</span><span class="w"> </span><span class="n">unzip</span><span class="w"> </span><span class="n">netbase</span><span class="w"> </span><span class="n">ca</span><span class="o">-</span><span class="n">certificates</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">transport</span><span class="o">-</span><span class="n">https</span><span class="w"> </span><span class="n">build</span><span class="o">-</span><span class="n">essential</span><span class="w"> </span><span class="n">libxslt1</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libffi</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libpcre3</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libz</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">xz</span><span class="o">-</span><span class="n">utils</span><span class="w"> </span><span class="n">nginx</span><span class="w"> </span><span class="n">pkg</span><span class="o">-</span><span class="n">config</span><span class="w"> </span><span class="n">poppler</span><span class="o">-</span><span class="n">utils</span><span class="w"> </span><span class="n">libmemcached</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="n">ldap</span><span class="o">-</span><span class="n">utils</span><span class="w"> </span><span class="n">libldap2</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libjwt</span><span class="o">-</span><span class="n">dev</span>
+apt-get install -y ssh libevent-dev libcurl4-openssl-dev libglib2.0-dev uuid-dev intltool libsqlite3-dev libmysqlclient-dev libarchive-dev libtool libjansson-dev valac libfuse-dev python3-dateutil cmake re2c flex sqlite3 python3-pip python3-simplejson git libssl-dev libldap2-dev libonig-dev vim vim-scripts wget cmake gcc autoconf automake mysql-client librados-dev libxml2-dev curl sudo telnet netcat unzip netbase ca-certificates apt-transport-https build-essential libxslt1-dev libffi-dev libpcre3-dev libz-dev xz-utils nginx pkg-config poppler-utils libmemcached-dev sudo ldap-utils libldap2-dev libjwt-dev
 </code></pre></div>
-
 <p>Install Node 16 from nodesource:</p>
-<div class="codehilite"><pre><span></span><code>curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+<div class="highlight"><pre><span></span><code>curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
 echo &quot;deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_16.x nodistro main&quot; | sudo tee /etc/apt/sources.list.d/nodesource.list
 apt-get install -y nodejs
 </code></pre></div>
-
 <p>Install other Python 3 dependencies:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="o">-</span><span class="n">y</span><span class="w"> </span><span class="n">python3</span><span class="w"> </span><span class="n">python3</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">python3</span><span class="o">-</span><span class="n">pip</span><span class="w"> </span><span class="n">python3</span><span class="o">-</span><span class="n">setuptools</span><span class="w"> </span><span class="n">python3</span><span class="o">-</span><span class="n">ldap</span>
+<div class="highlight"><pre><span></span><code>apt-get install -y python3 python3-dev python3-pip python3-setuptools python3-ldap
 
-<span class="n">python3</span><span class="w"> </span><span class="o">-</span><span class="n">m</span><span class="w"> </span><span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="o">--</span><span class="n">upgrade</span><span class="w"> </span><span class="n">pip</span>
+python3 -m pip install --upgrade pip
 
-<span class="n">pip3</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">Django</span><span class="o">==</span><span class="mf">4.2</span><span class="o">.*</span><span class="w"> </span><span class="n">django</span><span class="o">-</span><span class="n">statici18n</span><span class="o">==</span><span class="mf">2.3</span><span class="o">.*</span><span class="w"> </span><span class="n">django_webpack_loader</span><span class="o">==</span><span class="mf">1.7</span><span class="o">.*</span><span class="w"> </span><span class="n">django_picklefield</span><span class="o">==</span><span class="mf">3.1</span><span class="w"> </span><span class="n">django_formtools</span><span class="o">==</span><span class="mf">2.4</span><span class="w"> </span><span class="n">django_simple_captcha</span><span class="o">==</span><span class="mf">0.6</span><span class="o">.*</span><span class="w"> </span><span class="n">djangosaml2</span><span class="o">==</span><span class="mf">1.5</span><span class="o">.*</span><span class="w"> </span><span class="n">djangorestframework</span><span class="o">==</span><span class="mf">3.14</span><span class="o">.*</span><span class="w"> </span><span class="n">python</span><span class="o">-</span><span class="n">dateutil</span><span class="o">==</span><span class="mf">2.8</span><span class="o">.*</span><span class="w"> </span><span class="n">pyjwt</span><span class="o">==</span><span class="mf">2.6</span><span class="o">.*</span><span class="w"> </span><span class="n">pycryptodome</span><span class="o">==</span><span class="mf">3.16</span><span class="o">.*</span><span class="w"> </span><span class="n">python</span><span class="o">-</span><span class="n">cas</span><span class="o">==</span><span class="mf">1.6</span><span class="o">.*</span><span class="w"> </span><span class="n">pysaml2</span><span class="o">==</span><span class="mf">7.2</span><span class="o">.*</span><span class="w"> </span><span class="n">requests</span><span class="o">==</span><span class="mf">2.28</span><span class="o">.*</span><span class="w"> </span><span class="n">requests_oauthlib</span><span class="o">==</span><span class="mf">1.3</span><span class="o">.*</span><span class="w"> </span><span class="n">future</span><span class="o">==</span><span class="mf">0.18</span><span class="o">.*</span><span class="w"> </span><span class="n">gunicorn</span><span class="o">==</span><span class="mf">20.1</span><span class="o">.*</span><span class="w"> </span><span class="n">mysqlclient</span><span class="o">==</span><span class="mf">2.1</span><span class="o">.*</span><span class="w"> </span><span class="n">qrcode</span><span class="o">==</span><span class="mf">7.3</span><span class="o">.*</span><span class="w"> </span><span class="n">pillow</span><span class="o">==</span><span class="mf">10.2</span><span class="o">.*</span><span class="w"> </span><span class="n">chardet</span><span class="o">==</span><span class="mf">5.1</span><span class="o">.*</span><span class="w"> </span><span class="n">cffi</span><span class="o">==</span><span class="mf">1.15</span><span class="o">.</span><span class="mi">1</span><span class="w"> </span><span class="n">captcha</span><span class="o">==</span><span class="mf">0.5</span><span class="o">.*</span><span class="w"> </span><span class="n">openpyxl</span><span class="o">==</span><span class="mf">3.0</span><span class="o">.*</span><span class="w"> </span><span class="n">Markdown</span><span class="o">==</span><span class="mf">3.4</span><span class="o">.*</span><span class="w"> </span><span class="n">bleach</span><span class="o">==</span><span class="mf">5.0</span><span class="o">.*</span><span class="w"> </span><span class="n">python</span><span class="o">-</span><span class="n">ldap</span><span class="o">==</span><span class="mf">3.4</span><span class="o">.*</span><span class="w"> </span><span class="n">sqlalchemy</span><span class="o">==</span><span class="mf">2.0</span><span class="o">.</span><span class="mi">18</span><span class="w"> </span><span class="n">redis</span><span class="w"> </span><span class="n">mock</span><span class="w"> </span><span class="n">pytest</span><span class="w"> </span><span class="n">pymysql</span><span class="w"> </span><span class="n">configparser</span><span class="w"> </span><span class="n">pylibmc</span><span class="w"> </span><span class="n">django</span><span class="o">-</span><span class="n">pylibmc</span><span class="w"> </span><span class="n">nose</span><span class="w"> </span><span class="n">exam</span><span class="w"> </span><span class="n">splinter</span><span class="w"> </span><span class="n">pytest</span><span class="o">-</span><span class="n">django</span>
+pip3 install Django==4.2.* django-statici18n==2.3.* django_webpack_loader==1.7.* django_picklefield==3.1 django_formtools==2.4 django_simple_captcha==0.6.* djangosaml2==1.5.* djangorestframework==3.14.* python-dateutil==2.8.* pyjwt==2.6.* pycryptodome==3.16.* python-cas==1.6.* pysaml2==7.2.* requests==2.28.* requests_oauthlib==1.3.* future==0.18.* gunicorn==20.1.* mysqlclient==2.1.* qrcode==7.3.* pillow==10.2.* chardet==5.1.* cffi==1.15.1 captcha==0.5.* openpyxl==3.0.* Markdown==3.4.* bleach==5.0.* python-ldap==3.4.* sqlalchemy==2.0.18 redis mock pytest pymysql configparser pylibmc django-pylibmc nose exam splinter pytest-django
 </code></pre></div>
-
 <h2 id="install-mariadb-and-create-databases">Install MariaDB and Create Databases<a class="headerlink" href="#install-mariadb-and-create-databases" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code>apt-get install -y mariadb-server
+<div class="highlight"><pre><span></span><code>apt-get install -y mariadb-server
 service mariadb start
 mysqladmin -u root password your_password
 </code></pre></div>
-
 <p>sql for create databases</p>
-<div class="codehilite"><pre><span></span><code>mysql -uroot -pyour_password -e &quot;CREATE DATABASE ccnet CHARACTER SET utf8;&quot;
+<div class="highlight"><pre><span></span><code>mysql -uroot -pyour_password -e &quot;CREATE DATABASE ccnet CHARACTER SET utf8;&quot;
 mysql -uroot -pyour_password -e &quot;CREATE DATABASE seafile CHARACTER SET utf8;&quot;
 mysql -uroot -pyour_password -e &quot;CREATE DATABASE seahub CHARACTER SET utf8;&quot;
 </code></pre></div>
-
 <h2 id="download-source-code">Download Source Code<a class="headerlink" href="#download-source-code" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code>cd ~/
+<div class="highlight"><pre><span></span><code>cd ~/
 cd ~/dev/source-code
 
 git clone https://github.com/haiwen/libevhtp.git
@@ -4564,9 +4557,8 @@ git checkout tags/v11.0.5-server -b tag-v11.0.5-server
 cd ../seahub
 git checkout tags/v11.0.5-server -b tag-v11.0.5-server
 </code></pre></div>
-
 <h2 id="compile-and-install-seaf-server">Compile and Install seaf-server<a class="headerlink" href="#compile-and-install-seaf-server" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code>cd ../libevhtp
+<div class="highlight"><pre><span></span><code>cd ../libevhtp
 cmake -DEVHTP_DISABLE_SSL=ON -DEVHTP_BUILD_SHARED=OFF .
 make
 make install
@@ -4586,92 +4578,84 @@ make
 make install
 ldconfig
 </code></pre></div>
-
 <h2 id="create-conf-files">Create Conf Files<a class="headerlink" href="#create-conf-files" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="n">cd</span><span class="w"> </span><span class="o">~/</span><span class="n">dev</span><span class="o">/</span><span class="n">conf</span>
+<div class="highlight"><pre><span></span><code>cd ~/dev/conf
 
-<span class="n">cat</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">ccnet</span><span class="p">.</span><span class="n">conf</span><span class="w">  </span><span class="o">&lt;&lt;</span><span class="n">EOF</span>
-<span class="o">[</span><span class="n">Database</span><span class="o">]</span>
-<span class="n">ENGINE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mysql</span>
-<span class="k">HOST</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">localhost</span>
-<span class="n">PORT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3306</span>
-<span class="k">USER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">root</span>
-<span class="n">PASSWD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">123456</span>
-<span class="n">DB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ccnet</span>
-<span class="n">CONNECTION_CHARSET</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">utf8</span>
-<span class="n">CREATE_TABLES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">true</span>
-<span class="n">EOF</span>
+cat &gt; ccnet.conf  &lt;&lt;EOF
+[Database]
+ENGINE = mysql
+HOST = localhost
+PORT = 3306
+USER = root
+PASSWD = 123456
+DB = ccnet
+CONNECTION_CHARSET = utf8
+CREATE_TABLES = true
+EOF
 
-<span class="n">cat</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">seafile</span><span class="p">.</span><span class="n">conf</span><span class="w">  </span><span class="o">&lt;&lt;</span><span class="n">EOF</span>
-<span class="o">[</span><span class="n">database</span><span class="o">]</span>
-<span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mysql</span>
-<span class="k">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">localhost</span>
-<span class="n">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3306</span>
-<span class="k">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">root</span>
-<span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">123456</span>
-<span class="nf">db_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seafile</span>
-<span class="n">connection_charset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">utf8</span>
-<span class="n">create_tables</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">true</span>
-<span class="n">EOF</span>
+cat &gt; seafile.conf  &lt;&lt;EOF
+[database]
+type = mysql
+host = localhost
+port = 3306
+user = root
+password = 123456
+db_name = seafile
+connection_charset = utf8
+create_tables = true
+EOF
 
-<span class="n">cat</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">seafevents</span><span class="p">.</span><span class="n">conf</span><span class="w">  </span><span class="o">&lt;&lt;</span><span class="n">EOF</span>
-<span class="o">[</span><span class="n">DATABASE</span><span class="o">]</span>
-<span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mysql</span>
-<span class="n">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">root</span>
-<span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">123456</span>
-<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seahub</span>
-<span class="k">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">localhost</span>
-<span class="n">EOF</span>
+cat &gt; seafevents.conf  &lt;&lt;EOF
+[DATABASE]
+type = mysql
+username = root
+password = 123456
+name = seahub
+host = localhost
+EOF
 
-<span class="n">cat</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">seahub_settings</span><span class="p">.</span><span class="n">py</span><span class="w">  </span><span class="o">&lt;&lt;</span><span class="n">EOF</span>
-<span class="n">DATABASES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{</span>
-<span class="w">    </span><span class="s1">&#39;default&#39;</span><span class="err">:</span><span class="w"> </span><span class="err">{</span>
-<span class="w">        </span><span class="s1">&#39;ENGINE&#39;</span><span class="err">:</span><span class="w"> </span><span class="s1">&#39;django.db.backends.mysql&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;NAME&#39;</span><span class="err">:</span><span class="w"> </span><span class="s1">&#39;seahub&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;USER&#39;</span><span class="err">:</span><span class="w"> </span><span class="s1">&#39;root&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;PASSWORD&#39;</span><span class="err">:</span><span class="w"> </span><span class="s1">&#39;123456&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;HOST&#39;</span><span class="err">:</span><span class="w"> </span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;PORT&#39;</span><span class="err">:</span><span class="w"> </span><span class="s1">&#39;3306&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="err">}</span>
-<span class="err">}</span>
-<span class="n">FILE_SERVER_ROOT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;http://127.0.0.1:8082&#39;</span>
-<span class="n">SERVICE_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;http://127.0.0.1:8000&#39;</span>
-<span class="n">EOF</span>
+cat &gt; seahub_settings.py  &lt;&lt;EOF
+DATABASES = {
+    &#39;default&#39;: {
+        &#39;ENGINE&#39;: &#39;django.db.backends.mysql&#39;,
+        &#39;NAME&#39;: &#39;seahub&#39;,
+        &#39;USER&#39;: &#39;root&#39;,
+        &#39;PASSWORD&#39;: &#39;123456&#39;,
+        &#39;HOST&#39;: &#39;localhost&#39;,
+        &#39;PORT&#39;: &#39;3306&#39;,
+    }
+}
+FILE_SERVER_ROOT = &#39;http://127.0.0.1:8082&#39;
+SERVICE_URL = &#39;http://127.0.0.1:8000&#39;
+EOF
 </code></pre></div>
-
 <h2 id="start-seaf-server">Start seaf-server<a class="headerlink" href="#start-seaf-server" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code>seaf-server -F /root/dev/conf -d /root/dev/seafile-data -l /root/dev/logs/seafile.log &gt;&gt; /root/dev/logs/seafile.log 2&gt;&amp;1 &amp;
+<div class="highlight"><pre><span></span><code>seaf-server -F /root/dev/conf -d /root/dev/seafile-data -l /root/dev/logs/seafile.log &gt;&gt; /root/dev/logs/seafile.log 2&gt;&amp;1 &amp;
 </code></pre></div>
-
 <h2 id="start-seafevents-and-seahub">Start seafevents and seahub<a class="headerlink" href="#start-seafevents-and-seahub" title="Permanent link">&para;</a></h2>
 <h3 id="prepare-environment-variables">Prepare environment variables<a class="headerlink" href="#prepare-environment-variables" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="k">export</span><span class="w"> </span><span class="n">CCNET_CONF_DIR</span><span class="o">=/</span><span class="n">root</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">conf</span>
-<span class="k">export</span><span class="w"> </span><span class="n">SEAFILE_CONF_DIR</span><span class="o">=/</span><span class="n">root</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">seafile</span><span class="o">-</span><span class="n">data</span>
-<span class="k">export</span><span class="w"> </span><span class="n">SEAFILE_CENTRAL_CONF_DIR</span><span class="o">=/</span><span class="n">root</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">conf</span>
-<span class="k">export</span><span class="w"> </span><span class="n">SEAHUB_DIR</span><span class="o">=/</span><span class="n">root</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">source</span><span class="o">-</span><span class="n">code</span><span class="o">/</span><span class="n">seahub</span>
-<span class="k">export</span><span class="w"> </span><span class="n">SEAHUB_LOG_DIR</span><span class="o">=/</span><span class="n">root</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">logs</span>
-<span class="k">export</span><span class="w"> </span><span class="n">PYTHONPATH</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">10</span><span class="o">/</span><span class="n">dist</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">10</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="p">:</span><span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">source</span><span class="o">-</span><span class="n">code</span><span class="o">/</span><span class="p">:</span><span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">source</span><span class="o">-</span><span class="n">code</span><span class="o">/</span><span class="n">seafobj</span><span class="o">/</span><span class="p">:</span><span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">source</span><span class="o">-</span><span class="n">code</span><span class="o">/</span><span class="n">seahub</span><span class="o">/</span><span class="n">thirdpart</span><span class="p">:</span><span class="o">$</span><span class="n">PYTHONPATH</span>
+<div class="highlight"><pre><span></span><code>export CCNET_CONF_DIR=/root/dev/conf
+export SEAFILE_CONF_DIR=/root/dev/seafile-data
+export SEAFILE_CENTRAL_CONF_DIR=/root/dev/conf
+export SEAHUB_DIR=/root/dev/source-code/seahub
+export SEAHUB_LOG_DIR=/root/dev/logs
+export PYTHONPATH=/usr/local/lib/python3.10/dist-packages/:/usr/local/lib/python3.10/site-packages/:/root/dev/source-code/:/root/dev/source-code/seafobj/:/root/dev/source-code/seahub/thirdpart:$PYTHONPATH
 </code></pre></div>
-
 <h3 id="start-seafevents">Start seafevents<a class="headerlink" href="#start-seafevents" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>cd /root/dev/source-code/seafevents/
+<div class="highlight"><pre><span></span><code>cd /root/dev/source-code/seafevents/
 python3 main.py --loglevel=debug --logfile=/root/dev/logs/seafevents.log --config-file /root/dev/conf/seafevents.conf &gt;&gt; /root/dev/logs/seafevents.log 2&gt;&amp;1 &amp;
 </code></pre></div>
-
 <h3 id="start-seahub">Start seahub<a class="headerlink" href="#start-seahub" title="Permanent link">&para;</a></h3>
 <h4 id="create-seahub-database-tables">Create seahub database tables<a class="headerlink" href="#create-seahub-database-tables" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code>cd /root/dev/source-code/seahub/
+<div class="highlight"><pre><span></span><code>cd /root/dev/source-code/seahub/
 python3 manage.py migrate
 </code></pre></div>
-
 <h4 id="create-user">Create user<a class="headerlink" href="#create-user" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code>python3 manage.py createsuperuser
+<div class="highlight"><pre><span></span><code>python3 manage.py createsuperuser
 </code></pre></div>
-
 <h4 id="start-seahub_1">Start seahub<a class="headerlink" href="#start-seahub_1" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code>python3 manage.py runserver 0.0.0.0:8000
+<div class="highlight"><pre><span></span><code>python3 manage.py runserver 0.0.0.0:8000
 </code></pre></div>
-
 <p>Then, you can visit <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a>  to use Seafile.</p>
 <h2 id="the-final-directory-structure">The Final Directory Structure<a class="headerlink" href="#the-final-directory-structure" title="Permanent link">&para;</a></h2>
 <p><img alt="Directory Structure" src="../../images/build_seafile_server_directory_structure.png" /></p>
@@ -4679,37 +4663,33 @@ python3 manage.py migrate
 <h3 id="deploy-frontend-development-environment">Deploy Frontend Development Environment<a class="headerlink" href="#deploy-frontend-development-environment" title="Permanent link">&para;</a></h3>
 <p>For deploying frontend development enviroment, you need:</p>
 <p>1, checkout seahub to master branch</p>
-<div class="codehilite"><pre><span></span><code>cd /root/dev/source-code/seahub
+<div class="highlight"><pre><span></span><code>cd /root/dev/source-code/seahub
 
 git fetch origin master:master
 git checkout master
 </code></pre></div>
-
 <p>2, add the following configration to /root/dev/conf/seahub_settings.py</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="n">PROJECT_ROOT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/root/dev/source-code/seahub&#39;</span>
-<span class="n">WEBPACK_LOADER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="s1">&#39;DEFAULT&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="s1">&#39;BUNDLE_DIR_NAME&#39;</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;frontend/&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;STATS_FILE&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PROJECT_ROOT</span><span class="p">,</span>
-<span class="w">                                   </span><span class="s1">&#39;frontend/webpack-stats.dev.json&#39;</span><span class="p">),</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-<span class="n">DEBUG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">True</span>
+<div class="highlight"><pre><span></span><code>import os
+PROJECT_ROOT = &#39;/root/dev/source-code/seahub&#39;
+WEBPACK_LOADER = {
+    &#39;DEFAULT&#39;: {
+        &#39;BUNDLE_DIR_NAME&#39;: &#39;frontend/&#39;,
+        &#39;STATS_FILE&#39;: os.path.join(PROJECT_ROOT,
+                                   &#39;frontend/webpack-stats.dev.json&#39;),
+    }
+}
+DEBUG = True
 </code></pre></div>
-
 <p>3, install js modules</p>
-<div class="codehilite"><pre><span></span><code>cd /root/dev/source-code/seahub/frontend
+<div class="highlight"><pre><span></span><code>cd /root/dev/source-code/seahub/frontend
 
 npm install
 </code></pre></div>
-
 <p>4, npm run dev</p>
-<div class="codehilite"><pre><span></span><code>cd /root/dev/source-code/seahub/frontend
+<div class="highlight"><pre><span></span><code>cd /root/dev/source-code/seahub/frontend
 
 npm run dev
 </code></pre></div>
-
 <p>5, start seaf-server and seahub</p>
 
 
@@ -4740,6 +4720,46 @@ npm run dev
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../windows/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Windows">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Windows
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../rpi/" class="md-footer__link md-footer__link--next" aria-label="Next: Server binary package">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Server binary package
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4782,7 +4802,7 @@ npm run dev
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

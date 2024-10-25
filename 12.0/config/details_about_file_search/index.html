@@ -2194,7 +2194,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4373,53 +4373,49 @@
 <h1 id="details-about-file-search">Details about File Search<a class="headerlink" href="#details-about-file-search" title="Permanent link">&para;</a></h1>
 <h2 id="search-options">Search Options<a class="headerlink" href="#search-options" title="Permanent link">&para;</a></h2>
 <p>The following options can be set in <strong>seafevents.conf</strong> to control the behaviors of file search. You need to restart seafile and seahub to make them take effect.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[INDEX FILES]</span>
-<span class="c1">## must be &quot;true&quot; to enable search</span>
-<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+<div class="highlight"><pre><span></span><code>[INDEX FILES]
+## must be &quot;true&quot; to enable search
+enabled = true
 
-<span class="c1">## The interval the search index is updated. Can be s(seconds), m(minutes), h(hours), d(days)</span>
-<span class="na">interval</span><span class="o">=</span><span class="s">10m</span>
+## The interval the search index is updated. Can be s(seconds), m(minutes), h(hours), d(days)
+interval=10m
 
-<span class="c1">## this is for improving the search speed</span>
-<span class="na">highlight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">fvh</span><span class="w">                              </span>
+## this is for improving the search speed
+highlight = fvh                              
 
-<span class="c1">## If true, indexes the contents of office/pdf files while updating search index</span>
-<span class="c1">## Note: If you change this option from &quot;false&quot; to &quot;true&quot;, then you need to clear the search index and update the index again.</span>
-<span class="na">index_office_pdf</span><span class="o">=</span><span class="s">false</span>
+## If true, indexes the contents of office/pdf files while updating search index
+## Note: If you change this option from &quot;false&quot; to &quot;true&quot;, then you need to clear the search index and update the index again.
+index_office_pdf=false
 
-<span class="c1">## From 9.0.7 pro, Seafile supports connecting to Elasticsearch through username and password, you need to configure username and password for the Elasticsearch server</span>
-<span class="na">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">elastic</span><span class="w">           </span><span class="c1"># username to connect to Elasticsearch</span>
-<span class="na">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">elastic_password</span><span class="w">  </span><span class="c1"># password to connect to Elasticsearch</span>
+## From 9.0.7 pro, Seafile supports connecting to Elasticsearch through username and password, you need to configure username and password for the Elasticsearch server
+username = elastic           # username to connect to Elasticsearch
+password = elastic_password  # password to connect to Elasticsearch
 
-<span class="c1">## From 9.0.7 pro, Seafile supports connecting to elasticsearch via HTTPS, you need to configure HTTPS for the Elasticsearch server</span>
-<span class="na">scheme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">https</span><span class="w">               </span><span class="c1"># The default is http. If the Elasticsearch server is not configured with HTTPS, the scheme and cafile do not need to be configured</span>
-<span class="na">cafile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">path/to/cert.pem</span><span class="w">    </span><span class="c1"># The certificate path for user authentication. If the Elasticsearch server does not enable certificate authentication, do not need to be configured</span>
+## From 9.0.7 pro, Seafile supports connecting to elasticsearch via HTTPS, you need to configure HTTPS for the Elasticsearch server
+scheme = https               # The default is http. If the Elasticsearch server is not configured with HTTPS, the scheme and cafile do not need to be configured
+cafile = path/to/cert.pem    # The certificate path for user authentication. If the Elasticsearch server does not enable certificate authentication, do not need to be configured
 
-<span class="c1">## From version 11.0.5 Pro, you can custom ElasticSearch index names for distinct instances when intergrating multiple Seafile servers to a single ElasticSearch Server.</span>
-<span class="na">repo_status_index_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your-repo-status-index-name</span><span class="w">  </span><span class="c1"># default is `repo_head`</span>
-<span class="na">repo_files_index_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your-repo-files-index-name</span><span class="w">    </span><span class="c1"># default is `repofiles`</span>
+## From version 11.0.5 Pro, you can custom ElasticSearch index names for distinct instances when intergrating multiple Seafile servers to a single ElasticSearch Server.
+repo_status_index_name = your-repo-status-index-name  # default is `repo_head`
+repo_files_index_name = your-repo-files-index-name    # default is `repofiles`
 </code></pre></div>
-
 <h2 id="enable-full-text-search-for-officepdf-files">Enable full text search for Office/PDF files<a class="headerlink" href="#enable-full-text-search-for-officepdf-files" title="Permanent link">&para;</a></h2>
 <p>Full text search is not enabled by default to save system resources. If you want to enable it, you need to follow the instructions below.</p>
 <p>First you have to set the value of <code>index_office_pdf</code> option in <code>seafevents.conf</code> to <code>true</code>.</p>
 <p>Then restart seafile server</p>
-<div class="codehilite"><pre><span></span><code>  cd /data/haiwen/seafile-pro-server-1.7.0/
+<div class="highlight"><pre><span></span><code>  cd /data/haiwen/seafile-pro-server-1.7.0/
   ./seafile.sh restart
 </code></pre></div>
-
 <p>You need to delete the existing search index and recreate it.</p>
-<div class="codehilite"><pre><span></span><code>  ./pro/pro.py search --clear
+<div class="highlight"><pre><span></span><code>  ./pro/pro.py search --clear
   ./pro/pro.py search --update
 </code></pre></div>
-
 <h2 id="common-problems">Common problems<a class="headerlink" href="#common-problems" title="Permanent link">&para;</a></h2>
 <h3 id="how-to-rebuild-the-index-if-something-went-wrong">How to rebuild the index if something went wrong<a class="headerlink" href="#how-to-rebuild-the-index-if-something-went-wrong" title="Permanent link">&para;</a></h3>
 <p>You can rebuild search index by running:</p>
-<div class="codehilite"><pre><span></span><code>./pro/pro.py search --clear
+<div class="highlight"><pre><span></span><code>./pro/pro.py search --clear
 ./pro/pro.py search --update
 </code></pre></div>
-
 <p>If this does not work, you can try the following steps:</p>
 <ol>
 <li>Stop Seafile</li>
@@ -4436,21 +4432,20 @@
 <p>Configure the seafevents.conf:</p>
 </li>
 </ol>
-<div class="codehilite"><pre><span></span><code><span class="k">[INDEX FILES]</span>
-<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">10m</span>
-<span class="na">index_office_pdf</span><span class="o">=</span><span class="s">true</span>
-<span class="na">external_es_server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">es_host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your domain endpoint(for example, https://search-my-domain.us-east-1.es.amazonaws.com)</span>
-<span class="na">es_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">443</span>
-<span class="na">scheme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">https</span>
-<span class="na">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">master user</span>
-<span class="na">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">password</span>
-<span class="na">highlight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">fvh</span>
-<span class="na">repo_status_index_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your-repo-status-index-name</span><span class="w">  </span><span class="c1"># default is `repo_head`</span>
-<span class="na">repo_files_index_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your-repo-files-index-name</span><span class="w">    </span><span class="c1"># default is `repofiles`</span>
+<div class="highlight"><pre><span></span><code>[INDEX FILES]
+enabled = true
+interval = 10m
+index_office_pdf=true
+external_es_server = true
+es_host = your domain endpoint(for example, https://search-my-domain.us-east-1.es.amazonaws.com)
+es_port = 443
+scheme = https
+username = master user
+password = password
+highlight = fvh
+repo_status_index_name = your-repo-status-index-name  # default is `repo_head`
+repo_files_index_name = your-repo-files-index-name    # default is `repofiles`
 </code></pre></div>
-
 <p><strong>NOTE</strong>: The version of the Python third-party package <code>elasticsearch</code> cannot be greater than 7.14.0, otherwise the elasticsearch service cannot be accessed: <a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/samplecode.html#client-compatibility">https://docs.aws.amazon.com/opensearch-service/latest/developerguide/samplecode.html#client-compatibility</a>, <a href="https://github.com/elastic/elasticsearch-py/pull/1623">https://github.com/elastic/elasticsearch-py/pull/1623</a>.</p>
 <h3 id="i-get-no-result-when-i-search-a-keyword">I get no result when I search a keyword<a class="headerlink" href="#i-get-no-result-when-i-search-a-keyword" title="Permanent link">&para;</a></h3>
 <p>The search index is updated every 10 minutes by default. So before the first index update is performed, you get nothing no matter what you search.</p>
@@ -4459,88 +4454,77 @@
 <li>Make sure you have started Seafile Server</li>
 <li>Update the search index manually:</li>
 </ul>
-<div class="codehilite"><pre><span></span><code>cd haiwen/seafile-pro-server-2.0.4
+<div class="highlight"><pre><span></span><code>cd haiwen/seafile-pro-server-2.0.4
 ./pro/pro.py search --update
 </code></pre></div>
-
 <h3 id="encrypted-files-cannot-be-searched">Encrypted files cannot be searched<a class="headerlink" href="#encrypted-files-cannot-be-searched" title="Permanent link">&para;</a></h3>
 <p>This is because the server cannot index encrypted files, since they are encrypted.</p>
 <h3 id="increase-the-heap-size-for-the-java-search-process">Increase the heap size for the java search process<a class="headerlink" href="#increase-the-heap-size-for-the-java-search-process" title="Permanent link">&para;</a></h3>
 <p>The search functionality is based on Elasticsearch, which is a java process. You can modify the memory size by modifying the jvm configuration file. For example, modify to 2G memory. Modify the following configuration in the <code>seafile-server-latest/pro/elasticsearch/config/jvm.options</code> file:</p>
-<div class="codehilite"><pre><span></span><code>-Xms2g<span class="w"> </span><span class="c1"># Minimum available memory</span>
+<div class="highlight"><pre><span></span><code>-Xms2g<span class="w"> </span><span class="c1"># Minimum available memory</span>
 -Xmx2g<span class="w"> </span><span class="c1"># Maximum available memory</span>
 <span class="c1">### It is recommended to set the values of the above two configurations to the same size.</span>
 </code></pre></div>
-
 <p>Restart the seafile service to make the above changes take effect:</p>
-<div class="codehilite"><pre><span></span><code>./seafile.sh restart
+<div class="highlight"><pre><span></span><code>./seafile.sh restart
 ./seahub.sh restart
 </code></pre></div>
-
 <h2 id="distributed-indexing">Distributed indexing<a class="headerlink" href="#distributed-indexing" title="Permanent link">&para;</a></h2>
 <p>If you use a cluster to deploy Seafile, you can use distributed indexing to realize real-time indexing and improve indexing efficiency. The indexing process is as follows:</p>
 <p><img alt="" src="../../images/distributed-indexing.png" /></p>
 <h3 id="install-redis-and-modify-configuration-files">Install redis and modify configuration files<a class="headerlink" href="#install-redis-and-modify-configuration-files" title="Permanent link">&para;</a></h3>
 <p>First, install redis on all frontend nodes(If you use redis cloud service, skip this step and modify the configuration files directly):</p>
 <p>For Ubuntu:</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>redis-server
+<div class="highlight"><pre><span></span><code>$ apt install redis-server
 </code></pre></div>
-
 <p>For CentOS:</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>redis
+<div class="highlight"><pre><span></span><code>$ yum install redis
 </code></pre></div>
-
 <p>Then, install python redis third-party package on all frontend nodes:</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>redis
+<div class="highlight"><pre><span></span><code>$ pip install redis
 </code></pre></div>
-
 <p>Next, modify the <code>seafevents.conf</code> on all frontend nodes, add the following config items:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[EVENTS PUBLISH]</span>
-<span class="na">mq_type</span><span class="o">=</span><span class="s">redis</span><span class="w">   </span><span class="c1"># must be redis</span>
-<span class="na">enabled</span><span class="o">=</span><span class="s">true</span>
+<div class="highlight"><pre><span></span><code>[EVENTS PUBLISH]
+mq_type=redis   # must be redis
+enabled=true
 
-<span class="k">[REDIS]</span>
-<span class="na">server</span><span class="o">=</span><span class="s">127.0.0.1</span><span class="w">   </span><span class="c1"># your redis server host</span>
-<span class="na">port</span><span class="o">=</span><span class="s">6379</span><span class="w">          </span><span class="c1"># your redis server port</span>
-<span class="na">password</span><span class="o">=</span><span class="s">xxx</span><span class="w">       </span><span class="c1"># your redis server password, if not password, do not set this item</span>
+[REDIS]
+server=127.0.0.1   # your redis server host
+port=6379          # your redis server port
+password=xxx       # your redis server password, if not password, do not set this item
 </code></pre></div>
-
 <p>Next, modify the <code>seafevents.conf</code> on the backend node to disable the scheduled indexing task, because the scheduled indexing task and the distributed indexing task conflict.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[INDEX FILES]</span>
-<span class="na">enabled</span><span class="o">=</span><span class="s">true</span>
-<span class="w">     </span><span class="na">|</span>
-<span class="w">     </span><span class="na">V</span>
-<span class="na">enabled</span><span class="o">=</span><span class="s">false</span><span class="w">   </span>
+<div class="highlight"><pre><span></span><code>[INDEX FILES]
+enabled=true
+     |
+     V
+enabled=false   
 </code></pre></div>
-
 <p>Next, restart Seafile to make the configuration take effect:</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>./seafile.sh<span class="w"> </span>restart<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>./seahub.sh<span class="w"> </span>restart
+<div class="highlight"><pre><span></span><code>$ ./seafile.sh restart &amp;&amp; ./seahub.sh restart
 </code></pre></div>
-
 <h3 id="deploy-distributed-indexing">Deploy distributed indexing<a class="headerlink" href="#deploy-distributed-indexing" title="Permanent link">&para;</a></h3>
 <p>First, prepare a seafes master node and several seafes slave nodes, the number of slave nodes depends on your needs. Deploy Seafile on these nodes, and copy the configuration files in the <code>conf</code> directory from the frontend nodes. The master node and slave nodes do not need to start Seafile, but need to read the configuration files to obtain the necessary information.</p>
 <p>Next, create a configuration file <code>index-master.conf</code> in the <code>conf</code> directory of the master node, e.g.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[DEFAULT]</span>
-<span class="na">mq_type</span><span class="o">=</span><span class="s">redis</span><span class="w">   </span><span class="c1"># must be redis</span>
+<div class="highlight"><pre><span></span><code>[DEFAULT]
+mq_type=redis   # must be redis
 
-<span class="k">[REDIS]</span>
-<span class="na">server</span><span class="o">=</span><span class="s">127.0.0.1</span><span class="w">   </span><span class="c1"># your redis server host</span>
-<span class="na">port</span><span class="o">=</span><span class="s">6379</span><span class="w">          </span><span class="c1"># your redis server port</span>
-<span class="na">password</span><span class="o">=</span><span class="s">xxx</span><span class="w">       </span><span class="c1"># your redis server password, if not password, do not set this item</span>
+[REDIS]
+server=127.0.0.1   # your redis server host
+port=6379          # your redis server port
+password=xxx       # your redis server password, if not password, do not set this item
 </code></pre></div>
-
 <p>Execute <code>./run_index_master.sh [start/stop/restart]</code> in the <code>seafile-server-last</code> directory to control the program to start, stop and restart.</p>
 <p>Next, create a configuration file <code>index-slave.conf</code> in the <code>conf</code> directory of all slave nodes, e.g.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[DEFAULT]</span>
-<span class="na">mq_type</span><span class="o">=</span><span class="s">redis</span><span class="w">     </span><span class="c1"># must be redis</span>
-<span class="na">index_workers</span><span class="o">=</span><span class="s">2</span><span class="w">   </span><span class="c1"># number of threads to create/update indexes, you can increase this value according to your needs</span>
+<div class="highlight"><pre><span></span><code>[DEFAULT]
+mq_type=redis     # must be redis
+index_workers=2   # number of threads to create/update indexes, you can increase this value according to your needs
 
-<span class="k">[REDIS]</span>
-<span class="na">server</span><span class="o">=</span><span class="s">127.0.0.1</span><span class="w">   </span><span class="c1"># your redis server host</span>
-<span class="na">port</span><span class="o">=</span><span class="s">6379</span><span class="w">          </span><span class="c1"># your redis server port</span>
-<span class="na">password</span><span class="o">=</span><span class="s">xxx</span><span class="w">       </span><span class="c1"># your redis server password, if not password, do not set this item</span>
+[REDIS]
+server=127.0.0.1   # your redis server host
+port=6379          # your redis server port
+password=xxx       # your redis server password, if not password, do not set this item
 </code></pre></div>
-
 <p>Execute <code>./run_index_worker.sh [start/stop/restart]</code> in the <code>seafile-server-last</code> directory to control the program to start, stop and restart.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -4548,14 +4532,12 @@
 </div>
 <h3 id="some-commands-in-distributed-indexing">Some commands in distributed indexing<a class="headerlink" href="#some-commands-in-distributed-indexing" title="Permanent link">&para;</a></h3>
 <p>Rebuild search index, execute in the <code>seafile-server-last</code> directory:</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>./pro/pro.py<span class="w"> </span>search<span class="w"> </span>--clear
-$<span class="w"> </span>./run_index_master.sh<span class="w"> </span>python-env<span class="w"> </span>index_op.py<span class="w"> </span>--mode<span class="w"> </span>resotre_all_repo
+<div class="highlight"><pre><span></span><code>$ ./pro/pro.py search --clear
+$ ./run_index_master.sh python-env index_op.py --mode resotre_all_repo
 </code></pre></div>
-
 <p>List the number of indexing tasks currently remaining, execute in the <code>seafile-server-last</code> directory:</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>./run_index_master.sh<span class="w"> </span>python-env<span class="w"> </span>index_op.py<span class="w"> </span>--mode<span class="w"> </span>show_all_task
+<div class="highlight"><pre><span></span><code>$ ./run_index_master.sh python-env index_op.py --mode show_all_task
 </code></pre></div>
-
 <p>The above commands need to be run on the master node.</p>
 
 
@@ -4586,6 +4568,46 @@ $<span class="w"> </span>./run_index_master.sh<span class="w"> </span>python-env
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../multi_tenancy/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Multi-Tenancy Support">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Multi-Tenancy Support
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../ocm/" class="md-footer__link md-footer__link--next" aria-label="Next: Open Cloud Mesh">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Open Cloud Mesh
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4628,7 +4650,7 @@ $<span class="w"> </span>./run_index_master.sh<span class="w"> </span>python-env
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

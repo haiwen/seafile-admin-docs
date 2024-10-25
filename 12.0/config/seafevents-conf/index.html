@@ -2194,7 +2194,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4152,102 +4152,101 @@
 
 <h1 id="configurable-options">Configurable Options<a class="headerlink" href="#configurable-options" title="Permanent link">&para;</a></h1>
 <p>In the file <code>seafevents.conf</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[DATABASE]</span>
-<span class="na">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">mysql</span>
-<span class="na">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">192.168.0.2</span>
-<span class="na">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">3306</span>
-<span class="na">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">seafile</span>
-<span class="na">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">password</span>
-<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">seahub_db</span>
+<div class="highlight"><pre><span></span><code>[DATABASE]
+type = mysql
+host = 192.168.0.2
+port = 3306
+username = seafile
+password = password
+name = seahub_db
 
-<span class="k">[STATISTICS]</span>
-<span class="c1">## must be &quot;true&quot; to enable statistics</span>
-<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">false</span>
+[STATISTICS]
+## must be &quot;true&quot; to enable statistics
+enabled = false
 
-<span class="k">[SEAHUB EMAIL]</span>
-<span class="c1">## must be &quot;true&quot; to enable user email notifications when there are new unread notifications</span>
-<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+[SEAHUB EMAIL]
+## must be &quot;true&quot; to enable user email notifications when there are new unread notifications
+enabled = true
 
-<span class="c1">## interval of sending Seahub email. Can be s(seconds), m(minutes), h(hours), d(days)</span>
-<span class="na">interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">30m</span>
+## interval of sending Seahub email. Can be s(seconds), m(minutes), h(hours), d(days)
+interval = 30m
 
-<span class="k">[FILE HISTORY]</span>
-<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">threshold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">5</span>
-<span class="na">suffix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">md,txt,...</span>
+[FILE HISTORY]
+enabled = true
+threshold = 5
+suffix = md,txt,...
 
-<span class="c1">## From seafile 7.0.0</span>
-<span class="c1">## Recording file history to database for fast access is enabled by default for &#39;Markdown, .txt, ppt, pptx, doc, docx, xls, xlsx&#39;. </span>
-<span class="c1">## After enable the feature, the old histories version for markdown, doc, docx files will not be list in the history page.</span>
-<span class="c1">## (Only new histories that stored in database will be listed) But the users can still access the old versions in the library snapshots.</span>
-<span class="c1">## For file types not listed in the suffix , histories version will be scanned from the library history as before.</span>
-<span class="c1">## The feature default is enable. You can set the &#39;enabled = false&#39; to disable the feature.</span>
+## From seafile 7.0.0
+## Recording file history to database for fast access is enabled by default for &#39;Markdown, .txt, ppt, pptx, doc, docx, xls, xlsx&#39;. 
+## After enable the feature, the old histories version for markdown, doc, docx files will not be list in the history page.
+## (Only new histories that stored in database will be listed) But the users can still access the old versions in the library snapshots.
+## For file types not listed in the suffix , histories version will be scanned from the library history as before.
+## The feature default is enable. You can set the &#39;enabled = false&#39; to disable the feature.
 
-<span class="c1">## The &#39;threshold&#39; is the time threshold for recording the historical version of a file, in minutes, the default is 5 minutes. </span>
-<span class="c1">## This means that if the interval between two adjacent file saves is less than 5 minutes, the two file changes will be merged and recorded as a historical version. </span>
-<span class="c1">## When set to 0, there is no time limit, which means that each save will generate a separate historical version.</span>
+## The &#39;threshold&#39; is the time threshold for recording the historical version of a file, in minutes, the default is 5 minutes. 
+## This means that if the interval between two adjacent file saves is less than 5 minutes, the two file changes will be merged and recorded as a historical version. 
+## When set to 0, there is no time limit, which means that each save will generate a separate historical version.
 
-<span class="c1">## If you need to modify the file list format, you can add &#39;suffix = md, txt, ...&#39; configuration items to achieve.</span>
+## If you need to modify the file list format, you can add &#39;suffix = md, txt, ...&#39; configuration items to achieve.
 </code></pre></div>
-
 <h2 id="the-following-configurations-for-pro-edition-only">The following configurations for Pro Edition only<a class="headerlink" href="#the-following-configurations-for-pro-edition-only" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="k">[AUDIT]</span>
-<span class="c1">## Audit log is disabled default.</span>
-<span class="c1">## Leads to additional SQL tables being filled up, make sure your SQL server is able to handle it.</span>
-<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+<div class="highlight"><pre><span></span><code>[AUDIT]
+## Audit log is disabled default.
+## Leads to additional SQL tables being filled up, make sure your SQL server is able to handle it.
+enabled = true
 
-<span class="k">[INDEX FILES]</span>
-<span class="c1">## must be &quot;true&quot; to enable search</span>
-<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+[INDEX FILES]
+## must be &quot;true&quot; to enable search
+enabled = true
 
-<span class="c1">## The interval the search index is updated. Can be s(seconds), m(minutes), h(hours), d(days)</span>
-<span class="na">interval</span><span class="o">=</span><span class="s">10m</span>
+## The interval the search index is updated. Can be s(seconds), m(minutes), h(hours), d(days)
+interval=10m
 
-<span class="c1">## From Seafile 6.3.0 pro, in order to speed up the full-text search speed, you should setup</span>
-<span class="na">highlight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">fvh</span>
+## From Seafile 6.3.0 pro, in order to speed up the full-text search speed, you should setup
+highlight = fvh
 
-<span class="c1">## If true, indexes the contents of office/pdf files while updating search index</span>
-<span class="c1">## Note: If you change this option from &quot;false&quot; to &quot;true&quot;, then you need to clear the search index and update the index again.</span>
-<span class="c1">## Refer to file search manual for details.</span>
-<span class="na">index_office_pdf</span><span class="o">=</span><span class="s">false</span>
+## If true, indexes the contents of office/pdf files while updating search index
+## Note: If you change this option from &quot;false&quot; to &quot;true&quot;, then you need to clear the search index and update the index again.
+## Refer to file search manual for details.
+index_office_pdf=false
 
-<span class="c1">## The default size limit for doc, docx, ppt, pptx, xls, xlsx and pdf files. Files larger than this will not be indexed.</span>
-<span class="c1">## Since version 6.2.0</span>
-<span class="c1">## Unit: MB</span>
-<span class="na">office_file_size_limit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">10</span>
+## The default size limit for doc, docx, ppt, pptx, xls, xlsx and pdf files. Files larger than this will not be indexed.
+## Since version 6.2.0
+## Unit: MB
+office_file_size_limit = 10
 
-<span class="c1">## From 9.0.7 pro, Seafile supports connecting to Elasticsearch through username and password, you need to configure username and password for the Elasticsearch server</span>
-<span class="na">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">elastic</span><span class="w">           </span><span class="c1"># username to connect to Elasticsearch</span>
-<span class="na">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">elastic_password</span><span class="w">  </span><span class="c1"># password to connect to Elasticsearch</span>
+## From 9.0.7 pro, Seafile supports connecting to Elasticsearch through username and password, you need to configure username and password for the Elasticsearch server
+username = elastic           # username to connect to Elasticsearch
+password = elastic_password  # password to connect to Elasticsearch
 
-<span class="c1">## From 9.0.7 pro, Seafile supports connecting to elasticsearch via HTTPS, you need to configure HTTPS for the Elasticsearch server</span>
-<span class="na">scheme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">https</span><span class="w">               </span><span class="c1"># The default is http. If the Elasticsearch server is not configured with HTTPS, the scheme and cafile do not need to be configured</span>
-<span class="na">cafile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">path/to/cert.pem</span><span class="w">    </span><span class="c1"># The certificate path for user authentication. If the Elasticsearch server does not enable certificate authentication, do not need to be configured</span>
+## From 9.0.7 pro, Seafile supports connecting to elasticsearch via HTTPS, you need to configure HTTPS for the Elasticsearch server
+scheme = https               # The default is http. If the Elasticsearch server is not configured with HTTPS, the scheme and cafile do not need to be configured
+cafile = path/to/cert.pem    # The certificate path for user authentication. If the Elasticsearch server does not enable certificate authentication, do not need to be configured
 
-<span class="c1">## From version 11.0.5 Pro, you can custom ElasticSearch index names for distinct instances when intergrating multiple Seafile servers to a single ElasticSearch Server.</span>
-<span class="na">repo_status_index_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your-repo-status-index-name</span><span class="w">  </span><span class="c1"># default is `repo_head`</span>
-<span class="na">repo_files_index_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your-repo-files-index-name</span><span class="w">    </span><span class="c1"># default is `repofiles`</span>
+## From version 11.0.5 Pro, you can custom ElasticSearch index names for distinct instances when intergrating multiple Seafile servers to a single ElasticSearch Server.
+repo_status_index_name = your-repo-status-index-name  # default is `repo_head`
+repo_files_index_name = your-repo-files-index-name    # default is `repofiles`
 
-<span class="c1">## The default loglevel is `warning`.</span>
-<span class="c1">## Since version 11.0.4</span>
-<span class="na">loglevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">info</span>
+## The default loglevel is `warning`.
+## Since version 11.0.4
+loglevel = info
 
-<span class="k">[EVENTS PUBLISH]</span>
-<span class="c1">## must be &quot;true&quot; to enable publish events messages</span>
-<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">false</span>
-<span class="c1">## message format: repo-update\t{{repo_id}}}\t{{commit_id}}</span>
-<span class="c1">## Currently only support redis message queue</span>
-<span class="na">mq_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">redis</span>
+[EVENTS PUBLISH]
+## must be &quot;true&quot; to enable publish events messages
+enabled = false
+## message format: repo-update\t{{repo_id}}}\t{{commit_id}}
+## Currently only support redis message queue
+mq_type = redis
 
-<span class="k">[REDIS]</span>
-<span class="c1">## redis use the 0 database and &quot;repo_update&quot; channel</span>
-<span class="na">server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">192.168.1.1</span>
-<span class="na">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">6379</span>
-<span class="na">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">q!1w@</span><span class="c1">#123</span>
+[REDIS]
+## redis use the 0 database and &quot;repo_update&quot; channel
+server = 192.168.1.1
+port = 6379
+password = q!1w@#123
 
-<span class="k">[AUTO DELETION]</span>
-<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span><span class="w">     </span><span class="c1"># Default is false, when enabled, users can use file auto deletion feature</span>
-<span class="na">interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">86400</span><span class="w">   </span><span class="c1"># The unit is second(s), the default frequency is one day, that is, it runs once a day</span>
+[AUTO DELETION]
+enabled = true     # Default is false, when enabled, users can use file auto deletion feature
+interval = 86400   # The unit is second(s), the default frequency is one day, that is, it runs once a day
 </code></pre></div>
 
 
@@ -4278,6 +4277,46 @@
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../seahub_settings_py/" class="md-footer__link md-footer__link--prev" aria-label="Previous: seahub_settings.py">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                seahub_settings.py
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../seahub_customization/" class="md-footer__link md-footer__link--next" aria-label="Next: Seahub customization">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Seahub customization
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4320,7 +4359,7 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

@@ -2194,7 +2194,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4287,7 +4287,7 @@
 <p>Here we use Github as an example. First you should register an OAuth2 client application on Github, <a href="https://developer.github.com/apps/building-integrations/setting-up-and-registering-oauth-apps/registering-oauth-apps/">official document from Github</a> is very detailed.</p>
 <h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h3>
 <p>Add the folllowing configurations to seahub_settings.py:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">ENABLE_OAUTH</span> <span class="o">=</span> <span class="kc">True</span>
+<div class="highlight"><pre><span></span><code><span class="n">ENABLE_OAUTH</span> <span class="o">=</span> <span class="kc">True</span>
 
 <span class="c1"># If create new user when he/she logs in Seafile for the first time, defalut `True`.</span>
 <span class="n">OAUTH_CREATE_UNKNOWN_USER</span> <span class="o">=</span> <span class="kc">True</span>
@@ -4320,19 +4320,17 @@
     <span class="s2">&quot;uid&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;uid&quot;</span><span class="p">),</span>   <span class="c1"># Seafile v11.0 + </span>
 <span class="p">}</span>
 </code></pre></div>
-
 <p>NOTE:  There are some more explanations about the settings.</p>
 <p><strong>OAUTH_PROVIDER  /  OAUTH_PROVIDER_DOMAIN</strong></p>
 <p><code>OAUTH_PROVIDER_DOMAIN</code> will be deprecated, and it can be replaced by <code>OAUTH_PROVIDER</code>. This variable is used in the database to identify third-party providers, either as a domain or as an easy-to-remember string less than 32 characters. </p>
 <p><strong>OAUTH_ATTRIBUTE_MAP</strong></p>
 <p>This variables describes which claims from the response of the user info endpoint are to be filled into which attributes of the new Seafile user. The format is showing like below:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">OAUTH_ATTRIBUTE_MAP</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="n">OAUTH_ATTRIBUTE_MAP</span> <span class="o">=</span> <span class="p">{</span>
     <span class="o">&lt;</span><span class="p">:</span><span class="n">Attribute</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">OAuth</span> <span class="n">provider</span><span class="o">&gt;</span><span class="p">:</span> <span class="p">(</span><span class="o">&lt;</span><span class="p">:</span><span class="n">Is</span> <span class="n">required</span> <span class="ow">or</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">Seafile</span><span class="err">?</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="p">:</span><span class="n">Attribute</span> <span class="ow">in</span> <span class="n">Seafile</span> <span class="o">&gt;</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
-
 <p>If the remote resource server, like Github, uses email to identify an unique user too, Seafile will use Github id directorily, the OAUTH_ATTRIBUTE_MAP setting for Github should be like this:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">OAUTH_ATTRIBUTE_MAP</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="n">OAUTH_ATTRIBUTE_MAP</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">),</span> <span class="c1"># it is deprecated</span>
     <span class="s2">&quot;uid / id / username&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;uid&quot;</span><span class="p">)</span> 
 
@@ -4341,29 +4339,26 @@
     <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;contact_email&quot;</span><span class="p">),</span>  
 <span class="p">}</span>
 </code></pre></div>
-
 <p>The key part <code>id</code> stands for an unique identifier of user in Github, this tells Seafile which attribute remote resoure server uses to indentify its user. The value part <code>True</code> stands for if this field is mandatory by Seafile.</p>
 <p>Since 11.0 version, Seafile use <code>uid</code> as the external unique identifier of the user. It stores <code>uid</code> in table <code>social_auth_usersocialauth</code> and map it to internal unique identifier used in Seafile. Different OAuth systems have different attributes, which may be: <code>id</code> or <code>uid</code> or <code>username</code>, etc.  And the id/email config <code>id: (True, email)</code>  is deprecated. </p>
 <p>If you upgrade from a version below 11.0, you need to have both fields configured, i.e., you configuration should be like:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">OAUTH_ATTRIBUTE_MAP</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="n">OAUTH_ATTRIBUTE_MAP</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">),</span>
     <span class="s2">&quot;uid&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;uid&quot;</span><span class="p">)</span> <span class="p">,</span>
     <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">),</span>
     <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;contact_email&quot;</span><span class="p">),</span>  
 <span class="p">}</span>
 </code></pre></div>
-
 <p>In this way, when a user login, Seafile will first use "id -&gt; email" map to find the old user and then create "uid -&gt; uid" map for this old user. After all users login once, you can delete the configuration  <code>"id": (True, "email")</code>.</p>
 <p>If you use a newly deployed 11.0 Seafile instance, you don't need the <code>"id": (True, "email")</code> item. Your configuration should be like:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">OAUTH_ATTRIBUTE_MAP</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="n">OAUTH_ATTRIBUTE_MAP</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;uid&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;uid&quot;</span><span class="p">)</span> <span class="p">,</span>
     <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">),</span>
     <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;contact_email&quot;</span><span class="p">),</span>  
 <span class="p">}</span>
 </code></pre></div>
-
 <h4 id="sample-settings-for-google">Sample settings for Google<a class="headerlink" href="#sample-settings-for-google" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="n">ENABLE_OAUTH</span> <span class="o">=</span> <span class="kc">True</span>
+<div class="highlight"><pre><span></span><code><span class="n">ENABLE_OAUTH</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">OAUTH_ENABLE_INSECURE_TRANSPORT</span> <span class="o">=</span> <span class="kc">True</span>
 
 <span class="n">OAUTH_CLIENT_ID</span> <span class="o">=</span> <span class="s2">&quot;your-client-id&quot;</span>
@@ -4386,10 +4381,9 @@
     <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;contact_email&quot;</span><span class="p">),</span>
 <span class="p">}</span>
 </code></pre></div>
-
 <h4 id="sample-settings-for-github">Sample settings for Github<a class="headerlink" href="#sample-settings-for-github" title="Permanent link">&para;</a></h4>
 <p>For Github, <code>email</code> is not the unique identifier for an user, but <code>id</code> is in most cases, so we use <code>id</code> as settings example in our manual. As Seafile uses email to identify an unique user account for now, so we combine <code>id</code> and <code>OAUTH_PROVIDER_DOMAIN</code>, which is github.com in your case, to an email format string and then create this account if not exist. Change the setting as followings:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">ENABLE_OAUTH</span> <span class="o">=</span> <span class="kc">True</span>
+<div class="highlight"><pre><span></span><code><span class="n">ENABLE_OAUTH</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">OAUTH_ENABLE_INSECURE_TRANSPORT</span> <span class="o">=</span> <span class="kc">True</span>
 
 <span class="n">OAUTH_CLIENT_ID</span> <span class="o">=</span> <span class="s2">&quot;your-client-id&quot;</span>
@@ -4407,7 +4401,6 @@
     <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">),</span>
 <span class="p">}</span>
 </code></pre></div>
-
 <h4 id="sample-settings-for-gitlab">Sample settings for GitLab<a class="headerlink" href="#sample-settings-for-gitlab" title="Permanent link">&para;</a></h4>
 <p>To enable OAuth via GitLab. Create an application in GitLab (under Admin area-&gt;Applications).</p>
 <p>Fill in required fields:</p>
@@ -4426,7 +4419,7 @@
 </li>
 </ul>
 <p>Press submit and copy the client id and secret you receive on the confirmation page and use them in this template for your seahub_settings.py:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">ENABLE_OAUTH</span> <span class="o">=</span> <span class="kc">True</span>
+<div class="highlight"><pre><span></span><code><span class="n">ENABLE_OAUTH</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">OAUTH_CLIENT_ID</span> <span class="o">=</span> <span class="s2">&quot;your-client-id&quot;</span>
 <span class="n">OAUTH_CLIENT_SECRET</span> <span class="o">=</span> <span class="s2">&quot;your-client-secret&quot;</span>
 <span class="n">OAUTH_REDIRECT_URL</span> <span class="o">=</span> <span class="s2">&quot;https://your-seafile/oauth/callback/&quot;</span>
@@ -4441,15 +4434,13 @@
     <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
-
 <h4 id="sample-settings-for-azure-cloud">Sample settings for Azure Cloud<a class="headerlink" href="#sample-settings-for-azure-cloud" title="Permanent link">&para;</a></h4>
 <p>For users of Azure Cloud, as there is no <code>id</code> field returned from Azure Cloud's user info endpoint, so we use a special configuration for <code>OAUTH_ATTRIBUTE_MAP</code> setting (others are the same as Github/Google):</p>
-<div class="codehilite"><pre><span></span><code><span class="n">OAUTH_ATTRIBUTE_MAP</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="n">OAUTH_ATTRIBUTE_MAP</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;uid&quot;</span><span class="p">),</span>
     <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
-
 <p>Please see <a href="https://forum.seafile.com/t/oauth-authentification-against-microsoft-office365-azure-cloud/7999">this tutorial</a> for the complete deployment process of OAuth against Azure Cloud.</p>
 
 
@@ -4480,6 +4471,46 @@
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../single_sign_on/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Outline">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Outline
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../remote_user/" class="md-footer__link md-footer__link--next" aria-label="Next: Remote User Authentication">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Remote User Authentication
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4522,7 +4553,7 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

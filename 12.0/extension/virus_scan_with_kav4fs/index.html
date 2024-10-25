@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/12.0/extension/virus_scan_with_kav4fs/">
       
       
-        <link rel="prev" href="../deploy_clamav_with_seafile/">
+        <link rel="prev" href="../virus_scan_with_clamav/">
       
       
         <link rel="next" href="../../config/ldap_in_11.0_ce/">
@@ -2208,7 +2208,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4191,70 +4191,66 @@
 <h2 id="prerequisite">Prerequisite<a class="headerlink" href="#prerequisite" title="Permanent link">&para;</a></h2>
 <p>Assume you have installed Kaspersky Anti-Virus for Linux File Server on the Seafile Server machine.</p>
 <p>If the user that runs Seafile Server is not root, it should have sudoers privilege to avoid writing password when running kav4fs-control. Add following content to /etc/sudoers:</p>
-<div class="codehilite"><pre><span></span><code>&lt;user of running seafile server&gt;    ALL=(ALL:ALL) ALL
+<div class="highlight"><pre><span></span><code>&lt;user of running seafile server&gt;    ALL=(ALL:ALL) ALL
 &lt;user of running seafile server&gt; ALL=NOPASSWD: /opt/kaspersky/kav4fs/bin/kav4fs-control
 </code></pre></div>
-
 <h2 id="script">Script<a class="headerlink" href="#script" title="Permanent link">&para;</a></h2>
 <p>As the return code of kav4fs cannot reflect the file scan result, we use a shell wrapper script to parse the scan output and based on the parse result to return different return codes to reflect the scan result.</p>
 <p>Save following contents to a file such as <code>kav4fs_scan.sh</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<div class="highlight"><pre><span></span><code>#!/bin/bash
 
-<span class="nv">TEMP_LOG_FILE</span><span class="o">=</span><span class="sb">`</span>mktemp<span class="w"> </span>/tmp/XXXXXXXXXX<span class="sb">`</span>
-<span class="nv">VIRUS_FOUND</span><span class="o">=</span><span class="m">1</span>
-<span class="nv">CLEAN</span><span class="o">=</span><span class="m">0</span>
-<span class="nv">UNDEFINED</span><span class="o">=</span><span class="m">2</span>
-<span class="nv">KAV4FS</span><span class="o">=</span><span class="s1">&#39;/opt/kaspersky/kav4fs/bin/kav4fs-control&#39;</span>
-<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-x<span class="w"> </span><span class="nv">$KAV4FS</span><span class="w"> </span><span class="o">]</span>
-<span class="k">then</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Binary not executable&quot;</span>
-<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="nv">$UNDEFINED</span>
-<span class="k">fi</span>
+TEMP_LOG_FILE=`mktemp /tmp/XXXXXXXXXX`
+VIRUS_FOUND=1
+CLEAN=0
+UNDEFINED=2
+KAV4FS=&#39;/opt/kaspersky/kav4fs/bin/kav4fs-control&#39;
+if [ ! -x $KAV4FS ]
+then
+    echo &quot;Binary not executable&quot;
+    exit $UNDEFINED
+fi
 
-sudo<span class="w"> </span><span class="nv">$KAV4FS</span><span class="w"> </span>--scan-file<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="w"> </span><span class="nv">$TEMP_LOG_FILE</span>
-<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$?</span><span class="s2">&quot;</span><span class="w"> </span>-ne<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span>
-<span class="k">then</span>
-<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Error due to check file &#39;</span><span class="nv">$1</span><span class="s2">&#39;&quot;</span>
-<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">3</span>
-<span class="k">fi</span>
-<span class="nv">THREATS_C</span><span class="o">=</span><span class="sb">`</span>grep<span class="w"> </span><span class="s1">&#39;Threats found:&#39;</span><span class="w"> </span><span class="nv">$TEMP_LOG_FILE</span><span class="p">|</span>cut<span class="w"> </span>-d<span class="s1">&#39;:&#39;</span><span class="w"> </span>-f<span class="w"> </span><span class="m">2</span><span class="p">|</span>sed<span class="w"> </span><span class="s1">&#39;s/ //g&#39;</span><span class="sb">`</span>
-<span class="nv">RISKWARE_C</span><span class="o">=</span><span class="sb">`</span>grep<span class="w"> </span><span class="s1">&#39;Riskware found:&#39;</span><span class="w"> </span><span class="nv">$TEMP_LOG_FILE</span><span class="p">|</span>cut<span class="w"> </span>-d<span class="s1">&#39;:&#39;</span><span class="w"> </span>-f<span class="w"> </span><span class="m">2</span><span class="p">|</span>sed<span class="w"> </span><span class="s1">&#39;s/ //g&#39;</span><span class="sb">`</span>
-<span class="nv">INFECTED</span><span class="o">=</span><span class="sb">`</span>grep<span class="w"> </span><span class="s1">&#39;Infected:&#39;</span><span class="w"> </span><span class="nv">$TEMP_LOG_FILE</span><span class="p">|</span>cut<span class="w"> </span>-d<span class="s1">&#39;:&#39;</span><span class="w"> </span>-f<span class="w"> </span><span class="m">2</span><span class="p">|</span>sed<span class="w"> </span><span class="s1">&#39;s/ //g&#39;</span><span class="sb">`</span>
-<span class="nv">SUSPICIOUS</span><span class="o">=</span><span class="sb">`</span>grep<span class="w"> </span><span class="s1">&#39;Suspicious:&#39;</span><span class="w"> </span><span class="nv">$TEMP_LOG_FILE</span><span class="p">|</span>cut<span class="w"> </span>-d<span class="s1">&#39;:&#39;</span><span class="w"> </span>-f<span class="w"> </span><span class="m">2</span><span class="p">|</span>sed<span class="w"> </span><span class="s1">&#39;s/ //g&#39;</span><span class="sb">`</span>
-<span class="nv">SCAN_ERRORS_C</span><span class="o">=</span><span class="sb">`</span>grep<span class="w"> </span><span class="s1">&#39;Scan errors:&#39;</span><span class="w"> </span><span class="nv">$TEMP_LOG_FILE</span><span class="p">|</span>cut<span class="w"> </span>-d<span class="s1">&#39;:&#39;</span><span class="w"> </span>-f<span class="w"> </span><span class="m">2</span><span class="p">|</span>sed<span class="w"> </span><span class="s1">&#39;s/ //g&#39;</span><span class="sb">`</span>
-<span class="nv">PASSWORD_PROTECTED</span><span class="o">=</span><span class="sb">`</span>grep<span class="w"> </span><span class="s1">&#39;Password protected:&#39;</span><span class="w"> </span><span class="nv">$TEMP_LOG_FILE</span><span class="p">|</span>cut<span class="w"> </span>-d<span class="s1">&#39;:&#39;</span><span class="w"> </span>-f<span class="w"> </span><span class="m">2</span><span class="p">|</span>sed<span class="w"> </span><span class="s1">&#39;s/ //g&#39;</span><span class="sb">`</span>
-<span class="nv">CORRUPTED</span><span class="o">=</span><span class="sb">`</span>grep<span class="w"> </span><span class="s1">&#39;Corrupted:&#39;</span><span class="w"> </span><span class="nv">$TEMP_LOG_FILE</span><span class="p">|</span>cut<span class="w"> </span>-d<span class="s1">&#39;:&#39;</span><span class="w"> </span>-f<span class="w"> </span><span class="m">2</span><span class="p">|</span>sed<span class="w"> </span><span class="s1">&#39;s/ //g&#39;</span><span class="sb">`</span>
+sudo $KAV4FS --scan-file &quot;$1&quot; &gt; $TEMP_LOG_FILE
+if [ &quot;$?&quot; -ne 0 ]
+then
+    echo &quot;Error due to check file &#39;$1&#39;&quot;
+    exit 3
+fi
+THREATS_C=`grep &#39;Threats found:&#39; $TEMP_LOG_FILE|cut -d&#39;:&#39; -f 2|sed &#39;s/ //g&#39;`
+RISKWARE_C=`grep &#39;Riskware found:&#39; $TEMP_LOG_FILE|cut -d&#39;:&#39; -f 2|sed &#39;s/ //g&#39;`
+INFECTED=`grep &#39;Infected:&#39; $TEMP_LOG_FILE|cut -d&#39;:&#39; -f 2|sed &#39;s/ //g&#39;`
+SUSPICIOUS=`grep &#39;Suspicious:&#39; $TEMP_LOG_FILE|cut -d&#39;:&#39; -f 2|sed &#39;s/ //g&#39;`
+SCAN_ERRORS_C=`grep &#39;Scan errors:&#39; $TEMP_LOG_FILE|cut -d&#39;:&#39; -f 2|sed &#39;s/ //g&#39;`
+PASSWORD_PROTECTED=`grep &#39;Password protected:&#39; $TEMP_LOG_FILE|cut -d&#39;:&#39; -f 2|sed &#39;s/ //g&#39;`
+CORRUPTED=`grep &#39;Corrupted:&#39; $TEMP_LOG_FILE|cut -d&#39;:&#39; -f 2|sed &#39;s/ //g&#39;`
 
-rm<span class="w"> </span>-f<span class="w"> </span><span class="nv">$TEMP_LOG_FILE</span>
+rm -f $TEMP_LOG_FILE
 
-<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$THREATS_C</span><span class="w"> </span>-gt<span class="w"> </span><span class="m">0</span><span class="w"> </span>-o<span class="w"> </span><span class="nv">$RISKWARE_C</span><span class="w"> </span>-gt<span class="w"> </span><span class="m">0</span><span class="w"> </span>-o<span class="w"> </span><span class="nv">$INFECTED</span><span class="w"> </span>-gt<span class="w"> </span><span class="m">0</span><span class="w"> </span>-o<span class="w"> </span><span class="nv">$SUSPICIOUS</span><span class="w"> </span>-gt<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span>
-<span class="k">then</span>
-<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="nv">$VIRUS_FOUND</span>
-<span class="k">elif</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$SCAN_ERRORS_C</span><span class="w"> </span>-gt<span class="w"> </span><span class="m">0</span><span class="w"> </span>-o<span class="w"> </span><span class="nv">$PASSWORD_PROTECTED</span><span class="w"> </span>-gt<span class="w"> </span><span class="m">0</span><span class="w"> </span>-o<span class="w"> </span><span class="nv">$CORRUPTED</span><span class="w"> </span>-gt<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span>
-<span class="k">then</span>
-<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="nv">$UNDEFINED</span>
-<span class="k">else</span>
-<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="nv">$CLEAN</span>
-<span class="k">fi</span>
+if [ $THREATS_C -gt 0 -o $RISKWARE_C -gt 0 -o $INFECTED -gt 0 -o $SUSPICIOUS -gt 0 ]
+then
+    exit $VIRUS_FOUND
+elif [ $SCAN_ERRORS_C -gt 0 -o $PASSWORD_PROTECTED -gt 0 -o $CORRUPTED -gt 0 ]
+then
+    exit $UNDEFINED
+else
+    exit $CLEAN
+fi
 </code></pre></div>
-
 <p>Grant execute permissions for the script (make sure it is owned by the user Seafile is running as):</p>
-<div class="codehilite"><pre><span></span><code>chmod u+x kav4fs_scan.sh
+<div class="highlight"><pre><span></span><code>chmod u+x kav4fs_scan.sh
 </code></pre></div>
-
 <p>The meaning of the script return code:</p>
-<div class="codehilite"><pre><span></span><code><span class="mi">1</span><span class="o">:</span><span class="w"> </span><span class="n">found</span><span class="w"> </span><span class="n">virus</span>
-<span class="mi">0</span><span class="o">:</span><span class="w"> </span><span class="n">no</span><span class="w"> </span><span class="n">virus</span>
-<span class="n">other</span><span class="o">:</span><span class="w"> </span><span class="n">scan</span><span class="w"> </span><span class="n">failed</span>
+<div class="highlight"><pre><span></span><code>1: found virus
+0: no virus
+other: scan failed
 </code></pre></div>
-
 <h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
 <p>Add following content to <code>seafile.conf</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[virus_scan]</span>
-<span class="na">scan_command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;absolute path of kav4fs_scan.sh&gt;</span>
-<span class="na">virus_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span>
-<span class="na">nonvirus_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0</span>
-<span class="na">scan_interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;scanning interval, in unit of minutes, default to 60 minutes&gt;</span>
+<div class="highlight"><pre><span></span><code>[virus_scan]
+scan_command = &lt;absolute path of kav4fs_scan.sh&gt;
+virus_code = 1
+nonvirus_code = 0
+scan_interval = &lt;scanning interval, in unit of minutes, default to 60 minutes&gt;
 </code></pre></div>
 
 
@@ -4285,6 +4281,46 @@ rm<span class="w"> </span>-f<span class="w"> </span><span class="nv">$TEMP_LOG_F
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../virus_scan_with_clamav/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Virus scan with ClamAV">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Virus scan with ClamAV
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../config/ldap_in_11.0_ce/" class="md-footer__link md-footer__link--next" aria-label="Next: LDAP Integration">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                LDAP Integration
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4327,7 +4363,7 @@ rm<span class="w"> </span>-f<span class="w"> </span><span class="nv">$TEMP_LOG_F
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

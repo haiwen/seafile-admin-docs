@@ -2399,7 +2399,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4447,7 +4447,7 @@
 <h3 id="download-and-modify-env">Download and modify <code>.env</code><a class="headerlink" href="#download-and-modify-env" title="Permanent link">&para;</a></h3>
 <p>From Seafile Docker 12.0, we use <code>.env</code>, <code>seafile-server.yml</code>  and <code>caddy.yml</code> files for configuration.</p>
 <p><strong>NOTE:</strong> Different versions of Seafile have different compose files.</p>
-<div class="codehilite"><pre><span></span><code>mkdir<span class="w"> </span>/opt/seafile
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>/opt/seafile
 <span class="nb">cd</span><span class="w"> </span>/opt/seafile
 
 <span class="c1"># Seafile CE 12.0</span>
@@ -4457,7 +4457,6 @@ wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/ce/caddy.yml
 
 nano<span class="w"> </span>.env
 </code></pre></div>
-
 <p>The following fields merit particular attention:</p>
 <ul>
 <li><code>SEAFILE_VOLUME</code>: The volume directory of Seafile data, default is <code>/opt/seafile-data</code></li>
@@ -4475,13 +4474,12 @@ nano<span class="w"> </span>.env
 </ul>
 <h3 id="start-seafile-server">Start Seafile server<a class="headerlink" href="#start-seafile-server" title="Permanent link">&para;</a></h3>
 <p>Start Seafile server with the following command</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># if `.env` file is in current directory:</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># if `.env` file is in current directory:</span>
 docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 
 <span class="c1"># if `.env` file is elsewhere:</span>
 docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>/path/to/.env<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
-
 <p>Wait for a few minutes for the first time initialization, then visit <code>http://seafile.example.com</code> to open Seafile Web UI.</p>
 <h2 id="seafile-directory-structure">Seafile directory structure<a class="headerlink" href="#seafile-directory-structure" title="Permanent link">&para;</a></h2>
 <h3 id="optseafile-data"><code>/opt/seafile-data</code><a class="headerlink" href="#optseafile-data" title="Permanent link">&para;</a></h3>
@@ -4494,7 +4492,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> 
 </ul>
 <h3 id="find-logs">Find logs<a class="headerlink" href="#find-logs" title="Permanent link">&para;</a></h3>
 <p>To monitor container logs (from outside of the container), please use the following commands:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># if the `.env` file is in current directory:</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># if the `.env` file is in current directory:</span>
 docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>--follow
 <span class="c1"># if the `.env` file is elsewhere:</span>
 docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>/path/to/.env<span class="w"> </span>logs<span class="w"> </span>--follow
@@ -4504,25 +4502,21 @@ docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"
 <span class="c1"># or, if the `.env` file is elsewhere:</span>
 docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>/path/to/.env<span class="w"> </span>logs<span class="w"> </span>seafile<span class="w"> </span>--follow
 </code></pre></div>
-
 <p>The Seafile logs are under <code>/shared/logs/seafile</code> in the docker, or <code>/opt/seafile-data/logs/seafile</code> in the server that run the docker.</p>
 <p>The system logs are under <code>/shared/logs/var-log</code>, or <code>/opt/seafile-data/logs/var-log</code> in the server that run the docker.</p>
 <p>To monitor all Seafile logs simultaneously (from outside of the container), run</p>
-<div class="codehilite"><pre><span></span><code>sudo<span class="w"> </span>tail<span class="w"> </span>-f<span class="w"> </span><span class="k">$(</span>find<span class="w"> </span>/opt/seafile-data/<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-name<span class="w"> </span>*.log<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="k">)</span>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>tail<span class="w"> </span>-f<span class="w"> </span><span class="k">$(</span>find<span class="w"> </span>/opt/seafile-data/<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-name<span class="w"> </span>*.log<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="k">)</span>
 </code></pre></div>
-
 <h2 id="more-configuration-options">More configuration options<a class="headerlink" href="#more-configuration-options" title="Permanent link">&para;</a></h2>
 <h3 id="modify-seafile-server-configurations">Modify Seafile server configurations<a class="headerlink" href="#modify-seafile-server-configurations" title="Permanent link">&para;</a></h3>
 <p>The config files are under <code>/opt/seafile-data/seafile/conf</code>. You can modify the configurations according to <a href="https://manual.seafile.com/">Seafile manual</a></p>
 <p>After modification, you need to restart the container:</p>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart
 </code></pre></div>
-
 <h3 id="add-a-new-admin">Add a new admin<a class="headerlink" href="#add-a-new-admin" title="Permanent link">&para;</a></h3>
 <p>Ensure the container is running, then enter this command:</p>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>/opt/seafile/seafile-server-latest/reset-admin.sh
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>/opt/seafile/seafile-server-latest/reset-admin.sh
 </code></pre></div>
-
 <p>Enter the username and password according to the prompts. You now have a new admin account.</p>
 <h2 id="backup-and-recovery">Backup and recovery<a class="headerlink" href="#backup-and-recovery" title="Permanent link">&para;</a></h2>
 <p>Follow the instructions in <a href="../../administration/backup_recovery/">Backup and restore for Seafile Docker</a></p>
@@ -4531,7 +4525,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> 
 <p>The required scripts can be found in the <code>/scripts</code> folder of the docker container. To perform garbage collection, simply run <code>docker exec seafile /scripts/gc.sh</code>.</p>
 <h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
 <h3 id="you-can-run-docker-commands-like-docker-exec-to-find-errors">You can run docker commands like <code>docker exec</code> to find errors<a class="headerlink" href="#you-can-run-docker-commands-like-docker-exec-to-find-errors" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>/bin/bash
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>/bin/bash
 </code></pre></div>
 
 
@@ -4562,6 +4556,46 @@ docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> 
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../caddy/" class="md-footer__link md-footer__link--prev" aria-label="Previous: HTTPS and Caddy">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                HTTPS and Caddy
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../setup_pro_by_docker/" class="md-footer__link md-footer__link--next" aria-label="Next: Setup pro edition">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Setup pro edition
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4604,7 +4638,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> 
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

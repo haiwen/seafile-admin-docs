@@ -2194,7 +2194,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4101,56 +4101,55 @@
 <p>After the proxy server (Apache/Nginx) is successfully authenticated, the user information is set to the request header, and Seafile creates and logs in the user based on this information.</p>
 <p>Note: Make sure that the proxy server has a corresponding security mechanism to protect against forgery request header attacks.</p>
 <p>Please add the following settings to <code>conf/seahub_settings.py</code> to enable this feature.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">ENABLE_REMOTE_USER_AUTHENTICATION</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">True</span>
+<div class="highlight"><pre><span></span><code>ENABLE_REMOTE_USER_AUTHENTICATION = True
 
-<span class="c1"># Optional, HTTP header, which is configured in your web server conf file,</span>
-<span class="c1"># used for Seafile to get user&#39;s unique id, default value is &#39;HTTP_REMOTE_USER&#39;.</span>
-<span class="n">REMOTE_USER_HEADER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;HTTP_REMOTE_USER&#39;</span>
+# Optional, HTTP header, which is configured in your web server conf file,
+# used for Seafile to get user&#39;s unique id, default value is &#39;HTTP_REMOTE_USER&#39;.
+REMOTE_USER_HEADER = &#39;HTTP_REMOTE_USER&#39;
 
-<span class="c1"># Optional, when the value of HTTP_REMOTE_USER is not a valid email address，</span>
-<span class="c1"># Seafile will build a email-like unique id from the value of &#39;REMOTE_USER_HEADER&#39;</span>
-<span class="c1"># and this domain, e.g. user1@example.com.</span>
-<span class="n">REMOTE_USER_DOMAIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;example.com&#39;</span>
+# Optional, when the value of HTTP_REMOTE_USER is not a valid email address，
+# Seafile will build a email-like unique id from the value of &#39;REMOTE_USER_HEADER&#39;
+# and this domain, e.g. user1@example.com.
+REMOTE_USER_DOMAIN = &#39;example.com&#39;
 
-<span class="c1"># Optional, whether to create new user in Seafile system, default value is True.</span>
-<span class="c1"># If this setting is disabled, users doesn&#39;t preexist in the Seafile DB cannot login.</span>
-<span class="c1"># The admin has to first import the users from external systems like LDAP.</span>
-<span class="n">REMOTE_USER_CREATE_UNKNOWN_USER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">True</span>
+# Optional, whether to create new user in Seafile system, default value is True.
+# If this setting is disabled, users doesn&#39;t preexist in the Seafile DB cannot login.
+# The admin has to first import the users from external systems like LDAP.
+REMOTE_USER_CREATE_UNKNOWN_USER = True
 
-<span class="c1"># Optional, whether to activate new user in Seafile system, default value is True.</span>
-<span class="c1"># If this setting is disabled, user will be unable to login by default.</span>
-<span class="c1"># the administrator needs to manually activate this user.</span>
-<span class="n">REMOTE_USER_ACTIVATE_USER_AFTER_CREATION</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">True</span>
+# Optional, whether to activate new user in Seafile system, default value is True.
+# If this setting is disabled, user will be unable to login by default.
+# the administrator needs to manually activate this user.
+REMOTE_USER_ACTIVATE_USER_AFTER_CREATION = True
 
-<span class="c1"># Optional, map user attribute in HTTP header and Seafile&#39;s user attribute.</span>
-<span class="n">REMOTE_USER_ATTRIBUTE_MAP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="s1">&#39;HTTP_DISPLAYNAME&#39;</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;name&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;HTTP_MAIL&#39;</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;contact_email&#39;</span><span class="p">,</span>
+# Optional, map user attribute in HTTP header and Seafile&#39;s user attribute.
+REMOTE_USER_ATTRIBUTE_MAP = {
+    &#39;HTTP_DISPLAYNAME&#39;: &#39;name&#39;,
+    &#39;HTTP_MAIL&#39;: &#39;contact_email&#39;,
 
-<span class="w">    </span><span class="c1"># for user info</span>
-<span class="w">    </span><span class="s2">&quot;HTTP_GIVENNAME&quot;</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;givenname&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;HTTP_SN&quot;</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;surname&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="s2">&quot;HTTP_ORGANIZATION&quot;</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;institution&#39;</span><span class="p">,</span>
+    # for user info
+    &quot;HTTP_GIVENNAME&quot;: &#39;givenname&#39;,
+    &quot;HTTP_SN&quot;: &#39;surname&#39;,
+    &quot;HTTP_ORGANIZATION&quot;: &#39;institution&#39;,
 
-<span class="w">    </span><span class="c1"># for user role</span>
-<span class="w">    </span><span class="s1">&#39;HTTP_Shibboleth-affiliation&#39;</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;affiliation&#39;</span><span class="p">,</span>
-<span class="p">}</span>
+    # for user role
+    &#39;HTTP_Shibboleth-affiliation&#39;: &#39;affiliation&#39;,
+}
 
-<span class="c1"># Map affiliation to user role. Though the config name is SHIBBOLETH_AFFILIATION_ROLE_MAP,</span>
-<span class="c1"># it is not restricted to Shibboleth</span>
-<span class="n">SHIBBOLETH_AFFILIATION_ROLE_MAP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="s1">&#39;employee@uni-mainz.de&#39;</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;staff&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;member@uni-mainz.de&#39;</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;staff&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;student@uni-mainz.de&#39;</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;student&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;employee@hu-berlin.de&#39;</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;guest&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;patterns&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">(</span>
-<span class="w">        </span><span class="p">(</span><span class="s1">&#39;*@hu-berlin.de&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;guest1&#39;</span><span class="p">),</span>
-<span class="w">        </span><span class="p">(</span><span class="s1">&#39;*@*.de&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;guest2&#39;</span><span class="p">),</span>
-<span class="w">        </span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;guest&#39;</span><span class="p">),</span>
-<span class="w">    </span><span class="p">),</span>
-<span class="p">}</span>
+# Map affiliation to user role. Though the config name is SHIBBOLETH_AFFILIATION_ROLE_MAP,
+# it is not restricted to Shibboleth
+SHIBBOLETH_AFFILIATION_ROLE_MAP = {
+    &#39;employee@uni-mainz.de&#39;: &#39;staff&#39;,
+    &#39;member@uni-mainz.de&#39;: &#39;staff&#39;,
+    &#39;student@uni-mainz.de&#39;: &#39;student&#39;,
+    &#39;employee@hu-berlin.de&#39;: &#39;guest&#39;,
+    &#39;patterns&#39;: (
+        (&#39;*@hu-berlin.de&#39;, &#39;guest1&#39;),
+        (&#39;*@*.de&#39;, &#39;guest2&#39;),
+        (&#39;*&#39;, &#39;guest&#39;),
+    ),
+}
 </code></pre></div>
-
 <p>Then restart Seafile.</p>
 
 
@@ -4181,6 +4180,46 @@
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../oauth/" class="md-footer__link md-footer__link--prev" aria-label="Previous: OAuth Authentication">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                OAuth Authentication
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../shibboleth_authentication/" class="md-footer__link md-footer__link--next" aria-label="Next: Shibboleth Authentication">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Shibboleth Authentication
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4223,7 +4262,7 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

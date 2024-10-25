@@ -2194,7 +2194,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4617,7 +4617,7 @@
 <p>Note, the identifier is stored in table <code>social_auth_usersocialauth</code> to map the identifier to internal user ID in Seafile. When this ID is changed in LDAP for a user, you only need to update <code>social_auth_usersocialauth</code> table.</p>
 <h3 id="integration-configuration">Integration Configuration<a class="headerlink" href="#integration-configuration" title="Permanent link">&para;</a></h3>
 <p>Add the following options to <code>seahub_settings.py</code>. Examples are as follows:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">ENABLE_LDAP</span> <span class="o">=</span> <span class="kc">True</span>
+<div class="highlight"><pre><span></span><code><span class="n">ENABLE_LDAP</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">LDAP_SERVER_URL</span> <span class="o">=</span> <span class="s1">&#39;ldap://192.168.0.1&#39;</span>       
 <span class="n">LDAP_BASE_DN</span> <span class="o">=</span> <span class="s1">&#39;ou=test,dc=seafile,dc=ren&#39;</span>                     
 <span class="n">LDAP_ADMIN_DN</span> <span class="o">=</span> <span class="s1">&#39;administrator@example.com&#39;</span>  
@@ -4631,7 +4631,6 @@
 <span class="n">LDAP_USER_NAME_REVERSE</span> <span class="o">=</span> <span class="kc">False</span>               
 <span class="n">LDAP_FILTER</span> <span class="o">=</span> <span class="s1">&#39;memberOf=CN=testgroup,OU=test,DC=seafile,DC=ren&#39;</span> 
 </code></pre></div>
-
 <p>Meaning of some options:</p>
 <ul>
 <li><strong>LDAP_SERVER_URL:</strong> The URL of LDAP server</li>
@@ -4676,7 +4675,7 @@ When a user is removed from LDAP, the corresponding user in Seafile will be deac
 After synchronization is complete, you can see the user's full name, department and contact email on its profile page.</p>
 <h3 id="sync-configuration-items">Sync configuration items<a class="headerlink" href="#sync-configuration-items" title="Permanent link">&para;</a></h3>
 <p>Add the following options to <code>seahub_settings.py</code>. Examples are as follows:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Basic configuration items</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Basic configuration items</span>
 <span class="n">ENABLE_LDAP</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="o">......</span>
 
@@ -4693,7 +4692,6 @@ After synchronization is complete, you can see the user's full name, department 
 <span class="n">DEACTIVE_USER_IF_NOTFOUND</span> <span class="o">=</span> <span class="kc">False</span>        
 <span class="n">ENABLE_EXTRA_USER_INFO_SYNC</span> <span class="o">=</span> <span class="kc">True</span>       
 </code></pre></div>
-
 <p>Meaning of some options:</p>
 <ul>
 <li><strong>LDAP_SYNC_INTERVAL</strong>: The interval to sync. Unit is minutes. Defaults to 60 minutes.</li>
@@ -4711,31 +4709,26 @@ After synchronization is complete, you can see the user's full name, department 
 <h3 id="importing-users-without-activating-them">Importing Users without Activating Them<a class="headerlink" href="#importing-users-without-activating-them" title="Permanent link">&para;</a></h3>
 <p>The users imported with the above configuration will be activated by default. For some organizations with large number of users, they may want to import user information (such as user full name) without activating the imported users. Activating all imported users will require licenses for all users in LDAP, which may not be affordable.</p>
 <p>Seafile provides a combination of options for such use case. You can modify below option in <code>seahub_settings.py</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">ACTIVATE_USER_WHEN_IMPORT</span> <span class="o">=</span> <span class="kc">False</span>
+<div class="highlight"><pre><span></span><code><span class="n">ACTIVATE_USER_WHEN_IMPORT</span> <span class="o">=</span> <span class="kc">False</span>
 </code></pre></div>
-
 <p>This prevents Seafile from activating imported users. Then, add below option to <code>seahub_settings.py</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">ACTIVATE_AFTER_FIRST_LOGIN</span> <span class="o">=</span> <span class="kc">True</span>
+<div class="highlight"><pre><span></span><code><span class="n">ACTIVATE_AFTER_FIRST_LOGIN</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div>
-
 <p>This option will automatically activate users when they login to Seafile for the first time.</p>
 <h3 id="reactivating-users">Reactivating Users<a class="headerlink" href="#reactivating-users" title="Permanent link">&para;</a></h3>
 <p>When you set the <code>DEACTIVE_USER_IF_NOTFOUND</code> option, a user will be deactivated when he/she is not found in LDAP server. By default, even after this user reappears in the LDAP server, it won't be reactivated automatically. This is to prevent auto reactivating a user that was manually deactivated by the system admin.</p>
 <p>However, sometimes it's desirable to auto reactivate such users. You can modify below option in <code>seahub_settings.py</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">LDAP_AUTO_REACTIVATE_USERS</span> <span class="o">=</span> <span class="kc">True</span>
+<div class="highlight"><pre><span></span><code><span class="n">LDAP_AUTO_REACTIVATE_USERS</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div>
-
 <h3 id="manually-trigger-synchronization">Manually Trigger Synchronization<a class="headerlink" href="#manually-trigger-synchronization" title="Permanent link">&para;</a></h3>
 <p>To test your LDAP sync configuration, you can run the sync command manually.</p>
 <p>To trigger LDAP sync manually:</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>seafile-server-latest
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>seafile-server-latest
 ./pro/pro.py<span class="w"> </span>ldapsync
 </code></pre></div>
-
 <p>For Seafile Docker</p>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>/opt/seafile/seafile-server-latest/pro/pro.py<span class="w"> </span>ldapsync
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>/opt/seafile/seafile-server-latest/pro/pro.py<span class="w"> </span>ldapsync
 </code></pre></div>
-
 <h2 id="setting-up-ldap-group-sync-optional">Setting Up LDAP Group Sync (optional)<a class="headerlink" href="#setting-up-ldap-group-sync-optional" title="Permanent link">&para;</a></h2>
 <h3 id="how-it-works">How It Works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h3>
 <p>The importing or syncing process maps groups from LDAP directory server to groups in Seafile's internal database. This process is one-way.</p>
@@ -4762,7 +4755,7 @@ After synchronization is complete, you can see the user's full name, department 
 <h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h3>
 <p>Before enabling LDAP group sync, you should have configured LDAP authentication. See <a href="#basic-ldap-integration">Basic LDAP Integration</a> for details.</p>
 <p>The following are LDAP group sync related options:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># ldap group sync options.</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># ldap group sync options.</span>
 <span class="n">ENABLE_LDAP_GROUP_SYNC</span> <span class="o">=</span> <span class="kc">True</span>            <span class="c1"># Whether to enable group sync</span>
 <span class="n">LDAP_GROUP_OBJECT_CLASS</span> <span class="o">=</span> <span class="s1">&#39;group&#39;</span>        <span class="c1"># This is the name of the class used to search for group objects.</span>
 <span class="n">LDAP_GROUP_MEMBER_ATTR</span> <span class="o">=</span> <span class="s1">&#39;member&#39;</span>        <span class="c1"># The attribute field to use when loading the group&#39;s members. </span>
@@ -4782,7 +4775,6 @@ After synchronization is complete, you can see the user's full name, department 
                                          <span class="c1"># Learn more about departments in Seafile [here](https://help.seafile.com/sharing_collaboration/departments/).</span>
 <span class="n">LDAP_DEPT_NAME_ATTR</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>                 <span class="c1"># Used to get the department name.</span>
 </code></pre></div>
-
 <p>Meaning of some options:</p>
 <ul>
 <li><strong>ENABLE_LDAP_GROUP_SYNC:</strong> Whether to enable group sync.</li>
@@ -4820,7 +4812,7 @@ After synchronization is complete, you can see the user's full name, department 
 </ul>
 <p>Seafile supports syncing OU (Organizational Units) from AD/LDAP to departments. The sync process keeps the hierarchical structure of the OUs.</p>
 <p>Options for syncing departments from OU:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">LDAP_SYNC_DEPARTMENT_FROM_OU</span> <span class="o">=</span> <span class="kc">True</span>      <span class="c1"># Whether to enable sync departments from OU.</span>
+<div class="highlight"><pre><span></span><code><span class="n">LDAP_SYNC_DEPARTMENT_FROM_OU</span> <span class="o">=</span> <span class="kc">True</span>      <span class="c1"># Whether to enable sync departments from OU.</span>
 <span class="n">LDAP_DEPT_NAME_ATTR</span> <span class="o">=</span> <span class="s1">&#39;description&#39;</span>      <span class="c1"># Used to get the department name.</span>
 <span class="n">LDAP_CREATE_DEPARTMENT_LIBRARY</span> <span class="o">=</span> <span class="kc">False</span>   <span class="c1"># If you decide to sync the group as a department,</span>
                                          <span class="c1"># you can set this option to &quot;true&quot;. In this way, when </span>
@@ -4834,41 +4826,35 @@ After synchronization is complete, you can see the user's full name, department 
                                          <span class="c1"># Unit is MB.</span>
 <span class="n">DEL_DEPARTMENT_IF_NOT_FOUND</span> <span class="o">=</span> <span class="kc">False</span>      <span class="c1"># Set to &quot;true&quot;, sync process will deleted the department if not found it in LDAP server.</span>
 </code></pre></div>
-
 <h3 id="periodical-and-manual-sync">Periodical and Manual Sync<a class="headerlink" href="#periodical-and-manual-sync" title="Permanent link">&para;</a></h3>
 <p>Periodical sync won't happen immediately after you restart seafile server. It gets scheduled after the first sync interval. For example if you set sync interval to 30 minutes, the first auto sync will happen after 30 minutes you restarts. To sync immediately, you need to manually trigger it.</p>
 <p>After the sync is run, you should see log messages like the following in logs/seafevents.log. And you should be able to see the groups in system admin page.</p>
-<div class="codehilite"><pre><span></span><code><span class="o">[</span><span class="n">2023-03-30 18:15:05,109</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">DEBUG</span><span class="o">]</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="n">dn</span><span class="w"> </span><span class="n">pair</span><span class="w"> </span><span class="n">CN</span><span class="o">=</span><span class="n">DnsUpdateProxy</span><span class="p">,</span><span class="n">CN</span><span class="o">=</span><span class="n">Users</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="n">Seafile</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="k">local</span><span class="o">&lt;-&gt;</span><span class="mi">1</span><span class="w"> </span><span class="n">success</span><span class="p">.</span>
-<span class="o">[</span><span class="n">2023-03-30 18:15:05,145</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">DEBUG</span><span class="o">]</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="n">dn</span><span class="w"> </span><span class="n">pair</span><span class="w"> </span><span class="n">CN</span><span class="o">=</span><span class="k">Domain</span><span class="w"> </span><span class="n">Computers</span><span class="p">,</span><span class="n">CN</span><span class="o">=</span><span class="n">Users</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="n">Seafile</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="k">local</span><span class="o">&lt;-&gt;</span><span class="mi">2</span><span class="w"> </span><span class="n">success</span><span class="p">.</span>
-<span class="o">[</span><span class="n">2023-03-30 18:15:05,154</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">DEBUG</span><span class="o">]</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="n">dn</span><span class="w"> </span><span class="n">pair</span><span class="w"> </span><span class="n">CN</span><span class="o">=</span><span class="k">Domain</span><span class="w"> </span><span class="n">Users</span><span class="p">,</span><span class="n">CN</span><span class="o">=</span><span class="n">Users</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="n">Seafile</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="k">local</span><span class="o">&lt;-&gt;</span><span class="mi">3</span><span class="w"> </span><span class="n">success</span><span class="p">.</span>
-<span class="o">[</span><span class="n">2023-03-30 18:15:05,164</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">DEBUG</span><span class="o">]</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="n">dn</span><span class="w"> </span><span class="n">pair</span><span class="w"> </span><span class="n">CN</span><span class="o">=</span><span class="k">Domain</span><span class="w"> </span><span class="n">Admins</span><span class="p">,</span><span class="n">CN</span><span class="o">=</span><span class="n">Users</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="n">Seafile</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="k">local</span><span class="o">&lt;-&gt;</span><span class="mi">4</span><span class="w"> </span><span class="n">success</span><span class="p">.</span>
-<span class="o">[</span><span class="n">2023-03-30 18:15:05,176</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">DEBUG</span><span class="o">]</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="n">dn</span><span class="w"> </span><span class="n">pair</span><span class="w"> </span><span class="n">CN</span><span class="o">=</span><span class="n">RAS</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">IAS</span><span class="w"> </span><span class="n">Servers</span><span class="p">,</span><span class="n">CN</span><span class="o">=</span><span class="n">Users</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="n">Seafile</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="k">local</span><span class="o">&lt;-&gt;</span><span class="mi">5</span><span class="w"> </span><span class="n">success</span><span class="p">.</span>
-<span class="o">[</span><span class="n">2023-03-30 18:15:05,186</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">DEBUG</span><span class="o">]</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="n">dn</span><span class="w"> </span><span class="n">pair</span><span class="w"> </span><span class="n">CN</span><span class="o">=</span><span class="n">Enterprise</span><span class="w"> </span><span class="n">Admins</span><span class="p">,</span><span class="n">CN</span><span class="o">=</span><span class="n">Users</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="n">Seafile</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="k">local</span><span class="o">&lt;-&gt;</span><span class="mi">6</span><span class="w"> </span><span class="n">success</span><span class="p">.</span>
-<span class="o">[</span><span class="n">2023-03-30 18:15:05,197</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">DEBUG</span><span class="o">]</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="n">dn</span><span class="w"> </span><span class="n">pair</span><span class="w"> </span><span class="n">CN</span><span class="o">=</span><span class="n">dev</span><span class="p">,</span><span class="n">CN</span><span class="o">=</span><span class="n">Users</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="n">Seafile</span><span class="p">,</span><span class="n">DC</span><span class="o">=</span><span class="k">local</span><span class="o">&lt;-&gt;</span><span class="mi">7</span><span class="w"> </span><span class="n">success</span><span class="p">.</span>
+<div class="highlight"><pre><span></span><code>[2023-03-30 18:15:05,109] [DEBUG] create group 1, and add dn pair CN=DnsUpdateProxy,CN=Users,DC=Seafile,DC=local&lt;-&gt;1 success.
+[2023-03-30 18:15:05,145] [DEBUG] create group 2, and add dn pair CN=Domain Computers,CN=Users,DC=Seafile,DC=local&lt;-&gt;2 success.
+[2023-03-30 18:15:05,154] [DEBUG] create group 3, and add dn pair CN=Domain Users,CN=Users,DC=Seafile,DC=local&lt;-&gt;3 success.
+[2023-03-30 18:15:05,164] [DEBUG] create group 4, and add dn pair CN=Domain Admins,CN=Users,DC=Seafile,DC=local&lt;-&gt;4 success.
+[2023-03-30 18:15:05,176] [DEBUG] create group 5, and add dn pair CN=RAS and IAS Servers,CN=Users,DC=Seafile,DC=local&lt;-&gt;5 success.
+[2023-03-30 18:15:05,186] [DEBUG] create group 6, and add dn pair CN=Enterprise Admins,CN=Users,DC=Seafile,DC=local&lt;-&gt;6 success.
+[2023-03-30 18:15:05,197] [DEBUG] create group 7, and add dn pair CN=dev,CN=Users,DC=Seafile,DC=local&lt;-&gt;7 success.
 </code></pre></div>
-
 <p>To trigger LDAP sync manually,</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>seafile-server-latest
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>seafile-server-latest
 ./pro/pro.py<span class="w"> </span>ldapsync
 </code></pre></div>
-
 <p>For Seafile Docker</p>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>/opt/seafile/seafile-server-latest/pro/pro.py<span class="w"> </span>ldapsync
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>/opt/seafile/seafile-server-latest/pro/pro.py<span class="w"> </span>ldapsync
 </code></pre></div>
-
 <h2 id="advanced-ldap-integration-options">Advanced LDAP Integration Options<a class="headerlink" href="#advanced-ldap-integration-options" title="Permanent link">&para;</a></h2>
 <h3 id="multiple-base">Multiple BASE<a class="headerlink" href="#multiple-base" title="Permanent link">&para;</a></h3>
 <p>Multiple base DN is useful when your company has more than one OUs to use Seafile. You can specify a list of base DN in the <code>LDAP_BASE_DN</code> option. The DNs are separated by ";", e.g.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">LDAP_BASE_DN</span> <span class="o">=</span> <span class="s1">&#39;ou=developers,dc=example,dc=com;ou=marketing,dc=example,dc=com&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">LDAP_BASE_DN</span> <span class="o">=</span> <span class="s1">&#39;ou=developers,dc=example,dc=com;ou=marketing,dc=example,dc=com&#39;</span>
 </code></pre></div>
-
 <h3 id="additional-search-filter">Additional Search Filter<a class="headerlink" href="#additional-search-filter" title="Permanent link">&para;</a></h3>
 <p>Search filter is very useful when you have a large organization but only a portion of people want to use Seafile. The filter can be given by setting <code>LDAP_FILTER</code> option. The value of this option follows standard LDAP search filter syntax (https://msdn.microsoft.com/en-us/library/aa746475(v=vs.85).aspx).</p>
 <p>The final filter used for searching for users is <code>(&amp;($LOGIN_ATTR=*)($LDAP_FILTER))</code>. <code>$LOGIN_ATTR</code> and <code>$LDAP_FILTER</code> will be replaced by your option values.</p>
 <p>For example, add below option to <code>seahub_settings.py</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">LDAP_FILTER</span> <span class="o">=</span> <span class="s1">&#39;memberOf=CN=group,CN=developers,DC=example,DC=com&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">LDAP_FILTER</span> <span class="o">=</span> <span class="s1">&#39;memberOf=CN=group,CN=developers,DC=example,DC=com&#39;</span>
 </code></pre></div>
-
 <p>The final search filter would be <code>(&amp;(mail=*)(memberOf=CN=group,CN=developers,DC=example,DC=com))</code></p>
 <p>Note that the case of attribute names in the above example is significant. The <code>memberOf</code> attribute is only available in Active Directory.</p>
 <h3 id="limiting-seafile-users-to-a-group-in-active-directory">Limiting Seafile Users to a Group in Active Directory<a class="headerlink" href="#limiting-seafile-users-to-a-group-in-active-directory" title="Permanent link">&para;</a></h3>
@@ -4881,31 +4867,27 @@ After synchronization is complete, you can see the user's full name, department 
 <p>Add below option to <code>seahub_settings.py</code>:</p>
 </li>
 </ol>
-<div class="codehilite"><pre><span></span><code><span class="n">LDAP_FILTER</span> <span class="o">=</span> <span class="s1">&#39;memberOf={output of dsquery command}&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">LDAP_FILTER</span> <span class="o">=</span> <span class="s1">&#39;memberOf={output of dsquery command}&#39;</span>
 </code></pre></div>
-
 <h3 id="using-tls-connection-to-ldap-server">Using TLS connection to LDAP server<a class="headerlink" href="#using-tls-connection-to-ldap-server" title="Permanent link">&para;</a></h3>
 <p>If your LDAP service supports TLS connections, you can configure <code>LDAP_SERVER_URL</code> as the access address of the ldaps protocol to use TLS to connect to the LDAP service, for example:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">LDAP_SERVER_URL</span> <span class="o">=</span> <span class="s1">&#39;ldaps://192.168.0.1:636/&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">LDAP_SERVER_URL</span> <span class="o">=</span> <span class="s1">&#39;ldaps://192.168.0.1:636/&#39;</span>
 </code></pre></div>
-
 <h3 id="use-paged-results-extension">Use paged results extension<a class="headerlink" href="#use-paged-results-extension" title="Permanent link">&para;</a></h3>
 <p>LDAP protocol version 3 supports "paged results" (PR) extension. When you have large number of users, this option can greatly improve the performance of listing users. Most directory server nowadays support this extension.</p>
 <p>In Seafile Pro Edition, add this option to <code>seahub_settings.py</code> to enable PR:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">LDAP_USE_PAGED_RESULT</span> <span class="o">=</span> <span class="kc">True</span>
+<div class="highlight"><pre><span></span><code><span class="n">LDAP_USE_PAGED_RESULT</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div>
-
 <h3 id="follow-referrals">Follow referrals<a class="headerlink" href="#follow-referrals" title="Permanent link">&para;</a></h3>
 <p>Seafile Pro Edition supports auto following referrals in LDAP search. This is useful for partitioned LDAP or AD servers, where users may be spreaded on multiple directory servers. For more information about referrals, you can refer to <a href="https://technet.microsoft.com/en-us/library/cc978014.aspx">this article</a>.</p>
 <p>To configure, add below option to <code>seahub_settings.py</code>, e.g.:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">LDAP_FOLLOW_REFERRALS</span> <span class="o">=</span> <span class="kc">True</span>
+<div class="highlight"><pre><span></span><code><span class="n">LDAP_FOLLOW_REFERRALS</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div>
-
 <h3 id="configure-multi-ldap-servers">Configure Multi-ldap Servers<a class="headerlink" href="#configure-multi-ldap-servers" title="Permanent link">&para;</a></h3>
 <p>Seafile Pro Edition supports multi-ldap servers, you can configure two ldap servers to work with seafile. Multi-ldap servers mean that, when get or search ldap user, it will iterate all configured ldap servers until a match is found; When listing all ldap users, it will iterate all ldap servers to get all users; For Ldap sync it will sync all user/group info in all configured ldap servers to seafile.</p>
 <p><strong>Currently, only two LDAP servers are supported.</strong></p>
 <p>If you want to use multi-ldap servers, please replace <code>LDAP</code> in the options with <code>MULTI_LDAP_1</code>, and then add them to <code>seahub_settings.py</code>, for example:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Basic config options</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Basic config options</span>
 <span class="n">ENABLE_LDAP</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="o">......</span>
 
@@ -4951,9 +4933,8 @@ After synchronization is complete, you can see the user's full name, department 
 <span class="n">MULTI_LDAP_1_DEPT_NAME_ATTR</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 <span class="o">......</span>
 </code></pre></div>
-
 <p><strong>Note</strong>: There are still some shared config options are used for all LDAP servers, as follows:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Common user sync options</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Common user sync options</span>
 <span class="n">LDAP_SYNC_INTERVAL</span> <span class="o">=</span> <span class="mi">60</span>
 <span class="n">IMPORT_NEW_USER</span> <span class="o">=</span> <span class="kc">True</span>                   <span class="c1"># Whether to import new users when sync user</span>
 <span class="n">ACTIVATE_USER_WHEN_IMPORT</span> <span class="o">=</span> <span class="kc">True</span>         <span class="c1"># Whether to activate the user when importing new user</span>
@@ -4964,21 +4945,18 @@ After synchronization is complete, you can see the user's full name, department 
 <span class="n">DEL_GROUP_IF_NOT_FOUND</span> <span class="o">=</span> <span class="kc">False</span>           <span class="c1"># Set to &quot;true&quot;, sync process will delete the group if not found it in LDAP server.</span>
 <span class="n">DEL_DEPARTMENT_IF_NOT_FOUND</span> <span class="o">=</span> <span class="kc">False</span>      <span class="c1"># Set to &quot;true&quot;, sync process will deleted the department if not found it in LDAP server.</span>
 </code></pre></div>
-
 <h3 id="sso-and-ldap-users-use-the-same-uid">SSO and LDAP users use the same uid<a class="headerlink" href="#sso-and-ldap-users-use-the-same-uid" title="Permanent link">&para;</a></h3>
 <p>If you sync users from LDAP to Seafile, when the user login via SSO (ADFS or OAuth), you want Seafile to find the existing account for this user instead of creating a new one, you can set <code>SSO_LDAP_USE_SAME_UID = True</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">SSO_LDAP_USE_SAME_UID</span> <span class="o">=</span> <span class="kc">True</span>
+<div class="highlight"><pre><span></span><code><span class="n">SSO_LDAP_USE_SAME_UID</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div>
-
 <p>Note, here the UID means the unique user ID, in LDAP it is the attribute you use for <code>LDAP_LOGIN_ATTR</code> (not <code>LDAP_UID_ATTR</code>), in ADFS it is <code>uid</code> attribute. You need make sure you use the same attribute for the two settings.</p>
 <h2 id="importing-roles-from-ldap">Importing Roles from LDAP<a class="headerlink" href="#importing-roles-from-ldap" title="Permanent link">&para;</a></h2>
 <p>Seafile Pro Edition supports syncing roles from LDAP or Active Directory.</p>
 <p>To enable this feature, add below option to <code>seahub_settings.py</code>, e.g.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">LDAP_USER_ROLE_ATTR</span> <span class="o">=</span> <span class="s1">&#39;title&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">LDAP_USER_ROLE_ATTR</span> <span class="o">=</span> <span class="s1">&#39;title&#39;</span>
 </code></pre></div>
-
 <p><code>LDAP_USER_ROLE_ATTR</code> is the attribute field to configure roles in LDAP. You can write a custom function to map the role by creating a file <code>seahub_custom_functions.py</code> under conf/ and edit it like:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># -*- coding: utf-8 -*-</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># -*- coding: utf-8 -*-</span>
 
 <span class="c1"># The AD roles attribute returns a list of roles (role_list).</span>
 <span class="c1"># The following function use the first entry in the list.</span>
@@ -5003,7 +4981,6 @@ After synchronization is complete, you can see the user's full name, department 
         <span class="k">if</span> <span class="s1">&#39;manager&#39;</span> <span class="ow">in</span> <span class="n">role</span><span class="p">:</span>
             <span class="k">return</span> <span class="s1">&#39;Manager&#39;</span>
 </code></pre></div>
-
 <p>Note: You should only define one of the two functions.</p>
 <p>You can rewrite the function (in python) to make your own mapping rules. If the file or function doesn't exist, the first entry in role_list will be synced.</p>
 
@@ -5035,6 +5012,46 @@ After synchronization is complete, you can see the user's full name, department 
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../ldap_in_11.0_ce/" class="md-footer__link md-footer__link--prev" aria-label="Previous: LDAP Integration">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                LDAP Integration
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../single_sign_on/" class="md-footer__link md-footer__link--next" aria-label="Next: Outline">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Outline
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -5077,7 +5094,7 @@ After synchronization is complete, you can see the user's full name, department 
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

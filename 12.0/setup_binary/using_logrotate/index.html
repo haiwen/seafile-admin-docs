@@ -2275,7 +2275,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4198,7 +4198,7 @@ to shutdown the server. All you need to do now is cutting the logfile on the fly
 <p>Assuming your seaf-server's logfile is setup to <code>/opt/seafile/logs/seafile.log</code> and your
 seaf-server's pidfile is setup to <code>/opt/seafile/pids/seaf-server.pid</code>:</p>
 <p>The configuration for logrotate could be like this:</p>
-<div class="codehilite"><pre><span></span><code>/opt/seafile/logs/seafile.log
+<div class="highlight"><pre><span></span><code>/opt/seafile/logs/seafile.log
 /opt/seafile/logs/seahub.log
 /opt/seafile/logs/seafdav.log
 /opt/seafile/logs/fileserver-access.log
@@ -4221,26 +4221,25 @@ seaf-server's pidfile is setup to <code>/opt/seafile/pids/seaf-server.pid</code>
         sharedscripts
         postrotate
                 if [ -f /opt/seafile/pids/seaf-server.pid ]; then
-                        kill -USR1 <span class="sb">`cat /opt/seafile/pids/seaf-server.pid`</span>
+                        kill -USR1 `cat /opt/seafile/pids/seaf-server.pid`
                 fi
 
                 if [ -f /opt/seafile/pids/fileserver.pid ]; then
-                        kill -USR1 <span class="sb">`cat /opt/seafile/pids/fileserver.pid`</span>
+                        kill -USR1 `cat /opt/seafile/pids/fileserver.pid`
                 fi
 
                 if [ -f /opt/seafile/pids/seahub.pid ]; then
-                        kill -HUP <span class="sb">`cat /opt/seafile/pids/seahub.pid`</span>
+                        kill -HUP `cat /opt/seafile/pids/seahub.pid`
                 fi
 
                 if [ -f /opt/seafile/pids/seafdav.pid ]; then
-                        kill -HUP <span class="sb">`cat /opt/seafile/pids/seafdav.pid`</span>
+                        kill -HUP `cat /opt/seafile/pids/seafdav.pid`
                 fi
 
                 find /opt/seafile/logs/ -mtime +7 -name &quot;*.log*&quot; -exec rm -f {} \;
         endscript
 }
 </code></pre></div>
-
 <p>You can save this file, in Debian for example, at <code>/etc/logrotate.d/seafile</code>.</p>
 
 
@@ -4271,6 +4270,46 @@ seaf-server's pidfile is setup to <code>/opt/seafile/pids/seaf-server.pid</code>
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../start_seafile_at_system_bootup/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Start Seafile at System Bootup">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Start Seafile at System Bootup
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../fail2ban/" class="md-footer__link md-footer__link--next" aria-label="Next: Config fail2ban">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Config fail2ban
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4313,7 +4352,7 @@ seaf-server's pidfile is setup to <code>/opt/seafile/pids/seaf-server.pid</code>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

@@ -2305,7 +2305,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4256,97 +4256,89 @@
 <h2 id="create-a-new-temporary-seafileconf">Create a new temporary seafile.conf<a class="headerlink" href="#create-a-new-temporary-seafileconf" title="Permanent link">&para;</a></h2>
 <p>We need to add new backend configurations to this file (including <code>[block_backend]</code>, <code>[commit_object_backend]</code>, <code>[fs_object_backend]</code> options) and save it under a readable path.
 Let's assume that we are migrating data to S3 and create temporary seafile.conf under <code>/opt</code></p>
-<div class="codehilite"><pre><span></span><code><span class="n">cat</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">seafile</span><span class="p">.</span><span class="n">conf</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">EOF</span>
-<span class="o">[</span><span class="n">commit_object_backend</span><span class="o">]</span>
-<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s3</span>
-<span class="n">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seacomm</span>
-<span class="n">key_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">******</span>
-<span class="k">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">******</span>
+<div class="highlight"><pre><span></span><code>cat &gt; seafile.conf &lt;&lt; EOF
+[commit_object_backend]
+name = s3
+bucket = seacomm
+key_id = ******
+key = ******
 
-<span class="o">[</span><span class="n">fs_object_backend</span><span class="o">]</span>
-<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s3</span>
-<span class="n">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seafs</span>
-<span class="n">key_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">******</span>
-<span class="k">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">******</span>
+[fs_object_backend]
+name = s3
+bucket = seafs
+key_id = ******
+key = ******
 
-<span class="o">[</span><span class="n">block_backend</span><span class="o">]</span>
-<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s3</span>
-<span class="n">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seablk</span>
-<span class="n">key_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">******</span>
-<span class="k">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">******</span>
-<span class="n">EOF</span>
+[block_backend]
+name = s3
+bucket = seablk
+key_id = ******
+key = ******
+EOF
 
-<span class="n">mv</span><span class="w"> </span><span class="n">seafile</span><span class="p">.</span><span class="n">conf</span><span class="w"> </span><span class="o">/</span><span class="n">opt</span>
+mv seafile.conf /opt
 </code></pre></div>
-
 <p>If you want to migrate to a local file system, the seafile.conf temporary configuration example is as follows:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">cat</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">seafile</span><span class="p">.</span><span class="n">conf</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">EOF</span>
-<span class="o">[</span><span class="n">commit_object_backend</span><span class="o">]</span>
-<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fs</span>
-<span class="err">#</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">dir</span><span class="w"> </span><span class="n">configuration</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">seafile</span><span class="o">-</span><span class="k">data</span><span class="w"> </span><span class="k">path</span>
-<span class="n">dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">/</span><span class="nf">var</span><span class="o">/</span><span class="n">data_backup</span>
+<div class="highlight"><pre><span></span><code>cat &gt; seafile.conf &lt;&lt; EOF
+[commit_object_backend]
+name = fs
+# the dir configuration is the new seafile-data path
+dir = /var/data_backup
 
-<span class="o">[</span><span class="n">fs_object_backend</span><span class="o">]</span>
-<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fs</span>
-<span class="err">#</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">dir</span><span class="w"> </span><span class="n">configuration</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">seafile</span><span class="o">-</span><span class="k">data</span><span class="w"> </span><span class="k">path</span>
-<span class="n">dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">/</span><span class="nf">var</span><span class="o">/</span><span class="n">data_backup</span>
+[fs_object_backend]
+name = fs
+# the dir configuration is the new seafile-data path
+dir = /var/data_backup
 
-<span class="o">[</span><span class="n">block_backend</span><span class="o">]</span>
-<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fs</span>
-<span class="err">#</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">dir</span><span class="w"> </span><span class="n">configuration</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">seafile</span><span class="o">-</span><span class="k">data</span><span class="w"> </span><span class="k">path</span>
-<span class="n">dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">/</span><span class="nf">var</span><span class="o">/</span><span class="n">data_backup</span>
+[block_backend]
+name = fs
+# the dir configuration is the new seafile-data path
+dir = /var/data_backup
 
-<span class="n">EOF</span>
+EOF
 
-<span class="n">mv</span><span class="w"> </span><span class="n">seafile</span><span class="p">.</span><span class="n">conf</span><span class="w"> </span><span class="o">/</span><span class="n">opt</span>
+mv seafile.conf /opt
 </code></pre></div>
-
 <p>Repalce the configurations with your own choice.</p>
 <h2 id="migrating-large-number-of-objects">Migrating large number of objects<a class="headerlink" href="#migrating-large-number-of-objects" title="Permanent link">&para;</a></h2>
 <p>If you have millions of objects in the storage (especially fs objects), it may take quite long time to migrate all objects. More than half of the time is spent on checking whether an object exists in the destination storage. <strong>Since Pro edition 7.0.8</strong>, a feature is added to speed-up the checking.</p>
 <p>Before running the migration script, please set this env variable:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">export</span><span class="w"> </span><span class="n">OBJECT_LIST_FILE_PATH</span><span class="o">=/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">object</span><span class="o">/</span><span class="n">list</span><span class="o">/</span><span class="n">file</span>
+<div class="highlight"><pre><span></span><code>export OBJECT_LIST_FILE_PATH=/path/to/object/list/file
 </code></pre></div>
-
 <p>3 files will be created: <code>/path/to/object/list/file.commit</code>,<code>/path/to/object/list/file.fs</code>, <code>/path/to/object/list/file.blocks</code>.</p>
 <p>When you run the script for the first time, the object list file will be filled with existing objects in the destination. Then, when you run the script for the second time, it will load the existing object list from the file, instead of querying the destination. And newly migrated objects will also be added to the file. During migration, the migration process checks whether an object exists by checking the pre-loaded object list, instead of asking the destination, which will greatly speed-up the migration process.</p>
 <p>It's suggested that you don't interrupt the script during the "fetch object list" stage when you run it for the first time. Otherwise the object list in the file will be incomplete.</p>
 <p>Another trick to speed-up the migration is to increase the number of worker threads and size of task queue in the migration script. You can modify the <code>nworker</code> and <code>maxsize</code> variables in the following code:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="n">ThreadPool</span>(<span class="n">object</span>):
+<div class="highlight"><pre><span></span><code>class ThreadPool(object):
 
-<span class="n">def</span> <span class="n">__init__</span>(<span class="nb">self</span>, <span class="n">do_work</span>, <span class="n">nworker</span>=<span class="mi">20</span>):
-        <span class="nb">self</span>.<span class="n">do_work</span> = <span class="n">do_work</span>
-        <span class="nb">self</span>.<span class="n">nworker</span> = <span class="n">nworker</span>
-        <span class="nb">self</span>.<span class="n">task_queue</span> = <span class="n">Queue</span>.<span class="n">Queue</span>(<span class="n">maxsize</span> = <span class="mi">2000</span>)
+def __init__(self, do_work, nworker=20):
+        self.do_work = do_work
+        self.nworker = nworker
+        self.task_queue = Queue.Queue(maxsize = 2000)
 </code></pre></div>
-
 <p>The number of workers can be set to relatively large values, since they're mostly waiting for I/O operations to finished.</p>
 <h2 id="decrypting-encrypted-storage-backend">Decrypting encrypted storage backend<a class="headerlink" href="#decrypting-encrypted-storage-backend" title="Permanent link">&para;</a></h2>
 <p>If you have an encrypted storage backend (a deprecated feature no long supported now), you can use this script to migrate and decrypt the data from that backend to a new one. You can add the <code>--decrypt</code> option, which will decrypt the data while reading it, and then write the unencrypted data to the new backend. Note that you need add this option in all stages of the migration.</p>
-<div class="codehilite"><pre><span></span><code>cd ~/haiwen/seafile-server-latest
+<div class="highlight"><pre><span></span><code>cd ~/haiwen/seafile-server-latest
 ./migrate.sh /opt --decrypt
 </code></pre></div>
-
 <h2 id="run-migratesh-to-initially-migrate-objects">Run migrate.sh to initially migrate objects<a class="headerlink" href="#run-migratesh-to-initially-migrate-objects" title="Permanent link">&para;</a></h2>
 <p>This step will migrate <strong>most of</strong> objects from the source storage to the destination storage. You don't need to stop Seafile service at this stage as it may take quite long time to finish. Since the service is not stopped, some new objects may be added to the source storage during migration. Those objects will be handled in the next step.</p>
 <p>We assume you have installed seafile pro server under <code>~/haiwen</code>, enter <code>~/haiwen/seafile-server-latest</code> and run migrate.sh with parent path of temporary seafile.conf as parameter, here is <code>/opt</code>.</p>
-<div class="codehilite"><pre><span></span><code>cd ~/haiwen/seafile-server-latest
+<div class="highlight"><pre><span></span><code>cd ~/haiwen/seafile-server-latest
 ./migrate.sh /opt
 </code></pre></div>
-
 <p>Please note that this script is completely reentrant. So you can stop and restart it, or run it many times. It will check whether an object exists in the destination before sending it.</p>
 <h2 id="run-final-migration">Run final migration<a class="headerlink" href="#run-final-migration" title="Permanent link">&para;</a></h2>
 <p>New objects added during the last migration step will be migrated in this step. To prevent new objects being added, you have to stop Seafile service during the final migration operation. This usually take short time. If you have large number of objects, please following the optimization instruction in previous section.</p>
 <p>You just have to stop Seafile and Seahub service, then run the migration script again.</p>
-<div class="codehilite"><pre><span></span><code>cd ~/haiwen/seafile-server-latest
+<div class="highlight"><pre><span></span><code>cd ~/haiwen/seafile-server-latest
 ./migrate.sh /opt
 </code></pre></div>
-
 <h2 id="replace-the-original-seafileconf">Replace the original seafile.conf<a class="headerlink" href="#replace-the-original-seafileconf" title="Permanent link">&para;</a></h2>
 <p>After running the script, we need replace the original seafile.conf with new one:</p>
-<div class="codehilite"><pre><span></span><code>mv /opt/seafile.conf ~/haiwen/conf
+<div class="highlight"><pre><span></span><code>mv /opt/seafile.conf ~/haiwen/conf
 </code></pre></div>
-
 <p>now we only have configurations about backend, more config options, e.g. memcache and quota, can then be copied from the original seafile.conf file.</p>
 <p>After replacing seafile.conf, you can restart seafile server and access the data on the new backend.</p>
 
@@ -4378,6 +4370,46 @@ Let's assume that we are migrating data to S3 and create temporary seafile.conf 
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../setup_with_multiple_storage_backends/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Multiple Storage Backends">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Multiple Storage Backends
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../seafile_docker_autostart/" class="md-footer__link md-footer__link--next" aria-label="Next: Seafile Docker autostart">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Seafile Docker autostart
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4420,7 +4452,7 @@ Let's assume that we are migrating data to S3 and create temporary seafile.conf 
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

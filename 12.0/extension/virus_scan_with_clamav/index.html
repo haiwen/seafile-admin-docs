@@ -10,7 +10,7 @@
         <meta name="author" content="seafile">
       
       
-        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/12.0/extension/deploy_clamav_with_seafile/">
+        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/12.0/extension/virus_scan_with_clamav/">
       
       
         <link rel="prev" href="../virus_scan/">
@@ -4287,57 +4287,50 @@
 <h2 id="use-clamav-with-docker-based-deployment">Use Clamav with Docker based deployment<a class="headerlink" href="#use-clamav-with-docker-based-deployment" title="Permanent link">&para;</a></h2>
 <h3 id="add-clamav-to-docker-composeyml">Add Clamav to docker-compose.yml<a class="headerlink" href="#add-clamav-to-docker-composeyml" title="Permanent link">&para;</a></h3>
 <p>The following section needs to be added to docker-compose.yml in the services section</p>
-<div class="codehilite"><pre><span></span><code>services:
+<div class="highlight"><pre><span></span><code>services:
   ...
 
   av:
     image: clamav/clamav:latest
     container_name: seafile-clamav
     networks:
-      <span class="k">-</span> seafile-net
+      - seafile-net
 </code></pre></div>
-
 <h3 id="modify-seafileconf">Modify seafile.conf<a class="headerlink" href="#modify-seafileconf" title="Permanent link">&para;</a></h3>
 <p>Add this to seafile.conf</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[virus_scan]</span>
-<span class="na">scan_command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">clamdscan</span>
-<span class="na">virus_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span>
-<span class="na">nonvirus_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0</span>
-<span class="na">scan_interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">5</span>
-<span class="na">scan_size_limit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">20</span>
-<span class="na">threads</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">2</span>
+<div class="highlight"><pre><span></span><code>[virus_scan]
+scan_command = clamdscan
+virus_code = 1
+nonvirus_code = 0
+scan_interval = 5
+scan_size_limit = 20
+threads = 2
 </code></pre></div>
-
 <h3 id="restart-docker-container">Restart docker container<a class="headerlink" href="#restart-docker-container" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
 docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>
 </code></pre></div>
-
 <p>Wait some minutes until Clamav finished initializing.</p>
 <p>Now Clamav can be used.</p>
 <h2 id="use-clamav-in-binary-based-deployment">Use ClamAV in binary based deployment<a class="headerlink" href="#use-clamav-in-binary-based-deployment" title="Permanent link">&para;</a></h2>
 <h3 id="install-clamav-daemon-clamav-freshclam">Install clamav-daemon &amp; clamav-freshclam<a class="headerlink" href="#install-clamav-daemon-clamav-freshclam" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>apt-get install clamav-daemon clamav-freshclam
+<div class="highlight"><pre><span></span><code>apt-get install clamav-daemon clamav-freshclam
 </code></pre></div>
-
 <p>You should run Clamd with a root permission to scan any files. 
 Edit the conf <code>/etc/clamav/clamd.conf</code>,change the following line:</p>
-<div class="codehilite"><pre><span></span><code>LocalSocketGroup root
+<div class="highlight"><pre><span></span><code>LocalSocketGroup root
 User root
 </code></pre></div>
-
 <h3 id="start-the-clamav-daemon">Start the clamav-daemon<a class="headerlink" href="#start-the-clamav-daemon" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>systemctl start clamav-daemon
+<div class="highlight"><pre><span></span><code>systemctl start clamav-daemon
 </code></pre></div>
-
 <ul>
 <li>Test the software</li>
 </ul>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>curl<span class="w"> </span>https://secure.eicar.org/eicar.com.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>clamdscan<span class="w"> </span>-
+<div class="highlight"><pre><span></span><code>$ curl https://secure.eicar.org/eicar.com.txt | clamdscan -
 </code></pre></div>
-
 <p>The output must include:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">stream</span><span class="o">:</span><span class="w"> </span><span class="n">Eicar</span><span class="o">-</span><span class="n">Test</span><span class="o">-</span><span class="n">Signature</span><span class="w"> </span><span class="n">FOUND</span>
+<div class="highlight"><pre><span></span><code>stream: Eicar-Test-Signature FOUND
 </code></pre></div>
 
 
@@ -4368,6 +4361,46 @@ User root
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../virus_scan/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Outline">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Outline
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../virus_scan_with_kav4fs/" class="md-footer__link md-footer__link--next" aria-label="Next: Virus scan with Kav4fs">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Virus scan with Kav4fs
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4410,7 +4443,7 @@ User root
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

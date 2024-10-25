@@ -2435,7 +2435,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4513,14 +4513,13 @@
 <h2 id="install-kubectl-and-k8s-control-plane">Install kubectl and k8s control plane<a class="headerlink" href="#install-kubectl-and-k8s-control-plane" title="Permanent link">&para;</a></h2>
 <p>The two tools, <strong>kubectl</strong> and a <strong>k8s control plane</strong> tool (i.e., <strong><em>kubeadm</em></strong>), are required and can be installed with <a href="https://kubernetes.io/docs/tasks/tools/">official installation guide</a>. </p>
 <p>Note that if it is a multi-node deployment, k8s control plane needs to be installed on each node. After installation, you need to start the k8s control plane service on each node and refer to the k8s official manual for <a href="https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/">creating a cluster</a>. Since this manual still uses the same image as docker deployment, we need to add the following repository to k8s:</p>
-<div class="codehilite"><pre><span></span><code>kubectl<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>docker-registry<span class="w"> </span>regcred<span class="w"> </span>--docker-server<span class="o">=</span>docker.seadrive.org/seafileltd<span class="w"> </span>--docker-username<span class="o">=</span>seafile<span class="w"> </span>--docker-password<span class="o">=</span><span class="nv">zjkmid6rQibdZ</span><span class="o">=</span>uJMuWS
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>docker-registry<span class="w"> </span>regcred<span class="w"> </span>--docker-server<span class="o">=</span>docker.seadrive.org/seafileltd<span class="w"> </span>--docker-username<span class="o">=</span>seafile<span class="w"> </span>--docker-password<span class="o">=</span><span class="nv">zjkmid6rQibdZ</span><span class="o">=</span>uJMuWS
 </code></pre></div>
-
 <h2 id="yaml">YAML<a class="headerlink" href="#yaml" title="Permanent link">&para;</a></h2>
 <p>Seafile mainly involves three different services, namely database service, cache service and seafile service. Since these three services do not have a direct dependency relationship, we need to separate them from the entire docker-compose.yml (in this manual, we use <a href="../../docker/pro/seafile-server.yml">Seafile 12 PRO</a>) and divide them into three pods. For each pod, we need to define a series of YAML files for k8s to read, and we will store these YAMLs in <code>/opt/seafile-k8s-yaml</code>. This series of YAML mainly includes <strong>Deployment</strong> for pod management and creation, <strong>Service</strong> for exposing services to the external network, <strong>PersistentVolume</strong> for defining the location of a volume used for persistent storage on the host and <strong>Persistentvolumeclaim</strong> for declaring the use of persistent storage in the container. For futher configuration details, you can refer <a href="https://kubernetes.io/docs/tasks/configure-pod-container/">the official documents</a>.</p>
 <h3 id="mariadb">mariadb<a class="headerlink" href="#mariadb" title="Permanent link">&para;</a></h3>
 <h4 id="mariadb-deploymentyaml">mariadb-deployment.yaml<a class="headerlink" href="#mariadb-deploymentyaml" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
 <span class="nt">metadata</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mariadb</span>
@@ -4552,18 +4551,16 @@
 <span class="w">          </span><span class="nt">persistentVolumeClaim</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">claimName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mariadb-data</span>
 </code></pre></div>
-
 <p>Please replease <code>MARIADB_ROOT_PASSWORD</code> to your own mariadb password. In the above Deployment configuration file, no restart policy for the pod is specified. The default restart policy is <strong>Always</strong>. If you need to modify it, add the following to the spec attribute:</p>
-<div class="codehilite"><pre><span></span><code><span class="nt">restartPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OnFailure</span>
+<div class="highlight"><pre><span></span><code><span class="nt">restartPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OnFailure</span>
 
 <span class="c1">#Note:</span>
 <span class="c1">#    Always: always restart (include normal exit)</span>
 <span class="c1">#    OnFailure: restart only with unexpected exit</span>
 <span class="c1">#    Never: do not restart</span>
 </code></pre></div>
-
 <h4 id="mariadb-serviceyaml">mariadb-service.yaml<a class="headerlink" href="#mariadb-serviceyaml" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span>
 <span class="nt">metadata</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mariadb</span>
@@ -4575,9 +4572,8 @@
 <span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3306</span>
 <span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3306</span>
 </code></pre></div>
-
 <h4 id="mariadb-persistentvolumeyaml">mariadb-persistentvolume.yaml<a class="headerlink" href="#mariadb-persistentvolumeyaml" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PersistentVolume</span>
 <span class="nt">metadata</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mariadb-data</span>
@@ -4589,9 +4585,8 @@
 <span class="w">  </span><span class="nt">hostPath</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/seafile-mysql/db</span>
 </code></pre></div>
-
 <h4 id="mariadb-persistentvolumeclaimyaml">mariadb-persistentvolumeclaim.yaml<a class="headerlink" href="#mariadb-persistentvolumeclaimyaml" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PersistentVolumeClaim</span>
 <span class="nt">metadata</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mariadb-data</span>
@@ -4602,10 +4597,9 @@
 <span class="w">    </span><span class="nt">requests</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10Gi</span>
 </code></pre></div>
-
 <h3 id="memcached">memcached<a class="headerlink" href="#memcached" title="Permanent link">&para;</a></h3>
 <h4 id="memcached-deploymentyaml">memcached-deployment.yaml<a class="headerlink" href="#memcached-deploymentyaml" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
 <span class="nt">metadata</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">memcached</span>
@@ -4626,9 +4620,8 @@
 <span class="w">          </span><span class="nt">ports</span><span class="p">:</span>
 <span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">11211</span>
 </code></pre></div>
-
 <h4 id="memcached-serviceyaml">memcached-service.yaml<a class="headerlink" href="#memcached-serviceyaml" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span>
 <span class="nt">metadata</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">memcached</span>
@@ -4640,10 +4633,9 @@
 <span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">11211</span>
 <span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">11211</span>
 </code></pre></div>
-
 <h3 id="seafile">Seafile<a class="headerlink" href="#seafile" title="Permanent link">&para;</a></h3>
 <h4 id="seafile-deploymentyaml">seafile-deployment.yaml<a class="headerlink" href="#seafile-deploymentyaml" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<p><div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
 <span class="nt">metadata</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile</span>
@@ -4693,10 +4685,9 @@
 <span class="w">      </span><span class="nt">imagePullSecrets</span><span class="p">:</span>
 <span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">regcred</span>
 </code></pre></div>
-
-<p>Please replease the above configurations, such as database root password, admin in seafile.</p>
+Please replease the above configurations, such as database root password, admin in seafile.</p>
 <h4 id="seafile-serviceyaml">seafile-service.yaml<a class="headerlink" href="#seafile-serviceyaml" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span>
 <span class="nt">metadata</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile</span>
@@ -4710,9 +4701,8 @@
 <span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
 <span class="w">      </span><span class="nt">nodePort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30000</span>
 </code></pre></div>
-
 <h4 id="seafile-persistentvolumeyaml">seafile-persistentvolume.yaml<a class="headerlink" href="#seafile-persistentvolumeyaml" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PersistentVolume</span>
 <span class="nt">metadata</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-data</span>
@@ -4724,9 +4714,8 @@
 <span class="w">  </span><span class="nt">hostPath</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/seafile-data</span>
 </code></pre></div>
-
 <h4 id="seafile-persistentvolumeclaimyaml">seafile-persistentvolumeclaim.yaml<a class="headerlink" href="#seafile-persistentvolumeclaimyaml" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PersistentVolumeClaim</span>
 <span class="nt">metadata</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-data</span>
@@ -4737,27 +4726,22 @@
 <span class="w">    </span><span class="nt">requests</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10Gi</span>
 </code></pre></div>
-
 <h2 id="deploy-pods">Deploy pods<a class="headerlink" href="#deploy-pods" title="Permanent link">&para;</a></h2>
 <p>You can use following command to deploy pods:</p>
-<div class="codehilite"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>/opt/seafile-k8s-yaml/
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>/opt/seafile-k8s-yaml/
 </code></pre></div>
-
 <h2 id="container-management">Container management<a class="headerlink" href="#container-management" title="Permanent link">&para;</a></h2>
 <p>Similar to docker installation, you can also manage containers through <a href="https://kubernetes.io/docs/reference/kubectl/#operations">some kubectl commands</a>. For example, you can use the following command to check whether the relevant resources are started successfully and whether the relevant services can be accessed normally. First, execute the following command and remember the pod name with <code>seafile-</code> as the prefix (such as seafile-748b695648-d6l4g)</p>
-<div class="codehilite"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods
 </code></pre></div>
-
 <p>You can check a status of a pod by </p>
-<div class="codehilite"><pre><span></span><code>kubectl<span class="w"> </span>logs<span class="w"> </span>seafile-748b695648-d6l4g
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>logs<span class="w"> </span>seafile-748b695648-d6l4g
 </code></pre></div>
-
 <p>and enter a container by</p>
-<div class="codehilite"><pre><span></span><code>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-748b695648-d6l4g<span class="w"> </span>--<span class="w">  </span>bash
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-748b695648-d6l4g<span class="w"> </span>--<span class="w">  </span>bash
 </code></pre></div>
-
 <p>If you modify some configurations in <code>/opt/seafile-data/conf</code> and need to restart the container, the following command can be refered:</p>
-<div class="codehilite"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>deployments<span class="w"> </span>--all
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>deployments<span class="w"> </span>--all
 kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>/opt/seafile-k8s-yaml/
 </code></pre></div>
 
@@ -4789,6 +4773,46 @@ kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> <
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../cluster_deploy_with_docker/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Seafile Docker Cluster Deployment">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Seafile Docker Cluster Deployment
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../migrate_ce_to_pro_with_docker/" class="md-footer__link md-footer__link--next" aria-label="Next: Migration from Seafile Community">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Migration from Seafile Community
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4831,7 +4855,7 @@ kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> <
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

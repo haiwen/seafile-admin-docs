@@ -2194,7 +2194,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4421,27 +4421,25 @@
 <h2 id="cache">Cache<a class="headerlink" href="#cache" title="Permanent link">&para;</a></h2>
 <p>Seahub caches items(avatars, profiles, etc) on file system by default(/tmp/seahub_cache/). You can replace with Memcached or Redis.</p>
 <h3 id="memcached">Memcached<a class="headerlink" href="#memcached" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code># on Debian/Ubuntu 18.04+
+<div class="highlight"><pre><span></span><code># on Debian/Ubuntu 18.04+
 apt-get install memcached libmemcached-dev -y
 pip3 install --timeout=3600 pylibmc django-pylibmc
 
 systemctl enable --now memcached
 </code></pre></div>
-
 <p>Add the following configuration to <code>seahub_settings.py</code>.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">CACHES</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&#39;BACKEND&#39;</span><span class="p">:</span> <span class="s">&#39;django_pylibmc.memcached.PyLibMCCache&#39;</span><span class="p">,</span>
-        <span class="s">&#39;LOCATION&#39;</span><span class="p">:</span> <span class="s">&#39;127.0.0.1:11211&#39;</span><span class="p">,</span>
-    <span class="p">},</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code>CACHES = {
+    &#39;default&#39;: {
+        &#39;BACKEND&#39;: &#39;django_pylibmc.memcached.PyLibMCCache&#39;,
+        &#39;LOCATION&#39;: &#39;127.0.0.1:11211&#39;,
+    },
+}
 </code></pre></div>
-
 <h3 id="redis">Redis<a class="headerlink" href="#redis" title="Permanent link">&para;</a></h3>
 <p>Redis support is added in version 11.0.</p>
 <p>Please refer to <a href="https://docs.djangoproject.com/en/4.2/topics/cache/#redis">Django's documentation about using Redis cache</a>.</p>
 <h2 id="security-settings">Security settings<a class="headerlink" href="#security-settings" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="c1"># For security consideration, please set to match the host/domain of your site, e.g., ALLOWED_HOSTS = [&#39;.example.com&#39;].</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># For security consideration, please set to match the host/domain of your site, e.g., ALLOWED_HOSTS = [&#39;.example.com&#39;].</span>
 <span class="c1"># Please refer https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts for details.</span>
 <span class="n">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;.myseafile.com&#39;</span><span class="p">]</span>
 
@@ -4457,10 +4455,9 @@ systemctl enable --now memcached
 <span class="c1"># https://docs.djangoproject.com/en/3.2/ref/settings/#csrf-trusted-origins</span>
 <span class="n">CSRF_TRUSTED_ORIGINS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://www.myseafile.com&#39;</span><span class="p">]</span>
 </code></pre></div>
-
 <h2 id="user-management-options">User management options<a class="headerlink" href="#user-management-options" title="Permanent link">&para;</a></h2>
 <p>The following options affect user registration, password and session.</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Enalbe or disalbe registration on web. Default is `False`.</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Enalbe or disalbe registration on web. Default is `False`.</span>
 <span class="n">ENABLE_SIGNUP</span> <span class="o">=</span> <span class="kc">False</span>
 
 <span class="c1"># Activate or deactivate user when registration complete. Default is `True`.</span>
@@ -4535,15 +4532,13 @@ systemctl enable --now memcached
 <span class="c1"># Then you can add the following configuration information to the configuration file.</span>
 <span class="n">ENABLE_FORCE_2FA_TO_ALL_USERS</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div>
-
 <h2 id="library-snapshot-label-feature">Library snapshot label feature<a class="headerlink" href="#library-snapshot-label-feature" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Turn on this option to let users to add a label to a library snapshot. Default is `False`</span>
-<span class="n">ENABLE_REPO_SNAPSHOT_LABEL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">False</span>
+<div class="highlight"><pre><span></span><code># Turn on this option to let users to add a label to a library snapshot. Default is `False`
+ENABLE_REPO_SNAPSHOT_LABEL = False
 </code></pre></div>
-
 <h2 id="library-options">Library options<a class="headerlink" href="#library-options" title="Permanent link">&para;</a></h2>
 <p>Options for libraries:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># if enable create encrypted library</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># if enable create encrypted library</span>
 <span class="n">ENABLE_ENCRYPTED_LIBRARY</span> <span class="o">=</span> <span class="kc">True</span>
 
 <span class="c1"># version for encrypted library</span>
@@ -4618,9 +4613,8 @@ systemctl enable --now memcached
 <span class="c1"># Default is false.</span>
 <span class="n">ENABLE_SHARE_LINK_REPORT_ABUSE</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div>
-
 <p>Options for online file preview:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Online preview maximum file size, defaults to 30M.</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Online preview maximum file size, defaults to 30M.</span>
 <span class="n">FILE_PREVIEW_MAX_SIZE</span> <span class="o">=</span> <span class="mi">30</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span>
 
 <span class="c1"># Extensions of previewed text files.</span>
@@ -4651,18 +4645,16 @@ systemctl enable --now memcached
 <span class="c1"># NOTE: since version 6.1.1</span>
 <span class="n">THUMBNAIL_SIZE_FOR_ORIGINAL</span> <span class="o">=</span> <span class="mi">1024</span>
 </code></pre></div>
-
 <h2 id="cloud-mode">Cloud Mode<a class="headerlink" href="#cloud-mode" title="Permanent link">&para;</a></h2>
 <p>You should enable cloud mode if you use Seafile with an unknown user base. It disables the organization tab in Seahub's website to ensure that users can't access the user list. Cloud mode provides some nice features like sharing content with unregistered users and sending invitations to them. Therefore you also want to enable user registration. Through the global address book (since version 4.2.3) you can do a search for every user account. So you probably want to disable it.</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Enable cloude mode and hide `Organization` tab.</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Enable cloude mode and hide `Organization` tab.</span>
 <span class="n">CLOUD_MODE</span> <span class="o">=</span> <span class="kc">True</span>
 
 <span class="c1"># Disable global address book</span>
 <span class="n">ENABLE_GLOBAL_ADDRESSBOOK</span> <span class="o">=</span> <span class="kc">False</span>
 </code></pre></div>
-
 <h2 id="single-sign-on">Single Sign On<a class="headerlink" href="#single-sign-on" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Enable authentication with ADFS</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Enable authentication with ADFS</span>
 <span class="c1"># Default is False</span>
 <span class="c1"># Since 6.0.9</span>
 <span class="n">ENABLE_ADFS_LOGIN</span> <span class="o">=</span> <span class="kc">True</span>
@@ -4688,9 +4680,8 @@ systemctl enable --now memcached
 <span class="n">CLIENT_SSO_VIA_LOCAL_BROWSER</span> <span class="o">=</span> <span class="kc">True</span>   <span class="c1"># default is False</span>
 <span class="n">CLIENT_SSO_UUID_EXPIRATION</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="mi">60</span>   <span class="c1"># in seconds</span>
 </code></pre></div>
-
 <h2 id="other-options">Other options<a class="headerlink" href="#other-options" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="c1"># This is outside URL for Seahub(Seafile Web). </span>
+<div class="highlight"><pre><span></span><code><span class="c1"># This is outside URL for Seahub(Seafile Web). </span>
 <span class="c1"># The domain part (i.e., www.example.com) will be used in generating share links and download/upload file via web.</span>
 <span class="c1"># Note: Outside URL means &quot;if you use Nginx, it should be the Nginx&#39;s address&quot;</span>
 <span class="c1"># Note: SERVICE_URL is moved to seahub_settings.py since 9.0.0</span>
@@ -4781,9 +4772,8 @@ systemctl enable --now memcached
 <span class="c1"># If show contact email when search user.</span>
 <span class="n">ENABLE_SHOW_CONTACT_EMAIL_WHEN_SEARCH_USER</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div>
-
 <h2 id="pro-edition-only-options">Pro edition only options<a class="headerlink" href="#pro-edition-only-options" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Whether to show the used traffic in user&#39;s profile popup dialog. Default is True</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Whether to show the used traffic in user&#39;s profile popup dialog. Default is True</span>
 <span class="n">SHOW_TRAFFIC</span> <span class="o">=</span> <span class="kc">True</span>
 
 <span class="c1"># Allow administrator to view user&#39;s file in UNENCRYPTED libraries</span>
@@ -4803,87 +4793,83 @@ systemctl enable --now memcached
 <span class="c1"># Since version 6.0.8</span>
 <span class="n">VIRUS_SCAN_NOTIFY_LIST</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;user_a@seafile.com&#39;</span><span class="p">,</span> <span class="s1">&#39;user_b@seafile.com&#39;</span><span class="p">]</span>
 </code></pre></div>
-
 <h2 id="restful-api">RESTful API<a class="headerlink" href="#restful-api" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code><span class="c1"># API throttling related settings. Enlarger the rates if you got 429 response code during API calls.</span>
-<span class="n">REST_FRAMEWORK</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{</span>
-<span class="w">    </span><span class="s1">&#39;DEFAULT_THROTTLE_RATES&#39;</span><span class="o">:</span><span class="w"> </span><span class="err">{</span>
-<span class="w">        </span><span class="s1">&#39;ping&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;600/minute&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;anon&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;5/minute&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;user&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;300/minute&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="err">}</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;UNICODE_JSON&#39;</span><span class="o">:</span><span class="w"> </span><span class="no">False</span><span class="p">,</span>
-<span class="err">}</span>
+<div class="highlight"><pre><span></span><code># API throttling related settings. Enlarger the rates if you got 429 response code during API calls.
+REST_FRAMEWORK = {
+    &#39;DEFAULT_THROTTLE_RATES&#39;: {
+        &#39;ping&#39;: &#39;600/minute&#39;,
+        &#39;anon&#39;: &#39;5/minute&#39;,
+        &#39;user&#39;: &#39;300/minute&#39;,
+    },
+    &#39;UNICODE_JSON&#39;: False,
+}
 
-<span class="c1"># Throtting whitelist used to disable throttle for certain IPs.</span>
-<span class="c1"># e.g. REST_FRAMEWORK_THROTTING_WHITELIST = [&#39;127.0.0.1&#39;, &#39;192.168.1.1&#39;]</span>
-<span class="c1"># Please make sure `REMOTE_ADDR` header is configured in Nginx conf according to https://manual.seafile.com/12.0/setup_binary/ce/deploy_with_nginx.html.</span>
-<span class="n">REST_FRAMEWORK_THROTTING_WHITELIST</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span>
+# Throtting whitelist used to disable throttle for certain IPs.
+# e.g. REST_FRAMEWORK_THROTTING_WHITELIST = [&#39;127.0.0.1&#39;, &#39;192.168.1.1&#39;]
+# Please make sure `REMOTE_ADDR` header is configured in Nginx conf according to https://manual.seafile.com/12.0/setup_binary/ce/deploy_with_nginx.html.
+REST_FRAMEWORK_THROTTING_WHITELIST = []
 </code></pre></div>
-
 <h2 id="seahub-custom-functions">Seahub Custom Functions<a class="headerlink" href="#seahub-custom-functions" title="Permanent link">&para;</a></h2>
 <p>Since version 6.2, you can define a custom function to modify the result of user search function.</p>
 <p>For example, if you want to limit user only search users in the same institution, you can define <code>custom_search_user</code> function in <code>{seafile install path}/conf/seahub_custom_functions/__init__.py</code></p>
 <p>Code example:</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<div class="highlight"><pre><span></span><code>import os
+import sys
 
-<span class="n">current_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
-<span class="n">seahub_dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current_path</span><span class="p">,</span><span class="w"> \</span>
-<span class="w">        </span><span class="s1">&#39;../../seafile-server-latest/seahub/seahub&#39;</span><span class="p">)</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seahub_dir</span><span class="p">)</span>
+current_path = os.path.dirname(os.path.abspath(__file__))
+seahub_dir = os.path.join(current_path, \
+        &#39;../../seafile-server-latest/seahub/seahub&#39;)
+sys.path.append(seahub_dir)
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">seahub.profile.models</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="n">Profile</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">custom_search_user</span><span class="p">(</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">emails</span><span class="p">):</span>
+from seahub.profile.models import Profile
+def custom_search_user(request, emails):
 
-<span class="w">    </span><span class="n">institution_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span>
+    institution_name = &#39;&#39;
 
-<span class="w">    </span><span class="n">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span>
-<span class="w">    </span><span class="n">profile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Profile</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get_profile_by_user</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">profile</span><span class="p">:</span>
-<span class="w">        </span><span class="n">institution_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">profile</span><span class="o">.</span><span class="n">institution</span>
+    username = request.user.username
+    profile = Profile.objects.get_profile_by_user(username)
+    if profile:
+        institution_name = profile.institution
 
-<span class="w">    </span><span class="n">inst_users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">user</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="ow">in</span>
-<span class="w">            </span><span class="n">Profile</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">institution</span><span class="o">=</span><span class="n">institution_name</span><span class="p">)]</span>
+    inst_users = [p.user for p in
+            Profile.objects.filter(institution=institution_name)]
 
-<span class="w">    </span><span class="n">filtered_emails</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">emails</span><span class="p">:</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">inst_users</span><span class="p">:</span>
-<span class="w">            </span><span class="n">filtered_emails</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">email</span><span class="p">)</span>
+    filtered_emails = []
+    for email in emails:
+        if email in inst_users:
+            filtered_emails.append(email)
 
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">filtered_emails</span>
+    return filtered_emails
 </code></pre></div>
-
 <blockquote>
 <p><strong>NOTE</strong>, you should NOT change the name of <code>custom_search_user</code> and <code>seahub_custom_functions/__init__.py</code></p>
 </blockquote>
 <p>Since version 6.2.5 pro, if you enable the <strong>ENABLE_SHARE_TO_ALL_GROUPS</strong> feather on sysadmin settings page, you can also define a custom function to return the groups a user can share library to.</p>
 <p>For example, if you want to let a user to share library to both its groups and the groups of user <code>test@test.com</code>, you can define a <code>custom_get_groups</code> function in <code>{seafile install path}/conf/seahub_custom_functions/__init__.py</code></p>
 <p>Code example:</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<div class="highlight"><pre><span></span><code>import os
+import sys
 
-<span class="n">current_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
-<span class="n">seaserv_dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current_path</span><span class="p">,</span><span class="w"> \</span>
-<span class="w">        </span><span class="s1">&#39;../../seafile-server-latest/seafile/lib64/python2.7/site-packages&#39;</span><span class="p">)</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seaserv_dir</span><span class="p">)</span>
+current_path = os.path.dirname(os.path.abspath(__file__))
+seaserv_dir = os.path.join(current_path, \
+        &#39;../../seafile-server-latest/seafile/lib64/python2.7/site-packages&#39;)
+sys.path.append(seaserv_dir)
 
-<span class="k">def</span><span class="w"> </span><span class="nf">custom_get_groups</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+def custom_get_groups(request):
 
-<span class="w">    </span><span class="kn">from</span><span class="w"> </span><span class="nn">seaserv</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="n">ccnet_api</span>
+    from seaserv import ccnet_api
 
-<span class="w">    </span><span class="n">groups</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
-<span class="w">    </span><span class="n">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">username</span>
+    groups = []
+    username = request.user.username
 
-<span class="w">    </span><span class="c1"># for current user</span>
-<span class="w">    </span><span class="n">groups</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">ccnet_api</span><span class="o">.</span><span class="n">get_groups</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+    # for current user
+    groups += ccnet_api.get_groups(username)
 
-<span class="w">    </span><span class="c1"># for &#39;test@test.com&#39; user</span>
-<span class="w">    </span><span class="n">groups</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">ccnet_api</span><span class="o">.</span><span class="n">get_groups</span><span class="p">(</span><span class="s1">&#39;test@test.com&#39;</span><span class="p">)</span>
+    # for &#39;test@test.com&#39; user
+    groups += ccnet_api.get_groups(&#39;test@test.com&#39;)
 
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">groups</span>
+    return groups
 </code></pre></div>
-
 <blockquote>
 <p><strong>NOTE</strong>, you should NOT change the name of <code>custom_get_groups</code> and <code>seahub_custom_functions/__init__.py</code></p>
 </blockquote>
@@ -4892,7 +4878,7 @@ systemctl enable --now memcached
 <li>You need to restart seahub so that your changes take effect.</li>
 <li>If your changes don't take effect, You may need to delete 'seahub_setting.pyc'. (A cache file)</li>
 </ul>
-<div class="codehilite"><pre><span></span><code>./seahub.sh<span class="w"> </span>restart
+<div class="highlight"><pre><span></span><code>./seahub.sh<span class="w"> </span>restart
 </code></pre></div>
 
 
@@ -4923,6 +4909,46 @@ systemctl enable --now memcached
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../seafile-conf/" class="md-footer__link md-footer__link--prev" aria-label="Previous: seafile.conf">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                seafile.conf
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../seafevents-conf/" class="md-footer__link md-footer__link--next" aria-label="Next: seafevents.conf">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                seafevents.conf
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4965,7 +4991,7 @@ systemctl enable --now memcached
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

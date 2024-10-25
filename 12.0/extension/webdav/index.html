@@ -2374,7 +2374,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4389,71 +4389,66 @@
 <p>In the document below, we assume your seafile installation folder is <code>/opt/seafile</code>.</p>
 <h2 id="config-webdav-extension">Config WebDAV extension<a class="headerlink" href="#config-webdav-extension" title="Permanent link">&para;</a></h2>
 <p>The configuration file is <code>/opt/seafile/conf/seafdav.conf</code>. If it is not created already, you can just create the file.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[WEBDAV]</span>
+<div class="highlight"><pre><span></span><code>[WEBDAV]
 
-<span class="c1"># Default is false. Change it to true to enable SeafDAV server.</span>
-<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+# Default is false. Change it to true to enable SeafDAV server.
+enabled = true
 
-<span class="na">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">8080</span>
-<span class="na">debug</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+port = 8080
+debug = true
 
-<span class="c1"># If you deploy seafdav behind nginx/apache, you need to modify &quot;share_name&quot;.</span>
-<span class="na">share_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/seafdav</span>
+# If you deploy seafdav behind nginx/apache, you need to modify &quot;share_name&quot;.
+share_name = /seafdav
 
-<span class="c1"># SeafDAV uses Gunicorn as web server.</span>
-<span class="c1"># This option maps to Gunicorn&#39;s &#39;workers&#39; setting. https://docs.gunicorn.org/en/stable/settings.html?#workers</span>
-<span class="c1"># By default it&#39;s set to 5 processes.</span>
-<span class="na">workers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">5</span>
+# SeafDAV uses Gunicorn as web server.
+# This option maps to Gunicorn&#39;s &#39;workers&#39; setting. https://docs.gunicorn.org/en/stable/settings.html?#workers
+# By default it&#39;s set to 5 processes.
+workers = 5
 
-<span class="c1"># This option maps to Gunicorn&#39;s &#39;timeout&#39; setting. https://docs.gunicorn.org/en/stable/settings.html?#timeout</span>
-<span class="c1"># By default it&#39;s set to 1200 seconds, to support large file uploads.</span>
-<span class="na">timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1200</span>
+# This option maps to Gunicorn&#39;s &#39;timeout&#39; setting. https://docs.gunicorn.org/en/stable/settings.html?#timeout
+# By default it&#39;s set to 1200 seconds, to support large file uploads.
+timeout = 1200
 </code></pre></div>
-
 <p>Every time the configuration is modified, you need to restart seafile server to make it take effect.</p>
-<div class="codehilite"><pre><span></span><code>./seafile.sh restart
+<div class="highlight"><pre><span></span><code>./seafile.sh restart
 </code></pre></div>
-
 <p>Your WebDAV client would visit the Seafile WebDAV server at <code>http://example.com:8080/seafdav</code></p>
 <p>In Pro edition 7.1.8 version and community edition 7.1.5, an option is added to append library ID to the library name returned by SeafDAV.</p>
-<div class="codehilite"><pre><span></span><code>show_repo_id=true
+<div class="highlight"><pre><span></span><code>show_repo_id=true
 </code></pre></div>
-
 <h2 id="proxy-with-nginx">Proxy with Nginx<a class="headerlink" href="#proxy-with-nginx" title="Permanent link">&para;</a></h2>
 <p>For Seafdav, the configuration of Nginx is as follows:</p>
-<div class="codehilite"><pre><span></span><code><span class="o">.....</span>
+<div class="highlight"><pre><span></span><code>.....
 
-<span class="w">    </span><span class="n">location</span><span class="w"> </span><span class="o">/</span><span class="n">seafdav</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">rewrite</span><span class="w"> </span><span class="o">^/</span><span class="n">seafdav</span><span class="o">$</span><span class="w"> </span><span class="o">/</span><span class="n">seafdav</span><span class="o">/</span><span class="w"> </span><span class="n">permanent</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
+    location /seafdav {
+        rewrite ^/seafdav$ /seafdav/ permanent;
+    }
 
-<span class="w">    </span><span class="n">location</span><span class="w"> </span><span class="o">/</span><span class="n">seafdav</span><span class="o">/</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">proxy_pass</span><span class="w">         </span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">seafdav</span><span class="o">/</span><span class="p">;</span>
-<span class="w">        </span><span class="n">proxy_set_header</span><span class="w">   </span><span class="n">Host</span><span class="w"> </span><span class="o">$</span><span class="n">host</span><span class="p">;</span>
-<span class="w">        </span><span class="n">proxy_set_header</span><span class="w">   </span><span class="n">X</span><span class="o">-</span><span class="n">Real</span><span class="o">-</span><span class="n">IP</span><span class="w"> </span><span class="o">$</span><span class="n">remote_addr</span><span class="p">;</span>
-<span class="w">        </span><span class="n">proxy_set_header</span><span class="w">   </span><span class="n">X</span><span class="o">-</span><span class="n">Forwarded</span><span class="o">-</span><span class="n">For</span><span class="w"> </span><span class="o">$</span><span class="n">proxy_add_x_forwarded_for</span><span class="p">;</span>
-<span class="w">        </span><span class="n">proxy_set_header</span><span class="w">   </span><span class="n">X</span><span class="o">-</span><span class="n">Forwarded</span><span class="o">-</span><span class="n">Host</span><span class="w"> </span><span class="o">$</span><span class="n">server_name</span><span class="p">;</span>
-<span class="w">        </span><span class="n">proxy_set_header</span><span class="w">   </span><span class="n">X</span><span class="o">-</span><span class="n">Forwarded</span><span class="o">-</span><span class="n">Proto</span><span class="w"> </span><span class="o">$</span><span class="n">scheme</span><span class="p">;</span>
-<span class="w">        </span><span class="n">proxy_read_timeout</span><span class="w">  </span><span class="mi">1200</span><span class="n">s</span><span class="p">;</span>
-<span class="w">        </span><span class="n">client_max_body_size</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="err">﻿</span>
-<span class="w">        </span><span class="n">access_log</span><span class="w">      </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">seafdav</span><span class="o">.</span><span class="n">access</span><span class="o">.</span><span class="n">log</span><span class="w"> </span><span class="n">seafileformat</span><span class="p">;</span>
-<span class="w">        </span><span class="n">error_log</span><span class="w">       </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">seafdav</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">log</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
+    location /seafdav/ {
+        proxy_pass         http://127.0.0.1:8080/seafdav/;
+        proxy_set_header   Host $host;
+        proxy_set_header   X-Real-IP $remote_addr;
+        proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header   X-Forwarded-Host $server_name;
+        proxy_set_header   X-Forwarded-Proto $scheme;
+        proxy_read_timeout  1200s;
+        client_max_body_size 0;
+﻿
+        access_log      /var/log/nginx/seafdav.access.log seafileformat;
+        error_log       /var/log/nginx/seafdav.error.log;
+    }
 
-<span class="w">    </span><span class="n">location</span><span class="w"> </span><span class="o">/</span><span class="p">:</span><span class="n">dir_browser</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">proxy_pass</span><span class="w">         </span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="p">:</span><span class="n">dir_browser</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
+    location /:dir_browser {
+        proxy_pass         http://127.0.0.1:8080/:dir_browser;
+    }
 </code></pre></div>
-
 <h3 id="proxy-with-apache">Proxy with Apache<a class="headerlink" href="#proxy-with-apache" title="Permanent link">&para;</a></h3>
 <p>For Seafdav, the configuration of Apache is as follows:</p>
-<div class="codehilite"><pre><span></span><code>......
-<span class="w">    </span><span class="nt">&lt;Location</span><span class="w"> </span><span class="err">/seafdav</span><span class="nt">&gt;</span>
-<span class="w">        </span>ProxyPass<span class="w"> </span>&quot;http://127.0.0.1:8080/seafdav&quot;
-<span class="w">    </span><span class="nt">&lt;/Location&gt;</span>
+<div class="highlight"><pre><span></span><code>......
+    &lt;Location /seafdav&gt;
+        ProxyPass &quot;http://127.0.0.1:8080/seafdav&quot;
+    &lt;/Location&gt;
 </code></pre></div>
-
 <h2 id="notes-on-clients">Notes on Clients<a class="headerlink" href="#notes-on-clients" title="Permanent link">&para;</a></h2>
 <p>Please first note that, there are some known performance limitation when you map a Seafile webdav server as a local file system (or network drive).</p>
 <ul>
@@ -4466,15 +4461,13 @@
 <h3 id="linux">Linux<a class="headerlink" href="#linux" title="Permanent link">&para;</a></h3>
 <p>On Linux you have more choices. You can use file manager such as Nautilus to connect to webdav server. Or you can use davfs2 from the command line.</p>
 <p>To use davfs2</p>
-<div class="codehilite"><pre><span></span><code>sudo apt-get install davfs2
+<div class="highlight"><pre><span></span><code>sudo apt-get install davfs2
 sudo mount -t davfs -o uid=&lt;username&gt; https://example.com/seafdav /media/seafdav/
 </code></pre></div>
-
 <p>The -o option sets the owner of the mounted directory to <username> so that it's writable for non-root users.</p>
 <p>It's recommended to disable LOCK operation for davfs2. You have to edit /etc/davfs2/davfs2.conf</p>
-<div class="codehilite"><pre><span></span><code> use_locks       0
+<div class="highlight"><pre><span></span><code> use_locks       0
 </code></pre></div>
-
 <h3 id="mac-os-x">Mac OS X<a class="headerlink" href="#mac-os-x" title="Permanent link">&para;</a></h3>
 <p>Finder's support for WebDAV is also not very stable and slow. So it is recommended to use a webdav client software such as Cyberduck.</p>
 <h2 id="frequently-asked-questions">Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permanent link">&para;</a></h2>
@@ -4484,27 +4477,23 @@ If not, modify it and restart seafile server.</p>
 <h3 id="the-client-gets-error-404-not-found">The client gets "Error: 404 Not Found"<a class="headerlink" href="#the-client-gets-error-404-not-found" title="Permanent link">&para;</a></h3>
 <p>If you deploy SeafDAV behind Nginx/Apache, make sure to change the value of <code>share_name</code> as the sample configuration above. Restart your seafile server and try again.</p>
 <h3 id="cant-renamemove-filefolder">Can't rename/move file/folder<a class="headerlink" href="#cant-renamemove-filefolder" title="Permanent link">&para;</a></h3>
-<p>First, check the <code>seafdav.log</code> to see if there is log like the following.</p>
-<div class="codehilite"><pre><span></span><code><span class="s">&quot;MOVE ... -&gt; 502 Bad Gateway</span>
-</code></pre></div>
+<p>First, check the <code>seafdav.log</code> to see if there is log like the following.
+<div class="highlight"><pre><span></span><code>&quot;MOVE ... -&gt; 502 Bad Gateway
+</code></pre></div></p>
+<p>If you have enabled <strong>debug</strong>, there will also be the following log.
+<div class="highlight"><pre><span></span><code>09:47:06.533 - DEBUG   : Raising DAVError 502 Bad Gateway: Source and destination must have the same scheme.
+If you are running behind a reverse proxy, you may have to rewrite the &#39;Destination&#39; header.
+(See https://github.com/mar10/wsgidav/issues/183)
 
-<p>If you have enabled <strong>debug</strong>, there will also be the following log.</p>
-<div class="codehilite"><pre><span></span><code><span class="mi">09</span><span class="o">:</span><span class="mi">47</span><span class="o">:</span><span class="mf">06.533</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">DEBUG</span><span class="w">   </span><span class="o">:</span><span class="w"> </span><span class="n">Raising</span><span class="w"> </span><span class="n">DAVError</span><span class="w"> </span><span class="mi">502</span><span class="w"> </span><span class="n">Bad</span><span class="w"> </span><span class="n">Gateway</span><span class="o">:</span><span class="w"> </span><span class="n">Source</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">destination</span><span class="w"> </span><span class="n">must</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">same</span><span class="w"> </span><span class="n">scheme</span><span class="o">.</span>
-<span class="n">If</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="n">behind</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">reverse</span><span class="w"> </span><span class="n">proxy</span><span class="o">,</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">may</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">rewrite</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="s1">&#39;Destination&#39;</span><span class="w"> </span><span class="n">header</span><span class="o">.</span>
-<span class="o">(</span><span class="n">See</span><span class="w"> </span><span class="n">https</span><span class="o">://</span><span class="n">github</span><span class="o">.</span><span class="na">com</span><span class="sr">/mar10/wsgidav/issues/</span><span class="mi">183</span><span class="o">)</span>
-
-<span class="mi">09</span><span class="o">:</span><span class="mi">47</span><span class="o">:</span><span class="mf">06.533</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">DEBUG</span><span class="w">   </span><span class="o">:</span><span class="w"> </span><span class="n">Caught</span><span class="w"> </span><span class="o">(</span><span class="mi">502</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;Source and destination must have the same scheme.\nIf you are running behind a reverse proxy, you may have to rewrite the &#39;Destination&#39; header.\n(See https://github.com/mar10/wsgidav/issues/183)&quot;</span><span class="o">)</span>
-</code></pre></div>
-
+09:47:06.533 - DEBUG   : Caught (502, &quot;Source and destination must have the same scheme.\nIf you are running behind a reverse proxy, you may have to rewrite the &#39;Destination&#39; header.\n(See https://github.com/mar10/wsgidav/issues/183)&quot;)
+</code></pre></div></p>
 <p>This issue usually occurs when you have configured HTTPS, but the request was forwarded, resulting in the <code>HTTP_X_FORWARDED_PROTO</code> value in the request received by Seafile not being HTTPS.</p>
-<p>You can solve this by manually changing the value of <code>HTTP_X_FORWARDED_PROTO</code>. For example, in nginx, change</p>
-<div class="codehilite"><pre><span></span><code>proxy_set_header X-Forwarded-Proto $scheme;
-</code></pre></div>
-
+<p>You can solve this by manually changing the value of <code>HTTP_X_FORWARDED_PROTO</code>. For example, in nginx, change
+<div class="highlight"><pre><span></span><code>proxy_set_header X-Forwarded-Proto $scheme;
+</code></pre></div></p>
 <p>to</p>
-<div class="codehilite"><pre><span></span><code>proxy_set_header X-Forwarded-Proto https;
+<div class="highlight"><pre><span></span><code>proxy_set_header X-Forwarded-Proto https;
 </code></pre></div>
-
 <h3 id="windows-explorer-reports-file-size-exceeds-the-limit-allowed-and-cannot-be-saved">Windows Explorer reports "file size exceeds the limit allowed and cannot be saved"<a class="headerlink" href="#windows-explorer-reports-file-size-exceeds-the-limit-allowed-and-cannot-be-saved" title="Permanent link">&para;</a></h3>
 <p>This happens when you map webdav as a network drive, and tries to copy a file larger than about 50MB from the network drive to a local folder.</p>
 <p>This is because Windows Explorer has a limit of the file size downloaded from webdav server. To make this size large, change the registry entry on the client machine. There is a registry key named <code>FileSizeLimitInBytes</code> under <code>HKEY_LOCAL_MACHINE -&gt; SYSTEM -&gt; CurrentControlSet -&gt; Services -&gt; WebClient -&gt; Parameters</code>.</p>
@@ -4537,6 +4526,46 @@ If not, modify it and restart seafile server.</p>
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../notification-server/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Notification Server">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Notification Server
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../fuse/" class="md-footer__link md-footer__link--next" aria-label="Next: FUSE extension">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                FUSE extension
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4579,7 +4608,7 @@ If not, modify it and restart seafile server.</p>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

@@ -2190,7 +2190,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4243,98 +4243,84 @@
 <h2 id="upgrade-a-binary-package-based-deployment">Upgrade a binary package based deployment<a class="headerlink" href="#upgrade-a-binary-package-based-deployment" title="Permanent link">&para;</a></h2>
 <h3 id="major-version-upgrade-eg-from-5xx-to-6yy">Major version upgrade (e.g. from 5.x.x to 6.y.y)<a class="headerlink" href="#major-version-upgrade-eg-from-5xx-to-6yy" title="Permanent link">&para;</a></h3>
 <p>Suppose you are using version 5.1.0 and like to upgrade to version 6.1.0. First download and extract the new version. You should have a directory layout similar to this:</p>
-<div class="codehilite"><pre><span></span><code>seafile
+<div class="highlight"><pre><span></span><code>seafile
    -- seafile-server-5.1.0
    -- seafile-server-6.1.0
    -- ccnet
    -- seafile-data
 </code></pre></div>
-
 <p>Now upgrade to version 6.1.0.</p>
 <p>Shutdown Seafile server if it's running</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>seafile/seafile-server-latest
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>seafile/seafile-server-latest
 ./seahub.sh<span class="w"> </span>stop
 ./seafile.sh<span class="w"> </span>stop
 <span class="c1"># or via service</span>
 /etc/init.d/seafile-server<span class="w"> </span>stop
 </code></pre></div>
-
 <p>Check the upgrade scripts in seafile-server-6.1.0 directory.</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>seafile/seafile-server-6.1.0
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>seafile/seafile-server-6.1.0
 ls<span class="w"> </span>upgrade/upgrade_*
 </code></pre></div>
-
 <p>You will get a list of upgrade files:</p>
-<div class="codehilite"><pre><span></span><code>...
+<div class="highlight"><pre><span></span><code>...
 upgrade_5.0_5.1.sh
 upgrade_5.1_6.0.sh
 upgrade_6.0_6.1.sh
 </code></pre></div>
-
 <p>Start from your current version, run the script(s one by one)</p>
-<div class="codehilite"><pre><span></span><code>upgrade/upgrade_5.1_6.0.sh
+<div class="highlight"><pre><span></span><code>upgrade/upgrade_5.1_6.0.sh
 upgrade/upgrade_6.0_6.1.sh
 </code></pre></div>
-
 <p>Start Seafile server</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>seafile/seafile-server-latest/
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>seafile/seafile-server-latest/
 ./seafile.sh<span class="w"> </span>start
 ./seahub.sh<span class="w"> </span>start<span class="w"> </span><span class="c1"># or &quot;./seahub.sh start-fastcgi&quot; if you&#39;re using fastcgi</span>
 <span class="c1"># or via service</span>
 /etc/init.d/seafile-server<span class="w"> </span>start
 </code></pre></div>
-
 <p>If the new version works fine, the old version can be removed</p>
-<div class="codehilite"><pre><span></span><code>rm<span class="w"> </span>-rf<span class="w"> </span>seafile-server-5.1.0/
+<div class="highlight"><pre><span></span><code>rm<span class="w"> </span>-rf<span class="w"> </span>seafile-server-5.1.0/
 </code></pre></div>
-
 <h3 id="minor-version-upgrade-eg-from-61x-to-62y">Minor version upgrade (e.g. from 6.1.x to 6.2.y)<a class="headerlink" href="#minor-version-upgrade-eg-from-61x-to-62y" title="Permanent link">&para;</a></h3>
 <p>Suppose you are using version 6.1.0 and like to upgrade to version 6.2.0. First download and extract the new version. You should have a directory layout similar to this:</p>
-<div class="codehilite"><pre><span></span><code>seafile
+<div class="highlight"><pre><span></span><code>seafile
    -- seafile-server-6.1.0
    -- seafile-server-6.2.0
    -- ccnet
    -- seafile-data
 </code></pre></div>
-
 <p>Now upgrade to version 6.2.0.</p>
 <ol>
 <li>Shutdown Seafile server if it's running</li>
 </ol>
-<div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>seafile/seafile-server-latest
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>seafile/seafile-server-latest
 ./seahub.sh<span class="w"> </span>stop
 ./seafile.sh<span class="w"> </span>stop
 <span class="c1"># or via service</span>
 /etc/init.d/seafile-server<span class="w"> </span>stop
 </code></pre></div>
-
 <p>Check the upgrade scripts in seafile-server-6.2.0 directory.</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>seafile/seafile-server-6.2.0
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>seafile/seafile-server-6.2.0
 ls<span class="w"> </span>upgrade/upgrade_*
 </code></pre></div>
-
 <p>You will get a list of upgrade files:</p>
-<div class="codehilite"><pre><span></span><code>...
+<div class="highlight"><pre><span></span><code>...
 upgrade/upgrade_5.1_6.0.sh
 upgrade/upgrade_6.0_6.1.sh
 upgrade/upgrade_6.1_6.2.sh
 </code></pre></div>
-
 <p>Start from your current version, run the script(s one by one)</p>
-<div class="codehilite"><pre><span></span><code>upgrade/upgrade_6.1_6.2.sh
+<div class="highlight"><pre><span></span><code>upgrade/upgrade_6.1_6.2.sh
 </code></pre></div>
-
 <p>Start Seafile server</p>
-<div class="codehilite"><pre><span></span><code>./seafile.sh<span class="w"> </span>start
+<div class="highlight"><pre><span></span><code>./seafile.sh<span class="w"> </span>start
 ./seahub.sh<span class="w"> </span>start
 <span class="c1"># or via service</span>
 /etc/init.d/seafile-server<span class="w"> </span>start
 </code></pre></div>
-
 <p>If the new version works, the old version can be removed</p>
-<div class="codehilite"><pre><span></span><code>rm<span class="w"> </span>-rf<span class="w"> </span>seafile-server-6.1.0/
+<div class="highlight"><pre><span></span><code>rm<span class="w"> </span>-rf<span class="w"> </span>seafile-server-6.1.0/
 </code></pre></div>
-
 <h3 id="maintenance-version-upgrade-eg-from-622-to-623">Maintenance version upgrade (e.g. from 6.2.2 to 6.2.3)<a class="headerlink" href="#maintenance-version-upgrade-eg-from-622-to-623" title="Permanent link">&para;</a></h3>
 <p>A maintenance upgrade is for example an upgrade from 6.2.2 to 6.2.3.</p>
 <ol>
@@ -4342,14 +4328,16 @@ upgrade/upgrade_6.1_6.2.sh
 <li>
 <p>For this type of upgrade, you only need to update the symbolic links (for avatar and a few other folders). 
    A script to perform a minor upgrade is provided with Seafile server (for history reasons, the script is called <code>minor-upgrade.sh</code>):</p>
-<p><code>cd seafile-server-6.2.3/upgrade/ &amp;&amp; ./minor-upgrade.sh</code></p>
+<div class="highlight"><pre><span></span><code>cd seafile-server-6.2.3/upgrade/ &amp;&amp; ./minor-upgrade.sh
+</code></pre></div>
 </li>
 <li>
 <p>Start Seafile</p>
 </li>
 <li>
 <p>If the new version works, the old version can be removed</p>
-<p><code>rm -rf seafile-server-6.2.2/</code></p>
+<div class="highlight"><pre><span></span><code>rm -rf seafile-server-6.2.2/
+</code></pre></div>
 </li>
 </ol>
 
@@ -4381,6 +4369,46 @@ upgrade/upgrade_6.1_6.2.sh
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../administration/clean_database/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Clean database">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Clean database
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../upgrade_docker/" class="md-footer__link md-footer__link--next" aria-label="Next: Upgrade Seafile Docker">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Upgrade Seafile Docker
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4423,7 +4451,7 @@ upgrade/upgrade_6.1_6.2.sh
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

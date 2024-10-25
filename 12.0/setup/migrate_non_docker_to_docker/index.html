@@ -2366,7 +2366,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4384,43 +4384,39 @@
 <h2 id="migrate">Migrate<a class="headerlink" href="#migrate" title="Permanent link">&para;</a></h2>
 <h3 id="stop-seafile-nginx">Stop Seafile, Nginx<a class="headerlink" href="#stop-seafile-nginx" title="Permanent link">&para;</a></h3>
 <p>Stop the locally deployed Seafile, Nginx, Memcache</p>
-<div class="codehilite"><pre><span></span><code>systemctl stop nginx &amp;&amp;  systemctl disable nginx
+<div class="highlight"><pre><span></span><code>systemctl stop nginx &amp;&amp;  systemctl disable nginx
 systemctl stop memcached &amp;&amp;  systemctl disable memcached
 ./seafile.sh stop  &amp;&amp; ./seahub.sh stop
 </code></pre></div>
-
 <h3 id="prepare-mysql-and-the-folders-for-seafile-docker">Prepare MySQL and the folders for Seafile docker<a class="headerlink" href="#prepare-mysql-and-the-folders-for-seafile-docker" title="Permanent link">&para;</a></h3>
 <h4 id="add-permissions-to-the-local-mysql-seafile-user">Add permissions to the local MySQL Seafile user<a class="headerlink" href="#add-permissions-to-the-local-mysql-seafile-user" title="Permanent link">&para;</a></h4>
 <p>The non-Docker version uses the local MySQL. Now if the Docker version of Seafile connects to this MySQL, you need to increase the corresponding access permissions.</p>
 <p>The following commands are based on that you use <code>seafile</code> as the user to access:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1">## Note, change the password according to the actual password you use</span>
-<span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;seafile&#39;</span><span class="nv">@&#39;%&#39;</span><span class="w"> </span><span class="k">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;your-password&#39;</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">OPTION</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code>## Note, change the password according to the actual password you use
+GRANT ALL PRIVILEGES ON *.* TO &#39;seafile&#39;@&#39;%&#39; IDENTIFIED BY &#39;your-password&#39; WITH GRANT OPTION;
 
-<span class="c1">## Grant seafile user can connect the database from any IP address</span>
-<span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n n-Quoted">`ccnet_db`</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="s1">&#39;seafile&#39;</span><span class="nv">@&#39;%&#39;</span><span class="p">;</span>
-<span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n n-Quoted">`seafile_db`</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="s1">&#39;seafile&#39;</span><span class="nv">@&#39;%&#39;</span><span class="p">;</span>
-<span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n n-Quoted">`seahub_db`</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="s1">&#39;seafile&#39;</span><span class="nv">@&#39;%&#39;</span><span class="p">;</span>
+## Grant seafile user can connect the database from any IP address
+GRANT ALL PRIVILEGES ON `ccnet_db`.* to &#39;seafile&#39;@&#39;%&#39;;
+GRANT ALL PRIVILEGES ON `seafile_db`.* to &#39;seafile&#39;@&#39;%&#39;;
+GRANT ALL PRIVILEGES ON `seahub_db`.* to &#39;seafile&#39;@&#39;%&#39;;
 
-<span class="c1">## Restart MySQL</span>
-<span class="n">systemctl</span><span class="w"> </span><span class="k">restart</span><span class="w"> </span><span class="n">mariadb</span>
+## Restart MySQL
+systemctl restart mariadb
 </code></pre></div>
-
 <h4 id="create-the-required-directories-for-seafile-docker-image">Create the required directories for Seafile Docker image<a class="headerlink" href="#create-the-required-directories-for-seafile-docker-image" title="Permanent link">&para;</a></h4>
 <p>By default, we take <code>/opt/seafile-data</code> as example.</p>
-<div class="codehilite"><pre><span></span><code>mkdir -p /opt/seafile-data/seafile
+<div class="highlight"><pre><span></span><code>mkdir -p /opt/seafile-data/seafile
 </code></pre></div>
-
 <h4 id="prepare-config-files">Prepare config files<a class="headerlink" href="#prepare-config-files" title="Permanent link">&para;</a></h4>
 <p>Copy the original config files to the directory to be mapped by the docker version of seafile</p>
-<div class="codehilite"><pre><span></span><code>cp -r /opt/seafile/conf  /opt/seafile-data/seafile
+<div class="highlight"><pre><span></span><code>cp -r /opt/seafile/conf  /opt/seafile-data/seafile
 cp -r /opt/seafile/seahub-data  /opt/seafile-data/seafile
 </code></pre></div>
-
 <p>Modify the MySQL configuration in <code>/opt/seafile-data/seafile/conf</code>, including <code>ccnet.conf</code>, <code>seafile.conf</code>, <code>seahub_settings</code>, change <code>HOST=127.0.0.1</code> to <code>HOST=&lt;local ip&gt;</code>.</p>
 <p>Modify the memcached configuration in <code>seahub_settings.py</code> to use the Docker version of Memcached: change it to <code>'LOCATION': 'memcached:11211'</code> (the network name of Docker version of Memcached is <code>memcached</code>).</p>
 <h4 id="download-and-modify-seafile-docker-yml">Download and modify Seafile-docker yml<a class="headerlink" href="#download-and-modify-seafile-docker-yml" title="Permanent link">&para;</a></h4>
 <p>We recommond you download Seafile-docker yml into <code>/opt/seafile-data</code></p>
-<div class="codehilite"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/opt/seafile-data
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/opt/seafile-data
 <span class="nb">cd</span><span class="w"> </span>/opt/seafile-data
 <span class="c1"># e.g., pro edition</span>
 wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/12.0/docker/pro/env
@@ -4429,7 +4425,6 @@ wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/pro/caddy.yml
 
 nano<span class="w"> </span>.env
 </code></pre></div>
-
 <p>After downloading relative configuration files, you should also modify the <code>.env</code> by following steps</p>
 <ul>
 <li>
@@ -4439,49 +4434,44 @@ nano<span class="w"> </span>.env
 <p>Mount the old Seafile data to the new Seafile server</p>
 </li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="nv">SEAFILE_VOLUME</span><span class="o">=</span>&lt;old-Seafile-data&gt;
+<div class="highlight"><pre><span></span><code><span class="nv">SEAFILE_VOLUME</span><span class="o">=</span>&lt;old-Seafile-data&gt;
 </code></pre></div>
-
 <h3 id="start-seafile-docker">Start Seafile docker<a class="headerlink" href="#start-seafile-docker" title="Permanent link">&para;</a></h3>
 <p>Start Seafile docker and check if everything is okay:</p>
-<div class="codehilite"><pre><span></span><code>cd /opt/seafile-data
+<div class="highlight"><pre><span></span><code>cd /opt/seafile-data
 docker compose  up -d
 </code></pre></div>
-
 <h2 id="security">Security<a class="headerlink" href="#security" title="Permanent link">&para;</a></h2>
 <p>While it is not possible from inside a docker container to connect to the host database via localhost but via <code>&lt;local ip&gt;</code> you also need to bind your databaseserver to that IP. If this IP is public, it is strongly advised to protect your database port with a firewall. Otherwise your databases are reachable via internet.
 An alternative might be to start another local IP from <a href="https://tools.ietf.org/html/rfc1597">RFC 1597</a> e.g. <code>192.168.123.45</code>. Afterwards you can bind to that IP.</p>
 <h3 id="iptables">iptables<a class="headerlink" href="#iptables" title="Permanent link">&para;</a></h3>
-<p>Following iptables commands protect MariaDB/MySQL:</p>
-<div class="codehilite"><pre><span></span><code>iptables -A INPUT -s 172.16.0.0/12 -j ACCEPT #Allow Dockernetworks
+<p>Following iptables commands protect MariaDB/MySQL:
+<div class="highlight"><pre><span></span><code>iptables -A INPUT -s 172.16.0.0/12 -j ACCEPT #Allow Dockernetworks
 iptables -A INPUT -p tcp -m tcp --dport 3306 -j DROP #Deny Internet
 ip6tables -A INPUT -p tcp -m tcp --dport 3306 -j DROP #Deny Internet
 </code></pre></div>
-
-<p>Keep in mind this is not bootsafe!</p>
+Keep in mind this is not bootsafe!</p>
 <h3 id="binding-based">Binding based<a class="headerlink" href="#binding-based" title="Permanent link">&para;</a></h3>
-<p>For Debian based Linux Distros you can start a local IP by adding in <code>/etc/network/interfaces</code> something like:</p>
-<div class="codehilite"><pre><span></span><code><span class="nx">iface</span><span class="w"> </span><span class="nx">eth0</span><span class="w"> </span><span class="nx">inet</span><span class="w"> </span><span class="nx">static</span>
-<span class="w">  </span><span class="nx">address</span><span class="w"> </span><span class="m m-Double">192.168.123.45</span><span class="o">/</span><span class="mi">32</span>
+<p>For Debian based Linux Distros you can start a local IP by adding in <code>/etc/network/interfaces</code> something like:
+<div class="highlight"><pre><span></span><code>iface eth0 inet static
+  address 192.168.123.45/32
 </code></pre></div>
-
-<p><code>eth0</code> might be <code>ensXY</code>. Or if you know how to start a dummy interface, thats even better.</p>
+<code>eth0</code> might be <code>ensXY</code>. Or if you know how to start a dummy interface, thats even better.</p>
 <p>SUSE based is by editing <code>/etc/sysconfig/network/ifcfg-eth0</code> (ethXY/ensXY/bondXY)</p>
 <p>If using MariaDB the server just can bind to one IP-address (192.158.1.38 or 0.0.0.0 (internet)). So if you bind your MariaDB server to that new address other applications might need some reconfigurement.</p>
-<p>In <code>/etc/mysql/mariadb.conf.d/50-server.cnf</code> edit the following line to:</p>
-<div class="codehilite"><pre><span></span><code><span class="nx">bind</span><span class="o">-</span><span class="nx">address</span><span class="w">    </span><span class="p">=</span><span class="w"> </span><span class="m m-Double">192.168.123.45</span>
+<p>In <code>/etc/mysql/mariadb.conf.d/50-server.cnf</code> edit the following line to:
+<div class="highlight"><pre><span></span><code>bind-address    = 192.168.123.45
 </code></pre></div>
+then edit /opt/seafile-data/seafile/conf/ -&gt; ccnet.conf seafile.conf seahub_settings.py in the Host-Line to that IP and execute the following commands:</p>
+<div class="highlight"><pre><span></span><code>service networking reload
+ip a #to check whether the ip is present
+service mysql restart
+ss -tulpen | grep 3306 #to check whether the database listens on the correct IP
+cd /opt/seafile-data/
+docker compose down
+docker compose up -d
 
-<p>then edit /opt/seafile-data/seafile/conf/ -&gt; ccnet.conf seafile.conf seahub_settings.py in the Host-Line to that IP and execute the following commands:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">service</span><span class="w"> </span><span class="n">networking</span><span class="w"> </span><span class="n">reload</span>
-<span class="n">ip</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="c1">#to check whether the ip is present</span>
-<span class="n">service</span><span class="w"> </span><span class="n">mysql</span><span class="w"> </span><span class="n">restart</span>
-<span class="n">ss</span><span class="w"> </span><span class="o">-</span><span class="n">tulpen</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">grep</span><span class="w"> </span><span class="mi">3306</span><span class="w"> </span><span class="c1">#to check whether the database listens on the correct IP</span>
-<span class="n">cd</span><span class="w"> </span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">seafile</span><span class="o">-</span><span class="n">data</span><span class="o">/</span>
-<span class="n">docker</span><span class="w"> </span><span class="n">compose</span><span class="w"> </span><span class="n">down</span>
-<span class="n">docker</span><span class="w"> </span><span class="n">compose</span><span class="w"> </span><span class="n">up</span><span class="w"> </span><span class="o">-</span><span class="n">d</span>
-
-<span class="c1">## restart your applications</span>
+## restart your applications
 </code></pre></div>
 
 
@@ -4512,6 +4502,46 @@ ip6tables -A INPUT -p tcp -m tcp --dport 3306 -j DROP #Deny Internet
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../migrate_ce_to_pro_with_docker/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Migration from Seafile Community">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Migration from Seafile Community
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../setup_binary/outline_ce/" class="md-footer__link md-footer__link--next" aria-label="Next: Outline">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Outline
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4554,7 +4584,7 @@ ip6tables -A INPUT -p tcp -m tcp --dport 3306 -j DROP #Deny Internet
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

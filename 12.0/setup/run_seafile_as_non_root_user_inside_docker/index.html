@@ -2219,7 +2219,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4099,18 +4099,15 @@
 <h1 id="run-seafile-as-non-root-user-inside-docker">Run Seafile as non root user inside docker<a class="headerlink" href="#run-seafile-as-non-root-user-inside-docker" title="Permanent link">&para;</a></h1>
 <p>You can use run seafile as non root user in docker. (<strong>NOTE:</strong> Programs such as <code>my_init</code>, Nginx are still run as <code>root</code> inside docker.)</p>
 <p>First add the <code>NON_ROOT=true</code> to the <code>.env</code>.</p>
-<div class="codehilite"><pre><span></span><code>NON_ROOT=true
+<div class="highlight"><pre><span></span><code>NON_ROOT=true
 </code></pre></div>
-
 <p>Then modify <code>/opt/seafile-data/seafile/</code> permissions.</p>
-<div class="codehilite"><pre><span></span><code>chmod<span class="w"> </span>-R<span class="w"> </span>a+rwx<span class="w"> </span>/opt/seafile-data/seafile/
+<div class="highlight"><pre><span></span><code>chmod<span class="w"> </span>-R<span class="w"> </span>a+rwx<span class="w"> </span>/opt/seafile-data/seafile/
 </code></pre></div>
-
 <p>Then destroy the containers and run them again:</p>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
 docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
-
 <p>Now you can run Seafile as <code>seafile</code> user. (<strong>NOTE:</strong> Later, when doing maintenance, other scripts in docker are also required to be run as <code>seafile</code> user, e.g. <code>su seafile -c ./seaf-gc.sh</code>)</p>
 
 
@@ -4141,6 +4138,46 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../setup_with_an_existing_mysql_server/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Deploy with an existing MySQL server">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Deploy with an existing MySQL server
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../cluster_deploy_with_docker/" class="md-footer__link md-footer__link--next" aria-label="Next: Seafile Docker Cluster Deployment">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Seafile Docker Cluster Deployment
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4183,7 +4220,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

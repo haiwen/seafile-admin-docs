@@ -2374,7 +2374,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4396,20 +4396,18 @@
 <h3 id="install-poppler-utils">Install poppler-utils<a class="headerlink" href="#install-poppler-utils" title="Permanent link">&para;</a></h3>
 <p>The package poppler-utils is required for full text search of pdf files.</p>
 <p>On Ubuntu/Debian:</p>
-<div class="codehilite"><pre><span></span><code>sudo apt-get install poppler-utils
+<div class="highlight"><pre><span></span><code>sudo apt-get install poppler-utils
 </code></pre></div>
-
 <h2 id="do-the-migration">Do the migration<a class="headerlink" href="#do-the-migration" title="Permanent link">&para;</a></h2>
 <p>We assume you already have deployed Seafile Community Server 10.0.0 under <code>/opt/seafile/seafile-server-10.0.0</code>. </p>
 <h3 id="get-the-license">Get the license<a class="headerlink" href="#get-the-license" title="Permanent link">&para;</a></h3>
 <p>If the license you received is not named as seafile-license.txt, rename it to seafile-license.txt. Then put the license file under the top level diretory. In our example, it is <code>/opt/seafile/</code>.</p>
 <h3 id="download-uncompress-seafile-professional-server">Download &amp; uncompress Seafile Professional Server<a class="headerlink" href="#download-uncompress-seafile-professional-server" title="Permanent link">&para;</a></h3>
 <p>You should uncompress the tarball to the top level directory of your installation, in our example it is <code>/opt/seafile</code>.</p>
-<div class="codehilite"><pre><span></span><code>tar xf seafile-pro-server_10.0.0_x86-64_Ubuntu.tar.gz
+<div class="highlight"><pre><span></span><code>tar xf seafile-pro-server_10.0.0_x86-64_Ubuntu.tar.gz
 </code></pre></div>
-
 <p>Now you have:</p>
-<div class="codehilite"><pre><span></span><code>seafile
+<div class="highlight"><pre><span></span><code>seafile
 ├── seafile-license.txt
 ├── seafile-pro-server-10.0.0/
 ├── seafile-server-10.0.0/
@@ -4419,7 +4417,6 @@
 └── conf/
 └── logs/
 </code></pre></div>
-
 <hr />
 <p>You should notice the difference between the names of the Community Server and Professional Server. Take the 10.0.0 64bit version as an example:</p>
 <ul>
@@ -4430,18 +4427,16 @@
 <ul>
 <li>Stop Seafile Community Server if it's running</li>
 </ul>
-<div class="codehilite"><pre><span></span><code>cd seafile/seafile-server-10.0.0
+<div class="highlight"><pre><span></span><code>cd seafile/seafile-server-10.0.0
 ./seafile.sh stop
 ./seahub.sh stop
 </code></pre></div>
-
 <ul>
 <li>Run the migration script </li>
 </ul>
-<div class="codehilite"><pre><span></span><code>cd seafile/seafile-pro-server-10.0.0/
+<div class="highlight"><pre><span></span><code>cd seafile/seafile-pro-server-10.0.0/
 ./pro/pro.py setup --migrate
 </code></pre></div>
-
 <p>The migration script is going to do the following for you:</p>
 <ul>
 <li>ensure your have all the prerequisites met</li>
@@ -4450,7 +4445,7 @@
 <li>create extra database tables</li>
 </ul>
 <p>Now you have:</p>
-<div class="codehilite"><pre><span></span><code>seafile
+<div class="highlight"><pre><span></span><code>seafile
 ├── seafile-license.txt
 ├── seafile-pro-server-10.0.0/
 ├── seafile-server-10.0.0/
@@ -4461,51 +4456,45 @@
 ├── seahub_settings.py
 └── pro-data/
 </code></pre></div>
-
 <h3 id="add-memory-cache-configuration">Add Memory Cache Configuration<a class="headerlink" href="#add-memory-cache-configuration" title="Permanent link">&para;</a></h3>
 <p>Using memory cache is mandatory in Pro Edition. You may use Memcached or Reids as cache server.</p>
 <h4 id="use-memcached">Use Memcached<a class="headerlink" href="#use-memcached" title="Permanent link">&para;</a></h4>
 <p>Use the following commands to install memcached and corresponding libraies on your system:</p>
-<div class="codehilite"><pre><span></span><code># on Debian/Ubuntu 18.04+
+<div class="highlight"><pre><span></span><code># on Debian/Ubuntu 18.04+
 apt-get install memcached libmemcached-dev -y
 pip3 install --timeout=3600 pylibmc django-pylibmc
 
 systemctl enable --now memcached
 </code></pre></div>
-
 <p>Add the following configuration to <code>seahub_settings.py</code>.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">CACHES</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&#39;BACKEND&#39;</span><span class="p">:</span> <span class="s">&#39;django_pylibmc.memcached.PyLibMCCache&#39;</span><span class="p">,</span>
-        <span class="s">&#39;LOCATION&#39;</span><span class="p">:</span> <span class="s">&#39;127.0.0.1:11211&#39;</span><span class="p">,</span>
-    <span class="p">},</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code>CACHES = {
+    &#39;default&#39;: {
+        &#39;BACKEND&#39;: &#39;django_pylibmc.memcached.PyLibMCCache&#39;,
+        &#39;LOCATION&#39;: &#39;127.0.0.1:11211&#39;,
+    },
+}
 </code></pre></div>
-
 <h4 id="use-redis">Use Redis<a class="headerlink" href="#use-redis" title="Permanent link">&para;</a></h4>
 <p>Redis is supported since version 11.0.</p>
 <p>First, Install Redis with package installers in your OS.</p>
 <p>Then refer to <a href="https://docs.djangoproject.com/en/4.2/topics/cache/#redis">Django's documentation about using Redis cache</a> to add Redis configurations to <code>seahub_settings.py</code>.</p>
 <h3 id="start-seafile-professional-server">Start Seafile Professional Server<a class="headerlink" href="#start-seafile-professional-server" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>cd seafile/seafile-pro-server-10.0.0
+<div class="highlight"><pre><span></span><code>cd seafile/seafile-pro-server-10.0.0
 ./seafile.sh start
 ./seahub.sh start
 </code></pre></div>
-
 <h2 id="switch-back-to-community-server">Switch Back to Community Server<a class="headerlink" href="#switch-back-to-community-server" title="Permanent link">&para;</a></h2>
 <p>Stop Seafile Professional Server if it's running</p>
-<div class="codehilite"><pre><span></span><code>cd seafile/seafile-pro-server-10.0.0/
+<div class="highlight"><pre><span></span><code>cd seafile/seafile-pro-server-10.0.0/
 ./seafile.sh stop
 ./seahub.sh stop
 </code></pre></div>
-
 <p>Run the minor-upgrade script to fix symbolic links</p>
-<div class="codehilite"><pre><span></span><code>cd seafile/seafile-server-10.0.0/
+<div class="highlight"><pre><span></span><code>cd seafile/seafile-server-10.0.0/
 ./upgrade/minor-upgrade.sh
 </code></pre></div>
-
 <p>Start Seafile Community Server</p>
-<div class="codehilite"><pre><span></span><code>cd haiwen/seafile-server-10.0.0/
+<div class="highlight"><pre><span></span><code>cd haiwen/seafile-server-10.0.0/
 ./seafile.sh start
 ./seahub.sh start
 </code></pre></div>
@@ -4538,6 +4527,46 @@ systemctl enable --now memcached
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../installation_pro/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Installation">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Installation
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../deploy_in_a_cluster/" class="md-footer__link md-footer__link--next" aria-label="Next: Deploy in a cluster">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Deploy in a cluster
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4580,7 +4609,7 @@ systemctl enable --now memcached
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

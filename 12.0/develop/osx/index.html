@@ -2190,7 +2190,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4253,37 +4253,33 @@
 </ul>
 <h2 id="building-sync-client">Building Sync Client<a class="headerlink" href="#building-sync-client" title="Permanent link">&para;</a></h2>
 <p>Following directory structures are expected when building Sync Client:</p>
-<div class="codehilite"><pre><span></span><code>seafile-workspace/
+<div class="highlight"><pre><span></span><code>seafile-workspace/
 seafile-workspace/libsearpc/
 seafile-workspace/seafile/
 seafile-workspace/seafile-client/
 </code></pre></div>
-
 <p>The source code of these projects can be downloaded at <a href="https://github.com/haiwen/libsearpc">github.com/haiwen/libsearpc</a>, <a href="https://github.com/haiwen/seafile">github.com/haiwen/seafile</a>, and <a href="https://github.com/haiwen/seafile-client">github.com/haiwen/seafile-client</a>.</p>
 <h3 id="building">Building<a class="headerlink" href="#building" title="Permanent link">&para;</a></h3>
 <p>Note: the building commands have been included in the packaging script, you can skip building commands while packaging.</p>
 <p>To build libsearpc:</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>seafile-workspace/libsearpc/
-$<span class="w"> </span>./autogen.sh
-$<span class="w"> </span>./configure<span class="w"> </span>--disable-compile-demo<span class="w"> </span>--enable-compile-universal<span class="o">=</span>yes
-$<span class="w"> </span>make
-$<span class="w"> </span>make<span class="w"> </span>install
+<div class="highlight"><pre><span></span><code>$ cd seafile-workspace/libsearpc/
+$ ./autogen.sh
+$ ./configure --disable-compile-demo --enable-compile-universal=yes
+$ make
+$ make install
 </code></pre></div>
-
 <p>To build seafile:</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>seafile-workspace/seafile/
-$<span class="w"> </span>./autogen.sh
-$<span class="w"> </span>./configure<span class="w"> </span>--disable-fuse<span class="w"> </span>--enable-compile-universal<span class="o">=</span>yes
-$<span class="w"> </span>make
-$<span class="w"> </span>make<span class="w"> </span>install
+<div class="highlight"><pre><span></span><code>$ cd seafile-workspace/seafile/
+$ ./autogen.sh
+$ ./configure --disable-fuse --enable-compile-universal=yes
+$ make
+$ make install
 </code></pre></div>
-
 <p>To build seafile-client:</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>seafile-workspace/seafile-client/
-$<span class="w"> </span>cmake<span class="w"> </span>-GXcode<span class="w"> </span>-B.<span class="w"> </span>-S.
-$<span class="w"> </span>xcodebuild<span class="w"> </span>-target<span class="w"> </span>seafile-applet<span class="w"> </span>-configuration<span class="w"> </span>Release
+<div class="highlight"><pre><span></span><code>$ cd seafile-workspace/seafile-client/
+$ cmake -GXcode -B. -S.
+$ xcodebuild -target seafile-applet -configuration Release
 </code></pre></div>
-
 <h3 id="packaging">Packaging<a class="headerlink" href="#packaging" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Update the CERT_ID in <strong>seafile-workspace/seafile/scripts/build/build-mac-local-py3.py</strong> to the ID of <em>Developer ID Application</em>.</li>
@@ -4318,6 +4314,46 @@ $<span class="w"> </span>xcodebuild<span class="w"> </span>-target<span class="w
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../linux/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Linux">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Linux
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../windows/" class="md-footer__link md-footer__link--next" aria-label="Next: Windows">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Windows
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4360,7 +4396,7 @@ $<span class="w"> </span>xcodebuild<span class="w"> </span>-target<span class="w
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

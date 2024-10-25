@@ -2293,7 +2293,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4229,29 +4229,28 @@
 <li>Install and configure memcached or Redis. For best performance, Seafile requires enable memory cache for objects. We recommend to allocate at least 128MB memory for Memcached or Redis.</li>
 </ul>
 <h2 id="modify-seafileconf">Modify Seafile.conf<a class="headerlink" href="#modify-seafileconf" title="Permanent link">&para;</a></h2>
-<p>Edit <code>seafile.conf</code>, add the following lines:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[commit_object_backend]</span>
-<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">oss</span>
-<span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;your-seafile-commits-bucket&gt;</span>
-<span class="na">key_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;your-key-id&gt;</span>
-<span class="na">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;your-key&gt;</span>
-<span class="na">region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">beijing</span>
+<p>Edit <code>seafile.conf</code>, add the following lines:
+<div class="highlight"><pre><span></span><code>[commit_object_backend]
+name = oss
+bucket = &lt;your-seafile-commits-bucket&gt;
+key_id = &lt;your-key-id&gt;
+key = &lt;your-key&gt;
+region = beijing
 
-<span class="k">[fs_object_backend]</span>
-<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">oss</span>
-<span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;your-seafile-fs-bucket&gt;</span>
-<span class="na">key_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;your-key-id&gt;</span>
-<span class="na">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;your-key&gt;</span>
-<span class="na">region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">beijing</span>
+[fs_object_backend]
+name = oss
+bucket = &lt;your-seafile-fs-bucket&gt;
+key_id = &lt;your-key-id&gt;
+key = &lt;your-key&gt;
+region = beijing
 
-<span class="k">[block_backend]</span>
-<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">oss</span>
-<span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;your-seafile-blocks-bucket&gt;</span>
-<span class="na">key_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;your-key-id&gt;</span>
-<span class="na">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;your-key&gt;</span>
-<span class="na">region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">beijing</span>
-</code></pre></div>
-
+[block_backend]
+name = oss
+bucket = &lt;your-seafile-blocks-bucket&gt;
+key_id = &lt;your-key-id&gt;
+key = &lt;your-key&gt;
+region = beijing
+</code></pre></div></p>
 <p>You also need to add <a href="../../config/seafile-conf/#cache-pro-edition-only">memory cache configurations</a>.</p>
 <p>It's required to create separate buckets for commit, fs, and block objects. For performance and to save network traffic costs, you should create buckets within the region where the seafile server is running.</p>
 <p>The key_id and key are required to authenticate you to OSS. You can find the key_id and key in the "security credentials" section on your OSS management page.</p>
@@ -4259,47 +4258,46 @@
 <h3 id="use-oss-in-vpc">Use OSS in VPC<a class="headerlink" href="#use-oss-in-vpc" title="Permanent link">&para;</a></h3>
 <p>Before version 6.0.9, Seafile only supports using OSS services in the classic network environment. The OSS service address in the VPC (Virtual Private Network) environment is different from the classic network, so you need to specify the OSS access address in the configuration environment. After version 6.0.9, it supports the configuration of OSS access addresses, thus adding the support for VPC OSS services.</p>
 <p>Use the following configuration:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[commit_object_backend]</span>
-<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">oss</span>
-<span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;your-seafile-commits-bucket&gt;</span>
-<span class="na">key_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;your-key-id&gt;</span>
-<span class="na">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;your-key&gt;</span>
-<span class="na">endpoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">vpc100-oss-cn-beijing.aliyuncs.com</span>
+<div class="highlight"><pre><span></span><code>[commit_object_backend]
+name = oss
+bucket = &lt;your-seafile-commits-bucket&gt;
+key_id = &lt;your-key-id&gt;
+key = &lt;your-key&gt;
+endpoint = vpc100-oss-cn-beijing.aliyuncs.com
 
-<span class="k">[fs_object_backend]</span>
-<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">oss</span>
-<span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;your-seafile-fs-bucket&gt;</span>
-<span class="na">key_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;your-key-id&gt;</span>
-<span class="na">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;your-key&gt;</span>
-<span class="na">endpoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">vpc100-oss-cn-beijing.aliyuncs.com</span>
+[fs_object_backend]
+name = oss
+bucket = &lt;your-seafile-fs-bucket&gt;
+key_id = &lt;your-key-id&gt;
+key = &lt;your-key&gt;
+endpoint = vpc100-oss-cn-beijing.aliyuncs.com
 
-<span class="k">[block_backend]</span>
-<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">oss</span>
-<span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;your-seafile-blocks-bucket&gt;</span>
-<span class="na">key_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;your-key-id&gt;</span>
-<span class="na">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;your-key&gt;</span>
-<span class="na">endpoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">vpc100-oss-cn-beijing.aliyuncs.com</span>
+[block_backend]
+name = oss
+bucket = &lt;your-seafile-blocks-bucket&gt;
+key_id = &lt;your-key-id&gt;
+key = &lt;your-key&gt;
+endpoint = vpc100-oss-cn-beijing.aliyuncs.com
 </code></pre></div>
-
 <p>Compared with the configuration under the classic network, the above configuration uses the <code>endpoint</code> option to replace the <code>region</code> option. The corresponding <code>endpoint</code> address can be found at <a href="https://www.alibabacloud.com/help/en/object-storage-service/latest/regions-and-endpoints">https://www.alibabacloud.com/help/en/object-storage-service/latest/regions-and-endpoints</a>.</p>
 <p><code>endpoint</code> is a general option, you can also set it to the OSS access address under the classic network, and it will work as well.</p>
 <p>You also need to add <a href="../../config/seafile-conf/#cache-pro-edition-only">memory cache configurations</a>.</p>
 <h3 id="use-https-connections-to-oss">Use HTTPS connections to OSS<a class="headerlink" href="#use-https-connections-to-oss" title="Permanent link">&para;</a></h3>
 <p>To use HTTPS connections to OSS, add the following options to seafile.conf:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[commit_object_backend]</span>
-<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">oss</span>
-<span class="na">......</span>
-<span class="na">use_https</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+<div class="highlight"><pre><span></span><code>[commit_object_backend]
+name = oss
+......
+use_https = true
 
-<span class="k">[fs_object_backend]</span>
-<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">oss</span>
-<span class="na">......</span>
-<span class="na">use_https</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+[fs_object_backend]
+name = oss
+......
+use_https = true
 
-<span class="k">[block_backend]</span>
-<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">oss</span>
-<span class="na">......</span>
-<span class="na">use_https</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+[block_backend]
+name = oss
+......
+use_https = true
 </code></pre></div>
 
 
@@ -4330,6 +4328,46 @@
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../setup_with_swift/" class="md-footer__link md-footer__link--prev" aria-label="Previous: OpenStack Swift Backend">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                OpenStack Swift Backend
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../setup_with_multiple_storage_backends/" class="md-footer__link md-footer__link--next" aria-label="Next: Multiple Storage Backends">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Multiple Storage Backends
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4372,7 +4410,7 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

@@ -217,10 +217,6 @@
          <lastmod>2024-10-25</lastmod>
     </url>
     <url>
-         <loc>https://haiwen.github.io/seafile-admin-docs/12.0/extension/deploy_clamav_with_seafile/</loc>
-         <lastmod>2024-10-25</lastmod>
-    </url>
-    <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/extension/fuse/</loc>
          <lastmod>2024-10-25</lastmod>
     </url>
@@ -246,6 +242,10 @@
     </url>
     <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/12.0/extension/virus_scan/</loc>
+         <lastmod>2024-10-25</lastmod>
+    </url>
+    <url>
+         <loc>https://haiwen.github.io/seafile-admin-docs/12.0/extension/virus_scan_with_clamav/</loc>
          <lastmod>2024-10-25</lastmod>
     </url>
     <url>

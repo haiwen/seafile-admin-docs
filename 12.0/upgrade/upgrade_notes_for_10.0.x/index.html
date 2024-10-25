@@ -2190,7 +2190,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4389,75 +4389,67 @@ Please always follow the main <a href="../upgrade/">upgrade guide</a>.</p>
 <p>If you use storage backend or cluster, make sure the memcached section is in the seafile.conf.</p>
 <p>Since version 10.0, all memcached options are consolidated to the one below.</p>
 <p>Modify the seafile.conf:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[memcached]</span>
-<span class="na">memcached_options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">--SERVER=&lt;the IP of Memcached Server&gt; --POOL-MIN=10 --POOL-MAX=100</span>
+<div class="highlight"><pre><span></span><code>[memcached]
+memcached_options = --SERVER=&lt;the IP of Memcached Server&gt; --POOL-MIN=10 --POOL-MAX=100
 </code></pre></div>
-
 <h3 id="saml-sso-change-pro-edition-only">SAML SSO change (pro edition only)<a class="headerlink" href="#saml-sso-change-pro-edition-only" title="Permanent link">&para;</a></h3>
 <p>The configuration for SAML SSO in Seafile is greatly simplified. Now only three options are needed:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">ENABLE_ADFS_LOGIN = True</span>
-<span class="n">LOGIN_REDIRECT_URL = &#39;/saml2/complete/&#39;</span>
-<span class="n">SAML_REMOTE_METADATA_URL = &#39;https://login.microsoftonline.com/xxx/federationmetadata/2007-06/federationmetadata.xml?appid=xxx&#39;</span>
-<span class="n">SAML_ATTRIBUTE_MAPPING = {</span>
-<span class="n">    &#39;name&#39;: (&#39;display_name&#39;, ),</span>
-<span class="n">    &#39;mail&#39;: (&#39;contact_email&#39;, ),</span>
-<span class="n">    ...</span>
-<span class="n">}</span>
+<div class="highlight"><pre><span></span><code>ENABLE_ADFS_LOGIN = True
+LOGIN_REDIRECT_URL = &#39;/saml2/complete/&#39;
+SAML_REMOTE_METADATA_URL = &#39;https://login.microsoftonline.com/xxx/federationmetadata/2007-06/federationmetadata.xml?appid=xxx&#39;
+SAML_ATTRIBUTE_MAPPING = {
+    &#39;name&#39;: (&#39;display_name&#39;, ),
+    &#39;mail&#39;: (&#39;contact_email&#39;, ),
+    ...
+}
 </code></pre></div>
-
 <p>Please check the new document on <a href="../../config/saml2_in_10.0/">SAML SSO</a></p>
 <h3 id="rate-control-in-role-settings-pro-edition-only">Rate control in role settings (pro edition only)<a class="headerlink" href="#rate-control-in-role-settings-pro-edition-only" title="Permanent link">&para;</a></h3>
 <p>Starting from version 10.0, Seafile allows administrators to configure upload and download speed limits for users with different roles through the following two steps:</p>
 <ol>
 <li>Configuring rate limiting for different roles in <code>seahub_settings.py</code>.</li>
 </ol>
-<div class="codehilite"><pre><span></span><code><span class="n">ENABLED_ROLE_PERMISSIONS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="s1">&#39;default&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="o">...</span>
-<span class="w">        </span><span class="s1">&#39;upload_rate_limit&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">  </span><span class="c1"># unit: kb/s</span>
-<span class="w">        </span><span class="s1">&#39;download_rate_limit&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">4000</span><span class="p">,</span>
-<span class="w">    </span><span class="o">...</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="s1">&#39;guest&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="o">...</span>
-<span class="w">        </span><span class="s1">&#39;upload_rate_limit&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;download_rate_limit&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
-<span class="w">    </span><span class="o">...</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code>ENABLED_ROLE_PERMISSIONS = {
+    &#39;default&#39;: {
+    ...
+        &#39;upload_rate_limit&#39;: 2000,  # unit: kb/s
+        &#39;download_rate_limit&#39;: 4000,
+    ...
+    },
+    &#39;guest&#39;: {
+    ...
+        &#39;upload_rate_limit&#39;: 100,
+        &#39;download_rate_limit&#39;: 200,
+    ...
+    },
+}
 </code></pre></div>
-
 <ol>
 <li>Run the following command in the <code>seafile-server-latest</code> directory to make the configuration take effect.</li>
 </ol>
-<div class="codehilite"><pre><span></span><code><span class="o">./</span><span class="n">seahub</span><span class="o">.</span><span class="n">sh</span><span class="w"> </span><span class="n">python</span><span class="o">-</span><span class="n">env</span><span class="w"> </span><span class="n">python3</span><span class="w"> </span><span class="n">seahub</span><span class="o">/</span><span class="n">manage</span><span class="o">.</span><span class="n">py</span><span class="w"> </span><span class="n">set_user_role_upload_download_rate_limit</span>
+<div class="highlight"><pre><span></span><code>./seahub.sh python-env python3 seahub/manage.py set_user_role_upload_download_rate_limit
 </code></pre></div>
-
 <h3 id="elasticsearch-change-pro-edition-only">ElasticSearch change (pro edition only)<a class="headerlink" href="#elasticsearch-change-pro-edition-only" title="Permanent link">&para;</a></h3>
 <p>Elasticsearch is upgraded to version 8.x, fixed and improved some issues of file search function.</p>
 <p>Since elasticsearch 7.x, the default number of shards has changed from 5 to 1, because too many index shards will over-occupy system resources; but when a single shard data is too large, it will also reduce search performance. Starting from version 10.0, Seafile supports customizing the number of shards in the configuration file.</p>
 <p>You can use the following command to query the current size of each shard to determine the best number of shards for you:</p>
-<div class="codehilite"><pre><span></span><code>curl <span class="err">&#39;</span>http<span class="p">{</span>s<span class="p">}:</span><span class="o">//&lt;</span>es IP<span class="o">&gt;</span><span class="p">:</span><span class="mi">9200</span><span class="l">/_cat/shards/repofiles</span><span class="o">?</span>v&#39;
+<div class="highlight"><pre><span></span><code>curl &#39;http{s}://&lt;es IP&gt;:9200/_cat/shards/repofiles?v&#39;
 </code></pre></div>
-
 <p>The official recommendation is that the size of each shard should be between 10G-50G: <a href="https://www.elastic.co/guide/en/elasticsearch/reference/8.6/size-your-shards.html#shard-size-recommendation">https://www.elastic.co/guide/en/elasticsearch/reference/8.6/size-your-shards.html#shard-size-recommendation</a>.</p>
 <p>Modify the seafevents.conf:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[INDEX FILES]</span>
-<span class="na">...</span>
-<span class="na">shards</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">10</span><span class="w">     </span><span class="c1"># default is 5</span>
-<span class="na">...</span>
+<div class="highlight"><pre><span></span><code>[INDEX FILES]
+...
+shards = 10     # default is 5
+...
 </code></pre></div>
-
 <h2 id="new-python-libraries">New Python libraries<a class="headerlink" href="#new-python-libraries" title="Permanent link">&para;</a></h2>
 <p>Note, you should install Python libraries system wide using root user or sudo mode.</p>
 <p>For Ubuntu 20.04/22.04</p>
-<div class="codehilite"><pre><span></span><code>sudo<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> </span><span class="nv">future</span><span class="o">==</span><span class="m">0</span>.18.*<span class="w"> </span><span class="nv">mysqlclient</span><span class="o">==</span><span class="m">2</span>.1.*<span class="w"> </span><span class="nv">pillow</span><span class="o">==</span><span class="m">10</span>.2.*<span class="w"> </span><span class="nv">captcha</span><span class="o">==</span><span class="m">0</span>.5.*<span class="w"> </span><span class="nv">django_simple_captcha</span><span class="o">==</span><span class="m">0</span>.5.20<span class="w"> </span><span class="nv">djangosaml2</span><span class="o">==</span><span class="m">1</span>.5.*<span class="w"> </span><span class="nv">pysaml2</span><span class="o">==</span><span class="m">7</span>.2.*<span class="w"> </span><span class="nv">pycryptodome</span><span class="o">==</span><span class="m">3</span>.16.*<span class="w"> </span><span class="nv">cffi</span><span class="o">==</span><span class="m">1</span>.15.1
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> </span><span class="nv">future</span><span class="o">==</span><span class="m">0</span>.18.*<span class="w"> </span><span class="nv">mysqlclient</span><span class="o">==</span><span class="m">2</span>.1.*<span class="w"> </span><span class="nv">pillow</span><span class="o">==</span><span class="m">10</span>.2.*<span class="w"> </span><span class="nv">captcha</span><span class="o">==</span><span class="m">0</span>.5.*<span class="w"> </span><span class="nv">django_simple_captcha</span><span class="o">==</span><span class="m">0</span>.5.20<span class="w"> </span><span class="nv">djangosaml2</span><span class="o">==</span><span class="m">1</span>.5.*<span class="w"> </span><span class="nv">pysaml2</span><span class="o">==</span><span class="m">7</span>.2.*<span class="w"> </span><span class="nv">pycryptodome</span><span class="o">==</span><span class="m">3</span>.16.*<span class="w"> </span><span class="nv">cffi</span><span class="o">==</span><span class="m">1</span>.15.1
 </code></pre></div>
-
 <p>For Debian 11</p>
-<div class="codehilite"><pre><span></span><code>su<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> </span><span class="nv">future</span><span class="o">==</span><span class="m">0</span>.18.*<span class="w"> </span><span class="nv">mysqlclient</span><span class="o">==</span><span class="m">2</span>.1.*<span class="w"> </span><span class="nv">pillow</span><span class="o">==</span><span class="m">9</span>.3.*<span class="w"> </span><span class="nv">captcha</span><span class="o">==</span><span class="m">0</span>.4<span class="w"> </span><span class="nv">django_simple_captcha</span><span class="o">==</span><span class="m">0</span>.5.*<span class="w"> </span><span class="nv">djangosaml2</span><span class="o">==</span><span class="m">1</span>.5.*<span class="w"> </span><span class="nv">pysaml2</span><span class="o">==</span><span class="m">7</span>.2.*<span class="w"> </span><span class="nv">pycryptodome</span><span class="o">==</span><span class="m">3</span>.16.*<span class="w"> </span><span class="nv">cffi</span><span class="o">==</span><span class="m">1</span>.15.1
+<div class="highlight"><pre><span></span><code>su<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> </span><span class="nv">future</span><span class="o">==</span><span class="m">0</span>.18.*<span class="w"> </span><span class="nv">mysqlclient</span><span class="o">==</span><span class="m">2</span>.1.*<span class="w"> </span><span class="nv">pillow</span><span class="o">==</span><span class="m">9</span>.3.*<span class="w"> </span><span class="nv">captcha</span><span class="o">==</span><span class="m">0</span>.4<span class="w"> </span><span class="nv">django_simple_captcha</span><span class="o">==</span><span class="m">0</span>.5.*<span class="w"> </span><span class="nv">djangosaml2</span><span class="o">==</span><span class="m">1</span>.5.*<span class="w"> </span><span class="nv">pysaml2</span><span class="o">==</span><span class="m">7</span>.2.*<span class="w"> </span><span class="nv">pycryptodome</span><span class="o">==</span><span class="m">3</span>.16.*<span class="w"> </span><span class="nv">cffi</span><span class="o">==</span><span class="m">1</span>.15.1
 </code></pre></div>
-
 <h2 id="upgrade-to-100x">Upgrade to 10.0.x<a class="headerlink" href="#upgrade-to-100x" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
@@ -4465,8 +4457,8 @@ Please always follow the main <a href="../upgrade/">upgrade guide</a>.</p>
 </li>
 <li>
 <p>Start from Seafile 10.0.x, run the script:</p>
-<p><code>sh
-upgrade/upgrade_9.0_10.0.sh</code></p>
+<div class="highlight"><pre><span></span><code>upgrade/upgrade_9.0_10.0.sh
+</code></pre></div>
 </li>
 </ol>
 <p>If you are using pro edtion, modify memcached option in seafile.conf and SAML SSO configuration if needed.</p>
@@ -4477,234 +4469,216 @@ upgrade/upgrade_9.0_10.0.sh</code></p>
 <p>You can choose one of the methods to upgrade your index data.</p>
 <h4 id="method-one-reindex-the-old-index-data">Method one, reindex the old index data<a class="headerlink" href="#method-one-reindex-the-old-index-data" title="Permanent link">&para;</a></h4>
 <p>1. Download Elasticsearch image:</p>
-<div class="codehilite"><pre><span></span><code>docker pull elasticsearch:7.17.9
+<div class="highlight"><pre><span></span><code>docker pull elasticsearch:7.17.9
 </code></pre></div>
-
 <p>Create a new folder to store ES data and give the folder permissions:</p>
-<div class="codehilite"><pre><span></span><code>mkdir -p /opt/seafile-elasticsearch/data  &amp;&amp; chmod -R 777 /opt/seafile-elasticsearch/data/
+<div class="highlight"><pre><span></span><code>mkdir -p /opt/seafile-elasticsearch/data  &amp;&amp; chmod -R 777 /opt/seafile-elasticsearch/data/
 </code></pre></div>
-
 <p>Start ES docker image:</p>
-<div class="codehilite"><pre><span></span><code><span class="nx">sudo</span><span class="w"> </span><span class="nx">docker</span><span class="w"> </span><span class="nx">run</span><span class="w"> </span><span class="o">-</span><span class="nx">d</span><span class="w"> </span><span class="o">--</span><span class="nx">name</span><span class="w"> </span><span class="nx">es</span><span class="o">-</span><span class="m m-Double">7.17</span><span class="w"> </span><span class="o">-</span><span class="nx">p</span><span class="w"> </span><span class="mi">9200</span><span class="p">:</span><span class="mi">9200</span><span class="w">  </span><span class="o">-</span><span class="nx">e</span><span class="w"> </span><span class="s">&quot;discovery.type=single-node&quot;</span><span class="w"> </span><span class="o">-</span><span class="nx">e</span><span class="w"> </span><span class="s">&quot;bootstrap.memory_lock=true&quot;</span><span class="w"> </span><span class="o">-</span><span class="nx">e</span><span class="w"> </span><span class="s">&quot;ES_JAVA_OPTS=-Xms1g -Xmx1g&quot;</span><span class="w"> </span><span class="o">-</span><span class="nx">e</span><span class="w"> </span><span class="s">&quot;xpack.security.enabled=false&quot;</span><span class="w"> </span><span class="o">--</span><span class="nx">restart</span><span class="p">=</span><span class="nx">always</span><span class="w"> </span><span class="o">-</span><span class="nx">v</span><span class="w"> </span><span class="o">/</span><span class="nx">opt</span><span class="o">/</span><span class="nx">seafile</span><span class="o">-</span><span class="nx">elasticsearch</span><span class="o">/</span><span class="nx">data</span><span class="p">:</span><span class="o">/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">share</span><span class="o">/</span><span class="nx">elasticsearch</span><span class="o">/</span><span class="nx">data</span><span class="w"> </span><span class="o">-</span><span class="nx">d</span><span class="w"> </span><span class="nx">elasticsearch</span><span class="p">:</span><span class="m m-Double">7.17.9</span>
+<div class="highlight"><pre><span></span><code>sudo docker run -d --name es-7.17 -p 9200:9200  -e &quot;discovery.type=single-node&quot; -e &quot;bootstrap.memory_lock=true&quot; -e &quot;ES_JAVA_OPTS=-Xms1g -Xmx1g&quot; -e &quot;xpack.security.enabled=false&quot; --restart=always -v /opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data -d elasticsearch:7.17.9
 </code></pre></div>
-
 <p><strong>PS:</strong> <code>ES_JAVA_OPTS</code> can be adjusted according to your need.</p>
 <p>2. Create an index with 8.x compatible mappings:</p>
-<div class="codehilite"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="nx">create</span><span class="w"> </span><span class="nx">repo_head</span><span class="w"> </span><span class="nx">index</span>
-<span class="nx">curl</span><span class="w"> </span><span class="o">-</span><span class="nx">X</span><span class="w"> </span><span class="nx">PUT</span><span class="w"> </span><span class="o">-</span><span class="nx">H</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Content</span><span class="o">-</span><span class="nx">Type</span><span class="p">:</span><span class="w"> </span><span class="nx">application</span><span class="o">/</span><span class="nx">json</span><span class="sc">&#39; &#39;</span><span class="nx">http</span><span class="p">{</span><span class="nx">s</span><span class="p">}:</span><span class="c1">//{es server IP}:9200/repo_head_8?pretty=true&#39; -d &#39;</span>
-<span class="p">{</span>
-<span class="w">  </span><span class="s">&quot;mappings&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="s">&quot;properties&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="s">&quot;commit&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="s">&quot;type&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&quot;keyword&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s">&quot;index&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="s">&quot;repo&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="s">&quot;type&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&quot;keyword&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s">&quot;index&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="s">&quot;updatingto&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="s">&quot;type&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&quot;keyword&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s">&quot;index&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span><span class="err">&#39;</span>
+<div class="highlight"><pre><span></span><code># create repo_head index
+curl -X PUT -H &#39;Content-Type: application/json&#39; &#39;http{s}://{es server IP}:9200/repo_head_8?pretty=true&#39; -d &#39;
+{
+  &quot;mappings&quot; : {
+    &quot;properties&quot; : {
+      &quot;commit&quot; : {
+        &quot;type&quot; : &quot;keyword&quot;,
+        &quot;index&quot; : false
+      },
+      &quot;repo&quot; : {
+        &quot;type&quot; : &quot;keyword&quot;,
+        &quot;index&quot; : false
+      },
+      &quot;updatingto&quot; : {
+        &quot;type&quot; : &quot;keyword&quot;,
+        &quot;index&quot; : false
+      }
+    }
+  }
+}&#39;
 
-<span class="err">#</span><span class="w"> </span><span class="nx">create</span><span class="w"> </span><span class="nx">repofiles</span><span class="w"> </span><span class="nx">index</span><span class="p">,</span><span class="w"> </span><span class="nx">number_of_shards</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">number</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">shards</span><span class="p">,</span><span class="w"> </span><span class="nx">here</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="nx">set</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="nx">you</span><span class="w"> </span><span class="nx">can</span><span class="w"> </span><span class="nx">also</span><span class="w"> </span><span class="nx">modify</span><span class="w"> </span><span class="nx">it</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">most</span><span class="w"> </span><span class="nx">suitable</span><span class="w"> </span><span class="nx">number</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">shards</span>
-<span class="nx">curl</span><span class="w"> </span><span class="o">-</span><span class="nx">X</span><span class="w"> </span><span class="nx">PUT</span><span class="w"> </span><span class="o">-</span><span class="nx">H</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">Content</span><span class="o">-</span><span class="nx">Type</span><span class="p">:</span><span class="w"> </span><span class="nx">application</span><span class="o">/</span><span class="nx">json</span><span class="sc">&#39; &#39;</span><span class="nx">http</span><span class="p">{</span><span class="nx">s</span><span class="p">}:</span><span class="c1">//{es server IP}:9200/repofiles_8/?pretty=true&#39; -d &#39;</span>
-<span class="p">{</span>
-<span class="w">  </span><span class="s">&quot;settings&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="s">&quot;index&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="s">&quot;number_of_shards&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&quot;5&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="s">&quot;analysis&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="s">&quot;analyzer&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="s">&quot;seafile_file_name_ngram_analyzer&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="s">&quot;filter&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">              </span><span class="s">&quot;lowercase&quot;</span>
-<span class="w">            </span><span class="p">],</span>
-<span class="w">            </span><span class="s">&quot;type&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&quot;custom&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s">&quot;tokenizer&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&quot;seafile_file_name_ngram_tokenizer&quot;</span>
-<span class="w">          </span><span class="p">}</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="s">&quot;tokenizer&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="s">&quot;seafile_file_name_ngram_tokenizer&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="s">&quot;type&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ngram&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s">&quot;min_gram&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s">&quot;max_gram&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&quot;4&quot;</span>
-<span class="w">          </span><span class="p">}</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="s">&quot;mappings&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="s">&quot;properties&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="s">&quot;content&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="s">&quot;type&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&quot;text&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s">&quot;term_vector&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&quot;with_positions_offsets&quot;</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="s">&quot;filename&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="s">&quot;type&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&quot;text&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="s">&quot;fields&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="s">&quot;ngram&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="s">&quot;type&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&quot;text&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s">&quot;analyzer&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&quot;seafile_file_name_ngram_analyzer&quot;</span>
-<span class="w">          </span><span class="p">}</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="s">&quot;is_dir&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="s">&quot;type&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&quot;boolean&quot;</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="s">&quot;mtime&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="s">&quot;type&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&quot;date&quot;</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="s">&quot;path&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="s">&quot;type&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&quot;keyword&quot;</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="s">&quot;repo&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="s">&quot;type&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&quot;keyword&quot;</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="s">&quot;size&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="s">&quot;type&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&quot;long&quot;</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="s">&quot;suffix&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="s">&quot;type&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&quot;keyword&quot;</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span><span class="err">&#39;</span>
+# create repofiles index, number_of_shards is the number of shards, here is set to 5, you can also modify it to the most suitable number of shards
+curl -X PUT -H &#39;Content-Type: application/json&#39; &#39;http{s}://{es server IP}:9200/repofiles_8/?pretty=true&#39; -d &#39;
+{
+  &quot;settings&quot; : {
+    &quot;index&quot; : {
+      &quot;number_of_shards&quot; : &quot;5&quot;,
+      &quot;analysis&quot; : {
+        &quot;analyzer&quot; : {
+          &quot;seafile_file_name_ngram_analyzer&quot; : {
+            &quot;filter&quot; : [
+              &quot;lowercase&quot;
+            ],
+            &quot;type&quot; : &quot;custom&quot;,
+            &quot;tokenizer&quot; : &quot;seafile_file_name_ngram_tokenizer&quot;
+          }
+        },
+        &quot;tokenizer&quot; : {
+          &quot;seafile_file_name_ngram_tokenizer&quot; : {
+            &quot;type&quot; : &quot;ngram&quot;,
+            &quot;min_gram&quot; : &quot;3&quot;,
+            &quot;max_gram&quot; : &quot;4&quot;
+          }
+        }
+      }
+    }
+  },
+  &quot;mappings&quot; : {
+    &quot;properties&quot; : {
+      &quot;content&quot; : {
+        &quot;type&quot; : &quot;text&quot;,
+        &quot;term_vector&quot; : &quot;with_positions_offsets&quot;
+      },
+      &quot;filename&quot; : {
+        &quot;type&quot; : &quot;text&quot;,
+        &quot;fields&quot; : {
+          &quot;ngram&quot; : {
+            &quot;type&quot; : &quot;text&quot;,
+            &quot;analyzer&quot; : &quot;seafile_file_name_ngram_analyzer&quot;
+          }
+        }
+      },
+      &quot;is_dir&quot; : {
+        &quot;type&quot; : &quot;boolean&quot;
+      },
+      &quot;mtime&quot; : {
+        &quot;type&quot; : &quot;date&quot;
+      },
+      &quot;path&quot; : {
+        &quot;type&quot; : &quot;keyword&quot;
+      },
+      &quot;repo&quot; : {
+        &quot;type&quot; : &quot;keyword&quot;
+      },
+      &quot;size&quot; : {
+        &quot;type&quot; : &quot;long&quot;
+      },
+      &quot;suffix&quot; : {
+        &quot;type&quot; : &quot;keyword&quot;
+      }
+    }
+  }
+}&#39;
 </code></pre></div>
-
 <p>3. Set the <code>refresh_interval</code> to <code>-1</code> and the <code>number_of_replicas</code> to <code>0</code> for efficient reindex:</p>
-<div class="codehilite"><pre><span></span><code>curl <span class="o">-</span>X PUT <span class="o">-</span>H <span class="err">&#39;</span>Content-Type<span class="p">:</span> <span class="l">application/json</span><span class="err">&#39;</span> <span class="err">&#39;</span>http<span class="p">{</span>s<span class="p">}:</span><span class="o">//</span><span class="p">{</span>es server IP<span class="p">}:</span><span class="mi">9200</span><span class="l">/repo_head_8/_settings</span><span class="o">?</span>pretty&#39; <span class="o">-</span>d <span class="err">&#39;</span>
-<span class="p">{</span>
-  <span class="s2">&quot;index&quot;</span> <span class="p">:</span> <span class="p">{</span>
-    <span class="s2">&quot;refresh_interval&quot;</span> <span class="p">:</span> <span class="s2">&quot;-1&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;number_of_replicas&quot;</span> <span class="p">:</span> <span class="mi">0</span>
-  <span class="p">}</span>
-<span class="p">}</span><span class="err">&#39;</span>
+<div class="highlight"><pre><span></span><code>curl -X PUT -H &#39;Content-Type: application/json&#39; &#39;http{s}://{es server IP}:9200/repo_head_8/_settings?pretty&#39; -d &#39;
+{
+  &quot;index&quot; : {
+    &quot;refresh_interval&quot; : &quot;-1&quot;,
+    &quot;number_of_replicas&quot; : 0
+  }
+}&#39;
 
-curl <span class="o">-</span>X PUT <span class="o">-</span>H <span class="err">&#39;</span>Content-Type<span class="p">:</span> <span class="l">application/json</span><span class="err">&#39;</span> <span class="err">&#39;</span>http<span class="p">{</span>s<span class="p">}:</span><span class="o">//</span><span class="p">{</span>es server IP<span class="p">}:</span><span class="mi">9200</span><span class="l">/repofiles_8/_settings</span><span class="o">?</span>pretty&#39; <span class="o">-</span>d <span class="err">&#39;</span>
-<span class="p">{</span>
-  <span class="s2">&quot;index&quot;</span> <span class="p">:</span> <span class="p">{</span>
-    <span class="s2">&quot;refresh_interval&quot;</span> <span class="p">:</span> <span class="s2">&quot;-1&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;number_of_replicas&quot;</span> <span class="p">:</span> <span class="mi">0</span>
-  <span class="p">}</span>
-<span class="p">}</span><span class="err">&#39;</span>
+curl -X PUT -H &#39;Content-Type: application/json&#39; &#39;http{s}://{es server IP}:9200/repofiles_8/_settings?pretty&#39; -d &#39;
+{
+  &quot;index&quot; : {
+    &quot;refresh_interval&quot; : &quot;-1&quot;,
+    &quot;number_of_replicas&quot; : 0
+  }
+}&#39;
 </code></pre></div>
-
 <p>4. Use the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/8.6/docs-reindex.html">reindex API</a> to copy documents from the 7.x index into the new index:</p>
-<div class="codehilite"><pre><span></span><code>curl <span class="o">-</span>X POST <span class="o">-</span>H <span class="err">&#39;</span>Content-Type<span class="p">:</span> <span class="l">application/json</span><span class="err">&#39;</span> <span class="err">&#39;</span>http<span class="p">{</span>s<span class="p">}:</span><span class="o">//</span><span class="p">{</span>es server IP<span class="p">}:</span><span class="mi">9200</span><span class="l">/_reindex</span><span class="o">/?</span><span class="ss">wait_for_completion</span><span class="o">=</span><span class="no">false</span><span class="err">&amp;</span><span class="ss">pretty</span><span class="o">=</span><span class="no">true</span><span class="err">&#39;</span> <span class="o">-</span>d <span class="err">&#39;</span>
-<span class="p">{</span>
-  <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="s2">&quot;repo_head&quot;</span>
-  <span class="p">},</span>
-  <span class="s2">&quot;dest&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="s2">&quot;repo_head_8&quot;</span>
-  <span class="p">}</span>
-<span class="p">}</span><span class="err">&#39;</span>
+<div class="highlight"><pre><span></span><code>curl -X POST -H &#39;Content-Type: application/json&#39; &#39;http{s}://{es server IP}:9200/_reindex/?wait_for_completion=false&amp;pretty=true&#39; -d &#39;
+{
+  &quot;source&quot;: {
+    &quot;index&quot;: &quot;repo_head&quot;
+  },
+  &quot;dest&quot;: {
+    &quot;index&quot;: &quot;repo_head_8&quot;
+  }
+}&#39;
 
-curl <span class="o">-</span>X POST <span class="o">-</span>H <span class="err">&#39;</span>Content-Type<span class="p">:</span> <span class="l">application/json</span><span class="err">&#39;</span> <span class="err">&#39;</span>http<span class="p">{</span>s<span class="p">}:</span><span class="o">//</span><span class="p">{</span>es server IP<span class="p">}:</span><span class="mi">9200</span><span class="l">/_reindex</span><span class="o">/?</span><span class="ss">wait_for_completion</span><span class="o">=</span><span class="no">false</span><span class="err">&amp;</span><span class="ss">pretty</span><span class="o">=</span><span class="no">true</span><span class="err">&#39;</span> <span class="o">-</span>d <span class="err">&#39;</span>
-<span class="p">{</span>
-  <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="s2">&quot;repofiles&quot;</span>
-  <span class="p">},</span>
-  <span class="s2">&quot;dest&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="s2">&quot;repofiles_8&quot;</span>
-  <span class="p">}</span>
-<span class="p">}</span><span class="err">&#39;</span>
+curl -X POST -H &#39;Content-Type: application/json&#39; &#39;http{s}://{es server IP}:9200/_reindex/?wait_for_completion=false&amp;pretty=true&#39; -d &#39;
+{
+  &quot;source&quot;: {
+    &quot;index&quot;: &quot;repofiles&quot;
+  },
+  &quot;dest&quot;: {
+    &quot;index&quot;: &quot;repofiles_8&quot;
+  }
+}&#39;
 </code></pre></div>
-
 <p>5. Use the following command to check if the reindex task is complete:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Get the task_id of the reindex task:</span>
-<span class="err">$</span> curl <span class="err">&#39;</span>http<span class="p">{</span>s<span class="p">}:</span><span class="o">//</span><span class="p">{</span>es server IP<span class="p">}:</span><span class="mi">9200</span><span class="l">/_tasks</span><span class="o">?</span><span class="ss">actions</span><span class="o">=*</span>reindex<span class="err">&amp;</span>pretty&#39;
-<span class="c1"># Check to see if the reindex task is complete:</span>
-<span class="err">$</span> curl <span class="err">&#39;</span>http<span class="p">{</span>s<span class="p">}:</span><span class="o">//</span><span class="p">{</span>es server IP<span class="p">}:</span><span class="mi">9200</span><span class="l">/_tasks</span><span class="o">/</span><span class="p">:</span><span class="l">&lt;task_id&gt;</span><span class="o">?</span>pretty&#39;
+<div class="highlight"><pre><span></span><code># Get the task_id of the reindex task:
+$ curl &#39;http{s}://{es server IP}:9200/_tasks?actions=*reindex&amp;pretty&#39;
+# Check to see if the reindex task is complete:
+$ curl &#39;http{s}://{es server IP}:9200/_tasks/:&lt;task_id&gt;?pretty&#39;
 </code></pre></div>
-
 <p>6. Reset the <code>refresh_interval</code> and <code>number_of_replicas</code> to the values used in the old index:</p>
-<div class="codehilite"><pre><span></span><code>curl <span class="o">-</span>X PUT <span class="o">-</span>H <span class="err">&#39;</span>Content-Type<span class="p">:</span> <span class="l">application/json</span><span class="err">&#39;</span> <span class="err">&#39;</span>http<span class="p">{</span>s<span class="p">}:</span><span class="o">//</span><span class="p">{</span>es server IP<span class="p">}:</span><span class="mi">9200</span><span class="l">/repo_head_8/_settings</span><span class="o">?</span>pretty&#39; <span class="o">-</span>d <span class="err">&#39;</span>
-<span class="p">{</span>
-  <span class="s2">&quot;index&quot;</span> <span class="p">:</span> <span class="p">{</span>
-    <span class="s2">&quot;refresh_interval&quot;</span> <span class="p">:</span> <span class="no">null</span><span class="p">,</span>
-    <span class="s2">&quot;number_of_replicas&quot;</span> <span class="p">:</span> <span class="mi">1</span>
-  <span class="p">}</span>
-<span class="p">}</span><span class="err">&#39;</span>
+<div class="highlight"><pre><span></span><code>curl -X PUT -H &#39;Content-Type: application/json&#39; &#39;http{s}://{es server IP}:9200/repo_head_8/_settings?pretty&#39; -d &#39;
+{
+  &quot;index&quot; : {
+    &quot;refresh_interval&quot; : null,
+    &quot;number_of_replicas&quot; : 1
+  }
+}&#39;
 
-curl <span class="o">-</span>X PUT <span class="o">-</span>H <span class="err">&#39;</span>Content-Type<span class="p">:</span> <span class="l">application/json</span><span class="err">&#39;</span> <span class="err">&#39;</span>http<span class="p">{</span>s<span class="p">}:</span><span class="o">//</span><span class="p">{</span>es server IP<span class="p">}:</span><span class="mi">9200</span><span class="l">/repofiles_8/_settings</span><span class="o">?</span>pretty&#39; <span class="o">-</span>d <span class="err">&#39;</span>
-<span class="p">{</span>
-  <span class="s2">&quot;index&quot;</span> <span class="p">:</span> <span class="p">{</span>
-    <span class="s2">&quot;refresh_interval&quot;</span> <span class="p">:</span> <span class="no">null</span><span class="p">,</span>
-    <span class="s2">&quot;number_of_replicas&quot;</span> <span class="p">:</span> <span class="mi">1</span>
-  <span class="p">}</span>
-<span class="p">}</span><span class="err">&#39;</span>
+curl -X PUT -H &#39;Content-Type: application/json&#39; &#39;http{s}://{es server IP}:9200/repofiles_8/_settings?pretty&#39; -d &#39;
+{
+  &quot;index&quot; : {
+    &quot;refresh_interval&quot; : null,
+    &quot;number_of_replicas&quot; : 1
+  }
+}&#39;
 </code></pre></div>
-
 <p>7. Wait for the elasticsearch status to change to <code>green</code> (or <code>yellow</code> if it is a single node).</p>
-<div class="codehilite"><pre><span></span><code>curl <span class="err">&#39;</span>http<span class="p">{</span>s<span class="p">}:</span><span class="o">//</span><span class="p">{</span>es server IP<span class="p">}:</span><span class="mi">9200</span><span class="l">/_cluster/health</span><span class="o">?</span>pretty&#39;
+<div class="highlight"><pre><span></span><code>curl &#39;http{s}://{es server IP}:9200/_cluster/health?pretty&#39;
 </code></pre></div>
-
 <p>8. Use the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/8.6/indices-aliases.html">aliases API</a> delete the old index and add an alias with the old index name to the new index:</p>
-<div class="codehilite"><pre><span></span><code>curl <span class="o">-</span>X POST <span class="o">-</span>H <span class="err">&#39;</span>Content-Type<span class="p">:</span> <span class="l">application/json</span><span class="err">&#39;</span> <span class="err">&#39;</span>http<span class="p">{</span>s<span class="p">}:</span><span class="o">//</span><span class="p">{</span>es server IP<span class="p">}:</span><span class="mi">9200</span><span class="l">/_aliases</span><span class="o">?</span>pretty&#39; <span class="o">-</span>d <span class="err">&#39;</span>
-<span class="p">{</span>
-  <span class="s2">&quot;actions&quot;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="p">{</span><span class="s2">&quot;remove_index&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="s2">&quot;repo_head&quot;</span><span class="p">}},</span>
-    <span class="p">{</span><span class="s2">&quot;remove_index&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="s2">&quot;repofiles&quot;</span><span class="p">}},</span>
-    <span class="p">{</span><span class="s2">&quot;add&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="s2">&quot;repo_head_8&quot;</span><span class="p">,</span> <span class="s2">&quot;alias&quot;</span><span class="p">:</span> <span class="s2">&quot;repo_head&quot;</span><span class="p">}},</span>
-    <span class="p">{</span><span class="s2">&quot;add&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="s2">&quot;repofiles_8&quot;</span><span class="p">,</span> <span class="s2">&quot;alias&quot;</span><span class="p">:</span> <span class="s2">&quot;repofiles&quot;</span><span class="p">}}</span>
-  <span class="p">]</span>
-<span class="p">}</span><span class="err">&#39;</span>
+<div class="highlight"><pre><span></span><code>curl -X POST -H &#39;Content-Type: application/json&#39; &#39;http{s}://{es server IP}:9200/_aliases?pretty&#39; -d &#39;
+{
+  &quot;actions&quot;: [
+    {&quot;remove_index&quot;: {&quot;index&quot;: &quot;repo_head&quot;}},
+    {&quot;remove_index&quot;: {&quot;index&quot;: &quot;repofiles&quot;}},
+    {&quot;add&quot;: {&quot;index&quot;: &quot;repo_head_8&quot;, &quot;alias&quot;: &quot;repo_head&quot;}},
+    {&quot;add&quot;: {&quot;index&quot;: &quot;repofiles_8&quot;, &quot;alias&quot;: &quot;repofiles&quot;}}
+  ]
+}&#39;
 </code></pre></div>
-
 <p>9. Deactivate the 7.17 container, pull the 8.x image and run:</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span>stop<span class="w"> </span>es-7.17
+<div class="highlight"><pre><span></span><code>$ docker stop es-7.17
 
-$<span class="w"> </span>docker<span class="w"> </span>rm<span class="w"> </span>es-7.17
+$ docker rm es-7.17
 
-$<span class="w"> </span>docker<span class="w"> </span>pull<span class="w"> </span>elasticsearch:8.6.2
+$ docker pull elasticsearch:8.6.2
 
-$<span class="w"> </span>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>es<span class="w"> </span>-p<span class="w"> </span><span class="m">9200</span>:9200<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;discovery.type=single-node&quot;</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;bootstrap.memory_lock=true&quot;</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;ES_JAVA_OPTS=-Xms1g -Xmx1g&quot;</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;xpack.security.enabled=false&quot;</span><span class="w"> </span>--restart<span class="o">=</span>always<span class="w"> </span>-v<span class="w"> </span>/opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data<span class="w"> </span>-d<span class="w"> </span>elasticsearch:8.6.2
+$ sudo docker run -d --name es -p 9200:9200 -e &quot;discovery.type=single-node&quot; -e &quot;bootstrap.memory_lock=true&quot; -e &quot;ES_JAVA_OPTS=-Xms1g -Xmx1g&quot; -e &quot;xpack.security.enabled=false&quot; --restart=always -v /opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data -d elasticsearch:8.6.2
 </code></pre></div>
-
 <h4 id="method-two-rebuild-the-index-and-discard-the-old-index-data">Method two, rebuild the index and discard the old index data<a class="headerlink" href="#method-two-rebuild-the-index-and-discard-the-old-index-data" title="Permanent link">&para;</a></h4>
 <p>1. Pull Elasticsearch image:</p>
-<div class="codehilite"><pre><span></span><code>docker pull elasticsearch:8.5.3
+<div class="highlight"><pre><span></span><code>docker pull elasticsearch:8.5.3
 </code></pre></div>
-
 <p>Create a new folder to store ES data and give the folder permissions:</p>
-<div class="codehilite"><pre><span></span><code>mkdir -p /opt/seafile-elasticsearch/data  &amp;&amp; chmod -R 777 /opt/seafile-elasticsearch/data/
+<div class="highlight"><pre><span></span><code>mkdir -p /opt/seafile-elasticsearch/data  &amp;&amp; chmod -R 777 /opt/seafile-elasticsearch/data/
 </code></pre></div>
-
 <p>Start ES docker image:</p>
-<div class="codehilite"><pre><span></span><code><span class="nx">sudo</span><span class="w"> </span><span class="nx">docker</span><span class="w"> </span><span class="nx">run</span><span class="w"> </span><span class="o">-</span><span class="nx">d</span><span class="w"> </span><span class="o">--</span><span class="nx">name</span><span class="w"> </span><span class="nx">es</span><span class="w"> </span><span class="o">-</span><span class="nx">p</span><span class="w"> </span><span class="mi">9200</span><span class="p">:</span><span class="mi">9200</span><span class="w"> </span><span class="o">-</span><span class="nx">e</span><span class="w"> </span><span class="s">&quot;discovery.type=single-node&quot;</span><span class="w"> </span><span class="o">-</span><span class="nx">e</span><span class="w"> </span><span class="s">&quot;bootstrap.memory_lock=true&quot;</span><span class="w"> </span><span class="o">-</span><span class="nx">e</span><span class="w"> </span><span class="s">&quot;ES_JAVA_OPTS=-Xms1g -Xmx1g&quot;</span><span class="w"> </span><span class="o">-</span><span class="nx">e</span><span class="w"> </span><span class="s">&quot;xpack.security.enabled=false&quot;</span><span class="w"> </span><span class="o">--</span><span class="nx">restart</span><span class="p">=</span><span class="nx">always</span><span class="w"> </span><span class="o">-</span><span class="nx">v</span><span class="w"> </span><span class="o">/</span><span class="nx">opt</span><span class="o">/</span><span class="nx">seafile</span><span class="o">-</span><span class="nx">elasticsearch</span><span class="o">/</span><span class="nx">data</span><span class="p">:</span><span class="o">/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">share</span><span class="o">/</span><span class="nx">elasticsearch</span><span class="o">/</span><span class="nx">data</span><span class="w"> </span><span class="o">-</span><span class="nx">d</span><span class="w"> </span><span class="nx">elasticsearch</span><span class="p">:</span><span class="m m-Double">8.5.3</span>
+<div class="highlight"><pre><span></span><code>sudo docker run -d --name es -p 9200:9200 -e &quot;discovery.type=single-node&quot; -e &quot;bootstrap.memory_lock=true&quot; -e &quot;ES_JAVA_OPTS=-Xms1g -Xmx1g&quot; -e &quot;xpack.security.enabled=false&quot; --restart=always -v /opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data -d elasticsearch:8.5.3
 </code></pre></div>
-
 <p>2. Modify the seafevents.conf:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[INDEX FILES]</span>
-<span class="na">...</span>
-<span class="na">external_es_server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">es_host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">http{s}://{es server IP}</span>
-<span class="na">es_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">9200</span>
-<span class="na">shards</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">10</span><span class="w">   </span><span class="c1"># default is 5.</span>
-<span class="na">...</span>
+<div class="highlight"><pre><span></span><code>[INDEX FILES]
+...
+external_es_server = true
+es_host = http{s}://{es server IP}
+es_port = 9200
+shards = 10   # default is 5.
+...
 </code></pre></div>
-
 <p>Restart Seafile server:</p>
-<div class="codehilite"><pre><span></span><code>su seafile
+<div class="highlight"><pre><span></span><code>su seafile
 cd seafile-server-latest/
 ./seafile.sh stop &amp;&amp; ./seahub.stop 
 ./seafile.sh start &amp;&amp; ./seahub.start
 </code></pre></div>
-
 <p>3. Delete old index data</p>
-<div class="codehilite"><pre><span></span><code>rm -rf /opt/seafile-elasticsearch/data/*
+<div class="highlight"><pre><span></span><code>rm -rf /opt/seafile-elasticsearch/data/*
 </code></pre></div>
-
 <p>4. Create new index data:</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest
-$<span class="w"> </span>./pro/pro.py<span class="w"> </span>search<span class="w"> </span>--update
+<div class="highlight"><pre><span></span><code>$ cd /opt/seafile/seafile-server-latest
+$ ./pro/pro.py search --update
 </code></pre></div>
-
 <h4 id="method-three-if-you-are-in-a-cluster-environment">Method three, if you are in a cluster environment<a class="headerlink" href="#method-three-if-you-are-in-a-cluster-environment" title="Permanent link">&para;</a></h4>
 <p>1. Deploy elasticsearch 8.x according to method two. Use Seafile 10.0 version to deploy a new backend node and modify the <code>seafevents.conf</code> file. The background node does not start the Seafile background service, just manually run the command <code>./pro/pro.py search --update</code>.</p>
 <p>2. Upgrade the other nodes to Seafile 10.0 version and use the new Elasticsearch 8.x server.</p>
@@ -4738,6 +4712,46 @@ $<span class="w"> </span>./pro/pro.py<span class="w"> </span>search<span class="
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../upgrade_notes_for_9.0.x/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Upgrade notes for 9.0.x">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Upgrade notes for 9.0.x
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../upgrade_notes_for_11.0.x/" class="md-footer__link md-footer__link--next" aria-label="Next: Upgrade notes for 11.0.x">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Upgrade notes for 11.0.x
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4780,7 +4794,7 @@ $<span class="w"> </span>./pro/pro.py<span class="w"> </span>search<span class="
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

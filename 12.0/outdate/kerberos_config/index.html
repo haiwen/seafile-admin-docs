@@ -2184,7 +2184,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4135,34 +4135,32 @@
 <p>Store the keytab under the name defined below and make it accessible only to the apache user (e.g. httpd or www-data and chmod 600).</p>
 <h2 id="apache-configuration">Apache Configuration<a class="headerlink" href="#apache-configuration" title="Permanent link">&para;</a></h2>
 <p>You should create a new location in your virtual host configuration for Kerberos.</p>
-<div class="codehilite"><pre><span></span><code><span class="nt">&lt;IfModule</span><span class="w"> </span><span class="err">mod_ssl.c</span><span class="nt">&gt;</span>
-<span class="w">    </span><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="err">_default_:443</span><span class="nt">&gt;</span>
-<span class="w">        </span>ServerName<span class="w"> </span>seafile.example.com
-<span class="w">        </span>DocumentRoot<span class="w"> </span>/var/www
+<div class="highlight"><pre><span></span><code>&lt;IfModule mod_ssl.c&gt;
+    &lt;VirtualHost _default_:443&gt;
+        ServerName seafile.example.com
+        DocumentRoot /var/www
 ...
-<span class="w">        </span><span class="nt">&lt;Location</span><span class="w"> </span><span class="err">/krb5-login</span><span class="nt">/&gt;</span>
-<span class="w">            </span>SSLRequireSSL
-<span class="w">            </span>AuthType<span class="w"> </span>Kerberos
-<span class="w">            </span>AuthName<span class="w"> </span>&quot;Kerberos<span class="w"> </span>EXAMPLE.ORG&quot;
-<span class="w">            </span>KrbMethodNegotiate<span class="w"> </span>On
-<span class="w">            </span>KrbMethodK5Passwd<span class="w"> </span>On
-<span class="w">            </span>Krb5KeyTab<span class="w"> </span>/etc/apache2/conf.d/http.keytab
-<span class="w">            </span>#ErrorDocument<span class="w"> </span>401<span class="w"> </span>&#39;<span class="nt">&lt;html&gt;&lt;meta</span><span class="w"> </span><span class="na">http-equiv=</span><span class="s">&quot;refresh&quot;</span><span class="w"> </span><span class="na">content=</span><span class="s">&quot;0; URL=/accounts/login&quot;</span><span class="nt">&gt;&lt;body&gt;</span>Kerberos<span class="w"> </span>authentication<span class="w"> </span>did<span class="w"> </span>not<span class="w"> </span>pass.<span class="nt">&lt;/body&gt;&lt;/html&gt;</span>&#39;
-<span class="w">            </span>Require<span class="w"> </span>valid-user
-<span class="w">        </span><span class="nt">&lt;/Location&gt;</span>
+        &lt;Location /krb5-login/&gt;
+            SSLRequireSSL
+            AuthType Kerberos
+            AuthName &quot;Kerberos EXAMPLE.ORG&quot;
+            KrbMethodNegotiate On
+            KrbMethodK5Passwd On
+            Krb5KeyTab /etc/apache2/conf.d/http.keytab
+            #ErrorDocument 401 &#39;&lt;html&gt;&lt;meta http-equiv=&quot;refresh&quot; content=&quot;0; URL=/accounts/login&quot;&gt;&lt;body&gt;Kerberos authentication did not pass.&lt;/body&gt;&lt;/html&gt;&#39;
+            Require valid-user
+        &lt;/Location&gt;
 ...
-<span class="w">    </span><span class="nt">&lt;/VirtualHost&gt;</span>
-<span class="nt">&lt;/IfModule&gt;</span>
+    &lt;/VirtualHost&gt;
+&lt;/IfModule&gt;
 </code></pre></div>
-
 <p>After restarting Apache, you should see in the Apache logs that user@REALM is used when accessing https://seafile.example.com/krb5-login/.</p>
 <h2 id="configure-seahub">Configure Seahub<a class="headerlink" href="#configure-seahub" title="Permanent link">&para;</a></h2>
 <p>Seahub extracts the username from the <code>REMOTE_USER</code> environment variable. </p>
 <p>Now we have to tell Seahub what to do with the authentication information passed in by Kerberos.</p>
 <p>Add the following option to seahub_settings.py.</p>
-<div class="codehilite"><pre><span></span><code>ENABLE_KRB5_LOGIN = True
+<div class="highlight"><pre><span></span><code>ENABLE_KRB5_LOGIN = True
 </code></pre></div>
-
 <h2 id="verify">Verify<a class="headerlink" href="#verify" title="Permanent link">&para;</a></h2>
 <p>After restarting Apache and Seafile services, you can test the Kerberos login workflow.</p>
 
@@ -4194,6 +4192,8 @@
       </main>
       
         <footer class="md-footer">
+  
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4236,7 +4236,7 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

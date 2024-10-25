@@ -2272,7 +2272,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4188,57 +4188,50 @@
 <p>Stop Seafile and Seahub.</p>
 <p>Download <a href="https://raw.githubusercontent.com/haiwen/seahub/master/scripts/sqlite2mysql.sh">sqlite2mysql.sh</a> and <a href="https://raw.githubusercontent.com/haiwen/seahub/master/scripts/sqlite2mysql.py">sqlite2mysql.py</a> to the top directory of your Seafile installation path. For example, <code>/opt/seafile</code>.</p>
 <p>Run <code>sqlite2mysql.sh</code>:</p>
-<div class="codehilite"><pre><span></span><code>chmod +x sqlite2mysql.sh
+<div class="highlight"><pre><span></span><code>chmod +x sqlite2mysql.sh
 ./sqlite2mysql.sh
 </code></pre></div>
-
 <p>This script will produce three files: <code>ccnet-db.sql</code>, <code>seafile-db.sql</code>, <code>seahub-db.sql</code>.</p>
 <p>Then create 3 databases ccnet_db, seafile_db, seahub_db and seafile user.</p>
-<div class="codehilite"><pre><span></span><code>mysql&gt; create database ccnet_db character set = &#39;utf8&#39;;
+<div class="highlight"><pre><span></span><code>mysql&gt; create database ccnet_db character set = &#39;utf8&#39;;
 mysql&gt; create database seafile_db character set = &#39;utf8&#39;;
 mysql&gt; create database seahub_db character set = &#39;utf8&#39;;
 </code></pre></div>
-
 <p>Import ccnet data to MySql.</p>
-<div class="codehilite"><pre><span></span><code>mysql&gt; use ccnet_db;
+<div class="highlight"><pre><span></span><code>mysql&gt; use ccnet_db;
 mysql&gt; source ccnet-db.sql;
 </code></pre></div>
-
 <p>Import seafile data to MySql.</p>
-<div class="codehilite"><pre><span></span><code>mysql&gt; use seafile_db;
+<div class="highlight"><pre><span></span><code>mysql&gt; use seafile_db;
 mysql&gt; source seafile-db.sql;
 </code></pre></div>
-
 <p>Import seahub data to MySql.</p>
-<div class="codehilite"><pre><span></span><code>mysql&gt; use seahub_db;
+<div class="highlight"><pre><span></span><code>mysql&gt; use seahub_db;
 mysql&gt; source seahub-db.sql;
 </code></pre></div>
-
 <p>Modify configure files：Append following lines to <a href="../../config/ccnet-conf/">ccnet.conf</a>:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[Database]</span>
-<span class="na">ENGINE</span><span class="o">=</span><span class="s">mysql</span>
-<span class="na">HOST</span><span class="o">=</span><span class="s">127.0.0.1</span>
-<span class="na">PORT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">3306</span>
-<span class="na">USER</span><span class="o">=</span><span class="s">root</span>
-<span class="na">PASSWD</span><span class="o">=</span><span class="s">root</span>
-<span class="na">DB</span><span class="o">=</span><span class="s">ccnet_db</span>
-<span class="na">CONNECTION_CHARSET</span><span class="o">=</span><span class="s">utf8</span>
+<div class="highlight"><pre><span></span><code>[Database]
+ENGINE=mysql
+HOST=127.0.0.1
+PORT = 3306
+USER=root
+PASSWD=root
+DB=ccnet_db
+CONNECTION_CHARSET=utf8
 </code></pre></div>
-
 <p>Note: Use <code>127.0.0.1</code>, don't use <code>localhost</code>.</p>
 <p>Replace the database section in <code>seafile.conf</code> with following lines:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[database]</span>
-<span class="na">type</span><span class="o">=</span><span class="s">mysql</span>
-<span class="na">host</span><span class="o">=</span><span class="s">127.0.0.1</span>
-<span class="na">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">3306</span>
-<span class="na">user</span><span class="o">=</span><span class="s">root</span>
-<span class="na">password</span><span class="o">=</span><span class="s">root</span>
-<span class="na">db_name</span><span class="o">=</span><span class="s">seafile_db</span>
-<span class="na">connection_charset</span><span class="o">=</span><span class="s">utf8</span>
+<div class="highlight"><pre><span></span><code>[database]
+type=mysql
+host=127.0.0.1
+port = 3306
+user=root
+password=root
+db_name=seafile_db
+connection_charset=utf8
 </code></pre></div>
-
 <p>Append following lines to <code>seahub_settings.py</code>:</p>
-<div class="codehilite"><pre><span></span><code>DATABASES = {
+<div class="highlight"><pre><span></span><code>DATABASES = {
     &#39;default&#39;: {
         &#39;ENGINE&#39;: &#39;django.db.backends.mysql&#39;,
         &#39;USER&#39; : &#39;root&#39;,
@@ -4254,31 +4247,28 @@ mysql&gt; source seahub-db.sql;
     }
 }
 </code></pre></div>
-
 <p>Restart seafile and seahub</p>
 <p><strong>NOTE</strong></p>
 <p>User notifications will be cleared during migration due to the slight difference between MySQL and SQLite, if you only see the busy icon when click the notitfications button beside your avatar, please remove <code>user_notitfications</code> table manually by:</p>
-<div class="codehilite"><pre><span></span><code>use seahub_db;
+<div class="highlight"><pre><span></span><code>use seahub_db;
 delete from notifications_usernotification;
 </code></pre></div>
-
 <h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
 <h4 id="encountered-errno-150-foreign-key-constraint-is-incorrectly-formed">Encountered <code>errno: 150 "Foreign key constraint is incorrectly formed"</code><a class="headerlink" href="#encountered-errno-150-foreign-key-constraint-is-incorrectly-formed" title="Permanent link">&para;</a></h4>
 <p>This error typically occurs because the current table being created contains a foreign key that references a table whose primary key has not yet been created. Therefore, please check the database table creation order in the SQL file. The correct order is:</p>
-<div class="codehilite"><pre><span></span><code>auth_user
+<p><div class="highlight"><pre><span></span><code>auth_user
 auth_group
 auth_permission
 auth_group_permissions
 auth_user_groups
 auth_user_user_permissions
 </code></pre></div>
-
-<p>and</p>
-<div class="codehilite"><pre><span></span><code>post_office_emailtemplate
+and
+<div class="highlight"><pre><span></span><code>post_office_emailtemplate
 post_office_email
 post_office_attachment
 post_office_attachment_emails
-</code></pre></div>
+</code></pre></div></p>
 
 
 
@@ -4308,6 +4298,46 @@ post_office_attachment_emails
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../fail2ban/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Config fail2ban">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Config fail2ban
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../extension/setup_seadoc/" class="md-footer__link md-footer__link--next" aria-label="Next: SeaDoc Integration">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                SeaDoc Integration
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4350,7 +4380,7 @@ post_office_attachment_emails
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

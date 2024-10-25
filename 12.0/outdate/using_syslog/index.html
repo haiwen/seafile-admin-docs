@@ -2184,7 +2184,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4114,85 +4114,80 @@
 <h2 id="configure-seafile-to-use-syslog">Configure Seafile to Use Syslog<a class="headerlink" href="#configure-seafile-to-use-syslog" title="Permanent link">&para;</a></h2>
 <p>Since community edition 5.1.2 and professional edition 5.1.4, Seafile support using Syslog.</p>
 <h3 id="configure-syslog-for-seafile-controller-and-server">Configure Syslog for Seafile Controller and Server<a class="headerlink" href="#configure-syslog-for-seafile-controller-and-server" title="Permanent link">&para;</a></h3>
-<p>Add following configuration to <code>general</code> section in <code>seafile.conf</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[general]</span>
-<span class="na">enable_syslog</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-</code></pre></div>
-
-<p>Restart seafile server, you will find follow logs in <code>/var/log/syslog</code>:</p>
-<div class="codehilite"><pre><span></span><code>May 10 23:45:19 ubuntu seafile-controller[16385]: seafile-controller.c(154): starting ccnet-server ...
+<p>Add following configuration to <code>general</code> section in <code>seafile.conf</code>:
+<div class="highlight"><pre><span></span><code>[general]
+enable_syslog = true
+</code></pre></div></p>
+<p>Restart seafile server, you will find follow logs in <code>/var/log/syslog</code>:
+<div class="highlight"><pre><span></span><code>May 10 23:45:19 ubuntu seafile-controller[16385]: seafile-controller.c(154): starting ccnet-server ...
 May 10 23:45:19 ubuntu seafile-controller[16385]: seafile-controller.c(73): spawn_process: ccnet-server -F /home/plt/haiwen/conf -c /home/plt/haiwen/ccnet -f /home/plt/haiwen/logs/ccnet.log -d -P /home/plt/haiwen/pids/ccnet.pid
 </code></pre></div>
-
-<div class="codehilite"><pre><span></span><code><span class="n">May</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="mo">01</span><span class="o">:</span><span class="mo">00</span><span class="o">:</span><span class="mi">51</span><span class="w"> </span><span class="n">ubuntu</span><span class="w"> </span><span class="n">seaf</span><span class="o">-</span><span class="n">server</span><span class="p">[</span><span class="mi">21552</span><span class="p">]</span><span class="o">:</span><span class="w"> </span><span class="p">..</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">mq</span><span class="o">-</span><span class="n">mgr</span><span class="p">.</span><span class="n">c</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="n">mq</span><span class="w"> </span><span class="n">client</span><span class="p">]</span><span class="w"> </span><span class="n">mq</span><span class="w"> </span><span class="n">cilent</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">started</span>
-<span class="n">May</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="mo">01</span><span class="o">:</span><span class="mo">00</span><span class="o">:</span><span class="mi">51</span><span class="w"> </span><span class="n">ubuntu</span><span class="w"> </span><span class="n">seaf</span><span class="o">-</span><span class="n">server</span><span class="p">[</span><span class="mi">21552</span><span class="p">]</span><span class="o">:</span><span class="w"> </span><span class="p">..</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">mq</span><span class="o">-</span><span class="n">mgr</span><span class="p">.</span><span class="n">c</span><span class="p">(</span><span class="mi">106</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="n">mq</span><span class="w"> </span><span class="n">mgr</span><span class="p">]</span><span class="w"> </span><span class="n">publish</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">hearbeat</span><span class="w"> </span><span class="n">mq</span><span class="o">:</span><span class="w"> </span><span class="n">seaf_server</span><span class="p">.</span><span class="n">heartbeat</span>
-</code></pre></div>
-
+<div class="highlight"><pre><span></span><code>May 12 01:00:51 ubuntu seaf-server[21552]: ../common/mq-mgr.c(60): [mq client] mq cilent is started
+May 12 01:00:51 ubuntu seaf-server[21552]: ../common/mq-mgr.c(106): [mq mgr] publish to hearbeat mq: seaf_server.heartbeat
+</code></pre></div></p>
 <h3 id="configure-syslog-for-seafevents-professional-edition-only">Configure Syslog For Seafevents (Professional Edition only)<a class="headerlink" href="#configure-syslog-for-seafevents-professional-edition-only" title="Permanent link">&para;</a></h3>
-<p>Add following configuration to <code>seafevents.conf</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[Syslog]</span>
-<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-</code></pre></div>
-
-<p>Restart seafile server, you will find follow logs in <code>/var/log/syslog</code></p>
-<div class="codehilite"><pre><span></span><code><span class="n">May</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="mi">01</span><span class="err">:</span><span class="mi">00</span><span class="err">:</span><span class="mi">52</span><span class="w"> </span><span class="n">ubuntu</span><span class="w"> </span><span class="n">seafevents</span><span class="o">[</span><span class="n">21542</span><span class="o">]</span><span class="err">:</span><span class="w"> </span><span class="o">[</span><span class="n">seafevents</span><span class="o">]</span><span class="w"> </span><span class="k">database</span><span class="err">:</span><span class="w"> </span><span class="n">mysql</span><span class="p">,</span><span class="w"> </span><span class="nl">name</span><span class="p">:</span><span class="w"> </span><span class="n">seahub</span><span class="o">-</span><span class="n">pro</span>
-<span class="n">May</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="mi">01</span><span class="err">:</span><span class="mi">00</span><span class="err">:</span><span class="mi">52</span><span class="w"> </span><span class="n">ubuntu</span><span class="w"> </span><span class="n">seafevents</span><span class="o">[</span><span class="n">21542</span><span class="o">]</span><span class="err">:</span><span class="w"> </span><span class="n">seafes</span><span class="w"> </span><span class="nl">enabled</span><span class="p">:</span><span class="w"> </span><span class="k">True</span>
-<span class="n">May</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="mi">01</span><span class="err">:</span><span class="mi">00</span><span class="err">:</span><span class="mi">52</span><span class="w"> </span><span class="n">ubuntu</span><span class="w"> </span><span class="n">seafevents</span><span class="o">[</span><span class="n">21542</span><span class="o">]</span><span class="err">:</span><span class="w"> </span><span class="n">seafes</span><span class="w"> </span><span class="nl">dir</span><span class="p">:</span><span class="w"> </span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">plt</span><span class="o">/</span><span class="n">pro</span><span class="o">-</span><span class="n">haiwen</span><span class="o">/</span><span class="n">seafile</span><span class="o">-</span><span class="n">pro</span><span class="o">-</span><span class="n">server</span><span class="o">-</span><span class="mf">5.1.4</span><span class="o">/</span><span class="n">pro</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="n">seafes</span>
-</code></pre></div>
-
+<p>Add following configuration to <code>seafevents.conf</code>:
+<div class="highlight"><pre><span></span><code>[Syslog]
+enabled = true
+</code></pre></div></p>
+<p>Restart seafile server, you will find follow logs in <code>/var/log/syslog</code>
+<div class="highlight"><pre><span></span><code>May 12 01:00:52 ubuntu seafevents[21542]: [seafevents] database: mysql, name: seahub-pro
+May 12 01:00:52 ubuntu seafevents[21542]: seafes enabled: True
+May 12 01:00:52 ubuntu seafevents[21542]: seafes dir: /home/plt/pro-haiwen/seafile-pro-server-5.1.4/pro/python/seafes
+</code></pre></div></p>
 <h3 id="configure-syslog-for-seahub">Configure Syslog For Seahub<a class="headerlink" href="#configure-syslog-for-seahub" title="Permanent link">&para;</a></h3>
 <p>Add following configurations to <code>seahub_settings.py</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="nx">LOGGING</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="err">&#39;</span><span class="nx">version</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">    </span><span class="err">&#39;</span><span class="nx">disable_existing_loggers</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="nx">True</span><span class="p">,</span>
-<span class="w">    </span><span class="err">&#39;</span><span class="nx">formatters</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="err">&#39;</span><span class="nx">verbose</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="err">&#39;</span><span class="nx">format</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="o">%</span><span class="p">(</span><span class="nx">process</span><span class="p">)</span><span class="o">-</span><span class="mi">5</span><span class="nx">d</span><span class="w"> </span><span class="o">%</span><span class="p">(</span><span class="nx">thread</span><span class="p">)</span><span class="nx">d</span><span class="w"> </span><span class="o">%</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="o">-</span><span class="mi">50</span><span class="nx">s</span><span class="w"> </span><span class="o">%</span><span class="p">(</span><span class="nx">levelname</span><span class="p">)</span><span class="o">-</span><span class="mi">8</span><span class="nx">s</span><span class="w"> </span><span class="o">%</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span><span class="nx">s</span><span class="err">&#39;</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="err">&#39;</span><span class="nx">standard</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="err">&#39;</span><span class="nx">format</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="o">%</span><span class="p">(</span><span class="nx">asctime</span><span class="p">)</span><span class="nx">s</span><span class="w"> </span><span class="p">[</span><span class="o">%</span><span class="p">(</span><span class="nx">levelname</span><span class="p">)</span><span class="nx">s</span><span class="p">]</span><span class="w"> </span><span class="o">%</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="nx">s</span><span class="p">:</span><span class="o">%</span><span class="p">(</span><span class="nx">lineno</span><span class="p">)</span><span class="nx">s</span><span class="w"> </span><span class="o">%</span><span class="p">(</span><span class="nx">funcName</span><span class="p">)</span><span class="nx">s</span><span class="w"> </span><span class="o">%</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span><span class="nx">s</span><span class="err">&#39;</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="err">&#39;</span><span class="nx">simple</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="err">&#39;</span><span class="nx">format</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="p">[</span><span class="o">%</span><span class="p">(</span><span class="nx">asctime</span><span class="p">)</span><span class="nx">s</span><span class="p">]</span><span class="w"> </span><span class="o">%</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="nx">s</span><span class="w"> </span><span class="o">%</span><span class="p">(</span><span class="nx">levelname</span><span class="p">)</span><span class="nx">s</span><span class="w"> </span><span class="o">%</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span><span class="nx">s</span><span class="err">&#39;</span><span class="p">,</span>
-<span class="w">            </span><span class="err">&#39;</span><span class="nx">datefmt</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="o">%</span><span class="nx">d</span><span class="o">/%</span><span class="nx">b</span><span class="o">/%</span><span class="nx">Y</span><span class="w"> </span><span class="o">%</span><span class="nx">H</span><span class="p">:</span><span class="o">%</span><span class="nx">M</span><span class="p">:</span><span class="o">%</span><span class="nx">S</span><span class="err">&#39;</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="err">&#39;</span><span class="nx">filters</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="err">&#39;</span><span class="nx">require_debug_false</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="err">&#39;</span><span class="p">()</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">django</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">log</span><span class="p">.</span><span class="nx">RequireDebugFalse</span><span class="err">&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="err">&#39;</span><span class="nx">require_debug_true</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="err">&#39;</span><span class="p">()</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">django</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">log</span><span class="p">.</span><span class="nx">RequireDebugTrue</span><span class="err">&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="err">&#39;</span><span class="nx">handlers</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="err">&#39;</span><span class="nx">console</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="err">&#39;</span><span class="nx">filters</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">&#39;</span><span class="nx">require_debug_true</span><span class="err">&#39;</span><span class="p">],</span>
-<span class="w">            </span><span class="err">&#39;</span><span class="kd">class</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">logging</span><span class="p">.</span><span class="nx">StreamHandler</span><span class="err">&#39;</span><span class="p">,</span>
-<span class="w">            </span><span class="err">&#39;</span><span class="nx">formatter</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">simple</span><span class="err">&#39;</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="err">&#39;</span><span class="nx">syslog</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="err">&#39;</span><span class="kd">class</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">logging</span><span class="p">.</span><span class="nx">handlers</span><span class="p">.</span><span class="nx">SysLogHandler</span><span class="err">&#39;</span><span class="p">,</span>
-<span class="w">            </span><span class="err">&#39;</span><span class="nx">address</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="o">/</span><span class="nx">dev</span><span class="o">/</span><span class="nx">log</span><span class="err">&#39;</span><span class="p">,</span>
-<span class="w">            </span><span class="err">&#39;</span><span class="nx">formatter</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">standard</span><span class="err">&#39;</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="err">&#39;</span><span class="nx">loggers</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="nx">root</span><span class="w"> </span><span class="nx">logger</span>
-<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="nx">All</span><span class="w"> </span><span class="nx">logs</span><span class="w"> </span><span class="nx">printed</span><span class="w"> </span><span class="nx">by</span><span class="w"> </span><span class="nx">Seahub</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="nx">any</span><span class="w"> </span><span class="nx">third</span><span class="w"> </span><span class="nx">party</span><span class="w"> </span><span class="nx">libraries</span><span class="w"> </span><span class="nx">will</span><span class="w"> </span><span class="nx">be</span><span class="w"> </span><span class="nx">handled</span><span class="w"> </span><span class="nx">by</span><span class="w"> </span><span class="nx">this</span><span class="w"> </span><span class="nx">logger</span><span class="p">.</span>
-<span class="w">        </span><span class="err">&#39;&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="err">&#39;</span><span class="nx">handlers</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">&#39;</span><span class="nx">console</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">syslog</span><span class="err">&#39;</span><span class="p">],</span>
-<span class="w">            </span><span class="err">&#39;</span><span class="nx">level</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">INFO</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="nx">Logs</span><span class="w"> </span><span class="nx">when</span><span class="w"> </span><span class="nx">log</span><span class="w"> </span><span class="nx">level</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="nx">higher</span><span class="w"> </span><span class="nx">than</span><span class="w"> </span><span class="nx">info</span><span class="p">.</span><span class="w"> </span><span class="nx">Level</span><span class="w"> </span><span class="nx">can</span><span class="w"> </span><span class="nx">be</span><span class="w"> </span><span class="nx">any</span><span class="w"> </span><span class="nx">one</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">DEBUG</span><span class="p">,</span><span class="w"> </span><span class="nx">INFO</span><span class="p">,</span><span class="w"> </span><span class="nx">WARNING</span><span class="p">,</span><span class="w"> </span><span class="nx">ERROR</span><span class="p">,</span><span class="w"> </span><span class="nx">CRITICAL</span><span class="p">.</span>
-<span class="w">            </span><span class="err">&#39;</span><span class="nx">disabled</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="nx">False</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="nx">This</span><span class="w"> </span><span class="nx">logger</span><span class="w"> </span><span class="nx">recorded</span><span class="w"> </span><span class="nx">logs</span><span class="w"> </span><span class="nx">printed</span><span class="w"> </span><span class="nx">by</span><span class="w"> </span><span class="nx">Django</span><span class="w"> </span><span class="nx">Framework</span><span class="p">.</span><span class="w"> </span><span class="nx">For</span><span class="w"> </span><span class="nx">example</span><span class="p">,</span><span class="w"> </span><span class="nx">when</span><span class="w"> </span><span class="nx">you</span><span class="w"> </span><span class="nx">see</span><span class="w"> </span><span class="mi">5</span><span class="nx">xx</span><span class="w"> </span><span class="nx">page</span><span class="w"> </span><span class="nx">error</span><span class="p">,</span><span class="w"> </span><span class="nx">you</span><span class="w"> </span><span class="nx">should</span><span class="w"> </span><span class="nx">check</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">logs</span><span class="w"> </span><span class="nx">recorded</span><span class="w"> </span><span class="nx">by</span><span class="w"> </span><span class="nx">this</span><span class="w"> </span><span class="nx">logger</span><span class="p">.</span>
-<span class="w">        </span><span class="err">&#39;</span><span class="nx">django</span><span class="p">.</span><span class="nx">request</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="err">&#39;</span><span class="nx">handlers</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">&#39;</span><span class="nx">console</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">syslog</span><span class="err">&#39;</span><span class="p">],</span>
-<span class="w">            </span><span class="err">&#39;</span><span class="nx">level</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">INFO</span><span class="err">&#39;</span><span class="p">,</span>
-<span class="w">            </span><span class="err">&#39;</span><span class="nx">propagate</span><span class="err">&#39;</span><span class="p">:</span><span class="w"> </span><span class="nx">False</span><span class="p">,</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code>LOGGING = {
+    &#39;version&#39;: 1,
+    &#39;disable_existing_loggers&#39;: True,
+    &#39;formatters&#39;: {
+        &#39;verbose&#39;: {
+            &#39;format&#39;: &#39;%(process)-5d %(thread)d %(name)-50s %(levelname)-8s %(message)s&#39;
+        },
+        &#39;standard&#39;: {
+            &#39;format&#39;: &#39;%(asctime)s [%(levelname)s] %(name)s:%(lineno)s %(funcName)s %(message)s&#39;
+        },
+        &#39;simple&#39;: {
+            &#39;format&#39;: &#39;[%(asctime)s] %(name)s %(levelname)s %(message)s&#39;,
+            &#39;datefmt&#39;: &#39;%d/%b/%Y %H:%M:%S&#39;
+        },
+    },
+    &#39;filters&#39;: {
+        &#39;require_debug_false&#39;: {
+            &#39;()&#39;: &#39;django.utils.log.RequireDebugFalse&#39;,
+        },
+        &#39;require_debug_true&#39;: {
+            &#39;()&#39;: &#39;django.utils.log.RequireDebugTrue&#39;,
+        },
+    },
+    &#39;handlers&#39;: {
+        &#39;console&#39;: {
+            &#39;filters&#39;: [&#39;require_debug_true&#39;],
+            &#39;class&#39;: &#39;logging.StreamHandler&#39;,
+            &#39;formatter&#39;: &#39;simple&#39;
+        },
+        &#39;syslog&#39;: {
+            &#39;class&#39;: &#39;logging.handlers.SysLogHandler&#39;,
+            &#39;address&#39;: &#39;/dev/log&#39;,
+            &#39;formatter&#39;: &#39;standard&#39;
+        },
+    },
+    &#39;loggers&#39;: {
+        # root logger
+        # All logs printed by Seahub and any third party libraries will be handled by this logger.
+        &#39;&#39;: {
+            &#39;handlers&#39;: [&#39;console&#39;, &#39;syslog&#39;],
+            &#39;level&#39;: &#39;INFO&#39;, # Logs when log level is higher than info. Level can be any one of DEBUG, INFO, WARNING, ERROR, CRITICAL.
+            &#39;disabled&#39;: False
+        },
+        # This logger recorded logs printed by Django Framework. For example, when you see 5xx page error, you should check the logs recorded by this logger.
+        &#39;django.request&#39;: {
+            &#39;handlers&#39;: [&#39;console&#39;, &#39;syslog&#39;],
+            &#39;level&#39;: &#39;INFO&#39;,
+            &#39;propagate&#39;: False,
+        },
+    },
+}
 </code></pre></div>
 
 
@@ -4223,6 +4218,8 @@ May 10 23:45:19 ubuntu seafile-controller[16385]: seafile-controller.c(73): spaw
       </main>
       
         <footer class="md-footer">
+  
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4265,7 +4262,7 @@ May 10 23:45:19 ubuntu seafile-controller[16385]: seafile-controller.c(73): spaw
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

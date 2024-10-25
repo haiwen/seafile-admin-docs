@@ -2184,7 +2184,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4130,152 +4130,142 @@
 <p>Seafile Server must be version 8.0 or above.</p>
 <h2 id="installing-prerequisites">Installing prerequisites<a class="headerlink" href="#installing-prerequisites" title="Permanent link">&para;</a></h2>
 <p>The packages php, composer, firebase-jwt, and guzzle must be installed. PHP can usually be downloaded and installed via the distribution's official repositories. firebase-jwt and guzzle are installed using composer.</p>
-<p>First, install the php package and check the installed version:</p>
-<div class="codehilite"><pre><span></span><code># CentOS/RedHat
+<p>First, install the php package and check the installed version:
+<div class="highlight"><pre><span></span><code># CentOS/RedHat
 $ sudo yum install -y php-fpm php-curl
 $ php --version
 
 # Debian/Ubuntu
 $ sudo apt install -y php-fpm php-curl
 $ php --version
-</code></pre></div>
-
+</code></pre></div></p>
 <p>Second, install composer. You find an up-to-date install manual at https://getcomposer.org/ for CentOS, Debian, and Ubuntu.</p>
-<p>Third, use composer to install firebase-jwt and guzzle in a new directory in <code>/var/www</code>:</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/var/www/outlook-sso
-$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/var/www/outlook-sso
-$<span class="w"> </span>composer<span class="w"> </span>require<span class="w"> </span>firebase/php-jwt<span class="w"> </span>guzzlehttp/guzzle
-</code></pre></div>
-
+<p>Third, use composer to install firebase-jwt and guzzle in a new directory in <code>/var/www</code>:
+<div class="highlight"><pre><span></span><code>$ mkdir -p /var/www/outlook-sso
+$ cd /var/www/outlook-sso
+$ composer require firebase/php-jwt guzzlehttp/guzzle
+</code></pre></div></p>
 <h2 id="configuring-seahub">Configuring Seahub<a class="headerlink" href="#configuring-seahub" title="Permanent link">&para;</a></h2>
 <p>Add this block to the config file <code>seahub_settings.py</code> using a text editor:</p>
-<div class="codehilite"><pre><span></span><code>ENABLE_JWT_SSO = True
+<div class="highlight"><pre><span></span><code>ENABLE_JWT_SSO = True
 JWT_SSO_SECRET_KEY = &#39;SHARED_SECRET&#39;
 ENABLE_SYS_ADMIN_GENERATE_USER_AUTH_TOKEN = True
 </code></pre></div>
-
 <p>Replace SHARED_SECRET with a secret of your own.</p>
 <h2 id="configuring-the-proxy-server">Configuring the proxy server<a class="headerlink" href="#configuring-the-proxy-server" title="Permanent link">&para;</a></h2>
 <p>The configuration depends on the proxy server use.</p>
 <p>If you use nginx, add the following location block to the nginx configuration:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">location</span><span class="w"> </span><span class="o">/</span><span class="n">outlook</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">alias</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">outlook</span><span class="o">-</span><span class="n">sso</span><span class="o">/</span><span class="n">public</span><span class="p">;</span>
-<span class="w">    </span><span class="n">index</span><span class="w"> </span><span class="n">index</span><span class="o">.</span><span class="n">php</span><span class="p">;</span>
-<span class="w">    </span><span class="n">location</span><span class="w"> </span><span class="o">~</span><span class="w"> </span>\<span class="o">.</span><span class="n">php</span><span class="o">$</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">fastcgi_split_path_info</span><span class="w"> </span><span class="o">^</span><span class="p">(</span><span class="o">.+</span>\<span class="o">.</span><span class="n">php</span><span class="p">)(</span><span class="o">/.+</span><span class="p">)</span><span class="o">$</span><span class="p">;</span>
-<span class="w">      </span><span class="n">fastcgi_pass</span><span class="w"> </span><span class="n">unix</span><span class="p">:</span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">php</span><span class="o">/</span><span class="n">php7</span><span class="o">.</span><span class="mi">4</span><span class="o">-</span><span class="n">fpm</span><span class="o">.</span><span class="n">sock</span><span class="p">;</span>
-<span class="w">      </span><span class="n">fastcgi_param</span><span class="w"> </span><span class="n">SCRIPT_FILENAME</span><span class="w"> </span><span class="o">$</span><span class="n">request_filename</span><span class="p">;</span>
-<span class="w">      </span><span class="n">fastcgi_index</span><span class="w"> </span><span class="n">index</span><span class="o">.</span><span class="n">php</span><span class="p">;</span>
-<span class="w">      </span><span class="n">include</span><span class="w"> </span><span class="n">fastcgi_params</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code>location /outlook {
+    alias /var/www/outlook-sso/public;
+    index index.php;
+    location ~ \.php$ {
+      fastcgi_split_path_info ^(.+\.php)(/.+)$;
+      fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+      fastcgi_param SCRIPT_FILENAME $request_filename;
+      fastcgi_index index.php;
+      include fastcgi_params;
+    }
+}
 </code></pre></div>
-
 <p>This sample block assumes that PHP 7.4 is installed. If you have a different PHP version on your system, modify the version in the fastcgi_pass unix.</p>
 <p>Note: The alias path can be altered. We advise against it unless there are good reasons. If you do, make sure you modify the path accordingly in all subsequent steps.</p>
 <p>Finally, check the nginx configuration and restart nginx:</p>
-<div class="codehilite"><pre><span></span><code><span class="o">$</span><span class="w"> </span><span class="n">nginx</span><span class="w"> </span><span class="o">-</span><span class="n">t</span>
-<span class="o">$</span><span class="w"> </span><span class="n">nginx</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="n">reload</span>
+<div class="highlight"><pre><span></span><code>$ nginx -t
+$ nginx -s reload
 </code></pre></div>
-
 <h2 id="deploying-the-php-script">Deploying the PHP script<a class="headerlink" href="#deploying-the-php-script" title="Permanent link">&para;</a></h2>
 <p>The PHP script and corresponding configuration files will be saved in the new directory created earlier. Change into it and add a PHP config file:</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/var/www/outlook-sso
-$<span class="w"> </span>nano<span class="w"> </span>config.php
+<div class="highlight"><pre><span></span><code>$ cd /var/www/outlook-sso
+$ nano config.php
 </code></pre></div>
-
 <p>Paste the following content in the <code>config.php</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
+<div class="highlight"><pre><span></span><code>&lt;?php
 
-<span class="c1"># general settings</span>
-<span class="nv">$seafile_url</span> <span class="o">=</span> <span class="s1">&#39;SEAFILE_SERVER_URL&#39;</span><span class="p">;</span>
-<span class="nv">$jwt_shared_secret</span> <span class="o">=</span> <span class="s1">&#39;SHARED_SECRET&#39;</span><span class="p">;</span>
+# general settings
+$seafile_url = &#39;SEAFILE_SERVER_URL&#39;;
+$jwt_shared_secret = &#39;SHARED_SECRET&#39;;
 
-<span class="c1"># Option 1: provide credentials of a seafile admin user</span>
-<span class="nv">$seafile_admin_account</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-<span class="p">];</span>
+# Option 1: provide credentials of a seafile admin user
+$seafile_admin_account = [
+    &#39;username&#39; =&gt; &#39;&#39;,
+    &#39;password&#39; =&gt; &#39;&#39;,
+];
 
-<span class="c1"># Option 2: provide the api-token of a seafile admin user</span>
-<span class="nv">$seafile_admin_token</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+# Option 2: provide the api-token of a seafile admin user
+$seafile_admin_token = &#39;&#39;;
 
-<span class="cp">?&gt;</span>
+?&gt;
 </code></pre></div>
-
 <p>First, replace SEAFILE_SERVER_URL with the URL of your Seafile Server and SHARED_SECRET with the key used in <a href="#configuring_seahub">Configuring Seahub</a>.</p>
 <p>Second, add either the user credentials of a Seafile user with admin rights or the API-token of such a user.</p>
 <p>In the next step, create the <code>index.php</code> and copy &amp; paste the PHP script:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">mkdir</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">outlook</span><span class="o">-</span><span class="n">sso</span><span class="o">/</span><span class="n">public</span>
-<span class="o">$</span><span class="w"> </span><span class="n">cd</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">outlook</span><span class="o">-</span><span class="n">sso</span><span class="o">/</span><span class="n">public</span>
-<span class="o">$</span><span class="w"> </span><span class="n">nano</span><span class="w"> </span><span class="n">index</span><span class="o">.</span><span class="n">php</span>
+<div class="highlight"><pre><span></span><code>mkdir /var/www/outlook-sso/public
+$ cd /var/www/outlook-sso/public
+$ nano index.php
 </code></pre></div>
-
 <p>Paste the following code block:</p>
-<div class="codehilite"><pre><span></span><code><span class="o">&lt;</span><span class="err">?</span><span class="n">php</span>
-<span class="o">/**</span><span class="w"> </span><span class="n">IMPORTANT</span><span class="p">:</span><span class="w"> </span><span class="n">there</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">no</span><span class="w"> </span><span class="n">need</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">change</span><span class="w"> </span><span class="n">anything</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">!</span><span class="w"> </span><span class="o">**/</span>
+<div class="highlight"><pre><span></span><code>&lt;?php
+/** IMPORTANT: there is no need to change anything in this file ! **/
 
-<span class="n">require_once</span><span class="w"> </span><span class="n">__DIR__</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="s1">&#39;/../vendor/autoload.php&#39;</span><span class="p">;</span>
-<span class="n">require_once</span><span class="w"> </span><span class="n">__DIR__</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="s1">&#39;/../config.php&#39;</span><span class="p">;</span>
+require_once __DIR__ . &#39;/../vendor/autoload.php&#39;;
+require_once __DIR__ . &#39;/../config.php&#39;;
 
-<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">empty</span><span class="p">(</span><span class="o">$</span><span class="n">_GET</span><span class="p">[</span><span class="s1">&#39;jwt-token&#39;</span><span class="p">])){</span>
-<span class="w">    </span><span class="n">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="o">$</span><span class="n">decoded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Firebase</span>\<span class="n">JWT</span>\<span class="n">JWT</span><span class="p">::</span><span class="n">decode</span><span class="p">(</span><span class="o">$</span><span class="n">_GET</span><span class="p">[</span><span class="s1">&#39;jwt-token&#39;</span><span class="p">],</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">Firebase</span>\<span class="n">JWT</span>\<span class="n">Key</span><span class="p">(</span><span class="o">$</span><span class="n">jwt_shared_secret</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;HS256&#39;</span><span class="p">));</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="n">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="o">$</span><span class="n">e</span><span class="p">){</span>
-<span class="w">        </span><span class="n">echo</span><span class="w"> </span><span class="n">json_encode</span><span class="p">([</span><span class="s2">&quot;error&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">&quot;wrong JWT-Token&quot;</span><span class="p">]);</span>
-<span class="w">        </span><span class="n">die</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span>
+if(!empty($_GET[&#39;jwt-token&#39;])){
+    try {
+        $decoded = Firebase\JWT\JWT::decode($_GET[&#39;jwt-token&#39;], new Firebase\JWT\Key($jwt_shared_secret, &#39;HS256&#39;));
+    }
+    catch (Exception $e){
+        echo json_encode([&quot;error&quot; =&gt; &quot;wrong JWT-Token&quot;]);
+        die();
+    }
 
-<span class="w">    </span><span class="n">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="n">init</span><span class="w"> </span><span class="n">connetion</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">seafile</span><span class="w"> </span><span class="n">api</span>
-<span class="w">        </span><span class="o">$</span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">GuzzleHttp</span>\<span class="n">Client</span><span class="p">([</span><span class="s1">&#39;base_uri&#39;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">$</span><span class="n">seafile_url</span><span class="p">]);</span>
+    try {
+        // init connetion to seafile api
+        $client = new GuzzleHttp\Client([&#39;base_uri&#39; =&gt; $seafile_url]);
 
-<span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="n">get</span><span class="w"> </span><span class="n">admin</span><span class="w"> </span><span class="n">api</span><span class="o">-</span><span class="n">token</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">his</span><span class="w"> </span><span class="n">credentials</span><span class="w"> </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">set</span><span class="p">)</span>
-<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">empty</span><span class="p">(</span><span class="o">$</span><span class="n">seafile_admin_token</span><span class="p">)){</span>
-<span class="w">            </span><span class="o">$</span><span class="n">request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">client</span><span class="o">-&gt;</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;/api2/auth-token/&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;form_params&#39;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">$</span><span class="n">seafile_admin_account</span><span class="p">]);</span>
-<span class="w">            </span><span class="o">$</span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">json_decode</span><span class="p">(</span><span class="o">$</span><span class="n">request</span><span class="o">-&gt;</span><span class="n">getBody</span><span class="p">());</span>
-<span class="w">            </span><span class="o">$</span><span class="n">seafile_admin_token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">response</span><span class="o">-&gt;</span><span class="n">token</span><span class="p">;</span>
-<span class="w">        </span><span class="p">}</span>
+        // get admin api-token with his credentials (if not set)
+        if(empty($seafile_admin_token)){
+            $request = $client-&gt;request(&#39;POST&#39;, &#39;/api2/auth-token/&#39;, [&#39;form_params&#39; =&gt; $seafile_admin_account]);
+            $response = json_decode($request-&gt;getBody());
+            $seafile_admin_token = $response-&gt;token;
+        }
 
-<span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="n">get</span><span class="w"> </span><span class="n">api</span><span class="o">-</span><span class="n">token</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">user</span>
-<span class="w">        </span><span class="o">$</span><span class="n">request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">client</span><span class="o">-&gt;</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;/api/v2.1/admin/generate-user-auth-token/&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span>
-<span class="w">            </span><span class="s1">&#39;json&#39;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">$</span><span class="n">decoded</span><span class="o">-&gt;</span><span class="n">email</span><span class="p">],</span>
-<span class="w">            </span><span class="s1">&#39;headers&#39;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;Authorization&#39;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;Token &#39;</span><span class="o">.</span><span class="w"> </span><span class="o">$</span><span class="n">seafile_admin_token</span><span class="p">]</span>
-<span class="w">        </span><span class="p">]);</span>
-<span class="w">        </span><span class="o">$</span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">json_decode</span><span class="p">(</span><span class="o">$</span><span class="n">request</span><span class="o">-&gt;</span><span class="n">getBody</span><span class="p">());</span>
+        // get api-token of the user
+        $request = $client-&gt;request(&#39;POST&#39;, &#39;/api/v2.1/admin/generate-user-auth-token/&#39;, [
+            &#39;json&#39; =&gt; [&#39;email&#39; =&gt; $decoded-&gt;email],
+            &#39;headers&#39; =&gt; [&#39;Authorization&#39; =&gt; &#39;Token &#39;. $seafile_admin_token]
+        ]);
+        $response = json_decode($request-&gt;getBody());
 
-<span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="n">create</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">output</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">outlook</span><span class="w"> </span><span class="n">plugin</span><span class="w"> </span><span class="p">(</span><span class="n">json</span><span class="w"> </span><span class="n">like</span><span class="w"> </span><span class="n">response</span><span class="p">)</span>
-<span class="w">        </span><span class="n">echo</span><span class="w"> </span><span class="n">json_encode</span><span class="p">([</span>
-<span class="w">            </span><span class="s1">&#39;exp&#39;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">$</span><span class="n">decoded</span><span class="o">-&gt;</span><span class="nb">exp</span><span class="p">,</span>
-<span class="w">            </span><span class="s1">&#39;email&#39;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">$</span><span class="n">decoded</span><span class="o">-&gt;</span><span class="n">email</span><span class="p">,</span>
-<span class="w">            </span><span class="s1">&#39;name&#39;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">$</span><span class="n">decoded</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span>
-<span class="w">            </span><span class="s1">&#39;token&#39;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">$</span><span class="n">response</span><span class="o">-&gt;</span><span class="n">token</span><span class="p">,</span>
-<span class="w">        </span><span class="p">]);</span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="n">catch</span><span class="w"> </span><span class="p">(</span><span class="n">GuzzleHttp</span>\<span class="n">Exception</span>\<span class="n">ClientException</span><span class="w"> </span><span class="o">$</span><span class="n">e</span><span class="p">){</span>
-<span class="w">        </span><span class="n">echo</span><span class="w"> </span><span class="o">$</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">getResponse</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getBody</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-<span class="k">else</span><span class="p">{</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">no</span><span class="w"> </span><span class="n">jwt</span><span class="o">-</span><span class="n">token</span><span class="o">.</span><span class="w"> </span><span class="n">therefore</span><span class="w"> </span><span class="n">redirect</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">login</span><span class="w"> </span><span class="n">page</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">seafile</span>
-<span class="w">    </span><span class="n">header</span><span class="p">(</span><span class="s2">&quot;Location: &quot;</span><span class="o">.</span><span class="w"> </span><span class="o">$</span><span class="n">seafile_url</span><span class="w"> </span><span class="o">.</span><span class="s2">&quot;/accounts/login/?next=/jwt-sso/?page=/outlook&quot;</span><span class="p">);</span>
-<span class="p">}</span><span class="w"> </span><span class="err">?</span><span class="o">&gt;</span>
+        // create the output for the outlook plugin (json like response)
+        echo json_encode([
+            &#39;exp&#39; =&gt; $decoded-&gt;exp,
+            &#39;email&#39; =&gt; $decoded-&gt;email,
+            &#39;name&#39; =&gt; $decoded-&gt;name,
+            &#39;token&#39; =&gt; $response-&gt;token,
+        ]);
+    } catch (GuzzleHttp\Exception\ClientException $e){
+        echo $e-&gt;getResponse()-&gt;getBody();
+    }
+}
+else{ // no jwt-token. therefore redirect to the login page of seafile
+    header(&quot;Location: &quot;. $seafile_url .&quot;/accounts/login/?next=/jwt-sso/?page=/outlook&quot;);
+} ?&gt;
 </code></pre></div>
-
 <p>Note: Contrary to the config.php, no replacements or modifications are necessary in this file.</p>
 <p>The directory layout in <code>/var/www/sso-outlook/</code> should now look as follows:</p>
-<div class="codehilite"><pre><span></span><code><span class="o">$</span><span class="w"> </span><span class="n">tree</span><span class="w"> </span><span class="o">-</span><span class="n">L</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">outlook</span><span class="o">-</span><span class="n">sso</span>
-<span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">outlook</span><span class="o">-</span><span class="n">sso</span><span class="o">/</span>
-<span class="err">├──</span><span class="w"> </span><span class="n">composer</span><span class="o">.</span><span class="n">json</span>
-<span class="err">├──</span><span class="w"> </span><span class="n">composer</span><span class="o">.</span><span class="n">lock</span>
-<span class="err">├──</span><span class="w"> </span><span class="n">config</span><span class="o">.</span><span class="n">php</span>
-<span class="err">├──</span><span class="w"> </span><span class="n">public</span>
-<span class="o">|</span><span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="n">index</span><span class="o">.</span><span class="n">php</span>
-<span class="err">└──</span><span class="w"> </span><span class="n">vendor</span>
-<span class="w">    </span><span class="err">├──</span><span class="w"> </span><span class="n">autoload</span><span class="o">.</span><span class="n">php</span>
-<span class="w">    </span><span class="err">├──</span><span class="w"> </span><span class="n">composer</span>
-<span class="w">    </span><span class="err">└──</span><span class="w"> </span><span class="n">firebase</span>
+<div class="highlight"><pre><span></span><code>$ tree -L 2 /var/www/outlook-sso
+/var/www/outlook-sso/
+├── composer.json
+├── composer.lock
+├── config.php
+├── public
+|   └── index.php
+└── vendor
+    ├── autoload.php
+    ├── composer
+    └── firebase
 </code></pre></div>
-
 <p>Seafile and Seahub are now configured to support SSO in the Seafile Add-in for Outlook.</p>
 <h1 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h1>
 <p>You can now test SSO authentication in the add-in. Hit the SSO button in the settings of the Seafile add-in.</p>
@@ -4308,6 +4298,8 @@ $<span class="w"> </span>nano<span class="w"> </span>config.php
       </main>
       
         <footer class="md-footer">
+  
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4350,7 +4342,7 @@ $<span class="w"> </span>nano<span class="w"> </span>config.php
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

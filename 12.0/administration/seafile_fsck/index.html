@@ -2190,7 +2190,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4227,10 +4227,9 @@
 <p>With default installation, these internal objects are stored in the server's file system directly (such as Ext4, NTFS). But most file systems don't assure the integrity of file contents after a hard shutdown or system crash. So if new Seafile internal objects are being written when the system crashes, they can be corrupt after the system reboots. This will make part of the corresponding library not accessible.</p>
 <p>Note: If you store the seafile-data directory in a battery-backed NAS (like EMC or NetApp), or use S3 backend available in the Pro edition, the internal objects won't be corrupt.</p>
 <p>We provide a seaf-fsck.sh script to check the integrity of libraries. The seaf-fsck tool accepts the following arguments:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">cd</span><span class="w"> </span><span class="n">seafile</span><span class="o">-</span><span class="n">server</span><span class="o">-</span><span class="n">latest</span>
-<span class="o">./</span><span class="n">seaf</span><span class="o">-</span><span class="n">fsck</span><span class="o">.</span><span class="n">sh</span><span class="w"> </span><span class="p">[</span><span class="o">--</span><span class="n">repair</span><span class="o">|-</span><span class="n">r</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="o">--</span><span class="k">export</span><span class="o">|-</span><span class="n">E</span><span class="w"> </span><span class="n">export_path</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="n">repo_id_1</span><span class="w"> </span><span class="p">[</span><span class="n">repo_id_2</span><span class="w"> </span><span class="o">...</span><span class="p">]]</span>
+<div class="highlight"><pre><span></span><code>cd seafile-server-latest
+./seaf-fsck.sh [--repair|-r] [--export|-E export_path] [repo_id_1 [repo_id_2 ...]]
 </code></pre></div>
-
 <p>There are three modes of operation for seaf-fsck:</p>
 <ol>
 <li>checking integrity of libraries.</li>
@@ -4239,35 +4238,31 @@
 </ol>
 <h2 id="checking-integrity-of-libraries">Checking Integrity of Libraries<a class="headerlink" href="#checking-integrity-of-libraries" title="Permanent link">&para;</a></h2>
 <p>Running seaf-fsck.sh without any arguments will run a <strong>read-only</strong> integrity check for all libraries.</p>
-<div class="codehilite"><pre><span></span><code>cd seafile-server-latest
+<div class="highlight"><pre><span></span><code>cd seafile-server-latest
 ./seaf-fsck.sh
 </code></pre></div>
-
 <p>If you want to check integrity for specific libraries, just append the library id's as arguments:</p>
-<div class="codehilite"><pre><span></span><code><span class="nx">cd</span><span class="w"> </span><span class="nx">seafile</span><span class="o">-</span><span class="nx">server</span><span class="o">-</span><span class="nx">latest</span>
-<span class="p">.</span><span class="o">/</span><span class="nx">seaf</span><span class="o">-</span><span class="nx">fsck</span><span class="p">.</span><span class="nx">sh</span><span class="w"> </span><span class="p">[</span><span class="kn">library</span><span class="o">-</span><span class="nx">id1</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="kn">library</span><span class="o">-</span><span class="nx">id2</span><span class="p">]</span><span class="w"> </span><span class="o">...</span>
+<div class="highlight"><pre><span></span><code>cd seafile-server-latest
+./seaf-fsck.sh [library-id1] [library-id2] ...
 </code></pre></div>
-
 <p>The output looks like:</p>
-<div class="codehilite"><pre><span></span><code>[<span class="mi">02</span><span class="o">/</span><span class="mi">13</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">16</span>:<span class="mi">21</span>:<span class="mi">07</span>]<span class="w"> </span><span class="nv">fsck</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">470</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Running</span><span class="w"> </span><span class="nv">fsck</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">repo</span><span class="w"> </span><span class="nv">ca1a860d</span><span class="o">-</span><span class="nv">e1c1</span><span class="o">-</span><span class="mi">4</span><span class="nv">a52</span><span class="o">-</span><span class="mi">8123</span><span class="o">-</span><span class="mi">0</span><span class="nv">bf9def8697f</span>.
-[<span class="mi">02</span><span class="o">/</span><span class="mi">13</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">16</span>:<span class="mi">21</span>:<span class="mi">07</span>]<span class="w"> </span><span class="nv">fsck</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">413</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Checking</span><span class="w"> </span><span class="nv">file</span><span class="w"> </span><span class="nv">system</span><span class="w"> </span><span class="nv">integrity</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">repo</span><span class="w"> </span><span class="nv">fsck</span><span class="ss">(</span><span class="nv">ca1a860d</span><span class="ss">)</span>...
-[<span class="mi">02</span><span class="o">/</span><span class="mi">13</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">16</span>:<span class="mi">21</span>:<span class="mi">07</span>]<span class="w"> </span><span class="nv">fsck</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">35</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Dir</span><span class="w"> </span><span class="mi">9</span><span class="nv">c09d937397b51e1283d68ee7590cd9ce01fe4c9</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">missing</span>.
-[<span class="mi">02</span><span class="o">/</span><span class="mi">13</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">16</span>:<span class="mi">21</span>:<span class="mi">07</span>]<span class="w"> </span><span class="nv">fsck</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">200</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Dir</span><span class="w"> </span><span class="o">/</span><span class="nv">bf</span><span class="o">/</span><span class="nv">pk</span><span class="o">/</span><span class="ss">(</span><span class="mi">9</span><span class="nv">c09d937</span><span class="ss">)</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">corrupted</span>.
-[<span class="mi">02</span><span class="o">/</span><span class="mi">13</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">16</span>:<span class="mi">21</span>:<span class="mi">07</span>]<span class="w"> </span><span class="nv">fsck</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">105</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Block</span><span class="w"> </span><span class="mi">36</span><span class="nv">e3dd8757edeb97758b3b4d8530a4a8a045d3cb</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">corrupted</span>.
-[<span class="mi">02</span><span class="o">/</span><span class="mi">13</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">16</span>:<span class="mi">21</span>:<span class="mi">07</span>]<span class="w"> </span><span class="nv">fsck</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">178</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">File</span><span class="w"> </span><span class="o">/</span><span class="nv">bf</span><span class="o">/</span><span class="mi">02</span>.<span class="mi">1</span>.<span class="nv">md</span><span class="ss">(</span><span class="nv">ef37e350</span><span class="ss">)</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">corrupted</span>.
-[<span class="mi">02</span><span class="o">/</span><span class="mi">13</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">16</span>:<span class="mi">21</span>:<span class="mi">07</span>]<span class="w"> </span><span class="nv">fsck</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">85</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Block</span><span class="w"> </span><span class="mi">650</span><span class="nv">fb22495b0b199cff0f1e1ebf036e548fcb95a</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">missing</span>.
-[<span class="mi">02</span><span class="o">/</span><span class="mi">13</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">16</span>:<span class="mi">21</span>:<span class="mi">07</span>]<span class="w"> </span><span class="nv">fsck</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">178</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">File</span><span class="w"> </span><span class="o">/</span><span class="mi">01</span>.<span class="mi">2</span>.<span class="nv">md</span><span class="ss">(</span><span class="mi">4</span><span class="nv">a73621f</span><span class="ss">)</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">corrupted</span>.
-[<span class="mi">02</span><span class="o">/</span><span class="mi">13</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">16</span>:<span class="mi">21</span>:<span class="mi">07</span>]<span class="w"> </span><span class="nv">fsck</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">514</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Fsck</span><span class="w"> </span><span class="nv">finished</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">repo</span><span class="w"> </span><span class="nv">ca1a860d</span>.
+<div class="highlight"><pre><span></span><code>[02/13/15 16:21:07] fsck.c(470): Running fsck for repo ca1a860d-e1c1-4a52-8123-0bf9def8697f.
+[02/13/15 16:21:07] fsck.c(413): Checking file system integrity of repo fsck(ca1a860d)...
+[02/13/15 16:21:07] fsck.c(35): Dir 9c09d937397b51e1283d68ee7590cd9ce01fe4c9 is missing.
+[02/13/15 16:21:07] fsck.c(200): Dir /bf/pk/(9c09d937) is corrupted.
+[02/13/15 16:21:07] fsck.c(105): Block 36e3dd8757edeb97758b3b4d8530a4a8a045d3cb is corrupted.
+[02/13/15 16:21:07] fsck.c(178): File /bf/02.1.md(ef37e350) is corrupted.
+[02/13/15 16:21:07] fsck.c(85): Block 650fb22495b0b199cff0f1e1ebf036e548fcb95a is missing.
+[02/13/15 16:21:07] fsck.c(178): File /01.2.md(4a73621f) is corrupted.
+[02/13/15 16:21:07] fsck.c(514): Fsck finished for repo ca1a860d.
 </code></pre></div>
-
 <p>The corrupted files and directories are reported.</p>
 <p>Sometimes you can see output like the following:</p>
-<div class="codehilite"><pre><span></span><code>[<span class="mi">02</span><span class="o">/</span><span class="mi">13</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">16</span>:<span class="mi">36</span>:<span class="mi">11</span>]<span class="w"> </span><span class="nv">Commit</span><span class="w"> </span><span class="mi">6259251</span><span class="nv">e2b0dd9a8e99925ae6199cbf4c134ec10</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">missing</span>
-[<span class="mi">02</span><span class="o">/</span><span class="mi">13</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">16</span>:<span class="mi">36</span>:<span class="mi">11</span>]<span class="w"> </span><span class="nv">fsck</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">476</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Repo</span><span class="w"> </span><span class="nv">ca1a860d</span><span class="w"> </span><span class="nv">HEAD</span><span class="w"> </span><span class="nv">commit</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">corrupted</span>,<span class="w"> </span><span class="nv">need</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">restore</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">an</span><span class="w"> </span><span class="nv">old</span><span class="w"> </span><span class="nv">version</span>.
-[<span class="mi">02</span><span class="o">/</span><span class="mi">13</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">16</span>:<span class="mi">36</span>:<span class="mi">11</span>]<span class="w"> </span><span class="nv">fsck</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">314</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Scanning</span><span class="w"> </span><span class="nv">available</span><span class="w"> </span><span class="nv">commits</span>...
-[<span class="mi">02</span><span class="o">/</span><span class="mi">13</span><span class="o">/</span><span class="mi">15</span><span class="w"> </span><span class="mi">16</span>:<span class="mi">36</span>:<span class="mi">11</span>]<span class="w"> </span><span class="nv">fsck</span>.<span class="nv">c</span><span class="ss">(</span><span class="mi">376</span><span class="ss">)</span>:<span class="w"> </span><span class="nv">Find</span><span class="w"> </span><span class="nv">available</span><span class="w"> </span><span class="nv">commit</span><span class="w"> </span><span class="mi">1</span><span class="nv">b26b13c</span><span class="ss">(</span><span class="nv">created</span><span class="w"> </span><span class="nv">at</span><span class="w"> </span><span class="mi">2015</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">13</span><span class="w"> </span><span class="mi">16</span>:<span class="mi">10</span>:<span class="mi">21</span><span class="ss">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">repo</span><span class="w"> </span><span class="nv">ca1a860d</span>.
+<div class="highlight"><pre><span></span><code>[02/13/15 16:36:11] Commit 6259251e2b0dd9a8e99925ae6199cbf4c134ec10 is missing
+[02/13/15 16:36:11] fsck.c(476): Repo ca1a860d HEAD commit is corrupted, need to restore to an old version.
+[02/13/15 16:36:11] fsck.c(314): Scanning available commits...
+[02/13/15 16:36:11] fsck.c(376): Find available commit 1b26b13c(created at 2015-02-13 16:10:21) for repo ca1a860d.
 </code></pre></div>
-
 <p>This means the "head commit" (current state of the library) recorded in database is not consistent with the library data. In such case, fsck will try to find the last consistent state and check the integrity in that state.</p>
 <p>Tips: <strong>If you have many libraries, it's helpful to save the fsck output into a log file for later analysis.</strong></p>
 <h2 id="repairing-corruption">Repairing Corruption<a class="headerlink" href="#repairing-corruption" title="Permanent link">&para;</a></h2>
@@ -4277,15 +4272,13 @@
 <li>Check data integrity in that specific state. If files or directories are corrupted, set them to empty files or empty directories. The corrupted paths will be reported, so that the user can recover them from somewhere else.</li>
 </ol>
 <p>Running the following command repairs all the libraries:</p>
-<div class="codehilite"><pre><span></span><code>cd seafile-server-latest
+<div class="highlight"><pre><span></span><code>cd seafile-server-latest
 ./seaf-fsck.sh --repair
 </code></pre></div>
-
 <p>Most of time you run the read-only integrity check first, to find out which libraries are corrupted. And then you repair specific libraries with the following command:</p>
-<div class="codehilite"><pre><span></span><code><span class="nx">cd</span><span class="w"> </span><span class="nx">seafile</span><span class="o">-</span><span class="nx">server</span><span class="o">-</span><span class="nx">latest</span>
-<span class="p">.</span><span class="o">/</span><span class="nx">seaf</span><span class="o">-</span><span class="nx">fsck</span><span class="p">.</span><span class="nx">sh</span><span class="w"> </span><span class="o">--</span><span class="nx">repair</span><span class="w"> </span><span class="p">[</span><span class="kn">library</span><span class="o">-</span><span class="nx">id1</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="kn">library</span><span class="o">-</span><span class="nx">id2</span><span class="p">]</span><span class="w"> </span><span class="o">...</span>
+<div class="highlight"><pre><span></span><code>cd seafile-server-latest
+./seaf-fsck.sh --repair [library-id1] [library-id2] ...
 </code></pre></div>
-
 <p>After repairing, in the library history, seaf-fsck includes the list of files and folders that are corrupted. So it's much easier to located corrupted paths.</p>
 <h3 id="best-practice-for-repairing-a-library">Best Practice for Repairing a Library<a class="headerlink" href="#best-practice-for-repairing-a-library" title="Permanent link">&para;</a></h3>
 <p>To check all libraries and find out which library is corrupted, the system admin can run seaf-fsck.sh without any argument and save the output to a log file. Search for keyword "Fail" in the log file to locate corrupted libraries. You can run seaf-fsck to check all libraries when your Seafile server is running. It won't damage or change any files.</p>
@@ -4301,10 +4294,9 @@
 <h2 id="exporting-libraries-to-file-system">Exporting Libraries to File System<a class="headerlink" href="#exporting-libraries-to-file-system" title="Permanent link">&para;</a></h2>
 <p>You can use seaf-fsck to export all the files in libraries to external file system (such as Ext4). This procedure doesn't rely on the seafile database. As long as you have your seafile-data directory, you can always export your files from Seafile to external file system.</p>
 <p>The command syntax is</p>
-<div class="codehilite"><pre><span></span><code><span class="n">cd</span><span class="w"> </span><span class="n">seafile</span><span class="o">-</span><span class="n">server</span><span class="o">-</span><span class="n">latest</span>
-<span class="o">./</span><span class="n">seaf</span><span class="o">-</span><span class="n">fsck</span><span class="o">.</span><span class="n">sh</span><span class="w"> </span><span class="o">--</span><span class="k">export</span><span class="w"> </span><span class="n">top_export_path</span><span class="w"> </span><span class="p">[</span><span class="n">library</span><span class="o">-</span><span class="n">id1</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="n">library</span><span class="o">-</span><span class="n">id2</span><span class="p">]</span><span class="w"> </span><span class="o">...</span>
+<div class="highlight"><pre><span></span><code>cd seafile-server-latest
+./seaf-fsck.sh --export top_export_path [library-id1] [library-id2] ...
 </code></pre></div>
-
 <p>The argument <code>top_export_path</code> is a directory to place the exported files. Each library will be exported as a sub-directory of the export path. If you don't specify library ids, all libraries will be exported.</p>
 <p>Currently only un-encrypted libraries can be exported. Encrypted libraries will be skipped.</p>
 
@@ -4336,6 +4328,46 @@
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../backup_recovery/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Backup and Recovery">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Backup and Recovery
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../seafile_gc/" class="md-footer__link md-footer__link--next" aria-label="Next: Seafile GC">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Seafile GC
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4378,7 +4410,7 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

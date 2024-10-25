@@ -2220,7 +2220,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4108,18 +4108,16 @@
 <ul>
 <li>Move the <code>seafile-data</code> and <code>seahub-data</code> folder to <code>/seafile-nfs</code>:</li>
 </ul>
-<div class="codehilite"><pre><span></span><code>mv /data/haiwen/seafile-data /seafile-nfs/
+<div class="highlight"><pre><span></span><code>mv /data/haiwen/seafile-data /seafile-nfs/
 mv /data/haiwen/seahub-data /seafile-nfs/
 </code></pre></div>
-
 <ul>
 <li>On every node in the cluster, make a symbolic link to the shared <code>seafile-data</code> and <code>seahub-data</code> folder </li>
 </ul>
-<div class="codehilite"><pre><span></span><code>cd /data/haiwen
+<div class="highlight"><pre><span></span><code>cd /data/haiwen
 ln -s /seafile-nfs/seafile-data /data/haiwen/seafile-data
 ln -s /seafile-nfs/seahub-data /data/haiwen/seahub-data
 </code></pre></div>
-
 <p>This way the instances will share the same <code>seafile-data</code> and <code>seahub-data</code> folder. All other config files and log files will remain independent.</p>
 
 
@@ -4150,6 +4148,46 @@ ln -s /seafile-nfs/seahub-data /data/haiwen/seahub-data
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../memcached_mariadb_cluster/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Memcache and MariaDB Cluster">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Memcache and MariaDB Cluster
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../seafile_professional_sdition_software_license_agreement/" class="md-footer__link md-footer__link--next" aria-label="Next: License">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                License
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4192,7 +4230,7 @@ ln -s /seafile-nfs/seahub-data /data/haiwen/seahub-data
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

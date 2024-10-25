@@ -2267,7 +2267,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4177,61 +4177,57 @@
 <li>Add docker-compose.service</li>
 </ol>
 <p><code>vim /etc/systemd/system/docker-compose.service</code></p>
-<div class="codehilite"><pre><span></span><code><span class="k">[Unit]</span>
-<span class="na">Description</span><span class="o">=</span><span class="s">Docker Compose Application Service</span>
-<span class="na">Requires</span><span class="o">=</span><span class="s">docker.service</span>
-<span class="na">After</span><span class="o">=</span><span class="s">docker.service</span>
+<div class="highlight"><pre><span></span><code>[Unit]
+Description=Docker Compose Application Service
+Requires=docker.service
+After=docker.service
 
-<span class="k">[Service]</span>
-<span class="na">Type</span><span class="o">=</span><span class="s">forking</span>
-<span class="na">RemainAfterExit</span><span class="o">=</span><span class="s">yes</span>
-<span class="na">WorkingDirectory</span><span class="o">=</span><span class="s">/opt/   </span>
-<span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/bin/docker compose up -d</span>
-<span class="na">ExecStop</span><span class="o">=</span><span class="s">/usr/bin/docker compose down</span>
-<span class="na">TimeoutStartSec</span><span class="o">=</span><span class="s">0</span>
+[Service]
+Type=forking
+RemainAfterExit=yes
+WorkingDirectory=/opt/   
+ExecStart=/usr/bin/docker compose up -d
+ExecStop=/usr/bin/docker compose down
+TimeoutStartSec=0
 
-<span class="k">[Install]</span>
-<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+[Install]
+WantedBy=multi-user.target
 </code></pre></div>
-
 <p>Note: <code>WorkingDirectory</code> is the absolute path to the docker-compose.yml file directory.</p>
 <ol>
 <li>Set the docker-compose.service file to 644 permissions</li>
 </ol>
-<div class="codehilite"><pre><span></span><code>chmod 644 /etc/systemd/system/docker-compose.service
+<div class="highlight"><pre><span></span><code>chmod 644 /etc/systemd/system/docker-compose.service
 </code></pre></div>
-
 <ol>
 <li>Load autostart configuration</li>
 </ol>
-<div class="codehilite"><pre><span></span><code><span class="n">systemctl</span><span class="w"> </span><span class="n">daemon</span><span class="o">-</span><span class="n">reload</span>
-<span class="n">systemctl</span><span class="w"> </span><span class="n">enable</span><span class="w"> </span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="o">.</span><span class="n">service</span>
+<div class="highlight"><pre><span></span><code>systemctl daemon-reload
+systemctl enable docker-compose.service
 </code></pre></div>
-
 <h2 id="method-2">Method 2<a class="headerlink" href="#method-2" title="Permanent link">&para;</a></h2>
 <p>Add configuration <code>restart: unless-stopped</code> for each container in <a href="../overview/">components of Seafile docker</a>. Take <code>seafile-server.yml</code> for example</p>
-<div class="codehilite"><pre><span></span><code><span class="n">services</span><span class="o">:</span>
-<span class="w">  </span><span class="n">db</span><span class="o">:</span>
-<span class="w">    </span><span class="n">image</span><span class="o">:</span><span class="w"> </span><span class="n">mariadb</span><span class="o">:</span><span class="mf">10.11</span>
-<span class="w">    </span><span class="n">container_name</span><span class="o">:</span><span class="w"> </span><span class="n">seafile</span><span class="o">-</span><span class="n">mysql</span><span class="o">-</span><span class="mi">1</span>
-<span class="w">    </span><span class="n">restart</span><span class="o">:</span><span class="w"> </span><span class="n">unless</span><span class="o">-</span><span class="n">stopped</span>
+<div class="highlight"><pre><span></span><code>services:
+  db:
+    image: mariadb:10.11
+    container_name: seafile-mysql-1
+    restart: unless-stopped
 
-<span class="w">  </span><span class="n">memcached</span><span class="o">:</span>
-<span class="w">    </span><span class="n">image</span><span class="o">:</span><span class="w"> </span><span class="n">memcached</span><span class="o">:</span><span class="mf">1.6</span><span class="o">.</span><span class="mi">18</span>
-<span class="w">    </span><span class="n">container_name</span><span class="o">:</span><span class="w"> </span><span class="n">seafile</span><span class="o">-</span><span class="n">memcached</span>
-<span class="w">    </span><span class="n">restart</span><span class="o">:</span><span class="w"> </span><span class="n">unless</span><span class="o">-</span><span class="n">stopped</span>
+  memcached:
+    image: memcached:1.6.18
+    container_name: seafile-memcached
+    restart: unless-stopped
 
-<span class="w">  </span><span class="n">elasticsearch</span><span class="o">:</span>
-<span class="w">    </span><span class="n">image</span><span class="o">:</span><span class="w"> </span><span class="n">elasticsearch</span><span class="o">:</span><span class="mf">8.6</span><span class="o">.</span><span class="mi">2</span>
-<span class="w">    </span><span class="n">container_name</span><span class="o">:</span><span class="w"> </span><span class="n">seafile</span><span class="o">-</span><span class="n">elasticsearch</span>
-<span class="w">    </span><span class="n">restart</span><span class="o">:</span><span class="w"> </span><span class="n">unless</span><span class="o">-</span><span class="n">stopped</span>
+  elasticsearch:
+    image: elasticsearch:8.6.2
+    container_name: seafile-elasticsearch
+    restart: unless-stopped
 
-<span class="w">  </span><span class="n">seafile</span><span class="o">:</span>
-<span class="w">    </span><span class="n">image</span><span class="o">:</span><span class="w"> </span><span class="n">docker</span><span class="o">.</span><span class="na">seadrive</span><span class="o">.</span><span class="na">org</span><span class="sr">/seafileltd/s</span><span class="n">eafile</span><span class="o">-</span><span class="n">pro</span><span class="o">-</span><span class="n">mc</span><span class="o">:</span><span class="mf">12.0</span><span class="o">-</span><span class="n">latest</span>
-<span class="w">    </span><span class="n">container_name</span><span class="o">:</span><span class="w"> </span><span class="n">seafile</span>
-<span class="w">    </span><span class="n">restart</span><span class="o">:</span><span class="w"> </span><span class="n">unless</span><span class="o">-</span><span class="n">stopped</span>
+  seafile:
+    image: docker.seadrive.org/seafileltd/seafile-pro-mc:12.0-latest
+    container_name: seafile
+    restart: unless-stopped
 </code></pre></div>
-
 <p>Note: Add <code>restart: unless-stopped</code>, and the Seafile container will automatically start when Docker starts. If the Seafile container does not exist (execute docker compose down), the container will not start automatically.</p>
 
 
@@ -4262,6 +4258,46 @@
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../migrate_backends_data/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Data migration">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Data migration
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../setup_with_an_existing_mysql_server/" class="md-footer__link md-footer__link--next" aria-label="Next: Deploy with an existing MySQL server">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Deploy with an existing MySQL server
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4304,7 +4340,7 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

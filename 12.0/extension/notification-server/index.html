@@ -2293,7 +2293,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4236,65 +4236,60 @@
 </ol>
 <h2 id="how-to-configure-and-run">How to configure and run<a class="headerlink" href="#how-to-configure-and-run" title="Permanent link">&para;</a></h2>
 <p>Since seafile-10.0.0, you can configure a notification server to send real-time notifications to clients. In order to run the notification server, you need to add the following configurations under seafile.conf：</p>
-<div class="codehilite"><pre><span></span><code><span class="cp"># jwt_private_key are required.You should generate it manually.</span>
-<span class="p">[</span><span class="n">notification</span><span class="p">]</span>
-<span class="n">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
-<span class="cp"># the ip of notification server. (Do not modify the host when using Nginx or Apache, as Nginx or Apache will proxy the requests to this address)</span>
-<span class="n">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">127.0.0.1</span>
-<span class="cp"># the port of notification server</span>
-<span class="n">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8083</span>
-<span class="cp"># the log level of notification server</span>
-<span class="cp"># You can set log_level to debug to print messages sent to clients.</span>
-<span class="n">log_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">info</span>
-<span class="cp"># jwt_private_key is used to generate jwt token and authenticate seafile server</span>
-<span class="n">jwt_private_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="p">@</span><span class="n">O8VWUb81YvmtWLHGB2I_V7di5</span><span class="o">-</span><span class="mi">@0</span><span class="n">p</span><span class="p">(</span><span class="n">MF</span><span class="o">*</span><span class="n">GrE</span><span class="o">!</span><span class="n">sIws23F</span>
+<div class="highlight"><pre><span></span><code># jwt_private_key are required.You should generate it manually.
+[notification]
+enabled = true
+# the ip of notification server. (Do not modify the host when using Nginx or Apache, as Nginx or Apache will proxy the requests to this address)
+host = 127.0.0.1
+# the port of notification server
+port = 8083
+# the log level of notification server
+# You can set log_level to debug to print messages sent to clients.
+log_level = info
+# jwt_private_key is used to generate jwt token and authenticate seafile server
+jwt_private_key = M@O8VWUb81YvmtWLHGB2I_V7di5-@0p(MF*GrE!sIws23F
 </code></pre></div>
-
 <p>You can generate jwt_private_key with the following command：</p>
-<div class="codehilite"><pre><span></span><code><span class="gh">#</span> generate jwt_private_key
+<div class="highlight"><pre><span></span><code># generate jwt_private_key
 openssl rand -base64 32
 </code></pre></div>
-
 <p>We generally recommend deploying notification server behind nginx, the notification server can be supported by adding the following nginx configuration:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">map</span><span class="w"> </span><span class="o">$</span><span class="n">http_upgrade</span><span class="w"> </span><span class="o">$</span><span class="n">connection_upgrade</span><span class="w"> </span><span class="p">{</span>
-<span class="n">default</span><span class="w"> </span><span class="n">upgrade</span><span class="p">;</span>
-<span class="s1">&#39;&#39;</span><span class="w"> </span><span class="n">close</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code>map $http_upgrade $connection_upgrade {
+default upgrade;
+&#39;&#39; close;
+}
 
-<span class="n">server</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">location</span><span class="w"> </span><span class="o">/</span><span class="n">notification</span><span class="o">/</span><span class="n">ping</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">proxy_pass</span><span class="w"> </span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">8083</span><span class="o">/</span><span class="n">ping</span><span class="p">;</span>
-<span class="w">        </span><span class="n">access_log</span><span class="w">      </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">notif</span><span class="o">.</span><span class="n">access</span><span class="o">.</span><span class="n">log</span><span class="p">;</span>
-<span class="w">        </span><span class="n">error_log</span><span class="w">       </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">notif</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">log</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
+server {
+    location /notification/ping {
+        proxy_pass http://127.0.0.1:8083/ping;
+        access_log      /var/log/nginx/notif.access.log;
+        error_log       /var/log/nginx/notif.error.log;
+    }
 
-<span class="w">    </span><span class="n">location</span><span class="w"> </span><span class="o">/</span><span class="n">notification</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">proxy_pass</span><span class="w"> </span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">8083</span><span class="o">/</span><span class="p">;</span>
-<span class="w">        </span><span class="n">proxy_http_version</span><span class="w"> </span><span class="mf">1.1</span><span class="p">;</span>
-<span class="w">        </span><span class="n">proxy_set_header</span><span class="w"> </span><span class="n">Upgrade</span><span class="w"> </span><span class="o">$</span><span class="n">http_upgrade</span><span class="p">;</span>
-<span class="w">        </span><span class="n">proxy_set_header</span><span class="w"> </span><span class="n">Connection</span><span class="w"> </span><span class="o">$</span><span class="n">connection_upgrade</span><span class="p">;</span>
-<span class="w">        </span><span class="n">access_log</span><span class="w">      </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">notif</span><span class="o">.</span><span class="n">access</span><span class="o">.</span><span class="n">log</span><span class="p">;</span>
-<span class="w">        </span><span class="n">error_log</span><span class="w">       </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">notif</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">log</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
+    location /notification {
+        proxy_pass http://127.0.0.1:8083/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $connection_upgrade;
+        access_log      /var/log/nginx/notif.access.log;
+        error_log       /var/log/nginx/notif.error.log;
+    }
+}
 </code></pre></div>
-
 <p>Or add the configuration for Apache:</p>
-<div class="codehilite"><pre><span></span><code>    ProxyPass /notification/ping  http://127.0.0.1:8083/ping/
+<div class="highlight"><pre><span></span><code>    ProxyPass /notification/ping  http://127.0.0.1:8083/ping/
     ProxyPassReverse /notification/ping  http://127.0.0.1:8083/ping/
 
     ProxyPass /notification  ws://127.0.0.1:8083/
     ProxyPassReverse /notification ws://127.0.0.1:8083/
 </code></pre></div>
-
 <p>NOTE: according to <a href="https://httpd.apache.org/docs/2.4/mod/mod_proxy.html#proxypass">apache ProxyPass document</a></p>
-<div class="codehilite"><pre><span></span><code><span class="nv">The</span><span class="w"> </span><span class="nv">configured</span><span class="w"> </span><span class="nv">ProxyPass</span><span class="w"> </span><span class="nv">and</span><span class="w"> </span><span class="nv">ProxyPassMatch</span><span class="w"> </span><span class="nv">rules</span><span class="w"> </span><span class="nv">are</span><span class="w"> </span><span class="nv">checked</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">order</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">configuration</span>.<span class="w"> </span><span class="nv">The</span><span class="w"> </span><span class="nv">first</span><span class="w"> </span><span class="nv">rule</span><span class="w"> </span><span class="nv">that</span><span class="w"> </span><span class="nv">matches</span><span class="w"> </span><span class="nv">wins</span>.
-<span class="nv">So</span><span class="w"> </span><span class="nv">usually</span><span class="w"> </span><span class="nv">you</span><span class="w"> </span><span class="nv">should</span><span class="w"> </span><span class="nv">sort</span><span class="w"> </span><span class="nv">conflicting</span><span class="w"> </span><span class="nv">ProxyPass</span><span class="w"> </span><span class="nv">rules</span><span class="w"> </span><span class="nv">starting</span><span class="w"> </span><span class="nv">with</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">longest</span><span class="w"> </span><span class="nv">URLs</span><span class="w"> </span><span class="nv">first</span>.
-<span class="nv">Otherwise</span>,<span class="w"> </span><span class="nv">later</span><span class="w"> </span><span class="nv">rules</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">longer</span><span class="w"> </span><span class="nv">URLS</span><span class="w"> </span><span class="nv">will</span><span class="w"> </span><span class="nv">be</span><span class="w"> </span><span class="nv">hidden</span><span class="w"> </span><span class="nv">by</span><span class="w"> </span><span class="nv">any</span><span class="w"> </span><span class="nv">earlier</span><span class="w"> </span><span class="nv">rule</span><span class="w"> </span><span class="nv">which</span><span class="w"> </span><span class="nv">uses</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">leading</span><span class="w"> </span><span class="nv">substring</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">URL</span>.<span class="w"> </span><span class="nv">Note</span><span class="w"> </span><span class="nv">that</span><span class="w"> </span><span class="nv">there</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">some</span><span class="w"> </span><span class="nv">relation</span><span class="w"> </span><span class="nv">with</span><span class="w"> </span><span class="nv">worker</span><span class="w"> </span><span class="nv">sharing</span>.
+<div class="highlight"><pre><span></span><code>The configured ProxyPass and ProxyPassMatch rules are checked in the order of configuration. The first rule that matches wins.
+So usually you should sort conflicting ProxyPass rules starting with the longest URLs first.
+Otherwise, later rules for longer URLS will be hidden by any earlier rule which uses a leading substring of the URL. Note that there is some relation with worker sharing.
 </code></pre></div>
-
 <p>the final configuration for Apache should be like:</p>
-<div class="codehilite"><pre><span></span><code>    #
+<div class="highlight"><pre><span></span><code>    #
     # notification server
     #
     ProxyPass /notification/ping  http://127.0.0.1:8083/ping/
@@ -4318,11 +4313,9 @@ openssl rand -base64 32
     ProxyPass / http://127.0.0.1:8000/
     ProxyPassReverse / http://127.0.0.1:8000/
 </code></pre></div>
-
 <p>After that, you can run notification server with the following command:</p>
-<div class="codehilite"><pre><span></span><code>./seafile.sh restart
+<div class="highlight"><pre><span></span><code>./seafile.sh restart
 </code></pre></div>
-
 <h2 id="checking-notification-server-status">Checking notification server status<a class="headerlink" href="#checking-notification-server-status" title="Permanent link">&para;</a></h2>
 <p>When the notification server is working, you can access <code>http://127.0.0.1:8083/ping</code> from your browser, which will answer <code>{"ret": "pong"}</code>. If you have a proxy configured, you can access <code>https://{server}/notification/ping</code> from your browser instead.</p>
 <h2 id="compatible-client">Compatible client<a class="headerlink" href="#compatible-client" title="Permanent link">&para;</a></h2>
@@ -4331,25 +4324,23 @@ openssl rand -base64 32
 <li>Seafile client 8.0.11 or later.</li>
 </ol>
 <p>If the client works with notification server, there should be a log message in seafile.log or seadrive.log.</p>
-<div class="codehilite"><pre><span></span><code>Notification server is enabled on the remote server xxxx
+<div class="highlight"><pre><span></span><code>Notification server is enabled on the remote server xxxx
 </code></pre></div>
-
 <h2 id="notification-server-in-seafile-cluster">Notification Server in Seafile cluster<a class="headerlink" href="#notification-server-in-seafile-cluster" title="Permanent link">&para;</a></h2>
 <p>There is no additional features for notification server in the Pro Edition. It works the same as in community edition.</p>
 <p>If you enable <a href="../../setup_binary/deploy_in_a_cluster/">clustering</a>, You need to deploy notification server on one of the servers, or a separate server. The load balancer should forward websockets requests to this node.</p>
 <p>On each Seafile frontend node, the notification server configuration should be the same as in community edition:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[notification]</span>
-<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="c1"># the ip of notification server.</span>
-<span class="na">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">192.168.1.134</span>
-<span class="c1"># the port of notification server</span>
-<span class="na">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">8083</span>
-<span class="c1"># the log level of notification server</span>
-<span class="na">log_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">info</span>
-<span class="c1"># jwt_private_key is used to generate jwt token and authenticate seafile server</span>
-<span class="na">jwt_private_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">M@O8VWUb81YvmtWLHGB2I_V7di5-@0p(MF*GrE!sIws23F</span>
+<div class="highlight"><pre><span></span><code>[notification]
+enabled = true
+# the ip of notification server.
+host = 192.168.1.134
+# the port of notification server
+port = 8083
+# the log level of notification server
+log_level = info
+# jwt_private_key is used to generate jwt token and authenticate seafile server
+jwt_private_key = M@O8VWUb81YvmtWLHGB2I_V7di5-@0p(MF*GrE!sIws23F
 </code></pre></div>
-
 <p>You need to configure load balancer according to the following forwarding rules:</p>
 <ol>
 <li>Forward <code>/notification/ping</code> requests to notification server via http protocol.</li>
@@ -4357,9 +4348,9 @@ openssl rand -base64 32
 </ol>
 <p>Here is a configuration that uses haproxy to support notification server. Haproxy version needs to be &gt;= 2.0.
 You should use similar configurations for other load balancers.</p>
-<div class="codehilite"><pre><span></span><code><span class="gh">#</span>/etc/haproxy/haproxy.cfg
+<div class="highlight"><pre><span></span><code>#/etc/haproxy/haproxy.cfg
 
-<span class="gh">#</span> Other existing haproxy configurations
+# Other existing haproxy configurations
 ......
 
 frontend seafile
@@ -4419,6 +4410,46 @@ backend ws_backend
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../setup_seadoc/" class="md-footer__link md-footer__link--prev" aria-label="Previous: SeaDoc Integration">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                SeaDoc Integration
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../webdav/" class="md-footer__link md-footer__link--next" aria-label="Next: WebDAV extension">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                WebDAV extension
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
@@ -4460,7 +4491,7 @@ backend ws_backend
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

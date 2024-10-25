@@ -2190,7 +2190,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4489,14 +4489,13 @@
 <li>Databases</li>
 </ul>
 <p>If you setup seafile server according to our manual, you should have a directory layout like:</p>
-<div class="codehilite"><pre><span></span><code><span class="o">/</span><span class="nx">opt</span><span class="o">/</span><span class="nx">seafile</span>
-<span class="w">  </span><span class="o">--</span><span class="nx">seafile</span><span class="o">-</span><span class="nx">server</span><span class="o">-</span><span class="m m-Double">9.0</span><span class="p">.</span><span class="nx">x</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="nx">untar</span><span class="w"> </span><span class="nx">from</span><span class="w"> </span><span class="nx">seafile</span><span class="w"> </span><span class="kn">package</span>
-<span class="w">  </span><span class="o">--</span><span class="nx">seafile</span><span class="o">-</span><span class="nx">data</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="nx">seafile</span><span class="w"> </span><span class="nx">configuration</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="nx">you</span><span class="w"> </span><span class="nx">choose</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="k">default</span><span class="p">)</span>
-<span class="w">  </span><span class="o">--</span><span class="nx">seahub</span><span class="o">-</span><span class="nx">data</span><span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="nx">seahub</span><span class="w"> </span><span class="nx">data</span>
-<span class="w">  </span><span class="o">--</span><span class="nx">logs</span>
-<span class="w">  </span><span class="o">--</span><span class="nx">conf</span>
+<div class="highlight"><pre><span></span><code>/opt/seafile
+  --seafile-server-9.0.x # untar from seafile package
+  --seafile-data   # seafile configuration and data (if you choose the default)
+  --seahub-data    # seahub data
+  --logs
+  --conf
 </code></pre></div>
-
 <p>All your library data is stored under the '/opt/seafile' directory.</p>
 <p>Seafile also stores some important metadata data in a few databases. The names and locations of these databases depends on which database software you use.</p>
 <p>For SQLite, the database files are also under the '/opt/seafile' directory. The locations are:</p>
@@ -4527,26 +4526,24 @@
 <p>The second sequence is better in the sense that it avoids library corruption. Like other backup solutions, some new data can be lost in recovery. There is always a backup window.
 However, if your storage backup mechanism can finish quickly enough, using the first sequence can retain more data.</p>
 <p>We assume your seafile data directory is in <code>/opt/seafile</code> for binary package based deployment (or <code>/opt/seafile-data</code> for docker based deployment). And you want to backup to <code>/backup</code> directory. The <code>/backup</code> can be an NFS or Windows share mount exported by another machine, or just an external disk. You can create a layout similar to the following in <code>/backup</code> directory:</p>
-<div class="codehilite"><pre><span></span><code>/backup
+<div class="highlight"><pre><span></span><code>/backup
 ---- databases/  contains database backup files
 ---- data/  contains backups of the data directory
 </code></pre></div>
-
 <h2 id="backup-and-restore-for-binary-package-based-deployment">Backup and restore for binary package based deployment<a class="headerlink" href="#backup-and-restore-for-binary-package-based-deployment" title="Permanent link">&para;</a></h2>
 <h3 id="backing-up-databases">Backing up Databases<a class="headerlink" href="#backing-up-databases" title="Permanent link">&para;</a></h3>
 <p>It's recommended to backup the database to a separate file each time. Don't overwrite older database backups for at least a week.</p>
 <p><strong>MySQL</strong></p>
 <p>Assume your database names are <code>ccnet_db</code>, <code>seafile_db</code> and <code>seahub_db</code>. mysqldump automatically locks the tables so you don't need to stop Seafile server when backing up MySQL databases. Since the database tables are usually very small, it won't take long to dump.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">mysqldump</span><span class="w"> </span><span class="o">-</span><span class="n">h</span><span class="w"> </span><span class="o">[</span><span class="n">mysqlhost</span><span class="o">]</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="o">[</span><span class="n">username</span><span class="o">]</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="o">[</span><span class="n">password</span><span class="o">]</span><span class="w"> </span><span class="o">--</span><span class="n">opt</span><span class="w"> </span><span class="n">ccnet_db</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">/</span><span class="k">backup</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">ccnet</span><span class="o">-</span><span class="n">db</span><span class="p">.</span><span class="k">sql</span><span class="p">.</span><span class="err">`</span><span class="nc">date</span><span class="w"> </span><span class="o">+</span><span class="ss">&quot;%Y-%m-%d-%H-%M-%S&quot;</span><span class="err">`</span>
+<div class="highlight"><pre><span></span><code>mysqldump -h [mysqlhost] -u[username] -p[password] --opt ccnet_db &gt; /backup/databases/ccnet-db.sql.`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`
 
-<span class="n">mysqldump</span><span class="w"> </span><span class="o">-</span><span class="n">h</span><span class="w"> </span><span class="o">[</span><span class="n">mysqlhost</span><span class="o">]</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="o">[</span><span class="n">username</span><span class="o">]</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="o">[</span><span class="n">password</span><span class="o">]</span><span class="w"> </span><span class="o">--</span><span class="n">opt</span><span class="w"> </span><span class="n">seafile_db</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">/</span><span class="k">backup</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">seafile</span><span class="o">-</span><span class="n">db</span><span class="p">.</span><span class="k">sql</span><span class="p">.</span><span class="err">`</span><span class="nc">date</span><span class="w"> </span><span class="o">+</span><span class="ss">&quot;%Y-%m-%d-%H-%M-%S&quot;</span><span class="err">`</span>
+mysqldump -h [mysqlhost] -u[username] -p[password] --opt seafile_db &gt; /backup/databases/seafile-db.sql.`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`
 
-<span class="n">mysqldump</span><span class="w"> </span><span class="o">-</span><span class="n">h</span><span class="w"> </span><span class="o">[</span><span class="n">mysqlhost</span><span class="o">]</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="o">[</span><span class="n">username</span><span class="o">]</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="o">[</span><span class="n">password</span><span class="o">]</span><span class="w"> </span><span class="c1">--opt seahub_db &gt; /backup/databases/seahub-db.sql.`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`</span>
+mysqldump -h [mysqlhost] -u[username] -p[password] --opt seahub_db &gt; /backup/databases/seahub-db.sql.`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`
 </code></pre></div>
-
 <p><strong>SQLite</strong></p>
 <p>You need to stop Seafile server first before backing up SQLite database.</p>
-<div class="codehilite"><pre><span></span><code>sqlite3 /opt/seafile/ccnet/GroupMgr/groupmgr.db .dump &gt; /backup/databases/groupmgr.db.bak.`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`
+<div class="highlight"><pre><span></span><code>sqlite3 /opt/seafile/ccnet/GroupMgr/groupmgr.db .dump &gt; /backup/databases/groupmgr.db.bak.`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`
 
 sqlite3 /opt/seafile/ccnet/PeerMgr/usermgr.db .dump &gt; /backup/databases/usermgr.db.bak.`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`
 
@@ -4554,18 +4551,15 @@ sqlite3 /opt/seafile/seafile-data/seafile.db .dump &gt; /backup/databases/seafil
 
 sqlite3 /opt/seafile/seahub.db .dump &gt; /backup/databases/seahub.db.bak.`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`
 </code></pre></div>
-
 <h3 id="backing-up-seafile-library-data">Backing up Seafile library data<a class="headerlink" href="#backing-up-seafile-library-data" title="Permanent link">&para;</a></h3>
 <p>The data files are all stored in the <code>/opt/seafile</code> directory, so just back up the whole directory. You can directly copy the whole directory to the backup destination, or you can use rsync to do incremental backup. </p>
 <p>To directly copy the whole data directory,</p>
-<div class="codehilite"><pre><span></span><code>cp -R /opt/seafile /backup/data/seafile-`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`
+<div class="highlight"><pre><span></span><code>cp -R /opt/seafile /backup/data/seafile-`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`
 </code></pre></div>
-
 <p>This produces a separate copy of the data directory each time. You can delete older backup copies after a new one is completed.</p>
 <p>If you have a lot of data, copying the whole data directory would take long. You can use rsync to do incremental backup.</p>
-<div class="codehilite"><pre><span></span><code>rsync -az /opt/seafile /backup/data
+<div class="highlight"><pre><span></span><code>rsync -az /opt/seafile /backup/data
 </code></pre></div>
-
 <p>This command backup the data directory to <code>/backup/data/seafile</code>.</p>
 <h3 id="restore-from-backup">Restore from backup<a class="headerlink" href="#restore-from-backup" title="Permanent link">&para;</a></h3>
 <p>Now supposed your primary seafile server is broken, you're switching to a new machine. Using the backup data to restore your Seafile instance:</p>
@@ -4577,13 +4571,12 @@ sqlite3 /opt/seafile/seahub.db .dump &gt; /backup/databases/seahub.db.bak.`date 
 <h4 id="restore-the-databases">Restore the databases<a class="headerlink" href="#restore-the-databases" title="Permanent link">&para;</a></h4>
 <p>Now with the latest valid database backup files at hand, you can restore them.</p>
 <p><strong>MySQL</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="o">[</span><span class="n">username</span><span class="o">]</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="o">[</span><span class="n">password</span><span class="o">]</span><span class="w"> </span><span class="n">ccnet_db</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ccnet</span><span class="o">-</span><span class="n">db</span><span class="p">.</span><span class="k">sql</span><span class="mf">.2013</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">19</span><span class="o">-</span><span class="mi">16</span><span class="o">-</span><span class="mi">00</span><span class="o">-</span><span class="mi">05</span>
-<span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="o">[</span><span class="n">username</span><span class="o">]</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="o">[</span><span class="n">password</span><span class="o">]</span><span class="w"> </span><span class="n">seafile_db</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">seafile</span><span class="o">-</span><span class="n">db</span><span class="p">.</span><span class="k">sql</span><span class="mf">.2013</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">19</span><span class="o">-</span><span class="mi">16</span><span class="o">-</span><span class="mi">00</span><span class="o">-</span><span class="mi">20</span>
-<span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="o">[</span><span class="n">username</span><span class="o">]</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="o">[</span><span class="n">password</span><span class="o">]</span><span class="w"> </span><span class="n">seahub_db</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">seahub</span><span class="o">-</span><span class="n">db</span><span class="p">.</span><span class="k">sql</span><span class="mf">.2013</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">19</span><span class="o">-</span><span class="mi">16</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">05</span>
+<div class="highlight"><pre><span></span><code>mysql -u[username] -p[password] ccnet_db &lt; ccnet-db.sql.2013-10-19-16-00-05
+mysql -u[username] -p[password] seafile_db &lt; seafile-db.sql.2013-10-19-16-00-20
+mysql -u[username] -p[password] seahub_db &lt; seahub-db.sql.2013-10-19-16-01-05
 </code></pre></div>
-
 <p><strong>SQLite</strong></p>
-<div class="codehilite"><pre><span></span><code>cd /opt/seafile
+<div class="highlight"><pre><span></span><code>cd /opt/seafile
 mv ccnet/PeerMgr/usermgr.db ccnet/PeerMgr/usermgr.db.old
 mv ccnet/GroupMgr/groupmgr.db ccnet/GroupMgr/groupmgr.db.old
 mv seafile-data/seafile.db seafile-data/seafile.db.old
@@ -4593,36 +4586,31 @@ sqlite3 ccnet/GroupMgr/groupmgr.db &lt; groupmgr.db.bak.xxxx
 sqlite3 seafile-data/seafile.db &lt; seafile.db.bak.xxxx
 sqlite3 seahub.db &lt; seahub.db.bak.xxxx
 </code></pre></div>
-
 <h2 id="backup-and-restore-for-docker-based-deployment">Backup and restore for Docker based deployment<a class="headerlink" href="#backup-and-restore-for-docker-based-deployment" title="Permanent link">&para;</a></h2>
 <h3 id="structure">Structure<a class="headerlink" href="#structure" title="Permanent link">&para;</a></h3>
 <p>We assume your seafile volumns path is in <code>/opt/seafile-data</code>. And you want to backup to <code>/backup</code> directory.</p>
 <p>The data files to be backed up:</p>
-<div class="codehilite"><pre><span></span><code>/opt/seafile-data/seafile/conf  # configuration files
+<div class="highlight"><pre><span></span><code>/opt/seafile-data/seafile/conf  # configuration files
 /opt/seafile-data/seafile/seafile-data # data of seafile
 /opt/seafile-data/seafile/seahub-data # data of seahub
 </code></pre></div>
-
 <h3 id="backing-up-database">Backing up Database<a class="headerlink" href="#backing-up-database" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="c1"># It&#39;s recommended to backup the database to a separate file each time. Don&#39;t overwrite older database backups for at least a week.</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># It&#39;s recommended to backup the database to a separate file each time. Don&#39;t overwrite older database backups for at least a week.</span>
 <span class="nb">cd</span><span class="w"> </span>/backup/databases
 docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-mysql<span class="w"> </span>mysqldump<span class="w">  </span>-u<span class="o">[</span>username<span class="o">]</span><span class="w"> </span>-p<span class="o">[</span>password<span class="o">]</span><span class="w"> </span>--opt<span class="w"> </span>ccnet_db<span class="w"> </span>&gt;<span class="w"> </span>ccnet_db.sql
 docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-mysql<span class="w"> </span>mysqldump<span class="w">  </span>-u<span class="o">[</span>username<span class="o">]</span><span class="w"> </span>-p<span class="o">[</span>password<span class="o">]</span><span class="w"> </span>--opt<span class="w"> </span>seafile_db<span class="w"> </span>&gt;<span class="w"> </span>seafile_db.sql
 docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-mysql<span class="w"> </span>mysqldump<span class="w">  </span>-u<span class="o">[</span>username<span class="o">]</span><span class="w"> </span>-p<span class="o">[</span>password<span class="o">]</span><span class="w"> </span>--opt<span class="w"> </span>seahub_db<span class="w"> </span>&gt;<span class="w"> </span>seahub_db.sql
 </code></pre></div>
-
 <h3 id="backing-up-seafile-library-data_1">Backing up Seafile library data<a class="headerlink" href="#backing-up-seafile-library-data_1" title="Permanent link">&para;</a></h3>
 <h4 id="to-directly-copy-the-whole-data-directory">To directly copy the whole data directory<a class="headerlink" href="#to-directly-copy-the-whole-data-directory" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code>cp<span class="w"> </span>-R<span class="w"> </span>/opt/seafile-data/seafile<span class="w"> </span>/backup/data/
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-R<span class="w"> </span>/opt/seafile-data/seafile<span class="w"> </span>/backup/data/
 </code></pre></div>
-
 <h4 id="use-rsync-to-do-incremental-backup">Use rsync to do incremental backup<a class="headerlink" href="#use-rsync-to-do-incremental-backup" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code>rsync<span class="w"> </span>-az<span class="w"> </span>/opt/seafile-data/seafile<span class="w"> </span>/backup/data/
+<div class="highlight"><pre><span></span><code>rsync<span class="w"> </span>-az<span class="w"> </span>/opt/seafile-data/seafile<span class="w"> </span>/backup/data/
 </code></pre></div>
-
 <h3 id="recovery">Recovery<a class="headerlink" href="#recovery" title="Permanent link">&para;</a></h3>
 <h4 id="restore-the-databases_1">Restore the databases<a class="headerlink" href="#restore-the-databases_1" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>cp<span class="w"> </span>/backup/databases/ccnet_db.sql<span class="w"> </span>seafile-mysql:/tmp/ccnet_db.sql
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>cp<span class="w"> </span>/backup/databases/ccnet_db.sql<span class="w"> </span>seafile-mysql:/tmp/ccnet_db.sql
 docker<span class="w"> </span>cp<span class="w"> </span>/backup/databases/seafile_db.sql<span class="w"> </span>seafile-mysql:/tmp/seafile_db.sql
 docker<span class="w"> </span>cp<span class="w"> </span>/backup/databases/seahub_db.sql<span class="w"> </span>seafile-mysql:/tmp/seahub_db.sql
 
@@ -4630,9 +4618,8 @@ docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </spa
 docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-mysql<span class="w"> </span>/bin/sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;mysql -u[username] -p[password] seafile_db &lt; /tmp/seafile_db.sql&quot;</span>
 docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-mysql<span class="w"> </span>/bin/sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;mysql -u[username] -p[password] seahub_db &lt; /tmp/seahub_db.sql&quot;</span>
 </code></pre></div>
-
 <h3 id="restore-the-seafile-data">Restore the seafile data<a class="headerlink" href="#restore-the-seafile-data" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code>cp<span class="w"> </span>-R<span class="w"> </span>/backup/data/*<span class="w"> </span>/opt/seafile-data/seafile/
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-R<span class="w"> </span>/backup/data/*<span class="w"> </span>/opt/seafile-data/seafile/
 </code></pre></div>
 
 
@@ -4663,6 +4650,46 @@ docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </spa
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../logs/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Logs">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Logs
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../seafile_fsck/" class="md-footer__link md-footer__link--next" aria-label="Next: Seafile FSCK">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Seafile FSCK
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4705,7 +4732,7 @@ docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </spa
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

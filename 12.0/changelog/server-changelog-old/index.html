@@ -2184,7 +2184,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -5163,10 +5163,9 @@
 <h2 id="42">4.2<a class="headerlink" href="#42" title="Permanent link">&para;</a></h2>
 <p>Note when upgrade to 4.2 from 4.1:</p>
 <p>If you deploy Seafile in a non-root domain, you need to add the following extra settings in seahub_settings.py:</p>
-<div class="codehilite"><pre><span></span><code>COMPRESS_URL = MEDIA_URL
+<div class="highlight"><pre><span></span><code>COMPRESS_URL = MEDIA_URL
 STATIC_URL = MEDIA_URL + &#39;/assets/&#39;
 </code></pre></div>
-
 <h3 id="423-20150618">4.2.3 (2015.06.18)<a class="headerlink" href="#423-20150618" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Add global address book and remove the contacts module (You can disable it if you use CLOUD_MODE by adding ENABLE_GLOBAL_ADDRESSBOOK = False in seahub_settings.py)</li>
@@ -5762,6 +5761,8 @@ STATIC_URL = MEDIA_URL + &#39;/assets/&#39;
       
         <footer class="md-footer">
   
+    
+  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
@@ -5803,7 +5804,7 @@ STATIC_URL = MEDIA_URL + &#39;/assets/&#39;
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

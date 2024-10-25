@@ -2184,7 +2184,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4184,58 +4184,49 @@
 <h2 id="how-to-start-seaf-fuse">How to start seaf-fuse<a class="headerlink" href="#how-to-start-seaf-fuse" title="Permanent link">&para;</a></h2>
 <p>Assume we want to mount to <code>/data/seafile-fuse</code>.</p>
 <h4 id="create-the-folder-as-the-mount-point">Create the folder as the mount point<a class="headerlink" href="#create-the-folder-as-the-mount-point" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code>mkdir -p /data/seafile-fuse
+<div class="highlight"><pre><span></span><code>mkdir -p /data/seafile-fuse
 </code></pre></div>
-
 <h4 id="start-seaf-fuse-with-the-script">Start seaf-fuse with the script<a class="headerlink" href="#start-seaf-fuse-with-the-script" title="Permanent link">&para;</a></h4>
 <p>'''Note:''' Before start seaf-fuse, you should have started seafile server with <code>./seafile.sh start</code>.</p>
-<div class="codehilite"><pre><span></span><code>./seaf-fuse.sh start /data/seafile-fuse
+<div class="highlight"><pre><span></span><code>./seaf-fuse.sh start /data/seafile-fuse
 </code></pre></div>
-
 <h4 id="stop-seaf-fuse">Stop seaf-fuse<a class="headerlink" href="#stop-seaf-fuse" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code>./seaf-fuse.sh stop
+<div class="highlight"><pre><span></span><code>./seaf-fuse.sh stop
 </code></pre></div>
-
 <h2 id="contents-of-the-mounted-folder">Contents of the mounted folder<a class="headerlink" href="#contents-of-the-mounted-folder" title="Permanent link">&para;</a></h2>
 <h4 id="the-top-level-folder">The top level folder<a class="headerlink" href="#the-top-level-folder" title="Permanent link">&para;</a></h4>
 <p>Now you can list the content of <code>/data/seafile-fuse</code>.</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>ls<span class="w"> </span>-lhp<span class="w"> </span>/data/seafile-fuse
+<div class="highlight"><pre><span></span><code>$ ls -lhp /data/seafile-fuse
 
-drwxr-xr-x<span class="w"> </span><span class="m">2</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">4</span>.0K<span class="w"> </span>Jan<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">1970</span><span class="w"> </span>abc@abc.com/
-drwxr-xr-x<span class="w"> </span><span class="m">2</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">4</span>.0K<span class="w"> </span>Jan<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">1970</span><span class="w"> </span>foo@foo.com/
-drwxr-xr-x<span class="w"> </span><span class="m">2</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">4</span>.0K<span class="w"> </span>Jan<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">1970</span><span class="w"> </span>plus@plus.com/
-drwxr-xr-x<span class="w"> </span><span class="m">2</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">4</span>.0K<span class="w"> </span>Jan<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">1970</span><span class="w"> </span>sharp@sharp.com/
-drwxr-xr-x<span class="w"> </span><span class="m">2</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">4</span>.0K<span class="w"> </span>Jan<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">1970</span><span class="w"> </span>test@test.com/
+drwxr-xr-x 2 root root 4.0K Jan  1  1970 abc@abc.com/
+drwxr-xr-x 2 root root 4.0K Jan  1  1970 foo@foo.com/
+drwxr-xr-x 2 root root 4.0K Jan  1  1970 plus@plus.com/
+drwxr-xr-x 2 root root 4.0K Jan  1  1970 sharp@sharp.com/
+drwxr-xr-x 2 root root 4.0K Jan  1  1970 test@test.com/
 </code></pre></div>
-
 <ul>
 <li>The top level folder contains many subfolders, each of which corresponds to a user</li>
 <li>The time stamp of files and folders is not preserved.</li>
 </ul>
 <h4 id="the-folder-for-each-user">The folder for each user<a class="headerlink" href="#the-folder-for-each-user" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>ls<span class="w"> </span>-lhp<span class="w"> </span>/data/seafile-fuse/abc@abc.com
+<div class="highlight"><pre><span></span><code>$ ls -lhp /data/seafile-fuse/abc@abc.com
 
-drwxr-xr-x<span class="w"> </span><span class="m">2</span><span class="w"> </span>root<span class="w"> </span>root<span class="w">  </span><span class="m">924</span><span class="w"> </span>Jan<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">1970</span><span class="w"> </span>5403ac56-5552-4e31-a4f1-1de4eb889a5f_Photos/
-drwxr-xr-x<span class="w"> </span><span class="m">2</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">1</span>.6K<span class="w"> </span>Jan<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">1970</span><span class="w"> </span>a09ab9fc-7bd0-49f1-929d-6abeb8491397_My<span class="w"> </span>Notes/
+drwxr-xr-x 2 root root  924 Jan  1  1970 5403ac56-5552-4e31-a4f1-1de4eb889a5f_Photos/
+drwxr-xr-x 2 root root 1.6K Jan  1  1970 a09ab9fc-7bd0-49f1-929d-6abeb8491397_My Notes/
 </code></pre></div>
-
 <p>From the above list you can see, under the folder of a user there are subfolders, each of which represents a library of that user, and has a name of this format: '''{library_id}-{library-name}'''.</p>
 <h4 id="the-folder-for-a-library">The folder for a library<a class="headerlink" href="#the-folder-for-a-library" title="Permanent link">&para;</a></h4>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>ls<span class="w"> </span>-lhp<span class="w"> </span>/data/seafile-fuse/abc@abc.com/5403ac56-5552-4e31-a4f1-1de4eb889a5f_Photos/
+<div class="highlight"><pre><span></span><code>$ ls -lhp /data/seafile-fuse/abc@abc.com/5403ac56-5552-4e31-a4f1-1de4eb889a5f_Photos/
 
--rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span>501K<span class="w"> </span>Jan<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">1970</span><span class="w"> </span>image.png
--rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span>501K<span class="w"> </span>Jan<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">1970</span><span class="w"> </span>sample.jpng
+-rw-r--r-- 1 root root 501K Jan  1  1970 image.png
+-rw-r--r-- 1 root root 501K Jan  1  1970 sample.jpng
 </code></pre></div>
-
 <h4 id="if-you-get-a-permission-denied-error">If you get a "Permission denied" error<a class="headerlink" href="#if-you-get-a-permission-denied-error" title="Permanent link">&para;</a></h4>
 <p>If you get an error message saying "Permission denied" when running <code>./seaf-fuse.sh start</code>, most likely you are not in the "fuse group". You should:</p>
 <ul>
-<li>Add yourself to the fuse group</li>
-</ul>
-<div class="codehilite"><pre><span></span><code>sudo usermod -a -G fuse &lt;your-user-name&gt;
-</code></pre></div>
-
-<ul>
+<li>Add yourself to the fuse group
+<div class="highlight"><pre><span></span><code>sudo usermod -a -G fuse &lt;your-user-name&gt;
+</code></pre></div></li>
 <li>Logout your shell and login again</li>
 <li>Now try <code>./seaf-fuse.sh start &lt;path&gt;</code> again.</li>
 </ul>
@@ -4268,6 +4259,8 @@ drwxr-xr-x<span class="w"> </span><span class="m">2</span><span class="w"> </spa
       </main>
       
         <footer class="md-footer">
+  
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4310,7 +4303,7 @@ drwxr-xr-x<span class="w"> </span><span class="m">2</span><span class="w"> </spa
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

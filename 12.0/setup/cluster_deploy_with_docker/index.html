@@ -2357,7 +2357,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4359,242 +4359,221 @@
 <p>We assume you have already deployed memcache, MariaDB, ElasticSearch in separate machines and use S3 like object storage.</p>
 <h2 id="deployment-preparation">Deployment preparation<a class="headerlink" href="#deployment-preparation" title="Permanent link">&para;</a></h2>
 <p>Create the three databases ccnet_db, seafile_db, and seahub_db required by Seafile on MariaDB/MySQL, and authorize the `seafile` user to be able to access these three databases:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">$</span><span class="w"> </span><span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">h</span><span class="err">{</span><span class="n">your</span><span class="w"> </span><span class="n">mysql</span><span class="w"> </span><span class="k">host</span><span class="err">}</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="err">[</span><span class="n">username</span><span class="err">]</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="err">[</span><span class="k">password</span><span class="err">]</span>
+<div class="highlight"><pre><span></span><code>$ mysql -h{your mysql host} -u[username] -p[password]
 
-<span class="n">mysql</span><span class="o">&gt;</span>
-<span class="k">create</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="s1">&#39;seafile&#39;</span><span class="nv">@&#39;%&#39;</span><span class="w"> </span><span class="k">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;PASSWORD&#39;</span><span class="p">;</span>
+mysql&gt;
+create user &#39;seafile&#39;@&#39;%&#39; identified by &#39;PASSWORD&#39;;
 
-<span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n n-Quoted">`ccnet_db`</span><span class="w"> </span><span class="k">character</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;utf8&#39;</span><span class="p">;</span>
-<span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n n-Quoted">`seafile_db`</span><span class="w"> </span><span class="k">character</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;utf8&#39;</span><span class="p">;</span>
-<span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n n-Quoted">`seahub_db`</span><span class="w"> </span><span class="k">character</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;utf8&#39;</span><span class="p">;</span>
+create database `ccnet_db` character set = &#39;utf8&#39;;
+create database `seafile_db` character set = &#39;utf8&#39;;
+create database `seahub_db` character set = &#39;utf8&#39;;
 
-<span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n n-Quoted">`ccnet_db`</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="s1">&#39;seafile&#39;</span><span class="nv">@&#39;%&#39;</span><span class="p">;</span>
-<span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n n-Quoted">`seafile_db`</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="s1">&#39;seafile&#39;</span><span class="nv">@&#39;%&#39;</span><span class="p">;</span>
-<span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n n-Quoted">`seahub_db`</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="s1">&#39;seafile&#39;</span><span class="nv">@&#39;%&#39;</span><span class="p">;</span>
+GRANT ALL PRIVILEGES ON `ccnet_db`.* to &#39;seafile&#39;@&#39;%&#39;;
+GRANT ALL PRIVILEGES ON `seafile_db`.* to &#39;seafile&#39;@&#39;%&#39;;
+GRANT ALL PRIVILEGES ON `seahub_db`.* to &#39;seafile&#39;@&#39;%&#39;;
 </code></pre></div>
-
 <p>You also need to create a table in `seahub_db`</p>
-<div class="codehilite"><pre><span></span><code><span class="n">mysql</span><span class="o">&gt;</span>
-<span class="k">use</span><span class="w"> </span><span class="n">seahub_db</span><span class="p">;</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n n-Quoted">`avatar_uploaded`</span><span class="w"> </span><span class="p">(</span>
-<span class="w">  </span><span class="n n-Quoted">`filename`</span><span class="w"> </span><span class="kt">text</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="no">NULL</span><span class="p">,</span>
-<span class="w">  </span><span class="n n-Quoted">`filename_md5`</span><span class="w"> </span><span class="kt">char</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="no">NULL</span><span class="p">,</span>
-<span class="w">  </span><span class="n n-Quoted">`data`</span><span class="w"> </span><span class="kt">mediumtext</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="no">NULL</span><span class="p">,</span>
-<span class="w">  </span><span class="n n-Quoted">`size`</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="no">NULL</span><span class="p">,</span>
-<span class="w">  </span><span class="n n-Quoted">`mtime`</span><span class="w"> </span><span class="kt">datetime</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="no">NULL</span><span class="p">,</span>
-<span class="w">  </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n n-Quoted">`filename_md5`</span><span class="p">)</span>
-<span class="p">)</span><span class="w"> </span><span class="k">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CHARSET</span><span class="o">=</span><span class="n">utf8</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code>mysql&gt;
+use seahub_db;
+CREATE TABLE `avatar_uploaded` (
+  `filename` text NOT NULL,
+  `filename_md5` char(32) NOT NULL,
+  `data` mediumtext NOT NULL,
+  `size` int(11) NOT NULL,
+  `mtime` datetime NOT NULL,
+  PRIMARY KEY (`filename_md5`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 </code></pre></div>
-
 <h2 id="deploy-seafile-service">Deploy Seafile service<a class="headerlink" href="#deploy-seafile-service" title="Permanent link">&para;</a></h2>
 <h3 id="deploy-seafile-frontend-nodes">Deploy seafile frontend nodes<a class="headerlink" href="#deploy-seafile-frontend-nodes" title="Permanent link">&para;</a></h3>
 <p>Create the mount directory</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/opt/seafile/shared
+<div class="highlight"><pre><span></span><code>$ mkdir -p /opt/seafile/shared
 </code></pre></div>
-
 <p>Create the docker-compose.yml file</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/opt/seafile
-$<span class="w"> </span>vim<span class="w"> </span>docker-compose.yml
+<div class="highlight"><pre><span></span><code>$ cd /opt/seafile
+$ vim docker-compose.yml
 </code></pre></div>
-
-<div class="codehilite"><pre><span></span><code><span class="n">services</span><span class="o">:</span>
-<span class="w">  </span><span class="n">seafile</span><span class="o">:</span>
-<span class="w">    </span><span class="n">image</span><span class="o">:</span><span class="w"> </span><span class="n">docker</span><span class="o">.</span><span class="na">seadrive</span><span class="o">.</span><span class="na">org</span><span class="sr">/seafileltd/s</span><span class="n">eafile</span><span class="o">-</span><span class="n">pro</span><span class="o">-</span><span class="n">mc</span><span class="o">:</span><span class="n">latest</span>
-<span class="w">    </span><span class="n">container_name</span><span class="o">:</span><span class="w"> </span><span class="n">seafile</span>
-<span class="w">    </span><span class="n">ports</span><span class="o">:</span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="mi">80</span><span class="o">:</span><span class="mi">80</span>
-<span class="w">    </span><span class="n">volumes</span><span class="o">:</span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="sr">/opt/seafile/shared:/s</span><span class="n">hared</span>
-<span class="w">    </span><span class="n">environment</span><span class="o">:</span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="n">CLUSTER_SERVER</span><span class="o">=</span><span class="kc">true</span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="n">CLUSTER_MODE</span><span class="o">=</span><span class="n">frontend</span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="n">TIME_ZONE</span><span class="o">=</span><span class="n">UTC</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">Optional</span><span class="o">,</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">UTC</span><span class="o">.</span><span class="w"> </span><span class="n">Should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">uncomment</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="kd">set</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">local</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="n">zone</span><span class="o">.</span>
+<div class="highlight"><pre><span></span><code>services:
+  seafile:
+    image: docker.seadrive.org/seafileltd/seafile-pro-mc:latest
+    container_name: seafile
+    ports:
+      - 80:80
+    volumes:
+      - /opt/seafile/shared:/shared
+    environment:
+      - CLUSTER_SERVER=true
+      - CLUSTER_MODE=frontend
+      - TIME_ZONE=UTC  # Optional, default is UTC. Should be uncomment and set to your local time zone.
 </code></pre></div>
-
 <p><strong>Note</strong>: <strong>CLUSTER_SERVER=true</strong> means seafile cluster mode, <strong>CLUSTER_MODE=frontend</strong> means this node is seafile frontend server.</p>
 <p>Start the seafile docker container</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/opt/seafile
-$<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+<div class="highlight"><pre><span></span><code>$ cd /opt/seafile
+$ docker compose up -d
 </code></pre></div>
-
 <h4 id="initial-configuration-files">Initial configuration files<a class="headerlink" href="#initial-configuration-files" title="Permanent link">&para;</a></h4>
 <p>1. Manually generate configuration files</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>bash
+<div class="highlight"><pre><span></span><code>$ docker exec -it seafile bash
 
-<span class="c1"># cd /scripts  &amp;&amp; ./cluster_conf_init.py</span>
-<span class="c1"># cd /opt/seafile/conf </span>
+# cd /scripts  &amp;&amp; ./cluster_conf_init.py
+# cd /opt/seafile/conf 
 </code></pre></div>
-
 <p>2. Modify the mysql configuration options (user, host, password) in configuration files such as ccnet.conf, seafevents.conf, seafile.conf and seahub_settings.py.</p>
 <p>3. Modify the memcached configuration option in seahub_settings.py</p>
-<div class="codehilite"><pre><span></span><code><span class="ss">CACHES</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="err">&#39;</span>default&#39;<span class="p">:</span> <span class="p">{</span>
-        <span class="err">&#39;</span>BACKEND&#39;<span class="p">:</span> <span class="err">&#39;</span>django_pylibmc<span class="o">.</span>memcached<span class="o">.</span>PyLibMCCache&#39;<span class="p">,</span>
-        <span class="err">&#39;</span>LOCATION&#39;<span class="p">:</span> <span class="err">&#39;</span><span class="l">memcached:11211&#39;,</span>
-    <span class="p">},</span>
-<span class="o">...</span>
-<span class="p">}</span>
-                         <span class="err">|</span>
+<div class="highlight"><pre><span></span><code>CACHES = {
+    &#39;default&#39;: {
+        &#39;BACKEND&#39;: &#39;django_pylibmc.memcached.PyLibMCCache&#39;,
+        &#39;LOCATION&#39;: &#39;memcached:11211&#39;,
+    },
+...
+}
+                         |
                          v
 
-<span class="ss">CACHES</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="err">&#39;</span>default&#39;<span class="p">:</span> <span class="p">{</span>
-        <span class="err">&#39;</span>BACKEND&#39;<span class="p">:</span> <span class="err">&#39;</span>django_pylibmc<span class="o">.</span>memcached<span class="o">.</span>PyLibMCCache&#39;<span class="p">,</span>
-        <span class="err">&#39;</span>LOCATION&#39;<span class="p">:</span> <span class="err">&#39;</span><span class="p">{</span>you memcached server host<span class="p">}:</span><span class="mi">11211</span><span class="err">&#39;</span><span class="p">,</span>
-    <span class="p">},</span>
-<span class="o">...</span>
-<span class="p">}</span>
+CACHES = {
+    &#39;default&#39;: {
+        &#39;BACKEND&#39;: &#39;django_pylibmc.memcached.PyLibMCCache&#39;,
+        &#39;LOCATION&#39;: &#39;{you memcached server host}:11211&#39;,
+    },
+...
+}
 </code></pre></div>
-
 <p>4. Modify the [INDEX FILES] configuration options in seafevents.conf</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[INDEX FILES]</span>
-<span class="na">es_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">{your elasticsearch server port}</span>
-<span class="na">es_host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">{your elasticsearch server host}</span>
-<span class="na">external_es_server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">highlight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">fvh</span>
-<span class="na">interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">10m</span>
-<span class="na">...</span>
+<div class="highlight"><pre><span></span><code>[INDEX FILES]
+es_port = {your elasticsearch server port}
+es_host = {your elasticsearch server host}
+external_es_server = true
+enabled = true
+highlight = fvh
+interval = 10m
+...
 </code></pre></div>
-
 <p>5. Add some configurations in seahub_settings.py</p>
-<div class="codehilite"><pre><span></span><code><span class="n">SERVICE_URL</span> <span class="o">=</span> <span class="s1">&#39;http</span><span class="si">{s}</span><span class="s1">://{your server IP or sitename}/&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">SERVICE_URL</span> <span class="o">=</span> <span class="s1">&#39;http</span><span class="si">{s}</span><span class="s1">://{your server IP or sitename}/&#39;</span>
 <span class="n">FILE_SERVER_ROOT</span> <span class="o">=</span> <span class="s1">&#39;http</span><span class="si">{s}</span><span class="s1">://{your server IP or sitename}/seafhttp&#39;</span>
 <span class="n">AVATAR_FILE_STORAGE</span> <span class="o">=</span> <span class="s1">&#39;seahub.base.database_storage.DatabaseStorage&#39;</span>
 </code></pre></div>
-
 <p>6. Add cluster special configuration in seafile.conf</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[cluster]</span>
-<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+<div class="highlight"><pre><span></span><code>[cluster]
+enabled = true
 </code></pre></div>
-
 <p>7. Add memory cache configuration in seafile.conf</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[memcached]</span>
-<span class="na">memcached_options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">--SERVER={you memcached server host} --POOL-MIN=10 --POOL-MAX=100</span>
+<div class="highlight"><pre><span></span><code>[memcached]
+memcached_options = --SERVER={you memcached server host} --POOL-MIN=10 --POOL-MAX=100
 </code></pre></div>
-
 <h4 id="import-the-tables-of-seahub_db-seafile_db-and-ccnet_db">Import the tables of seahub_db, seafile_db and ccnet_db<a class="headerlink" href="#import-the-tables-of-seahub_db-seafile_db-and-ccnet_db" title="Permanent link">&para;</a></h4>
 <p>Enter the container, and then execute the following commands to import tables</p>
-<div class="codehilite"><pre><span></span><code><span class="err">$</span><span class="w"> </span><span class="n">docker</span><span class="w"> </span><span class="k">exec</span><span class="w"> </span><span class="o">-</span><span class="n">it</span><span class="w"> </span><span class="n">seafile</span><span class="w"> </span><span class="n">bash</span>
+<div class="highlight"><pre><span></span><code>$ docker exec -it seafile bash
 
-<span class="err">#</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="k">get</span><span class="w"> </span><span class="k">update</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="k">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="o">-</span><span class="n">y</span><span class="w"> </span><span class="n">mysql</span><span class="o">-</span><span class="n">client</span>
+# apt-get update &amp;&amp; apt-get install -y mysql-client
 
-<span class="err">#</span><span class="w"> </span><span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">h</span><span class="err">{</span><span class="n">your</span><span class="w"> </span><span class="n">mysql</span><span class="w"> </span><span class="k">host</span><span class="err">}</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="o">[</span><span class="n">username</span><span class="o">]</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="o">[</span><span class="n">password</span><span class="o">]</span><span class="w">  </span><span class="n">ccnet_db</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">seafile</span><span class="o">/</span><span class="n">seafile</span><span class="o">-</span><span class="n">server</span><span class="o">-</span><span class="n">latest</span><span class="o">/</span><span class="k">sql</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">ccnet</span><span class="p">.</span><span class="k">sql</span>
-<span class="err">#</span><span class="w"> </span><span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">h</span><span class="err">{</span><span class="n">your</span><span class="w"> </span><span class="n">mysql</span><span class="w"> </span><span class="k">host</span><span class="err">}</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="o">[</span><span class="n">username</span><span class="o">]</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="o">[</span><span class="n">password</span><span class="o">]</span><span class="w">  </span><span class="n">seafile_db</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">seafile</span><span class="o">/</span><span class="n">seafile</span><span class="o">-</span><span class="n">server</span><span class="o">-</span><span class="n">latest</span><span class="o">/</span><span class="k">sql</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">seafile</span><span class="p">.</span><span class="k">sql</span>
-<span class="err">#</span><span class="w"> </span><span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">h</span><span class="err">{</span><span class="n">your</span><span class="w"> </span><span class="n">mysql</span><span class="w"> </span><span class="k">host</span><span class="err">}</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="o">[</span><span class="n">username</span><span class="o">]</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="o">[</span><span class="n">password</span><span class="o">]</span><span class="w">  </span><span class="n">seahub_db</span><span class="w"> </span><span class="o">&lt;</span><span class="w">  </span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">seafile</span><span class="o">/</span><span class="n">seafile</span><span class="o">-</span><span class="n">server</span><span class="o">-</span><span class="n">latest</span><span class="o">/</span><span class="n">seahub</span><span class="o">/</span><span class="k">sql</span><span class="o">/</span><span class="n">mysql</span><span class="p">.</span><span class="k">sql</span>
+# mysql -h{your mysql host} -u[username] -p[password]  ccnet_db &lt; /opt/seafile/seafile-server-latest/sql/mysql/ccnet.sql
+# mysql -h{your mysql host} -u[username] -p[password]  seafile_db &lt; /opt/seafile/seafile-server-latest/sql/mysql/seafile.sql
+# mysql -h{your mysql host} -u[username] -p[password]  seahub_db &lt;  /opt/seafile/seafile-server-latest/seahub/sql/mysql.sql
 </code></pre></div>
-
 <p>Start Seafile service</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>bash
+<div class="highlight"><pre><span></span><code>$ docker exec -it seafile bash
 
-<span class="c1"># cd /opt/seafile/seafile-server-latest</span>
-<span class="c1"># ./seafile.sh start &amp;&amp; ./seahub.sh start</span>
+# cd /opt/seafile/seafile-server-latest
+# ./seafile.sh start &amp;&amp; ./seahub.sh start
 </code></pre></div>
-
 <p>When you start it for the first time, seafile will guide you to set up an admin user.</p>
 <p>When deploying the second frontend node, you can directly copy all the directories generated by the first frontend node, including the docker-compose.yml file and modified configuration files, and then start the seafile docker container.</p>
 <h3 id="deploy-seafile-backend-node">Deploy seafile backend node<a class="headerlink" href="#deploy-seafile-backend-node" title="Permanent link">&para;</a></h3>
 <p>Create the mount directory</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/opt/seafile/shared
+<div class="highlight"><pre><span></span><code>$ mkdir -p /opt/seafile/shared
 </code></pre></div>
-
 <p>Create the docker-compose.yml file</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/opt/seafile
-$<span class="w"> </span>vim<span class="w"> </span>docker-compose.yml
+<div class="highlight"><pre><span></span><code>$ cd /opt/seafile
+$ vim docker-compose.yml
 </code></pre></div>
-
-<div class="codehilite"><pre><span></span><code><span class="n">services</span><span class="o">:</span>
-<span class="w">  </span><span class="n">seafile</span><span class="o">:</span>
-<span class="w">    </span><span class="n">image</span><span class="o">:</span><span class="w"> </span><span class="n">docker</span><span class="o">.</span><span class="na">seadrive</span><span class="o">.</span><span class="na">org</span><span class="sr">/seafileltd/s</span><span class="n">eafile</span><span class="o">-</span><span class="n">pro</span><span class="o">-</span><span class="n">mc</span><span class="o">:</span><span class="n">latest</span>
-<span class="w">    </span><span class="n">container_name</span><span class="o">:</span><span class="w"> </span><span class="n">seafile</span>
-<span class="w">    </span><span class="n">ports</span><span class="o">:</span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="mi">80</span><span class="o">:</span><span class="mi">80</span>
-<span class="w">    </span><span class="n">volumes</span><span class="o">:</span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="sr">/opt/seafile/shared:/s</span><span class="n">hared</span><span class="w">      </span>
-<span class="w">    </span><span class="n">environment</span><span class="o">:</span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="n">CLUSTER_SERVER</span><span class="o">=</span><span class="kc">true</span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="n">CLUSTER_MODE</span><span class="o">=</span><span class="n">backend</span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="n">TIME_ZONE</span><span class="o">=</span><span class="n">UTC</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">Optional</span><span class="o">,</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">UTC</span><span class="o">.</span><span class="w"> </span><span class="n">Should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">uncomment</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="kd">set</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">local</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="n">zone</span><span class="o">.</span>
+<div class="highlight"><pre><span></span><code>services:
+  seafile:
+    image: docker.seadrive.org/seafileltd/seafile-pro-mc:latest
+    container_name: seafile
+    ports:
+      - 80:80
+    volumes:
+      - /opt/seafile/shared:/shared      
+    environment:
+      - CLUSTER_SERVER=true
+      - CLUSTER_MODE=backend
+      - TIME_ZONE=UTC  # Optional, default is UTC. Should be uncomment and set to your local time zone.
 </code></pre></div>
-
 <p><strong>Note</strong>: <strong>CLUSTER_SERVER=true</strong> means seafile cluster mode, <strong>CLUSTER_MODE=backend</strong> means this node is seafile backend server.</p>
 <p>Start the seafile docker container</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/opt/seafile
-$<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+<div class="highlight"><pre><span></span><code>$ cd /opt/seafile
+$ docker compose up -d
 </code></pre></div>
-
 <p>Copy configuration files of the frontend node, and then start Seafile server of the backend node</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>bash
+<div class="highlight"><pre><span></span><code>$ docker exec -it seafile bash
 
-<span class="c1"># cd /opt/seafile/seafile-server-latest</span>
-<span class="c1"># ./seafile.sh start &amp;&amp; ./seafile-background-tasks.sh start</span>
+# cd /opt/seafile/seafile-server-latest
+# ./seafile.sh start &amp;&amp; ./seafile-background-tasks.sh start
 </code></pre></div>
-
 <h3 id="use-s3-as-backend-storage">Use S3 as backend storage<a class="headerlink" href="#use-s3-as-backend-storage" title="Permanent link">&para;</a></h3>
 <p>Modify the seafile.conf file on each node to configure S3 storage.</p>
 <p>vim seafile.conf</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[commit_object_backend]</span>
-<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">s3</span>
-<span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">{your-commit-objects}</span><span class="w">  </span><span class="c1"># The bucket name can only use lowercase letters, numbers, and dashes</span>
-<span class="na">key_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">{your-key-id}</span>
-<span class="na">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">{your-secret-key}</span>
-<span class="na">use_v4_signature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">aws_region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">eu-central-1</span><span class="w">  </span><span class="c1"># eu-central-1 for Frankfurt region</span>
+<div class="highlight"><pre><span></span><code>[commit_object_backend]
+name = s3
+bucket = {your-commit-objects}  # The bucket name can only use lowercase letters, numbers, and dashes
+key_id = {your-key-id}
+key = {your-secret-key}
+use_v4_signature = true
+aws_region = eu-central-1  # eu-central-1 for Frankfurt region
 
-<span class="k">[fs_object_backend]</span>
-<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">s3</span>
-<span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">{your-fs-objects}</span>
-<span class="na">key_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">{your-key-id}</span>
-<span class="na">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">{your-secret-key}</span>
-<span class="na">use_v4_signature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">aws_region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">eu-central-1</span>
+[fs_object_backend]
+name = s3
+bucket = {your-fs-objects}
+key_id = {your-key-id}
+key = {your-secret-key}
+use_v4_signature = true
+aws_region = eu-central-1
 
-<span class="k">[block_backend]</span>
-<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">s3</span>
-<span class="na">bucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">{your-block-objects}</span>
-<span class="na">key_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">{your-key-id}</span>
-<span class="na">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">{your-secret-key}</span>
-<span class="na">use_v4_signature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">aws_region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">eu-central-1</span>
+[block_backend]
+name = s3
+bucket = {your-block-objects}
+key_id = {your-key-id}
+key = {your-secret-key}
+use_v4_signature = true
+aws_region = eu-central-1
 </code></pre></div>
-
 <h3 id="deployment-load-balance-optional">Deployment load balance (Optional)<a class="headerlink" href="#deployment-load-balance-optional" title="Permanent link">&para;</a></h3>
 <h4 id="install-haproxy-and-keepalived-services">Install HAproxy and Keepalived services<a class="headerlink" href="#install-haproxy-and-keepalived-services" title="Permanent link">&para;</a></h4>
 <p>Execute the following commands on the two Seafile frontend servers:</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>haproxy<span class="w"> </span>keepalived<span class="w"> </span>-y
+<div class="highlight"><pre><span></span><code>$ apt install haproxy keepalived -y
 
-$<span class="w"> </span>mv<span class="w"> </span>/etc/haproxy/haproxy.cfg<span class="w"> </span>/etc/haproxy/haproxy.cfg.bak
+$ mv /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.bak
 
-$<span class="w"> </span>cat<span class="w"> </span>&gt;<span class="w"> </span>/etc/haproxy/haproxy.cfg<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
-<span class="s">global</span>
-<span class="s">    log 127.0.0.1 local1 notice</span>
-<span class="s">    maxconn 4096</span>
-<span class="s">    user haproxy</span>
-<span class="s">    group haproxy</span>
+$ cat &gt; /etc/haproxy/haproxy.cfg &lt;&lt; &#39;EOF&#39;
+global
+    log 127.0.0.1 local1 notice
+    maxconn 4096
+    user haproxy
+    group haproxy
 
-<span class="s">defaults</span>
-<span class="s">    log global</span>
-<span class="s">    mode http</span>
-<span class="s">    retries 3</span>
-<span class="s">    timeout connect 10000</span>
-<span class="s">    timeout client 300000</span>
-<span class="s">    timeout server 300000</span>
+defaults
+    log global
+    mode http
+    retries 3
+    timeout connect 10000
+    timeout client 300000
+    timeout server 300000
 
-<span class="s">listen seafile 0.0.0.0:80</span>
-<span class="s">    mode http</span>
-<span class="s">    option httplog</span>
-<span class="s">    option dontlognull</span>
-<span class="s">    option forwardfor</span>
-<span class="s">    cookie SERVERID insert indirect nocache</span>
-<span class="s">    server seafile01 Front-End01-IP:8001 check port 11001 cookie seafile01</span>
-<span class="s">    server seafile02 Front-End02-IP:8001 check port 11001 cookie seafile02</span>
-<span class="s">EOF</span>
+listen seafile 0.0.0.0:80
+    mode http
+    option httplog
+    option dontlognull
+    option forwardfor
+    cookie SERVERID insert indirect nocache
+    server seafile01 Front-End01-IP:8001 check port 11001 cookie seafile01
+    server seafile02 Front-End02-IP:8001 check port 11001 cookie seafile02
+EOF
 </code></pre></div>
-
 <p><strong>Note</strong>: Correctly modify the IP address (Front-End01-IP and Front-End02-IP) of the frontend server in the above configuration file.</p>
 <p><strong>Choose one of the above two servers as the master node, and the other as the slave node.</strong></p>
 <p>Perform the following operations on the master node:</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>&gt;<span class="w"> </span>/etc/keepalived/keepalived.conf<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>&gt;<span class="w"> </span>/etc/keepalived/keepalived.conf<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
 <span class="s">! Configuration File for keepalived</span>
 
 <span class="s">global_defs {</span>
@@ -4624,10 +4603,9 @@ $<span class="w"> </span>cat<span class="w"> </span>&gt;<span class="w"> </span>
 <span class="s">}</span>
 <span class="s">EOF</span>
 </code></pre></div>
-
 <p><strong>Note: </strong>Correctly configure the virtual IP address and network interface device name in the above file.</p>
 <p>Perform the following operations on the standby node:</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>&gt;<span class="w"> </span>/etc/keepalived/keepalived.conf<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>&gt;<span class="w"> </span>/etc/keepalived/keepalived.conf<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
 <span class="s">! Configuration File for keepalived</span>
 
 <span class="s">global_defs {</span>
@@ -4657,12 +4635,10 @@ $<span class="w"> </span>cat<span class="w"> </span>&gt;<span class="w"> </span>
 <span class="s">}</span>
 <span class="s">EOF</span>
 </code></pre></div>
-
 <p>Finally, run the following commands on the two Seafile frontend servers to start the corresponding services:</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>haproxy
-$<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>keepalived
+<div class="highlight"><pre><span></span><code>$ systemctl enable --now haproxy
+$ systemctl enable --now keepalived
 </code></pre></div>
-
 <p>So far, Seafile cluster has been deployed.</p>
 
 
@@ -4693,6 +4669,46 @@ $<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enabl
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../run_seafile_as_non_root_user_inside_docker/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Run Seafile as non root user inside docker">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Run Seafile as non root user inside docker
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../cluster_deploy_with_k8s/" class="md-footer__link md-footer__link--next" aria-label="Next: Setup with Kubernetes (K8s)">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Setup with Kubernetes (K8s)
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4735,7 +4751,7 @@ $<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enabl
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

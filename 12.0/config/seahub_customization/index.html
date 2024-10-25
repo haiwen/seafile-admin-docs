@@ -2194,7 +2194,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4313,52 +4313,45 @@
 <h3 id="customize-logo">Customize Logo<a class="headerlink" href="#customize-logo" title="Permanent link">&para;</a></h3>
 <p>Add your logo file to <code>custom/</code></p>
 <p>Overwrite <code>LOGO_PATH</code> in <code>seahub_settings.py</code></p>
-<div class="codehilite"><pre><span></span><code><span class="n">LOGO_PATH</span> <span class="o">=</span> <span class="s1">&#39;custom/mylogo.png&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">LOGO_PATH</span> <span class="o">=</span> <span class="s1">&#39;custom/mylogo.png&#39;</span>
 </code></pre></div>
-
 <p>Default width and height for logo is 149px and 32px, you may need to change that according to yours.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">LOGO_WIDTH</span> <span class="o">=</span> <span class="mi">149</span>
+<div class="highlight"><pre><span></span><code><span class="n">LOGO_WIDTH</span> <span class="o">=</span> <span class="mi">149</span>
 <span class="n">LOGO_HEIGHT</span> <span class="o">=</span> <span class="mi">32</span>
 </code></pre></div>
-
 <h3 id="customize-favicon">Customize Favicon<a class="headerlink" href="#customize-favicon" title="Permanent link">&para;</a></h3>
 <p>Add your favicon file to <code>custom/</code></p>
 <p>Overwrite <code>FAVICON_PATH</code> in <code>seahub_settings.py</code></p>
-<div class="codehilite"><pre><span></span><code><span class="n">FAVICON_PATH</span> <span class="o">=</span> <span class="s1">&#39;custom/favicon.png&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">FAVICON_PATH</span> <span class="o">=</span> <span class="s1">&#39;custom/favicon.png&#39;</span>
 </code></pre></div>
-
 <h3 id="customize-seahub-css">Customize Seahub CSS<a class="headerlink" href="#customize-seahub-css" title="Permanent link">&para;</a></h3>
 <p>Add your css file to <code>custom/</code>, for example, <code>custom.css</code></p>
 <p>Overwrite <code>BRANDING_CSS</code> in <code>seahub_settings.py</code></p>
-<div class="codehilite"><pre><span></span><code><span class="n">BRANDING_CSS</span> <span class="o">=</span> <span class="s1">&#39;custom/custom.css&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">BRANDING_CSS</span> <span class="o">=</span> <span class="s1">&#39;custom/custom.css&#39;</span>
 </code></pre></div>
-
 <h2 id="customize-help-page">Customize help page<a class="headerlink" href="#customize-help-page" title="Permanent link">&para;</a></h2>
 <p><strong>Note:</strong> Since version 2.1.</p>
 <p>First go to the custom folder</p>
-<div class="codehilite"><pre><span></span><code>cd &lt;seafile-install-path&gt;/seahub-data/custom
+<div class="highlight"><pre><span></span><code>cd &lt;seafile-install-path&gt;/seahub-data/custom
 </code></pre></div>
-
 <p>then run the following commands</p>
-<div class="codehilite"><pre><span></span><code>mkdir templates
+<div class="highlight"><pre><span></span><code>mkdir templates
 mkdir templates/help
 cp ../../seafile-server-latest/seahub/seahub/help/templates/help/install.html templates/help/
 </code></pre></div>
-
 <p>Modify the <code>templates/help/install.html</code> file and save it. You will see the new help page.</p>
 <h2 id="add-an-extra-note-in-sharing-dialog">Add an extra note in sharing dialog<a class="headerlink" href="#add-an-extra-note-in-sharing-dialog" title="Permanent link">&para;</a></h2>
 <p>You can add an extra note in sharing dialog in seahub_settings.py</p>
-<div class="codehilite"><pre><span></span><code>ADDITIONAL_SHARE_DIALOG_NOTE = {
+<div class="highlight"><pre><span></span><code>ADDITIONAL_SHARE_DIALOG_NOTE = {
     &#39;title&#39;: &#39;Attention! Read before shareing files:&#39;,
     &#39;content&#39;: &#39;Do not share personal or confidential official data with **.&#39;
 }
 </code></pre></div>
-
 <p>Result:</p>
 <p><img alt="" src="../../images/additional-share-dialog-note.png" /></p>
 <h2 id="add-custom-navigation-items">Add custom navigation items<a class="headerlink" href="#add-custom-navigation-items" title="Permanent link">&para;</a></h2>
 <p>Since Pro 7.0.9, Seafile supports adding some custom navigation entries to the home page for quick access. This requires you to add the following configuration information to the <code>conf/seahub_settings.py</code> configuration file:</p>
-<div class="codehilite"><pre><span></span><code>CUSTOM_NAV_ITEMS = [
+<div class="highlight"><pre><span></span><code>CUSTOM_NAV_ITEMS = [
     {&#39;icon&#39;: &#39;sf2-icon-star&#39;,
      &#39;desc&#39;: &#39;Custom navigation 1&#39;,
      &#39;link&#39;: &#39;https://www.seafile.com&#39;
@@ -4373,26 +4366,23 @@ cp ../../seafile-server-latest/seahub/seahub/help/templates/help/install.html te
     },
 ]
 </code></pre></div>
-
 <p>**Note: The <code>icon</code> field currently only supports icons in Seafile that begin with <code>sf2-icon</code>. You can find the list of icons here: <hhttps://github.com/haiwen/seahub/blob/master/media/css/seahub.css></p>
 <p>Then restart the Seahub service to take effect.</p>
 <p>Once you log in to the Seafile system homepage again, you will see the new navigation entry under the <code>Tools</code> navigation bar on the left.</p>
 <h2 id="add-more-links-to-the-bottom-bar">Add more links to the bottom bar<a class="headerlink" href="#add-more-links-to-the-bottom-bar" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code>ADDITIONAL_APP_BOTTOM_LINKS = {
+<div class="highlight"><pre><span></span><code>ADDITIONAL_APP_BOTTOM_LINKS = {
     &#39;seafile&#39;: &#39;https://example.seahub.com/seahub&#39;,
     &#39;dtable-web&#39;: &#39;https://example.seahub.com/web&#39;
 }
 </code></pre></div>
-
 <p>Result:</p>
 <p><img alt="" src="../../images/additional-app-bottom-links.png" /></p>
 <h2 id="add-more-links-to-about-dialog">Add more links to about dialog<a class="headerlink" href="#add-more-links-to-about-dialog" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span><code>ADDITIONAL_ABOUT_DIALOG_LINKS = {
+<div class="highlight"><pre><span></span><code>ADDITIONAL_ABOUT_DIALOG_LINKS = {
     &#39;seafile&#39;: &#39;https://example.seahub.com/seahub&#39;,
     &#39;dtable-web&#39;: &#39;https://example.seahub.com/dtable-web&#39;
 }
 </code></pre></div>
-
 <p>Result:</p>
 <p><img alt="" src="../../images/additional-about-dialog-links.png" /></p>
 
@@ -4424,6 +4414,46 @@ cp ../../seafile-server-latest/seahub/seahub/help/templates/help/install.html te
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../seafevents-conf/" class="md-footer__link md-footer__link--prev" aria-label="Previous: seafevents.conf">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                seafevents.conf
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../sending_email/" class="md-footer__link md-footer__link--next" aria-label="Next: Email Sending">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Email Sending
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4466,7 +4496,7 @@ cp ../../seafile-server-latest/seahub/seahub/help/templates/help/install.html te
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

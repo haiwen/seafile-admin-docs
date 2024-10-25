@@ -2387,7 +2387,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4414,16 +4414,14 @@
 <p>This manual explains how to deploy and run Seafile Server Professional Edition (Seafile PE) on a Linux server using Docker and Docker Compose. The deployment has been tested for Debian/Ubuntu and CentOS, but Seafile PE should also work on other Linux distributions.</p>
 <h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
 <p>Seafile PE requires a minimum of 2 cores and 2GB RAM. If Elasticsearch is installed on the same server, the minimum requirements are 4 cores and 4 GB RAM, and make sure the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules-store.html#mmapfs">mmapfs counts</a> do not cause excptions like out of memory, which can be increased by following command (see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html</a> for futher details):</p>
-<div class="codehilite"><pre><span></span><code>sysctl<span class="w"> </span>-w<span class="w"> </span>vm.max_map_count<span class="o">=</span><span class="m">262144</span><span class="w"> </span><span class="c1">#run as root</span>
+<div class="highlight"><pre><span></span><code>sysctl<span class="w"> </span>-w<span class="w"> </span>vm.max_map_count<span class="o">=</span><span class="m">262144</span><span class="w"> </span><span class="c1">#run as root</span>
 </code></pre></div>
-
 <p>or modify <strong>/etc/sysctl.conf</strong> and reboot to set this value permanently:</p>
-<div class="codehilite"><pre><span></span><code>nano<span class="w"> </span>/etc/sysctl.conf
+<div class="highlight"><pre><span></span><code>nano<span class="w"> </span>/etc/sysctl.conf
 
 <span class="c1"># modify vm.max_map_count</span>
 vm.max_map_count<span class="o">=</span><span class="m">262144</span>
 </code></pre></div>
-
 <p>Seafile PE can be used without a paid license with up to three users. Licenses for more user can be purchased in the <a href="https://customer.seafile.com">Seafile Customer Center</a> or contact Seafile Sales at sales@seafile.com.</p>
 <h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
 <p>The following assumptions and conventions are used in the rest of this document:</p>
@@ -4436,16 +4434,15 @@ vm.max_map_count<span class="o">=</span><span class="m">262144</span>
 <p>Use the <a href="https://docs.docker.com/engine/install/">official installation guide for your OS to install Docker</a>.</p>
 <h3 id="downloading-the-seafile-image">Downloading the Seafile Image<a class="headerlink" href="#downloading-the-seafile-image" title="Permanent link">&para;</a></h3>
 <p>Log into Seafile's private repository and pull the Seafile image:</p>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>login<span class="w"> </span>docker.seadrive.org
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>login<span class="w"> </span>docker.seadrive.org
 docker<span class="w"> </span>pull<span class="w"> </span>docker.seadrive.org/seafileltd/seafile-pro-mc:12.0-latest
 </code></pre></div>
-
 <p>When prompted, enter the username and password of the private repository. They are available on the download page in the <a href="https://customer.seafile.com/downloads">Customer Center</a>.</p>
 <p>NOTE: Older Seafile PE versions are also available in the repository (back to Seafile 7.0). To pull an older version, replace '12.0-latest' tag by the desired version.</p>
 <h3 id="downloading-and-modifying-env">Downloading and Modifying <code>.env</code><a class="headerlink" href="#downloading-and-modifying-env" title="Permanent link">&para;</a></h3>
 <p>From Seafile Docker 12.0, we use <code>.env</code>, <code>seafile-server.yml</code>  and <code>caddy.yml</code> files for configuration.</p>
 <p>NOTE: Different versions of Seafile have different compose files.</p>
-<div class="codehilite"><pre><span></span><code>mkdir<span class="w"> </span>/opt/seafile
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>/opt/seafile
 <span class="nb">cd</span><span class="w"> </span>/opt/seafile
 
 <span class="c1"># Seafile PE 12.0</span>
@@ -4455,7 +4452,6 @@ wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/pro/caddy.yml
 
 nano<span class="w"> </span>.env
 </code></pre></div>
-
 <p>The following fields merit particular attention:</p>
 <ul>
 <li><code>SEAFILE_VOLUME</code>: The volume directory of Seafile data, default is <code>/opt/seafile-data</code></li>
@@ -4473,32 +4469,28 @@ nano<span class="w"> </span>.env
 <li><code>INIT_SEAFILE_ADMIN_PASSWORD</code>: Admin password</li>
 </ul>
 <p>To conclude, set the directory permissions of the Elasticsearch volumne:</p>
-<div class="codehilite"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/opt/seafile-elasticsearch/data
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/opt/seafile-elasticsearch/data
 chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>-R<span class="w"> </span>/opt/seafile-elasticsearch/data
 </code></pre></div>
-
 <h3 id="starting-the-docker-containers">Starting the Docker Containers<a class="headerlink" href="#starting-the-docker-containers" title="Permanent link">&para;</a></h3>
 <p>Run docker compose in detached mode:</p>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
-
 <p>NOTE: You must run the above command in the directory with the <code>.env</code>.</p>
 <p>Wait a few moment for the database to initialize. You can now access Seafile at the host name specified in the Compose file. (A 502 Bad Gateway error means that the system has not yet completed the initialization.)</p>
 <h3 id="find-logs">Find logs<a class="headerlink" href="#find-logs" title="Permanent link">&para;</a></h3>
 <p>To view Seafile docker logs, please use the following command</p>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>-f
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>-f
 </code></pre></div>
-
 <p>The Seafile logs are under <code>/shared/logs/seafile</code> in the docker, or <code>/opt/seafile-data/logs/seafile</code> in the server that run the docker.</p>
 <p>The system logs are under <code>/shared/logs/var-log</code>, or <code>/opt/seafile-data/logs/var-log</code> in the server that run the docker.</p>
 <h3 id="activating-the-seafile-license">Activating the Seafile License<a class="headerlink" href="#activating-the-seafile-license" title="Permanent link">&para;</a></h3>
 <p>If you have a <code>seafile-license.txt</code> license file, simply put it in the volume of the Seafile container. The volumne's default path in the Compose file is <code>/opt/seafile-data</code>. If you have modified the path, save the license file under your custom path.</p>
 <p>Then restart Seafile:</p>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
 
 docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
-
 <h2 id="seafile-directory-structure">Seafile directory structure<a class="headerlink" href="#seafile-directory-structure" title="Permanent link">&para;</a></h2>
 <h3 id="optseafile-data"><code>/opt/seafile-data</code><a class="headerlink" href="#optseafile-data" title="Permanent link">&para;</a></h3>
 <p>Placeholder spot for shared volumes. You may elect to store certain persistent information outside of a container, in our case we keep various log files and upload directory outside. This allows you to rebuild containers easily without losing important information.</p>
@@ -4511,7 +4503,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 <h3 id="reviewing-the-deployment">Reviewing the Deployment<a class="headerlink" href="#reviewing-the-deployment" title="Permanent link">&para;</a></h3>
 <p>The command <code>docker container list</code> should list the containers specified in the <code>.env</code>.</p>
 <p>The directory layout of the Seafile container's volume should look as follows:</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>tree<span class="w"> </span>/opt/seafile-data<span class="w"> </span>-L<span class="w"> </span><span class="m">2</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>tree<span class="w"> </span>/opt/seafile-data<span class="w"> </span>-L<span class="w"> </span><span class="m">2</span>
 /opt/seafile-data
 ├──<span class="w"> </span>logs
 │<span class="w">   </span>└──<span class="w"> </span>var-log
@@ -4525,12 +4517,10 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 <span class="w">    </span>├──<span class="w"> </span>seafile-data
 <span class="w">    </span>└──<span class="w"> </span>seahub-data
 </code></pre></div>
-
 <p>All Seafile config files are stored in <code>/opt/seafile-data/seafile/conf</code>. The nginx config file is in <code>/opt/seafile-data/nginx/conf</code>.</p>
 <p>Any modification of a configuration file requires a restart of Seafile to take effect:</p>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart
 </code></pre></div>
-
 <p>All Seafile log files are stored in <code>/opt/seafile-data/seafile/logs</code> whereas all other log files are in <code>/opt/seafile-data/logs/var-log</code>.</p>
 <h2 id="backup-and-recovery">Backup and Recovery<a class="headerlink" href="#backup-and-recovery" title="Permanent link">&para;</a></h2>
 <p>Follow the instructions in <a href="../../administration/backup_recovery/">Backup and restore for Seafile Docker</a></p>
@@ -4540,9 +4530,8 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 <h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
 <p>Q: I forgot the Seafile admin email address/password, how do I create a new admin account?</p>
 <p>A: You can create a new admin account by running</p>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>/opt/seafile/seafile-server-latest/reset-admin.sh
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>/opt/seafile/seafile-server-latest/reset-admin.sh
 </code></pre></div>
-
 <p>The Seafile service must be up when running the superuser command.</p>
 <p>Q: If, for whatever reason, the installation fails, how do I to start from a clean slate again?</p>
 <p>A: Remove the directories /opt/seafile, /opt/seafile-data, /opt/seafile-elasticsearch, and /opt/seafile-mysql and start again.</p>
@@ -4579,6 +4568,46 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../setup_ce_by_docker/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Setup community edition">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Setup community edition
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../setup_with_amazon_s3/" class="md-footer__link md-footer__link--next" aria-label="Next: S3 Backend">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                S3 Backend
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4621,7 +4650,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

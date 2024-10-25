@@ -2190,7 +2190,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -7603,10 +7603,9 @@
 <li>Support rate control for file uploading and downloading.</li>
 </ul>
 <p>You can turn golang file-server on by adding following configuration in seafile.conf</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[fileserver]</span>
-<span class="na">use_go_fileserver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+<div class="highlight"><pre><span></span><code>[fileserver]
+use_go_fileserver = true
 </code></pre></div>
-
 <h3 id="901">9.0.1<a class="headerlink" href="#901" title="Permanent link">&para;</a></h3>
 <p>Deprecated</p>
 <h3 id="900">9.0.0<a class="headerlink" href="#900" title="Permanent link">&para;</a></h3>
@@ -7709,11 +7708,10 @@
 <li>[fix] Fix anothoer bug in upload files to a sharing link with upload permission</li>
 </ul>
 <p>Potential breaking change in Seafile Pro 8.0.3: You can set the maximum number of files contained in a library that can be synced by the Seafile client. The default is 100000. When you download a repo, Seafile client will request fs id list, and you can control the timeout period of this request through <code>fs_id_list_request_timeout</code> configuration, which defaults to 5 minutes. These two options are added to prevent long fs-id-list requests from overloading the server. If you have large libraries on the server, this can cause "internal server error" returned to the client. You have to set a large enough limit for these two options.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[fileserver]</span>
-<span class="na">max_sync_file_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">100000</span>
-<span class="na">fs_id_list_request_timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">300</span>
+<div class="highlight"><pre><span></span><code>[fileserver]
+max_sync_file_count = 100000
+fs_id_list_request_timeout = 300
 </code></pre></div>
-
 <h3 id="802-20210421">8.0.2 (2021/04/21)<a class="headerlink" href="#802-20210421" title="Permanent link">&para;</a></h3>
 <ul>
 <li>[fix] Fix upload files to sub-folders in a sharing link with upload permission</li>
@@ -7793,11 +7791,10 @@
 <li>[fix] Fix a XSS problem in notification</li>
 </ul>
 <p>Potential breaking change in Seafile Pro 7.1.16: You can set the maximum number of files contained in a library that can be synced by the Seafile client. The default is 100000. When you download a repo, Seafile client will request fs id list, and you can control the timeout period of this request through <code>fs_id_list_request_timeout</code> configuration, which defaults to 5 minutes. These two options are added to prevent long fs-id-list requests from overloading the server. If you have large libraries on the server, this can cause "internal server error" returned to the client. You have to set a large enough limit for these two options.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[fileserver]</span>
-<span class="na">max_sync_file_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">100000</span>
-<span class="na">fs_id_list_request_timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">300</span>
+<div class="highlight"><pre><span></span><code>[fileserver]
+max_sync_file_count = 100000
+fs_id_list_request_timeout = 300
 </code></pre></div>
-
 <h3 id="7115-20210318">7.1.15 (2021/03/18)<a class="headerlink" href="#7115-20210318" title="Permanent link">&para;</a></h3>
 <ul>
 <li>[fix] Fix sometimes uploading via API returning 400 error</li>
@@ -8110,20 +8107,18 @@
 <p>With this upgrade, the fast-cgi mode is no longer supported. You need to config Seafile behind Nginx/Apache in WSGI mode.</p>
 <p>The way to run Seahub in another port is also changed. You need to modify the configuration file <code>conf/gunicorn.conf</code> instead of running <code>./seahub.sh start &lt;another-port&gt;</code>.</p>
 <p>Version 6.3 also changed the database table for file comments, if you have used this feature, you need migrate old file comments using the following commends after upgrading to 6.3:</p>
-<div class="codehilite"><pre><span></span><code>./seahub.sh python-env seahub/manage.py migrate_file_comment
+<div class="highlight"><pre><span></span><code>./seahub.sh python-env seahub/manage.py migrate_file_comment
 </code></pre></div>
-
 <blockquote>
 <p>Note, this command should be run while Seafile server is running.</p>
 </blockquote>
 <p>Version 6.3 changed '/shib-login' to '/sso'. If you use Shibboleth, you need to to update your Apache/Nginx config. Please check the updated document: <a href="../../config/shibboleth_authentication/">shibboleth config v6.3</a></p>
 <p>Version 6.3 add a new option for file search (<code>seafevents.conf</code>):</p>
-<div class="codehilite"><pre><span></span><code><span class="k">[INDEX FILES]</span>
-<span class="na">...</span>
-<span class="na">highlight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">fvh</span>
-<span class="na">...</span>
+<div class="highlight"><pre><span></span><code>[INDEX FILES]
+...
+highlight = fvh
+...
 </code></pre></div>
-
 <p>This option will make search speed improved significantly (10x) when the search result contains large pdf/doc files. But you need to rebuild search index if you want to add this option.</p>
 <h3 id="6314-20190521">6.3.14 (2019/05/21)<a class="headerlink" href="#6314-20190521" title="Permanent link">&para;</a></h3>
 <ul>
@@ -8281,29 +8276,27 @@
 <li>Restart Seahub with <code>./seahub.sh start</code> instead of <code>./seahub.sh start-fastcgi</code></li>
 </ol>
 <p>The configuration of Nginx is as following:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">location</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">{</span>
-<span class="w">         </span><span class="n">proxy_pass</span><span class="w">         </span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">8000</span><span class="p">;</span>
-<span class="w">         </span><span class="n">proxy_set_header</span><span class="w">   </span><span class="n">Host</span><span class="w"> </span><span class="o">$</span><span class="n">host</span><span class="p">;</span>
-<span class="w">         </span><span class="n">proxy_set_header</span><span class="w">   </span><span class="n">X</span><span class="o">-</span><span class="n">Real</span><span class="o">-</span><span class="n">IP</span><span class="w"> </span><span class="o">$</span><span class="n">remote_addr</span><span class="p">;</span>
-<span class="w">         </span><span class="n">proxy_set_header</span><span class="w">   </span><span class="n">X</span><span class="o">-</span><span class="n">Forwarded</span><span class="o">-</span><span class="n">For</span><span class="w"> </span><span class="o">$</span><span class="n">proxy_add_x_forwarded_for</span><span class="p">;</span>
-<span class="w">         </span><span class="n">proxy_set_header</span><span class="w">   </span><span class="n">X</span><span class="o">-</span><span class="n">Forwarded</span><span class="o">-</span><span class="n">Host</span><span class="w"> </span><span class="o">$</span><span class="n">server_name</span><span class="p">;</span>
-<span class="w">         </span><span class="n">proxy_read_timeout</span><span class="w">  </span><span class="mi">1200</span><span class="n">s</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code>location / {
+         proxy_pass         http://127.0.0.1:8000;
+         proxy_set_header   Host $host;
+         proxy_set_header   X-Real-IP $remote_addr;
+         proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+         proxy_set_header   X-Forwarded-Host $server_name;
+         proxy_read_timeout  1200s;
 
-<span class="w">         </span><span class="c1"># used for view/edit office file via Office Online Server</span>
-<span class="w">         </span><span class="n">client_max_body_size</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+         # used for view/edit office file via Office Online Server
+         client_max_body_size 0;
 
-<span class="w">         </span><span class="n">access_log</span><span class="w">      </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">seahub</span><span class="o">.</span><span class="n">access</span><span class="o">.</span><span class="n">log</span><span class="p">;</span>
-<span class="w">         </span><span class="n">error_log</span><span class="w">       </span><span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">seahub</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">log</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
+         access_log      /var/log/nginx/seahub.access.log;
+         error_log       /var/log/nginx/seahub.error.log;
+    }
 </code></pre></div>
-
 <p>The configuration of Apache is as following:</p>
-<div class="codehilite"><pre><span></span><code>    # seahub
+<div class="highlight"><pre><span></span><code>    # seahub
     SetEnvIf Authorization &quot;(.*)&quot; HTTP_AUTHORIZATION=$1
     ProxyPass / http://127.0.0.1:8000/
     ProxyPassReverse / http://127.0.0.1:8000/
 </code></pre></div>
-
 <h3 id="6213-2018518">6.2.13 (2018.5.18)<a class="headerlink" href="#6213-2018518" title="Permanent link">&para;</a></h3>
 <ul>
 <li>[new] Support only return files or folders when search file via api.</li>
@@ -8576,10 +8569,9 @@
 <p>You can follow the document on minor <a href="../../upgrade/upgrade/">upgrade</a>.</p>
 <p>Special note for upgrading a cluster:</p>
 <p>In version 6.0, the folder download mechanism has been updated. This requires that, in a cluster deployment, seafile-data/httptemp folder must be in an NFS share. You can make this folder a symlink to the NFS share.</p>
-<div class="codehilite"><pre><span></span><code>cd /data/haiwen/
+<div class="highlight"><pre><span></span><code>cd /data/haiwen/
 ln -s /nfs-share/seafile-httptemp seafile-data/httptemp
 </code></pre></div>
-
 <p>The httptemp folder only contains temp files for downloading/uploading file on web UI. So there is no reliability requirement for the NFS share. You can export it from any node in the cluster.</p>
 <h3 id="6013-20170508">6.0.13 (2017.05.08)<a class="headerlink" href="#6013-20170508" title="Permanent link">&para;</a></h3>
 <ul>
@@ -8801,6 +8793,46 @@ ln -s /nfs-share/seafile-httptemp seafile-data/httptemp
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../server-changelog/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Seafile Community Edition">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Seafile Community Edition
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../client-changelog/" class="md-footer__link md-footer__link--next" aria-label="Next: Seafile Client">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Seafile Client
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
@@ -8842,7 +8874,7 @@ ln -s /nfs-share/seafile-httptemp seafile-data/httptemp
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

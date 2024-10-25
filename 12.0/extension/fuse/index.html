@@ -2281,7 +2281,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4212,96 +4212,87 @@
 <h2 id="use-seaf-fuse-in-binary-based-deployment">Use seaf-fuse in binary based deployment<a class="headerlink" href="#use-seaf-fuse-in-binary-based-deployment" title="Permanent link">&para;</a></h2>
 <p>Assume we want to mount to <code>/data/seafile-fuse</code>.</p>
 <h5 id="create-the-folder-as-the-mount-point">Create the folder as the mount point<a class="headerlink" href="#create-the-folder-as-the-mount-point" title="Permanent link">&para;</a></h5>
-<div class="codehilite"><pre><span></span><code>mkdir -p /data/seafile-fuse
+<div class="highlight"><pre><span></span><code>mkdir -p /data/seafile-fuse
 </code></pre></div>
-
 <h5 id="start-seaf-fuse-with-the-script">Start seaf-fuse with the script<a class="headerlink" href="#start-seaf-fuse-with-the-script" title="Permanent link">&para;</a></h5>
 <p>Note: Before start seaf-fuse, you should have started seafile server with <code>./seafile.sh start</code>.</p>
-<div class="codehilite"><pre><span></span><code>./seaf-fuse.sh start /data/seafile-fuse
+<div class="highlight"><pre><span></span><code>./seaf-fuse.sh start /data/seafile-fuse
 </code></pre></div>
-
 <p>seaf-fuse supports standard mount options for FUSE. For example, you can specify ownership for the mounted folder:</p>
-<div class="codehilite"><pre><span></span><code>./seaf-fuse.sh start -o uid=&lt;uid&gt; /data/seafile-fuse
+<div class="highlight"><pre><span></span><code>./seaf-fuse.sh start -o uid=&lt;uid&gt; /data/seafile-fuse
 </code></pre></div>
-
 <p>The fuse enables the block cache function by default to cache block objects, thereby reducing access to backend storage, but this function will occupy local disk space. Since Seafile-pro-10.0.0, you can disable block cache by adding following options:</p>
-<div class="codehilite"><pre><span></span><code>./seaf-fuse.sh start --disable-block-cache /data/seafile-fuse
+<div class="highlight"><pre><span></span><code>./seaf-fuse.sh start --disable-block-cache /data/seafile-fuse
 </code></pre></div>
-
 <p>You can find the complete list of supported options in <code>man fuse</code>.</p>
 <h5 id="stop-seaf-fuse">Stop seaf-fuse<a class="headerlink" href="#stop-seaf-fuse" title="Permanent link">&para;</a></h5>
-<div class="codehilite"><pre><span></span><code>./seaf-fuse.sh stop
+<div class="highlight"><pre><span></span><code>./seaf-fuse.sh stop
 </code></pre></div>
-
 <h3 id="contents-of-the-mounted-folder">Contents of the mounted folder<a class="headerlink" href="#contents-of-the-mounted-folder" title="Permanent link">&para;</a></h3>
 <h5 id="the-top-level-folder">The top level folder<a class="headerlink" href="#the-top-level-folder" title="Permanent link">&para;</a></h5>
 <p>Now you can list the content of <code>/data/seafile-fuse</code>.</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>ls<span class="w"> </span>-lhp<span class="w"> </span>/data/seafile-fuse
+<div class="highlight"><pre><span></span><code>$ ls -lhp /data/seafile-fuse
 
-drwxr-xr-x<span class="w"> </span><span class="m">2</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">4</span>.0K<span class="w"> </span>Jan<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">2015</span><span class="w"> </span>abc@abc.com/
-drwxr-xr-x<span class="w"> </span><span class="m">2</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">4</span>.0K<span class="w"> </span>Jan<span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">2015</span><span class="w"> </span>foo@foo.com/
-drwxr-xr-x<span class="w"> </span><span class="m">2</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">4</span>.0K<span class="w"> </span>Jan<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">2015</span><span class="w"> </span>plus@plus.com/
-drwxr-xr-x<span class="w"> </span><span class="m">2</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">4</span>.0K<span class="w"> </span>Jan<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">2015</span><span class="w"> </span>sharp@sharp.com/
-drwxr-xr-x<span class="w"> </span><span class="m">2</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">4</span>.0K<span class="w"> </span>Jan<span class="w">  </span><span class="m">3</span><span class="w">  </span><span class="m">2015</span><span class="w"> </span>test@test.com/
+drwxr-xr-x 2 root root 4.0K Jan  1  2015 abc@abc.com/
+drwxr-xr-x 2 root root 4.0K Jan  4  2015 foo@foo.com/
+drwxr-xr-x 2 root root 4.0K Jan  1  2015 plus@plus.com/
+drwxr-xr-x 2 root root 4.0K Jan  1  2015 sharp@sharp.com/
+drwxr-xr-x 2 root root 4.0K Jan  3  2015 test@test.com/
 </code></pre></div>
-
 <ul>
 <li>The top level folder contains many subfolders, each of which corresponds to a user</li>
 </ul>
 <h5 id="the-folder-for-each-user">The folder for each user<a class="headerlink" href="#the-folder-for-each-user" title="Permanent link">&para;</a></h5>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>ls<span class="w"> </span>-lhp<span class="w"> </span>/data/seafile-fuse/abc@abc.com
+<div class="highlight"><pre><span></span><code>$ ls -lhp /data/seafile-fuse/abc@abc.com
 
-drwxr-xr-x<span class="w"> </span><span class="m">2</span><span class="w"> </span>root<span class="w"> </span>root<span class="w">  </span><span class="m">924</span><span class="w"> </span>Jan<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">1970</span><span class="w"> </span>5403ac56-5552-4e31-a4f1-1de4eb889a5f_Photos/
-drwxr-xr-x<span class="w"> </span><span class="m">2</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span><span class="m">1</span>.6K<span class="w"> </span>Jan<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">1970</span><span class="w"> </span>a09ab9fc-7bd0-49f1-929d-6abeb8491397_My<span class="w"> </span>Notes/
+drwxr-xr-x 2 root root  924 Jan  1  1970 5403ac56-5552-4e31-a4f1-1de4eb889a5f_Photos/
+drwxr-xr-x 2 root root 1.6K Jan  1  1970 a09ab9fc-7bd0-49f1-929d-6abeb8491397_My Notes/
 </code></pre></div>
-
 <p>From the above list you can see, under the folder of a user there are subfolders, each of which represents a library of that user, and has a name of this format: '''{library_id}-{library-name}'''.</p>
 <h5 id="the-folder-for-a-library">The folder for a library<a class="headerlink" href="#the-folder-for-a-library" title="Permanent link">&para;</a></h5>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>ls<span class="w"> </span>-lhp<span class="w"> </span>/data/seafile-fuse/abc@abc.com/5403ac56-5552-4e31-a4f1-1de4eb889a5f_Photos/
+<div class="highlight"><pre><span></span><code>$ ls -lhp /data/seafile-fuse/abc@abc.com/5403ac56-5552-4e31-a4f1-1de4eb889a5f_Photos/
 
--rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span>501K<span class="w"> </span>Jan<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">2015</span><span class="w"> </span>image.png
--rw-r--r--<span class="w"> </span><span class="m">1</span><span class="w"> </span>root<span class="w"> </span>root<span class="w"> </span>501K<span class="w"> </span>Jan<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">2015</span><span class="w"> </span>sample.jpng
+-rw-r--r-- 1 root root 501K Jan  1  2015 image.png
+-rw-r--r-- 1 root root 501K Jan  1  2015 sample.jpng
 </code></pre></div>
-
 <h5 id="if-you-get-a-permission-denied-error">If you get a "Permission denied" error<a class="headerlink" href="#if-you-get-a-permission-denied-error" title="Permanent link">&para;</a></h5>
 <p>If you get an error message saying "Permission denied" when running <code>./seaf-fuse.sh start</code>, most likely you are not in the "fuse group". You should:</p>
 <ul>
-<li>Add yourself to the fuse group</li>
-</ul>
-<div class="codehilite"><pre><span></span><code>sudo usermod -a -G fuse &lt;your-user-name&gt;
-</code></pre></div>
-
-<ul>
-<li>Logout your shell and login again</li>
+<li>
+<p>Add yourself to the fuse group
+<div class="highlight"><pre><span></span><code>sudo usermod -a -G fuse &lt;your-user-name&gt;
+</code></pre></div></p>
+</li>
+<li>
+<p>Logout your shell and login again</p>
+</li>
 <li>Now try <code>./seaf-fuse.sh start &lt;path&gt;</code>again.</li>
 </ul>
 <h2 id="use-seaf-fuse-in-docker-based-deployment">Use seaf-fuse in Docker based deployment<a class="headerlink" href="#use-seaf-fuse-in-docker-based-deployment" title="Permanent link">&para;</a></h2>
 <p>Assume we want to mount to <code>/data/seafile-fuse</code> in host.</p>
 <h5 id="modify-docker-composeyml">Modify docker-compose.yml<a class="headerlink" href="#modify-docker-composeyml" title="Permanent link">&para;</a></h5>
 <p>Add the following content</p>
-<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="nx">seafile</span><span class="p">:</span>
-<span class="w">    </span><span class="o">...</span>
-<span class="w">    </span><span class="nx">volumes</span><span class="p">:</span>
-<span class="w">      </span><span class="o">...</span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="k">type</span><span class="p">:</span><span class="w"> </span><span class="nx">bind</span>
-<span class="w">        </span><span class="nx">source</span><span class="p">:</span><span class="w"> </span><span class="o">/</span><span class="nx">data</span><span class="o">/</span><span class="nx">seafile</span><span class="o">-</span><span class="nx">fuse</span>
-<span class="w">        </span><span class="nx">target</span><span class="p">:</span><span class="w"> </span><span class="o">/</span><span class="nx">seafile</span><span class="o">-</span><span class="nx">fuse</span>
-<span class="w">        </span><span class="nx">bind</span><span class="p">:</span>
-<span class="w">          </span><span class="nx">propagation</span><span class="p">:</span><span class="w"> </span><span class="nx">rshared</span>
-<span class="w">    </span><span class="nx">privileged</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
-<span class="w">    </span><span class="nx">cap_add</span><span class="p">:</span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="nx">SYS_ADMIN</span>
+<div class="highlight"><pre><span></span><code>  seafile:
+    ...
+    volumes:
+      ...
+      - type: bind
+        source: /data/seafile-fuse
+        target: /seafile-fuse
+        bind:
+          propagation: rshared
+    privileged: true
+    cap_add:
+      - SYS_ADMIN
 </code></pre></div>
-
 <h5 id="start-seaf-fuse-with-the-script-in-docker">Start seaf-fuse with the script in docker<a class="headerlink" href="#start-seaf-fuse-with-the-script-in-docker" title="Permanent link">&para;</a></h5>
 <p>Start Seafile server and enter the container</p>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 
 docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>bash
 </code></pre></div>
-
 <p>Start seaf-fuse in the container</p>
-<div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest/
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest/
 
 ./seaf-fuse.sh<span class="w"> </span>start<span class="w"> </span>/seafile-fuse
 </code></pre></div>
@@ -4334,6 +4325,46 @@ docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </spa
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../webdav/" class="md-footer__link md-footer__link--prev" aria-label="Previous: WebDAV extension">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                WebDAV extension
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../libreoffice_online/" class="md-footer__link md-footer__link--next" aria-label="Next: LibreOffice Online Integration">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                LibreOffice Online Integration
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4376,7 +4407,7 @@ docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </spa
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

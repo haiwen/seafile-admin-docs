@@ -2317,7 +2317,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4308,24 +4308,21 @@
 </blockquote>
 <h2 id="seadoc-and-seafile-docker-are-deployed-on-the-same-host">SeaDoc and Seafile docker are deployed on the same host<a class="headerlink" href="#seadoc-and-seafile-docker-are-deployed-on-the-same-host" title="Permanent link">&para;</a></h2>
 <p>Download the <code>seadoc.yml</code> and integrate SeaDoc in Seafile docker.</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># for community edition</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># for community edition</span>
 wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/ce/seadoc.yml
 
 <span class="c1"># for pro edition</span>
 wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/pro/seadoc.yml
 </code></pre></div>
-
 <p>Modify <code>.env</code>, and insert <code>seadoc.yml</code> into <code>COMPOSE_FILE</code>, and enable SeaDoc server</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">COMPOSE_FILE</span><span class="o">=</span><span class="s1">&#39;seafile-server.yml,caddy.yml,seadoc.yml&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="nv">COMPOSE_FILE</span><span class="o">=</span><span class="s1">&#39;seafile-server.yml,caddy.yml,seadoc.yml&#39;</span>
 
 <span class="nv">ENABLE_SEADOC</span><span class="o">=</span><span class="nb">true</span>
 <span class="nv">SEADOC_SERVER_URL</span><span class="o">=</span>https://example.seafile.com/sdoc-server
 </code></pre></div>
-
 <p>Start SeaDoc server with the following command</p>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
-
 <p>Now you can use SeaDoc!</p>
 <h2 id="deploy-seadoc-on-a-new-host">Deploy SeaDoc on a new host<a class="headerlink" href="#deploy-seadoc-on-a-new-host" title="Permanent link">&para;</a></h2>
 <p>Download and modify the <code>.env</code> and <code>seadoc.yml</code> files.</p>
@@ -4342,9 +4339,8 @@ wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/pro/seadoc.ym
 <li><code>SEADOC_SERVER_URL</code>: SeaDoc service URL</li>
 </ul>
 <p>Start SeaDoc server with the following command</p>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
-
 <p>Then bind SeaDoc server url and ip in the load balance(or reverse proxy) configuration.</p>
 <p>Now you can use SeaDoc!</p>
 <h2 id="seadoc-directory-structure">SeaDoc directory structure<a class="headerlink" href="#seadoc-directory-structure" title="Permanent link">&para;</a></h2>
@@ -4356,7 +4352,7 @@ wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/pro/seadoc.ym
 <h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
 <h3 id="about-ssl">About SSL<a class="headerlink" href="#about-ssl" title="Permanent link">&para;</a></h3>
 <p>From Seafile 12.0, the SSL is handled by <a href="https://caddyserver.com/docs/"><strong><em>Caddy</em></strong></a>. Caddy is a modern open source web server that mainly binds external traffic and internal services in <a href="../../setup/overview/">seafile docker</a>. The default caddy image is <a href="https://github.com/lucaslorentz/caddy-docker-proxy"><code>lucaslorentz/caddy-docker-proxy:2.9</code></a>, which user only needs to correctly configure the following fields in <code>.env</code> to automatically complete the acquisition and update of the certificate:</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">SEAFILE_SERVER_PROTOCOL</span><span class="o">=</span>https
+<div class="highlight"><pre><span></span><code><span class="nv">SEAFILE_SERVER_PROTOCOL</span><span class="o">=</span>https
 <span class="nv">SEAFILE_SERVER_HOSTNAME</span><span class="o">=</span>example.com
 </code></pre></div>
 
@@ -4388,6 +4384,46 @@ wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/pro/seadoc.ym
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../setup_binary/migrate_from_sqlite_to_mysql/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Migrate From SQLite to MySQL">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Migrate From SQLite to MySQL
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../notification-server/" class="md-footer__link md-footer__link--next" aria-label="Next: Notification Server">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Notification Server
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -4430,7 +4466,7 @@ wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/pro/seadoc.ym
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>

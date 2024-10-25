@@ -2275,7 +2275,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../deploy_clamav_with_seafile/" class="md-nav__link">
+      <a href="../virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4191,72 +4191,69 @@
 <p>Since Seafile Professional edition 6.0.0, you can integrate Seafile with Collabora Online to preview office files.</p>
 <h2 id="setup-libreoffice-online">Setup LibreOffice Online<a class="headerlink" href="#setup-libreoffice-online" title="Permanent link">&para;</a></h2>
 <p>Prepare an Ubuntu 20.04 or 22.04 64bit server with <a href="http://www.docker.com/">docker</a> installed. Assign a domain name to this server, we use <em>collabora-online.seafile.com</em> here. Obtain and install valid TLS/SSL certificates for this server, we use <a href="https://letsencrypt.org/">Let’s Encrypt</a>. Then use Nginx to serve collabora online, config file example (source https://sdk.collaboraonline.com/docs/installation/Proxy_settings.html):</p>
-<div class="codehilite"><pre><span></span><code><span class="n">server</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">listen</span><span class="w">       </span><span class="mi">443</span><span class="w"> </span><span class="n">ssl</span><span class="p">;</span>
-<span class="w">    </span><span class="n">server_name</span><span class="w">  </span><span class="n">collabora</span><span class="o">-</span><span class="n">online</span><span class="o">.</span><span class="n">seafile</span><span class="o">.</span><span class="n">com</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code>server {
+    listen       443 ssl;
+    server_name  collabora-online.seafile.com;
 
-<span class="w">    </span><span class="n">ssl_certificate</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">letsencrypt</span><span class="o">/</span><span class="n">live</span><span class="o">/</span><span class="n">collabora</span><span class="o">-</span><span class="n">online</span><span class="o">.</span><span class="n">seafile</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">fullchain</span><span class="o">.</span><span class="n">pem</span><span class="p">;</span>
-<span class="w">    </span><span class="n">ssl_certificate_key</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">letsencrypt</span><span class="o">/</span><span class="n">live</span><span class="o">/</span><span class="n">collabora</span><span class="o">-</span><span class="n">online</span><span class="o">.</span><span class="n">seafile</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">privkey</span><span class="o">.</span><span class="n">pem</span><span class="p">;</span>
+    ssl_certificate /etc/letsencrypt/live/collabora-online.seafile.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/collabora-online.seafile.com/privkey.pem;
 
-<span class="w">    </span><span class="c1"># static files</span>
-<span class="w">    </span><span class="n">location</span><span class="w"> </span><span class="o">^~</span><span class="w"> </span><span class="o">/</span><span class="n">browser</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">proxy_pass</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">9980</span><span class="p">;</span>
-<span class="w">        </span><span class="n">proxy_set_header</span><span class="w"> </span><span class="n">Host</span><span class="w"> </span><span class="o">$</span><span class="n">http_host</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
+    # static files
+    location ^~ /browser {
+        proxy_pass https://127.0.0.1:9980;
+        proxy_set_header Host $http_host;
+    }
 
-<span class="w">    </span><span class="c1"># WOPI discovery URL</span>
-<span class="w">    </span><span class="n">location</span><span class="w"> </span><span class="o">^~</span><span class="w"> </span><span class="o">/</span><span class="n">hosting</span><span class="o">/</span><span class="n">discovery</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">proxy_pass</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">9980</span><span class="p">;</span>
-<span class="w">        </span><span class="n">proxy_set_header</span><span class="w"> </span><span class="n">Host</span><span class="w"> </span><span class="o">$</span><span class="n">http_host</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
+    # WOPI discovery URL
+    location ^~ /hosting/discovery {
+        proxy_pass https://127.0.0.1:9980;
+        proxy_set_header Host $http_host;
+    }
 
-<span class="w">    </span><span class="c1"># Capabilities</span>
-<span class="w">    </span><span class="n">location</span><span class="w"> </span><span class="o">^~</span><span class="w"> </span><span class="o">/</span><span class="n">hosting</span><span class="o">/</span><span class="n">capabilities</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">proxy_pass</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">9980</span><span class="p">;</span>
-<span class="w">        </span><span class="n">proxy_set_header</span><span class="w"> </span><span class="n">Host</span><span class="w"> </span><span class="o">$</span><span class="n">http_host</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
+    # Capabilities
+    location ^~ /hosting/capabilities {
+        proxy_pass https://127.0.0.1:9980;
+        proxy_set_header Host $http_host;
+    }
 
-<span class="w">    </span><span class="c1"># main websocket</span>
-<span class="w">    </span><span class="n">location</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="o">^/</span><span class="n">cool</span><span class="o">/</span><span class="p">(</span><span class="o">.*</span><span class="p">)</span><span class="o">/</span><span class="n">ws</span><span class="o">$</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">proxy_pass</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">9980</span><span class="p">;</span>
-<span class="w">        </span><span class="n">proxy_set_header</span><span class="w"> </span><span class="n">Upgrade</span><span class="w"> </span><span class="o">$</span><span class="n">http_upgrade</span><span class="p">;</span>
-<span class="w">        </span><span class="n">proxy_set_header</span><span class="w"> </span><span class="n">Connection</span><span class="w"> </span><span class="s2">&quot;Upgrade&quot;</span><span class="p">;</span>
-<span class="w">        </span><span class="n">proxy_set_header</span><span class="w"> </span><span class="n">Host</span><span class="w"> </span><span class="o">$</span><span class="n">http_host</span><span class="p">;</span>
-<span class="w">        </span><span class="n">proxy_read_timeout</span><span class="w"> </span><span class="mi">36000</span><span class="n">s</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
+    # main websocket
+    location ~ ^/cool/(.*)/ws$ {
+        proxy_pass https://127.0.0.1:9980;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection &quot;Upgrade&quot;;
+        proxy_set_header Host $http_host;
+        proxy_read_timeout 36000s;
+    }
 
-<span class="w">    </span><span class="c1"># download, presentation and image upload</span>
-<span class="w">    </span><span class="n">location</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="o">^/</span><span class="p">(</span><span class="n">c</span><span class="o">|</span><span class="n">l</span><span class="p">)</span><span class="n">ool</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">proxy_pass</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">9980</span><span class="p">;</span>
-<span class="w">        </span><span class="n">proxy_set_header</span><span class="w"> </span><span class="n">Host</span><span class="w"> </span><span class="o">$</span><span class="n">http_host</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
+    # download, presentation and image upload
+    location ~ ^/(c|l)ool {
+        proxy_pass https://127.0.0.1:9980;
+        proxy_set_header Host $http_host;
+    }
 
-<span class="w">    </span><span class="c1"># Admin Console websocket</span>
-<span class="w">    </span><span class="n">location</span><span class="w"> </span><span class="o">^~</span><span class="w"> </span><span class="o">/</span><span class="n">cool</span><span class="o">/</span><span class="n">adminws</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">proxy_pass</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">9980</span><span class="p">;</span>
-<span class="w">        </span><span class="n">proxy_set_header</span><span class="w"> </span><span class="n">Upgrade</span><span class="w"> </span><span class="o">$</span><span class="n">http_upgrade</span><span class="p">;</span>
-<span class="w">        </span><span class="n">proxy_set_header</span><span class="w"> </span><span class="n">Connection</span><span class="w"> </span><span class="s2">&quot;Upgrade&quot;</span><span class="p">;</span>
-<span class="w">        </span><span class="n">proxy_set_header</span><span class="w"> </span><span class="n">Host</span><span class="w"> </span><span class="o">$</span><span class="n">http_host</span><span class="p">;</span>
-<span class="w">        </span><span class="n">proxy_read_timeout</span><span class="w"> </span><span class="mi">36000</span><span class="n">s</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
+    # Admin Console websocket
+    location ^~ /cool/adminws {
+        proxy_pass https://127.0.0.1:9980;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection &quot;Upgrade&quot;;
+        proxy_set_header Host $http_host;
+        proxy_read_timeout 36000s;
+    }
+}
 </code></pre></div>
-
 <p>then use the following command to setup/start Collabora Online (source https://sdk.collaboraonline.com/docs/installation/CODE_Docker_image.html#code-docker-image):</p>
-<div class="codehilite"><pre><span></span><code>docker pull collabora/code
+<div class="highlight"><pre><span></span><code>docker pull collabora/code
 docker run -t -d -p 127.0.0.1:9980:9980 -e &quot;aliasgroup1=https://&lt;your-dot-escaped-domain&gt;:443&quot; -e &quot;username=***&quot; -e &quot;password=***&quot; --name code --restart always collabora/code
 </code></pre></div>
-
 <p><strong>NOTE:</strong> the <code>domain</code> args is the domain name of your Seafile server, if your
 Seafile server's domain name is <em>demo.seafile.com</em>, the command should be:</p>
-<div class="codehilite"><pre><span></span><code>docker run -t -d -p 127.0.0.1:9980:9980 -e &quot;aliasgroup1=https://demo.seafile.com:443&quot; -e &quot;username=***&quot; -e &quot;password=***&quot; --name code --restart always collabora/code
+<div class="highlight"><pre><span></span><code>docker run -t -d -p 127.0.0.1:9980:9980 -e &quot;aliasgroup1=https://demo.seafile.com:443&quot; -e &quot;username=***&quot; -e &quot;password=***&quot; --name code --restart always collabora/code
 </code></pre></div>
-
 <p>For more information about Collabora Online and how to deploy it, please refer to https://www.collaboraoffice.com</p>
 <h2 id="config-seafile">Config Seafile<a class="headerlink" href="#config-seafile" title="Permanent link">&para;</a></h2>
 <p><strong>NOTE:</strong> You must <a href="../../setup_binary/https_with_nginx/">enable https</a> with valid TLS/SSL certificates with Seafile to use Collabora Online.</p>
 <p>Add following config option to seahub_settings.py:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># From 6.1.0 CE version on, Seafile support viewing/editing **doc**, **ppt**, **xls** files via LibreOffice</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># From 6.1.0 CE version on, Seafile support viewing/editing **doc**, **ppt**, **xls** files via LibreOffice</span>
 <span class="c1"># Add this setting to view/edit **doc**, **ppt**, **xls** files</span>
 <span class="n">OFFICE_SERVER_TYPE</span> <span class="o">=</span> <span class="s1">&#39;CollaboraOffice&#39;</span>
 
@@ -4286,7 +4283,6 @@ Seafile server's domain name is <em>demo.seafile.com</em>, the command should be
 <span class="c1"># types of files should be editable through LibreOffice Online</span>
 <span class="n">OFFICE_WEB_APP_EDIT_FILE_EXTENSION</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;odp&#39;</span><span class="p">,</span> <span class="s1">&#39;ods&#39;</span><span class="p">,</span> <span class="s1">&#39;odt&#39;</span><span class="p">,</span> <span class="s1">&#39;xls&#39;</span><span class="p">,</span> <span class="s1">&#39;xlsb&#39;</span><span class="p">,</span> <span class="s1">&#39;xlsm&#39;</span><span class="p">,</span> <span class="s1">&#39;xlsx&#39;</span><span class="p">,</span><span class="s1">&#39;ppsx&#39;</span><span class="p">,</span> <span class="s1">&#39;ppt&#39;</span><span class="p">,</span> <span class="s1">&#39;pptm&#39;</span><span class="p">,</span> <span class="s1">&#39;pptx&#39;</span><span class="p">,</span> <span class="s1">&#39;doc&#39;</span><span class="p">,</span> <span class="s1">&#39;docm&#39;</span><span class="p">,</span> <span class="s1">&#39;docx&#39;</span><span class="p">)</span>
 </code></pre></div>
-
 <p>Then restart Seafile.</p>
 <p>Click an office file in Seafile web interface, you will see the online preview rendered by LibreOffice online. Here is an example:</p>
 <p><img alt="LibreOffice-online" src="../../images/libreoffice-online.png" /></p>
@@ -4329,6 +4325,46 @@ Seafile server's domain name is <em>demo.seafile.com</em>, the command should be
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../fuse/" class="md-footer__link md-footer__link--prev" aria-label="Previous: FUSE extension">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                FUSE extension
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../only_office/" class="md-footer__link md-footer__link--next" aria-label="Next: OnlyOffice Integration">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                OnlyOffice Integration
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
@@ -4370,7 +4406,7 @@ Seafile server's domain name is <em>demo.seafile.com</em>, the command should be
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
