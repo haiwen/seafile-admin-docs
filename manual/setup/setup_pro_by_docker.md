@@ -25,7 +25,7 @@ Seafile PE can be used without a paid license with up to three users. Licenses f
 
 The following assumptions and conventions are used in the rest of this document:
 
-- `/opt/seafile-data` is the directory of Seafile. If you decide to put Seafile in a different directory - which you can - adjust all paths accordingly.
+- `/opt/seafile` is the directory of Seafile for storing Seafile docker files. If you decide to put Seafile in a different directory, adjust all paths accordingly.
 - Seafile uses two [Docker volumes](https://docs.docker.com/storage/volumes/) for persisting data generated in its database and Seafile Docker container. The volumes' [host paths](https://docs.docker.com/compose/compose-file/compose-file-v3/#volumes) are /opt/seafile-mysql and /opt/seafile-data, respectively. It is not recommended to change these paths. If you do, account for it when following these instructions.
 - All configuration and log files for Seafile and the webserver Nginx are stored in the volume of the Seafile container.
 
@@ -172,12 +172,21 @@ Follow the instructions in [Backup and restore for Seafile Docker](../administra
 
 ## Garbage Collection
 
-When files are deleted, the blocks comprising those files are not immediately removed as there may be other files that reference those blocks (due to the magic of deduplication). To remove them, Seafile requires a ['garbage collection'](../administration/seafile_gc.md) process to be run, which detects which blocks no longer used and purges them. (NOTE: for technical reasons, the GC process does not guarantee that _every single_ orphan block will be deleted.)
+When files are deleted, the blocks comprising those files are not immediately removed as there may be other files that reference those blocks (due to the magic of deduplication). To remove them, Seafile requires a ['garbage collection'](../administration/seafile_gc.md) process to be run, which detects which blocks no longer used and purges them.
 
 The required scripts can be found in the `/scripts` folder of the docker container. To perform garbage collection, simply run `docker exec seafile /scripts/gc.sh`.
 
 
 ## FAQ
+
+Q: If I want enter into the Docker container, which command I can use?
+
+A: You can enter into the docker container using the command:
+
+```bash
+docker exec -it seafile /bin/bash
+```
+
 
 Q: I forgot the Seafile admin email address/password, how do I create a new admin account?
 
