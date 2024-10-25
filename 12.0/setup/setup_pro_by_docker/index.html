@@ -4536,7 +4536,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 <p>Follow the instructions in <a href="../../administration/backup_recovery/">Backup and restore for Seafile Docker</a></p>
 <h2 id="garbage-collection">Garbage Collection<a class="headerlink" href="#garbage-collection" title="Permanent link">&para;</a></h2>
 <p>When files are deleted, the blocks comprising those files are not immediately removed as there may be other files that reference those blocks (due to the magic of deduplication). To remove them, Seafile requires a <a href="../../administration/seafile_gc/">'garbage collection'</a> process to be run, which detects which blocks no longer used and purges them. (NOTE: for technical reasons, the GC process does not guarantee that <em>every single</em> orphan block will be deleted.)</p>
-<p>The required scripts can be found in the <code>/scripts</code> folder of the docker container. To perform garbage collection, simply run <code>docker exec seafile /scripts/gc.sh</code>. For the community edition, this process will stop the seafile server, but it is a relatively quick process and the seafile server will start automatically once the process has finished. The Professional supports an online garbage collection.</p>
+<p>The required scripts can be found in the <code>/scripts</code> folder of the docker container. To perform garbage collection, simply run <code>docker exec seafile /scripts/gc.sh</code>.</p>
 <h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
 <p>Q: I forgot the Seafile admin email address/password, how do I create a new admin account?</p>
 <p>A: You can create a new admin account by running</p>

@@ -3357,15 +3357,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#gc-cleanup-script-for-community-version" class="md-nav__link">
-    <span class="md-ellipsis">
-      GC cleanup script for Community Version
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#gc-in-seafile-docker-container" class="md-nav__link">
     <span class="md-ellipsis">
       GC in Seafile docker container
@@ -4241,15 +4232,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#gc-cleanup-script-for-community-version" class="md-nav__link">
-    <span class="md-ellipsis">
-      GC cleanup script for Community Version
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#gc-in-seafile-docker-container" class="md-nav__link">
     <span class="md-ellipsis">
       GC in Seafile docker container
@@ -4285,9 +4267,6 @@
 <li>Blocks that no library references to, that is, the blocks belong to deleted libraries;</li>
 <li>If you set history length limit on some libraries, the out-dated blocks in those libraries will also be removed.</li>
 </ol>
-<p><strong>Before running GC, you must shutdown the Seafile program on your server if you use the community edition. For professional edition, online GC operation is supported. If you use Professional edition, you don't need to shutdown the Seafile program if you are using MySQL.</strong>
-This is because new blocks written into Seafile while GC is running may be mistakenly deleted by the GC program.</p>
-<p>At the bottom of the page there is a script that you can use to run the cleanup manually or e.g. once a week with as cronjob.</p>
 <h2 id="run-gc">Run GC<a class="headerlink" href="#run-gc" title="Permanent link">&para;</a></h2>
 <h3 id="dry-run-mode">Dry-run Mode<a class="headerlink" href="#dry-run-mode" title="Permanent link">&para;</a></h3>
 <p>To see how much garbage can be collected without actually removing any garbage, use the dry-run option:</p>
@@ -4369,69 +4348,6 @@ This is because new blocks written into Seafile while GC is running may be mista
 <div class="codehilite"><pre><span></span><code>seaf-gc.sh --id-prefix a123
 </code></pre></div>
 
-<h2 id="gc-cleanup-script-for-community-version">GC cleanup script for Community Version<a class="headerlink" href="#gc-cleanup-script-for-community-version" title="Permanent link">&para;</a></h2>
-<p>To use this script you need:</p>
-<ul>
-<li>Setup the seafile-service file at '/etc/init.d/seafile-server'</li>
-<li>Files of seafile setup need to be owner by 'seafile:nogroup' or 'seafile:seafile'</li>
-<li>Run the script with sudo or as root</li>
-<li>Put the script into crontab of a root user</li>
-</ul>
-<p>Create the script file (change the location to your liking):</p>
-<div class="codehilite"><pre><span></span><code>touch /opt/haiwen/seafile/cleanupScript.sh
-</code></pre></div>
-
-<p>Use your favorite text editor and paste the following code:</p>
-<div class="codehilite"><pre><span></span><code><span class="ch">#!/bin/bash</span>
-
-<span class="c1">#####</span>
-<span class="c1"># Uncomment the following line if you rather want to run the script manually.</span>
-<span class="c1"># Display usage if the script is not run as root user</span>
-<span class="c1">#        if [[ $USER != &quot;root&quot; ]]; then</span>
-<span class="c1">#                echo &quot;This script must be run as root user!&quot;</span>
-<span class="c1">#                exit 1</span>
-<span class="c1">#        fi</span>
-<span class="c1">#</span>
-<span class="c1"># echo &quot;Super User detected!!&quot;</span>
-<span class="c1"># read -p &quot;Press [ENTER] to start the procedure, this will stop the seafile server!!&quot;</span>
-<span class="c1">#####</span>
-
-<span class="c1"># stop the server</span>
-<span class="nb">echo</span><span class="w"> </span>Stopping<span class="w"> </span>the<span class="w"> </span>Seafile-Server...
-systemctl<span class="w"> </span>stop<span class="w"> </span>seafile.service
-systemctl<span class="w"> </span>stop<span class="w"> </span>seahub.service
-
-<span class="nb">echo</span><span class="w"> </span>Giving<span class="w"> </span>the<span class="w"> </span>server<span class="w"> </span>some<span class="w"> </span><span class="nb">time</span><span class="w"> </span>to<span class="w"> </span>shut<span class="w"> </span>down<span class="w"> </span>properly....
-sleep<span class="w"> </span><span class="m">20</span>
-
-<span class="c1"># run the cleanup</span>
-<span class="nb">echo</span><span class="w"> </span>Seafile<span class="w"> </span>cleanup<span class="w"> </span>started...
-sudo<span class="w"> </span>-u<span class="w"> </span>seafile<span class="w"> </span><span class="nv">$pathtoseafile</span>/seafile-server-latest/seaf-gc.sh
-
-<span class="nb">echo</span><span class="w"> </span>Giving<span class="w"> </span>the<span class="w"> </span>server<span class="w"> </span>some<span class="w"> </span>time....
-sleep<span class="w"> </span><span class="m">10</span>
-
-<span class="c1"># start the server again</span>
-<span class="nb">echo</span><span class="w"> </span>Starting<span class="w"> </span>the<span class="w"> </span>Seafile-Server...
-systemctl<span class="w"> </span>start<span class="w"> </span>seafile.service
-systemctl<span class="w"> </span>start<span class="w"> </span>seahub.service
-
-<span class="nb">echo</span><span class="w"> </span>Seafile<span class="w"> </span>cleanup<span class="w"> </span><span class="k">done</span>!
-</code></pre></div>
-
-<p>Make sure that the script has been given execution rights, to do that run this command.</p>
-<div class="codehilite"><pre><span></span><code>sudo chmod +x /path/to/yourscript.sh
-</code></pre></div>
-
-<p>Then open crontab with the root user</p>
-<div class="codehilite"><pre><span></span><code>crontab -e
-</code></pre></div>
-
-<p>Add the following line (change the location of your script accordingly!)</p>
-<div class="codehilite"><pre><span></span><code><span class="mf">0</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Sun</span><span class="w"> </span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">haiwen</span><span class="o">/</span><span class="n">seafile</span><span class="o">/</span><span class="n">cleanupScript</span><span class="mf">.</span><span class="n">sh</span>
-</code></pre></div>
-
-<p>The script will then run every Sunday at 2:00 AM.</p>
 <h2 id="gc-in-seafile-docker-container">GC in Seafile docker container<a class="headerlink" href="#gc-in-seafile-docker-container" title="Permanent link">&para;</a></h2>
 <p>To perform garbage collection inside the seafile docker container, you must run the <code>/scripts/gc.sh</code> script. Simply run <code>docker exec &lt;whatever-your-seafile-container-is-called&gt; /scripts/gc.sh</code>.</p>
 
