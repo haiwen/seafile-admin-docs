@@ -101,6 +101,10 @@ Placeholder spot for shared volumes. You may elect to store certain persistent i
 
 * /opt/seadoc-data/logs: This is the directory for SeaDoc logs.
 
+## Database used by SeaDoc
+
+SeaDoc used one database table `seahub_db.sdoc_operation_log` to store operation logs.
+
 ## FAQ
 
 ### About SSL
