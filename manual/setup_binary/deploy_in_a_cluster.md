@@ -180,7 +180,8 @@ es_port = 9200
 
 ```
 
-Note: `enable = true` should be left unchanged. For versions older than 6.1, `es_port` was 9500.
+Note: `enable = true` should be left unchanged.
+
 
 ### Update Seahub Database
 
@@ -198,8 +199,7 @@ You also need to add the settings for backend cloud storage systems to the confi
 * For NFS: [Setup Seafile cluster with NFS](setup_seafile_cluster_with_nfs.md)
 * For S3: [Setup With Amazon S3](../setup/setup_with_amazon_s3.md)
 * For OpenStack Swift: [Setup With OpenStackSwift](../setup/setup_with_swift.md)
-* For Ceph: [Setup With Ceph](../setup/setup_with_ceph.md)
-* For OSS: [Setup With Alibaba OSS](../setup/setup_with_oss.md)
+
 
 ### Setup Nginx/Apache and HTTP
 
@@ -237,9 +237,9 @@ Supposed your Seafile installation directory is `/data/haiwen`, compress this wh
 
 On each node, run `./seafile.sh` and `./seahub.sh` to start Seafile server.
 
-### back-end node
+### backend node
 
-In the back-end node, you need to execute the following command to start Seafile server. **CLUSTER_MODE=backend** means this node is seafile backend server.
+In the backend node, you need to execute the following command to start Seafile server. **CLUSTER_MODE=backend** means this node is seafile backend server.
 
 ```bash
 export CLUSTER_MODE=backend
