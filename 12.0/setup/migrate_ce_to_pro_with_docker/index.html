@@ -4267,9 +4267,8 @@
 <p>Then run the migration script by executing the following command:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>/opt/seafile/seafile-server-latest/pro/pro.py<span class="w"> </span>setup<span class="w"> </span>--migrate
 </code></pre></div>
-<p>After the migration script runs successfully, modify <code>external_es_server, es_host, es_port</code> in <code>/opt/seafile-data/seafile/conf/seafevents.conf</code> manually.</p>
+<p>After the migration script runs successfully, modify <code>es_host, es_port</code> in <code>/opt/seafile-data/seafile/conf/seafevents.conf</code> manually.</p>
 <div class="highlight"><pre><span></span><code>[INDEX FILES]
-external_es_server = true
 es_host = elasticsearch
 es_port = 9200
 enabled = true

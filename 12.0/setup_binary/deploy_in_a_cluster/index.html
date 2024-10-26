@@ -4718,21 +4718,16 @@ health_check_port = 12345
 <div class="highlight"><pre><span></span><code>AVATAR_FILE_STORAGE = &#39;seahub.base.database_storage.DatabaseStorage&#39;
 </code></pre></div>
 <h4 id="seafeventsconf">seafevents.conf<a class="headerlink" href="#seafeventsconf" title="Permanent link">&para;</a></h4>
-<p>Add following to <code>seafevents.conf</code> to disable file indexing service on the local server. The file indexing service should be started on a dedicated background server.</p>
-<div class="highlight"><pre><span></span><code>[INDEX FILES]
-external_es_server = true
-</code></pre></div>
 <p>Here is an example <code>[INDEX FILES]</code> section:</p>
 <div class="highlight"><pre><span></span><code>[INDEX FILES]
 enabled = true
 interval = 10m
 highlight = fvh     # This configuration is only available for Seafile 6.3.0 pro and above.
 index_office_pdf = true
-external_es_server = true
 es_host = background.seafile.com
 es_port = 9200
 </code></pre></div>
-<p>Note: <code>enable = true</code> should be left unchanged.</p>
+<p>Note: <code>enable = true</code> should be left unchanged. It means the file search feature is enabled.</p>
 <h3 id="update-seahub-database">Update Seahub Database<a class="headerlink" href="#update-seahub-database" title="Permanent link">&para;</a></h3>
 <p>In cluster environment, we have to store avatars in the database instead of in a local disk.</p>
 <div class="highlight"><pre><span></span><code>CREATE TABLE `avatar_uploaded` (`filename` TEXT NOT NULL, `filename_md5` CHAR(32) NOT NULL PRIMARY KEY, `data` MEDIUMTEXT NOT NULL, `size` INTEGER NOT NULL, `mtime` datetime NOT NULL);
@@ -4833,11 +4828,10 @@ memcached_options = --SERVER=&lt;IP of memcached node&gt; --POOL-MIN=10 --POOL-M
 enabled = true
 interval = 10m
 highlight = fvh     # This configuration is for improving searching speed
-external_es_server = true
 es_host = &lt;IP of background node&gt;
 es_port = 9200
 </code></pre></div>
-<p>The <code>[INDEX FILES]</code> section is needed to let the front-end node know the file search feature is enabled. The <code>external_es_server = true</code> is to tell the front-end node not to start the ElasticSearch but to use the ElasticSearch server at the back-end node.</p>
+<p>The <code>[INDEX FILES]</code> section is needed to let the front-end node know the file search feature is enabled.</p>
 
 
 
