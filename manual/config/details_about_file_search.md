@@ -84,7 +84,6 @@ If this does not work, you can try the following steps:
 enabled = true
 interval = 10m
 index_office_pdf=true
-external_es_server = true
 es_host = your domain endpoint(for example, https://search-my-domain.us-east-1.es.amazonaws.com)
 es_port = 443
 scheme = https

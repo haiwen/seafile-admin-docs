@@ -54,11 +54,10 @@ docker exec -it seafile /opt/seafile/seafile-server-latest/pro/pro.py setup --mi
 
 ```
 
-After the migration script runs successfully, modify `external_es_server, es_host, es_port` in `/opt/seafile-data/seafile/conf/seafevents.conf` manually.
+After the migration script runs successfully, modify `es_host, es_port` in `/opt/seafile-data/seafile/conf/seafevents.conf` manually.
 
 ```conf
 [INDEX FILES]
-external_es_server = true
 es_host = elasticsearch
 es_port = 9200
 enabled = true

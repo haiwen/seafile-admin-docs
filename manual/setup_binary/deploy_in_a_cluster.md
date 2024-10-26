@@ -158,13 +158,6 @@ AVATAR_FILE_STORAGE = 'seahub.base.database_storage.DatabaseStorage'
 
 #### seafevents.conf
 
-Add following to `seafevents.conf` to disable file indexing service on the local server. The file indexing service should be started on a dedicated background server.
-
-```
-[INDEX FILES]
-external_es_server = true
-
-```
 
 Here is an example `[INDEX FILES]` section:
 
@@ -174,13 +167,11 @@ enabled = true
 interval = 10m
 highlight = fvh     # This configuration is only available for Seafile 6.3.0 pro and above.
 index_office_pdf = true
-external_es_server = true
 es_host = background.seafile.com
 es_port = 9200
-
 ```
 
-Note: `enable = true` should be left unchanged.
+Note: `enable = true` should be left unchanged. It means the file search feature is enabled.
 
 
 ### Update Seahub Database
@@ -342,11 +333,9 @@ For **seafevents.conf**:
 enabled = true
 interval = 10m
 highlight = fvh     # This configuration is for improving searching speed
-external_es_server = true
 es_host = <IP of background node>
 es_port = 9200
 ```
 
-The `[INDEX FILES]` section is needed to let the front-end node know the file search feature is enabled. The `external_es_server = true` is to tell the front-end node not to start the ElasticSearch but to use the ElasticSearch server at the back-end node.
-
+The `[INDEX FILES]` section is needed to let the front-end node know the file search feature is enabled.
 

@@ -408,7 +408,6 @@ Add the following configuration to `seafevents.conf`:
 
 ```
 [INDEX FILES]
-external_es_server = true                   # required when ElasticSearch on separate host
 es_host = your elasticsearch server's IP    # IP address of ElasticSearch host
                                             # use 127.0.0.1 if deployed on the same server
 es_port = 9200                              # port of ElasticSearch host

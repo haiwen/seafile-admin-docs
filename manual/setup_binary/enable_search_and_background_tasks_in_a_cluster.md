@@ -18,162 +18,7 @@ Let's assume you have three nodes in your cluster: A, B, and C.
 ![cluster-nodes](../images/cluster-nodes.png)
 
 
-## 7.1, 8.0
-
-### Configuring Node A (the backend node)
-
-If you following the steps on settings up a cluster, node B and node C should have already be configed as frontend node. You can copy the configuration of node B as a base for node A. Then do the following steps:
-
-#### Install Dependencies (Java, LibreOffice)
-
-On Ubuntu/Debian:
-
-```shell
-sudo apt-get install openjdk-8-jre libreoffice python-uno # or python3-uno for ubuntu 16.04+
-
-```
-
-On CentOS/Red Hat:
-
-```shell
-sudo yum install java-1.8.0-openjdk
-sudo yum install libreoffice libreoffice-headless libreoffice-pyuno
-
-```
-
-Edit **seafevents.conf** and ensure this line does NOT exist:
-
-```
-external_es_server = true
-
-```
-
-Edit **seafevents.conf**, adding the following configuration:
-
-```
-[OFFICE CONVERTER]
-enabled = true
-host = <ip of node background>
-port = 6000
-
-```
-
-host is the IP address of background node, make sure the front end nodes can access the background node via IP:6000 .
-
-Edit **seafile.conf** to enable virus scan according to [virus scan document](../extension/virus_scan.md)
-
-#### Edit the firewall rules
-
-In your firewall rules for node A, you should open the port 9200 (for search requests) and port 6000 for office converter. For versions older than 6.1, `es_port` was 9500.
-
-
-
-### Configure Other Nodes
-
-On nodes B and C, you need to:
-
-Edit `seafevents.conf`, add the following lines:
-
-```
-[INDEX FILES]
-enabled = true
-external_es_server = true
-es_host = <ip of node A>
-es_port = 9200
-
-[OFFICE CONVERTER]
-enabled = true
-host = <ip of node background>
-port = 6000
-
-```
-
-Edit **seahub_settings.py** and add a line:
-
-```python
-OFFICE_CONVERTOR_ROOT = 'http://<ip of node background>:6000'
-
-```
-
-### Start the background node
-
-Type the following commands to start the background node (Note, one additional command `seafile-background-tasks.sh` is needed)
-
-```shell
-./seafile.sh start
-./seafile-background-tasks.sh start
-
-```
-
-To stop the background node, type:
-
-```shell
-./seafile-background-tasks.sh stop
-./seafile.sh stop
-
-```
-
-You should also configure Seafile background tasks to start on system bootup. For systemd based OS, you can add `/etc/systemd/system/seafile-background-tasks.service`:
-
-```
-[Unit]
-Description=Seafile Background Tasks Server
-After=network.target seahub.service
-
-[Service]
-Type=forking
-ExecStart=/opt/seafile/seafile-server-latest/seafile-background-tasks.sh start
-ExecStop=/opt/seafile/seafile-server-latest/seafile-background-tasks.sh stop
-User=root
-Group=root
-
-[Install]
-WantedBy=multi-user.target
-
-```
-
-Then enable this task in systemd:
-
-```
-systemctl enable seafile-background-tasks.service
-
-```
-
-### The final configuration of the background node
-
-Here is the summary of configurations at the background node that related to clustering setup.
-
-For **seafile.conf**:
-
-```
-[cluster]
-enabled = true
-
-[memcached]
-memcached_options = --SERVER=<you memcached server host> --POOL-MIN=10 --POOL-MAX=100
-
-```
-
-For **seafevents.conf**:
-
-```
-[INDEX FILES]
-enabled = true
-interval = 10m
-highlight = fvh  # this is for improving the search speed
-
-[OFFICE CONVERTER]
-enabled = true
-host = <ip of node background>
-port = 6000
-
-```
-
-    
-    
-## 9.0+
-
-### Configuring Node A (the backend node)
+## Configuring Node A (the backend node)
 
 If you following the steps on settings up a cluster, node B and node C should have already be configed as frontend node. You can copy the configuration of node B as a base for node A. Then do the following steps:
     
@@ -182,7 +27,6 @@ Since 9.0, ElasticSearch program is not part of Seafile package. You should depl
 ```
 [INDEX FILES]
 enabled = true
-external_es_server = true
 es_host = <ip of elastic search service>
 es_port = 9200
 interval = 10m
@@ -192,7 +36,7 @@ highlight = fvh  # this is for improving the search speed
 Edit **seafile.conf** to enable virus scan according to [virus scan document](../extension/virus_scan.md)
 
 
-### Configure Other Nodes
+## Configure Other Nodes
 
 On nodes B and C, you need to:
 
@@ -201,18 +45,11 @@ Edit `seafevents.conf`, add the following lines:
 ```
 [INDEX FILES]
 enabled = true
-external_es_server = true
 es_host = <ip of elastic search service>
 es_port = 9200
 ```
 
-Edit **seahub_settings.py** and add a line:
-
-```python
-OFFICE_CONVERTOR_ROOT = 'http://<ip of office preview docker service>'
-```
-
-### Start the background node
+## Start the background node
 
 Type the following commands to start the background node (Note, one additional command `seafile-background-tasks.sh` is needed)
 
@@ -257,7 +94,7 @@ systemctl enable seafile-background-tasks.service
 
 ```
 
-### The final configuration of the background node
+## The final configuration of the background node
 
 Here is the summary of configurations at the background node that related to clustering setup.
 
@@ -277,7 +114,6 @@ For **seafevents.conf**:
 ```
 [INDEX FILES]
 enabled = true
-external_es_server = true
 es_host = <ip of elastic search service>
 es_port = 9200
 interval = 10m

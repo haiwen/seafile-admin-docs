@@ -136,7 +136,6 @@ CACHES = {
 [INDEX FILES]
 es_port = {your elasticsearch server port}
 es_host = {your elasticsearch server host}
-external_es_server = true
 enabled = true
 highlight = fvh
 interval = 10m
