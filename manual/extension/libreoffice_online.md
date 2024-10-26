@@ -2,13 +2,13 @@
 
 Since Seafile Professional edition 6.0.0, you can integrate Seafile with Collabora Online to preview office files.
 
-## Setup LibreOffice Online
+## Setup CollaboraOnline
 
 !!! tip "Deployment Tips"
 
-    From Seafile 12.0, Seafile support integrating LibreOffice server on the same host (only support deploying with [Docker](../setup/setup_pro_by_docker.md) with sufficient cores and RAM), as you can follow the steps in this manual. 
+    From Seafile 12.0, Seafile support integrating CollaboraOnline server on the same host (only support deploying with [Docker](../setup/setup_pro_by_docker.md) with sufficient cores and RAM), as you can follow the steps in this manual. 
     
-    Otherwise, you can follow the [official document](https://sdk.collaboraonline.com/docs/installation/CODE_Docker_image.html#code-docker-image) to deploy LibreOffice server on a separate host. Then you should follow [here](#Libreoffice-server-on-a-separate-host) to configurate `seahub_settings.py` to enable online office.
+    Otherwise, you can follow the [official document](https://sdk.collaboraonline.com/docs/installation/CODE_Docker_image.html#code-docker-image) to deploy CollaboraOnline server on a separate host. Then you should follow [here](#Libreoffice-server-on-a-separate-host) to configurate `seahub_settings.py` to enable online office.
 
 Download the `collabora.yml`
 
@@ -30,6 +30,7 @@ COLLABORA_ENABLE_FILE_LOGGING=false # use file logs or not, see FQA
 ```
 
 ## Config Seafile
+
 Add following config option to seahub_settings.py:
 
 ``` python
@@ -58,24 +59,24 @@ OFFICE_WEB_APP_EDIT_FILE_EXTENSION = ('odp', 'ods', 'odt', 'xls', 'xlsb', 'xlsm'
 
 Then restart Seafile.
 
-Click an office file in Seafile web interface, you will see the online preview rendered by LibreOffice online. Here is an example:
+Click an office file in Seafile web interface, you will see the online preview rendered by CollaboraOnline. Here is an example:
 
 ![LibreOffice-online](../images/libreoffice-online.png)
 
 ## Trouble shooting
 
-Understanding how theintegration work will help you debug the problem. When a user visits a file page:
+Understanding how the integration work will help you debug the problem. When a user visits a file page:
 
 1. (seahub->browser) Seahub will generate a page containing an iframe and send it to the browser
-2. (browser->LibreOffice Online) With the iframe, the browser will try to load the file preview page from the LibreOffice Online
-3. (LibreOffice Online->seahub) LibreOffice Online receives the request and sends a request to Seahub to get the file content
-4. (LibreOffice Online->browser) LibreOffice Online sends the file preview page to the browser.
+2. (browser->CollaboraOnline) With the iframe, the browser will try to load the file preview page from the CollaboraOnline
+3. (CollaboraOnline->seahub) CollaboraOnline receives the request and sends a request to Seahub to get the file content
+4. (CollaboraOnline->browser) CollaboraOnline sends the file preview page to the browser.
 
 ## FQA
 
 ### About logs
 
-LibreOffice Online container will output the logs in the stdout, you can use following command to access it
+CollaboraOnline container will output the logs in the stdout, you can use following command to access it
 
 ```sh
 docker logs seafile-collabora
@@ -111,6 +112,6 @@ docker compose down
 docker compose up -d
 ```
 
-### LibreOffice server on a separate host
+### CollaboraOnline server on a separate host
 
-If your LibreOffice server on a separate host, you just need to modify the `seahub_settings.py` similar to [deploy on the same host](#config-seafile). The only different is you have to change the field `OFFICE_WEB_APP_BASE_URL` to your LibreOffice host (e.g., `https://collabora-online.seafile.com/hosting/discovery`). 
+If your CollaboraOnline server on a separate host, you just need to modify the `seahub_settings.py` similar to [deploy on the same host](#config-seafile). The only different is you have to change the field `OFFICE_WEB_APP_BASE_URL` to your CollaboraOnline host (e.g., `https://collabora-online.seafile.com/hosting/discovery`). 

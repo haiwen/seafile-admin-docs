@@ -130,7 +130,7 @@ nav:
       - WebDAV extension: extension/webdav.md
       - FUSE extension: extension/fuse.md
     - Online Office:
-      - LibreOffice Online Integration: extension/libreoffice_online.md
+      - Collabora Online Integration: extension/libreoffice_online.md
       - OnlyOffice Integration: extension/only_office.md
       - Office Online Server Integration (Pro): extension/office_web_app.md
     - Virus Scan (Pro):
