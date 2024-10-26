@@ -2037,30 +2037,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#faq" class="md-nav__link">
-    <span class="md-ellipsis">
-      FAQ
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="FAQ">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#about-ssl" class="md-nav__link">
-    <span class="md-ellipsis">
-      About SSL
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -4247,30 +4223,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#faq" class="md-nav__link">
-    <span class="md-ellipsis">
-      FAQ
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="FAQ">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#about-ssl" class="md-nav__link">
-    <span class="md-ellipsis">
-      About SSL
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -4369,12 +4321,6 @@ wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/pro/seadoc.ym
 </ul>
 <h2 id="database-used-by-seadoc">Database used by SeaDoc<a class="headerlink" href="#database-used-by-seadoc" title="Permanent link">&para;</a></h2>
 <p>SeaDoc used one database table <code>seahub_db.sdoc_operation_log</code> to store operation logs.</p>
-<h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
-<h3 id="about-ssl">About SSL<a class="headerlink" href="#about-ssl" title="Permanent link">&para;</a></h3>
-<p>From Seafile 12.0, the SSL is handled by <a href="https://caddyserver.com/docs/"><strong><em>Caddy</em></strong></a>. Caddy is a modern open source web server that mainly binds external traffic and internal services in <a href="../../setup/overview/">seafile docker</a>. The default caddy image is <a href="https://github.com/lucaslorentz/caddy-docker-proxy"><code>lucaslorentz/caddy-docker-proxy:2.9</code></a>, which user only needs to correctly configure the following fields in <code>.env</code> to automatically complete the acquisition and update of the certificate:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">SEAFILE_SERVER_PROTOCOL</span><span class="o">=</span>https
-<span class="nv">SEAFILE_SERVER_HOSTNAME</span><span class="o">=</span>example.com
-</code></pre></div>
 
 
 

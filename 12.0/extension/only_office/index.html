@@ -4339,10 +4339,10 @@
 
 <h1 id="onlyoffice">OnlyOffice<a class="headerlink" href="#onlyoffice" title="Permanent link">&para;</a></h1>
 <p>From version 6.1.0+ on (including CE), Seafile supports <a href="https://www.onlyoffice.com/">OnlyOffice</a> to view/edit office files online. In order to use OnlyOffice, you must first deploy an OnlyOffice server. </p>
-<p>You can deploy OnlyOffice to the same machine as Seafile using the <code>onlyoffice.yml</code> provided by Seafile according to this document, or you can deploy it to a different machine according to <a href="https://github.com/ONLYOFFICE/Docker-DocumentServer">OnlyOffice official document</a>.</p>
-<blockquote>
-<p>Note: Using the official documentation to deploy to the same machine as Seafile server is no longer recommended after 12.0</p>
-</blockquote>
+<div class="admonition tip">
+<p class="admonition-title">Deployment Tips</p>
+<p>You can deploy OnlyOffice to the same machine as Seafile (only support deploying with <a href="../../setup/setup_pro_by_docker/">Docker</a> with sufficient cores and RAM) using the <code>onlyoffice.yml</code> provided by Seafile according to this document, or you can deploy it to a different machine according to <a href="https://github.com/ONLYOFFICE/Docker-DocumentServer">OnlyOffice official document</a>.</p>
+</div>
 <h2 id="generate-jwt-token-shared-secret">Generate JWT-Token (shared secret)<a class="headerlink" href="#generate-jwt-token-shared-secret" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>From Seafile 12.0, OnlyOffice's JWT verification will be forced to enable</p>

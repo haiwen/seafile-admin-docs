@@ -4174,8 +4174,8 @@
 <p>You can use one of the following methods to start Seafile container on system bootup.</p>
 <h2 id="method-1">Method 1<a class="headerlink" href="#method-1" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Add docker-compose.service</li>
-</ol>
+<li>
+<p>Add docker-compose.service</p>
 <p><code>vim /etc/systemd/system/docker-compose.service</code></p>
 <div class="highlight"><pre><span></span><code>[Unit]
 Description=Docker Compose Application Service
@@ -4194,17 +4194,19 @@ TimeoutStartSec=0
 WantedBy=multi-user.target
 </code></pre></div>
 <p>Note: <code>WorkingDirectory</code> is the absolute path to the docker-compose.yml file directory.</p>
-<ol>
-<li>Set the docker-compose.service file to 644 permissions</li>
-</ol>
+</li>
+<li>
+<p>Set the docker-compose.service file to 644 permissions</p>
 <div class="highlight"><pre><span></span><code>chmod 644 /etc/systemd/system/docker-compose.service
 </code></pre></div>
-<ol>
-<li>Load autostart configuration</li>
-</ol>
+</li>
+<li>
+<p>Load autostart configuration</p>
 <div class="highlight"><pre><span></span><code>systemctl daemon-reload
 systemctl enable docker-compose.service
 </code></pre></div>
+</li>
+</ol>
 <h2 id="method-2">Method 2<a class="headerlink" href="#method-2" title="Permanent link">&para;</a></h2>
 <p>Add configuration <code>restart: unless-stopped</code> for each container in <a href="../overview/">components of Seafile docker</a>. Take <code>seafile-server.yml</code> for example</p>
 <div class="highlight"><pre><span></span><code>services:
