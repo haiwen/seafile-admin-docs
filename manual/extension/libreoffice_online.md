@@ -72,7 +72,7 @@ Understanding how the integration work will help you debug the problem. When a u
 3. (CollaboraOnline->seahub) CollaboraOnline receives the request and sends a request to Seahub to get the file content
 4. (CollaboraOnline->browser) CollaboraOnline sends the file preview page to the browser.
 
-## FQA
+## FAQ
 
 ### About logs
 
