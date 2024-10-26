@@ -100,3 +100,7 @@ Now you can use SeaDoc!
 Placeholder spot for shared volumes. You may elect to store certain persistent information outside of a container, in our case we keep various log files outside. This allows you to rebuild containers easily without losing important information.
 
 * /opt/seadoc-data/logs: This is the directory for SeaDoc logs.
+
+## Database used by SeaDoc
+
+SeaDoc used one database table `seahub_db.sdoc_operation_log` to store operation logs.
