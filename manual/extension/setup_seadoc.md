@@ -100,18 +100,3 @@ Now you can use SeaDoc!
 Placeholder spot for shared volumes. You may elect to store certain persistent information outside of a container, in our case we keep various log files outside. This allows you to rebuild containers easily without losing important information.
 
 * /opt/seadoc-data/logs: This is the directory for SeaDoc logs.
-
-## Database used by SeaDoc
-
-SeaDoc used one database table `seahub_db.sdoc_operation_log` to store operation logs.
-
-## FAQ
-
-### About SSL
-
-From Seafile 12.0, the SSL is handled by [***Caddy***](https://caddyserver.com/docs/). Caddy is a modern open source web server that mainly binds external traffic and internal services in [seafile docker](../setup/overview.md). The default caddy image is [`lucaslorentz/caddy-docker-proxy:2.9`](https://github.com/lucaslorentz/caddy-docker-proxy), which user only needs to correctly configure the following fields in `.env` to automatically complete the acquisition and update of the certificate:
-
-```shell
-SEAFILE_SERVER_PROTOCOL=https
-SEAFILE_SERVER_HOSTNAME=example.com
-```

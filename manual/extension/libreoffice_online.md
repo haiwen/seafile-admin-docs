@@ -4,94 +4,38 @@ Since Seafile Professional edition 6.0.0, you can integrate Seafile with Collabo
 
 ## Setup LibreOffice Online
 
-Prepare an Ubuntu 20.04 or 22.04 64bit server with [docker](http://www.docker.com/) installed. Assign a domain name to this server, we use *collabora-online.seafile.com* here. Obtain and install valid TLS/SSL certificates for this server, we use [Let’s Encrypt](https://letsencrypt.org/). Then use Nginx to serve collabora online, config file example (source https://sdk.collaboraonline.com/docs/installation/Proxy_settings.html):
+!!! tip "Deployment Tips"
 
-```
-server {
-    listen       443 ssl;
-    server_name  collabora-online.seafile.com;
+    From Seafile 12.0, Seafile support integrating LibreOffice server on the same host (only support deploying with [Docker](../setup/setup_pro_by_docker.md) with sufficient cores and RAM), as you can follow the steps in this manual. 
+    
+    Otherwise, you can follow the [official document](https://sdk.collaboraonline.com/docs/installation/CODE_Docker_image.html#code-docker-image) to deploy LibreOffice server on a separate host. Then you should follow [here](#Libreoffice-server-on-a-separate-host) to configurate `seahub_settings.py` to enable online office.
 
-    ssl_certificate /etc/letsencrypt/live/collabora-online.seafile.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/collabora-online.seafile.com/privkey.pem;
+Download the `collabora.yml`
 
-    # static files
-    location ^~ /browser {
-        proxy_pass https://127.0.0.1:9980;
-        proxy_set_header Host $http_host;
-    }
-
-    # WOPI discovery URL
-    location ^~ /hosting/discovery {
-        proxy_pass https://127.0.0.1:9980;
-        proxy_set_header Host $http_host;
-    }
-
-    # Capabilities
-    location ^~ /hosting/capabilities {
-        proxy_pass https://127.0.0.1:9980;
-        proxy_set_header Host $http_host;
-    }
-
-    # main websocket
-    location ~ ^/cool/(.*)/ws$ {
-        proxy_pass https://127.0.0.1:9980;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "Upgrade";
-        proxy_set_header Host $http_host;
-        proxy_read_timeout 36000s;
-    }
-
-    # download, presentation and image upload
-    location ~ ^/(c|l)ool {
-        proxy_pass https://127.0.0.1:9980;
-        proxy_set_header Host $http_host;
-    }
-
-    # Admin Console websocket
-    location ^~ /cool/adminws {
-        proxy_pass https://127.0.0.1:9980;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "Upgrade";
-        proxy_set_header Host $http_host;
-        proxy_read_timeout 36000s;
-    }
-}
+```sh
+wget https://manual.seafile.com/12.0/docker/pro/collabora.yml
 ```
 
-then use the following command to setup/start Collabora Online (source https://sdk.collaboraonline.com/docs/installation/CODE_Docker_image.html#code-docker-image):
+Insert `collabora.yml` to field `COMPOSE_FILE` lists (i.e., `COMPOSE_FILE='...,collabora.yml'`) and add the relative options in `.env`
 
-```
-docker pull collabora/code
-docker run -t -d -p 127.0.0.1:9980:9980 -e "aliasgroup1=https://<your-dot-escaped-domain>:443" -e "username=***" -e "password=***" --name code --restart always collabora/code
-```
+```sh
 
-**NOTE:** the `domain` args is the domain name of your Seafile server, if your
-Seafile server's domain name is *demo.seafile.com*, the command should be:
-
+COLLABORA_IMAGE=collabora/code:24.04.5.1.1 # image of LibreOffice
+COLLABORA_PORT=6232 # expose port
+COLLABORA_USERNAME=<your LibreOffice admin username>
+COLLABORA_PASSWORD=<your LibreOffice admin password>
+COLLABORA_ENABLE_ADMIN_CONSOLE=true # enable admin console or not
+COLLABORA_REMOTE_FONT= # remote font url
+COLLABORA_ENABLE_FILE_LOGGING=false # use file logs or not, see FQA
 ```
-docker run -t -d -p 127.0.0.1:9980:9980 -e "aliasgroup1=https://demo.seafile.com:443" -e "username=***" -e "password=***" --name code --restart always collabora/code
-```
-
-For more information about Collabora Online and how to deploy it, please refer to https://www.collaboraoffice.com
 
 ## Config Seafile
-
-**NOTE:** You must [enable https](../setup_binary/https_with_nginx.md) with valid TLS/SSL certificates with Seafile to use Collabora Online.
-
 Add following config option to seahub_settings.py:
 
 ``` python
-# From 6.1.0 CE version on, Seafile support viewing/editing **doc**, **ppt**, **xls** files via LibreOffice
-# Add this setting to view/edit **doc**, **ppt**, **xls** files
 OFFICE_SERVER_TYPE = 'CollaboraOffice'
-
-# Enable LibreOffice Online
 ENABLE_OFFICE_WEB_APP = True
-
-# Url of LibreOffice Online's discovery page
-# The discovery page tells Seafile how to interact with LibreOffice Online when view file online
-# You should change `https://collabora-online.seafile.com/hosting/discovery` to your actual LibreOffice Online server address
-OFFICE_WEB_APP_BASE_URL = 'https://collabora-online.seafile.com/hosting/discovery'
+OFFICE_WEB_APP_BASE_URL = 'http{s}://seafile.example.com:6232/hosting/discovery'
 
 # Expiration of WOPI access token
 # WOPI access token is a string used by Seafile to determine the file's
@@ -127,4 +71,46 @@ Understanding how theintegration work will help you debug the problem. When a us
 3. (LibreOffice Online->seahub) LibreOffice Online receives the request and sends a request to Seahub to get the file content
 4. (LibreOffice Online->browser) LibreOffice Online sends the file preview page to the browser.
 
-If you have a problem, please check the Nginx log for Seahub (for step 3) and Collabora Online to see which step is wrong.
+## FQA
+
+### About logs
+
+LibreOffice Online container will output the logs in the stdout, you can use following command to access it
+
+```sh
+docker logs seafile-collabora
+```
+
+If you would like to use file to save log (i.e., a `.log` file), you can modify `.env` with following statment, and remove the notes in the `collabora.yml`
+
+```sh
+# .env
+COLLABORA_ENABLE_FILE_LOGGING=True
+COLLABORA_PATH=/opt/collabora # path of the collabora logs
+```
+
+```yml
+# collabora.yml
+# remove the following notes
+...
+services:
+    collabora:
+        ...
+        volumes:
+            - "${COLLABORA_PATH:-/opt/collabora}/logs:/opt/cool/logs/" # chmod 777 needed
+        ...
+...
+```
+
+Create the logs directory, and restart Seafile server
+
+```sh
+mkdir -p /opt/collabora
+chmod 777 /opt/collabora
+docker compose down
+docker compose up -d
+```
+
+### LibreOffice server on a separate host
+
+If your LibreOffice server on a separate host, you just need to modify the `seahub_settings.py` similar to [deploy on the same host](#config-seafile). The only different is you have to change the field `OFFICE_WEB_APP_BASE_URL` to your LibreOffice host (e.g., `https://collabora-online.seafile.com/hosting/discovery`). 
