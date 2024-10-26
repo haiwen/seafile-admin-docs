@@ -1,25 +1,26 @@
 # Deploy ClamAV with Seafile
 
-## Use Clamav with Docker based deployment
+## Deploy with Docker
 
-### Add Clamav to docker-compose.yml
+If your Seafile server is deployed using [Docker](../setup/setup_pro_by_docker.md), we also recommend that you use Docker to deploy ClamAV by following the steps below, otherwise you can [deploy it from  binary package of ClamAV](#use-clamav-in-binary-based-deployment).
 
-The following section needs to be added to docker-compose.yml in the services section
+### Download clamav.yml and insert to Docker-compose lists in .env
 
-```yml
-services:
-  ...
+Download `clamav.yml`
 
-  av:
-    image: clamav/clamav:latest
-    container_name: seafile-clamav
-    networks:
-      - seafile-net
+```sh
+wget https://manual.seafile.com/12.0/docker/pro/clamav.yml
+```
+
+Modify `.env`, insert `clamav.yml` to field `COMPOSE_FILE`
+
+```sh
+COMPOSE_FILE='seafile-server.yml,caddy.yml,clamav.yml'
 ```
 
 ### Modify seafile.conf
 
-Add this to seafile.conf
+Add the following statements to seafile.conf
 
 ```conf
 [virus_scan]
@@ -41,7 +42,6 @@ docker compose up -d
 Wait some minutes until Clamav finished initializing.
 
 Now Clamav can be used.
-
 
 ## Use ClamAV in binary based deployment
 

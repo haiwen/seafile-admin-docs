@@ -1,0 +1,10 @@
+services:
+  av:
+    image: clamav/clamav:latest
+    container_name: seafile-clamav
+    networks:
+      - seafile-net
+
+networks:
+  seafile-net:
+    name: seafile-net
