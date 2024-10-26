@@ -1,8 +1,7 @@
 # Installation of Seafile Server Professional Edition
 
-This manual explains how to deploy and run Seafile Server Professional Edition (Seafile PE) on a Linux server from a pre-built package using MySQL/MariaDB as database. The deployment has been tested for Debian/Ubuntu and CentOS, but Seafile PE should also work on other Linux distributions.
+This manual explains how to deploy and run Seafile Server Professional Edition (Seafile PE) on a Linux server from a pre-built package using MySQL/MariaDB as database. The deployment has been tested for Debian/Ubuntu.
 
-**Tip:** If you have little experience with Seafile Server, we recommend that you use an installation script for deploying Seafile Server.
 
 ## Requirements
 
