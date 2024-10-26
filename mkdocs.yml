@@ -111,7 +111,6 @@ nav:
     - Seafile Professional Setup:
       - Outline: setup_binary/outline_pro.md
       - Installation: setup_binary/installation_pro.md
-      - Migration from Seafile Community: setup_binary/migrate_from_seafile_community_server.md
       - Cluster deployment:
         - Deploy in a cluster: setup_binary/deploy_in_a_cluster.md
         - Search and background tasks in a cluster: setup_binary/enable_search_and_background_tasks_in_a_cluster.md
