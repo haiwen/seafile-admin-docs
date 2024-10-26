@@ -1800,9 +1800,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#back-end-node" class="md-nav__link">
+  <a href="#backend-node" class="md-nav__link">
     <span class="md-ellipsis">
-      back-end node
+      backend node
     </span>
   </a>
   
@@ -4524,9 +4524,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#back-end-node" class="md-nav__link">
+  <a href="#backend-node" class="md-nav__link">
     <span class="md-ellipsis">
-      back-end node
+      backend node
     </span>
   </a>
   
@@ -4732,7 +4732,7 @@ external_es_server = true
 es_host = background.seafile.com
 es_port = 9200
 </code></pre></div>
-<p>Note: <code>enable = true</code> should be left unchanged. For versions older than 6.1, <code>es_port</code> was 9500.</p>
+<p>Note: <code>enable = true</code> should be left unchanged.</p>
 <h3 id="update-seahub-database">Update Seahub Database<a class="headerlink" href="#update-seahub-database" title="Permanent link">&para;</a></h3>
 <p>In cluster environment, we have to store avatars in the database instead of in a local disk.</p>
 <div class="highlight"><pre><span></span><code>CREATE TABLE `avatar_uploaded` (`filename` TEXT NOT NULL, `filename_md5` CHAR(32) NOT NULL PRIMARY KEY, `data` MEDIUMTEXT NOT NULL, `size` INTEGER NOT NULL, `mtime` datetime NOT NULL);
@@ -4743,8 +4743,6 @@ es_port = 9200
 <li>For NFS: <a href="../setup_seafile_cluster_with_nfs/">Setup Seafile cluster with NFS</a></li>
 <li>For S3: <a href="../../setup/setup_with_amazon_s3/">Setup With Amazon S3</a></li>
 <li>For OpenStack Swift: <a href="../../setup/setup_with_swift/">Setup With OpenStackSwift</a></li>
-<li>For Ceph: <a href="../../setup/setup_with_ceph/">Setup With Ceph</a></li>
-<li>For OSS: <a href="../../setup/setup_with_oss/">Setup With Alibaba OSS</a></li>
 </ul>
 <h3 id="setup-nginxapache-and-http">Setup Nginx/Apache and HTTP<a class="headerlink" href="#setup-nginxapache-and-http" title="Permanent link">&para;</a></h3>
 <p>Nginx/Apache with HTTP need to set it up on each machine running Seafile server. This is make sure only port 80 need to be exposed to load balancer. (HTTPS should be setup at the load balancer)</p>
@@ -4766,8 +4764,8 @@ es_port = 9200
 <h3 id="copy-the-config-to-all-seafile-servers">Copy the config to all Seafile servers<a class="headerlink" href="#copy-the-config-to-all-seafile-servers" title="Permanent link">&para;</a></h3>
 <p>Supposed your Seafile installation directory is <code>/data/haiwen</code>, compress this whole directory into a tarball and copy the tarball to all other Seafile server machines. You can simply uncompress the tarball and use it.</p>
 <p>On each node, run <code>./seafile.sh</code> and <code>./seahub.sh</code> to start Seafile server.</p>
-<h3 id="back-end-node">back-end node<a class="headerlink" href="#back-end-node" title="Permanent link">&para;</a></h3>
-<p>In the back-end node, you need to execute the following command to start Seafile server. <strong>CLUSTER_MODE=backend</strong> means this node is seafile backend server.</p>
+<h3 id="backend-node">backend node<a class="headerlink" href="#backend-node" title="Permanent link">&para;</a></h3>
+<p>In the backend node, you need to execute the following command to start Seafile server. <strong>CLUSTER_MODE=backend</strong> means this node is seafile backend server.</p>
 <div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">CLUSTER_MODE</span><span class="o">=</span>backend
 ./seafile.sh<span class="w"> </span>start
 ./seafile-background-tasks.sh<span class="w"> </span>start
