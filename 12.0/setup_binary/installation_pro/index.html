@@ -4500,23 +4500,6 @@
 <h3 id="installing-and-preparing-the-sql-database">Installing and preparing the SQL database<a class="headerlink" href="#installing-and-preparing-the-sql-database" title="Permanent link">&para;</a></h3>
 <p>These instructions assume that MySQL/MariaDB server and client are installed and a MySQL/MariaDB root user can authenticate using the mysql_native_password plugin.</p>
 <h3 id="installing-prerequisites">Installing prerequisites<a class="headerlink" href="#installing-prerequisites" title="Permanent link">&para;</a></h3>
-<p><strong>For Seafile 8.0.x</strong></p>
-<div class="highlight"><pre><span></span><code># Ubuntu 20.04 (on Debian 10/Ubuntu 18.04, it is almost the same)
-sudo apt-get update
-sudo apt-get install -y python3 python3-setuptools python3-pip libmysqlclient-dev
-sudo apt-get install -y memcached libmemcached-dev
-sudo apt-get install -y poppler-utils
-
-sudo pip3 install --timeout=3600 Pillow==9.4.0 pylibmc captcha jinja2 sqlalchemy==1.4.3 \
-    django-pylibmc django-simple-captcha python3-ldap mysqlclient
-</code></pre></div>
-<div class="highlight"><pre><span></span><code># CentOS 8
-sudo yum install python3 python3-setuptools python3-pip python3-devel mysql-devel gcc -y
-sudo yum install poppler-utils -y
-
-sudo pip3 install --timeout=3600 Pillow==9.4.0 pylibmc captcha jinja2 sqlalchemy==1.4.3 \
-    django-pylibmc django-simple-captcha python3-ldap mysqlclient
-</code></pre></div>
 <p><strong>For Seafile 9.0.x</strong></p>
 <div class="highlight"><pre><span></span><code># on Ubuntu 20.04 (on Debian 10/Ubuntu 18.04, it is almost the same)
 apt-get update
@@ -4545,14 +4528,6 @@ sudo pip3 install --timeout=3600 django==3.2.* future==0.18.* mysqlclient==2.1.*
     pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==1.4.44 \
     psd-tools django-pylibmc django_simple_captcha==0.5.20 djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 lxml
 </code></pre></div>
-<div class="highlight"><pre><span></span><code># CentOS 8
-sudo yum install python3 python3-setuptools python3-pip python3-devel mysql-devel gcc -y
-sudo yum install poppler-utils -y
-
-sudo pip3 install --timeout=3600 django==3.2.* future==0.18.* mysqlclient==2.1.* \
-    pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==1.4.44 \
-    psd-tools django-pylibmc django_simple_captcha==0.5.20 pycryptodome==3.16.* cffi==1.15.1 lxml
-</code></pre></div>
 <p><strong>For Seafile 11.0.x (Debian 11, Ubuntu 22.04, Centos 8, etc.)</strong></p>
 <div class="highlight"><pre><span></span><code># on Ubuntu 22.04 (on Ubuntu 20.04/Debian 11/Debian 10, it is almost the same)
 apt-get update
@@ -4564,15 +4539,6 @@ sudo pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.*
     pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
     psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 python-ldap==3.4.3 lxml
 </code></pre></div>
-<div class="highlight"><pre><span></span><code># CentOS 8
-sudo yum install python3 python3-setuptools python3-pip python3-devel mysql-devel gcc bind-utils -y
-sudo yum install poppler-utils -y
-
-sudo pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.* \
-    pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
-    psd-tools django-pylibmc django_simple_captcha==0.6.* pycryptodome==3.16.* cffi==1.15.1 python-ldap==3.4.3 lxml
-</code></pre></div>
-<p><strong>Note</strong>: The recommended deployment option for Seafile PE on CentOS/Redhat is <a href="../../setup/setup_pro_by_docker/">Docker</a>.</p>
 <p><strong>For Seafile 11.0.x on Debian 12 and Ubuntu 24.04 with virtual env</strong></p>
 <p>Debian 12 and Ubuntu 24.04 are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables different versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with "source python-venv/bin/activate".</p>
 <div class="highlight"><pre><span></span><code># Debian 12
@@ -4614,17 +4580,7 @@ pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.* \
     psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.16.0 lxml python-ldap==3.4.3
 </code></pre></div>
 <h3 id="installing-java-runtime-environment">Installing Java Runtime Environment<a class="headerlink" href="#installing-java-runtime-environment" title="Permanent link">&para;</a></h3>
-<p>Java Runtime Environment (JRE) is a requirement for full text search with ElasticSearch. It is used in extracting contents from PDF and Office files.</p>
-<div class="highlight"><pre><span></span><code># Debian 10/Debian 11
-sudo apt-get install default-jre -y
-</code></pre></div>
-<div class="highlight"><pre><span></span><code># Ubuntu 16.04/Ubuntu 18.04/Ubuntu 20.04/Ubuntu 22.04
-sudo apt-get install openjdk-8-jre -y
-sudo ln -sf /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java /usr/bin/
-</code></pre></div>
-<div class="highlight"><pre><span></span><code># CentOS
-sudo yum install java-1.8.0-openjdk -y
-</code></pre></div>
+<p>Java Runtime Environment (JRE) is no longer needed in Seafile version 12.0.</p>
 <h3 id="creating-the-programm-directory">Creating the programm directory<a class="headerlink" href="#creating-the-programm-directory" title="Permanent link">&para;</a></h3>
 <p>The standard directory for Seafile's program files is <code>/opt/seafile</code>. Create this directory and change into it:</p>
 <div class="highlight"><pre><span></span><code>mkdir /opt/seafile
@@ -4649,16 +4605,12 @@ cd /opt/seafile
 <p>The install packages for Seafile PE are available for download in the the <a href="https://customer.seafile.com">Seafile Customer Center</a>. To access the Customer Center, a  user account is necessary. The registration is free.</p>
 <p>Beginning with Seafile PE 7.0.17, the Seafile Customer Center provides two install packages for every version (using Seafile PE 8.0.4 as an example):</p>
 <ul>
-<li><em>seafile-pro-server_8.0.4_x86-64_Ubuntu.tar.gz</em>, compiled in Ubuntu 18.04 environment</li>
-<li><em>seafile-pro-server_8.0.4_x86-64_CentOS.tar.gz</em>, compiled in CentOS 7 environment</li>
+<li><em>seafile-pro-server_8.0.4_x86-64_Ubuntu.tar.gz</em>, compiled in Ubuntu environment</li>
 </ul>
 <p>The former is suitable for installation on Ubuntu/Debian servers, the latter for CentOS servers.</p>
 <p>Download the install package using wget (replace the x.x.x with the version you wish to download):</p>
 <div class="highlight"><pre><span></span><code># Debian/Ubuntu
 wget -O &#39;seafile-pro-server_x.x.x_x86-64_Ubuntu.tar.gz&#39; &#39;VERSION_SPECIFIC_LINK_FROM_SEAFILE_CUSTOMER_CENTER&#39;
-
-# CentOS
-wget -O &#39;seafile-pro-server_x.x.x_x86-64_CentOS.tar.gz&#39; &#39;VERSION_SPECIFIC_LINK_FROM_SEAFILE_CUSTOMER_CENTER&#39;
 </code></pre></div>
 <p>We use Seafile version 8.0.4 as an example in the remainder of these instructions.</p>
 <h3 id="uncompressing-the-package">Uncompressing the package<a class="headerlink" href="#uncompressing-the-package" title="Permanent link">&para;</a></h3>
@@ -4666,9 +4618,6 @@ wget -O &#39;seafile-pro-server_x.x.x_x86-64_CentOS.tar.gz&#39; &#39;VERSION_SPE
 <p>Uncompress the package using tar:</p>
 <div class="highlight"><pre><span></span><code># Debian/Ubuntu
 tar xf seafile-pro-server_8.0.4_x86-64_Ubuntu.tar.gz
-</code></pre></div>
-<div class="highlight"><pre><span></span><code># CentOS
-tar xf seafile-pro-server_8.0.4_x86-64_CentOS.tar.gz
 </code></pre></div>
 <p>Now you have:</p>
 <div class="highlight"><pre><span></span><code>$ tree -L 2 /opt/seafile
@@ -4812,10 +4761,10 @@ source python-venv/bin/activate
 <p>The first time you start Seahub, the script prompts you to create an admin account for your Seafile Server. Enter the email address of the admin user followed by the password.</p>
 <p>Now you can access Seafile via the web interface at the host address (e.g., http://1.2.3.4:80).</p>
 <h2 id="enabling-full-text-search">Enabling full text search<a class="headerlink" href="#enabling-full-text-search" title="Permanent link">&para;</a></h2>
-<p>Seafile uses the indexing server ElasticSearch to enable full text search. In versions prior to Seafile 9.0, Seafile's install packages included ElasticSearch. A separate deployment was not necessary. Due to licensing conditions, ElasticSearch 7.x can no longer be bundled in Seafile's install package. As a consequence, a separate deployment of ElasticSearch is required to enble full text search in Seafile newest version.</p>
+<p>Seafile uses the indexing server ElasticSearch to enable full text search.</p>
 <h3 id="deploying-elasticsearch">Deploying ElasticSearch<a class="headerlink" href="#deploying-elasticsearch" title="Permanent link">&para;</a></h3>
 <p>Our recommendation for deploying ElasticSearch is using Docker. Detailed information about installing Docker on various Linux distributions is available at <a href="https://docs.docker.com/engine/install/">Docker Docs</a>.</p>
-<p>Seafile PE 9.0 only supports ElasticSearch 7.x. Seafile PE 10.0 and 11.0 only supports ElasticSearch 8.x.</p>
+<p>Seafile PE 9.0 only supports ElasticSearch 7.x. Seafile PE 10.0, 11.0, 12.0 only supports ElasticSearch 8.x.</p>
 <p>We use ElasticSearch version 7.16.2 as an example in this section. Version 7.16.2 and newer version have been successfully tested with Seafile.</p>
 <p>Pull the Docker image:
 <div class="highlight"><pre><span></span><code>sudo docker pull elasticsearch:7.16.2
