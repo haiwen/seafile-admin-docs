@@ -2,9 +2,9 @@
 
 From version 6.1.0+ on (including CE), Seafile supports [OnlyOffice](https://www.onlyoffice.com/) to view/edit office files online. In order to use OnlyOffice, you must first deploy an OnlyOffice server. 
 
-You can deploy OnlyOffice to the same machine as Seafile using the `onlyoffice.yml` provided by Seafile according to this document, or you can deploy it to a different machine according to [OnlyOffice official document](https://github.com/ONLYOFFICE/Docker-DocumentServer).
+!!! tip "Deployment Tips"
 
-> Note: Using the official documentation to deploy to the same machine as Seafile server is no longer recommended after 12.0
+    You can deploy OnlyOffice to the same machine as Seafile (only support deploying with [Docker](../setup/setup_pro_by_docker.md) with sufficient cores and RAM) using the `onlyoffice.yml` provided by Seafile according to this document, or you can deploy it to a different machine according to [OnlyOffice official document](https://github.com/ONLYOFFICE/Docker-DocumentServer).
 
 ## Generate JWT-Token (shared secret)
 

@@ -6,40 +6,40 @@ You can use one of the following methods to start Seafile container on system bo
 
 1. Add docker-compose.service
 
-`vim /etc/systemd/system/docker-compose.service`
+    `vim /etc/systemd/system/docker-compose.service`
 
-```
-[Unit]
-Description=Docker Compose Application Service
-Requires=docker.service
-After=docker.service
+    ```
+    [Unit]
+    Description=Docker Compose Application Service
+    Requires=docker.service
+    After=docker.service
 
-[Service]
-Type=forking
-RemainAfterExit=yes
-WorkingDirectory=/opt/   
-ExecStart=/usr/bin/docker compose up -d
-ExecStop=/usr/bin/docker compose down
-TimeoutStartSec=0
+    [Service]
+    Type=forking
+    RemainAfterExit=yes
+    WorkingDirectory=/opt/   
+    ExecStart=/usr/bin/docker compose up -d
+    ExecStop=/usr/bin/docker compose down
+    TimeoutStartSec=0
 
-[Install]
-WantedBy=multi-user.target
-```
+    [Install]
+    WantedBy=multi-user.target
+    ```
 
-Note: `WorkingDirectory` is the absolute path to the docker-compose.yml file directory.
+    Note: `WorkingDirectory` is the absolute path to the docker-compose.yml file directory.
 
 2. Set the docker-compose.service file to 644 permissions
 
-```
-chmod 644 /etc/systemd/system/docker-compose.service
-```
+    ```
+    chmod 644 /etc/systemd/system/docker-compose.service
+    ```
 
 3. Load autostart configuration
 
-```
-systemctl daemon-reload
-systemctl enable docker-compose.service
-```
+    ```
+    systemctl daemon-reload
+    systemctl enable docker-compose.service
+    ```
 
 ## Method 2
 
