@@ -1,24 +1,18 @@
 # Installation of Seafile Server Community Edition with MySQL/MariaDB
 
-This manual explains how to deploy and run Seafile Server Community Edition (Seafile CE) on a Linux server from a pre-built package using MySQL/MariaDB as database. The deployment has been tested for Debian/Ubuntu and CentOS, but Seafile should also work on other Linux distributions.
-
-**Tip:** If you have little experience with Seafile Server, we recommend that you use an [installation script](https://github.com/haiwen/seafile-server-installer) for deploying Seafile.
+This manual explains how to deploy and run Seafile Server Community Edition (Seafile CE) on a Linux server from a pre-built package using MySQL/MariaDB as database. The deployment has been tested for Debian/Ubuntu.
 
 ## Requirements
 
 Seafile CE for x86 architecture requires a minimum of 2 cores and 2GB RAM.
 
-There is a community-supported package for the installation on Raspberry Pi.
 
 ## Setup
 
 
 ### Installing and preparing the SQL database
 
-Seafile supports MySQL and MariaDB. We recommend that you use the preferred SQL database management engine included in the package repositories of your distribution. This means:
-
-* CentOS and Debian: MariaDB
-* Ubuntu: MySQL
+Seafile supports MySQL and MariaDB. We recommend that you use the preferred SQL database management engine included in the package repositories of your distribution.
 
 You can find step-by-step how-tos for installing MySQL and MariaDB in the [tutorials on the Digital Ocean website](https://www.digitalocean.com/community/tutorials).
 
@@ -26,62 +20,6 @@ Seafile uses the mysql_native_password plugin for authentication. The versions o
 
 ### Installing prerequisites
 
-**For Seafile 8.0.x**
-
-```
-# Debian 10
-sudo apt-get update
-sudo apt-get install python3 python3-setuptools python3-pip default-libmysqlclient-dev -y
-
-sudo pip3 install --timeout=3600 Pillow==9.4.0 pylibmc captcha jinja2 sqlalchemy==1.4.3 \
-    django-pylibmc django-simple-captcha python3-ldap mysqlclient
-
-```
-
-```
-# Ubuntu 18.04
-sudo apt-get update
-sudo apt-get install python3 python3-setuptools python3-pip -y
-
-sudo pip3 install --timeout=3600 Pillow==9.4.0 pylibmc captcha jinja2 sqlalchemy==1.4.3 \
-    django-pylibmc django-simple-captcha python3-ldap
-
-```
-
-```
-# Ubuntu 20.04
-sudo apt-get update
-sudo apt-get install python3 python3-setuptools python3-pip libmysqlclient-dev memcached libmemcached-dev -y
-
-sudo pip3 install --timeout=3600 Pillow==9.4.0 pylibmc captcha jinja2 sqlalchemy==1.4.3 \
-    django-pylibmc django-simple-captcha python3-ldap mysqlclient
-```
-
-
-
-```
-# CentOS 8
-sudo yum install python3 python3-setuptools python3-pip python3-devel mysql-devel gcc -y
-
-sudo pip3 install --timeout=3600 Pillow==9.4.0 pylibmc captcha jinja2 sqlalchemy==1.4.3 \
-    django-pylibmc django-simple-captcha python3-ldap mysqlclient
-
-```
-
-**For Seafile 9.0.x**
-
-Note: CentOS 8 is no longer supported.
-
-
-```
-# Ubuntu 20.04 (almost the same for Ubuntu 18.04 and Debian 10)
-sudo apt-get update
-sudo apt-get install -y python3 python3-setuptools python3-pip libmysqlclient-dev
-sudo apt-get install -y memcached libmemcached-dev
-
-sudo pip3 install --timeout=3600 django==3.2.* Pillow==9.4.0 pylibmc captcha jinja2 sqlalchemy==1.4.3 \
-    django-pylibmc django-simple-captcha python3-ldap mysqlclient pycryptodome==3.12.0 cffi==1.14.0 lxml
-```
 
 **For Seafile 10.0.x**
 
@@ -235,7 +173,7 @@ $ tree -L 2
 
 ### Setting up Seafile CE
 
-The install package comes with a script that sets Seafile up for you. Specifically, the script creates the required directories and extracts all files in the right place. It can also create a MySQL user and the three databases that [Seafile's components](../introduction/components.md) require :
+The install package comes with a script that sets Seafile up for you. Specifically, the script creates the required directories and extracts all files in the right place. It can also create a MySQL user and the three databases that [Seafile's components](../introduction/components.md) require:
 
 * ccnet server
 * seafile server
