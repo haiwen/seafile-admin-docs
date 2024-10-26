@@ -4503,59 +4503,15 @@
 
 
 <h1 id="installation-of-seafile-server-community-edition-with-mysqlmariadb">Installation of Seafile Server Community Edition with MySQL/MariaDB<a class="headerlink" href="#installation-of-seafile-server-community-edition-with-mysqlmariadb" title="Permanent link">&para;</a></h1>
-<p>This manual explains how to deploy and run Seafile Server Community Edition (Seafile CE) on a Linux server from a pre-built package using MySQL/MariaDB as database. The deployment has been tested for Debian/Ubuntu and CentOS, but Seafile should also work on other Linux distributions.</p>
-<p><strong>Tip:</strong> If you have little experience with Seafile Server, we recommend that you use an <a href="https://github.com/haiwen/seafile-server-installer">installation script</a> for deploying Seafile.</p>
+<p>This manual explains how to deploy and run Seafile Server Community Edition (Seafile CE) on a Linux server from a pre-built package using MySQL/MariaDB as database. The deployment has been tested for Debian/Ubuntu.</p>
 <h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
 <p>Seafile CE for x86 architecture requires a minimum of 2 cores and 2GB RAM.</p>
-<p>There is a community-supported package for the installation on Raspberry Pi.</p>
 <h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
 <h3 id="installing-and-preparing-the-sql-database">Installing and preparing the SQL database<a class="headerlink" href="#installing-and-preparing-the-sql-database" title="Permanent link">&para;</a></h3>
-<p>Seafile supports MySQL and MariaDB. We recommend that you use the preferred SQL database management engine included in the package repositories of your distribution. This means:</p>
-<ul>
-<li>CentOS and Debian: MariaDB</li>
-<li>Ubuntu: MySQL</li>
-</ul>
+<p>Seafile supports MySQL and MariaDB. We recommend that you use the preferred SQL database management engine included in the package repositories of your distribution.</p>
 <p>You can find step-by-step how-tos for installing MySQL and MariaDB in the <a href="https://www.digitalocean.com/community/tutorials">tutorials on the Digital Ocean website</a>.</p>
 <p>Seafile uses the mysql_native_password plugin for authentication. The versions of MySQL and MariaDB installed on CentOS 8, Debian 10, and Ubuntu 20.04 use a different authentication plugin by default. It is therefore required to change to authentication plugin to mysql_native_password for the root user prior to the installation of Seafile. The above mentioned tutorials explain how to do it.</p>
 <h3 id="installing-prerequisites">Installing prerequisites<a class="headerlink" href="#installing-prerequisites" title="Permanent link">&para;</a></h3>
-<p><strong>For Seafile 8.0.x</strong></p>
-<div class="highlight"><pre><span></span><code># Debian 10
-sudo apt-get update
-sudo apt-get install python3 python3-setuptools python3-pip default-libmysqlclient-dev -y
-
-sudo pip3 install --timeout=3600 Pillow==9.4.0 pylibmc captcha jinja2 sqlalchemy==1.4.3 \
-    django-pylibmc django-simple-captcha python3-ldap mysqlclient
-</code></pre></div>
-<div class="highlight"><pre><span></span><code># Ubuntu 18.04
-sudo apt-get update
-sudo apt-get install python3 python3-setuptools python3-pip -y
-
-sudo pip3 install --timeout=3600 Pillow==9.4.0 pylibmc captcha jinja2 sqlalchemy==1.4.3 \
-    django-pylibmc django-simple-captcha python3-ldap
-</code></pre></div>
-<div class="highlight"><pre><span></span><code># Ubuntu 20.04
-sudo apt-get update
-sudo apt-get install python3 python3-setuptools python3-pip libmysqlclient-dev memcached libmemcached-dev -y
-
-sudo pip3 install --timeout=3600 Pillow==9.4.0 pylibmc captcha jinja2 sqlalchemy==1.4.3 \
-    django-pylibmc django-simple-captcha python3-ldap mysqlclient
-</code></pre></div>
-<div class="highlight"><pre><span></span><code># CentOS 8
-sudo yum install python3 python3-setuptools python3-pip python3-devel mysql-devel gcc -y
-
-sudo pip3 install --timeout=3600 Pillow==9.4.0 pylibmc captcha jinja2 sqlalchemy==1.4.3 \
-    django-pylibmc django-simple-captcha python3-ldap mysqlclient
-</code></pre></div>
-<p><strong>For Seafile 9.0.x</strong></p>
-<p>Note: CentOS 8 is no longer supported.</p>
-<div class="highlight"><pre><span></span><code># Ubuntu 20.04 (almost the same for Ubuntu 18.04 and Debian 10)
-sudo apt-get update
-sudo apt-get install -y python3 python3-setuptools python3-pip libmysqlclient-dev
-sudo apt-get install -y memcached libmemcached-dev
-
-sudo pip3 install --timeout=3600 django==3.2.* Pillow==9.4.0 pylibmc captcha jinja2 sqlalchemy==1.4.3 \
-    django-pylibmc django-simple-captcha python3-ldap mysqlclient pycryptodome==3.12.0 cffi==1.14.0 lxml
-</code></pre></div>
 <p><strong>For Seafile 10.0.x</strong></p>
 <div class="highlight"><pre><span></span><code># Ubuntu 22.04 (almost the same for Ubuntu 20.04 and Debian 11, Debian 10)
 sudo apt-get update
@@ -4664,7 +4620,7 @@ cd /opt/seafile
 └── seafile-server_8.0.4_x86-64.tar.gz
 </code></pre></div>
 <h3 id="setting-up-seafile-ce">Setting up Seafile CE<a class="headerlink" href="#setting-up-seafile-ce" title="Permanent link">&para;</a></h3>
-<p>The install package comes with a script that sets Seafile up for you. Specifically, the script creates the required directories and extracts all files in the right place. It can also create a MySQL user and the three databases that <a href="../../introduction/components/">Seafile's components</a> require :</p>
+<p>The install package comes with a script that sets Seafile up for you. Specifically, the script creates the required directories and extracts all files in the right place. It can also create a MySQL user and the three databases that <a href="../../introduction/components/">Seafile's components</a> require:</p>
 <ul>
 <li>ccnet server</li>
 <li>seafile server</li>
