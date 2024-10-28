@@ -83,7 +83,10 @@ services:
 
 ```
 
-**Note**: **CLUSTER_SERVER=true** means seafile cluster mode, **CLUSTER_MODE=frontend** means this node is seafile frontend server.
+!!! note "Note"
+
+    - `CLUSTER_SERVER=true`: means seafile cluster mode
+    - `CLUSTER_MODE=frontend`: means this node is seafile frontend server.
 
 Start the seafile docker container
 
@@ -228,7 +231,10 @@ services:
 
 ```
 
-**Note**: **CLUSTER_SERVER=true** means seafile cluster mode, **CLUSTER_MODE=backend** means this node is seafile backend server.
+!!! note "Note"
+
+    - `CLUSTER_SERVER=true`: means seafile cluster mode
+    - `CLUSTER_MODE=backend`: means this node is seafile backend server.
 
 Start the seafile docker container
 
@@ -319,7 +325,9 @@ EOF
 
 ```
 
-**Note**: Correctly modify the IP address (Front-End01-IP and Front-End02-IP) of the frontend server in the above configuration file.
+!!! tip "Tips"
+
+    Please **correctly modify the IP address** (`Front-End01-IP` and `Front-End02-IP`) of the frontend server in the above configuration file.
 
 **Choose one of the above two servers as the master node, and the other as the slave node.**
 
@@ -358,7 +366,9 @@ EOF
 
 ```
 
-**Note: **Correctly configure the virtual IP address and network interface device name in the above file.
+!!! tip "Tips"
+
+    Please **correctly configure the virtual IP address** and **network interface device name** in the above file.
 
 Perform the following operations on the standby node:
 

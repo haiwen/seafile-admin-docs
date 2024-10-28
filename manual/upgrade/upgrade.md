@@ -17,6 +17,7 @@ Please check the **upgrade notes** for any special configuration or changes befo
 * [Upgrade notes for 9.0.x](./upgrade_notes_for_9.0.x.md)
 * [Upgrade notes for 10.0.x](./upgrade_notes_for_10.0.x.md)
 * [Upgrade notes for 11.0.x](./upgrade_notes_for_11.0.x.md)
+* [Upgrade notes for 12.0.x](./upgrade_notes_for_12.0.x.md)
 
 
 ## Upgrade a binary package based deployment

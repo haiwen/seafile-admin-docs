@@ -10,11 +10,12 @@ The two volumes for persisting data, `/opt/seafile-data` and `/opt/seafile-mysql
 
 The two tools, **kubectl** and a **k8s control plane** tool (i.e., ***kubeadm***), are required and can be installed with [official installation guide](https://kubernetes.io/docs/tasks/tools/). 
 
-Note that if it is a multi-node deployment, k8s control plane needs to be installed on each node. After installation, you need to start the k8s control plane service on each node and refer to the k8s official manual for [creating a cluster](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/). Since this manual still uses the same image as docker deployment, we need to add the following repository to k8s:
+!!! note "Deployment Notes"
+    If it is a multi-node deployment, k8s control plane needs to be installed on each node. After installation, you need to start the k8s control plane service on each node and refer to the k8s official manual for [creating a cluster](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/). Since this manual still uses the same image as docker deployment, we need to add the following repository to k8s:
 
-```shell
-kubectl create secret docker-registry regcred --docker-server=docker.seadrive.org/seafileltd --docker-username=seafile --docker-password=zjkmid6rQibdZ=uJMuWS
-```
+    ```shell
+    kubectl create secret docker-registry regcred --docker-server=docker.seadrive.org/seafileltd --docker-username=seafile --docker-password=zjkmid6rQibdZ=uJMuWS
+    ```
 
 ## YAML
 

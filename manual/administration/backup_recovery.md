@@ -64,6 +64,8 @@ We assume your seafile data directory is in `/opt/seafile` for binary package ba
 
 It's recommended to backup the database to a separate file each time. Don't overwrite older database backups for at least a week.
 
+> SQLite has not supported since Seafile 11.0
+
 **MySQL**
 
 Assume your database names are `ccnet_db`, `seafile_db` and `seahub_db`. mysqldump automatically locks the tables so you don't need to stop Seafile server when backing up MySQL databases. Since the database tables are usually very small, it won't take long to dump.
@@ -74,21 +76,6 @@ mysqldump -h [mysqlhost] -u[username] -p[password] --opt ccnet_db > /backup/data
 mysqldump -h [mysqlhost] -u[username] -p[password] --opt seafile_db > /backup/databases/seafile-db.sql.`date +"%Y-%m-%d-%H-%M-%S"`
 
 mysqldump -h [mysqlhost] -u[username] -p[password] --opt seahub_db > /backup/databases/seahub-db.sql.`date +"%Y-%m-%d-%H-%M-%S"`
-
-```
-
-**SQLite**
-
-You need to stop Seafile server first before backing up SQLite database.
-
-```
-sqlite3 /opt/seafile/ccnet/GroupMgr/groupmgr.db .dump > /backup/databases/groupmgr.db.bak.`date +"%Y-%m-%d-%H-%M-%S"`
-
-sqlite3 /opt/seafile/ccnet/PeerMgr/usermgr.db .dump > /backup/databases/usermgr.db.bak.`date +"%Y-%m-%d-%H-%M-%S"`
-
-sqlite3 /opt/seafile/seafile-data/seafile.db .dump > /backup/databases/seafile.db.bak.`date +"%Y-%m-%d-%H-%M-%S"`
-
-sqlite3 /opt/seafile/seahub.db .dump > /backup/databases/seahub.db.bak.`date +"%Y-%m-%d-%H-%M-%S"`
 
 ```
 

@@ -2,7 +2,7 @@
 
 Seafile Server supports the following external authentication types:
 
-* [LDAP (Auth and Sync)](./ldap_in_11.0_ce.md)
+* [LDAP (Auth and Sync)](./ldap.md)
 * [OAuth](./oauth.md)
 * [Shibboleth](./shibboleth_authentication.md)
 * [SAML](./saml2_in_10.0.md)

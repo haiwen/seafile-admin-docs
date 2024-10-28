@@ -9,3 +9,7 @@ Seafile docker based installation consist of the following components (docker im
 - Caddy: Caddy server enables user to access the Seafile service (i.e., Seafile server and Sdoc server) externally and handles `SSL` configuration
 
 ![Seafile Docker Structure](../images/seafile-12.0-docker-structure.png)
+
+!!! note "Note"
+
+    From Seafile 11.0, the `Sdoc server` is **required**. Please refer [here](../extension/setup_seadoc.md) to integrate it with Seafile server

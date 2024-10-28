@@ -70,6 +70,8 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed: # provides a syntax to easily add tabbed Markdown content
+      alternate_style: true
 
 # Page tree
 nav:
@@ -77,14 +79,13 @@ nav:
     - Introduction: README.md
     - Seafile Components: introduction/components.md
     - File permission management: introduction/file_permission_management.md
+    - License: introduction/seafile_professional_sdition_software_license_agreement.md
     - Roadmap: introduction/roadmap.md
     - Contribution: introduction/contribution.md
   - Setup:
     - Overview: setup/overview.md
+    - Single node installation: setup/single_node_installation.md
     - HTTPS and Caddy: setup/caddy.md
-    - Single node installation:
-      - Setup community edition: setup/setup_ce_by_docker.md
-      - Setup pro edition: setup/setup_pro_by_docker.md
     - Advanced topics:
       - Storage Backends:
         - S3 Backend: setup/setup_with_amazon_s3.md
@@ -103,20 +104,15 @@ nav:
       - Migration from Seafile Community: setup/migrate_ce_to_pro_with_docker.md
       - Migrate from non-docker deployment: setup/migrate_non_docker_to_docker.md
   - Setup (binary):
-    - Seafile Community Setup:
-      - Outline: setup_binary/outline_ce.md
-      - Installation: setup_binary/installation_ce.md
-      - HTTPS with Nginx: setup_binary/https_with_nginx.md
-      - HTTPS with Apache: setup_binary/https_with_apache.md
-    - Seafile Professional Setup:
-      - Outline: setup_binary/outline_pro.md
-      - Installation: setup_binary/installation_pro.md
-      - Cluster deployment:
-        - Deploy in a cluster: setup_binary/deploy_in_a_cluster.md
-        - Search and background tasks in a cluster: setup_binary/enable_search_and_background_tasks_in_a_cluster.md
-        - Memcache and MariaDB Cluster: setup_binary/memcached_mariadb_cluster.md
-        - Setup Seafile cluster with NFS: setup_binary/setup_seafile_cluster_with_nfs.md
-      - License: setup_binary/seafile_professional_sdition_software_license_agreement.md
+    - Outline: setup_binary/outline.md
+    - Single node installation: setup_binary/installation_by_binary.md
+    - HTTPS with Nginx: setup_binary/https_with_nginx.md
+    - HTTPS with Apache: setup_binary/https_with_apache.md
+    - Cluster deployment:
+      - Deploy in a cluster: setup_binary/deploy_in_a_cluster.md
+      - Search and background tasks in a cluster: setup_binary/enable_search_and_background_tasks_in_a_cluster.md
+      - Memcache and MariaDB Cluster: setup_binary/memcached_mariadb_cluster.md
+      - Setup Seafile cluster with NFS: setup_binary/setup_seafile_cluster_with_nfs.md
     - Other deployment notes:
       - Start Seafile at System Bootup: setup_binary/start_seafile_at_system_bootup.md
       - Logrotate: setup_binary/using_logrotate.md
@@ -138,9 +134,7 @@ nav:
       - Virus scan with Kav4fs: extension/virus_scan_with_kav4fs.md
   - Configuration:
     - Authentication & Users:
-      - LDAP/AD Integration:
-        - LDAP Integration: config/ldap_in_11.0_ce.md
-        - LDAP Integration (Pro): config/ldap_in_11.0_pro.md
+      - LDAP/AD Integration: config/ldap.md
       - Single Sign On:
         - Outline: config/single_sign_on.md
         - OAuth Authentication: config/oauth.md

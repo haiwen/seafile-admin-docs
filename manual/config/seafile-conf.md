@@ -1,6 +1,6 @@
 # Seafile.conf settings
 
-**Important**: Every entry in this configuration file is **case-sensitive**.
+!!! warning "Important: Every entry in this configuration file is ***case-sensitive***"
 
 You need to restart seafile and seahub so that your changes take effect.
 
@@ -225,7 +225,7 @@ check_virus_on_web_upload = true
 
 The configurations of database are stored in the `[database]` section.
 
-> From Seafile 11.0, the *SQLite* is not supported.
+!!! note "From Seafile 11.0, the *SQLite* is not supported"
 
 ```
 [database]

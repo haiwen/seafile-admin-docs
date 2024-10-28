@@ -2,7 +2,7 @@
 
 ## Deploy with Docker
 
-If your Seafile server is deployed using [Docker](../setup/setup_pro_by_docker.md), we also recommend that you use Docker to deploy ClamAV by following the steps below, otherwise you can [deploy it from  binary package of ClamAV](#use-clamav-in-binary-based-deployment).
+If your Seafile server is deployed using [Docker](../setup/single_node_installation.md), we also recommend that you use Docker to deploy ClamAV by following the steps below, otherwise you can [deploy it from  binary package of ClamAV](#use-clamav-in-binary-based-deployment).
 
 ### Download clamav.yml and insert to Docker-compose lists in .env
 

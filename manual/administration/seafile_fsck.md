@@ -67,7 +67,9 @@ Sometimes you can see output like the following:
 
 This means the "head commit" (current state of the library) recorded in database is not consistent with the library data. In such case, fsck will try to find the last consistent state and check the integrity in that state.
 
-Tips: **If you have many libraries, it's helpful to save the fsck output into a log file for later analysis.**
+!!! tip "Tips"
+
+    If you have many libraries, it's helpful to save the fsck output into a log file for later analysis.
 
 ## Repairing Corruption
 

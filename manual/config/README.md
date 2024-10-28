@@ -4,7 +4,7 @@
 
 The config files used in Seafile include:
 
-* [environment variables](.env.md): contains environment variables, the items here are shared between different components.
+* [environment variables](./env.md): contains environment variables, the items here are shared between different components.
 * [ccnet.conf](ccnet-conf.md): contains some settings for connection to ccnet_db.
 * [seafile.conf](seafile-conf.md): contains settings for seafile daemon and fileserver.
 * [seahub_settings.py](seahub_settings_py.md): contains settings for Seahub

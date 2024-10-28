@@ -11,42 +11,35 @@ Please check the **upgrade notes** for any special configuration or changes befo
 
 From Seafile Docker 12.0, we recommend that you use `.env` and `seafile-server.yml` files for configuration.
 
-First, backup the original docker-compose.yml file:
+### Backup the original docker-compose.yml file:
 
 ```sh
 mv docker-compose.yml docker-compose.yml.bak
 ```
 
-Then download [.env](../docker/ce/env), [seafile-server.yml](../docker/ce/seafile-server.yml) and [caddy.yml](../docker/ce/caddy.yml), and modify .env file according to the old configuration in `docker-compose.yml.bak`
+### Download the Docker files for Seafile 12.0
 
-For community edition:
+Download [.env](../docker/ce/env), [seafile-server.yml](../docker/ce/seafile-server.yml) and [caddy.yml](../docker/ce/caddy.yml), and modify .env file according to the old configuration in `docker-compose.yml.bak`
 
-```sh
-wget -O .env https://manual.seafile.com/12.0/docker/ce/env
-wget https://manual.seafile.com/12.0/docker/ce/seafile-server.yml
-wget https://manual.seafile.com/12.0/docker/ce/caddy.yml
-```
+=== "Seafile pro edition"
 
-For pro edition:
+    ```sh
+    wget -O .env https://manual.seafile.com/12.0/docker/pro/env
+    wget https://manual.seafile.com/12.0/docker/pro/seafile-server.yml
+    wget https://manual.seafile.com/12.0/docker/pro/caddy.yml
+    ```
 
-```sh
-wget -O .env https://manual.seafile.com/12.0/docker/pro/env
-wget https://manual.seafile.com/12.0/docker/pro/seafile-server.yml
-wget https://manual.seafile.com/12.0/docker/pro/caddy.yml
-```
+=== "Seafile community edition"
 
-The following fields merit particular attention:
+    ```sh
+    wget -O .env https://manual.seafile.com/12.0/docker/ce/env
+    wget https://manual.seafile.com/12.0/docker/ce/seafile-server.yml
+    wget https://manual.seafile.com/12.0/docker/ce/caddy.yml
+    ```
 
-- `SEAFILE_VOLUME`: The volume directory of Seafile data, default is `/opt/seafile-data`
-- `SEAFILE_MYSQL_VOLUME`: The volume directory of MySQL data, default is `/opt/seafile-mysql/db`
-- `SEAFILE_CADDY_VOLUME`: The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's, default is `/opt/seafile-caddy`
-- `SEAFILE_ELASTICSEARCH_VOLUME`: The volume directory of Elasticsearch data
-- `SEAFILE_MYSQL_DB_HOST`: The host of MySQL, you should check the current value you used in seafile.conf, and copy it here.
-- `SEAFILE_MYSQL_DB_USER`: The user of MySQL, default is `seafile`, you should check the current value you used in seafile.conf
-- `SEAFILE_MYSQL_DB_PASSWORD`: The user `seafile` password of MySQL,  you should check the current value you used in seafile.conf
-- `JWT`: JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: `pwgen -s 40 1`
-- `SEAFILE_SERVER_HOSTNAME`: Seafile server hostname or domain
-- `SEAFILE_SERVER_PROTOCOL`: Seafile server protocol (http or https)
+### Configurate Seafile
+
+For the fields in `.env`, please refer to [here](../setup/single_node_installation.md#downloading-and-modifying-docker-files).
 
 SSL is now handled by the [caddy server](../setup/caddy.md). If you have used SSL before, you will also need modify the seafile.nginx.conf. Change server listen 443 to 80.
 
@@ -153,7 +146,7 @@ Please see the document [Setup SeaDoc](../extension/setup_seadoc.md) to install 
 
 ## Upgrade from 10.0 to 11.0
 
-Download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version. Taking the [community edition](../setup/setup_ce_by_docker.md) as an example, you have to modify
+Download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version. Taking the [community edition](../setup/single_node_installation.md) as an example, you have to modify
 
 ```yml
 ...

@@ -36,19 +36,18 @@ SeaDoc has the following deployment methods:
 - [SeaDoc and Seafile docker are deployed on the same host](#seadoc-and-seafile-docker-are-deployed-on-the-same-host).
 - [Deploy SeaDoc on a new host](#deploy-seadoc-on-a-new-host).
 
-> Seafile version 11.0 or later is required to work with SeaDoc.
-
 ## SeaDoc and Seafile docker are deployed on the same host
 
 Download the `seadoc.yml` and integrate SeaDoc in Seafile docker.
 
-```shell
-# for community edition
-wget https://manual.seafile.com/12.0/docker/ce/seadoc.yml
-
-# for pro edition
-wget https://manual.seafile.com/12.0/docker/pro/seadoc.yml
-```
+=== "Seafile Pro Edition"
+    ```sh
+    wget https://manual.seafile.com/12.0/docker/pro/seadoc.yml
+    ```
+=== "Seafile Community Edition"
+    ```sh
+    wget https://manual.seafile.com/12.0/docker/ce/seadoc.yml
+    ```
 
 Modify `.env`, and insert `seadoc.yml` into `COMPOSE_FILE`, and enable SeaDoc server
 
@@ -71,17 +70,22 @@ Now you can use SeaDoc!
 
 Download and modify the `.env` and `seadoc.yml` files.
 
-Download [seadoc.yml](../docker/seadoc/1.0/standalone/seadoc.yml) and [.env](../docker/seadoc/1.0/standalone/env) sample files to your host. Then modify the `.env` file according to your environment. The following fields are needed to be modified:
+Download [seadoc.yml](../docker/seadoc/1.0/standalone/seadoc.yml) and [.env](../docker/seadoc/1.0/standalone/env) sample files to your host. Then modify the `.env` file according to your environment. The following fields are needed to be specified:
 
-- `SEADOC_VOLUME`: The volume directory of SeaDoc data
-- `SEAFILE_MYSQL_DB_HOST`: Seafile MySQL host
-- `SEAFILE_MYSQL_DB_USER`: Seafile MySQL user, default is `seafile`
-- `SEAFILE_MYSQL_DB_PASSWORD`: Seafile MySQL password
-- `TIME_ZONE`: Time zone
-- `JWT_PRIVATE_KEY`: JWT key, the same as the config in Seafile `.env` file
-- `SEAFILE_SERVER_HOSTNAME`: Seafile host name
-- `SEAFILE_SERVER_PROTOCOL`: http or https
-- `SEADOC_SERVER_URL`: SeaDoc service URL
+!!! note "Database used by SeaDoc"
+    SeaDoc will use one database table `seahub_db.sdoc_operation_log` to store operation logs.
+
+| Variable                  | Description                                                                 | Default Value   |  
+| ------------------------- | ----------------------------------------------------------------------------- | --------------- |  
+| `SEADOC_VOLUME`           | The volume directory of SeaDoc data. This is a required input.                | (required)      |  
+| `SEAFILE_MYSQL_DB_HOST`   | The host address of the MySQL database used by Seafile.                       | `db`            |  
+| `SEAFILE_MYSQL_DB_USER`   | The username for the MySQL database used by Seafile.                          | `seafile`       |  
+| `SEAFILE_MYSQL_DB_PASSWORD` | The password for the MySQL database user used by Seafile. This is a required input. | (required)      |  
+| `TIME_ZONE`               | The time zone setting for the system.                                        | `UTC`           |  
+| `JWT_PRIVATE_KEY`         | The JWT private key, which should match the config in the Seafile `.env` file. | (required)      |  
+| `SEAFILE_SERVER_HOSTNAME` | The host name of the Seafile server. This is a required input.                | (required)      |  
+| `SEAFILE_SERVER_PROTOCOL` | The protocol used to access the Seafile server (http or https).               | `http`          |  
+| `SEADOC_SERVER_URL`       | The URL of the SeaDoc service. This is a required input.                      | (required)      |
 
 Start SeaDoc server with the following command
 
@@ -95,12 +99,6 @@ Now you can use SeaDoc!
 
 ## SeaDoc directory structure
 
-`/opt/seadoc-data`
+### `/opt/seadoc-data`
 
-Placeholder spot for shared volumes. You may elect to store certain persistent information outside of a container, in our case we keep various log files outside. This allows you to rebuild containers easily without losing important information.
-
-* /opt/seadoc-data/logs: This is the directory for SeaDoc logs.
-
-## Database used by SeaDoc
-
-SeaDoc used one database table `seahub_db.sdoc_operation_log` to store operation logs.
+Placeholder spot for shared volumes. You may elect to store certain persistent information outside of a container, in our case we keep various log files outside. This allows you to rebuild containers easily without losing important information. SeaDoc logs will be storaged in `/opt/seadoc-data/logs`.

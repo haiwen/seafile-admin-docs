@@ -1,6 +1,6 @@
 # Run Seafile as non root user inside docker
 
-You can use run seafile as non root user in docker. (**NOTE:** Programs such as `my_init`, Nginx are still run as `root` inside docker.)
+You can use run seafile as non root user in docker. 
 
 First add the `NON_ROOT=true` to the `.env`.
 

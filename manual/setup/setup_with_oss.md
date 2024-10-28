@@ -4,7 +4,7 @@
 
 To setup Seafile Professional Server with Alibaba OSS:
 
-* Setup the basic Seafile Professional Server following the guide on [Download and setup Seafile Professional Server](../setup_binary/installation_pro.md)
+* Setup the basic Seafile Professional Server following the guide on [Download and setup Seafile Professional Server](../setup_binary/installation_by_binary.md)
 * Install the python `oss2` library: `sudo pip install oss2==2.3.0`.For more installation help, please refer to [this document](https://www.alibabacloud.com/help/en/object-storage-service/latest/python-preface).
 * Install and configure memcached or Redis. For best performance, Seafile requires enable memory cache for objects. We recommend to allocate at least 128MB memory for Memcached or Redis.
 

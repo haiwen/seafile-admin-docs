@@ -1,0 +1,640 @@
+# Installation of Seafile Server by Pre-Built Package 
+
+This manual explains how to deploy and run Seafile Server Community (Seafile CE) and Professional Edition (Seafile PE) on a Linux server from pre-built packages using MySQL/MariaDB as database. The deployment has been tested for Debian/Ubuntu.
+
+!!! tip "If you have little experience with Seafile Server, we recommend that you use an installation script for deploying Seafile Server"
+
+## Requirements
+
+Seafile server for x86 architecture requires a minimum of 2 cores and 2GB RAM.
+
+!!! note "Other requirements for Seafile PE"
+    - If ***Elasticsearch*** is installed on the same server, the minimum requirements are 4 cores and 4 GB RAM.
+
+    - Seafile PE can be used without a paid license with up to three users. Licenses for more user can be purchased in the [Seafile Customer Center](https://customer.seafile.com) or contact Seafile Sales at sales@seafile.com or one of [our partners](https://www.seafile.com/en/partner/). For more details, pelease refer to [here](../introduction/seafile_professional_sdition_software_license_agreement.md).
+
+## Setup
+
+### Installing and preparing the SQL database
+
+Seafile supports MySQL and MariaDB. We recommend that you use the preferred SQL database management engine included in the package repositories of your distribution.
+
+You can find step-by-step how-tos for installing MySQL and MariaDB in the [tutorials on the Digital Ocean website](https://www.digitalocean.com/community/tutorials).
+
+Seafile uses the mysql_native_password plugin for authentication. The versions of MySQL and MariaDB installed on CentOS 8, Debian 10, and Ubuntu 20.04 use a different authentication plugin by default. It is therefore required to change to authentication plugin to mysql_native_password for the root user prior to the installation of Seafile. The above mentioned tutorials explain how to do it.
+
+### Installing prerequisites
+!!! note "Java Runtime Environment"
+    Java Runtime Environment (JRE) is no longer needed in Seafile version 12.0.
+
+=== "Seafile Pro Edition"
+
+    **For Seafile 9.0.x**
+
+    ```sh
+    # on Ubuntu 20.04 (on Debian 10/Ubuntu 18.04, it is almost the same)
+    apt-get update
+    apt-get install -y python3 python3-setuptools python3-pip python3-ldap libmysqlclient-dev
+    apt-get install -y memcached libmemcached-dev
+    apt-get install -y poppler-utils
+
+    pip3 install --timeout=3600 django==3.2.* future mysqlclient pymysql Pillow pylibmc \ 
+    captcha jinja2 sqlalchemy==1.4.3 psd-tools django-pylibmc django-simple-captcha pycryptodome==3.12.0 cffi==1.14.0 lxml
+    ```
+
+    ```sh
+    # CentOS 8
+    sudo yum install python3 python3-setuptools python3-pip python3-devel mysql-devel gcc -y
+    sudo yum install poppler-utils -y
+
+    sudo pip3 install --timeout=3600 django==3.2.* Pillow==9.4.0 pylibmc captcha jinja2 sqlalchemy==1.4.3 \
+        django-pylibmc django-simple-captcha python3-ldap mysqlclient pycryptodome==3.12.0 cffi==1.14.0 lxml
+    ```
+
+    **For Seafile 10.0.x**
+
+    ```sh
+    # on Ubuntu 22.04 (on Ubuntu 20.04/Debian 11/Debian 10, it is almost the same)
+    apt-get update
+    apt-get install -y python3 python3-setuptools python3-pip python3-ldap libmysqlclient-dev
+    apt-get install -y memcached libmemcached-dev
+    apt-get install -y poppler-utils
+
+    sudo pip3 install --timeout=3600 django==3.2.* future==0.18.* mysqlclient==2.1.* \
+        pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==1.4.44 \
+        psd-tools django-pylibmc django_simple_captcha==0.5.20 djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 lxml
+    ```
+
+
+    **For Seafile 11.0.x (Debian 11, Ubuntu 22.04, Centos 8, etc.)**
+
+    ```sh
+    # on Ubuntu 22.04 (on Ubuntu 20.04/Debian 11/Debian 10, it is almost the same)
+    apt-get update
+    apt-get install -y python3 python3-dev python3-setuptools python3-pip python3-ldap libmysqlclient-dev ldap-utils libldap2-dev dnsutils
+    apt-get install -y memcached libmemcached-dev
+    apt-get install -y poppler-utils
+
+    sudo pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.* \
+        pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
+        psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 python-ldap==3.4.3 lxml
+    ```
+
+
+    **For Seafile 11.0.x on Debian 12 and Ubuntu 24.04 with virtual env**
+
+    Debian 12 and Ubuntu 24.04 are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables different versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with "source python-venv/bin/activate".
+
+    ```sh
+    # Debian 12
+    sudo apt-get update
+    sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmariadb-dev-compat ldap-utils libldap2-dev libsasl2-dev python3.11-venv
+    sudo apt-get install -y memcached libmemcached-dev
+
+    mkdir /opt/seafile
+    cd /opt/seafile
+
+    # create the vitual environment in the python-venv directory
+    python3 -m venv python-venv
+
+    # activate the venv
+    source python-venv/bin/activate
+    # Notice that this will usually change your prompt so you know the venv is active
+
+    # install packages into the active venv with pip (sudo isn't needed because this is installing in the venv, not system-wide).
+    pip3 install --timeout=3600  django==4.2.* future==0.18.* mysqlclient==2.1.* pymysql pillow==10.0.* pylibmc captcha==0.4 markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 psd-tools django-pylibmc django_simple_captcha==0.5.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 lxml python-ldap==3.4.3
+    ```
+
+    ```sh
+    # Ubuntu 24.04
+    sudo apt-get update
+    sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmysqlclient-dev ldap-utils libldap2-dev python3.12-venv
+    sudo apt-get install -y memcached libmemcached-dev
+
+    mkdir /opt/seafile
+    cd /opt/seafile
+
+    # create the vitual environment in the python-venv directory
+    python3 -m venv python-venv
+
+    # activate the venv
+    source python-venv/bin/activate
+    # Notice that this will usually change your prompt so you know the venv is active
+
+    # install packages into the active venv with pip (sudo isn't needed because this is installing in the venv, not system-wide).
+    pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.* \
+        pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
+        psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.16.0 lxml python-ldap==3.4.3
+    ```
+=== "Seafile Community Edition"
+    **For Seafile 10.0.x**
+
+    ```sh
+    # Ubuntu 22.04 (almost the same for Ubuntu 20.04 and Debian 11, Debian 10)
+    sudo apt-get update
+    sudo apt-get install -y python3 python3-setuptools python3-pip libmysqlclient-dev
+    sudo apt-get install -y memcached libmemcached-dev
+
+    sudo pip3 install --timeout=3600 django==3.2.* future==0.18.* mysqlclient==2.1.* \
+        pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==1.4.44 \
+        psd-tools django-pylibmc django_simple_captcha==0.5.20 djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 lxml
+
+    ```
+
+    **For Seafile 11.0.x (Debian 11, Ubuntu 22.04, etc.)**
+
+    ```sh
+    # Ubuntu 22.04 (almost the same for Ubuntu 20.04 and Debian 11, Debian 10)
+    sudo apt-get update
+    sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmysqlclient-dev ldap-utils libldap2-dev
+    sudo apt-get install -y memcached libmemcached-dev
+
+    sudo pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.* \
+        pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
+        psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 lxml python-ldap==3.4.3
+
+    ```
+
+    **For Seafile 11.0.x on Debian 12 and Ubuntu 24.04 with virtual env**
+
+    Debian 12 and Ubuntu 24.04 are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables different versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with "source python-venv/bin/activate".
+
+    ```sh
+    # Debian 12
+    sudo apt-get update
+    sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmariadb-dev-compat ldap-utils libldap2-dev libsasl2-dev python3.11-venv
+    sudo apt-get install -y memcached libmemcached-dev
+
+    mkdir /opt/seafile
+    cd /opt/seafile
+
+    # create the vitual environment in the python-venv directory
+    python3 -m venv python-venv
+
+    # activate the venv
+    source python-venv/bin/activate
+    # Notice that this will usually change your prompt so you know the venv is active
+
+    # install packages into the active venv with pip (sudo isn't needed because this is installing in the venv, not system-wide).
+    pip3 install --timeout=3600  django==4.2.* future==0.18.* mysqlclient==2.1.* pymysql pillow==10.0.* pylibmc captcha==0.4 markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 psd-tools django-pylibmc django_simple_captcha==0.5.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 lxml python-ldap==3.4.3
+    ```
+
+    ```sh
+    # Ubuntu 24.04
+    sudo apt-get update
+    sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmysqlclient-dev ldap-utils libldap2-dev python3.12-venv
+    sudo apt-get install -y memcached libmemcached-dev
+
+    mkdir /opt/seafile
+    cd /opt/seafile
+
+    # create the vitual environment in the python-venv directory
+    python3 -m venv python-venv
+
+    # activate the venv
+    source python-venv/bin/activate
+    # Notice that this will usually change your prompt so you know the venv is active
+
+    # install packages into the active venv with pip (sudo isn't needed because this is installing in the venv, not system-wide).
+    pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.* \
+        pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
+        psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.16.0 lxml python-ldap==3.4.3
+    ```
+
+### Creating the program directory
+
+The standard directory for Seafile's program files is `/opt/seafile`. Create this directory and change into it:
+
+```sh
+sudo mkdir /opt/seafile
+cd /opt/seafile
+```
+
+The  program directory can be changed. The standard directory `/opt/seafile` is assumed for the rest of this manual. If you decide to put Seafile in another directory, modify the commands accordingly.
+
+### Creating user seafile
+
+It is good practice not to run applications as root (especially Elasticsearch with Seafile PE, as the indexing server cannot be run as root). 
+
+Create a new user and follow the instructions on the screen:
+
+```sh
+sudo adduser seafile
+```
+
+Change ownership of the created directory to the new user:
+
+```sh
+sudo chown -R seafile: /opt/seafile
+```
+
+All the following steps are done as user seafile.
+
+Change to user seafile:
+
+```sh
+su seafile
+```
+
+### Placing the Seafile PE license (only for Seafile PE)
+
+Save the license file in Seafile's programm directory `/opt/seafile`. Make sure that the name is `seafile-license.txt`. (If the file has a different name or cannot be read, Seafile PE will not start.)
+
+### Downloading the install package
+
+=== "Seafile Pro Edition"
+    The install packages for Seafile PE are available for download in the the [Seafile Customer Center](https://customer.seafile.com). To access the Customer Center, a  user account is necessary. The registration is free.
+
+    Beginning with Seafile PE 7.0.17, the Seafile Customer Center provides two install packages for every version (using Seafile PE 8.0.4 as an example):
+
+    ***seafile-pro-server_8.0.4_x86-64_Ubuntu.tar.gz***, compiled in Ubuntu environment
+
+    The former is suitable for installation on Ubuntu/Debian servers, the latter for CentOS servers.
+
+    Download the install package using wget (replace the x.x.x with the version you wish to download):
+
+
+    ```sh
+    # Debian/Ubuntu
+    wget -O 'seafile-pro-server_x.x.x_x86-64_Ubuntu.tar.gz' 'VERSION_SPECIFIC_LINK_FROM_SEAFILE_CUSTOMER_CENTER'
+    ```
+
+=== "Seafile Community Edition"
+    You can download the Seafile CE install package from the [download page](https://www.seafile.com/en/download/) on Seafile's website by using wget.
+
+    ```sh
+    # Debian/Ubuntu
+    wget -O 'seafile-server_x.x.x_x86-64_Ubuntu.tar.gz' 'VERSION_SPECIFIC_LINK_FROM_SEAFILE_SEAFILE_WEBSITE'
+    ```
+
+We use Seafile version 8.0.4 as an example in the remainder of these instructions.
+
+
+### Uncompressing the package
+
+The install package is downloaded as a compressed tarball which needs to be uncompressed.
+
+Uncompress the package using tar:
+
+```sh
+# Debian/Ubuntu, for Seafile PE
+tar xf seafile-pro-server_8.0.4_x86-64_Ubuntu.tar.gz
+```
+
+Now you have:
+
+```sh
+$ tree -L 2 /opt/seafile
+.
+├── seafile-license.txt
+└── seafile-pro-server-8.0.4
+│   ├── check-db-type.py
+│   ├── check_init_admin.py
+│   ├── create-db
+│   ├── index_op.py
+│   ├── migrate.py
+│   ├── migrate-repo.py
+│   ├── migrate-repo.sh
+│   ├── migrate.sh
+│   ├── pro
+│   ├── remove-objs.py
+│   ├── remove-objs.sh
+│   ├── reset-admin.sh
+│   ├── run_index_master.sh
+│   ├── run_index_worker.sh
+│   ├── runtime
+│   ├── seaf-backup-cmd.py
+│   ├── seaf-backup-cmd.sh
+│   ├── seaf-encrypt.sh
+│   ├── seaf-fsck.sh
+│   ├── seaf-fuse.sh
+│   ├── seaf-gc.sh
+│   ├── seaf-gen-key.sh
+│   ├── seafile
+│   ├── seafile-background-tasks.sh
+│   ├── seafile.sh
+│   ├── seaf-import.sh
+│   ├── seahub
+│   ├── seahub-extra
+│   ├── seahub.sh
+│   ├── setup-seafile-mysql.py
+│   ├── setup-seafile-mysql.sh
+│   ├── setup-seafile.sh
+│   ├── sql
+│   └── upgrade
+└── seafile-pro-server_8.0.4_x86-64.tar.gz
+
+```
+
+!!! tip "Tips"
+    The names of the install packages differ for Seafile CE and Seafile PE. Using Seafile CE and Seafile PE 8.0.4 as an example, the names are as follows:
+
+    * Seafile CE: `seafile-server_8.0.4_x86-86.tar.gz`; uncompressing into folder `seafile-server-8.0.4`
+    * Seafile PE: `seafile-pro-server_8.0.4_x86-86.tar.gz`; uncompressing into folder `seafile-pro-server-8.0.4`
+
+
+### Setting up
+
+The install package comes with a script that sets Seafile up for you. Specifically, the script creates the required directories and extracts all files in the right place. It can also create a MySQL user and the three databases that [Seafile's components](../introduction/components.md) require:
+
+* ccnet server
+* seafile server
+* seahub
+
+!!! note "While ccnet server was merged into the seafile-server in Seafile 8.0, the corresponding database is still required for the time being"
+
+Run the script as user seafile:
+
+```
+# For installations using python virtual environment, activate it if it isn't already active
+source python-venv/bin/activate
+
+cd seafile-pro-server-8.0.4
+./setup-seafile-mysql.sh
+
+```
+
+Configure your Seafile Server by specifying the following three parameters:
+
+| Option                | Description                                          | Note                                                         |
+| --------------------- | ---------------------------------------------------- | ------------------------------------------------------------ |
+| server name           | Name of the Seafile Server                           | 3-15 characters, only English letters, digits and underscore ('\_') are allowed |
+| server's ip or domain | IP address or domain name used by the Seafile Server | Seafile client program will access the server using this address |
+| fileserver port       | TCP port used by the Seafile fileserver              | Default port is 8082, it is recommended to use this port and to only change it if is used by other service |
+
+
+
+In the next step, choose whether to create new databases for Seafile or to use existing databases. The creation of new databases requires the root password for the SQL server. 
+
+![grafik](../images/seafile-setup-database.png)
+
+When choosing "\[1] Create new ccnet/seafile/seahub databases", the script creates these databases and a MySQL user that Seafile Server will use to access them. To this effect, you need to answer these questions:
+
+| Question                        | Description                                                  | Note                                                         |
+| ------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| mysql server host               | Host address of the MySQL server                             | Default is localhost                                         |
+| mysql server port               | TCP port used by the MySQL server                            | Default port is 3306; almost every MySQL server uses this port |
+| mysql root password             | Password of the MySQL root account                           | The root password is required to create new databases and a MySQL user |
+| mysql user for Seafile          | MySQL user created by the script, used by Seafile's components to access the databases | Default is seafile; the user is created unless it exists     |
+| mysql password for Seafile user | Password for the user above, written in Seafile's config files | Percent sign ('%') is not allowed                            |
+| database name                   | Name of the database used by ccnet                           | Default is "ccnet_db", the database is created if it does not exist |
+| seafile database name           | Name of the database used by Seafile                         | Default is "seafile_db", the database is created if it does not exist |
+| seahub database name            | Name of the database used by seahub                          | Default is "seahub_db", the database is created if it does not exist |
+
+When choosing "\[2] Use existing ccnet/seafile/seahub databases", this are the prompts you need to answer: 
+
+| Question                        | Description                                                  | Note                                                         |
+| ------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| mysql server host               | Host address of the MySQL server                             | Default is localhost                                         |
+| mysql server port               | TCP port used by MySQL server                                | Default port is 3306; almost every MySQL server uses this port |
+| mysql user for Seafile          | User used by Seafile's components to access the databases    | The user must exists                                         |
+| mysql password for Seafile user | Password for the user above                                  |                                                              |
+| ccnet database name             | Name of the database used by ccnet, default is "ccnet_db"    | The database must exist                                      |
+| seafile database name           | Name of the database used by Seafile, default is "seafile_db" | The database must exist                                      |
+| seahub dabase name              | Name of the database used by Seahub, default is "seahub_db"  | The database must exist                                      |
+
+If the setup is successful, you see the following output:
+
+![grafik](../images/seafile-setup-output.png)
+
+After the successful completition of the setup script, the directory layout of Seafile PE looks as follows (some folders only get created after the first start, e.g. `logs`):
+
+```
+$ tree -L 2 /opt/seafile
+.
+├── seafile-license.txt             # license file
+├── ccnet               
+├── conf                            # configuration files
+│   └── ccnet.conf
+│   └── gunicorn.conf.py
+│   └── __pycache__
+│   └── seafdav.conf
+│   └── seafevents.conf
+│   └── seafile.conf
+│   └── seahub_settings.py
+├── logs                            # log files
+├── pids                            # process id files
+├── pro-data                        # data specific for Seafile PE
+├── seafile-data                    # object database
+├── seafile-pro-server-8.0.4
+│   ├── check-db-type.py
+│   ├── check_init_admin.py
+│   ├── create-db
+│   ├── index_op.py
+│   ├── migrate.py
+│   ├── migrate-repo.py
+│   ├── migrate-repo.sh
+│   ├── migrate.sh
+│   ├── pro
+│   ├── reset-admin.sh
+│   ├── run_index_master.sh
+│   ├── run_index_worker.sh
+│   ├── runtime
+│   ├── seaf-backup-cmd.py
+│   ├── seaf-backup-cmd.sh
+│   ├── seaf-encrypt.sh
+│   ├── seaf-fsck.sh
+│   ├── seaf-fuse.sh
+│   ├── seaf-gc.sh
+│   ├── seaf-gen-key.sh
+│   ├── seafile
+│   ├── seafile-background-tasks.sh
+│   ├── seafile.sh
+│   ├── seaf-import.sh
+│   ├── seahub
+│   ├── seahub-extra
+│   ├── seahub.sh
+│   ├── setup-seafile-mysql.py
+│   ├── setup-seafile-mysql.sh
+│   ├── setup-seafile.sh
+│   ├── sql
+│   └── upgrade
+├── seafile-server-latest -> seafile-pro-server-8.0.4
+├── seahub-data
+    └── avatars                        # user avatars
+```
+
+!!! tip "The folder `seafile-server-latest` is a symbolic link to the current Seafile Server folder. When later you upgrade to a new version, the upgrade scripts update this link to point to the latest Seafile Server folder"
+
+
+!!! note "Don't have the root password of MySQL"
+
+    If you don't have the root password, you need someone who has the privileges, e.g., the database admin, to create the three databases required by Seafile, as well as a MySQL user who can access the databases. For example, to create three databases `ccnet_db` / `seafile_db` / `seahub_db` for ccnet/seafile/seahub respectively, and a MySQL user "seafile" to access these databases run the following SQL queries:
+
+    ```
+    create database `ccnet_db` character set = 'utf8';
+    create database `seafile_db` character set = 'utf8';
+    create database `seahub_db` character set = 'utf8';
+
+    create user 'seafile'@'localhost' identified by 'seafile';
+
+    GRANT ALL PRIVILEGES ON `ccnet_db`.* to `seafile`@localhost;
+    GRANT ALL PRIVILEGES ON `seafile_db`.* to `seafile`@localhost;
+    GRANT ALL PRIVILEGES ON `seahub_db`.* to `seafile`@localhost;
+
+    ```
+
+### Setup Memory Cache
+
+Seahub caches items(avatars, profiles, etc) on file system by default(/tmp/seahub_cache/). You can replace with Memcached or Redis.
+
+#### Use Memcached
+
+Use the following commands to install memcached and corresponding libraies on your system:
+
+```
+# on Debian/Ubuntu 18.04+
+apt-get install memcached libmemcached-dev -y
+pip3 install --timeout=3600 pylibmc django-pylibmc
+
+systemctl enable --now memcached
+```
+
+Add the following configuration to `seahub_settings.py`.
+
+```
+CACHES = {
+    'default': {
+        'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
+        'LOCATION': '127.0.0.1:11211',
+    },
+}
+
+```
+
+#### Use Redis
+
+Redis is supported since version 11.0.
+
+First, install Redis with package installers in your OS.
+
+Then refer to [Django's documentation about using Redis cache](https://docs.djangoproject.com/en/4.2/topics/cache/#redis) to add Redis configurations to `seahub_settings.py`.
+
+### Tweaking conf files
+
+Seafile's config files as created by the setup script are prepared for Seafile running behind a reverse proxy.
+
+To access Seafile's web interface and to create working sharing links without a reverse proxy, you need to modify two configuration files in `/opt/seafile/conf`:
+
+* seahub_settings.py (if you use 9.0.x): Add port 8000 to the `SERVICE_URL` (i.e., SERVICE_URL = 'http://1.2.3.4:8000/').
+* ccnet.conf (if you use 8.0.x or 7.1.x): Add port 8000 to the `SERVICE_URL` (i.e., SERVICE_URL = http://1.2.3.4:8000/).
+* gunicorn.conf.py: Change the bind to "0.0.0.0:8000" (i.e., bind = "0.0.0.0:8000")
+
+### Enabling HTTP/HTTPS
+
+You need at least setup HTTP to make Seafile's web interface work. This manual provides instructions for enabling HTTP/HTTPS for the two most popular web servers and reverse proxies:
+
+* [Nginx](./https_with_nginx.md)
+* [Apache](./https_with_apache.md)
+
+## Starting Seafile Server
+
+Run the following commands in `/opt/seafile/seafile-server-latest`:
+
+```
+# For installations using python virtual environment, activate it if it isn't already active
+source python-venv/bin/activate
+
+./seafile.sh start # Start Seafile service
+./seahub.sh start  # Start seahub website, port defaults to 127.0.0.1:8000
+```
+
+The first time you start Seahub, the script prompts you to create an admin account for your Seafile Server. Enter the email address of the admin user followed by the password.
+
+Now you can access Seafile via the web interface at the host address (e.g., http://1.2.3.4:80).
+
+### Troubleshooting
+
+If seafile.sh and/or seahub.sh fail to run successfully, use `pgrep` to check if seafile/seahub processes are still running:
+
+
+```
+pgrep -f seafile-controller # checks seafile processes
+pgrep -f "seahub" # checks seahub process
+
+```
+
+Use `pkill` to kill the processes:
+
+
+```
+pkill -f seafile-controller
+pkill -f "seahub"
+
+```
+
+## Stopping and Restarting Seafile and Seahub
+
+### Stopping
+
+```
+./seahub.sh stop 	# stops seahub
+./seafile.sh stop 	# stops seaf-server
+
+```
+
+### Restarting
+
+```
+# For installations using python virtual environment, activate it if it isn't already active
+source python-venv/bin/activate
+
+./seafile.sh restart
+./seahub.sh restart
+
+```
+
+## Enabling full text search (only for Seafile PE)
+
+Seafile PE can use the indexing server ElasticSearch to enable full text search.
+
+### Deploying ElasticSearch
+
+Our recommendation for deploying ElasticSearch is using Docker. Detailed information about installing Docker on various Linux distributions is available at [Docker Docs](https://docs.docker.com/engine/install/).
+
+Seafile PE 9.0 only supports ElasticSearch 7.x. Seafile PE 10.0, 11.0, 12.0 only supports ElasticSearch 8.x.
+
+We use ElasticSearch version 7.16.2 as an example in this section. Version 7.16.2 and newer version have been successfully tested with Seafile.
+
+
+Pull the Docker image:
+```
+sudo docker pull elasticsearch:7.16.2
+```
+
+Create a folder for persistent data created by ElasticSearch and change its permission:
+```
+sudo mkdir -p /opt/seafile-elasticsearch/data  && chmod -R 777 /opt/seafile-elasticsearch/data/
+```
+
+Now start the ElasticSearch container using the docker run command:
+```
+sudo docker run -d \
+--name es \
+-p 9200:9200 \
+-e "discovery.type=single-node" -e "bootstrap.memory_lock=true" \
+-e "ES_JAVA_OPTS=-Xms2g -Xmx2g" -e "xpack.security.enabled=false" \
+--restart=always \
+-v /opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data \
+-d elasticsearch:7.16.2
+```
+
+
+### Modifying seafevents
+
+Add the following configuration to `seafevents.conf`:
+
+```
+[INDEX FILES]
+es_host = your elasticsearch server's IP    # IP address of ElasticSearch host
+                                            # use 127.0.0.1 if deployed on the same server
+es_port = 9200                              # port of ElasticSearch host
+interval = 10m                              # frequency of index updates in minutes
+highlight = fvh                             # parameter for improving the search performance
+```
+
+Finally, restart Seafile:
+
+```
+./seafile.sh restart  && ./seahub.sh restart 
+```

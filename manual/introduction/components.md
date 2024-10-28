@@ -9,4 +9,4 @@ The picture below shows how Seafile clients access files when you configure Seaf
 
 ![Seafile Sync](../images/seafile-arch-new-http.png)
 
-- All access to the Seafile service (including Seahub and Seafile server) can be configured behind Nginx or Apache web server. This way all network traffic to the service can be encrypted with HTTPS.
+!!! tip "All access to the Seafile service (including Seahub and Seafile server) can be configured behind Nginx or Apache web server. This way all network traffic to the service can be encrypted with HTTPS"

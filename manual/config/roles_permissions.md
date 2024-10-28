@@ -4,7 +4,9 @@ You can add/edit roles and permission for users. A role is just a group of users
 
 `role_quota` is used to set quota for a certain role of users. For example, we can set the quota of employee to 100G by adding `'role_quota': '100g'`, and leave other role of users to the default quota.
 
-`can_add_public_repo` is to set whether a role can create a public library, default is "False". **Note:**The `can_add_public_repo` option will not take effect if you configure global `CLOUD_MODE = True`.
+`can_add_public_repo` is to set whether a role can create a public library, default is "False".
+
+!!! warning "The `can_add_public_repo` option will not take effect if you configure global `CLOUD_MODE = True`"
 
 The `storage_ids` permission is used for assigning storage backends to users with specific role. More details can be found in [multiple storage backends](../setup/setup_with_multiple_storage_backends.md).
 
@@ -131,11 +133,12 @@ After restarting, users who have `can_invite_guest` permission will see "Invite 
 
 Users can invite a guest user by providing his/her email address, system will email the invite link to the user.
 
-**Tip:** If you want to block certain email addresses for the invitation, you can define a blacklist, e.g.
+!!! tip "Tip"
+    If you want to block certain email addresses for the invitation, you can define a blacklist, e.g.
 
-```
-INVITATION_ACCEPTER_BLACKLIST = ["a@a.com", "*@a-a-a.com", r".*@(foo|bar).com", ]
-```
+    ```
+    INVITATION_ACCEPTER_BLACKLIST = ["a@a.com", "*@a-a-a.com", r".*@(foo|bar).com", ]
+    ```
 
 After that, email address "a@a.com", any email address ends with "@a-a-a.com" and any email address ends with "@foo.com" or "@bar.com" will not be allowed.
 

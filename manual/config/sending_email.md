@@ -27,15 +27,17 @@ SERVER_EMAIL = EMAIL_HOST_USER
 
 ```
 
+!!! note "Notes"
 
-**Note**: If your email service still does not work, you can checkout the log file `logs/seahub.log` to see what may cause the problem. For a complete email notification list, please refer to [email notification list](customize_email_notifications.md).
+    - If your email service still does not work, you can checkout the log file `logs/seahub.log` to see what may cause the problem. For a complete email notification list, please refer to [email notification list](customize_email_notifications.md).
 
-**Note2**: If you want to use the email service without authentication leaf `EMAIL_HOST_USER` and `EMAIL_HOST_PASSWORD` **blank** (`''`). (But notice that the emails then will be sent without a `From:` address.)
+    - If you want to use the email service without authentication leaf `EMAIL_HOST_USER` and `EMAIL_HOST_PASSWORD` **blank** (`''`). (But notice that the emails then will be sent without a `From:` address.)
 
-**Note3**: About using SSL connection (using port 465)
+    - About using SSL connection (using port 465):
 
-Port 587 is being used to establish a connection using STARTTLS and port 465 is being used to establish an SSL connection.  Starting from Django 1.8, it supports both.
-If you want to use SSL on port 465, set `EMAIL_USE_SSL = True` instead of `EMAIL_USE_TLS`.
+        - Port 587 is being used to establish a connection using STARTTLS and port 465 is being used to establish an SSL connection.  Starting from Django 1.8, it supports both.
+
+        - If you want to use SSL on port 465, set `EMAIL_USE_SSL = True` instead of `EMAIL_USE_TLS`.
 
 
 ## Change `reply to` of email
@@ -74,7 +76,7 @@ The simplest way to customize the email messages is setting the `SITE_NAME` vari
 
 [seahub/seahub/templates/email_base.html](https://github.com/haiwen/seahub/blob/master/seahub/templates/email_base.html)
 
-Note: You can copy email_base.html to `seahub-data/custom/templates/email_base.html` and modify the new one. In this way, the customization will be maintained after upgrade.
+!!! note "You can copy email_base.html to `seahub-data/custom/templates/email_base.html` and modify the new one. In this way, the customization will be maintained after upgrade"
 
 ### User resets his/her password
 

@@ -88,7 +88,7 @@ haiwen
 
 ### Setup Seafile
 
-Please follow [Download and Setup Seafile Professional Server With MySQL](./installation_pro.md) to setup a single Seafile server node.
+Please follow [Download and Setup Seafile Professional Server With MySQL](./installation_by_binary.md) to setup a single Seafile server node.
 
 Note: **Use the load balancer's address or domain name for the server address. Don't use the local IP address of each Seafile server machine. This assures the user will always access your service via the load balancers.**
 

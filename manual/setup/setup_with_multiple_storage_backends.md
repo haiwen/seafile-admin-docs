@@ -45,7 +45,7 @@ storage_classes_file = /opt/seafile_storage_classes.json
 
 You also need to add [memory cache configurations](../config/seafile-conf.md#cache-pro-edition-only) to `seafile.conf`.
 
-### Notes for Docker Installs
+### Configuration of Docker Installation
 
 If installing Seafile as Docker containers, place the `seafile_storage_classes.json` file on your local disk in a sub-directory of the location that is mounted to the `seafile` container, and set the `storage_classes_file` configuration above to a path ***relative to the `/shared/` directory mounted on the `seafile` container***.  
 

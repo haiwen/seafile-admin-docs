@@ -86,18 +86,24 @@ seaf-gc.sh -r
 
 ```
 
-**Libraries deleted by the users are not immediately removed from the system. Instead, they're moved into a "trash" in the system admin page. Before they're cleared from the trash, their blocks won't be garbage collected.**
+!!! warning "Deletion operation policies"
+
+    Libraries deleted by the users are not immediately removed from the system. Instead, they're moved into a "trash" in the system admin page. Before they're cleared from the trash, their blocks won't be garbage collected.
 
 ### Removing FS objects
 
-Since Pro server 8.0.6 and community edition 9.0, you can remove garbage fs objects. It should be run without the --dry-run option:
+> Since Pro server 8.0.6 and community edition 9.0, you can remove garbage fs objects. 
+
+Run without the --dry-run option:
 
 ```
 seaf-gc.sh --rm-fs
 
 ```
 
-Note: This command has bug before Pro Edition 10.0.15 and Community Edition 11.0.7. It could cause virtual libraries (e.g. shared folders) failing to merge into their parent libraries. Please avoid using this option in the affected versions. Please contact our support team if you are affected by this bug.
+!!! error "Bug reports"
+
+    This command has bug before Pro Edition 10.0.15 and Community Edition 11.0.7. It could cause virtual libraries (e.g. shared folders) failing to merge into their parent libraries. Please avoid using this option in the affected versions. Please contact our support team if you are affected by this bug.
 
 ### Using Multiple Threads in GC
 

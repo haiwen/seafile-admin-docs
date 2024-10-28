@@ -68,4 +68,6 @@ services:
     restart: unless-stopped
 ```
 
-Note: Add `restart: unless-stopped`, and the Seafile container will automatically start when Docker starts. If the Seafile container does not exist (execute docker compose down), the container will not start automatically.
+!!! note "Note"
+
+    Add `restart: unless-stopped`, and the Seafile container will automatically start when Docker starts. If the Seafile container does not exist (execute docker compose down), the container will not start automatically.

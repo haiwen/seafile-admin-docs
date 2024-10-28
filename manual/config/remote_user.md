@@ -4,7 +4,7 @@ Starting from 7.0.0, Seafile can integrate with various Single Sign On systems v
 
 After the proxy server (Apache/Nginx) is successfully authenticated, the user information is set to the request header, and Seafile creates and logs in the user based on this information.
 
-Note: Make sure that the proxy server has a corresponding security mechanism to protect against forgery request header attacks.
+!!! warning "Make sure that the proxy server has a corresponding security mechanism to protect against forgery request header attacks"
 
 Please add the following settings to `conf/seahub_settings.py` to enable this feature.
 

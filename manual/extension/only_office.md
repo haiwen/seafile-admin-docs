@@ -2,13 +2,13 @@
 
 From version 6.1.0+ on (including CE), Seafile supports [OnlyOffice](https://www.onlyoffice.com/) to view/edit office files online. In order to use OnlyOffice, you must first deploy an OnlyOffice server. 
 
-!!! tip "Deployment Tips"
+!!! note "Note"
 
-    You can deploy OnlyOffice to the same machine as Seafile (only support deploying with [Docker](../setup/setup_pro_by_docker.md) with sufficient cores and RAM) using the `onlyoffice.yml` provided by Seafile according to this document, or you can deploy it to a different machine according to [OnlyOffice official document](https://github.com/ONLYOFFICE/Docker-DocumentServer).
+    You can deploy OnlyOffice to the same machine as Seafile (only support deploying with [Docker](../setup/single_node_installation.md) with sufficient cores and RAM) using the `onlyoffice.yml` provided by Seafile according to this document, or you can deploy it to a different machine according to [OnlyOffice official document](https://github.com/ONLYOFFICE/Docker-DocumentServer).
 
 ## Generate JWT-Token (shared secret)
 
-> From Seafile 12.0, OnlyOffice's JWT verification will be forced to enable
+!!! note "From Seafile 12.0, OnlyOffice's JWT verification will be forced to enable"
 
 Secure communication between Seafile and OnlyOffice is granted by a shared secret. You can get the JWT secret by following command
 
@@ -49,7 +49,8 @@ ONLYOFFICE_FILE_EXTENSION = ('doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx', 'odt',
 ONLYOFFICE_JWT_SECRET = '<your jwt secret>'
 ```
 
-> By default OnlyOffice will use port **6233** used for communication between Seafile and Document Server, You can modify the bound port by specifying `ONLYOFFICE_PORT`, and port in the term `ONLYOFFICE_APIJS_URL` in `seahub_settings.py` has been modified together.
+!!! tip "Deployment Tips"
+    By default OnlyOffice will use port **6233** used for communication between Seafile and Document Server, You can modify the bound port by specifying `ONLYOFFICE_PORT`, and port in the term `ONLYOFFICE_APIJS_URL` in `seahub_settings.py` has been modified together.
 
 ### Advanced: Custom settings of OnlyOffice
 
@@ -93,24 +94,6 @@ service:
 ```
 
 For more information you can check the official documentation: <https://api.onlyoffice.com/editors/signature/> and <https://github.com/ONLYOFFICE/Docker-DocumentServer#available-configuration-parameters>
-
-### Create a database for OnlyOffice
-
-> By default, OnlyOffice will use the database information related to `SEAFILE_MYSQL_*` in `.env`. If you need to specify another existing database, please modify it in `onlyoffice.yml`
-
-First, you need to make sure the database service is started, and enter the seafile-mysql container
-
-```sh
-docker compose up -d
-docker exec -it seafile-mysql bash
-```
-
-In the container, you need to create the database `onlyoffice` and add corresponding permissions for the `seafile` user
-
-```sql
-create database if not exists onlyoffice charset utf8mb4;
-GRANT ALL PRIVILEGES ON `onlyoffice`.* to `seafile`@`%.%.%.%`;
-```
 
 ### Restart Seafile-docker instance and test that OnlyOffice is running
 

@@ -2,7 +2,7 @@
 
 #### Preparation
 
-The following list is what you need to install on your development machine. **You should install all of them before you build Seafile**.
+!!! note "The following list is what you need to install on your development machine. ***You should install all of them before you build Seafile***"
 
 Package names are according to Ubuntu 14.04. For other Linux distros, please find their corresponding names yourself.
 

@@ -28,9 +28,8 @@ vi /etc/memcached.conf
 -l 0.0.0.0
 
 service memcached restart
+service memcached enable # configure memcached to start on system startup
 ```
-
-**NOTE: Please configure memcached to start on system startup.**
 
 Install and configure Keepalived.
 

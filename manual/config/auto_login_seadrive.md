@@ -38,7 +38,7 @@ Note: Above configuration requires a reboot to take effect.
 
 Next, we shall test the auto login function on Internet Explorer: visit the website and click "Single Sign-On" link. It should be able to log in directly, otherwise the auto login is malfunctioned.
 
-Note: The address in the test must be same as the address specified in the keytab file. Otherwise, the client machine can't get a valid ticket from Kerberos.
+!!! note "The address in the test must be same as the address specified in the keytab file. Otherwise, the client machine can't get a valid ticket from Kerberos"
 
 ## Auto Login on SeaDrive
 

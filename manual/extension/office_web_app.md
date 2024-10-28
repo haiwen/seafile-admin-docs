@@ -2,7 +2,7 @@
 
 In Seafile Professional Server Version 4.4.0 (or above), you can use Microsoft Office Online Server (formerly named Office Web Apps) to preview documents online. Office Online Server provides the best preview for all Office format files. It also support collaborative editing of Office files directly in the web browser. For organizations with Microsoft Office Volume License, it's free to use Office Online Server. For more information about Office Online Server and how to deploy it, please refer to <https://technet.microsoft.com/en-us/library/jj219455(v=office.16).aspx>.
 
-**Notice**: Seafile only supports Office Online Server 2016 and above.
+!!! note "Seafile only supports Office Online Server 2016 and above"
 
 To use Office Online Server for preview, please add following config option to seahub_settings.py.
 
@@ -77,6 +77,6 @@ Understanding how the web app integration works is going to help you debugging t
 
 Please check the Nginx log for Seahub (for step 3) and Office Online Server to see which step is wrong.
 
-### Notes on Windows paging files
+!!! note "Notes on Windows paging files"
 
-You should make sure you have configured at least a few GB of paging files in your Windows system. Otherwise the IIS worker processes may die randomly when handling Office Online requests.
+    You should make sure you have configured at least a few GB of paging files in your Windows system. Otherwise the IIS worker processes may die randomly when handling Office Online requests.

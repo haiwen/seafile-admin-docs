@@ -46,8 +46,6 @@ BRANDING_CSS = 'custom/custom.css'
 
 ## Customize help page
 
-**Note:** Since version 2.1.
-
 First go to the custom folder
 
 ```
@@ -81,7 +79,9 @@ Result:
 
 ## Add custom navigation items
 
-Since Pro 7.0.9, Seafile supports adding some custom navigation entries to the home page for quick access. This requires you to add the following configuration information to the `conf/seahub_settings.py` configuration file:
+> Since Pro 7.0.9, Seafile supports adding some custom navigation entries to the home page for quick access.
+
+Add the following configuration information to the `conf/seahub_settings.py` configuration file:
 
 ```
 CUSTOM_NAV_ITEMS = [
@@ -100,7 +100,7 @@ CUSTOM_NAV_ITEMS = [
 ]
 ```
 
-**Note: The `icon` field currently only supports icons in Seafile that begin with `sf2-icon`. You can find the list of icons here: <hhttps://github.com/haiwen/seahub/blob/master/media/css/seahub.css>
+> The `icon` field currently only supports icons in Seafile that begin with `sf2-icon`. You can find the list of icons here: <hhttps://github.com/haiwen/seahub/blob/master/media/css/seahub.css>
 
 Then restart the Seahub service to take effect.
 
