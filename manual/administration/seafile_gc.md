@@ -101,7 +101,7 @@ seaf-gc.sh --rm-fs
 
 ```
 
-!!! warning "Bug reports"
+!!! danger "Bug reports"
 
     This command has bug before Pro Edition 10.0.15 and Community Edition 11.0.7. It could cause virtual libraries (e.g. shared folders) failing to merge into their parent libraries. Please avoid using this option in the affected versions. Please contact our support team if you are affected by this bug.
 
