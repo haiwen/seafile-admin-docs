@@ -4155,7 +4155,10 @@ nonvirus_code = 0
 </code></pre></div>
 <p>If a virus was detected, you can see scan records and delete infected files on the Virus Scan page in the admin area.
 <img alt="virus-scan" src="../../images/virus-scan.png" /></p>
-<p><strong>INFO</strong>: If you directly use clamav command line tool to scan files, scanning files will takes a lot of time. If you want to speed it up, we recommend to run Clamav as a daemon. Please refer to <a href="../virus_scan_with_clamav/">Run ClamAV as a Daemon</a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you directly use clamav command line tool to scan files, scanning files will takes a lot of time. If you want to speed it up, we recommend to run Clamav as a daemon. Please refer to <a href="../virus_scan_with_clamav/">Run ClamAV as a Daemon</a></p>
+</div>
 <p>When run Clamav as a daemon, the <code>scan_command</code> should be <code>clamdscan</code> in <code>seafile.conf</code>. An example for Clamav-daemon is provided below:
 <div class="highlight"><pre><span></span><code>[virus_scan]
 scan_command = clamdscan

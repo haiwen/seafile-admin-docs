@@ -4148,7 +4148,11 @@
 
 
 <h1 id="ccnetconf">ccnet.conf<a class="headerlink" href="#ccnetconf" title="Permanent link">&para;</a></h1>
-<p>Ccnet is the internal RPC framework used by Seafile server and also manages the user database. A few useful options are in ccnet.conf. Ccnet component is merged into seaf-server in version 7.1, but the configuration file are still needed.</p>
+<p>Ccnet is the internal RPC framework used by Seafile server and also manages the user database. A few useful options are in ccnet.conf. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ccnet component is merged into seaf-server in version 7.1, but the configuration file are still needed</p>
+</div>
 <h2 id="changing-mysql-connection-pool-size">Changing MySQL Connection Pool Size<a class="headerlink" href="#changing-mysql-connection-pool-size" title="Permanent link">&para;</a></h2>
 <p>When you configure ccnet to use MySQL, the default connection pool size is 100, which should be enough for most use cases. You can change this value by adding following options to ccnet.conf:</p>
 <div class="highlight"><pre><span></span><code>[Database]

@@ -3091,15 +3091,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#note" class="md-nav__link">
-    <span class="md-ellipsis">
-      Note
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -4366,15 +4357,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#note" class="md-nav__link">
-    <span class="md-ellipsis">
-      Note
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -4394,7 +4376,10 @@
 
 
 <h1 id="seahub-settings">Seahub Settings<a class="headerlink" href="#seahub-settings" title="Permanent link">&para;</a></h1>
-<p>Note: You can also modify most of the config items via web interface. The config items are saved in database table (seahub-db/constance_config). They have a higher priority over the items in config files. If you want to disable settings via web interface, you can add <code>ENABLE_SETTINGS_VIA_WEB = False</code> to <code>seahub_settings.py</code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can also modify most of the config items via web interface. The config items are saved in database table (seahub-db/constance_config). They have a higher priority over the items in config files. If you want to disable settings via web interface, you can add <code>ENABLE_SETTINGS_VIA_WEB = False</code> to <code>seahub_settings.py</code>.</p>
+</div>
 <h2 id="sending-email-notifications-on-seahub">Sending Email Notifications on Seahub<a class="headerlink" href="#sending-email-notifications-on-seahub" title="Permanent link">&para;</a></h2>
 <p>Refer to <a href="../sending_email/">email sending documentation</a>.</p>
 <h2 id="cache">Cache<a class="headerlink" href="#cache" title="Permanent link">&para;</a></h2>
@@ -4820,9 +4805,9 @@ def custom_search_user(request, emails):
 
     return filtered_emails
 </code></pre></div>
-<blockquote>
-<p><strong>NOTE</strong>, you should NOT change the name of <code>custom_search_user</code> and <code>seahub_custom_functions/__init__.py</code></p>
-</blockquote>
+<div class="admonition danger">
+<p class="admonition-title">You should NOT change the name of <code>custom_search_user</code> and <code>seahub_custom_functions/__init__.py</code></p>
+</div>
 <p>Since version 6.2.5 pro, if you enable the <strong>ENABLE_SHARE_TO_ALL_GROUPS</strong> feather on sysadmin settings page, you can also define a custom function to return the groups a user can share library to.</p>
 <p>For example, if you want to let a user to share library to both its groups and the groups of user <code>test@test.com</code>, you can define a <code>custom_get_groups</code> function in <code>{seafile install path}/conf/seahub_custom_functions/__init__.py</code></p>
 <p>Code example:</p>
@@ -4849,16 +4834,18 @@ def custom_get_groups(request):
 
     return groups
 </code></pre></div>
-<blockquote>
-<p><strong>NOTE</strong>, you should NOT change the name of <code>custom_get_groups</code> and <code>seahub_custom_functions/__init__.py</code></p>
-</blockquote>
-<h2 id="note">Note<a class="headerlink" href="#note" title="Permanent link">&para;</a></h2>
+<div class="admonition danger">
+<p class="admonition-title">You should NOT change the name of <code>custom_get_groups</code> and <code>seahub_custom_functions/__init__.py</code></p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
 <ul>
 <li>You need to restart seahub so that your changes take effect.</li>
 <li>If your changes don't take effect, You may need to delete 'seahub_setting.pyc'. (A cache file)</li>
 </ul>
 <div class="highlight"><pre><span></span><code>./seahub.sh<span class="w"> </span>restart
 </code></pre></div>
+</div>
 
 
 

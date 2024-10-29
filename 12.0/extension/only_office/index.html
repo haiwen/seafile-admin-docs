@@ -2147,15 +2147,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#create-a-database-for-onlyoffice" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create a database for OnlyOffice
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#restart-seafile-docker-instance-and-test-that-onlyoffice-is-running" class="md-nav__link">
     <span class="md-ellipsis">
       Restart Seafile-docker instance and test that OnlyOffice is running
@@ -4225,15 +4216,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#create-a-database-for-onlyoffice" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create a database for OnlyOffice
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#restart-seafile-docker-instance-and-test-that-onlyoffice-is-running" class="md-nav__link">
     <span class="md-ellipsis">
       Restart Seafile-docker instance and test that OnlyOffice is running
@@ -4387,18 +4369,6 @@
 ...
 </code></pre></div>
 <p>For more information you can check the official documentation: <a href="https://api.onlyoffice.com/editors/signature/">https://api.onlyoffice.com/editors/signature/</a> and <a href="https://github.com/ONLYOFFICE/Docker-DocumentServer#available-configuration-parameters">https://github.com/ONLYOFFICE/Docker-DocumentServer#available-configuration-parameters</a></p>
-<h3 id="create-a-database-for-onlyoffice">Create a database for OnlyOffice<a class="headerlink" href="#create-a-database-for-onlyoffice" title="Permanent link">&para;</a></h3>
-<blockquote>
-<p>By default, OnlyOffice will use the database information related to <code>SEAFILE_MYSQL_*</code> in <code>.env</code>. If you need to specify another existing database, please modify it in <code>onlyoffice.yml</code></p>
-</blockquote>
-<p>First, you need to make sure the database service is started, and enter the seafile-mysql container</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-mysql<span class="w"> </span>bash
-</code></pre></div>
-<p>In the container, you need to create the database <code>onlyoffice</code> and add corresponding permissions for the <code>seafile</code> user</p>
-<div class="highlight"><pre><span></span><code><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">onlyoffice</span><span class="w"> </span><span class="n">charset</span><span class="w"> </span><span class="n">utf8mb4</span><span class="p">;</span>
-<span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">`</span><span class="n">onlyoffice</span><span class="o">`</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="o">`</span><span class="n">seafile</span><span class="o">`@`%</span><span class="p">.</span><span class="o">%</span><span class="p">.</span><span class="o">%</span><span class="p">.</span><span class="o">%`</span><span class="p">;</span>
-</code></pre></div>
 <h3 id="restart-seafile-docker-instance-and-test-that-onlyoffice-is-running">Restart Seafile-docker instance and test that OnlyOffice is running<a class="headerlink" href="#restart-seafile-docker-instance-and-test-that-onlyoffice-is-running" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>down
 docker-compose<span class="w"> </span>up<span class="w"> </span>-d

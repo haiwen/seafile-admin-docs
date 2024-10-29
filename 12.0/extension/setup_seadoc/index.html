@@ -1981,24 +1981,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#seadoc-and-seafile-docker-are-deployed-on-the-same-host" class="md-nav__link">
-    <span class="md-ellipsis">
-      SeaDoc and Seafile docker are deployed on the same host
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#deploy-seadoc-on-a-new-host" class="md-nav__link">
-    <span class="md-ellipsis">
-      Deploy SeaDoc on a new host
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#seadoc-directory-structure" class="md-nav__link">
     <span class="md-ellipsis">
       SeaDoc directory structure
@@ -4167,24 +4149,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#seadoc-and-seafile-docker-are-deployed-on-the-same-host" class="md-nav__link">
-    <span class="md-ellipsis">
-      SeaDoc and Seafile docker are deployed on the same host
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#deploy-seadoc-on-a-new-host" class="md-nav__link">
-    <span class="md-ellipsis">
-      Deploy SeaDoc on a new host
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#seadoc-directory-structure" class="md-nav__link">
     <span class="md-ellipsis">
       SeaDoc directory structure
@@ -4248,20 +4212,11 @@
 </ol>
 <h2 id="deployment-method">Deployment method<a class="headerlink" href="#deployment-method" title="Permanent link">&para;</a></h2>
 <p>SeaDoc has the following deployment methods:</p>
-<ul>
-<li><a href="#seadoc-and-seafile-docker-are-deployed-on-the-same-host">SeaDoc and Seafile docker are deployed on the same host</a>.</li>
-<li><a href="#deploy-seadoc-on-a-new-host">Deploy SeaDoc on a new host</a>.</li>
-</ul>
-<blockquote>
-<p>Seafile version 11.0 or later is required to work with SeaDoc.</p>
-</blockquote>
-<h2 id="seadoc-and-seafile-docker-are-deployed-on-the-same-host">SeaDoc and Seafile docker are deployed on the same host<a class="headerlink" href="#seadoc-and-seafile-docker-are-deployed-on-the-same-host" title="Permanent link">&para;</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">SeaDoc and Seafile docker are deployed on the same host</label><label for="__tabbed_1_2">Deploy SeaDoc on a new host</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <p>Download the <code>seadoc.yml</code> and integrate SeaDoc in Seafile docker.</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># for community edition</span>
-wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/ce/seadoc.yml
-
-<span class="c1"># for pro edition</span>
-wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/pro/seadoc.yml
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/seadoc.yml
 </code></pre></div>
 <p>Modify <code>.env</code>, and insert <code>seadoc.yml</code> into <code>COMPOSE_FILE</code>, and enable SeaDoc server</p>
 <div class="highlight"><pre><span></span><code><span class="nv">COMPOSE_FILE</span><span class="o">=</span><span class="s1">&#39;seafile-server.yml,caddy.yml,seadoc.yml&#39;</span>
@@ -4269,28 +4224,69 @@ wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/pro/seadoc.ym
 <span class="nv">ENABLE_SEADOC</span><span class="o">=</span><span class="nb">true</span>
 <span class="nv">SEADOC_SERVER_URL</span><span class="o">=</span>https://example.seafile.com/sdoc-server
 </code></pre></div>
-<p>Start SeaDoc server with the following command</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
-<p>Now you can use SeaDoc!</p>
-<h2 id="deploy-seadoc-on-a-new-host">Deploy SeaDoc on a new host<a class="headerlink" href="#deploy-seadoc-on-a-new-host" title="Permanent link">&para;</a></h2>
+</div>
+<div class="tabbed-block">
 <p>Download and modify the <code>.env</code> and <code>seadoc.yml</code> files.</p>
-<p>Download <a href="../../docker/seadoc/1.0/standalone/seadoc.yml">seadoc.yml</a> and <a href="../../docker/seadoc/1.0/standalone/env">.env</a> sample files to your host. Then modify the <code>.env</code> file according to your environment. The following fields are needed to be modified:</p>
-<ul>
-<li><code>SEADOC_VOLUME</code>: The volume directory of SeaDoc data</li>
-<li><code>SEAFILE_MYSQL_DB_HOST</code>: Seafile MySQL host</li>
-<li><code>SEAFILE_MYSQL_DB_USER</code>: Seafile MySQL user, default is <code>seafile</code></li>
-<li><code>SEAFILE_MYSQL_DB_PASSWORD</code>: Seafile MySQL password</li>
-<li><code>TIME_ZONE</code>: Time zone</li>
-<li><code>JWT_PRIVATE_KEY</code>: JWT key, the same as the config in Seafile <code>.env</code> file</li>
-<li><code>SEAFILE_SERVER_HOSTNAME</code>: Seafile host name</li>
-<li><code>SEAFILE_SERVER_PROTOCOL</code>: http or https</li>
-<li><code>SEADOC_SERVER_URL</code>: SeaDoc service URL</li>
-</ul>
+<p><div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/seadoc/1.0/standalone/seadoc.yml
+wget<span class="w"> </span>-o<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/12.0/docker/seadoc/1.0/standalone/env.yml
+</code></pre></div>
+Then modify the <code>.env</code> file according to your environment. The following fields are needed to be modified:</p>
+<table>
+<thead>
+<tr>
+<th>variable</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SEADOC_VOLUME</code></td>
+<td>The volume directory of SeaDoc data</td>
+</tr>
+<tr>
+<td><code>SEAFILE_MYSQL_DB_HOST</code></td>
+<td>Seafile MySQL host</td>
+</tr>
+<tr>
+<td><code>SEAFILE_MYSQL_DB_USER</code></td>
+<td>Seafile MySQL user, default is <code>seafile</code></td>
+</tr>
+<tr>
+<td><code>SEAFILE_MYSQL_DB_PASSWORD</code></td>
+<td>Seafile MySQL password</td>
+</tr>
+<tr>
+<td><code>TIME_ZONE</code></td>
+<td>Time zone</td>
+</tr>
+<tr>
+<td><code>JWT_PRIVATE_KEY</code></td>
+<td>JWT key, the same as the config in Seafile <code>.env</code> file</td>
+</tr>
+<tr>
+<td><code>SEAFILE_SERVER_HOSTNAME</code></td>
+<td>Seafile host name</td>
+</tr>
+<tr>
+<td><code>SEAFILE_SERVER_PROTOCOL</code></td>
+<td>http or https</td>
+</tr>
+<tr>
+<td><code>SEADOC_SERVER_URL</code></td>
+<td>SeaDoc service URL</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please bind SeaDoc server url and ip in the load balance(or reverse proxy) configuration after starting SeaDoc server</p>
+</div>
+</div>
+</div>
+</div>
 <p>Start SeaDoc server with the following command</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
-<p>Then bind SeaDoc server url and ip in the load balance(or reverse proxy) configuration.</p>
 <p>Now you can use SeaDoc!</p>
 <h2 id="seadoc-directory-structure">SeaDoc directory structure<a class="headerlink" href="#seadoc-directory-structure" title="Permanent link">&para;</a></h2>
 <p><code>/opt/seadoc-data</code></p>

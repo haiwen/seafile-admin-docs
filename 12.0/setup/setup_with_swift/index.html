@@ -4240,7 +4240,9 @@ auth_host = 192.168.56.31:5000
 auth_ver = v3.0
 region = yourRegion
 </code></pre></div>
-<p>You also need to add <a href="../../config/seafile-conf/#cache-pro-edition-only">memory cache configurations</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">You also need to add <a href="../../config/seafile-conf/#cache-pro-edition-only">memory cache configurations</a></p>
+</div>
 <p>The above config is just an example. You should replace the options according to your own environment.</p>
 <p>Seafile supports Swift with Keystone as authentication mechanism. The <code>auth_host</code> option is the address and port of Keystone service.The <code>region</code> option is used to select publicURL,if you don't configure it, use the first publicURL in returning authenticated information.</p>
 <p>Seafile also supports Tempauth and Swauth since professional edition 6.2.1. The <code>auth_ver</code> option should be set to <code>v1.0</code>, <code>tenant</code> and <code>region</code> are no longer needed.</p>

@@ -4367,7 +4367,9 @@ storage_classes_file = /opt/seafile_storage_classes.json
 <li>enable_storage_classes ：If this is set to true, the storage class feature is enabled. You must define the storage classes in a JSON file provided in the next configuration option.</li>
 <li>storage_classes_file：Specifies the path for the JSON file that contains the storage class definition.</li>
 </ul>
-<p>You also need to add <a href="../../config/seafile-conf/#cache-pro-edition-only">memory cache configurations</a> to <code>seafile.conf</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">You also need to add <a href="../../config/seafile-conf/#cache-pro-edition-only">memory cache configurations</a> to <code>seafile.conf</code></p>
+</div>
 <h3 id="notes-for-docker-installs">Notes for Docker Installs<a class="headerlink" href="#notes-for-docker-installs" title="Permanent link">&para;</a></h3>
 <p>If installing Seafile as Docker containers, place the <code>seafile_storage_classes.json</code> file on your local disk in a sub-directory of the location that is mounted to the <code>seafile</code> container, and set the <code>storage_classes_file</code> configuration above to a path <strong><em>relative to the <code>/shared/</code> directory mounted on the <code>seafile</code> container</em></strong>.  </p>
 <p>For example, if the configuration of the <code>seafile</code> container in your <code>docker-compose.yml</code> file is similar to the following:
@@ -4383,7 +4385,9 @@ storage_classes_file = /opt/seafile_storage_classes.json
 <span class="n">enable_storage_classes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
 <span class="n">storage_classes_file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">/shared/conf/seafile</span><span class="mi">_</span><span class="n">storage_classes</span><span class="p">.</span><span class="n">json</span>
 </code></pre></div>
-<p>You also need to add <a href="../../config/seafile-conf/#cache-pro-edition-only">memory cache configurations</a> to <code>seafile.conf</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">You also need to add <a href="../../config/seafile-conf/#cache-pro-edition-only">memory cache configurations</a> to <code>seafile.conf</code></p>
+</div>
 <h2 id="defining-storage-backends">Defining Storage Backends<a class="headerlink" href="#defining-storage-backends" title="Permanent link">&para;</a></h2>
 <p>The JSON file is an array of objects. Each object defines a storage class. The fields in the definition corresponds to the information we need to specify for a storage class. Below is an example:</p>
 <div class="highlight"><pre><span></span><code><span class="p">[</span>
@@ -4482,7 +4486,9 @@ storage_classes_file = /opt/seafile_storage_classes.json
 </code></pre></div>
 <p>As you may have seen, the <code>commits</code>, <code>fs</code> and <code>blocks</code> information syntax is similar to what is used in <code>[commit_object_backend]</code>, <code>[fs_object_backend]</code> and <code>[block_backend]</code> section of seafile.conf. Refer to the detailed syntax in the documentation for the storage you use. For exampe, if you use S3 storage, refer to <a href="../setup_with_amazon_s3/">S3 Storage</a>.</p>
 <p>If you use file system as storage for <code>fs</code>, <code>commits</code> or <code>blocks</code>, you must explicitly provide the path for the <code>seafile-data</code> directory. The objects will be stored in <code>storage/commits</code>, <code>storage/fs</code>, <code>storage/blocks</code> under this path. </p>
-<p><em>Note</em>: Currently file system, S3 and Swift backends are supported. Ceph/RADOS is also supported since version 7.0.14.</p>
+<div class="admonition note">
+<p class="admonition-title">Currently file system, S3 and Swift backends are supported. Ceph/RADOS is also supported since version 7.0.14</p>
+</div>
 <h2 id="library-mapping-policies">Library Mapping Policies<a class="headerlink" href="#library-mapping-policies" title="Permanent link">&para;</a></h2>
 <p>Library mapping policies decide the storage class a library uses. Currently we provide 3 policies for 3 different use cases. The storage class of a library is decided on creation and stored in a database table. The storage class of a library won't change if the mapping policy is changed later.</p>
 <p>Before choosing your mapping policy, you need to enable the storage classes feature in seahub_settings.py:</p>
@@ -4532,7 +4538,10 @@ ENABLED_ROLE_PERMISSIONS = {
 </code></pre></div>
 <h3 id="library-id-based-mapping">Library ID Based Mapping<a class="headerlink" href="#library-id-based-mapping" title="Permanent link">&para;</a></h3>
 <p>This policy maps libraries to storage classes based on its library ID. The ID of a library is an UUID. In this way, the data in the system can be evenly distributed among the storage classes.</p>
-<p>Note that this policy is not a designed to be a complete distributed storage solution. It doesn't handle automatic migration of library data between storage classes. If you need to add more storage classes to the configuration, existing libraries will stay in their original storage classes. New libraries can be distributed among the new storage classes (backends). You still have to plan about the total storage capacity of your system at the beginning.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This policy is not a designed to be a complete distributed storage solution. It doesn't handle automatic migration of library data between storage classes. If you need to add more storage classes to the configuration, existing libraries will stay in their original storage classes. New libraries can be distributed among the new storage classes (backends). You still have to plan about the total storage capacity of your system at the beginning.</p>
+</div>
 <p>To use this policy, you first add following options in seahub_settings.py:</p>
 <div class="highlight"><pre><span></span><code>STORAGE_CLASS_MAPPING_POLICY = &#39;REPO_ID_MAPPING&#39;
 </code></pre></div>

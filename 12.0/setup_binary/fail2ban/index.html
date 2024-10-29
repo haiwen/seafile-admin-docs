@@ -1918,15 +1918,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#note" class="md-nav__link">
-    <span class="md-ellipsis">
-      Note
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -4277,15 +4268,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#note" class="md-nav__link">
-    <span class="md-ellipsis">
-      Note
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -4313,13 +4295,17 @@
 <p>Fail2ban will check this log file and will ban all failed authentications with a new rule in your firewall.</p>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
 <h4 id="change-to-right-time-zone-in-seahub_settingspy">Change to right Time Zone in seahub_settings.py<a class="headerlink" href="#change-to-right-time-zone-in-seahub_settingspy" title="Permanent link">&para;</a></h4>
-<p><strong><em>WARNING: Without this your Fail2Ban filter will not work.</em></strong></p>
+<div class="admonition danger">
+<p class="admonition-title">Without this your Fail2Ban filter will not work</p>
+</div>
 <p>You need to add the following settings to seahub_settings.py but change it to your own time zone.
 <div class="highlight"><pre><span></span><code> # TimeZone
  TIME_ZONE = &#39;Europe/Stockholm&#39;
 </code></pre></div></p>
 <h4 id="copy-and-edit-jaillocal-file">Copy and edit jail.local file<a class="headerlink" href="#copy-and-edit-jaillocal-file" title="Permanent link">&para;</a></h4>
-<p><strong><em>WARNING: this file may override some parameters from your <code>jail.conf</code> file</em></strong></p>
+<div class="admonition warning">
+<p class="admonition-title">this file may override some parameters from your <code>jail.conf</code> file</p>
+</div>
 <p>Edit <code>jail.local</code> with :
 * ports used by your seafile website (e.g. <code>http,https</code>) ;
 * logpath (e.g. <code>/home/yourusername/logs/seahub.log</code>) ;
@@ -4405,8 +4391,10 @@ Status for the jail: seafile
 <p>To unban your IP address, just execute this command :</p>
 <div class="highlight"><pre><span></span><code>sudo fail2ban-client set seafile unbanip 1.2.3.4
 </code></pre></div>
-<h2 id="note">Note<a class="headerlink" href="#note" title="Permanent link">&para;</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
 <p>As three (3) failed attempts to login will result in one line added in seahub.log a Fail2Ban jail with the settings maxretry = 3 is the same as nine (9) failed attempts to login.</p>
+</div>
 
 
 

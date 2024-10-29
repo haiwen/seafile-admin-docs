@@ -997,15 +997,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#troubleshooting-librados-incompatibility-issues" class="md-nav__link">
-    <span class="md-ellipsis">
-      Troubleshooting librados incompatibility issues
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#use-arbitary-ceph-user" class="md-nav__link">
     <span class="md-ellipsis">
       Use arbitary Ceph user
@@ -4188,15 +4179,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#troubleshooting-librados-incompatibility-issues" class="md-nav__link">
-    <span class="md-ellipsis">
-      Troubleshooting librados incompatibility issues
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#use-arbitary-ceph-user" class="md-nav__link">
     <span class="md-ellipsis">
       Use arbitary Ceph user
@@ -4234,14 +4216,7 @@
 <p>We recommend to allocate at least 128MB memory for object cache.</p>
 <h2 id="install-python-ceph-library">Install Python Ceph Library<a class="headerlink" href="#install-python-ceph-library" title="Permanent link">&para;</a></h2>
 <p>File search and WebDAV functions rely on Python Ceph library installed in the system.</p>
-<p>On Debian/Ubuntu (Seafile 7.1+):</p>
-<div class="highlight"><pre><span></span><code>sudo apt-get install python3-rados
-</code></pre></div>
-<p>On Debian/Ubuntu (Seafile 7.0 or below):</p>
-<div class="highlight"><pre><span></span><code>sudo apt-get install python-ceph
-</code></pre></div>
-<p>On RedHat/CentOS (Seafile 7.0 or below):</p>
-<div class="highlight"><pre><span></span><code>sudo yum install python-rados
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>python3-rados
 </code></pre></div>
 <h2 id="edit-seafile-configuration">Edit seafile configuration<a class="headerlink" href="#edit-seafile-configuration" title="Permanent link">&para;</a></h2>
 <p>Edit <code>seafile.conf</code>, add the following lines:</p>
@@ -4260,18 +4235,22 @@ name = ceph
 ceph_config = /etc/ceph/ceph.conf
 pool = seafile-fs
 </code></pre></div>
-<p>You also need to add <a href="../../config/seafile-conf/#cache-pro-edition-only">memory cache configurations</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">You also need to add <a href="../../config/seafile-conf/#cache-pro-edition-only">memory cache configurations</a></p>
+</div>
 <p>It's required to create separate pools for commit, fs, and block objects.</p>
 <div class="highlight"><pre><span></span><code>ceph-admin-node# rados mkpool seafile-blocks
 ceph-admin-node# rados mkpool seafile-commits
 ceph-admin-node# rados mkpool seafile-fs
 </code></pre></div>
-<h2 id="troubleshooting-librados-incompatibility-issues">Troubleshooting librados incompatibility issues<a class="headerlink" href="#troubleshooting-librados-incompatibility-issues" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Troubleshooting librados incompatibility issues</p>
 <p>Since 8.0 version, Seafile bundles librados from Ceph 16. On some systems you may find Seafile fail to connect to your Ceph cluster. In such case, you can usually solve it by removing the bundled librados libraries and use the one installed in the OS.</p>
 <p>To do this, you have to remove a few bundled libraries:</p>
 <div class="highlight"><pre><span></span><code>cd seafile-server-latest/seafile/lib
 rm librados.so.2 libstdc++.so.6 libnspr4.so
 </code></pre></div>
+</div>
 <h2 id="use-arbitary-ceph-user">Use arbitary Ceph user<a class="headerlink" href="#use-arbitary-ceph-user" title="Permanent link">&para;</a></h2>
 <p>The above configuration will use the default (client.admin) user to connect to Ceph.
 You may want to use some other Ceph user to connect. This is supported in Seafile.

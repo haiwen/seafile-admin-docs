@@ -914,9 +914,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#optseafile-data" class="md-nav__link">
+  <a href="#path-optseafile-data" class="md-nav__link">
     <span class="md-ellipsis">
-      /opt/seafile-data
+      Path /opt/seafile-data
     </span>
   </a>
   
@@ -4322,9 +4322,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#optseafile-data" class="md-nav__link">
+  <a href="#path-optseafile-data" class="md-nav__link">
     <span class="md-ellipsis">
-      /opt/seafile-data
+      Path /opt/seafile-data
     </span>
   </a>
   
@@ -4392,7 +4392,10 @@
 <h1 id="installation-of-seafile-server-professional-edition-with-docker">Installation of Seafile Server Professional Edition with Docker<a class="headerlink" href="#installation-of-seafile-server-professional-edition-with-docker" title="Permanent link">&para;</a></h1>
 <p>This manual explains how to deploy and run Seafile Server Professional Edition (Seafile PE) on a Linux server using Docker and Docker Compose. The deployment has been tested for Debian/Ubuntu and CentOS, but Seafile PE should also work on other Linux distributions.</p>
 <h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
-<p>Seafile PE requires a minimum of 2 cores and 2GB RAM. If Elasticsearch is installed on the same server, the minimum requirements are 4 cores and 4 GB RAM, and make sure the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules-store.html#mmapfs">mmapfs counts</a> do not cause excptions like out of memory, which can be increased by following command (see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html</a> for futher details):</p>
+<p>Seafile PE requires a minimum of 2 cores and 2GB RAM. </p>
+<div class="admonition note">
+<p class="admonition-title">Other requirements for Seafile PE</p>
+<p>If Elasticsearch is installed on the same server, the minimum requirements are 4 cores and 4 GB RAM, and make sure the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules-store.html#mmapfs">mmapfs counts</a> do not cause excptions like out of memory, which can be increased by following command (see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html</a> for futher details):</p>
 <div class="highlight"><pre><span></span><code>sysctl<span class="w"> </span>-w<span class="w"> </span>vm.max_map_count<span class="o">=</span><span class="m">262144</span><span class="w"> </span><span class="c1">#run as root</span>
 </code></pre></div>
 <p>or modify <strong>/etc/sysctl.conf</strong> and reboot to set this value permanently:</p>
@@ -4401,7 +4404,11 @@
 <span class="c1"># modify vm.max_map_count</span>
 vm.max_map_count<span class="o">=</span><span class="m">262144</span>
 </code></pre></div>
-<p>Seafile PE can be used without a paid license with up to three users. Licenses for more user can be purchased in the <a href="https://customer.seafile.com">Seafile Customer Center</a> or contact Seafile Sales at sales@seafile.com.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">About license</p>
+<p>Seafile PE can be used without a paid license with up to three users. Licenses for more user can be purchased in the <a href="https://customer.seafile.com">Seafile Customer Center</a> or contact Seafile Sales at <a href="mailto:sales@seafile.com">sales@seafile.com</a>. For futher details, please refer the <a href="../../setup_binary/seafile_professional_sdition_software_license_agreement/">license page</a> of Seafile PE.</p>
+</div>
 <h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
 <p>The following assumptions and conventions are used in the rest of this document:</p>
 <ul>
@@ -4417,10 +4424,12 @@ vm.max_map_count<span class="o">=</span><span class="m">262144</span>
 docker<span class="w"> </span>pull<span class="w"> </span>docker.seadrive.org/seafileltd/seafile-pro-mc:12.0-latest
 </code></pre></div>
 <p>When prompted, enter the username and password of the private repository. They are available on the download page in the <a href="https://customer.seafile.com/downloads">Customer Center</a>.</p>
-<p>NOTE: Older Seafile PE versions are also available in the repository (back to Seafile 7.0). To pull an older version, replace '12.0-latest' tag by the desired version.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Older Seafile PE versions are also available in the repository (back to Seafile 7.0). To pull an older version, replace '12.0-latest' tag by the desired version.</p>
+</div>
 <h3 id="downloading-and-modifying-env">Downloading and Modifying <code>.env</code><a class="headerlink" href="#downloading-and-modifying-env" title="Permanent link">&para;</a></h3>
 <p>From Seafile Docker 12.0, we use <code>.env</code>, <code>seafile-server.yml</code>  and <code>caddy.yml</code> files for configuration.</p>
-<p>NOTE: Different versions of Seafile have different compose files.</p>
 <div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>/opt/seafile
 <span class="nb">cd</span><span class="w"> </span>/opt/seafile
 
@@ -4432,21 +4441,82 @@ wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/pro/caddy.yml
 nano<span class="w"> </span>.env
 </code></pre></div>
 <p>The following fields merit particular attention:</p>
-<ul>
-<li><code>SEAFILE_VOLUME</code>: The volume directory of Seafile data, default is <code>/opt/seafile-data</code></li>
-<li><code>SEAFILE_MYSQL_VOLUME</code>: The volume directory of MySQL data, default is <code>/opt/seafile-mysql/db</code></li>
-<li><code>SEAFILE_CADDY_VOLUME</code>: The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's, default is <code>/opt/seafile-caddy</code></li>
-<li><code>SEAFILE_ELASTICSEARCH_VOLUME</code>: The volume directory of Elasticsearch data, default is <code>/opt/seafile-elasticsearch/data</code></li>
-<li><code>INIT_SEAFILE_MYSQL_ROOT_PASSWORD</code>: The <code>root</code> password of MySQL</li>
-<li><code>SEAFILE_MYSQL_DB_USER</code>: The user of MySQL (<code>database</code> - <code>user</code> can be found in <code>conf/seafile.conf</code>)</li>
-<li><code>SEAFILE_MYSQL_DB_PASSWORD</code>: The user <code>seafile</code> password of MySQL</li>
-<li><code>JWT</code>: JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: <code>pwgen -s 40 1</code></li>
-<li><code>SEAFILE_SERVER_HOSTNAME</code>: Seafile server hostname or domain</li>
-<li><code>SEAFILE_SERVER_PROTOCOL</code>: Seafile server protocol (http or https)</li>
-<li><code>TIME_ZONE</code>: Time zone (default UTC)</li>
-<li><code>INIT_SEAFILE_ADMIN_EMAIL</code>: Admin username</li>
-<li><code>INIT_SEAFILE_ADMIN_PASSWORD</code>: Admin password</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SEAFILE_VOLUME</code></td>
+<td>The volume directory of Seafile data</td>
+<td><code>/opt/seafile-data</code></td>
+</tr>
+<tr>
+<td><code>SEAFILE_MYSQL_VOLUME</code></td>
+<td>The volume directory of MySQL data</td>
+<td><code>/opt/seafile-mysql/db</code></td>
+</tr>
+<tr>
+<td><code>SEAFILE_CADDY_VOLUME</code></td>
+<td>The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's</td>
+<td><code>/opt/seafile-caddy</code></td>
+</tr>
+<tr>
+<td><code>SEAFILE_ELASTICSEARCH_VOLUME</code></td>
+<td>(Only valid for Seafile PE) The volume directory of Elasticsearch data</td>
+<td><code>/opt/seafile-elasticsearch/data</code></td>
+</tr>
+<tr>
+<td><code>INIT_SEAFILE_MYSQL_ROOT_PASSWORD</code></td>
+<td>The <code>root</code> password of MySQL</td>
+<td>(required)</td>
+</tr>
+<tr>
+<td><code>SEAFILE_MYSQL_DB_USER</code></td>
+<td>The user of MySQL (<code>database</code> - <code>user</code> can be found in <code>conf/seafile.conf</code>)</td>
+<td><code>seafile</code></td>
+</tr>
+<tr>
+<td><code>SEAFILE_MYSQL_DB_PASSWORD</code></td>
+<td>The user <code>seafile</code> password of MySQL</td>
+<td>(required)</td>
+</tr>
+<tr>
+<td><code>JWT</code></td>
+<td>JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters is required for Seafile, which can be generated by using <code>pwgen -s 40 1</code></td>
+<td>(required)</td>
+</tr>
+<tr>
+<td><code>SEAFILE_SERVER_HOSTNAME</code></td>
+<td>Seafile server hostname or domain</td>
+<td>(required)</td>
+</tr>
+<tr>
+<td><code>SEAFILE_SERVER_PROTOCOL</code></td>
+<td>Seafile server protocol (http or https)</td>
+<td><code>http</code></td>
+</tr>
+<tr>
+<td><code>TIME_ZONE</code></td>
+<td>Time zone</td>
+<td><code>UTC</code></td>
+</tr>
+<tr>
+<td><code>INIT_SEAFILE_ADMIN_EMAIL</code></td>
+<td>Admin username</td>
+<td>me@example.com</td>
+</tr>
+<tr>
+<td><code>INIT_SEAFILE_ADMIN_PASSWORD</code></td>
+<td>Admin password</td>
+<td>asecret</td>
+</tr>
+</tbody>
+</table>
 <p>To conclude, set the directory permissions of the Elasticsearch volumne:</p>
 <div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/opt/seafile-elasticsearch/data
 chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>-R<span class="w"> </span>/opt/seafile-elasticsearch/data
@@ -4455,8 +4525,16 @@ chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>-
 <p>Run docker compose in detached mode:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
-<p>NOTE: You must run the above command in the directory with the <code>.env</code>.</p>
-<p>Wait a few moment for the database to initialize. You can now access Seafile at the host name specified in the Compose file. (A 502 Bad Gateway error means that the system has not yet completed the initialization.)</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You must run the above command in the directory with the <code>.env</code>. If <code>.env</code> file is elsewhere, please run</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>/path/to/.env<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+<p>Wait a few moment for the database to initialize. You can now access Seafile at the host name specified in the Compose file. </p>
+<div class="admonition tip">
+<p class="admonition-title">A 502 Bad Gateway error means that the system has not yet completed the initialization</p>
+</div>
 <h3 id="find-logs">Find logs<a class="headerlink" href="#find-logs" title="Permanent link">&para;</a></h3>
 <p>To view Seafile docker logs, please use the following command</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>-f
@@ -4471,7 +4549,7 @@ chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>-
 docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
 <h2 id="seafile-directory-structure">Seafile directory structure<a class="headerlink" href="#seafile-directory-structure" title="Permanent link">&para;</a></h2>
-<h3 id="optseafile-data"><code>/opt/seafile-data</code><a class="headerlink" href="#optseafile-data" title="Permanent link">&para;</a></h3>
+<h3 id="path-optseafile-data">Path <code>/opt/seafile-data</code><a class="headerlink" href="#path-optseafile-data" title="Permanent link">&para;</a></h3>
 <p>Placeholder spot for shared volumes. You may elect to store certain persistent information outside of a container, in our case we keep various log files and upload directory outside. This allows you to rebuild containers easily without losing important information.</p>
 <ul>
 <li>/opt/seafile-data/seafile: This is the directory for seafile server configuration 、logs and data.</li>

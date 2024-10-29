@@ -2622,18 +2622,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#integration-with-microsoft-azure-saml-single-sign-on-app" class="md-nav__link">
+  <a href="#microsoft-azure-saml-single-sign-on-app" class="md-nav__link">
     <span class="md-ellipsis">
-      Integration with Microsoft Azure SAML single sign-on app
+      Microsoft Azure SAML single sign-on app
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#integration-with-on-premise-adfs" class="md-nav__link">
+  <a href="#on-premise-adfs" class="md-nav__link">
     <span class="md-ellipsis">
-      Integration with on-premise ADFS
+      On-premise ADFS
     </span>
   </a>
   
@@ -4157,18 +4157,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#integration-with-microsoft-azure-saml-single-sign-on-app" class="md-nav__link">
+  <a href="#microsoft-azure-saml-single-sign-on-app" class="md-nav__link">
     <span class="md-ellipsis">
-      Integration with Microsoft Azure SAML single sign-on app
+      Microsoft Azure SAML single sign-on app
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#integration-with-on-premise-adfs" class="md-nav__link">
+  <a href="#on-premise-adfs" class="md-nav__link">
     <span class="md-ellipsis">
-      Integration with on-premise ADFS
+      On-premise ADFS
     </span>
   </a>
   
@@ -4213,9 +4213,11 @@ $ apt install dnsutils  # For multi-tenancy feature
 <div class="highlight"><pre><span></span><code>$ cd /opt/seafile/seahub-data/certs
 $ openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout sp.key -out sp.crt
 </code></pre></div>
-<p><strong>Note</strong>: The <code>days</code> option indicates the validity period of the generated certificate. The unit is day. The system admin needs to update the certificate regularly.</p>
+<div class="admonition tip">
+<p class="admonition-title">The <code>days</code> option indicates the validity period of the generated certificate. The unit is day. The system admin needs to update the certificate regularly</p>
+</div>
 <h2 id="integration-with-adfssaml-single-sign-on">Integration with ADFS/SAML single sign-on<a class="headerlink" href="#integration-with-adfssaml-single-sign-on" title="Permanent link">&para;</a></h2>
-<h3 id="integration-with-microsoft-azure-saml-single-sign-on-app">Integration with Microsoft Azure SAML single sign-on app<a class="headerlink" href="#integration-with-microsoft-azure-saml-single-sign-on-app" title="Permanent link">&para;</a></h3>
+<h3 id="microsoft-azure-saml-single-sign-on-app">Microsoft Azure SAML single sign-on app<a class="headerlink" href="#microsoft-azure-saml-single-sign-on-app" title="Permanent link">&para;</a></h3>
 <p>If you use Microsoft Azure SAML app to achieve single sign-on, please follow the steps below:</p>
 <p><strong>First</strong>, add SAML single sign-on app and assign users, refer to: <a href="https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal">add an Azure AD SAML application</a>, <a href="https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal-assign-users">create and assign users</a>.</p>
 <p><strong>Second</strong>, setup the <em>Identifier</em>, <em>Reply URL</em>, and <em>Sign on URL</em> of the SAML app based on your service URL, refer to: <a href="https://learn.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal-setup-sso">enable single sign-on for saml app</a>. The format of the <em>Identifier</em>, <em>Reply URL</em>, and <em>Sign on URL</em> are: https://example.com/saml2/metadata/, https://example.com/saml2/acs/, https://example.com/, e.g.:</p>
@@ -4237,22 +4239,29 @@ $ openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout sp.key -out sp.cr
     <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;display_name&#39;</span><span class="p">,</span> <span class="p">),</span>
     <span class="s1">&#39;mail&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;contact_email&#39;</span><span class="p">,</span> <span class="p">),</span>
     <span class="s1">&#39;seafile_groups&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">),</span> <span class="c1"># Optional, set this attribute if you need to synchronize groups/departments.</span>
-     <span class="o">...</span>
+    <span class="o">...</span>
 
 <span class="p">}</span>
 <span class="n">SAML_REMOTE_METADATA_URL</span> <span class="o">=</span> <span class="s1">&#39;https://login.microsoftonline.com/xxx/federationmetadata/2007-06/federationmetadata.xml?appid=xxx&#39;</span>   <span class="c1"># copy from SAML app</span>
 </code></pre></div>
-<p><strong>Note</strong>: If the xmlsec1 binary is <strong>not located in</strong> <code>/usr/bin/xmlsec1</code>, you need to add the following configuration in seahub_settings.py:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li>If the xmlsec1 binary is <strong>not located in</strong> <code>/usr/bin/xmlsec1</code>, you need to add the following configuration in seahub_settings.py:</li>
+</ul>
 <div class="highlight"><pre><span></span><code><span class="n">SAML_XMLSEC_BINARY_PATH</span> <span class="o">=</span> <span class="s1">&#39;/path/to/xmlsec1&#39;</span>
 </code></pre></div>
 <p>View where the xmlsec1 binary is located:</p>
 <div class="highlight"><pre><span></span><code>$ which xmlsec1
 </code></pre></div>
-<p><strong>Note</strong>: If certificates are <strong>not placed in</strong> <code>/opt/seafile/seahub-data/certs</code>, you need to add the following configuration in seahub_settings.py:</p>
+<ul>
+<li>If certificates are <strong>not placed in</strong> <code>/opt/seafile/seahub-data/certs</code>, you need to add the following configuration in seahub_settings.py:</li>
+</ul>
 <div class="highlight"><pre><span></span><code><span class="n">SAML_CERTS_DIR</span> <span class="o">=</span> <span class="s1">&#39;/path/to/certs&#39;</span>
 </code></pre></div>
+</div>
 <p><strong>Finally</strong>, open the browser and enter the Seafile login page, click <code>Single Sign-On</code>, and use the user assigned to SAML app to perform a SAML login test.</p>
-<h3 id="integration-with-on-premise-adfs">Integration with on-premise ADFS<a class="headerlink" href="#integration-with-on-premise-adfs" title="Permanent link">&para;</a></h3>
+<h3 id="on-premise-adfs">On-premise ADFS<a class="headerlink" href="#on-premise-adfs" title="Permanent link">&para;</a></h3>
 <p>If you use Microsoft ADFS to achieve single sign-on, please follow the steps below:</p>
 <p><strong>First</strong>, please make sure the following preparations are done:</p>
 <ol>
@@ -4370,7 +4379,9 @@ $ openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout sp.key -out sp.cr
 <p>Click <strong>OK</strong> to add both new rules.</p>
 </li>
 </ul>
-<p><strong>Note</strong>: When creating claims rule, you can also select other LDAP Attributes, such as E-Mail-Addresses, depending on your ADFS service.</p>
+<div class="admonition tip">
+<p class="admonition-title">When creating claims rule, you can also select other LDAP Attributes, such as E-Mail-Addresses, depending on your ADFS service</p>
+</div>
 <p><strong>Finally</strong>, open the browser and enter the Seafile login page, click <code>Single Sign-On</code> to perform ADFS login test.</p>
 
 

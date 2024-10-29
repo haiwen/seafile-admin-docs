@@ -4307,7 +4307,10 @@ def __init__(self, do_work, nworker=20):
 <div class="highlight"><pre><span></span><code>cd ~/haiwen/seafile-server-latest
 ./migrate.sh /opt
 </code></pre></div>
-<p>Please note that this script is completely reentrant. So you can stop and restart it, or run it many times. It will check whether an object exists in the destination before sending it.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>This script is completely reentrant. So you can stop and restart it, or run it many times. It will check whether an object exists in the destination before sending it.</p>
+</div>
 <h2 id="run-final-migration">Run final migration<a class="headerlink" href="#run-final-migration" title="Permanent link">&para;</a></h2>
 <p>New objects added during the last migration step will be migrated in this step. To prevent new objects being added, you have to stop Seafile service during the final migration operation. This usually take short time. If you have large number of objects, please following the optimization instruction in previous section.</p>
 <p>You just have to stop Seafile and Seahub service, then run the migration script again.</p>

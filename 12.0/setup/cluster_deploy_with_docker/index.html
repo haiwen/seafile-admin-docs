@@ -4385,7 +4385,13 @@ $ vim docker-compose.yml
       - CLUSTER_MODE=frontend
       - TIME_ZONE=UTC  # Optional, default is UTC. Should be uncomment and set to your local time zone.
 </code></pre></div>
-<p><strong>Note</strong>: <strong>CLUSTER_SERVER=true</strong> means seafile cluster mode, <strong>CLUSTER_MODE=frontend</strong> means this node is seafile frontend server.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li><code>CLUSTER_SERVER=true</code> means seafile cluster mode</li>
+<li><code>CLUSTER_MODE=frontend</code> means this node is seafile frontend server</li>
+</ul>
+</div>
 <p>Start the seafile docker container</p>
 <div class="highlight"><pre><span></span><code>$ cd /opt/seafile
 $ docker compose up -d
@@ -4478,7 +4484,13 @@ $ vim docker-compose.yml
       - CLUSTER_MODE=backend
       - TIME_ZONE=UTC  # Optional, default is UTC. Should be uncomment and set to your local time zone.
 </code></pre></div>
-<p><strong>Note</strong>: <strong>CLUSTER_SERVER=true</strong> means seafile cluster mode, <strong>CLUSTER_MODE=backend</strong> means this node is seafile backend server.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li><code>CLUSTER_SERVER=true</code> means seafile cluster mode</li>
+<li><code>CLUSTER_MODE=backend</code> means this node is seafile backend server</li>
+</ul>
+</div>
 <p>Start the seafile docker container</p>
 <div class="highlight"><pre><span></span><code>$ cd /opt/seafile
 $ docker compose up -d
@@ -4548,7 +4560,10 @@ listen seafile 0.0.0.0:80
     server seafile02 Front-End02-IP:8001 check port 11001 cookie seafile02
 EOF
 </code></pre></div>
-<p><strong>Note</strong>: Correctly modify the IP address (Front-End01-IP and Front-End02-IP) of the frontend server in the above configuration file.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Please <strong>correctly</strong> modify the IP address (<code>Front-End01-IP</code> and <code>Front-End02-IP</code>) of the frontend server in the above configuration file. Other wise it cannot work properly.</p>
+</div>
 <p><strong>Choose one of the above two servers as the master node, and the other as the slave node.</strong></p>
 <p>Perform the following operations on the master node:</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>&gt;<span class="w"> </span>/etc/keepalived/keepalived.conf<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
@@ -4581,7 +4596,10 @@ EOF
 <span class="s">}</span>
 <span class="s">EOF</span>
 </code></pre></div>
-<p><strong>Note: </strong>Correctly configure the virtual IP address and network interface device name in the above file.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Please <strong>correctly</strong> configure the virtual IP address and network interface device name in the above file. Other wise it cannot work properly.</p>
+</div>
 <p>Perform the following operations on the standby node:</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>&gt;<span class="w"> </span>/etc/keepalived/keepalived.conf<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
 <span class="s">! Configuration File for keepalived</span>

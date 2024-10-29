@@ -1035,17 +1035,6 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Seafile Docker autostart
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1055,43 +1044,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#method-1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Method 1
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#method-2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Method 2
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -4107,32 +4059,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#method-1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Method 1
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#method-2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Method 2
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -4151,10 +4077,12 @@
 
 <h1 id="seafile-docker-autostart">Seafile Docker autostart<a class="headerlink" href="#seafile-docker-autostart" title="Permanent link">&para;</a></h1>
 <p>You can use one of the following methods to start Seafile container on system bootup.</p>
-<h2 id="method-1">Method 1<a class="headerlink" href="#method-1" title="Permanent link">&para;</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1"><code>docker-compose.service</code></label><label for="__tabbed_1_2"><code>xxx.yml</code></label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <ol>
 <li>
-<p>Add docker-compose.service</p>
+<p>Add <code>docker-compose.service</code></p>
 <p><code>vim /etc/systemd/system/docker-compose.service</code></p>
 <div class="highlight"><pre><span></span><code>[Unit]
 Description=Docker Compose Application Service
@@ -4172,10 +4100,13 @@ TimeoutStartSec=0
 [Install]
 WantedBy=multi-user.target
 </code></pre></div>
-<p>Note: <code>WorkingDirectory</code> is the absolute path to the docker-compose.yml file directory.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>WorkingDirectory</code> is the absolute path to the <code>seafile-server.yml</code> file directory.</p>
+</div>
 </li>
 <li>
-<p>Set the docker-compose.service file to 644 permissions</p>
+<p>Set the <code>docker-compose.service</code> file to 644 permissions</p>
 <div class="highlight"><pre><span></span><code>chmod 644 /etc/systemd/system/docker-compose.service
 </code></pre></div>
 </li>
@@ -4186,30 +4117,37 @@ systemctl enable docker-compose.service
 </code></pre></div>
 </li>
 </ol>
-<h2 id="method-2">Method 2<a class="headerlink" href="#method-2" title="Permanent link">&para;</a></h2>
+</div>
+<div class="tabbed-block">
 <p>Add configuration <code>restart: unless-stopped</code> for each container in <a href="../overview/">components of Seafile docker</a>. Take <code>seafile-server.yml</code> for example</p>
 <div class="highlight"><pre><span></span><code>services:
-  db:
+db:
     image: mariadb:10.11
     container_name: seafile-mysql-1
     restart: unless-stopped
 
-  memcached:
+memcached:
     image: memcached:1.6.18
     container_name: seafile-memcached
     restart: unless-stopped
 
-  elasticsearch:
+elasticsearch:
     image: elasticsearch:8.6.2
     container_name: seafile-elasticsearch
     restart: unless-stopped
 
-  seafile:
+seafile:
     image: docker.seadrive.org/seafileltd/seafile-pro-mc:12.0-latest
     container_name: seafile
     restart: unless-stopped
 </code></pre></div>
-<p>Note: Add <code>restart: unless-stopped</code>, and the Seafile container will automatically start when Docker starts. If the Seafile container does not exist (execute docker compose down), the container will not start automatically.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Add <code>restart: unless-stopped</code>, and the Seafile container will automatically start when Docker starts. If the Seafile container does not exist (execute docker compose down), the container will not start automatically.</p>
+</div>
+</div>
+</div>
+</div>
 
 
 

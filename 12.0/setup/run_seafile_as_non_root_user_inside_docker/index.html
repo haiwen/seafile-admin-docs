@@ -4076,7 +4076,7 @@
 
 
 <h1 id="run-seafile-as-non-root-user-inside-docker">Run Seafile as non root user inside docker<a class="headerlink" href="#run-seafile-as-non-root-user-inside-docker" title="Permanent link">&para;</a></h1>
-<p>You can use run seafile as non root user in docker. (<strong>NOTE:</strong> Programs such as <code>my_init</code>, Nginx are still run as <code>root</code> inside docker.)</p>
+<p>You can use run seafile as non root user in docker. </p>
 <p>First add the <code>NON_ROOT=true</code> to the <code>.env</code>.</p>
 <div class="highlight"><pre><span></span><code>NON_ROOT=true
 </code></pre></div>
@@ -4087,7 +4087,11 @@
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
 docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
-<p>Now you can run Seafile as <code>seafile</code> user. (<strong>NOTE:</strong> Later, when doing maintenance, other scripts in docker are also required to be run as <code>seafile</code> user, e.g. <code>su seafile -c ./seaf-gc.sh</code>)</p>
+<p>Now you can run Seafile as <code>seafile</code> user. </p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>When doing maintenance, other scripts in docker are also required to be run as <code>seafile</code> user, e.g. <code>su seafile -c ./seaf-gc.sh</code></p>
+</div>
 
 
 

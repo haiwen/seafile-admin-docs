@@ -4625,7 +4625,10 @@
 
 
 <h1 id="deploy-in-a-cluster">Deploy in a cluster<a class="headerlink" href="#deploy-in-a-cluster" title="Permanent link">&para;</a></h1>
-<p><strong>Update</strong>: Since Seafile Pro server 6.0.0, cluster deployment requires "sticky session" settings in the load balancer. Otherwise sometimes folder download on the web UI can't work properly. Read the "Load Balancer Setting" section below for details</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Since Seafile Pro server 6.0.0, cluster deployment requires "sticky session" settings in the load balancer. Otherwise sometimes folder download on the web UI can't work properly. Read the "Load Balancer Setting" section below for details</p>
+</div>
 <h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
 <p>The Seafile cluster solution employs a 3-tier architecture:</p>
 <ul>
@@ -4677,7 +4680,9 @@ sudo pip install boto
 </code></pre></div>
 <h3 id="setup-seafile">Setup Seafile<a class="headerlink" href="#setup-seafile" title="Permanent link">&para;</a></h3>
 <p>Please follow <a href="../installation_pro/">Download and Setup Seafile Professional Server With MySQL</a> to setup a single Seafile server node.</p>
-<p>Note: <strong>Use the load balancer's address or domain name for the server address. Don't use the local IP address of each Seafile server machine. This assures the user will always access your service via the load balancers.</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Use the load balancer's address or domain name for the server address. Don't use the local IP address of each Seafile server machine. This assures the user will always access your service via the load balancers</p>
+</div>
 <p>After the setup process is done, you still have to do a few manual changes to the config files.</p>
 <h4 id="seafileconf">seafile.conf<a class="headerlink" href="#seafileconf" title="Permanent link">&para;</a></h4>
 <p>If you use a single memcached server, you have to add the following configuration to <code>seafile.conf</code></p>
@@ -4727,7 +4732,10 @@ index_office_pdf = true
 es_host = background.seafile.com
 es_port = 9200
 </code></pre></div>
-<p>Note: <code>enable = true</code> should be left unchanged. It means the file search feature is enabled.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><code>enable = true</code> should be left unchanged. It means the file search feature is enabled.</p>
+</div>
 <h3 id="update-seahub-database">Update Seahub Database<a class="headerlink" href="#update-seahub-database" title="Permanent link">&para;</a></h3>
 <p>In cluster environment, we have to store avatars in the database instead of in a local disk.</p>
 <div class="highlight"><pre><span></span><code>CREATE TABLE `avatar_uploaded` (`filename` TEXT NOT NULL, `filename_md5` CHAR(32) NOT NULL PRIMARY KEY, `data` MEDIUMTEXT NOT NULL, `size` INTEGER NOT NULL, `mtime` datetime NOT NULL);
@@ -4741,7 +4749,7 @@ es_port = 9200
 </ul>
 <h3 id="setup-nginxapache-and-http">Setup Nginx/Apache and HTTP<a class="headerlink" href="#setup-nginxapache-and-http" title="Permanent link">&para;</a></h3>
 <p>Nginx/Apache with HTTP need to set it up on each machine running Seafile server. This is make sure only port 80 need to be exposed to load balancer. (HTTPS should be setup at the load balancer)</p>
-<p>Please check the following documents on how to setup HTTP with Nginx/Apache. Note, you only the HTTP setup part the the documents. (HTTPS is not needed)</p>
+<p>Please check the following documents on how to setup HTTP with Nginx/Apache. (HTTPS is not needed)</p>
 <ul>
 <li><a href="../https_with_nginx/">Nginx</a></li>
 <li><a href="../https_with_apache/">Apache</a></li>
@@ -4752,7 +4760,10 @@ es_port = 9200
 ./seafile.sh start
 ./seahub.sh start
 </code></pre></div>
-<p><em>Note:</em> The first time you start seahub, the script would prompt you to create an admin account for your Seafile server.</p>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>The first time you start seahub, the script would prompt you to create an admin account for your Seafile server.</p>
+</div>
 <p>Open your browser, visit <code>http://ip-address-of-this-node:80</code> and login with the admin account.</p>
 <h2 id="configure-other-nodes">Configure other nodes<a class="headerlink" href="#configure-other-nodes" title="Permanent link">&para;</a></h2>
 <p>Now you have one node working fine, let's continue to configure more nodes.</p>

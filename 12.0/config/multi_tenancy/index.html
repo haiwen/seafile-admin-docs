@@ -4301,7 +4301,9 @@ $ apt install xmlsec1
 <div class="highlight"><pre><span></span><code>$ cd /opt/seafile/seahub-data/certs
 $ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout sp.key -out sp.crt
 </code></pre></div>
-<p><strong>Note</strong>: The <code>days</code> option indicates the validity period of the generated certificate. The unit is day. The system admin needs to update the certificate regularly.</p>
+<div class="admonition tip">
+<p class="admonition-title">The <code>days</code> option indicates the validity period of the generated certificate. The unit is day. The system admin needs to update the certificate regularly</p>
+</div>
 <p><strong>Finally</strong>, add the following configuration to seahub_settings.py and then restart Seafile:</p>
 <div class="highlight"><pre><span></span><code><span class="n">ENABLE_MULTI_ADFS</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">LOGIN_REDIRECT_URL</span> <span class="o">=</span> <span class="s1">&#39;/saml2/complete/&#39;</span>
@@ -4311,15 +4313,20 @@ $ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout sp.key -out sp.crt
     <span class="o">...</span>
 <span class="p">}</span>
 </code></pre></div>
-<p><strong>Note</strong>: If the xmlsec1 binary is <strong>not located in</strong> <code>/usr/bin/xmlsec1</code>, you need to add the following configuration in seahub_settings.py:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li>If the xmlsec1 binary is <strong>not located in</strong> <code>/usr/bin/xmlsec1</code>, you need to add the following configuration in seahub_settings.py:</li>
+</ul>
 <div class="highlight"><pre><span></span><code><span class="n">SAML_XMLSEC_BINARY_PATH</span> <span class="o">=</span> <span class="s1">&#39;/path/to/xmlsec1&#39;</span>
 </code></pre></div>
 <p>View where the xmlsec1 binary is located:</p>
-<div class="highlight"><pre><span></span><code>$ which xmlsec1
+<p><div class="highlight"><pre><span></span><code>$ which xmlsec1
 </code></pre></div>
-<p><strong>Note</strong>: If certificates are <strong>not placed in</strong> <code>/opt/seafile/seahub-data/certs</code>, you need to add the following configuration in seahub_settings.py:</p>
+- If certificates are <strong>not placed in</strong> <code>/opt/seafile/seahub-data/certs</code>, you need to add the following configuration in seahub_settings.py:</p>
 <div class="highlight"><pre><span></span><code><span class="n">SAML_CERTS_DIR</span> <span class="o">=</span> <span class="s1">&#39;/path/to/certs&#39;</span>
 </code></pre></div>
+</div>
 <h3 id="integration-with-adfssaml-single-sign-on">Integration with ADFS/SAML single sign-on<a class="headerlink" href="#integration-with-adfssaml-single-sign-on" title="Permanent link">&para;</a></h3>
 <p>Please refer to this <a href="https://help.seafile.com/organization_management/integration_with_ADFS_SAML/">document</a>.</p>
 

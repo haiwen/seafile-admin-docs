@@ -4300,14 +4300,14 @@ User root
 <h3 id="start-the-clamav-daemon">Start the clamav-daemon<a class="headerlink" href="#start-the-clamav-daemon" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>systemctl start clamav-daemon
 </code></pre></div>
-<ul>
-<li>Test the software</li>
-</ul>
+<div class="admonition success">
+<p class="admonition-title">Test the software</p>
 <div class="highlight"><pre><span></span><code>$ curl https://secure.eicar.org/eicar.com.txt | clamdscan -
 </code></pre></div>
 <p>The output must include:</p>
 <div class="highlight"><pre><span></span><code>stream: Eicar-Test-Signature FOUND
 </code></pre></div>
+</div>
 
 
 

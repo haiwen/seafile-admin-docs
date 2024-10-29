@@ -4242,10 +4242,16 @@
 <li>"Sites" -&gt; "Advanced" -&gt; "Add this website to zone". This is the place where we fill the address (e.g. http://test.seafile.com)</li>
 <li>"Security level for this zone" -&gt; "Custom level..." -&gt; "Automatic log-on with current username and password".</li>
 </ol>
-<p>Note: Above configuration requires a reboot to take effect.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Above configuration requires a reboot to take effect.</p>
+</div>
 <p><img alt="grafik" src="../../images/internet-explorer.png" /></p>
 <p>Next, we shall test the auto login function on Internet Explorer: visit the website and click "Single Sign-On" link. It should be able to log in directly, otherwise the auto login is malfunctioned.</p>
-<p>Note: The address in the test must be same as the address specified in the keytab file. Otherwise, the client machine can't get a valid ticket from Kerberos.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The address in the test must be same as the address specified in the keytab file. Otherwise, the client machine can't get a valid ticket from Kerberos.</p>
+</div>
 <h2 id="auto-login-on-seadrive">Auto Login on SeaDrive<a class="headerlink" href="#auto-login-on-seadrive" title="Permanent link">&para;</a></h2>
 <p>SeaDrive will use the Kerberos login configuration from the Windows Registry under <code>HKEY_CURRENT_USER/SOFTWARE/SeaDrive</code>.</p>
 <div class="highlight"><pre><span></span><code>Key   : PreconfigureServerAddr

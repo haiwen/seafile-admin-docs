@@ -2146,21 +2146,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Trouble shooting">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#notes-on-windows-paging-files" class="md-nav__link">
-    <span class="md-ellipsis">
-      Notes on Windows paging files
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
     </ul>
@@ -4125,21 +4110,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Trouble shooting">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#notes-on-windows-paging-files" class="md-nav__link">
-    <span class="md-ellipsis">
-      Notes on Windows paging files
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
     </ul>
@@ -4162,7 +4132,9 @@
 
 <h1 id="office-online-server">Office Online Server<a class="headerlink" href="#office-online-server" title="Permanent link">&para;</a></h1>
 <p>In Seafile Professional Server Version 4.4.0 (or above), you can use Microsoft Office Online Server (formerly named Office Web Apps) to preview documents online. Office Online Server provides the best preview for all Office format files. It also support collaborative editing of Office files directly in the web browser. For organizations with Microsoft Office Volume License, it's free to use Office Online Server. For more information about Office Online Server and how to deploy it, please refer to <a href="https://technet.microsoft.com/en-us/library/jj219455(v=office.16).aspx">https://technet.microsoft.com/en-us/library/jj219455(v=office.16).aspx</a>.</p>
-<p><strong>Notice</strong>: Seafile only supports Office Online Server 2016 and above.</p>
+<div class="admonition tip">
+<p class="admonition-title">Seafile only supports Office Online Server 2016 and above</p>
+</div>
 <p>To use Office Online Server for preview, please add following config option to seahub_settings.py.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Enable Office Online Server</span>
 <span class="n">ENABLE_OFFICE_WEB_APP</span> <span class="o">=</span> <span class="kc">True</span>
@@ -4224,8 +4196,10 @@
 <li>(office online server-&gt;browser) office online server sends the file preview page to the browser.</li>
 </ol>
 <p>Please check the Nginx log for Seahub (for step 3) and Office Online Server to see which step is wrong.</p>
-<h3 id="notes-on-windows-paging-files">Notes on Windows paging files<a class="headerlink" href="#notes-on-windows-paging-files" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
 <p>You should make sure you have configured at least a few GB of paging files in your Windows system. Otherwise the IIS worker processes may die randomly when handling Office Online requests.</p>
+</div>
 
 
 

@@ -4424,7 +4424,10 @@ highlight = fvh
 repo_status_index_name = your-repo-status-index-name  # default is `repo_head`
 repo_files_index_name = your-repo-files-index-name    # default is `repofiles`
 </code></pre></div>
-<p><strong>NOTE</strong>: The version of the Python third-party package <code>elasticsearch</code> cannot be greater than 7.14.0, otherwise the elasticsearch service cannot be accessed: <a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/samplecode.html#client-compatibility">https://docs.aws.amazon.com/opensearch-service/latest/developerguide/samplecode.html#client-compatibility</a>, <a href="https://github.com/elastic/elasticsearch-py/pull/1623">https://github.com/elastic/elasticsearch-py/pull/1623</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The version of the Python third-party package <code>elasticsearch</code> cannot be greater than 7.14.0, otherwise the elasticsearch service cannot be accessed: <a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/samplecode.html#client-compatibility">https://docs.aws.amazon.com/opensearch-service/latest/developerguide/samplecode.html#client-compatibility</a>, <a href="https://github.com/elastic/elasticsearch-py/pull/1623">https://github.com/elastic/elasticsearch-py/pull/1623</a>.</p>
+</div>
 <h3 id="i-get-no-result-when-i-search-a-keyword">I get no result when I search a keyword<a class="headerlink" href="#i-get-no-result-when-i-search-a-keyword" title="Permanent link">&para;</a></h3>
 <p>The search index is updated every 10 minutes by default. So before the first index update is performed, you get nothing no matter what you search.</p>
 <p>To be able to search immediately,</p>

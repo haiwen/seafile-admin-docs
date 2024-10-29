@@ -2544,36 +2544,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#sample-settings-for-google" class="md-nav__link">
+  <a href="#sample-settings" class="md-nav__link">
     <span class="md-ellipsis">
-      Sample settings for Google
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sample-settings-for-github" class="md-nav__link">
-    <span class="md-ellipsis">
-      Sample settings for Github
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sample-settings-for-gitlab" class="md-nav__link">
-    <span class="md-ellipsis">
-      Sample settings for GitLab
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sample-settings-for-azure-cloud" class="md-nav__link">
-    <span class="md-ellipsis">
-      Sample settings for Azure Cloud
+      Sample settings
     </span>
   </a>
   
@@ -4194,36 +4167,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#sample-settings-for-google" class="md-nav__link">
+  <a href="#sample-settings" class="md-nav__link">
     <span class="md-ellipsis">
-      Sample settings for Google
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sample-settings-for-github" class="md-nav__link">
-    <span class="md-ellipsis">
-      Sample settings for Github
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sample-settings-for-gitlab" class="md-nav__link">
-    <span class="md-ellipsis">
-      Sample settings for GitLab
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sample-settings-for-azure-cloud" class="md-nav__link">
-    <span class="md-ellipsis">
-      Sample settings for Azure Cloud
+      Sample settings
     </span>
   </a>
   
@@ -4299,10 +4245,15 @@
     <span class="s2">&quot;uid&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;uid&quot;</span><span class="p">),</span>   <span class="c1"># Seafile v11.0 + </span>
 <span class="p">}</span>
 </code></pre></div>
-<p>NOTE:  There are some more explanations about the settings.</p>
-<p><strong>OAUTH_PROVIDER  /  OAUTH_PROVIDER_DOMAIN</strong></p>
+<div class="admonition tip">
+<p class="admonition-title">More explanations about the settings</p>
+<ul>
+<li><strong>OAUTH_PROVIDER  /  OAUTH_PROVIDER_DOMAIN</strong></li>
+</ul>
 <p><code>OAUTH_PROVIDER_DOMAIN</code> will be deprecated, and it can be replaced by <code>OAUTH_PROVIDER</code>. This variable is used in the database to identify third-party providers, either as a domain or as an easy-to-remember string less than 32 characters. </p>
-<p><strong>OAUTH_ATTRIBUTE_MAP</strong></p>
+<ul>
+<li><strong>OAUTH_ATTRIBUTE_MAP</strong></li>
+</ul>
 <p>This variables describes which claims from the response of the user info endpoint are to be filled into which attributes of the new Seafile user. The format is showing like below:</p>
 <div class="highlight"><pre><span></span><code><span class="n">OAUTH_ATTRIBUTE_MAP</span> <span class="o">=</span> <span class="p">{</span>
     <span class="o">&lt;</span><span class="p">:</span><span class="n">Attribute</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">OAuth</span> <span class="n">provider</span><span class="o">&gt;</span><span class="p">:</span> <span class="p">(</span><span class="o">&lt;</span><span class="p">:</span><span class="n">Is</span> <span class="n">required</span> <span class="ow">or</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">Seafile</span><span class="err">?</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="p">:</span><span class="n">Attribute</span> <span class="ow">in</span> <span class="n">Seafile</span> <span class="o">&gt;</span><span class="p">)</span>
@@ -4336,7 +4287,11 @@
     <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;contact_email&quot;</span><span class="p">),</span>  
 <span class="p">}</span>
 </code></pre></div>
-<h4 id="sample-settings-for-google">Sample settings for Google<a class="headerlink" href="#sample-settings-for-google" title="Permanent link">&para;</a></h4>
+</div>
+<h4 id="sample-settings">Sample settings<a class="headerlink" href="#sample-settings" title="Permanent link">&para;</a></h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Google</label><label for="__tabbed_1_2">Github</label><label for="__tabbed_1_3">GitLab</label><label for="__tabbed_1_4">Azure Cloud</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="n">ENABLE_OAUTH</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">OAUTH_ENABLE_INSECURE_TRANSPORT</span> <span class="o">=</span> <span class="kc">True</span>
 
@@ -4360,8 +4315,12 @@
     <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;contact_email&quot;</span><span class="p">),</span>
 <span class="p">}</span>
 </code></pre></div>
-<h4 id="sample-settings-for-github">Sample settings for Github<a class="headerlink" href="#sample-settings-for-github" title="Permanent link">&para;</a></h4>
-<p>For Github, <code>email</code> is not the unique identifier for an user, but <code>id</code> is in most cases, so we use <code>id</code> as settings example in our manual. As Seafile uses email to identify an unique user account for now, so we combine <code>id</code> and <code>OAUTH_PROVIDER_DOMAIN</code>, which is github.com in your case, to an email format string and then create this account if not exist. Change the setting as followings:</p>
+</div>
+<div class="tabbed-block">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For Github, <code>email</code> is not the unique identifier for an user, but <code>id</code> is in most cases, so we use <code>id</code> as settings example in our manual. As Seafile uses email to identify an unique user account for now, so we combine <code>id</code> and <code>OAUTH_PROVIDER_DOMAIN</code>, which is github.com in your case, to an email format string and then create this account if not exist.</p>
+</div>
 <div class="highlight"><pre><span></span><code><span class="n">ENABLE_OAUTH</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">OAUTH_ENABLE_INSECURE_TRANSPORT</span> <span class="o">=</span> <span class="kc">True</span>
 
@@ -4380,7 +4339,10 @@
     <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">),</span>
 <span class="p">}</span>
 </code></pre></div>
-<h4 id="sample-settings-for-gitlab">Sample settings for GitLab<a class="headerlink" href="#sample-settings-for-gitlab" title="Permanent link">&para;</a></h4>
+</div>
+<div class="tabbed-block">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>To enable OAuth via GitLab. Create an application in GitLab (under Admin area-&gt;Applications).</p>
 <p>Fill in required fields:</p>
 <ul>
@@ -4397,7 +4359,8 @@
 <p>Scopes: Select <code>openid</code> and <code>read_user</code> in the scopes list.</p>
 </li>
 </ul>
-<p>Press submit and copy the client id and secret you receive on the confirmation page and use them in this template for your seahub_settings.py:</p>
+<p>Press submit and copy the client id and secret you receive on the confirmation page and use them in this template for your seahub_settings.py</p>
+</div>
 <div class="highlight"><pre><span></span><code><span class="n">ENABLE_OAUTH</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">OAUTH_CLIENT_ID</span> <span class="o">=</span> <span class="s2">&quot;your-client-id&quot;</span>
 <span class="n">OAUTH_CLIENT_SECRET</span> <span class="o">=</span> <span class="s2">&quot;your-client-secret&quot;</span>
@@ -4413,14 +4376,20 @@
     <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
-<h4 id="sample-settings-for-azure-cloud">Sample settings for Azure Cloud<a class="headerlink" href="#sample-settings-for-azure-cloud" title="Permanent link">&para;</a></h4>
-<p>For users of Azure Cloud, as there is no <code>id</code> field returned from Azure Cloud's user info endpoint, so we use a special configuration for <code>OAUTH_ATTRIBUTE_MAP</code> setting (others are the same as Github/Google):</p>
+</div>
+<div class="tabbed-block">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For users of Azure Cloud, as there is no <code>id</code> field returned from Azure Cloud's user info endpoint, so we use a special configuration for <code>OAUTH_ATTRIBUTE_MAP</code> setting (others are the same as Github/Google). Please see <a href="https://forum.seafile.com/t/oauth-authentification-against-microsoft-office365-azure-cloud/7999">this tutorial</a> for the complete deployment process of OAuth against Azure Cloud.</p>
+</div>
 <div class="highlight"><pre><span></span><code><span class="n">OAUTH_ATTRIBUTE_MAP</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;uid&quot;</span><span class="p">),</span>
     <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Please see <a href="https://forum.seafile.com/t/oauth-authentification-against-microsoft-office365-azure-cloud/7999">this tutorial</a> for the complete deployment process of OAuth against Azure Cloud.</p>
+</div>
+</div>
+</div>
 
 
 

@@ -1518,30 +1518,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Setup Memory Cache">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#use-memcached" class="md-nav__link">
-    <span class="md-ellipsis">
-      Use Memcached
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#use-redis" class="md-nav__link">
-    <span class="md-ellipsis">
-      Use Redis
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
@@ -4378,30 +4354,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Setup Memory Cache">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#use-memcached" class="md-nav__link">
-    <span class="md-ellipsis">
-      Use Memcached
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#use-redis" class="md-nav__link">
-    <span class="md-ellipsis">
-      Use Redis
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
@@ -4512,9 +4464,13 @@
 <p>You can find step-by-step how-tos for installing MySQL and MariaDB in the <a href="https://www.digitalocean.com/community/tutorials">tutorials on the Digital Ocean website</a>.</p>
 <p>Seafile uses the mysql_native_password plugin for authentication. The versions of MySQL and MariaDB installed on CentOS 8, Debian 10, and Ubuntu 20.04 use a different authentication plugin by default. It is therefore required to change to authentication plugin to mysql_native_password for the root user prior to the installation of Seafile. The above mentioned tutorials explain how to do it.</p>
 <h3 id="installing-prerequisites">Installing prerequisites<a class="headerlink" href="#installing-prerequisites" title="Permanent link">&para;</a></h3>
-<p><strong>For Seafile 10.0.x</strong></p>
-<div class="highlight"><pre><span></span><code># Ubuntu 22.04 (almost the same for Ubuntu 20.04 and Debian 11, Debian 10)
-sudo apt-get update
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Seafile 10.0.x</label><label for="__tabbed_1_2">Seafile 11.0.x</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Ubuntu 22.04/Ubuntu 20.04/Debian 11/Debian 10</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>sudo apt-get update
 sudo apt-get install -y python3 python3-setuptools python3-pip libmysqlclient-dev
 sudo apt-get install -y memcached libmemcached-dev
 
@@ -4522,7 +4478,14 @@ sudo pip3 install --timeout=3600 django==3.2.* future==0.18.* mysqlclient==2.1.*
     pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==1.4.44 \
     psd-tools django-pylibmc django_simple_captcha==0.5.20 djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 lxml
 </code></pre></div>
-<p><strong>For Seafile 11.0.x (Debian 11, Ubuntu 22.04, etc.)</strong></p>
+</div>
+</div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Debian 11/Ubuntu 22.04</label><label for="__tabbed_3_2">Debian 12</label><label for="__tabbed_3_3">Ubuntu 24.04 with virtual env</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code># Ubuntu 22.04 (almost the same for Ubuntu 20.04 and Debian 11, Debian 10)
 sudo apt-get update
 sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmysqlclient-dev ldap-utils libldap2-dev
@@ -4532,8 +4495,12 @@ sudo pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.*
     pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
     psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 lxml python-ldap==3.4.3
 </code></pre></div>
-<p><strong>For Seafile 11.0.x on Debian 12 and Ubuntu 24.04 with virtual env</strong></p>
-<p>Debian 12 and Ubuntu 24.04 are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables different versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with "source python-venv/bin/activate".</p>
+</div>
+<div class="tabbed-block">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Debian 12 and Ubuntu 24.04 are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables different versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with <code>source python-venv/bin/activate</code>.</p>
+</div>
 <div class="highlight"><pre><span></span><code># Debian 12
 sudo apt-get update
 sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmariadb-dev-compat ldap-utils libldap2-dev libsasl2-dev python3.11-venv
@@ -4552,6 +4519,12 @@ source python-venv/bin/activate
 # install packages into the active venv with pip (sudo isn&#39;t needed because this is installing in the venv, not system-wide).
 pip3 install --timeout=3600  django==4.2.* future==0.18.* mysqlclient==2.1.* pymysql pillow==10.0.* pylibmc captcha==0.4 markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 psd-tools django-pylibmc django_simple_captcha==0.5.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 lxml python-ldap==3.4.3
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Debian 12 and Ubuntu 24.04 are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables different versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with <code>source python-venv/bin/activate</code>.</p>
+</div>
 <div class="highlight"><pre><span></span><code># Ubuntu 24.04
 sudo apt-get update
 sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmysqlclient-dev ldap-utils libldap2-dev python3.12-venv
@@ -4572,12 +4545,21 @@ pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.* \
     pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
     psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.16.0 lxml python-ldap==3.4.3
 </code></pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <h3 id="creating-the-program-directory">Creating the program directory<a class="headerlink" href="#creating-the-program-directory" title="Permanent link">&para;</a></h3>
 <p>The standard directory for Seafile's program files is <code>/opt/seafile</code>. Create this directory and change into it:</p>
 <div class="highlight"><pre><span></span><code>sudo mkdir /opt/seafile
 cd /opt/seafile
 </code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
 <p>The  program directory can be changed. The standard directory <code>/opt/seafile</code> is assumed for the rest of this manual. If you decide to put Seafile in another directory, modify the commands accordingly.</p>
+</div>
 <h3 id="creating-user-seafile">Creating user seafile<a class="headerlink" href="#creating-user-seafile" title="Permanent link">&para;</a></h3>
 <p>It is good practice not to run applications as root. </p>
 <p>Create a new user and follow the instructions on the screen:</p>
@@ -4626,7 +4608,9 @@ cd /opt/seafile
 <li>seafile server</li>
 <li>seahub</li>
 </ul>
-<p>Note: While ccnet server was merged into the seafile-server in Seafile 8.0, the corresponding database is still required for the time being.</p>
+<div class="admonition note">
+<p class="admonition-title">While ccnet server was merged into the seafile-server in Seafile 8.0, the corresponding database is still required for the time being</p>
+</div>
 <p>Run the script as user seafile:</p>
 <div class="highlight"><pre><span></span><code># For installations using python virtual environment, activate it if it isn&#39;t already active
 source python-venv/bin/activate
@@ -4795,7 +4779,9 @@ seafile
 │<span class="w">   </span>└──<span class="w"> </span>avatars
 </code></pre></div>
 <p>The folder <code>seafile-server-latest</code> is a symbolic link to the current Seafile Server folder. When later you upgrade to a new version, the upgrade scripts update this link to point to the latest Seafile Server folder.</p>
-<p>Note: If you don't have the root password, you need someone who has the privileges, e.g., the database admin, to create the three databases required by Seafile, as well as a MySQL user who can access the databases. For example, to create three databases <code>ccnet_db</code> / <code>seafile_db</code> / <code>seahub_db</code> for ccnet/seafile/seahub respectively, and a MySQL user "seafile" to access these databases run the following SQL queries:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you don't have the root password, you need someone who has the privileges, e.g., the database admin, to create the three databases required by Seafile, as well as a MySQL user who can access the databases. For example, to create three databases <code>ccnet_db</code> / <code>seafile_db</code> / <code>seahub_db</code> for ccnet/seafile/seahub respectively, and a MySQL user "seafile" to access these databases run the following SQL queries:</p>
 <div class="highlight"><pre><span></span><code>create database `ccnet_db` character set = &#39;utf8&#39;;
 create database `seafile_db` character set = &#39;utf8&#39;;
 create database `seahub_db` character set = &#39;utf8&#39;;
@@ -4806,9 +4792,12 @@ GRANT ALL PRIVILEGES ON `ccnet_db`.* to `seafile`@localhost;
 GRANT ALL PRIVILEGES ON `seafile_db`.* to `seafile`@localhost;
 GRANT ALL PRIVILEGES ON `seahub_db`.* to `seafile`@localhost;
 </code></pre></div>
+</div>
 <h3 id="setup-memory-cache">Setup Memory Cache<a class="headerlink" href="#setup-memory-cache" title="Permanent link">&para;</a></h3>
 <p>Seahub caches items(avatars, profiles, etc) on file system by default(/tmp/seahub_cache/). You can replace with Memcached or Redis.</p>
-<h4 id="use-memcached">Use Memcached<a class="headerlink" href="#use-memcached" title="Permanent link">&para;</a></h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Memcached</label><label for="__tabbed_4_2">Redis</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <p>Use the following commands to install memcached and corresponding libraies on your system:</p>
 <div class="highlight"><pre><span></span><code># on Debian/Ubuntu 18.04+
 apt-get install memcached libmemcached-dev -y
@@ -4824,17 +4813,29 @@ systemctl enable --now memcached
     },
 }
 </code></pre></div>
-<h4 id="use-redis">Use Redis<a class="headerlink" href="#use-redis" title="Permanent link">&para;</a></h4>
-<p>Redis is supported since version 11.0.</p>
-<p>First, install Redis with package installers in your OS.</p>
-<p>Then refer to <a href="https://docs.djangoproject.com/en/4.2/topics/cache/#redis">Django's documentation about using Redis cache</a> to add Redis configurations to <code>seahub_settings.py</code>.</p>
+</div>
+<div class="tabbed-block">
+<div class="admonition success">
+<p class="admonition-title">Redis is supported since version 11.0</p>
+</div>
+<ol>
+<li>
+<p>Install Redis with package installers in your OS.</p>
+</li>
+<li>
+<p>refer to <a href="https://docs.djangoproject.com/en/4.2/topics/cache/#redis">Django's documentation about using Redis cache</a> to add Redis configurations to <code>seahub_settings.py</code>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
 <h3 id="tweaking-conf-files">Tweaking conf files<a class="headerlink" href="#tweaking-conf-files" title="Permanent link">&para;</a></h3>
 <p>Seafile's config files as created by the setup script are prepared for Seafile running behind a reverse proxy.</p>
 <p>To access Seafile's web interface and to create working sharing links without a reverse proxy, you need to modify two configuration files in <code>/opt/seafile/conf</code>:</p>
 <ul>
-<li>seahub_settings.py (if you use 9.0.x): Add port 8000 to the <code>SERVICE_URL</code> (i.e., SERVICE_URL = 'http://1.2.3.4:8000/').</li>
-<li>ccnet.conf (if you use 8.0.x or 7.1.x): Add port 8000 to the <code>SERVICE_URL</code> (i.e., SERVICE_URL = http://1.2.3.4:8000/).</li>
-<li>gunicorn.conf.py: Change the bind to "0.0.0.0:8000" (i.e., bind = "0.0.0.0:8000")</li>
+<li><code>seahub_settings.py</code> (if you use 9.0.x): Add port 8000 to the <code>SERVICE_URL</code> (i.e., SERVICE_URL = 'http://1.2.3.4:8000/').</li>
+<li><code>ccnet.conf</code> (if you use 8.0.x or 7.1.x): Add port 8000 to the <code>SERVICE_URL</code> (i.e., SERVICE_URL = http://1.2.3.4:8000/).</li>
+<li><code>gunicorn.conf.py</code>: Change the bind to "0.0.0.0:8000" (i.e., bind = "0.0.0.0:8000")</li>
 </ul>
 <h2 id="starting-seafile-server">Starting Seafile Server<a class="headerlink" href="#starting-seafile-server" title="Permanent link">&para;</a></h2>
 <p>Run the following commands in <code>/opt/seafile/seafile-server-latest</code>:</p>
@@ -4844,9 +4845,15 @@ source python-venv/bin/activate
 ./seafile.sh start # starts seaf-server
 ./seahub.sh start  # starts seahub
 </code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
 <p>The first time you start Seahub, the script prompts you to create an admin account for your Seafile Server. Enter the email address of the admin user followed by the password.</p>
+</div>
 <p>Now you can access Seafile via the web interface at the host address and port 8000 (e.g., http://1.2.3.4:8000)</p>
-<p>Note: On CentOS, the firewall blocks traffic on port 8000 by default.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>On CentOS, the firewall blocks traffic on port 8000 by default.</p>
+</div>
 <h3 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h3>
 <p>If seafile.sh and/or seahub.sh fail to run successfully, use <code>pgrep</code> to check if seafile/seahub processes are still running:</p>
 <div class="highlight"><pre><span></span><code>pgrep -f seafile-controller # checks seafile processes

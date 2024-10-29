@@ -4342,11 +4342,24 @@
 <span class="n">DEFAULT_FROM_EMAIL</span> <span class="o">=</span> <span class="n">EMAIL_HOST_USER</span>
 <span class="n">SERVER_EMAIL</span> <span class="o">=</span> <span class="n">EMAIL_HOST_USER</span>
 </code></pre></div>
-<p><strong>Note</strong>: If your email service still does not work, you can checkout the log file <code>logs/seahub.log</code> to see what may cause the problem. For a complete email notification list, please refer to <a href="../customize_email_notifications/">email notification list</a>.</p>
-<p><strong>Note2</strong>: If you want to use the email service without authentication leaf <code>EMAIL_HOST_USER</code> and <code>EMAIL_HOST_PASSWORD</code> <strong>blank</strong> (<code>''</code>). (But notice that the emails then will be sent without a <code>From:</code> address.)</p>
-<p><strong>Note3</strong>: About using SSL connection (using port 465)</p>
-<p>Port 587 is being used to establish a connection using STARTTLS and port 465 is being used to establish an SSL connection.  Starting from Django 1.8, it supports both.
-If you want to use SSL on port 465, set <code>EMAIL_USE_SSL = True</code> instead of <code>EMAIL_USE_TLS</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li>
+<p>If your email service still does not work, you can checkout the log file <code>logs/seahub.log</code> to see what may cause the problem. For a complete email notification list, please refer to <a href="../customize_email_notifications/">email notification list</a>.</p>
+</li>
+<li>
+<p>If you want to use the email service without authentication leaf <code>EMAIL_HOST_USER</code> and <code>EMAIL_HOST_PASSWORD</code> <strong>blank</strong> (<code>''</code>). (But notice that the emails then will be sent without a <code>From:</code> address.)</p>
+</li>
+<li>
+<p>About using SSL connection (using port 465)</p>
+<ul>
+<li>Port 587 is being used to establish a connection using STARTTLS and port 465 is being used to establish an SSL connection.  Starting from Django 1.8, it supports both.</li>
+<li>If you want to use SSL on port 465, set <code>EMAIL_USE_SSL = True</code> instead of <code>EMAIL_USE_TLS</code>.</li>
+</ul>
+</li>
+</ul>
+</div>
 <h2 id="change-reply-to-of-email">Change <code>reply to</code> of email<a class="headerlink" href="#change-reply-to-of-email" title="Permanent link">&para;</a></h2>
 <p>You can change the reply to field of email by add the following settings to seahub_settings.py. This only affects email sending for file share link.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Set reply-to header to user&#39;s email or not, defaults to ``False``. For details,</span>
@@ -4365,10 +4378,16 @@ interval = 30m
 </code></pre></div>
 <h2 id="customize-email-messages">Customize email messages<a class="headerlink" href="#customize-email-messages" title="Permanent link">&para;</a></h2>
 <p>The simplest way to customize the email messages is setting the <code>SITE_NAME</code> variable in <code>seahub_settings.py</code>. If it is not enough for your case, you can customize the email templates.</p>
-<p><strong>Note:</strong> Subject line may vary between different releases, this is based on Release 5.0.0. Restart Seahub so that your changes take effect.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Subject line may vary between different releases, this is based on Release 5.0.0. Restart Seahub so that your changes take effect.</p>
+</div>
 <h3 id="the-email-base-template">The email base template<a class="headerlink" href="#the-email-base-template" title="Permanent link">&para;</a></h3>
 <p><a href="https://github.com/haiwen/seahub/blob/master/seahub/templates/email_base.html">seahub/seahub/templates/email_base.html</a></p>
-<p>Note: You can copy email_base.html to <code>seahub-data/custom/templates/email_base.html</code> and modify the new one. In this way, the customization will be maintained after upgrade.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can copy email_base.html to <code>seahub-data/custom/templates/email_base.html</code> and modify the new one. In this way, the customization will be maintained after upgrade.</p>
+</div>
 <h3 id="user-resets-hisher-password">User resets his/her password<a class="headerlink" href="#user-resets-hisher-password" title="Permanent link">&para;</a></h3>
 <p><strong>Subject</strong></p>
 <p>seahub/seahub/auth/forms.py line:127</p>
@@ -4377,7 +4396,10 @@ interval = 30m
 </code></pre></div>
 <p><strong>Body</strong></p>
 <p><a href="https://github.com/haiwen/seahub/blob/master/seahub/templates/registration/password_reset_email.html">seahub/seahub/templates/registration/password_reset_email.html</a></p>
-<p>Note: You can copy password_reset_email.html to <code>seahub-data/custom/templates/registration/password_reset_email.html</code> and modify the new one. In this way, the customization will be maintained after upgrade.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can copy password_reset_email.html to <code>seahub-data/custom/templates/registration/password_reset_email.html</code> and modify the new one. In this way, the customization will be maintained after upgrade.</p>
+</div>
 <h3 id="system-admin-adds-new-member">System admin adds new member<a class="headerlink" href="#system-admin-adds-new-member" title="Permanent link">&para;</a></h3>
 <p><strong>Subject</strong></p>
 <p>seahub/seahub/views/sysadmin.py line:424</p>
@@ -4386,7 +4408,10 @@ interval = 30m
 </code></pre></div>
 <p><strong>Body</strong></p>
 <p><a href="https://github.com/haiwen/seahub/blob/master/seahub/templates/sysadmin/user_add_email.html">seahub/seahub/templates/sysadmin/user_add_email.html</a></p>
-<p>Note: You can copy user_add_email.html to <code>seahub-data/custom/templates/sysadmin/user_add_email.html</code> and modify the new one. In this way, the customization will be maintained after upgrade.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can copy user_add_email.html to <code>seahub-data/custom/templates/sysadmin/user_add_email.html</code> and modify the new one. In this way, the customization will be maintained after upgrade.</p>
+</div>
 <h3 id="system-admin-resets-user-password">System admin resets user password<a class="headerlink" href="#system-admin-resets-user-password" title="Permanent link">&para;</a></h3>
 <p><strong>Subject</strong></p>
 <p>seahub/seahub/views/sysadmin.py line:1224</p>
@@ -4395,7 +4420,10 @@ interval = 30m
 </code></pre></div>
 <p><strong>Body</strong></p>
 <p><a href="https://github.com/haiwen/seahub/blob/master/seahub/templates/sysadmin/user_reset_email.html">seahub/seahub/templates/sysadmin/user_reset_email.html</a></p>
-<p>Note: You can copy user_reset_email.html to <code>seahub-data/custom/templates/sysadmin/user_reset_email.html</code> and modify the new one. In this way, the customization will be maintained after upgrade.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can copy user_reset_email.html to <code>seahub-data/custom/templates/sysadmin/user_reset_email.html</code> and modify the new one. In this way, the customization will be maintained after upgrade.</p>
+</div>
 <h3 id="user-sends-filefolder-share-link">User sends file/folder share link<a class="headerlink" href="#user-sends-filefolder-share-link" title="Permanent link">&para;</a></h3>
 <p><strong>Subject</strong></p>
 <p>seahub/seahub/share/views.py line:913</p>
@@ -4417,7 +4445,10 @@ interval = 30m
 <p><strong>Body</strong></p>
 <p><a href="https://github.com/haiwen/seahub/blob/master/seahub/templates/shared_link_email.html">seahub/seahub/templates/shared_link_email.html</a></p>
 <p><a href="https://github.com/haiwen/seahub/blob/master/seahub/templates/shared_upload_link_email.html">seahub/seahub/templates/shared_upload_link_email.html</a></p>
-<p>Note: You can copy shared_link_email.html to <code>seahub-data/custom/templates/shared_link_email.html</code> and modify the new one. In this way, the customization will be maintained after upgrade.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can copy shared_link_email.html to <code>seahub-data/custom/templates/shared_link_email.html</code> and modify the new one. In this way, the customization will be maintained after upgrade.</p>
+</div>
 <h3 id="reminder-of-unread-notifications">Reminder of unread notifications<a class="headerlink" href="#reminder-of-unread-notifications" title="Permanent link">&para;</a></h3>
 <p><strong>Subject</strong></p>
 <div class="highlight"><pre><span></span><code><span class="n">send_html_email</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s1">&#39;New notice on </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">)</span> <span class="o">%</span> <span class="n">settings</span><span class="o">.</span><span class="n">SITE_NAME</span><span class="p">,</span>

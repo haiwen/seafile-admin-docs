@@ -4546,7 +4546,10 @@ EXTRA_AUTHENTICATION_BACKENDS = (
     &quot;HTTP_ORGANIZATION&quot;: (False, &quot;institution&quot;),
 }
 </code></pre></div>
-<p>In the above config, the hash key is Shibboleth attribute name, the second element in the hash value is Seahub's property name. You can adjust the Shibboleth attribute name for your own needs. <strong><em>Note that you may have to change attribute-map.xml in your Shibboleth SP, so that the desired attributes are passed to Seahub. And you have to make sure the IdP sends these attributes to the SP.</em></strong></p>
+<p>In the above config, the hash key is Shibboleth attribute name, the second element in the hash value is Seahub's property name. You can adjust the Shibboleth attribute name for your own needs. </p>
+<div class="admonition tip">
+<p class="admonition-title">You may have to change attribute-map.xml in your Shibboleth SP, so that the desired attributes are passed to Seahub. And you have to make sure the IdP sends these attributes to the SP</p>
+</div>
 <p>We also added an option <code>SHIB_ACTIVATE_AFTER_CREATION</code> (defaults to <code>True</code>) which control the user status after shibboleth connection. If this option set to <code>False</code>, user will be inactive after connection, and system admins will be notified by email to activate that account.</p>
 <h3 id="affiliation-and-user-role">Affiliation and user role<a class="headerlink" href="#affiliation-and-user-role" title="Permanent link">&para;</a></h3>
 <p>Shibboleth has a field called affiliation. It is a list like: <code>employee@uni-mainz.de;member@uni-mainz.de;faculty@uni-mainz.de;staff@uni-mainz.de.</code></p>

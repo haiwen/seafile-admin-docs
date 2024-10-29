@@ -4382,7 +4382,10 @@
 
 
 <h1 id="seafileconf-settings">Seafile.conf settings<a class="headerlink" href="#seafileconf-settings" title="Permanent link">&para;</a></h1>
-<p><strong>Important</strong>: Every entry in this configuration file is <strong>case-sensitive</strong>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<p>Every entry in this configuration file is <strong>case-sensitive</strong>.</p>
+</div>
 <p>You need to restart seafile and seahub so that your changes take effect.</p>
 <div class="highlight"><pre><span></span><code>./seahub.sh restart
 ./seafile.sh restart
@@ -4482,11 +4485,15 @@ http_temp_scan_interval = x
 </code></pre></div>
 <p>New in Seafile Pro 7.1.16 and Pro 8.0.3: You can set the maximum number of files contained in a library that can be synced by the Seafile client. The default is 100000. When you download a repo, Seafile client will request fs id list, and you can control the timeout period of this request through <code>fs_id_list_request_timeout</code> configuration, which defaults to 5 minutes. These two options are added to prevent long fs-id-list requests from overloading the server.</p>
 <p>Since Pro 8.0.4 version, you can set both options to -1, to allow unlimited size and timeout.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>This configuration is only effective for downloading files through web page or API, but not for syncing files</p>
+</div>
 <div class="highlight"><pre><span></span><code>[fileserver]
 max_sync_file_count = 100000
 fs_id_list_request_timeout = 300
 </code></pre></div>
-<p>If you use object storage as storage backend, when a large file is frequently downloaded, the same blocks need to be fetched from the storage backend to Seafile server. This may waste bandwith and cause high load on the internal network. Since Seafile Pro 8.0.5 version, we add block caching to improve the situation. Note that this configuration is only effective for downloading files through web page or API, but not for syncing files.</p>
+<p>If you use object storage as storage backend, when a large file is frequently downloaded, the same blocks need to be fetched from the storage backend to Seafile server. This may waste bandwith and cause high load on the internal network. Since Seafile Pro 8.0.5 version, we add block caching to improve the situation. </p>
 <ul>
 <li>To enable this feature, set <code>use_block_cache</code> option in the <code>[fileserver]</code> group. It's not enabled by default. </li>
 <li>The <code>block_cache_size_limit</code> option is used to limit the size of the cache. Its default value is 10GB. The blocks are cached in <code>seafile-data/block-cache</code> directory. When the total size of cached files exceeds the limit, seaf-server will clean up older files until the size reduces to 70% of the limit. The cleanup interval is 5 minutes. You have to have a good estimate on how much space you need for the cache directory. Otherwise on frequent downloads this directory can be quickly filled up.</li>
@@ -4498,7 +4505,11 @@ use_block_cache = true
 block_cache_size_limit = 100
 block_cache_file_types = mp4;mov
 </code></pre></div>
-When a large number of files are uploaded through the web page and API, it will be expensive to calculate block IDs based on the block contents. Since Seafile-pro-9.0.6, you can add the <code>skip_block_hash</code> option to use a random string as block ID. Note that this option will prevent fsck from checking block content integrity. You should specify <code>--shallow</code> option to fsck to not check content integrity.</p>
+When a large number of files are uploaded through the web page and API, it will be expensive to calculate block IDs based on the block contents. Since Seafile-pro-9.0.6, you can add the <code>skip_block_hash</code> option to use a random string as block ID.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This option will prevent fsck from checking block content integrity. You should specify <code>--shallow</code> option to fsck to not check content integrity.</p>
+</div>
 <div class="highlight"><pre><span></span><code>[fileserver]
 skip_block_hash = true
 </code></pre></div>
@@ -4519,9 +4530,9 @@ check_virus_on_web_upload = true
 </code></pre></div>
 <h2 id="database-configuration">Database configuration<a class="headerlink" href="#database-configuration" title="Permanent link">&para;</a></h2>
 <p>The configurations of database are stored in the <code>[database]</code> section.</p>
-<blockquote>
-<p>From Seafile 11.0, the <em>SQLite</em> is not supported.</p>
-</blockquote>
+<div class="admonition danger">
+<p class="admonition-title">From Seafile 11.0, the <em>SQLite</em> is not supported</p>
+</div>
 <div class="highlight"><pre><span></span><code>[database]
 type=mysql
 host=127.0.0.1

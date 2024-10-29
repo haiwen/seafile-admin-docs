@@ -4290,7 +4290,10 @@ repo-id2
 repo-id3
 </code></pre></div>
 <p>If you give specific library ids, only those libraries will be checked; otherwise all libraries will be checked.</p>
+<div class="admonition note">
+<p class="admonition-title">repos have blocks to be removed</p>
 <p>Notice that at the end of the output there is a "repos have blocks to be removed" section. It contains the list of libraries that have garbage blocks. Later when you run GC without --dry-run option, you can use these libraris ids as input arguments to GC program.</p>
+</div>
 <h3 id="removing-garbage">Removing Garbage<a class="headerlink" href="#removing-garbage" title="Permanent link">&para;</a></h3>
 <p>To actually remove garbage blocks, run without the --dry-run option:</p>
 <div class="highlight"><pre><span></span><code>seaf-gc.sh [repo-id1] [repo-id2] ...
@@ -4299,12 +4302,18 @@ repo-id3
 <p>As described before, there are two types of garbage blocks to be removed. Sometimes just removing the first type of blocks (those that belong to deleted libraries) is good enough. In this case, the GC program won't bother to check the libraries for outdated historic blocks. The "-r" option implements this feature:</p>
 <div class="highlight"><pre><span></span><code>seaf-gc.sh -r
 </code></pre></div>
-<p><strong>Libraries deleted by the users are not immediately removed from the system. Instead, they're moved into a "trash" in the system admin page. Before they're cleared from the trash, their blocks won't be garbage collected.</strong></p>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>Libraries deleted by the users are not immediately removed from the system. Instead, they're moved into a "trash" in the system admin page. Before they're cleared from the trash, their blocks won't be garbage collected.</p>
+</div>
 <h3 id="removing-fs-objects">Removing FS objects<a class="headerlink" href="#removing-fs-objects" title="Permanent link">&para;</a></h3>
 <p>Since Pro server 8.0.6 and community edition 9.0, you can remove garbage fs objects. It should be run without the --dry-run option:</p>
 <div class="highlight"><pre><span></span><code>seaf-gc.sh --rm-fs
 </code></pre></div>
-<p>Note: This command has bug before Pro Edition 10.0.15 and Community Edition 11.0.7. It could cause virtual libraries (e.g. shared folders) failing to merge into their parent libraries. Please avoid using this option in the affected versions. Please contact our support team if you are affected by this bug.</p>
+<div class="admonition danger">
+<p class="admonition-title">Bug reports</p>
+<p>This command has bug before Pro Edition 10.0.15 and Community Edition 11.0.7. It could cause virtual libraries (e.g. shared folders) failing to merge into their parent libraries. Please avoid using this option in the affected versions. Please contact our support team if you are affected by this bug.</p>
+</div>
 <h3 id="using-multiple-threads-in-gc">Using Multiple Threads in GC<a class="headerlink" href="#using-multiple-threads-in-gc" title="Permanent link">&para;</a></h3>
 <p>You can specify the thread number in GC. By default,</p>
 <ul>

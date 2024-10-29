@@ -2014,26 +2014,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#proxy-with-nginx" class="md-nav__link">
+  <a href="#proxy" class="md-nav__link">
     <span class="md-ellipsis">
-      Proxy with Nginx
+      Proxy
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Proxy with Nginx">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#proxy-with-apache" class="md-nav__link">
-    <span class="md-ellipsis">
-      Proxy with Apache
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2043,39 +2028,6 @@
       Notes on Clients
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Notes on Clients">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#windows" class="md-nav__link">
-    <span class="md-ellipsis">
-      Windows
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#linux" class="md-nav__link">
-    <span class="md-ellipsis">
-      Linux
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mac-os-x" class="md-nav__link">
-    <span class="md-ellipsis">
-      Mac OS X
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -4230,26 +4182,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#proxy-with-nginx" class="md-nav__link">
+  <a href="#proxy" class="md-nav__link">
     <span class="md-ellipsis">
-      Proxy with Nginx
+      Proxy
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Proxy with Nginx">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#proxy-with-apache" class="md-nav__link">
-    <span class="md-ellipsis">
-      Proxy with Apache
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -4259,39 +4196,6 @@
       Notes on Clients
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Notes on Clients">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#windows" class="md-nav__link">
-    <span class="md-ellipsis">
-      Windows
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#linux" class="md-nav__link">
-    <span class="md-ellipsis">
-      Linux
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mac-os-x" class="md-nav__link">
-    <span class="md-ellipsis">
-      Mac OS X
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -4395,7 +4299,10 @@ timeout = 1200
 <p>In Pro edition 7.1.8 version and community edition 7.1.5, an option is added to append library ID to the library name returned by SeafDAV.</p>
 <div class="highlight"><pre><span></span><code>show_repo_id=true
 </code></pre></div>
-<h2 id="proxy-with-nginx">Proxy with Nginx<a class="headerlink" href="#proxy-with-nginx" title="Permanent link">&para;</a></h2>
+<h2 id="proxy">Proxy<a class="headerlink" href="#proxy" title="Permanent link">&para;</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Nginx</label><label for="__tabbed_1_2">Apache</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <p>For Seafdav, the configuration of Nginx is as follows:</p>
 <div class="highlight"><pre><span></span><code>.....
 
@@ -4421,13 +4328,17 @@ timeout = 1200
         proxy_pass         http://127.0.0.1:8080/:dir_browser;
     }
 </code></pre></div>
-<h3 id="proxy-with-apache">Proxy with Apache<a class="headerlink" href="#proxy-with-apache" title="Permanent link">&para;</a></h3>
+</div>
+<div class="tabbed-block">
 <p>For Seafdav, the configuration of Apache is as follows:</p>
 <div class="highlight"><pre><span></span><code>......
     &lt;Location /seafdav&gt;
         ProxyPass &quot;http://127.0.0.1:8080/seafdav&quot;
     &lt;/Location&gt;
 </code></pre></div>
+</div>
+</div>
+</div>
 <h2 id="notes-on-clients">Notes on Clients<a class="headerlink" href="#notes-on-clients" title="Permanent link">&para;</a></h2>
 <p>Please first note that, there are some known performance limitation when you map a Seafile webdav server as a local file system (or network drive).</p>
 <ul>
@@ -4435,9 +4346,12 @@ timeout = 1200
 <li>The access to the webdav server may be slow sometimes. That's because the local file system driver sends a lot of unnecessary requests to get the files' attributes.</li>
 </ul>
 <p>So WebDAV is more suitable for infrequent file access. If you want better performance, please use the sync client instead.</p>
-<h3 id="windows">Windows<a class="headerlink" href="#windows" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Windows</label><label for="__tabbed_2_2">Linux</label><label for="__tabbed_2_3">Mac OS X</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <p>Windows Explorer supports HTTPS connection. But it requires a valid certificate on the server. It's generally recommended to use Windows Explorer to map a webdav server as network dirve. If you use a self-signed certificate, you have to add the certificate's CA into Windows' system CA store.</p>
-<h3 id="linux">Linux<a class="headerlink" href="#linux" title="Permanent link">&para;</a></h3>
+</div>
+<div class="tabbed-block">
 <p>On Linux you have more choices. You can use file manager such as Nautilus to connect to webdav server. Or you can use davfs2 from the command line.</p>
 <p>To use davfs2</p>
 <div class="highlight"><pre><span></span><code>sudo apt-get install davfs2
@@ -4445,10 +4359,14 @@ sudo mount -t davfs -o uid=&lt;username&gt; https://example.com/seafdav /media/s
 </code></pre></div>
 <p>The -o option sets the owner of the mounted directory to <username> so that it's writable for non-root users.</p>
 <p>It's recommended to disable LOCK operation for davfs2. You have to edit /etc/davfs2/davfs2.conf</p>
-<div class="highlight"><pre><span></span><code> use_locks       0
+<div class="highlight"><pre><span></span><code>use_locks       0
 </code></pre></div>
-<h3 id="mac-os-x">Mac OS X<a class="headerlink" href="#mac-os-x" title="Permanent link">&para;</a></h3>
+</div>
+<div class="tabbed-block">
 <p>Finder's support for WebDAV is also not very stable and slow. So it is recommended to use a webdav client software such as Cyberduck.</p>
+</div>
+</div>
+</div>
 <h2 id="frequently-asked-questions">Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permanent link">&para;</a></h2>
 <h3 id="clients-cant-connect-to-seafdav-server">Clients can't connect to seafdav server<a class="headerlink" href="#clients-cant-connect-to-seafdav-server" title="Permanent link">&para;</a></h3>
 <p>By default, seafdav is disabled. Check whether you have <code>enabled = true</code> in <code>seafdav.conf</code>.

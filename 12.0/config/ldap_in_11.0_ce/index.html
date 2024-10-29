@@ -4282,7 +4282,9 @@
 
 
 <h1 id="configure-seafile-to-use-ldap">Configure Seafile to use LDAP<a class="headerlink" href="#configure-seafile-to-use-ldap" title="Permanent link">&para;</a></h1>
-<p>Note: This documentation is for the Community Edition. If you're using Pro Edition, please refer to <a href="../ldap_in_11.0_pro/">the Seafile Pro documentation</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">This documentation is for the Community Edition. If you're using Pro Edition, please refer to <a href="../ldap_in_11.0_pro/">the Seafile Pro documentation</a></p>
+</div>
 <h2 id="how-does-ldap-user-management-work-in-seafile">How does LDAP User Management work in Seafile<a class="headerlink" href="#how-does-ldap-user-management-work-in-seafile" title="Permanent link">&para;</a></h2>
 <p>When Seafile is integrated with LDAP, users in the system can be divided into two tiers:</p>
 <ul>
@@ -4300,7 +4302,9 @@
 <li>Email address: this is the most common choice. Most organizations assign unique email address for each member.</li>
 <li>UserPrincipalName: this is a user attribute only available in Active Directory. It's format is <code>user-login-name@domain-name</code>, e.g. <code>john@example.com</code>. It's not a real email address, but it works fine as the unique identifier.</li>
 </ul>
-<p>Note, the identifier is stored in table <code>social_auth_usersocialauth</code> to map the identifier to internal user ID in Seafile. When this ID is changed in LDAP for a user, you only need to update <code>social_auth_usersocialauth</code> table.</p>
+<div class="admonition note">
+<p class="admonition-title">The identifier is stored in table <code>social_auth_usersocialauth</code> to map the identifier to internal user ID in Seafile. When this ID is changed in LDAP for a user, you only need to update <code>social_auth_usersocialauth</code> table</p>
+</div>
 <h3 id="basic-configuration-items">Basic configuration items<a class="headerlink" href="#basic-configuration-items" title="Permanent link">&para;</a></h3>
 <p>Add the following options to <code>seahub_settings.py</code>. Examples are as follows:</p>
 <div class="highlight"><pre><span></span><code><span class="n">ENABLE_LDAP</span> <span class="o">=</span> <span class="kc">True</span>
@@ -4318,24 +4322,64 @@
 <span class="n">LDAP_FILTER</span> <span class="o">=</span> <span class="s1">&#39;memberOf=CN=testgroup,OU=test,DC=seafile,DC=ren&#39;</span> 
 </code></pre></div>
 <p>Meaning of some options:</p>
-<ul>
-<li><strong>LDAP_SERVER_URL:</strong> The URL of LDAP server</li>
-<li><strong>LDAP_BASE_DN:</strong>The root node of users who can log in to Seafile in the LDAP server</li>
-<li><strong>LDAP_ADMIN_DN:</strong> DN of the administrator used to query the LDAP server for information. For OpenLDAP, it maybe <code>cn=admin,dc=example,dc=com</code></li>
-<li><strong>LDAP_ADMIN_PASSWORD:</strong> Password of LDAP_ADMIN_DN</li>
-<li><strong>LDAP_PROVIDER:</strong> Identify the source of the user, used in the table social_auth_usersocialauth, defaults by 'ldap'</li>
-<li><strong>LDAP_LOGIN_ATTR:</strong> User's attribute used to log in to Seafile. It should be a unique identifier for the user in LDAP server. Learn more about this id from the descriptions at begining of this section.</li>
-<li><strong>LDAP_CONTACT_EMAIL_ATTR:</strong> LDAP user's contact_email attribute</li>
-<li>
-<p><strong>LDAP_USER_ROLE_ATTR:</strong> LDAP user's role attribute</p>
-</li>
-<li>
-<p><strong>LDAP_USER_FIRST_NAME_ATTR</strong>: Attribute for user's first name. It's "givenName" by default.</p>
-</li>
-<li><strong>LDAP_USER_LAST_NAME_ATTR</strong>: Attribute for user's last name. It's "sn" by default.</li>
-<li><strong>LDAP_USER_NAME_REVERSE</strong>: In some languages, such as Chinese, the display order of the first and last name is reversed. Set this option if you need it.</li>
-<li><strong>LDAP_FILTER:</strong> Additioinal filter conditions. Users who meet the filter conditions can log in , otherwise they cannot log in.</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>variable</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LDAP_SERVER_URL</code></td>
+<td>The URL of LDAP server</td>
+</tr>
+<tr>
+<td><code>LDAP_BASE_DN</code></td>
+<td>The root node of users who can log in to Seafile in the LDAP server</td>
+</tr>
+<tr>
+<td><code>LDAP_ADMIN_DN</code></td>
+<td>DN of the administrator used to query the LDAP server for information. For OpenLDAP, it may be <code>cn=admin,dc=example,dc=com</code></td>
+</tr>
+<tr>
+<td><code>LDAP_ADMIN_PASSWORD</code></td>
+<td>Password of <code>LDAP_ADMIN_DN</code></td>
+</tr>
+<tr>
+<td><code>LDAP_PROVIDER</code></td>
+<td>Identify the source of the user, used in the table <code>social_auth_usersocialauth</code>, defaults to 'ldap'</td>
+</tr>
+<tr>
+<td><code>LDAP_LOGIN_ATTR</code></td>
+<td>User's attribute used to log in to Seafile. It should be a unique identifier for the user in LDAP server. Learn more about this id from the descriptions at the beginning of this section.</td>
+</tr>
+<tr>
+<td><code>LDAP_CONTACT_EMAIL_ATTR</code></td>
+<td>LDAP user's <code>contact_email</code> attribute</td>
+</tr>
+<tr>
+<td><code>LDAP_USER_ROLE_ATTR</code></td>
+<td>LDAP user's role attribute</td>
+</tr>
+<tr>
+<td><code>LDAP_USER_FIRST_NAME_ATTR</code></td>
+<td>Attribute for user's first name. It's <code>"givenName"</code> by default.</td>
+</tr>
+<tr>
+<td><code>LDAP_USER_LAST_NAME_ATTR</code></td>
+<td>Attribute for user's last name. It's <code>"sn"</code> by default.</td>
+</tr>
+<tr>
+<td><code>LDAP_USER_NAME_REVERSE</code></td>
+<td>In some languages, such as Chinese, the display order of the first and last name is reversed. Set this option if you need it.</td>
+</tr>
+<tr>
+<td><code>LDAP_FILTER</code></td>
+<td>Additional filter conditions. Users who meet the filter conditions can log in, otherwise they cannot log in.</td>
+</tr>
+</tbody>
+</table>
 <p>Tips for choosing <code>LDAP_BASE_DN</code> and <code>LDAP_ADMIN_DN</code>:</p>
 <ul>
 <li>

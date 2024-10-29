@@ -4182,7 +4182,10 @@
 <h1 id="roles-and-permissions-support">Roles and Permissions Support<a class="headerlink" href="#roles-and-permissions-support" title="Permanent link">&para;</a></h1>
 <p>You can add/edit roles and permission for users. A role is just a group of users with some pre-defined permissions, you can toggle user roles in user list page at admin panel.</p>
 <p><code>role_quota</code> is used to set quota for a certain role of users. For example, we can set the quota of employee to 100G by adding <code>'role_quota': '100g'</code>, and leave other role of users to the default quota.</p>
-<p><code>can_add_public_repo</code> is to set whether a role can create a public library, default is "False". <strong>Note:</strong>The <code>can_add_public_repo</code> option will not take effect if you configure global <code>CLOUD_MODE = True</code>.</p>
+<p><code>can_add_public_repo</code> is to set whether a role can create a public library, default is "False". </p>
+<div class="admonition warning">
+<p class="admonition-title">The <code>can_add_public_repo</code> option will not take effect if you configure global <code>CLOUD_MODE = True</code></p>
+</div>
 <p>The <code>storage_ids</code> permission is used for assigning storage backends to users with specific role. More details can be found in <a href="../../setup/setup_with_multiple_storage_backends/">multiple storage backends</a>.</p>
 <p>Since version 10.0, <code>upload_rate_limit</code> and <code>download_rate_limit</code> are added to limit upload and download speed for users with different roles. <strong>After configured the rate limit, run the following command in the <code>seafile-server-latest</code> directory to make the configuration take effect</strong>:</p>
 <div class="highlight"><pre><span></span><code>./seahub.sh python-env python3 seahub/manage.py set_user_role_upload_download_rate_limit
@@ -4287,10 +4290,13 @@ INVITATIONS_TOKEN_AGE = 72 # hours
 </code></pre></div>
 <p>After restarting, users who have <code>can_invite_guest</code> permission will see "Invite People" section at sidebar of home page.</p>
 <p>Users can invite a guest user by providing his/her email address, system will email the invite link to the user.</p>
-<p><strong>Tip:</strong> If you want to block certain email addresses for the invitation, you can define a blacklist, e.g.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you want to block certain email addresses for the invitation, you can define a blacklist, e.g.</p>
 <div class="highlight"><pre><span></span><code>INVITATION_ACCEPTER_BLACKLIST = [&quot;a@a.com&quot;, &quot;*@a-a-a.com&quot;, r&quot;.*@(foo|bar).com&quot;, ]
 </code></pre></div>
 <p>After that, email address "a@a.com", any email address ends with "@a-a-a.com" and any email address ends with "@foo.com" or "@bar.com" will not be allowed.</p>
+</div>
 <h2 id="add-custom-roles">Add custom roles<a class="headerlink" href="#add-custom-roles" title="Permanent link">&para;</a></h2>
 <p>If you want to add a new role and assign some users with this role, e.g. new role <code>employee</code> can invite guest and can create public library and have all other permissions a default user has, you can add following lines to <code>seahub_settings.py</code></p>
 <div class="highlight"><pre><span></span><code>ENABLED_ROLE_PERMISSIONS = {

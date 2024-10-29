@@ -4230,7 +4230,9 @@ key_id = &lt;your-key-id&gt;
 key = &lt;your-key&gt;
 region = beijing
 </code></pre></div></p>
-<p>You also need to add <a href="../../config/seafile-conf/#cache-pro-edition-only">memory cache configurations</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">You also need to add <a href="../../config/seafile-conf/#cache-pro-edition-only">memory cache configurations</a></p>
+</div>
 <p>It's required to create separate buckets for commit, fs, and block objects. For performance and to save network traffic costs, you should create buckets within the region where the seafile server is running.</p>
 <p>The key_id and key are required to authenticate you to OSS. You can find the key_id and key in the "security credentials" section on your OSS management page.</p>
 <p>The region is the region where the bucket you created is located, such as beijing, hangzhou, shenzhen, etc.</p>
@@ -4260,7 +4262,9 @@ endpoint = vpc100-oss-cn-beijing.aliyuncs.com
 </code></pre></div>
 <p>Compared with the configuration under the classic network, the above configuration uses the <code>endpoint</code> option to replace the <code>region</code> option. The corresponding <code>endpoint</code> address can be found at <a href="https://www.alibabacloud.com/help/en/object-storage-service/latest/regions-and-endpoints">https://www.alibabacloud.com/help/en/object-storage-service/latest/regions-and-endpoints</a>.</p>
 <p><code>endpoint</code> is a general option, you can also set it to the OSS access address under the classic network, and it will work as well.</p>
-<p>You also need to add <a href="../../config/seafile-conf/#cache-pro-edition-only">memory cache configurations</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">You also need to add <a href="../../config/seafile-conf/#cache-pro-edition-only">memory cache configurations</a></p>
+</div>
 <h3 id="use-https-connections-to-oss">Use HTTPS connections to OSS<a class="headerlink" href="#use-https-connections-to-oss" title="Permanent link">&para;</a></h3>
 <p>To use HTTPS connections to OSS, add the following options to seafile.conf:</p>
 <div class="highlight"><pre><span></span><code>[commit_object_backend]

@@ -4078,7 +4078,9 @@
 <h1 id="sso-using-remote-user">SSO using Remote User<a class="headerlink" href="#sso-using-remote-user" title="Permanent link">&para;</a></h1>
 <p>Starting from 7.0.0, Seafile can integrate with various Single Sign On systems via a proxy server. Examples include Apache as Shibboleth proxy, or LemonLdap as a proxy to LDAP servers, or Apache as Kerberos proxy. Seafile can retrieve user information from special request headers (HTTP_REMOTE_USER, HTTP_X_AUTH_USER, etc.) set by the proxy servers.</p>
 <p>After the proxy server (Apache/Nginx) is successfully authenticated, the user information is set to the request header, and Seafile creates and logs in the user based on this information.</p>
-<p>Note: Make sure that the proxy server has a corresponding security mechanism to protect against forgery request header attacks.</p>
+<div class="admonition danger">
+<p class="admonition-title">Make sure that the proxy server has a corresponding security mechanism to protect against forgery request header attacks</p>
+</div>
 <p>Please add the following settings to <code>conf/seahub_settings.py</code> to enable this feature.</p>
 <div class="highlight"><pre><span></span><code>ENABLE_REMOTE_USER_AUTHENTICATION = True
 

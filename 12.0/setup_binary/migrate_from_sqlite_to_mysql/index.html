@@ -4161,7 +4161,10 @@
 
 
 <h1 id="migrate-from-sqlite-to-mysql">Migrate From SQLite to MySQL<a class="headerlink" href="#migrate-from-sqlite-to-mysql" title="Permanent link">&para;</a></h1>
-<p><strong>NOTE</strong>: The tutorial is only related to Seafile CE edition.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The tutorial is only related to Seafile CE edition.</p>
+</div>
 <p>First make sure the python module for MySQL is installed. On Ubuntu/Debian, use <code>sudo apt-get install python-mysqldb</code> or <code>sudo apt-get install python3-mysqldb</code> to install it.</p>
 <p>Steps to migrate Seafile from SQLite to MySQL:</p>
 <p>Stop Seafile and Seahub.</p>
@@ -4198,7 +4201,9 @@ PASSWD=root
 DB=ccnet_db
 CONNECTION_CHARSET=utf8
 </code></pre></div>
-<p>Note: Use <code>127.0.0.1</code>, don't use <code>localhost</code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Use <code>127.0.0.1</code>, don't use <code>localhost</code></p>
+</div>
 <p>Replace the database section in <code>seafile.conf</code> with following lines:</p>
 <div class="highlight"><pre><span></span><code>[database]
 type=mysql
@@ -4227,11 +4232,13 @@ connection_charset=utf8
 }
 </code></pre></div>
 <p>Restart seafile and seahub</p>
-<p><strong>NOTE</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>User notifications will be cleared during migration due to the slight difference between MySQL and SQLite, if you only see the busy icon when click the notitfications button beside your avatar, please remove <code>user_notitfications</code> table manually by:</p>
 <div class="highlight"><pre><span></span><code>use seahub_db;
 delete from notifications_usernotification;
 </code></pre></div>
+</div>
 <h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
 <h4 id="encountered-errno-150-foreign-key-constraint-is-incorrectly-formed">Encountered <code>errno: 150 "Foreign key constraint is incorrectly formed"</code><a class="headerlink" href="#encountered-errno-150-foreign-key-constraint-is-incorrectly-formed" title="Permanent link">&para;</a></h4>
 <p>This error typically occurs because the current table being created contains a foreign key that references a table whose primary key has not yet been created. Therefore, please check the database table creation order in the SQL file. The correct order is:</p>

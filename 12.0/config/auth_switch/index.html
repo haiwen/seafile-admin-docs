@@ -4263,7 +4263,10 @@ mysql&gt; update EmailUser set passwd = &#39;!&#39; where email = &#39;12ae56789
 
 mysql&gt; insert into `social_auth_usersocialauth` (`username`, `provider`, `uid`, `extra_data`) values (&#39;12ae56789f1e4c8d8e1c31415867317c@auth.local&#39;, &#39;authentik-oauth&#39;, &#39;HR12345&#39;, &#39;&#39;);
 </code></pre></div>
-<p><strong>Note</strong>: The <code>extra_data</code> field store user's information returned from the provider. For most providers, the <code>extra_data</code> field is usually an empty character. Since version 11.0.3-Pro, the default value of the <code>extra_data</code> field is <code>NULL</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>extra_data</code> field store user's information returned from the provider. For most providers, the <code>extra_data</code> field is usually an empty character. Since version 11.0.3-Pro, the default value of the <code>extra_data</code> field is <code>NULL</code>.</p>
+</div>
 <p>Afterwards the databases should look like this:</p>
 <div class="highlight"><pre><span></span><code>mysql&gt; select email,passwd from EmailUser where email = &#39;12ae56789f1e4c8d8e1c31415867317c@auth.local&#39;;
 +---------------------------------------------+------- +

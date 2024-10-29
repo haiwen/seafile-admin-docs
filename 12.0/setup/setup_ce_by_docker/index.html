@@ -805,6 +805,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requirements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#getting-started" class="md-nav__link">
     <span class="md-ellipsis">
       Getting started
@@ -857,9 +866,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#optseafile-data" class="md-nav__link">
+  <a href="#path-optseafile-data" class="md-nav__link">
     <span class="md-ellipsis">
-      /opt/seafile-data
+      Path /opt/seafile-data
     </span>
   </a>
   
@@ -4216,6 +4225,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requirements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#getting-started" class="md-nav__link">
     <span class="md-ellipsis">
       Getting started
@@ -4268,9 +4286,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#optseafile-data" class="md-nav__link">
+  <a href="#path-optseafile-data" class="md-nav__link">
     <span class="md-ellipsis">
-      /opt/seafile-data
+      Path /opt/seafile-data
     </span>
   </a>
   
@@ -4354,6 +4372,8 @@
 
 
 <h1 id="installation-of-seafile-server-community-edition-with-docker">Installation of Seafile Server Community Edition with Docker<a class="headerlink" href="#installation-of-seafile-server-community-edition-with-docker" title="Permanent link">&para;</a></h1>
+<h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
+<p>Seafile Community Edition requires a minimum of 2 cores and 2GB RAM. </p>
 <h2 id="getting-started">Getting started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h2>
 <p>The following assumptions and conventions are used in the rest of this document:</p>
 <ul>
@@ -4364,8 +4384,9 @@
 <h3 id="install-docker">Install docker<a class="headerlink" href="#install-docker" title="Permanent link">&para;</a></h3>
 <p>Use the <a href="https://docs.docker.com/engine/install/">official installation guide for your OS to install Docker</a>.</p>
 <h3 id="download-and-modify-env">Download and modify <code>.env</code><a class="headerlink" href="#download-and-modify-env" title="Permanent link">&para;</a></h3>
-<p>From Seafile Docker 12.0, we use <code>.env</code>, <code>seafile-server.yml</code>  and <code>caddy.yml</code> files for configuration.</p>
-<p><strong>NOTE:</strong> Different versions of Seafile have different compose files.</p>
+<div class="admonition tip">
+<p class="admonition-title">From Seafile Docker 12.0, we use <code>.env</code>, <code>seafile-server.yml</code>  and <code>caddy.yml</code> files for configuration</p>
+</div>
 <div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>/opt/seafile
 <span class="nb">cd</span><span class="w"> </span>/opt/seafile
 
@@ -4377,38 +4398,107 @@ wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/ce/caddy.yml
 nano<span class="w"> </span>.env
 </code></pre></div>
 <p>The following fields merit particular attention:</p>
-<ul>
-<li><code>SEAFILE_VOLUME</code>: The volume directory of Seafile data, default is <code>/opt/seafile-data</code></li>
-<li><code>SEAFILE_MYSQL_VOLUME</code>: The volume directory of MySQL data, default is <code>/opt/seafile-mysql/db</code></li>
-<li><code>SEAFILE_CADDY_VOLUME</code>: The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's, default is <code>/opt/seafile-caddy</code></li>
-<li><code>INIT_SEAFILE_MYSQL_ROOT_PASSWORD</code>: The user <code>root</code> password of MySQL</li>
-<li><code>SEAFILE_MYSQL_DB_USER</code>: The user of MySQL (<code>database</code> - <code>user</code> can be found in <code>conf/seafile.conf</code>)</li>
-<li><code>SEAFILE_MYSQL_DB_PASSWORD</code>: The user <code>seafile</code> password of MySQL</li>
-<li><code>JWT</code>: JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: <code>pwgen -s 40 1</code></li>
-<li><code>SEAFILE_SERVER_HOSTNAME</code>: Seafile server hostname or domain</li>
-<li><code>SEAFILE_SERVER_PROTOCOL</code>: Seafile server protocol (http or https)</li>
-<li><code>TIME_ZONE</code>: Time zone (default UTC)</li>
-<li><code>INIT_SEAFILE_ADMIN_EMAIL</code>: Admin username</li>
-<li><code>INIT_SEAFILE_ADMIN_PASSWORD</code>: Admin password</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SEAFILE_VOLUME</code></td>
+<td>The volume directory of Seafile data</td>
+<td><code>/opt/seafile-data</code></td>
+</tr>
+<tr>
+<td><code>SEAFILE_MYSQL_VOLUME</code></td>
+<td>The volume directory of MySQL data</td>
+<td><code>/opt/seafile-mysql/db</code></td>
+</tr>
+<tr>
+<td><code>SEAFILE_CADDY_VOLUME</code></td>
+<td>The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's</td>
+<td><code>/opt/seafile-caddy</code></td>
+</tr>
+<tr>
+<td><code>INIT_SEAFILE_MYSQL_ROOT_PASSWORD</code></td>
+<td>The <code>root</code> password of MySQL</td>
+<td>(required)</td>
+</tr>
+<tr>
+<td><code>SEAFILE_MYSQL_DB_USER</code></td>
+<td>The user of MySQL (<code>database</code> - <code>user</code> can be found in <code>conf/seafile.conf</code>)</td>
+<td><code>seafile</code></td>
+</tr>
+<tr>
+<td><code>SEAFILE_MYSQL_DB_PASSWORD</code></td>
+<td>The user <code>seafile</code> password of MySQL</td>
+<td>(required)</td>
+</tr>
+<tr>
+<td><code>JWT</code></td>
+<td>JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters is required for Seafile, which can be generated by using <code>pwgen -s 40 1</code></td>
+<td>(required)</td>
+</tr>
+<tr>
+<td><code>SEAFILE_SERVER_HOSTNAME</code></td>
+<td>Seafile server hostname or domain</td>
+<td>(required)</td>
+</tr>
+<tr>
+<td><code>SEAFILE_SERVER_PROTOCOL</code></td>
+<td>Seafile server protocol (http or https)</td>
+<td><code>http</code></td>
+</tr>
+<tr>
+<td><code>TIME_ZONE</code></td>
+<td>Time zone</td>
+<td><code>UTC</code></td>
+</tr>
+<tr>
+<td><code>INIT_SEAFILE_ADMIN_EMAIL</code></td>
+<td>Admin username</td>
+<td><code>me@example.com</code> (Recommend modifications)</td>
+</tr>
+<tr>
+<td><code>INIT_SEAFILE_ADMIN_PASSWORD</code></td>
+<td>Admin password</td>
+<td><code>asecret</code> (Recommend modifications)</td>
+</tr>
+</tbody>
+</table>
 <h3 id="start-seafile-server">Start Seafile server<a class="headerlink" href="#start-seafile-server" title="Permanent link">&para;</a></h3>
 <p>Start Seafile server with the following command</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># if `.env` file is in current directory:</span>
-docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-
-<span class="c1"># if `.env` file is elsewhere:</span>
-docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>/path/to/.env<span class="w"> </span>up<span class="w"> </span>-d
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You must run the above command in the directory with the <code>.env</code>. If <code>.env</code> file is elsewhere, please run</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>/path/to/.env<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
 <p>Wait for a few minutes for the first time initialization, then visit <code>http://seafile.example.com</code> to open Seafile Web UI.</p>
 <h2 id="seafile-directory-structure">Seafile directory structure<a class="headerlink" href="#seafile-directory-structure" title="Permanent link">&para;</a></h2>
-<h3 id="optseafile-data"><code>/opt/seafile-data</code><a class="headerlink" href="#optseafile-data" title="Permanent link">&para;</a></h3>
+<h3 id="path-optseafile-data">Path <code>/opt/seafile-data</code><a class="headerlink" href="#path-optseafile-data" title="Permanent link">&para;</a></h3>
 <p>Placeholder spot for shared volumes. You may elect to store certain persistent information outside of a container, in our case we keep various log files and upload directory outside. This allows you to rebuild containers easily without losing important information.</p>
 <ul>
-<li>/opt/seafile-data/seafile: This is the directory for seafile server configuration and data.</li>
+<li>/opt/seafile-data/seafile: This is the directory for seafile server configuration and data.<ul>
 <li>/opt/seafile-data/seafile/logs: This is the directory that would contain the log files of seafile server processes. For example, you can find seaf-server logs in <code>/opt/seafile-data/seafile/logs/seafile.log</code>.</li>
-<li>/opt/seafile-data/logs: This is the directory for operating system and Nginx logs.</li>
-<li>/opt/seafile-data/logs/var-log: This is the directory that would be mounted as <code>/var/log</code> inside the container. For example, you can find the nginx logs in <code>/opt/seafile-data/logs/var-log/nginx/</code>.</li>
 </ul>
+</li>
+<li>/opt/seafile-data/logs: This is the directory for operating system.<ul>
+<li>/opt/seafile-data/logs/var-log: This is the directory that would be mounted as <code>/var/log</code> inside the container. </li>
+</ul>
+</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>From Seafile Docer 12.0, the Nginx's log is not accessable, as we use the <strong><em>Caddy</em></strong> to do web service proxy. If you would like to access the logs of <em>Caddy</em>, you can use following command:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>logs<span class="w"> </span>seafile-caddy<span class="w"> </span>--follow
+</code></pre></div>
+</div>
 <h3 id="find-logs">Find logs<a class="headerlink" href="#find-logs" title="Permanent link">&para;</a></h3>
 <p>To monitor container logs (from outside of the container), please use the following commands:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># if the `.env` file is in current directory:</span>

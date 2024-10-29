@@ -4521,6 +4521,9 @@ mysqldump -h [mysqlhost] -u[username] -p[password] --opt seafile_db &gt; /backup
 mysqldump -h [mysqlhost] -u[username] -p[password] --opt seahub_db &gt; /backup/databases/seahub-db.sql.`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`
 </code></pre></div>
 <p><strong>SQLite</strong></p>
+<div class="admonition warning">
+<p class="admonition-title">SQLite has not supported since Seafile 11.0</p>
+</div>
 <p>You need to stop Seafile server first before backing up SQLite database.</p>
 <div class="highlight"><pre><span></span><code>sqlite3 /opt/seafile/ccnet/GroupMgr/groupmgr.db .dump &gt; /backup/databases/groupmgr.db.bak.`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`
 
@@ -4555,6 +4558,9 @@ mysql -u[username] -p[password] seafile_db &lt; seafile-db.sql.2013-10-19-16-00-
 mysql -u[username] -p[password] seahub_db &lt; seahub-db.sql.2013-10-19-16-01-05
 </code></pre></div>
 <p><strong>SQLite</strong></p>
+<div class="admonition warning">
+<p class="admonition-title">SQLite has not supported since Seafile 11.0</p>
+</div>
 <div class="highlight"><pre><span></span><code>cd /opt/seafile
 mv ccnet/PeerMgr/usermgr.db ccnet/PeerMgr/usermgr.db.old
 mv ccnet/GroupMgr/groupmgr.db ccnet/GroupMgr/groupmgr.db.old

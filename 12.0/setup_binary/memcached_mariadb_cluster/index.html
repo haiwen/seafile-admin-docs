@@ -4173,7 +4173,9 @@ vi /etc/memcached.conf
 
 service memcached restart
 </code></pre></div>
-<p><strong>NOTE: Please configure memcached to start on system startup.</strong></p>
+<div class="admonition tip">
+<p class="admonition-title">Please configure memcached to start on system startup</p>
+</div>
 <p>Install and configure Keepalived.</p>
 <div class="highlight"><pre><span></span><code># For Ubuntu
 sudo apt-get install keepalived -y
@@ -4257,7 +4259,9 @@ vrrp_instance VI_1 {
     }
 }
 </code></pre></div>
-<p><strong>NOTE: Please adjust the network device names accordingly. virtual_ipaddress is the floating IP address in use.</strong></p>
+<div class="admonition tip">
+<p class="admonition-title">Please adjust the network device names accordingly. virtual_ipaddress is the floating IP address in use</p>
+</div>
 <h2 id="setup-mariadb-cluster">Setup MariaDB Cluster<a class="headerlink" href="#setup-mariadb-cluster" title="Permanent link">&para;</a></h2>
 <p>MariaDB cluster helps you to remove single point of failure from the cluster architecture. Every update in the database cluster is synchronously replicated to all instances.</p>
 <p>You can choose between two different setups:</p>
@@ -4268,8 +4272,12 @@ vrrp_instance VI_1 {
 <p>We refer to the documentation from MariaDB team:</p>
 <ul>
 <li><a href="https://mariadb.com/resources/blog/setting-mariadb-enterprise-cluster-part-2-how-set-mariadb-cluster">Setting up MariaDB cluster on CentOS 7</a></li>
-<li><a href="https://mariadb.com/resources/blog/setup-mariadb-enterprise-cluster-part-3-setup-ha-proxy-load-balancer-read-and-write-pools">Setting up HAProxy for MariaDB Galera Cluster</a>. Note that Seafile doesn't use read/write isolation techniques. So you don't need to setup read and write pools.</li>
+<li><a href="https://mariadb.com/resources/blog/setup-mariadb-enterprise-cluster-part-3-setup-ha-proxy-load-balancer-read-and-write-pools">Setting up HAProxy for MariaDB Galera Cluster</a>. </li>
 </ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Seafile doesn't use read/write isolation techniques. So you don't need to setup read and write pools.</p>
+</div>
 
 
 

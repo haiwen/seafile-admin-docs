@@ -4282,13 +4282,13 @@
 
 <h1 id="start-seafile-at-system-bootup">Start Seafile at System Bootup<a class="headerlink" href="#start-seafile-at-system-bootup" title="Permanent link">&para;</a></h1>
 <h2 id="for-systems-running-systemd-and-python-virtual-environments">For systems running systemd and python virtual environments<a class="headerlink" href="#for-systems-running-systemd-and-python-virtual-environments" title="Permanent link">&para;</a></h2>
-<ul>
-<li>For example Debian 12
-Create systemd service files, change <strong>${seafile_dir}</strong> to your
+<blockquote>
+<p>For example Debian 12</p>
+</blockquote>
+<p>Create systemd service files, change <strong>${seafile_dir}</strong> to your
 <strong>seafile</strong> installation location and <strong>seafile</strong> to user, who runs
 <strong>seafile</strong> (if appropriate). Then you need to reload systemd's daemons:
-<strong>systemctl daemon-reload</strong>.</li>
-</ul>
+<strong>systemctl daemon-reload</strong>.</p>
 <p>Firstly, you should create a script to activate the python virtual environment, which goes in the <strong>${seafile_dir}</strong> directory.  Put another way, it does not go in "seafile-server-latest", but the directory above that.  Throughout this manual the examples use /opt/seafile for this directory, but you might have chosen to use a different directory.</p>
 <div class="highlight"><pre><span></span><code>sudo vim /opt/seafile/run_with_venv.sh
 </code></pre></div>
@@ -4346,9 +4346,9 @@ Group=seafile
 WantedBy=multi-user.target
 </code></pre></div>
 <h2 id="for-systems-running-systemd-without-python-virtual-environment">For systems running systemd without python virtual environment<a class="headerlink" href="#for-systems-running-systemd-without-python-virtual-environment" title="Permanent link">&para;</a></h2>
-<ul>
-<li>For example Debian 8 through Debian 11, Linux Ubuntu 15.04 and newer</li>
-</ul>
+<blockquote>
+<p>For example Debian 8 through Debian 11, Linux Ubuntu 15.04 and newer</p>
+</blockquote>
 <p>Create systemd service files, change <strong>${seafile_dir}</strong> to your
 <strong>seafile</strong> installation location and <strong>seafile</strong> to user, who runs
 <strong>seafile</strong> (if appropriate). Then you need to reload systemd's daemons:
