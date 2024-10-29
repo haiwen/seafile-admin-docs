@@ -1,6 +1,7 @@
 # Seafile.conf settings
 
-**Important**: Every entry in this configuration file is **case-sensitive**.
+!!! warning "Important"
+    Every entry in this configuration file is **case-sensitive**.
 
 You need to restart seafile and seahub so that your changes take effect.
 
@@ -171,13 +172,16 @@ New in Seafile Pro 7.1.16 and Pro 8.0.3: You can set the maximum number of files
 
 Since Pro 8.0.4 version, you can set both options to -1, to allow unlimited size and timeout.
 
+!!! tip
+    This configuration is only effective for downloading files through web page or API, but not for syncing files
+
 ```
 [fileserver]
 max_sync_file_count = 100000
 fs_id_list_request_timeout = 300
 ```
 
-If you use object storage as storage backend, when a large file is frequently downloaded, the same blocks need to be fetched from the storage backend to Seafile server. This may waste bandwith and cause high load on the internal network. Since Seafile Pro 8.0.5 version, we add block caching to improve the situation. Note that this configuration is only effective for downloading files through web page or API, but not for syncing files.
+If you use object storage as storage backend, when a large file is frequently downloaded, the same blocks need to be fetched from the storage backend to Seafile server. This may waste bandwith and cause high load on the internal network. Since Seafile Pro 8.0.5 version, we add block caching to improve the situation. 
 
 * To enable this feature, set `use_block_cache` option in the `[fileserver]` group. It's not enabled by default. 
 * The `block_cache_size_limit` option is used to limit the size of the cache. Its default value is 10GB. The blocks are cached in `seafile-data/block-cache` directory. When the total size of cached files exceeds the limit, seaf-server will clean up older files until the size reduces to 70% of the limit. The cleanup interval is 5 minutes. You have to have a good estimate on how much space you need for the cache directory. Otherwise on frequent downloads this directory can be quickly filled up.
@@ -190,7 +194,10 @@ use_block_cache = true
 block_cache_size_limit = 100
 block_cache_file_types = mp4;mov
 ```
-When a large number of files are uploaded through the web page and API, it will be expensive to calculate block IDs based on the block contents. Since Seafile-pro-9.0.6, you can add the `skip_block_hash` option to use a random string as block ID. Note that this option will prevent fsck from checking block content integrity. You should specify `--shallow` option to fsck to not check content integrity.
+When a large number of files are uploaded through the web page and API, it will be expensive to calculate block IDs based on the block contents. Since Seafile-pro-9.0.6, you can add the `skip_block_hash` option to use a random string as block ID.
+
+!!! warning
+    This option will prevent fsck from checking block content integrity. You should specify `--shallow` option to fsck to not check content integrity.
 
 ```
 [fileserver]
@@ -225,7 +232,7 @@ check_virus_on_web_upload = true
 
 The configurations of database are stored in the `[database]` section.
 
-> From Seafile 11.0, the *SQLite* is not supported.
+!!! danger "From Seafile 11.0, the *SQLite* is not supported"
 
 ```
 [database]

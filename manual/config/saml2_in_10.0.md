@@ -27,11 +27,11 @@ $ cd /opt/seafile/seahub-data/certs
 $ openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout sp.key -out sp.crt
 ```
 
-__Note__: The `days` option indicates the validity period of the generated certificate. The unit is day. The system admin needs to update the certificate regularly.
+!!! tip "The `days` option indicates the validity period of the generated certificate. The unit is day. The system admin needs to update the certificate regularly"
 
 ## Integration with ADFS/SAML single sign-on
 
-### Integration with Microsoft Azure SAML single sign-on app
+### Microsoft Azure SAML single sign-on app
 
 If you use Microsoft Azure SAML app to achieve single sign-on, please follow the steps below:
 
@@ -70,33 +70,34 @@ SAML_ATTRIBUTE_MAPPING = {
     'name': ('display_name', ),
     'mail': ('contact_email', ),
     'seafile_groups': ('', ), # Optional, set this attribute if you need to synchronize groups/departments.
-     ...
-  	
+    ...
+    
 }
 SAML_REMOTE_METADATA_URL = 'https://login.microsoftonline.com/xxx/federationmetadata/2007-06/federationmetadata.xml?appid=xxx'   # copy from SAML app
 ```
 
-__Note__: If the xmlsec1 binary is **not located in** `/usr/bin/xmlsec1`, you need to add the following configuration in seahub_settings.py:
+!!! note
+    - If the xmlsec1 binary is **not located in** `/usr/bin/xmlsec1`, you need to add the following configuration in seahub_settings.py:
 
-```python
-SAML_XMLSEC_BINARY_PATH = '/path/to/xmlsec1'
-```
+    ```python
+    SAML_XMLSEC_BINARY_PATH = '/path/to/xmlsec1'
+    ```
 
-View where the xmlsec1 binary is located:
+    View where the xmlsec1 binary is located:
 
-```
-$ which xmlsec1
-```
+    ```
+    $ which xmlsec1
+    ```
 
-__Note__: If certificates are **not placed in** `/opt/seafile/seahub-data/certs`, you need to add the following configuration in seahub_settings.py:
+    - If certificates are **not placed in** `/opt/seafile/seahub-data/certs`, you need to add the following configuration in seahub_settings.py:
 
-```python
-SAML_CERTS_DIR = '/path/to/certs'
-```
+    ```python
+    SAML_CERTS_DIR = '/path/to/certs'
+    ```
 
 **Finally**, open the browser and enter the Seafile login page, click `Single Sign-On`, and use the user assigned to SAML app to perform a SAML login test.
 
-### Integration with on-premise ADFS
+### On-premise ADFS
 
 If you use Microsoft ADFS to achieve single sign-on, please follow the steps below:
 
@@ -185,6 +186,6 @@ SAML_REMOTE_METADATA_URL = 'https://temp.adfs.com/federationmetadata/2007-06/fed
 
 * Click **OK** to add both new rules.
 
-__Note__: When creating claims rule, you can also select other LDAP Attributes, such as E-Mail-Addresses, depending on your ADFS service.
+!!! tip "When creating claims rule, you can also select other LDAP Attributes, such as E-Mail-Addresses, depending on your ADFS service"
 
 **Finally**, open the browser and enter the Seafile login page, click `Single Sign-On` to perform ADFS login test.

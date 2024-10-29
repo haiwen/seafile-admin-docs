@@ -45,47 +45,49 @@ show_repo_id=true
 
 ```
 
-## Proxy with Nginx
+## Proxy
 
-For Seafdav, the configuration of Nginx is as follows:
+=== "Nginx"
 
-```
-.....
+    For Seafdav, the configuration of Nginx is as follows:
 
-    location /seafdav {
-        rewrite ^/seafdav$ /seafdav/ permanent;
-    }
+    ```
+    .....
 
-    location /seafdav/ {
-        proxy_pass         http://127.0.0.1:8080/seafdav/;
-        proxy_set_header   Host $host;
-        proxy_set_header   X-Real-IP $remote_addr;
-        proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header   X-Forwarded-Host $server_name;
-        proxy_set_header   X-Forwarded-Proto $scheme;
-        proxy_read_timeout  1200s;
-        client_max_body_size 0;
-﻿
-        access_log      /var/log/nginx/seafdav.access.log seafileformat;
-        error_log       /var/log/nginx/seafdav.error.log;
-    }
+        location /seafdav {
+            rewrite ^/seafdav$ /seafdav/ permanent;
+        }
 
-    location /:dir_browser {
-        proxy_pass         http://127.0.0.1:8080/:dir_browser;
-    }
-```
+        location /seafdav/ {
+            proxy_pass         http://127.0.0.1:8080/seafdav/;
+            proxy_set_header   Host $host;
+            proxy_set_header   X-Real-IP $remote_addr;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   X-Forwarded-Host $server_name;
+            proxy_set_header   X-Forwarded-Proto $scheme;
+            proxy_read_timeout  1200s;
+            client_max_body_size 0;
+    ﻿
+            access_log      /var/log/nginx/seafdav.access.log seafileformat;
+            error_log       /var/log/nginx/seafdav.error.log;
+        }
 
-### Proxy with Apache
+        location /:dir_browser {
+            proxy_pass         http://127.0.0.1:8080/:dir_browser;
+        }
+    ```
 
-For Seafdav, the configuration of Apache is as follows:
+=== "Apache"
 
-```
-......
-    <Location /seafdav>
-        ProxyPass "http://127.0.0.1:8080/seafdav"
-    </Location>
+    For Seafdav, the configuration of Apache is as follows:
 
-```
+    ```
+    ......
+        <Location /seafdav>
+            ProxyPass "http://127.0.0.1:8080/seafdav"
+        </Location>
+
+    ```
 
 
 ## Notes on Clients
@@ -97,34 +99,32 @@ Please first note that, there are some known performance limitation when you map
 
 So WebDAV is more suitable for infrequent file access. If you want better performance, please use the sync client instead.
 
-### Windows
+=== "Windows"
 
-Windows Explorer supports HTTPS connection. But it requires a valid certificate on the server. It's generally recommended to use Windows Explorer to map a webdav server as network dirve. If you use a self-signed certificate, you have to add the certificate's CA into Windows' system CA store.
+    Windows Explorer supports HTTPS connection. But it requires a valid certificate on the server. It's generally recommended to use Windows Explorer to map a webdav server as network dirve. If you use a self-signed certificate, you have to add the certificate's CA into Windows' system CA store.
+=== "Linux"
 
-### Linux
+    On Linux you have more choices. You can use file manager such as Nautilus to connect to webdav server. Or you can use davfs2 from the command line.
 
-On Linux you have more choices. You can use file manager such as Nautilus to connect to webdav server. Or you can use davfs2 from the command line.
+    To use davfs2
 
-To use davfs2
+    ```
+    sudo apt-get install davfs2
+    sudo mount -t davfs -o uid=<username> https://example.com/seafdav /media/seafdav/
 
-```
-sudo apt-get install davfs2
-sudo mount -t davfs -o uid=<username> https://example.com/seafdav /media/seafdav/
+    ```
 
-```
+    The -o option sets the owner of the mounted directory to <username> so that it's writable for non-root users.
 
-The -o option sets the owner of the mounted directory to <username> so that it's writable for non-root users.
+    It's recommended to disable LOCK operation for davfs2. You have to edit /etc/davfs2/davfs2.conf
 
-It's recommended to disable LOCK operation for davfs2. You have to edit /etc/davfs2/davfs2.conf
+    ```
+    use_locks       0
 
-```
- use_locks       0
+    ```
+=== "Mac OS X"
 
-```
-
-### Mac OS X
-
-Finder's support for WebDAV is also not very stable and slow. So it is recommended to use a webdav client software such as Cyberduck.
+    Finder's support for WebDAV is also not very stable and slow. So it is recommended to use a webdav client software such as Cyberduck.
 
 ## Frequently Asked Questions
 

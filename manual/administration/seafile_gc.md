@@ -66,7 +66,9 @@ repo-id3
 
 If you give specific library ids, only those libraries will be checked; otherwise all libraries will be checked.
 
-Notice that at the end of the output there is a "repos have blocks to be removed" section. It contains the list of libraries that have garbage blocks. Later when you run GC without --dry-run option, you can use these libraris ids as input arguments to GC program.
+!!! note "repos have blocks to be removed"
+
+    Notice that at the end of the output there is a "repos have blocks to be removed" section. It contains the list of libraries that have garbage blocks. Later when you run GC without --dry-run option, you can use these libraris ids as input arguments to GC program.
 
 ### Removing Garbage
 
@@ -86,7 +88,8 @@ seaf-gc.sh -r
 
 ```
 
-**Libraries deleted by the users are not immediately removed from the system. Instead, they're moved into a "trash" in the system admin page. Before they're cleared from the trash, their blocks won't be garbage collected.**
+!!! success
+    Libraries deleted by the users are not immediately removed from the system. Instead, they're moved into a "trash" in the system admin page. Before they're cleared from the trash, their blocks won't be garbage collected.
 
 ### Removing FS objects
 
@@ -97,7 +100,8 @@ seaf-gc.sh --rm-fs
 
 ```
 
-Note: This command has bug before Pro Edition 10.0.15 and Community Edition 11.0.7. It could cause virtual libraries (e.g. shared folders) failing to merge into their parent libraries. Please avoid using this option in the affected versions. Please contact our support team if you are affected by this bug.
+!!! danger "Bug reports"
+    This command has bug before Pro Edition 10.0.15 and Community Edition 11.0.7. It could cause virtual libraries (e.g. shared folders) failing to merge into their parent libraries. Please avoid using this option in the affected versions. Please contact our support team if you are affected by this bug.
 
 ### Using Multiple Threads in GC
 

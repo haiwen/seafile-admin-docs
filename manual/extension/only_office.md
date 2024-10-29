@@ -94,24 +94,6 @@ service:
 
 For more information you can check the official documentation: <https://api.onlyoffice.com/editors/signature/> and <https://github.com/ONLYOFFICE/Docker-DocumentServer#available-configuration-parameters>
 
-### Create a database for OnlyOffice
-
-> By default, OnlyOffice will use the database information related to `SEAFILE_MYSQL_*` in `.env`. If you need to specify another existing database, please modify it in `onlyoffice.yml`
-
-First, you need to make sure the database service is started, and enter the seafile-mysql container
-
-```sh
-docker compose up -d
-docker exec -it seafile-mysql bash
-```
-
-In the container, you need to create the database `onlyoffice` and add corresponding permissions for the `seafile` user
-
-```sql
-create database if not exists onlyoffice charset utf8mb4;
-GRANT ALL PRIVILEGES ON `onlyoffice`.* to `seafile`@`%.%.%.%`;
-```
-
 ### Restart Seafile-docker instance and test that OnlyOffice is running
 
 ```shell

@@ -1,6 +1,7 @@
 # Deploy in a cluster
 
-**Update**: Since Seafile Pro server 6.0.0, cluster deployment requires "sticky session" settings in the load balancer. Otherwise sometimes folder download on the web UI can't work properly. Read the "Load Balancer Setting" section below for details
+!!! tip
+    Since Seafile Pro server 6.0.0, cluster deployment requires "sticky session" settings in the load balancer. Otherwise sometimes folder download on the web UI can't work properly. Read the "Load Balancer Setting" section below for details
 
 ## Architecture
 
@@ -90,7 +91,7 @@ haiwen
 
 Please follow [Download and Setup Seafile Professional Server With MySQL](./installation_pro.md) to setup a single Seafile server node.
 
-Note: **Use the load balancer's address or domain name for the server address. Don't use the local IP address of each Seafile server machine. This assures the user will always access your service via the load balancers.**
+!!! note "Use the load balancer's address or domain name for the server address. Don't use the local IP address of each Seafile server machine. This assures the user will always access your service via the load balancers"
 
 After the setup process is done, you still have to do a few manual changes to the config files.
 
@@ -171,7 +172,8 @@ es_host = background.seafile.com
 es_port = 9200
 ```
 
-Note: `enable = true` should be left unchanged. It means the file search feature is enabled.
+!!! tip
+    `enable = true` should be left unchanged. It means the file search feature is enabled.
 
 
 ### Update Seahub Database
@@ -196,7 +198,7 @@ You also need to add the settings for backend cloud storage systems to the confi
 
 Nginx/Apache with HTTP need to set it up on each machine running Seafile server. This is make sure only port 80 need to be exposed to load balancer. (HTTPS should be setup at the load balancer)
 
-Please check the following documents on how to setup HTTP with Nginx/Apache. Note, you only the HTTP setup part the the documents. (HTTPS is not needed)
+Please check the following documents on how to setup HTTP with Nginx/Apache. (HTTPS is not needed)
 
 * [Nginx](./https_with_nginx.md)
 * [Apache](./https_with_apache.md)
@@ -213,7 +215,8 @@ cd /data/haiwen/seafile-server-latest
 
 ```
 
-_Note:_ The first time you start seahub, the script would prompt you to create an admin account for your Seafile server.
+!!! success
+    The first time you start seahub, the script would prompt you to create an admin account for your Seafile server.
 
 Open your browser, visit `http://ip-address-of-this-node:80` and login with the admin account.
 

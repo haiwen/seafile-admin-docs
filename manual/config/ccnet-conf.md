@@ -1,7 +1,10 @@
 # ccnet.conf
 
 
-Ccnet is the internal RPC framework used by Seafile server and also manages the user database. A few useful options are in ccnet.conf. Ccnet component is merged into seaf-server in version 7.1, but the configuration file are still needed.
+Ccnet is the internal RPC framework used by Seafile server and also manages the user database. A few useful options are in ccnet.conf. 
+
+!!! note 
+    Ccnet component is merged into seaf-server in version 7.1, but the configuration file are still needed
 
 
 ## Changing MySQL Connection Pool Size

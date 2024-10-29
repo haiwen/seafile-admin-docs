@@ -2,7 +2,8 @@
 
 ## For systems running systemd and python virtual environments
 
-* For example Debian 12
+> For example Debian 12
+
 Create systemd service files, change **${seafile_dir}** to your
 **seafile** installation location and **seafile** to user, who runs
 **seafile** (if appropriate). Then you need to reload systemd's daemons:
@@ -90,7 +91,7 @@ WantedBy=multi-user.target
 
 ## For systems running systemd without python virtual environment
 
-* For example Debian 8 through Debian 11, Linux Ubuntu 15.04 and newer
+> For example Debian 8 through Debian 11, Linux Ubuntu 15.04 and newer
 
 Create systemd service files, change **${seafile_dir}** to your
 **seafile** installation location and **seafile** to user, who runs

@@ -21,24 +21,9 @@ We recommend to allocate at least 128MB memory for object cache.
 
 File search and WebDAV functions rely on Python Ceph library installed in the system.
 
-On Debian/Ubuntu (Seafile 7.1+):
 
-```
+```sh
 sudo apt-get install python3-rados
-
-```
-
-On Debian/Ubuntu (Seafile 7.0 or below):
-
-```
-sudo apt-get install python-ceph
-
-```
-
-On RedHat/CentOS (Seafile 7.0 or below):
-
-```
-sudo yum install python-rados
 
 ```
 
@@ -63,7 +48,7 @@ ceph_config = /etc/ceph/ceph.conf
 pool = seafile-fs
 ```
 
-You also need to add [memory cache configurations](../config/seafile-conf.md#cache-pro-edition-only).
+!!! note "You also need to add [memory cache configurations](../config/seafile-conf.md#cache-pro-edition-only)"
 
 It's required to create separate pools for commit, fs, and block objects.
 
@@ -74,17 +59,17 @@ ceph-admin-node# rados mkpool seafile-fs
 
 ```
 
-## Troubleshooting librados incompatibility issues
+!!! warning "Troubleshooting librados incompatibility issues"
 
-Since 8.0 version, Seafile bundles librados from Ceph 16. On some systems you may find Seafile fail to connect to your Ceph cluster. In such case, you can usually solve it by removing the bundled librados libraries and use the one installed in the OS.
+    Since 8.0 version, Seafile bundles librados from Ceph 16. On some systems you may find Seafile fail to connect to your Ceph cluster. In such case, you can usually solve it by removing the bundled librados libraries and use the one installed in the OS.
 
-To do this, you have to remove a few bundled libraries:
+    To do this, you have to remove a few bundled libraries:
 
-```
-cd seafile-server-latest/seafile/lib
-rm librados.so.2 libstdc++.so.6 libnspr4.so
+    ```
+    cd seafile-server-latest/seafile/lib
+    rm librados.so.2 libstdc++.so.6 libnspr4.so
 
-```
+    ```
 
 ## Use arbitary Ceph user
 

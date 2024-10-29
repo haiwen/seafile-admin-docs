@@ -6,11 +6,11 @@ However, administrators sometimes want to access the files directly on the serve
 
 `Seaf-fuse` is an implementation of the [FUSE](http://fuse.sourceforge.net) virtual filesystem. In a word, it mounts all the seafile files to a folder (which is called the '''mount point'''), so that you can access all the files managed by seafile server, just as you access a normal folder on your server.
 
-Note:
+!!! note
 
-* Encrypted folders can't be accessed by seaf-fuse.
-* Currently the implementation is '''read-only''', which means you can't modify the files through the mounted folder.
-* One debian/centos systems, you need to be in the "fuse" group to have the permission to mount a FUSE folder.
+    * Encrypted folders can't be accessed by seaf-fuse.
+    * Currently the implementation is '''read-only''', which means you can't modify the files through the mounted folder.
+    * One debian/centos systems, you need to be in the "fuse" group to have the permission to mount a FUSE folder.
 
 ## Use seaf-fuse in binary based deployment
 
@@ -24,7 +24,7 @@ mkdir -p /data/seafile-fuse
 
 ##### Start seaf-fuse with the script
 
-Note: Before start seaf-fuse, you should have started seafile server with `./seafile.sh start`.
+!!! tip "Before start seaf-fuse, you should have started seafile server with `./seafile.sh start`"
 
 ```
 ./seaf-fuse.sh start /data/seafile-fuse

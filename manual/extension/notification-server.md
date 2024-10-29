@@ -6,7 +6,7 @@ When a directory is opened on the web interface, the lock status of the file can
 
 The notification server uses websocket protocol and maintains a two-way communication connection with the client or the web interface. When the above changes occur, seaf-server will notify the notification server of the changes. Then the notification server can notify the client or the web interface in real time. This not only improves the real-time performance, but also reduces the performance overhead of the server.
 
-Note, the notification server cannot work if you config Seafile server with SQLite database.
+!!! danger "The notification server cannot work if you config Seafile server with SQLite database"
 
 ## Supported update reminder types
 
@@ -78,13 +78,9 @@ Or add the configuration for Apache:
     ProxyPassReverse /notification ws://127.0.0.1:8083/
 ```
 
-NOTE: according to [apache ProxyPass document](https://httpd.apache.org/docs/2.4/mod/mod_proxy.html#proxypass)
+>  According to [apache ProxyPass document](https://httpd.apache.org/docs/2.4/mod/mod_proxy.html#proxypass):
 
-```
-The configured ProxyPass and ProxyPassMatch rules are checked in the order of configuration. The first rule that matches wins.
-So usually you should sort conflicting ProxyPass rules starting with the longest URLs first.
-Otherwise, later rules for longer URLS will be hidden by any earlier rule which uses a leading substring of the URL. Note that there is some relation with worker sharing.
-```
+> The configured ProxyPass and ProxyPassMatch rules are checked in the order of configuration. The first rule that matches wins. So usually you should sort conflicting ProxyPass rules starting with the longest URLs first. Otherwise, later rules for longer URLS will be hidden by any earlier rule which uses a leading substring of the URL. Note that there is some relation with worker sharing.
 
 the final configuration for Apache should be like:
 

@@ -25,18 +25,18 @@ The setup proceeds in two steps: First, Nginx is installed. Second, a SSL certif
 
 Install Nginx using the package repositories:
 
-```bash
-# CentOS
-$ sudo yum install nginx -y
-
-# Debian/Ubuntu
-$ sudo apt install nginx -y
-```
+=== "CentOS"
+    ```bash
+    $ sudo yum install nginx -y
+    ```
+=== "Debian"
+    ```sh
+    $ sudo apt install nginx -y
+    ```
 
 After the installation, start the server and enable it so that Nginx starts at system boot:
 
 ```bash
-# CentOS/Debian/Ubuntu
 $ sudo systemctl start nginx
 $ sudo systemctl enable nginx
 ```

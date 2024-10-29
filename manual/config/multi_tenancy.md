@@ -65,7 +65,7 @@ $ cd /opt/seafile/seahub-data/certs
 $ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout sp.key -out sp.crt
 ```
 
-__Note__: The `days` option indicates the validity period of the generated certificate. The unit is day. The system admin needs to update the certificate regularly.
+!!! tip "The `days` option indicates the validity period of the generated certificate. The unit is day. The system admin needs to update the certificate regularly"
 
 **Finally**, add the following configuration to seahub_settings.py and then restart Seafile:
 
@@ -79,23 +79,23 @@ SAML_ATTRIBUTE_MAPPING = {
 }
 ```
 
-__Note__: If the xmlsec1 binary is **not located in** `/usr/bin/xmlsec1`, you need to add the following configuration in seahub_settings.py:
+!!! note
+    - If the xmlsec1 binary is **not located in** `/usr/bin/xmlsec1`, you need to add the following configuration in seahub_settings.py:
 
-```python
-SAML_XMLSEC_BINARY_PATH = '/path/to/xmlsec1'
-```
+    ```python
+    SAML_XMLSEC_BINARY_PATH = '/path/to/xmlsec1'
+    ```
 
-View where the xmlsec1 binary is located:
+    View where the xmlsec1 binary is located:
 
-```
-$ which xmlsec1
-```
+    ```
+    $ which xmlsec1
+    ```
+    - If certificates are **not placed in** `/opt/seafile/seahub-data/certs`, you need to add the following configuration in seahub_settings.py:
 
-__Note__: If certificates are **not placed in** `/opt/seafile/seahub-data/certs`, you need to add the following configuration in seahub_settings.py:
-
-```python
-SAML_CERTS_DIR = '/path/to/certs'
-```
+    ```python
+    SAML_CERTS_DIR = '/path/to/certs'
+    ```
 
 ### Integration with ADFS/SAML single sign-on
 

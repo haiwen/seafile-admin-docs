@@ -1,6 +1,7 @@
 # Seahub Settings
 
-Note: You can also modify most of the config items via web interface. The config items are saved in database table (seahub-db/constance_config). They have a higher priority over the items in config files. If you want to disable settings via web interface, you can add `ENABLE_SETTINGS_VIA_WEB = False` to `seahub_settings.py`.
+!!! tip
+    You can also modify most of the config items via web interface. The config items are saved in database table (seahub-db/constance_config). They have a higher priority over the items in config files. If you want to disable settings via web interface, you can add `ENABLE_SETTINGS_VIA_WEB = False` to `seahub_settings.py`.
 
 ## Sending Email Notifications on Seahub
 
@@ -489,7 +490,7 @@ def custom_search_user(request, emails):
 
 ```
 
-> **NOTE**, you should NOT change the name of `custom_search_user` and `seahub_custom_functions/__init__.py`
+!!! danger "You should NOT change the name of `custom_search_user` and `seahub_custom_functions/__init__.py`"
 
 Since version 6.2.5 pro, if you enable the **ENABLE_SHARE_TO_ALL_GROUPS** feather on sysadmin settings page, you can also define a custom function to return the groups a user can share library to.
 
@@ -523,14 +524,14 @@ def custom_get_groups(request):
 
 ```
 
-> **NOTE**, you should NOT change the name of `custom_get_groups` and `seahub_custom_functions/__init__.py`
+!!! danger "You should NOT change the name of `custom_get_groups` and `seahub_custom_functions/__init__.py`"
 
-## Note
+!!! success
 
-* You need to restart seahub so that your changes take effect.
-* If your changes don't take effect, You may need to delete 'seahub_setting.pyc'. (A cache file)
+    * You need to restart seahub so that your changes take effect.
+    * If your changes don't take effect, You may need to delete 'seahub_setting.pyc'. (A cache file)
 
-```bash
-./seahub.sh restart
+    ```bash
+    ./seahub.sh restart
 
-```
+    ```

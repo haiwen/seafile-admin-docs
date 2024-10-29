@@ -1,6 +1,7 @@
 # Migrate From SQLite to MySQL
 
-**NOTE**: The tutorial is only related to Seafile CE edition.
+!!! note
+    The tutorial is only related to Seafile CE edition.
 
 First make sure the python module for MySQL is installed. On Ubuntu/Debian, use `sudo apt-get install python-mysqldb` or `sudo apt-get install python3-mysqldb` to install it.
 
@@ -61,7 +62,7 @@ DB=ccnet_db
 CONNECTION_CHARSET=utf8
 ```
 
-Note: Use `127.0.0.1`, don't use `localhost`.
+!!! warning "Use `127.0.0.1`, don't use `localhost`"
 
 Replace the database section in `seafile.conf` with following lines:
 
@@ -98,14 +99,14 @@ DATABASES = {
 
 Restart seafile and seahub
 
-**NOTE**
+!!! note
 
-User notifications will be cleared during migration due to the slight difference between MySQL and SQLite, if you only see the busy icon when click the notitfications button beside your avatar, please remove `user_notitfications` table manually by:
+    User notifications will be cleared during migration due to the slight difference between MySQL and SQLite, if you only see the busy icon when click the notitfications button beside your avatar, please remove `user_notitfications` table manually by:
 
-```
-use seahub_db;
-delete from notifications_usernotification;
-```
+    ```
+    use seahub_db;
+    delete from notifications_usernotification;
+    ```
 
 ## FAQ
 
