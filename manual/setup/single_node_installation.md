@@ -99,8 +99,8 @@ The following fields merit particular attention:
 | `SEAFILE_SERVER_HOSTNAME`       | Seafile server hostname or domain                                                                  | (required)  |  
 | `SEAFILE_SERVER_PROTOCOL`       | Seafile server protocol (http or https)                                                                       | `http` |  
 | `TIME_ZONE`                     | Time zone                                                                                                     | `UTC`                           |  
-| `INIT_SEAFILE_ADMIN_EMAIL`      | Admin username                                                                                                |  |  
-| `INIT_SEAFILE_ADMIN_PASSWORD`   | Admin password       | |
+| `INIT_SEAFILE_ADMIN_EMAIL`      | Admin username                                                                                                | me@example.com |  
+| `INIT_SEAFILE_ADMIN_PASSWORD`   | Admin password       | asecret |
 
 !!! note "Other notes for Seafile PE in `.env`"
 
