@@ -47,13 +47,13 @@ OAUTH_ATTRIBUTE_MAP = {
 }
 ```
 
-!!! tip "There are some more explanations about the settings"
+!!! tip "More explanations about the settings"
 
-    **OAUTH_PROVIDER  /  OAUTH_PROVIDER_DOMAIN**
+    - **OAUTH_PROVIDER  /  OAUTH_PROVIDER_DOMAIN**
 
     `OAUTH_PROVIDER_DOMAIN` will be deprecated, and it can be replaced by `OAUTH_PROVIDER`. This variable is used in the database to identify third-party providers, either as a domain or as an easy-to-remember string less than 32 characters. 
 
-    **OAUTH_ATTRIBUTE_MAP**
+    - **OAUTH_ATTRIBUTE_MAP**
 
     This variables describes which claims from the response of the user info endpoint are to be filled into which attributes of the new Seafile user. The format is showing like below:
 
@@ -134,7 +134,8 @@ OAUTH_ATTRIBUTE_MAP = {
     ```
 === "Github"
 
-    For Github, `email` is not the unique identifier for an user, but `id` is in most cases, so we use `id` as settings example in our manual. As Seafile uses email to identify an unique user account for now, so we combine `id` and `OAUTH_PROVIDER_DOMAIN`, which is github.com in your case, to an email format string and then create this account if not exist. Change the setting as followings:
+    !!! note
+        For Github, `email` is not the unique identifier for an user, but `id` is in most cases, so we use `id` as settings example in our manual. As Seafile uses email to identify an unique user account for now, so we combine `id` and `OAUTH_PROVIDER_DOMAIN`, which is github.com in your case, to an email format string and then create this account if not exist.
 
     ```python
     ENABLE_OAUTH = True
@@ -157,19 +158,20 @@ OAUTH_ATTRIBUTE_MAP = {
     ```
 === "GitLab"
 
-    To enable OAuth via GitLab. Create an application in GitLab (under Admin area->Applications).
+    !!! note
+        To enable OAuth via GitLab. Create an application in GitLab (under Admin area->Applications).
 
-    Fill in required fields:
+        Fill in required fields:
 
-    - Name: a name you specify
+        - Name: a name you specify
 
-    - Redirect URI: The callback url see below `OAUTH_REDIRECT_URL`
+        - Redirect URI: The callback url see below `OAUTH_REDIRECT_URL`
 
-    - Trusted: Skip confirmation dialog page. Select this to *not* ask the user if he wants to authorize seafile to receive access to his/her account data.
+        - Trusted: Skip confirmation dialog page. Select this to *not* ask the user if he wants to authorize seafile to receive access to his/her account data.
 
-    - Scopes: Select `openid` and `read_user` in the scopes list.
+        - Scopes: Select `openid` and `read_user` in the scopes list.
 
-    Press submit and copy the client id and secret you receive on the confirmation page and use them in this template for your seahub_settings.py:
+        Press submit and copy the client id and secret you receive on the confirmation page and use them in this template for your seahub_settings.py
 
     ```python
     ENABLE_OAUTH = True
@@ -189,7 +191,8 @@ OAUTH_ATTRIBUTE_MAP = {
     ```
 === "Azure Cloud"
 
-    For users of Azure Cloud, as there is no `id` field returned from Azure Cloud's user info endpoint, so we use a special configuration for `OAUTH_ATTRIBUTE_MAP` setting (others are the same as Github/Google):
+    !!! note
+        For users of Azure Cloud, as there is no `id` field returned from Azure Cloud's user info endpoint, so we use a special configuration for `OAUTH_ATTRIBUTE_MAP` setting (others are the same as Github/Google). Please see [this tutorial](https://forum.seafile.com/t/oauth-authentification-against-microsoft-office365-azure-cloud/7999) for the complete deployment process of OAuth against Azure Cloud.
 
     ```python
     OAUTH_ATTRIBUTE_MAP = {
@@ -197,5 +200,3 @@ OAUTH_ATTRIBUTE_MAP = {
         "name": (False, "name")
     }
     ```
-
-    Please see [this tutorial](https://forum.seafile.com/t/oauth-authentification-against-microsoft-office365-azure-cloud/7999) for the complete deployment process of OAuth against Azure Cloud.

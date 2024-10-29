@@ -8,9 +8,9 @@ Seafile currently supports sharing between Seafile servers with version greater 
 
 ## Configuration
 
-=== "Sharing between Seafile servers"
+Add the following configuration to `seahub_settings.py`.
 
-    Add the following configuration to `seahub_settings.py`.
+=== "Sharing between Seafile servers"
 
     ```python
     # Enable OCM
@@ -28,11 +28,7 @@ Seafile currently supports sharing between Seafile servers with version greater 
     ]
     ```
 
-    OCM_REMOTE_SERVERS is a list of servers that you allow your users to share libraries with.
-
 === "Sharing from NextCloud to Seafile"
-
-    Add the following configuration to `seahub_settings.py`.
 
     ```python
     # Enable OCM
@@ -45,6 +41,8 @@ Seafile currently supports sharing between Seafile servers with version greater 
         }
     ]
     ```
+
+!!! tip "OCM_REMOTE_SERVERS is a list of servers that you allow your users to share libraries with"
 
 ## Usage
 

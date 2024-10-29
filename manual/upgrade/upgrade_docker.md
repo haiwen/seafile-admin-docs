@@ -11,13 +11,15 @@ Please check the **upgrade notes** for any special configuration or changes befo
 
 From Seafile Docker 12.0, we recommend that you use `.env` and `seafile-server.yml` files for configuration.
 
-First, backup the original docker-compose.yml file:
+### Backup the original docker-compose.yml file:
 
 ```sh
 mv docker-compose.yml docker-compose.yml.bak
 ```
 
-Then download [.env](../docker/ce/env), [seafile-server.yml](../docker/ce/seafile-server.yml) and [caddy.yml](../docker/ce/caddy.yml), and modify .env file according to the old configuration in `docker-compose.yml.bak`
+### Download Seafile 12,0 Docker files
+
+Download [.env](../docker/ce/env), [seafile-server.yml](../docker/ce/seafile-server.yml) and [caddy.yml](../docker/ce/caddy.yml), and modify .env file according to the old configuration in `docker-compose.yml.bak`
 
 === "Seafile community edition"
 
