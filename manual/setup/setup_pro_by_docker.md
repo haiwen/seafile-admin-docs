@@ -4,22 +4,26 @@ This manual explains how to deploy and run Seafile Server Professional Edition (
 
 ## Requirements
 
-Seafile PE requires a minimum of 2 cores and 2GB RAM. If Elasticsearch is installed on the same server, the minimum requirements are 4 cores and 4 GB RAM, and make sure the [mmapfs counts](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules-store.html#mmapfs) do not cause excptions like out of memory, which can be increased by following command (see <https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html> for futher details):
+Seafile PE requires a minimum of 2 cores and 2GB RAM. 
 
-```shell
-sysctl -w vm.max_map_count=262144 #run as root
-```
+!!! note "Other requirements for Seafile PE"
+    If Elasticsearch is installed on the same server, the minimum requirements are 4 cores and 4 GB RAM, and make sure the [mmapfs counts](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules-store.html#mmapfs) do not cause excptions like out of memory, which can be increased by following command (see <https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html> for futher details):
 
-or modify **/etc/sysctl.conf** and reboot to set this value permanently:
+    ```shell
+    sysctl -w vm.max_map_count=262144 #run as root
+    ```
 
-```shell
-nano /etc/sysctl.conf
+    or modify **/etc/sysctl.conf** and reboot to set this value permanently:
 
-# modify vm.max_map_count
-vm.max_map_count=262144
-```
+    ```shell
+    nano /etc/sysctl.conf
 
-Seafile PE can be used without a paid license with up to three users. Licenses for more user can be purchased in the [Seafile Customer Center](https://customer.seafile.com) or contact Seafile Sales at sales@seafile.com.
+    # modify vm.max_map_count
+    vm.max_map_count=262144
+    ```
+
+!!! tip "About license"
+    Seafile PE can be used without a paid license with up to three users. Licenses for more user can be purchased in the [Seafile Customer Center](https://customer.seafile.com) or contact Seafile Sales at [sales@seafile.com](mailto:sales@seafile.com). For futher details, please refer the [license page](../setup_binary/seafile_professional_sdition_software_license_agreement.md) of Seafile PE.
 
 ## Setup
 
@@ -44,13 +48,12 @@ docker pull docker.seadrive.org/seafileltd/seafile-pro-mc:12.0-latest
 
 When prompted, enter the username and password of the private repository. They are available on the download page in the [Customer Center](https://customer.seafile.com/downloads).
 
-NOTE: Older Seafile PE versions are also available in the repository (back to Seafile 7.0). To pull an older version, replace '12.0-latest' tag by the desired version.
+!!! note
+    Older Seafile PE versions are also available in the repository (back to Seafile 7.0). To pull an older version, replace '12.0-latest' tag by the desired version.
 
 ### Downloading and Modifying `.env`
 
 From Seafile Docker 12.0, we use `.env`, `seafile-server.yml`  and `caddy.yml` files for configuration.
-
-NOTE: Different versions of Seafile have different compose files.
 
 ```bash
 mkdir /opt/seafile
@@ -66,19 +69,21 @@ nano .env
 
 The following fields merit particular attention:
 
-- `SEAFILE_VOLUME`: The volume directory of Seafile data, default is `/opt/seafile-data`
-- `SEAFILE_MYSQL_VOLUME`: The volume directory of MySQL data, default is `/opt/seafile-mysql/db`
-- `SEAFILE_CADDY_VOLUME`: The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's, default is `/opt/seafile-caddy`
-- `SEAFILE_ELASTICSEARCH_VOLUME`: The volume directory of Elasticsearch data, default is `/opt/seafile-elasticsearch/data`
-- `INIT_SEAFILE_MYSQL_ROOT_PASSWORD`: The `root` password of MySQL
-- `SEAFILE_MYSQL_DB_USER`: The user of MySQL (`database` - `user` can be found in `conf/seafile.conf`)
-- `SEAFILE_MYSQL_DB_PASSWORD`: The user `seafile` password of MySQL
-- `JWT`: JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: `pwgen -s 40 1`
-- `SEAFILE_SERVER_HOSTNAME`: Seafile server hostname or domain
-- `SEAFILE_SERVER_PROTOCOL`: Seafile server protocol (http or https)
-- `TIME_ZONE`: Time zone (default UTC)
-- `INIT_SEAFILE_ADMIN_EMAIL`: Admin username
-- `INIT_SEAFILE_ADMIN_PASSWORD`: Admin password
+| Variable                        | Description                                                                                                   | Default Value                   |  
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------- |  
+| `SEAFILE_VOLUME`                | The volume directory of Seafile data                                                                          | `/opt/seafile-data`             |  
+| `SEAFILE_MYSQL_VOLUME`          | The volume directory of MySQL data                                                                            | `/opt/seafile-mysql/db`         |  
+| `SEAFILE_CADDY_VOLUME`          | The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's                    | `/opt/seafile-caddy`            |  
+| `SEAFILE_ELASTICSEARCH_VOLUME`  | (Only valid for Seafile PE) The volume directory of Elasticsearch data | `/opt/seafile-elasticsearch/data` |  
+| `INIT_SEAFILE_MYSQL_ROOT_PASSWORD` | The `root` password of MySQL                                                                                  | (required) |  
+| `SEAFILE_MYSQL_DB_USER`         | The user of MySQL (`database` - `user` can be found in `conf/seafile.conf`)                                    | `seafile`  |  
+| `SEAFILE_MYSQL_DB_PASSWORD`     | The user `seafile` password of MySQL                                                                          | (required)  |  
+| `JWT`                           | JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters is required for Seafile, which can be generated by using `pwgen -s 40 1` | (required) |  
+| `SEAFILE_SERVER_HOSTNAME`       | Seafile server hostname or domain                                                                  | (required)  |  
+| `SEAFILE_SERVER_PROTOCOL`       | Seafile server protocol (http or https)                                                                       | `http` |  
+| `TIME_ZONE`                     | Time zone                                                                                                     | `UTC`                           |  
+| `INIT_SEAFILE_ADMIN_EMAIL`      | Admin username                                                                                                | me@example.com |  
+| `INIT_SEAFILE_ADMIN_PASSWORD`   | Admin password       | asecret |
 
 To conclude, set the directory permissions of the Elasticsearch volumne:
 
@@ -95,9 +100,16 @@ Run docker compose in detached mode:
 docker compose up -d
 ```
 
-NOTE: You must run the above command in the directory with the `.env`.
+!!! note
+    You must run the above command in the directory with the `.env`. If `.env` file is elsewhere, please run
 
-Wait a few moment for the database to initialize. You can now access Seafile at the host name specified in the Compose file. (A 502 Bad Gateway error means that the system has not yet completed the initialization.)
+    ```sh
+    docker compose -f /path/to/.env up -d
+    ```
+
+Wait a few moment for the database to initialize. You can now access Seafile at the host name specified in the Compose file. 
+
+!!! tip "A 502 Bad Gateway error means that the system has not yet completed the initialization"
 
 ### Find logs
 
@@ -125,7 +137,7 @@ docker compose up -d
 
 ## Seafile directory structure
 
-### `/opt/seafile-data`
+### Path `/opt/seafile-data`
 
 Placeholder spot for shared volumes. You may elect to store certain persistent information outside of a container, in our case we keep various log files and upload directory outside. This allows you to rebuild containers easily without losing important information.
 

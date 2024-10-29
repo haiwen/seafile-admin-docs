@@ -21,79 +21,80 @@ Seafile uses the mysql_native_password plugin for authentication. The versions o
 ### Installing prerequisites
 
 
-**For Seafile 10.0.x**
+=== "Seafile 10.0.x"
+    === "Ubuntu 22.04/Ubuntu 20.04/Debian 11/Debian 10"
+        ```
+        sudo apt-get update
+        sudo apt-get install -y python3 python3-setuptools python3-pip libmysqlclient-dev
+        sudo apt-get install -y memcached libmemcached-dev
 
-```
-# Ubuntu 22.04 (almost the same for Ubuntu 20.04 and Debian 11, Debian 10)
-sudo apt-get update
-sudo apt-get install -y python3 python3-setuptools python3-pip libmysqlclient-dev
-sudo apt-get install -y memcached libmemcached-dev
+        sudo pip3 install --timeout=3600 django==3.2.* future==0.18.* mysqlclient==2.1.* \
+            pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==1.4.44 \
+            psd-tools django-pylibmc django_simple_captcha==0.5.20 djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 lxml
 
-sudo pip3 install --timeout=3600 django==3.2.* future==0.18.* mysqlclient==2.1.* \
-    pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==1.4.44 \
-    psd-tools django-pylibmc django_simple_captcha==0.5.20 djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 lxml
+        ```
+=== "Seafile 11.0.x"
+    === "Debian 11/Ubuntu 22.04"
 
-```
+        ```
+        # Ubuntu 22.04 (almost the same for Ubuntu 20.04 and Debian 11, Debian 10)
+        sudo apt-get update
+        sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmysqlclient-dev ldap-utils libldap2-dev
+        sudo apt-get install -y memcached libmemcached-dev
 
-**For Seafile 11.0.x (Debian 11, Ubuntu 22.04, etc.)**
+        sudo pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.* \
+            pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
+            psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 lxml python-ldap==3.4.3
 
-```
-# Ubuntu 22.04 (almost the same for Ubuntu 20.04 and Debian 11, Debian 10)
-sudo apt-get update
-sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmysqlclient-dev ldap-utils libldap2-dev
-sudo apt-get install -y memcached libmemcached-dev
+        ```
+    === "Debian 12"
+        !!! note
+            Debian 12 and Ubuntu 24.04 are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables different versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with `source python-venv/bin/activate`.
 
-sudo pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.* \
-    pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
-    psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 lxml python-ldap==3.4.3
+        ```
+        # Debian 12
+        sudo apt-get update
+        sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmariadb-dev-compat ldap-utils libldap2-dev libsasl2-dev python3.11-venv
+        sudo apt-get install -y memcached libmemcached-dev
 
-```
+        mkdir /opt/seafile
+        cd /opt/seafile
 
-**For Seafile 11.0.x on Debian 12 and Ubuntu 24.04 with virtual env**
+        # create the vitual environment in the python-venv directory
+        python3 -m venv python-venv
 
-Debian 12 and Ubuntu 24.04 are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables different versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with "source python-venv/bin/activate".
+        # activate the venv
+        source python-venv/bin/activate
+        # Notice that this will usually change your prompt so you know the venv is active
 
-```
-# Debian 12
-sudo apt-get update
-sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmariadb-dev-compat ldap-utils libldap2-dev libsasl2-dev python3.11-venv
-sudo apt-get install -y memcached libmemcached-dev
+        # install packages into the active venv with pip (sudo isn't needed because this is installing in the venv, not system-wide).
+        pip3 install --timeout=3600  django==4.2.* future==0.18.* mysqlclient==2.1.* pymysql pillow==10.0.* pylibmc captcha==0.4 markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 psd-tools django-pylibmc django_simple_captcha==0.5.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 lxml python-ldap==3.4.3
+        ```
+    === "Ubuntu 24.04 with virtual env"
+        !!! note
+            Debian 12 and Ubuntu 24.04 are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables different versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with `source python-venv/bin/activate`.
 
-mkdir /opt/seafile
-cd /opt/seafile
+        ```
+        # Ubuntu 24.04
+        sudo apt-get update
+        sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmysqlclient-dev ldap-utils libldap2-dev python3.12-venv
+        sudo apt-get install -y memcached libmemcached-dev
 
-# create the vitual environment in the python-venv directory
-python3 -m venv python-venv
+        mkdir /opt/seafile
+        cd /opt/seafile
 
-# activate the venv
-source python-venv/bin/activate
-# Notice that this will usually change your prompt so you know the venv is active
+        # create the vitual environment in the python-venv directory
+        python3 -m venv python-venv
 
-# install packages into the active venv with pip (sudo isn't needed because this is installing in the venv, not system-wide).
-pip3 install --timeout=3600  django==4.2.* future==0.18.* mysqlclient==2.1.* pymysql pillow==10.0.* pylibmc captcha==0.4 markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 psd-tools django-pylibmc django_simple_captcha==0.5.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 lxml python-ldap==3.4.3
-```
+        # activate the venv
+        source python-venv/bin/activate
+        # Notice that this will usually change your prompt so you know the venv is active
 
-```
-# Ubuntu 24.04
-sudo apt-get update
-sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmysqlclient-dev ldap-utils libldap2-dev python3.12-venv
-sudo apt-get install -y memcached libmemcached-dev
-
-mkdir /opt/seafile
-cd /opt/seafile
-
-# create the vitual environment in the python-venv directory
-python3 -m venv python-venv
-
-# activate the venv
-source python-venv/bin/activate
-# Notice that this will usually change your prompt so you know the venv is active
-
-# install packages into the active venv with pip (sudo isn't needed because this is installing in the venv, not system-wide).
-pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.* \
-    pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
-    psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.16.0 lxml python-ldap==3.4.3
-```
+        # install packages into the active venv with pip (sudo isn't needed because this is installing in the venv, not system-wide).
+        pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.* \
+            pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
+            psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.16.0 lxml python-ldap==3.4.3
+        ```
 
 ### Creating the program directory
 
@@ -104,7 +105,8 @@ sudo mkdir /opt/seafile
 cd /opt/seafile
 ```
 
-The  program directory can be changed. The standard directory `/opt/seafile` is assumed for the rest of this manual. If you decide to put Seafile in another directory, modify the commands accordingly.
+!!! tip
+    The  program directory can be changed. The standard directory `/opt/seafile` is assumed for the rest of this manual. If you decide to put Seafile in another directory, modify the commands accordingly.
 
 ### Creating user seafile
 
@@ -179,7 +181,7 @@ The install package comes with a script that sets Seafile up for you. Specifical
 * seafile server
 * seahub
 
-Note: While ccnet server was merged into the seafile-server in Seafile 8.0, the corresponding database is still required for the time being.
+!!! note "While ccnet server was merged into the seafile-server in Seafile 8.0, the corresponding database is still required for the time being"
 
 Run the script as user seafile:
 
@@ -273,56 +275,57 @@ The folder `seafile-server-latest` is a symbolic link to the current Seafile Ser
 
 
 
-Note: If you don't have the root password, you need someone who has the privileges, e.g., the database admin, to create the three databases required by Seafile, as well as a MySQL user who can access the databases. For example, to create three databases `ccnet_db` / `seafile_db` / `seahub_db` for ccnet/seafile/seahub respectively, and a MySQL user "seafile" to access these databases run the following SQL queries:
+!!! note
+    If you don't have the root password, you need someone who has the privileges, e.g., the database admin, to create the three databases required by Seafile, as well as a MySQL user who can access the databases. For example, to create three databases `ccnet_db` / `seafile_db` / `seahub_db` for ccnet/seafile/seahub respectively, and a MySQL user "seafile" to access these databases run the following SQL queries:
 
-```
-create database `ccnet_db` character set = 'utf8';
-create database `seafile_db` character set = 'utf8';
-create database `seahub_db` character set = 'utf8';
+    ```
+    create database `ccnet_db` character set = 'utf8';
+    create database `seafile_db` character set = 'utf8';
+    create database `seahub_db` character set = 'utf8';
 
-create user 'seafile'@'localhost' identified by 'seafile';
+    create user 'seafile'@'localhost' identified by 'seafile';
 
-GRANT ALL PRIVILEGES ON `ccnet_db`.* to `seafile`@localhost;
-GRANT ALL PRIVILEGES ON `seafile_db`.* to `seafile`@localhost;
-GRANT ALL PRIVILEGES ON `seahub_db`.* to `seafile`@localhost;
+    GRANT ALL PRIVILEGES ON `ccnet_db`.* to `seafile`@localhost;
+    GRANT ALL PRIVILEGES ON `seafile_db`.* to `seafile`@localhost;
+    GRANT ALL PRIVILEGES ON `seahub_db`.* to `seafile`@localhost;
 
-```
+    ```
 
 ### Setup Memory Cache
 
 Seahub caches items(avatars, profiles, etc) on file system by default(/tmp/seahub_cache/). You can replace with Memcached or Redis.
 
-#### Use Memcached
+=== "Memcached"
 
-Use the following commands to install memcached and corresponding libraies on your system:
+    Use the following commands to install memcached and corresponding libraies on your system:
 
-```
-# on Debian/Ubuntu 18.04+
-apt-get install memcached libmemcached-dev -y
-pip3 install --timeout=3600 pylibmc django-pylibmc
+    ```
+    # on Debian/Ubuntu 18.04+
+    apt-get install memcached libmemcached-dev -y
+    pip3 install --timeout=3600 pylibmc django-pylibmc
 
-systemctl enable --now memcached
-```
+    systemctl enable --now memcached
+    ```
 
-Add the following configuration to `seahub_settings.py`.
+    Add the following configuration to `seahub_settings.py`.
 
-```
-CACHES = {
-    'default': {
-        'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
-        'LOCATION': '127.0.0.1:11211',
-    },
-}
+    ```
+    CACHES = {
+        'default': {
+            'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
+            'LOCATION': '127.0.0.1:11211',
+        },
+    }
 
-```
+    ```
 
-#### Use Redis
+=== "Redis"
 
-Redis is supported since version 11.0.
+    Redis is supported since version 11.0.
 
-First, install Redis with package installers in your OS.
+    First, install Redis with package installers in your OS.
 
-Then refer to [Django's documentation about using Redis cache](https://docs.djangoproject.com/en/4.2/topics/cache/#redis) to add Redis configurations to `seahub_settings.py`.
+    Then refer to [Django's documentation about using Redis cache](https://docs.djangoproject.com/en/4.2/topics/cache/#redis) to add Redis configurations to `seahub_settings.py`.
 
 
 ### Tweaking conf files
@@ -331,9 +334,9 @@ Seafile's config files as created by the setup script are prepared for Seafile r
 
 To access Seafile's web interface and to create working sharing links without a reverse proxy, you need to modify two configuration files in `/opt/seafile/conf`:
 
-* seahub_settings.py (if you use 9.0.x): Add port 8000 to the `SERVICE_URL` (i.e., SERVICE_URL = 'http://1.2.3.4:8000/').
-* ccnet.conf (if you use 8.0.x or 7.1.x): Add port 8000 to the `SERVICE_URL` (i.e., SERVICE_URL = http://1.2.3.4:8000/).
-* gunicorn.conf.py: Change the bind to "0.0.0.0:8000" (i.e., bind = "0.0.0.0:8000")
+- `seahub_settings.py` (if you use 9.0.x): Add port 8000 to the `SERVICE_URL` (i.e., SERVICE_URL = 'http://1.2.3.4:8000/').
+* `ccnet.conf` (if you use 8.0.x or 7.1.x): Add port 8000 to the `SERVICE_URL` (i.e., SERVICE_URL = http://1.2.3.4:8000/).
+* `gunicorn.conf.py`: Change the bind to "0.0.0.0:8000" (i.e., bind = "0.0.0.0:8000")
 
 ## Starting Seafile Server
 
@@ -348,11 +351,13 @@ source python-venv/bin/activate
 
 ```
 
-The first time you start Seahub, the script prompts you to create an admin account for your Seafile Server. Enter the email address of the admin user followed by the password.
+!!! success
+    The first time you start Seahub, the script prompts you to create an admin account for your Seafile Server. Enter the email address of the admin user followed by the password.
 
 Now you can access Seafile via the web interface at the host address and port 8000 (e.g., http://1.2.3.4:8000)
 
-Note: On CentOS, the firewall blocks traffic on port 8000 by default.
+!!! warning
+    On CentOS, the firewall blocks traffic on port 8000 by default.
 
 
 ### Troubleshooting

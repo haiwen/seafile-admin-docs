@@ -94,7 +94,8 @@ repo_status_index_name = your-repo-status-index-name  # default is `repo_head`
 repo_files_index_name = your-repo-files-index-name    # default is `repofiles`
 ```
 
-**NOTE**: The version of the Python third-party package `elasticsearch` cannot be greater than 7.14.0, otherwise the elasticsearch service cannot be accessed: <https://docs.aws.amazon.com/opensearch-service/latest/developerguide/samplecode.html#client-compatibility>, <https://github.com/elastic/elasticsearch-py/pull/1623>.
+!!! note
+    The version of the Python third-party package `elasticsearch` cannot be greater than 7.14.0, otherwise the elasticsearch service cannot be accessed: <https://docs.aws.amazon.com/opensearch-service/latest/developerguide/samplecode.html#client-compatibility>, <https://github.com/elastic/elasticsearch-py/pull/1623>.
 
 ### I get no result when I search a keyword
 

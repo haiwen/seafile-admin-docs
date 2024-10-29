@@ -1,6 +1,6 @@
 # Configure Seafile to use LDAP
 
-Note: This documentation is for the Community Edition. If you're using Pro Edition, please refer to [the Seafile Pro documentation](./ldap_in_11.0_pro.md).
+!!! note "This documentation is for the Community Edition. If you're using Pro Edition, please refer to [the Seafile Pro documentation](./ldap_in_11.0_pro.md)"
 
 ## How does LDAP User Management work in Seafile
 
@@ -19,7 +19,7 @@ The only requirement for Seafile to use LDAP for authentication is that there mu
 - Email address: this is the most common choice. Most organizations assign unique email address for each member.
 - UserPrincipalName: this is a user attribute only available in Active Directory. It's format is `user-login-name@domain-name`, e.g. `john@example.com`. It's not a real email address, but it works fine as the unique identifier.
 
-Note, the identifier is stored in table `social_auth_usersocialauth` to map the identifier to internal user ID in Seafile. When this ID is changed in LDAP for a user, you only need to update `social_auth_usersocialauth` table.
+!!! note "The identifier is stored in table `social_auth_usersocialauth` to map the identifier to internal user ID in Seafile. When this ID is changed in LDAP for a user, you only need to update `social_auth_usersocialauth` table"
 
 
 ### Basic configuration items
@@ -44,19 +44,20 @@ LDAP_FILTER = 'memberOf=CN=testgroup,OU=test,DC=seafile,DC=ren'
 
 Meaning of some options:
 
-* **LDAP_SERVER_URL:** The URL of LDAP server
-* **LDAP_BASE_DN:**The root node of users who can log in to Seafile in the LDAP server
-* **LDAP_ADMIN_DN:** DN of the administrator used to query the LDAP server for information. For OpenLDAP, it maybe `cn=admin,dc=example,dc=com`
-* **LDAP_ADMIN_PASSWORD:** Password of LDAP_ADMIN_DN
-* **LDAP_PROVIDER:** Identify the source of the user, used in the table social_auth_usersocialauth, defaults by 'ldap'
-* **LDAP_LOGIN_ATTR:** User's attribute used to log in to Seafile. It should be a unique identifier for the user in LDAP server. Learn more about this id from the descriptions at begining of this section.
-* **LDAP_CONTACT_EMAIL_ATTR:** LDAP user's contact_email attribute
-* **LDAP_USER_ROLE_ATTR:** LDAP user's role attribute
-
-* **LDAP_USER_FIRST_NAME_ATTR**: Attribute for user's first name. It's "givenName" by default.
-* **LDAP_USER_LAST_NAME_ATTR**: Attribute for user's last name. It's "sn" by default.
-* **LDAP_USER_NAME_REVERSE**: In some languages, such as Chinese, the display order of the first and last name is reversed. Set this option if you need it.
-* **LDAP_FILTER:** Additioinal filter conditions. Users who meet the filter conditions can log in , otherwise they cannot log in.
+| variable                       | description                                                                                                                                                                                                      |  
+|--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|  
+| `LDAP_SERVER_URL`              | The URL of LDAP server                                                                                                                                                                                         |  
+| `LDAP_BASE_DN`                 | The root node of users who can log in to Seafile in the LDAP server                                                                                                                                           |  
+| `LDAP_ADMIN_DN`                | DN of the administrator used to query the LDAP server for information. For OpenLDAP, it may be `cn=admin,dc=example,dc=com`                                                                                       |  
+| `LDAP_ADMIN_PASSWORD`          | Password of `LDAP_ADMIN_DN`                                                                                                                                                                                    |  
+| `LDAP_PROVIDER`                | Identify the source of the user, used in the table `social_auth_usersocialauth`, defaults to 'ldap'                                                                                                             |  
+| `LDAP_LOGIN_ATTR`              | User's attribute used to log in to Seafile. It should be a unique identifier for the user in LDAP server. Learn more about this id from the descriptions at the beginning of this section.                         |  
+| `LDAP_CONTACT_EMAIL_ATTR`      | LDAP user's `contact_email` attribute                                                                                                                                                                          |  
+| `LDAP_USER_ROLE_ATTR`          | LDAP user's role attribute                                                                                                                                                                                     |  
+| `LDAP_USER_FIRST_NAME_ATTR`    | Attribute for user's first name. It's `"givenName"` by default.                                                                                                                                                |  
+| `LDAP_USER_LAST_NAME_ATTR`     | Attribute for user's last name. It's `"sn"` by default.                                                                                                                                                        |  
+| `LDAP_USER_NAME_REVERSE`       | In some languages, such as Chinese, the display order of the first and last name is reversed. Set this option if you need it.                                                                                   |  
+| `LDAP_FILTER`                  | Additional filter conditions. Users who meet the filter conditions can log in, otherwise they cannot log in.                                                                                                    |
 
 Tips for choosing `LDAP_BASE_DN` and `LDAP_ADMIN_DN`:
 

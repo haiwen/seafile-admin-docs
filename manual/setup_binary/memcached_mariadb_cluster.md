@@ -30,7 +30,7 @@ vi /etc/memcached.conf
 service memcached restart
 ```
 
-**NOTE: Please configure memcached to start on system startup.**
+!!! tip "Please configure memcached to start on system startup"
 
 Install and configure Keepalived.
 
@@ -124,7 +124,7 @@ vrrp_instance VI_1 {
 }
 ```
 
-**NOTE: Please adjust the network device names accordingly. virtual_ipaddress is the floating IP address in use.**
+!!! tip "Please adjust the network device names accordingly. virtual_ipaddress is the floating IP address in use"
 
 ## Setup MariaDB Cluster
 
@@ -138,4 +138,7 @@ You can choose between two different setups:
 We refer to the documentation from MariaDB team:
 
 - [Setting up MariaDB cluster on CentOS 7](https://mariadb.com/resources/blog/setting-mariadb-enterprise-cluster-part-2-how-set-mariadb-cluster)
-- [Setting up HAProxy for MariaDB Galera Cluster](https://mariadb.com/resources/blog/setup-mariadb-enterprise-cluster-part-3-setup-ha-proxy-load-balancer-read-and-write-pools). Note that Seafile doesn't use read/write isolation techniques. So you don't need to setup read and write pools.
+- [Setting up HAProxy for MariaDB Galera Cluster](https://mariadb.com/resources/blog/setup-mariadb-enterprise-cluster-part-3-setup-ha-proxy-load-balancer-read-and-write-pools). 
+
+!!! tip
+    Seafile doesn't use read/write isolation techniques. So you don't need to setup read and write pools.

@@ -43,7 +43,7 @@ storage_classes_file = /opt/seafile_storage_classes.json
 * enable_storage_classes ：If this is set to true, the storage class feature is enabled. You must define the storage classes in a JSON file provided in the next configuration option.
 * storage_classes_file：Specifies the path for the JSON file that contains the storage class definition.
 
-You also need to add [memory cache configurations](../config/seafile-conf.md#cache-pro-edition-only) to `seafile.conf`.
+!!! note "You also need to add [memory cache configurations](../config/seafile-conf.md#cache-pro-edition-only) to `seafile.conf`"
 
 ### Notes for Docker Installs
 
@@ -67,7 +67,7 @@ enable_storage_classes = true
 storage_classes_file = /shared/conf/seafile_storage_classes.json
 ```
 
-You also need to add [memory cache configurations](../config/seafile-conf.md#cache-pro-edition-only) to `seafile.conf`.
+!!! note "You also need to add [memory cache configurations](../config/seafile-conf.md#cache-pro-edition-only) to `seafile.conf`"
 
 ## Defining Storage Backends
 
@@ -173,7 +173,7 @@ As you may have seen, the `commits`, `fs` and `blocks` information syntax is sim
 
 If you use file system as storage for `fs`, `commits` or `blocks`, you must explicitly provide the path for the `seafile-data` directory. The objects will be stored in `storage/commits`, `storage/fs`, `storage/blocks` under this path. 
 
-_Note_: Currently file system, S3 and Swift backends are supported. Ceph/RADOS is also supported since version 7.0.14.
+!!! note "Currently file system, S3 and Swift backends are supported. Ceph/RADOS is also supported since version 7.0.14"
 
 ## Library Mapping Policies
 
@@ -246,7 +246,8 @@ ENABLED_ROLE_PERMISSIONS = {
 
 This policy maps libraries to storage classes based on its library ID. The ID of a library is an UUID. In this way, the data in the system can be evenly distributed among the storage classes.
 
-Note that this policy is not a designed to be a complete distributed storage solution. It doesn't handle automatic migration of library data between storage classes. If you need to add more storage classes to the configuration, existing libraries will stay in their original storage classes. New libraries can be distributed among the new storage classes (backends). You still have to plan about the total storage capacity of your system at the beginning.
+!!! note 
+    This policy is not a designed to be a complete distributed storage solution. It doesn't handle automatic migration of library data between storage classes. If you need to add more storage classes to the configuration, existing libraries will stay in their original storage classes. New libraries can be distributed among the new storage classes (backends). You still have to plan about the total storage capacity of your system at the beginning.
 
 To use this policy, you first add following options in seahub_settings.py:
 

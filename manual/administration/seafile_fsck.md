@@ -4,7 +4,8 @@ On the server side, Seafile stores the files in the libraries in an internal for
 
 With default installation, these internal objects are stored in the server's file system directly (such as Ext4, NTFS). But most file systems don't assure the integrity of file contents after a hard shutdown or system crash. So if new Seafile internal objects are being written when the system crashes, they can be corrupt after the system reboots. This will make part of the corresponding library not accessible.
 
-Note: If you store the seafile-data directory in a battery-backed NAS (like EMC or NetApp), or use S3 backend available in the Pro edition, the internal objects won't be corrupt.
+!!! warning
+    If you store the seafile-data directory in a battery-backed NAS (like EMC or NetApp), or use S3 backend available in the Pro edition, the internal objects won't be corrupt.
 
 We provide a seaf-fsck.sh script to check the integrity of libraries. The seaf-fsck tool accepts the following arguments:
 
@@ -67,7 +68,8 @@ Sometimes you can see output like the following:
 
 This means the "head commit" (current state of the library) recorded in database is not consistent with the library data. In such case, fsck will try to find the last consistent state and check the integrity in that state.
 
-Tips: **If you have many libraries, it's helpful to save the fsck output into a log file for later analysis.**
+!!! tip
+    If you have many libraries, it's helpful to save the fsck output into a log file for later analysis.
 
 ## Repairing Corruption
 

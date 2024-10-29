@@ -4,47 +4,47 @@ From 8.0.0, Seafile supports [OCM protocol](https://rawgit.com/GEANT/OCM-API/v1/
 
 Seafile currently supports sharing between Seafile servers with version greater than 8.0, and sharing from NextCloud to Seafile since 9.0.
 
-*Note that these two functions cannot be enabled at the same time.*
+!!! warning "These two functions cannot be enabled at the same time"
 
 ## Configuration
 
-### Sharing between Seafile servers
+=== "Sharing between Seafile servers"
 
-Add the following configuration to `seahub_settings.py`.
+    Add the following configuration to `seahub_settings.py`.
 
-```python
-# Enable OCM
-ENABLE_OCM = True
-OCM_PROVIDER_ID = '71687320-6219-47af-82f3-32012707a5ae' # the unique id of this server
-OCM_REMOTE_SERVERS = [
-    {
-        "server_name": "dev",
-        "server_url": "https://seafile-domain-1/", # should end with '/'
-    },
-    {
-        "server_name": "download",
-        "server_url": "https://seafile-domain-2/", # should end with '/'
-    },
-]
-```
+    ```python
+    # Enable OCM
+    ENABLE_OCM = True
+    OCM_PROVIDER_ID = '71687320-6219-47af-82f3-32012707a5ae' # the unique id of this server
+    OCM_REMOTE_SERVERS = [
+        {
+            "server_name": "dev",
+            "server_url": "https://seafile-domain-1/", # should end with '/'
+        },
+        {
+            "server_name": "download",
+            "server_url": "https://seafile-domain-2/", # should end with '/'
+        },
+    ]
+    ```
 
-OCM_REMOTE_SERVERS is a list of servers that you allow your users to share libraries with.
+    OCM_REMOTE_SERVERS is a list of servers that you allow your users to share libraries with.
 
-### Sharing from NextCloud to Seafile
+=== "Sharing from NextCloud to Seafile"
 
-Add the following configuration to `seahub_settings.py`.
+    Add the following configuration to `seahub_settings.py`.
 
-```python
-# Enable OCM
-ENABLE_OCM_VIA_WEBDAV = True
-OCM_PROVIDER_ID = '71687320-6219-47af-82f3-32012707a5ae' # the unique id of this server
-OCM_REMOTE_SERVERS = [
-    {
-        "server_name": "nextcloud",
-        "server_url": "https://nextcloud-domain-1/", # should end with '/'
-    }
-]
-```
+    ```python
+    # Enable OCM
+    ENABLE_OCM_VIA_WEBDAV = True
+    OCM_PROVIDER_ID = '71687320-6219-47af-82f3-32012707a5ae' # the unique id of this server
+    OCM_REMOTE_SERVERS = [
+        {
+            "server_name": "nextcloud",
+            "server_url": "https://nextcloud-domain-1/", # should end with '/'
+        }
+    ]
+    ```
 
 ## Usage
 

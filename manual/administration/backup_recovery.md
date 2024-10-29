@@ -79,6 +79,8 @@ mysqldump -h [mysqlhost] -u[username] -p[password] --opt seahub_db > /backup/dat
 
 **SQLite**
 
+!!! warning "SQLite has not supported since Seafile 11.0"
+
 You need to stop Seafile server first before backing up SQLite database.
 
 ```
@@ -135,6 +137,8 @@ mysql -u[username] -p[password] seahub_db < seahub-db.sql.2013-10-19-16-01-05
 ```
 
 **SQLite**
+
+!!! warning "SQLite has not supported since Seafile 11.0"
 
 ```
 cd /opt/seafile

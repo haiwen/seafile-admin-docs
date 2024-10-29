@@ -33,55 +33,47 @@ Here is the workflow when a user open sdoc file in browser
 
 SeaDoc has the following deployment methods:
 
-- [SeaDoc and Seafile docker are deployed on the same host](#seadoc-and-seafile-docker-are-deployed-on-the-same-host).
-- [Deploy SeaDoc on a new host](#deploy-seadoc-on-a-new-host).
+=== "SeaDoc and Seafile docker are deployed on the same host"
+    Download the `seadoc.yml` and integrate SeaDoc in Seafile docker.
 
-> Seafile version 11.0 or later is required to work with SeaDoc.
+    ```shell
+    wget https://manual.seafile.com/12.0/docker/seadoc.yml
+    ```
 
-## SeaDoc and Seafile docker are deployed on the same host
+    Modify `.env`, and insert `seadoc.yml` into `COMPOSE_FILE`, and enable SeaDoc server
 
-Download the `seadoc.yml` and integrate SeaDoc in Seafile docker.
+    ```shell
+    COMPOSE_FILE='seafile-server.yml,caddy.yml,seadoc.yml'
 
-```shell
-# for community edition
-wget https://manual.seafile.com/12.0/docker/ce/seadoc.yml
+    ENABLE_SEADOC=true
+    SEADOC_SERVER_URL=https://example.seafile.com/sdoc-server
+    ```
+=== "Deploy SeaDoc on a new host"
 
-# for pro edition
-wget https://manual.seafile.com/12.0/docker/pro/seadoc.yml
-```
+    Download and modify the `.env` and `seadoc.yml` files.
 
-Modify `.env`, and insert `seadoc.yml` into `COMPOSE_FILE`, and enable SeaDoc server
+    ```sh
+    wget https://manual.seafile.com/12.0/docker/seadoc/1.0/standalone/seadoc.yml
+    wget -o .env https://manual.seafile.com/12.0/docker/seadoc/1.0/standalone/env.yml
+    ```
+    Then modify the `.env` file according to your environment. The following fields are needed to be modified:
 
-```shell
-COMPOSE_FILE='seafile-server.yml,caddy.yml,seadoc.yml'
+    | variable               | description                                                                                                   |  
+    |------------------------|---------------------------------------------------------------------------------------------------------------|  
+    | `SEADOC_VOLUME`        | The volume directory of SeaDoc data                                                                            |  
+    | `SEAFILE_MYSQL_DB_HOST`| Seafile MySQL host                                                                                            |  
+    | `SEAFILE_MYSQL_DB_USER`| Seafile MySQL user, default is `seafile`                                                                       |  
+    | `SEAFILE_MYSQL_DB_PASSWORD`| Seafile MySQL password                                                                                    |  
+    | `TIME_ZONE`            | Time zone                                                                                                     |  
+    | `JWT_PRIVATE_KEY`      | JWT key, the same as the config in Seafile `.env` file                                                         |  
+    | `SEAFILE_SERVER_HOSTNAME`| Seafile host name                                                                                           |  
+    | `SEAFILE_SERVER_PROTOCOL`| http or https                                                                                               |  
+    | `SEADOC_SERVER_URL`    | SeaDoc service URL                                                                                            |
 
-ENABLE_SEADOC=true
-SEADOC_SERVER_URL=https://example.seafile.com/sdoc-server
-```
+    !!! note
+        Please bind SeaDoc server url and ip in the load balance(or reverse proxy) configuration after starting SeaDoc server
 
-Start SeaDoc server with the following command
 
-```sh
-docker compose up -d
-```
-
-Now you can use SeaDoc!
-
-## Deploy SeaDoc on a new host
-
-Download and modify the `.env` and `seadoc.yml` files.
-
-Download [seadoc.yml](../docker/seadoc/1.0/standalone/seadoc.yml) and [.env](../docker/seadoc/1.0/standalone/env) sample files to your host. Then modify the `.env` file according to your environment. The following fields are needed to be modified:
-
-- `SEADOC_VOLUME`: The volume directory of SeaDoc data
-- `SEAFILE_MYSQL_DB_HOST`: Seafile MySQL host
-- `SEAFILE_MYSQL_DB_USER`: Seafile MySQL user, default is `seafile`
-- `SEAFILE_MYSQL_DB_PASSWORD`: Seafile MySQL password
-- `TIME_ZONE`: Time zone
-- `JWT_PRIVATE_KEY`: JWT key, the same as the config in Seafile `.env` file
-- `SEAFILE_SERVER_HOSTNAME`: Seafile host name
-- `SEAFILE_SERVER_PROTOCOL`: http or https
-- `SEADOC_SERVER_URL`: SeaDoc service URL
 
 Start SeaDoc server with the following command
 
@@ -89,7 +81,7 @@ Start SeaDoc server with the following command
 docker compose up -d
 ```
 
-Then bind SeaDoc server url and ip in the load balance(or reverse proxy) configuration.
+
 
 Now you can use SeaDoc!
 

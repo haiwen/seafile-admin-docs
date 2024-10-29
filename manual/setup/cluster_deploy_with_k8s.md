@@ -10,15 +10,19 @@ The two volumes for persisting data, `/opt/seafile-data` and `/opt/seafile-mysql
 
 The two tools, **kubectl** and a **k8s control plane** tool (i.e., ***kubeadm***), are required and can be installed with [official installation guide](https://kubernetes.io/docs/tasks/tools/). 
 
-Note that if it is a multi-node deployment, k8s control plane needs to be installed on each node. After installation, you need to start the k8s control plane service on each node and refer to the k8s official manual for [creating a cluster](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/). Since this manual still uses the same image as docker deployment, we need to add the following repository to k8s:
+!!! tip "Multi-node deployment"
+    If it is a multi-node deployment, k8s control plane needs to be installed on each node. After installation, you need to start the k8s control plane service on each node and refer to the k8s official manual for [creating a cluster](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/). Since this manual still uses the same image as docker deployment, we need to add the following repository to k8s:
 
-```shell
-kubectl create secret docker-registry regcred --docker-server=docker.seadrive.org/seafileltd --docker-username=seafile --docker-password=zjkmid6rQibdZ=uJMuWS
-```
+    ```shell
+    kubectl create secret docker-registry regcred --docker-server=docker.seadrive.org/seafileltd --docker-username=seafile --docker-password=zjkmid6rQibdZ=uJMuWS
+    ```
 
 ## YAML
 
-Seafile mainly involves three different services, namely database service, cache service and seafile service. Since these three services do not have a direct dependency relationship, we need to separate them from the entire docker-compose.yml (in this manual, we use [Seafile 12 PRO](../docker/pro/seafile-server.yml)) and divide them into three pods. For each pod, we need to define a series of YAML files for k8s to read, and we will store these YAMLs in `/opt/seafile-k8s-yaml`. This series of YAML mainly includes **Deployment** for pod management and creation, **Service** for exposing services to the external network, **PersistentVolume** for defining the location of a volume used for persistent storage on the host and **Persistentvolumeclaim** for declaring the use of persistent storage in the container. For futher configuration details, you can refer [the official documents](https://kubernetes.io/docs/tasks/configure-pod-container/).
+Seafile mainly involves three different services, namely database service, cache service and seafile service. Since these three services do not have a direct dependency relationship, we need to separate them from the entire docker-compose.yml (in this manual, we use [Seafile 12 PRO](../docker/pro/seafile-server.yml)) and divide them into three pods. For each pod, we need to define a series of YAML files for k8s to read, and we will store these YAMLs in `/opt/seafile-k8s-yaml`. 
+
+!!! note
+    This series of YAML mainly includes **Deployment** for pod management and creation, **Service** for exposing services to the external network, **PersistentVolume** for defining the location of a volume used for persistent storage on the host and **Persistentvolumeclaim** for declaring the use of persistent storage in the container. For futher configuration details, you can refer [the official documents](https://kubernetes.io/docs/tasks/configure-pod-container/).
 
 ### mariadb
 
@@ -58,16 +62,18 @@ spec:
             claimName: mariadb-data
 ```
 
-Please replease `MARIADB_ROOT_PASSWORD` to your own mariadb password. In the above Deployment configuration file, no restart policy for the pod is specified. The default restart policy is **Always**. If you need to modify it, add the following to the spec attribute:
+Please replease `MARIADB_ROOT_PASSWORD` to your own mariadb password. 
+!!! tip
+    In the above Deployment configuration file, no restart policy for the pod is specified. The default restart policy is **Always**. If you need to modify it, add the following to the spec attribute:
 
-```YAML
-restartPolicy: OnFailure
+    ```YAML
+    restartPolicy: OnFailure
 
-#Note:
-#    Always: always restart (include normal exit)
-#    OnFailure: restart only with unexpected exit
-#    Never: do not restart
-```
+    #Note:
+    #    Always: always restart (include normal exit)
+    #    OnFailure: restart only with unexpected exit
+    #    Never: do not restart
+    ```
 
 #### mariadb-service.yaml
 

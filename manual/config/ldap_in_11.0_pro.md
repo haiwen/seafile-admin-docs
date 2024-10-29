@@ -17,7 +17,7 @@ The only requirement for Seafile to use LDAP for authentication is that there mu
 - Email address: this is the most common choice. Most organizations assign unique email address for each member.
 - UserPrincipalName: this is a user attribute only available in Active Directory. It's format is `user-login-name@domain-name`, e.g. `john@example.com`. It's not a real email address, but it works fine as the unique identifier.
 
-Note, the identifier is stored in table `social_auth_usersocialauth` to map the identifier to internal user ID in Seafile. When this ID is changed in LDAP for a user, you only need to update `social_auth_usersocialauth` table.
+!!! note "The identifier is stored in table `social_auth_usersocialauth` to map the identifier to internal user ID in Seafile. When this ID is changed in LDAP for a user, you only need to update `social_auth_usersocialauth` table"
 
 ### Integration Configuration
 
@@ -41,19 +41,20 @@ LDAP_FILTER = 'memberOf=CN=testgroup,OU=test,DC=seafile,DC=ren'
 
 Meaning of some options:
 
-* **LDAP_SERVER_URL:** The URL of LDAP server
-* **LDAP_BASE_DN:**The root node of users who can log in to Seafile in the LDAP server
-* **LDAP_ADMIN_DN:** DN of the administrator used to query the LDAP server for information. For OpenLDAP, it maybe `cn=admin,dc=example,dc=com`
-* **LDAP_ADMIN_PASSWORD:** Password of LDAP_ADMIN_DN
-* **LDAP_PROVIDER:** Identify the source of the user, used in the table social_auth_usersocialauth, defaults by 'ldap'
-* **LDAP_LOGIN_ATTR:** User's attribute used to log in to Seafile. It should be a unique identifier for the user in LDAP server. Learn more about this id from the descriptions at begining of this section.
-* **LDAP_CONTACT_EMAIL_ATTR:** LDAP user's contact_email attribute. It will be stored as a user's contact email in Seafile.
-* **LDAP_USER_ROLE_ATTR:** LDAP user's role attribute
-
-* **LDAP_USER_FIRST_NAME_ATTR**: Attribute for user's first name. It's "givenName" by default.
-* **LDAP_USER_LAST_NAME_ATTR**: Attribute for user's last name. It's "sn" by default.
-* **LDAP_USER_NAME_REVERSE**: In some languages, such as Chinese, the display order of the first and last name is reversed. Set this option if you need it.
-* **LDAP_FILTER:** Additioinal filter conditions. Users who meet the filter conditions can log in , otherwise they cannot log in.
+| variable                       | description                                                                                                                                                                                                      |  
+|--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|  
+| `LDAP_SERVER_URL`              | The URL of LDAP server                                                                                                                                                                                         |  
+| `LDAP_BASE_DN`                 | The root node of users who can log in to Seafile in the LDAP server                                                                                                                                           |  
+| `LDAP_ADMIN_DN`                | DN of the administrator used to query the LDAP server for information. For OpenLDAP, it may be `cn=admin,dc=example,dc=com`                                                                                       |  
+| `LDAP_ADMIN_PASSWORD`          | Password of `LDAP_ADMIN_DN`                                                                                                                                                                                    |  
+| `LDAP_PROVIDER`                | Identify the source of the user, used in the table `social_auth_usersocialauth`, defaults to 'ldap'                                                                                                             |  
+| `LDAP_LOGIN_ATTR`              | User's attribute used to log in to Seafile. It should be a unique identifier for the user in LDAP server. Learn more about this id from the descriptions at the beginning of this section.                         |  
+| `LDAP_CONTACT_EMAIL_ATTR`      | LDAP user's `contact_email` attribute                                                                                                                                                                          |  
+| `LDAP_USER_ROLE_ATTR`          | LDAP user's role attribute                                                                                                                                                                                     |  
+| `LDAP_USER_FIRST_NAME_ATTR`    | Attribute for user's first name. It's `"givenName"` by default.                                                                                                                                                |  
+| `LDAP_USER_LAST_NAME_ATTR`     | Attribute for user's last name. It's `"sn"` by default.                                                                                                                                                        |  
+| `LDAP_USER_NAME_REVERSE`       | In some languages, such as Chinese, the display order of the first and last name is reversed. Set this option if you need it.                                                                                   |  
+| `LDAP_FILTER`                  | Additional filter conditions. Users who meet the filter conditions can log in, otherwise they cannot log in.                                                                                                    |
 
 Tips for choosing `LDAP_BASE_DN` and `LDAP_ADMIN_DN`:
 
@@ -99,19 +100,19 @@ ENABLE_EXTRA_USER_INFO_SYNC = True
 
 Meaning of some options:
 
-* **LDAP_SYNC_INTERVAL**: The interval to sync. Unit is minutes. Defaults to 60 minutes.
-* **ENABLE_LDAP_USER_SYNC**: set to "true" if you want to enable ldap user synchronization
-* **LDAP_USER_OBJECT_CLASS**: This is the name of the class used to search for user objects. In Active Directory, it's usually "person". The default value is "person".
-* **LDAP_DEPT_ATTR**:  Attribute for depatment info.
-* **LDAP_UID_ATTR**: Attribute for Windows login name. If this is synchronized, users can also log in with their Windows login name. In AD, the attribute `sAMAccountName` can be used as `UID_ATTR`. The attribute will be stored as login_id in Seafile (in seahub_db.profile_profile table).
-* **LDAP_AUTO_REACTIVATE_USERS**: Whether to auto activate deactivated user, default by 'true'
-* **LDAP_USE_PAGED_RESULT:**  Whether to use pagination extension.It is useful when you have more than 1000 users in LDAP server.
-* **IMPORT_NEW_USER:** Whether to import new users when sync user.
-* **ACTIVE_USER_WHEN_IMPORT:** Whether to activate the user automatically when imported. 
-* **DEACTIVE_USER_IF_NOTFOUND**: set to "true" if you want to deactivate a user when he/she was deleted in AD server.
-* **ENABLE_EXTRA_USER_INFO_SYNC**: Enable synchronization of additional user information, including user's full name, department, and Windows login name, etc.
-
-
+| Variable                       | Description                                                                                                                                                                                                |  
+| --- | ------ |  
+| **LDAP_SYNC_INTERVAL**         | The interval to sync. Unit is minutes. Defaults to 60 minutes.                                                                                                                                            |  
+| **ENABLE_LDAP_USER_SYNC**      | set to "true" if you want to enable ldap user synchronization                                                                                                                                             |  
+| **LDAP_USER_OBJECT_CLASS**     | This is the name of the class used to search for user objects. In Active Directory, it's usually "person". The default value is "person".                                                                   |  
+| **LDAP_DEPT_ATTR**             | Attribute for department info.                                                                                                                                                                           |  
+| **LDAP_UID_ATTR**              | Attribute for Windows login name. If this is synchronized, users can also log in with their Windows login name. In AD, the attribute `sAMAccountName` can be used as `UID_ATTR`. The attribute will be stored as login_id in Seafile (in seahub_db.profile_profile table). |  
+| **LDAP_AUTO_REACTIVATE_USERS** | Whether to auto activate deactivated user, default by 'true'                                                                                                                                              |  
+| **LDAP_USE_PAGED_RESULT**      | Whether to use pagination extension. It is useful when you have more than 1000 users in LDAP server.                                                                                                      |  
+| **IMPORT_NEW_USER**            | Whether to import new users when sync user.                                                                                                                                                               |  
+| **ACTIVE_USER_WHEN_IMPORT**    | Whether to activate the user automatically when imported.                                                                                                                                                |  
+| **DEACTIVE_USER_IF_NOTFOUND**  | set to "true" if you want to deactivate a user when he/she was deleted in AD server.                                                                                                                      |  
+| **ENABLE_EXTRA_USER_INFO_SYNC**| Enable synchronization of additional user information, including user's full name, department, and Windows login name, etc.                                                                                |
 
 ### Importing Users without Activating Them
 
@@ -207,24 +208,26 @@ LDAP_DEPT_NAME_ATTR = ''                 # Used to get the department name.
 
 Meaning of some options:
 
-* **ENABLE_LDAP_GROUP_SYNC:** Whether to enable group sync.
-* **LDAP_GROUP_OBJECT_CLASS**: This is the name of the class used to search for group objects.
-* **LDAP_GROUP_MEMBER_ATTR:** The attribute field to use when loading the group's members. For most directory servers, the attributes is "member"  which is the default value.For "posixGroup", it should be set to "memberUid".
-* **LDAP_USER_ATTR_IN_MEMBERUID**:  The user attribute set in 'memberUid' option, which is used in "posixGroup".The default value is "uid".
-* **LDAP_GROUP_UUID_ATTR**: Used to uniquely identify groups in LDAP
-* **LDAP_GROUP_FILTER**: An additional filter to use when searching group objects. If it's set, the final filter used to run search is `(&(objectClass=GROUP_OBJECT_CLASS)(GROUP_FILTER))`; otherwise the final filter would be `(objectClass=GROUP_OBJECT_CLASS)`.
-* **LDAP_USER_GROUP_MEMBER_RANGE_QUERY:**  When a group contains too many members, AD will only return part of them. Set this option to TRUE to make LDAP sync work with large groups.
-* **DEL_GROUP_IF_NOT_FOUND:** Set to "true", sync process will delete the group if not found it in LDAP server.
-* **LDAP_SYNC_GROUP_AS_DEPARTMENT:** Whether to sync groups as top-level departments in Seafile. Learn more about departments in Seafile [here](https://help.seafile.com/sharing_collaboration/departments/).
-* **LDAP_DEPT_NAME_ATTR:** Used to get the department name.
+| variable                           | description                                                                                                                                                                                                                                                                        |  
+|------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|  
+| ENABLE_LDAP_GROUP_SYNC             | Whether to enable group sync.                                                                                                                                                                                                                                                      |  
+| LDAP_GROUP_OBJECT_CLASS            | This is the name of the class used to search for group objects.                                                                                                                                                                                                                   |  
+| LDAP_GROUP_MEMBER_ATTR             | The attribute field to use when loading the group's members. For most directory servers, the attribute is "member" which is the default value. For "posixGroup", it should be set to "memberUid".                                                                                     |  
+| LDAP_USER_ATTR_IN_MEMBERUID        | The user attribute set in 'memberUid' option, which is used in "posixGroup". The default value is "uid".                                                                                                                                                                          |  
+| LDAP_GROUP_UUID_ATTR               | Used to uniquely identify groups in LDAP.                                                                                                                                                                                                                                         |  
+| LDAP_GROUP_FILTER                  | An additional filter to use when searching group objects. If it's set, the final filter used to run search is `(&(objectClass=GROUP_OBJECT_CLASS)(GROUP_FILTER))`; otherwise the final filter would be `(objectClass=GROUP_OBJECT_CLASS)`.                                             |  
+| LDAP_USER_GROUP_MEMBER_RANGE_QUERY | When a group contains too many members, AD will only return part of them. Set this option to TRUE to make LDAP sync work with large groups.                                                                                                                                        |  
+| DEL_GROUP_IF_NOT_FOUND             | Set to "true", sync process will delete the group if not found in the LDAP server.                                                                                                                                                                                                |  
+| LDAP_SYNC_GROUP_AS_DEPARTMENT      | Whether to sync groups as top-level departments in Seafile. Learn more about departments in Seafile [here](https://help.seafile.com/sharing_collaboration/departments/).                                                                                                            |  
+| LDAP_DEPT_NAME_ATTR                | Used to get the department name.                                                                                                                                                                                                                                                 |
 
-**Note**:
+!!! tip
 
-* The search base for groups is the option `LDAP_BASE_DN`.
+    * The search base for groups is the option `LDAP_BASE_DN`.
 
-* Some LDAP server, such as Active Directory, allows a group to be a member of another group. This is called "group nesting". If we find a nested group B in group A, we should recursively add all the members from group B into group A. And group B should still be imported a separate group. That is, all members of group B are also members in group A.
+    * Some LDAP server, such as Active Directory, allows a group to be a member of another group. This is called "group nesting". If we find a nested group B in group A, we should recursively add all the members from group B into group A. And group B should still be imported a separate group. That is, all members of group B are also members in group A.
 
-* In some LDAP server, such as OpenLDAP, it's common practice to use Posix groups to store group membership. To import Posix groups as Seafile groups, set `LDAP_GROUP_OBJECT_CLASS` option to `posixGroup`. A `posixGroup` object in LDAP usually contains a multi-value attribute for the list of member UIDs. The name of this attribute can be set with the `LDAP_GROUP_MEMBER_ATTR` option. It's `MemberUid` by default. The value of the `MemberUid` attribute is an ID that can be used to identify a user, which corresponds to an attribute in the user object. The name of this ID attribute is usually `uid`, but can be set via the `LDAP_USER_ATTR_IN_MEMBERUID` option. Note that `posixGroup` doesn't support nested groups.
+    * In some LDAP server, such as OpenLDAP, it's common practice to use Posix groups to store group membership. To import Posix groups as Seafile groups, set `LDAP_GROUP_OBJECT_CLASS` option to `posixGroup`. A `posixGroup` object in LDAP usually contains a multi-value attribute for the list of member UIDs. The name of this attribute can be set with the `LDAP_GROUP_MEMBER_ATTR` option. It's `MemberUid` by default. The value of the `MemberUid` attribute is an ID that can be used to identify a user, which corresponds to an attribute in the user object. The name of this ID attribute is usually `uid`, but can be set via the `LDAP_USER_ATTR_IN_MEMBERUID` option. Note that `posixGroup` doesn't support nested groups.
 
 ### Sync OU as Departments
 
@@ -308,7 +311,7 @@ LDAP_FILTER = 'memberOf=CN=group,CN=developers,DC=example,DC=com'
 
 The final search filter would be `(&(mail=*)(memberOf=CN=group,CN=developers,DC=example,DC=com))`
 
-Note that the case of attribute names in the above example is significant. The `memberOf` attribute is only available in Active Directory.
+!!! note "The case of attribute names in the above example is significant. The `memberOf` attribute is only available in Active Directory"
 
 ### Limiting Seafile Users to a Group in Active Directory
 
@@ -407,30 +410,31 @@ MULTI_LDAP_1_DEPT_NAME_ATTR = ''
 ......
 ```
 
-**Note**: There are still some shared config options are used for all LDAP servers, as follows:
+!!! note:
+    There are still some shared config options are used for all LDAP servers, as follows:
 
-```python
-# Common user sync options
-LDAP_SYNC_INTERVAL = 60
-IMPORT_NEW_USER = True                   # Whether to import new users when sync user
-ACTIVATE_USER_WHEN_IMPORT = True         # Whether to activate the user when importing new user
-DEACTIVE_USER_IF_NOTFOUND = False        # Set to "true" if you want to deactivate a user 
-                                         # when he/she was deleted in AD server.
+    ```python
+    # Common user sync options
+    LDAP_SYNC_INTERVAL = 60
+    IMPORT_NEW_USER = True                   # Whether to import new users when sync user
+    ACTIVATE_USER_WHEN_IMPORT = True         # Whether to activate the user when importing new user
+    DEACTIVE_USER_IF_NOTFOUND = False        # Set to "true" if you want to deactivate a user 
+                                            # when he/she was deleted in AD server.
 
-# Common group sync options
-DEL_GROUP_IF_NOT_FOUND = False           # Set to "true", sync process will delete the group if not found it in LDAP server.
-DEL_DEPARTMENT_IF_NOT_FOUND = False      # Set to "true", sync process will deleted the department if not found it in LDAP server.
-```
+    # Common group sync options
+    DEL_GROUP_IF_NOT_FOUND = False           # Set to "true", sync process will delete the group if not found it in LDAP server.
+    DEL_DEPARTMENT_IF_NOT_FOUND = False      # Set to "true", sync process will deleted the department if not found it in LDAP server.
+    ```
 
 ### SSO and LDAP users use the same uid
 
-If you sync users from LDAP to Seafile, when the user login via SSO (ADFS or OAuth), you want Seafile to find the existing account for this user instead of creating a new one, you can set `SSO_LDAP_USE_SAME_UID = True`:
+If you sync users from LDAP to Seafile, when the user login via SSO (ADFS or OAuth), you want Seafile to find the existing account for this user instead of creating a new one, you can set
 
 ```python
 SSO_LDAP_USE_SAME_UID = True
 ```
 
-Note, here the UID means the unique user ID, in LDAP it is the attribute you use for `LDAP_LOGIN_ATTR` (not `LDAP_UID_ATTR`), in ADFS it is `uid` attribute. You need make sure you use the same attribute for the two settings.
+!!! note "Here the UID means the unique user ID, in LDAP it is the attribute you use for `LDAP_LOGIN_ATTR` (not `LDAP_UID_ATTR`), in ADFS it is `uid` attribute. You need make sure you use the same attribute for the two settings"
 
 ## Importing Roles from LDAP
 
@@ -471,6 +475,6 @@ def ldap_role_list_mapping(role_list):
             return 'Manager'
 ```
 
-Note: You should only define one of the two functions.
+!!! tip "You should only define one of the two functions"
 
 You can rewrite the function (in python) to make your own mapping rules. If the file or function doesn't exist, the first entry in role_list will be synced.

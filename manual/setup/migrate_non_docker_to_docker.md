@@ -10,7 +10,8 @@ The recommended steps to migrate from non-docker deployment to docker deployment
 
 The following document assumes that the deployment path of your non-Docker version of Seafile is /opt/seafile. If you use other paths, before running the command, be careful to modify the command path.
 
-> Note, you can also refer to the Seafile backup and recovery documentation, deploy Seafile Docker on another machine, and then copy the old configuration information, database, and seafile-data to the new machine to complete the migration. The advantage of this is that even if an error occurs during the migration process, the existing system will not be destroyed.
+!!! note
+    You can also refer to the Seafile backup and recovery documentation, deploy Seafile Docker on another machine, and then copy the old configuration information, database, and seafile-data to the new machine to complete the migration. The advantage of this is that even if an error occurs during the migration process, the existing system will not be destroyed.
 
 ## Migrate
 

@@ -119,7 +119,8 @@ cd ~/haiwen/seafile-server-latest
 
 ```
 
-Please note that this script is completely reentrant. So you can stop and restart it, or run it many times. It will check whether an object exists in the destination before sending it.
+!!! tip
+    This script is completely reentrant. So you can stop and restart it, or run it many times. It will check whether an object exists in the destination before sending it.
 
 ## Run final migration
 

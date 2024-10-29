@@ -65,15 +65,15 @@ User root
 systemctl start clamav-daemon
 ```
 
-* Test the software
+!!! success "Test the software"
 
-```
-$ curl https://secure.eicar.org/eicar.com.txt | clamdscan -
-```
+    ```
+    $ curl https://secure.eicar.org/eicar.com.txt | clamdscan -
+    ```
 
-The output must include:
+    The output must include:
 
-```
-stream: Eicar-Test-Signature FOUND
-```
+    ```
+    stream: Eicar-Test-Signature FOUND
+    ```
 

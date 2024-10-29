@@ -13,7 +13,7 @@ Sharing controls whether a user or group can see a library, while sub-folder per
 
 Supposing you share a library as read-only to a group and then want specific sub-folders to be read-write for a few users, you can set read-write permissions on sub-folders for some users and groups.
 
-Note:
+!!! note
 
-* Setting sub-folder permission for a user without sharing the folder or parent folder to that user will have no effect.
-* Sharing a library read-only to a user and then sharing a sub-folder read-write to that user will lead to two shared items for that user. This is going to cause confusion. Use sub-folder permissions instead.
+    * Setting sub-folder permission for a user without sharing the folder or parent folder to that user will have **no effect**.
+    * Sharing a library read-only to a user and then sharing a sub-folder read-write to that user will lead to two shared items for that user. This is going to cause confusion. Use sub-folder permissions instead.

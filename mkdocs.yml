@@ -70,6 +70,8 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed: # provides a syntax to easily add tabbed Markdown content
+      alternate_style: true
 
 # Page tree
 nav:

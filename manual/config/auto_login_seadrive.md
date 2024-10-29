@@ -32,13 +32,15 @@ Open "Internet Options", select "Security" tab, select "Local Intranet" zone.
 1. "Sites" -> "Advanced" -> "Add this website to zone". This is the place where we fill the address (e.g. http://test.seafile.com)
 2. "Security level for this zone" -> "Custom level..." -> "Automatic log-on with current username and password".
 
-Note: Above configuration requires a reboot to take effect.
+!!! note
+    Above configuration requires a reboot to take effect.
 
 ![grafik](../images/internet-explorer.png)
 
 Next, we shall test the auto login function on Internet Explorer: visit the website and click "Single Sign-On" link. It should be able to log in directly, otherwise the auto login is malfunctioned.
 
-Note: The address in the test must be same as the address specified in the keytab file. Otherwise, the client machine can't get a valid ticket from Kerberos.
+!!! note
+    The address in the test must be same as the address specified in the keytab file. Otherwise, the client machine can't get a valid ticket from Kerberos.
 
 ## Auto Login on SeaDrive
 

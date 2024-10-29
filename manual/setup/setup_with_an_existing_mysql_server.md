@@ -9,4 +9,5 @@ INIT_SEAFILE_MYSQL_ROOT_PASSWORD=ROOT_PASSWORD
 SEAFILE_MYSQL_DB_PASSWORD=PASSWORD
 ```
 
-NOTE: `INIT_SEAFILE_MYSQL_ROOT_PASSWORD` is needed during installation (i.e., the deployment in the first time). After Seafile is installed, the user `seafile` will be used to connect to the MySQL server (SEAFILE_MYSQL_DB_PASSWORD), then you can remove the `INIT_SEAFILE_MYSQL_ROOT_PASSWORD`.
+!!! tip
+    `INIT_SEAFILE_MYSQL_ROOT_PASSWORD` is needed during installation (i.e., the deployment in the first time). After Seafile is installed, the user `seafile` will be used to connect to the MySQL server (SEAFILE_MYSQL_DB_PASSWORD), then you can remove the `INIT_SEAFILE_MYSQL_ROOT_PASSWORD`.

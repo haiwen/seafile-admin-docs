@@ -47,156 +47,155 @@ OAUTH_ATTRIBUTE_MAP = {
 }
 ```
 
-NOTE:  There are some more explanations about the settings.
+!!! tip "There are some more explanations about the settings"
 
-**OAUTH_PROVIDER  /  OAUTH_PROVIDER_DOMAIN**
+    **OAUTH_PROVIDER  /  OAUTH_PROVIDER_DOMAIN**
 
-`OAUTH_PROVIDER_DOMAIN` will be deprecated, and it can be replaced by `OAUTH_PROVIDER`. This variable is used in the database to identify third-party providers, either as a domain or as an easy-to-remember string less than 32 characters. 
+    `OAUTH_PROVIDER_DOMAIN` will be deprecated, and it can be replaced by `OAUTH_PROVIDER`. This variable is used in the database to identify third-party providers, either as a domain or as an easy-to-remember string less than 32 characters. 
 
-**OAUTH_ATTRIBUTE_MAP**
+    **OAUTH_ATTRIBUTE_MAP**
 
-This variables describes which claims from the response of the user info endpoint are to be filled into which attributes of the new Seafile user. The format is showing like below:
+    This variables describes which claims from the response of the user info endpoint are to be filled into which attributes of the new Seafile user. The format is showing like below:
 
-```python
-OAUTH_ATTRIBUTE_MAP = {
-    <:Attribute in the OAuth provider>: (<:Is required or not in Seafile?>, <:Attribute in Seafile >)
-}
-```
+    ```python
+    OAUTH_ATTRIBUTE_MAP = {
+        <:Attribute in the OAuth provider>: (<:Is required or not in Seafile?>, <:Attribute in Seafile >)
+    }
+    ```
 
-If the remote resource server, like Github, uses email to identify an unique user too, Seafile will use Github id directorily, the OAUTH_ATTRIBUTE_MAP setting for Github should be like this:
+    If the remote resource server, like Github, uses email to identify an unique user too, Seafile will use Github id directorily, the OAUTH_ATTRIBUTE_MAP setting for Github should be like this:
 
-```python
-OAUTH_ATTRIBUTE_MAP = {
-    "id": (True, "email"), # it is deprecated
-    "uid / id / username": (True, "uid") 
+    ```python
+    OAUTH_ATTRIBUTE_MAP = {
+        "id": (True, "email"), # it is deprecated
+        "uid / id / username": (True, "uid") 
 
-    # extra infos you want to update to Seafile
-    "name": (False, "name"),
-    "email": (False, "contact_email"),	
-}
-```
+        # extra infos you want to update to Seafile
+        "name": (False, "name"),
+        "email": (False, "contact_email"),	
+    }
+    ```
 
-The key part `id` stands for an unique identifier of user in Github, this tells Seafile which attribute remote resoure server uses to indentify its user. The value part `True` stands for if this field is mandatory by Seafile.
+    The key part `id` stands for an unique identifier of user in Github, this tells Seafile which attribute remote resoure server uses to indentify its user. The value part `True` stands for if this field is mandatory by Seafile.
 
-Since 11.0 version, Seafile use `uid` as the external unique identifier of the user. It stores `uid` in table `social_auth_usersocialauth` and map it to internal unique identifier used in Seafile. Different OAuth systems have different attributes, which may be: `id` or `uid` or `username`, etc.  And the id/email config `id: (True, email)`  is deprecated. 
+    Since 11.0 version, Seafile use `uid` as the external unique identifier of the user. It stores `uid` in table `social_auth_usersocialauth` and map it to internal unique identifier used in Seafile. Different OAuth systems have different attributes, which may be: `id` or `uid` or `username`, etc.  And the id/email config `id: (True, email)`  is deprecated. 
 
-If you upgrade from a version below 11.0, you need to have both fields configured, i.e., you configuration should be like:
+    If you upgrade from a version below 11.0, you need to have both fields configured, i.e., you configuration should be like:
 
-```python
-OAUTH_ATTRIBUTE_MAP = {
-    "id": (True, "email"),
-    "uid": (True, "uid") ,
-    "name": (False, "name"),
-    "email": (False, "contact_email"),	
-}
-```
+    ```python
+    OAUTH_ATTRIBUTE_MAP = {
+        "id": (True, "email"),
+        "uid": (True, "uid") ,
+        "name": (False, "name"),
+        "email": (False, "contact_email"),	
+    }
+    ```
 
-In this way, when a user login, Seafile will first use "id -> email" map to find the old user and then create "uid -> uid" map for this old user. After all users login once, you can delete the configuration  `"id": (True, "email")`.
+    In this way, when a user login, Seafile will first use "id -> email" map to find the old user and then create "uid -> uid" map for this old user. After all users login once, you can delete the configuration  `"id": (True, "email")`.
 
-If you use a newly deployed 11.0 Seafile instance, you don't need the `"id": (True, "email")` item. Your configuration should be like:
+    If you use a newly deployed 11.0 Seafile instance, you don't need the `"id": (True, "email")` item. Your configuration should be like:
 
-```python
-OAUTH_ATTRIBUTE_MAP = {
-    "uid": (True, "uid") ,
-    "name": (False, "name"),
-    "email": (False, "contact_email"),	
-}
-```
+    ```python
+    OAUTH_ATTRIBUTE_MAP = {
+        "uid": (True, "uid") ,
+        "name": (False, "name"),
+        "email": (False, "contact_email"),	
+    }
+    ```
 
 
-#### Sample settings for Google
+#### Sample settings
 
-```python
-ENABLE_OAUTH = True
-OAUTH_ENABLE_INSECURE_TRANSPORT = True
+=== "Google"
 
-OAUTH_CLIENT_ID = "your-client-id"
-OAUTH_CLIENT_SECRET = "your-client-secret"
-OAUTH_REDIRECT_URL = 'http{s}://example.com/oauth/callback/'
+    ```python
+    ENABLE_OAUTH = True
+    OAUTH_ENABLE_INSECURE_TRANSPORT = True
 
-# The following shoud NOT be changed if you are using Google as OAuth provider.
-OAUTH_PROVIDER_DOMAIN = 'google.com'
-OAUTH_AUTHORIZATION_URL = 'https://accounts.google.com/o/oauth2/v2/auth'
-OAUTH_TOKEN_URL = 'https://www.googleapis.com/oauth2/v4/token'
-OAUTH_USER_INFO_URL = 'https://www.googleapis.com/oauth2/v1/userinfo'
-OAUTH_SCOPE = [
-    "openid",
-    "https://www.googleapis.com/auth/userinfo.email",
-    "https://www.googleapis.com/auth/userinfo.profile",
-]
-OAUTH_ATTRIBUTE_MAP = {
-    "sub": (True, "uid"),
-    "name": (False, "name"),
-    "email": (False, "contact_email"),
-}
-```
+    OAUTH_CLIENT_ID = "your-client-id"
+    OAUTH_CLIENT_SECRET = "your-client-secret"
+    OAUTH_REDIRECT_URL = 'http{s}://example.com/oauth/callback/'
 
-#### Sample settings for Github
+    # The following shoud NOT be changed if you are using Google as OAuth provider.
+    OAUTH_PROVIDER_DOMAIN = 'google.com'
+    OAUTH_AUTHORIZATION_URL = 'https://accounts.google.com/o/oauth2/v2/auth'
+    OAUTH_TOKEN_URL = 'https://www.googleapis.com/oauth2/v4/token'
+    OAUTH_USER_INFO_URL = 'https://www.googleapis.com/oauth2/v1/userinfo'
+    OAUTH_SCOPE = [
+        "openid",
+        "https://www.googleapis.com/auth/userinfo.email",
+        "https://www.googleapis.com/auth/userinfo.profile",
+    ]
+    OAUTH_ATTRIBUTE_MAP = {
+        "sub": (True, "uid"),
+        "name": (False, "name"),
+        "email": (False, "contact_email"),
+    }
+    ```
+=== "Github"
 
-For Github, `email` is not the unique identifier for an user, but `id` is in most cases, so we use `id` as settings example in our manual. As Seafile uses email to identify an unique user account for now, so we combine `id` and `OAUTH_PROVIDER_DOMAIN`, which is github.com in your case, to an email format string and then create this account if not exist. Change the setting as followings:
+    For Github, `email` is not the unique identifier for an user, but `id` is in most cases, so we use `id` as settings example in our manual. As Seafile uses email to identify an unique user account for now, so we combine `id` and `OAUTH_PROVIDER_DOMAIN`, which is github.com in your case, to an email format string and then create this account if not exist. Change the setting as followings:
 
-```python
-ENABLE_OAUTH = True
-OAUTH_ENABLE_INSECURE_TRANSPORT = True
+    ```python
+    ENABLE_OAUTH = True
+    OAUTH_ENABLE_INSECURE_TRANSPORT = True
 
-OAUTH_CLIENT_ID = "your-client-id"
-OAUTH_CLIENT_SECRET = "your-client-secret"
-OAUTH_REDIRECT_URL = 'http{s}://example.com/oauth/callback/'
+    OAUTH_CLIENT_ID = "your-client-id"
+    OAUTH_CLIENT_SECRET = "your-client-secret"
+    OAUTH_REDIRECT_URL = 'http{s}://example.com/oauth/callback/'
 
-OAUTH_PROVIDER_DOMAIN = 'github.com'
-OAUTH_AUTHORIZATION_URL = 'https://github.com/login/oauth/authorize'
-OAUTH_TOKEN_URL = 'https://github.com/login/oauth/access_token'
-OAUTH_USER_INFO_URL = 'https://api.github.com/user'
-OAUTH_SCOPE = ["user",]
-OAUTH_ATTRIBUTE_MAP = {
-    "id": (True, 'uid'),
-    "email": (False, "contact_email"),
-    "name": (False, "name"),
-}
-```
+    OAUTH_PROVIDER_DOMAIN = 'github.com'
+    OAUTH_AUTHORIZATION_URL = 'https://github.com/login/oauth/authorize'
+    OAUTH_TOKEN_URL = 'https://github.com/login/oauth/access_token'
+    OAUTH_USER_INFO_URL = 'https://api.github.com/user'
+    OAUTH_SCOPE = ["user",]
+    OAUTH_ATTRIBUTE_MAP = {
+        "id": (True, 'uid'),
+        "email": (False, "contact_email"),
+        "name": (False, "name"),
+    }
+    ```
+=== "GitLab"
 
-#### Sample settings for GitLab
+    To enable OAuth via GitLab. Create an application in GitLab (under Admin area->Applications).
 
-To enable OAuth via GitLab. Create an application in GitLab (under Admin area->Applications).
+    Fill in required fields:
 
-Fill in required fields:
+    - Name: a name you specify
 
-- Name: a name you specify
+    - Redirect URI: The callback url see below `OAUTH_REDIRECT_URL`
 
-- Redirect URI: The callback url see below `OAUTH_REDIRECT_URL`
+    - Trusted: Skip confirmation dialog page. Select this to *not* ask the user if he wants to authorize seafile to receive access to his/her account data.
 
-- Trusted: Skip confirmation dialog page. Select this to *not* ask the user if he wants to authorize seafile to receive access to his/her account data.
+    - Scopes: Select `openid` and `read_user` in the scopes list.
 
-- Scopes: Select `openid` and `read_user` in the scopes list.
+    Press submit and copy the client id and secret you receive on the confirmation page and use them in this template for your seahub_settings.py:
 
-Press submit and copy the client id and secret you receive on the confirmation page and use them in this template for your seahub_settings.py:
+    ```python
+    ENABLE_OAUTH = True
+    OAUTH_CLIENT_ID = "your-client-id"
+    OAUTH_CLIENT_SECRET = "your-client-secret"
+    OAUTH_REDIRECT_URL = "https://your-seafile/oauth/callback/"
 
-```python
-ENABLE_OAUTH = True
-OAUTH_CLIENT_ID = "your-client-id"
-OAUTH_CLIENT_SECRET = "your-client-secret"
-OAUTH_REDIRECT_URL = "https://your-seafile/oauth/callback/"
+    OAUTH_PROVIDER_DOMAIN = 'your-domain'
+    OAUTH_AUTHORIZATION_URL = 'https://gitlab.your-domain/oauth/authorize'
+    OAUTH_TOKEN_URL = 'https://gitlab.your-domain/oauth/token'
+    OAUTH_USER_INFO_URL = 'https://gitlab.your-domain/api/v4/user'
+    OAUTH_SCOPE = ["openid", "read_user"]
+    OAUTH_ATTRIBUTE_MAP = {
+        "email": (True, "uid"),
+        "name": (False, "name")
+    }
+    ```
+=== "Azure Cloud"
 
-OAUTH_PROVIDER_DOMAIN = 'your-domain'
-OAUTH_AUTHORIZATION_URL = 'https://gitlab.your-domain/oauth/authorize'
-OAUTH_TOKEN_URL = 'https://gitlab.your-domain/oauth/token'
-OAUTH_USER_INFO_URL = 'https://gitlab.your-domain/api/v4/user'
-OAUTH_SCOPE = ["openid", "read_user"]
-OAUTH_ATTRIBUTE_MAP = {
-    "email": (True, "uid"),
-    "name": (False, "name")
-}
-```
+    For users of Azure Cloud, as there is no `id` field returned from Azure Cloud's user info endpoint, so we use a special configuration for `OAUTH_ATTRIBUTE_MAP` setting (others are the same as Github/Google):
 
-#### Sample settings for Azure Cloud
+    ```python
+    OAUTH_ATTRIBUTE_MAP = {
+        "email": (True, "uid"),
+        "name": (False, "name")
+    }
+    ```
 
-For users of Azure Cloud, as there is no `id` field returned from Azure Cloud's user info endpoint, so we use a special configuration for `OAUTH_ATTRIBUTE_MAP` setting (others are the same as Github/Google):
-
-```python
-OAUTH_ATTRIBUTE_MAP = {
-    "email": (True, "uid"),
-    "name": (False, "name")
-}
-```
-
-Please see [this tutorial](https://forum.seafile.com/t/oauth-authentification-against-microsoft-office365-azure-cloud/7999) for the complete deployment process of OAuth against Azure Cloud.
+    Please see [this tutorial](https://forum.seafile.com/t/oauth-authentification-against-microsoft-office365-azure-cloud/7999) for the complete deployment process of OAuth against Azure Cloud.

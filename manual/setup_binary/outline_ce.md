@@ -1,6 +1,9 @@
 # Deploying Seafile
 
-We provide two ways to deploy Seafile services. **Docker is the recommended way**. Since version 12.0, binary based deployment for community edition is deprecated and will not be supported in a future release.
+We provide two ways to deploy Seafile services. **Docker is the recommended way**. 
+
+!!! warning
+    Since version 12.0, binary based deployment for community edition is deprecated and will not be supported in a future release.
 
 * Using [Docker](../setup/setup_ce_by_docker.md)
 * Manually installing Seafile and setting up database, memcached and Nginx/Apache. See the following section.
