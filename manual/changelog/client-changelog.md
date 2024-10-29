@@ -2,6 +2,17 @@
 
 ## 9.0
 
+### 9.0.9 (2024/10/29)
+
+* Auto unsync libraries that has no permission
+* Fix low download speed in high-speed networks
+* Add API request timeout in GUI
+* Turn single-sign-on to a button
+* Support syncing encrypted library with custom password hash algorithms (Argon and PBKDF2)
+* \[mac] Don't split rename event into delete and add events
+* \[linux] Fix UI in dark modes
+* \[linux] Fix bug for single-sign-on with built-in browser
+
 ### 9.0.8 (2024/08/12)
 
 * \[win] Fix a potential crash bug when downloading files
