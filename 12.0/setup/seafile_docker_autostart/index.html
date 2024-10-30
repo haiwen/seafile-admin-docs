@@ -1035,6 +1035,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Seafile Docker autostart
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1044,6 +1055,43 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#modify-docker-composeservice" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modify docker-compose.service
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modify-docker-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modify Docker files
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -4059,6 +4107,32 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#modify-docker-composeservice" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modify docker-compose.service
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modify-docker-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modify Docker files
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -4077,9 +4151,7 @@
 
 <h1 id="seafile-docker-autostart">Seafile Docker autostart<a class="headerlink" href="#seafile-docker-autostart" title="Permanent link">&para;</a></h1>
 <p>You can use one of the following methods to start Seafile container on system bootup.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1"><code>docker-compose.service</code></label><label for="__tabbed_1_2"><code>xxx.yml</code></label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
+<h2 id="modify-docker-composeservice">Modify docker-compose.service<a class="headerlink" href="#modify-docker-composeservice" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
 <p>Add <code>docker-compose.service</code></p>
@@ -4117,8 +4189,7 @@ systemctl enable docker-compose.service
 </code></pre></div>
 </li>
 </ol>
-</div>
-<div class="tabbed-block">
+<h2 id="modify-docker-files">Modify Docker files<a class="headerlink" href="#modify-docker-files" title="Permanent link">&para;</a></h2>
 <p>Add configuration <code>restart: unless-stopped</code> for each container in <a href="../overview/">components of Seafile docker</a>. Take <code>seafile-server.yml</code> for example</p>
 <div class="highlight"><pre><span></span><code>services:
 db:
@@ -4144,9 +4215,6 @@ seafile:
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Add <code>restart: unless-stopped</code>, and the Seafile container will automatically start when Docker starts. If the Seafile container does not exist (execute docker compose down), the container will not start automatically.</p>
-</div>
-</div>
-</div>
 </div>
 
 

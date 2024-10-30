@@ -4212,6 +4212,15 @@
 <div class="highlight"><pre><span></span><code>cd seafile-server-latest
 ./seaf-fsck.sh [--repair|-r] [--export|-E export_path] [repo_id_1 [repo_id_2 ...]]
 </code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If your Seafile server is deployed by <a href="../../setup/setup_ce_by_docker/">Docker</a>, you have to run the above command <strong>in the container</strong>:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>bash
+<span class="c1"># after entering the container</span>
+<span class="nb">cd</span><span class="w"> </span>/scripts
+./seaf-fsck.sh<span class="w"> </span><span class="o">[</span>--repair<span class="p">|</span>-r<span class="o">]</span><span class="w"> </span><span class="o">[</span>--export<span class="p">|</span>-E<span class="w"> </span>export_path<span class="o">]</span><span class="w"> </span><span class="o">[</span>repo_id_1<span class="w"> </span><span class="o">[</span>repo_id_2<span class="w"> </span>...<span class="o">]]</span>
+</code></pre></div>
+</div>
 <p>There are three modes of operation for seaf-fsck:</p>
 <ol>
 <li>checking integrity of libraries.</li>

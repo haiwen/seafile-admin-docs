@@ -4076,7 +4076,7 @@
 <h1 id="https-and-caddy">HTTPS and Caddy<a class="headerlink" href="#https-and-caddy" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>From Seafile 12.0, the HTTPS in deployment from Docker is handled by <a href="https://caddyserver.com/docs/"><strong><em>Caddy</em></strong></a>. The default caddy image used of Seafile docker is <a href="https://github.com/lucaslorentz/caddy-docker-proxy"><code>lucaslorentz/caddy-docker-proxy:2.9</code></a>.</p>
+<p>From Seafile Docker 12.0, HTTPS will be handled by the <a href="https://caddyserver.com/docs/"><strong><em>Caddy</em></strong></a>. The default caddy image used of Seafile docker is <a href="https://github.com/lucaslorentz/caddy-docker-proxy"><code>lucaslorentz/caddy-docker-proxy:2.9</code></a>.</p>
 </div>
 <p>Caddy is a modern open source web server that mainly binds external traffic and internal services in <a href="../overview/">seafile docker</a>. In addition to the advantages of traditional proxy components (e.g., <em>nginx</em>), Caddy also makes it easier for users to complete the acquisite and update of HTTPS certificates by providing simpler configurations. </p>
 <p>To engage HTTPS, users only needs to correctly configure the following fields in <code>.env</code>:</p>
