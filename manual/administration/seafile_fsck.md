@@ -15,6 +15,16 @@ cd seafile-server-latest
 
 ```
 
+!!! tip
+    If your Seafile server is deployed by [Docker](../setup/setup_ce_by_docker.md), you have to run the above command **in the container**:
+
+    ```sh
+    docker exec -it seafile bash
+    # after entering the container
+    cd /scripts
+    ./seaf-fsck.sh [--repair|-r] [--export|-E export_path] [repo_id_1 [repo_id_2 ...]]
+    ```
+
 There are three modes of operation for seaf-fsck:
 
 1. checking integrity of libraries.
