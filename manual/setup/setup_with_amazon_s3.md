@@ -234,6 +234,6 @@ sudo ln -s /etc/pki/tls/certs/ca-bundle.crt /etc/pki/tls/cert.pem
 
 ## Run and Test ##
 
-Now you can start Seafile by `./seafile.sh start` and `./seahub.sh start` and visit the website.
+Now you can start Seafile and test
 
-  [1]: http://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html "the bucket naming rules"
+[1]: http://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html "the bucket naming rules"

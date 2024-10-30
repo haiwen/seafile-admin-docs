@@ -8,7 +8,7 @@ Since version 6.3, OpenStack Swift v3.0 API is supported.
 
 To setup Seafile Professional Server with Swift:
 
-* Setup the basic Seafile Professional Server following the guide on [Download and setup Seafile Professional Server](../setup_binary/installation_pro.md)
+* Setup the basic Seafile Professional Server
 * Install and configure memcached or Redis. For best performance, Seafile requires enable memory cache for objects. We recommend to at least allocate 128MB memory for memcached.
 
 ## Modify Seafile.conf
