@@ -18,7 +18,7 @@ Use the [official installation guide for your OS to install Docker](https://docs
 
 ### Download and modify `.env`
 
-!!! tip "From Seafile Docker 12.0, we use `.env`, `seafile-server.yml`  and `caddy.yml` files for configuration"
+From Seafile Docker 12.0, we use `.env`, `seafile-server.yml`  and `caddy.yml` files for configuration
 
 ```bash
 mkdir /opt/seafile
