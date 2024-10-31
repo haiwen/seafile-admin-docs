@@ -532,9 +532,7 @@ def custom_get_groups(request):
     * You need to restart seahub so that your changes take effect.
     === "Deploy in Docker"
         ```bash
-        docker exec -it seafile bash
-        cd /scripts
-        ./seahub.sh restart
+        docker compose restart
         ```
     === "Deploy from binary packages"
         ```bash

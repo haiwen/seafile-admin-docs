@@ -174,10 +174,7 @@ Restart the seafile service to make the above changes take effect:
 
 === "Deploy in Docker"
     ```sh
-    docker exec -it seafile bash
-    cd /scripts
-    ./seafile.sh restart
-    ./seahub.sh restart
+    docker compose restart
     ```
 === "Deploy from binary packages"
     ```sh
