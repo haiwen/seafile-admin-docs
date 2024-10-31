@@ -11,34 +11,35 @@ Refer to [email sending documentation](sending_email.md).
 
 Seahub caches items(avatars, profiles, etc) on file system by default(/tmp/seahub_cache/). You can replace with Memcached or Redis.
 
-### Memcached
+=== "Memcached"
 
-```
-# on Debian/Ubuntu 18.04+
-apt-get install memcached libmemcached-dev -y
-pip3 install --timeout=3600 pylibmc django-pylibmc
+    ```
+    # on Debian/Ubuntu 18.04+
+    apt-get install memcached libmemcached-dev -y
+    pip3 install --timeout=3600 pylibmc django-pylibmc
 
-systemctl enable --now memcached
-```
+    systemctl enable --now memcached
+    ```
 
 
-Add the following configuration to `seahub_settings.py`.
+    Add the following configuration to `seahub_settings.py`.
 
-```
-CACHES = {
-    'default': {
-        'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
-        'LOCATION': '127.0.0.1:11211',
-    },
-}
+    ```
+    CACHES = {
+        'default': {
+            'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
+            'LOCATION': '127.0.0.1:11211',
+        },
+    }
 
-```
+    ```
+=== "Redis"
 
-### Redis
+    !!! success "Redis supported is added in Seafile version 11.0"
 
-Redis support is added in version 11.0.
+    1. Install Redis with package installers in your OS.
 
-Please refer to [Django's documentation about using Redis cache](https://docs.djangoproject.com/en/4.2/topics/cache/#redis).
+    2. Please refer to [Django's documentation about using Redis cache](https://docs.djangoproject.com/en/4.2/topics/cache/#redis).
 
 ## Security settings
 
@@ -526,12 +527,17 @@ def custom_get_groups(request):
 
 !!! danger "You should NOT change the name of `custom_get_groups` and `seahub_custom_functions/__init__.py`"
 
-!!! success
+!!! tip
 
     * You need to restart seahub so that your changes take effect.
+    === "Deploy in Docker"
+        ```bash
+        docker compose restart
+        ```
+    === "Deploy from binary packages"
+        ```bash
+        cd /opt/seafile/seafile-server-latest
+        ./seahub.sh restart
+        ```
+
     * If your changes don't take effect, You may need to delete 'seahub_setting.pyc'. (A cache file)
-
-    ```bash
-    ./seahub.sh restart
-
-    ```

@@ -134,6 +134,8 @@ nav:
       - Collabora Online Integration: extension/libreoffice_online.md
       - OnlyOffice Integration: extension/only_office.md
       - Office Online Server Integration (Pro): extension/office_web_app.md
+    - Cluster:
+      - Distributed indexing: extension/distributed_indexing.md
     - Virus Scan (Pro):
       - Outline: extension/virus_scan.md
       - Virus scan with ClamAV: extension/virus_scan_with_clamav.md
