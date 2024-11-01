@@ -78,7 +78,7 @@ Placeholder spot for shared volumes. You may elect to store certain persistent i
     * /opt/seafile-data/logs/var-log: This is the directory that would be mounted as `/var/log` inside the container. 
 
 !!! tip 
-    From Seafile Docer 12.0, the Nginx's log is not accessable, as we use the ***Caddy*** to do web service proxy. If you would like to access the logs of *Caddy*, you can use following command:
+    From Seafile Docker 12.0, the Nginx's log is not accessable, as we use the ***Caddy*** to do web service proxy. If you would like to access the logs of *Caddy*, you can use following command:
 
     ```sh
     docker logs seafile-caddy --follow
