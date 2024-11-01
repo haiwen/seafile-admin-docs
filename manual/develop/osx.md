@@ -10,7 +10,7 @@ The following setups are required for building and packaging Sync Client on macO
 * MacPorts
     * Modify __/opt/local/etc/macports/macports.conf__ to add configuration `universal_archs arm64 x86_64`. Specifies the architecture on which MapPorts is compiled.
     * Modify __/opt/local/etc/macports/variants.conf__ to add configuration `+universal`. MacPorts installs universal versions of all ports.
-    * Install other dependencies: `sudo port install autoconf automake pkgconfig libtool glib2 libevent vala openssl git jansson cmake libwebsockets`.
+    * Install other dependencies: `sudo port install autoconf automake pkgconfig libtool glib2 libevent vala openssl git jansson cmake libwebsockets argon2`.
 * Certificates
     * Create certificate signing requests for certification, see [https://developer.apple.com/help/account/create-certificates/create-a-certificate-signing-request]().
     * Create a _Developer ID Application_ certificate and a _Developer ID Installer_ certificate, see [https://developer.apple.com/help/account/create-certificates/create-developer-id-certificates](). Install them to the login keychain.
