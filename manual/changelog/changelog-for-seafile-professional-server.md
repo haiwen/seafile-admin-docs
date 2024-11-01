@@ -166,6 +166,10 @@ Other changes
 
 Please check our document for how to upgrade to 10.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_10.0.x/>
 
+### 10.0.18 (2024-10-24)
+
+* [fix] Prevent the creating of files with name ".."
+
 ### 10.0.17 (2024-10-23)
 
 This release is for Docker image only
