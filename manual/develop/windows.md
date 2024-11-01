@@ -30,6 +30,7 @@ The following setups are required for building and packaging Sync Client on Wind
     * pthreads:x64-windows
     * sqlite3:x64-windows
     * zlib:x64-windows
+    * argon2:x64-windows
 
             # Example of the install command:
             $ ./vcpkg.exe install curl[core,openssl]:x64-windows
