@@ -4,7 +4,7 @@ In the document below, we assume your seafile installation folder is `/opt/seafi
 
 ## Config WebDAV extension
 
-The configuration file is `/opt/seafile/conf/seafdav.conf`. If it is not created already, you can just create the file.
+The configuration file is `/opt/seafile-data/seafile/conf/seafdav.conf` (for deploying from binary packages, it should be `/opt/seafile/conf/seafdav.conf`). If it is not created already, you can just create the file.
 
 ```
 [WEBDAV]
@@ -30,12 +30,18 @@ timeout = 1200
 
 Every time the configuration is modified, you need to restart seafile server to make it take effect.
 
-```
-./seafile.sh restart
+=== "Deploy in Docker"
+    ```sh
+    docker compose restart
+    ```
+=== "Deploy from binary packages"
+    ```sh
+    cd /opt/seafile/seafile-server-latest/
+    ./seafile.sh restart
 
-```
+    ```
 
-Your WebDAV client would visit the Seafile WebDAV server at `http{s}://example.com/seafdav`
+Your WebDAV client would visit the Seafile WebDAV server at `http{s}://example.com/seafdav/` (for deploying from binary packages, it should be `http{s}://example.com:8080/seafdav/`)
 
 
 In Pro edition 7.1.8 version and community edition 7.1.5, an option is added to append library ID to the library name returned by SeafDAV.
@@ -46,64 +52,50 @@ show_repo_id=true
 ```
 
 ## Proxy
+!!! tip 
+    For deploying in docker, the WebDAV has been proxied, you can skip this step
 
-=== "Deploy in Docker"
-    Modify `seafile-server.yml`
-    ```yml
-    services:
-        ...
-        seafile:
-            ...
-            labels:
-                caddy: ${SEAFILE_SERVER_PROTOCOL:-http}://${SEAFILE_SERVER_HOSTNAME:?Variable is not set or empty}
-                caddy.0_reverse_proxy: "{{upstreams 80}}"
-                caddy.1_handle_path: /seafdav/*
-                caddy.1_handle_path.0_rewrite: "* /seafdav{uri}"
-                caddy.1_handle_path.1_reverse_proxy: "{{upstreams 8080}}"
-            ...
+=== "Nginx"
+
+    For Seafdav, the configuration of Nginx is as follows:
+
     ```
-=== "Deploy from binary packages"
-    === "Nginx"
+    .....
 
-        For Seafdav, the configuration of Nginx is as follows:
+        location /seafdav {
+            rewrite ^/seafdav$ /seafdav/ permanent;
+        }
 
-        ```
-        .....
+        location /seafdav/ {
+            proxy_pass         http://127.0.0.1:8080/seafdav/;
+            proxy_set_header   Host $host;
+            proxy_set_header   X-Real-IP $remote_addr;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   X-Forwarded-Host $server_name;
+            proxy_set_header   X-Forwarded-Proto $scheme;
+            proxy_read_timeout  1200s;
+            client_max_body_size 0;
+    ﻿
+            access_log      /var/log/nginx/seafdav.access.log seafileformat;
+            error_log       /var/log/nginx/seafdav.error.log;
+        }
 
-            location /seafdav {
-                rewrite ^/seafdav$ /seafdav/ permanent;
-            }
+        location /:dir_browser {
+            proxy_pass         http://127.0.0.1:8080/:dir_browser;
+        }
+    ```
 
-            location /seafdav/ {
-                proxy_pass         http://127.0.0.1:8080/seafdav/;
-                proxy_set_header   Host $host;
-                proxy_set_header   X-Real-IP $remote_addr;
-                proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-                proxy_set_header   X-Forwarded-Host $server_name;
-                proxy_set_header   X-Forwarded-Proto $scheme;
-                proxy_read_timeout  1200s;
-                client_max_body_size 0;
-        ﻿
-                access_log      /var/log/nginx/seafdav.access.log seafileformat;
-                error_log       /var/log/nginx/seafdav.error.log;
-            }
+=== "Apache"
 
-            location /:dir_browser {
-                proxy_pass         http://127.0.0.1:8080/:dir_browser;
-            }
-        ```
+    For Seafdav, the configuration of Apache is as follows:
 
-    === "Apache"
+    ```
+    ......
+        <Location /seafdav>
+            ProxyPass "http://127.0.0.1:8080/seafdav"
+        </Location>
 
-        For Seafdav, the configuration of Apache is as follows:
-
-        ```
-        ......
-            <Location /seafdav>
-                ProxyPass "http://127.0.0.1:8080/seafdav"
-            </Location>
-
-        ```
+    ```
 
 
 ## Notes on Clients
