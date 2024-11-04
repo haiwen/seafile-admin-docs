@@ -8,6 +8,16 @@
 
 Please check our document for how to upgrade to 11.0: <https://manual.seafile.com/upgrade/upgrade_notes_for_11.0.x/>
 
+### 11.0.13 (2024-11-04)
+
+* [Security] Do not allow .. as a file directory name
+* [Security] Sending Links with Passwords has no HTML escape
+* [fix] Fix preview support for TIFF images
+* [fix] Check the length of email in login form, preventing too long input
+* [fix] Use user name instead of user ID in email content
+* [Security] auth-token API also prevent brute force attack
+* [fix] Fix a bug that system admin can not share a library in admin panel
+  
 
 ### 11.0.12 (2024-08-14)
 
