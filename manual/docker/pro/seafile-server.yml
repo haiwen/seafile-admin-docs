@@ -59,10 +59,10 @@ services:
       - ENABLE_SEADOC=${ENABLE_SEADOC:-false}
       - SEADOC_SERVER_URL=${SEADOC_SERVER_URL:-http://example.example.com/sdoc-server}
     labels:
-      caddy: ${SEAFILE_SERVER_PROTOCOL:-http}://${SEAFILE_SERVER_HOSTNAME:?Variable is not set or empty}
-      caddy.0_reverse_proxy: "{{upstreams 80}}"
-      caddy.1_handle_path: "/seafdav/*"
-      caddy.1_handle_path:.reverse_proxy: "{{upstreams 8080}}"
+      caddy_0: ${SEAFILE_SERVER_PROTOCOL:-http}://${SEAFILE_SERVER_HOSTNAME:?Variable is not set or empty}
+      caddy_0.reverse_proxy: "{{upstreams 80}}"
+      caddy_1: ${SEAFILE_SERVER_PROTOCOL:-http}://${SEAFILE_SERVER_HOSTNAME:?Variable is not set or empty}:${SEAFILE_WEBDAV_PORT:-8080}
+      caddy_1.reverse_proxy: "{{upstreams 8080}}"
     depends_on:
       - db
       - memcached
