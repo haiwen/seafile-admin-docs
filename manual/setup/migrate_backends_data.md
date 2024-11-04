@@ -66,6 +66,52 @@ mv seafile.conf /opt
 
 Repalce the configurations with your own choice.
 
+### Migrating to SSE-C Encrypted S3 Storage
+
+If you are migrating to S3 storage, and want your data to be encrypted at rest, you can configure SSE-C encryption options in the temporary seafile.conf. Note that you have to use Seafile Pro 11 or newer and make sure your S3 storage supports SSE-C.
+
+```
+cat > seafile.conf << EOF
+[commit_object_backend]
+name = s3
+bucket = seacomm
+key_id = ******
+key = ******
+use_v4_signature = true
+use_https = true
+sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
+
+[fs_object_backend]
+name = s3
+bucket = seafs
+key_id = ******
+key = ******
+use_v4_signature = true
+use_https = true
+sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
+
+[block_backend]
+name = s3
+bucket = seablk
+key_id = ******
+key = ******
+use_v4_signature = true
+use_https = true
+sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
+EOF
+
+mv seafile.conf /opt
+
+```
+
+`sse_c_key` is a string of 32 characters.
+
+You can generate `sse_c_key` with the following command：
+
+```
+openssl rand -base64 24
+```
+
 ## Migrating large number of objects
 
 If you have millions of objects in the storage (especially fs objects), it may take quite long time to migrate all objects. More than half of the time is spent on checking whether an object exists in the destination storage. **Since Pro edition 7.0.8**, a feature is added to speed-up the checking.
