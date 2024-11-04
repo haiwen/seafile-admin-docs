@@ -1051,6 +1051,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Create a new temporary seafile.conf">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#migrating-to-sse-c-encrypted-s3-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Migrating to SSE-C Encrypted S3 Storage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4227,6 +4242,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Create a new temporary seafile.conf">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#migrating-to-sse-c-encrypted-s3-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Migrating to SSE-C Encrypted S3 Storage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4348,6 +4378,43 @@ EOF
 mv seafile.conf /opt
 </code></pre></div>
 <p>Repalce the configurations with your own choice.</p>
+<h3 id="migrating-to-sse-c-encrypted-s3-storage">Migrating to SSE-C Encrypted S3 Storage<a class="headerlink" href="#migrating-to-sse-c-encrypted-s3-storage" title="Permanent link">&para;</a></h3>
+<p>If you are migrating to S3 storage, and want your data to be encrypted at rest, you can configure SSE-C encryption options in the temporary seafile.conf. Note that you have to use Seafile Pro 11 or newer and make sure your S3 storage supports SSE-C.</p>
+<div class="highlight"><pre><span></span><code>cat &gt; seafile.conf &lt;&lt; EOF
+[commit_object_backend]
+name = s3
+bucket = seacomm
+key_id = ******
+key = ******
+use_v4_signature = true
+use_https = true
+sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
+
+[fs_object_backend]
+name = s3
+bucket = seafs
+key_id = ******
+key = ******
+use_v4_signature = true
+use_https = true
+sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
+
+[block_backend]
+name = s3
+bucket = seablk
+key_id = ******
+key = ******
+use_v4_signature = true
+use_https = true
+sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
+EOF
+
+mv seafile.conf /opt
+</code></pre></div>
+<p><code>sse_c_key</code> is a string of 32 characters.</p>
+<p>You can generate <code>sse_c_key</code> with the following command：</p>
+<div class="highlight"><pre><span></span><code>openssl rand -base64 24
+</code></pre></div>
 <h2 id="migrating-large-number-of-objects">Migrating large number of objects<a class="headerlink" href="#migrating-large-number-of-objects" title="Permanent link">&para;</a></h2>
 <p>If you have millions of objects in the storage (especially fs objects), it may take quite long time to migrate all objects. More than half of the time is spent on checking whether an object exists in the destination storage. <strong>Since Pro edition 7.0.8</strong>, a feature is added to speed-up the checking.</p>
 <p>Before running the migration script, please set this env variable:</p>
