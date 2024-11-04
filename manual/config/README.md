@@ -22,14 +22,12 @@ There are now three places you can config Seafile server:
 - config files
 - via web interface
 
+The web interface has the highest priority. It contains a subset of settings that does no require to restart the server. In practise, you can disable settings via web interface for simplicity.
+
 Environment variables also have three categories:
 
 - Initialization variables that used to generate config files when Seafile server run for the first time.
 - Variables that shared and used by multiple components of Seafile server.
-- Variables that used both in generate config files and later also needed for some components that have no corresponding config file.
+- Variables that used both in generate config files and later also needed for some components that have no corresponding config files.
 
-The variables in the first category can be deleted after initialization. In the future, we will make more components can read config from environment variables, so that the third category is no longer needed.
-
-The web interface has the highest priority, then the environment variables, then the config files. In practise, you can disable settings via web interface for simplicity.
-
-
+The variables in the first category can be deleted after initialization. In the future, we will make more components to read config from environment variables, so that the third category is no longer needed.
