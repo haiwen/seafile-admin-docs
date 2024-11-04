@@ -41,7 +41,7 @@ Every time the configuration is modified, you need to restart seafile server to 
 
     ```
 
-Your WebDAV client would visit the Seafile WebDAV server at `http{s}://example.com:8080/seafdav/`
+Your WebDAV client would visit the Seafile WebDAV server at `http{s}://example.com/seafdav/` (for deploying from binary packages, it should be  `http{s}://example.com:8080/seafdav/`)
 
 
 In Pro edition 7.1.8 version and community edition 7.1.5, an option is added to append library ID to the library name returned by SeafDAV.
@@ -51,8 +51,9 @@ show_repo_id=true
 
 ```
 
-## Proxy
-!!! note "This feature is only for deploying from binary packages"
+## Proxy (only for deploying from binary packages)
+!!! tip
+    For deploying in Docker, the WebDAV server has been proxied in `/seafdav/*`, as you can skip this step
 
 === "Nginx"
 
