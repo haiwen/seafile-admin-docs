@@ -8,6 +8,18 @@
 
 Please check our document for how to upgrade to [11.0](../upgrade/upgrade_notes_for_11.0.x.md)
 
+### 11.0.16 (2024-11-04)
+
+* The storage migration script now does not allow migration to the original bucket
+* [Security] Do not allow .. as a file directory name
+* [fix] Search results now show the first 20 entries and the user can click more to jump to the page dedicated to search
+* [fix] Fixed SSE_C support
+* Added an option USE_LDAP_SYNC_ONLY to meet the case that using LDAP to sync users to Seafile and let users to login via SSO only
+* [fix] Hide the print button when opening with office online server for preview only the folder share
+* [fix] Do not send file lock notifications to notification server if notification server is not configured for golang fileserver
+* [fix] Sending Links with Passwords has no HTML escape
+* [fix] Fix preview support for TIFF images
+
 ### 11.0.15 (2024-10-17)
 
 * [fix] Check the length of email in login form, preventing too long input
@@ -165,6 +177,10 @@ Other changes
 
 Please check our document for how to upgrade to [10.0](../upgrade/upgrade_notes_for_10.0.x.md).
 
+
+### 10.0.18 (2024-11-01)
+
+* [fix] Prevent the creating of files with name ".."
 
 ### 10.0.17 (2024-10-23)
 
