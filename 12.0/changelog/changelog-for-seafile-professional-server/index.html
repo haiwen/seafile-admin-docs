@@ -4077,6 +4077,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#11016-2024-11-04" class="md-nav__link">
+    <span class="md-ellipsis">
+      11.0.16 (2024-11-04)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#11015-2024-10-17" class="md-nav__link">
     <span class="md-ellipsis">
       11.0.15 (2024-10-17)
@@ -4198,6 +4207,15 @@
   
     <nav class="md-nav" aria-label="10.0">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#10018-2024-11-01" class="md-nav__link">
+    <span class="md-ellipsis">
+      10.0.18 (2024-11-01)
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#10017-2024-10-23" class="md-nav__link">
@@ -5697,6 +5715,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#11016-2024-11-04" class="md-nav__link">
+    <span class="md-ellipsis">
+      11.0.16 (2024-11-04)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#11015-2024-10-17" class="md-nav__link">
     <span class="md-ellipsis">
       11.0.15 (2024-10-17)
@@ -5818,6 +5845,15 @@
   
     <nav class="md-nav" aria-label="10.0">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#10018-2024-11-01" class="md-nav__link">
+    <span class="md-ellipsis">
+      10.0.18 (2024-11-01)
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#10017-2024-10-23" class="md-nav__link">
@@ -7247,6 +7283,18 @@
 <h2 id="110">11.0<a class="headerlink" href="#110" title="Permanent link">&para;</a></h2>
 <p><strong>Upgrade</strong></p>
 <p>Please check our document for how to upgrade to <a href="../../upgrade/upgrade_notes_for_11.0.x/">11.0</a></p>
+<h3 id="11016-2024-11-04">11.0.16 (2024-11-04)<a class="headerlink" href="#11016-2024-11-04" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The storage migration script now does not allow migration to the original bucket</li>
+<li>[Security] Do not allow .. as a file directory name</li>
+<li>[fix] Search results now show the first 20 entries and the user can click more to jump to the page dedicated to search</li>
+<li>[fix] Fixed SSE_C support</li>
+<li>Added an option USE_LDAP_SYNC_ONLY to meet the case that using LDAP to sync users to Seafile and let users to login via SSO only</li>
+<li>[fix] Hide the print button when opening with office online server for preview only the folder share</li>
+<li>[fix] Do not send file lock notifications to notification server if notification server is not configured for golang fileserver</li>
+<li>[fix] Sending Links with Passwords has no HTML escape</li>
+<li>[fix] Fix preview support for TIFF images</li>
+</ul>
 <h3 id="11015-2024-10-17">11.0.15 (2024-10-17)<a class="headerlink" href="#11015-2024-10-17" title="Permanent link">&para;</a></h3>
 <ul>
 <li>[fix] Check the length of email in login form, preventing too long input</li>
@@ -7394,6 +7442,10 @@
 <h2 id="100">10.0<a class="headerlink" href="#100" title="Permanent link">&para;</a></h2>
 <p><strong>Upgrade</strong></p>
 <p>Please check our document for how to upgrade to <a href="../../upgrade/upgrade_notes_for_10.0.x/">10.0</a>.</p>
+<h3 id="10018-2024-11-01">10.0.18 (2024-11-01)<a class="headerlink" href="#10018-2024-11-01" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[fix] Prevent the creating of files with name ".."</li>
+</ul>
 <h3 id="10017-2024-10-23">10.0.17 (2024-10-23)<a class="headerlink" href="#10017-2024-10-23" title="Permanent link">&para;</a></h3>
 <p>This release is for Docker image only</p>
 <ul>
