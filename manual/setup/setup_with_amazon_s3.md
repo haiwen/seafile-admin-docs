@@ -107,7 +107,7 @@ You can generate `sse_c_key` with the following command：
 openssl rand -base64 24
 ```
 
-**Important**: If you have existing data in your S3 storage bucket, turning on the above configuration will make your data inaccessible. That's because Seafile server doesn't support encrypted and non-encrypted objects mixed in the same bucket. You have to create a new bucket, and migrate your data to it by following [storage backend migration documentation](migrate_backends_data/#migrating-to-sse-c-encrypted-s3-storage).
+!!! note "If you have existing data in your S3 storage bucket, turning on the above configuration will make your data inaccessible. That's because Seafile server doesn't support encrypted and non-encrypted objects mixed in the same bucket. You have to create a new bucket, and migrate your data to it by following [storage backend migration documentation](./migrate_backends_data.md#migrating-to-sse-c-encrypted-s3-storage)."
 
 ## Other Public Hosted S3 Storage
 
