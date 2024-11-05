@@ -4,7 +4,7 @@ In the document below, we assume your seafile installation folder is `/opt/seafi
 
 ## Config WebDAV extension
 
-The configuration file is `/opt/seafile/conf/seafdav.conf`. If it is not created already, you can just create the file.
+The configuration file is `/opt/seafile-data/seafile/conf/seafdav.conf` (for deploying from binary packages, it should be `/opt/seafile/conf/seafdav.conf`). If it is not created already, you can just create the file.
 
 ```
 [WEBDAV]
@@ -30,12 +30,18 @@ timeout = 1200
 
 Every time the configuration is modified, you need to restart seafile server to make it take effect.
 
-```
-./seafile.sh restart
+=== "Deploy in Docker"
+    ```sh
+    docker compose restart
+    ```
+=== "Deploy from binary packages"
+    ```sh
+    cd /opt/seafile/seafile-server-latest/
+    ./seafile.sh restart
 
-```
+    ```
 
-Your WebDAV client would visit the Seafile WebDAV server at `http://example.com:8080/seafdav`
+Your WebDAV client would visit the Seafile WebDAV server at `http{s}://example.com/seafdav/` (for deploying from binary packages, it should be  `http{s}://example.com:8080/seafdav/`)
 
 
 In Pro edition 7.1.8 version and community edition 7.1.5, an option is added to append library ID to the library name returned by SeafDAV.
@@ -45,7 +51,9 @@ show_repo_id=true
 
 ```
 
-## Proxy
+## Proxy (only for deploying from binary packages)
+!!! tip
+    For deploying in Docker, the WebDAV server has been proxied in `/seafdav/*`, as you can skip this step
 
 === "Nginx"
 

@@ -62,7 +62,7 @@ cd /opt/seafile
 # Seafile PE 12.0
 wget -O .env https://manual.seafile.com/12.0/docker/pro/env
 wget https://manual.seafile.com/12.0/docker/pro/seafile-server.yml
-wget https://manual.seafile.com/12.0/docker/pro/caddy.yml
+wget https://manual.seafile.com/12.0/docker/caddy.yml
 
 nano .env
 ```

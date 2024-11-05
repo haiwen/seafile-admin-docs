@@ -19,14 +19,14 @@ mv docker-compose.yml docker-compose.yml.bak
 
 ### Download Seafile 12,0 Docker files
 
-Download [.env](../docker/ce/env), [seafile-server.yml](../docker/ce/seafile-server.yml) and [caddy.yml](../docker/ce/caddy.yml), and modify .env file according to the old configuration in `docker-compose.yml.bak`
+Download [.env](../docker/ce/env), [seafile-server.yml](../docker/ce/seafile-server.yml) and [caddy.yml](../docker/caddy.yml), and modify .env file according to the old configuration in `docker-compose.yml.bak`
 
 === "Seafile community edition"
 
     ```sh
     wget -O .env https://manual.seafile.com/12.0/docker/ce/env
     wget https://manual.seafile.com/12.0/docker/ce/seafile-server.yml
-    wget https://manual.seafile.com/12.0/docker/ce/caddy.yml
+    wget https://manual.seafile.com/12.0/docker/caddy.yml
     ```
     The following fields merit particular attention:
 
@@ -49,7 +49,7 @@ Download [.env](../docker/ce/env), [seafile-server.yml](../docker/ce/seafile-ser
     ```sh
     wget -O .env https://manual.seafile.com/12.0/docker/pro/env
     wget https://manual.seafile.com/12.0/docker/pro/seafile-server.yml
-    wget https://manual.seafile.com/12.0/docker/pro/caddy.yml
+    wget https://manual.seafile.com/12.0/docker/caddy.yml
     ```
     The following fields merit particular attention:
 
