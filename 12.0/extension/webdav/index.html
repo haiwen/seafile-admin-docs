@@ -2014,9 +2014,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#proxy" class="md-nav__link">
+  <a href="#proxy-only-for-deploying-from-binary-packages" class="md-nav__link">
     <span class="md-ellipsis">
-      Proxy
+      Proxy (only for deploying from binary packages)
     </span>
   </a>
   
@@ -4254,9 +4254,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#proxy" class="md-nav__link">
+  <a href="#proxy-only-for-deploying-from-binary-packages" class="md-nav__link">
     <span class="md-ellipsis">
-      Proxy
+      Proxy (only for deploying from binary packages)
     </span>
   </a>
   
@@ -4343,7 +4343,7 @@
 <h1 id="webdav-extension">WebDAV extension<a class="headerlink" href="#webdav-extension" title="Permanent link">&para;</a></h1>
 <p>In the document below, we assume your seafile installation folder is <code>/opt/seafile</code>.</p>
 <h2 id="config-webdav-extension">Config WebDAV extension<a class="headerlink" href="#config-webdav-extension" title="Permanent link">&para;</a></h2>
-<p>The configuration file is <code>/opt/seafile/conf/seafdav.conf</code>. If it is not created already, you can just create the file.</p>
+<p>The configuration file is <code>/opt/seafile-data/seafile/conf/seafdav.conf</code> (for deploying from binary packages, it should be <code>/opt/seafile/conf/seafdav.conf</code>). If it is not created already, you can just create the file.</p>
 <div class="highlight"><pre><span></span><code>[WEBDAV]
 
 # Default is false. Change it to true to enable SeafDAV server.
@@ -4365,14 +4365,29 @@ workers = 5
 timeout = 1200
 </code></pre></div>
 <p>Every time the configuration is modified, you need to restart seafile server to make it take effect.</p>
-<div class="highlight"><pre><span></span><code>./seafile.sh restart
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Deploy in Docker</label><label for="__tabbed_1_2">Deploy from binary packages</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart
 </code></pre></div>
-<p>Your WebDAV client would visit the Seafile WebDAV server at <code>http://example.com:8080/seafdav</code></p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest/
+./seafile.sh<span class="w"> </span>restart
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Your WebDAV client would visit the Seafile WebDAV server at <code>http{s}://example.com/seafdav/</code> (for deploying from binary packages, it should be  <code>http{s}://example.com:8080/seafdav/</code>)</p>
 <p>In Pro edition 7.1.8 version and community edition 7.1.5, an option is added to append library ID to the library name returned by SeafDAV.</p>
 <div class="highlight"><pre><span></span><code>show_repo_id=true
 </code></pre></div>
-<h2 id="proxy">Proxy<a class="headerlink" href="#proxy" title="Permanent link">&para;</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Nginx</label><label for="__tabbed_1_2">Apache</label></div>
+<h2 id="proxy-only-for-deploying-from-binary-packages">Proxy (only for deploying from binary packages)<a class="headerlink" href="#proxy-only-for-deploying-from-binary-packages" title="Permanent link">&para;</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>For deploying in Docker, the WebDAV server has been proxied in <code>/seafdav/*</code>, as you can skip this step</p>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Nginx</label><label for="__tabbed_2_2">Apache</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>For Seafdav, the configuration of Nginx is as follows:</p>
@@ -4418,7 +4433,7 @@ timeout = 1200
 <li>The access to the webdav server may be slow sometimes. That's because the local file system driver sends a lot of unnecessary requests to get the files' attributes.</li>
 </ul>
 <p>So WebDAV is more suitable for infrequent file access. If you want better performance, please use the sync client instead.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Windows</label><label for="__tabbed_2_2">Linux</label><label for="__tabbed_2_3">Mac OS X</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Windows</label><label for="__tabbed_3_2">Linux</label><label for="__tabbed_3_3">Mac OS X</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>Windows Explorer supports HTTPS connection. But it requires a valid certificate on the server. It's generally recommended to use Windows Explorer to map a webdav server as network dirve. If you use a self-signed certificate, you have to add the certificate's CA into Windows' system CA store.</p>
