@@ -4440,7 +4440,9 @@ sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
 <p>You can generate <code>sse_c_key</code> with the following command：</p>
 <div class="highlight"><pre><span></span><code>openssl rand -base64 24
 </code></pre></div>
-<p><strong>Important</strong>: If you have existing data in your S3 storage bucket, turning on the above configuration will make your data inaccessible. That's because Seafile server doesn't support encrypted and non-encrypted objects mixed in the same bucket. You have to create a new bucket, and migrate your data to it by following <a href="migrate_backends_data/#migrating-to-sse-c-encrypted-s3-storage">storage backend migration documentation</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">If you have existing data in your S3 storage bucket, turning on the above configuration will make your data inaccessible. That's because Seafile server doesn't support encrypted and non-encrypted objects mixed in the same bucket. You have to create a new bucket, and migrate your data to it by following <a href="../migrate_backends_data/#migrating-to-sse-c-encrypted-s3-storage">storage backend migration documentation</a>.</p>
+</div>
 <h2 id="other-public-hosted-s3-storage">Other Public Hosted S3 Storage<a class="headerlink" href="#other-public-hosted-s3-storage" title="Permanent link">&para;</a></h2>
 <p>There are other S3-compatible cloud storage providers in the market, such as Blackblaze and Wasabi. Configuration for those providers are just a bit different from AWS. We don't assure the following configuration works for all providers. If you have problems please contact our support</p>
 <div class="highlight"><pre><span></span><code>[commit_object_backend]
