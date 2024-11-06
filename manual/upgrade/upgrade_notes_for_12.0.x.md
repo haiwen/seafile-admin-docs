@@ -33,10 +33,6 @@ Breaking changes
 * [File tags] The current file tags feature is deprecated. We will re-implement a new one in version 13.0 with a new general metadata management module.
 * For ElasticSearch based search, full text search of doc/xls/ppt file types are no longer supported. This enable us to remove Java dependency in Seafile side.
 
-Deploying SeaDoc and Seafile binary package on the same server is no longer supported. You can:
-
-* Deploy SeaDoc on a new server and integrate it with Seafile.
-* Migrate Seafile to a docker based deployment method and then deploy SeaDoc in the same server.
 
 Deploying Seafile with binary package is now deprecated and probably no longer be supported in version 13.0. We recommend you to migrate your existing Seafile deployment to docker based.
 
