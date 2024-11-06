@@ -80,6 +80,10 @@ Note: JWT_PRIVATE_KEY, A random string with a length of no less than 32 characte
 
 ### 4) Start Seafile-12.0.x server
 
+### Upgrade notification server
+
+Since seafile-12.0.0, we use docker to deploy the notification server. Please follow the document to [enable notification server](../extension/notification-server.md)
+
 ## Upgrade SeaDoc from 0.8 to 1.0
 
 If you have deployed SeaDoc v0.8 with Seafile v11.0, you can upgrade it to 1.0 use the following two steps:

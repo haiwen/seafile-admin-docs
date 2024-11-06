@@ -34,3 +34,7 @@ SEADOC_VOLUME=/opt/seadoc-data
 
 ENABLE_SEADOC=false
 SEADOC_SERVER_URL=http://example.seafile.com/sdoc-server
+
+
+NOTIFICATION_SERVER_IMAGE=seafileltd/notification-server:12.0-latest
+NOTIFICATION_SERVER_VOLUME=/opt/notification-data
