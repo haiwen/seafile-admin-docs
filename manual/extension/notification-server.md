@@ -16,108 +16,26 @@ The notification server uses websocket protocol and maintains a two-way communic
 
 ## How to configure and run
 
-Since seafile-10.0.0, you can configure a notification server to send real-time notifications to clients. In order to run the notification server, you need to add the following configurations under seafile.conf：
+Since seafile-12.0.0, we use docker to deploy the notification server. First deploy Seafile docker, then download `notification-server.yml` and modify the `.env` file:
 
-```
-# jwt_private_key are required.You should generate it manually.
-[notification]
-enabled = true
-# the ip of notification server. (Do not modify the host when using Nginx or Apache, as Nginx or Apache will proxy the requests to this address)
-host = 127.0.0.1
-# the port of notification server
-port = 8083
-# the log level of notification server
-# You can set log_level to debug to print messages sent to clients.
-log_level = info
-# jwt_private_key is used to generate jwt token and authenticate seafile server
-jwt_private_key = M@O8VWUb81YvmtWLHGB2I_V7di5-@0p(MF*GrE!sIws23F
+```sh
+wget https://manual.seafile.com/12.0/docker/notification-server.yml
 ```
 
-You can generate jwt_private_key with the following command：
+Modify `.env`, and insert `notification-server.yml` into `COMPOSE_FILE`
 
-```
-# generate jwt_private_key
-openssl rand -base64 32
-
+```env
+COMPOSE_FILE='seafile-server.yml,caddy.yml,notification-server.yml'
 ```
 
-We generally recommend deploying notification server behind nginx, the notification server can be supported by adding the following nginx configuration:
+You can run notification server with the following command:
 
-```
-map $http_upgrade $connection_upgrade {
-default upgrade;
-'' close;
-}
-
-server {
-    location /notification/ping {
-        proxy_pass http://127.0.0.1:8083/ping;
-        access_log      /var/log/nginx/notif.access.log;
-        error_log       /var/log/nginx/notif.error.log;
-    }
-
-    location /notification {
-        proxy_pass http://127.0.0.1:8083/;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection $connection_upgrade;
-        access_log      /var/log/nginx/notif.access.log;
-        error_log       /var/log/nginx/notif.error.log;
-    }
-}
-
-```
-
-Or add the configuration for Apache:
-
-```
-    ProxyPass /notification/ping  http://127.0.0.1:8083/ping/
-    ProxyPassReverse /notification/ping  http://127.0.0.1:8083/ping/
-
-    ProxyPass /notification  ws://127.0.0.1:8083/
-    ProxyPassReverse /notification ws://127.0.0.1:8083/
-```
-
->  According to [apache ProxyPass document](https://httpd.apache.org/docs/2.4/mod/mod_proxy.html#proxypass):
-
-> The configured ProxyPass and ProxyPassMatch rules are checked in the order of configuration. The first rule that matches wins. So usually you should sort conflicting ProxyPass rules starting with the longest URLs first. Otherwise, later rules for longer URLS will be hidden by any earlier rule which uses a leading substring of the URL. Note that there is some relation with worker sharing.
-
-the final configuration for Apache should be like:
-
-```
-    #
-    # notification server
-    #
-    ProxyPass /notification/ping  http://127.0.0.1:8083/ping/
-    ProxyPassReverse /notification/ping  http://127.0.0.1:8083/ping/
-
-    ProxyPass /notification  ws://127.0.0.1:8083/
-    ProxyPassReverse /notification ws://127.0.0.1:8083/
-
-    #
-    # seafile fileserver
-    #
-    ProxyPass /seafhttp http://127.0.0.1:8082
-    ProxyPassReverse /seafhttp http://127.0.0.1:8082
-    RewriteRule ^/seafhttp - [QSA,L]
-
-    #
-    # seahub
-    #
-    SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
-    ProxyPreserveHost On
-    ProxyPass / http://127.0.0.1:8000/
-    ProxyPassReverse / http://127.0.0.1:8000/
-```
-
-After that, you can run notification server with the following command:
-
-```
-./seafile.sh restart
-
+```sh
+docker compose up -d
 ```
 
 ## Checking notification server status
+
 When the notification server is working, you can access `http://127.0.0.1:8083/ping` from your browser, which will answer `{"ret": "pong"}`. If you have a proxy configured, you can access `https://{server}/notification/ping` from your browser instead.
 
 ## Compatible client
@@ -137,19 +55,17 @@ There is no additional features for notification server in the Pro Edition. It w
 
 If you enable [clustering](../setup_binary/deploy_in_a_cluster.md), You need to deploy notification server on one of the servers, or a separate server. The load balancer should forward websockets requests to this node.
 
-On each Seafile frontend node, the notification server configuration should be the same as in community edition:
+Modify `notification-server.yml`, and open 8083 port
 
-```
-[notification]
-enabled = true
-# the ip of notification server.
-host = 192.168.1.134
-# the port of notification server
-port = 8083
-# the log level of notification server
-log_level = info
-# jwt_private_key is used to generate jwt token and authenticate seafile server
-jwt_private_key = M@O8VWUb81YvmtWLHGB2I_V7di5-@0p(MF*GrE!sIws23F
+```yml
+services:
+
+  notification-server:
+    image: ${NOTIFICATION_SERVER_IMAGE:-seafileltd/notification-server:12.0-latest}
+    ...
+    ports:
+      - "8083:8083"
+    ...
 ```
 
 You need to configure load balancer according to the following forwarding rules:
