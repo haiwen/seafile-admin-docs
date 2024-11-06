@@ -18,6 +18,7 @@ Seafile version 12.0 has following major changes:
 * A new wiki module (still in beta, disabled by default)
 * A new trash mechanism, that deleted files will be recorded in database for fast listing. In the old version, deleted files are scanned from library history, which is slow.
 * Community edition now also support online GC (because SQLite support is dropped)
+* Notification server is now packaged into its own docker image.
 
 Other changes:
 
@@ -80,18 +81,25 @@ Note: JWT_PRIVATE_KEY, A random string with a length of no less than 32 characte
 
 ### 4) Start Seafile-12.0.x server
 
-### Upgrade notification server
+### 5) Upgrade notification server
 
-Since seafile-12.0.0, we use docker to deploy the notification server. Please follow the document to [enable notification server](../extension/notification-server.md)
+Since seafile-12.0.0, we use docker to deploy the notification server. Please follow the document of [notification server](../extension/notification-server.md).
+
+!!! note [Notification server and Seafile binary package]
+    Deploying notification server and **Seafile binary package** on the same server is no longer officially supported. You will need to add Nginx rules for notification server properly.
+
+The recommendation is to
 
 ## Upgrade SeaDoc from 0.8 to 1.0
 
 If you have deployed SeaDoc v0.8 with Seafile v11.0, you can upgrade it to 1.0 use the following two steps:
 
 1. Delete sdoc_db.
-2. Re-deploy SeaDoc server. In other words, delete the old SeaDoc deployment and deploy a new SeaDoc server on a separate machine.
+2. Re-deploy SeaDoc server. In other words, delete the old SeaDoc deployment and re-deploy a new SeaDoc server.
 
-Note, deploying SeaDoc and **Seafile binary package** on the same server is no longer supported. If you really want to deploying SeaDoc and Seafile server on the same machine, you should deploy Seafile server with Docker.
+!!! note [SeaDoc and **Seafile binary package**]
+    Deploying SeaDoc and **Seafile binary package** on the same server is no longer officially supported. You will need to add Nginx rules for SeaDoc server properly.
+
 
 ### Delete sdoc_db
 
