@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.43">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
     
     
       
@@ -3738,6 +3738,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#upgrade-notification-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upgrade notification server
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4363,6 +4372,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#upgrade-notification-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upgrade notification server
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4481,6 +4499,8 @@ SEAFILE_SERVER_HOSTNAME=seafile.example.com
 </code></pre></div>
 <p>Note: JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: <code>pwgen -s 40 1</code></p>
 <h3 id="4-start-seafile-120x-server">4) Start Seafile-12.0.x server<a class="headerlink" href="#4-start-seafile-120x-server" title="Permanent link">&para;</a></h3>
+<h3 id="upgrade-notification-server">Upgrade notification server<a class="headerlink" href="#upgrade-notification-server" title="Permanent link">&para;</a></h3>
+<p>Since seafile-12.0.0, we use docker to deploy the notification server. Please follow the document to <a href="../../extension/notification-server/">enable notification server</a></p>
 <h2 id="upgrade-seadoc-from-08-to-10">Upgrade SeaDoc from 0.8 to 1.0<a class="headerlink" href="#upgrade-seadoc-from-08-to-10" title="Permanent link">&para;</a></h2>
 <p>If you have deployed SeaDoc v0.8 with Seafile v11.0, you can upgrade it to 1.0 use the following two steps:</p>
 <ol>
