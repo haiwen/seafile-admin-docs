@@ -83,12 +83,12 @@ Note: JWT_PRIVATE_KEY, A random string with a length of no less than 32 characte
 
 ### 5) Upgrade notification server
 
-Since seafile-12.0.0, we use docker to deploy the notification server. Please follow the document of [notification server](../extension/notification-server.md).
+Since seafile 12.0, we use docker to deploy the notification server. Please follow the document of [notification server](../extension/notification-server.md).
 
-!!! note [Notification server and Seafile binary package]
+!!! note Notification server and Seafile binary package
+
     Deploying notification server and **Seafile binary package** on the same server is no longer officially supported. You will need to add Nginx rules for notification server properly.
 
-The recommendation is to
 
 ## Upgrade SeaDoc from 0.8 to 1.0
 
@@ -97,7 +97,8 @@ If you have deployed SeaDoc v0.8 with Seafile v11.0, you can upgrade it to 1.0 u
 1. Delete sdoc_db.
 2. Re-deploy SeaDoc server. In other words, delete the old SeaDoc deployment and re-deploy a new SeaDoc server.
 
-!!! note [SeaDoc and **Seafile binary package**]
+!!! note "SeaDoc and Seafile binary package"
+
     Deploying SeaDoc and **Seafile binary package** on the same server is no longer officially supported. You will need to add Nginx rules for SeaDoc server properly.
 
 
