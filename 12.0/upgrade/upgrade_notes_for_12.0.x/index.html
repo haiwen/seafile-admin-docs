@@ -4501,18 +4501,21 @@ SEAFILE_SERVER_HOSTNAME=seafile.example.com
 <p>Note: JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: <code>pwgen -s 40 1</code></p>
 <h3 id="4-start-seafile-120x-server">4) Start Seafile-12.0.x server<a class="headerlink" href="#4-start-seafile-120x-server" title="Permanent link">&para;</a></h3>
 <h3 id="5-upgrade-notification-server">5) Upgrade notification server<a class="headerlink" href="#5-upgrade-notification-server" title="Permanent link">&para;</a></h3>
-<p>Since seafile-12.0.0, we use docker to deploy the notification server. Please follow the document of <a href="../../extension/notification-server/">notification server</a>.</p>
-<p>!!! note [Notification server and Seafile binary package]
-    Deploying notification server and <strong>Seafile binary package</strong> on the same server is no longer officially supported. You will need to add Nginx rules for notification server properly.</p>
-<p>The recommendation is to</p>
+<p>Since seafile 12.0, we use docker to deploy the notification server. Please follow the document of <a href="../../extension/notification-server/">notification server</a>.</p>
+<div class="admonition note notification server and seafile binary package">
+<p class="admonition-title">Note</p>
+<p>Deploying notification server and <strong>Seafile binary package</strong> on the same server is no longer officially supported. You will need to add Nginx rules for notification server properly.</p>
+</div>
 <h2 id="upgrade-seadoc-from-08-to-10">Upgrade SeaDoc from 0.8 to 1.0<a class="headerlink" href="#upgrade-seadoc-from-08-to-10" title="Permanent link">&para;</a></h2>
 <p>If you have deployed SeaDoc v0.8 with Seafile v11.0, you can upgrade it to 1.0 use the following two steps:</p>
 <ol>
 <li>Delete sdoc_db.</li>
 <li>Re-deploy SeaDoc server. In other words, delete the old SeaDoc deployment and re-deploy a new SeaDoc server.</li>
 </ol>
-<p>!!! note [SeaDoc and <strong>Seafile binary package</strong>]
-    Deploying SeaDoc and <strong>Seafile binary package</strong> on the same server is no longer officially supported. You will need to add Nginx rules for SeaDoc server properly.</p>
+<div class="admonition note">
+<p class="admonition-title">SeaDoc and Seafile binary package</p>
+<p>Deploying SeaDoc and <strong>Seafile binary package</strong> on the same server is no longer officially supported. You will need to add Nginx rules for SeaDoc server properly.</p>
+</div>
 <h3 id="delete-sdoc_db">Delete sdoc_db<a class="headerlink" href="#delete-sdoc_db" title="Permanent link">&para;</a></h3>
 <p>From version 1.0, SeaDoc is using seahub_db database to store its operation logs and no longer need an extra database sdoc_db. The database tables in seahub_db are created automatically when you upgrade Seafile server from v11.0 to v12.0. You can simply delete sdoc_db.</p>
 <h3 id="deploy-a-new-seadoc-server">Deploy a new SeaDoc server<a class="headerlink" href="#deploy-a-new-seadoc-server" title="Permanent link">&para;</a></h3>
