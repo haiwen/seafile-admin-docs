@@ -3739,9 +3739,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#upgrade-notification-server" class="md-nav__link">
+  <a href="#5-upgrade-notification-server" class="md-nav__link">
     <span class="md-ellipsis">
-      Upgrade notification server
+      5) Upgrade notification server
     </span>
   </a>
   
@@ -4373,9 +4373,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#upgrade-notification-server" class="md-nav__link">
+  <a href="#5-upgrade-notification-server" class="md-nav__link">
     <span class="md-ellipsis">
-      Upgrade notification server
+      5) Upgrade notification server
     </span>
   </a>
   
@@ -4458,6 +4458,7 @@ Please always follow the main <a href="../upgrade/">upgrade guide</a>.</p>
 <li>A new wiki module (still in beta, disabled by default)</li>
 <li>A new trash mechanism, that deleted files will be recorded in database for fast listing. In the old version, deleted files are scanned from library history, which is slow.</li>
 <li>Community edition now also support online GC (because SQLite support is dropped)</li>
+<li>Notification server is now packaged into its own docker image.</li>
 </ul>
 <p>Other changes:</p>
 <ul>
@@ -4499,15 +4500,19 @@ SEAFILE_SERVER_HOSTNAME=seafile.example.com
 </code></pre></div>
 <p>Note: JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: <code>pwgen -s 40 1</code></p>
 <h3 id="4-start-seafile-120x-server">4) Start Seafile-12.0.x server<a class="headerlink" href="#4-start-seafile-120x-server" title="Permanent link">&para;</a></h3>
-<h3 id="upgrade-notification-server">Upgrade notification server<a class="headerlink" href="#upgrade-notification-server" title="Permanent link">&para;</a></h3>
-<p>Since seafile-12.0.0, we use docker to deploy the notification server. Please follow the document to <a href="../../extension/notification-server/">enable notification server</a></p>
+<h3 id="5-upgrade-notification-server">5) Upgrade notification server<a class="headerlink" href="#5-upgrade-notification-server" title="Permanent link">&para;</a></h3>
+<p>Since seafile-12.0.0, we use docker to deploy the notification server. Please follow the document of <a href="../../extension/notification-server/">notification server</a>.</p>
+<p>!!! note [Notification server and Seafile binary package]
+    Deploying notification server and <strong>Seafile binary package</strong> on the same server is no longer officially supported. You will need to add Nginx rules for notification server properly.</p>
+<p>The recommendation is to</p>
 <h2 id="upgrade-seadoc-from-08-to-10">Upgrade SeaDoc from 0.8 to 1.0<a class="headerlink" href="#upgrade-seadoc-from-08-to-10" title="Permanent link">&para;</a></h2>
 <p>If you have deployed SeaDoc v0.8 with Seafile v11.0, you can upgrade it to 1.0 use the following two steps:</p>
 <ol>
 <li>Delete sdoc_db.</li>
-<li>Re-deploy SeaDoc server. In other words, delete the old SeaDoc deployment and deploy a new SeaDoc server on a separate machine.</li>
+<li>Re-deploy SeaDoc server. In other words, delete the old SeaDoc deployment and re-deploy a new SeaDoc server.</li>
 </ol>
-<p>Note, deploying SeaDoc and <strong>Seafile binary package</strong> on the same server is no longer supported. If you really want to deploying SeaDoc and Seafile server on the same machine, you should deploy Seafile server with Docker.</p>
+<p>!!! note [SeaDoc and <strong>Seafile binary package</strong>]
+    Deploying SeaDoc and <strong>Seafile binary package</strong> on the same server is no longer officially supported. You will need to add Nginx rules for SeaDoc server properly.</p>
 <h3 id="delete-sdoc_db">Delete sdoc_db<a class="headerlink" href="#delete-sdoc_db" title="Permanent link">&para;</a></h3>
 <p>From version 1.0, SeaDoc is using seahub_db database to store its operation logs and no longer need an extra database sdoc_db. The database tables in seahub_db are created automatically when you upgrade Seafile server from v11.0 to v12.0. You can simply delete sdoc_db.</p>
 <h3 id="deploy-a-new-seadoc-server">Deploy a new SeaDoc server<a class="headerlink" href="#deploy-a-new-seadoc-server" title="Permanent link">&para;</a></h3>

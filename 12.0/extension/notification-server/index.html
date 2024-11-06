@@ -4278,9 +4278,6 @@
 <p>Currently, the status updates of files and libraries on the client and web interface are based on polling the server. The latest status cannot be reflected in real time on the client due to polling delays. The client needs to periodically refresh the library modification, file locking, subdirectory permissions and other information, which causes additional performance overhead to the server.</p>
 <p>When a directory is opened on the web interface, the lock status of the file cannot be updated in real time, and the page needs to be refreshed.</p>
 <p>The notification server uses websocket protocol and maintains a two-way communication connection with the client or the web interface. When the above changes occur, seaf-server will notify the notification server of the changes. Then the notification server can notify the client or the web interface in real time. This not only improves the real-time performance, but also reduces the performance overhead of the server.</p>
-<div class="admonition danger">
-<p class="admonition-title">The notification server cannot work if you config Seafile server with SQLite database</p>
-</div>
 <h2 id="supported-update-reminder-types">Supported update reminder types<a class="headerlink" href="#supported-update-reminder-types" title="Permanent link">&para;</a></h2>
 <ol>
 <li>The library has been updated.</li>
@@ -4288,7 +4285,7 @@
 <li>Directory permission changes under the library.</li>
 </ol>
 <h2 id="how-to-configure-and-run">How to configure and run<a class="headerlink" href="#how-to-configure-and-run" title="Permanent link">&para;</a></h2>
-<p>Since seafile-12.0.0, we use docker to deploy the notification server. First deploy Seafile docker, then download <code>notification-server.yml</code> and modify the <code>.env</code> file:</p>
+<p>Since Seafile 12.0, we use docker to deploy the notification server. First deploy Seafile docker, then download <code>notification-server.yml</code> and modify the <code>.env</code> file:</p>
 <div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/notification-server.yml
 </code></pre></div>
 <p>Modify <code>.env</code>, and insert <code>notification-server.yml</code> into <code>COMPOSE_FILE</code></p>
