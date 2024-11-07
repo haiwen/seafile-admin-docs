@@ -2987,6 +2987,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#options-that-moved-to-env-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Options that moved to .env file
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#changing-mysql-connection-pool-size" class="md-nav__link">
     <span class="md-ellipsis">
       Changing MySQL Connection Pool Size
@@ -4181,6 +4190,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#options-that-moved-to-env-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Options that moved to .env file
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#changing-mysql-connection-pool-size" class="md-nav__link">
     <span class="md-ellipsis">
       Changing MySQL Connection Pool Size
@@ -4220,9 +4238,20 @@
 <p>Ccnet is the internal RPC framework used by Seafile server and also manages the user database. A few useful options are in ccnet.conf. </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Ccnet component is merged into seaf-server in version 7.1, but the configuration file are still needed</p>
+<p>ccnet.conf is removed in version 12.0.</p>
 </div>
+<h2 id="options-that-moved-to-env-file">Options that moved to .env file<a class="headerlink" href="#options-that-moved-to-env-file" title="Permanent link">&para;</a></h2>
+<p>ccnet.conf is removed in version 12.0.</p>
+<p>The following informaiton is read from <code>.env</code> file</p>
+<div class="highlight"><pre><span></span><code>SEAFILE_MYSQL_DB_USER: The database user, the default is seafile
+SEAFILE_MYSQL_DB_PASSWORD: The database password
+SEAFILE_MYSQL_DB_HOST: The database host
+SEAFILE_MYSQL_DB_CCNET_DB_NAME: The database name for ccnet db, the default is ccnet_db
+</code></pre></div>
 <h2 id="changing-mysql-connection-pool-size">Changing MySQL Connection Pool Size<a class="headerlink" href="#changing-mysql-connection-pool-size" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>In version 12.0, the following information is read from the same option in seafile.conf</p>
+</blockquote>
 <p>When you configure ccnet to use MySQL, the default connection pool size is 100, which should be enough for most use cases. You can change this value by adding following options to ccnet.conf:</p>
 <div class="highlight"><pre><span></span><code>[Database]
 ......
@@ -4230,6 +4259,9 @@
 MAX_CONNECTIONS = 200
 </code></pre></div>
 <h2 id="using-encrypted-connections">Using Encrypted Connections<a class="headerlink" href="#using-encrypted-connections" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>In version 12.0, the following information is read from the same option in seafile.conf</p>
+</blockquote>
 <p>Since Seafile 10.0.2, you can enable the encrypted connections to the MySQL server by adding the following configuration options:</p>
 <div class="highlight"><pre><span></span><code>[Database]
 USE_SSL = true
