@@ -2,7 +2,7 @@
 
 ## How it works
 
-seaf-server and seafile-controller support reopenning logfiles by receiving a `SIGUR1` signal.
+seaf-server support reopenning logfiles by receiving a `SIGUR1` signal.
 
 This feature is very useful when you need cut logfiles while you don't want
 to shutdown the server. All you need to do now is cutting the logfile on the fly.

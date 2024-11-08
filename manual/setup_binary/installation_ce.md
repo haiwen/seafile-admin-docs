@@ -360,26 +360,6 @@ Now you can access Seafile via the web interface at the host address and port 80
     On CentOS, the firewall blocks traffic on port 8000 by default.
 
 
-### Troubleshooting
-
-If seafile.sh and/or seahub.sh fail to run successfully, use `pgrep` to check if seafile/seahub processes are still running:
-
-
-```
-pgrep -f seafile-controller # checks seafile processes
-pgrep -f "seahub" # checks seahub process
-
-```
-
-Use `pkill` to kill the processes:
-
-
-```
-pkill -f seafile-controller
-pkill -f "seahub"
-
-```
-
 ## Stopping and Restarting Seafile and Seahub
 
 ### Stopping
