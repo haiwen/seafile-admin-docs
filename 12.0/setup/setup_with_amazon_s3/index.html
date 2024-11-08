@@ -4504,7 +4504,7 @@ aws_region = &lt;region name for storage provider&gt;
 </tr>
 <tr>
 <td><code>aws_region</code></td>
-<td>If you use v4 protocol, set this option to the region you chose when you create the buckets. If it's not set and you're using v4 protocol, Seafile will use <code>us-east-1</code> as the default. This option will be ignored if you use v2 protocol.</td>
+<td>If you use v4 protocol, set this option to the region you chose when you create the buckets. If it's not set and you're using v4 protocol, Seafile will use <code>us-east-1</code> as the default. This default value should work with most self-hosted S3 storage. This option will be ignored if you use v2 protocol.</td>
 </tr>
 </tbody>
 </table>
@@ -4516,7 +4516,7 @@ use-sigv4 = True
 </code></pre></div>
 </div>
 <h2 id="self-hosted-s3-storage">Self-hosted S3 Storage<a class="headerlink" href="#self-hosted-s3-storage" title="Permanent link">&para;</a></h2>
-<p>Many self-hosted object storage systems are now compatible with the S3 API, such as OpenStack Swift and Ceph's RADOS Gateway. You can use these S3-compatible storage systems as backend for Seafile. Here is an example config:</p>
+<p>Many self-hosted object storage systems are now compatible with the S3 API, such as OpenStack Swift, Ceph's RADOS Gateway and Minio. You can use these S3-compatible storage systems as backend for Seafile. Here is an example config:</p>
 <div class="highlight"><pre><span></span><code>[commit_object_backend]
 name = s3
 bucket = my-commit-objects
@@ -4524,6 +4524,7 @@ key_id = your-key-id
 key = your-secret-key
 host = 192.168.1.123:8080
 path_style_request = true
+use_v4_signature = true
 
 [fs_object_backend]
 name = s3
@@ -4532,6 +4533,7 @@ key_id = your-key-id
 key = your-secret-key
 host = 192.168.1.123:8080
 path_style_request = true
+use_v4_signature = true
 
 [block_backend]
 name = s3
@@ -4540,6 +4542,7 @@ key_id = your-key-id
 key = your-secret-key
 host = 192.168.1.123:8080
 path_style_request = true
+use_v4_signature = true
 </code></pre></div>
 <table>
 <thead>
@@ -4569,20 +4572,9 @@ path_style_request = true
 <td><code>path_style_request</code></td>
 <td>This option asks Seafile to use URLs like <code>https://192.168.1.123:8080/bucketname/object</code> to access objects. In Amazon S3, the default URL format is in virtual host style, such as <code>https://bucketname.s3.amazonaws.com/object</code>. But this style relies on advanced DNS server setup. So most self-hosted storage systems only implement the path style format. So we recommend to set this option to true.</td>
 </tr>
-</tbody>
-</table>
-<p>Below are a few options that are not shown in the example configuration above:</p>
-<table>
-<thead>
-<tr>
-<th>variable</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
 <tr>
 <td><code>use_v4_signature</code></td>
-<td>There are two versions of authentication protocols that can be used with S3 storage. Version 2 is the protocol supported by most self-hosted storage; version 4 is the current protocol used by AWS S3, but may not be supported by some self-hosted storage. If you don't set this option, Seafile will use the v2 protocol by default. We recommend trying V2 first and switching to V4 if V2 doesn't work.</td>
+<td>There are two versions of authentication protocols that can be used with S3 storage. Version 2 is the protocol supported by most self-hosted storage; version 4 is the current protocol used by AWS S3, but may not be supported by some self-hosted storage. If you don't set this option, Seafile will use the v2 protocol by default. We recommend to use V4 if possible. Please note that if you want to migrate from S3 storage to other storage, the migration script doesn't work with V2 authentication protocol due to limitation of third-party library.</td>
 </tr>
 <tr>
 <td><code>aws_region</code></td>
