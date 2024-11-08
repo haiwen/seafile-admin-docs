@@ -1541,21 +1541,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Starting Seafile Server">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
-    <span class="md-ellipsis">
-      Troubleshooting
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -4446,21 +4431,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Starting Seafile Server">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
-    <span class="md-ellipsis">
-      Troubleshooting
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -4923,15 +4893,6 @@ source python-venv/bin/activate
 <p class="admonition-title">Warning</p>
 <p>On CentOS, the firewall blocks traffic on port 8000 by default.</p>
 </div>
-<h3 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h3>
-<p>If seafile.sh and/or seahub.sh fail to run successfully, use <code>pgrep</code> to check if seafile/seahub processes are still running:</p>
-<div class="highlight"><pre><span></span><code>pgrep -f seafile-controller # checks seafile processes
-pgrep -f &quot;seahub&quot; # checks seahub process
-</code></pre></div>
-<p>Use <code>pkill</code> to kill the processes:</p>
-<div class="highlight"><pre><span></span><code>pkill -f seafile-controller
-pkill -f &quot;seahub&quot;
-</code></pre></div>
 <h2 id="stopping-and-restarting-seafile-and-seahub">Stopping and Restarting Seafile and Seahub<a class="headerlink" href="#stopping-and-restarting-seafile-and-seahub" title="Permanent link">&para;</a></h2>
 <h3 id="stopping">Stopping<a class="headerlink" href="#stopping" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>./seahub.sh stop    # stops seahub
