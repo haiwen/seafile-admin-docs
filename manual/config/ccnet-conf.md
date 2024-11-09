@@ -3,14 +3,11 @@
 
 Ccnet is the internal RPC framework used by Seafile server and also manages the user database. A few useful options are in ccnet.conf. 
 
-!!! note 
-    ccnet.conf is removed in version 12.0.
+!!! warning "`ccnet.conf` is removed in version 12.0"
 
 ## Options that moved to .env file
 
-ccnet.conf is removed in version 12.0.
-
-The following informaiton is read from `.env` file
+Due to `ccnet.conf` is removed in version 12.0, the following informaiton is read from `.env` file
 
 ```
 SEAFILE_MYSQL_DB_USER: The database user, the default is seafile

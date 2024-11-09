@@ -1,10 +1,24 @@
 # Setup With S3 Storage
 
+!!! tip "New feature from 12.0 pro edition"
+    If your will deploy Seafile server in Docker, you can modify the following fields in `.env` **before starting the services**:
+
+    ```sh
+    INIT_S3_STORAGE_BACKEND_CONFIG=true
+    INIT_S3_COMMIT_BUCKET=<your-commit-objects>
+    INIT_S3_FS_BUCKET=<your-fs-objects>
+    INIT_S3_BLOCK_BUCKET=<your-block-objects>
+    INIT_S3_KEY_ID=<your-key-id>
+    INIT_S3_SECRET_KEY=<your-secret-key>
+    ```
+
+    The above modifications will generate the same configuration file as [AWS S3](#aws-s3) and will take effect when the service is started for the first time.
+
 ## Prepare
 
 To setup Seafile Professional Server with Amazon S3:
 
-- Setup the basic Seafile Professional Server following the guide on [Download and setup Seafile Professional Server](../setup_binary/installation_pro.md)
+- Setup the basic Seafile Professional Server following the guide on [setup Seafile Professional Server](./setup_pro_by_docker.md)
 - Install the python `boto` library. It's needed to access S3 service.
 === "Seafile 10.0 or earlier"
 

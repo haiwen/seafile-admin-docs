@@ -82,8 +82,14 @@ The following fields merit particular attention:
 | `SEAFILE_SERVER_HOSTNAME`       | Seafile server hostname or domain                                                                  | (required)  |  
 | `SEAFILE_SERVER_PROTOCOL`       | Seafile server protocol (http or https)                                                                       | `http` |  
 | `TIME_ZONE`                     | Time zone                                                                                                     | `UTC`                           |  
-| `INIT_SEAFILE_ADMIN_EMAIL`      | Admin username                                                                                                | me@example.com |  
-| `INIT_SEAFILE_ADMIN_PASSWORD`   | Admin password       | asecret |
+| `INIT_SEAFILE_ADMIN_EMAIL`      | Synchronously set admin username during initialization | me@example.com |  
+| `INIT_SEAFILE_ADMIN_PASSWORD`   | Synchronously set admin password during initialization | asecret |
+| `INIT_S3_STORAGE_BACKEND_CONFIG`   | Whether to configure S3 storage backend synchronously during initialization (i.e., the following variables with prefix `INIT_S3_*`, for more details, please refer to [AWS S3](./setup_with_amazon_s3.md#aws-s3)) | false |
+| `INIT_S3_COMMIT_BUCKET`   | S3 storage backend commit objects bucket (only valid when `INIT_S3_STORAGE_BACKEND_CONFIG` sets to `true`) | (required when `INIT_S3_STORAGE_BACKEND_CONFIG` sets to `true`) |
+| `INIT_S3_FS_BUCKET`   | S3 storage backend fs objects bucket (only valid when `INIT_S3_STORAGE_BACKEND_CONFIG` sets to `true`) | (required when `INIT_S3_STORAGE_BACKEND_CONFIG` sets to `true`) |
+| `INIT_S3_BLOCK_BUCKET`   | S3 storage backend block objects bucket (only valid when `INIT_S3_STORAGE_BACKEND_CONFIG` sets to `true`) | (required when `INIT_S3_STORAGE_BACKEND_CONFIG` sets to `true`) |
+| `INIT_S3_KEY_ID`   | S3 storage backend key ID (only valid when `INIT_S3_STORAGE_BACKEND_CONFIG` sets to `true`) | (required when `INIT_S3_STORAGE_BACKEND_CONFIG` sets to `true`) |
+| `INIT_S3_SECRET_KEY`   | S3 storage backend secret key (only valid when `INIT_S3_STORAGE_BACKEND_CONFIG` sets to `true`) | (required when `INIT_S3_STORAGE_BACKEND_CONFIG` sets to `true`) |
 
 To conclude, set the directory permissions of the Elasticsearch volumne:
 
