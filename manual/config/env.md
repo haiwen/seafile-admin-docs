@@ -22,6 +22,9 @@ SEAFILE_MYSQL_DB_HOST=db
 INIT_SEAFILE_MYSQL_ROOT_PASSWORD=ROOT_PASSWORD
 SEAFILE_MYSQL_DB_USER=seafile
 SEAFILE_MYSQL_DB_PASSWORD=PASSWORD
+SEAFILE_MYSQL_DB_SEAFILE_DB_NAME=seafile_db
+SEAFILE_MYSQL_DB_CCNET_DB_NAME=ccnet_db
+SEAFILE_MYSQL_DB_SEAHUB_DB_NAME=seahub_db
 
 TIME_ZONE=Etc/UTC
 
@@ -71,6 +74,9 @@ SEADOC_SERVER_URL=http://example.seafile.com/sdoc-server
 - `INIT_SEAFILE_MYSQL_ROOT_PASSWORD`: The `root` password of MySQL.
 - `SEAFILE_MYSQL_DB_USER`: The user of MySQL (`database` - `user` can be found in `conf/seafile.conf`).
 - `SEAFILE_MYSQL_DB_PASSWORD`: The user `seafile` password of MySQL.
+- `SEAFILE_MYSQL_DB_SEAFILE_DB_NAME`: The name of Seafile database name, default is `seafile_db`
+- `SEAFILE_MYSQL_DB_CCNET_DB_NAME`: The name of ccnet database name, default is `ccnet_db`
+- `SEAFILE_MYSQL_DB_SEAHUB_DB_NAME`: The name of seahub database name, default is `seahub_db`
 
 ## Seafile-server configurations
 
