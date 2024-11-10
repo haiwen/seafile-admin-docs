@@ -2,6 +2,14 @@
 
 ## 9.0
 
+### 9.0.10 (2024/11/11)
+
+* Don't checkout file/folder with name ".."
+* Fix auto unsync library bug
+* Don't show "The path contains symbols that are not supported by the windows system" error by default
+* \[mac] Fix potential file deletion bug when handling rename events
+* \[linux] Support GNUTLS for encrypted library version 4
+
 ### 9.0.9 (2024/10/29)
 
 * Auto unsync libraries that has no permission
