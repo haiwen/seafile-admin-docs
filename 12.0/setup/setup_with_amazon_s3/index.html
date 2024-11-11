@@ -4323,10 +4323,22 @@
 
 
 <h1 id="setup-with-s3-storage">Setup With S3 Storage<a class="headerlink" href="#setup-with-s3-storage" title="Permanent link">&para;</a></h1>
+<div class="admonition tip">
+<p class="admonition-title">New feature from 12.0 pro edition</p>
+<p>If your will deploy Seafile server in Docker, you can modify the following fields in <code>.env</code> <strong>before starting the services</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">INIT_S3_STORAGE_BACKEND_CONFIG</span><span class="o">=</span><span class="nb">true</span>
+<span class="nv">INIT_S3_COMMIT_BUCKET</span><span class="o">=</span>&lt;your-commit-objects&gt;
+<span class="nv">INIT_S3_FS_BUCKET</span><span class="o">=</span>&lt;your-fs-objects&gt;
+<span class="nv">INIT_S3_BLOCK_BUCKET</span><span class="o">=</span>&lt;your-block-objects&gt;
+<span class="nv">INIT_S3_KEY_ID</span><span class="o">=</span>&lt;your-key-id&gt;
+<span class="nv">INIT_S3_SECRET_KEY</span><span class="o">=</span>&lt;your-secret-key&gt;
+</code></pre></div>
+<p>The above modifications will generate the same configuration file as <a href="#aws-s3">AWS S3</a> and will take effect when the service is started for the first time.</p>
+</div>
 <h2 id="prepare">Prepare<a class="headerlink" href="#prepare" title="Permanent link">&para;</a></h2>
 <p>To setup Seafile Professional Server with Amazon S3:</p>
 <ul>
-<li>Setup the basic Seafile Professional Server following the guide on <a href="../../setup_binary/installation_pro/">Download and setup Seafile Professional Server</a></li>
+<li>Setup the basic Seafile Professional Server following the guide on <a href="../setup_pro_by_docker/">setup Seafile Professional Server</a></li>
 <li>Install the python <code>boto</code> library. It's needed to access S3 service.</li>
 </ul>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Seafile 10.0 or earlier</label><label for="__tabbed_1_2">Seafile 11.0</label></div>

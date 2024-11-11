@@ -4236,13 +4236,11 @@
 
 <h1 id="ccnetconf">ccnet.conf<a class="headerlink" href="#ccnetconf" title="Permanent link">&para;</a></h1>
 <p>Ccnet is the internal RPC framework used by Seafile server and also manages the user database. A few useful options are in ccnet.conf. </p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>ccnet.conf is removed in version 12.0.</p>
+<div class="admonition warning">
+<p class="admonition-title"><code>ccnet.conf</code> is removed in version 12.0</p>
 </div>
 <h2 id="options-that-moved-to-env-file">Options that moved to .env file<a class="headerlink" href="#options-that-moved-to-env-file" title="Permanent link">&para;</a></h2>
-<p>ccnet.conf is removed in version 12.0.</p>
-<p>The following informaiton is read from <code>.env</code> file</p>
+<p>Due to <code>ccnet.conf</code> is removed in version 12.0, the following informaiton is read from <code>.env</code> file</p>
 <div class="highlight"><pre><span></span><code>SEAFILE_MYSQL_DB_USER: The database user, the default is seafile
 SEAFILE_MYSQL_DB_PASSWORD: The database password
 SEAFILE_MYSQL_DB_HOST: The database host

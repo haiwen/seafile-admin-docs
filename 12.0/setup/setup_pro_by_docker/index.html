@@ -4576,13 +4576,58 @@ nano<span class="w"> </span>.env
 </tr>
 <tr>
 <td><code>INIT_SEAFILE_ADMIN_EMAIL</code></td>
-<td>Admin username</td>
+<td>Synchronously set admin username during initialization</td>
 <td>me@example.com</td>
 </tr>
 <tr>
 <td><code>INIT_SEAFILE_ADMIN_PASSWORD</code></td>
-<td>Admin password</td>
+<td>Synchronously set admin password during initialization</td>
 <td>asecret</td>
+</tr>
+<tr>
+<td><code>INIT_S3_STORAGE_BACKEND_CONFIG</code></td>
+<td>Whether to configure S3 storage backend synchronously during initialization (i.e., the following variables with prefix <code>INIT_S3_*</code>, for more details, please refer to <a href="../setup_with_amazon_s3/#aws-s3">AWS S3</a>)</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>INIT_S3_COMMIT_BUCKET</code></td>
+<td>S3 storage backend commit objects bucket (only valid when <code>INIT_S3_STORAGE_BACKEND_CONFIG</code> sets to <code>true</code>)</td>
+<td>(required when <code>INIT_S3_STORAGE_BACKEND_CONFIG</code> sets to <code>true</code>)</td>
+</tr>
+<tr>
+<td><code>INIT_S3_FS_BUCKET</code></td>
+<td>S3 storage backend fs objects bucket (only valid when <code>INIT_S3_STORAGE_BACKEND_CONFIG</code> sets to <code>true</code>)</td>
+<td>(required when <code>INIT_S3_STORAGE_BACKEND_CONFIG</code> sets to <code>true</code>)</td>
+</tr>
+<tr>
+<td><code>INIT_S3_BLOCK_BUCKET</code></td>
+<td>S3 storage backend block objects bucket (only valid when <code>INIT_S3_STORAGE_BACKEND_CONFIG</code> sets to <code>true</code>)</td>
+<td>(required when <code>INIT_S3_STORAGE_BACKEND_CONFIG</code> sets to <code>true</code>)</td>
+</tr>
+<tr>
+<td><code>INIT_S3_KEY_ID</code></td>
+<td>S3 storage backend key ID (only valid when <code>INIT_S3_STORAGE_BACKEND_CONFIG</code> sets to <code>true</code>)</td>
+<td>(required when <code>INIT_S3_STORAGE_BACKEND_CONFIG</code> sets to <code>true</code>)</td>
+</tr>
+<tr>
+<td><code>INIT_S3_SECRET_KEY</code></td>
+<td>S3 storage backend secret key (only valid when <code>INIT_S3_STORAGE_BACKEND_CONFIG</code> sets to <code>true</code>)</td>
+<td>(required when <code>INIT_S3_STORAGE_BACKEND_CONFIG</code> sets to <code>true</code>)</td>
+</tr>
+<tr>
+<td><code>INIT_S3_USE_V4_SIGNATURE</code></td>
+<td>Use the v4 protocol of S3 if enabled (only valid when <code>INIT_S3_STORAGE_BACKEND_CONFIG</code> sets to <code>true</code>)</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>INIT_S3_AWS_REGION</code></td>
+<td>Region you create the buckets (only valid when <code>INIT_S3_STORAGE_BACKEND_CONFIG</code> and <code>INIT_S3_USE_V4_SIGNATURE</code> sets to <code>true</code>)</td>
+<td><code>us-east-1</code></td>
+</tr>
+<tr>
+<td><code>INIT_S3_USE_HTTPS</code></td>
+<td>Use HTTPS connections to S3 if enabled (only valid when <code>INIT_S3_STORAGE_BACKEND_CONFIG</code> sets to <code>true</code>)</td>
+<td><code>true</code></td>
 </tr>
 </tbody>
 </table>

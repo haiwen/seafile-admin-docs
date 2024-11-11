@@ -1,0 +1,34 @@
+COMPOSE_FILE='seafile-server.yml'
+COMPOSE_PATH_SEPARATOR=','
+SEAFILE_IMAGE=docker.seadrive.org/seafileltd/seafile-pro-mc:12.0-latest
+SEAFILE_VOLUME=/opt/seafile/shared
+SEAFILE_SERVER_HOSTNAME=seafile.example.com
+SEAFILE_SERVER_PROTOCOL=http
+
+# mysql
+SEAFILE_MYSQL_DB_HOST=<your MySQL host>
+INIT_SEAFILE_MYSQL_ROOT_PASSWORD=<your MySQL root password>
+SEAFILE_MYSQL_DB_USER=seafile
+SEAFILE_MYSQL_DB_PASSWORD=<MySQL password for user seafile>
+
+# Cluster
+CLUSTER_INIT_MODE=true # if you have the configurations file, please set to false
+CLUSTER_INIT_MEMCACHED_HOST=<your memcached host> # only valid in config init
+CLUSTER_INIT_ES_HOST=<your elasticsearch server HOST> # only valid in config init
+CLUSTER_INIT_ES_PORT=<your elasticsearch server port> # only valid in config init
+
+CLUSTER_MODE=frontend # backend for backend node
+
+# Time zone
+TIME_ZONE=UTC
+
+# S3 storage backend (the below configurations are only valid in configuration - files initial mode)
+INIT_S3_STORAGE_BACKEND_CONFIG=false # if you use S3 as backend storage, please set to true
+INIT_S3_COMMIT_BUCKET=<your-commit-objects>
+INIT_S3_FS_BUCKET=<your-fs-objects>
+INIT_S3_BLOCK_BUCKET=<your-block-objects>
+INIT_S3_KEY_ID=<your-key-id>
+INIT_S3_SECRET_KEY=<your-secret-key>
+INIT_S3_USE_V4_SIGNATURE=true
+INIT_S3_AWS_REGION=us-east-1
+INIT_S3_USE_HTTPS=true

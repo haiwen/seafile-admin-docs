@@ -3034,6 +3034,24 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#cluster-init-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cluster init configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s3-storage-backend-configurations-only-valid-in-pro-edition-at-deploying-first-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      S3 storage backend configurations (only valid in pro edition at deploying first time)
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4300,6 +4318,24 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#cluster-init-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cluster init configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s3-storage-backend-configurations-only-valid-in-pro-edition-at-deploying-first-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      S3 storage backend configurations (only valid in pro edition at deploying first time)
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4352,6 +4388,18 @@
 
 <span class="nv">INIT_SEAFILE_ADMIN_EMAIL</span><span class="o">=</span>me@example.com
 <span class="nv">INIT_SEAFILE_ADMIN_PASSWORD</span><span class="o">=</span>asecret
+<span class="nv">INIT_S3_STORAGE_BACKEND_CONFIG</span><span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="c1"># pro edition only</span>
+<span class="nv">INIT_S3_COMMIT_BUCKET</span><span class="o">=</span>&lt;your-commit-objects&gt;<span class="w"> </span><span class="c1"># pro edition only</span>
+<span class="nv">INIT_S3_FS_BUCKET</span><span class="o">=</span>&lt;your-fs-objects&gt;<span class="w"> </span><span class="c1"># pro edition only</span>
+<span class="nv">INIT_S3_BLOCK_BUCKET</span><span class="o">=</span>&lt;your-block-objects&gt;<span class="w"> </span><span class="c1"># pro edition only</span>
+<span class="nv">INIT_S3_KEY_ID</span><span class="o">=</span>&lt;your-key-id&gt;<span class="w"> </span><span class="c1"># pro edition only</span>
+<span class="nv">INIT_S3_SECRET_KEY</span><span class="o">=</span>&lt;your-secret-key&gt;<span class="w"> </span><span class="c1"># pro edition only</span>
+
+<span class="nv">CLUSTER_INIT_MODE</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="c1"># cluster only</span>
+<span class="nv">CLUSTER_INIT_MEMCACHED_HOST</span><span class="o">=</span>&lt;your<span class="w"> </span>memcached<span class="w"> </span>host&gt;<span class="w"> </span><span class="c1"># cluster only</span>
+<span class="nv">CLUSTER_INIT_ES_HOST</span><span class="o">=</span>&lt;your<span class="w"> </span>elasticsearch<span class="w"> </span>server<span class="w"> </span>HOST&gt;<span class="w"> </span><span class="c1"># cluster only</span>
+<span class="nv">CLUSTER_INIT_ES_PORT</span><span class="o">=</span>&lt;your<span class="w"> </span>elasticsearch<span class="w"> </span>server<span class="w"> </span>port&gt;<span class="w"> </span><span class="c1"># cluster only</span>
+<span class="nv">CLUSTER_MODE</span><span class="o">=</span>frontend<span class="w"> </span><span class="c1"># cluster only</span>
 
 
 <span class="nv">SEADOC_IMAGE</span><span class="o">=</span>seafileltd/sdoc-server:1.0-latest
@@ -4407,6 +4455,26 @@
 <ul>
 <li><code>ENABLE_SEADOC</code>: Enable the SeaDoc server or not, default is <code>false</code>.</li>
 <li><code>SEADOC_SERVER_URL</code>: Only valid in <code>ENABLE_SEADOC=true</code>. Url of Seadoc server (e.g., http://example.seafile.com/sdoc-server).</li>
+</ul>
+<h2 id="cluster-init-configuration">Cluster init configuration<a class="headerlink" href="#cluster-init-configuration" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>CLUSTER_INIT_MODE</code>: (only valid in pro edition at deploying first time). Cluster initialization mode, in which the necessary configuration files for the service to run will be generated (but <strong>the service will not be started</strong>). If the configuration file already exists, no operation will be performed. The default value is <code>true</code>. When the configuration file is generated, <strong><em>be sure to set this item to <code>false</code></em></strong>.</li>
+<li><code>CLUSTER_INIT_MEMCACHED_HOST</code>: (only valid in pro edition at deploying first time). Cluster Memcached host. (If your Memcached server dose not use port <code>11211</code>, please modify the <a href="../seahub_settings_py/">seahub_settings.py</a> and <a href="../seafile-conf/">seafile.conf</a>).</li>
+<li><code>CLUSTER_INIT_ES_HOST</code>: (only valid in pro edition at deploying first time). Your cluster Elasticsearch server host.</li>
+<li><code>CLUSTER_INIT_ES_PORT</code>: (only valid in pro edition at deploying first time). Your cluster Elasticsearch server port.</li>
+<li><code>CLUSTER_MODE</code>: Seafile service node type, i.e., <code>frontend</code> (default) or <code>backend</code></li>
+</ul>
+<h2 id="s3-storage-backend-configurations-only-valid-in-pro-edition-at-deploying-first-time">S3 storage backend configurations (only valid in pro edition at deploying first time)<a class="headerlink" href="#s3-storage-backend-configurations-only-valid-in-pro-edition-at-deploying-first-time" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>INIT_S3_STORAGE_BACKEND_CONFIG</code>: Whether to configure S3 storage backend synchronously during initialization (i.e., the following features in this section, for more details, please refer to <a href="../../setup/setup_with_amazon_s3/#aws-s3">AWS S3</a>), default is <code>false</code>.</li>
+<li><code>INIT_S3_COMMIT_BUCKET</code>: S3 storage backend fs objects bucket</li>
+<li><code>INIT_S3_FS_BUCKET</code>: S3 storage backend block objects bucket</li>
+<li><code>INIT_S3_BLOCK_BUCKET</code>: S3 storage backend block objects bucket</li>
+<li><code>INIT_S3_KEY_ID</code>: S3 storage backend key ID</li>
+<li><code>INIT_S3_SECRET_KEY</code>: S3 storage backend secret key</li>
+<li><code>INIT_S3_USE_V4_SIGNATURE</code>: Use the v4 protocol of S3 if enabled, default is <code>true</code></li>
+<li><code>INIT_S3_AWS_REGION</code>: Region you create the buckets, default is <code>us-east-1</code>. (Only valid when <code>INIT_S3_USE_V4_SIGNATURE</code> sets to <code>true</code>)</li>
+<li><code>INIT_S3_USE_HTTPS</code>: Use HTTPS connections to S3 if enabled, default is <code>true</code></li>
 </ul>
 
 
