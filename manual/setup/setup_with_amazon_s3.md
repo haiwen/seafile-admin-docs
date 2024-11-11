@@ -204,6 +204,13 @@ use_v4_signature = true
 | `path_style_request` | This option asks Seafile to use URLs like `https://192.168.1.123:8080/bucketname/object` to access objects. In Amazon S3, the default URL format is in virtual host style, such as `https://bucketname.s3.amazonaws.com/object`. But this style relies on advanced DNS server setup. So most self-hosted storage systems only implement the path style format. So we recommend to set this option to true. |
 | `use_v4_signature`  | There are two versions of authentication protocols that can be used with S3 storage. Version 2 is the protocol supported by most self-hosted storage; version 4 is the current protocol used by AWS S3, but may not be supported by some self-hosted storage. If you don't set this option, Seafile will use the v2 protocol by default. We recommend to use V4 if possible. Please note that if you want to migrate from S3 storage to other storage, the migration script doesn't work with V2 authentication protocol due to limitation of third-party library. |  
 
+!!! tip 
+    For file search and webdav to work with the v4 signature mechanism, you need to add following lines to ~/.boto
+
+    ```
+    [s3]
+    use-sigv4 = True
+    ```
 
 ## Use HTTPS connections to S3
 
