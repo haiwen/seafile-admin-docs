@@ -12,282 +12,102 @@ Seafile Server: 2 frontend nodes, 1 backend node
 
 We assume you have already deployed memcache, MariaDB, ElasticSearch in separate machines and use S3 like object storage.
 
-## Deployment preparation
-
-Create the three databases ccnet_db, seafile_db, and seahub_db required by Seafile on MariaDB/MySQL, and authorize the \`seafile\` user to be able to access these three databases:
-
-```
-$ mysql -h{your mysql host} -u[username] -p[password]
-
-mysql>
-create user 'seafile'@'%' identified by 'PASSWORD';
-
-create database `ccnet_db` character set = 'utf8';
-create database `seafile_db` character set = 'utf8';
-create database `seahub_db` character set = 'utf8';
-
-GRANT ALL PRIVILEGES ON `ccnet_db`.* to 'seafile'@'%';
-GRANT ALL PRIVILEGES ON `seafile_db`.* to 'seafile'@'%';
-GRANT ALL PRIVILEGES ON `seahub_db`.* to 'seafile'@'%';
-
-```
-
-You also need to create a table in \`seahub_db\`
-
-```
-mysql>
-use seahub_db;
-CREATE TABLE `avatar_uploaded` (
-  `filename` text NOT NULL,
-  `filename_md5` char(32) NOT NULL,
-  `data` mediumtext NOT NULL,
-  `size` int(11) NOT NULL,
-  `mtime` datetime NOT NULL,
-  PRIMARY KEY (`filename_md5`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-```
-
 ## Deploy Seafile service
 
 ### Deploy seafile frontend nodes
 
-Create the mount directory
+1. Create the mount directory
 
-```
-$ mkdir -p /opt/seafile/shared
+    ```sh
+    mkdir -p /opt/seafile/shared
+    ```
 
-```
+2. Pulling Seafile image
 
-Create the docker-compose.yml file
+    Log into Seafile's private repository and pull the Seafile image:
 
-```
-$ cd /opt/seafile
-$ vim docker-compose.yml
+    ```bash
+    docker login docker.seadrive.org
+    docker pull docker.seadrive.org/seafileltd/seafile-pro-mc:12.0-latest
+    ```
 
-```
+    When prompted, enter the username and password of the private repository. They are available on the download page in the [Customer Center](https://customer.seafile.com/downloads).
 
-```
-services:
-  seafile:
-    image: docker.seadrive.org/seafileltd/seafile-pro-mc:latest
-    container_name: seafile
-    ports:
-      - 80:80
-    volumes:
-      - /opt/seafile/shared:/shared
-    environment:
-      - CLUSTER_SERVER=true
-      - CLUSTER_MODE=frontend
-      - TIME_ZONE=UTC  # Optional, default is UTC. Should be uncomment and set to your local time zone.
+    !!! note
+        Older Seafile PE versions are also available in the repository (back to Seafile 7.0). To pull an older version, replace '12.0-latest' tag by the desired version.
 
-```
+3. Download the `seafile-server.yml` and `.env`
 
-!!! note
-    - `CLUSTER_SERVER=true` means seafile cluster mode
-    - `CLUSTER_MODE=frontend` means this node is seafile frontend server
+    ```sh
+    wget -O .env https://manual.seafile.com/12.0/docker/cluster/env
+    wget https://manual.seafile.com/12.0/docker/cluster/seafile-server.yml
+    ```
 
-Start the seafile docker container
+4. Modify the [variables](../config/env.md) in `.env` (especially terms like `<...>`). 
 
-```
-$ cd /opt/seafile
-$ docker compose up -d
+    !!! tip
+        If you have already deployed AWS S3 storage backend and plan to apply it to Seafile cluster, you can modify the variables in `.env` to [set them synchronously during initialization](../config/env.md#s3-storage-backend-configurations-only-valid-in-pro-edition-at-deploying-first-time).
 
-```
 
-#### Initial configuration files
+5. Start the seafile docker in **cluster init mode**
 
-1\. Manually generate configuration files
+    ```sh
+    $ cd /opt/seafile
+    $ docker compose up -d
+    ```
 
-```
-$ docker exec -it seafile bash
+6. Check and modify the configuration files (e.g., MySQL, Memcached, Elasticsearch) in configuration files
+    - [ccnet.conf](../config/ccnet-conf.md)
+    - [seafevents.conf](../config/seafevents-conf.md)
+    - [seafile.conf](../config/seafile-conf.md)
+    - [seahub_settings.py](../config/seahub_settings_py.md)
 
-# cd /scripts  && ./cluster_conf_init.py
-# cd /opt/seafile/conf 
+7. After initailizing the cluster, the following fields can be removed or noted in `.env`
+    - `CLUSTER_INIT_MODE`
+    - `CLUSTER_INIT_MEMCACHED_HOST`
+    - `CLUSTER_INIT_ES_HOST`
+    - `CLUSTER_INIT_ES_PORT`
+    - `INIT_S3_STORAGE_BACKEND_CONFIG`
+    - `INIT_S3_COMMIT_BUCKET`
+    - `INIT_S3_FS_BUCKET`
+    - `INIT_S3_BLOCK_BUCKET`
+    - `INIT_S3_KEY_ID`
+    - `INIT_S3_SECRET_KEY`
 
-```
+8. Restart to container to start the service in frontend node
 
-2\. Modify the mysql configuration options (user, host, password) in configuration files such as ccnet.conf, seafevents.conf, seafile.conf and seahub_settings.py.
-
-3\. Modify the memcached configuration option in seahub_settings.py
-
-```
-CACHES = {
-    'default': {
-        'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
-        'LOCATION': 'memcached:11211',
-    },
-...
-}
-                         |
-                         v
-
-CACHES = {
-    'default': {
-        'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
-        'LOCATION': '{you memcached server host}:11211',
-    },
-...
-}
-
-```
-
-4\. Modify the \[INDEX FILES] configuration options in seafevents.conf
-
-```
-[INDEX FILES]
-es_port = {your elasticsearch server port}
-es_host = {your elasticsearch server host}
-enabled = true
-highlight = fvh
-interval = 10m
-...
-
-```
-
-5\. Add some configurations in seahub_settings.py
-
-```python
-SERVICE_URL = 'http{s}://{your server IP or sitename}/'
-FILE_SERVER_ROOT = 'http{s}://{your server IP or sitename}/seafhttp'
-AVATAR_FILE_STORAGE = 'seahub.base.database_storage.DatabaseStorage'
-
-```
-
-6\. Add cluster special configuration in seafile.conf
-
-```
-[cluster]
-enabled = true
-```
-
-7\. Add memory cache configuration in seafile.conf
-
-```
-[memcached]
-memcached_options = --SERVER={you memcached server host} --POOL-MIN=10 --POOL-MAX=100
-```
-
-#### Import the tables of seahub_db, seafile_db and ccnet_db
-
-Enter the container, and then execute the following commands to import tables
-
-```
-$ docker exec -it seafile bash
-
-# apt-get update && apt-get install -y mysql-client
-
-# mysql -h{your mysql host} -u[username] -p[password]  ccnet_db < /opt/seafile/seafile-server-latest/sql/mysql/ccnet.sql
-# mysql -h{your mysql host} -u[username] -p[password]  seafile_db < /opt/seafile/seafile-server-latest/sql/mysql/seafile.sql
-# mysql -h{your mysql host} -u[username] -p[password]  seahub_db <  /opt/seafile/seafile-server-latest/seahub/sql/mysql.sql
-
-```
-
-Start Seafile service
-
-```
-$ docker exec -it seafile bash
-
-# cd /opt/seafile/seafile-server-latest
-# ./seafile.sh start && ./seahub.sh start
-
-```
-
-When you start it for the first time, seafile will guide you to set up an admin user.
-
-When deploying the second frontend node, you can directly copy all the directories generated by the first frontend node, including the docker-compose.yml file and modified configuration files, and then start the seafile docker container.
+    ```sh
+    docker compose down
+    docker compose up -d
+    ```
 
 ### Deploy seafile backend node
 
-Create the mount directory
+1. Create the mount directory
 
-```
-$ mkdir -p /opt/seafile/shared
+    ```
+    $ mkdir -p /opt/seafile/shared
 
-```
+    ```
 
-Create the docker-compose.yml file
+2. Pulling Seafile image, see [here](#deploy-seafile-frontend-nodes) for the details
 
-```
-$ cd /opt/seafile
-$ vim docker-compose.yml
+3. Copy `seafile-server.yml`, `.env` and configuration files from frontend node
 
-```
+    !!! note
+        The configuration files from frontend node have to be put in the same path as the frontend node, i.e., `/opt/seafile/shared/seafile/conf/*`
 
-```
-services:
-  seafile:
-    image: docker.seadrive.org/seafileltd/seafile-pro-mc:latest
-    container_name: seafile
-    ports:
-      - 80:80
-    volumes:
-      - /opt/seafile/shared:/shared      
-    environment:
-      - CLUSTER_SERVER=true
-      - CLUSTER_MODE=backend
-      - TIME_ZONE=UTC  # Optional, default is UTC. Should be uncomment and set to your local time zone.
+4. Modify `.env`, set `CLUSTER_MODE` to `backend`
 
-```
+5. Start the service in the backend node
 
-!!! note
-    - `CLUSTER_SERVER=true` means seafile cluster mode
-    - `CLUSTER_MODE=backend` means this node is seafile backend server
+    ```sh
+    docker compose up -d
+    ```
+ 
+## Deployment load balance (Optional)
 
-Start the seafile docker container
-
-```
-$ cd /opt/seafile
-$ docker compose up -d
-
-```
-
-Copy configuration files of the frontend node, and then start Seafile server of the backend node
-
-```
-$ docker exec -it seafile bash
-
-# cd /opt/seafile/seafile-server-latest
-# ./seafile.sh start && ./seafile-background-tasks.sh start
-
-```
-
-### Use S3 as backend storage
-
-Modify the seafile.conf file on each node to configure S3 storage.
-
-vim seafile.conf
-
-```
-[commit_object_backend]
-name = s3
-bucket = {your-commit-objects}  # The bucket name can only use lowercase letters, numbers, and dashes
-key_id = {your-key-id}
-key = {your-secret-key}
-use_v4_signature = true
-aws_region = eu-central-1  # eu-central-1 for Frankfurt region
-
-[fs_object_backend]
-name = s3
-bucket = {your-fs-objects}
-key_id = {your-key-id}
-key = {your-secret-key}
-use_v4_signature = true
-aws_region = eu-central-1
-
-[block_backend]
-name = s3
-bucket = {your-block-objects}
-key_id = {your-key-id}
-key = {your-secret-key}
-use_v4_signature = true
-aws_region = eu-central-1
-
-```
-
-### Deployment load balance (Optional)
-
-#### Install HAproxy and Keepalived services
+### Install HAproxy and Keepalived services
 
 Execute the following commands on the two Seafile frontend servers:
 

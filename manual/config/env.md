@@ -35,6 +35,18 @@ SEAFILE_SERVER_PROTOCOL=https
 
 INIT_SEAFILE_ADMIN_EMAIL=me@example.com
 INIT_SEAFILE_ADMIN_PASSWORD=asecret
+INIT_S3_STORAGE_BACKEND_CONFIG=false # pro edition only
+INIT_S3_COMMIT_BUCKET=<your-commit-objects> # pro edition only
+INIT_S3_FS_BUCKET=<your-fs-objects> # pro edition only
+INIT_S3_BLOCK_BUCKET=<your-block-objects> # pro edition only
+INIT_S3_KEY_ID=<your-key-id> # pro edition only
+INIT_S3_SECRET_KEY=<your-secret-key> # pro edition only
+
+CLUSTER_INIT_MODE=true # cluster only
+CLUSTER_INIT_MEMCACHED_HOST=<your memcached host> # cluster only
+CLUSTER_INIT_ES_HOST=<your elasticsearch server HOST> # cluster only
+CLUSTER_INIT_ES_PORT=<your elasticsearch server port> # cluster only
+CLUSTER_MODE=frontend # cluster only
 
 
 SEADOC_IMAGE=seafileltd/sdoc-server:1.0-latest
@@ -92,3 +104,23 @@ SEADOC_SERVER_URL=http://example.seafile.com/sdoc-server
 
 - `ENABLE_SEADOC`: Enable the SeaDoc server or not, default is `false`.
 - `SEADOC_SERVER_URL`: Only valid in `ENABLE_SEADOC=true`. Url of Seadoc server (e.g., http://example.seafile.com/sdoc-server).
+
+## Cluster init configuration 
+
+- `CLUSTER_INIT_MODE`: (only valid in pro edition at deploying first time). Cluster initialization mode, in which the necessary configuration files for the service to run will be generated (but **the service will not be started**). If the configuration file already exists, no operation will be performed. The default value is `true`. When the configuration file is generated, ***be sure to set this item to `false`***.
+- `CLUSTER_INIT_MEMCACHED_HOST`: (only valid in pro edition at deploying first time). Cluster Memcached host. (If your Memcached server dose not use port `11211`, please modify the [seahub_settings.py](./seahub_settings_py.md) and [seafile.conf](./seafile-conf.md)).
+- `CLUSTER_INIT_ES_HOST`: (only valid in pro edition at deploying first time). Your cluster Elasticsearch server host.
+- `CLUSTER_INIT_ES_PORT`: (only valid in pro edition at deploying first time). Your cluster Elasticsearch server port.
+- `CLUSTER_MODE`: Seafile service node type, i.e., `frontend` (default) or `backend`
+
+## S3 storage backend configurations (only valid in pro edition at deploying first time)
+
+- `INIT_S3_STORAGE_BACKEND_CONFIG`: Whether to configure S3 storage backend synchronously during initialization (i.e., the following features in this section, for more details, please refer to [AWS S3](../setup/setup_with_amazon_s3.md#aws-s3)), default is `false`.
+- `INIT_S3_COMMIT_BUCKET`: S3 storage backend fs objects bucket
+- `INIT_S3_FS_BUCKET`: S3 storage backend block objects bucket
+- `INIT_S3_BLOCK_BUCKET`: S3 storage backend block objects bucket
+- `INIT_S3_KEY_ID`: S3 storage backend key ID
+- `INIT_S3_SECRET_KEY`: S3 storage backend secret key
+- `INIT_S3_USE_V4_SIGNATURE`: Use the v4 protocol of S3 if enabled, default is `true`
+- `INIT_S3_AWS_REGION`: Region you create the buckets, default is `us-east-1`. (Only valid when `INIT_S3_USE_V4_SIGNATURE` sets to `true`)
+- `INIT_S3_USE_HTTPS`: Use HTTPS connections to S3 if enabled, default is `true`
