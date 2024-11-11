@@ -33,6 +33,9 @@ INIT_S3_FS_BUCKET=<your-fs-objects>
 INIT_S3_BLOCK_BUCKET=<your-block-objects>
 INIT_S3_KEY_ID=<your-key-id>
 INIT_S3_SECRET_KEY=<your-secret-key>
+INIT_S3_USE_V4_SIGNATURE=true
+INIT_S3_AWS_REGION=us-east-1
+INIT_S3_USE_HTTPS=true
 
 
 SEADOC_IMAGE=seafileltd/sdoc-server:1.0-latest
