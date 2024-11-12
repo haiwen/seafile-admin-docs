@@ -43,7 +43,7 @@ We assume you have already deployed memcache, MariaDB, ElasticSearch in separate
     wget https://manual.seafile.com/12.0/docker/cluster/seafile-server.yml
     ```
 
-4. Modify the [variables](../config/env.md) in `.env` (especially terms like `<...>`). 
+4. Modify the [variables](../config/env.md) in `.env` (especially the terms like `<...>`). 
 
     !!! tip
         If you have already deployed AWS S3 storage backend and plan to apply it to Seafile cluster, you can modify the variables in `.env` to [set them synchronously during initialization](../config/env.md#s3-storage-backend-configurations-only-valid-in-pro-edition-at-deploying-first-time).
