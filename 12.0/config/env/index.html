@@ -4451,7 +4451,7 @@
 <span class="nv">COMPOSE_PATH_SEPARATOR</span><span class="o">=</span><span class="s1">&#39;,&#39;</span>
 
 
-<span class="nv">SEAFILE_IMAGE</span><span class="o">=</span>docker.seadrive.org/seafileltd/seafile-pro-mc:12.0-latest
+<span class="nv">SEAFILE_IMAGE</span><span class="o">=</span>seafileltd/seafile-pro-mc:12.0-latest
 <span class="nv">SEAFILE_DB_IMAGE</span><span class="o">=</span>mariadb:10.11
 <span class="nv">SEAFILE_MEMCACHED_IMAGE</span><span class="o">=</span>memcached:1.6.29
 <span class="nv">SEAFILE_ELASTICSEARCH_IMAGE</span><span class="o">=</span>elasticsearch:8.15.0<span class="w"> </span><span class="c1"># pro edition only</span>
@@ -4498,6 +4498,10 @@
 
 <span class="nv">ENABLE_SEADOC</span><span class="o">=</span><span class="nb">false</span>
 <span class="nv">SEADOC_SERVER_URL</span><span class="o">=</span>http://example.seafile.com/sdoc-server
+
+
+<span class="nv">NOTIFICATION_SERVER_IMAGE</span><span class="o">=</span>seafileltd/notification-server:12.0-latest
+<span class="nv">NOTIFICATION_SERVER_VOLUME</span><span class="o">=</span>/opt/notification-data
 </code></pre></div>
 <h2 id="seafile-docker-configurations">Seafile-docker configurations<a class="headerlink" href="#seafile-docker-configurations" title="Permanent link">&para;</a></h2>
 <h3 id="components-configurations">Components configurations<a class="headerlink" href="#components-configurations" title="Permanent link">&para;</a></h3>
@@ -4507,7 +4511,7 @@
 </ul>
 <h3 id="docker-images-configurations">Docker images configurations<a class="headerlink" href="#docker-images-configurations" title="Permanent link">&para;</a></h3>
 <ul>
-<li><code>SEAFILE_IMAGE</code>: The image of Seafile-server, default is <code>docker.seadrive.org/seafileltd/seafile-pro-mc:12.0-latest</code>.</li>
+<li><code>SEAFILE_IMAGE</code>: The image of Seafile-server, default is <code>seafileltd/seafile-pro-mc:12.0-latest</code>.</li>
 <li><code>SEAFILE_DB_IMAGE</code>: Database server image, default is <code>mariadb:10.11</code>.</li>
 <li><code>SEAFILE_MEMCACHED_IMAGE</code>: Cached server image, default is <code>memcached:1.6.29</code></li>
 <li><code>SEAFILE_ELASTICSEARCH_IMAGE</code>: Only valid in pro edition. The elasticsearch image, default is <code>elasticsearch:8.15.0</code>.</li>

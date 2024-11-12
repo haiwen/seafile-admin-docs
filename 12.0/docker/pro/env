@@ -2,7 +2,7 @@ COMPOSE_FILE='seafile-server.yml,caddy.yml'
 COMPOSE_PATH_SEPARATOR=','
 
 
-SEAFILE_IMAGE=docker.seadrive.org/seafileltd/seafile-pro-mc:12.0-latest
+SEAFILE_IMAGE=seafileltd/seafile-pro-mc:12.0-latest
 SEAFILE_DB_IMAGE=mariadb:10.11
 SEAFILE_MEMCACHED_IMAGE=memcached:1.6.29
 SEAFILE_ELASTICSEARCH_IMAGE=elasticsearch:8.15.0
