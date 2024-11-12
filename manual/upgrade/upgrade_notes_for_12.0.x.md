@@ -80,7 +80,14 @@ conf/.env
 JWT_PRIVATE_KEY=xxx
 SEAFILE_SERVER_PROTOCOL=https
 SEAFILE_SERVER_HOSTNAME=seafile.example.com
+SEAFILE_MYSQL_DB_HOST=db # your MySQL host
+SEAFILE_MYSQL_DB_PORT=3306
+SEAFILE_MYSQL_DB_USER=seafile
+SEAFILE_MYSQL_DB_PASSWORD=<your MySQL password>
 SEAFILE_MYSQL_DB_CCNET_DB_NAME=ccnet_db
+SEAFILE_MYSQL_DB_SEAFILE_DB_NAME=seafile_db
+SEAFILE_LOG_TO_STDOUT=false
+NOTIFICATION_SERVER_LOG_LEVEL=info
 ```
 
 Note: JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: `pwgen -s 40 1`
@@ -94,18 +101,6 @@ Since seafile 12.0, we use docker to deploy the notification server. Please foll
 !!! note Notification server and Seafile binary package
 
     Notification server is designed to be work with Docker based deployment. To make it work with **Seafile binary package** on the same server is, you will need to add Nginx rules for notification server properly.
-    
-    In addition, you need to specify the relevant information of your MySQL service and log strategy for notification service in the above `.env`:
-
-    ```sh
-    SEAFILE_MYSQL_DB_HOST=db # your MySQL host
-    SEAFILE_MYSQL_DB_PORT=3306
-    SEAFILE_MYSQL_DB_USER=seafile
-    SEAFILE_MYSQL_DB_PASSWORD=<your MySQL password>
-    SEAFILE_MYSQL_DB_SEAFILE_DB_NAME=seafile_db
-    SEAFILE_LOG_TO_STDOUT=false
-    NOTIFICATION_SERVER_LOG_LEVEL=info
-    ```
 
 
 ## Upgrade SeaDoc from 0.8 to 1.0
