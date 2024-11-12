@@ -3463,15 +3463,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#gc-in-seafile-docker-container" class="md-nav__link">
-    <span class="md-ellipsis">
-      GC in Seafile docker container
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -4362,15 +4353,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#gc-in-seafile-docker-container" class="md-nav__link">
-    <span class="md-ellipsis">
-      GC in Seafile docker container
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -4481,8 +4463,6 @@ repo-id3
 <p>A simple pattern to divide the workload among multiple GC servers is to assign libraries to servers based on library ID. Since Pro edition 7.1.5, this is supported. You can add "--id-prefix" option to seaf-gc.sh, to specify the library ID prefix. For example, the below command will only process libraries having "a123" as ID prefix.</p>
 <div class="highlight"><pre><span></span><code>seaf-gc.sh --id-prefix a123
 </code></pre></div>
-<h2 id="gc-in-seafile-docker-container">GC in Seafile docker container<a class="headerlink" href="#gc-in-seafile-docker-container" title="Permanent link">&para;</a></h2>
-<p>To perform garbage collection inside the seafile docker container, you must run the <code>/scripts/gc.sh</code> script. Simply run <code>docker exec &lt;whatever-your-seafile-container-is-called&gt; /scripts/gc.sh</code>.</p>
 
 
 

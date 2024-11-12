@@ -4465,9 +4465,13 @@
 <h2 id="seahub">Seahub<a class="headerlink" href="#seahub" title="Permanent link">&para;</a></h2>
 <h3 id="session">Session<a class="headerlink" href="#session" title="Permanent link">&para;</a></h3>
 <p>Use the following command to clear expired session records in Seahub database:</p>
-<div class="highlight"><pre><span></span><code>cd &lt;install-path&gt;/seafile-server-latest
+<div class="highlight"><pre><span></span><code>cd seafile-server-latest
 ./seahub.sh python-env python3 seahub/manage.py clearsessions
 </code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Enter into the docker image, then go to <code>/opt/seafile/seafile-server-latest</code></p>
+</div>
 <h3 id="activity">Activity<a class="headerlink" href="#activity" title="Permanent link">&para;</a></h3>
 <p>Use the following command to clear the activity records:</p>
 <div class="highlight"><pre><span></span><code>use seahub_db;
@@ -4501,14 +4505,12 @@ DELETE FROM FileHistory WHERE to_days(now()) - to_days(timestamp) &gt; 90;
 </code></pre></div>
 <h3 id="command-clean_db_records">Command clean_db_records<a class="headerlink" href="#command-clean_db_records" title="Permanent link">&para;</a></h3>
 <p>Use the following command to simultaneously clean up table records of Activity, sysadmin_extra_userloginlog, FileAudit, FileUpdate, FileHistory, PermAudit, FileTrash 90 days ago:</p>
-<div class="highlight"><pre><span></span><code>cd &lt;install-path&gt;/seafile-server-latest
-./seahub.sh python-env python3 seahub/manage.py clean_db_records
+<div class="highlight"><pre><span></span><code>./seahub.sh python-env python3 seahub/manage.py clean_db_records
 </code></pre></div>
 <h3 id="outdated-library-data">Outdated Library Data<a class="headerlink" href="#outdated-library-data" title="Permanent link">&para;</a></h3>
 <p>Since version 6.2, we offer command to clear outdated library records in Seahub database,
 e.g. records that are not deleted after a library is deleted. This is because users can restore a deleted library, so we can't delete these records at library deleting time.</p>
-<div class="highlight"><pre><span></span><code>cd &lt;install-path&gt;/seafile-server-latest
-./seahub.sh python-env python3 seahub/manage.py clear_invalid_repo_data
+<div class="highlight"><pre><span></span><code>./seahub.sh python-env python3 seahub/manage.py clear_invalid_repo_data
 </code></pre></div>
 <p>This command has been improved in version 10.0, including:</p>
 <ol>
@@ -4519,8 +4521,7 @@ e.g. records that are not deleted after a library is deleted. This is because us
 <p>Dry-run mode: if you just want to see how much invalid data can be deleted without actually deleting any data, you can use the dry-run option, e.g.</p>
 </li>
 </ol>
-<div class="highlight"><pre><span></span><code>cd &lt;install-path&gt;/seafile-server-latest
-./seahub.sh python-env python3 seahub/manage.py clear_invalid_repo_data --dry-run=true
+<div class="highlight"><pre><span></span><code>./seahub.sh python-env python3 seahub/manage.py clear_invalid_repo_data --dry-run=true
 </code></pre></div>
 <h3 id="library-sync-tokens">Library Sync Tokens<a class="headerlink" href="#library-sync-tokens" title="Permanent link">&para;</a></h3>
 <p>There are two tables in Seafile db that are related to library sync tokens.</p>
