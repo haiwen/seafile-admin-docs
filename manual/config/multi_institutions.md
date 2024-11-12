@@ -4,20 +4,13 @@ Starting from version 5.1, you can add institutions into Seafile and assign user
 
 ## Turn on the feature
 
-In `seahub_settings.py`, add `MULTI_INSTITUTION = True` to enable multi-institution feature. And add
+In `seahub_settings.py`, add `MULTI_INSTITUTION = True` to enable multi-institution feature, and add
 
-=== "Seafile 7.1.22 or older"
-    ```py
-    EXTRA_MIDDLEWARE_CLASSES += (
-        'seahub.institutions.middleware.InstitutionMiddleware',
-    )
-    ```
-=== "Seafile 8.0.0 or newer"
-    ```py
+```py
     EXTRA_MIDDLEWARE += (
         'seahub.institutions.middleware.InstitutionMiddleware',
     )
-    ```
+```
 
 !!! tip "Please replease `+=` to `=` if `EXTRA_MIDDLEWARE_CLASSES` or `EXTRA_MIDDLEWARE` is not defined"
 
