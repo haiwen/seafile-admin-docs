@@ -4307,16 +4307,20 @@
 
 <h1 id="export-report">Export Report<a class="headerlink" href="#export-report" title="Permanent link">&para;</a></h1>
 <p>Since version 7.0.8 pro, Seafile provides commands to export reports via command line.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Enter into the docker image, then go to <code>/opt/seafile/seafile-server-latest</code></p>
+</div>
 <h2 id="export-user-traffic-report">Export User Traffic Report<a class="headerlink" href="#export-user-traffic-report" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>cd &lt;install-path&gt;/seafile-server-latest
+<div class="highlight"><pre><span></span><code>cd seafile-server-latest
 ./seahub.sh python-env python seahub/manage.py export_user_traffic_report --date 201906
 </code></pre></div>
 <h2 id="export-user-storage-report">Export User Storage Report<a class="headerlink" href="#export-user-storage-report" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>cd &lt;install-path&gt;/seafile-server-latest
+<div class="highlight"><pre><span></span><code>cd seafile-server-latest
 ./seahub.sh python-env python seahub/manage.py export_user_storage_report
 </code></pre></div>
 <h2 id="export-file-access-log">Export File Access Log<a class="headerlink" href="#export-file-access-log" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>cd &lt;install-path&gt;/seafile-server-latest
+<div class="highlight"><pre><span></span><code>cd seafile-server-latest
 ./seahub.sh python-env python seahub/manage.py export_file_access_log --start-date 2019-06-01 --end-date 2019-07-01
 </code></pre></div>
 
