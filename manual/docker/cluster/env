@@ -1,6 +1,6 @@
 COMPOSE_FILE='seafile-server.yml'
 COMPOSE_PATH_SEPARATOR=','
-SEAFILE_IMAGE=docker.seadrive.org/seafileltd/seafile-pro-mc:12.0-latest
+SEAFILE_IMAGE=seafileltd/seafile-pro-mc:12.0-latest
 SEAFILE_VOLUME=/opt/seafile/shared
 SEAFILE_SERVER_HOSTNAME=seafile.example.com
 SEAFILE_SERVER_PROTOCOL=http
