@@ -2782,6 +2782,14 @@
     Multi-Tenancy Support
   </span>
   
+    
+  
+  
+    <span class="md-status md-status--new" title="Work in progress">
+    </span>
+  
+
+  
 
       </a>
     </li>
@@ -2940,15 +2948,6 @@
   <a href="#encrypted-files-cannot-be-searched" class="md-nav__link">
     <span class="md-ellipsis">
       Encrypted files cannot be searched
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#increase-the-heap-size-for-the-java-search-process" class="md-nav__link">
-    <span class="md-ellipsis">
-      Increase the heap size for the java search process
     </span>
   </a>
   
@@ -4374,15 +4373,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#increase-the-heap-size-for-the-java-search-process" class="md-nav__link">
-    <span class="md-ellipsis">
-      Increase the heap size for the java search process
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -4563,27 +4553,6 @@ repo_files_index_name = your-repo-files-index-name    # default is `repofiles`
 </div>
 <h3 id="encrypted-files-cannot-be-searched">Encrypted files cannot be searched<a class="headerlink" href="#encrypted-files-cannot-be-searched" title="Permanent link">&para;</a></h3>
 <p>This is because the server cannot index encrypted files, since they are encrypted.</p>
-<h3 id="increase-the-heap-size-for-the-java-search-process">Increase the heap size for the java search process<a class="headerlink" href="#increase-the-heap-size-for-the-java-search-process" title="Permanent link">&para;</a></h3>
-<p>The search functionality is based on Elasticsearch, which is a java process. You can modify the memory size by modifying the jvm configuration file. For example, modify to 2G memory. Modify the following configuration in the <code>seafile-server-latest/pro/elasticsearch/config/jvm.options</code> file:</p>
-<div class="highlight"><pre><span></span><code>-Xms2g<span class="w"> </span><span class="c1"># Minimum available memory</span>
--Xmx2g<span class="w"> </span><span class="c1"># Maximum available memory</span>
-<span class="c1">### It is recommended to set the values of the above two configurations to the same size.</span>
-</code></pre></div>
-<p>Restart the seafile service to make the above changes take effect:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Deploy in Docker</label><label for="__tabbed_5_2">Deploy from binary packages</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest
-./seafile.sh<span class="w"> </span>restart
-./seahub.sh<span class="w"> </span>restart
-</code></pre></div>
-</div>
-</div>
-</div>
 
 
 
