@@ -4299,15 +4299,14 @@
 </code></pre></div>
 </div>
 </li>
+<li>
+<p><code>can_drag_drop_folder_to_sync</code>: allow or deny user to sync folder by draging and droping</p>
+</li>
+<li>
+<p><code>can_export_files_via_mobile_client</code>: allow or deny user to export files in using mobile client</p>
+</li>
 </ul>
 <p>Seafile comes with two build-in roles <code>default</code> and <code>guest</code>, a default user is a normal user with permissions as followings:</p>
-<div class="admonition tip">
-<p class="admonition-title">New in 12.0</p>
-<ul>
-<li><code>can_drag_drop_folder_to_sync</code>: allow or deny user to sync folder by draging and droping</li>
-<li><code>can_export_files_via_mobile_client</code>: allow or deny user to export files in using mobile client</li>
-</ul>
-</div>
 <div class="highlight"><pre><span></span><code>    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s1">&#39;can_add_repo&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
         <span class="s1">&#39;can_share_repo&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
@@ -4331,7 +4330,7 @@
         <span class="s1">&#39;download_rate_limit&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
     <span class="p">},</span>
 </code></pre></div>
-<p>While a guest user can only read files/folders in the system, here are the permissions for a guest user:
+<p>While a guest user can only read files/folders in the system, here are the permissions for a guest user:</p>
 <div class="highlight"><pre><span></span><code>    <span class="s1">&#39;guest&#39;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s1">&#39;can_add_repo&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
         <span class="s1">&#39;can_share_repo&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
@@ -4354,7 +4353,7 @@
         <span class="s1">&#39;upload_rate_limit&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
         <span class="s1">&#39;download_rate_limit&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
     <span class="p">},</span>
-</code></pre></div></p>
+</code></pre></div>
 <h2 id="edit-build-in-roles">Edit build-in roles<a class="headerlink" href="#edit-build-in-roles" title="Permanent link">&para;</a></h2>
 <p>If you want to edit the permissions of build-in roles, e.g. default users can invite guest, guest users can view repos in organization, you can add following lines to <code>seahub_settings.py</code> with corresponding permissions set to <code>True</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="n">ENABLED_ROLE_PERMISSIONS</span> <span class="o">=</span> <span class="p">{</span>
