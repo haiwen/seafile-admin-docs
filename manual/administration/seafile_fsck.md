@@ -16,14 +16,8 @@ cd seafile-server-latest
 ```
 
 !!! tip
-    If your Seafile server is deployed by [Docker](../setup/setup_ce_by_docker.md), you have to run the above command **in the container**:
+    Enter into the docker image, then go to `/opt/seafile/seafile-server-latest`
 
-    ```sh
-    docker exec -it seafile bash
-    # after entering the container
-    cd /scripts
-    ./seaf-fsck.sh [--repair|-r] [--export|-E export_path] [repo_id_1 [repo_id_2 ...]]
-    ```
 
 There are three modes of operation for seaf-fsck:
 
@@ -36,7 +30,6 @@ There are three modes of operation for seaf-fsck:
 Running seaf-fsck.sh without any arguments will run a **read-only** integrity check for all libraries.
 
 ```
-cd seafile-server-latest
 ./seaf-fsck.sh
 
 ```
@@ -44,7 +37,6 @@ cd seafile-server-latest
 If you want to check integrity for specific libraries, just append the library id's as arguments:
 
 ```
-cd seafile-server-latest
 ./seaf-fsck.sh [library-id1] [library-id2] ...
 
 ```
@@ -91,7 +83,6 @@ Corruption repair in seaf-fsck basically works in two steps:
 Running the following command repairs all the libraries:
 
 ```
-cd seafile-server-latest
 ./seaf-fsck.sh --repair
 
 ```
@@ -99,7 +90,6 @@ cd seafile-server-latest
 Most of time you run the read-only integrity check first, to find out which libraries are corrupted. And then you repair specific libraries with the following command:
 
 ```
-cd seafile-server-latest
 ./seaf-fsck.sh --repair [library-id1] [library-id2] ...
 
 ```
@@ -130,7 +120,6 @@ You can use seaf-fsck to export all the files in libraries to external file syst
 The command syntax is
 
 ```
-cd seafile-server-latest
 ./seaf-fsck.sh --export top_export_path [library-id1] [library-id2] ...
 
 ```
