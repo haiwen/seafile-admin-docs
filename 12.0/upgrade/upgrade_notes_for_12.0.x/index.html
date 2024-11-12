@@ -4505,7 +4505,7 @@ SEAFILE_MYSQL_DB_CCNET_DB_NAME=ccnet_db
 <p>Since seafile 12.0, we use docker to deploy the notification server. Please follow the document of <a href="../../extension/notification-server/">notification server</a>.</p>
 <div class="admonition note notification server and seafile binary package">
 <p class="admonition-title">Note</p>
-<p>Deploying notification server and <strong>Seafile binary package</strong> on the same server is no longer officially supported. You will need to add Nginx rules for notification server properly.</p>
+<p>Notification server is designed to be work with Docker based deployment. To make it work with <strong>Seafile binary package</strong> on the same server is, you will need to add Nginx rules for notification server properly.</p>
 </div>
 <h2 id="upgrade-seadoc-from-08-to-10">Upgrade SeaDoc from 0.8 to 1.0<a class="headerlink" href="#upgrade-seadoc-from-08-to-10" title="Permanent link">&para;</a></h2>
 <p>If you have deployed SeaDoc v0.8 with Seafile v11.0, you can upgrade it to 1.0 use the following two steps:</p>
