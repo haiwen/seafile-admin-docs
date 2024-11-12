@@ -1,3 +1,8 @@
+---
+status: new
+---
+
+
 # Migrate from non-docker Seafile deployment to docker
 
 The recommended steps to migrate from non-docker deployment to docker deployment are:

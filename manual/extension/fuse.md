@@ -1,3 +1,8 @@
+---
+status: new
+---
+
+
 # FUSE extension
 
 Files in the seafile system are split to blocks, which means what are stored on your seafile server are not complete files, but blocks. This design faciliates effective data deduplication.

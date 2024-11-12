@@ -92,7 +92,6 @@ nav:
         - S3 Backend: setup/setup_with_amazon_s3.md
         - Ceph Backend: setup/setup_with_ceph.md
         - OpenStack Swift Backend: setup/setup_with_swift.md
-        - Alibaba OSS: setup/setup_with_oss.md
         - Multiple Storage Backends: setup/setup_with_multiple_storage_backends.md
         - Data migration: setup/migrate_backends_data.md
       - Seafile Docker autostart: setup/seafile_docker_autostart.md

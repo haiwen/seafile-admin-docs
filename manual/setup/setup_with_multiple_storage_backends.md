@@ -1,3 +1,8 @@
+---
+status: new
+---
+
+
 # Multiple Storage Backend
 
 There are some use cases that supporting multiple storage backends in Seafile server is needed. Such as:

@@ -1,3 +1,7 @@
+---
+status: new
+---
+
 # Migrate CE to Pro with Docker
 
 ## Preparation

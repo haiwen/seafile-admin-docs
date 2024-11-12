@@ -1,3 +1,8 @@
+---
+status: new
+---
+
+
 # Installation of Seafile Server Community Edition with Docker
 
 ## Requirements

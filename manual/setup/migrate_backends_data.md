@@ -1,3 +1,8 @@
+---
+status: new
+---
+
+
 # Migrate data between different backends
 
 Seafile supports data migration between filesystem, s3, ceph, swift and Alibaba oss.

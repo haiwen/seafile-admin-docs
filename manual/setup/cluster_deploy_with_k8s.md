@@ -1,3 +1,8 @@
+---
+status: new
+---
+
+
 # Setup with Kubernetes
 
 This manual explains how to deploy and run Seafile Server on a Linux server using Kubernetes (k8s thereafter). 

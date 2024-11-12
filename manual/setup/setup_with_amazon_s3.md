@@ -1,3 +1,8 @@
+---
+status: new
+---
+
+
 # Setup With S3 Storage
 
 !!! tip "New feature from 12.0 pro edition"

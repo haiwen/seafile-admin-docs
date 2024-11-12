@@ -1,3 +1,8 @@
+---
+status: new
+---
+
+
 # Distributed indexing
 
 If you use a cluster to deploy Seafile, you can use distributed indexing to realize real-time indexing and improve indexing efficiency. The indexing process is as follows:
