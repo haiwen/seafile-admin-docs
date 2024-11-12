@@ -91,7 +91,7 @@ Since seafile 12.0, we use docker to deploy the notification server. Please foll
 
 !!! note Notification server and Seafile binary package
 
-    Deploying notification server and **Seafile binary package** on the same server is no longer officially supported. You will need to add Nginx rules for notification server properly.
+    Notification server is designed to be work with Docker based deployment. To make it work with **Seafile binary package** on the same server is, you will need to add Nginx rules for notification server properly.
 
 
 ## Upgrade SeaDoc from 0.8 to 1.0
