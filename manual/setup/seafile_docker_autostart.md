@@ -64,7 +64,7 @@ elasticsearch:
     restart: unless-stopped
 
 seafile:
-    image: docker.seadrive.org/seafileltd/seafile-pro-mc:12.0-latest
+    image: seafileltd/seafile-pro-mc:12.0-latest
     container_name: seafile
     restart: unless-stopped
 ```

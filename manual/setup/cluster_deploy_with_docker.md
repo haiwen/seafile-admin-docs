@@ -24,11 +24,8 @@ We assume you have already deployed memcache, MariaDB, ElasticSearch in separate
 
 2. Pulling Seafile image
 
-    Log into Seafile's private repository and pull the Seafile image:
-
     ```bash
-    docker login docker.seadrive.org
-    docker pull docker.seadrive.org/seafileltd/seafile-pro-mc:12.0-latest
+    docker pull seafileltd/seafile-pro-mc:12.0-latest
     ```
 
     When prompted, enter the username and password of the private repository. They are available on the download page in the [Customer Center](https://customer.seafile.com/downloads).

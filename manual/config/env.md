@@ -7,7 +7,7 @@ COMPOSE_FILE='seafile-server.yml,caddy.yml'
 COMPOSE_PATH_SEPARATOR=','
 
 
-SEAFILE_IMAGE=docker.seadrive.org/seafileltd/seafile-pro-mc:12.0-latest
+SEAFILE_IMAGE=seafileltd/seafile-pro-mc:12.0-latest
 SEAFILE_DB_IMAGE=mariadb:10.11
 SEAFILE_MEMCACHED_IMAGE=memcached:1.6.29
 SEAFILE_ELASTICSEARCH_IMAGE=elasticsearch:8.15.0 # pro edition only
@@ -54,6 +54,10 @@ SEADOC_VOLUME=/opt/seadoc-data
 
 ENABLE_SEADOC=false
 SEADOC_SERVER_URL=http://example.seafile.com/sdoc-server
+
+
+NOTIFICATION_SERVER_IMAGE=seafileltd/notification-server:12.0-latest
+NOTIFICATION_SERVER_VOLUME=/opt/notification-data
 ```
 
 ## Seafile-docker configurations
@@ -65,7 +69,7 @@ SEADOC_SERVER_URL=http://example.seafile.com/sdoc-server
 
 ### Docker images configurations
 
-- `SEAFILE_IMAGE`: The image of Seafile-server, default is `docker.seadrive.org/seafileltd/seafile-pro-mc:12.0-latest`.
+- `SEAFILE_IMAGE`: The image of Seafile-server, default is `seafileltd/seafile-pro-mc:12.0-latest`.
 - `SEAFILE_DB_IMAGE`: Database server image, default is `mariadb:10.11`.
 - `SEAFILE_MEMCACHED_IMAGE`: Cached server image, default is `memcached:1.6.29`
 - `SEAFILE_ELASTICSEARCH_IMAGE`: Only valid in pro edition. The elasticsearch image, default is `elasticsearch:8.15.0`.

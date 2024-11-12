@@ -14,7 +14,7 @@ The two tools, **kubectl** and a **k8s control plane** tool (i.e., ***kubeadm***
     If it is a multi-node deployment, k8s control plane needs to be installed on each node. After installation, you need to start the k8s control plane service on each node and refer to the k8s official manual for [creating a cluster](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/). Since this manual still uses the same image as docker deployment, we need to add the following repository to k8s:
 
     ```shell
-    kubectl create secret docker-registry regcred --docker-server=docker.seadrive.org/seafileltd --docker-username=seafile --docker-password=zjkmid6rQibdZ=uJMuWS
+    kubectl create secret docker-registry regcred --docker-server=seafileltd --docker-username=seafile --docker-password=zjkmid6rQibdZ=uJMuWS
     ```
 
 ## YAML
@@ -188,7 +188,7 @@ spec:
         - name: seafile
           #        image: seafileltd/seafile-mc:9.0.10
           #        image: seafileltd/seafile-mc:11.0-latest
-          image: docker.seadrive.org/seafileltd/seafile-pro-mc:12.0-latest
+          image: seafileltd/seafile-pro-mc:12.0-latest
           env:
             - name: DB_HOST
               value: "mariadb"
