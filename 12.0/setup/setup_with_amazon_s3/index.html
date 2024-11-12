@@ -991,15 +991,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-https-connections-to-s3" class="md-nav__link">
-    <span class="md-ellipsis">
-      Use HTTPS connections to S3
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#run-and-test" class="md-nav__link">
     <span class="md-ellipsis">
       Run and Test
@@ -4287,15 +4278,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#use-https-connections-to-s3" class="md-nav__link">
-    <span class="md-ellipsis">
-      Use HTTPS connections to S3
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#run-and-test" class="md-nav__link">
     <span class="md-ellipsis">
       Run and Test
@@ -4370,6 +4352,7 @@ key_id = your-key-id
 key = your-secret-key
 use_v4_signature = true
 aws_region = eu-central-1
+use_https = true
 
 [fs_object_backend]
 name = s3
@@ -4378,6 +4361,7 @@ key_id = your-key-id
 key = your-secret-key
 use_v4_signature = true
 aws_region = eu-central-1
+use_https = true
 
 [block_backend]
 name = s3
@@ -4386,6 +4370,7 @@ key_id = your-key-id
 key = your-secret-key
 use_v4_signature = true
 aws_region = eu-central-1
+use_https = true
 </code></pre></div>
 <p>We'll explain the configurations below:</p>
 <table>
@@ -4416,15 +4401,12 @@ aws_region = eu-central-1
 <td><code>aws_region</code></td>
 <td>If you use the v4 protocol, set this option to the region you chose when you create the buckets. If it's not set and you're using the v4 protocol, Seafile will use <code>us-east-1</code> as the default. This option will be ignored if you use the v2 protocol.</td>
 </tr>
+<tr>
+<td><code>use_https</code></td>
+<td>Use https to connect to S3. It's recommended to use https.</td>
+</tr>
 </tbody>
 </table>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>For file search and webdav to work with the v4 signature mechanism, you need to add following lines to ~/.boto</p>
-<div class="highlight"><pre><span></span><code>[s3]
-use-sigv4 = True
-</code></pre></div>
-</div>
 <h3 id="use-server-side-encryption-with-customer-provided-keys-sse-c">Use server-side encryption with customer-provided keys (SSE-C)<a class="headerlink" href="#use-server-side-encryption-with-customer-provided-keys-sse-c" title="Permanent link">&para;</a></h3>
 <p>Since Pro 11.0, you can use SSE-C to S3. Add the following options to seafile.conf:</p>
 <div class="highlight"><pre><span></span><code>[commit_object_backend]
@@ -4452,6 +4434,7 @@ sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
 <p>You can generate <code>sse_c_key</code> with the following command：</p>
 <div class="highlight"><pre><span></span><code>openssl rand -base64 24
 </code></pre></div>
+<p>It's required to use V4 authentication protocol and https if you enable SSE-C.</p>
 <div class="admonition note">
 <p class="admonition-title">If you have existing data in your S3 storage bucket, turning on the above configuration will make your data inaccessible. That's because Seafile server doesn't support encrypted and non-encrypted objects mixed in the same bucket. You have to create a new bucket, and migrate your data to it by following <a href="../migrate_backends_data/#migrating-to-sse-c-encrypted-s3-storage">storage backend migration documentation</a>.</p>
 </div>
@@ -4467,6 +4450,7 @@ key = your-secret-key
 use_v4_signature = true
 # required for v4 protocol. ignored for v2 protocol.
 aws_region = &lt;region name for storage provider&gt;
+use_https = true
 
 [fs_object_backend]
 name = s3
@@ -4476,6 +4460,7 @@ key_id = your-key-id
 key = your-secret-key
 use_v4_signature = true
 aws_region = &lt;region name for storage provider&gt;
+use_https = true
 
 [block_backend]
 name = s3
@@ -4485,6 +4470,7 @@ key_id = your-key-id
 key = your-secret-key
 use_v4_signature = true
 aws_region = &lt;region name for storage provider&gt;
+use_https = true
 </code></pre></div>
 <table>
 <thead>
@@ -4518,15 +4504,12 @@ aws_region = &lt;region name for storage provider&gt;
 <td><code>aws_region</code></td>
 <td>If you use v4 protocol, set this option to the region you chose when you create the buckets. If it's not set and you're using v4 protocol, Seafile will use <code>us-east-1</code> as the default. This option will be ignored if you use v2 protocol.</td>
 </tr>
+<tr>
+<td><code>use_https</code></td>
+<td>Use https to connect to S3. It's recommended to use https.</td>
+</tr>
 </tbody>
 </table>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>For file search and webdav to work with the v4 signature mechanism, you need to add following lines to ~/.boto</p>
-<div class="highlight"><pre><span></span><code>[s3]
-use-sigv4 = True
-</code></pre></div>
-</div>
 <h2 id="self-hosted-s3-storage">Self-hosted S3 Storage<a class="headerlink" href="#self-hosted-s3-storage" title="Permanent link">&para;</a></h2>
 <p>Many self-hosted object storage systems are now compatible with the S3 API, such as OpenStack Swift, Ceph's RADOS Gateway and Minio. You can use these S3-compatible storage systems as backend for Seafile. Here is an example config:</p>
 <div class="highlight"><pre><span></span><code>[commit_object_backend]
@@ -4537,6 +4520,7 @@ key = your-secret-key
 host = 192.168.1.123:8080
 path_style_request = true
 use_v4_signature = true
+use_https = true
 
 [fs_object_backend]
 name = s3
@@ -4546,6 +4530,7 @@ key = your-secret-key
 host = 192.168.1.123:8080
 path_style_request = true
 use_v4_signature = true
+use_https = true
 
 [block_backend]
 name = s3
@@ -4555,6 +4540,7 @@ key = your-secret-key
 host = 192.168.1.123:8080
 path_style_request = true
 use_v4_signature = true
+use_https = true
 </code></pre></div>
 <table>
 <thead>
@@ -4588,41 +4574,12 @@ use_v4_signature = true
 <td><code>use_v4_signature</code></td>
 <td>There are two versions of authentication protocols that can be used with S3 storage. Version 2 is the protocol supported by most self-hosted storage; version 4 is the current protocol used by AWS S3, but may not be supported by some self-hosted storage. If you don't set this option, Seafile will use the v2 protocol by default. We recommend to use V4 if possible. Please note that if you want to migrate from S3 storage to other storage, the migration script doesn't work with V2 authentication protocol due to limitation of third-party library.</td>
 </tr>
+<tr>
+<td><code>use_https</code></td>
+<td>Use https to connect to S3. It's recommended to use https. If your self-hosted storage doesn't support https, set this option to false.</td>
+</tr>
 </tbody>
 </table>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>For file search and webdav to work with the v4 signature mechanism, you need to add following lines to ~/.boto</p>
-<div class="highlight"><pre><span></span><code>[s3]
-use-sigv4 = True
-</code></pre></div>
-</div>
-<h2 id="use-https-connections-to-s3">Use HTTPS connections to S3<a class="headerlink" href="#use-https-connections-to-s3" title="Permanent link">&para;</a></h2>
-<p>To use HTTPS connections to S3, add the following options to seafile.conf:</p>
-<div class="highlight"><pre><span></span><code>[commit_object_backend]
-name = s3
-......
-use_https = true
-
-[fs_object_backend]
-name = s3
-......
-use_https = true
-
-[block_backend]
-name = s3
-......
-use_https = true
-</code></pre></div>
-<p>Because the server package is built on CentOS 6, if you're using Debian/Ubuntu, you have to copy the system CA bundle to CentOS's CA bundle path. Otherwise Seafile can't find the CA bundle so that the SSL connection will fail.</p>
-<div class="highlight"><pre><span></span><code>sudo mkdir -p /etc/pki/tls/certs
-sudo cp /etc/ssl/certs/ca-certificates.crt /etc/pki/tls/certs/ca-bundle.crt
-sudo ln -s /etc/pki/tls/certs/ca-bundle.crt /etc/pki/tls/cert.pem
-</code></pre></div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>You <strong>must not use '.' in your bucket names</strong>. Otherwise the wildcard certificate for AWS S3 cannot be resolved. This is a limitation on AWS.</p>
-</div>
 <h2 id="run-and-test">Run and Test<a class="headerlink" href="#run-and-test" title="Permanent link">&para;</a></h2>
 <p>Now you can start Seafile and test</p>
 
