@@ -4,8 +4,7 @@
 
 The config files used in Seafile include:
 
-* [environment variables](.env.md): contains environment variables, the items here are shared between different components.
-* [ccnet.conf](ccnet-conf.md): contains some settings for connection to ccnet_db.
+* [environment variables](.env.md): contains environment variables, the items here are shared between different components. Newly introduced components, like sdoc-server and notificaiton server, read configuraitons from environment variables and have no config files.
 * [seafile.conf](seafile-conf.md): contains settings for seafile daemon and fileserver.
 * [seahub_settings.py](seahub_settings_py.md): contains settings for Seahub
 * [seafevents.conf](seafevents-conf.md): contains settings for background tasks and file search.
@@ -22,9 +21,9 @@ There are now three places you can config Seafile server:
 - config files
 - via web interface
 
-The web interface has the highest priority. It contains a subset of settings that does no require to restart the server. In practise, you can disable settings via web interface for simplicity.
+The web interface has the highest priority. It contains a subset of end-user oriented settings. In practise, you can disable settings via web interface for simplicity.
 
-Environment variables also have three categories:
+Environment variables contains system level settings that needed when initialize Seafile server or run Seafile server. Environment variables also have three categories:
 
 - Initialization variables that used to generate config files when Seafile server run for the first time.
 - Variables that shared and used by multiple components of Seafile server.
