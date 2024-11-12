@@ -4619,33 +4619,15 @@
 <li>Seafile library data</li>
 <li>Databases</li>
 </ul>
-<p>If you setup seafile server according to our manual, you should have a directory layout like:</p>
-<div class="highlight"><pre><span></span><code>/opt/seafile
-  --seafile-server-9.0.x # untar from seafile package
-  --seafile-data   # seafile configuration and data (if you choose the default)
-  --seahub-data    # seahub data
-  --logs
-  --conf
-</code></pre></div>
-<p>All your library data is stored under the '/opt/seafile' directory.</p>
-<p>Seafile also stores some important metadata data in a few databases. The names and locations of these databases depends on which database software you use.</p>
-<p>For SQLite, the database files are also under the '/opt/seafile' directory. The locations are:</p>
-<ul>
-<li>ccnet/PeerMgr/usermgr.db: contains user information</li>
-<li>ccnet/GroupMgr/groupmgr.db: contains group information</li>
-<li>seafile-data/seafile.db: contains library metadata</li>
-<li>seahub.db: contains tables used by the web front end (seahub)</li>
-</ul>
-<p>For MySQL, the databases are created by the administrator, so the names can be different from one deployment to another. There are 3 databases:</p>
+<p>There are 3 databases:</p>
 <ul>
 <li>ccnet_db: contains user and group information</li>
 <li>seafile_db: contains library metadata</li>
 <li>seahub_db: contains tables used by the web front end (seahub)</li>
 </ul>
 <h2 id="backup-steps">Backup steps<a class="headerlink" href="#backup-steps" title="Permanent link">&para;</a></h2>
-<p>The backup is a three step procedure:</p>
+<p>The backup is a two step procedure:</p>
 <ol>
-<li>Optional: Stop Seafile server first if you're using SQLite as database.</li>
 <li>Backup the databases;</li>
 <li>Backup the seafile data directory;</li>
 </ol>
@@ -4666,24 +4648,11 @@ However, if your storage backup mechanism can finish quickly enough, using the f
 <p>It's recommended to backup the database to a separate file each time. Don't overwrite older database backups for at least a week.</p>
 <p><strong>MySQL</strong></p>
 <p>Assume your database names are <code>ccnet_db</code>, <code>seafile_db</code> and <code>seahub_db</code>. mysqldump automatically locks the tables so you don't need to stop Seafile server when backing up MySQL databases. Since the database tables are usually very small, it won't take long to dump.</p>
-<div class="highlight"><pre><span></span><code>mysqldump -h [mysqlhost] -u[username] -p[password] --opt ccnet_db &gt; /backup/databases/ccnet-db.sql.`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`
+<div class="highlight"><pre><span></span><code>mysqldump -h [mysqlhost] -u[username] -p[password] --opt ccnet_db &gt; /backup/databases/ccnet_db.sql.`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`
 
-mysqldump -h [mysqlhost] -u[username] -p[password] --opt seafile_db &gt; /backup/databases/seafile-db.sql.`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`
+mysqldump -h [mysqlhost] -u[username] -p[password] --opt seafile_db &gt; /backup/databases/seafile_db.sql.`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`
 
-mysqldump -h [mysqlhost] -u[username] -p[password] --opt seahub_db &gt; /backup/databases/seahub-db.sql.`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`
-</code></pre></div>
-<p><strong>SQLite</strong></p>
-<div class="admonition warning">
-<p class="admonition-title">SQLite has not supported since Seafile 11.0</p>
-</div>
-<p>You need to stop Seafile server first before backing up SQLite database.</p>
-<div class="highlight"><pre><span></span><code>sqlite3 /opt/seafile/ccnet/GroupMgr/groupmgr.db .dump &gt; /backup/databases/groupmgr.db.bak.`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`
-
-sqlite3 /opt/seafile/ccnet/PeerMgr/usermgr.db .dump &gt; /backup/databases/usermgr.db.bak.`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`
-
-sqlite3 /opt/seafile/seafile-data/seafile.db .dump &gt; /backup/databases/seafile.db.bak.`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`
-
-sqlite3 /opt/seafile/seahub.db .dump &gt; /backup/databases/seahub.db.bak.`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`
+mysqldump -h [mysqlhost] -u[username] -p[password] --opt seahub_db &gt; /backup/databases/seahub_db.sql.`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`
 </code></pre></div>
 <h3 id="backing-up-seafile-library-data">Backing up Seafile library data<a class="headerlink" href="#backing-up-seafile-library-data" title="Permanent link">&para;</a></h3>
 <p>The data files are all stored in the <code>/opt/seafile</code> directory, so just back up the whole directory. You can directly copy the whole directory to the backup destination, or you can use rsync to do incremental backup. </p>
@@ -4705,23 +4674,9 @@ sqlite3 /opt/seafile/seahub.db .dump &gt; /backup/databases/seahub.db.bak.`date 
 <h4 id="restore-the-databases">Restore the databases<a class="headerlink" href="#restore-the-databases" title="Permanent link">&para;</a></h4>
 <p>Now with the latest valid database backup files at hand, you can restore them.</p>
 <p><strong>MySQL</strong></p>
-<div class="highlight"><pre><span></span><code>mysql -u[username] -p[password] ccnet_db &lt; ccnet-db.sql.2013-10-19-16-00-05
-mysql -u[username] -p[password] seafile_db &lt; seafile-db.sql.2013-10-19-16-00-20
-mysql -u[username] -p[password] seahub_db &lt; seahub-db.sql.2013-10-19-16-01-05
-</code></pre></div>
-<p><strong>SQLite</strong></p>
-<div class="admonition warning">
-<p class="admonition-title">SQLite has not supported since Seafile 11.0</p>
-</div>
-<div class="highlight"><pre><span></span><code>cd /opt/seafile
-mv ccnet/PeerMgr/usermgr.db ccnet/PeerMgr/usermgr.db.old
-mv ccnet/GroupMgr/groupmgr.db ccnet/GroupMgr/groupmgr.db.old
-mv seafile-data/seafile.db seafile-data/seafile.db.old
-mv seahub.db seahub.db.old
-sqlite3 ccnet/PeerMgr/usermgr.db &lt; usermgr.db.bak.xxxx
-sqlite3 ccnet/GroupMgr/groupmgr.db &lt; groupmgr.db.bak.xxxx
-sqlite3 seafile-data/seafile.db &lt; seafile.db.bak.xxxx
-sqlite3 seahub.db &lt; seahub.db.bak.xxxx
+<div class="highlight"><pre><span></span><code>mysql -u[username] -p[password] ccnet_db &lt; ccnet_db.sql.2013-10-19-16-00-05
+mysql -u[username] -p[password] seafile_db &lt; seafile_db.sql.2013-10-19-16-00-20
+mysql -u[username] -p[password] seahub_db &lt; seahub_db.sql.2013-10-19-16-01-05
 </code></pre></div>
 <h2 id="backup-and-restore-for-docker-based-deployment">Backup and restore for Docker based deployment<a class="headerlink" href="#backup-and-restore-for-docker-based-deployment" title="Permanent link">&para;</a></h2>
 <h3 id="structure">Structure<a class="headerlink" href="#structure" title="Permanent link">&para;</a></h3>
