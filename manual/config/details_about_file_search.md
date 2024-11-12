@@ -159,26 +159,3 @@ The search index is updated every 10 minutes by default. So before the first ind
 
 This is because the server cannot index encrypted files, since they are encrypted.
 
-### Increase the heap size for the java search process
-
-The search functionality is based on Elasticsearch, which is a java process. You can modify the memory size by modifying the jvm configuration file. For example, modify to 2G memory. Modify the following configuration in the `seafile-server-latest/pro/elasticsearch/config/jvm.options` file:
-
-```sh
--Xms2g # Minimum available memory
--Xmx2g # Maximum available memory
-### It is recommended to set the values of the above two configurations to the same size.
-
-```
-
-Restart the seafile service to make the above changes take effect:
-
-=== "Deploy in Docker"
-    ```sh
-    docker compose restart
-    ```
-=== "Deploy from binary packages"
-    ```sh
-    cd /opt/seafile/seafile-server-latest
-    ./seafile.sh restart
-    ./seahub.sh restart
-    ```
