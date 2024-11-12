@@ -48,6 +48,7 @@ key_id = your-key-id
 key = your-secret-key
 use_v4_signature = true
 aws_region = eu-central-1
+use_https = true
 
 [fs_object_backend]
 name = s3
@@ -56,6 +57,7 @@ key_id = your-key-id
 key = your-secret-key
 use_v4_signature = true
 aws_region = eu-central-1
+use_https = true
 
 [block_backend]
 name = s3
@@ -64,6 +66,7 @@ key_id = your-key-id
 key = your-secret-key
 use_v4_signature = true
 aws_region = eu-central-1
+use_https = true
 ```
 
 We'll explain the configurations below:
@@ -74,17 +77,11 @@ We'll explain the configurations below:
 | `key_id` | The `key_id` is required to authenticate you to S3. You can find the `key_id` in the "security credentials" section on your AWS account page. |  
 | `key` | The `key` is required to authenticate you to S3. You can find the `key` in the "security credentials" section on your AWS account page. |  
 | `use_v4_signature` | There are two versions of authentication protocols that can be used with S3 storage: Version 2 (older, may still be supported by some regions) and Version 4 (current, used by most regions). If you don't set this option, Seafile will use the v2 protocol. It's suggested to use the v4 protocol. |  
-| `aws_region` | If you use the v4 protocol, set this option to the region you chose when you create the buckets. If it's not set and you're using the v4 protocol, Seafile will use `us-east-1` as the default. This option will be ignored if you use the v2 protocol. |  
+| `aws_region` | If you use the v4 protocol, set this option to the region you chose when you create the buckets. If it's not set and you're using the v4 protocol, Seafile will use `us-east-1` as the default. This option will be ignored if you use the v2 protocol. |
+| `use_https` | Use https to connect to S3. It's recommended to use https. |
 
 [1]: <https://docs.aws.amazon.com/AmazonS3/latest/userguide/BucketRestrictions.html#bucketnamingrules> (Replace this placeholder with the actual link to the S3 bucket naming rules documentation if necessary)
 
-!!! tip 
-    For file search and webdav to work with the v4 signature mechanism, you need to add following lines to ~/.boto
-
-    ```
-    [s3]
-    use-sigv4 = True
-    ```
 
 ### Use server-side encryption with customer-provided keys (SSE-C)
 
@@ -121,6 +118,8 @@ You can generate `sse_c_key` with the following command：
 openssl rand -base64 24
 ```
 
+It's required to use V4 authentication protocol and https if you enable SSE-C.
+
 !!! note "If you have existing data in your S3 storage bucket, turning on the above configuration will make your data inaccessible. That's because Seafile server doesn't support encrypted and non-encrypted objects mixed in the same bucket. You have to create a new bucket, and migrate your data to it by following [storage backend migration documentation](./migrate_backends_data.md#migrating-to-sse-c-encrypted-s3-storage)."
 
 ## Other Public Hosted S3 Storage
@@ -138,6 +137,7 @@ key = your-secret-key
 use_v4_signature = true
 # required for v4 protocol. ignored for v2 protocol.
 aws_region = <region name for storage provider>
+use_https = true
 
 [fs_object_backend]
 name = s3
@@ -147,6 +147,7 @@ key_id = your-key-id
 key = your-secret-key
 use_v4_signature = true
 aws_region = <region name for storage provider>
+use_https = true
 
 [block_backend]
 name = s3
@@ -156,6 +157,7 @@ key_id = your-key-id
 key = your-secret-key
 use_v4_signature = true
 aws_region = <region name for storage provider>
+use_https = true
 ```
 
 | variable       | description                                                                                                                                                                                                                       |  
@@ -166,16 +168,9 @@ aws_region = <region name for storage provider>
 | `key`          | The key is required to authenticate you to S3 storage. (Note: `key_id` and `key` are typically used together for authentication.)                                                                                                 |  
 | `use_v4_signature` | There are two versions of authentication protocols that can be used with S3 storage. Version 2 is the older one, which may still be supported by some cloud providers; version 4 is the current one used by Amazon S3 and is supported by most providers. If you don't set this option, Seafile will use v2 protocol. It's suggested to use v4 protocol. |  
 | `aws_region`   | If you use v4 protocol, set this option to the region you chose when you create the buckets. If it's not set and you're using v4 protocol, Seafile will use `us-east-1` as the default. This option will be ignored if you use v2 protocol. |
+| `use_https` | Use https to connect to S3. It's recommended to use https. |
 
 
-
-!!! tip
-    For file search and webdav to work with the v4 signature mechanism, you need to add following lines to ~/.boto
-
-    ```
-    [s3]
-    use-sigv4 = True
-    ```
 ## Self-hosted S3 Storage
 
 Many self-hosted object storage systems are now compatible with the S3 API, such as OpenStack Swift, Ceph's RADOS Gateway and Minio. You can use these S3-compatible storage systems as backend for Seafile. Here is an example config:
@@ -189,6 +184,7 @@ key = your-secret-key
 host = 192.168.1.123:8080
 path_style_request = true
 use_v4_signature = true
+use_https = true
 
 [fs_object_backend]
 name = s3
@@ -198,6 +194,7 @@ key = your-secret-key
 host = 192.168.1.123:8080
 path_style_request = true
 use_v4_signature = true
+use_https = true
 
 [block_backend]
 name = s3
@@ -207,6 +204,7 @@ key = your-secret-key
 host = 192.168.1.123:8080
 path_style_request = true
 use_v4_signature = true
+use_https = true
 ```
 
 | variable           | description                                                                                                                                                                                             |  
@@ -216,47 +214,8 @@ use_v4_signature = true
 | `key_id`           | The key_id is required to authenticate you to S3 storage.                                                                                                                                              |  
 | `key`              | The key is required to authenticate you to S3 storage. (Note: `key_id` and `key` are typically used together for authentication.)                                                                       |  
 | `path_style_request` | This option asks Seafile to use URLs like `https://192.168.1.123:8080/bucketname/object` to access objects. In Amazon S3, the default URL format is in virtual host style, such as `https://bucketname.s3.amazonaws.com/object`. But this style relies on advanced DNS server setup. So most self-hosted storage systems only implement the path style format. So we recommend to set this option to true. |
-| `use_v4_signature`  | There are two versions of authentication protocols that can be used with S3 storage. Version 2 is the protocol supported by most self-hosted storage; version 4 is the current protocol used by AWS S3, but may not be supported by some self-hosted storage. If you don't set this option, Seafile will use the v2 protocol by default. We recommend to use V4 if possible. Please note that if you want to migrate from S3 storage to other storage, the migration script doesn't work with V2 authentication protocol due to limitation of third-party library. |  
-
-!!! tip 
-    For file search and webdav to work with the v4 signature mechanism, you need to add following lines to ~/.boto
-
-    ```
-    [s3]
-    use-sigv4 = True
-    ```
-
-## Use HTTPS connections to S3
-
-To use HTTPS connections to S3, add the following options to seafile.conf:
-
-```
-[commit_object_backend]
-name = s3
-......
-use_https = true
-
-[fs_object_backend]
-name = s3
-......
-use_https = true
-
-[block_backend]
-name = s3
-......
-use_https = true
-```
-
-Because the server package is built on CentOS 6, if you're using Debian/Ubuntu, you have to copy the system CA bundle to CentOS's CA bundle path. Otherwise Seafile can't find the CA bundle so that the SSL connection will fail.
-
-```
-sudo mkdir -p /etc/pki/tls/certs
-sudo cp /etc/ssl/certs/ca-certificates.crt /etc/pki/tls/certs/ca-bundle.crt
-sudo ln -s /etc/pki/tls/certs/ca-bundle.crt /etc/pki/tls/cert.pem
-```
-
-!!! warning
-    You **must not use '.' in your bucket names**. Otherwise the wildcard certificate for AWS S3 cannot be resolved. This is a limitation on AWS.
+| `use_v4_signature`  | There are two versions of authentication protocols that can be used with S3 storage. Version 2 is the protocol supported by most self-hosted storage; version 4 is the current protocol used by AWS S3, but may not be supported by some self-hosted storage. If you don't set this option, Seafile will use the v2 protocol by default. We recommend to use V4 if possible. Please note that if you want to migrate from S3 storage to other storage, the migration script doesn't work with V2 authentication protocol due to limitation of third-party library. |
+| `use_https` | Use https to connect to S3. It's recommended to use https. If your self-hosted storage doesn't support https, set this option to false. |
 
 
 ## Run and Test ##
