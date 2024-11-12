@@ -4263,23 +4263,11 @@
 <h1 id="multiple-organizationinstitution-user-management">Multiple Organization/Institution User Management<a class="headerlink" href="#multiple-organizationinstitution-user-management" title="Permanent link">&para;</a></h1>
 <p>Starting from version 5.1, you can add institutions into Seafile and assign users into institutions. Each institution can have one or more administrators. This feature is to ease user administration when multiple organizations (universities) share a single Seafile instance. Unlike multi-tenancy, the users are not-isolated. A user from one institution can share files with another institution.</p>
 <h2 id="turn-on-the-feature">Turn on the feature<a class="headerlink" href="#turn-on-the-feature" title="Permanent link">&para;</a></h2>
-<p>In <code>seahub_settings.py</code>, add <code>MULTI_INSTITUTION = True</code> to enable multi-institution feature. And add</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Seafile 7.1.22 or older</label><label for="__tabbed_1_2">Seafile 8.0.0 or newer</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="n">EXTRA_MIDDLEWARE_CLASSES</span> <span class="o">+=</span> <span class="p">(</span>
-    <span class="s1">&#39;seahub.institutions.middleware.InstitutionMiddleware&#39;</span><span class="p">,</span>
-<span class="p">)</span>
+<p>In <code>seahub_settings.py</code>, add <code>MULTI_INSTITUTION = True</code> to enable multi-institution feature, and add</p>
+<div class="highlight"><pre><span></span><code>    <span class="n">EXTRA_MIDDLEWARE</span> <span class="o">+=</span> <span class="p">(</span>
+        <span class="s1">&#39;seahub.institutions.middleware.InstitutionMiddleware&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
 </code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="n">EXTRA_MIDDLEWARE</span> <span class="o">+=</span> <span class="p">(</span>
-    <span class="s1">&#39;seahub.institutions.middleware.InstitutionMiddleware&#39;</span><span class="p">,</span>
-<span class="p">)</span>
-</code></pre></div>
-</div>
-</div>
-</div>
 <div class="admonition tip">
 <p class="admonition-title">Please replease <code>+=</code> to <code>=</code> if <code>EXTRA_MIDDLEWARE_CLASSES</code> or <code>EXTRA_MIDDLEWARE</code> is not defined</p>
 </div>
