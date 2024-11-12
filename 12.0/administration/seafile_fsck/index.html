@@ -4366,12 +4366,7 @@
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>If your Seafile server is deployed by <a href="../../setup/setup_ce_by_docker/">Docker</a>, you have to run the above command <strong>in the container</strong>:</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>bash
-<span class="c1"># after entering the container</span>
-<span class="nb">cd</span><span class="w"> </span>/scripts
-./seaf-fsck.sh<span class="w"> </span><span class="o">[</span>--repair<span class="p">|</span>-r<span class="o">]</span><span class="w"> </span><span class="o">[</span>--export<span class="p">|</span>-E<span class="w"> </span>export_path<span class="o">]</span><span class="w"> </span><span class="o">[</span>repo_id_1<span class="w"> </span><span class="o">[</span>repo_id_2<span class="w"> </span>...<span class="o">]]</span>
-</code></pre></div>
+<p>Enter into the docker image, then go to <code>/opt/seafile/seafile-server-latest</code></p>
 </div>
 <p>There are three modes of operation for seaf-fsck:</p>
 <ol>
@@ -4381,12 +4376,10 @@
 </ol>
 <h2 id="checking-integrity-of-libraries">Checking Integrity of Libraries<a class="headerlink" href="#checking-integrity-of-libraries" title="Permanent link">&para;</a></h2>
 <p>Running seaf-fsck.sh without any arguments will run a <strong>read-only</strong> integrity check for all libraries.</p>
-<div class="highlight"><pre><span></span><code>cd seafile-server-latest
-./seaf-fsck.sh
+<div class="highlight"><pre><span></span><code>./seaf-fsck.sh
 </code></pre></div>
 <p>If you want to check integrity for specific libraries, just append the library id's as arguments:</p>
-<div class="highlight"><pre><span></span><code>cd seafile-server-latest
-./seaf-fsck.sh [library-id1] [library-id2] ...
+<div class="highlight"><pre><span></span><code>./seaf-fsck.sh [library-id1] [library-id2] ...
 </code></pre></div>
 <p>The output looks like:</p>
 <div class="highlight"><pre><span></span><code>[02/13/15 16:21:07] fsck.c(470): Running fsck for repo ca1a860d-e1c1-4a52-8123-0bf9def8697f.
@@ -4418,12 +4411,10 @@
 <li>Check data integrity in that specific state. If files or directories are corrupted, set them to empty files or empty directories. The corrupted paths will be reported, so that the user can recover them from somewhere else.</li>
 </ol>
 <p>Running the following command repairs all the libraries:</p>
-<div class="highlight"><pre><span></span><code>cd seafile-server-latest
-./seaf-fsck.sh --repair
+<div class="highlight"><pre><span></span><code>./seaf-fsck.sh --repair
 </code></pre></div>
 <p>Most of time you run the read-only integrity check first, to find out which libraries are corrupted. And then you repair specific libraries with the following command:</p>
-<div class="highlight"><pre><span></span><code>cd seafile-server-latest
-./seaf-fsck.sh --repair [library-id1] [library-id2] ...
+<div class="highlight"><pre><span></span><code>./seaf-fsck.sh --repair [library-id1] [library-id2] ...
 </code></pre></div>
 <p>After repairing, in the library history, seaf-fsck includes the list of files and folders that are corrupted. So it's much easier to located corrupted paths.</p>
 <h3 id="best-practice-for-repairing-a-library">Best Practice for Repairing a Library<a class="headerlink" href="#best-practice-for-repairing-a-library" title="Permanent link">&para;</a></h3>
@@ -4440,8 +4431,7 @@
 <h2 id="exporting-libraries-to-file-system">Exporting Libraries to File System<a class="headerlink" href="#exporting-libraries-to-file-system" title="Permanent link">&para;</a></h2>
 <p>You can use seaf-fsck to export all the files in libraries to external file system (such as Ext4). This procedure doesn't rely on the seafile database. As long as you have your seafile-data directory, you can always export your files from Seafile to external file system.</p>
 <p>The command syntax is</p>
-<div class="highlight"><pre><span></span><code>cd seafile-server-latest
-./seaf-fsck.sh --export top_export_path [library-id1] [library-id2] ...
+<div class="highlight"><pre><span></span><code>./seaf-fsck.sh --export top_export_path [library-id1] [library-id2] ...
 </code></pre></div>
 <p>The argument <code>top_export_path</code> is a directory to place the exported files. Each library will be exported as a sub-directory of the export path. If you don't specify library ids, all libraries will be exported.</p>
 <p>Currently only un-encrypted libraries can be exported. Encrypted libraries will be skipped.</p>
