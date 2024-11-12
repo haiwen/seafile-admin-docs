@@ -4484,7 +4484,9 @@ Please always follow the main <a href="../upgrade/">upgrade guide</a>.</p>
 <h2 id="new-python-libraries">New Python libraries<a class="headerlink" href="#new-python-libraries" title="Permanent link">&para;</a></h2>
 <p>Note, you should install Python libraries system wide using root user or sudo mode.</p>
 <p>For Ubuntu 22.04/24.04</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> </span><span class="nv">future</span><span class="o">==</span><span class="m">1</span>.0.*<span class="w"> </span><span class="nv">mysqlclient</span><span class="o">==</span><span class="m">2</span>.2.*<span class="w"> </span><span class="nv">pillow</span><span class="o">==</span><span class="m">10</span>.4.*<span class="w"> </span><span class="nv">sqlalchemy</span><span class="o">==</span><span class="m">2</span>.0.*<span class="w"> </span><span class="nv">gevent</span><span class="o">==</span><span class="m">24</span>.2.*<span class="w"> </span><span class="nv">captcha</span><span class="o">==</span><span class="m">0</span>.6.*<span class="w"> </span><span class="nv">django_simple_captcha</span><span class="o">==</span><span class="m">0</span>.6.*<span class="w"> </span><span class="nv">djangosaml2</span><span class="o">==</span><span class="m">1</span>.9.*<span class="w"> </span><span class="nv">pysaml2</span><span class="o">==</span><span class="m">7</span>.3.*<span class="w"> </span><span class="nv">pycryptodome</span><span class="o">==</span><span class="m">3</span>.20.*<span class="w"> </span><span class="nv">cffi</span><span class="o">==</span><span class="m">1</span>.17.0<span class="w"> </span>python-ldap<span class="o">==</span><span class="m">3</span>.4.*<span class="w"> </span><span class="nv">PyMuPDF</span><span class="o">==</span><span class="m">1</span>.24.*
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> </span><span class="nv">future</span><span class="o">==</span><span class="m">1</span>.0.*<span class="w"> </span><span class="nv">mysqlclient</span><span class="o">==</span><span class="m">2</span>.2.*<span class="w"> </span><span class="nv">pillow</span><span class="o">==</span><span class="m">10</span>.4.*<span class="w"> </span><span class="nv">sqlalchemy</span><span class="o">==</span><span class="m">2</span>.0.*<span class="w"> </span><span class="se">\</span>
+<span class="nv">gevent</span><span class="o">==</span><span class="m">24</span>.2.*<span class="w"> </span><span class="nv">captcha</span><span class="o">==</span><span class="m">0</span>.6.*<span class="w"> </span><span class="nv">django_simple_captcha</span><span class="o">==</span><span class="m">0</span>.6.*<span class="w"> </span><span class="nv">djangosaml2</span><span class="o">==</span><span class="m">1</span>.9.*<span class="w"> </span><span class="se">\</span>
+<span class="nv">pysaml2</span><span class="o">==</span><span class="m">7</span>.3.*<span class="w"> </span><span class="nv">pycryptodome</span><span class="o">==</span><span class="m">3</span>.20.*<span class="w"> </span><span class="nv">cffi</span><span class="o">==</span><span class="m">1</span>.17.0<span class="w"> </span>python-ldap<span class="o">==</span><span class="m">3</span>.4.*<span class="w"> </span><span class="nv">PyMuPDF</span><span class="o">==</span><span class="m">1</span>.24.*
 </code></pre></div>
 <h2 id="upgrade-to-120-for-binary-installation">Upgrade to 12.0 (for binary installation)<a class="headerlink" href="#upgrade-to-120-for-binary-installation" title="Permanent link">&para;</a></h2>
 <p>The following instruction is for binary package based installation. If you use Docker based installation, please see <a href="../upgrade_docker/"></a></p>
@@ -4497,7 +4499,13 @@ Please always follow the main <a href="../upgrade/">upgrade guide</a>.</p>
 <div class="highlight"><pre><span></span><code>JWT_PRIVATE_KEY=xxx
 SEAFILE_SERVER_PROTOCOL=https
 SEAFILE_SERVER_HOSTNAME=seafile.example.com
+SEAFILE_MYSQL_DB_HOST=db # your MySQL host
+SEAFILE_MYSQL_DB_PORT=3306
+SEAFILE_MYSQL_DB_USER=seafile
+SEAFILE_MYSQL_DB_PASSWORD=&lt;your MySQL password&gt;
 SEAFILE_MYSQL_DB_CCNET_DB_NAME=ccnet_db
+SEAFILE_MYSQL_DB_SEAFILE_DB_NAME=seafile_db
+SEAFILE_MYSQL_DB_SEAHUB_DB_NAME=seahub_db
 </code></pre></div>
 <p>Note: JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: <code>pwgen -s 40 1</code></p>
 <h3 id="4-start-seafile-120x-server">4) Start Seafile-12.0.x server<a class="headerlink" href="#4-start-seafile-120x-server" title="Permanent link">&para;</a></h3>
