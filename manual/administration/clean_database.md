@@ -1,7 +1,5 @@
 # Clean Database
 
-## Seahub
-
 ### Session
 
 Use the following command to clear expired session records in Seahub database:
