@@ -2,10 +2,13 @@
 
 Since version 7.0.8 pro, Seafile provides commands to export reports via command line.
 
+!!! tip
+    Enter into the docker image, then go to `/opt/seafile/seafile-server-latest`
+
 ## Export User Traffic Report
 
 ```
-cd <install-path>/seafile-server-latest
+cd seafile-server-latest
 ./seahub.sh python-env python seahub/manage.py export_user_traffic_report --date 201906
 
 ```
@@ -13,7 +16,7 @@ cd <install-path>/seafile-server-latest
 ## Export User Storage Report
 
 ```
-cd <install-path>/seafile-server-latest
+cd seafile-server-latest
 ./seahub.sh python-env python seahub/manage.py export_user_storage_report
 
 ```
@@ -21,7 +24,7 @@ cd <install-path>/seafile-server-latest
 ## Export File Access Log
 
 ```
-cd <install-path>/seafile-server-latest
+cd seafile-server-latest
 ./seahub.sh python-env python seahub/manage.py export_file_access_log --start-date 2019-06-01 --end-date 2019-07-01
 
 ```
