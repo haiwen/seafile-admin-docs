@@ -129,8 +129,3 @@ A simple pattern to divide the workload among multiple GC servers is to assign l
 seaf-gc.sh --id-prefix a123
 
 ```
-
-
-## GC in Seafile docker container
-
-To perform garbage collection inside the seafile docker container, you must run the `/scripts/gc.sh` script. Simply run `docker exec <whatever-your-seafile-container-is-called> /scripts/gc.sh`.

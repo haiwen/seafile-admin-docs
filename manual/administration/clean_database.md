@@ -7,9 +7,13 @@
 Use the following command to clear expired session records in Seahub database:
 
 ```
-cd <install-path>/seafile-server-latest
+cd seafile-server-latest
 ./seahub.sh python-env python3 seahub/manage.py clearsessions
 ```
+
+!!! tip
+    Enter into the docker image, then go to `/opt/seafile/seafile-server-latest`
+
 
 ### Activity
 
@@ -72,7 +76,6 @@ DELETE FROM FileHistory WHERE to_days(now()) - to_days(timestamp) > 90;
 Use the following command to simultaneously clean up table records of Activity, sysadmin_extra_userloginlog, FileAudit, FileUpdate, FileHistory, PermAudit, FileTrash 90 days ago:
 
 ```
-cd <install-path>/seafile-server-latest
 ./seahub.sh python-env python3 seahub/manage.py clean_db_records
 ```
 
@@ -82,7 +85,6 @@ Since version 6.2, we offer command to clear outdated library records in Seahub 
 e.g. records that are not deleted after a library is deleted. This is because users can restore a deleted library, so we can't delete these records at library deleting time.
 
 ```
-cd <install-path>/seafile-server-latest
 ./seahub.sh python-env python3 seahub/manage.py clear_invalid_repo_data
 ```
 
@@ -93,7 +95,6 @@ This command has been improved in version 10.0, including:
 2. Dry-run mode: if you just want to see how much invalid data can be deleted without actually deleting any data, you can use the dry-run option, e.g.
 
 ```
-cd <install-path>/seafile-server-latest
 ./seahub.sh python-env python3 seahub/manage.py clear_invalid_repo_data --dry-run=true
 ```
 
