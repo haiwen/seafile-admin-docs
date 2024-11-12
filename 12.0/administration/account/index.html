@@ -4346,13 +4346,16 @@
 <p>When you setup seahub website, you should have setup a admin account. After you logged in a admin, you may add/delete users and file libraries.</p>
 <h4 id="how-to-change-a-users-id">How to change a user's ID<a class="headerlink" href="#how-to-change-a-users-id" title="Permanent link">&para;</a></h4>
 <p>Since version 11.0, if you need to change a user's external ID, you can manually modify database table <code>social_auth_usersocialauth</code> to map the new external ID to internal ID.</p>
-<p>For version below 11.0, if you really want to change a user's ID, you should create a new user then use this admin API to migrate the data from old user to the new user: https://download.seafile.com/published/web-api/v2.1-admin/accounts.md#user-content-Migrate%20Account.</p>
 <h4 id="resetting-user-password">Resetting User Password<a class="headerlink" href="#resetting-user-password" title="Permanent link">&para;</a></h4>
 <p>Administrator can reset password for a user in "System Admin" page.</p>
 <p>In a private server, the default settings doesn't support users to reset their password by email. If you want to enable this, you have first to <a href="../../config/sending_email/">set up notification email</a>.</p>
 <h4 id="forgot-admin-account-or-password">Forgot Admin Account or Password?<a class="headerlink" href="#forgot-admin-account-or-password" title="Permanent link">&para;</a></h4>
-<p>You may run <code>reset-admin.sh</code> script under seafile-server directory. This script would help you reset the admin account and password.
+<p>You may run <code>reset-admin.sh</code> script under seafile-server-latest directory. This script would help you reset the admin account and password.
 Your data will not be deleted from the admin account, this only unlocks and changes the password for the admin account.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Enter into the docker image, then go to <code>/opt/seafile/seafile-server-latest</code></p>
+</div>
 <h4 id="user-quota-notice">User Quota Notice<a class="headerlink" href="#user-quota-notice" title="Permanent link">&para;</a></h4>
 <p>Under the seafile-server-latest directory, run <code>./seahub.sh python-env python seahub/manage.py check_user_quota</code> , when the user quota exceeds 90%, an email will be sent. If you want to enable this, you have first to <a href="../../config/sending_email/">set up notification email</a>.</p>
 
