@@ -5,41 +5,19 @@ There are generally two parts of data to backup
 * Seafile library data
 * Databases
 
-If you setup seafile server according to our manual, you should have a directory layout like:
-
-```
-/opt/seafile
-  --seafile-server-9.0.x # untar from seafile package
-  --seafile-data   # seafile configuration and data (if you choose the default)
-  --seahub-data    # seahub data
-  --logs
-  --conf
-```
-
-All your library data is stored under the '/opt/seafile' directory.
-
-Seafile also stores some important metadata data in a few databases. The names and locations of these databases depends on which database software you use.
-
-For SQLite, the database files are also under the '/opt/seafile' directory. The locations are:
-
-* ccnet/PeerMgr/usermgr.db: contains user information
-* ccnet/GroupMgr/groupmgr.db: contains group information
-* seafile-data/seafile.db: contains library metadata
-* seahub.db: contains tables used by the web front end (seahub)
-
-For MySQL, the databases are created by the administrator, so the names can be different from one deployment to another. There are 3 databases:
+There are 3 databases:
 
 * ccnet_db: contains user and group information
 * seafile_db: contains library metadata
 * seahub_db: contains tables used by the web front end (seahub)
 
+
 ## Backup steps
 
-The backup is a three step procedure:
+The backup is a two step procedure:
 
-1. Optional: Stop Seafile server first if you're using SQLite as database.
-2. Backup the databases;
-3. Backup the seafile data directory;
+1. Backup the databases;
+2. Backup the seafile data directory;
 
 ## Backup Order: Database First or Data Directory First
 
@@ -69,30 +47,14 @@ It's recommended to backup the database to a separate file each time. Don't over
 Assume your database names are `ccnet_db`, `seafile_db` and `seahub_db`. mysqldump automatically locks the tables so you don't need to stop Seafile server when backing up MySQL databases. Since the database tables are usually very small, it won't take long to dump.
 
 ```
-mysqldump -h [mysqlhost] -u[username] -p[password] --opt ccnet_db > /backup/databases/ccnet-db.sql.`date +"%Y-%m-%d-%H-%M-%S"`
+mysqldump -h [mysqlhost] -u[username] -p[password] --opt ccnet_db > /backup/databases/ccnet_db.sql.`date +"%Y-%m-%d-%H-%M-%S"`
 
-mysqldump -h [mysqlhost] -u[username] -p[password] --opt seafile_db > /backup/databases/seafile-db.sql.`date +"%Y-%m-%d-%H-%M-%S"`
+mysqldump -h [mysqlhost] -u[username] -p[password] --opt seafile_db > /backup/databases/seafile_db.sql.`date +"%Y-%m-%d-%H-%M-%S"`
 
-mysqldump -h [mysqlhost] -u[username] -p[password] --opt seahub_db > /backup/databases/seahub-db.sql.`date +"%Y-%m-%d-%H-%M-%S"`
-
-```
-
-**SQLite**
-
-!!! warning "SQLite has not supported since Seafile 11.0"
-
-You need to stop Seafile server first before backing up SQLite database.
+mysqldump -h [mysqlhost] -u[username] -p[password] --opt seahub_db > /backup/databases/seahub_db.sql.`date +"%Y-%m-%d-%H-%M-%S"`
 
 ```
-sqlite3 /opt/seafile/ccnet/GroupMgr/groupmgr.db .dump > /backup/databases/groupmgr.db.bak.`date +"%Y-%m-%d-%H-%M-%S"`
 
-sqlite3 /opt/seafile/ccnet/PeerMgr/usermgr.db .dump > /backup/databases/usermgr.db.bak.`date +"%Y-%m-%d-%H-%M-%S"`
-
-sqlite3 /opt/seafile/seafile-data/seafile.db .dump > /backup/databases/seafile.db.bak.`date +"%Y-%m-%d-%H-%M-%S"`
-
-sqlite3 /opt/seafile/seahub.db .dump > /backup/databases/seahub.db.bak.`date +"%Y-%m-%d-%H-%M-%S"`
-
-```
 
 ### Backing up Seafile library data
 
@@ -130,29 +92,11 @@ Now with the latest valid database backup files at hand, you can restore them.
 **MySQL**
 
 ```
-mysql -u[username] -p[password] ccnet_db < ccnet-db.sql.2013-10-19-16-00-05
-mysql -u[username] -p[password] seafile_db < seafile-db.sql.2013-10-19-16-00-20
-mysql -u[username] -p[password] seahub_db < seahub-db.sql.2013-10-19-16-01-05
+mysql -u[username] -p[password] ccnet_db < ccnet_db.sql.2013-10-19-16-00-05
+mysql -u[username] -p[password] seafile_db < seafile_db.sql.2013-10-19-16-00-20
+mysql -u[username] -p[password] seahub_db < seahub_db.sql.2013-10-19-16-01-05
 
 ```
-
-**SQLite**
-
-!!! warning "SQLite has not supported since Seafile 11.0"
-
-```
-cd /opt/seafile
-mv ccnet/PeerMgr/usermgr.db ccnet/PeerMgr/usermgr.db.old
-mv ccnet/GroupMgr/groupmgr.db ccnet/GroupMgr/groupmgr.db.old
-mv seafile-data/seafile.db seafile-data/seafile.db.old
-mv seahub.db seahub.db.old
-sqlite3 ccnet/PeerMgr/usermgr.db < usermgr.db.bak.xxxx
-sqlite3 ccnet/GroupMgr/groupmgr.db < groupmgr.db.bak.xxxx
-sqlite3 seafile-data/seafile.db < seafile.db.bak.xxxx
-sqlite3 seahub.db < seahub.db.bak.xxxx
-
-```
-
 
 
 ## Backup and restore for Docker based deployment
