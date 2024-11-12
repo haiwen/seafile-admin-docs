@@ -21,11 +21,11 @@ You can add/edit roles and permission for users. A role is just a group of users
         ./seahub.sh python-env python3 seahub/manage.py set_user_role_upload_download_rate_limit
         ```
 
-Seafile comes with two build-in roles `default` and `guest`, a default user is a normal user with permissions as followings:
+- `can_drag_drop_folder_to_sync`: allow or deny user to sync folder by draging and droping
 
-!!! tip "New in 12.0"
-    - `can_drag_drop_folder_to_sync`: allow or deny user to sync folder by draging and droping
-    - `can_export_files_via_mobile_client`: allow or deny user to export files in using mobile client
+- `can_export_files_via_mobile_client`: allow or deny user to export files in using mobile client
+
+Seafile comes with two build-in roles `default` and `guest`, a default user is a normal user with permissions as followings:
 
 ```py
     'default': {
@@ -53,6 +53,7 @@ Seafile comes with two build-in roles `default` and `guest`, a default user is a
 ```
 
 While a guest user can only read files/folders in the system, here are the permissions for a guest user:
+
 ```py
     'guest': {
         'can_add_repo': False,
