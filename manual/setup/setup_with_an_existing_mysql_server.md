@@ -1,6 +1,21 @@
 # Deploy with an existing MySQL server
 
-If you want to use an existing MySQL server, you can modify the `.env` as follows
+The entire `db` service needs to be removed (or noted) in `seafile-server.yml` if you would like to use an existing MySQL server, otherwise there is a redundant database service is running 
+
+```yml
+service:
+
+  # note or remove the entire `db` service
+  #db:
+    #image: ${SEAFILE_DB_IMAGE:-mariadb:10.11}
+    #container_name: seafile-mysql
+    # ... other parts in service `db`
+
+  # do not change other services
+...
+```
+
+What's more, you have to modify the `.env` to set correctly the fields with MySQL:
 
 ```env
 SEAFILE_MYSQL_DB_HOST=192.168.0.2
