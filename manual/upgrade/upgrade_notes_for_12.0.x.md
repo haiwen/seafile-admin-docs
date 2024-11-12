@@ -55,7 +55,14 @@ Note, you should install Python libraries system wide using root user or sudo mo
 For Ubuntu 22.04/24.04
 
 ```sh
+<<<<<<< HEAD
 sudo pip3 install future==1.0.* mysqlclient==2.2.* pillow==10.4.* sqlalchemy==2.0.* gevent==24.2.* captcha==0.6.* django_simple_captcha==0.6.* djangosaml2==1.9.* pysaml2==7.3.* pycryptodome==3.20.* cffi==1.17.0 python-ldap==3.4.* PyMuPDF==1.24.*
+=======
+sudo pip3 install future==1.0.* mysqlclient==2.2.* pillow==10.4.* sqlalchemy==2.0.* \
+gevent==24.2.* captcha==0.6.* django_simple_captcha==0.6.* djangosaml2==1.9.* \
+pysaml2==7.3.* pycryptodome==3.20.* cffi==1.17.0 python-ldap==3.4.* PyMuPDF==1.24.* \
+numpy==1.26.*
+>>>>>>> d3cbab19 (update 12.0 upgrade notes)
 ```
 
 ## Upgrade to 12.0 (for binary installation)
@@ -92,6 +99,18 @@ Since seafile 12.0, we use docker to deploy the notification server. Please foll
 !!! note Notification server and Seafile binary package
 
     Notification server is designed to be work with Docker based deployment. To make it work with **Seafile binary package** on the same server is, you will need to add Nginx rules for notification server properly.
+    
+    In addition, you need to specify the relevant information of your MySQL service and log strategy for notification service in the above `.env`:
+
+    ```sh
+    SEAFILE_MYSQL_DB_HOST=db # your MySQL host
+    SEAFILE_MYSQL_DB_PORT=3306
+    SEAFILE_MYSQL_DB_USER=seafile
+    SEAFILE_MYSQL_DB_PASSWORD=<your MySQL password>
+    SEAFILE_MYSQL_DB_SEAFILE_DB_NAME=seafile_db
+    SEAFILE_LOG_TO_STDOUT=false
+    NOTIFICATION_SERVER_LOG_LEVEL=info
+    ```
 
 
 ## Upgrade SeaDoc from 0.8 to 1.0
