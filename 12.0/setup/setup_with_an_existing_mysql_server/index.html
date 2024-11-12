@@ -4145,7 +4145,19 @@
 
 
 <h1 id="deploy-with-an-existing-mysql-server">Deploy with an existing MySQL server<a class="headerlink" href="#deploy-with-an-existing-mysql-server" title="Permanent link">&para;</a></h1>
-<p>If you want to use an existing MySQL server, you can modify the <code>.env</code> as follows</p>
+<p>The entire <code>db</code> service needs to be removed (or noted) in <code>seafile-server.yml</code> if you would like to use an existing MySQL server, otherwise there is a redundant database service is running </p>
+<div class="highlight"><pre><span></span><code>service:
+
+  # note or remove the entire `db` service
+  #db:
+    #image: ${SEAFILE_DB_IMAGE:-mariadb:10.11}
+    #container_name: seafile-mysql
+    # ... other parts in service `db`
+
+  # do not change other services
+...
+</code></pre></div>
+<p>What's more, you have to modify the <code>.env</code> to set correctly the fields with MySQL:</p>
 <div class="highlight"><pre><span></span><code>SEAFILE_MYSQL_DB_HOST=192.168.0.2
 SEAFILE_MYSQL_DB_PORT=3306
 INIT_SEAFILE_MYSQL_ROOT_PASSWORD=ROOT_PASSWORD
