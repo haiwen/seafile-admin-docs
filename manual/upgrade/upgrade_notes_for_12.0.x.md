@@ -86,8 +86,7 @@ SEAFILE_MYSQL_DB_USER=seafile
 SEAFILE_MYSQL_DB_PASSWORD=<your MySQL password>
 SEAFILE_MYSQL_DB_CCNET_DB_NAME=ccnet_db
 SEAFILE_MYSQL_DB_SEAFILE_DB_NAME=seafile_db
-SEAFILE_LOG_TO_STDOUT=false
-NOTIFICATION_SERVER_LOG_LEVEL=info
+SEAFILE_MYSQL_DB_SEAHUB_DB_NAME=seahub_db
 ```
 
 Note: JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: `pwgen -s 40 1`
