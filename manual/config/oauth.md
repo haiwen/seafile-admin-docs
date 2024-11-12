@@ -1,8 +1,6 @@
 ## OAuth
 
-Since CE version 6.2.3, Seafile supports user login via [OAuth](https://oauth.net/).
-
-Before using OAuth, Seafile administrator should first register an OAuth2 client application on your authorization server, then add some configurations to seahub_settings.py.
+Before using OAuth, you should first register an OAuth2 client application on your authorization server, then add some configurations to seahub_settings.py.
 
 ### Register an OAuth2 client application
 
@@ -47,25 +45,25 @@ OAUTH_ATTRIBUTE_MAP = {
 }
 ```
 
-!!! tip "More explanations about the settings"
+### More explanations about the settings
 
-    - **OAUTH_PROVIDER  /  OAUTH_PROVIDER_DOMAIN**
+**OAUTH_PROVIDER  /  OAUTH_PROVIDER_DOMAIN**
 
-    `OAUTH_PROVIDER_DOMAIN` will be deprecated, and it can be replaced by `OAUTH_PROVIDER`. This variable is used in the database to identify third-party providers, either as a domain or as an easy-to-remember string less than 32 characters. 
+`OAUTH_PROVIDER_DOMAIN` will be deprecated, and it can be replaced by `OAUTH_PROVIDER`. This variable is used in the database to identify third-party providers, either as a domain or as an easy-to-remember string less than 32 characters. 
 
-    - **OAUTH_ATTRIBUTE_MAP**
+**OAUTH_ATTRIBUTE_MAP**
 
-    This variables describes which claims from the response of the user info endpoint are to be filled into which attributes of the new Seafile user. The format is showing like below:
+This variables describes which claims from the response of the user info endpoint are to be filled into which attributes of the new Seafile user. The format is showing like below:
 
-    ```python
+```python
     OAUTH_ATTRIBUTE_MAP = {
         <:Attribute in the OAuth provider>: (<:Is required or not in Seafile?>, <:Attribute in Seafile >)
     }
-    ```
+```
 
-    If the remote resource server, like Github, uses email to identify an unique user too, Seafile will use Github id directorily, the OAUTH_ATTRIBUTE_MAP setting for Github should be like this:
+If the remote resource server, like Github, uses email to identify an unique user too, Seafile will use Github id directorily, the OAUTH_ATTRIBUTE_MAP setting for Github should be like this:
 
-    ```python
+```python
     OAUTH_ATTRIBUTE_MAP = {
         "id": (True, "email"), # it is deprecated
         "uid / id / username": (True, "uid") 
@@ -74,37 +72,37 @@ OAUTH_ATTRIBUTE_MAP = {
         "name": (False, "name"),
         "email": (False, "contact_email"),	
     }
-    ```
+```
 
-    The key part `id` stands for an unique identifier of user in Github, this tells Seafile which attribute remote resoure server uses to indentify its user. The value part `True` stands for if this field is mandatory by Seafile.
+The key part `id` stands for an unique identifier of user in Github, this tells Seafile which attribute remote resoure server uses to indentify its user. The value part `True` stands for if this field is mandatory by Seafile.
 
-    Since 11.0 version, Seafile use `uid` as the external unique identifier of the user. It stores `uid` in table `social_auth_usersocialauth` and map it to internal unique identifier used in Seafile. Different OAuth systems have different attributes, which may be: `id` or `uid` or `username`, etc.  And the id/email config `id: (True, email)`  is deprecated. 
+Since 11.0 version, Seafile use `uid` as the external unique identifier of the user. It stores `uid` in table `social_auth_usersocialauth` and map it to internal unique identifier used in Seafile. Different OAuth systems have different attributes, which may be: `id` or `uid` or `username`, etc.  And the id/email config `id: (True, email)`  is deprecated. 
 
-    If you upgrade from a version below 11.0, you need to have both fields configured, i.e., you configuration should be like:
+If you upgrade from a version below 11.0, you need to have both fields configured, i.e., you configuration should be like:
 
-    ```python
+```python
     OAUTH_ATTRIBUTE_MAP = {
         "id": (True, "email"),
         "uid": (True, "uid") ,
         "name": (False, "name"),
         "email": (False, "contact_email"),	
     }
-    ```
+```
 
-    In this way, when a user login, Seafile will first use "id -> email" map to find the old user and then create "uid -> uid" map for this old user. After all users login once, you can delete the configuration  `"id": (True, "email")`.
+In this way, when a user login, Seafile will first use "id -> email" map to find the old user and then create "uid -> uid" map for this old user. After all users login once, you can delete the configuration  `"id": (True, "email")`.
 
-    If you use a newly deployed 11.0 Seafile instance, you don't need the `"id": (True, "email")` item. Your configuration should be like:
+If you use a newly deployed 11.0+ Seafile instance, you don't need the `"id": (True, "email")` item. Your configuration should be like:
 
-    ```python
+```python
     OAUTH_ATTRIBUTE_MAP = {
         "uid": (True, "uid") ,
         "name": (False, "name"),
         "email": (False, "contact_email"),	
     }
-    ```
+```
 
 
-#### Sample settings
+### Sample settings
 
 === "Google"
 

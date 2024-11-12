@@ -1,3 +1,7 @@
+---
+status: new
+---
+
 # Upgrade Seafile Docker
 
 For maintenance upgrade, like from version 10.0.1 to version 10.0.4, just download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version, then start with docker compose up.
