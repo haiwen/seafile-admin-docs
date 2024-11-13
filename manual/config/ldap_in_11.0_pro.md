@@ -436,6 +436,12 @@ SSO_LDAP_USE_SAME_UID = True
 
 !!! note "Here the UID means the unique user ID, in LDAP it is the attribute you use for `LDAP_LOGIN_ATTR` (not `LDAP_UID_ATTR`), in ADFS it is `uid` attribute. You need make sure you use the same attribute for the two settings"
 
+On this basis, if you only want users to login using OSS and not through LDAP, you can set
+
+```python
+USE_LDAP_SYNC_ONLY = True
+```
+
 ## Importing Roles from LDAP
 
 Seafile Pro Edition supports syncing roles from LDAP or Active Directory.
