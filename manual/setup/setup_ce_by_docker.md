@@ -80,10 +80,10 @@ Placeholder spot for shared volumes. You may elect to store certain persistent i
 * /opt/seafile-data/seafile: This is the directory for seafile server configuration and data.
     * /opt/seafile-data/seafile/logs: This is the directory that would contain the log files of seafile server processes. For example, you can find seaf-server logs in `/opt/seafile-data/seafile/logs/seafile.log`.
 * /opt/seafile-data/logs: This is the directory for operating system.
-    * /opt/seafile-data/logs/var-log: This is the directory that would be mounted as `/var/log` inside the container. 
+    * /opt/seafile-data/logs/var-log: This is the directory that would be mounted as `/var/log` inside the container. `/opt/seafile-data/logs/var-log/nginx` contains the logs of Nginx in the Seafile container.
 
 !!! tip 
-    From Seafile Docker 12.0, the Nginx's log is not accessable, as we use the ***Caddy*** to do web service proxy. If you would like to access the logs of *Caddy*, you can use following command:
+    From Seafile Docker 12.0, we use the ***Caddy*** to do web service proxy. If you would like to access the logs of *Caddy*, you can use following command:
 
     ```sh
     docker logs seafile-caddy --follow
