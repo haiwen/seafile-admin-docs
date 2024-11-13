@@ -5212,6 +5212,9 @@ After synchronization is complete, you can see the user's full name, department 
 <div class="admonition note">
 <p class="admonition-title">Here the UID means the unique user ID, in LDAP it is the attribute you use for <code>LDAP_LOGIN_ATTR</code> (not <code>LDAP_UID_ATTR</code>), in ADFS it is <code>uid</code> attribute. You need make sure you use the same attribute for the two settings</p>
 </div>
+<p>On this basis, if you only want users to login using OSS and not through LDAP, you can set</p>
+<div class="highlight"><pre><span></span><code><span class="n">USE_LDAP_SYNC_ONLY</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
 <h2 id="importing-roles-from-ldap">Importing Roles from LDAP<a class="headerlink" href="#importing-roles-from-ldap" title="Permanent link">&para;</a></h2>
 <p>Seafile Pro Edition supports syncing roles from LDAP or Active Directory.</p>
 <p>To enable this feature, add below option to <code>seahub_settings.py</code>, e.g.</p>
