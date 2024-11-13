@@ -4647,13 +4647,13 @@ nano<span class="w"> </span>.env
 </ul>
 </li>
 <li>/opt/seafile-data/logs: This is the directory for operating system.<ul>
-<li>/opt/seafile-data/logs/var-log: This is the directory that would be mounted as <code>/var/log</code> inside the container. </li>
+<li>/opt/seafile-data/logs/var-log: This is the directory that would be mounted as <code>/var/log</code> inside the container. <code>/opt/seafile-data/logs/var-log/nginx</code> contains the logs of Nginx in the Seafile container.</li>
 </ul>
 </li>
 </ul>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>From Seafile Docker 12.0, the Nginx's log is not accessable, as we use the <strong><em>Caddy</em></strong> to do web service proxy. If you would like to access the logs of <em>Caddy</em>, you can use following command:</p>
+<p>From Seafile Docker 12.0, we use the <strong><em>Caddy</em></strong> to do web service proxy. If you would like to access the logs of <em>Caddy</em>, you can use following command:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>logs<span class="w"> </span>seafile-caddy<span class="w"> </span>--follow
 </code></pre></div>
 </div>
