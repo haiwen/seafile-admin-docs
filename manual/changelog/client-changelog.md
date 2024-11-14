@@ -2,6 +2,11 @@
 
 ## 9.0
 
+### 9.0.11 (2024/11/15)
+
+* Fix potential UI freeze in 9.0.10
+* Fix possible unsync of synced folders on restart
+
 ### 9.0.10 (2024/11/11)
 
 * Don't checkout file/folder with name ".."
