@@ -119,7 +119,7 @@ NOTIFICATION_SERVER_VOLUME=/opt/notification-data
 
 ## S3 storage backend configurations (only valid in pro edition at deploying first time)
 
-- `INIT_S3_STORAGE_BACKEND_CONFIG`: Whether to configure S3 storage backend synchronously during initialization (i.e., the following features in this section, for more details, please refer to [AWS S3](../setup/setup_with_amazon_s3.md#aws-s3)), default is `false`.
+- `INIT_S3_STORAGE_BACKEND_CONFIG`: Whether to configure S3 storage backend synchronously during initialization (i.e., the following features in this section, for more details, please refer to [AWS S3](../setup/setup_with_amazon_s3.md)), default is `false`.
 - `INIT_S3_COMMIT_BUCKET`: S3 storage backend fs objects bucket
 - `INIT_S3_FS_BUCKET`: S3 storage backend block objects bucket
 - `INIT_S3_BLOCK_BUCKET`: S3 storage backend block objects bucket
