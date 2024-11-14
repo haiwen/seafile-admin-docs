@@ -177,6 +177,10 @@ Other changes
 
 Please check our document for how to upgrade to [10.0](../upgrade/upgrade_notes_for_10.0.x.md).
 
+**Note**
+
+If you upgrade to version 10.0.18+ from 10.0.16 or below, you need to upgrade the sqlalchemy to version 1.4.44+ if you use binary based installation. Otherwise "activities" page will not work.
+
 
 ### 10.0.18 (2024-11-01)
 
