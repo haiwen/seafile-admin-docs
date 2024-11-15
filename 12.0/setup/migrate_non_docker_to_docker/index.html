@@ -4602,7 +4602,7 @@ Keep in mind this is not bootsafe!</p>
 <p>In <code>/etc/mysql/mariadb.conf.d/50-server.cnf</code> edit the following line to:
 <div class="highlight"><pre><span></span><code>bind-address    = 192.168.123.45
 </code></pre></div>
-then edit /opt/seafile-data/seafile/conf/ -&gt; ccnet.conf seafile.conf seahub_settings.py in the Host-Line to that IP and execute the following commands:</p>
+then edit /opt/seafile-data/seafile/conf/ -&gt; seafile.conf seahub_settings.py in the Host-Line to that IP and execute the following commands:</p>
 <div class="highlight"><pre><span></span><code>service networking reload
 ip a #to check whether the ip is present
 service mysql restart

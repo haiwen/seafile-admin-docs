@@ -4343,7 +4343,10 @@ mysql&gt; source seafile-db.sql;
 <div class="highlight"><pre><span></span><code>mysql&gt; use seahub_db;
 mysql&gt; source seahub-db.sql;
 </code></pre></div>
-<p>Modify configure files：Append following lines to <a href="../../config/ccnet-conf/">ccnet.conf</a>:</p>
+<div class="admonition danger">
+<p class="admonition-title"><code>ccnet.conf</code> has been removed since Seafile 12.0</p>
+</div>
+<p>Modify configure files：Append following lines to ccnet.conf:</p>
 <div class="highlight"><pre><span></span><code>[Database]
 ENGINE=mysql
 HOST=127.0.0.1
