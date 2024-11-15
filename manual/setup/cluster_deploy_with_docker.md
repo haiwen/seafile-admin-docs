@@ -54,7 +54,6 @@ We assume you have already deployed memcache, MariaDB, ElasticSearch in separate
     ```
 
 6. Check and modify the configuration files (e.g., MySQL, Memcached, Elasticsearch) in configuration files
-    - [ccnet.conf](../config/ccnet-conf.md)
     - [seafevents.conf](../config/seafevents-conf.md)
     - [seafile.conf](../config/seafile-conf.md)
     - [seahub_settings.py](../config/seahub_settings_py.md)
