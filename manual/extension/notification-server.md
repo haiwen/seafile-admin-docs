@@ -15,21 +15,33 @@ The notification server uses websocket protocol and maintains a two-way communic
 
 ## How to configure and run
 
-Since Seafile 12.0, we use docker to deploy the notification server. First deploy Seafile docker, then download `notification-server.yml` and modify the `.env` file:
+Since Seafile 12.0, we use docker to deploy the notification server. First deploy Seafile docker, then download `notification-server.yml` to Seafile directory and modify the `.env` file:
 
 ```sh
 wget https://manual.seafile.com/12.0/docker/notification-server.yml
 ```
 
-Modify `.env`, and insert `notification-server.yml` into `COMPOSE_FILE`
+Modify `.env`, and insert `notification-server.yml` into `COMPOSE_FILE`:
 
 ```env
 COMPOSE_FILE='seafile-server.yml,caddy.yml,notification-server.yml'
 ```
 
+And you need to add the following configurations under seafile.conf:
+
+```conf
+[notification]
+enabled = true
+# the ip of notification server. (default is `notification-server` in Docker)
+host = notification-server
+# the port of notification server
+port = 8083
+```
+
 You can run notification server with the following command:
 
 ```sh
+docker compose down
 docker compose up -d
 ```
 
@@ -54,17 +66,41 @@ There is no additional features for notification server in the Pro Edition. It w
 
 If you enable [clustering](../setup_binary/deploy_in_a_cluster.md), You need to deploy notification server on one of the servers, or a separate server. The load balancer should forward websockets requests to this node.
 
-Modify `notification-server.yml`, and open 8083 port
+Download `.env` and `notification-server.yml` to Notification server directory:
 
-```yml
-services:
+```sh
+wget https://manual.seafile.com/12.0/docker/notification-server/standalone/notification-server.yml
+wget -o .env https://manual.seafile.com/12.0/docker/notification-server/standalone/env
+```
 
-  notification-server:
-    image: ${NOTIFICATION_SERVER_IMAGE:-seafileltd/notification-server:12.0-latest}
-    ...
-    ports:
-      - "8083:8083"
-    ...
+Then modify the `.env` file according to your environment. The following fields are needed to be modified:
+
+| variable               | description                                                                                                   |  
+|------------------------|---------------------------------------------------------------------------------------------------------------|  
+| `NOTIFICATION_SERVER_VOLUME`        | The volume directory of Notification Server data                                                                            |  
+| `SEAFILE_MYSQL_DB_HOST`| Seafile MySQL host                                                                                            |  
+| `SEAFILE_MYSQL_DB_USER`| Seafile MySQL user, default is `seafile`                                                                       |  
+| `SEAFILE_MYSQL_DB_PASSWORD`| Seafile MySQL password                                                                                    |  
+| `TIME_ZONE`            | Time zone                                                                                                     |  
+| `JWT_PRIVATE_KEY`      | JWT key, the same as the config in Seafile `.env` file                                                         |  
+| `SEAFILE_SERVER_HOSTNAME`| Seafile host name                                                                                           |  
+| `SEAFILE_SERVER_PROTOCOL`| http or https                                                                                               |  
+
+You can run notification server with the following command:
+
+```sh
+docker compose up -d
+```
+
+And you need to add the following configurations under `seafile.conf` and restart Seafile server:
+
+```conf
+[notification]
+enabled = true
+# the ip of notification server.
+host = 192.168.0.83
+# the port of notification server
+port = 8083
 ```
 
 You need to configure load balancer according to the following forwarding rules:
