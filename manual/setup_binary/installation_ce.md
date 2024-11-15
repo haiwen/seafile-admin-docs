@@ -244,7 +244,6 @@ $ tree /opt/seafile -L 2
 seafile
 ├── ccnet
 ├── conf
-│   └── ccnet.conf
 │   └── gunicorn.conf.py
 │   └── seafdav.conf
 │   └── seafile.conf

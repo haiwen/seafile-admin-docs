@@ -17,6 +17,43 @@ However, administrators sometimes want to access the files directly on the serve
     * Currently the implementation is '''read-only''', which means you can't modify the files through the mounted folder.
     * One debian/centos systems, you need to be in the "fuse" group to have the permission to mount a FUSE folder.
 
+## Use seaf-fuse in Docker based deployment
+
+Assume we want to mount to `/opt/seafile-fuse` in host.
+
+##### Modify seafile-server.yml
+
+Add the following content
+
+```yml
+  seafile:
+    ...
+    volumes:
+      ...
+      - /opt/seafile-fuse: /seafile-fuse
+    privileged: true
+    cap_add:
+      - SYS_ADMIN
+```
+
+##### Start seaf-fuse with the script in docker
+
+Start Seafile server and enter the container
+
+```bash
+docker compose up -d
+
+docker exec -it seafile bash
+```
+
+Start seaf-fuse in the container
+
+```bash
+cd /opt/seafile/seafile-server-latest/
+
+./seaf-fuse.sh start /seafile-fuse
+```
+
 ## Use seaf-fuse in binary based deployment
 
 Assume we want to mount to `/data/seafile-fuse`.
@@ -105,45 +142,3 @@ sudo usermod -a -G fuse <your-user-name>
 
 * Logout your shell and login again
 * Now try `./seaf-fuse.sh start <path>`again.
-
-
-## Use seaf-fuse in Docker based deployment
-
-Assume we want to mount to `/data/seafile-fuse` in host.
-
-##### Modify docker-compose.yml
-
-Add the following content
-
-```yml
-  seafile:
-    ...
-    volumes:
-      ...
-      - type: bind
-        source: /data/seafile-fuse
-        target: /seafile-fuse
-        bind:
-          propagation: rshared
-    privileged: true
-    cap_add:
-      - SYS_ADMIN
-```
-
-##### Start seaf-fuse with the script in docker
-
-Start Seafile server and enter the container
-
-```bash
-docker compose up -d
-
-docker exec -it seafile bash
-```
-
-Start seaf-fuse in the container
-
-```bash
-cd /opt/seafile/seafile-server-latest/
-
-./seaf-fuse.sh start /seafile-fuse
-```

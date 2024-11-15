@@ -175,7 +175,6 @@ After the upgrade, you should see the configuration files has been moved to the 
 
 ```
 conf/
-  |__ ccnet.conf
   |__ seafile.conf
   |__ seafevent.conf
   |__ seafdav.conf

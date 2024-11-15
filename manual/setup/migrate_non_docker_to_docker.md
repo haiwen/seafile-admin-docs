@@ -135,7 +135,7 @@ In `/etc/mysql/mariadb.conf.d/50-server.cnf` edit the following line to:
 ```
 bind-address    = 192.168.123.45
 ```
-then edit /opt/seafile-data/seafile/conf/ -> ccnet.conf seafile.conf seahub_settings.py in the Host-Line to that IP and execute the following commands:
+then edit /opt/seafile-data/seafile/conf/ -> seafile.conf seahub_settings.py in the Host-Line to that IP and execute the following commands:
 
 ```
 service networking reload

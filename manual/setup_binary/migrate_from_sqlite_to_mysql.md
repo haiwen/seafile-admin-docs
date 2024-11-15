@@ -49,7 +49,9 @@ mysql> use seahub_db;
 mysql> source seahub-db.sql;
 ```
 
-Modify configure files：Append following lines to [ccnet.conf](../config/ccnet-conf.md):
+!!! danger "`ccnet.conf` has been removed since Seafile 12.0"
+
+Modify configure files：Append following lines to ccnet.conf:
 
 ```
 [Database]
