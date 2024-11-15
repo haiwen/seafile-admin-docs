@@ -4368,14 +4368,23 @@
 <li>Directory permission changes under the library.</li>
 </ol>
 <h2 id="how-to-configure-and-run">How to configure and run<a class="headerlink" href="#how-to-configure-and-run" title="Permanent link">&para;</a></h2>
-<p>Since Seafile 12.0, we use docker to deploy the notification server. First deploy Seafile docker, then download <code>notification-server.yml</code> and modify the <code>.env</code> file:</p>
+<p>Since Seafile 12.0, we use docker to deploy the notification server. First deploy Seafile docker, then download <code>notification-server.yml</code> to Seafile directory and modify the <code>.env</code> file:</p>
 <div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/notification-server.yml
 </code></pre></div>
-<p>Modify <code>.env</code>, and insert <code>notification-server.yml</code> into <code>COMPOSE_FILE</code></p>
+<p>Modify <code>.env</code>, and insert <code>notification-server.yml</code> into <code>COMPOSE_FILE</code>:</p>
 <div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;seafile-server.yml,caddy.yml,notification-server.yml&#39;
 </code></pre></div>
+<p>And you need to add the following configurations under seafile.conf:</p>
+<div class="highlight"><pre><span></span><code>[notification]
+enabled = true
+# the ip of notification server. (default is `notification-server` in Docker)
+host = notification-server
+# the port of notification server
+port = 8083
+</code></pre></div>
 <p>You can run notification server with the following command:</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
 <h2 id="checking-notification-server-status">Checking notification server status<a class="headerlink" href="#checking-notification-server-status" title="Permanent link">&para;</a></h2>
 <p>When the notification server is working, you can access <code>http://127.0.0.1:8083/ping</code> from your browser, which will answer <code>{"ret": "pong"}</code>. If you have a proxy configured, you can access <code>https://{server}/notification/ping</code> from your browser instead.</p>
@@ -4390,15 +4399,63 @@
 <h2 id="notification-server-in-seafile-cluster">Notification Server in Seafile cluster<a class="headerlink" href="#notification-server-in-seafile-cluster" title="Permanent link">&para;</a></h2>
 <p>There is no additional features for notification server in the Pro Edition. It works the same as in community edition.</p>
 <p>If you enable <a href="../../setup_binary/deploy_in_a_cluster/">clustering</a>, You need to deploy notification server on one of the servers, or a separate server. The load balancer should forward websockets requests to this node.</p>
-<p>Modify <code>notification-server.yml</code>, and open 8083 port</p>
-<div class="highlight"><pre><span></span><code>services:
-
-  notification-server:
-    image: ${NOTIFICATION_SERVER_IMAGE:-seafileltd/notification-server:12.0-latest}
-    ...
-    ports:
-      - &quot;8083:8083&quot;
-    ...
+<p>Download <code>.env</code> and <code>notification-server.yml</code> to Notification server directory:</p>
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/notification-server/standalone/notification-server.yml
+wget<span class="w"> </span>-o<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/12.0/docker/notification-server/standalone/env
+</code></pre></div>
+<p>Then modify the <code>.env</code> file according to your environment. The following fields are needed to be modified:</p>
+<table>
+<thead>
+<tr>
+<th>variable</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NOTIFICATION_SERVER_VOLUME</code></td>
+<td>The volume directory of Notification Server data</td>
+</tr>
+<tr>
+<td><code>SEAFILE_MYSQL_DB_HOST</code></td>
+<td>Seafile MySQL host</td>
+</tr>
+<tr>
+<td><code>SEAFILE_MYSQL_DB_USER</code></td>
+<td>Seafile MySQL user, default is <code>seafile</code></td>
+</tr>
+<tr>
+<td><code>SEAFILE_MYSQL_DB_PASSWORD</code></td>
+<td>Seafile MySQL password</td>
+</tr>
+<tr>
+<td><code>TIME_ZONE</code></td>
+<td>Time zone</td>
+</tr>
+<tr>
+<td><code>JWT_PRIVATE_KEY</code></td>
+<td>JWT key, the same as the config in Seafile <code>.env</code> file</td>
+</tr>
+<tr>
+<td><code>SEAFILE_SERVER_HOSTNAME</code></td>
+<td>Seafile host name</td>
+</tr>
+<tr>
+<td><code>SEAFILE_SERVER_PROTOCOL</code></td>
+<td>http or https</td>
+</tr>
+</tbody>
+</table>
+<p>You can run notification server with the following command:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+<p>And you need to add the following configurations under <code>seafile.conf</code> and restart Seafile server:</p>
+<div class="highlight"><pre><span></span><code>[notification]
+enabled = true
+# the ip of notification server.
+host = 192.168.0.83
+# the port of notification server
+port = 8083
 </code></pre></div>
 <p>You need to configure load balancer according to the following forwarding rules:</p>
 <ol>
