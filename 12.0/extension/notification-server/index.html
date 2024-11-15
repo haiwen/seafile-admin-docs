@@ -4399,7 +4399,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 <h2 id="notification-server-in-seafile-cluster">Notification Server in Seafile cluster<a class="headerlink" href="#notification-server-in-seafile-cluster" title="Permanent link">&para;</a></h2>
 <p>There is no additional features for notification server in the Pro Edition. It works the same as in community edition.</p>
 <p>If you enable <a href="../../setup_binary/deploy_in_a_cluster/">clustering</a>, You need to deploy notification server on one of the servers, or a separate server. The load balancer should forward websockets requests to this node.</p>
-<p>Download <code>.env</code> and <code>notification-server.yml</code> to Notification server directory:</p>
+<p>Download <code>.env</code> and <code>notification-server.yml</code> to notification server directory:</p>
 <div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/notification-server/standalone/notification-server.yml
 wget<span class="w"> </span>-o<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/12.0/docker/notification-server/standalone/env
 </code></pre></div>
@@ -4414,7 +4414,7 @@ wget<span class="w"> </span>-o<span class="w"> </span>.env<span class="w"> </spa
 <tbody>
 <tr>
 <td><code>NOTIFICATION_SERVER_VOLUME</code></td>
-<td>The volume directory of Notification Server data</td>
+<td>The volume directory of notification server data</td>
 </tr>
 <tr>
 <td><code>SEAFILE_MYSQL_DB_HOST</code></td>
