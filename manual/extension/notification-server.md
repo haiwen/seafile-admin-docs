@@ -66,7 +66,7 @@ There is no additional features for notification server in the Pro Edition. It w
 
 If you enable [clustering](../setup_binary/deploy_in_a_cluster.md), You need to deploy notification server on one of the servers, or a separate server. The load balancer should forward websockets requests to this node.
 
-Download `.env` and `notification-server.yml` to Notification server directory:
+Download `.env` and `notification-server.yml` to notification server directory:
 
 ```sh
 wget https://manual.seafile.com/12.0/docker/notification-server/standalone/notification-server.yml
@@ -77,7 +77,7 @@ Then modify the `.env` file according to your environment. The following fields 
 
 | variable               | description                                                                                                   |  
 |------------------------|---------------------------------------------------------------------------------------------------------------|  
-| `NOTIFICATION_SERVER_VOLUME`        | The volume directory of Notification Server data                                                                            |  
+| `NOTIFICATION_SERVER_VOLUME`        | The volume directory of notification server data                                                                            |  
 | `SEAFILE_MYSQL_DB_HOST`| Seafile MySQL host                                                                                            |  
 | `SEAFILE_MYSQL_DB_USER`| Seafile MySQL user, default is `seafile`                                                                       |  
 | `SEAFILE_MYSQL_DB_PASSWORD`| Seafile MySQL password                                                                                    |  
