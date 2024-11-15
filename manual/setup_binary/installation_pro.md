@@ -383,6 +383,18 @@ Create a folder for persistent data created by ElasticSearch and change its perm
 sudo mkdir -p /opt/seafile-elasticsearch/data  && chmod -R 777 /opt/seafile-elasticsearch/data/
 ```
 
+Create `elasticsearch.yml`
+
+```sh
+sudo mkdir -p /opt/seafile-elasticsearch/config
+nano /opt/seafile-elasticsearch/config/elasticsearch.yml
+```
+
+```yml
+network.host: 127.0.0.1 # modify to your seafile host ip
+http.port: 9200
+```
+
 Now start the ElasticSearch container using the docker run command:
 ```
 sudo docker run -d \
@@ -392,6 +404,7 @@ sudo docker run -d \
 -e "ES_JAVA_OPTS=-Xms2g -Xmx2g" -e "xpack.security.enabled=false" \
 --restart=always \
 -v /opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data \
+-v /opt/seafile-elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml \
 -d elasticsearch:7.16.2
 ```
 
