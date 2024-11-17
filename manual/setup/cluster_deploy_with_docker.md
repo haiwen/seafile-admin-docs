@@ -42,20 +42,22 @@ We assume you have already deployed memcache, MariaDB, ElasticSearch in separate
         If you have already deployed AWS S3 storage backend and plan to apply it to Seafile cluster, you can modify the variables in `.env` to [set them synchronously during initialization](../config/env.md#s3-storage-backend-configurations-only-valid-in-pro-edition-at-deploying-first-time).
 
 
-5. Start the seafile docker in **cluster init mode**
+5. Start the Seafile docker
 
     ```sh
     $ cd /opt/seafile
     $ docker compose up -d
     ```
 
-6. Check and modify the configuration files (e.g., MySQL, Memcached, Elasticsearch) in configuration files
+    Because CLUSTER_INIT_MODE is true in the `.env` file, Seafile docker will be started in init mode and generate configuration files.
+
+6. Check the generated configuration files (e.g., MySQL, Memcached, Elasticsearch) in configuration files
     - [seafevents.conf](../config/seafevents-conf.md)
     - [seafile.conf](../config/seafile-conf.md)
     - [seahub_settings.py](../config/seahub_settings_py.md)
 
-7. After initailizing the cluster, the following fields can be removed or noted in `.env`
-    - `CLUSTER_INIT_MODE`
+7. After initailizing the cluster, the following fields can be removed in `.env`
+    - `CLUSTER_INIT_MODE`, must be removed from .env file
     - `CLUSTER_INIT_MEMCACHED_HOST`
     - `CLUSTER_INIT_ES_HOST`
     - `CLUSTER_INIT_ES_PORT`
@@ -66,7 +68,7 @@ We assume you have already deployed memcache, MariaDB, ElasticSearch in separate
     - `INIT_S3_KEY_ID`
     - `INIT_S3_SECRET_KEY`
 
-8. Restart to container to start the service in frontend node
+8. Restart the container to start the service in frontend node
 
     ```sh
     docker compose down
