@@ -4,9 +4,7 @@ Seafile Docker cluster deployment requires "sticky session" settings in the load
 
 ## Environment
 
-System: Ubuntu 20.04
-
-docker-compose: 1.25.0
+System: Ubuntu 24.04
 
 Seafile Server: 2 frontend nodes, 1 backend node
 
@@ -28,10 +26,8 @@ We assume you have already deployed memcache, MariaDB, ElasticSearch in separate
     docker pull seafileltd/seafile-pro-mc:12.0-latest
     ```
 
-    When prompted, enter the username and password of the private repository. They are available on the download page in the [Customer Center](https://customer.seafile.com/downloads).
-
     !!! note
-        Older Seafile PE versions are also available in the repository (back to Seafile 7.0). To pull an older version, replace '12.0-latest' tag by the desired version.
+        Since v12.0, Seafile PE versions are hosted on DockerHub and does not require username and password to download.
 
 3. Download the `seafile-server.yml` and `.env`
 
@@ -86,7 +82,7 @@ We assume you have already deployed memcache, MariaDB, ElasticSearch in separate
 
     ```
 
-2. Pulling Seafile image, see [here](#deploy-seafile-frontend-nodes) for the details
+2. Pulling Seafile image
 
 3. Copy `seafile-server.yml`, `.env` and configuration files from frontend node
 

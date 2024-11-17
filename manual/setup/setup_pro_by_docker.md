@@ -43,10 +43,12 @@ Use the [official installation guide for your OS to install Docker](https://docs
 docker pull seafileltd/seafile-pro-mc:12.0-latest
 ```
 
-When prompted, enter the username and password of the private repository. They are available on the download page in the [Customer Center](https://customer.seafile.com/downloads).
+!!! note
+    Since v12.0, Seafile PE versions are hosted on DockerHub and does not require username and password to download.
 
 !!! note
-    Older Seafile PE versions are also available in the repository (back to Seafile 7.0). To pull an older version, replace '12.0-latest' tag by the desired version.
+    Older Seafile PE versions are available private docker repository (back to Seafile 7.0). You can get the username and password on the download page in the [Customer Center](https://customer.seafile.com/downloads).
+
 
 ### Downloading and Modifying `.env`
 
