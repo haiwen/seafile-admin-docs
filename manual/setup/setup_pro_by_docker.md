@@ -192,9 +192,6 @@ Follow the instructions in [Backup and restore for Seafile Docker](../administra
 
 When files are deleted, the blocks comprising those files are not immediately removed as there may be other files that reference those blocks (due to the magic of deduplication). To remove them, Seafile requires a ['garbage collection'](../administration/seafile_gc.md) process to be run, which detects which blocks no longer used and purges them.
 
-The required scripts can be found in the `/scripts` folder of the docker container. To perform garbage collection, simply run `docker exec seafile /scripts/gc.sh`.
-
-
 ## FAQ
 
 Q: If I want enter into the Docker container, which command I can use?
