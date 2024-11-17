@@ -4392,8 +4392,7 @@
 <h1 id="seafile-docker-cluster-deployment">Seafile Docker Cluster Deployment<a class="headerlink" href="#seafile-docker-cluster-deployment" title="Permanent link">&para;</a></h1>
 <p>Seafile Docker cluster deployment requires "sticky session" settings in the load balancer. Otherwise sometimes folder download on the web UI can't work properly. Read the <a href="../../setup_binary/deploy_in_a_cluster/#load-balancer-setting">Load Balancer Setting</a> for details.</p>
 <h2 id="environment">Environment<a class="headerlink" href="#environment" title="Permanent link">&para;</a></h2>
-<p>System: Ubuntu 20.04</p>
-<p>docker-compose: 1.25.0</p>
+<p>System: Ubuntu 24.04</p>
 <p>Seafile Server: 2 frontend nodes, 1 backend node</p>
 <p>We assume you have already deployed memcache, MariaDB, ElasticSearch in separate machines and use S3 like object storage.</p>
 <h2 id="deploy-seafile-service">Deploy Seafile service<a class="headerlink" href="#deploy-seafile-service" title="Permanent link">&para;</a></h2>
@@ -4408,10 +4407,9 @@
 <p>Pulling Seafile image</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>seafileltd/seafile-pro-mc:12.0-latest
 </code></pre></div>
-<p>When prompted, enter the username and password of the private repository. They are available on the download page in the <a href="https://customer.seafile.com/downloads">Customer Center</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Older Seafile PE versions are also available in the repository (back to Seafile 7.0). To pull an older version, replace '12.0-latest' tag by the desired version.</p>
+<p>Since v12.0, Seafile PE versions are hosted on DockerHub and does not require username and password to download.</p>
 </div>
 </li>
 <li>
@@ -4471,7 +4469,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 </code></pre></div>
 </li>
 <li>
-<p>Pulling Seafile image, see <a href="#deploy-seafile-frontend-nodes">here</a> for the details</p>
+<p>Pulling Seafile image</p>
 </li>
 <li>
 <p>Copy <code>seafile-server.yml</code>, <code>.env</code> and configuration files from frontend node</p>

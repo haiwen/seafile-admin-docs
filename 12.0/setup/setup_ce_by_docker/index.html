@@ -4677,7 +4677,6 @@ docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> 
 <p>Follow the instructions in <a href="../../administration/backup_recovery/">Backup and restore for Seafile Docker</a></p>
 <h2 id="garbage-collection">Garbage collection<a class="headerlink" href="#garbage-collection" title="Permanent link">&para;</a></h2>
 <p>When files are deleted, the blocks comprising those files are not immediately removed as there may be other files that reference those blocks (due to the magic of deduplication). To remove them, Seafile requires a <a href="../../administration/seafile_gc/">'garbage collection'</a> process to be run, which detects which blocks no longer used and purges them.</p>
-<p>The required scripts can be found in the <code>/scripts</code> folder of the docker container. To perform garbage collection, simply run <code>docker exec seafile /scripts/gc.sh</code>.</p>
 <h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
 <p>Q: If I want enter into the Docker container, which command I can use?</p>
 <p>A: You can enter into the docker container using the command:</p>

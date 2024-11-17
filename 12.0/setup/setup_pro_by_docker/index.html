@@ -4565,10 +4565,13 @@ vm.max_map_count<span class="o">=</span><span class="m">262144</span>
 <h3 id="downloading-the-seafile-image">Downloading the Seafile Image<a class="headerlink" href="#downloading-the-seafile-image" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>seafileltd/seafile-pro-mc:12.0-latest
 </code></pre></div>
-<p>When prompted, enter the username and password of the private repository. They are available on the download page in the <a href="https://customer.seafile.com/downloads">Customer Center</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Older Seafile PE versions are also available in the repository (back to Seafile 7.0). To pull an older version, replace '12.0-latest' tag by the desired version.</p>
+<p>Since v12.0, Seafile PE versions are hosted on DockerHub and does not require username and password to download.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Older Seafile PE versions are available private docker repository (back to Seafile 7.0). You can get the username and password on the download page in the <a href="https://customer.seafile.com/downloads">Customer Center</a>.</p>
 </div>
 <h3 id="downloading-and-modifying-env">Downloading and Modifying <code>.env</code><a class="headerlink" href="#downloading-and-modifying-env" title="Permanent link">&para;</a></h3>
 <p>From Seafile Docker 12.0, we use <code>.env</code>, <code>seafile-server.yml</code>  and <code>caddy.yml</code> files for configuration.</p>
@@ -4770,7 +4773,6 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 <p>Follow the instructions in <a href="../../administration/backup_recovery/">Backup and restore for Seafile Docker</a></p>
 <h2 id="garbage-collection">Garbage Collection<a class="headerlink" href="#garbage-collection" title="Permanent link">&para;</a></h2>
 <p>When files are deleted, the blocks comprising those files are not immediately removed as there may be other files that reference those blocks (due to the magic of deduplication). To remove them, Seafile requires a <a href="../../administration/seafile_gc/">'garbage collection'</a> process to be run, which detects which blocks no longer used and purges them.</p>
-<p>The required scripts can be found in the <code>/scripts</code> folder of the docker container. To perform garbage collection, simply run <code>docker exec seafile /scripts/gc.sh</code>.</p>
 <h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
 <p>Q: If I want enter into the Docker container, which command I can use?</p>
 <p>A: You can enter into the docker container using the command:</p>
