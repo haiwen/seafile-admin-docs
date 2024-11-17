@@ -4426,13 +4426,14 @@ wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/cluster/seafi
 </div>
 </li>
 <li>
-<p>Start the seafile docker in <strong>cluster init mode</strong></p>
+<p>Start the Seafile docker</p>
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/opt/seafile
 $<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
+<p>Because CLUSTER_INIT_MODE is true in the <code>.env</code> file, Seafile docker will be started in init mode and generate configuration files.</p>
 </li>
 <li>
-<p>Check and modify the configuration files (e.g., MySQL, Memcached, Elasticsearch) in configuration files</p>
+<p>Check the generated configuration files (e.g., MySQL, Memcached, Elasticsearch) in configuration files</p>
 <ul>
 <li><a href="../../config/seafevents-conf/">seafevents.conf</a></li>
 <li><a href="../../config/seafile-conf/">seafile.conf</a></li>
@@ -4440,9 +4441,9 @@ $<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> <
 </ul>
 </li>
 <li>
-<p>After initailizing the cluster, the following fields can be removed or noted in <code>.env</code></p>
+<p>After initailizing the cluster, the following fields can be removed in <code>.env</code></p>
 <ul>
-<li><code>CLUSTER_INIT_MODE</code></li>
+<li><code>CLUSTER_INIT_MODE</code>, must be removed from .env file</li>
 <li><code>CLUSTER_INIT_MEMCACHED_HOST</code></li>
 <li><code>CLUSTER_INIT_ES_HOST</code></li>
 <li><code>CLUSTER_INIT_ES_PORT</code></li>
@@ -4455,7 +4456,7 @@ $<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> <
 </ul>
 </li>
 <li>
-<p>Restart to container to start the service in frontend node</p>
+<p>Restart the container to start the service in frontend node</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
 docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
