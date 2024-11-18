@@ -964,51 +964,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#prepare" class="md-nav__link">
+  <a href="#format" class="md-nav__link">
     <span class="md-ellipsis">
-      Prepare
+      Format
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#aws-s3" class="md-nav__link">
+  <a href="#example" class="md-nav__link">
     <span class="md-ellipsis">
-      AWS S3
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="AWS S3">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#use-server-side-encryption-with-customer-provided-keys-sse-c" class="md-nav__link">
-    <span class="md-ellipsis">
-      Use server-side encryption with customer-provided keys (SSE-C)
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#other-public-hosted-s3-storage" class="md-nav__link">
-    <span class="md-ellipsis">
-      Other Public Hosted S3 Storage
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#self-hosted-s3-storage" class="md-nav__link">
-    <span class="md-ellipsis">
-      Self-hosted S3 Storage
+      Example
     </span>
   </a>
   
@@ -4310,51 +4277,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#prepare" class="md-nav__link">
+  <a href="#format" class="md-nav__link">
     <span class="md-ellipsis">
-      Prepare
+      Format
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#aws-s3" class="md-nav__link">
+  <a href="#example" class="md-nav__link">
     <span class="md-ellipsis">
-      AWS S3
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="AWS S3">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#use-server-side-encryption-with-customer-provided-keys-sse-c" class="md-nav__link">
-    <span class="md-ellipsis">
-      Use server-side encryption with customer-provided keys (SSE-C)
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#other-public-hosted-s3-storage" class="md-nav__link">
-    <span class="md-ellipsis">
-      Other Public Hosted S3 Storage
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#self-hosted-s3-storage" class="md-nav__link">
-    <span class="md-ellipsis">
-      Self-hosted S3 Storage
+      Example
     </span>
   </a>
   
@@ -4388,6 +4322,27 @@
 
 
 <h1 id="setup-with-s3-storage">Setup With S3 Storage<a class="headerlink" href="#setup-with-s3-storage" title="Permanent link">&para;</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Deployment notes</p>
+<ul>
+<li>This feature is only for <strong><em>Pro Edition</em></strong></li>
+<li>
+<p>If your Seafile server is deployed from <a href="../../setup_binary/installation_pro/">binary packages</a>, you have to do the following steps before deploying:</p>
+<ol>
+<li>
+<p><strong>install <code>boto3</code> to your machine</strong></p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>boto3
+</code></pre></div>
+</li>
+<li>
+<p><strong>Install and configure <a href="../../setup_binary/installation_pro/#setup-memory-cache">memcached or Redis</a></strong>. </p>
+<p>For best performance, Seafile requires enable memory cache for objects. We recommend to <strong>at least allocate 128MB</strong> memory for memcached or Redis.</p>
+<p>The configuration options differ for different S3 storage. We'll describe the configurations in separate sections. You also need to add <a href="../../config/seafile-conf/#cache-pro-edition-only">memory cache configurations</a></p>
+</li>
+</ol>
+</li>
+</ul>
+</div>
 <div class="admonition tip">
 <p class="admonition-title">New feature from 12.0 pro edition</p>
 <p>If your will deploy Seafile server in Docker, you can modify the following fields in <code>.env</code> <strong>before starting the services</strong>:</p>
@@ -4398,36 +4353,96 @@
 <span class="nv">INIT_S3_KEY_ID</span><span class="o">=</span>&lt;your-key-id&gt;
 <span class="nv">INIT_S3_SECRET_KEY</span><span class="o">=</span>&lt;your-secret-key&gt;
 </code></pre></div>
-<p>The above modifications will generate the same configuration file as <a href="#aws-s3">AWS S3</a> and will take effect when the service is started for the first time.</p>
+<p>The above modifications will generate the same configuration file as this manual and will take effect when the service is started for the first time.</p>
 </div>
-<h2 id="prepare">Prepare<a class="headerlink" href="#prepare" title="Permanent link">&para;</a></h2>
-<p>To setup Seafile Professional Server with Amazon S3:</p>
-<ul>
-<li>Setup the basic Seafile Professional Server following the guide on <a href="../setup_pro_by_docker/">setup Seafile Professional Server</a></li>
-<li>Install the python <code>boto</code> library. It's needed to access S3 service.</li>
-</ul>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Seafile 10.0 or earlier</label><label for="__tabbed_1_2">Seafile 11.0</label></div>
+<h2 id="format">Format<a class="headerlink" href="#format" title="Permanent link">&para;</a></h2>
+<p>Seafile configures S3 storage by adding or modifying the following section in <code>seafile.conf</code>:</p>
+<div class="highlight"><pre><span></span><code>[xxx_object_backend]
+name = s3
+bucket = my-xxx-objects
+key_id = your-key-id
+key = your-secret-key
+use_v4_signature = true
+use_https = true
+... ; other optional configurations
+</code></pre></div>
+<p>You have to create at least <strong>3</strong> buckets for Seafile, corresponding to the sections: <code>commit_object_backend</code>, <code>fs_object_backend</code> and <code>block_backend</code>. For the configurations for each backend section, please refer to the following table:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bucket</code></td>
+<td>Bucket name for commit, fs, and block objects. Make sure it follows <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/BucketRestrictions.html#bucketnamingrules">S3 naming rules</a> (you can refer the notes below the table).</td>
+</tr>
+<tr>
+<td><code>key_id</code></td>
+<td>The <code>key_id</code> is required to authenticate you to S3. You can find the <code>key_id</code> in the "security credentials" section on your AWS account page.</td>
+</tr>
+<tr>
+<td><code>key</code></td>
+<td>The <code>key</code> is required to authenticate you to S3. You can find the <code>key</code> in the "security credentials" section on your AWS account page.</td>
+</tr>
+<tr>
+<td><code>use_v4_signature</code></td>
+<td>There are two versions of authentication protocols that can be used with S3 storage: Version 2 (older, may still be supported by some regions) and Version 4 (current, used by most regions). If you don't set this option, Seafile will use the v2 protocol. It's suggested to use the v4 protocol.</td>
+</tr>
+<tr>
+<td><code>use_https</code></td>
+<td>Use https to connect to S3. It's recommended to use https.</td>
+</tr>
+<tr>
+<td><code>aws_region</code></td>
+<td>(Optional) If you use the v4 protocol and AWS S3, set this option to the region you chose when you create the buckets. If it's not set and you're using the v4 protocol, Seafile will use <code>us-east-1</code> as the default. This option will be ignored if you use the v2 protocol.</td>
+</tr>
+<tr>
+<td><code>host</code></td>
+<td>(Optional) The endpoint by which you access the storage service. Usually it starts with the region name. It's required to provide the host address, <em>otherwise Seafile will use AWS's address</em> (i.e., <code>s3.us-east-1.amazonaws.com</code>).</td>
+</tr>
+<tr>
+<td><code>sse_c_key</code></td>
+<td>(Optional) A string of 32 characters can be generated by <code>openssl rand -base64 24</code>.  It's required to use V4 authentication protocol and https if you enable SSE-C.</td>
+</tr>
+<tr>
+<td><code>path_style_request</code></td>
+<td>(Optional) This option asks Seafile to use URLs like <code>https://192.168.1.123:8080/bucketname/object</code> to access objects. In Amazon S3, the default URL format is in virtual host style, such as <code>https://bucketname.s3.amazonaws.com/object</code>. But this style relies on advanced DNS server setup. So most self-hosted storage systems only implement the path style format. So we recommend to set this option to true.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Bucket naming conventions</p>
+<p>No matter if you using AWS or any other S3 compatible object storage, we recommend that you follow <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/BucketRestrictions.html#bucketnamingrules">S3 naming rules</a>. When you create buckets on S3, please read the <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html">S3 rules for naming</a> first. Note, especially do not use capital letters in the name of the bucket (do not use camel-style naming, such as MyCommitObjects).</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Good naming of a bucket</label><label for="__tabbed_1_2">Bad naming of a bucket</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>sudo pip install boto
-</code></pre></div>
+<ul>
+<li>seafile-commit-object</li>
+<li>seafile-fs-object</li>
+<li>seafile-block-object</li>
+</ul>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>sudo pip install boto3
-</code></pre></div>
-</div>
-</div>
-</div>
 <ul>
-<li>Install and configure memcached or Redis. For best performance, Seafile requires enable memory cache for objects. We recommend to at least allocate 128MB memory for memcached or Redis.</li>
+<li>SeafileCommitObject</li>
+<li>seafileFSObject</li>
+<li>seafile block object</li>
 </ul>
-<p>The configuration options differ for different S3 storage. We'll describe the configurations in separate sections.</p>
-<div class="admonition note">
-<p class="admonition-title">You also need to add <a href="../../config/seafile-conf/#cache-pro-edition-only">memory cache configurations</a></p>
 </div>
-<h2 id="aws-s3">AWS S3<a class="headerlink" href="#aws-s3" title="Permanent link">&para;</a></h2>
-<p>AWS S3 is the original S3 storage provider.</p>
-<p>Edit <code>seafile.conf</code>, add the following lines:</p>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you have existing data in your S3 storage bucket, turning on the above configuration will make your data inaccessible. That's because Seafile server doesn't support encrypted and non-encrypted objects mixed in the same bucket. You have to create a new bucket, and migrate your data to it by following <a href="../migrate_backends_data/#migrating-to-sse-c-encrypted-s3-storage">storage backend migration documentation</a>.</p>
+</div>
+<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:5"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><input id="__tabbed_2_5" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">AWS</label><label for="__tabbed_2_2">Exoscale</label><label for="__tabbed_2_3">Hetzner</label><label for="__tabbed_2_4">Other Public Hosted S3 Storage</label><label for="__tabbed_2_5">Self-hosted S3 Storage</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>[commit_object_backend]
 name = s3
 bucket = my-commit-objects
@@ -4455,74 +4470,67 @@ use_v4_signature = true
 aws_region = eu-central-1
 use_https = true
 </code></pre></div>
-<p>We'll explain the configurations below:</p>
-<table>
-<thead>
-<tr>
-<th>Variable</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>bucket</code></td>
-<td>It's required to create separate buckets for commit, fs, and block objects. When creating your buckets on S3, please first read <a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html" title="the bucket naming rules">S3 bucket naming rules</a>. Note especially not to use <strong>UPPERCASE</strong> letters in bucket names (don't use camel style names, such as MyCommitObjects).</td>
-</tr>
-<tr>
-<td><code>key_id</code></td>
-<td>The <code>key_id</code> is required to authenticate you to S3. You can find the <code>key_id</code> in the "security credentials" section on your AWS account page.</td>
-</tr>
-<tr>
-<td><code>key</code></td>
-<td>The <code>key</code> is required to authenticate you to S3. You can find the <code>key</code> in the "security credentials" section on your AWS account page.</td>
-</tr>
-<tr>
-<td><code>use_v4_signature</code></td>
-<td>There are two versions of authentication protocols that can be used with S3 storage: Version 2 (older, may still be supported by some regions) and Version 4 (current, used by most regions). If you don't set this option, Seafile will use the v2 protocol. It's suggested to use the v4 protocol.</td>
-</tr>
-<tr>
-<td><code>aws_region</code></td>
-<td>If you use the v4 protocol, set this option to the region you chose when you create the buckets. If it's not set and you're using the v4 protocol, Seafile will use <code>us-east-1</code> as the default. This option will be ignored if you use the v2 protocol.</td>
-</tr>
-<tr>
-<td><code>use_https</code></td>
-<td>Use https to connect to S3. It's recommended to use https.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="use-server-side-encryption-with-customer-provided-keys-sse-c">Use server-side encryption with customer-provided keys (SSE-C)<a class="headerlink" href="#use-server-side-encryption-with-customer-provided-keys-sse-c" title="Permanent link">&para;</a></h3>
-<p>Since Pro 11.0, you can use SSE-C to S3. Add the following options to seafile.conf:</p>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>[commit_object_backend]
 name = s3
-......
-use_v4_signature = true
+bucket = your-bucket-name
+host = sos-de-fra-1.exo.io
+key_id = ...
+key = ...
 use_https = true
-sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
+path_style_request = true
 
 [fs_object_backend]
 name = s3
-......
-use_v4_signature = true
+bucket = your-bucket-name
+host = sos-de-fra-1.exo.io
+key_id = ...
+key = ...
 use_https = true
-sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
+path_style_request = true
 
 [block_backend]
 name = s3
-......
-use_v4_signature = true
+bucket = your-bucket-name
+host = sos-de-fra-1.exo.io
+key_id = ...
+key = ...
 use_https = true
-sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
+path_style_request = true
 </code></pre></div>
-<p><code>sse_c_key</code> is a string of 32 characters.</p>
-<p>You can generate <code>sse_c_key</code> with the following command：</p>
-<div class="highlight"><pre><span></span><code>openssl rand -base64 24
-</code></pre></div>
-<p>It's required to use V4 authentication protocol and https if you enable SSE-C.</p>
-<div class="admonition note">
-<p class="admonition-title">If you have existing data in your S3 storage bucket, turning on the above configuration will make your data inaccessible. That's because Seafile server doesn't support encrypted and non-encrypted objects mixed in the same bucket. You have to create a new bucket, and migrate your data to it by following <a href="../migrate_backends_data/#migrating-to-sse-c-encrypted-s3-storage">storage backend migration documentation</a>.</p>
 </div>
-<h2 id="other-public-hosted-s3-storage">Other Public Hosted S3 Storage<a class="headerlink" href="#other-public-hosted-s3-storage" title="Permanent link">&para;</a></h2>
-<p>There are other S3-compatible cloud storage providers in the market, such as Blackblaze and Wasabi. Configuration for those providers are just a bit different from AWS. We don't assure the following configuration works for all providers. If you have problems please contact our support</p>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>[commit_object_backend]
+name = s3
+bucket = your-bucket-name
+host = fsn1.your-objectstorage.com
+key_id = ...
+key = ...
+use_https = true
+path_style_request = true
+
+[fs_object_backend]
+name = s3
+bucket = your-bucket-name
+host = fsn1.your-objectstorage.com
+key_id = ...
+key = ...
+use_https = true
+path_style_request = true
+
+[block_backend]
+name = s3
+bucket = your-bucket-name
+host = fsn1.your-objectstorage.com
+key_id = ...
+key = ...
+use_https = true
+path_style_request = true
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>There are other S3-compatible cloud storage providers in the market, such as <strong><em>Blackblaze</em></strong> and <strong><em>Wasabi</em></strong>. Configuration for those providers are just a bit different from AWS. We don't assure the following configuration works for all providers. If you have problems please contact our support</p>
 <div class="highlight"><pre><span></span><code>[commit_object_backend]
 name = s3
 bucket = my-commit-objects
@@ -4555,46 +4563,9 @@ use_v4_signature = true
 aws_region = &lt;region name for storage provider&gt;
 use_https = true
 </code></pre></div>
-<table>
-<thead>
-<tr>
-<th>variable</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>host</code></td>
-<td>The endpoint by which you access the storage service. Usually it starts with the region name. It's required to provide the host address, otherwise Seafile will use AWS's address.</td>
-</tr>
-<tr>
-<td><code>bucket</code></td>
-<td>It's required to create separate buckets for commit, fs, and block objects.</td>
-</tr>
-<tr>
-<td><code>key_id</code></td>
-<td>The key_id is required to authenticate you to S3 storage.</td>
-</tr>
-<tr>
-<td><code>key</code></td>
-<td>The key is required to authenticate you to S3 storage. (Note: <code>key_id</code> and <code>key</code> are typically used together for authentication.)</td>
-</tr>
-<tr>
-<td><code>use_v4_signature</code></td>
-<td>There are two versions of authentication protocols that can be used with S3 storage. Version 2 is the older one, which may still be supported by some cloud providers; version 4 is the current one used by Amazon S3 and is supported by most providers. If you don't set this option, Seafile will use v2 protocol. It's suggested to use v4 protocol.</td>
-</tr>
-<tr>
-<td><code>aws_region</code></td>
-<td>If you use v4 protocol, set this option to the region you chose when you create the buckets. If it's not set and you're using v4 protocol, Seafile will use <code>us-east-1</code> as the default. This option will be ignored if you use v2 protocol.</td>
-</tr>
-<tr>
-<td><code>use_https</code></td>
-<td>Use https to connect to S3. It's recommended to use https.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="self-hosted-s3-storage">Self-hosted S3 Storage<a class="headerlink" href="#self-hosted-s3-storage" title="Permanent link">&para;</a></h2>
-<p>Many self-hosted object storage systems are now compatible with the S3 API, such as OpenStack Swift, Ceph's RADOS Gateway and Minio. You can use these S3-compatible storage systems as backend for Seafile. Here is an example config:</p>
+</div>
+<div class="tabbed-block">
+<p>Many self-hosted object storage systems are now compatible with the S3 API, such as <strong><em>OpenStack Swift</em></strong>, <strong><em>Ceph's RADOS Gateway</em></strong> and <strong><em>Minio</em></strong>. You can use these S3-compatible storage systems as backend for Seafile. Here is an example config:</p>
 <div class="highlight"><pre><span></span><code>[commit_object_backend]
 name = s3
 bucket = my-commit-objects
@@ -4625,44 +4596,9 @@ path_style_request = true
 use_v4_signature = true
 use_https = true
 </code></pre></div>
-<table>
-<thead>
-<tr>
-<th>variable</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>host</code></td>
-<td>It is the address and port of the S3-compatible service. You cannot prepend "http" or "https" to the <code>host</code> option. By default it'll use http connections. If you want to use https connection, please set <code>use_https = true</code> option.</td>
-</tr>
-<tr>
-<td><code>bucket</code></td>
-<td>It's required to create separate buckets for commit, fs, and block objects.</td>
-</tr>
-<tr>
-<td><code>key_id</code></td>
-<td>The key_id is required to authenticate you to S3 storage.</td>
-</tr>
-<tr>
-<td><code>key</code></td>
-<td>The key is required to authenticate you to S3 storage. (Note: <code>key_id</code> and <code>key</code> are typically used together for authentication.)</td>
-</tr>
-<tr>
-<td><code>path_style_request</code></td>
-<td>This option asks Seafile to use URLs like <code>https://192.168.1.123:8080/bucketname/object</code> to access objects. In Amazon S3, the default URL format is in virtual host style, such as <code>https://bucketname.s3.amazonaws.com/object</code>. But this style relies on advanced DNS server setup. So most self-hosted storage systems only implement the path style format. So we recommend to set this option to true.</td>
-</tr>
-<tr>
-<td><code>use_v4_signature</code></td>
-<td>There are two versions of authentication protocols that can be used with S3 storage. Version 2 is the protocol supported by most self-hosted storage; version 4 is the current protocol used by AWS S3, but may not be supported by some self-hosted storage. If you don't set this option, Seafile will use the v2 protocol by default. We recommend to use V4 if possible. Please note that if you want to migrate from S3 storage to other storage, the migration script doesn't work with V2 authentication protocol due to limitation of third-party library.</td>
-</tr>
-<tr>
-<td><code>use_https</code></td>
-<td>Use https to connect to S3. It's recommended to use https. If your self-hosted storage doesn't support https, set this option to false.</td>
-</tr>
-</tbody>
-</table>
+</div>
+</div>
+</div>
 <h2 id="run-and-test">Run and Test<a class="headerlink" href="#run-and-test" title="Permanent link">&para;</a></h2>
 <p>Now you can start Seafile and test</p>
 
