@@ -32,6 +32,10 @@ status: new
     INIT_S3_BLOCK_BUCKET=<your-block-objects>
     INIT_S3_KEY_ID=<your-key-id>
     INIT_S3_SECRET_KEY=<your-secret-key>
+    INIT_S3_USE_V4_SIGNATURE=true
+    INIT_S3_AWS_REGION=us-east-1 # your AWS Region
+    INIT_S3_HOST=s3.us-east-1.amazonaws.com # your S3 Host
+    INIT_S3_USE_HTTPS=true
     ```
 
     The above modifications will generate the same configuration file as this manual and will take effect when the service is started for the first time.
@@ -81,10 +85,6 @@ You have to create at least **3** buckets for Seafile, corresponding to the sect
         - SeafileCommitObject
         - seafileFSObject
         - seafile block object
-    
-
-!!! note 
-    If you have existing data in your S3 storage bucket, turning on the above configuration will make your data inaccessible. That's because Seafile server doesn't support encrypted and non-encrypted objects mixed in the same bucket. You have to create a new bucket, and migrate your data to it by following [storage backend migration documentation](./migrate_backends_data.md#migrating-to-sse-c-encrypted-s3-storage).
 
 
 ## Example

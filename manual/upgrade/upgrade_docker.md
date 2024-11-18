@@ -14,6 +14,7 @@ Please check the **upgrade notes** for any special configuration or changes befo
     If you has deployed the [Notification Server](../extension/notification-server.md). The *Notification Server* should be **re-deployed** with the same version as Seafile server.
 
     For example:
+    
     - Seafile server: 12.0.3
     - notification-server: 12.0.3
 
