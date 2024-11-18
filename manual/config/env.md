@@ -87,7 +87,7 @@ NOTIFICATION_SERVER_VOLUME=/opt/notification-data
 ## MySQL configurations
 
 - `SEAFILE_MYSQL_DB_HOST`: The host address of Mysql, default is the pre-defined service name `db` in Seafile-docker instance.
-- `INIT_SEAFILE_MYSQL_ROOT_PASSWORD`: The `root` password of MySQL.
+- `INIT_SEAFILE_MYSQL_ROOT_PASSWORD`: (Only required on first deployment) The `root` password of MySQL. 
 - `SEAFILE_MYSQL_DB_USER`: The user of MySQL (`database` - `user` can be found in `conf/seafile.conf`).
 - `SEAFILE_MYSQL_DB_PASSWORD`: The user `seafile` password of MySQL.
 - `SEAFILE_MYSQL_DB_SEAFILE_DB_NAME`: The name of Seafile database name, default is `seafile_db`

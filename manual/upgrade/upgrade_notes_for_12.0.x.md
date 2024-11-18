@@ -4,10 +4,10 @@ status: new
 
 # Upgrade notes for 12.0
 
-These notes give additional information about changes.
+- These notes give additional information about changes.
 Please always follow the main [upgrade guide](./upgrade.md).
 
-For docker based version, please check [upgrade Seafile Docker image](./upgrade_docker.md)
+- For docker based version, please check [upgrade Seafile Docker image](./upgrade_docker.md)
 
 ## Important release changes
 
@@ -62,7 +62,26 @@ pysaml2==7.3.* pycryptodome==3.20.* cffi==1.17.0 python-ldap==3.4.* PyMuPDF==1.2
 
 ## Upgrade to 12.0 (for binary installation)
 
-The following instruction is for binary package based installation. If you use Docker based installation, please see [](./upgrade_docker.md)
+The following instruction is for binary package based installation. If you use Docker based installation, please see [*Updgrade Docker*](./upgrade_docker.md)
+
+!!! note
+    If you has deployed the [Notification Server](../extension/notification-server.md). The *Notification Server* should be **re-deployed** with the same version as Seafile server.
+
+    For example:
+    - Seafile server: 12.0.3
+    - notification-server: 12.0.3
+
+    You can modify `.env` in your Notification Server host to re-deploy:
+
+    ```sh
+    NOTIFICATION_SERVER_IMAGE=seafileltd/notification-server:12.0-latest
+    ```
+
+    Restart Notification Server:
+
+    ```sh
+    docker compose restart
+    ```
 
 ### 1) Stop Seafile-11.0.x server
 
