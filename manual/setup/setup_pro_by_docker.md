@@ -83,7 +83,7 @@ The following fields merit particular attention:
 | `TIME_ZONE`                     | Time zone                                                                                                     | `UTC`                           |  
 | `INIT_SEAFILE_ADMIN_EMAIL`      | Synchronously set admin username during initialization | me@example.com |  
 | `INIT_SEAFILE_ADMIN_PASSWORD`   | Synchronously set admin password during initialization | asecret |
-| `INIT_S3_STORAGE_BACKEND_CONFIG`   | Whether to configure S3 storage backend synchronously during initialization (i.e., the following variables with prefix `INIT_S3_*`, for more details, please refer to [AWS S3](./setup_with_amazon_s3.md#aws-s3)) | false |
+| `INIT_S3_STORAGE_BACKEND_CONFIG`   | Whether to configure S3 storage backend synchronously during initialization (i.e., the following variables with prefix `INIT_S3_*`, for more details, please refer to [AWS S3](./setup_with_amazon_s3.md)) | false |
 | `INIT_S3_COMMIT_BUCKET`   | S3 storage backend commit objects bucket (only valid when `INIT_S3_STORAGE_BACKEND_CONFIG` sets to `true`) | (required when `INIT_S3_STORAGE_BACKEND_CONFIG` sets to `true`) |
 | `INIT_S3_FS_BUCKET`   | S3 storage backend fs objects bucket (only valid when `INIT_S3_STORAGE_BACKEND_CONFIG` sets to `true`) | (required when `INIT_S3_STORAGE_BACKEND_CONFIG` sets to `true`) |
 | `INIT_S3_BLOCK_BUCKET`   | S3 storage backend block objects bucket (only valid when `INIT_S3_STORAGE_BACKEND_CONFIG` sets to `true`) | (required when `INIT_S3_STORAGE_BACKEND_CONFIG` sets to `true`) |
