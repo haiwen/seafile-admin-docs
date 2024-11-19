@@ -84,7 +84,7 @@ Download [.env](../docker/ce/env), [seafile-server.yml](../docker/ce/seafile-ser
 
     !!! note
 
-        - The variables in the following table should be **copied from the existing configuration files** (e.g., `.env`, `seafile.conf`).
+        - The variables in the following table should be **copied from the existing configuration files** (e.g., `seafile.conf`).
         - For other variables **used to initialize configurations** (e.g., `INIT_SEAFILE_MYSQL_ROOT_PASSWORD`, `INIT_SEAFILE_ADMIN_EMAIL`, `INIT_SEAFILE_ADMIN_PASSWORD`), you can remove it in the `.env` file
 
     | Variable                        | Description                                                                                                   | Default Value                   |  
