@@ -54,11 +54,6 @@ Download [.env](../docker/ce/env), [seafile-server.yml](../docker/ce/seafile-ser
     ```
     The following fields merit particular attention:
 
-    !!! note
-
-        - The variables in the following table should be **copied from the existing configuration files** (e.g., `seafile.conf`).
-        - For other variables **used to initialize configurations** (e.g., `INIT_SEAFILE_MYSQL_ROOT_PASSWORD`, `INIT_SEAFILE_ADMIN_EMAIL`, `INIT_SEAFILE_ADMIN_PASSWORD`), you can remove it in the `.env` file
-
     | Variable                        | Description                                                                                                   | Default Value                   |  
     | ------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------- |  
     | `SEAFILE_VOLUME`                | The volume directory of Seafile data                                                                          | `/opt/seafile-data`             |  
@@ -82,11 +77,6 @@ Download [.env](../docker/ce/env), [seafile-server.yml](../docker/ce/seafile-ser
     ```
     The following fields merit particular attention:
 
-    !!! note
-
-        - The variables in the following table should be **copied from the existing configuration files** (e.g., `seafile.conf`).
-        - For other variables **used to initialize configurations** (e.g., `INIT_SEAFILE_MYSQL_ROOT_PASSWORD`, `INIT_SEAFILE_ADMIN_EMAIL`, `INIT_SEAFILE_ADMIN_PASSWORD`), you can remove it in the `.env` file
-
     | Variable                        | Description                                                                                                   | Default Value                   |  
     | ------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------- |  
     | `SEAFILE_VOLUME`                | The volume directory of Seafile data                                                                          | `/opt/seafile-data`             |  
@@ -99,6 +89,12 @@ Download [.env](../docker/ce/env), [seafile-server.yml](../docker/ce/seafile-ser
     | `SEAFILE_SERVER_HOSTNAME`       | Seafile server hostname or domain                                                                  | (required)  |  
     | `SEAFILE_SERVER_PROTOCOL`       | Seafile server protocol (http or https)                                                                       | `http` |  
     | `TIME_ZONE`                     | Time zone                                                                                                     | `UTC`                           |  
+
+
+!!! note
+
+    - The value of the variables in the above table should be identical to your existing installation. You should check them from the existing configuration files (e.g., `seafile.conf`).
+    - For variables **used to initialize configurations** (e.g., `INIT_SEAFILE_MYSQL_ROOT_PASSWORD`, `INIT_SEAFILE_ADMIN_EMAIL`, `INIT_SEAFILE_ADMIN_PASSWORD`), you can remove it in the `.env` file.
 
 !!! tip
     SSL is now handled by the [caddy server](../setup/caddy.md). If you have used SSL before, you will also need modify the seafile.nginx.conf. Change server listen 443 to 80.
