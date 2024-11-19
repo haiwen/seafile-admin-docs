@@ -1,7 +1,3 @@
----
-status: new
----
-
 # Upgrade Seafile Docker
 
 For maintenance upgrade, like from version 10.0.1 to version 10.0.4, just download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version, then start with docker compose up.
@@ -9,26 +5,6 @@ For maintenance upgrade, like from version 10.0.1 to version 10.0.4, just downlo
 For major version upgrade, like from 10.0 to 11.0, see instructions below.
 
 Please check the **upgrade notes** for any special configuration or changes before/while upgrading.
-
-!!! note
-    If you has deployed the [Notification Server](../extension/notification-server.md). The *Notification Server* should be **re-deployed** with the same version as Seafile server.
-
-    For example:
-
-    - Seafile server: 12.0.3
-    - notification-server: 12.0.3
-
-    You can modify `.env` in your Notification Server host to re-deploy:
-
-    ```sh
-    NOTIFICATION_SERVER_IMAGE=seafileltd/notification-server:12.0-latest
-    ```
-
-    Restart Notification Server:
-
-    ```sh
-    docker compose restart
-    ```
 
 
 ## Upgrade from 11.0 to 12.0
@@ -142,16 +118,19 @@ listen 80;
 
 Start with docker compose up.
 
+### Upgrade notification server
+
+
+If you has deployed the notification server. The *Notification Server* is now moved to its own Docker image. You need to redeploy it according to [Notification Server document](../extension/notification-server.md)
+
+
 ### Upgrade SeaDoc from 0.8 to 1.0 for Seafile v12.0
 
-If you have deployed SeaDoc v0.8 with Seafile v11.0, you can upgrade it to 1.0 use the following two steps:
+If you have deployed SeaDoc v0.8 with Seafile v11.0, you can upgrade it to 1.0 use the following steps:
 
 1. Delete sdoc_db.
 2. Remove SeaDoc configs in seafile.nginx.conf file.
-3. Re-deploy SeaDoc server. In other words, delete the old SeaDoc deployment and deploy a new SeaDoc server on a separate machine.
-
-!!! warning
-    Deploying SeaDoc and **Seafile binary package** on the same server is no longer supported. If you really want to deploying SeaDoc and Seafile server on the same machine, you should deploy Seafile server with Docker.
+3. Re-deploy SeaDoc server. In other words, delete the old SeaDoc deployment and deploy a new SeaDoc server.
 
 #### Delete sdoc_db
 
@@ -198,7 +177,7 @@ If you have deployed SeaDoc older version, you should remove `/sdoc-server/`, `/
 
 #### Deploy a new SeaDoc server
 
-Please see the document [Setup SeaDoc](../extension/setup_seadoc.md) to install SeaDoc on a separate machine and integrate with your binary packaged based Seafile server v12.0.
+Please see the document [Setup SeaDoc](../extension/setup_seadoc.md) to install SeaDoc with Seafile.
 
 
 ## Upgrade from 10.0 to 11.0
