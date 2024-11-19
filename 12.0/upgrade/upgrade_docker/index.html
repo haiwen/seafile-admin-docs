@@ -4555,10 +4555,6 @@ wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/ce/seafile-se
 wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/caddy.yml
 </code></pre></div>
 The following fields merit particular attention:</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The following variables should be copied from the existing configuration files (e.g., <code>.env</code>, <code>seafile.conf</code>).</p>
-</div>
 <table>
 <thead>
 <tr>
@@ -4582,11 +4578,6 @@ The following fields merit particular attention:</p>
 <td><code>SEAFILE_CADDY_VOLUME</code></td>
 <td>The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's</td>
 <td><code>/opt/seafile-caddy</code></td>
-</tr>
-<tr>
-<td><code>INIT_SEAFILE_MYSQL_ROOT_PASSWORD</code></td>
-<td>The <code>root</code> password of MySQL</td>
-<td>(Only required on first deployment)</td>
 </tr>
 <tr>
 <td><code>SEAFILE_MYSQL_DB_USER</code></td>
@@ -4633,16 +4624,6 @@ The following fields merit particular attention:</p>
 <td>Time zone</td>
 <td><code>UTC</code></td>
 </tr>
-<tr>
-<td><code>INIT_SEAFILE_ADMIN_EMAIL</code></td>
-<td>Admin username</td>
-<td><code>me@example.com</code> (Recommend modifications)</td>
-</tr>
-<tr>
-<td><code>INIT_SEAFILE_ADMIN_PASSWORD</code></td>
-<td>Admin password</td>
-<td><code>asecret</code> (Recommend modifications)</td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -4682,11 +4663,6 @@ The following fields merit particular attention:</p>
 <td><code>/opt/seafile-elasticsearch/data</code></td>
 </tr>
 <tr>
-<td><code>INIT_SEAFILE_MYSQL_ROOT_PASSWORD</code></td>
-<td>The <code>root</code> password of MySQL</td>
-<td>(required)</td>
-</tr>
-<tr>
 <td><code>SEAFILE_MYSQL_DB_USER</code></td>
 <td>The user of MySQL (<code>database</code> - <code>user</code> can be found in <code>conf/seafile.conf</code>)</td>
 <td><code>seafile</code></td>
@@ -4716,20 +4692,17 @@ The following fields merit particular attention:</p>
 <td>Time zone</td>
 <td><code>UTC</code></td>
 </tr>
-<tr>
-<td><code>INIT_SEAFILE_ADMIN_EMAIL</code></td>
-<td>Admin username</td>
-<td>me@example.com</td>
-</tr>
-<tr>
-<td><code>INIT_SEAFILE_ADMIN_PASSWORD</code></td>
-<td>Admin password</td>
-<td>asecret</td>
-</tr>
 </tbody>
 </table>
 </div>
 </div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li>The value of the variables in the above table should be identical to your existing installation. You should check them from the existing configuration files (e.g., <code>seafile.conf</code>).</li>
+<li>For variables <strong>used to initialize configurations</strong> (e.g., <code>INIT_SEAFILE_MYSQL_ROOT_PASSWORD</code>, <code>INIT_SEAFILE_ADMIN_EMAIL</code>, <code>INIT_SEAFILE_ADMIN_PASSWORD</code>), you can remove it in the <code>.env</code> file.</li>
+</ul>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
