@@ -4323,7 +4323,7 @@
 <li>Directory permission changes under the library.</li>
 </ol>
 <h2 id="how-to-configure-and-run">How to configure and run<a class="headerlink" href="#how-to-configure-and-run" title="Permanent link">&para;</a></h2>
-<p>Since Seafile 12.0, we use docker to deploy the notification server. First deploy Seafile docker, then download <code>notification-server.yml</code> to Seafile directory:</p>
+<p>Since Seafile 12.0, we use a separate Docker image to deploy the notification server. First download <code>notification-server.yml</code> to Seafile directory:</p>
 <div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/notification-server.yml
 </code></pre></div>
 <p>Modify <code>.env</code>, and insert <code>notification-server.yml</code> into <code>COMPOSE_FILE</code>:</p>
