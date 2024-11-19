@@ -1,7 +1,3 @@
----
-status: new
----
-
 # Upgrade notes for 12.0
 
 - These notes give additional information about changes.
