@@ -55,14 +55,15 @@ Download [.env](../docker/ce/env), [seafile-server.yml](../docker/ce/seafile-ser
     The following fields merit particular attention:
 
     !!! note
-        The following variables should be copied from the existing configuration files (e.g., `.env`, `seafile.conf`).
+
+        - The variables in the following table should be **copied from the existing configuration files** (e.g., `.env`, `seafile.conf`).
+        - For other variables **used to initialize configurations** (e.g., `INIT_SEAFILE_MYSQL_ROOT_PASSWORD`, `INIT_SEAFILE_ADMIN_EMAIL`, `INIT_SEAFILE_ADMIN_PASSWORD`), you can remove it in the `.env` file
 
     | Variable                        | Description                                                                                                   | Default Value                   |  
     | ------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------- |  
     | `SEAFILE_VOLUME`                | The volume directory of Seafile data                                                                          | `/opt/seafile-data`             |  
     | `SEAFILE_MYSQL_VOLUME`          | The volume directory of MySQL data                                                                            | `/opt/seafile-mysql/db`         |  
     | `SEAFILE_CADDY_VOLUME`          | The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's                    | `/opt/seafile-caddy`            |  
-    | `INIT_SEAFILE_MYSQL_ROOT_PASSWORD` | The `root` password of MySQL                                                                                  | (Only required on first deployment) |  
     | `SEAFILE_MYSQL_DB_USER`         | The user of MySQL (`database` - `user` can be found in `conf/seafile.conf`)                                    | `seafile`  |  
     | `SEAFILE_MYSQL_DB_PASSWORD`     | The user `seafile` password of MySQL                                                                          | (required)  |  
     | `SEAFILE_MYSQL_DB_CCNET_DB_NAME`     | The database name of ccnet | `ccnet_db`  |
@@ -72,8 +73,6 @@ Download [.env](../docker/ce/env), [seafile-server.yml](../docker/ce/seafile-ser
     | `SEAFILE_SERVER_HOSTNAME`       | Seafile server hostname or domain                                                                  | (required)  |  
     | `SEAFILE_SERVER_PROTOCOL`       | Seafile server protocol (http or https)                                                                       | `http` |  
     | `TIME_ZONE`                     | Time zone                                                                                                     | `UTC`                           |  
-    | `INIT_SEAFILE_ADMIN_EMAIL`      | Admin username                                                                                                | `me@example.com` (Recommend modifications) |  
-    | `INIT_SEAFILE_ADMIN_PASSWORD`   | Admin password       | `asecret` (Recommend modifications) |
 === "Seafile pro edition"
 
     ```sh
@@ -83,21 +82,23 @@ Download [.env](../docker/ce/env), [seafile-server.yml](../docker/ce/seafile-ser
     ```
     The following fields merit particular attention:
 
+    !!! note
+
+        - The variables in the following table should be **copied from the existing configuration files** (e.g., `.env`, `seafile.conf`).
+        - For other variables **used to initialize configurations** (e.g., `INIT_SEAFILE_MYSQL_ROOT_PASSWORD`, `INIT_SEAFILE_ADMIN_EMAIL`, `INIT_SEAFILE_ADMIN_PASSWORD`), you can remove it in the `.env` file
+
     | Variable                        | Description                                                                                                   | Default Value                   |  
     | ------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------- |  
     | `SEAFILE_VOLUME`                | The volume directory of Seafile data                                                                          | `/opt/seafile-data`             |  
     | `SEAFILE_MYSQL_VOLUME`          | The volume directory of MySQL data                                                                            | `/opt/seafile-mysql/db`         |  
     | `SEAFILE_CADDY_VOLUME`          | The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's                    | `/opt/seafile-caddy`            |  
-    | `SEAFILE_ELASTICSEARCH_VOLUME`  | (Only valid for Seafile PE) The volume directory of Elasticsearch data | `/opt/seafile-elasticsearch/data` |  
-    | `INIT_SEAFILE_MYSQL_ROOT_PASSWORD` | The `root` password of MySQL                                                                                  | (required) |  
+    | `SEAFILE_ELASTICSEARCH_VOLUME`  | (Only valid for Seafile PE) The volume directory of Elasticsearch data | `/opt/seafile-elasticsearch/data` |   
     | `SEAFILE_MYSQL_DB_USER`         | The user of MySQL (`database` - `user` can be found in `conf/seafile.conf`)                                    | `seafile`  |  
     | `SEAFILE_MYSQL_DB_PASSWORD`     | The user `seafile` password of MySQL                                                                          | (required)  |  
     | `JWT`                           | JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters is required for Seafile, which can be generated by using `pwgen -s 40 1` | (required) |  
     | `SEAFILE_SERVER_HOSTNAME`       | Seafile server hostname or domain                                                                  | (required)  |  
     | `SEAFILE_SERVER_PROTOCOL`       | Seafile server protocol (http or https)                                                                       | `http` |  
     | `TIME_ZONE`                     | Time zone                                                                                                     | `UTC`                           |  
-    | `INIT_SEAFILE_ADMIN_EMAIL`      | Admin username                                                                                                | me@example.com |  
-    | `INIT_SEAFILE_ADMIN_PASSWORD`   | Admin password       | asecret |
 
 !!! tip
     SSL is now handled by the [caddy server](../setup/caddy.md). If you have used SSL before, you will also need modify the seafile.nginx.conf. Change server listen 443 to 80.
