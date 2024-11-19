@@ -87,7 +87,7 @@ NOTIFICATION_SERVER_VOLUME=/opt/notification-data
 ## MySQL configurations
 
 - `SEAFILE_MYSQL_DB_HOST`: The host address of Mysql, default is the pre-defined service name `db` in Seafile-docker instance.
-- `INIT_SEAFILE_MYSQL_ROOT_PASSWORD`: The `root` password of MySQL.
+- `INIT_SEAFILE_MYSQL_ROOT_PASSWORD`: (Only required on first deployment) The `root` password of MySQL. 
 - `SEAFILE_MYSQL_DB_USER`: The user of MySQL (`database` - `user` can be found in `conf/seafile.conf`).
 - `SEAFILE_MYSQL_DB_PASSWORD`: The user `seafile` password of MySQL.
 - `SEAFILE_MYSQL_DB_SEAFILE_DB_NAME`: The name of Seafile database name, default is `seafile_db`
@@ -126,5 +126,6 @@ NOTIFICATION_SERVER_VOLUME=/opt/notification-data
 - `INIT_S3_KEY_ID`: S3 storage backend key ID
 - `INIT_S3_SECRET_KEY`: S3 storage backend secret key
 - `INIT_S3_USE_V4_SIGNATURE`: Use the v4 protocol of S3 if enabled, default is `true`
-- `INIT_S3_AWS_REGION`: Region you create the buckets, default is `us-east-1`. (Only valid when `INIT_S3_USE_V4_SIGNATURE` sets to `true`)
+- `INIT_S3_AWS_REGION`: Region of your buckets (AWS only), default is `us-east-1`. (Only valid when `INIT_S3_USE_V4_SIGNATURE` sets to `true`)
+- `INIT_S3_HOST`: Host of your buckets, default is `s3.us-east-1.amazonaws.com`. (Only valid when `INIT_S3_USE_V4_SIGNATURE` sets to `true`)
 - `INIT_S3_USE_HTTPS`: Use HTTPS connections to S3 if enabled, default is `true`
