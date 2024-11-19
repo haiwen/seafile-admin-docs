@@ -4239,6 +4239,12 @@ systemctl enable --now memcached
 <span class="o">-</span><span class="nx">d</span><span class="w"> </span><span class="nx">elasticsearch</span><span class="p">:</span><span class="m m-Double">7.16.2</span>
 </code></pre></div>
 
+<p><strong>Note</strong>: By default, Elasticsearch will only listen on <code>127.0.0.1</code>, but this rule may <strong>become invalid</strong> after Docker exposes the service port,  <strong><em>which will make your Elasticsearch service vulnerable to attackers accessing and extracting sensitive data due to exposure to the external network</em></strong>. We recommend that you manually configure the Docker firewall, such as</p>
+<div class="codehilite"><pre><span></span><code>sudo<span class="w"> </span>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>-s<span class="w"> </span>&lt;your<span class="w"> </span>seafile<span class="w"> </span>server<span class="w"> </span>ip&gt;<span class="w"> </span>--dport<span class="w"> </span><span class="m">9200</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
+sudo<span class="w"> </span>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>--dport<span class="w"> </span><span class="m">9200</span><span class="w"> </span>-j<span class="w"> </span>DROP
+</code></pre></div>
+
+<p>The above command will only allow the host where your Seafile service is located to connect to Elasticsearch, and other addresses will be blocked. If you deploy Elasticsearch based on binary packages, you need to refer to the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.17/important-settings.html#network.host">official document</a> to set the address that Elasticsearch binds to.</p>
 <h3 id="modifying-seafevents">Modifying seafevents<a class="headerlink" href="#modifying-seafevents" title="Permanent link">&para;</a></h3>
 <p>Add the following configuration to <code>seafevents.conf</code>:</p>
 <div class="codehilite"><pre><span></span><code><span class="k">[INDEX FILES]</span>
