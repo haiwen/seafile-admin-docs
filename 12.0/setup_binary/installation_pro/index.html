@@ -4891,8 +4891,16 @@ source python-venv/bin/activate
 -e &quot;ES_JAVA_OPTS=-Xms2g -Xmx2g&quot; -e &quot;xpack.security.enabled=false&quot; \
 --restart=always \
 -v /opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data \
--d elasticsearch:7.16.2
+-d elasticsearch:8.15.0
 </code></pre></div></p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>By default, Elasticsearch will only listen on <code>127.0.0.1</code>, but this rule may <strong>become invalid</strong> after Docker exposes the service port,  <strong><em>which will make your Elasticsearch service vulnerable to attackers accessing and extracting sensitive data due to exposure to the external network</em></strong>. We recommend that you manually configure the Docker firewall, such as</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>-s<span class="w"> </span>&lt;your<span class="w"> </span>seafile<span class="w"> </span>server<span class="w"> </span>ip&gt;<span class="w"> </span>--dport<span class="w"> </span><span class="m">9200</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
+sudo<span class="w"> </span>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>--dport<span class="w"> </span><span class="m">9200</span><span class="w"> </span>-j<span class="w"> </span>DROP
+</code></pre></div>
+<p>The above command will only allow the host where your Seafile service is located to connect to Elasticsearch, and other addresses will be blocked. If you deploy Elasticsearch based on binary packages, you need to refer to the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.17/important-settings.html#network.host">official document</a> to set the address that Elasticsearch binds to.</p>
+</div>
 <h3 id="modifying-seafevents">Modifying seafevents<a class="headerlink" href="#modifying-seafevents" title="Permanent link">&para;</a></h3>
 <p>Add the following configuration to <code>seafevents.conf</code>:</p>
 <div class="highlight"><pre><span></span><code>[INDEX FILES]
