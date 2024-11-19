@@ -14,7 +14,7 @@ The notification server uses websocket protocol and maintains a two-way communic
 
 ## How to configure and run
 
-Since Seafile 12.0, we use docker container to deploy the notification server. First download `notification-server.yml` to Seafile directory:
+Since Seafile 12.0, we use a separate Docker image to deploy the notification server. First download `notification-server.yml` to Seafile directory:
 
 ```sh
 wget https://manual.seafile.com/12.0/docker/notification-server.yml
