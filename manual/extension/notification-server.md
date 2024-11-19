@@ -6,7 +6,6 @@ When a directory is opened on the web interface, the lock status of the file can
 
 The notification server uses websocket protocol and maintains a two-way communication connection with the client or the web interface. When the above changes occur, seaf-server will notify the notification server of the changes. Then the notification server can notify the client or the web interface in real time. This not only improves the real-time performance, but also reduces the performance overhead of the server.
 
-
 ## Supported update reminder types
 
 1. The library has been updated.
@@ -15,7 +14,7 @@ The notification server uses websocket protocol and maintains a two-way communic
 
 ## How to configure and run
 
-Since Seafile 12.0, we use docker to deploy the notification server. First deploy Seafile docker, then download `notification-server.yml` to Seafile directory:
+Since Seafile 12.0, we use docker container to deploy the notification server. First download `notification-server.yml` to Seafile directory:
 
 ```sh
 wget https://manual.seafile.com/12.0/docker/notification-server.yml
