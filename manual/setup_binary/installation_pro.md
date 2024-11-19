@@ -395,7 +395,9 @@ sudo docker run -d \
 -d elasticsearch:8.15.0
 ```
 
-!!! danger
+!!! danger "Security notice"
+    > We sincerely thank ***Mohammed Adel***, the *Acting Professional Services Manager* of [Safe Decision Co.](https://www.safedecision.com.sa/), for the suggestion of this notice.
+
     By default, Elasticsearch will only listen on `127.0.0.1`, but this rule may **become invalid** after Docker exposes the service port,  ***which will make your Elasticsearch service vulnerable to attackers accessing and extracting sensitive data due to exposure to the external network***. We recommend that you manually configure the Docker firewall, such as
 
     ```sh
