@@ -383,18 +383,6 @@ Create a folder for persistent data created by ElasticSearch and change its perm
 sudo mkdir -p /opt/seafile-elasticsearch/data  && chmod -R 777 /opt/seafile-elasticsearch/data/
 ```
 
-Create `elasticsearch.yml`
-
-```sh
-sudo mkdir -p /opt/seafile-elasticsearch/config
-nano /opt/seafile-elasticsearch/config/elasticsearch.yml
-```
-
-```yml
-network.host: 127.0.0.1 # modify to your seafile host ip
-http.port: 9200
-```
-
 Now start the ElasticSearch container using the docker run command:
 ```
 sudo docker run -d \
@@ -404,10 +392,18 @@ sudo docker run -d \
 -e "ES_JAVA_OPTS=-Xms2g -Xmx2g" -e "xpack.security.enabled=false" \
 --restart=always \
 -v /opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data \
--v /opt/seafile-elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml \
--d elasticsearch:7.16.2
+-d elasticsearch:8.15.0
 ```
 
+!!! danger
+    By default, Elasticsearch will only listen on `127.0.0.1`, but this rule may **become invalid** after Docker exposes the service port,  ***which will make your Elasticsearch service vulnerable to attackers accessing and extracting sensitive data due to exposure to the external network***. We recommend that you manually configure the Docker firewall, such as
+
+    ```sh
+    sudo iptables -A INPUT -p tcp -s <your seafile server ip> --dport 9200 -j ACCEPT
+    sudo iptables -A INPUT -p tcp --dport 9200 -j DROP
+    ```
+
+    The above command will only allow the host where your Seafile service is located to connect to Elasticsearch, and other addresses will be blocked. If you deploy Elasticsearch based on binary packages, you need to refer to the [official document](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/important-settings.html#network.host) to set the address that Elasticsearch binds to.
 
 ### Modifying seafevents
 
