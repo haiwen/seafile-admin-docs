@@ -3476,14 +3476,6 @@
     Upgrade Seafile Docker
   </span>
   
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
 
           <span class="md-nav__icon md-icon"></span>
         </label>
@@ -3494,14 +3486,6 @@
   <span class="md-ellipsis">
     Upgrade Seafile Docker
   </span>
-  
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
   
 
       </a>
@@ -3544,6 +3528,15 @@
   <a href="#download-seafile-120-docker-files" class="md-nav__link">
     <span class="md-ellipsis">
       Download Seafile 12.0 Docker files
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upgrade-notification-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upgrade notification server
     </span>
   </a>
   
@@ -4397,6 +4390,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#upgrade-notification-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upgrade notification server
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#upgrade-seadoc-from-08-to-10-for-seafile-v120" class="md-nav__link">
     <span class="md-ellipsis">
       Upgrade SeaDoc from 0.8 to 1.0 for Seafile v12.0
@@ -4525,21 +4527,6 @@
 <p>For maintenance upgrade, like from version 10.0.1 to version 10.0.4, just download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version, then start with docker compose up.</p>
 <p>For major version upgrade, like from 10.0 to 11.0, see instructions below.</p>
 <p>Please check the <strong>upgrade notes</strong> for any special configuration or changes before/while upgrading.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you has deployed the <a href="../../extension/notification-server/">Notification Server</a>. The <em>Notification Server</em> should be <strong>re-deployed</strong> with the same version as Seafile server.</p>
-<p>For example:</p>
-<ul>
-<li>Seafile server: 12.0.3</li>
-<li>notification-server: 12.0.3</li>
-</ul>
-<p>You can modify <code>.env</code> in your Notification Server host to re-deploy:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">NOTIFICATION_SERVER_IMAGE</span><span class="o">=</span>seafileltd/notification-server:12.0-latest
-</code></pre></div>
-<p>Restart Notification Server:</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart
-</code></pre></div>
-</div>
 <h2 id="upgrade-from-110-to-120">Upgrade from 11.0 to 12.0<a class="headerlink" href="#upgrade-from-110-to-120" title="Permanent link">&para;</a></h2>
 <p>From Seafile Docker 12.0, we recommend that you use <code>.env</code> and <code>seafile-server.yml</code> files for configuration.</p>
 <h3 id="backup-the-original-docker-composeyml-file">Backup the original docker-compose.yml file:<a class="headerlink" href="#backup-the-original-docker-composeyml-file" title="Permanent link">&para;</a></h3>
@@ -4741,17 +4728,15 @@ listen 80;
    ...
 </code></pre></div>
 <p>Start with docker compose up.</p>
+<h3 id="upgrade-notification-server">Upgrade notification server<a class="headerlink" href="#upgrade-notification-server" title="Permanent link">&para;</a></h3>
+<p>If you has deployed the notification server. The <em>Notification Server</em> is now moved to its own Docker image. You need to redeploy it according to <a href="../../extension/notification-server/">Notification Server document</a></p>
 <h3 id="upgrade-seadoc-from-08-to-10-for-seafile-v120">Upgrade SeaDoc from 0.8 to 1.0 for Seafile v12.0<a class="headerlink" href="#upgrade-seadoc-from-08-to-10-for-seafile-v120" title="Permanent link">&para;</a></h3>
-<p>If you have deployed SeaDoc v0.8 with Seafile v11.0, you can upgrade it to 1.0 use the following two steps:</p>
+<p>If you have deployed SeaDoc v0.8 with Seafile v11.0, you can upgrade it to 1.0 use the following steps:</p>
 <ol>
 <li>Delete sdoc_db.</li>
 <li>Remove SeaDoc configs in seafile.nginx.conf file.</li>
-<li>Re-deploy SeaDoc server. In other words, delete the old SeaDoc deployment and deploy a new SeaDoc server on a separate machine.</li>
+<li>Re-deploy SeaDoc server. In other words, delete the old SeaDoc deployment and deploy a new SeaDoc server.</li>
 </ol>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Deploying SeaDoc and <strong>Seafile binary package</strong> on the same server is no longer supported. If you really want to deploying SeaDoc and Seafile server on the same machine, you should deploy Seafile server with Docker.</p>
-</div>
 <h4 id="delete-sdoc_db">Delete sdoc_db<a class="headerlink" href="#delete-sdoc_db" title="Permanent link">&para;</a></h4>
 <p>From version 1.0, SeaDoc is using seahub_db database to store its operation logs and no longer need an extra database sdoc_db. The database tables in seahub_db are created automatically when you upgrade Seafile server from v11.0 to v12.0. You can simply delete sdoc_db.</p>
 <h4 id="remove-seadoc-configs-in-seafilenginxconf-file">Remove SeaDoc configs in seafile.nginx.conf file<a class="headerlink" href="#remove-seadoc-configs-in-seafilenginxconf-file" title="Permanent link">&para;</a></h4>
@@ -4790,7 +4775,7 @@ listen 80;
 #    }
 </code></pre></div>
 <h4 id="deploy-a-new-seadoc-server">Deploy a new SeaDoc server<a class="headerlink" href="#deploy-a-new-seadoc-server" title="Permanent link">&para;</a></h4>
-<p>Please see the document <a href="../../extension/setup_seadoc/">Setup SeaDoc</a> to install SeaDoc on a separate machine and integrate with your binary packaged based Seafile server v12.0.</p>
+<p>Please see the document <a href="../../extension/setup_seadoc/">Setup SeaDoc</a> to install SeaDoc with Seafile.</p>
 <h2 id="upgrade-from-100-to-110">Upgrade from 10.0 to 11.0<a class="headerlink" href="#upgrade-from-100-to-110" title="Permanent link">&para;</a></h2>
 <p>Download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version. Taking the <a href="../../setup/setup_ce_by_docker/">community edition</a> as an example, you have to modify</p>
 <div class="highlight"><pre><span></span><code>...
@@ -4847,9 +4832,6 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 
 
 
-
-  
-  
 
 
 
