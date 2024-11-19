@@ -40,7 +40,7 @@ status: new
 
     The above modifications will generate the same configuration file as this manual and will take effect when the service is started for the first time.
 
-## How to configurate S3 in Seafile
+## How to configure S3 in Seafile
 Seafile configures S3 storage by adding or modifying the following section in `seafile.conf`:
 
 ```conf

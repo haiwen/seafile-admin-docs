@@ -8,7 +8,7 @@ Since Seafile Professional edition 6.0.0, you can integrate Seafile with Collabo
 
     From Seafile 12.0, Seafile support integrating CollaboraOnline server on the same host (only support deploying with [Docker](../setup/setup_pro_by_docker.md) with sufficient cores and RAM), as you can follow the steps in this manual. 
     
-    Otherwise, you can follow the [official document](https://sdk.collaboraonline.com/docs/installation/CODE_Docker_image.html#code-docker-image) to deploy CollaboraOnline server on a separate host. Then you should follow [here](#Libreoffice-server-on-a-separate-host) to configurate `seahub_settings.py` to enable online office.
+    Otherwise, you can follow the [official document](https://sdk.collaboraonline.com/docs/installation/CODE_Docker_image.html#code-docker-image) to deploy CollaboraOnline server on a separate host. Then you should follow [here](#Libreoffice-server-on-a-separate-host) to configure `seahub_settings.py` to enable online office.
 
 Download the `collabora.yml`
 
