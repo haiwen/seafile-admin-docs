@@ -4575,7 +4575,7 @@ nano<span class="w"> </span>.env
 <tr>
 <td><code>INIT_SEAFILE_MYSQL_ROOT_PASSWORD</code></td>
 <td>The <code>root</code> password of MySQL</td>
-<td>(required)</td>
+<td>(Only required on first deployment)</td>
 </tr>
 <tr>
 <td><code>SEAFILE_MYSQL_DB_USER</code></td>
@@ -4586,6 +4586,21 @@ nano<span class="w"> </span>.env
 <td><code>SEAFILE_MYSQL_DB_PASSWORD</code></td>
 <td>The user <code>seafile</code> password of MySQL</td>
 <td>(required)</td>
+</tr>
+<tr>
+<td><code>SEAFILE_MYSQL_DB_CCNET_DB_NAME</code></td>
+<td>The database name of ccnet</td>
+<td><code>ccnet_db</code></td>
+</tr>
+<tr>
+<td><code>SEAFILE_MYSQL_DB_SEAFILE_DB_NAME</code></td>
+<td>The database name of seafile</td>
+<td><code>seafile_db</code></td>
+</tr>
+<tr>
+<td><code>SEAFILE_MYSQL_DB_SEAHUB_DB_NAME</code></td>
+<td>The database name of seahub</td>
+<td><code>seahub_db</code></td>
 </tr>
 <tr>
 <td><code>JWT</code></td>

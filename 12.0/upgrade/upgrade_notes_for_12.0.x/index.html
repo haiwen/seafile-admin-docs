@@ -4522,9 +4522,15 @@
 
 
 <h1 id="upgrade-notes-for-120">Upgrade notes for 12.0<a class="headerlink" href="#upgrade-notes-for-120" title="Permanent link">&para;</a></h1>
+<ul>
+<li>
 <p>These notes give additional information about changes.
 Please always follow the main <a href="../upgrade/">upgrade guide</a>.</p>
+</li>
+<li>
 <p>For docker based version, please check <a href="../upgrade_docker/">upgrade Seafile Docker image</a></p>
+</li>
+</ul>
 <h2 id="important-release-changes">Important release changes<a class="headerlink" href="#important-release-changes" title="Permanent link">&para;</a></h2>
 <p>Seafile version 12.0 has following major changes:</p>
 <ul>
@@ -4564,7 +4570,22 @@ Please always follow the main <a href="../upgrade/">upgrade guide</a>.</p>
 <span class="nv">pysaml2</span><span class="o">==</span><span class="m">7</span>.3.*<span class="w"> </span><span class="nv">pycryptodome</span><span class="o">==</span><span class="m">3</span>.20.*<span class="w"> </span><span class="nv">cffi</span><span class="o">==</span><span class="m">1</span>.17.0<span class="w"> </span>python-ldap<span class="o">==</span><span class="m">3</span>.4.*<span class="w"> </span><span class="nv">PyMuPDF</span><span class="o">==</span><span class="m">1</span>.24.*
 </code></pre></div>
 <h2 id="upgrade-to-120-for-binary-installation">Upgrade to 12.0 (for binary installation)<a class="headerlink" href="#upgrade-to-120-for-binary-installation" title="Permanent link">&para;</a></h2>
-<p>The following instruction is for binary package based installation. If you use Docker based installation, please see <a href="../upgrade_docker/"></a></p>
+<p>The following instruction is for binary package based installation. If you use Docker based installation, please see <a href="../upgrade_docker/"><em>Updgrade Docker</em></a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you has deployed the <a href="../../extension/notification-server/">Notification Server</a>. The <em>Notification Server</em> should be <strong>re-deployed</strong> with the same version as Seafile server.</p>
+<p>For example:</p>
+<ul>
+<li>Seafile server: 12.0.3</li>
+<li>notification-server: 12.0.3</li>
+</ul>
+<p>You can modify <code>.env</code> in your Notification Server host to re-deploy:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">NOTIFICATION_SERVER_IMAGE</span><span class="o">=</span>seafileltd/notification-server:12.0-latest
+</code></pre></div>
+<p>Restart Notification Server:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart
+</code></pre></div>
+</div>
 <h3 id="1-stop-seafile-110x-server">1) Stop Seafile-11.0.x server<a class="headerlink" href="#1-stop-seafile-110x-server" title="Permanent link">&para;</a></h3>
 <h3 id="2-start-from-seafile-120x-run-the-script">2) Start from Seafile 12.0.x, run the script<a class="headerlink" href="#2-start-from-seafile-120x-run-the-script" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>upgrade/upgrade_11.0_12.0.sh

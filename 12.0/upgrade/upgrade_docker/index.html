@@ -3543,7 +3543,7 @@
           <li class="md-nav__item">
   <a href="#download-seafile-120-docker-files" class="md-nav__link">
     <span class="md-ellipsis">
-      Download Seafile 12,0 Docker files
+      Download Seafile 12.0 Docker files
     </span>
   </a>
   
@@ -4390,7 +4390,7 @@
           <li class="md-nav__item">
   <a href="#download-seafile-120-docker-files" class="md-nav__link">
     <span class="md-ellipsis">
-      Download Seafile 12,0 Docker files
+      Download Seafile 12.0 Docker files
     </span>
   </a>
   
@@ -4525,12 +4525,27 @@
 <p>For maintenance upgrade, like from version 10.0.1 to version 10.0.4, just download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version, then start with docker compose up.</p>
 <p>For major version upgrade, like from 10.0 to 11.0, see instructions below.</p>
 <p>Please check the <strong>upgrade notes</strong> for any special configuration or changes before/while upgrading.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you has deployed the <a href="../../extension/notification-server/">Notification Server</a>. The <em>Notification Server</em> should be <strong>re-deployed</strong> with the same version as Seafile server.</p>
+<p>For example:</p>
+<ul>
+<li>Seafile server: 12.0.3</li>
+<li>notification-server: 12.0.3</li>
+</ul>
+<p>You can modify <code>.env</code> in your Notification Server host to re-deploy:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">NOTIFICATION_SERVER_IMAGE</span><span class="o">=</span>seafileltd/notification-server:12.0-latest
+</code></pre></div>
+<p>Restart Notification Server:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart
+</code></pre></div>
+</div>
 <h2 id="upgrade-from-110-to-120">Upgrade from 11.0 to 12.0<a class="headerlink" href="#upgrade-from-110-to-120" title="Permanent link">&para;</a></h2>
 <p>From Seafile Docker 12.0, we recommend that you use <code>.env</code> and <code>seafile-server.yml</code> files for configuration.</p>
 <h3 id="backup-the-original-docker-composeyml-file">Backup the original docker-compose.yml file:<a class="headerlink" href="#backup-the-original-docker-composeyml-file" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>mv<span class="w"> </span>docker-compose.yml<span class="w"> </span>docker-compose.yml.bak
 </code></pre></div>
-<h3 id="download-seafile-120-docker-files">Download Seafile 12,0 Docker files<a class="headerlink" href="#download-seafile-120-docker-files" title="Permanent link">&para;</a></h3>
+<h3 id="download-seafile-120-docker-files">Download Seafile 12.0 Docker files<a class="headerlink" href="#download-seafile-120-docker-files" title="Permanent link">&para;</a></h3>
 <p>Download <a href="../../docker/ce/env">.env</a>, <a href="../../docker/ce/seafile-server.yml">seafile-server.yml</a> and <a href="../../docker/caddy.yml">caddy.yml</a>, and modify .env file according to the old configuration in <code>docker-compose.yml.bak</code></p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Seafile community edition</label><label for="__tabbed_1_2">Seafile pro edition</label></div>
 <div class="tabbed-content">
@@ -4540,6 +4555,10 @@ wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/ce/seafile-se
 wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/caddy.yml
 </code></pre></div>
 The following fields merit particular attention:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following variables should be copied from the existing configuration files (e.g., <code>.env</code>, <code>seafile.conf</code>).</p>
+</div>
 <table>
 <thead>
 <tr>
@@ -4567,7 +4586,7 @@ The following fields merit particular attention:</p>
 <tr>
 <td><code>INIT_SEAFILE_MYSQL_ROOT_PASSWORD</code></td>
 <td>The <code>root</code> password of MySQL</td>
-<td>(required)</td>
+<td>(Only required on first deployment)</td>
 </tr>
 <tr>
 <td><code>SEAFILE_MYSQL_DB_USER</code></td>
@@ -4578,6 +4597,21 @@ The following fields merit particular attention:</p>
 <td><code>SEAFILE_MYSQL_DB_PASSWORD</code></td>
 <td>The user <code>seafile</code> password of MySQL</td>
 <td>(required)</td>
+</tr>
+<tr>
+<td><code>SEAFILE_MYSQL_DB_CCNET_DB_NAME</code></td>
+<td>The database name of ccnet</td>
+<td><code>ccnet_db</code></td>
+</tr>
+<tr>
+<td><code>SEAFILE_MYSQL_DB_SEAFILE_DB_NAME</code></td>
+<td>The database name of seafile</td>
+<td><code>seafile_db</code></td>
+</tr>
+<tr>
+<td><code>SEAFILE_MYSQL_DB_SEAHUB_DB_NAME</code></td>
+<td>The database name of seahub</td>
+<td><code>seahub_db</code></td>
 </tr>
 <tr>
 <td><code>JWT</code></td>

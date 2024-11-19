@@ -4513,7 +4513,7 @@
 <h2 id="mysql-configurations">MySQL configurations<a class="headerlink" href="#mysql-configurations" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>SEAFILE_MYSQL_DB_HOST</code>: The host address of Mysql, default is the pre-defined service name <code>db</code> in Seafile-docker instance.</li>
-<li><code>INIT_SEAFILE_MYSQL_ROOT_PASSWORD</code>: The <code>root</code> password of MySQL.</li>
+<li><code>INIT_SEAFILE_MYSQL_ROOT_PASSWORD</code>: (Only required on first deployment) The <code>root</code> password of MySQL. </li>
 <li><code>SEAFILE_MYSQL_DB_USER</code>: The user of MySQL (<code>database</code> - <code>user</code> can be found in <code>conf/seafile.conf</code>).</li>
 <li><code>SEAFILE_MYSQL_DB_PASSWORD</code>: The user <code>seafile</code> password of MySQL.</li>
 <li><code>SEAFILE_MYSQL_DB_SEAFILE_DB_NAME</code>: The name of Seafile database name, default is <code>seafile_db</code></li>
@@ -4552,7 +4552,8 @@
 <li><code>INIT_S3_KEY_ID</code>: S3 storage backend key ID</li>
 <li><code>INIT_S3_SECRET_KEY</code>: S3 storage backend secret key</li>
 <li><code>INIT_S3_USE_V4_SIGNATURE</code>: Use the v4 protocol of S3 if enabled, default is <code>true</code></li>
-<li><code>INIT_S3_AWS_REGION</code>: Region you create the buckets, default is <code>us-east-1</code>. (Only valid when <code>INIT_S3_USE_V4_SIGNATURE</code> sets to <code>true</code>)</li>
+<li><code>INIT_S3_AWS_REGION</code>: Region of your buckets (AWS only), default is <code>us-east-1</code>. (Only valid when <code>INIT_S3_USE_V4_SIGNATURE</code> sets to <code>true</code>)</li>
+<li><code>INIT_S3_HOST</code>: Host of your buckets, default is <code>s3.us-east-1.amazonaws.com</code>. (Only valid when <code>INIT_S3_USE_V4_SIGNATURE</code> sets to <code>true</code>)</li>
 <li><code>INIT_S3_USE_HTTPS</code>: Use HTTPS connections to S3 if enabled, default is <code>true</code></li>
 </ul>
 

@@ -4618,7 +4618,7 @@ nano<span class="w"> </span>.env
 <tr>
 <td><code>INIT_SEAFILE_MYSQL_ROOT_PASSWORD</code></td>
 <td>The <code>root</code> password of MySQL</td>
-<td>(required)</td>
+<td>(Only required on first deployment)</td>
 </tr>
 <tr>
 <td><code>SEAFILE_MYSQL_DB_USER</code></td>
@@ -4629,6 +4629,21 @@ nano<span class="w"> </span>.env
 <td><code>SEAFILE_MYSQL_DB_PASSWORD</code></td>
 <td>The user <code>seafile</code> password of MySQL</td>
 <td>(required)</td>
+</tr>
+<tr>
+<td><code>SEAFILE_MYSQL_DB_CCNET_DB_NAME</code></td>
+<td>The database name of ccnet</td>
+<td><code>ccnet_db</code></td>
+</tr>
+<tr>
+<td><code>SEAFILE_MYSQL_DB_SEAFILE_DB_NAME</code></td>
+<td>The database name of seafile</td>
+<td><code>seafile_db</code></td>
+</tr>
+<tr>
+<td><code>SEAFILE_MYSQL_DB_SEAHUB_DB_NAME</code></td>
+<td>The database name of seahub</td>
+<td><code>seahub_db</code></td>
 </tr>
 <tr>
 <td><code>JWT</code></td>
@@ -4697,8 +4712,13 @@ nano<span class="w"> </span>.env
 </tr>
 <tr>
 <td><code>INIT_S3_AWS_REGION</code></td>
-<td>Region you create the buckets (only valid when <code>INIT_S3_STORAGE_BACKEND_CONFIG</code> and <code>INIT_S3_USE_V4_SIGNATURE</code> sets to <code>true</code>)</td>
+<td>Region of your buckets (only valid when <code>INIT_S3_STORAGE_BACKEND_CONFIG</code> and <code>INIT_S3_USE_V4_SIGNATURE</code> sets to <code>true</code>)</td>
 <td><code>us-east-1</code></td>
+</tr>
+<tr>
+<td><code>INIT_S3_HOST</code></td>
+<td>Host of your buckets (only valid when <code>INIT_S3_STORAGE_BACKEND_CONFIG</code> and <code>INIT_S3_USE_V4_SIGNATURE</code> sets to <code>true</code>)</td>
+<td><code>s3.us-east-1.amazonaws.com</code></td>
 </tr>
 <tr>
 <td><code>INIT_S3_USE_HTTPS</code></td>
