@@ -9,7 +9,7 @@
 
 Please check our document for how to upgrade to [12.0](../upgrade/upgrade_notes_for_12.0.x.md)
 
-### 12.0.4 beta (to-be-told)
+### 12.0.4 beta (2024-11-21)
 
 * A redesigned Web UI
 * SeaDoc is now stable, providing online notes and documents feature
@@ -21,7 +21,7 @@ Please check our document for how to upgrade to [12.0](../upgrade/upgrade_notes_
 * `ccnet.conf` is removed. Some of its configuration items are moved from `.env` file, others are read from items in `seafile.conf` with same name.
 * For security reason, WebDAV no longer support login with LDAP account, the user with LDAP account must generate a WebDAV token at the profile page
 * [File tags] The current file tags feature is deprecated. We will re-implement a new one in version 13.0 with a new general metadata management module.
-
+* Support online GC 
 
 
 ## 11.0
