@@ -4105,6 +4105,30 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#120" class="md-nav__link">
+    <span class="md-ellipsis">
+      12.0
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1204-beta-to-be-told" class="md-nav__link">
+    <span class="md-ellipsis">
+      12.0.4 beta (to-be-told)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#110" class="md-nav__link">
     <span class="md-ellipsis">
       11.0
@@ -5743,6 +5767,30 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#120" class="md-nav__link">
+    <span class="md-ellipsis">
+      12.0
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1204-beta-to-be-told" class="md-nav__link">
+    <span class="md-ellipsis">
+      12.0.4 beta (to-be-told)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#110" class="md-nav__link">
     <span class="md-ellipsis">
       11.0
@@ -7318,6 +7366,23 @@
 <blockquote>
 <p>You can check Seafile release table to find the lifetime of each release and current supported OS: <a href="https://cloud.seatable.io/dtable/external-links/a85d4221e41344c19566/?tid=0000&amp;vid=0000">https://cloud.seatable.io/dtable/external-links/a85d4221e41344c19566/?tid=0000&amp;vid=0000</a></p>
 </blockquote>
+<h2 id="120">12.0<a class="headerlink" href="#120" title="Permanent link">&para;</a></h2>
+<p><strong>Upgrade</strong></p>
+<p>Please check our document for how to upgrade to <a href="../../upgrade/upgrade_notes_for_12.0.x/">12.0</a></p>
+<h3 id="1204-beta-to-be-told">12.0.4 beta (to-be-told)<a class="headerlink" href="#1204-beta-to-be-told" title="Permanent link">&para;</a></h3>
+<ul>
+<li>A redesigned Web UI</li>
+<li>SeaDoc is now stable, providing online notes and documents feature</li>
+<li>A new wiki module</li>
+<li>A new trash mechanism, that deleted files will be recorded in database for fast listing</li>
+<li>The password strength level is now calculated by algorithm. The old USER_PASSWORD_MIN_LENGTH, USER_PASSWORD_STRENGTH_LEVEL is removed. Only USER_STRONG_PASSWORD_REQUIRED is still used.</li>
+<li>ADDITIONAL_APP_BOTTOM_LINKS is removed. Because there is no buttom bar in the navigation side bar now.</li>
+<li>SERVICE_URL and FILE_SERVER_ROOT are removed. SERVICE_URL will be calculated from SEAFILE_SERVER_PROTOCOL and SEAFILE_SERVER_HOSTNAME in <code>.env</code> file.</li>
+<li><code>ccnet.conf</code> is removed. Some of its configuration items are moved from <code>.env</code> file, others are read from items in <code>seafile.conf</code> with same name.</li>
+<li>For security reason, WebDAV no longer support login with LDAP account, the user with LDAP account must generate a WebDAV token at the profile page</li>
+<li>[File tags] The current file tags feature is deprecated. We will re-implement a new one in version 13.0 with a new general metadata management module.</li>
+<li>For ElasticSearch based search, full text search of doc/xls/ppt file types are no longer supported. This enable us to remove Java dependency in Seafile side.</li>
+</ul>
 <h2 id="110">11.0<a class="headerlink" href="#110" title="Permanent link">&para;</a></h2>
 <p><strong>Upgrade</strong></p>
 <p>Please check our document for how to upgrade to <a href="../../upgrade/upgrade_notes_for_11.0.x/">11.0</a></p>
