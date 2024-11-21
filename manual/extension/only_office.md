@@ -6,16 +6,6 @@ Seafile supports [OnlyOffice](https://www.onlyoffice.com/) to view/edit office f
 
     You can deploy OnlyOffice to the same machine as Seafile (only support deploying with [Docker](../setup/setup_pro_by_docker.md) with sufficient cores and RAM) using the `onlyoffice.yml` provided by Seafile according to this document, or you can deploy it to a different machine according to [OnlyOffice official document](https://github.com/ONLYOFFICE/Docker-DocumentServer).
 
-## Generate JWT-Token (shared secret)
-
-> From Seafile 12.0, OnlyOffice's JWT verification will be forced to enable
-
-Secure communication between Seafile and OnlyOffice is granted by a shared secret. You can get the JWT secret by following command
-
-```shell
-pwgen -s 40 1
-```
-
 ## Deployment of OnlyOffice
 
 Download the `onlyoffice.yml`
@@ -40,6 +30,13 @@ ONLYOFFICE_PORT=6233
 ONLYOFFICE_JWT_SECRET=<your jwt secret>
 ```
 
+!!! note
+    From Seafile 12.0, OnlyOffice's JWT verification will be forced to enable. Secure communication between Seafile and OnlyOffice is granted by a shared secret. You can get the JWT secret by following command
+
+    ```shell
+    pwgen -s 40 1
+    ```
+
 Also modify `seahub_settings.py`
 
 ```py
@@ -49,7 +46,8 @@ ONLYOFFICE_FILE_EXTENSION = ('doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx', 'odt',
 ONLYOFFICE_JWT_SECRET = '<your jwt secret>'
 ```
 
-> By default OnlyOffice will use port **6233** used for communication between Seafile and Document Server, You can modify the bound port by specifying `ONLYOFFICE_PORT`, and port in the term `ONLYOFFICE_APIJS_URL` in `seahub_settings.py` has been modified together.
+!!! tip
+    By default OnlyOffice will use port **6233** used for communication between Seafile and Document Server, You can modify the bound port by specifying `ONLYOFFICE_PORT`, and port in the term `ONLYOFFICE_APIJS_URL` in `seahub_settings.py` has been modified together.
 
 ### Advanced: Custom settings of OnlyOffice
 
@@ -101,7 +99,8 @@ docker-compose down
 docker-compose up -d
 ```
 
-After the installation process is finished, visit this page to make sure you have deployed OnlyOffice successfully: `http{s}://{your Seafile server's domain or IP}:6233/welcome`, you will get **Document Server is running** info at this page.
+!!! success
+    After the installation process is finished, visit this page to make sure you have deployed OnlyOffice successfully: `http{s}://{your Seafile server's domain or IP}:6233/welcome`, you will get **Document Server is running** info at this page.
 
 ## FAQ
 
