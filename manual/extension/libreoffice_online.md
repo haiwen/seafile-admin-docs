@@ -10,6 +10,24 @@ Since Seafile Professional edition 6.0.0, you can integrate Seafile with Collabo
     
     Otherwise, you can follow the [official document](https://sdk.collaboraonline.com/docs/installation/CODE_Docker_image.html#code-docker-image) to deploy CollaboraOnline server on a separate host. Then you should follow [here](#Libreoffice-server-on-a-separate-host) to configure `seahub_settings.py` to enable online office.
 
+!!! note
+    To integrate *LibreOffice* with Seafile, you have to enable **HTTPS** in your Seafile server:
+
+    === "Deploy in Docker"
+        
+        Modify `.env` file:
+
+        ```sh
+        SEAFILE_SERVER_PROTOCOL=https
+        ```
+    
+    === "Deploy from binary packages"
+
+        Please follow the links to enable https:
+
+        - [Nginx](../setup_binary/https_with_nginx.md)
+        - [Apache](../setup_binary/https_with_apache.md)
+
 Download the `collabora.yml`
 
 ```sh
@@ -33,10 +51,11 @@ COLLABORA_ENABLE_FILE_LOGGING=false # use file logs or not, see FQA
 
 Add following config option to seahub_settings.py:
 
+
 ``` python
 OFFICE_SERVER_TYPE = 'CollaboraOffice'
 ENABLE_OFFICE_WEB_APP = True
-OFFICE_WEB_APP_BASE_URL = 'http{s}://seafile.example.com:6232/hosting/discovery'
+OFFICE_WEB_APP_BASE_URL = 'https://seafile.example.com:6232/hosting/discovery'
 
 # Expiration of WOPI access token
 # WOPI access token is a string used by Seafile to determine the file's
