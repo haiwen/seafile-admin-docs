@@ -39,7 +39,7 @@ We assume you have already deployed memcache, MariaDB, ElasticSearch in separate
 4. Modify the [variables](../config/env.md) in `.env` (especially the terms like `<...>`). 
 
     !!! tip
-        If you have already deployed AWS S3 storage backend and plan to apply it to Seafile cluster, you can modify the variables in `.env` to [set them synchronously during initialization](../config/env.md#s3-storage-backend-configurations-only-valid-in-pro-edition-at-deploying-first-time).
+        If you have already deployed S3 storage backend and plan to apply it to Seafile cluster, you can modify the variables in `.env` to [set them synchronously during initialization](../config/env.md#s3-storage-backend-configurations-only-valid-in-pro-edition-at-deploying-first-time).
 
 
 5. Start the Seafile docker
@@ -49,9 +49,65 @@ We assume you have already deployed memcache, MariaDB, ElasticSearch in separate
     $ docker compose up -d
     ```
 
-    Because CLUSTER_INIT_MODE is true in the `.env` file, Seafile docker will be started in init mode and generate configuration files.
+    !!! success "Cluster init mode"
+    
+        Because CLUSTER_INIT_MODE is true in the `.env` file, Seafile docker will be started in init mode and generate configuration files. As the results, you can see the following lines if you trace the Seafile container (i.e., `docker logs seafile`):
 
-6. Check the generated configuration files (e.g., MySQL, Memcached, Elasticsearch) in configuration files
+        ```log
+        ---------------------------------
+        This is your configuration
+        ---------------------------------
+        
+            server name:            seafile
+            server ip/domain:       seafile.example.com
+        
+            seafile data dir:       /opt/seafile/seafile-data
+            fileserver port:        8082
+        
+            database:               create new
+            ccnet database:         ccnet_db
+            seafile database:       seafile_db
+            seahub database:        seahub_db
+            database user:          seafile
+        
+        
+        Generating seafile configuration ...
+        
+        done
+        Generating seahub configuration ...
+        
+        
+        
+        -----------------------------------------------------------------
+        Your seafile server configuration has been finished successfully.
+        -----------------------------------------------------------------
+        
+        run seafile server:     ./seafile.sh { start | stop | restart }
+        run seahub  server:     ./seahub.sh  { start <port> | stop | restart <port> }
+        
+        -----------------------------------------------------------------
+        If you are behind a firewall, remember to allow input/output of these tcp ports:
+        -----------------------------------------------------------------
+        
+        port of seafile fileserver:   8082
+        port of seahub:               8000
+        
+        When problems occur, Refer to
+        
+                https://download.seafile.com/published/seafile-manual/home.md
+        
+        for information.
+        
+        
+        [2024-11-21 02:22:37] Updating version stamp
+        Start init
+        
+        Init success
+        
+        ```
+
+6. In initialization mode, the service will not be started. During this time you can check the generated configuration files (e.g., MySQL, Memcached, Elasticsearch) in configuration files:
+
     - [seafevents.conf](../config/seafevents-conf.md)
     - [seafile.conf](../config/seafile-conf.md)
     - [seahub_settings.py](../config/seahub_settings_py.md)
@@ -74,6 +130,38 @@ We assume you have already deployed memcache, MariaDB, ElasticSearch in separate
     docker compose down
     docker compose up -d
     ```
+
+    !!! success "Frontend node starts successfully"
+
+        After executing the above command, you can trace the logs of container `seafile` (i.e., `docker logs seafile`). You can see the following message if the frontend node starts successfully:
+
+        ```logs
+        *** Running /etc/my_init.d/01_create_data_links.sh...
+        *** Booting runit daemon...
+        *** Runit started as PID 20
+        *** Running /scripts/enterpoint.sh...
+        2024-11-21 03:02:35 Nginx ready 
+
+        2024-11-21 03:02:35 This is an idle script (infinite loop) to keep container running. 
+        ---------------------------------
+
+        Seafile cluster frontend mode
+
+        ---------------------------------
+
+
+        Starting seafile server, please wait ...
+        License file /opt/seafile/seafile-license.txt does not exist, allow at most 3 trial users
+        Seafile server started
+
+        Done.
+
+        Starting seahub at port 8000 ...
+
+        Seahub is started
+
+        Done.
+        ```
 
 ### Deploy seafile backend node
 
@@ -98,6 +186,35 @@ We assume you have already deployed memcache, MariaDB, ElasticSearch in separate
     ```sh
     docker compose up -d
     ```
+
+    !!! success "Backend node starts successfully"
+
+        After executing the above command, you can trace the logs of container `seafile` (i.e., `docker logs seafile`). You can see the following message if the backend node starts successfully:
+
+        ```logs
+        *** Running /etc/my_init.d/01_create_data_links.sh...
+        *** Booting runit daemon...
+        *** Runit started as PID 21
+        *** Running /scripts/enterpoint.sh...
+        2024-11-21 03:11:59 Nginx ready 
+        2024-11-21 03:11:59 This is an idle script (infinite loop) to keep container running. 
+
+        ---------------------------------
+
+        Seafile cluster backend mode
+
+        ---------------------------------
+
+
+        Starting seafile server, please wait ...
+        License file /opt/seafile/seafile-license.txt does not exist, allow at most 3 trial users
+        Seafile server started
+
+        Done.
+
+        Starting seafile background tasks ...
+        Done.
+        ```
  
 ## Deployment load balance (Optional)
 
