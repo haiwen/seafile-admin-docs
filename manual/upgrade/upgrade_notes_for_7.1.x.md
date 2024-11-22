@@ -9,7 +9,7 @@ From 7.1.0 version, Seafile will depend on the Python 3 and is not compatible�
 
 Therefore you cannot upgrade directly from Seafile 6.x.x to 7.1.x.
 
-**If your current version of Seafile is not 7.0.x, you must first download the 7.0.x installation package and **[**upgrade to 7.0.x**](./upgrade_notes_for_7.0.x.md)** before performing the subsequent operations.**
+**If your current version of Seafile is not 7.0.x, you must first download the 7.0.x installation package and upgrade to 7.0.x before performing the subsequent operations.**
 
 To support both Python 3.6 and 3.7, we no longer bundle python libraries with Seafile package. You need to install most of the libraries by your own as bellow.
 

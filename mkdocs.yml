@@ -89,7 +89,7 @@ nav:
       - Setup pro edition: setup/setup_pro_by_docker.md
     - Advanced topics:
       - Storage Backends:
-        - S3 Backend: setup/setup_with_amazon_s3.md
+        - S3 Backend: setup/setup_with_s3.md
         - Ceph Backend: setup/setup_with_ceph.md
         - OpenStack Swift Backend: setup/setup_with_swift.md
         - Multiple Storage Backends: setup/setup_with_multiple_storage_backends.md

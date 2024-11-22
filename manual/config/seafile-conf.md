@@ -291,7 +291,7 @@ memcached_options = --SERVER=<the IP of Memcached Server> --POOL-MIN=10 --POOL-M
 
 You may configure Seafile to use various kinds of object storage backends.
 
-- [S3 or S3-compatible object storage](../setup/setup_with_amazon_s3.md)
+- [S3 or S3-compatible object storage](../setup/setup_with_s3.md)
 - [Ceph RADOS](../setup/setup_with_ceph.md)
 - [Alibaba Cloud OSS](../setup/setup_with_oss.md)
 - [OpenStack Swift](../setup/setup_with_swift.md)
