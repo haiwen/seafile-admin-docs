@@ -16,5 +16,3 @@ JWT_PRIVATE_KEY=
 
 SEAFILE_SERVER_HOSTNAME=example.seafile.com
 SEAFILE_SERVER_PROTOCOL=http
-
-SEADOC_SERVER_URL=http://example.seafile.com/sdoc-server
