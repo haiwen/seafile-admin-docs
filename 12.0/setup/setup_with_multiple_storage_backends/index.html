@@ -894,7 +894,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup_with_amazon_s3/" class="md-nav__link">
+      <a href="../setup_with_s3/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4591,7 +4591,7 @@ storage_classes_file = /opt/seafile_storage_classes.json
 <span class="w">  </span><span class="p">}</span>
 <span class="p">]</span>
 </code></pre></div>
-<p>As you may have seen, the <code>commits</code>, <code>fs</code> and <code>blocks</code> information syntax is similar to what is used in <code>[commit_object_backend]</code>, <code>[fs_object_backend]</code> and <code>[block_backend]</code> section of seafile.conf. Refer to the detailed syntax in the documentation for the storage you use. For exampe, if you use S3 storage, refer to <a href="../setup_with_amazon_s3/">S3 Storage</a>.</p>
+<p>As you may have seen, the <code>commits</code>, <code>fs</code> and <code>blocks</code> information syntax is similar to what is used in <code>[commit_object_backend]</code>, <code>[fs_object_backend]</code> and <code>[block_backend]</code> section of seafile.conf. Refer to the detailed syntax in the documentation for the storage you use. For exampe, if you use S3 storage, refer to <a href="../setup_with_s3/">S3 Storage</a>.</p>
 <p>If you use file system as storage for <code>fs</code>, <code>commits</code> or <code>blocks</code>, you must explicitly provide the path for the <code>seafile-data</code> directory. The objects will be stored in <code>storage/commits</code>, <code>storage/fs</code>, <code>storage/blocks</code> under this path. </p>
 <div class="admonition note">
 <p class="admonition-title">Currently file system, S3 and Swift backends are supported. Ceph/RADOS is also supported since version 7.0.14</p>

@@ -10,9 +10,13 @@
         <meta name="author" content="seafile">
       
       
-        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/12.0/upgrade/upgrade_notes_for_7.0.x/">
+        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/12.0/setup/setup_with_s3/">
       
       
+        <link rel="prev" href="../setup_pro_by_docker/">
+      
+      
+        <link rel="next" href="../setup_with_ceph/">
       
       
       <link rel="icon" href="../../media/favicon.ico">
@@ -20,7 +24,7 @@
     
     
       
-        <title>Upgrade notes for 7.0.x - Seafile Admin Manual</title>
+        <title>S3 Backend - Seafile Admin Manual</title>
       
     
     
@@ -74,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#upgrade-notes-for-70x" class="md-skip">
+        <a href="#setup-with-s3-storage" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Upgrade notes for 7.0.x
+              S3 Backend
             
           </span>
         </div>
@@ -241,11 +245,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../setup/overview/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../overview/" class="md-tabs__link">
           
   
   Setup
@@ -371,7 +377,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../upgrade/" class="md-tabs__link">
+        <a href="../../upgrade/upgrade/" class="md-tabs__link">
           
   
   Upgrade
@@ -618,25 +624,30 @@
       
   
   
+    
   
   
+  
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -647,7 +658,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Setup
@@ -661,7 +672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/overview/" class="md-nav__link">
+      <a href="../overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -682,7 +693,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/caddy/" class="md-nav__link">
+      <a href="../caddy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -708,17 +719,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
         
           
-          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -743,7 +757,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_ce_by_docker/" class="md-nav__link">
+      <a href="../setup_ce_by_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -764,7 +778,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_pro_by_docker/" class="md-nav__link">
+      <a href="../setup_pro_by_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -790,25 +804,30 @@
                 
   
   
+    
   
   
+  
     
     
     
       
       
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
         
           
-          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -819,7 +838,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_4">
             <span class="md-nav__icon md-icon"></span>
             Advanced topics
@@ -830,8 +849,10 @@
                 
   
   
+    
   
   
+  
     
     
     
@@ -841,11 +862,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4_1" checked>
         
           
           <label class="md-nav__link" for="__nav_2_4_1" id="__nav_2_4_1_label" tabindex="0">
@@ -859,7 +880,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_4_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_4_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_4_1">
             <span class="md-nav__icon md-icon"></span>
             Storage Backends
@@ -870,10 +891,38 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../setup/setup_with_amazon_s3/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    S3 Backend
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--new" title="Work in progress">
+    </span>
+  
+
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -890,6 +939,68 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-configure-s3-in-seafile" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to configure S3 in Seafile
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How to configure S3 in Seafile">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-server-side-encryption-with-customer-provided-keys-sse-c-in-seafile" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use server-side encryption with customer-provided keys (SSE-C) in Seafile
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-and-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run and Test
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -902,7 +1013,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_with_ceph/" class="md-nav__link">
+      <a href="../setup_with_ceph/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -923,7 +1034,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_with_swift/" class="md-nav__link">
+      <a href="../setup_with_swift/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -944,7 +1055,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_with_multiple_storage_backends/" class="md-nav__link">
+      <a href="../setup_with_multiple_storage_backends/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -973,7 +1084,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/migrate_backends_data/" class="md-nav__link">
+      <a href="../migrate_backends_data/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1010,7 +1121,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/seafile_docker_autostart/" class="md-nav__link">
+      <a href="../seafile_docker_autostart/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1031,7 +1142,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_with_an_existing_mysql_server/" class="md-nav__link">
+      <a href="../setup_with_an_existing_mysql_server/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1052,7 +1163,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/run_seafile_as_non_root_user_inside_docker/" class="md-nav__link">
+      <a href="../run_seafile_as_non_root_user_inside_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1086,17 +1197,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
         
           
-          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -1121,7 +1235,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/cluster_deploy_with_docker/" class="md-nav__link">
+      <a href="../cluster_deploy_with_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1142,7 +1256,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/cluster_deploy_with_k8s/" class="md-nav__link">
+      <a href="../cluster_deploy_with_k8s/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1184,17 +1298,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
         
           
-          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -1219,7 +1336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/migrate_ce_to_pro_with_docker/" class="md-nav__link">
+      <a href="../migrate_ce_to_pro_with_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1248,7 +1365,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/migrate_non_docker_to_docker/" class="md-nav__link">
+      <a href="../migrate_non_docker_to_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3420,7 +3537,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../upgrade/" class="md-nav__link">
+      <a href="../../upgrade/upgrade/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3441,7 +3558,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../upgrade_docker/" class="md-nav__link">
+      <a href="../../upgrade/upgrade_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3462,7 +3579,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../upgrade_a_cluster/" class="md-nav__link">
+      <a href="../../upgrade/upgrade_a_cluster/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3491,7 +3608,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../upgrade_a_cluster_docker/" class="md-nav__link">
+      <a href="../../upgrade/upgrade_a_cluster_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3520,7 +3637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../upgrade_notes_for_7.1.x/" class="md-nav__link">
+      <a href="../../upgrade/upgrade_notes_for_7.1.x/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3541,7 +3658,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../upgrade_notes_for_8.0.x/" class="md-nav__link">
+      <a href="../../upgrade/upgrade_notes_for_8.0.x/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3562,7 +3679,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../upgrade_notes_for_9.0.x/" class="md-nav__link">
+      <a href="../../upgrade/upgrade_notes_for_9.0.x/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3583,7 +3700,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../upgrade_notes_for_10.0.x/" class="md-nav__link">
+      <a href="../../upgrade/upgrade_notes_for_10.0.x/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3604,7 +3721,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../upgrade_notes_for_11.0.x/" class="md-nav__link">
+      <a href="../../upgrade/upgrade_notes_for_11.0.x/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3625,7 +3742,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../upgrade_notes_for_12.0.x/" class="md-nav__link">
+      <a href="../../upgrade/upgrade_notes_for_12.0.x/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4130,18 +4247,42 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#upgrade-notes-for-ce-70x" class="md-nav__link">
+  <a href="#how-to-configure-s3-in-seafile" class="md-nav__link">
     <span class="md-ellipsis">
-      Upgrade notes for CE-7.0.x
+      How to configure S3 in Seafile
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How to configure S3 in Seafile">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-server-side-encryption-with-customer-provided-keys-sse-c-in-seafile" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use server-side encryption with customer-provided keys (SSE-C) in Seafile
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#upgrade-notes-for-pro-70x" class="md-nav__link">
+  <a href="#run-and-test" class="md-nav__link">
     <span class="md-ellipsis">
-      Upgrade notes for Pro-7.0.x
+      Run and Test
     </span>
   </a>
   
@@ -4165,19 +4306,326 @@
   
 
 
-<h1 id="upgrade-notes-for-70x">Upgrade notes for 7.0.x<a class="headerlink" href="#upgrade-notes-for-70x" title="Permanent link">&para;</a></h1>
-<p>These notes give additional information about changes.
-Please always follow the main <a href="../upgrade/">upgrade guide</a>.</p>
-<h2 id="upgrade-notes-for-ce-70x">Upgrade notes for CE-7.0.x<a class="headerlink" href="#upgrade-notes-for-ce-70x" title="Permanent link">&para;</a></h2>
-<p>If you are currently using the Seafile Community Edition, please refer to <a href="./ce-7.0.md">Upgrade notes for CE-7.0.x</a>.</p>
-<h2 id="upgrade-notes-for-pro-70x">Upgrade notes for Pro-7.0.x<a class="headerlink" href="#upgrade-notes-for-pro-70x" title="Permanent link">&para;</a></h2>
-<p>If you are currently using Seafile Professional, please refer to <a href="pro-7.0.md">Upgrade notes for Pro-7.0.x</a>.</p>
+<h1 id="setup-with-s3-storage">Setup With S3 Storage<a class="headerlink" href="#setup-with-s3-storage" title="Permanent link">&para;</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Deployment notes</p>
+<ul>
+<li>This feature is only for <strong><em>Pro Edition</em></strong></li>
+<li>
+<p>If your Seafile server is deployed from <a href="../../setup_binary/installation_pro/">binary packages</a>, you have to do the following steps before deploying:</p>
+<ol>
+<li>
+<p><strong>install <code>boto3</code> to your machine</strong></p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>boto3
+</code></pre></div>
+</li>
+<li>
+<p><strong>Install and configure <a href="../../setup_binary/installation_pro/#setup-memory-cache">memcached or Redis</a></strong>. </p>
+<p>For best performance, Seafile requires enable memory cache for objects. We recommend to <strong>at least allocate 128MB</strong> memory for memcached or Redis.</p>
+<p>The configuration options differ for different S3 storage. We'll describe the configurations in separate sections. You also need to add <a href="../../config/seafile-conf/#cache-pro-edition-only">memory cache configurations</a></p>
+</li>
+</ol>
+</li>
+</ul>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">New feature from 12.0 pro edition</p>
+<p>If your will deploy Seafile server in Docker, you can modify the following fields in <code>.env</code> <strong>before starting the services</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">INIT_S3_STORAGE_BACKEND_CONFIG</span><span class="o">=</span><span class="nb">true</span>
+<span class="nv">INIT_S3_COMMIT_BUCKET</span><span class="o">=</span>&lt;your-commit-objects&gt;
+<span class="nv">INIT_S3_FS_BUCKET</span><span class="o">=</span>&lt;your-fs-objects&gt;
+<span class="nv">INIT_S3_BLOCK_BUCKET</span><span class="o">=</span>&lt;your-block-objects&gt;
+<span class="nv">INIT_S3_KEY_ID</span><span class="o">=</span>&lt;your-key-id&gt;
+<span class="nv">INIT_S3_SECRET_KEY</span><span class="o">=</span>&lt;your-secret-key&gt;
+<span class="nv">INIT_S3_USE_V4_SIGNATURE</span><span class="o">=</span><span class="nb">true</span>
+<span class="nv">INIT_S3_AWS_REGION</span><span class="o">=</span>us-east-1<span class="w"> </span><span class="c1"># your AWS Region</span>
+<span class="nv">INIT_S3_HOST</span><span class="o">=</span>s3.us-east-1.amazonaws.com<span class="w"> </span><span class="c1"># your S3 Host</span>
+<span class="nv">INIT_S3_USE_HTTPS</span><span class="o">=</span><span class="nb">true</span>
+</code></pre></div>
+<p>The above modifications will generate the same configuration file as this manual and will take effect when the service is started for the first time.</p>
+</div>
+<h2 id="how-to-configure-s3-in-seafile">How to configure S3 in Seafile<a class="headerlink" href="#how-to-configure-s3-in-seafile" title="Permanent link">&para;</a></h2>
+<p>Seafile configures S3 storage by adding or modifying the following section in <code>seafile.conf</code>:</p>
+<div class="highlight"><pre><span></span><code>[xxx_object_backend]
+name = s3
+bucket = my-xxx-objects
+key_id = your-key-id
+key = your-secret-key
+use_v4_signature = true
+use_https = true
+... ; other optional configurations
+</code></pre></div>
+<p>You have to create at least <strong>3</strong> buckets for Seafile, corresponding to the sections: <code>commit_object_backend</code>, <code>fs_object_backend</code> and <code>block_backend</code>. For the configurations for each backend section, please refer to the following table:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bucket</code></td>
+<td>Bucket name for commit, fs, and block objects. Make sure it follows <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/BucketRestrictions.html#bucketnamingrules">S3 naming rules</a> (you can refer the notes below the table).</td>
+</tr>
+<tr>
+<td><code>key_id</code></td>
+<td>The <code>key_id</code> is required to authenticate you to S3. You can find the <code>key_id</code> in the "security credentials" section on your AWS account page.</td>
+</tr>
+<tr>
+<td><code>key</code></td>
+<td>The <code>key</code> is required to authenticate you to S3. You can find the <code>key</code> in the "security credentials" section on your AWS account page.</td>
+</tr>
+<tr>
+<td><code>use_v4_signature</code></td>
+<td>There are two versions of authentication protocols that can be used with S3 storage: Version 2 (older, may still be supported by some regions) and Version 4 (current, used by most regions). If you don't set this option, Seafile will use the v2 protocol. It's suggested to use the v4 protocol.</td>
+</tr>
+<tr>
+<td><code>use_https</code></td>
+<td>Use https to connect to S3. It's recommended to use https.</td>
+</tr>
+<tr>
+<td><code>aws_region</code></td>
+<td>(<strong>Optional</strong>) If you use the v4 protocol and AWS S3, set this option to the region you chose when you create the buckets. If it's not set and you're using the v4 protocol, Seafile will use <code>us-east-1</code> as the default. This option will be ignored if you use the v2 protocol.</td>
+</tr>
+<tr>
+<td><code>host</code></td>
+<td>(<strong>Optional</strong>) The endpoint by which you access the storage service. Usually it starts with the region name. It's required to provide the host address, <em>otherwise Seafile will use AWS's address</em> (i.e., <code>s3.us-east-1.amazonaws.com</code>).</td>
+</tr>
+<tr>
+<td><code>sse_c_key</code></td>
+<td>(<strong>Optional</strong>) A string of 32 characters can be generated by <code>openssl rand -base64 24</code>.  It's required to use V4 authentication protocol and https if you enable SSE-C.</td>
+</tr>
+<tr>
+<td><code>path_style_request</code></td>
+<td>(<strong>Optional</strong>) This option asks Seafile to use URLs like <code>https://192.168.1.123:8080/bucketname/object</code> to access objects. In Amazon S3, the default URL format is in virtual host style, such as <code>https://bucketname.s3.amazonaws.com/object</code>. But this style relies on advanced DNS server setup. So most self-hosted storage systems only implement the path style format. So we recommend to set this option to true.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Bucket naming conventions</p>
+<p>No matter if you using AWS or any other S3 compatible object storage, we recommend that you follow <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/BucketRestrictions.html#bucketnamingrules">S3 naming rules</a>. When you create buckets on S3, please read the <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html">S3 rules for naming</a> first. Note, especially do not use capital letters in the name of the bucket (do not use camel-style naming, such as MyCommitObjects).</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Good naming of a bucket</label><label for="__tabbed_1_2">Bad naming of a bucket</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li>seafile-commit-object</li>
+<li>seafile-fs-object</li>
+<li>seafile-block-object</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>SeafileCommitObject</li>
+<li>seafileFSObject</li>
+<li>seafile block object</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<h3 id="use-server-side-encryption-with-customer-provided-keys-sse-c-in-seafile">Use server-side encryption with customer-provided keys (SSE-C) in Seafile<a class="headerlink" href="#use-server-side-encryption-with-customer-provided-keys-sse-c-in-seafile" title="Permanent link">&para;</a></h3>
+<p>Since Pro 11.0, you can use SSE-C to S3. Add the following <code>sse_c_key</code> to seafile.conf (as shown in the above variables table):</p>
+<div class="highlight"><pre><span></span><code>[commit_object_backend]
+name = s3
+......
+use_v4_signature = true
+use_https = true
+sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
+
+[fs_object_backend]
+name = s3
+......
+use_v4_signature = true
+use_https = true
+sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
+
+[block_backend]
+name = s3
+......
+use_v4_signature = true
+use_https = true
+sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
+</code></pre></div>
+<p><code>sse_c_key</code> is a string of 32 characters.</p>
+<p>You can generate sse_c_key with the following command：</p>
+<div class="highlight"><pre><span></span><code>openssl rand -base64 24
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you have existing data in your S3 storage bucket, turning on the above configuration will make your data inaccessible. That's because Seafile server doesn't support encrypted and non-encrypted objects mixed in the same bucket. You have to create a new bucket, and migrate your data to it by following <a href="../migrate_backends_data/#migrating-to-sse-c-encrypted-s3-storage">storage backend migration documentation</a>.</p>
+</div>
+<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:5"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><input id="__tabbed_2_5" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">AWS</label><label for="__tabbed_2_2">Exoscale</label><label for="__tabbed_2_3">Hetzner</label><label for="__tabbed_2_4">Other Public Hosted S3 Storage</label><label for="__tabbed_2_5">Self-hosted S3 Storage</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>[commit_object_backend]
+name = s3
+bucket = my-commit-objects
+key_id = your-key-id
+key = your-secret-key
+use_v4_signature = true
+aws_region = eu-central-1
+use_https = true
+
+[fs_object_backend]
+name = s3
+bucket = my-fs-objects
+key_id = your-key-id
+key = your-secret-key
+use_v4_signature = true
+aws_region = eu-central-1
+use_https = true
+
+[block_backend]
+name = s3
+bucket = my-block-objects
+key_id = your-key-id
+key = your-secret-key
+use_v4_signature = true
+aws_region = eu-central-1
+use_https = true
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>[commit_object_backend]
+name = s3
+bucket = your-bucket-name
+host = sos-de-fra-1.exo.io
+key_id = ...
+key = ...
+use_https = true
+path_style_request = true
+
+[fs_object_backend]
+name = s3
+bucket = your-bucket-name
+host = sos-de-fra-1.exo.io
+key_id = ...
+key = ...
+use_https = true
+path_style_request = true
+
+[block_backend]
+name = s3
+bucket = your-bucket-name
+host = sos-de-fra-1.exo.io
+key_id = ...
+key = ...
+use_https = true
+path_style_request = true
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>[commit_object_backend]
+name = s3
+bucket = your-bucket-name
+host = fsn1.your-objectstorage.com
+key_id = ...
+key = ...
+use_https = true
+path_style_request = true
+
+[fs_object_backend]
+name = s3
+bucket = your-bucket-name
+host = fsn1.your-objectstorage.com
+key_id = ...
+key = ...
+use_https = true
+path_style_request = true
+
+[block_backend]
+name = s3
+bucket = your-bucket-name
+host = fsn1.your-objectstorage.com
+key_id = ...
+key = ...
+use_https = true
+path_style_request = true
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>There are other S3-compatible cloud storage providers in the market, such as <strong><em>Blackblaze</em></strong> and <strong><em>Wasabi</em></strong>. Configuration for those providers are just a bit different from AWS. We don't assure the following configuration works for all providers. If you have problems please contact our support</p>
+<div class="highlight"><pre><span></span><code>[commit_object_backend]
+name = s3
+bucket = my-commit-objects
+host = &lt;access endpoint for storage provider&gt;
+key_id = your-key-id
+key = your-secret-key
+# v2 authentication protocol will be used if not set
+use_v4_signature = true
+# required for v4 protocol. ignored for v2 protocol.
+aws_region = &lt;region name for storage provider&gt;
+use_https = true
+
+[fs_object_backend]
+name = s3
+bucket = my-fs-objects
+host = &lt;access endpoint for storage provider&gt;
+key_id = your-key-id
+key = your-secret-key
+use_v4_signature = true
+aws_region = &lt;region name for storage provider&gt;
+use_https = true
+
+[block_backend]
+name = s3
+bucket = my-block-objects
+host = &lt;access endpoint for storage provider&gt;
+key_id = your-key-id
+key = your-secret-key
+use_v4_signature = true
+aws_region = &lt;region name for storage provider&gt;
+use_https = true
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Many self-hosted object storage systems are now compatible with the S3 API, such as <strong><em>OpenStack Swift</em></strong>, <strong><em>Ceph's RADOS Gateway</em></strong> and <strong><em>Minio</em></strong>. You can use these S3-compatible storage systems as backend for Seafile. Here is an example config:</p>
+<div class="highlight"><pre><span></span><code>[commit_object_backend]
+name = s3
+bucket = my-commit-objects
+key_id = your-key-id
+key = your-secret-key
+host = &lt;your s3 api endpoint host&gt;:&lt;your s3 api endpoint port&gt;
+path_style_request = true
+use_v4_signature = true
+use_https = true
+
+[fs_object_backend]
+name = s3
+bucket = my-fs-objects
+key_id = your-key-id
+key = your-secret-key
+host = &lt;your s3 api endpoint host&gt;:&lt;your s3 api endpoint port&gt;
+path_style_request = true
+use_v4_signature = true
+use_https = true
+
+[block_backend]
+name = s3
+bucket = my-block-objects
+key_id = your-key-id
+key = your-secret-key
+host = &lt;your s3 api endpoint host&gt;:&lt;your s3 api endpoint port&gt;
+path_style_request = true
+use_v4_signature = true
+use_https = true
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="run-and-test">Run and Test<a class="headerlink" href="#run-and-test" title="Permanent link">&para;</a></h2>
+<p>Now you can start Seafile and test</p>
 
 
 
 
 
 
+
+  
+  
 
 
 
@@ -4202,6 +4650,44 @@ Please always follow the main <a href="../upgrade/">upgrade guide</a>.</p>
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../setup_pro_by_docker/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Setup pro edition">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Setup pro edition
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../setup_with_ceph/" class="md-footer__link md-footer__link--next" aria-label="Next: Ceph Backend">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Ceph Backend
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">

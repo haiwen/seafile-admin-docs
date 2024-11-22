@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/12.0/setup/setup_with_ceph/">
       
       
-        <link rel="prev" href="../setup_with_amazon_s3/">
+        <link rel="prev" href="../setup_with_s3/">
       
       
         <link rel="next" href="../setup_with_swift/">
@@ -894,7 +894,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup_with_amazon_s3/" class="md-nav__link">
+      <a href="../setup_with_s3/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4305,7 +4305,7 @@
 
 
 <h1 id="setup-with-ceph">Setup With Ceph<a class="headerlink" href="#setup-with-ceph" title="Permanent link">&para;</a></h1>
-<p>Ceph is a scalable distributed storage system. It's recommended to use Ceph's S3 Gateway (RGW) to integarte with Seafile. Seafile can also use Ceph's RADOS object storage layer for storage backend. But using RADOS requires to link with librados library, which may introduce library incompatibility issues during deployment. Furthermore the S3 Gateway provides easier to manage HTTP based interface. If you want to integrate with S3 gateway, please refer to "Use S3-compatible Object Storage" section in <a href="../setup_with_amazon_s3/">this documentation</a>. The documentation below is for integrating with RADOS.</p>
+<p>Ceph is a scalable distributed storage system. It's recommended to use Ceph's S3 Gateway (RGW) to integarte with Seafile. Seafile can also use Ceph's RADOS object storage layer for storage backend. But using RADOS requires to link with librados library, which may introduce library incompatibility issues during deployment. Furthermore the S3 Gateway provides easier to manage HTTP based interface. If you want to integrate with S3 gateway, please refer to "Use S3-compatible Object Storage" section in <a href="../setup_with_s3/">this documentation</a>. The documentation below is for integrating with RADOS.</p>
 <h2 id="copy-ceph-conf-file-and-client-keyring">Copy ceph conf file and client keyring<a class="headerlink" href="#copy-ceph-conf-file-and-client-keyring" title="Permanent link">&para;</a></h2>
 <p>Seafile acts as a client to Ceph/RADOS, so it needs to access ceph cluster's conf file and keyring. You have to copy these files from a ceph admin node's /etc/ceph directory to the seafile machine.</p>
 <div class="highlight"><pre><span></span><code>seafile-machine# sudo scp user@ceph-admin-node:/etc/ceph/ /etc
@@ -4423,7 +4423,7 @@ keyring = &lt;path to user&#39;s keyring file&gt;
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../setup_with_amazon_s3/" class="md-footer__link md-footer__link--prev" aria-label="Previous: S3 Backend">
+          <a href="../setup_with_s3/" class="md-footer__link md-footer__link--prev" aria-label="Previous: S3 Backend">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
