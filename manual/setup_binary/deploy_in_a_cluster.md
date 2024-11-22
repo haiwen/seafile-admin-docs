@@ -190,7 +190,7 @@ CREATE TABLE `avatar_uploaded` (`filename` TEXT NOT NULL, `filename_md5` CHAR(32
 You also need to add the settings for backend cloud storage systems to the config files.
 
 * For NFS: [Setup Seafile cluster with NFS](setup_seafile_cluster_with_nfs.md)
-* For S3: [Setup With Amazon S3](../setup/setup_with_amazon_s3.md)
+* For S3: [Setup With Amazon S3](../setup/setup_with_s3.md)
 * For OpenStack Swift: [Setup With OpenStackSwift](../setup/setup_with_swift.md)
 
 

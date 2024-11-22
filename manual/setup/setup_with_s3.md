@@ -266,7 +266,7 @@ openssl rand -base64 24
     bucket = my-commit-objects
     key_id = your-key-id
     key = your-secret-key
-    host = 192.168.1.123:8080
+    host = <your s3 api endpoint host>:<your s3 api endpoint port>
     path_style_request = true
     use_v4_signature = true
     use_https = true
@@ -276,7 +276,7 @@ openssl rand -base64 24
     bucket = my-fs-objects
     key_id = your-key-id
     key = your-secret-key
-    host = 192.168.1.123:8080
+    host = <your s3 api endpoint host>:<your s3 api endpoint port>
     path_style_request = true
     use_v4_signature = true
     use_https = true
@@ -286,7 +286,7 @@ openssl rand -base64 24
     bucket = my-block-objects
     key_id = your-key-id
     key = your-secret-key
-    host = 192.168.1.123:8080
+    host = <your s3 api endpoint host>:<your s3 api endpoint port>
     path_style_request = true
     use_v4_signature = true
     use_https = true

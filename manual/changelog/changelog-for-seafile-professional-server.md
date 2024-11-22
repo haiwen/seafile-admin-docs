@@ -830,7 +830,6 @@ fs_id_list_request_timeout = 300
 
 Since seafile-pro 7.0.0, we have upgraded Elasticsearch to 5.6. As Elasticsearch 5.6 relies on the Java 8 environment and can't run with root, you need to run Seafile with a non-root user and upgrade the Java version.
 
-Please check our document for how to upgrade to [7.0](../upgrade/upgrade_notes_for_7.0.x.md).
 
 ### 7.0.19 (2020/09/07)
 

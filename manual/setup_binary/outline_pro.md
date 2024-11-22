@@ -11,7 +11,7 @@ There are two ways to deploy Seafile Pro Edition. Since version 8.0, the recomme
 
 ## S3 Storage Backends
 
-- [Setup Seafile Professional Server With S3](../setup/setup_with_amazon_s3.md)
+- [Setup Seafile Professional Server With S3](../setup/setup_with_s3.md)
 - [Setup Seafile Professional Server With OpenStack Swift](../setup/setup_with_swift.md)
 - [Data migration between different backends](../setup/migrate_backends_data.md)
 - [Using multiple storage backends](../setup/setup_with_multiple_storage_backends.md)
