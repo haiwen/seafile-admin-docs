@@ -68,7 +68,6 @@ SeaDoc has the following deployment methods:
     | `JWT_PRIVATE_KEY`      | JWT key, the same as the config in Seafile `.env` file                                                         |  
     | `SEAFILE_SERVER_HOSTNAME`| Seafile host name                                                                                           |  
     | `SEAFILE_SERVER_PROTOCOL`| http or https                                                                                               |  
-    | `SEADOC_SERVER_URL`    | SeaDoc service URL                                                                                            |
 
     !!! note
         Please bind SeaDoc server url and ip in the load balance(or reverse proxy) configuration after starting SeaDoc server
