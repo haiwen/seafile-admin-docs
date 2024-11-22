@@ -54,7 +54,7 @@ SeaDoc has the following deployment methods:
 
     ```sh
     wget https://manual.seafile.com/12.0/docker/seadoc/1.0/standalone/seadoc.yml
-    wget -o .env https://manual.seafile.com/12.0/docker/seadoc/1.0/standalone/env
+    wget -O .env https://manual.seafile.com/12.0/docker/seadoc/1.0/standalone/env
     ```
     Then modify the `.env` file according to your environment. The following fields are needed to be modified:
 

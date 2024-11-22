@@ -69,7 +69,7 @@ Download `.env` and `notification-server.yml` to notification server directory:
 
 ```sh
 wget https://manual.seafile.com/12.0/docker/notification-server/standalone/notification-server.yml
-wget -o .env https://manual.seafile.com/12.0/docker/notification-server/standalone/env
+wget -O .env https://manual.seafile.com/12.0/docker/notification-server/standalone/env
 ```
 
 Then modify the `.env` file according to your environment. The following fields are needed to be modified:
