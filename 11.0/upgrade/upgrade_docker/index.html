@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
     
     
       
@@ -2859,30 +2859,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#upgrade-from-110-to-120-in-progress" class="md-nav__link">
-    <span class="md-ellipsis">
-      Upgrade from 11.0 to 12.0 (In progress)
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Upgrade from 11.0 to 12.0 (In progress)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#upgrade-seadoc-from-08-to-10-for-seafile-v120" class="md-nav__link">
-    <span class="md-ellipsis">
-      Upgrade SeaDoc from 0.8 to 1.0 for Seafile v12.0
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -3051,27 +3027,6 @@
   
   <span class="md-ellipsis">
     Upgrade notes for 11.0.x
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../upgrade_notes_for_12.0.x/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Upgrade notes for 12.0.x (In progress)
   </span>
   
 
@@ -3616,30 +3571,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#upgrade-from-110-to-120-in-progress" class="md-nav__link">
-    <span class="md-ellipsis">
-      Upgrade from 11.0 to 12.0 (In progress)
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Upgrade from 11.0 to 12.0 (In progress)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#upgrade-seadoc-from-08-to-10-for-seafile-v120" class="md-nav__link">
-    <span class="md-ellipsis">
-      Upgrade SeaDoc from 0.8 to 1.0 for Seafile v12.0
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -3717,141 +3648,6 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 <p>Just download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version, then start with docker compose up.</p>
 <h2 id="upgrade-from-70-to-71">Upgrade from 7.0 to 7.1<a class="headerlink" href="#upgrade-from-70-to-71" title="Permanent link">&para;</a></h2>
 <p>Just download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version, then start with docker compose up.</p>
-<h2 id="upgrade-from-110-to-120-in-progress">Upgrade from 11.0 to 12.0 (In progress)<a class="headerlink" href="#upgrade-from-110-to-120-in-progress" title="Permanent link">&para;</a></h2>
-<p>From Seafile Docker 12.0, we recommend that you use <code>.env</code> and <code>seafile-server.yml</code> files for configuration.</p>
-<p>First, backup the original docker-compose.yml file:</p>
-<div class="codehilite"><pre><span></span><code>mv<span class="w"> </span>docker-compose.yml<span class="w"> </span>docker-compose.yml.bak
-</code></pre></div>
-
-<p>Then download <a href="https://manual.seafile.com/11.0/docker/docker-compose/ce/12.0/env">.env</a>, <a href="https://manual.seafile.com/11.0/docker/docker-compose/ce/12.0/seafile-server.yml">seafile-server.yml</a> and <a href="https://manual.seafile.com/11.0/docker/docker-compose/ce/12.0/caddy.yml">caddy.yml</a>, and modify .env file according to the old configuration in <code>docker-compose.yml.bak</code></p>
-<p>For community edition:</p>
-<div class="codehilite"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/11.0/docker/docker-compose/ce/12.0/env
-wget<span class="w"> </span>https://manual.seafile.com/11.0/docker/docker-compose/ce/12.0/seafile-server.yml
-wget<span class="w"> </span>https://manual.seafile.com/11.0/docker/docker-compose/ce/12.0/caddy.yml
-</code></pre></div>
-
-<p>For pro edition:</p>
-<div class="codehilite"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/11.0/docker/docker-compose/pro/12.0/env
-wget<span class="w"> </span>https://manual.seafile.com/11.0/docker/docker-compose/pro/12.0/seafile-server.yml
-wget<span class="w"> </span>https://manual.seafile.com/11.0/docker/docker-compose/pro/12.0/caddy.yml
-</code></pre></div>
-
-<p>The following fields merit particular attention:</p>
-<ul>
-<li>The volume directory of Seafile data (SEAFILE_VOLUMES, same as the seafile volumes in the old docker-compose.yml)</li>
-<li>The volume directory of MySQL data (SEAFILE_MYSQL_VOLUMES, same as the mysql volumes in the old docker-compose.yml)</li>
-<li>The volume directory of Elasticsearch data (SEAFILE_ELASTICSEARCH_VOLUMES, pro edition only, same as the elasticsearch volumes in the old docker-compose.yml)</li>
-<li>The volume directory of Caddy data (SEAFILE_CADDY_VOLUMES)</li>
-<li>The user of MySQL (SEAFILE_MYSQL_DB_USER, <code>database</code> - <code>user</code> can be found in <code>conf/seafile.conf</code>)</li>
-<li>The password of MySQL (SEAFILE_MYSQL_DB_PASSWORD, <code>database</code> - <code>password</code> can be found in <code>conf/seafile.conf</code>)</li>
-<li>jwt (JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: <code>pwgen -s 40 1</code>)</li>
-<li>SEAFILE_SERVER_HOSTNAME (SEAFILE_SERVER_HOSTNAME, same as the SEAFILE_SERVER_HOSTNAME in the old docker-compose.yml)</li>
-<li>SEAFILE_SERVER_PROTOCOL (SEAFILE_SERVER_PROTOCOL, use http or https)</li>
-</ul>
-<p>SSL is now handled by the caddy server. If you have used SSL before, you will also need modify the seafile.nginx.conf. Change server listen 443 to 80.</p>
-<p>Backup the original seafile.nginx.conf file:</p>
-<div class="codehilite"><pre><span></span><code>cp<span class="w"> </span>seafile.nginx.conf<span class="w"> </span>seafile.nginx.conf.bak
-</code></pre></div>
-
-<p>Remove the <code>server listen 80</code> section:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1">#server {</span>
-<span class="c1">#    listen 80;</span>
-<span class="c1">#    server_name _ default_server;</span>
-
-<span class="w">    </span><span class="c1"># allow certbot to connect to challenge location via HTTP Port 80</span>
-<span class="w">    </span><span class="c1"># otherwise renewal request will fail</span>
-<span class="c1">#    location /.well-known/acme-challenge/ {</span>
-<span class="c1">#        alias /var/www/challenges/;</span>
-<span class="c1">#        try_files $uri =404;</span>
-<span class="c1">#    }</span>
-
-<span class="c1">#    location / {</span>
-<span class="c1">#        rewrite ^ https://example.seafile.com$request_uri? permanent;</span>
-<span class="c1">#    }</span>
-<span class="c1">#}</span>
-</code></pre></div>
-
-<p>Change <code>server listen 443</code> to <code>80</code>:</p>
-<div class="codehilite"><pre><span></span><code><span class="nt">server</span><span class="w"> </span><span class="p">{</span>
-<span class="err">#listen</span><span class="w"> </span><span class="err">443</span><span class="w"> </span><span class="err">ssl</span><span class="p">;</span>
-<span class="err">listen</span><span class="w"> </span><span class="err">80</span><span class="p">;</span>
-
-<span class="err">#</span><span class="w">    </span><span class="err">ssl_certificate</span><span class="w">      </span><span class="err">/shared/ssl/pkg.seafile.top.crt</span><span class="p">;</span>
-<span class="err">#</span><span class="w">    </span><span class="err">ssl_certificate_key</span><span class="w">  </span><span class="err">/shared/ssl/pkg.seafile.top.key</span><span class="p">;</span>
-
-<span class="err">#</span><span class="w">    </span><span class="err">ssl_ciphers</span><span class="w"> </span><span class="err">ECDH+</span><span class="n">AESGCM</span><span class="p">:</span><span class="n">DH</span><span class="o">+</span><span class="n">AESGCM</span><span class="o">:</span><span class="n">ECDH</span><span class="o">+</span><span class="n">AES256</span><span class="o">:</span><span class="n">DH</span><span class="o">+</span><span class="n">AES256</span><span class="o">:</span><span class="n">ECDH</span><span class="o">+</span><span class="n">AES128</span><span class="o">:</span><span class="n">DH</span><span class="o">+</span><span class="n">AES</span><span class="o">:</span><span class="n">ECDH</span><span class="mi">+3</span><span class="n">DES</span><span class="o">:</span><span class="n">DH</span><span class="mi">+3</span><span class="n">DES</span><span class="o">:</span><span class="n">RSA</span><span class="o">+</span><span class="n">AESGCM</span><span class="o">:</span><span class="n">RSA</span><span class="o">+</span><span class="n">AES</span><span class="o">:</span><span class="n">RSA</span><span class="mi">+3</span><span class="n">DES</span><span class="o">:!</span><span class="n">aNULL</span><span class="o">:!</span><span class="n">MD5</span><span class="o">:!</span><span class="n">DSS</span><span class="p">;</span>
-
-<span class="w">   </span><span class="err">...</span>
-</code></pre></div>
-
-<p>Start with docker compose up.</p>
-<h3 id="upgrade-seadoc-from-08-to-10-for-seafile-v120">Upgrade SeaDoc from 0.8 to 1.0 for Seafile v12.0<a class="headerlink" href="#upgrade-seadoc-from-08-to-10-for-seafile-v120" title="Permanent link">&para;</a></h3>
-<p>If you have deployed SeaDoc extension in version 11.0, please use the following steps to upgrade it to version 1.0.</p>
-<p>SeaDoc 1.0 is for working with Seafile 12.0. SeaDoc and Seafile are deployed in the same directory. SeaDoc has no state in itself. You can simplify delete old configuration file and directory of v0.8. Then deploy SeaDoc 1.0 as following.</p>
-<p>In version 1.0, we use .env file to configure SeaDoc docker image, instead of modifying the docker-compose.yml file directly.</p>
-<p>Download <a href="https://manual.seafile.com/11.0/docker/docker-compose/ce/12.0/seadoc.yml">seadoc.yml</a> to the Seafile <code>seafile-server.yml</code> directory, then modify Seafile .env file.</p>
-<p>For community edition:</p>
-<div class="codehilite"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/11.0/docker/docker-compose/ce/12.0/seadoc.yml
-</code></pre></div>
-
-<p>For pro edition:</p>
-<div class="codehilite"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/11.0/docker/docker-compose/pro/12.0/seadoc.yml
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code>COMPOSE_FILE=&#39;seafile-server.yml,caddy.yml,seadoc.yml&#39;
-
-SEADOC_VOLUMES=/opt/seadoc-data
-ENABLE_SEADOC=true
-SEADOC_SERVER_URL=http://example.seafile.com/sdoc-server
-</code></pre></div>
-
-<p>The following fields merit particular attention:</p>
-<ul>
-<li>Add <code>seadoc.yml</code> to the <code>COMPOSE_FILE</code> field.</li>
-<li>The volume directory of SeaDoc data (SEADOC_VOLUMES)</li>
-<li>Enable SeaDoc (ENABLE_SEADOC)</li>
-<li>SeaDoc service url (SEADOC_SERVER_URL, hostname + <code>/sdoc-server</code>)</li>
-</ul>
-<p>If you have deployed SeaDoc older version, you should remove <code>/sdoc-server/</code>, <code>/socket.io</code> configs in seafile.nginx.conf file.</p>
-<div class="codehilite"><pre><span></span><code><span class="err">#</span><span class="w">    </span><span class="nx">location</span><span class="w"> </span><span class="o">/</span><span class="nx">sdoc</span><span class="o">-</span><span class="nx">server</span><span class="o">/</span><span class="w"> </span><span class="p">{</span>
-<span class="err">#</span><span class="w">        </span><span class="nx">add_header</span><span class="w"> </span><span class="nx">Access</span><span class="o">-</span><span class="nx">Control</span><span class="o">-</span><span class="nx">Allow</span><span class="o">-</span><span class="nx">Origin</span><span class="w"> </span><span class="o">*</span><span class="p">;</span>
-<span class="err">#</span><span class="w">        </span><span class="nx">add_header</span><span class="w"> </span><span class="nx">Access</span><span class="o">-</span><span class="nx">Control</span><span class="o">-</span><span class="nx">Allow</span><span class="o">-</span><span class="nx">Methods</span><span class="w"> </span><span class="nx">GET</span><span class="p">,</span><span class="nx">POST</span><span class="p">,</span><span class="nx">PUT</span><span class="p">,</span><span class="nx">DELETE</span><span class="p">,</span><span class="nx">OPTIONS</span><span class="p">;</span>
-<span class="err">#</span><span class="w">        </span><span class="nx">add_header</span><span class="w"> </span><span class="nx">Access</span><span class="o">-</span><span class="nx">Control</span><span class="o">-</span><span class="nx">Allow</span><span class="o">-</span><span class="nx">Headers</span><span class="w"> </span><span class="s">&quot;deviceType,token, authorization, content-type&quot;</span><span class="p">;</span>
-<span class="err">#</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="err">$</span><span class="nx">request_method</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">OPTIONS</span><span class="err">&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="err">#</span><span class="w">            </span><span class="nx">add_header</span><span class="w"> </span><span class="nx">Access</span><span class="o">-</span><span class="nx">Control</span><span class="o">-</span><span class="nx">Allow</span><span class="o">-</span><span class="nx">Origin</span><span class="w"> </span><span class="o">*</span><span class="p">;</span>
-<span class="err">#</span><span class="w">            </span><span class="nx">add_header</span><span class="w"> </span><span class="nx">Access</span><span class="o">-</span><span class="nx">Control</span><span class="o">-</span><span class="nx">Allow</span><span class="o">-</span><span class="nx">Methods</span><span class="w"> </span><span class="nx">GET</span><span class="p">,</span><span class="nx">POST</span><span class="p">,</span><span class="nx">PUT</span><span class="p">,</span><span class="nx">DELETE</span><span class="p">,</span><span class="nx">OPTIONS</span><span class="p">;</span>
-<span class="err">#</span><span class="w">            </span><span class="nx">add_header</span><span class="w"> </span><span class="nx">Access</span><span class="o">-</span><span class="nx">Control</span><span class="o">-</span><span class="nx">Allow</span><span class="o">-</span><span class="nx">Headers</span><span class="w"> </span><span class="s">&quot;deviceType,token, authorization, content-type&quot;</span><span class="p">;</span>
-<span class="err">#</span><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="mi">204</span><span class="p">;</span>
-<span class="err">#</span><span class="w">        </span><span class="p">}</span>
-<span class="err">#</span><span class="w">        </span><span class="nx">proxy_pass</span><span class="w">         </span><span class="nx">http</span><span class="p">:</span><span class="c1">//sdoc-server:7070/;</span>
-<span class="err">#</span><span class="w">        </span><span class="nx">proxy_redirect</span><span class="w">     </span><span class="nx">off</span><span class="p">;</span>
-<span class="err">#</span><span class="w">        </span><span class="nx">proxy_set_header</span><span class="w">   </span><span class="nx">Host</span><span class="w">              </span><span class="err">$</span><span class="nx">host</span><span class="p">;</span>
-<span class="err">#</span><span class="w">        </span><span class="nx">proxy_set_header</span><span class="w">   </span><span class="nx">X</span><span class="o">-</span><span class="nx">Real</span><span class="o">-</span><span class="nx">IP</span><span class="w">         </span><span class="err">$</span><span class="nx">remote_addr</span><span class="p">;</span>
-<span class="err">#</span><span class="w">        </span><span class="nx">proxy_set_header</span><span class="w">   </span><span class="nx">X</span><span class="o">-</span><span class="nx">Forwarded</span><span class="o">-</span><span class="nx">For</span><span class="w">   </span><span class="err">$</span><span class="nx">proxy_add_x_forwarded_for</span><span class="p">;</span>
-<span class="err">#</span><span class="w">        </span><span class="nx">proxy_set_header</span><span class="w">   </span><span class="nx">X</span><span class="o">-</span><span class="nx">Forwarded</span><span class="o">-</span><span class="nx">Host</span><span class="w">  </span><span class="err">$</span><span class="nx">server_name</span><span class="p">;</span>
-<span class="err">#</span><span class="w">        </span><span class="nx">proxy_set_header</span><span class="w">   </span><span class="nx">X</span><span class="o">-</span><span class="nx">Forwarded</span><span class="o">-</span><span class="nx">Proto</span><span class="w"> </span><span class="err">$</span><span class="nx">scheme</span><span class="p">;</span>
-<span class="err">#</span><span class="w">        </span><span class="nx">client_max_body_size</span><span class="w"> </span><span class="mi">100</span><span class="nx">m</span><span class="p">;</span>
-<span class="err">#</span><span class="w">    </span><span class="p">}</span>
-<span class="err">#</span><span class="w">    </span><span class="nx">location</span><span class="w"> </span><span class="o">/</span><span class="nx">socket</span><span class="p">.</span><span class="nx">io</span><span class="w"> </span><span class="p">{</span>
-<span class="err">#</span><span class="w">        </span><span class="nx">proxy_pass</span><span class="w"> </span><span class="nx">http</span><span class="p">:</span><span class="c1">//sdoc-server:7070;</span>
-<span class="err">#</span><span class="w">        </span><span class="nx">proxy_http_version</span><span class="w"> </span><span class="m m-Double">1.1</span><span class="p">;</span>
-<span class="err">#</span><span class="w">        </span><span class="nx">proxy_set_header</span><span class="w"> </span><span class="nx">Upgrade</span><span class="w"> </span><span class="err">$</span><span class="nx">http_upgrade</span><span class="p">;</span>
-<span class="err">#</span><span class="w">        </span><span class="nx">proxy_set_header</span><span class="w"> </span><span class="nx">Connection</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">upgrade</span><span class="err">&#39;</span><span class="p">;</span>
-<span class="err">#</span><span class="w">        </span><span class="nx">proxy_redirect</span><span class="w"> </span><span class="nx">off</span><span class="p">;</span>
-<span class="err">#</span><span class="w">        </span><span class="nx">proxy_buffers</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="mi">32</span><span class="nx">k</span><span class="p">;</span>
-<span class="err">#</span><span class="w">        </span><span class="nx">proxy_buffer_size</span><span class="w"> </span><span class="mi">64</span><span class="nx">k</span><span class="p">;</span>
-<span class="err">#</span><span class="w">        </span><span class="nx">proxy_set_header</span><span class="w"> </span><span class="nx">X</span><span class="o">-</span><span class="nx">Real</span><span class="o">-</span><span class="nx">IP</span><span class="w"> </span><span class="err">$</span><span class="nx">remote_addr</span><span class="p">;</span>
-<span class="err">#</span><span class="w">        </span><span class="nx">proxy_set_header</span><span class="w"> </span><span class="nx">X</span><span class="o">-</span><span class="nx">Forwarded</span><span class="o">-</span><span class="nx">For</span><span class="w"> </span><span class="err">$</span><span class="nx">proxy_add_x_forwarded_for</span><span class="p">;</span>
-<span class="err">#</span><span class="w">        </span><span class="nx">proxy_set_header</span><span class="w"> </span><span class="nx">Host</span><span class="w"> </span><span class="err">$</span><span class="nx">http_host</span><span class="p">;</span>
-<span class="err">#</span><span class="w">        </span><span class="nx">proxy_set_header</span><span class="w"> </span><span class="nx">X</span><span class="o">-</span><span class="nx">NginX</span><span class="o">-</span><span class="nx">Proxy</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
-<span class="err">#</span><span class="w">    </span><span class="p">}</span>
-</code></pre></div>
-
-<p>Start Seafile server and SeaDoc server with the following command</p>
-<div class="codehilite"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
-
-docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
 
 
 
