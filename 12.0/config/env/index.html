@@ -4428,7 +4428,7 @@
 <span class="nv">CLUSTER_INIT_MODE</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="c1"># cluster only</span>
 <span class="nv">CLUSTER_INIT_MEMCACHED_HOST</span><span class="o">=</span>&lt;your<span class="w"> </span>memcached<span class="w"> </span>host&gt;<span class="w"> </span><span class="c1"># cluster only</span>
 <span class="nv">CLUSTER_INIT_ES_HOST</span><span class="o">=</span>&lt;your<span class="w"> </span>elasticsearch<span class="w"> </span>server<span class="w"> </span>HOST&gt;<span class="w"> </span><span class="c1"># cluster only</span>
-<span class="nv">CLUSTER_INIT_ES_PORT</span><span class="o">=</span>&lt;your<span class="w"> </span>elasticsearch<span class="w"> </span>server<span class="w"> </span>port&gt;<span class="w"> </span><span class="c1"># cluster only</span>
+<span class="nv">CLUSTER_INIT_ES_PORT</span><span class="o">=</span><span class="m">9200</span><span class="w"> </span><span class="c1"># cluster only</span>
 <span class="nv">CLUSTER_MODE</span><span class="o">=</span>frontend<span class="w"> </span><span class="c1"># cluster only</span>
 
 
@@ -4495,7 +4495,7 @@
 <li><code>CLUSTER_INIT_MODE</code>: (only valid in pro edition at deploying first time). Cluster initialization mode, in which the necessary configuration files for the service to run will be generated (but <strong>the service will not be started</strong>). If the configuration file already exists, no operation will be performed. The default value is <code>true</code>. When the configuration file is generated, <strong><em>be sure to set this item to <code>false</code></em></strong>.</li>
 <li><code>CLUSTER_INIT_MEMCACHED_HOST</code>: (only valid in pro edition at deploying first time). Cluster Memcached host. (If your Memcached server dose not use port <code>11211</code>, please modify the <a href="../seahub_settings_py/">seahub_settings.py</a> and <a href="../seafile-conf/">seafile.conf</a>).</li>
 <li><code>CLUSTER_INIT_ES_HOST</code>: (only valid in pro edition at deploying first time). Your cluster Elasticsearch server host.</li>
-<li><code>CLUSTER_INIT_ES_PORT</code>: (only valid in pro edition at deploying first time). Your cluster Elasticsearch server port.</li>
+<li><code>CLUSTER_INIT_ES_PORT</code>: (only valid in pro edition at deploying first time). Your cluster Elasticsearch server port. Default is <code>9200</code>.</li>
 <li><code>CLUSTER_MODE</code>: Seafile service node type, i.e., <code>frontend</code> (default) or <code>backend</code></li>
 </ul>
 <h2 id="s3-storage-backend-configurations-only-valid-in-pro-edition-at-deploying-first-time">S3 storage backend configurations (only valid in pro edition at deploying first time)<a class="headerlink" href="#s3-storage-backend-configurations-only-valid-in-pro-edition-at-deploying-first-time" title="Permanent link">&para;</a></h2>

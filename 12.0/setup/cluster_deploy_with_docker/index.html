@@ -1231,13 +1231,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#deployment-load-balance-optional" class="md-nav__link">
+  <a href="#deploy-load-balance-optional" class="md-nav__link">
     <span class="md-ellipsis">
-      Deployment load balance (Optional)
+      Deploy load balance (Optional)
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Deployment load balance (Optional)">
+    <nav class="md-nav" aria-label="Deploy load balance (Optional)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -4303,13 +4303,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#deployment-load-balance-optional" class="md-nav__link">
+  <a href="#deploy-load-balance-optional" class="md-nav__link">
     <span class="md-ellipsis">
-      Deployment load balance (Optional)
+      Deploy load balance (Optional)
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Deployment load balance (Optional)">
+    <nav class="md-nav" aria-label="Deploy load balance (Optional)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -4377,7 +4377,7 @@ wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/cluster/seafi
 <p>Modify the <a href="../../config/env/">variables</a> in <code>.env</code> (especially the terms like <code>&lt;...&gt;</code>). </p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>If you have already deployed AWS S3 storage backend and plan to apply it to Seafile cluster, you can modify the variables in <code>.env</code> to <a href="../../config/env/#s3-storage-backend-configurations-only-valid-in-pro-edition-at-deploying-first-time">set them synchronously during initialization</a>.</p>
+<p>If you have already deployed S3 storage backend and plan to apply it to Seafile cluster, you can modify the variables in <code>.env</code> to <a href="../../config/env/#s3-storage-backend-configurations-only-valid-in-pro-edition-at-deploying-first-time">set them synchronously during initialization</a>.</p>
 </div>
 </li>
 <li>
@@ -4385,10 +4385,63 @@ wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/cluster/seafi
 <div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/opt/seafile
 $<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
-<p>Because CLUSTER_INIT_MODE is true in the <code>.env</code> file, Seafile docker will be started in init mode and generate configuration files.</p>
+<div class="admonition success">
+<p class="admonition-title">Cluster init mode</p>
+<p>Because CLUSTER_INIT_MODE is true in the <code>.env</code> file, Seafile docker will be started in init mode and generate configuration files. As the results, you can see the following lines if you trace the Seafile container (i.e., <code>docker logs seafile</code>):</p>
+<div class="highlight"><pre><span></span><code>---------------------------------
+This is your configuration
+---------------------------------
+
+    server name:            seafile
+    server ip/domain:       seafile.example.com
+
+    seafile data dir:       /opt/seafile/seafile-data
+    fileserver port:        8082
+
+    database:               create new
+    ccnet database:         ccnet_db
+    seafile database:       seafile_db
+    seahub database:        seahub_db
+    database user:          seafile
+
+
+Generating seafile configuration ...
+
+done
+Generating seahub configuration ...
+
+
+
+-----------------------------------------------------------------
+Your seafile server configuration has been finished successfully.
+-----------------------------------------------------------------
+
+run seafile server:     ./seafile.sh { start | stop | restart }
+run seahub  server:     ./seahub.sh  { start &lt;port&gt; | stop | restart &lt;port&gt; }
+
+-----------------------------------------------------------------
+If you are behind a firewall, remember to allow input/output of these tcp ports:
+-----------------------------------------------------------------
+
+port of seafile fileserver:   8082
+port of seahub:               8000
+
+When problems occur, Refer to
+
+        https://download.seafile.com/published/seafile-manual/home.md
+
+for information.
+
+
+[2024-11-21 02:22:37] Updating version stamp
+Start init
+
+Init success
+</code></pre></div>
+</div>
 </li>
 <li>
-<p>Check the generated configuration files (e.g., MySQL, Memcached, Elasticsearch) in configuration files</p>
+<p>In initialization mode, the service will not be started. During this time you can check the generated configuration files (e.g., MySQL, Memcached, Elasticsearch) in configuration files:</p>
 <ul>
 <li><a href="../../config/seafevents-conf/">seafevents.conf</a></li>
 <li><a href="../../config/seafile-conf/">seafile.conf</a></li>
@@ -4411,10 +4464,43 @@ $<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> <
 </ul>
 </li>
 <li>
+<p>(Optional) You can follow <a href="../../extension/setup_seadoc/#deployment-method">here</a> to deploy SeaDoc server (please refer <strong><em>Situation 2</em></strong>). And then modify <code>SEADOC_SERVER_URL</code> in your <code>.env</code> file</p>
+</li>
+<li>
 <p>Restart the container to start the service in frontend node</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
 docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">Frontend node starts successfully</p>
+<p>After executing the above command, you can trace the logs of container <code>seafile</code> (i.e., <code>docker logs seafile</code>). You can see the following message if the frontend node starts successfully:</p>
+<div class="highlight"><pre><span></span><code>*** Running /etc/my_init.d/01_create_data_links.sh...
+*** Booting runit daemon...
+*** Runit started as PID 20
+*** Running /scripts/enterpoint.sh...
+2024-11-21 03:02:35 Nginx ready 
+
+2024-11-21 03:02:35 This is an idle script (infinite loop) to keep container running. 
+---------------------------------
+
+Seafile cluster frontend mode
+
+---------------------------------
+
+
+Starting seafile server, please wait ...
+License file /opt/seafile/seafile-license.txt does not exist, allow at most 3 trial users
+Seafile server started
+
+Done.
+
+Starting seahub at port 8000 ...
+
+Seahub is started
+
+Done.
+</code></pre></div>
+</div>
 </li>
 </ol>
 <h3 id="deploy-seafile-backend-node">Deploy seafile backend node<a class="headerlink" href="#deploy-seafile-backend-node" title="Permanent link">&para;</a></h3>
@@ -4441,9 +4527,36 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 <p>Start the service in the backend node</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">Backend node starts successfully</p>
+<p>After executing the above command, you can trace the logs of container <code>seafile</code> (i.e., <code>docker logs seafile</code>). You can see the following message if the backend node starts successfully:</p>
+<div class="highlight"><pre><span></span><code>*** Running /etc/my_init.d/01_create_data_links.sh...
+*** Booting runit daemon...
+*** Runit started as PID 21
+*** Running /scripts/enterpoint.sh...
+2024-11-21 03:11:59 Nginx ready 
+2024-11-21 03:11:59 This is an idle script (infinite loop) to keep container running. 
+
+---------------------------------
+
+Seafile cluster backend mode
+
+---------------------------------
+
+
+Starting seafile server, please wait ...
+License file /opt/seafile/seafile-license.txt does not exist, allow at most 3 trial users
+Seafile server started
+
+Done.
+
+Starting seafile background tasks ...
+Done.
+</code></pre></div>
+</div>
 </li>
 </ol>
-<h2 id="deployment-load-balance-optional">Deployment load balance (Optional)<a class="headerlink" href="#deployment-load-balance-optional" title="Permanent link">&para;</a></h2>
+<h2 id="deploy-load-balance-optional">Deploy load balance (Optional)<a class="headerlink" href="#deploy-load-balance-optional" title="Permanent link">&para;</a></h2>
 <h3 id="install-haproxy-and-keepalived-services">Install HAproxy and Keepalived services<a class="headerlink" href="#install-haproxy-and-keepalived-services" title="Permanent link">&para;</a></h3>
 <p>Execute the following commands on the two Seafile frontend servers:</p>
 <div class="highlight"><pre><span></span><code>$ apt install haproxy keepalived -y

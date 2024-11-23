@@ -15,7 +15,7 @@ SEAFILE_MYSQL_DB_PASSWORD=<MySQL password for user seafile>
 CLUSTER_INIT_MODE=true # if you have the configurations file, please set to false
 CLUSTER_INIT_MEMCACHED_HOST=<your memcached host> # only valid in config init
 CLUSTER_INIT_ES_HOST=<your elasticsearch server HOST> # only valid in config init
-CLUSTER_INIT_ES_PORT=<your elasticsearch server port> # only valid in config init
+CLUSTER_INIT_ES_PORT=9200 # only valid in config init
 
 CLUSTER_MODE=frontend # backend for backend node
 

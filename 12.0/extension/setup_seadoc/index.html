@@ -4313,8 +4313,21 @@
 <li>After SeaDoc receives the content, it will be sent to the browser.</li>
 </ol>
 <h2 id="deployment-method">Deployment method<a class="headerlink" href="#deployment-method" title="Permanent link">&para;</a></h2>
-<p>SeaDoc has the following deployment methods:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">SeaDoc and Seafile docker are deployed on the same host</label><label for="__tabbed_1_2">Deploy SeaDoc on a new host</label></div>
+<p>SeaDoc has the following deployment methods with different situations:</p>
+<ul>
+<li>
+<p><strong>Situation 1</strong>: Deploy SeaDoc server with the same host as Seafile  Server deploy in single-node docker mode</p>
+</li>
+<li>
+<p><strong>Situation 2</strong>: Deploy SeaDoc server on:</p>
+<ul>
+<li>A new host</li>
+<li>Same host with Seafile server cluster (frontend node)</li>
+<li>Same host with Seafile server deploy from binary packages</li>
+</ul>
+</li>
+</ul>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Situation 1</label><label for="__tabbed_1_2">Situation 2</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>Download the <code>seadoc.yml</code> and integrate SeaDoc in Seafile docker.</p>
@@ -4377,7 +4390,114 @@ Then modify the <code>.env</code> file according to your environment. The follow
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Please bind SeaDoc server url and ip in the load balance(or reverse proxy) configuration after starting SeaDoc server</p>
+<p>By default, SeaDoc server listens to port <code>80</code>. If SeaDoc is deployed on the same machine as Seafile server (including deploying from binary packages and Seafile cluster mode), you need to change the <strong>listening port of SeaDoc server</strong> or <strong>set up a proxy</strong> for SeaDoc server.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Modify listening port</label><label for="__tabbed_2_2">set up a proxy</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Modify <code>seadoc.yml</code></p>
+<div class="highlight"><pre><span></span><code>services:
+  seadoc:
+    ...
+    ports:
+      - &quot;&lt;your SeaDoc server port&gt;:80&quot;
+...
+</code></pre></div>
+<p>Now your <code>SEADOC_SERVER_URL</code> should be:
+<div class="highlight"><pre><span></span><code>{SEAFILE_SERVER_PROTOCOL}://{SEAFILE_SERVER_HOSTNAME}:&lt;your SeaDoc server port&gt;
+</code></pre></div></p>
+</div>
+<div class="tabbed-block">
+<p>Modify <code>seafile.nginx.conf</code></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Seafile cluster</label><label for="__tabbed_3_2">Seafile deploy from binary packages</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>location /sdoc-server/ {
+    add_header Access-Control-Allow-Origin *;
+    add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
+    add_header Access-Control-Allow-Headers &quot;deviceType,token, authorization, content-type&quot;;
+    if ($request_method = &#39;OPTIONS&#39;) {
+        add_header Access-Control-Allow-Origin *;
+        add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
+        add_header Access-Control-Allow-Headers &quot;deviceType,token, authorization, content-type&quot;;
+        return 204;
+    }
+
+    proxy_pass         http://sdoc-server:80/;
+    proxy_redirect     off;
+    proxy_set_header   Host              $host;
+    proxy_set_header   X-Real-IP         $remote_addr;
+    proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
+    proxy_set_header   X-Forwarded-Host  $server_name;
+    proxy_set_header   X-Forwarded-Proto $scheme;
+
+    client_max_body_size 100m;
+}
+
+location /socket.io {
+    proxy_pass http://sdoc-server:80;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection &#39;upgrade&#39;;
+    proxy_redirect off;
+
+    proxy_buffers 8 32k;
+    proxy_buffer_size 64k;
+
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_set_header X-NginX-Proxy true;
+}
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>location /sdoc-server/ {
+    add_header Access-Control-Allow-Origin *;
+    add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
+    add_header Access-Control-Allow-Headers &quot;deviceType,token, authorization, content-type&quot;;
+    if ($request_method = &#39;OPTIONS&#39;) {
+        add_header Access-Control-Allow-Origin *;
+        add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
+        add_header Access-Control-Allow-Headers &quot;deviceType,token, authorization, content-type&quot;;
+        return 204;
+    }
+
+    proxy_pass         http://127.0.0.1:80/;
+    proxy_redirect     off;
+    proxy_set_header   Host              $host;
+    proxy_set_header   X-Real-IP         $remote_addr;
+    proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
+    proxy_set_header   X-Forwarded-Host  $server_name;
+    proxy_set_header   X-Forwarded-Proto $scheme;
+
+    client_max_body_size 100m;
+}
+
+location /socket.io {
+    proxy_pass http://127.0.0.1:80;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection &#39;upgrade&#39;;
+    proxy_redirect off;
+
+    proxy_buffers 8 32k;
+    proxy_buffer_size 64k;
+
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_set_header X-NginX-Proxy true;
+}
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Now your <code>SEADOC_SERVER_URL</code> should be:
+<div class="highlight"><pre><span></span><code>{SEAFILE_SERVER_PROTOCOL}://{SEAFILE_SERVER_HOSTNAME}/sdoc-server/
+</code></pre></div></p>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
