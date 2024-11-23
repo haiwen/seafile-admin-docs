@@ -172,10 +172,6 @@ New in Seafile Pro 7.1.16 and Pro 8.0.3: You can set the maximum number of files
 
 Since Pro 8.0.4 version, you can set both options to -1, to allow unlimited size and timeout.
 
-!!! tip
-    This configuration is only effective for downloading files through web page or API, but not for syncing files
-
-```
 [fileserver]
 max_sync_file_count = 100000
 fs_id_list_request_timeout = 300
@@ -307,6 +303,9 @@ When you deploy Seafile in a cluster, you should add the following configuration
 enabled = true
 ```
 
+!!! tip
+    Since version 12, if you use Docker to deploy cluster, this option is no longer needed.
+
 ## Enable Slow Log
 
 Since Seafile-pro-6.3.10, you can enable seaf-server's RPC slow log to do performance analysis.The slow log is enabled by default.
@@ -390,60 +389,17 @@ go tool pprof http://localhost:8082/debug/pprof/profile?password=8kcUz1I2sLaywQh
 ```
 
 ## Notification server configuration
-Since Seafile 10.0.0, you can enable the notification server by adding the following configuration options:
+Since Seafile 10.0.0, you can ask Seafile server to send notifications (file changes, lock changes and folder permission changes) to [Notification Server component](../extension/notification-server.md).
 
 ```
-# jwt_private_key are required.You should generate it manually.
 [notification]
 enabled = true
-# the listen IP of notification server. (Do not modify the host when using Nginx or Apache, as Nginx or Apache will proxy the requests to this address)
-host = 127.0.0.1
+# IP address of the server running notification server
+# or "notification-server" if you are running notification server container on the same host as Seafile server
+host = 192.168.0.83
 # the port of notification server
 port = 8083
-# the log level of notification server
-log_level = info
-# jwt_private_key is used to generate jwt token and authenticate seafile server
-jwt_private_key = M@O8VWUb81YvmtWLHGB2I_V7di5-@0p(MF*GrE!sIws23F
 ```
 
-You can generate jwt_private_key with the following command：
-
-```
-# generate jwt_private_key
-openssl rand -base64 32
-
-```
-
-If you use nginx, then you also need to add the following configuration for nginx:
-
-```
-server {
-    ...
-
-    location /notification/ping {
-        proxy_pass http://127.0.0.1:8083/ping;
-        access_log      /var/log/nginx/notification.access.log seafileformat;
-        error_log       /var/log/nginx/notification.error.log;
-    }
-    location /notification {
-        proxy_pass http://127.0.0.1:8083/;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
-        access_log      /var/log/nginx/notification.access.log seafileformat;
-        error_log       /var/log/nginx/notification.error.log;
-    }
-
-    ...
-}
-```
-
-Or add the configuration for Apache:
-
-```
-    ProxyPass /notification/ping  http://127.0.0.1:8083/ping/
-    ProxyPassReverse /notification/ping  http://127.0.0.1:8083/ping/
-
-    ProxyPass /notification  ws://127.0.0.1:8083/
-    ProxyPassReverse /notification ws://127.0.0.1:8083/
-```
+!!! tip
+    The configuration here only works for version >= 12.0. The configuration for notificaton server has been changed in 12.0 to make it clearer. The new configuration is not compatible with older versions.
