@@ -165,6 +165,26 @@ ENABLE_ENCRYPTED_LIBRARY = True
 # version 3 is insecure (using AES128 encryption) so it's not recommended any more.
 ENCRYPTED_LIBRARY_VERSION = 2
 
+# Since version 12, you can choose password hash algorithm for new encrypted libraries.
+# The password is used to encrypt the encryption key. So using a secure password hash algorithm to
+# prevent brute-force password guessing is important.
+# Before version 12, a fixed algorithm (PBKDF2-SHA256 with 1000 iterations) is used.
+#
+# Currently two hash algorithms are supported.
+#  - PBKDF2: The only available parameter is the number of iterations. You need to increase the
+#    the number of iterations over time, as GPUs are more and more used for such calculation.
+#    The default number of iterations is 1000. As of 2023, the recommended iterations is 600,000.
+#  - Argon2id: Secure hash algorithm that has high cost even for GPUs. There are 3 parameters that
+#    can be set: time cost, memory cost, and parallelism degree. The parameters are seperated by commas,
+#    e.g. "2,102400,8", which the default parameters used in Seafile. Learn more about this algorithm
+#    on https://github.com/P-H-C/phc-winner-argon2 .
+#
+# Note that only sync client >= 9.0.9 and SeaDrive >= 3.0.12 supports syncing libraries created with these algorithms.
+ENCRYPTED_LIBRARY_PWD_HASH_ALGO = "argon2id"
+ENCRYPTED_LIBRARY_PWD_HASH_PARAMS = "2,102400,8"
+# ENCRYPTED_LIBRARY_PWD_HASH_ALGO = "pbkdf2_sha256"
+# ENCRYPTED_LIBRARY_PWD_HASH_PARAMS = "600000"
+
 # mininum length for password of encrypted library
 REPO_PASSWORD_MIN_LENGTH = 8
 
