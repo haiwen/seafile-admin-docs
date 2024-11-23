@@ -4576,6 +4576,26 @@ ENABLE_REPO_SNAPSHOT_LABEL = False
 <span class="c1"># version 3 is insecure (using AES128 encryption) so it&#39;s not recommended any more.</span>
 <span class="n">ENCRYPTED_LIBRARY_VERSION</span> <span class="o">=</span> <span class="mi">2</span>
 
+<span class="c1"># Since version 12, you can choose password hash algorithm for new encrypted libraries.</span>
+<span class="c1"># The password is used to encrypt the encryption key. So using a secure password hash algorithm to</span>
+<span class="c1"># prevent brute-force password guessing is important.</span>
+<span class="c1"># Before version 12, a fixed algorithm (PBKDF2-SHA256 with 1000 iterations) is used.</span>
+<span class="c1">#</span>
+<span class="c1"># Currently two hash algorithms are supported.</span>
+<span class="c1">#  - PBKDF2: The only available parameter is the number of iterations. You need to increase the</span>
+<span class="c1">#    the number of iterations over time, as GPUs are more and more used for such calculation.</span>
+<span class="c1">#    The default number of iterations is 1000. As of 2023, the recommended iterations is 600,000.</span>
+<span class="c1">#  - Argon2id: Secure hash algorithm that has high cost even for GPUs. There are 3 parameters that</span>
+<span class="c1">#    can be set: time cost, memory cost, and parallelism degree. The parameters are seperated by commas,</span>
+<span class="c1">#    e.g. &quot;2,102400,8&quot;, which the default parameters used in Seafile. Learn more about this algorithm</span>
+<span class="c1">#    on https://github.com/P-H-C/phc-winner-argon2 .</span>
+<span class="c1">#</span>
+<span class="c1"># Note that only sync client &gt;= 9.0.9 and SeaDrive &gt;= 3.0.12 supports syncing libraries created with these algorithms.</span>
+<span class="n">ENCRYPTED_LIBRARY_PWD_HASH_ALGO</span> <span class="o">=</span> <span class="s2">&quot;argon2id&quot;</span>
+<span class="n">ENCRYPTED_LIBRARY_PWD_HASH_PARAMS</span> <span class="o">=</span> <span class="s2">&quot;2,102400,8&quot;</span>
+<span class="c1"># ENCRYPTED_LIBRARY_PWD_HASH_ALGO = &quot;pbkdf2_sha256&quot;</span>
+<span class="c1"># ENCRYPTED_LIBRARY_PWD_HASH_PARAMS = &quot;600000&quot;</span>
+
 <span class="c1"># mininum length for password of encrypted library</span>
 <span class="n">REPO_PASSWORD_MIN_LENGTH</span> <span class="o">=</span> <span class="mi">8</span>
 
