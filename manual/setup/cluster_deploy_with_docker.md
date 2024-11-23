@@ -124,7 +124,9 @@ We assume you have already deployed memcache, MariaDB, ElasticSearch in separate
     - `INIT_S3_KEY_ID`
     - `INIT_S3_SECRET_KEY`
 
-8. Restart the container to start the service in frontend node
+8. (Optional) You can follow [here](../extension/setup_seadoc.md#deployment-method) to deploy SeaDoc server (please refer ***Situation 2***). And then modify `SEADOC_SERVER_URL` in your `.env` file
+
+9. Restart the container to start the service in frontend node
 
     ```sh
     docker compose down
@@ -216,7 +218,7 @@ We assume you have already deployed memcache, MariaDB, ElasticSearch in separate
         Done.
         ```
  
-## Deployment load balance (Optional)
+## Deploy load balance (Optional)
 
 ### Install HAproxy and Keepalived services
 
