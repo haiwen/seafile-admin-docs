@@ -3096,6 +3096,87 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#database-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-locking-pro-edition-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Locking (Pro edition only)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storage-backends" class="md-nav__link">
+    <span class="md-ellipsis">
+      Storage Backends
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cluster
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enable-slow-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable Slow Log
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enable-access-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable Access Log
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#go-fileserver" class="md-nav__link">
+    <span class="md-ellipsis">
+      Go Fileserver
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#profiling-go-fileserver-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Profiling Go Fileserver Performance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notification-server-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notification server configuration
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4292,6 +4373,87 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#database-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-locking-pro-edition-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Locking (Pro edition only)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storage-backends" class="md-nav__link">
+    <span class="md-ellipsis">
+      Storage Backends
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cluster
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enable-slow-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable Slow Log
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enable-access-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable Access Log
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#go-fileserver" class="md-nav__link">
+    <span class="md-ellipsis">
+      Go Fileserver
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#profiling-go-fileserver-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Profiling Go Fileserver Performance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notification-server-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notification server configuration
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4414,172 +4576,159 @@ http_temp_scan_interval = x
 </code></pre></div>
 <p>New in Seafile Pro 7.1.16 and Pro 8.0.3: You can set the maximum number of files contained in a library that can be synced by the Seafile client. The default is 100000. When you download a repo, Seafile client will request fs id list, and you can control the timeout period of this request through <code>fs_id_list_request_timeout</code> configuration, which defaults to 5 minutes. These two options are added to prevent long fs-id-list requests from overloading the server.</p>
 <p>Since Pro 8.0.4 version, you can set both options to -1, to allow unlimited size and timeout.</p>
-<p>[fileserver]
+<div class="highlight"><pre><span></span><code>[fileserver]
 max_sync_file_count = 100000
 fs_id_list_request_timeout = 300
-<div class="highlight"><pre><span></span><code>If you use object storage as storage backend, when a large file is frequently downloaded, the same blocks need to be fetched from the storage backend to Seafile server. This may waste bandwith and cause high load on the internal network. Since Seafile Pro 8.0.5 version, we add block caching to improve the situation. 
-
-* To enable this feature, set `use_block_cache` option in the `[fileserver]` group. It&#39;s not enabled by default. 
-* The `block_cache_size_limit` option is used to limit the size of the cache. Its default value is 10GB. The blocks are cached in `seafile-data/block-cache` directory. When the total size of cached files exceeds the limit, seaf-server will clean up older files until the size reduces to 70% of the limit. The cleanup interval is 5 minutes. You have to have a good estimate on how much space you need for the cache directory. Otherwise on frequent downloads this directory can be quickly filled up.
-* The `block_cache_file_types` configuration is used to choose the file types that are cached. `block_cache_file_types` the default value is mp4;mov.
 </code></pre></div>
-[fileserver]
-use_block_cache = true</p>
-<h1 id="set-block-cache-size-limit-to-100mb">Set block cache size limit to 100MB<a class="headerlink" href="#set-block-cache-size-limit-to-100mb" title="Permanent link">&para;</a></h1>
-<p>block_cache_size_limit = 100
+<p>If you use object storage as storage backend, when a large file is frequently downloaded, the same blocks need to be fetched from the storage backend to Seafile server. This may waste bandwith and cause high load on the internal network. Since Seafile Pro 8.0.5 version, we add block caching to improve the situation. </p>
+<ul>
+<li>To enable this feature, set <code>use_block_cache</code> option in the <code>[fileserver]</code> group. It's not enabled by default. </li>
+<li>The <code>block_cache_size_limit</code> option is used to limit the size of the cache. Its default value is 10GB. The blocks are cached in <code>seafile-data/block-cache</code> directory. When the total size of cached files exceeds the limit, seaf-server will clean up older files until the size reduces to 70% of the limit. The cleanup interval is 5 minutes. You have to have a good estimate on how much space you need for the cache directory. Otherwise on frequent downloads this directory can be quickly filled up.</li>
+<li>The <code>block_cache_file_types</code> configuration is used to choose the file types that are cached. <code>block_cache_file_types</code> the default value is mp4;mov.</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code>[fileserver]
+use_block_cache = true
+# Set block cache size limit to 100MB
+block_cache_size_limit = 100
 block_cache_file_types = mp4;mov
-<div class="highlight"><pre><span></span><code>When a large number of files are uploaded through the web page and API, it will be expensive to calculate block IDs based on the block contents. Since Seafile-pro-9.0.6, you can add the `skip_block_hash` option to use a random string as block ID.
-
-!!! warning
-    This option will prevent fsck from checking block content integrity. You should specify `--shallow` option to fsck to not check content integrity.
 </code></pre></div>
-[fileserver]
+When a large number of files are uploaded through the web page and API, it will be expensive to calculate block IDs based on the block contents. Since Seafile-pro-9.0.6, you can add the <code>skip_block_hash</code> option to use a random string as block ID.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This option will prevent fsck from checking block content integrity. You should specify <code>--shallow</code> option to fsck to not check content integrity.</p>
+</div>
+<div class="highlight"><pre><span></span><code>[fileserver]
 skip_block_hash = true
-<div class="highlight"><pre><span></span><code>If you want to limit the type of files when uploading files, since Seafile Pro 10.0.0 version, you can set `file_ext_white_list` option in the `[fileserver]` group. This option is a list of file types, only the file types in this list are allowed to be uploaded. It&#39;s not enabled by default. 
 </code></pre></div>
-[fileserver]
+<p>If you want to limit the type of files when uploading files, since Seafile Pro 10.0.0 version, you can set <code>file_ext_white_list</code> option in the <code>[fileserver]</code> group. This option is a list of file types, only the file types in this list are allowed to be uploaded. It's not enabled by default. </p>
+<div class="highlight"><pre><span></span><code>[fileserver]
 file_ext_white_list = md;mp4;mov
-<div class="highlight"><pre><span></span><code>Since seafile 10.0.1, when you use go fileserver, you can set `upload_limit` and `download_limit` option in the `[fileserver]` group to limit the speed of file upload and download. It&#39;s not enabled by default. 
 </code></pre></div>
-[fileserver]</p>
-<h1 id="the-unit-is-in-kbs">The unit is in KB/s.<a class="headerlink" href="#the-unit-is-in-kbs" title="Permanent link">&para;</a></h1>
-<p>upload_limit = 100
+<p>Since seafile 10.0.1, when you use go fileserver, you can set <code>upload_limit</code> and <code>download_limit</code> option in the <code>[fileserver]</code> group to limit the speed of file upload and download. It's not enabled by default. </p>
+<div class="highlight"><pre><span></span><code>[fileserver]
+# The unit is in KB/s.
+upload_limit = 100
 download_limit = 100
-<div class="highlight"><pre><span></span><code>Since Seafile 11.0.7 Pro, you can ask file server to check virus for every file uploaded with web APIs. Find more options about virus scanning at [virus scan](../extension/virus_scan.md).
 </code></pre></div>
-[fileserver]</p>
-<h1 id="default-is-false">default is false<a class="headerlink" href="#default-is-false" title="Permanent link">&para;</a></h1>
-<p>check_virus_on_web_upload = true
-<div class="highlight"><pre><span></span><code>## Database configuration
-
-The configurations of database are stored in the `[database]` section.
-
-!!! danger &quot;From Seafile 11.0, the *SQLite* is not supported&quot;
+<p>Since Seafile 11.0.7 Pro, you can ask file server to check virus for every file uploaded with web APIs. Find more options about virus scanning at <a href="../../extension/virus_scan/">virus scan</a>.</p>
+<div class="highlight"><pre><span></span><code>[fileserver]
+# default is false
+check_virus_on_web_upload = true
 </code></pre></div>
-[database]
+<h2 id="database-configuration">Database configuration<a class="headerlink" href="#database-configuration" title="Permanent link">&para;</a></h2>
+<p>The configurations of database are stored in the <code>[database]</code> section.</p>
+<div class="admonition danger">
+<p class="admonition-title">From Seafile 11.0, the <em>SQLite</em> is not supported</p>
+</div>
+<div class="highlight"><pre><span></span><code>[database]
 type=mysql
 host=127.0.0.1
 user=root
 password=root
 db_name=seafile_db
 connection_charset=utf8
-max_connections=100</p>
-<p><div class="highlight"><pre><span></span><code>When you configure seafile server to use MySQL, the default connection pool size is 100, which should be enough for most use cases.
-
-Since Seafile 10.0.2, you can enable the encrypted connections to the MySQL server by adding the following configuration options:
+max_connections=100
 </code></pre></div>
-[database]
+<p>When you configure seafile server to use MySQL, the default connection pool size is 100, which should be enough for most use cases.</p>
+<p>Since Seafile 10.0.2, you can enable the encrypted connections to the MySQL server by adding the following configuration options:</p>
+<div class="highlight"><pre><span></span><code>[database]
 use_ssl = true
 skip_verify = false
 ca_path = /etc/mysql/ca.pem
-<div class="highlight"><pre><span></span><code>When set `use_ssl` to true and `skip_verify` to false, it will check whether the MySQL server certificate is legal through the CA configured in `ca_path`. The `ca_path` is a trusted CA certificate path for signing MySQL server certificates. When `skip_verify` is true, there is no need to add the `ca_path` option. The MySQL server certificate won&#39;t be verified at this time.
-
-## File Locking (Pro edition only)
-
-The Seafile Pro server auto expires file locks after some time, to prevent a locked file being locked for too long. The expire time can be tune in seafile.conf file.
 </code></pre></div>
-[file_lock]
-default_expire_hours = 6</p>
-<p><div class="highlight"><pre><span></span><code>The default is 12 hours.
-
-Since Seafile-pro-9.0.6, you can add cache for getting locked files (reduce server load caused by sync clients). Since Pro Edition 12, this option is enabled by default.
+<p>When set <code>use_ssl</code> to true and <code>skip_verify</code> to false, it will check whether the MySQL server certificate is legal through the CA configured in <code>ca_path</code>. The <code>ca_path</code> is a trusted CA certificate path for signing MySQL server certificates. When <code>skip_verify</code> is true, there is no need to add the <code>ca_path</code> option. The MySQL server certificate won't be verified at this time.</p>
+<h2 id="file-locking-pro-edition-only">File Locking (Pro edition only)<a class="headerlink" href="#file-locking-pro-edition-only" title="Permanent link">&para;</a></h2>
+<p>The Seafile Pro server auto expires file locks after some time, to prevent a locked file being locked for too long. The expire time can be tune in seafile.conf file.</p>
+<div class="highlight"><pre><span></span><code>[file_lock]
+default_expire_hours = 6
 </code></pre></div>
-[file_lock]
-use_locked_file_cache = true</p>
-<p><div class="highlight"><pre><span></span><code>At the same time, you also need to configure the following memcache options for the cache to take effect:
+<p>The default is 12 hours.</p>
+<p>Since Seafile-pro-9.0.6, you can add cache for getting locked files (reduce server load caused by sync clients). Since Pro Edition 12, this option is enabled by default.</p>
+<div class="highlight"><pre><span></span><code>[file_lock]
+use_locked_file_cache = true
 </code></pre></div>
-[memcached]
-memcached_options = --SERVER=<the IP of Memcached Server> --POOL-MIN=10 --POOL-MAX=100</p>
-<p><div class="highlight"><pre><span></span><code>## Storage Backends
-
-You may configure Seafile to use various kinds of object storage backends.
-
-- [S3 or S3-compatible object storage](../setup/setup_with_s3.md)
-- [Ceph RADOS](../setup/setup_with_ceph.md)
-- [Alibaba Cloud OSS](../setup/setup_with_oss.md)
-- [OpenStack Swift](../setup/setup_with_swift.md)
-
-You may also configure Seafile to use [multiple storage backends](../setup/setup_with_multiple_storage_backends.md) at the same time.
-
-## Cluster
-
-When you deploy Seafile in a cluster, you should add the following configuration:
+<p>At the same time, you also need to configure the following memcache options for the cache to take effect:</p>
+<div class="highlight"><pre><span></span><code>[memcached]
+memcached_options = --SERVER=&lt;the IP of Memcached Server&gt; --POOL-MIN=10 --POOL-MAX=100
 </code></pre></div>
-[cluster]
+<h2 id="storage-backends">Storage Backends<a class="headerlink" href="#storage-backends" title="Permanent link">&para;</a></h2>
+<p>You may configure Seafile to use various kinds of object storage backends.</p>
+<ul>
+<li><a href="../../setup/setup_with_s3/">S3 or S3-compatible object storage</a></li>
+<li><a href="../../setup/setup_with_ceph/">Ceph RADOS</a></li>
+<li><a href="../setup/setup_with_oss.md">Alibaba Cloud OSS</a></li>
+<li><a href="../../setup/setup_with_swift/">OpenStack Swift</a></li>
+</ul>
+<p>You may also configure Seafile to use <a href="../../setup/setup_with_multiple_storage_backends/">multiple storage backends</a> at the same time.</p>
+<h2 id="cluster">Cluster<a class="headerlink" href="#cluster" title="Permanent link">&para;</a></h2>
+<p>When you deploy Seafile in a cluster, you should add the following configuration:</p>
+<div class="highlight"><pre><span></span><code>[cluster]
 enabled = true
-<div class="highlight"><pre><span></span><code>!!! tip
-    Since version 12, if you use Docker to deploy cluster, this option is no longer needed.
-
-## Enable Slow Log
-
-Since Seafile-pro-6.3.10, you can enable seaf-server&#39;s RPC slow log to do performance analysis.The slow log is enabled by default.
-
-If you want to configure related options, add the options to seafile.conf:
 </code></pre></div>
-[slow_log]</p>
-<h1 id="default-to-true">default to true<a class="headerlink" href="#default-to-true" title="Permanent link">&para;</a></h1>
-<p>enable_slow_log = true</p>
-<h1 id="the-unit-of-all-slow-log-thresholds-is-millisecond">the unit of all slow log thresholds is millisecond.<a class="headerlink" href="#the-unit-of-all-slow-log-thresholds-is-millisecond" title="Permanent link">&para;</a></h1>
-<h1 id="default-to-5000-milliseconds-only-rpc-queries-processed-for-longer-than-5000-milliseconds-will-be-logged">default to 5000 milliseconds, only RPC queries processed for longer than 5000 milliseconds will be  logged.<a class="headerlink" href="#default-to-5000-milliseconds-only-rpc-queries-processed-for-longer-than-5000-milliseconds-will-be-logged" title="Permanent link">&para;</a></h1>
-<p>rpc_slow_threshold = 5000</p>
-<p><div class="highlight"><pre><span></span><code>You can find `seafile_slow_rpc.log` in `logs/slow_logs`. You can also use [log-rotate](../setup_binary/using_logrotate.md) to rotate the log files. You just need to send `SIGUSR2` to `seaf-server` process. The slow log file will be closed and reopened.
-
-Since 9.0.2 Pro, the signal to trigger log rotation has been changed to `SIGUSR1`. This signal will trigger rotation for all log files opened by seaf-server. You should change your log rotate settings accordingly.
-
-## Enable Access Log
-
-Even though Nginx logs all requests with certain details, such as url, response code, upstream process time, it&#39;s sometimes desirable to have more context about the requests, such as the user id for each request. Such information can only be logged from file server itself. Since 9.0.2 Pro, access log feature is added to fileserver.
-
-To enable access log, add below options to seafile.conf:
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Since version 12, if you use Docker to deploy cluster, this option is no longer needed.</p>
+</div>
+<h2 id="enable-slow-log">Enable Slow Log<a class="headerlink" href="#enable-slow-log" title="Permanent link">&para;</a></h2>
+<p>Since Seafile-pro-6.3.10, you can enable seaf-server's RPC slow log to do performance analysis.The slow log is enabled by default.</p>
+<p>If you want to configure related options, add the options to seafile.conf:</p>
+<div class="highlight"><pre><span></span><code>[slow_log]
+# default to true
+enable_slow_log = true
+# the unit of all slow log thresholds is millisecond.
+# default to 5000 milliseconds, only RPC queries processed for longer than 5000 milliseconds will be  logged.
+rpc_slow_threshold = 5000
 </code></pre></div>
-[fileserver]</p>
-<h1 id="default-to-false-if-enabled-fileserver-accesslog-will-be-written-to-log-directory">default to false. If enabled, fileserver-access.log will be written to log directory.<a class="headerlink" href="#default-to-false-if-enabled-fileserver-accesslog-will-be-written-to-log-directory" title="Permanent link">&para;</a></h1>
-<p>enable_access_log = true
-<div class="highlight"><pre><span></span><code>The log format is as following:
+<p>You can find <code>seafile_slow_rpc.log</code> in <code>logs/slow_logs</code>. You can also use <a href="../../setup_binary/using_logrotate/">log-rotate</a> to rotate the log files. You just need to send <code>SIGUSR2</code> to <code>seaf-server</code> process. The slow log file will be closed and reopened.</p>
+<p>Since 9.0.2 Pro, the signal to trigger log rotation has been changed to <code>SIGUSR1</code>. This signal will trigger rotation for all log files opened by seaf-server. You should change your log rotate settings accordingly.</p>
+<h2 id="enable-access-log">Enable Access Log<a class="headerlink" href="#enable-access-log" title="Permanent link">&para;</a></h2>
+<p>Even though Nginx logs all requests with certain details, such as url, response code, upstream process time, it's sometimes desirable to have more context about the requests, such as the user id for each request. Such information can only be logged from file server itself. Since 9.0.2 Pro, access log feature is added to fileserver.</p>
+<p>To enable access log, add below options to seafile.conf:</p>
+<div class="highlight"><pre><span></span><code>[fileserver]
+# default to false. If enabled, fileserver-access.log will be written to log directory.
+enable_access_log = true
 </code></pre></div>
-start time - user id - url - response code - process time
-<div class="highlight"><pre><span></span><code>You can use `SIGUSR1` to trigger log rotation.
-
-## Go Fileserver
-
-Seafile 9.0 introduces a new fileserver implemented in Go programming language. To enable it, you can set the options below in seafile.conf:
+<p>The log format is as following:</p>
+<div class="highlight"><pre><span></span><code>start time - user id - url - response code - process time
 </code></pre></div>
-[fileserver]
+<p>You can use <code>SIGUSR1</code> to trigger log rotation.</p>
+<h2 id="go-fileserver">Go Fileserver<a class="headerlink" href="#go-fileserver" title="Permanent link">&para;</a></h2>
+<p>Seafile 9.0 introduces a new fileserver implemented in Go programming language. To enable it, you can set the options below in seafile.conf:</p>
+<div class="highlight"><pre><span></span><code>[fileserver]
 use_go_fileserver = true
-<div class="highlight"><pre><span></span><code>Go fileserver has 3 advantages over the traditional fileserver implemented in C language:
-
-1. Better performance when syncing libraries with large number of files. With C fileserver, syncing large libraries may consume all the worker threads in the server and make the service slow. There is a config option `max_sync_file_count` to limit the size of library to be synced. The default is 100K. With Go fileserver you can set this option to a much higher number, such as 1 million.
-2. Downloading zipped folders on the fly. And there is no limit on the size of the downloaded folder. With C fileserver, the server has to first create a zip file for the downloaded folder then send it to the client. With Go fileserver, the zip file can be created while transferring to the client. The option `max_download_dir_size` is thus no longer needed by Go fileserver.
-3. Since version 10.0 you can also set upload/download rate limits.
-
-Go fileserver caches fs objects in memory. On the one hand, it avoids repeated creation and destruction of repeatedly accessed objects; on the other hand it will also slow down the speed at which objects are released, which will prevent go&#39;s gc mechanism from consuming too much CPU time. You can set the size of memory used by fs cache through the following options.
 </code></pre></div>
-[fileserver]</p>
-<h1 id="the-unit-is-in-m-default-to-2g">The unit is in M. Default to 2G.<a class="headerlink" href="#the-unit-is-in-m-default-to-2g" title="Permanent link">&para;</a></h1>
-<p>fs_cache_limit = 100
-<div class="highlight"><pre><span></span><code>## Profiling Go Fileserver Performance
-
-Since Seafile 9.0.7, you can enable the profile function of go fileserver by adding the following configuration options:
-</code></pre></div></p>
-<h1 id="profile_password-is-required-change-it-for-your-need">profile_password is required, change it for your need<a class="headerlink" href="#profile_password-is-required-change-it-for-your-need" title="Permanent link">&para;</a></h1>
-<p>[fileserver]
+<p>Go fileserver has 3 advantages over the traditional fileserver implemented in C language:</p>
+<ol>
+<li>Better performance when syncing libraries with large number of files. With C fileserver, syncing large libraries may consume all the worker threads in the server and make the service slow. There is a config option <code>max_sync_file_count</code> to limit the size of library to be synced. The default is 100K. With Go fileserver you can set this option to a much higher number, such as 1 million.</li>
+<li>Downloading zipped folders on the fly. And there is no limit on the size of the downloaded folder. With C fileserver, the server has to first create a zip file for the downloaded folder then send it to the client. With Go fileserver, the zip file can be created while transferring to the client. The option <code>max_download_dir_size</code> is thus no longer needed by Go fileserver.</li>
+<li>Since version 10.0 you can also set upload/download rate limits.</li>
+</ol>
+<p>Go fileserver caches fs objects in memory. On the one hand, it avoids repeated creation and destruction of repeatedly accessed objects; on the other hand it will also slow down the speed at which objects are released, which will prevent go's gc mechanism from consuming too much CPU time. You can set the size of memory used by fs cache through the following options.</p>
+<div class="highlight"><pre><span></span><code>[fileserver]
+# The unit is in M. Default to 2G.
+fs_cache_limit = 100
+</code></pre></div>
+<h2 id="profiling-go-fileserver-performance">Profiling Go Fileserver Performance<a class="headerlink" href="#profiling-go-fileserver-performance" title="Permanent link">&para;</a></h2>
+<p>Since Seafile 9.0.7, you can enable the profile function of go fileserver by adding the following configuration options:</p>
+<div class="highlight"><pre><span></span><code># profile_password is required, change it for your need
+[fileserver]
 enable_profiling = true
-profile_password = 8kcUz1I2sLaywQhCRtn2x1</p>
-<p><div class="highlight"><pre><span></span><code>This interface can be used through the pprof tool provided by Go language. See https://pkg.go.dev/net/http/pprof for details. Note that you have to first install Go on the client that issues the below commands. The password parameter should match the one you set in the configuration.
+profile_password = 8kcUz1I2sLaywQhCRtn2x1
 </code></pre></div>
-go tool pprof http://localhost:8082/debug/pprof/heap?password=8kcUz1I2sLaywQhCRtn2x1
+<p>This interface can be used through the pprof tool provided by Go language. See https://pkg.go.dev/net/http/pprof for details. Note that you have to first install Go on the client that issues the below commands. The password parameter should match the one you set in the configuration.</p>
+<div class="highlight"><pre><span></span><code>go tool pprof http://localhost:8082/debug/pprof/heap?password=8kcUz1I2sLaywQhCRtn2x1
 go tool pprof http://localhost:8082/debug/pprof/profile?password=8kcUz1I2sLaywQhCRtn2x1
-<div class="highlight"><pre><span></span><code>## Notification server configuration
-Since Seafile 10.0.0, you can ask Seafile server to send notifications (file changes, lock changes and folder permission changes) to [Notification Server component](../extension/notification-server.md).
 </code></pre></div>
-[notification]
-enabled = true</p>
-<h1 id="ip-address-of-the-server-running-notification-server">IP address of the server running notification server<a class="headerlink" href="#ip-address-of-the-server-running-notification-server" title="Permanent link">&para;</a></h1>
-<h1 id="or-notification-server-if-you-are-running-notification-server-container-on-the-same-host-as-seafile-server">or "notification-server" if you are running notification server container on the same host as Seafile server<a class="headerlink" href="#or-notification-server-if-you-are-running-notification-server-container-on-the-same-host-as-seafile-server" title="Permanent link">&para;</a></h1>
-<p>host = 192.168.0.83</p>
-<h1 id="the-port-of-notification-server">the port of notification server<a class="headerlink" href="#the-port-of-notification-server" title="Permanent link">&para;</a></h1>
-<p>port = 8083
-```</p>
+<h2 id="notification-server-configuration">Notification server configuration<a class="headerlink" href="#notification-server-configuration" title="Permanent link">&para;</a></h2>
+<p>Since Seafile 10.0.0, you can ask Seafile server to send notifications (file changes, lock changes and folder permission changes) to <a href="../../extension/notification-server/">Notification Server component</a>.</p>
+<div class="highlight"><pre><span></span><code>[notification]
+enabled = true
+# IP address of the server running notification server
+# or &quot;notification-server&quot; if you are running notification server container on the same host as Seafile server
+host = 192.168.0.83
+# the port of notification server
+port = 8083
+</code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>The configuration here only works for version &gt;= 12.0. The configuration for notificaton server has been changed in 12.0 to make it clearer. The new configuration is not compatible with older versions.</p>
