@@ -271,7 +271,7 @@ default_expire_hours = 6
 
 The default is 12 hours.
 
-Since Seafile-pro-9.0.6, you can add cache for getting locked files (reduce server load caused by sync clients).
+Since Seafile-pro-9.0.6, you can add cache for getting locked files (reduce server load caused by sync clients). Since Pro Edition 12, this option is enabled by default.
 
 ```
 [file_lock]
