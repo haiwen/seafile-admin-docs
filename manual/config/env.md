@@ -45,7 +45,7 @@ INIT_S3_SECRET_KEY=<your-secret-key> # pro edition only
 CLUSTER_INIT_MODE=true # cluster only
 CLUSTER_INIT_MEMCACHED_HOST=<your memcached host> # cluster only
 CLUSTER_INIT_ES_HOST=<your elasticsearch server HOST> # cluster only
-CLUSTER_INIT_ES_PORT=<your elasticsearch server port> # cluster only
+CLUSTER_INIT_ES_PORT=9200 # cluster only
 CLUSTER_MODE=frontend # cluster only
 
 
@@ -114,7 +114,7 @@ NOTIFICATION_SERVER_VOLUME=/opt/notification-data
 - `CLUSTER_INIT_MODE`: (only valid in pro edition at deploying first time). Cluster initialization mode, in which the necessary configuration files for the service to run will be generated (but **the service will not be started**). If the configuration file already exists, no operation will be performed. The default value is `true`. When the configuration file is generated, ***be sure to set this item to `false`***.
 - `CLUSTER_INIT_MEMCACHED_HOST`: (only valid in pro edition at deploying first time). Cluster Memcached host. (If your Memcached server dose not use port `11211`, please modify the [seahub_settings.py](./seahub_settings_py.md) and [seafile.conf](./seafile-conf.md)).
 - `CLUSTER_INIT_ES_HOST`: (only valid in pro edition at deploying first time). Your cluster Elasticsearch server host.
-- `CLUSTER_INIT_ES_PORT`: (only valid in pro edition at deploying first time). Your cluster Elasticsearch server port.
+- `CLUSTER_INIT_ES_PORT`: (only valid in pro edition at deploying first time). Your cluster Elasticsearch server port. Default is `9200`.
 - `CLUSTER_MODE`: Seafile service node type, i.e., `frontend` (default) or `backend`
 
 ## S3 storage backend configurations (only valid in pro edition at deploying first time)

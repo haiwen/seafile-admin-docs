@@ -31,9 +31,16 @@ Here is the workflow when a user open sdoc file in browser
 
 ## Deployment method
 
-SeaDoc has the following deployment methods:
+SeaDoc has the following deployment methods with different situations:
 
-=== "SeaDoc and Seafile docker are deployed on the same host"
+- **Situation 1**: Deploy SeaDoc server with the same host as Seafile  Server deploy in single-node docker mode
+
+- **Situation 2**: Deploy SeaDoc server on:
+    - A new host
+    - Same host with Seafile server cluster (frontend node)
+    - Same host with Seafile server deploy from binary packages
+
+=== "Situation 1"
     Download the `seadoc.yml` and integrate SeaDoc in Seafile docker.
 
     ```shell
@@ -48,7 +55,7 @@ SeaDoc has the following deployment methods:
     ENABLE_SEADOC=true
     SEADOC_SERVER_URL=https://example.seafile.com/sdoc-server
     ```
-=== "Deploy SeaDoc on a new host"
+=== "Situation 2"
 
     Download and modify the `.env` and `seadoc.yml` files.
 
@@ -70,7 +77,117 @@ SeaDoc has the following deployment methods:
     | `SEAFILE_SERVER_PROTOCOL`| http or https                                                                                               |  
 
     !!! note
-        Please bind SeaDoc server url and ip in the load balance(or reverse proxy) configuration after starting SeaDoc server
+        By default, SeaDoc server listens to port `80`. If SeaDoc is deployed on the same machine as Seafile server (including deploying from binary packages and Seafile cluster mode), you need to change the **listening port of SeaDoc server** or **set up a proxy** for SeaDoc server.
+
+        === "Modify listening port"
+
+            Modify `seadoc.yml`
+
+            ```yml
+            services:
+              seadoc:
+                ...
+                ports:
+                  - "<your SeaDoc server port>:80"
+            ...
+            ```
+
+            Now your `SEADOC_SERVER_URL` should be:
+            ```
+            {SEAFILE_SERVER_PROTOCOL}://{SEAFILE_SERVER_HOSTNAME}:<your SeaDoc server port>
+            ```
+        === "set up a proxy"
+
+            Modify `seafile.nginx.conf`
+
+            === "Seafile cluster"
+
+                ```
+                location /sdoc-server/ {
+                    add_header Access-Control-Allow-Origin *;
+                    add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
+                    add_header Access-Control-Allow-Headers "deviceType,token, authorization, content-type";
+                    if ($request_method = 'OPTIONS') {
+                        add_header Access-Control-Allow-Origin *;
+                        add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
+                        add_header Access-Control-Allow-Headers "deviceType,token, authorization, content-type";
+                        return 204;
+                    }
+
+                    proxy_pass         http://sdoc-server:80/;
+                    proxy_redirect     off;
+                    proxy_set_header   Host              $host;
+                    proxy_set_header   X-Real-IP         $remote_addr;
+                    proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
+                    proxy_set_header   X-Forwarded-Host  $server_name;
+                    proxy_set_header   X-Forwarded-Proto $scheme;
+
+                    client_max_body_size 100m;
+                }
+
+                location /socket.io {
+                    proxy_pass http://sdoc-server:80;
+                    proxy_http_version 1.1;
+                    proxy_set_header Upgrade $http_upgrade;
+                    proxy_set_header Connection 'upgrade';
+                    proxy_redirect off;
+
+                    proxy_buffers 8 32k;
+                    proxy_buffer_size 64k;
+
+                    proxy_set_header X-Real-IP $remote_addr;
+                    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                    proxy_set_header Host $http_host;
+                    proxy_set_header X-NginX-Proxy true;
+                }
+                ```
+
+            === "Seafile deploy from binary packages"
+
+                ```
+                location /sdoc-server/ {
+                    add_header Access-Control-Allow-Origin *;
+                    add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
+                    add_header Access-Control-Allow-Headers "deviceType,token, authorization, content-type";
+                    if ($request_method = 'OPTIONS') {
+                        add_header Access-Control-Allow-Origin *;
+                        add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
+                        add_header Access-Control-Allow-Headers "deviceType,token, authorization, content-type";
+                        return 204;
+                    }
+
+                    proxy_pass         http://127.0.0.1:80/;
+                    proxy_redirect     off;
+                    proxy_set_header   Host              $host;
+                    proxy_set_header   X-Real-IP         $remote_addr;
+                    proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
+                    proxy_set_header   X-Forwarded-Host  $server_name;
+                    proxy_set_header   X-Forwarded-Proto $scheme;
+
+                    client_max_body_size 100m;
+                }
+
+                location /socket.io {
+                    proxy_pass http://127.0.0.1:80;
+                    proxy_http_version 1.1;
+                    proxy_set_header Upgrade $http_upgrade;
+                    proxy_set_header Connection 'upgrade';
+                    proxy_redirect off;
+
+                    proxy_buffers 8 32k;
+                    proxy_buffer_size 64k;
+
+                    proxy_set_header X-Real-IP $remote_addr;
+                    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                    proxy_set_header Host $http_host;
+                    proxy_set_header X-NginX-Proxy true;
+                }
+                ```
+            
+            Now your `SEADOC_SERVER_URL` should be:
+            ```
+            {SEAFILE_SERVER_PROTOCOL}://{SEAFILE_SERVER_HOSTNAME}/sdoc-server/
+            ```
 
 
 
