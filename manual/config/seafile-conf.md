@@ -172,6 +172,7 @@ New in Seafile Pro 7.1.16 and Pro 8.0.3: You can set the maximum number of files
 
 Since Pro 8.0.4 version, you can set both options to -1, to allow unlimited size and timeout.
 
+```
 [fileserver]
 max_sync_file_count = 100000
 fs_id_list_request_timeout = 300
