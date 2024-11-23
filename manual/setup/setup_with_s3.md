@@ -1,8 +1,3 @@
----
-status: new
----
-
-
 # Setup With S3 Storage
 
 !!! note "Deployment notes"
