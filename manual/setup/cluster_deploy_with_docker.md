@@ -358,6 +358,6 @@ $ systemctl enable --now keepalived
 
 So far, Seafile cluster has been deployed.
 
-### (Optional) Deploy SeaDoc server
+## (Optional) Deploy SeaDoc server
 
 You can follow [here](../extension/setup_seadoc.md#deployment-method) to deploy SeaDoc server (please refer ***Situation 2***). And then modify `SEADOC_SERVER_URL` in your `.env` file
