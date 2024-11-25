@@ -10,7 +10,7 @@ However, administrators sometimes want to access the files directly on the serve
 
     * Encrypted folders can't be accessed by seaf-fuse.
     * Currently the implementation is '''read-only''', which means you can't modify the files through the mounted folder.
-    * One debian/centos systems, you need to be in the "fuse" group to have the permission to mount a FUSE folder.
+    * On debian/centos systems, you need to be in the "fuse" group to have the permission to mount a FUSE folder.
 
 ## Use seaf-fuse in Docker based deployment
 

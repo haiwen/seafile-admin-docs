@@ -119,7 +119,77 @@ docker compose up -d
     docker compose -f /path/to/.env up -d
     ```
 
-Wait a few moment for the database to initialize. You can now access Seafile at the host name specified in the Compose file. 
+!!! success
+    After starting the services, you can see the initialization progress by tracing the logs of container `seafile` (i.e., `docker logs seafile -f`)
+
+    ```
+    ---------------------------------
+    This is your configuration
+    ---------------------------------
+
+        server name:            seafile
+        server ip/domain:       seafile.example.com
+
+        seafile data dir:       /opt/seafile/seafile-data
+        fileserver port:        8082
+
+        database:               create new
+        ccnet database:         ccnet_db
+        seafile database:       seafile_db
+        seahub database:        seahub_db
+        database user:          seafile
+
+
+    Generating seafile configuration ...
+
+    done
+    Generating seahub configuration ...
+
+    ----------------------------------------
+    Now creating seafevents database tables ...
+
+    ----------------------------------------
+    ----------------------------------------
+    Now creating ccnet database tables ...
+
+    ----------------------------------------
+    ----------------------------------------
+    Now creating seafile database tables ...
+
+    ----------------------------------------
+    ----------------------------------------
+    Now creating seahub database tables ...
+
+    ----------------------------------------
+
+    creating seafile-server-latest symbolic link ...  done
+
+    -----------------------------------------------------------------
+    Your seafile server configuration has been finished successfully.
+    -----------------------------------------------------------------
+
+    ``` 
+    
+    And then you can see the following messages which the Seafile server starts successfully:
+
+    ```
+    Starting seafile server, please wait ...
+    Seafile server started
+
+    Done.
+
+    Starting seahub at port 8000 ...
+
+    ----------------------------------------
+    Successfully created seafile admin
+    ----------------------------------------
+
+    Seahub is started
+
+    Done.
+    ```
+
+    Finially, you can go to `http://seafile.example.com` to use Seafile.
 
 !!! tip "A 502 Bad Gateway error means that the system has not yet completed the initialization"
 

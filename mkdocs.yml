@@ -97,7 +97,7 @@ nav:
       - Seafile Docker autostart: setup/seafile_docker_autostart.md
       - Deploy with an existing MySQL server: setup/setup_with_an_existing_mysql_server.md
       - Run Seafile as non root user inside docker: setup/run_seafile_as_non_root_user_inside_docker.md
-    - Cluster installation:
+    - Cluster installation (Pro):
       - Seafile Docker Cluster Deployment: setup/cluster_deploy_with_docker.md
       - Setup with Kubernetes (K8s): setup/cluster_deploy_with_k8s.md
     - Migration:
@@ -133,7 +133,7 @@ nav:
       - Collabora Online Integration: extension/libreoffice_online.md
       - OnlyOffice Integration: extension/only_office.md
       - Office Online Server Integration (Pro): extension/office_web_app.md
-    - Cluster:
+    - Cluster (Pro):
       - Distributed indexing: extension/distributed_indexing.md
     - Virus Scan (Pro):
       - Outline: extension/virus_scan.md
