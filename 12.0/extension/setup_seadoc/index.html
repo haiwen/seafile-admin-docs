@@ -1997,6 +1997,39 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Deployment method">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#seadoc-and-seafile-docker-single-node-mode-are-deployed-on-the-same-host" class="md-nav__link">
+    <span class="md-ellipsis">
+      SeaDoc and Seafile docker (single-node mode) are deployed on the same host
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seadoc-deploys-on-a-new-host-or-the-same-host-with-seafile-server-cluster-and-standalone" class="md-nav__link">
+    <span class="md-ellipsis">
+      SeaDoc deploys on a new host or the same host with Seafile server (cluster and standalone)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start-seadoc-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Start SeaDoc server
+    </span>
+  </a>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4240,6 +4273,39 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Deployment method">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#seadoc-and-seafile-docker-single-node-mode-are-deployed-on-the-same-host" class="md-nav__link">
+    <span class="md-ellipsis">
+      SeaDoc and Seafile docker (single-node mode) are deployed on the same host
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seadoc-deploys-on-a-new-host-or-the-same-host-with-seafile-server-cluster-and-standalone" class="md-nav__link">
+    <span class="md-ellipsis">
+      SeaDoc deploys on a new host or the same host with Seafile server (cluster and standalone)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start-seadoc-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Start SeaDoc server
+    </span>
+  </a>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4319,25 +4385,32 @@
 </ul>
 </li>
 </ul>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Situation 1</label><label for="__tabbed_1_2">Situation 2</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
+<h3 id="seadoc-and-seafile-docker-single-node-mode-are-deployed-on-the-same-host">SeaDoc and Seafile docker (single-node mode) are deployed on the same host<a class="headerlink" href="#seadoc-and-seafile-docker-single-node-mode-are-deployed-on-the-same-host" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
 <p>Download the <code>seadoc.yml</code> and integrate SeaDoc in Seafile docker.</p>
 <div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/seadoc.yml
 </code></pre></div>
+</li>
+<li>
 <p>Modify <code>.env</code>, and insert <code>seadoc.yml</code> into <code>COMPOSE_FILE</code>, and enable SeaDoc server</p>
 <div class="highlight"><pre><span></span><code><span class="nv">COMPOSE_FILE</span><span class="o">=</span><span class="s1">&#39;seafile-server.yml,caddy.yml,seadoc.yml&#39;</span>
 
 <span class="nv">ENABLE_SEADOC</span><span class="o">=</span><span class="nb">true</span>
-<span class="nv">SEADOC_SERVER_URL</span><span class="o">=</span>https://example.seafile.com/sdoc-server
+<span class="nv">SEADOC_SERVER_URL</span><span class="o">=</span>https://seafile.example.com/sdoc-server
 </code></pre></div>
-</div>
-<div class="tabbed-block">
+</li>
+</ol>
+<h3 id="seadoc-deploys-on-a-new-host-or-the-same-host-with-seafile-server-cluster-and-standalone">SeaDoc deploys on a new host or the same host with Seafile server (cluster and standalone)<a class="headerlink" href="#seadoc-deploys-on-a-new-host-or-the-same-host-with-seafile-server-cluster-and-standalone" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
 <p>Download and modify the <code>.env</code> and <code>seadoc.yml</code> files.</p>
-<p><div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/seadoc/1.0/standalone/seadoc.yml
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/seadoc/1.0/standalone/seadoc.yml
 wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/12.0/docker/seadoc/1.0/standalone/env
 </code></pre></div>
-Then modify the <code>.env</code> file according to your environment. The following fields are needed to be modified:</p>
+</li>
+<li>
+<p>Then modify the <code>.env</code> file according to your environment. The following fields are needed to be modified:</p>
 <table>
 <thead>
 <tr>
@@ -4380,69 +4453,20 @@ Then modify the <code>.env</code> file according to your environment. The follow
 </tr>
 </tbody>
 </table>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>By default, SeaDoc server listens to port <code>80</code>. If SeaDoc is deployed on the same machine as Seafile server (including deploying from binary packages and Seafile cluster mode), you need to change the <strong>listening port of SeaDoc server</strong> or <strong>set up a proxy</strong> for SeaDoc server.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Modify listening port</label><label for="__tabbed_2_2">set up a proxy</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
+</li>
+<li>
+<p>By default, SeaDoc server listens to port 80. If the port is already taken by another service (e.g., deploy SeaDoc on the same machine where Seafile server is running), <strong><em>you have to change the listening port of SeaDoc</em></strong>:</p>
 <p>Modify <code>seadoc.yml</code></p>
 <div class="highlight"><pre><span></span><code>services:
-  seadoc:
+    seadoc:
     ...
     ports:
-      - &quot;&lt;your SeaDoc server port&gt;:80&quot;
+        - &quot;&lt;your SeaDoc server port&gt;:80&quot;
 ...
 </code></pre></div>
-<p>Now your <code>SEADOC_SERVER_URL</code> should be:
-<div class="highlight"><pre><span></span><code>{SEAFILE_SERVER_PROTOCOL}://{SEAFILE_SERVER_HOSTNAME}:&lt;your SeaDoc server port&gt;
-</code></pre></div></p>
-</div>
-<div class="tabbed-block">
-<p>Modify <code>seafile.nginx.conf</code></p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Seafile cluster</label><label for="__tabbed_3_2">Seafile deploy from binary packages</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>location /sdoc-server/ {
-    add_header Access-Control-Allow-Origin *;
-    add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
-    add_header Access-Control-Allow-Headers &quot;deviceType,token, authorization, content-type&quot;;
-    if ($request_method = &#39;OPTIONS&#39;) {
-        add_header Access-Control-Allow-Origin *;
-        add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
-        add_header Access-Control-Allow-Headers &quot;deviceType,token, authorization, content-type&quot;;
-        return 204;
-    }
-
-    proxy_pass         http://sdoc-server:80/;
-    proxy_redirect     off;
-    proxy_set_header   Host              $host;
-    proxy_set_header   X-Real-IP         $remote_addr;
-    proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
-    proxy_set_header   X-Forwarded-Host  $server_name;
-    proxy_set_header   X-Forwarded-Proto $scheme;
-
-    client_max_body_size 100m;
-}
-
-location /socket.io {
-    proxy_pass http://sdoc-server:80;
-    proxy_http_version 1.1;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection &#39;upgrade&#39;;
-    proxy_redirect off;
-
-    proxy_buffers 8 32k;
-    proxy_buffer_size 64k;
-
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header Host $http_host;
-    proxy_set_header X-NginX-Proxy true;
-}
-</code></pre></div>
-</div>
-<div class="tabbed-block">
+</li>
+<li>
+<p>Modify <code>seafile.nginx.conf</code> to setup reverse proxy, <strong>please replace <code>127.0.0.1:80</code> to <code>host:port</code> of your Seadoc server</strong></p>
 <div class="highlight"><pre><span></span><code>location /sdoc-server/ {
     add_header Access-Control-Allow-Origin *;
     add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
@@ -4466,7 +4490,7 @@ location /socket.io {
 }
 
 location /socket.io {
-    proxy_pass http://127.0.0.1:80;
+    proxy_pass http://127.0.01:80;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection &#39;upgrade&#39;;
@@ -4481,19 +4505,14 @@ location /socket.io {
     proxy_set_header X-NginX-Proxy true;
 }
 </code></pre></div>
-</div>
-</div>
-</div>
 <p>Now your <code>SEADOC_SERVER_URL</code> should be:
-<div class="highlight"><pre><span></span><code>{SEAFILE_SERVER_PROTOCOL}://{SEAFILE_SERVER_HOSTNAME}/sdoc-server/
+<div class="highlight"><pre><span></span><code><span class="o">{</span>SEAFILE_SERVER_PROTOCOL<span class="o">}</span>://<span class="o">{</span>SEAFILE_SERVER_HOSTNAME<span class="o">}</span>/sdoc-server/
+
+<span class="c1">#e.g., https://seafile.example.com/sdoc-server/</span>
 </code></pre></div></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+</li>
+</ol>
+<h2 id="start-seadoc-server">Start SeaDoc server<a class="headerlink" href="#start-seadoc-server" title="Permanent link">&para;</a></h2>
 <p>Start SeaDoc server with the following command</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
