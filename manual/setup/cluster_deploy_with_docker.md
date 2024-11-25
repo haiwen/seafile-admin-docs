@@ -360,4 +360,4 @@ So far, Seafile cluster has been deployed.
 
 ## (Optional) Deploy SeaDoc server
 
-You can follow [here](../extension/setup_seadoc.md#situation-2) to deploy SeaDoc server. And then modify `SEADOC_SERVER_URL` in your `.env` file
+You can follow [here](../extension/setup_seadoc.md) to deploy SeaDoc server. And then modify `SEADOC_SERVER_URL` in your `.env` file

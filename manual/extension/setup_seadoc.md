@@ -40,7 +40,7 @@ SeaDoc has the following deployment methods with different situations:
     - Same host with Seafile server cluster (frontend node)
     - Same host with Seafile server deploy from binary packages
 
-### Situation 1
+### SeaDoc and Seafile docker (single-node mode) are deployed on the same host
 
 1. Download the `seadoc.yml` and integrate SeaDoc in Seafile docker.
 
@@ -57,7 +57,7 @@ SeaDoc has the following deployment methods with different situations:
     SEADOC_SERVER_URL=https://seafile.example.com/sdoc-server
     ```
 
-### Situation 2
+### SeaDoc deploys on a new host or the same host with Seafile server (cluster and standalone)
 
 1. Download and modify the `.env` and `seadoc.yml` files.
 
