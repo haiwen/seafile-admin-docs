@@ -1991,42 +1991,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#deployment-method" class="md-nav__link">
+  <a href="#deployment-seadoc" class="md-nav__link">
     <span class="md-ellipsis">
-      Deployment method
+      Deployment SeaDoc
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Deployment method">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#seadoc-and-seafile-docker-single-node-mode-are-deployed-on-the-same-host" class="md-nav__link">
-    <span class="md-ellipsis">
-      SeaDoc and Seafile docker (single-node mode) are deployed on the same host
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#seadoc-deploys-on-a-new-host-or-the-same-host-with-seafile-server-cluster-and-standalone" class="md-nav__link">
-    <span class="md-ellipsis">
-      SeaDoc deploys on a new host or the same host with Seafile server (cluster and standalone)
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#start-seadoc-server" class="md-nav__link">
+  <a href="#deploy-seadoc-standalone" class="md-nav__link">
     <span class="md-ellipsis">
-      Start SeaDoc server
+      Deploy SeaDoc standalone
     </span>
   </a>
   
@@ -4267,42 +4243,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#deployment-method" class="md-nav__link">
+  <a href="#deployment-seadoc" class="md-nav__link">
     <span class="md-ellipsis">
-      Deployment method
+      Deployment SeaDoc
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Deployment method">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#seadoc-and-seafile-docker-single-node-mode-are-deployed-on-the-same-host" class="md-nav__link">
-    <span class="md-ellipsis">
-      SeaDoc and Seafile docker (single-node mode) are deployed on the same host
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#seadoc-deploys-on-a-new-host-or-the-same-host-with-seafile-server-cluster-and-standalone" class="md-nav__link">
-    <span class="md-ellipsis">
-      SeaDoc deploys on a new host or the same host with Seafile server (cluster and standalone)
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#start-seadoc-server" class="md-nav__link">
+  <a href="#deploy-seadoc-standalone" class="md-nav__link">
     <span class="md-ellipsis">
-      Start SeaDoc server
+      Deploy SeaDoc standalone
     </span>
   </a>
   
@@ -4370,25 +4322,11 @@
 <li>Seafile server loads the content, then sends it to SeaDoc server and write it to the cache at the same time.</li>
 <li>After SeaDoc receives the content, it will be sent to the browser.</li>
 </ol>
-<h2 id="deployment-method">Deployment method<a class="headerlink" href="#deployment-method" title="Permanent link">&para;</a></h2>
-<p>SeaDoc has the following deployment methods with different situations:</p>
-<ul>
-<li>
-<p><strong>Situation 1</strong>: Deploy SeaDoc server with the same host as Seafile  Server deploy in single-node docker mode</p>
-</li>
-<li>
-<p><strong>Situation 2</strong>: Deploy SeaDoc server on:</p>
-<ul>
-<li>A new host</li>
-<li>Same host with Seafile server cluster (frontend node)</li>
-<li>Same host with Seafile server deploy from binary packages</li>
-</ul>
-</li>
-</ul>
-<h3 id="seadoc-and-seafile-docker-single-node-mode-are-deployed-on-the-same-host">SeaDoc and Seafile docker (single-node mode) are deployed on the same host<a class="headerlink" href="#seadoc-and-seafile-docker-single-node-mode-are-deployed-on-the-same-host" title="Permanent link">&para;</a></h3>
+<h2 id="deployment-seadoc">Deployment SeaDoc<a class="headerlink" href="#deployment-seadoc" title="Permanent link">&para;</a></h2>
+<p>The easiest way to deployment SeaDoc is to deploy it with Seafile server on the same host using the same Docker network. If in some situations, you need to deployment SeaDoc standalone, you can follow the next section.</p>
 <ol>
 <li>
-<p>Download the <code>seadoc.yml</code> and integrate SeaDoc in Seafile docker.</p>
+<p>Download the <code>seadoc.yml</code> to <code>/opt/seafile</code></p>
 <div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/seadoc.yml
 </code></pre></div>
 </li>
@@ -4400,11 +4338,18 @@
 <span class="nv">SEADOC_SERVER_URL</span><span class="o">=</span>https://seafile.example.com/sdoc-server
 </code></pre></div>
 </li>
+<li>
+<p>Start SeaDoc server server with the following command</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</li>
 </ol>
-<h3 id="seadoc-deploys-on-a-new-host-or-the-same-host-with-seafile-server-cluster-and-standalone">SeaDoc deploys on a new host or the same host with Seafile server (cluster and standalone)<a class="headerlink" href="#seadoc-deploys-on-a-new-host-or-the-same-host-with-seafile-server-cluster-and-standalone" title="Permanent link">&para;</a></h3>
+<p>Now you can use SeaDoc!</p>
+<h2 id="deploy-seadoc-standalone">Deploy SeaDoc standalone<a class="headerlink" href="#deploy-seadoc-standalone" title="Permanent link">&para;</a></h2>
+<p>If you deploy Seafile in a cluster or if you deploy Seafile with binary package, you need to SeaDoc as a standalone service. Here are the steps:</p>
 <ol>
 <li>
-<p>Download and modify the <code>.env</code> and <code>seadoc.yml</code> files.</p>
+<p>Download and modify the <code>.env</code> and <code>seadoc.yml</code> files to directory <code>/opt/seadoc</code></p>
 <div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/seadoc/1.0/standalone/seadoc.yml
 wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/12.0/docker/seadoc/1.0/standalone/env
 </code></pre></div>
@@ -4455,7 +4400,7 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 </table>
 </li>
 <li>
-<p>By default, SeaDoc server listens to port 80. If the port is already taken by another service (e.g., deploy SeaDoc on the same machine where Seafile server is running), <strong><em>you have to change the listening port of SeaDoc</em></strong>:</p>
+<p>(Optional) By default, SeaDoc server will bind to port 80 on the host machine. If the port is already taken by another service, <strong><em>you have to change the listening port of SeaDoc</em></strong>:</p>
 <p>Modify <code>seadoc.yml</code></p>
 <div class="highlight"><pre><span></span><code>services:
     seadoc:
@@ -4466,7 +4411,7 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 </code></pre></div>
 </li>
 <li>
-<p>Modify <code>seafile.nginx.conf</code> to setup reverse proxy, <strong>please replace <code>127.0.0.1:80</code> to <code>host:port</code> of your Seadoc server</strong></p>
+<p>Add a reverse proxy for SeaDoc server. In cluster environtment, it means you need to add reverse proxy rules at load balance. Here, we use Nginx as an example  (<strong>please replace <code>127.0.0.1:80</code> to <code>host:port</code> of your Seadoc server</strong>)</p>
 <div class="highlight"><pre><span></span><code>location /sdoc-server/ {
     add_header Access-Control-Allow-Origin *;
     add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
@@ -4490,7 +4435,7 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 }
 
 location /socket.io {
-    proxy_pass http://127.0.01:80;
+    proxy_pass http://127.0.0.1:80;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection &#39;upgrade&#39;;
@@ -4505,18 +4450,19 @@ location /socket.io {
     proxy_set_header X-NginX-Proxy true;
 }
 </code></pre></div>
-<p>Now your <code>SEADOC_SERVER_URL</code> should be:
-<div class="highlight"><pre><span></span><code><span class="o">{</span>SEAFILE_SERVER_PROTOCOL<span class="o">}</span>://<span class="o">{</span>SEAFILE_SERVER_HOSTNAME<span class="o">}</span>/sdoc-server/
-
-<span class="c1">#e.g., https://seafile.example.com/sdoc-server/</span>
-</code></pre></div></p>
 </li>
-</ol>
-<h2 id="start-seadoc-server">Start SeaDoc server<a class="headerlink" href="#start-seadoc-server" title="Permanent link">&para;</a></h2>
-<p>Start SeaDoc server with the following command</p>
+<li>
+<p>Start SeaDoc server server with the following command</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
-<p>Now you can use SeaDoc!</p>
+</li>
+<li>
+<p>Modify Seafile server configuration to use SeaDoc (The <code>.env</code> file of Seafile server).</p>
+<div class="highlight"><pre><span></span><code><span class="nv">ENABLE_SEADOC</span><span class="o">=</span><span class="nb">false</span>
+<span class="nv">SEADOC_SERVER_URL</span><span class="o">=</span>https://seadoc.example.com/sdoc-server
+</code></pre></div>
+</li>
+</ol>
 <h2 id="seadoc-directory-structure">SeaDoc directory structure<a class="headerlink" href="#seadoc-directory-structure" title="Permanent link">&para;</a></h2>
 <p><code>/opt/seadoc-data</code></p>
 <p>Placeholder spot for shared volumes. You may elect to store certain persistent information outside of a container, in our case we keep various log files outside. This allows you to rebuild containers easily without losing important information.</p>
