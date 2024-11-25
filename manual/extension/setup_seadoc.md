@@ -40,30 +40,33 @@ SeaDoc has the following deployment methods with different situations:
     - Same host with Seafile server cluster (frontend node)
     - Same host with Seafile server deploy from binary packages
 
-=== "Situation 1"
-    Download the `seadoc.yml` and integrate SeaDoc in Seafile docker.
+### Situation 1
+
+1. Download the `seadoc.yml` and integrate SeaDoc in Seafile docker.
 
     ```shell
     wget https://manual.seafile.com/12.0/docker/seadoc.yml
     ```
 
-    Modify `.env`, and insert `seadoc.yml` into `COMPOSE_FILE`, and enable SeaDoc server
+2. Modify `.env`, and insert `seadoc.yml` into `COMPOSE_FILE`, and enable SeaDoc server
 
     ```shell
     COMPOSE_FILE='seafile-server.yml,caddy.yml,seadoc.yml'
 
     ENABLE_SEADOC=true
-    SEADOC_SERVER_URL=https://example.seafile.com/sdoc-server
+    SEADOC_SERVER_URL=https://seafile.example.com/sdoc-server
     ```
-=== "Situation 2"
 
-    Download and modify the `.env` and `seadoc.yml` files.
+### Situation 2
+
+1. Download and modify the `.env` and `seadoc.yml` files.
 
     ```sh
     wget https://manual.seafile.com/12.0/docker/seadoc/1.0/standalone/seadoc.yml
     wget -o .env https://manual.seafile.com/12.0/docker/seadoc/1.0/standalone/env.yml
     ```
-    Then modify the `.env` file according to your environment. The following fields are needed to be modified:
+
+2. Then modify the `.env` file according to your environment. The following fields are needed to be modified:
 
     | variable               | description                                                                                                   |  
     |------------------------|---------------------------------------------------------------------------------------------------------------|  
@@ -77,128 +80,76 @@ SeaDoc has the following deployment methods with different situations:
     | `SEAFILE_SERVER_PROTOCOL`| http or https                                                                                               |  
     | `SEADOC_SERVER_URL`    | SeaDoc service URL                                                                                            |
 
-    !!! note
-        By default, SeaDoc server listens to port `80`. If SeaDoc is deployed on the same machine as Seafile server (including deploying from binary packages and Seafile cluster mode), you need to change the **listening port of SeaDoc server** or **set up a proxy** for SeaDoc server.
-
-        === "Modify listening port"
-
-            Modify `seadoc.yml`
-
-            ```yml
-            services:
-              seadoc:
-                ...
-                ports:
-                  - "<your SeaDoc server port>:80"
-            ...
-            ```
-
-            Now your `SEADOC_SERVER_URL` should be:
-            ```
-            {SEAFILE_SERVER_PROTOCOL}://{SEAFILE_SERVER_HOSTNAME}:<your SeaDoc server port>
-            ```
-        === "set up a proxy"
-
-            Modify `seafile.nginx.conf`
-
-            === "Seafile cluster"
-
-                ```
-                location /sdoc-server/ {
-                    add_header Access-Control-Allow-Origin *;
-                    add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
-                    add_header Access-Control-Allow-Headers "deviceType,token, authorization, content-type";
-                    if ($request_method = 'OPTIONS') {
-                        add_header Access-Control-Allow-Origin *;
-                        add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
-                        add_header Access-Control-Allow-Headers "deviceType,token, authorization, content-type";
-                        return 204;
-                    }
-
-                    proxy_pass         http://sdoc-server:80/;
-                    proxy_redirect     off;
-                    proxy_set_header   Host              $host;
-                    proxy_set_header   X-Real-IP         $remote_addr;
-                    proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
-                    proxy_set_header   X-Forwarded-Host  $server_name;
-                    proxy_set_header   X-Forwarded-Proto $scheme;
-
-                    client_max_body_size 100m;
-                }
-
-                location /socket.io {
-                    proxy_pass http://sdoc-server:80;
-                    proxy_http_version 1.1;
-                    proxy_set_header Upgrade $http_upgrade;
-                    proxy_set_header Connection 'upgrade';
-                    proxy_redirect off;
-
-                    proxy_buffers 8 32k;
-                    proxy_buffer_size 64k;
-
-                    proxy_set_header X-Real-IP $remote_addr;
-                    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-                    proxy_set_header Host $http_host;
-                    proxy_set_header X-NginX-Proxy true;
-                }
-                ```
-
-            === "Seafile deploy from binary packages"
-
-                ```
-                location /sdoc-server/ {
-                    add_header Access-Control-Allow-Origin *;
-                    add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
-                    add_header Access-Control-Allow-Headers "deviceType,token, authorization, content-type";
-                    if ($request_method = 'OPTIONS') {
-                        add_header Access-Control-Allow-Origin *;
-                        add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
-                        add_header Access-Control-Allow-Headers "deviceType,token, authorization, content-type";
-                        return 204;
-                    }
-
-                    proxy_pass         http://127.0.0.1:80/;
-                    proxy_redirect     off;
-                    proxy_set_header   Host              $host;
-                    proxy_set_header   X-Real-IP         $remote_addr;
-                    proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
-                    proxy_set_header   X-Forwarded-Host  $server_name;
-                    proxy_set_header   X-Forwarded-Proto $scheme;
-
-                    client_max_body_size 100m;
-                }
-
-                location /socket.io {
-                    proxy_pass http://127.0.0.1:80;
-                    proxy_http_version 1.1;
-                    proxy_set_header Upgrade $http_upgrade;
-                    proxy_set_header Connection 'upgrade';
-                    proxy_redirect off;
-
-                    proxy_buffers 8 32k;
-                    proxy_buffer_size 64k;
-
-                    proxy_set_header X-Real-IP $remote_addr;
-                    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-                    proxy_set_header Host $http_host;
-                    proxy_set_header X-NginX-Proxy true;
-                }
-                ```
-            
-            Now your `SEADOC_SERVER_URL` should be:
-            ```
-            {SEAFILE_SERVER_PROTOCOL}://{SEAFILE_SERVER_HOSTNAME}/sdoc-server/
-            ```
+3. By default, SeaDoc server listens to port 80. If the port is already taken by another service (e.g., deploy SeaDoc on the same machine where Seafile server is running), ***you have to change the listening port of SeaDoc***:
 
 
+    Modify `seadoc.yml`
+
+    ```yml
+    services:
+        seadoc:
+        ...
+        ports:
+            - "<your SeaDoc server port>:80"
+    ...
+    ```
+
+4. Modify `seafile.nginx.conf` to setup reverse proxy, **please replace `127.0.0.1:80` to `host:port` of your Seadoc server**
+
+    ```
+    location /sdoc-server/ {
+        add_header Access-Control-Allow-Origin *;
+        add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
+        add_header Access-Control-Allow-Headers "deviceType,token, authorization, content-type";
+        if ($request_method = 'OPTIONS') {
+            add_header Access-Control-Allow-Origin *;
+            add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
+            add_header Access-Control-Allow-Headers "deviceType,token, authorization, content-type";
+            return 204;
+        }
+
+        proxy_pass         http://127.0.0.1:80/;
+        proxy_redirect     off;
+        proxy_set_header   Host              $host;
+        proxy_set_header   X-Real-IP         $remote_addr;
+        proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
+        proxy_set_header   X-Forwarded-Host  $server_name;
+        proxy_set_header   X-Forwarded-Proto $scheme;
+
+        client_max_body_size 100m;
+    }
+
+    location /socket.io {
+        proxy_pass http://127.0.01:80;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_redirect off;
+
+        proxy_buffers 8 32k;
+        proxy_buffer_size 64k;
+
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-NginX-Proxy true;
+    }
+    ```
+
+    Now your `SEADOC_SERVER_URL` should be:
+    ```sh
+    {SEAFILE_SERVER_PROTOCOL}://{SEAFILE_SERVER_HOSTNAME}/sdoc-server/
+
+    #e.g., https://seafile.example.com/sdoc-server/
+    ```
+
+## Start SeaDoc server
 
 Start SeaDoc server with the following command
 
 ```sh
 docker compose up -d
 ```
-
-
 
 Now you can use SeaDoc!
 
