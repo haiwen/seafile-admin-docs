@@ -1292,7 +1292,7 @@
             
   
   <span class="md-ellipsis">
-    Cluster installation
+    Cluster installation (Pro)
   </span>
   
 
@@ -1302,7 +1302,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_5">
             <span class="md-nav__icon md-icon"></span>
-            Cluster installation
+            Cluster installation (Pro)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -2343,7 +2343,7 @@
             
   
   <span class="md-ellipsis">
-    Cluster
+    Cluster (Pro)
   </span>
   
 
@@ -2353,7 +2353,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_3">
             <span class="md-nav__icon md-icon"></span>
-            Cluster
+            Cluster (Pro)
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -4688,7 +4688,72 @@ chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>-
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>/path/to/.env<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
 </div>
-<p>Wait a few moment for the database to initialize. You can now access Seafile at the host name specified in the Compose file. </p>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>After starting the services, you can see the initialization progress by tracing the logs of container <code>seafile</code> (i.e., <code>docker logs seafile -f</code>)</p>
+<div class="highlight"><pre><span></span><code>---------------------------------
+This is your configuration
+---------------------------------
+
+    server name:            seafile
+    server ip/domain:       seafile.example.com
+
+    seafile data dir:       /opt/seafile/seafile-data
+    fileserver port:        8082
+
+    database:               create new
+    ccnet database:         ccnet_db
+    seafile database:       seafile_db
+    seahub database:        seahub_db
+    database user:          seafile
+
+
+Generating seafile configuration ...
+
+done
+Generating seahub configuration ...
+
+----------------------------------------
+Now creating seafevents database tables ...
+
+----------------------------------------
+----------------------------------------
+Now creating ccnet database tables ...
+
+----------------------------------------
+----------------------------------------
+Now creating seafile database tables ...
+
+----------------------------------------
+----------------------------------------
+Now creating seahub database tables ...
+
+----------------------------------------
+
+creating seafile-server-latest symbolic link ...  done
+
+-----------------------------------------------------------------
+Your seafile server configuration has been finished successfully.
+-----------------------------------------------------------------
+</code></pre></div>
+<p>And then you can see the following messages which the Seafile server starts successfully:</p>
+<div class="highlight"><pre><span></span><code>Starting seafile server, please wait ...
+Seafile server started
+
+Done.
+
+Starting seahub at port 8000 ...
+
+----------------------------------------
+Successfully created seafile admin
+----------------------------------------
+
+Seahub is started
+
+Done.
+</code></pre></div>
+<p>Finially, you can go to <code>http://seafile.example.com</code> to use Seafile.</p>
+</div>
 <div class="admonition tip">
 <p class="admonition-title">A 502 Bad Gateway error means that the system has not yet completed the initialization</p>
 </div>
