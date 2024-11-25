@@ -29,20 +29,11 @@ Here is the workflow when a user open sdoc file in browser
 3. Seafile server loads the content, then sends it to SeaDoc server and write it to the cache at the same time.
 4. After SeaDoc receives the content, it will be sent to the browser.
 
-## Deployment method
+## Deployment SeaDoc
 
-SeaDoc has the following deployment methods with different situations:
+The easiest way to deployment SeaDoc is to deploy it with Seafile server on the same host using the same Docker network. If in some situations, you need to deployment SeaDoc standalone, you can follow the next section.
 
-- **Situation 1**: Deploy SeaDoc server with the same host as Seafile  Server deploy in single-node docker mode
-
-- **Situation 2**: Deploy SeaDoc server on:
-    - A new host
-    - Same host with Seafile server cluster (frontend node)
-    - Same host with Seafile server deploy from binary packages
-
-### SeaDoc and Seafile docker (single-node mode) are deployed on the same host
-
-1. Download the `seadoc.yml` and integrate SeaDoc in Seafile docker.
+1. Download the `seadoc.yml` to `/opt/seafile`
 
     ```shell
     wget https://manual.seafile.com/12.0/docker/seadoc.yml
@@ -57,9 +48,20 @@ SeaDoc has the following deployment methods with different situations:
     SEADOC_SERVER_URL=https://seafile.example.com/sdoc-server
     ```
 
-### SeaDoc deploys on a new host or the same host with Seafile server (cluster and standalone)
+3. Start SeaDoc server server with the following command
 
-1. Download and modify the `.env` and `seadoc.yml` files.
+    ```sh
+    docker compose up -d
+    ```
+
+Now you can use SeaDoc!
+
+
+## Deploy SeaDoc standalone
+
+If you deploy Seafile in a cluster or if you deploy Seafile with binary package, you need to SeaDoc as a standalone service. Here are the steps:
+
+1. Download and modify the `.env` and `seadoc.yml` files to directory `/opt/seadoc`
 
     ```sh
     wget https://manual.seafile.com/12.0/docker/seadoc/1.0/standalone/seadoc.yml
@@ -79,8 +81,7 @@ SeaDoc has the following deployment methods with different situations:
     | `SEAFILE_SERVER_HOSTNAME`| Seafile host name                                                                                           |  
     | `SEAFILE_SERVER_PROTOCOL`| http or https                                                                                               |  
 
-3. By default, SeaDoc server listens to port 80. If the port is already taken by another service (e.g., deploy SeaDoc on the same machine where Seafile server is running), ***you have to change the listening port of SeaDoc***:
-
+3. (Optional) By default, SeaDoc server will bind to port 80 on the host machine. If the port is already taken by another service, ***you have to change the listening port of SeaDoc***:
 
     Modify `seadoc.yml`
 
@@ -93,7 +94,7 @@ SeaDoc has the following deployment methods with different situations:
     ...
     ```
 
-4. Modify `seafile.nginx.conf` to setup reverse proxy, **please replace `127.0.0.1:80` to `host:port` of your Seadoc server**
+4. Add a reverse proxy for SeaDoc server. In cluster environtment, it means you need to add reverse proxy rules at load balance. Here, we use Nginx as an example  (**please replace `127.0.0.1:80` to `host:port` of your Seadoc server**)
 
     ```
     location /sdoc-server/ {
@@ -119,7 +120,7 @@ SeaDoc has the following deployment methods with different situations:
     }
 
     location /socket.io {
-        proxy_pass http://127.0.01:80;
+        proxy_pass http://127.0.0.1:80;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
@@ -135,22 +136,19 @@ SeaDoc has the following deployment methods with different situations:
     }
     ```
 
-    Now your `SEADOC_SERVER_URL` should be:
-    ```sh
-    {SEAFILE_SERVER_PROTOCOL}://{SEAFILE_SERVER_HOSTNAME}/sdoc-server/
+5. Start SeaDoc server server with the following command
 
-    #e.g., https://seafile.example.com/sdoc-server/
+    ```sh
+    docker compose up -d
     ```
 
-## Start SeaDoc server
+6. Modify Seafile server configuration to use SeaDoc (The `.env` file of Seafile server).
 
-Start SeaDoc server with the following command
+    ```sh
+    ENABLE_SEADOC=false
+    SEADOC_SERVER_URL=https://seadoc.example.com/sdoc-server
+    ```
 
-```sh
-docker compose up -d
-```
-
-Now you can use SeaDoc!
 
 ## SeaDoc directory structure
 
