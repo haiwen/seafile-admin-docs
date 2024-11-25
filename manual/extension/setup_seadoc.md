@@ -59,7 +59,7 @@ Now you can use SeaDoc!
 
 ## Deploy SeaDoc standalone
 
-If you deploy Seafile in a cluster or if you deploy Seafile with binary package, you need to SeaDoc as a standalone service. Here are the steps:
+If you deploy Seafile in a cluster or if you deploy Seafile with binary package, you need to setup SeaDoc as a standalone service. Here are the steps:
 
 1. Download and modify the `.env` and `seadoc.yml` files to directory `/opt/seadoc`
 
