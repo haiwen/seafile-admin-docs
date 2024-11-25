@@ -1,7 +1,5 @@
 # Integrate Seafile with Collabora Online (LibreOffice Online)
 
-Since Seafile Professional edition 6.0.0, you can integrate Seafile with Collabora Online to preview office files.
-
 ## Setup CollaboraOnline
 
 !!! tip "Deployment Tips"
