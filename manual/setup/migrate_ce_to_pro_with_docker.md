@@ -1,17 +1,14 @@
----
-status: new
----
-
 # Migrate CE to Pro with Docker
 
 ## Preparation
 
-1. Make sure you are running a Seafile Community edition that match the latest version of pro edition. For example, if the latest pro edition is version 11.0, you should first upgrade the community edition to version 11.0.
+1. Make sure you are running a Seafile Community edition that match the latest version of pro edition. For example, if the latest pro edition is version 12.0, you should first upgrade the community edition to version 12.0.
 2. Purchase Seafile Professional license file.
-3. Download the `seafile-server.yml` of Seafile Pro.
+3. Download the `.env` and `seafile-server.yml` of Seafile Pro.
 
 ```sh
-wget "https://manual.seafile.com/12.0/docker/pro/seafile-server.yml"
+wget -O .env https://manual.seafile.com/12.0/docker/pro/env
+wget https://manual.seafile.com/12.0/docker/pro/seafile-server.yml
 ```
 
 ## Migrate
@@ -23,22 +20,35 @@ docker compose down
 
 ```
 
-**To ensure data security, it is recommended that you back up your MySQL data.**
+!!! tip
+    To ensure data security, it is recommended that you back up your MySQL data
 
 ### Put your licence file
 
 Copy the `seafile-license.txt` to the volume directory of the Seafile CE's data. If the directory is `/opt/seafile-data`, so you should put it in the `/opt/seafile-data/seafile/`.
 
-### Modify the new docker-compose.yml
+### Modify the new seafile-server.yml and .env
 
-Replace the old `docker-compose.yml` file with the new `docker-compose.yml` file and modify its configuration based on your actual situation:
+Modify `.env` based on the old configurations from the old `.env` file. The following fields should be paid special attention and **others should be the same as the old configurations**:
 
-* The Seafile Pro docker tag must be equal to or newer than the old Seafile CE docker tag.
-* The certificate of MySQL users (e.g., `MYSQL_ROOT_PASSWORD` and `DB_ROOT_PASSWD`) should be consistent with the old;
-* The volume directory of MySQL data (volumes) should be consistent with the old one;
-* The volume directory of Seafile data (volumes) should be consistent with the old one;
-* The volume directory of Caddy data (volumes) should be consistent with the old one;
-* The volume directory of Elasticsearch data (volumes), this is the directory used to store the Elasticsearch's index data, E.g：`/opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data`;
+| Variable                        | Description                                                                                                   | Default Value                   | 
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------- |  
+| `SEAFILE_IMAGE`                | The Seafile pro docker image, which the tag must be **equal to or newer than** the old Seafile CE docker tag                                                                       | `seafileltd/seafile-pro-mc:12.0-latest`             |
+| `SEAFILE_ELASTICSEARCH_VOLUME`  | The volume directory of Elasticsearch data | `/opt/seafile-elasticsearch/data` |
+
+For other fileds (e.g., `SEAFILE_VOLUME`, `SEAFILE_MYSQL_VOLUME`, `SEAFILE_MYSQL_DB_USER`, `SEAFILE_MYSQL_DB_PASSWORD`), **must be consistent** with the old configurations.
+
+!!! tip
+    For the configurations using to do the initializations (e.g, `INIT_SEAFILE_ADMIN_EMAIL`, `INIT_SEAFILE_MYSQL_ROOT_PASSWORD`, `INIT_S3_STORAGE_BACKEND_CONFIG`), you can remove it from `.env` as well
+
+### Replace seafile-server.yml and .env
+
+Replace the old `seafile-server.yml` and `.env` by the new and modified files, i.e. (if your old `seafile-server.yml` and `.env` are in the `/opt`)
+
+```sh
+mv -b seafile-server.yml /opt/seafile-server.yml
+mv -b .env /opt/.env
+```
 
 ### Do the migration
 
@@ -47,7 +57,7 @@ The Seafile Pro container needs to be running during the migration process, whic
 Run the following command to run the Seafile-Pro container：
 
 ```sh
-docker compose up
+docker compose up -d
 
 ```
 
