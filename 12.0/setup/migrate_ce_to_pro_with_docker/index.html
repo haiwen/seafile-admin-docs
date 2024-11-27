@@ -1252,14 +1252,6 @@
     Migration from Seafile Community
   </span>
   
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
 
           <span class="md-nav__icon md-icon"></span>
         </label>
@@ -1270,14 +1262,6 @@
   <span class="md-ellipsis">
     Migration from Seafile Community
   </span>
-  
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
   
 
       </a>
@@ -1335,9 +1319,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#modify-the-new-docker-composeyml" class="md-nav__link">
+  <a href="#modify-the-new-seafile-serveryml-and-env" class="md-nav__link">
     <span class="md-ellipsis">
-      Modify the new docker-compose.yml
+      Modify the new seafile-server.yml and .env
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replace-seafile-serveryml-and-env" class="md-nav__link">
+    <span class="md-ellipsis">
+      Replace seafile-server.yml and .env
     </span>
   </a>
   
@@ -4292,9 +4285,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#modify-the-new-docker-composeyml" class="md-nav__link">
+  <a href="#modify-the-new-seafile-serveryml-and-env" class="md-nav__link">
     <span class="md-ellipsis">
-      Modify the new docker-compose.yml
+      Modify the new seafile-server.yml and .env
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replace-seafile-serveryml-and-env" class="md-nav__link">
+    <span class="md-ellipsis">
+      Replace seafile-server.yml and .env
     </span>
   </a>
   
@@ -4335,33 +4337,60 @@
 <h1 id="migrate-ce-to-pro-with-docker">Migrate CE to Pro with Docker<a class="headerlink" href="#migrate-ce-to-pro-with-docker" title="Permanent link">&para;</a></h1>
 <h2 id="preparation">Preparation<a class="headerlink" href="#preparation" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Make sure you are running a Seafile Community edition that match the latest version of pro edition. For example, if the latest pro edition is version 11.0, you should first upgrade the community edition to version 11.0.</li>
+<li>Make sure you are running a Seafile Community edition that match the latest version of pro edition. For example, if the latest pro edition is version 12.0, you should first upgrade the community edition to version 12.0.</li>
 <li>Purchase Seafile Professional license file.</li>
-<li>Download the <code>seafile-server.yml</code> of Seafile Pro.</li>
+<li>Download the <code>.env</code> and <code>seafile-server.yml</code> of Seafile Pro.</li>
 </ol>
-<div class="highlight"><pre><span></span><code>wget<span class="w"> </span><span class="s2">&quot;https://manual.seafile.com/12.0/docker/pro/seafile-server.yml&quot;</span>
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/12.0/docker/pro/env
+wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/pro/seafile-server.yml
 </code></pre></div>
 <h2 id="migrate">Migrate<a class="headerlink" href="#migrate" title="Permanent link">&para;</a></h2>
 <h3 id="stop-the-seafile-ce">Stop the Seafile CE<a class="headerlink" href="#stop-the-seafile-ce" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
 </code></pre></div>
-<p><strong>To ensure data security, it is recommended that you back up your MySQL data.</strong></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To ensure data security, it is recommended that you back up your MySQL data</p>
+</div>
 <h3 id="put-your-licence-file">Put your licence file<a class="headerlink" href="#put-your-licence-file" title="Permanent link">&para;</a></h3>
 <p>Copy the <code>seafile-license.txt</code> to the volume directory of the Seafile CE's data. If the directory is <code>/opt/seafile-data</code>, so you should put it in the <code>/opt/seafile-data/seafile/</code>.</p>
-<h3 id="modify-the-new-docker-composeyml">Modify the new docker-compose.yml<a class="headerlink" href="#modify-the-new-docker-composeyml" title="Permanent link">&para;</a></h3>
-<p>Replace the old <code>docker-compose.yml</code> file with the new <code>docker-compose.yml</code> file and modify its configuration based on your actual situation:</p>
-<ul>
-<li>The Seafile Pro docker tag must be equal to or newer than the old Seafile CE docker tag.</li>
-<li>The certificate of MySQL users (e.g., <code>MYSQL_ROOT_PASSWORD</code> and <code>DB_ROOT_PASSWD</code>) should be consistent with the old;</li>
-<li>The volume directory of MySQL data (volumes) should be consistent with the old one;</li>
-<li>The volume directory of Seafile data (volumes) should be consistent with the old one;</li>
-<li>The volume directory of Caddy data (volumes) should be consistent with the old one;</li>
-<li>The volume directory of Elasticsearch data (volumes), this is the directory used to store the Elasticsearch's index data, E.g：<code>/opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data</code>;</li>
-</ul>
+<h3 id="modify-the-new-seafile-serveryml-and-env">Modify the new seafile-server.yml and .env<a class="headerlink" href="#modify-the-new-seafile-serveryml-and-env" title="Permanent link">&para;</a></h3>
+<p>Modify <code>.env</code> based on the old configurations from the old <code>.env</code> file. The following fields should be paid special attention and <strong>others should be the same as the old configurations</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SEAFILE_IMAGE</code></td>
+<td>The Seafile pro docker image, which the tag must be <strong>equal to or newer than</strong> the old Seafile CE docker tag</td>
+<td><code>seafileltd/seafile-pro-mc:12.0-latest</code></td>
+</tr>
+<tr>
+<td><code>SEAFILE_ELASTICSEARCH_VOLUME</code></td>
+<td>The volume directory of Elasticsearch data</td>
+<td><code>/opt/seafile-elasticsearch/data</code></td>
+</tr>
+</tbody>
+</table>
+<p>For other fileds (e.g., <code>SEAFILE_VOLUME</code>, <code>SEAFILE_MYSQL_VOLUME</code>, <code>SEAFILE_MYSQL_DB_USER</code>, <code>SEAFILE_MYSQL_DB_PASSWORD</code>), <strong>must be consistent</strong> with the old configurations.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>For the configurations using to do the initializations (e.g, <code>INIT_SEAFILE_ADMIN_EMAIL</code>, <code>INIT_SEAFILE_MYSQL_ROOT_PASSWORD</code>, <code>INIT_S3_STORAGE_BACKEND_CONFIG</code>), you can remove it from <code>.env</code> as well</p>
+</div>
+<h3 id="replace-seafile-serveryml-and-env">Replace seafile-server.yml and .env<a class="headerlink" href="#replace-seafile-serveryml-and-env" title="Permanent link">&para;</a></h3>
+<p>Replace the old <code>seafile-server.yml</code> and <code>.env</code> by the new and modified files, i.e. (if your old <code>seafile-server.yml</code> and <code>.env</code> are in the <code>/opt</code>)</p>
+<div class="highlight"><pre><span></span><code>mv<span class="w"> </span>-b<span class="w"> </span>seafile-server.yml<span class="w"> </span>/opt/seafile-server.yml
+mv<span class="w"> </span>-b<span class="w"> </span>.env<span class="w"> </span>/opt/.env
+</code></pre></div>
 <h3 id="do-the-migration">Do the migration<a class="headerlink" href="#do-the-migration" title="Permanent link">&para;</a></h3>
 <p>The Seafile Pro container needs to be running during the migration process, which means that end users may access the Seafile service during this process. In order to avoid the data confusion caused by this, it is recommended that you take the necessary measures to temporarily prohibit users from accessing the Seafile service. For example, modify the firewall policy.</p>
 <p>Run the following command to run the Seafile-Pro container：</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
 <p>Then run the migration script by executing the following command:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>/opt/seafile/seafile-server-latest/pro/pro.py<span class="w"> </span>setup<span class="w"> </span>--migrate
@@ -4383,9 +4412,6 @@ interval = 10m
 
 
 
-
-  
-  
 
 
 
