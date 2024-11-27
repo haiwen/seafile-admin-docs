@@ -45,7 +45,7 @@ services:
         hard: -1
     mem_limit: 4g
     volumes:
-      - "${SEAFILE_MYSQL_VOLUME:-/opt/seafile-elasticsearch/data}:/usr/share/elasticsearch/data"
+      - "${SEAFILE_ELASTICSEARCH_VOLUME:-/opt/seafile-elasticsearch/data}:/usr/share/elasticsearch/data"
     networks:
       - seafile-net
 
