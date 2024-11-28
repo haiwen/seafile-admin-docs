@@ -6,6 +6,7 @@ services:
     restart: always
     volumes:
       - ${NOTIFICATION_SERVER_VOLUME:-/opt/notification-data}:/shared
+      - ${NOTIFICATION_SERVER_VOLUME:-/opt/notification-data}/logs:/shared/logs
     ports:
       - "8083:8083"
     environment:
