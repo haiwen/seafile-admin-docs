@@ -9,6 +9,8 @@ Please check the **upgrade notes** for any special configuration or changes befo
 
 ## Upgrade from 11.0 to 12.0
 
+Note: If you have a large number of `Activity` in MySQL, clear this table first [Clean Database](../administration/clean_database). Otherwise, the database upgrade will take a long time.
+
 From Seafile Docker 12.0, we recommend that you use `.env` and `seafile-server.yml` files for configuration.
 
 ### Backup the original docker-compose.yml file:
