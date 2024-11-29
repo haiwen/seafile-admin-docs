@@ -4517,6 +4517,7 @@ Please always follow the main <a href="../upgrade/">upgrade guide</a>.</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart
 </code></pre></div>
 </div>
+<p>Note: If you have a large number of <code>Activity</code> in MySQL, clear this table first <a href="../administration/clean_database">Clean Database</a>. Otherwise, the database upgrade will take a long time.</p>
 <h3 id="1-stop-seafile-110x-server">1) Stop Seafile-11.0.x server<a class="headerlink" href="#1-stop-seafile-110x-server" title="Permanent link">&para;</a></h3>
 <h3 id="2-start-from-seafile-120x-run-the-script">2) Start from Seafile 12.0.x, run the script<a class="headerlink" href="#2-start-from-seafile-120x-run-the-script" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>upgrade/upgrade_11.0_12.0.sh

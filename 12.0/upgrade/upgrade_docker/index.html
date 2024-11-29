@@ -4475,6 +4475,7 @@
 <p>For major version upgrade, like from 10.0 to 11.0, see instructions below.</p>
 <p>Please check the <strong>upgrade notes</strong> for any special configuration or changes before/while upgrading.</p>
 <h2 id="upgrade-from-110-to-120">Upgrade from 11.0 to 12.0<a class="headerlink" href="#upgrade-from-110-to-120" title="Permanent link">&para;</a></h2>
+<p>Note: If you have a large number of <code>Activity</code> in MySQL, clear this table first <a href="../administration/clean_database">Clean Database</a>. Otherwise, the database upgrade will take a long time.</p>
 <p>From Seafile Docker 12.0, we recommend that you use <code>.env</code> and <code>seafile-server.yml</code> files for configuration.</p>
 <h3 id="backup-the-original-docker-composeyml-file">Backup the original docker-compose.yml file:<a class="headerlink" href="#backup-the-original-docker-composeyml-file" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>mv<span class="w"> </span>docker-compose.yml<span class="w"> </span>docker-compose.yml.bak
