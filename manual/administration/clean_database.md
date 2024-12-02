@@ -29,9 +29,8 @@ Use the following command to clear the activity records:
 ```
 use seahub_db;
 DELETE FROM Activity WHERE to_days(now()) - to_days(timestamp) > 90;
+DELETE FROM UserActivity WHERE to_days(now()) - to_days(timestamp) > 90;
 ```
-
-The corresponding items in UserActivity will deleted automatically by MariaDB when the foreign keys in Activity table are deleted.
 
 ### Login
 
