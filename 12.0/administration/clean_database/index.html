@@ -4393,8 +4393,8 @@
 <p>Use the following command to clear the activity records:</p>
 <div class="highlight"><pre><span></span><code>use seahub_db;
 DELETE FROM Activity WHERE to_days(now()) - to_days(timestamp) &gt; 90;
+DELETE FROM UserActivity WHERE to_days(now()) - to_days(timestamp) &gt; 90;
 </code></pre></div>
-<p>The corresponding items in UserActivity will deleted automatically by MariaDB when the foreign keys in Activity table are deleted.</p>
 <h3 id="login">Login<a class="headerlink" href="#login" title="Permanent link">&para;</a></h3>
 <p>Use the following command to clean the login records:</p>
 <div class="highlight"><pre><span></span><code>use seahub_db;
