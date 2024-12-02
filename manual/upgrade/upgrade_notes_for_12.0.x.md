@@ -80,7 +80,7 @@ The following instruction is for binary package based installation. If you use D
     docker compose restart
     ```
 
-Note: If you have a large number of `Activity` in MySQL, clear this table first [Clean Database](../administration/clean_database). Otherwise, the database upgrade will take a long time.
+Note: If you have a large number of `Activity` in MySQL, clear this table first [Clean Database](../../administration/clean_database). Otherwise, the database upgrade will take a long time.
 
 ### 1) Stop Seafile-11.0.x server
 
