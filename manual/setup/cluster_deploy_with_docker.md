@@ -77,26 +77,9 @@ We assume you have already deployed memcache, MariaDB, ElasticSearch in separate
         Generating seahub configuration ...
         
         
-        
         -----------------------------------------------------------------
         Your seafile server configuration has been finished successfully.
         -----------------------------------------------------------------
-        
-        run seafile server:     ./seafile.sh { start | stop | restart }
-        run seahub  server:     ./seahub.sh  { start <port> | stop | restart <port> }
-        
-        -----------------------------------------------------------------
-        If you are behind a firewall, remember to allow input/output of these tcp ports:
-        -----------------------------------------------------------------
-        
-        port of seafile fileserver:   8082
-        port of seahub:               8000
-        
-        When problems occur, Refer to
-        
-                https://download.seafile.com/published/seafile-manual/home.md
-        
-        for information.
         
         
         [2024-11-21 02:22:37] Updating version stamp
