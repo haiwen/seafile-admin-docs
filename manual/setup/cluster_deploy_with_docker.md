@@ -77,12 +77,10 @@ We assume you have already deployed memcache, MariaDB, ElasticSearch in separate
         Generating seahub configuration ...
         
         
-        
         -----------------------------------------------------------------
         Your seafile server configuration has been finished successfully.
         -----------------------------------------------------------------
         
-        ...
         
         [2024-11-21 02:22:37] Updating version stamp
         Start init
