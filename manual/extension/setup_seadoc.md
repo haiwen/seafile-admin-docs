@@ -137,12 +137,38 @@ If you deploy Seafile in a cluster or if you deploy Seafile with binary package,
     docker compose up -d
     ```
 
-6. Modify Seafile server configuration to use SeaDoc (The `.env` file of Seafile server).
+6. Modify Seafile server's configuration and start SeaDoc server
+
+    !!! warning
+        After using a reverse proxy, your SeaDoc service will be located at the `/sdoc-server` path of your reverse proxy (i.e. `xxx.example.com/sdoc-server`). For example:
+
+        - Proxy server host: xxx.example.com
+        - SeaDoc server: seadoc.example.com:8888
+
+        Then `SEADOC_SERVER_URL` will be
+        ```
+        http{s}://xxx.example.com/sdoc-server
+        ```
+
+    Modify `.env` in your **Seafile-server** host:
 
     ```sh
-    ENABLE_SEADOC=false
-    SEADOC_SERVER_URL=https://seadoc.example.com/sdoc-server
+    ENABLE_SEADOC=true
+    SEADOC_SERVER_URL=https://seafile.example.com/sdoc-server
     ```
+
+    Restart Seafile server
+
+    === "Deploy in Docker (including cluster mode)"
+        ```sh
+        docker compose down
+        docker compose up -d
+        ```
+    === "Deploy from binary packages"
+        ```sh
+        cd /opt/seafile/seafile-server-latest
+        ./seahub.sh restart
+        ```
 
 
 ## SeaDoc directory structure
