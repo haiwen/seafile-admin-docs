@@ -97,42 +97,37 @@ If you deploy Seafile in a cluster or if you deploy Seafile with binary package,
 4. Add a reverse proxy for SeaDoc server. In cluster environtment, it means you need to add reverse proxy rules at load balance. Here, we use Nginx as an example  (**please replace `127.0.0.1:80` to `host:port` of your Seadoc server**)
 
     ```
-    location /sdoc-server/ {
-        add_header Access-Control-Allow-Origin *;
-        add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
-        add_header Access-Control-Allow-Headers "deviceType,token, authorization, content-type";
-        if ($request_method = 'OPTIONS') {
-            add_header Access-Control-Allow-Origin *;
-            add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
-            add_header Access-Control-Allow-Headers "deviceType,token, authorization, content-type";
-            return 204;
+    ...
+    server {
+        ...
+
+        location /sdoc-server/ {
+            proxy_pass         http://127.0.0.1:80/;
+            proxy_redirect     off;
+            proxy_set_header   Host              $host;
+            proxy_set_header   X-Real-IP         $remote_addr;
+            proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
+            proxy_set_header   X-Forwarded-Host  $server_name;
+            proxy_set_header   X-Forwarded-Proto $scheme;
+
+            client_max_body_size 100m;
         }
 
-        proxy_pass         http://127.0.0.1:80/;
-        proxy_redirect     off;
-        proxy_set_header   Host              $host;
-        proxy_set_header   X-Real-IP         $remote_addr;
-        proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
-        proxy_set_header   X-Forwarded-Host  $server_name;
-        proxy_set_header   X-Forwarded-Proto $scheme;
+        location /socket.io {
+            proxy_pass http://127.0.0.1:80;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_redirect off;
 
-        client_max_body_size 100m;
-    }
+            proxy_buffers 8 32k;
+            proxy_buffer_size 64k;
 
-    location /socket.io {
-        proxy_pass http://127.0.0.1:80;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_redirect off;
-
-        proxy_buffers 8 32k;
-        proxy_buffer_size 64k;
-
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header Host $http_host;
-        proxy_set_header X-NginX-Proxy true;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header Host $http_host;
+            proxy_set_header X-NginX-Proxy true;
+        }
     }
     ```
 
