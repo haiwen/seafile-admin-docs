@@ -96,6 +96,7 @@ nav:
         - Data migration: setup/migrate_backends_data.md
       - Seafile Docker autostart: setup/seafile_docker_autostart.md
       - Deploy with an existing MySQL server: setup/setup_with_an_existing_mysql_server.md
+      - Setup Seafile without Caddy: setup/setup_seafile_without_caddy.md
       - Run Seafile as non root user inside docker: setup/run_seafile_as_non_root_user_inside_docker.md
     - Cluster installation (Pro):
       - Seafile Docker Cluster Deployment: setup/cluster_deploy_with_docker.md

@@ -1,0 +1,2 @@
+# Setup Seafile without Caddy
+
