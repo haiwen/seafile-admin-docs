@@ -4404,42 +4404,37 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 </li>
 <li>
 <p>Add a reverse proxy for SeaDoc server. In cluster environtment, it means you need to add reverse proxy rules at load balance. Here, we use Nginx as an example  (<strong>please replace <code>127.0.0.1:80</code> to <code>host:port</code> of your Seadoc server</strong>)</p>
-<div class="highlight"><pre><span></span><code>location /sdoc-server/ {
-    add_header Access-Control-Allow-Origin *;
-    add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
-    add_header Access-Control-Allow-Headers &quot;deviceType,token, authorization, content-type&quot;;
-    if ($request_method = &#39;OPTIONS&#39;) {
-        add_header Access-Control-Allow-Origin *;
-        add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
-        add_header Access-Control-Allow-Headers &quot;deviceType,token, authorization, content-type&quot;;
-        return 204;
+<div class="highlight"><pre><span></span><code>...
+server {
+    ...
+
+    location /sdoc-server/ {
+        proxy_pass         http://127.0.0.1:80/;
+        proxy_redirect     off;
+        proxy_set_header   Host              $host;
+        proxy_set_header   X-Real-IP         $remote_addr;
+        proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
+        proxy_set_header   X-Forwarded-Host  $server_name;
+        proxy_set_header   X-Forwarded-Proto $scheme;
+
+        client_max_body_size 100m;
     }
 
-    proxy_pass         http://127.0.0.1:80/;
-    proxy_redirect     off;
-    proxy_set_header   Host              $host;
-    proxy_set_header   X-Real-IP         $remote_addr;
-    proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
-    proxy_set_header   X-Forwarded-Host  $server_name;
-    proxy_set_header   X-Forwarded-Proto $scheme;
+    location /socket.io {
+        proxy_pass http://127.0.0.1:80;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection &#39;upgrade&#39;;
+        proxy_redirect off;
 
-    client_max_body_size 100m;
-}
+        proxy_buffers 8 32k;
+        proxy_buffer_size 64k;
 
-location /socket.io {
-    proxy_pass http://127.0.0.1:80;
-    proxy_http_version 1.1;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection &#39;upgrade&#39;;
-    proxy_redirect off;
-
-    proxy_buffers 8 32k;
-    proxy_buffer_size 64k;
-
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header Host $http_host;
-    proxy_set_header X-NginX-Proxy true;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-NginX-Proxy true;
+    }
 }
 </code></pre></div>
 </li>
@@ -4449,10 +4444,37 @@ location /socket.io {
 </code></pre></div>
 </li>
 <li>
-<p>Modify Seafile server configuration to use SeaDoc (The <code>.env</code> file of Seafile server).</p>
-<div class="highlight"><pre><span></span><code><span class="nv">ENABLE_SEADOC</span><span class="o">=</span><span class="nb">false</span>
-<span class="nv">SEADOC_SERVER_URL</span><span class="o">=</span>https://seadoc.example.com/sdoc-server
+<p>Modify Seafile server's configuration and start SeaDoc server</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>After using a reverse proxy, your SeaDoc service will be located at the <code>/sdoc-server</code> path of your reverse proxy (i.e. <code>xxx.example.com/sdoc-server</code>). For example:</p>
+<ul>
+<li>Proxy server host: xxx.example.com</li>
+<li>SeaDoc server: seadoc.example.com:8888</li>
+</ul>
+<p>Then <code>SEADOC_SERVER_URL</code> will be
+<div class="highlight"><pre><span></span><code>http{s}://xxx.example.com/sdoc-server
+</code></pre></div></p>
+</div>
+<p>Modify <code>.env</code> in your <strong>Seafile-server</strong> host:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">ENABLE_SEADOC</span><span class="o">=</span><span class="nb">true</span>
+<span class="nv">SEADOC_SERVER_URL</span><span class="o">=</span>https://seafile.example.com/sdoc-server
 </code></pre></div>
+<p>Restart Seafile server</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Deploy in Docker (including cluster mode)</label><label for="__tabbed_1_2">Deploy from binary packages</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest
+./seahub.sh<span class="w"> </span>restart
+</code></pre></div>
+</div>
+</div>
+</div>
 </li>
 </ol>
 <h2 id="seadoc-directory-structure">SeaDoc directory structure<a class="headerlink" href="#seadoc-directory-structure" title="Permanent link">&para;</a></h2>
