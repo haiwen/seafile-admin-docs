@@ -1136,9 +1136,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#restart-nginx" class="md-nav__link">
+  <a href="#modify-env" class="md-nav__link">
     <span class="md-ellipsis">
-      Restart nginx
+      Modify .env
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restart-services-and-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restart services and nginx
     </span>
   </a>
   
@@ -4263,9 +4272,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#restart-nginx" class="md-nav__link">
+  <a href="#modify-env" class="md-nav__link">
     <span class="md-ellipsis">
-      Restart nginx
+      Modify .env
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restart-services-and-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restart services and nginx
     </span>
   </a>
   
@@ -4471,8 +4489,14 @@ location /socket.io {
 </div>
 </div>
 </div>
-<h2 id="restart-nginx">Restart nginx<a class="headerlink" href="#restart-nginx" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>nginx<span class="w"> </span>restart
+<h2 id="modify-env">Modify .env<a class="headerlink" href="#modify-env" title="Permanent link">&para;</a></h2>
+<p>Remove <code>caddy.yml</code> from field <code>COMPOSE_FILE</code> in <code>.env</code>, e.g.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">COMPOSE_FILE</span><span class="o">=</span><span class="s1">&#39;seafile-server.yml&#39;</span><span class="w"> </span><span class="c1"># remove caddy.yml</span>
+</code></pre></div>
+<h2 id="restart-services-and-nginx">Restart services and nginx<a class="headerlink" href="#restart-services-and-nginx" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+nginx<span class="w"> </span>restart
 </code></pre></div>
 
 
