@@ -111,7 +111,7 @@ sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
 
 `sse_c_key` is a string of 32 characters.
 
-You can generate sse_c_key with the following command：
+You can generate sse_c_key with the following command. Note that the key doesn't have to be base64 encoded. It can be any 32-character long random string. The example just show one possible way to generate such a key.
 
 ```
 openssl rand -base64 24
