@@ -1,5 +1,14 @@
 # SeaDrive Client Changelog
 
+### 3.0.12 (2024/12/03)¶
+* Handle changes of invisible sub-folder permissions
+* Support encrypted library with custom password hash algorithms
+* [mac] Add back file search UI
+* [mac] Fix bug that duplicated files are created by the client
+* [mac] Don't show "The path contains symbols that are not supported by the windows system" message
+* [win] Fix bug that sometimes files cannot be deleted
+* [linux] Don't wait for file deletion confirmation in CLI
+
 ### 3.0.11 (2024/09/10)
 
 * \[win] Reuse cache folder when resync account
