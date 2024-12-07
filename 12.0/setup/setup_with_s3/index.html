@@ -4445,7 +4445,7 @@ use_https = true
 sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
 </code></pre></div>
 <p><code>sse_c_key</code> is a string of 32 characters.</p>
-<p>You can generate sse_c_key with the following command：</p>
+<p>You can generate sse_c_key with the following command. Note that the key doesn't have to be base64 encoded. It can be any 32-character long random string. The example just show one possible way to generate such a key.</p>
 <div class="highlight"><pre><span></span><code>openssl rand -base64 24
 </code></pre></div>
 <div class="admonition warning">
