@@ -145,8 +145,18 @@ Modify `nginx.conf` and add reverse proxy for services ***seafile*** and ***sead
     }
     ```
 
-## Restart nginx
+## Modify .env
+
+Remove `caddy.yml` from field `COMPOSE_FILE` in `.env`, e.g.
 
 ```sh
+COMPOSE_FILE='seafile-server.yml' # remove caddy.yml
+```
+
+## Restart services and nginx
+
+```sh
+docker compose down
+docker compose up -d
 nginx restart
 ```
