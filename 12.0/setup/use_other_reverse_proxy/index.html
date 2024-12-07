@@ -10,13 +10,13 @@
         <meta name="author" content="seafile">
       
       
-        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/12.0/introduction/contribution/">
+        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/12.0/setup/use_other_reverse_proxy/">
       
       
-        <link rel="prev" href="../roadmap/">
+        <link rel="prev" href="../setup_with_an_existing_mysql_server/">
       
       
-        <link rel="next" href="../../setup/overview/">
+        <link rel="next" href="../run_seafile_as_non_root_user_inside_docker/">
       
       
       <link rel="icon" href="../../media/favicon.ico">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Contribution - Seafile Admin Manual</title>
+        <title>Use other reverse proxy - Seafile Admin Manual</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#contribution" class="md-skip">
+        <a href="#use-other-reverse-proxy" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Contribution
+              Use other reverse proxy
             
           </span>
         </div>
@@ -227,12 +227,10 @@
         
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href="../.." class="md-tabs__link">
           
   
@@ -247,11 +245,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../setup/overview/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../overview/" class="md-tabs__link">
           
   
   Setup
@@ -472,30 +472,25 @@
       
   
   
-    
   
   
-  
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
         
           
-          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -506,7 +501,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_1">
             <span class="md-nav__icon md-icon"></span>
             Introduction
@@ -541,7 +536,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../components/" class="md-nav__link">
+      <a href="../../introduction/components/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -562,7 +557,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../file_permission_management/" class="md-nav__link">
+      <a href="../../introduction/file_permission_management/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -583,7 +578,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../roadmap/" class="md-nav__link">
+      <a href="../../introduction/roadmap/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -601,30 +596,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Contribution
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../introduction/contribution/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -633,53 +608,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#licensing" class="md-nav__link">
-    <span class="md-ellipsis">
-      Licensing
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#discussion" class="md-nav__link">
-    <span class="md-ellipsis">
-      Discussion
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#report-a-bug" class="md-nav__link">
-    <span class="md-ellipsis">
-      Report a Bug
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -696,25 +624,30 @@
       
   
   
+    
   
   
+  
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -725,7 +658,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Setup
@@ -739,7 +672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/overview/" class="md-nav__link">
+      <a href="../overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -760,7 +693,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/caddy/" class="md-nav__link">
+      <a href="../caddy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -786,17 +719,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
         
           
-          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -821,7 +757,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_ce_by_docker/" class="md-nav__link">
+      <a href="../setup_ce_by_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -842,7 +778,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_pro_by_docker/" class="md-nav__link">
+      <a href="../setup_pro_by_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -868,25 +804,30 @@
                 
   
   
+    
   
   
+  
     
     
     
       
       
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
         
           
-          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -897,7 +838,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_4">
             <span class="md-nav__icon md-icon"></span>
             Advanced topics
@@ -951,7 +892,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_with_s3/" class="md-nav__link">
+      <a href="../setup_with_s3/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -972,7 +913,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_with_ceph/" class="md-nav__link">
+      <a href="../setup_with_ceph/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -993,7 +934,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_with_swift/" class="md-nav__link">
+      <a href="../setup_with_swift/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1014,7 +955,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_with_multiple_storage_backends/" class="md-nav__link">
+      <a href="../setup_with_multiple_storage_backends/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1043,7 +984,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/migrate_backends_data/" class="md-nav__link">
+      <a href="../migrate_backends_data/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1080,7 +1021,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/seafile_docker_autostart/" class="md-nav__link">
+      <a href="../seafile_docker_autostart/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1101,7 +1042,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_with_an_existing_mysql_server/" class="md-nav__link">
+      <a href="../setup_with_an_existing_mysql_server/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1119,10 +1060,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../setup/use_other_reverse_proxy/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Use other reverse proxy
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1131,6 +1092,62 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#services-that-require-reverse-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Services that require reverse proxy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modify-yml-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modify YML files
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add-reverse-proxy-for-related-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add reverse proxy for related services
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restart-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restart nginx
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1143,7 +1160,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/run_seafile_as_non_root_user_inside_docker/" class="md-nav__link">
+      <a href="../run_seafile_as_non_root_user_inside_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1177,17 +1194,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
         
           
-          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -1212,7 +1232,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/cluster_deploy_with_docker/" class="md-nav__link">
+      <a href="../cluster_deploy_with_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1233,7 +1253,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/cluster_deploy_with_k8s/" class="md-nav__link">
+      <a href="../cluster_deploy_with_k8s/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1275,17 +1295,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
         
           
-          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -1310,7 +1333,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/migrate_ce_to_pro_with_docker/" class="md-nav__link">
+      <a href="../migrate_ce_to_pro_with_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1331,7 +1354,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/migrate_non_docker_to_docker/" class="md-nav__link">
+      <a href="../migrate_non_docker_to_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4213,27 +4236,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#licensing" class="md-nav__link">
+  <a href="#services-that-require-reverse-proxy" class="md-nav__link">
     <span class="md-ellipsis">
-      Licensing
+      Services that require reverse proxy
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#discussion" class="md-nav__link">
+  <a href="#modify-yml-files" class="md-nav__link">
     <span class="md-ellipsis">
-      Discussion
+      Modify YML files
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#report-a-bug" class="md-nav__link">
+  <a href="#add-reverse-proxy-for-related-services" class="md-nav__link">
     <span class="md-ellipsis">
-      Report a Bug
+      Add reverse proxy for related services
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restart-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restart nginx
     </span>
   </a>
   
@@ -4257,24 +4289,191 @@
   
 
 
-<h1 id="contribution">Contribution<a class="headerlink" href="#contribution" title="Permanent link">&para;</a></h1>
-<h2 id="licensing">Licensing<a class="headerlink" href="#licensing" title="Permanent link">&para;</a></h2>
-<p>The different components of Seafile project are released under different licenses:</p>
-<ul>
-<li><a href="https://github.com/haiwen/seafile-iOS">Seafile iOS client</a>: Apache License v2</li>
-<li><a href="https://github.com/haiwen/seadroid">Seafile Android client</a>: GPLv3</li>
-<li>Desktop syncing client: GPLv2</li>
-<li><a href="https://github.com/haiwen/seafile-server">Seafile Server core</a>: AGPLv3</li>
-<li>Seahub (Seafile server Web UI): Apache License v2</li>
-</ul>
-<h2 id="discussion">Discussion<a class="headerlink" href="#discussion" title="Permanent link">&para;</a></h2>
-<p>Forum: <a href="https://forum.seafile.com">https://forum.seafile.com</a></p>
-<p>Follow us @seafile <a href="https://twitter.com/seafile">https://twitter.com/seafile</a></p>
-<h2 id="report-a-bug">Report a Bug<a class="headerlink" href="#report-a-bug" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Please report a bug in our forum, this is a preferred way.</li>
-<li>You can also report a bug in GitHub <a href="https://github.com/haiwen/seafile/issues?state=open">https://github.com/haiwen/seafile/issues?state=open</a></li>
-</ul>
+<h1 id="use-other-reverse-proxy">Use other reverse proxy<a class="headerlink" href="#use-other-reverse-proxy" title="Permanent link">&para;</a></h1>
+<p>Since Seafile 12.0, all reverse proxy, HTTPS, etc. processing for <strong>single-node deployment based on Docker</strong> is handled by <a href="../caddy/">caddy</a>. If you need to use other reverse proxy services, you can refer to this document to modify the relevant configuration files.</p>
+<h2 id="services-that-require-reverse-proxy">Services that require reverse proxy<a class="headerlink" href="#services-that-require-reverse-proxy" title="Permanent link">&para;</a></h2>
+<p>Before making changes to the configuration files, you <strong>have to</strong> know the services used by Seafile and related components (<strong><em>Table 1</em></strong> therafter).</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The services shown in the table below are <strong>all based on the single-node integrated deployment</strong> in accordance with the Seafile official documentation. </p>
+<p>If these services are <strong>deployed in standalone mode</strong> (such as <em>seadoc</em> and <em>notification-server</em>), or <strong>deployed in the official documentation</strong> of third-party plugins (such as <em>onlyoffice</em> and <em>collabora</em>), <strong>you can skip modifying the configuration files of these services</strong> (because Caddy is not used as a reverse proxy for such deployment approaches).</p>
+<p>If you have not integrated some services, please choose <strong><em>Standalone</em></strong> or <strong><em>Refer to the official documentation of third-party plugins</em></strong> to install them when you need these services</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>YML</th>
+<th>Service</th>
+<th>Suggest exposed port</th>
+<th>Service listen port</th>
+<th>Require WebSocket</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>seafile-server.yml</code></td>
+<td><em>seafile</em></td>
+<td>80</td>
+<td>80</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>seadoc.yml</code></td>
+<td><em>seadoc</em></td>
+<td>8888</td>
+<td>80</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>notification-server.yml</code></td>
+<td><em>notification-server</em></td>
+<td>8083</td>
+<td>8083</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>collabora.yml</code></td>
+<td><em>collabora</em></td>
+<td>6232</td>
+<td>9980</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>onlyoffice.yml</code></td>
+<td><em>onlyoffice</em></td>
+<td>6233</td>
+<td>80</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h2 id="modify-yml-files">Modify YML files<a class="headerlink" href="#modify-yml-files" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Refer to <strong><em>Table 1</em></strong> for the related service exposed ports. Add section <code>ports</code> for corresponding services</p>
+<div class="highlight"><pre><span></span><code>services:
+    &lt;the service need to be modified&gt;:
+        ...
+        ports:
+            - &quot;&lt;Suggest exposed port&gt;:&lt;Service listen port&gt;&quot;
+</code></pre></div>
+</li>
+<li>
+<p>Delete all fields related to Caddy reverse proxy (in <code>label</code> section)</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Some <code>.yml</code> files (e.g., <code>onlyoffice.yml</code>) also have port-exposing information with Caddy in the top of the file, which also needs to be removed.</p>
+</div>
+</li>
+</ol>
+<p>We take <code>seafile-server.yml</code> for example (Pro edition):</p>
+<div class="highlight"><pre><span></span><code>services:
+    # ... other services
+
+    seafile:
+    image: ${SEAFILE_IMAGE:-seafileltd/seafile-pro-mc:12.0-latest}
+    container_name: seafile
+    ports:
+       - &quot;80:80&quot;
+    volumes:
+      - ${SEAFILE_VOLUME:-/opt/seafile-data}:/shared
+    environment:
+      - DB_HOST=${SEAFILE_MYSQL_DB_HOST:-db}
+      - DB_PORT=${SEAFILE_MYSQL_DB_PORT:-3306}
+      - DB_ROOT_PASSWD=${INIT_SEAFILE_MYSQL_ROOT_PASSWORD:-}
+      - DB_PASSWORD=${SEAFILE_MYSQL_DB_PASSWORD:?Variable is not set or empty}
+      - SEAFILE_MYSQL_DB_CCNET_DB_NAME=${SEAFILE_MYSQL_DB_CCNET_DB_NAME:-ccnet_db}
+      - SEAFILE_MYSQL_DB_SEAFILE_DB_NAME=${SEAFILE_MYSQL_DB_SEAFILE_DB_NAME:-seafile_db}
+      - SEAFILE_MYSQL_DB_SEAHUB_DB_NAME=${SEAFILE_MYSQL_DB_SEAHUB_DB_NAME:-seahub_db}
+      - TIME_ZONE=${TIME_ZONE:-Etc/UTC}
+      - INIT_SEAFILE_ADMIN_EMAIL=${INIT_SEAFILE_ADMIN_EMAIL:-me@example.com}
+      - INIT_SEAFILE_ADMIN_PASSWORD=${INIT_SEAFILE_ADMIN_PASSWORD:-asecret}
+      - SEAFILE_SERVER_HOSTNAME=${SEAFILE_SERVER_HOSTNAME:?Variable is not set or empty}
+      - SEAFILE_SERVER_PROTOCOL=${SEAFILE_SERVER_PROTOCOL:-http}
+      - SITE_ROOT=${SITE_ROOT:-/}
+      - NON_ROOT=${NON_ROOT:-false}
+      - JWT_PRIVATE_KEY=${JWT_PRIVATE_KEY:?Variable is not set or empty}
+      - ENABLE_SEADOC=${ENABLE_SEADOC:-false}
+      - SEADOC_SERVER_URL=${SEADOC_SERVER_URL:-http://example.example.com/sdoc-server}
+      - INIT_S3_STORAGE_BACKEND_CONFIG=${INIT_S3_STORAGE_BACKEND_CONFIG:-false}
+      - INIT_S3_COMMIT_BUCKET=${INIT_S3_COMMIT_BUCKET:-}
+      - INIT_S3_FS_BUCKET=${INIT_S3_FS_BUCKET:-}
+      - INIT_S3_BLOCK_BUCKET=${INIT_S3_BLOCK_BUCKET:-}
+      - INIT_S3_KEY_ID=${INIT_S3_KEY_ID:-}
+      - INIT_S3_SECRET_KEY=${INIT_S3_SECRET_KEY:-}
+      - INIT_S3_USE_V4_SIGNATURE=${INIT_S3_USE_V4_SIGNATURE:-true}
+      - INIT_S3_AWS_REGION=${INIT_S3_AWS_REGION:-us-east-1}
+      - INIT_S3_HOST=${INIT_S3_HOST:-us-east-1}
+      - INIT_S3_USE_HTTPS=${INIT_S3_USE_HTTPS:-true}
+    # please remove the label section
+    depends_on:
+      - db
+      - memcached
+      - elasticsearch
+    networks:
+      - seafile-net
+
+# ... other options
+</code></pre></div>
+<h2 id="add-reverse-proxy-for-related-services">Add reverse proxy for related services<a class="headerlink" href="#add-reverse-proxy-for-related-services" title="Permanent link">&para;</a></h2>
+<p>Modify <code>nginx.conf</code> and add reverse proxy for services <strong><em>seafile</em></strong> and <strong><em>seadoc</em></strong>:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If your proxy server's host is not the same as the host the Seafile deployed to, please <strong>replase <code>127.0.0.1</code> to your Seafile server's host</strong></p>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">seafile</label><label for="__tabbed_1_2">seadoc</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>location / {
+    proxy_pass http://127.0.0.1:80;
+    proxy_read_timeout 310s;
+    proxy_set_header Host $host;
+    proxy_set_header Forwarded &quot;for=$remote_addr;proto=$scheme&quot;;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header Connection &quot;&quot;;
+    proxy_http_version 1.1;
+
+    client_max_body_size 0;
+}
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>location /sdoc-server/ {
+    proxy_pass         http://127.0.0.1:8888/;
+    proxy_redirect     off;
+    proxy_set_header   Host              $host;
+    proxy_set_header   X-Real-IP         $remote_addr;
+    proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
+    proxy_set_header   X-Forwarded-Host  $server_name;
+    proxy_set_header   X-Forwarded-Proto $scheme;
+
+    client_max_body_size 100m;
+}
+
+location /socket.io {
+    proxy_pass http://127.0.0.1:8888/;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection &#39;upgrade&#39;;
+    proxy_redirect off;
+
+    proxy_buffers 8 32k;
+    proxy_buffer_size 64k;
+
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_set_header X-NginX-Proxy true;
+}
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="restart-nginx">Restart nginx<a class="headerlink" href="#restart-nginx" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>nginx<span class="w"> </span>restart
+</code></pre></div>
 
 
 
@@ -4310,7 +4509,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../roadmap/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Roadmap">
+          <a href="../setup_with_an_existing_mysql_server/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Deploy with an existing MySQL server">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -4320,20 +4519,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Roadmap
+                Deploy with an existing MySQL server
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../setup/overview/" class="md-footer__link md-footer__link--next" aria-label="Next: Overview">
+          <a href="../run_seafile_as_non_root_user_inside_docker/" class="md-footer__link md-footer__link--next" aria-label="Next: Run Seafile as non root user inside docker">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Overview
+                Run Seafile as non root user inside docker
               </div>
             </div>
             <div class="md-footer__button md-icon">
