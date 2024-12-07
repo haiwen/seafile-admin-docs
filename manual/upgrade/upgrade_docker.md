@@ -98,7 +98,7 @@ Remove the `server listen 80` section:
 #    }
 
 #    location / {
-#        rewrite ^ https://example.seafile.com$request_uri? permanent;
+#        rewrite ^ https://seafile.example.com$request_uri? permanent;
 #    }
 #}
 ```

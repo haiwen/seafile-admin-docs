@@ -30,7 +30,7 @@ TIME_ZONE=Etc/UTC
 
 JWT_PRIVATE_KEY=
 
-SEAFILE_SERVER_HOSTNAME=example.seafile.com
+SEAFILE_SERVER_HOSTNAME=seafile.example.com
 SEAFILE_SERVER_PROTOCOL=https
 
 INIT_SEAFILE_ADMIN_EMAIL=me@example.com
@@ -53,7 +53,7 @@ SEADOC_IMAGE=seafileltd/sdoc-server:1.0-latest
 SEADOC_VOLUME=/opt/seadoc-data
 
 ENABLE_SEADOC=false
-SEADOC_SERVER_URL=http://example.seafile.com/sdoc-server
+SEADOC_SERVER_URL=http://seafile.example.com/sdoc-server
 
 
 NOTIFICATION_SERVER_IMAGE=seafileltd/notification-server:12.0-latest
@@ -107,7 +107,7 @@ NOTIFICATION_SERVER_VOLUME=/opt/notification-data
 ## SeaDoc configurations (only valid after integrating SeaDoc)
 
 - `ENABLE_SEADOC`: Enable the SeaDoc server or not, default is `false`.
-- `SEADOC_SERVER_URL`: Only valid in `ENABLE_SEADOC=true`. Url of Seadoc server (e.g., http://example.seafile.com/sdoc-server).
+- `SEADOC_SERVER_URL`: Only valid in `ENABLE_SEADOC=true`. Url of Seadoc server (e.g., http://seafile.example.com/sdoc-server).
 
 ## Cluster init configuration 
 
