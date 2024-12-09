@@ -200,3 +200,47 @@ OAUTH_ATTRIBUTE_MAP = {
 ```
 
 Please see [this tutorial](https://forum.seafile.com/t/oauth-authentification-against-microsoft-office365-azure-cloud/7999) for the complete deployment process of OAuth against Azure Cloud.
+
+#### Sample settings for Keycloak
+
+In order to set up Keycloak for use with Seafile, we'll need to create a client for it in a realm.  To do that, create a client with the following settings:
+
+- Client type: OpenID Connect
+
+- Client ID: Anything you like, as long as it's unique within the realm
+
+- Client authentication: On
+
+- Authentication flow: Standard flow
+
+- Root URL: https://your-seafile
+
+- Home URL: /accounts/login
+
+- Valid redirect URLs: /oauth/callback/
+
+- Web origins: https://your-seafile
+
+After creating the client, we'll need to copy the Client Secret from the Credentials tab on the client and save it somewhere.  After we have this information, we can add the following to `seahub_settings.py`:
+
+```python
+ENABLE_OAUTH = True
+OAUTH_CREATE_UNKNOWN_USER = True
+OAUTH_ACTIVATE_USER_AFTER_CREATION = True
+OAUTH_CLIENT_ID = "your-client-id"
+OAUTH_CLIENT_SECRET = "your-client-secret"
+OAUTH_REDIRECT_URL = "https://your-seafile/oauth/callback/"
+
+OAUTH_PROVIDER_DOMAIN = 'your-seafile'
+OAUTH_AUTHORIZATION_URL = 'https://your-keycloak/realms/YOUR-KEYCLOAK-REALM/protocol/openid-connect/auth'
+OAUTH_TOKEN_URL = 'https://your-keycloak/realms/YOUR-KEYCLOAK-REALM/protocol/openid-connect/token'
+OAUTH_USER_INFO_URL = 'https://your-keycloak/realms/YOUR-KEYCLOAK-REALM/protocol/openid-connect/userinfo'
+OAUTH_SCOPE = ["openid", "profile", "email"]
+OAUTH_ATTRIBUTE_MAP = {
+    "sub": (True, "uid"),
+    "email": (False, "contact_email"),
+    "name": (False, "name")
+}
+```
+
+See [this forum post](https://forum.seafile.com/t/setting-up-keycloak-for-sso/22520) for additional information including screenshots.
