@@ -289,7 +289,7 @@ defaults
     maxconn 2000
     timeout connect 10000
     timeout client 300000
-    timeout server 300000
+    timeout server 36000000
 
 listen seafile 0.0.0.0:80
     mode http
