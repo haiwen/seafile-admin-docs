@@ -4288,7 +4288,9 @@
 <ul>
 <li>
 <p><code>role_quota</code> is used to set quota for a certain role of users. For example, we can set the quota of employee to 100G by adding <code>'role_quota': '100g'</code>, and leave other role of users to the default quota.</p>
-<p>!!! tip "After set <code>role_quote</code>, it will take affect once a user with such a role login into Seafile. You can also manually change <code>seafile-db.RoleQuota</code>, if you want to see the effect immediately.</p>
+<div class="admonition tip">
+<p class="admonition-title">After set <code>role_quote</code>, it will take affect once a user with such a role login into Seafile. You can also manually change <code>seafile-db.RoleQuota</code>, if you want to see the effect immediately.</p>
+</div>
 </li>
 <li>
 <p><code>can_add_public_repo</code> is to set whether a role can create a public library, default is <code>False</code>. </p>
