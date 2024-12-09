@@ -69,11 +69,7 @@ It's recommended to backup the database to a separate file each time. Don't over
 Assume your database names are `ccnet_db`, `seafile_db` and `seahub_db`. mysqldump automatically locks the tables so you don't need to stop Seafile server when backing up MySQL databases. Since the database tables are usually very small, it won't take long to dump.
 
 ```
-mysqldump -h [mysqlhost] -u[username] -p[password] --opt ccnet_db > /backup/databases/ccnet-db.sql.`date +"%Y-%m-%d-%H-%M-%S"`
-
-mysqldump -h [mysqlhost] -u[username] -p[password] --opt seafile_db > /backup/databases/seafile-db.sql.`date +"%Y-%m-%d-%H-%M-%S"`
-
-mysqldump -h [mysqlhost] -u[username] -p[password] --opt seahub_db > /backup/databases/seahub-db.sql.`date +"%Y-%m-%d-%H-%M-%S"`
+mysqldump -h [mysqlhost] -u[username] -p[password] --opt --default-character-set=utf8mb4 --skip-set-charset --events --routines --triggers --databases ccnet_db seafile_db seahub_db > /backup/databases/seafile-backup.sql.`date +"%Y-%m-%d-%H-%M-%S"`
 
 ```
 
@@ -128,11 +124,11 @@ Now with the latest valid database backup files at hand, you can restore them.
 **MySQL**
 
 ```
-mysql -u[username] -p[password] ccnet_db < ccnet-db.sql.2013-10-19-16-00-05
-mysql -u[username] -p[password] seafile_db < seafile-db.sql.2013-10-19-16-00-20
-mysql -u[username] -p[password] seahub_db < seahub-db.sql.2013-10-19-16-01-05
+mysql -u[username] -p[password] < seafile-backup.sql.2013-10-19-16-00-05
 
 ```
+
+**Note:** You'll have to recreate the ``seafile`` user with the commands shown in [Installation with MySQL](/deploy/using_mysql/#setting-up-seafile-ce)
 
 **SQLite**
 
@@ -170,12 +166,11 @@ The data files to be backed up:
 
 ### Backing up Database
 
+It's recommended to backup the database to a separate file each time. Don't overwrite older database backups for at least a week.
+
 ```bash
-# It's recommended to backup the database to a separate file each time. Don't overwrite older database backups for at least a week.
 cd /backup/databases
-docker exec -it seafile-mysql mysqldump  -u[username] -p[password] --opt ccnet_db > ccnet_db.sql
-docker exec -it seafile-mysql mysqldump  -u[username] -p[password] --opt seafile_db > seafile_db.sql
-docker exec -it seafile-mysql mysqldump  -u[username] -p[password] --opt seahub_db > seahub_db.sql
+docker exec -it seafile-mysql mysqldump  -u[username] -p[password] --opt --default-character-set=utf8mb4 --skip-set-charset --events --routines --triggers --all-databases > seafile-backup.sql
 ```
 
 ###  Backing up Seafile library data
@@ -197,14 +192,12 @@ rsync -az /opt/seafile-data/seafile /backup/data/
 #### Restore the databases
 
 ```bash
-docker cp /backup/databases/ccnet_db.sql seafile-mysql:/tmp/ccnet_db.sql
-docker cp /backup/databases/seafile_db.sql seafile-mysql:/tmp/seafile_db.sql
-docker cp /backup/databases/seahub_db.sql seafile-mysql:/tmp/seahub_db.sql
+docker cp /backup/databases/seafile-backup.sql seafile-mysql:/tmp/seafile-backup.sql
 
-docker exec -it seafile-mysql /bin/sh -c "mysql -u[username] -p[password] ccnet_db < /tmp/ccnet_db.sql"
-docker exec -it seafile-mysql /bin/sh -c "mysql -u[username] -p[password] seafile_db < /tmp/seafile_db.sql"
-docker exec -it seafile-mysql /bin/sh -c "mysql -u[username] -p[password] seahub_db < /tmp/seahub_db.sql"
+docker exec -it seafile-mysql /bin/sh -c "mysql -u[username] -p[password] < /tmp/seafile-backup.sql"
 ```
+
+**Note:** Unlike the binary package deployment, the Docker backup will also include the permissions for the ``seafile`` user. Recreating the user won't be needed.
 
 ### Restore the seafile data
 
