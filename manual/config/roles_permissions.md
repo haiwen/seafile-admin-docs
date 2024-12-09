@@ -4,6 +4,8 @@ You can add/edit roles and permission for users. A role is just a group of users
 
 - `role_quota` is used to set quota for a certain role of users. For example, we can set the quota of employee to 100G by adding `'role_quota': '100g'`, and leave other role of users to the default quota.
 
+    !!! tip "After set `role_quote`, it will be take affect once a user with such a role loggin into Seafile. You can also manually change `seafile-db.RoleQuota`, if you want to see the effect immediately.
+
 - `can_add_public_repo` is to set whether a role can create a public library, default is `False`. 
 
     !!! tip "Since version 11.0.9 pro, `can_share_repo` is added to limit users' ability to share a library"
