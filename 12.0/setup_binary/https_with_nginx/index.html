@@ -4690,7 +4690,6 @@ $<span class="w"> </span>rm<span class="w"> </span>/etc/nginx/sites-available/de
 <span class="w">        </span><span class="kn">client_max_body_size</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="w">        </span><span class="kn">proxy_set_header</span><span class="w">   </span><span class="s">X-Forwarded-For</span><span class="w"> </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
 
-<span class="w">        </span><span class="kn">proxy_connect_timeout</span><span class="w">  </span><span class="s">36000s</span><span class="p">;</span>
 <span class="w">        </span><span class="kn">proxy_read_timeout</span><span class="w">  </span><span class="s">36000s</span><span class="p">;</span>
 <span class="w">        </span><span class="kn">proxy_send_timeout</span><span class="w">  </span><span class="s">36000s</span><span class="p">;</span>
 
@@ -4868,7 +4867,7 @@ $<span class="w"> </span>./seahub.sh<span class="w"> </span>restart<span class="
 <span class="w">            </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://127.0.0.1:8082</span><span class="p">;</span>
 <span class="w">            </span><span class="kn">client_max_body_size</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="w">            </span><span class="kn">proxy_set_header</span><span class="w">   </span><span class="s">X-Forwarded-For</span><span class="w"> </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
-<span class="w">            </span><span class="kn">proxy_connect_timeout</span><span class="w">  </span><span class="s">36000s</span><span class="p">;</span>
+
 <span class="w">            </span><span class="kn">proxy_read_timeout</span><span class="w">  </span><span class="s">36000s</span><span class="p">;</span>
 <span class="w">            </span><span class="kn">proxy_send_timeout</span><span class="w">  </span><span class="s">36000s</span><span class="p">;</span>
 <span class="w">            </span><span class="kn">send_timeout</span><span class="w">  </span><span class="s">36000s</span><span class="p">;</span>
