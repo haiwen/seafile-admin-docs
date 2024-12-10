@@ -144,6 +144,23 @@ Modify `nginx.conf` and add reverse proxy for services ***seafile*** and ***sead
         proxy_set_header X-NginX-Proxy true;
     }
     ```
+=== "notification-server"
+    ```conf
+    location /notification/ping {
+        proxy_pass http://127.0.0.1:8083/ping;
+        access_log      /var/log/nginx/notification.access.log seafileformat;
+        error_log       /var/log/nginx/notification.error.log;
+    }
+
+    location /notification {
+        proxy_pass http://127.0.0.1:8083/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        access_log      /var/log/nginx/notification.access.log seafileformat;
+        error_log       /var/log/nginx/notification.error.log;
+    }
+    ```
 
 ## Modify .env
 
