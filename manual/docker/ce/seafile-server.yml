@@ -69,18 +69,9 @@ services:
         default-src 'self' ${SEAFILE_SERVER_HOSTNAME}:${ONLYOFFICE_PORT:-6233};
         style-src 'unsafe-inline' 'self';
         script-src 'unsafe-inline' 'unsafe-eval' 'self';
-        script-src-elem 'unsafe-inline' 'self' ${SEAFILE_SERVER_HOSTNAME}:${ONLYOFFICE_PORT:-6233} maps.googleapis.com unpkg.com;
-        font-src 'self' data: unpkg.com;
-        img-src 'self' data: blob: https: mt0.google.com maps.googleapis.com maps.gstatic.com;
-        media-src 'self';
+        script-src-elem 'unsafe-inline' 'self' ${SEAFILE_SERVER_HOSTNAME}:${ONLYOFFICE_PORT:-6233};
         form-action 'self' ${SEAFILE_SERVER_HOSTNAME}:${COLLABORA_PORT:-6232};
-        connect-src 'self' https:;
         frame-src 'self' ${SEAFILE_SERVER_HOSTNAME}:${COLLABORA_PORT:-6232} ${SEAFILE_SERVER_HOSTNAME}:${ONLYOFFICE_PORT:-6233};
-        frame-ancestors 'self';
-        worker-src 'self' blob:;
-        manifest-src 'self';
-        object-src 'self';
-        base-uri 'self'
         `"
     depends_on:
       - db
