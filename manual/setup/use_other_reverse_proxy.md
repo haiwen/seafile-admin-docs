@@ -11,7 +11,8 @@ Before making changes to the configuration files, you **have to** know the servi
     
     If these services are **deployed in standalone mode** (such as *seadoc* and *notification-server*), or **deployed in the official documentation** of third-party plugins (such as *onlyoffice* and *collabora*), **you can skip modifying the configuration files of these services** (because Caddy is not used as a reverse proxy for such deployment approaches).
 
-    If you have not integrated some services, please choose ***Standalone*** or ***Refer to the official documentation of third-party plugins*** to install them when you need these services
+    If you have not integrated the services in the *Table 1*, please choose ***Standalone*** or ***Refer to the official documentation of third-party plugins*** to install them when you need these services
+
 
 | YML | Service | Suggest exposed port | Service listen port | Require WebSocket |
 | --- | --- | --- | --- | --- |
@@ -36,7 +37,7 @@ Before making changes to the configuration files, you **have to** know the servi
 2. Delete all fields related to Caddy reverse proxy (in `label` section)
 
     !!! tip
-        Some `.yml` files (e.g., `onlyoffice.yml`) also have port-exposing information with Caddy in the top of the file, which also needs to be removed.
+        Some `.yml` files (e.g., `collabora.yml`) also have port-exposing information with Caddy in the top of the file, which also needs to be removed.
 
 We take `seafile-server.yml` for example (Pro edition):
 
@@ -103,10 +104,8 @@ Modify `nginx.conf` and add reverse proxy for services ***seafile*** and ***sead
         proxy_pass http://127.0.0.1:80;
         proxy_read_timeout 310s;
         proxy_set_header Host $host;
-        proxy_set_header Forwarded "for=$remote_addr;proto=$scheme";
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
         proxy_set_header Connection "";
         proxy_http_version 1.1;
 
@@ -123,7 +122,6 @@ Modify `nginx.conf` and add reverse proxy for services ***seafile*** and ***sead
         proxy_set_header   X-Real-IP         $remote_addr;
         proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
         proxy_set_header   X-Forwarded-Host  $server_name;
-        proxy_set_header   X-Forwarded-Proto $scheme;
 
         client_max_body_size 100m;
     }
@@ -142,6 +140,22 @@ Modify `nginx.conf` and add reverse proxy for services ***seafile*** and ***sead
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header Host $http_host;
         proxy_set_header X-NginX-Proxy true;
+    }
+    ```
+=== "notification-server"
+    ```conf
+    location /notification/ping {
+        proxy_pass http://127.0.0.1:8083/ping;
+        access_log      /var/log/nginx/notification.access.log seafileformat;
+        error_log       /var/log/nginx/notification.error.log;
+    }
+    location /notification {
+        proxy_pass http://127.0.0.1:8083/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        access_log      /var/log/nginx/notification.access.log seafileformat;
+        error_log       /var/log/nginx/notification.error.log;
     }
     ```
 
