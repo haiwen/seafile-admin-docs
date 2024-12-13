@@ -87,20 +87,6 @@ services:
     labels:
       caddy: ${SEAFILE_SERVER_PROTOCOL:-http}://${SEAFILE_SERVER_HOSTNAME:?Variable is not set or empty}
       caddy.reverse_proxy: "{{upstreams 80}}"
-      caddy.header.Strict-Transport-Security: "`max-age=31536000;`"
-      caddy.header.Referrer-Policy: "same-origin"
-      caddy.header.X-XSS-Protection: "`1; mode=block`"
-      caddy.header.X-Content-Type-Options: "nosniff"
-      caddy.header.X-Frame-Options: "SAMEORIGIN"
-      caddy.header.Content-Security-Policy: "`
-        block-all-mixed-content;
-        default-src 'self' ${SEAFILE_SERVER_HOSTNAME}:${ONLYOFFICE_PORT:-6233};
-        style-src 'unsafe-inline' 'self';
-        script-src 'unsafe-inline' 'unsafe-eval' 'self';
-        script-src-elem 'unsafe-inline' 'self' ${SEAFILE_SERVER_HOSTNAME}:${ONLYOFFICE_PORT:-6233};
-        form-action 'self' ${SEAFILE_SERVER_HOSTNAME}:${COLLABORA_PORT:-6232};
-        frame-src 'self' ${SEAFILE_SERVER_HOSTNAME}:${COLLABORA_PORT:-6232} ${SEAFILE_SERVER_HOSTNAME}:${ONLYOFFICE_PORT:-6233};
-        `"
     depends_on:
       - db
       - memcached
