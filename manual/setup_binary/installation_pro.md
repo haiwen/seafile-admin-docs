@@ -20,9 +20,10 @@ These instructions assume that MySQL/MariaDB server and client are installed and
 !!! tip
     The standard directory `/opt/seafile` is assumed for the rest of this manual. If you decide to put Seafile in another directory, some commands need to be modified accordingly
 
+!!! note
+    Debian 12 and Ubuntu 24.04 are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables different versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with `source python-venv/bin/activate`.
+
 === "Debian 12"
-    !!! note
-        Debian 12 and Ubuntu 24.04 are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables different versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with `source python-venv/bin/activate`.
     ```
     sudo apt-get update
     sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmariadb-dev-compat ldap-utils libldap2-dev libsasl2-dev python3.11-venv
@@ -43,11 +44,7 @@ These instructions assume that MySQL/MariaDB server and client are installed and
     pip3 install --timeout=3600  django==4.2.* future==0.18.* mysqlclient==2.1.* pymysql pillow==10.0.* pylibmc captcha==0.4 markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 psd-tools django-pylibmc django_simple_captcha==0.5.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 lxml python-ldap==3.4.3
     ```
 === "Ubuntu 24.04"
-    !!! note
-        Debian 12 and Ubuntu 24.04 are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables different versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with `source python-venv/bin/activate`.
-
     ```
-    # Ubuntu 24.04
     sudo apt-get update
     sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmysqlclient-dev ldap-utils libldap2-dev python3.12-venv
     sudo apt-get install -y memcached libmemcached-dev
@@ -67,22 +64,6 @@ These instructions assume that MySQL/MariaDB server and client are installed and
     pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.* \
         pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
         psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.16.0 lxml python-ldap==3.4.3
-    ```
-=== "Ubuntu 22.04/Ubuntu 20.04/Debian 11/Debian 10"
-    ```
-    # on  (on , it is almost the same)
-    apt-get update
-    apt-get install -y python3 python3-dev python3-setuptools python3-pip python3-ldap libmysqlclient-dev ldap-utils libldap2-dev dnsutils
-    apt-get install -y memcached libmemcached-dev
-    apt-get install -y poppler-utils
-
-    # create the data directory
-    mkdir /opt/seafile
-    cd /opt/seafile
-
-    sudo pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.* \
-        pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
-        psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 python-ldap==3.4.3 lxml
     ```
 
 ### Creating user seafile
