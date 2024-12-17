@@ -18,9 +18,13 @@ The GC program cleans up two types of unused blocks:
 To see how much garbage can be collected without actually removing any garbage, use the dry-run option:
 
 ```
-seaf-gc.sh --dry-run [repo-id1] [repo-id2] ...
+./seaf-gc.sh --dry-run [repo-id1] [repo-id2] ...
 
 ```
+
+!!! tip
+    Enter into the docker image, then go to `/opt/seafile/seafile-server-latest`
+
 
 The output should look like:
 
@@ -75,7 +79,7 @@ If you give specific library ids, only those libraries will be checked; otherwis
 To actually remove garbage blocks, run without the --dry-run option:
 
 ```
-seaf-gc.sh [repo-id1] [repo-id2] ...
+./seaf-gc.sh [repo-id1] [repo-id2] ...
 
 ```
 
@@ -84,7 +88,7 @@ If libraries ids are specified, only those libraries will be checked for garbage
 As described before, there are two types of garbage blocks to be removed. Sometimes just removing the first type of blocks (those that belong to deleted libraries) is good enough. In this case, the GC program won't bother to check the libraries for outdated historic blocks. The "-r" option implements this feature:
 
 ```
-seaf-gc.sh -r
+./seaf-gc.sh -r
 
 ```
 
@@ -96,7 +100,7 @@ seaf-gc.sh -r
 Since Pro server 8.0.6 and community edition 9.0, you can remove garbage fs objects. It should be run without the --dry-run option:
 
 ```
-seaf-gc.sh --rm-fs
+./seaf-gc.sh --rm-fs
 
 ```
 
@@ -113,7 +117,7 @@ You can specify the thread number in GC. By default,
 You can specify the thread number in with "-t" option. "-t" option can be used together with all other options. Each thread will do GC on one library. For example, the following command will use 20 threads to GC all libraries:
 
 ```
-seaf-gc.sh -t 20
+./seaf-gc.sh -t 20
 
 ```
 
@@ -126,6 +130,6 @@ Since GC usually runs quite slowly as it needs to traverse the entire library hi
 A simple pattern to divide the workload among multiple GC servers is to assign libraries to servers based on library ID. Since Pro edition 7.1.5, this is supported. You can add "--id-prefix" option to seaf-gc.sh, to specify the library ID prefix. For example, the below command will only process libraries having "a123" as ID prefix.
 
 ```
-seaf-gc.sh --id-prefix a123
+./seaf-gc.sh --id-prefix a123
 
 ```
