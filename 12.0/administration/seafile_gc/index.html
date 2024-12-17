@@ -4335,8 +4335,12 @@
 <h2 id="run-gc">Run GC<a class="headerlink" href="#run-gc" title="Permanent link">&para;</a></h2>
 <h3 id="dry-run-mode">Dry-run Mode<a class="headerlink" href="#dry-run-mode" title="Permanent link">&para;</a></h3>
 <p>To see how much garbage can be collected without actually removing any garbage, use the dry-run option:</p>
-<div class="highlight"><pre><span></span><code>seaf-gc.sh --dry-run [repo-id1] [repo-id2] ...
+<div class="highlight"><pre><span></span><code>./seaf-gc.sh --dry-run [repo-id1] [repo-id2] ...
 </code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Enter into the docker image, then go to <code>/opt/seafile/seafile-server-latest</code></p>
+</div>
 <p>The output should look like:</p>
 <div class="highlight"><pre><span></span><code>[03/19/15 19:41:49] seafserv-gc.c(115): GC version 1 repo My Library(ffa57d93)
 [03/19/15 19:41:49] gc-core.c(394): GC started. Total block number is 265.
@@ -4382,11 +4386,11 @@ repo-id3
 </div>
 <h3 id="removing-garbage">Removing Garbage<a class="headerlink" href="#removing-garbage" title="Permanent link">&para;</a></h3>
 <p>To actually remove garbage blocks, run without the --dry-run option:</p>
-<div class="highlight"><pre><span></span><code>seaf-gc.sh [repo-id1] [repo-id2] ...
+<div class="highlight"><pre><span></span><code>./seaf-gc.sh [repo-id1] [repo-id2] ...
 </code></pre></div>
 <p>If libraries ids are specified, only those libraries will be checked for garbage.</p>
 <p>As described before, there are two types of garbage blocks to be removed. Sometimes just removing the first type of blocks (those that belong to deleted libraries) is good enough. In this case, the GC program won't bother to check the libraries for outdated historic blocks. The "-r" option implements this feature:</p>
-<div class="highlight"><pre><span></span><code>seaf-gc.sh -r
+<div class="highlight"><pre><span></span><code>./seaf-gc.sh -r
 </code></pre></div>
 <div class="admonition success">
 <p class="admonition-title">Success</p>
@@ -4394,7 +4398,7 @@ repo-id3
 </div>
 <h3 id="removing-fs-objects">Removing FS objects<a class="headerlink" href="#removing-fs-objects" title="Permanent link">&para;</a></h3>
 <p>Since Pro server 8.0.6 and community edition 9.0, you can remove garbage fs objects. It should be run without the --dry-run option:</p>
-<div class="highlight"><pre><span></span><code>seaf-gc.sh --rm-fs
+<div class="highlight"><pre><span></span><code>./seaf-gc.sh --rm-fs
 </code></pre></div>
 <div class="admonition danger">
 <p class="admonition-title">Bug reports</p>
@@ -4407,13 +4411,13 @@ repo-id3
 <li>If storage backend is file system, only 1 thread is started.</li>
 </ul>
 <p>You can specify the thread number in with "-t" option. "-t" option can be used together with all other options. Each thread will do GC on one library. For example, the following command will use 20 threads to GC all libraries:</p>
-<div class="highlight"><pre><span></span><code>seaf-gc.sh -t 20
+<div class="highlight"><pre><span></span><code>./seaf-gc.sh -t 20
 </code></pre></div>
 <p>Since the threads are concurrent, the output of each thread may mix with each others. Library ID is printed in each line of output.</p>
 <h3 id="run-gc-based-on-library-id-prefix">Run GC based on library ID prefix<a class="headerlink" href="#run-gc-based-on-library-id-prefix" title="Permanent link">&para;</a></h3>
 <p>Since GC usually runs quite slowly as it needs to traverse the entire library history. You can use multiple threads to run GC in parallel. For even larger deployments, it's also desirable to run GC on multiple server in parallel.</p>
 <p>A simple pattern to divide the workload among multiple GC servers is to assign libraries to servers based on library ID. Since Pro edition 7.1.5, this is supported. You can add "--id-prefix" option to seaf-gc.sh, to specify the library ID prefix. For example, the below command will only process libraries having "a123" as ID prefix.</p>
-<div class="highlight"><pre><span></span><code>seaf-gc.sh --id-prefix a123
+<div class="highlight"><pre><span></span><code>./seaf-gc.sh --id-prefix a123
 </code></pre></div>
 
 
