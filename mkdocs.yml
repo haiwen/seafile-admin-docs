@@ -122,7 +122,6 @@ nav:
     - Other deployment notes:
       - Start Seafile at System Bootup: setup_binary/start_seafile_at_system_bootup.md
       - Logrotate: setup_binary/using_logrotate.md
-      - Config fail2ban: setup_binary/fail2ban.md
       - Migrate From SQLite to MySQL: setup_binary/migrate_from_sqlite_to_mysql.md
   - Extensions:
     - Extra Seafile components:
