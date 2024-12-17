@@ -25,61 +25,59 @@ The setup proceeds in two steps: First, Nginx is installed. Second, a SSL certif
 
 Install Nginx using the package repositories:
 
+=== "Debian/Ubuntu"
+    ```sh
+    sudo apt install nginx -y
+    ```
 === "CentOS"
     ```bash
-    $ sudo yum install nginx -y
-    ```
-=== "Debian"
-    ```sh
-    $ sudo apt install nginx -y
+    sudo yum install nginx -y
     ```
 
 After the installation, start the server and enable it so that Nginx starts at system boot:
 
 ```bash
-$ sudo systemctl start nginx
-$ sudo systemctl enable nginx
+sudo systemctl start nginx
+sudo systemctl enable nginx
 ```
 
 ### Preparing Nginx
 
 The configuration of a proxy server in Nginx differs slightly between CentOS and Debian/Ubuntu. Additionally, the restrictive default settings of SELinux's configuration on CentOS require a modification.
 
-#### Preparing Nginx on CentOS
+=== "Debian/Ubuntu"
+    Create a configuration file for seafile in `/etc/nginx/sites-available/`:
 
-Switch SELinux into permissive mode and perpetuate the setting:
+    ```bash
+    touch /etc/nginx/sites-available/seafile.conf
+    ```
 
-``` bash
-$ sudo setenforce permissive
-$ sed -i 's/^SELINUX=.*/SELINUX=permissive/' /etc/selinux/config
-```
+    Delete the default files in `/etc/nginx/sites-enabled/` and `/etc/nginx/sites-available`: 
 
-Create a configuration file for seafile in `/etc/nginx/conf.d`:
+    ````bash
+    rm /etc/nginx/sites-enabled/default
+    rm /etc/nginx/sites-available/default
+    ````
 
-```bash
-$ touch /etc/nginx/conf.d/seafile.conf
-```
+    Create a symbolic link: 
 
-#### Preparing Nginx on Debian/Ubuntu
+    ````bash
+    ln -s /etc/nginx/sites-available/seafile.conf /etc/nginx/sites-enabled/seafile.conf
+    ````
+=== "CentOS"
 
-Create a configuration file for seafile in `/etc/nginx/sites-available/`:
+    Switch SELinux into permissive mode and perpetuate the setting:
 
-```bash
-$ touch /etc/nginx/sites-available/seafile.conf
-```
+    ``` bash
+    sudo setenforce permissive
+    sed -i 's/^SELINUX=.*/SELINUX=permissive/' /etc/selinux/config
+    ```
 
-Delete the default files in `/etc/nginx/sites-enabled/` and `/etc/nginx/sites-available`: 
+    Create a configuration file for seafile in `/etc/nginx/conf.d`:
 
-````bash
-$ rm /etc/nginx/sites-enabled/default
-$ rm /etc/nginx/sites-available/default
-````
-
-Create a symbolic link: 
-
-````bash
-$ ln -s /etc/nginx/sites-available/seafile.conf /etc/nginx/sites-enabled/seafile.conf
-````
+    ```bash
+    touch /etc/nginx/conf.d/seafile.conf
+    ```
 
 ### Configuring Nginx
 
@@ -145,8 +143,8 @@ The default value for `client_max_body_size` is 1M. Uploading larger files will 
 Finally, make sure your seafile.conf does not contain syntax errors and restart Nginx for the configuration changes to take effect:
 
 ```bash
-$ nginx -t
-$ nginx -s reload
+nginx -t
+nginx -s reload
 ```
 
 
@@ -167,7 +165,7 @@ Second, follow the detailed instructions then shown.
 We recommend that you get just a certificate and that you modify the Nginx configuration yourself:
 
 ```bash
-$ sudo certbot certonly --nginx
+sudo certbot certonly --nginx
 ```
 
 Follow the instructions on the screen.
@@ -176,6 +174,9 @@ Upon successful verification, Certbot saves the certificate files in a directory
 
 
 ### Modifying Nginx configuration file
+
+!!! tip
+    Normally, your nginx configuration can be automatically managed by a certificate manager (e.g., CertBot) after you install the certificate. If you find that your nginx is already listening on port 443 through the certificate manager after installing the certificate, you can skip this step.
 
 Add an  server block for port 443 and a http-to-https redirect to the `seafile.conf` configuration file in `/etc/nginx`.  
 
@@ -257,7 +258,8 @@ The `FILE_SERVER_ROOT` in [seahub_settings.py](../config/seahub_settings_py.md) 
 FILE_SERVER_ROOT = 'https://seafile.example.com/seafhttp'
 ```
 
-Note: The `SERVICE_URL` and `FILE_SERVER_ROOT` can also be modified in Seahub via System Admininstration > Settings.  If they are configured via System Admin and in seahub_settings.py, the value in System Admin will take precedence.
+!!! tip "More convenient"
+    The `SERVICE_URL` and `FILE_SERVER_ROOT` can also be modified in Seahub via **System Admininstration** > **Settings**.  If they are configured via System Admin and in seahub_settings.py, the value in System Admin will take precedence.
 
 ### Modifying seafile.conf (optional)
 
@@ -276,10 +278,10 @@ After his change, the file server only accepts requests from Nginx.
 Restart the seaf-server and Seahub for the config changes to take effect:
 
 ```bash
-$ su seafile
-$ cd /opt/seafile/seafile-server-latest
-$ ./seafile.sh restart
-$ ./seahub.sh restart # or "./seahub.sh start-fastcgi" if you're using fastcgi
+su seafile
+cd /opt/seafile/seafile-server-latest
+./seafile.sh restart
+./seahub.sh restart # or "./seahub.sh start-fastcgi" if you're using fastcgi
 ```
 
 ## Additional modern settings for Nginx (optional)
@@ -357,7 +359,7 @@ The following sample Nginx configuration file for the host name seafile.example.
         }
 
         location /seafhttp {
-            rewrite ^/seafhttp(.*)$ $1 break;
+            rewrite ^/seafhttp(.*)$1 break;
             proxy_pass http://127.0.0.1:8082;
             client_max_body_size 0;
             proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -388,7 +390,7 @@ HSTS instructs web browsers to automatically use HTTPS. That means, after the fi
 Enable Diffie-Hellman (DH) key-exchange. Generate DH parameters and write them in a .pem file using the following command:
 
 ```bash
-$ openssl dhparam 2048 > /etc/nginx/dhparam.pem  # Generates DH parameter of length 2048 bits
+openssl dhparam 2048 > /etc/nginx/dhparam.pem  # Generates DH parameter of length 2048 bits
 ```
 
 The generation of the the DH parameters may take some time depending on the server's processing power.
