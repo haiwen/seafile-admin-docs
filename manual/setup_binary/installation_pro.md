@@ -2,7 +2,6 @@
 
 This manual explains how to deploy and run Seafile Server Professional Edition (Seafile PE) on a Linux server from a pre-built package using MySQL/MariaDB as database. The deployment has been tested for Debian/Ubuntu.
 
-
 ## Requirements
 
 Seafile PE requires a minimum of 2 cores and 2GB RAM. If elasticsearch is installed on the same server, the minimum requirements are 4 cores and 4 GB RAM.
@@ -13,38 +12,22 @@ Seafile PE can be used without a paid license with up to three users. Licenses f
 
 ### Installing and preparing the SQL database
 
-These instructions assume that MySQL/MariaDB server and client are installed and a MySQL/MariaDB root user can authenticate using the mysql_native_password plugin.
+Seafile supports MySQL and MariaDB. We recommend that you use the preferred SQL database management engine included in the package repositories of your distribution.
+
+You can find step-by-step how-tos for installing MySQL and MariaDB in the [tutorials on the Digital Ocean website](https://www.digitalocean.com/community/tutorials).
+
+Seafile uses the `mysql_native_password` plugin for authentication. The versions of MySQL and MariaDB installed on CentOS 8, Debian 10, and Ubuntu 20.04 use a different authentication plugin by default. It is therefore required to change to authentication plugin to `mysql_native_password` for the root user prior to the installation of Seafile. The above mentioned tutorials explain how to do it.
 
 ### Installing prerequisites
 
 !!! tip
     The standard directory `/opt/seafile` is assumed for the rest of this manual. If you decide to put Seafile in another directory, some commands need to be modified accordingly
 
-!!! note
-    Debian 12 and Ubuntu 24.04 are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables different versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with `source python-venv/bin/activate`.
-
-=== "Debian 12"
-    ```
-    sudo apt-get update
-    sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmariadb-dev-compat ldap-utils libldap2-dev libsasl2-dev python3.11-venv
-    sudo apt-get install -y memcached libmemcached-dev
-
-    # create the data directory
-    mkdir /opt/seafile
-    cd /opt/seafile
-
-    # create the vitual environment in the python-venv directory
-    python3 -m venv python-venv
-
-    # activate the venv
-    source python-venv/bin/activate
-    # Notice that this will usually change your prompt so you know the venv is active
-
-    # install packages into the active venv with pip (sudo isn't needed because this is installing in the venv, not system-wide).
-    pip3 install --timeout=3600  django==4.2.* future==0.18.* mysqlclient==2.1.* pymysql pillow==10.0.* pylibmc captcha==0.4 markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 psd-tools django-pylibmc django_simple_captcha==0.5.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 lxml python-ldap==3.4.3
-    ```
 === "Ubuntu 24.04"
-    ```
+    !!! note
+        Debian 12 and Ubuntu 24.04 are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables different versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with `source python-venv/bin/activate`.
+
+    ```sh
     sudo apt-get update
     sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmysqlclient-dev ldap-utils libldap2-dev python3.12-venv
     sudo apt-get install -y memcached libmemcached-dev
@@ -64,6 +47,42 @@ These instructions assume that MySQL/MariaDB server and client are installed and
     pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.* \
         pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
         psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.16.0 lxml python-ldap==3.4.3
+    ```
+=== "Debian 12"
+    !!! note
+        Debian 12 and Ubuntu 24.04 are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables different versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with `source python-venv/bin/activate`.
+    ```sh
+    sudo apt-get update
+    sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmariadb-dev-compat ldap-utils libldap2-dev libsasl2-dev python3.11-venv
+    sudo apt-get install -y memcached libmemcached-dev
+
+    # create the data directory
+    mkdir /opt/seafile
+    cd /opt/seafile
+
+    # create the vitual environment in the python-venv directory
+    python3 -m venv python-venv
+
+    # activate the venv
+    source python-venv/bin/activate
+    # Notice that this will usually change your prompt so you know the venv is active
+
+    # install packages into the active venv with pip (sudo isn't needed because this is installing in the venv, not system-wide).
+    pip3 install --timeout=3600  django==4.2.* future==0.18.* mysqlclient==2.1.* pymysql pillow==10.0.* pylibmc captcha==0.4 markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 psd-tools django-pylibmc django_simple_captcha==0.5.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 lxml python-ldap==3.4.3
+    ```
+=== "Ubuntu 22.04/Debian 11"
+    ```sh
+    # on  (on , it is almost the same)
+    apt-get update
+    apt-get install -y python3 python3-dev python3-setuptools python3-pip python3-ldap libmysqlclient-dev ldap-utils libldap2-dev dnsutils
+    apt-get install -y memcached libmemcached-dev
+    apt-get install -y poppler-utils
+    # create the data directory
+    mkdir /opt/seafile
+    cd /opt/seafile
+    sudo pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.* \
+        pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
+        psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 python-ldap==3.4.3 lxml
     ```
 
 ### Creating user seafile
@@ -131,7 +150,7 @@ Now you have:
 $ tree -L 2 /opt/seafile
 .
 ├── seafile-license.txt
-├── python-venv # this section only exists in Debian 12 and Ubuntu 24.04
+├── python-venv # you will not see this directory if you use ubuntu 22/debian 10
 │   ├── bin
 │   ├── include
 │   ├── lib
@@ -280,7 +299,7 @@ The directory layout then looks as follows:
 │   ├── seafile.conf
 │   └── seahub_settings.py
 ├── pro-data
-├── python-venv
+├── python-venv # you will not see this directory if you use ubuntu 22/debian 10
 │   ├── bin
 │   ├── include
 │   ├── lib
@@ -369,22 +388,20 @@ Memory cache is mandatory for pro edition. You may use Memcached or Reids as cac
 
 ### Enabling HTTP/HTTPS (Optional but Recommended)
 
-You need at least setup HTTP to make Seafile's web interface work. This manual provides instructions for enabling HTTP/HTTPS for the two most popular web servers and reverse proxies:
+You need at least setup HTTP to make Seafile's web interface work. This manual provides instructions for enabling HTTP/HTTPS for the two most popular web servers and reverse proxies (e.g., [Nginx](./https_with_nginx.md)).
 
-* [Nginx](./https_with_nginx.md)
-* [Apache](./https_with_apache.md)
 
-### Create the `.env` file in conf/ directory
+### Create the `.env` file in `conf/` directory
+
+```sh
+nano /opt/seafile/conf/.env
+```
 
 !!! tip
     `JWT_PRIVATE_KEY`, A random string with a length of no less than 32 characters can be generated from: 
     ```sh
     pwgen -s 40 1
     ```
-
-```sh
-nano /opt/seafile/conf/.env
-```
 
 ```env
 JWT_PRIVATE_KEY=<Your jwt private key>

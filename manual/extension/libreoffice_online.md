@@ -21,10 +21,8 @@
     
     === "Deploy from binary packages"
 
-        Please follow the links to enable https:
+        Please follow the links to enable https by [Nginx](../setup_binary/https_with_nginx.md)
 
-        - [Nginx](../setup_binary/https_with_nginx.md)
-        - [Apache](../setup_binary/https_with_apache.md)
 
 Download the `collabora.yml`
 
