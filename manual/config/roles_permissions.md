@@ -6,11 +6,13 @@ You can add/edit roles and permission for users. A role is just a group of users
 
     !!! tip "After set `role_quote`, it will take affect once a user with such a role login into Seafile. You can also manually change `seafile-db.RoleQuota`, if you want to see the effect immediately."
 
-- `can_add_public_repo` is to set whether a role can create a public library, default is `False`. 
+- `can_add_public_repo` is to set whether a role can create a public library (shared by all login users), default is `False`. 
 
     !!! tip "Since version 11.0.9 pro, `can_share_repo` is added to limit users' ability to share a library"
 
     !!! warning "The `can_add_public_repo` option will not take effect if you configure global `CLOUD_MODE = True`"
+
+- `can_create_wiki` and `can_publish_wiki` are used to control whether a role can create a Wiki and publish a Wiki. (A published Wiki have a special URL and can be visited by anonymous users)
 
 - `storage_ids` permission is used for assigning storage backends to users with specific role. More details can be found in [multiple storage backends](../setup/setup_with_multiple_storage_backends.md).
 
@@ -48,7 +50,8 @@ Seafile comes with two build-in roles `default` and `guest`, a default user is a
         'can_export_files_via_mobile_client': True,
         'storage_ids': [],
         'role_quota': '',
-        'can_publish_repo': True,
+        'can_create_wiki': True,
+        'can_publish_wiki': True,
         'upload_rate_limit': 0,  # unit: kb/s
         'download_rate_limit': 0,
     },
@@ -75,7 +78,8 @@ While a guest user can only read files/folders in the system, here are the permi
         'can_export_files_via_mobile_client': False,
         'storage_ids': [],
         'role_quota': '',
-        'can_publish_repo': False,
+        'can_create_wiki': False,
+        'can_publish_wiki': False,
         'upload_rate_limit': 0,
         'download_rate_limit': 0,
     },
@@ -105,7 +109,8 @@ ENABLED_ROLE_PERMISSIONS = {
         'can_export_files_via_mobile_client': True,
         'storage_ids': [],
         'role_quota': '',
-        'can_publish_repo': True,
+        'can_create_wiki': True,
+        'can_publish_wiki': True,
         'upload_rate_limit': 2000,  # unit: kb/s
         'download_rate_limit': 4000,
     },
@@ -127,7 +132,8 @@ ENABLED_ROLE_PERMISSIONS = {
         'can_export_files_via_mobile_client': False,
         'storage_ids': [],
         'role_quota': '',
-        'can_publish_repo': False,
+        'can_create_wiki': False,
+        'can_publish_wiki': False,
         'upload_rate_limit': 100,
         'download_rate_limit': 200,
     }
@@ -186,7 +192,8 @@ ENABLED_ROLE_PERMISSIONS = {
         'can_export_files_via_mobile_client': True,
         'storage_ids': [],
         'role_quota': '',
-        'can_publish_repo': True,
+        'can_create_wiki': True,
+        'can_publish_wiki': True,
         'upload_rate_limit': 2000,  # unit: kb/s
         'download_rate_limit': 4000,
     },
@@ -208,7 +215,8 @@ ENABLED_ROLE_PERMISSIONS = {
         'can_export_files_via_mobile_client': False,
         'storage_ids': [],
         'role_quota': '',
-        'can_publish_repo': False,
+        'can_create_wiki': False,
+        'can_publish_wiki': False,
         'upload_rate_limit': 100,
         'download_rate_limit': 200,
     },
@@ -230,7 +238,8 @@ ENABLED_ROLE_PERMISSIONS = {
         'can_export_files_via_mobile_client': True,
         'storage_ids': [],
         'role_quota': '',
-        'can_publish_repo': True,
+        'can_create_wiki': True,
+        'can_publish_wiki': True,
         'upload_rate_limit': 500,
         'download_rate_limit': 800,
     },

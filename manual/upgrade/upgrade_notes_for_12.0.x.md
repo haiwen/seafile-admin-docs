@@ -24,6 +24,8 @@ Configuration changes:
 * ADDITIONAL_APP_BOTTOM_LINKS is removed. Because there is no buttom bar in the navigation side bar now.
 * SERVICE_URL and FILE_SERVER_ROOT are removed. SERVICE_URL will be calculated from SEAFILE_SERVER_PROTOCOL and SEAFILE_SERVER_HOSTNAME in `.env` file.
 * `ccnet.conf` is removed. Some of its configuration items are moved from `.env` file, others are read from items in `seafile.conf` with same name.
+* Two role permissions are added, `can_create_wiki` and `can_publish_wiki` are used to control whether a role can create a Wiki and publish a Wiki. The old role permission `can_publish_repo` is removed.
+
 
 Other changes:
 
