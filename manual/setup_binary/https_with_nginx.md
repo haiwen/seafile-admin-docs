@@ -6,8 +6,6 @@ HTTPS requires a SSL certificate from a Certificate Authority (CA). Unless you a
 
 A second requirement is a reverse proxy supporting SSL. [Nginx](http://nginx.org/), a popular and resource-friendly web server and reverse proxy, is a good option.  Nginx's documentation is available at http://nginx.org/en/docs/.
 
-If you prefer Apache, you find instructions for [enabling HTTPS with Apache here](./https_with_apache.md).
-
 ## Setup
 
 The setup of Seafile using Nginx as a reverse proxy with HTTPS is demonstrated using the sample host name `seafile.example.com`. 
@@ -25,14 +23,9 @@ The setup proceeds in two steps: First, Nginx is installed. Second, a SSL certif
 
 Install Nginx using the package repositories:
 
-=== "Debian/Ubuntu"
-    ```sh
-    sudo apt install nginx -y
-    ```
-=== "CentOS"
-    ```bash
-    sudo yum install nginx -y
-    ```
+```sh
+sudo apt install nginx -y
+```
 
 After the installation, start the server and enable it so that Nginx starts at system boot:
 
@@ -43,45 +36,28 @@ sudo systemctl enable nginx
 
 ### Preparing Nginx
 
-The configuration of a proxy server in Nginx differs slightly between CentOS and Debian/Ubuntu. Additionally, the restrictive default settings of SELinux's configuration on CentOS require a modification.
+Create a configuration file for seafile in `/etc/nginx/sites-available/`:
 
-=== "Debian/Ubuntu"
-    Create a configuration file for seafile in `/etc/nginx/sites-available/`:
+```bash
+touch /etc/nginx/sites-available/seafile.conf
+```
 
-    ```bash
-    touch /etc/nginx/sites-available/seafile.conf
-    ```
+Delete the default files in `/etc/nginx/sites-enabled/` and `/etc/nginx/sites-available`: 
 
-    Delete the default files in `/etc/nginx/sites-enabled/` and `/etc/nginx/sites-available`: 
+````bash
+rm /etc/nginx/sites-enabled/default
+rm /etc/nginx/sites-available/default
+````
 
-    ````bash
-    rm /etc/nginx/sites-enabled/default
-    rm /etc/nginx/sites-available/default
-    ````
+Create a symbolic link: 
 
-    Create a symbolic link: 
-
-    ````bash
-    ln -s /etc/nginx/sites-available/seafile.conf /etc/nginx/sites-enabled/seafile.conf
-    ````
-=== "CentOS"
-
-    Switch SELinux into permissive mode and perpetuate the setting:
-
-    ``` bash
-    sudo setenforce permissive
-    sed -i 's/^SELINUX=.*/SELINUX=permissive/' /etc/selinux/config
-    ```
-
-    Create a configuration file for seafile in `/etc/nginx/conf.d`:
-
-    ```bash
-    touch /etc/nginx/conf.d/seafile.conf
-    ```
+````bash
+ln -s /etc/nginx/sites-available/seafile.conf /etc/nginx/sites-enabled/seafile.conf
+````
 
 ### Configuring Nginx
 
-Copy the following sample Nginx config file into the just created `seafile.conf` and modify the content to fit your needs:
+Copy the following sample Nginx config file into the just created `seafile.conf` (i.e., `nano /etc/nginx/sites-available/seafile.conf`) and modify the content to fit your needs:
 
 ```nginx
 log_format seafileformat '$http_x_forwarded_for $remote_addr [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent" $upstream_response_time';
@@ -176,7 +152,7 @@ Upon successful verification, Certbot saves the certificate files in a directory
 ### Modifying Nginx configuration file
 
 !!! tip
-    Normally, your nginx configuration can be automatically managed by a certificate manager (e.g., CertBot) after you install the certificate. If you find that your nginx is already listening on port 443 through the certificate manager after installing the certificate, you can skip this step.
+    Normally, your nginx configuration can be automatically managed by a certificate manager (e.g., ***CertBot***) after you install the certificate. If you find that your nginx is already listening on port 443 through the certificate manager after installing the certificate, you can skip this step.
 
 Add an  server block for port 443 and a http-to-https redirect to the `seafile.conf` configuration file in `/etc/nginx`.  
 
@@ -242,24 +218,31 @@ If you have WebDAV enabled it is recommended to add the same:
     }
 ```
 
+### Modify .env 
+
+Modify the following field to `https`
+
+```sh
+SEAFILE_SERVER_PROTOCOL=https
+```
 
 ### Modifying seahub_settings.py
 
-The `SERVICE_URL` in [seahub_settings.py](../config/seahub_settings_py.md) informs Seafile about the chosen domain, protocol and port. Change the `SERVICE_URL`so as to account for the switch from HTTP to HTTPS and to correspond to your host name (the `http://` must not be removed):
-
-
-```python
-SERVICE_URL = 'https://seafile.example.com'
-```
-
-The `FILE_SERVER_ROOT` in [seahub_settings.py](../config/seahub_settings_py.md) informs Seafile about the location of and the protocol used by the file server. Change the `FILE_SERVER_ROOT` so as to account for the switch from HTTP to HTTPS and to correspond to your host name (the trailing `/seafhttp` must not be removed):
-
-```python
-FILE_SERVER_ROOT = 'https://seafile.example.com/seafhttp'
-```
-
 !!! tip "More convenient"
     The `SERVICE_URL` and `FILE_SERVER_ROOT` can also be modified in Seahub via **System Admininstration** > **Settings**.  If they are configured via System Admin and in seahub_settings.py, the value in System Admin will take precedence.
+
+- The `SERVICE_URL` in [seahub_settings.py](../config/seahub_settings_py.md) informs Seafile about the chosen domain, protocol and port. Change the `SERVICE_URL`so as to account for the switch from HTTP to HTTPS and to correspond to your host name (the `http://` must not be removed):
+
+
+    ```python
+    SERVICE_URL = 'https://seafile.example.com'
+    ```
+
+- The `FILE_SERVER_ROOT` in [seahub_settings.py](../config/seahub_settings_py.md) informs Seafile about the location of and the protocol used by the file server. Change the `FILE_SERVER_ROOT` so as to account for the switch from HTTP to HTTPS and to correspond to your host name (the trailing `/seafhttp` must not be removed):
+
+    ```python
+    FILE_SERVER_ROOT = 'https://seafile.example.com/seafhttp'
+    ```
 
 ### Modifying seafile.conf (optional)
 

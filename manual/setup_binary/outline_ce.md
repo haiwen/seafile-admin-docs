@@ -1,18 +1,17 @@
 # Deploying Seafile
 
-We provide two ways to deploy Seafile services. **Docker is the recommended way**. 
+We provide two ways to deploy Seafile services and recommend to deploy with Docker.
 
 !!! warning
     Since version 12.0, binary based deployment for community edition is deprecated and will not be supported in a future release.
 
-* Using [Docker](../setup/setup_ce_by_docker.md)
+* Using [Docker](../setup/setup_ce_by_docker.md) (***Recommend***)
 * Manually installing Seafile and setting up database, memcached and Nginx/Apache. See the following section.
 
 ## Manually deployment options
 
 * [Deploying Seafile with MySQL](installation_ce.md)
 * [Enabling Https with Nginx](https_with_nginx.md)
-* [Enabling Https with Apache](https_with_apache.md)
 * [Start Seafile at System Bootup](start_seafile_at_system_bootup.md)
 * [Logrotate](using_logrotate.md)
 

@@ -2,12 +2,12 @@
 
 There are two ways to deploy Seafile Pro Edition. Since version 8.0, the recommend way to install Seafile Pro Edition is using Docker.
 
-- Method 1: Deploy Seafile with [Docker](../setup/setup_pro_by_docker.md)
+- Method 1 (***Recommend***): Deploy Seafile with [Docker](../setup/setup_pro_by_docker.md)
 - Method 2: [Download and Setup Seafile Professional Server Step by Step](./installation_pro.md)
 
 ## Migration from community edition
 
-- [Migrate from Seafile Community edition](migrate_from_seafile_community_server.md)
+- [Migrate from Seafile Community edition](../setup/migrate_ce_to_pro_with_docker.md)
 
 ## S3 Storage Backends
 

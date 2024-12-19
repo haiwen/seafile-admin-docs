@@ -198,10 +198,7 @@ You also need to add the settings for backend cloud storage systems to the confi
 
 Nginx/Apache with HTTP need to set it up on each machine running Seafile server. This is make sure only port 80 need to be exposed to load balancer. (HTTPS should be setup at the load balancer)
 
-Please check the following documents on how to setup HTTP with Nginx/Apache. (HTTPS is not needed)
-
-* [Nginx](./https_with_nginx.md)
-* [Apache](./https_with_apache.md)
+Please check the following documents on how to setup HTTP with [Nginx](./https_with_nginx.md). (HTTPS is not needed)
 
 
 ### Run and Test the Single Node
