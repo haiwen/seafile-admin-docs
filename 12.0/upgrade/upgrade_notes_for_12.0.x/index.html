@@ -4479,6 +4479,7 @@ Please always follow the main <a href="../upgrade/">upgrade guide</a>.</p>
 <li>ADDITIONAL_APP_BOTTOM_LINKS is removed. Because there is no buttom bar in the navigation side bar now.</li>
 <li>SERVICE_URL and FILE_SERVER_ROOT are removed. SERVICE_URL will be calculated from SEAFILE_SERVER_PROTOCOL and SEAFILE_SERVER_HOSTNAME in <code>.env</code> file.</li>
 <li><code>ccnet.conf</code> is removed. Some of its configuration items are moved from <code>.env</code> file, others are read from items in <code>seafile.conf</code> with same name.</li>
+<li>Two role permissions are added, <code>can_create_wiki</code> and <code>can_publish_wiki</code> are used to control whether a role can create a Wiki and publish a Wiki. The old role permission <code>can_publish_repo</code> is removed.</li>
 </ul>
 <p>Other changes:</p>
 <ul>
