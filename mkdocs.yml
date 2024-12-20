@@ -109,7 +109,6 @@ nav:
       - Outline: setup_binary/outline_ce.md
       - Installation: setup_binary/installation_ce.md
       - HTTPS with Nginx: setup_binary/https_with_nginx.md
-      - HTTPS with Apache: setup_binary/https_with_apache.md
     - Seafile Professional Setup:
       - Outline: setup_binary/outline_pro.md
       - Installation: setup_binary/installation_pro.md

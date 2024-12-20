@@ -4,7 +4,7 @@
 
 The config files used in Seafile include:
 
-* [environment variables](.env.md): contains environment variables, the items here are shared between different components. Newly introduced components, like sdoc-server and notificaiton server, read configuraitons from environment variables and have no config files.
+* [environment variables](env.md): contains environment variables, the items here are shared between different components. Newly introduced components, like sdoc-server and notificaiton server, read configuraitons from environment variables and have no config files.
 * [seafile.conf](seafile-conf.md): contains settings for seafile daemon and fileserver.
 * [seahub_settings.py](seahub_settings_py.md): contains settings for Seahub
 * [seafevents.conf](seafevents-conf.md): contains settings for background tasks and file search.
