@@ -34,5 +34,4 @@ INIT_S3_AWS_REGION=us-east-1
 INIT_S3_HOST=s3.us-east-1.amazonaws.com
 INIT_S3_USE_HTTPS=true
 
-
 JWT_PRIVATE_KEY=<your jwt private key>
