@@ -165,7 +165,7 @@ Seafile Server: 2 frontend nodes, 1 backend node
 
     ```
 
-2. Pulling Seafile image
+2. Pull Seafile image
 
 3. Copy `seafile-server.yml`, `.env `and configuration files from the first frontend node
 
@@ -184,7 +184,7 @@ Seafile Server: 2 frontend nodes, 1 backend node
 
     ```
 
-2. Pulling Seafile image
+2. Pull Seafile image
 
 3. Copy `seafile-server.yml`, `.env` and configuration files from frontend node
 
