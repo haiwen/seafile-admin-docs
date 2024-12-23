@@ -1263,9 +1263,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#install-haproxy-and-keepalived-services" class="md-nav__link">
+  <a href="#nginx" class="md-nav__link">
     <span class="md-ellipsis">
-      Install HAproxy and Keepalived services
+      Nginx
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#haproxy-and-keepalived-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      HAproxy and Keepalived services
     </span>
   </a>
   
@@ -1273,6 +1282,15 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#https" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTPS
+    </span>
+  </a>
   
 </li>
       
@@ -4303,9 +4321,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#install-haproxy-and-keepalived-services" class="md-nav__link">
+  <a href="#nginx" class="md-nav__link">
     <span class="md-ellipsis">
-      Install HAproxy and Keepalived services
+      Nginx
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#haproxy-and-keepalived-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      HAproxy and Keepalived services
     </span>
   </a>
   
@@ -4313,6 +4340,15 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#https" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTPS
+    </span>
+  </a>
   
 </li>
       
@@ -4346,9 +4382,19 @@
 <h1 id="seafile-docker-cluster-deployment">Seafile Docker Cluster Deployment<a class="headerlink" href="#seafile-docker-cluster-deployment" title="Permanent link">&para;</a></h1>
 <p>Seafile Docker cluster deployment requires "sticky session" settings in the load balancer. Otherwise sometimes folder download on the web UI can't work properly. Read the <a href="../../setup_binary/deploy_in_a_cluster/#load-balancer-setting">Load Balancer Setting</a> for details.</p>
 <h2 id="environment">Environment<a class="headerlink" href="#environment" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Prerequisites</p>
+<ul>
+<li>
+<p>We assume you have already deployed <strong><em>memcache</em></strong>, <strong><em>MariaDB</em></strong>, <strong><em>ElasticSearch</em></strong> in separate machines and use <strong><em>S3</em></strong> like object storage. </p>
+</li>
+<li>
+<p>Usually, each node of Seafile Cluster should have at least <strong>2 cores</strong> and <strong>2G memory</strong>. If the above services are deployed together with a node in the Seafile cluster, we recommend that you prepare <strong>4 cores</strong> and <strong>4G memory</strong> for the node (especially if ElasticSearch is also deployed on the node)</p>
+</li>
+</ul>
+</div>
 <p>System: Ubuntu 24.04</p>
 <p>Seafile Server: 2 frontend nodes, 1 backend node</p>
-<p>We assume you have already deployed memcache, MariaDB, ElasticSearch in separate machines and use S3 like object storage.</p>
 <h2 id="deploy-seafile-service">Deploy Seafile service<a class="headerlink" href="#deploy-seafile-service" title="Permanent link">&para;</a></h2>
 <h3 id="deploy-the-first-seafile-frontend-node">Deploy the first Seafile frontend node<a class="headerlink" href="#deploy-the-first-seafile-frontend-node" title="Permanent link">&para;</a></h3>
 <ol>
@@ -4359,12 +4405,12 @@
 </li>
 <li>
 <p>Pulling Seafile image</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>seafileltd/seafile-pro-mc:12.0-latest
-</code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
 <p>Since v12.0, Seafile PE versions are hosted on DockerHub and does not require username and password to download.</p>
 </div>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>seafileltd/seafile-pro-mc:12.0-latest
+</code></pre></div>
 </li>
 <li>
 <p>Download the <code>seafile-server.yml</code> and <code>.env</code></p>
@@ -4381,8 +4427,7 @@ wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/cluster/seafi
 </li>
 <li>
 <p>Start the Seafile docker</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/opt/seafile
-$<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
 <div class="admonition success">
 <p class="admonition-title">Cluster init mode</p>
@@ -4489,10 +4534,24 @@ Done.
 </li>
 </ol>
 <h3 id="deploy-the-others-seafile-frontend-nodes">Deploy the others Seafile frontend nodes<a class="headerlink" href="#deploy-the-others-seafile-frontend-nodes" title="Permanent link">&para;</a></h3>
-<p>You can directly copy all the directories generated by the first frontend node, including the Docker-compose files (e.g., <code>seafile-server.yml</code>, <code>.env</code>) and modified configuration files, and then start the seafile docker container:</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
-docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+<ol>
+<li>
+<p>Create the mount directory</p>
+<div class="highlight"><pre><span></span><code>$ mkdir -p /opt/seafile/shared
 </code></pre></div>
+</li>
+<li>
+<p>Pull Seafile image</p>
+</li>
+<li>
+<p>Copy <code>seafile-server.yml</code>, <code>.env</code>and configuration files from the first frontend node</p>
+</li>
+<li>
+<p>Start the service</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</li>
+</ol>
 <h3 id="deploy-seafile-backend-node">Deploy seafile backend node<a class="headerlink" href="#deploy-seafile-backend-node" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
@@ -4501,7 +4560,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 </code></pre></div>
 </li>
 <li>
-<p>Pulling Seafile image</p>
+<p>Pull Seafile image</p>
 </li>
 <li>
 <p>Copy <code>seafile-server.yml</code>, <code>.env</code> and configuration files from frontend node</p>
@@ -4547,7 +4606,62 @@ Done.
 </li>
 </ol>
 <h2 id="deploy-load-balance-optional">Deploy load balance (Optional)<a class="headerlink" href="#deploy-load-balance-optional" title="Permanent link">&para;</a></h2>
-<h3 id="install-haproxy-and-keepalived-services">Install HAproxy and Keepalived services<a class="headerlink" href="#install-haproxy-and-keepalived-services" title="Permanent link">&para;</a></h3>
+<p>Generally speaking, in order to better access the Seafile service, we recommend that you use a load balancing service to access the Seafile cluster and bind your domain name (such as <code>seafile.cluster.com</code>) to the load balancing service. Usually, you can use:</p>
+<ul>
+<li>Cloud service provider's load balancing service</li>
+<li>
+<p>Deploy your own load balancing service, our document will give two of common load balance services:</p>
+<ul>
+<li>Nginx</li>
+<li>HAproxy</li>
+</ul>
+</li>
+</ul>
+<h3 id="nginx">Nginx<a class="headerlink" href="#nginx" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Install Nginx in the host if you would like to deploy load balance service</li>
+</ol>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>nginx
+</code></pre></div>
+<ol>
+<li>Create the configurations file for Seafile cluster</li>
+</ol>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/nginx/sites-available/seafile-cluster
+</code></pre></div>
+<p>and, add the following contents into this file:</p>
+<div class="highlight"><pre><span></span><code><span class="k">upstream</span><span class="w"> </span><span class="s">seafile_cluster</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">server</span><span class="w"> </span><span class="s">&lt;IP:</span><span class="w"> </span><span class="s">your</span><span class="w"> </span><span class="s">frontend</span><span class="w"> </span><span class="s">node</span><span class="w"> </span><span class="mi">1</span><span class="s">&gt;:80</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">server</span><span class="w"> </span><span class="s">&lt;IP:</span><span class="w"> </span><span class="s">your</span><span class="w"> </span><span class="s">frontend</span><span class="w"> </span><span class="s">node</span><span class="w"> </span><span class="mi">2</span><span class="s">&gt;:80</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">...</span>
+<span class="err">}</span>
+
+<span class="s">server</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="mi">80</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">server_name</span><span class="w"> </span><span class="s">&lt;your</span><span class="w"> </span><span class="s">domain&gt;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://seafile_cluster</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Host</span><span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Real-IP</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-For</span><span class="w"> </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-Proto</span><span class="w"> </span><span class="nv">$scheme</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">http_502</span><span class="w"> </span><span class="s">http_503</span><span class="w"> </span><span class="s">http_504</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<ol>
+<li>Link the configurations file to <code>sites-enabled</code> directory:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>/etc/nginx/sites-available/seafile-cluster<span class="w"> </span>/etc/nginx/sites-enabled/
+</code></pre></div>
+<ol>
+<li>Test and enable configuration</li>
+</ol>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>nginx<span class="w"> </span>-t
+sudo<span class="w"> </span>nginx<span class="w"> </span>-s<span class="w"> </span>reload
+</code></pre></div>
+<h3 id="haproxy-and-keepalived-services">HAproxy and Keepalived services<a class="headerlink" href="#haproxy-and-keepalived-services" title="Permanent link">&para;</a></h3>
 <p>Execute the following commands on the two Seafile frontend servers:</p>
 <div class="highlight"><pre><span></span><code>$ apt install haproxy keepalived -y
 
@@ -4654,6 +4768,8 @@ EOF
 $ systemctl enable --now keepalived
 </code></pre></div>
 <p>So far, Seafile cluster has been deployed.</p>
+<h2 id="https">HTTPS<a class="headerlink" href="#https" title="Permanent link">&para;</a></h2>
+<p>You can engaged HTTPS in your load balance service, as you can use certificates manager (e.g., <a href="https://certbot.eff.org">Certbot</a>) to acquire and enable HTTPS to your Seafile cluster. You have to modify the relative URLs from the prefix <code>http://</code> to <code>https://</code> in <code>seahub_settings.py</code> and <code>.env</code>, after enabling HTTPS.</p>
 <h2 id="optional-deploy-seadoc-server">(Optional) Deploy SeaDoc server<a class="headerlink" href="#optional-deploy-seadoc-server" title="Permanent link">&para;</a></h2>
 <p>You can follow <a href="../../extension/setup_seadoc/">here</a> to deploy SeaDoc server. And then modify <code>SEADOC_SERVER_URL</code> in your <code>.env</code> file</p>
 
