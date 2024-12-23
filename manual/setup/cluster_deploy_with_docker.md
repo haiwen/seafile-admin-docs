@@ -158,9 +158,18 @@ Seafile Server: 2 frontend nodes, 1 backend node
 
 ### Deploy the others Seafile frontend nodes
 
-1. Copy `seafile-server.yml`, `.env `and configuration files from frontend node
+1. Create the mount directory
 
-2. Start the service
+    ```
+    $ mkdir -p /opt/seafile/shared
+
+    ```
+
+2. Pulling Seafile image
+
+3. Copy `seafile-server.yml`, `.env `and configuration files from the first frontend node
+
+4. Start the service
 
     ```sh
     docker compose up -d
