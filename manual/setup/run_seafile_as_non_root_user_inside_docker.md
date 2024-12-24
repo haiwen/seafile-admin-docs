@@ -1,8 +1,14 @@
 # Run Seafile as non root user inside docker
 
-You can use run seafile as non root user in docker. 
+You can use run Seafile as non root user in docker.
 
-First add the `NON_ROOT=true` to the `.env`.
+First deploy Seafile with docker, and destroy the containers.
+
+```bash
+docker compose down
+```
+
+Then add the `NON_ROOT=true` to the `.env`.
 
 ```env
 NON_ROOT=true
@@ -14,14 +20,13 @@ Then modify `/opt/seafile-data/seafile/` permissions.
 chmod -R a+rwx /opt/seafile-data/seafile/
 ```
 
-Then destroy the containers and run them again:
+Start Seafile:
 
 ```bash
-docker compose down
 docker compose up -d
 ```
 
-Now you can run Seafile as `seafile` user. 
+Now you can run Seafile as `seafile` user.
 
 !!! tip
     When doing maintenance, other scripts in docker are also required to be run as `seafile` user, e.g. `su seafile -c ./seaf-gc.sh`
