@@ -4138,18 +4138,20 @@
 
 
 <h1 id="run-seafile-as-non-root-user-inside-docker">Run Seafile as non root user inside docker<a class="headerlink" href="#run-seafile-as-non-root-user-inside-docker" title="Permanent link">&para;</a></h1>
-<p>You can use run seafile as non root user in docker. </p>
-<p>First add the <code>NON_ROOT=true</code> to the <code>.env</code>.</p>
+<p>You can use run Seafile as non root user in docker.</p>
+<p>First deploy Seafile with docker, and destroy the containers.</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
+</code></pre></div>
+<p>Then add the <code>NON_ROOT=true</code> to the <code>.env</code>.</p>
 <div class="highlight"><pre><span></span><code>NON_ROOT=true
 </code></pre></div>
 <p>Then modify <code>/opt/seafile-data/seafile/</code> permissions.</p>
 <div class="highlight"><pre><span></span><code>chmod<span class="w"> </span>-R<span class="w"> </span>a+rwx<span class="w"> </span>/opt/seafile-data/seafile/
 </code></pre></div>
-<p>Then destroy the containers and run them again:</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
-docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+<p>Start Seafile:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
-<p>Now you can run Seafile as <code>seafile</code> user. </p>
+<p>Now you can run Seafile as <code>seafile</code> user.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>When doing maintenance, other scripts in docker are also required to be run as <code>seafile</code> user, e.g. <code>su seafile -c ./seaf-gc.sh</code></p>
