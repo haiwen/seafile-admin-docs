@@ -123,7 +123,7 @@ Beginning with Seafile PE 7.0.17, the Seafile Customer Center provides two insta
 
 * _seafile-pro-server_12.0.6_x86-64_Ubuntu.tar.gz_, compiled in Ubuntu environment
 
-The former is suitable for installation on Ubuntu/Debian servers, the latter for CentOS servers.
+The former is suitable for installation on Ubuntu/Debian servers.
 
 Download the install package using wget (replace the x.x.x with the version you wish to download):
 
@@ -202,7 +202,7 @@ $ tree -L 2 /opt/seafile
     * Seafile CE: `seafile-server_12.0.6_x86-86.tar.gz`; uncompressing into folder `seafile-server-12.0.6`
     * Seafile PE: `seafile-pro-server_12.0.6_x86-86.tar.gz`; uncompressing into folder `seafile-pro-server-12.0.6`
 
-### Setting up Seafile Pro databses
+### Setting up Seafile Pro databases
 
 The install package comes with a script that sets Seafile up for you. Specifically, the script creates the required directories and extracts all files in the right place. It can also create a MySQL user and the three databases that [Seafile's components](../introduction/components.md) require:
 

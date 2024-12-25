@@ -22,7 +22,6 @@ In the seafile cluster, **only one server** should run the background tasks, inc
 
 * indexing files for search
 * email notification
-* office documents converts service (Start from 9.0 version, office converts service is moved to a separate docker component)
 * LDAP sync
 * virus scan
 
@@ -44,7 +43,7 @@ Let's assume you have three nodes in your cluster: A, B, and C.
 
     - Usually, each node of Seafile Cluster should have at least **2 cores** and **2G memory**. If the above services are deployed together with a node in the Seafile cluster, we recommend that you prepare **4 cores** and **4G memory** for the node (especially if ElasticSearch is also deployed on the node)
 
-Seafile Server: 2 frontend nodes, 1 backend node (Virtual machines are sufficient for most cases)
+Seafile Server: 2 frontend nodes, 1 backend node
 
 ## Deploy Seafile service
 
