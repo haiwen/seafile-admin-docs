@@ -44,9 +44,9 @@ Seafile uses the mysql_native_password plugin for authentication. The versions o
     # Notice that this will usually change your prompt so you know the venv is active
 
     # install packages into the active venv with pip (sudo isn't needed because this is installing in the venv, not system-wide).
-    pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.* \
-        pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
-        psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.16.0 lxml python-ldap==3.4.3
+    pip3 install --timeout=3600 django==4.2.* future==1.0.* mysqlclient==2.2.* \
+        pymysql pillow==10.4.* pylibmc captcha==0.6.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.* \
+        psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.9.* pysaml2==7.3.* pycryptodome==3.20.* cffi==1.17.0 lxml python-ldap==3.4.* gevent==24.2.*
     ```
 === "Debian 12"
     !!! note
@@ -82,9 +82,9 @@ Seafile uses the mysql_native_password plugin for authentication. The versions o
     sudo mkdir /opt/seafile
     cd /opt/seafile
 
-    sudo pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.* \
-        pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
-        psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 lxml python-ldap==3.4.3
+    sudo pip3 install --timeout=3600 django==4.2.* future==1.0.* mysqlclient==2.2.*  \
+        pymysql pillow==10.4.* pylibmc captcha==0.6.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.* \
+        psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.95.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 python-ldap==3.4.3 lxml gevent==24.2.*
 
     ```
 
@@ -328,7 +328,7 @@ Seahub caches items(avatars, profiles, etc) on file system by default(/tmp/seahu
 
     1. Install Redis with package installers in your OS.
 
-    2. refer to [Django's documentation about using Redis cache](https://docs.djangoproject.com/en/4.2/topics/cache/#redis) to add Redis configurations to `seahub_settings.py`.
+    2. Refer to [Django's documentation about using Redis cache](https://docs.djangoproject.com/en/4.2/topics/cache/#redis) to add Redis configurations to `seahub_settings.py`.
 
 
 ### Tweaking conf files
@@ -352,7 +352,7 @@ nano /opt/seafile/conf/.env
     pwgen -s 40 1
     ```
 
-```env
+```sh
 JWT_PRIVATE_KEY=<Your jwt private key>
 SEAFILE_SERVER_PROTOCOL=https
 SEAFILE_SERVER_HOSTNAME=seafile.example.com

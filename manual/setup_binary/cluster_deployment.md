@@ -1,24 +1,25 @@
-# Installation of Seafile Server Professional Edition
+# Cluster Deployment
 
-This manual explains how to deploy and run Seafile Server Professional Edition (Seafile PE) on a Linux server from a pre-built package using MySQL/MariaDB as database. The deployment has been tested for Debian/Ubuntu.
+!!! tip "Since version 8.0, the recommend way to install Seafile clsuter is using [*Docker*](../setup/cluster_deploy_with_docker.md)"
 
-## Requirements
+## Environment
 
-Seafile PE requires a minimum of 2 cores and 2GB RAM. If elasticsearch is installed on the same server, the minimum requirements are 4 cores and 4 GB RAM.
+!!! success "About Redis"
+    Since version 11.0, Redis can also be used as memory cache server. But currently only single-node Redis is supported.
 
-Seafile PE can be used without a paid license with up to three users. Licenses for more user can be purchased in the [Seafile Customer Center](https://customer.seafile.com) or contact Seafile Sales at [sales@seafile.com](mailto:sales@seafile.com) or one of [our partners](https://www.seafile.com/en/partner/).
+!!! note "Prerequisites"
 
-## Setup
+    - We assume you have already deployed memory cache server (e.g., ***Memcached***), ***MariaDB***, ***ElasticSearch*** in separate machines and use ***S3*** like object storage. 
 
-### Installing and preparing the SQL database
+    - Usually, each node of Seafile Cluster should have at least **2 cores** and **2G memory**. If the above services are deployed together with a node in the Seafile cluster, we recommend that you prepare **4 cores** and **4G memory** for the node (especially if ElasticSearch is also deployed on the node)
 
-Seafile supports MySQL and MariaDB. We recommend that you use the preferred SQL database management engine included in the package repositories of your distribution.
+System: Ubuntu 24.04/22.04, Debian 12/11
 
-You can find step-by-step how-tos for installing MySQL and MariaDB in the [tutorials on the Digital Ocean website](https://www.digitalocean.com/community/tutorials).
+Seafile Server: 2 frontend nodes, 1 backend node (Virtual machines are sufficient for most cases)
 
-Seafile uses the `mysql_native_password` plugin for authentication. The versions of MySQL and MariaDB installed on CentOS 8, Debian 10, and Ubuntu 20.04 use a different authentication plugin by default. It is therefore required to change to authentication plugin to `mysql_native_password` for the root user prior to the installation of Seafile. The above mentioned tutorials explain how to do it.
+## Preparation
 
-### Installing prerequisites
+### Install prerequisites for all nodes
 
 !!! tip
     The standard directory `/opt/seafile` is assumed for the rest of this manual. If you decide to put Seafile in another directory, some commands need to be modified accordingly
@@ -80,14 +81,13 @@ Seafile uses the `mysql_native_password` plugin for authentication. The versions
     # create the data directory
     mkdir /opt/seafile
     cd /opt/seafile
+
     sudo pip3 install --timeout=3600 django==4.2.* future==1.0.* mysqlclient==2.2.*  \
         pymysql pillow==10.4.* pylibmc captcha==0.6.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.* \
         psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.95.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 python-ldap==3.4.3 lxml gevent==24.2.*
     ```
 
-### Creating user seafile
-
-Elasticsearch, the indexing server, cannot be run as root. More generally, it is good practice not to run applications as root. 
+### Create user `seafile` for all nodes
 
 Create a new user and follow the instructions on the screen:
 
@@ -109,11 +109,13 @@ Change to user seafile:
 su seafile
 ```
 
-### Placing the Seafile PE license
+### Placing the Seafile PE license in `/opt/seafile` in all nodes
 
 Save the license file in Seafile's programm directory `/opt/seafile`. Make sure that the name is `seafile-license.txt`. 
 
 !!! danger "If the license file has a different name or cannot be read, Seafile server will not start"
+
+## Setup the first frontend Node
 
 ### Downloading the install package
 
@@ -134,6 +136,7 @@ wget -O 'seafile-pro-server_x.x.x_x86-64_Ubuntu.tar.gz' 'VERSION_SPECIFIC_LINK_F
 ```
 
 We use Seafile version 12.0.6 as an example in the remainder of these instructions.
+
 
 ### Uncompressing the package
 
@@ -196,13 +199,7 @@ $ tree -L 2 /opt/seafile
 
 ```
 
-!!! tip
-    The names of the install packages differ for Seafile CE and Seafile PE. Using Seafile CE and Seafile PE 12.0.6 as an example, the names are as follows:
-
-    * Seafile CE: `seafile-server_12.0.6_x86-86.tar.gz`; uncompressing into folder `seafile-server-12.0.6`
-    * Seafile PE: `seafile-pro-server_12.0.6_x86-86.tar.gz`; uncompressing into folder `seafile-pro-server-12.0.6`
-
-### Setting up Seafile Pro databses
+### Setup Seafile databases
 
 The install package comes with a script that sets Seafile up for you. Specifically, the script creates the required directories and extracts all files in the right place. It can also create a MySQL user and the three databases that [Seafile's components](../introduction/components.md) require:
 
@@ -351,70 +348,9 @@ The directory layout then looks as follows:
 
 The folder `seafile-server-latest` is a symbolic link to the current Seafile Server folder. When later you upgrade to a new version, the upgrade scripts update this link to point to the latest Seafile Server folder.
 
-### Setup Memory Cache
+### Create and Modify configuration files in `/opt/seafile/conf`
 
-Memory cache is mandatory for pro edition. You may use Memcached or Reids as cache server.
-
-=== "Memcached"
-
-    Use the following commands to install memcached and corresponding libraies on your system:
-
-    ```
-    # on Debian/Ubuntu 18.04+
-    apt-get install memcached libmemcached-dev -y
-    pip3 install --timeout=3600 pylibmc django-pylibmc
-
-    systemctl enable --now memcached
-    ```
-
-
-    Add or modify the following configuration to `seahub_settings.py`:
-
-    ```py
-    CACHES = {
-        'default': {
-            'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
-            'LOCATION': '127.0.0.1:11211',
-        },
-    }
-
-    ```
-
-    Add or modify the following configuration to `seafile.conf`:
-
-    ```
-    [memcached]
-    memcached_options = --SERVER=127.0.0.1 --POOL-MIN=10 --POOL-MAX=100
-    ```
-
-=== "Redis"
-
-    !!! success "Redis is supported since version 11.0"
-
-    1. Install Redis with package installers in your OS.
-
-    2. Refer to [Django's documentation about using Redis cache](https://docs.djangoproject.com/en/4.2/topics/cache/#redis) to add Redis configurations to `seahub_settings.py`.
-
-    3. Add or modify the following configuration to `seafile.conf`:
-
-        ```
-        [redis]
-        redis_host = 127.0.0.1
-        redis_port = 6379
-        max_connections = 100
-        ```
-
-
-### Enabling HTTP/HTTPS (Optional but Recommended)
-
-You need at least setup HTTP to make Seafile's web interface work. This manual provides instructions for enabling HTTP/HTTPS for the two most popular web servers and reverse proxies (e.g., [Nginx](./https_with_nginx.md)).
-
-
-### Create the `.env` file in `conf/` directory
-
-```sh
-nano /opt/seafile/conf/.env
-```
+#### .env
 
 !!! tip
     `JWT_PRIVATE_KEY`, A random string with a length of no less than 32 characters can be generated from: 
@@ -435,9 +371,107 @@ SEAFILE_MYSQL_DB_SEAFILE_DB_NAME=seafile_db
 SEAFILE_MYSQL_DB_SEAHUB_DB_NAME=seahub_db
 ```
 
-## Starting Seafile Server
+#### seafile.conf
 
-Run the following commands in `/opt/seafile/seafile-server-latest`:
+1. Add or modify the following configuration to `seafile.conf`:
+
+    === "Memcached"
+
+        ```
+        [memcached]
+        memcached_options = --SERVER=<your memcached ip>[:<your memcached port>] --POOL-MIN=10 --POOL-MAX=100
+        ```
+
+    === "Redis"
+        ```conf
+        [redis]
+        redis_host = <your redis ip>
+        redis_port = <your redis port, default 6379>
+        max_connections = 100
+        ```
+
+2. Enable cluster mode
+
+    ```conf
+    [cluster]
+    enabled = true
+    ```
+
+    !!! tip "More options in `cluster` section"
+        The Seafile server also opens a port for the load balancers to run health checks. Seafile by default uses port `11001`. You can change this by adding the following config:
+
+        ```conf
+        [cluster]
+        health_check_port = 12345
+        ```
+
+3. Enable backend storage:
+
+    - [S3](../setup/setup_with_s3.md)
+    - [OpenStack Swift](../setup/setup_with_swift.md)
+    - [Ceph](../setup/setup_with_ceph.md)
+
+#### seahub_settings.py
+
+1. You must setup and use memory cache when deploying Seafile cluster, please add or modify the following configuration to `seahub_settings.py`:
+
+    === "Memcached"
+
+        ```py
+        CACHES = {
+            'default': {
+                'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
+                'LOCATION': '<your Memcached host>:<your Memcached port, default 11211>',
+            },
+        }
+        ```
+    === "Redis"
+
+        please Refer to [Django's documentation about using Redis cache](https://docs.djangoproject.com/en/4.2/topics/cache/#redis) to add Redis configurations to `seahub_settings.py`.
+
+2. Add following options to seahub_setting.py, which will tell Seahub to store avatar in database and cache avatar in memcached, and store css CACHE to local memory.
+
+    ```
+    AVATAR_FILE_STORAGE = 'seahub.base.database_storage.DatabaseStorage'
+    ```
+
+#### seafevents.conf
+
+Modify the `[INDEX FILES]` section to enable full test search, we take *ElasticSearch* for example:
+
+```
+[INDEX FILES]
+enabled = true
+interval = 10m
+highlight = fvh
+index_office_pdf = true
+es_host = <your ElasticSearch host>
+es_port = <your ElasticSearch port, default 9200>
+```
+
+### Update Seahub Database
+
+In cluster environment, we have to store avatars in the database instead of in a local disk.
+
+```
+mysql -h<your MySQL host> -P<your MySQL port> -useafile -p<user seafile's password>
+
+# enter MySQL environment
+USE seahub_db;
+
+CREATE TABLE `avatar_uploaded` (`filename` TEXT NOT NULL, `filename_md5` CHAR(32) NOT NULL PRIMARY KEY, `data` MEDIUMTEXT NOT NULL, `size` INTEGER NOT NULL, `mtime` datetime NOT NULL);
+```
+
+### Setup Nginx/Apache and HTTP
+
+Nginx/Apache with HTTP need to set it up on each machine running Seafile server. This is make sure only port 80 need to be exposed to load balancer. (HTTPS should be setup at the load balancer)
+
+Please check the following documents on how to setup HTTP with [Nginx](./https_with_nginx.md). (HTTPS is not needed)
+
+
+### Run and Test the Single Node
+
+Once you have finished configuring this single node, start it to test if it runs properly:
 
 !!! note
     For installations using python virtual environment, activate it if it isn't already active
@@ -447,89 +481,218 @@ Run the following commands in `/opt/seafile/seafile-server-latest`:
     ```
 
 ```
+cd /opt/seafile/seafile-server-latest
 su seafile
-./seafile.sh start # Start Seafile service
-./seahub.sh start  # Start seahub website, port defaults to 127.0.0.1:8000
+./seafile.sh start
+./seahub.sh start
 ```
 
 !!! success
-    The first time you start Seahub, the script prompts you to create an admin account for your Seafile Server. Enter the email address of the admin user followed by the password, i.e.:
-
-    ```
-    What is the email for the admin account?
-    [ admin email ]  <please input your admin's email>
-
-    What is the password for the admin account?
-    [ admin password ] <please input your admin's password>
-
-    Enter the password again:
-    [ admin password again ] <please input your admin's password again>
-    ```
-
-Now you can access Seafile via the web interface at the host address (e.g., https://seafile.example.com).
+    The first time you start seahub, the script would prompt you to create an admin account for your Seafile server, then you can visit `http://ip-address-of-this-node:80` and login with the admin account to test if this node is working fine or not.
 
 
-## Enabling full text search
+## Configure other nodes
 
-Seafile uses the indexing server ElasticSearch to enable full text search.
+If the first node works fine, you can compress the whole directory `/opt/seafile` into a tarball and copy it to all other Seafile server nodes. You can simply uncompress it and start the server on other frontend nodes by:
 
+!!! note
+    For installations using python virtual environment, activate it if it isn't already active
 
-### Deploying ElasticSearch
-
-Our recommendation for deploying ElasticSearch is using Docker. Detailed information about installing Docker on various Linux distributions is available at [Docker Docs](https://docs.docker.com/engine/install/).
-
-Seafile PE 9.0 only supports ElasticSearch 7.x. Seafile PE 10.0, 11.0, 12.0 only supports ElasticSearch 8.x.
-
-We use ElasticSearch version 8.15.0 as an example in this section. Version 8.15.0 and newer version have been successfully tested with Seafile.
-
-
-Pull the Docker image:
-```
-sudo docker pull elasticsearch:8.15.0
-```
-
-Create a folder for persistent data created by ElasticSearch and change its permission:
-```
-sudo mkdir -p /opt/seafile-elasticsearch/data  && chmod -R 777 /opt/seafile-elasticsearch/data/
-```
-
-Now start the ElasticSearch container using the docker run command:
-```
-sudo docker run -d \
---name es \
--p 9200:9200 \
--e "discovery.type=single-node" -e "bootstrap.memory_lock=true" \
--e "ES_JAVA_OPTS=-Xms2g -Xmx2g" -e "xpack.security.enabled=false" \
---restart=always \
--v /opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data \
--d elasticsearch:8.15.0
-```
-
-!!! danger "Security notice"
-    > We sincerely thank ***Mohammed Adel*** of [Safe Decision Co.](https://www.safedecision.com.sa/), for the suggestion of this notice.
-
-    By default, Elasticsearch will only listen on `127.0.0.1`, but this rule may **become invalid** after Docker exposes the service port,  ***which will make your Elasticsearch service vulnerable to attackers accessing and extracting sensitive data due to exposure to the external network***. We recommend that you manually configure the Docker firewall, such as
-
-    ```sh
-    sudo iptables -A INPUT -p tcp -s <your seafile server ip> --dport 9200 -j ACCEPT
-    sudo iptables -A INPUT -p tcp --dport 9200 -j DROP
+    ```sh 
+    source python-venv/bin/activate
     ```
 
-    The above command will only allow the host where your Seafile service is located to connect to Elasticsearch, and other addresses will be blocked. If you deploy Elasticsearch based on binary packages, you need to refer to the [official document](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/important-settings.html#network.host) to set the address that Elasticsearch binds to.
+```sh
+cd /opt/seafile/seafile-server-latest
+su seafile
+./seafile.sh start
+./seahub.sh start
+```
 
-### Modifying seafevents
+### backend node
 
-Add the following configuration to `seafevents.conf`:
+In the backend node, you need to execute the following command to start Seafile server. **CLUSTER_MODE=backend** means this node is seafile backend server.
+
+!!! note
+    For installations using python virtual environment, activate it if it isn't already active
+
+    ```sh 
+    source python-venv/bin/activate
+    ```
+
+```bash
+export CLUSTER_MODE=backend
+cd /opt/seafile/seafile-server-latest
+su seafile
+./seafile.sh start
+./seafile-background-tasks.sh start
+```
+
+## Start Seafile Service on boot
+
+It would be convenient to setup Seafile service to start on system boot. Follow [this documentation](./start_seafile_at_system_bootup.md) to set it up on **all nodes**.
+
+## Firewall Settings
+
+There are 2 firewall rule changes for Seafile cluster:
+
+* On each Seafile server machine, you should open the health check port (default 11001);
+* On the Cache and ElasticSearch server, please only allow Seafile servers to access this port for security resons.
+
+## Load Balancer Setting
+
+!!! note
+    Since Seafile Pro server 6.0.0, cluster deployment requires "sticky session" settings in the load balancer. Otherwise sometimes folder download on the web UI can't work properly. Read the "Load Balancer Setting" section below for details
+
+Generally speaking, in order to better access the Seafile service, we recommend that you use a load balancing service to access the Seafile cluster and bind your domain name (such as `seafile.cluster.com`) to the load balancing service. Usually, you can use:
+
+- Cloud service provider's load balancing service (e.g., ***AWS Elastic Load Balancer***)
+- Deploy your own load balancing service, our document will give two of common load balance services:
+
+    - ***Nginx***
+    - ***HAproxy***
+
+### AWS Elastic Load Balancer (ELB)
+
+In the AWS ELB management console, after you've added the Seafile server instances to the instance list, you should do two more configurations.
+
+First you should setup HTTP(S) listeners. Ports 443 and 80 of ELB should be forwarded to the ports 80 or 443 of the Seafile servers.
+
+Then you setup health check
+
+![elb-health-check](../images/elb-health-check.png)
+
+Refer to [AWS documentation](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html) about how to setup sticky sessions.
+
+### Nginx
+
+1. Install Nginx in the host if you would like to deploy load balance service
+
+```sh
+sudo apt update
+sudo apt install nginx
+```
+
+2. Create the configurations file for Seafile cluster
+
+```sh
+sudo nano /etc/nginx/sites-available/seafile-cluster
+```
+
+and, add the following contents into this file:
+
+```nginx
+upstream seafile_cluster {
+    server <IP: your frontend node 1>:80;
+    server <IP: your frontend node 2>:80;
+    ...
+}
+
+server {
+    listen 80;
+    server_name <your domain>;
+
+    location / {
+        proxy_pass http://seafile_cluster;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        http_502 http_503 http_504;
+    }
+}
+```
+
+3. Link the configurations file to `sites-enabled` directory:
+
+```sh
+sudo ln -s /etc/nginx/sites-available/seafile-cluster /etc/nginx/sites-enabled/
+```
+
+4. Test and enable configuration
+
+```sh
+sudo nginx -t
+sudo nginx -s reload
+```
+
+
+### HAProxy
+
+This is a sample `/etc/haproxy/haproxy.cfg`:
+
+(Assume your health check port is `11001`)
+
+```
+global
+    log 127.0.0.1 local1 notice
+    maxconn 4096
+    user haproxy
+    group haproxy
+
+defaults
+    log global
+    mode http
+    retries 3
+    maxconn 2000
+    timeout connect 10000
+    timeout client 300000
+    timeout server 36000000
+
+listen seafile 0.0.0.0:80
+    mode http
+    option httplog
+    option dontlognull
+    option forwardfor
+    cookie SERVERID insert indirect nocache
+    server seafileserver01 192.168.1.165:80 check port 11001 cookie seafileserver01
+    server seafileserver02 192.168.1.200:80 check port 11001 cookie seafileserver02
+
+```
+
+## See how it runs
+
+Now you should be able to test your cluster. Open <https://seafile.example.com> in your browser and enjoy. You can also synchronize files with Seafile clients.
+
+
+## The final configuration of the front-end nodes
+
+Here is the summary of configurations at the front-end node that related to cluster setup. (for version 7.1+)
+
+For **seafile.conf**:
+
+```
+[cluster]
+enabled = true
+memcached_options = --SERVER=<IP of memcached node> --POOL-MIN=10 --POOL-MAX=100
+
+```
+
+The `enabled` option will prevent the start of background tasks by `./seafile.sh start` in the front-end node. The tasks should be explicitly started by `./seafile-background-tasks.sh start` at the back-end node.
+
+For **seahub_settings.py**:
+
+```
+AVATAR_FILE_STORAGE = 'seahub.base.database_storage.DatabaseStorage'
+```
+
+For **seafevents.conf**:
 
 ```
 [INDEX FILES]
-es_host = <your elasticsearch server's IP, e.g., 127.0.0.1>    # IP address of ElasticSearch host
-es_port = 9200   # port of ElasticSearch host
+enabled = true
+interval = 10m
+highlight = fvh     # This configuration is for improving searching speed
+es_host = <IP of background node>
+es_port = 9200
 ```
 
-Finally, restart Seafile:
+The `[INDEX FILES]` section is needed to let the front-end node know the file search feature is enabled.
 
-```
-su seafile
-./seafile.sh restart  && ./seahub.sh restart 
-```
+## HTTPS
+
+You can engaged HTTPS in your load balance service, as you can use certificates manager (e.g., [Certbot](https://certbot.eff.org)) to acquire and enable HTTPS to your Seafile cluster. You have to modify the relative URLs from the prefix `http://` to `https://` in `seahub_settings.py` and `.env`, after enabling HTTPS.
+
+## (Optional) Deploy SeaDoc server
+
+You can follow [here](../extension/setup_seadoc.md) to deploy SeaDoc server. And then modify `SEADOC_SERVER_URL` in your `.env` file

@@ -9,7 +9,7 @@ Since version 7.0.8 pro, Seafile provides commands to export reports via command
 
 ```
 cd seafile-server-latest
-./seahub.sh python-env python seahub/manage.py export_user_traffic_report --date 201906
+./seahub.sh python-env python3 seahub/manage.py export_user_traffic_report --date 201906
 
 ```
 
@@ -17,7 +17,7 @@ cd seafile-server-latest
 
 ```
 cd seafile-server-latest
-./seahub.sh python-env python seahub/manage.py export_user_storage_report
+./seahub.sh python-env python3 seahub/manage.py export_user_storage_report
 
 ```
 
@@ -25,7 +25,7 @@ cd seafile-server-latest
 
 ```
 cd seafile-server-latest
-./seahub.sh python-env python seahub/manage.py export_file_access_log --start-date 2019-06-01 --end-date 2019-07-01
+./seahub.sh python-env python3 seahub/manage.py export_file_access_log --start-date 2019-06-01 --end-date 2019-07-01
 
 ```
 
