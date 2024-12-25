@@ -111,13 +111,9 @@ nav:
       - HTTPS with Nginx: setup_binary/https_with_nginx.md
     - Seafile Professional Setup:
       - Outline: setup_binary/outline_pro.md
-      - Installation: setup_binary/installation_pro.md
-      - Cluster deployment:
-        - Deploy in a cluster: setup_binary/deploy_in_a_cluster.md
-        - Search and background tasks in a cluster: setup_binary/enable_search_and_background_tasks_in_a_cluster.md
-        - Memcache and MariaDB Cluster: setup_binary/memcached_mariadb_cluster.md
-        - Setup Seafile cluster with NFS: setup_binary/setup_seafile_cluster_with_nfs.md
       - License: setup_binary/seafile_professional_sdition_software_license_agreement.md
+      - Installation: setup_binary/installation_pro.md
+      - Cluster Deployment: setup_binary/cluster_deployment.md
     - Other deployment notes:
       - Start Seafile at System Bootup: setup_binary/start_seafile_at_system_bootup.md
       - Logrotate: setup_binary/using_logrotate.md

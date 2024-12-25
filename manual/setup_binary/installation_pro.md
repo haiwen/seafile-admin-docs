@@ -44,9 +44,9 @@ Seafile uses the `mysql_native_password` plugin for authentication. The versions
     # Notice that this will usually change your prompt so you know the venv is active
 
     # install packages into the active venv with pip (sudo isn't needed because this is installing in the venv, not system-wide).
-    pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.* \
-        pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
-        psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.16.0 lxml python-ldap==3.4.3
+    pip3 install --timeout=3600 django==4.2.* future==1.0.* mysqlclient==2.2.* \
+        pymysql pillow==10.4.* pylibmc captcha==0.6.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.* \
+        psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.9.* pysaml2==7.3.* pycryptodome==3.20.* cffi==1.17.0 lxml python-ldap==3.4.* gevent==24.2.*
     ```
 === "Debian 12"
     !!! note
@@ -80,9 +80,9 @@ Seafile uses the `mysql_native_password` plugin for authentication. The versions
     # create the data directory
     mkdir /opt/seafile
     cd /opt/seafile
-    sudo pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.* \
-        pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
-        psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 python-ldap==3.4.3 lxml
+    sudo pip3 install --timeout=3600 django==4.2.* future==1.0.* mysqlclient==2.2.*  \
+        pymysql pillow==10.4.* pylibmc captcha==0.6.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.* \
+        psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.95.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 python-ldap==3.4.3 lxml gevent==24.2.*
     ```
 
 ### Creating user seafile
@@ -111,7 +111,9 @@ su seafile
 
 ### Placing the Seafile PE license
 
-Save the license file in Seafile's programm directory `/opt/seafile`. Make sure that the name is `seafile-license.txt`. (If the file has a different name or cannot be read, Seafile PE will not start.)
+Save the license file in Seafile's programm directory `/opt/seafile`. Make sure that the name is `seafile-license.txt`. 
+
+!!! danger "If the license file has a different name or cannot be read, Seafile server will not start"
 
 ### Downloading the install package
 
@@ -121,7 +123,7 @@ Beginning with Seafile PE 7.0.17, the Seafile Customer Center provides two insta
 
 * _seafile-pro-server_12.0.6_x86-64_Ubuntu.tar.gz_, compiled in Ubuntu environment
 
-The former is suitable for installation on Ubuntu/Debian servers, the latter for CentOS servers.
+The former is suitable for installation on Ubuntu/Debian servers.
 
 Download the install package using wget (replace the x.x.x with the version you wish to download):
 
@@ -200,7 +202,7 @@ $ tree -L 2 /opt/seafile
     * Seafile CE: `seafile-server_12.0.6_x86-86.tar.gz`; uncompressing into folder `seafile-server-12.0.6`
     * Seafile PE: `seafile-pro-server_12.0.6_x86-86.tar.gz`; uncompressing into folder `seafile-pro-server-12.0.6`
 
-### Setting up Seafile Pro
+### Setting up Seafile Pro databases
 
 The install package comes with a script that sets Seafile up for you. Specifically, the script creates the required directories and extracts all files in the right place. It can also create a MySQL user and the three databases that [Seafile's components](../introduction/components.md) require:
 
@@ -366,9 +368,9 @@ Memory cache is mandatory for pro edition. You may use Memcached or Reids as cac
     ```
 
 
-    Add the following configuration to `seahub_settings.py`.
+    Add or modify the following configuration to `seahub_settings.py`:
 
-    ```
+    ```py
     CACHES = {
         'default': {
             'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
@@ -377,13 +379,30 @@ Memory cache is mandatory for pro edition. You may use Memcached or Reids as cac
     }
 
     ```
+
+    Add or modify the following configuration to `seafile.conf`:
+
+    ```
+    [memcached]
+    memcached_options = --SERVER=127.0.0.1 --POOL-MIN=10 --POOL-MAX=100
+    ```
+
 === "Redis"
 
     !!! success "Redis is supported since version 11.0"
 
     1. Install Redis with package installers in your OS.
 
-    2. refer to [Django's documentation about using Redis cache](https://docs.djangoproject.com/en/4.2/topics/cache/#redis) to add Redis configurations to `seahub_settings.py`.
+    2. Refer to [Django's documentation about using Redis cache](https://docs.djangoproject.com/en/4.2/topics/cache/#redis) to add Redis configurations to `seahub_settings.py`.
+
+    3. Add or modify the following configuration to `seafile.conf`:
+
+        ```
+        [redis]
+        redis_host = 127.0.0.1
+        redis_port = 6379
+        max_connections = 100
+        ```
 
 
 ### Enabling HTTP/HTTPS (Optional but Recommended)
@@ -403,7 +422,7 @@ nano /opt/seafile/conf/.env
     pwgen -s 40 1
     ```
 
-```env
+```sh
 JWT_PRIVATE_KEY=<Your jwt private key>
 SEAFILE_SERVER_PROTOCOL=https
 SEAFILE_SERVER_HOSTNAME=seafile.example.com

@@ -59,29 +59,30 @@ Seafile uses a system trash, where deleted libraries will be moved to. In this w
 
 Seafile Pro Edition uses memory caches in various cases to improve performance. Some session information is also saved into memory cache to be shared among the cluster nodes. Memcached or Reids can be use for memory cache.
 
-If you use memcached:
+!!! tip
+    Redis support is added in version 11.0. Currently only single-node Redis is supported. Redis Sentinel or Cluster is not supported yet.
 
-```
-[memcached]
-# Replace `localhost` with the memcached address:port if you're using remote memcached
-# POOL-MIN and POOL-MAX is used to control connection pool size. Usually the default is good enough.
-memcached_options = --SERVER=localhost --POOL-MIN=10 --POOL-MAX=100
+=== "memcached"
 
-```
+    ```
+    [memcached]
+    # Replace `localhost` with the memcached address:port if you're using remote memcached
+    # POOL-MIN and POOL-MAX is used to control connection pool size. Usually the default is good enough.
+    memcached_options = --SERVER=localhost --POOL-MIN=10 --POOL-MAX=100
 
-If you use redis:
+    ```
 
-```
-[redis]
-# your redis server address
-redis_host = 127.0.0.1
-# your redis server port
-redis_port = 6379
-# size of connection pool to redis, default is 100
-max_connections = 100
-```
+=== "Redis"
 
-Redis support is added in version 11.0. Currently only single-node Redis is supported. Redis Sentinel or Cluster is not supported yet.
+    ```
+    [redis]
+    # your redis server address
+    redis_host = 127.0.0.1
+    # your redis server port
+    redis_port = 6379
+    # size of connection pool to redis, default is 100
+    max_connections = 100
+    ```
 
 ## Seafile fileserver configuration
 

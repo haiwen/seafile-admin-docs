@@ -1,7 +1,3 @@
----
-status: new
----
-
 # Upgrade a Seafile cluster (Docker)
 
 ## Major and minor version upgrade

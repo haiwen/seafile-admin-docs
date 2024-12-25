@@ -18,9 +18,7 @@ There are two ways to deploy Seafile Pro Edition. Since version 8.0, the recomme
 
 ## Cluster
 
-- [Deploy seafile servers in a cluster](./deploy_in_a_cluster.md)
-- [Enable search and background tasks in a cluster](./enable_search_and_background_tasks_in_a_cluster.md)
-- [Setup Seafile cluster with NFS](./setup_seafile_cluster_with_nfs.md)
+- [Deploy seafile servers in a cluster](./cluster_deployment.md)
 
 
 

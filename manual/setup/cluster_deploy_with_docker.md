@@ -1,16 +1,47 @@
 # Seafile Docker Cluster Deployment
 
-Seafile Docker cluster deployment requires "sticky session" settings in the load balancer. Otherwise sometimes folder download on the web UI can't work properly. Read the [Load Balancer Setting](../setup_binary/deploy_in_a_cluster.md#load-balancer-setting) for details.
+## Architecture
+
+The Seafile cluster solution employs a 3-tier architecture:
+
+* Load balancer tier: Distribute incoming traffic to Seafile servers. HA can be achieved by deploying multiple load balancer instances.
+* Seafile server cluster: a cluster of Seafile server instances. If one instance fails, the load balancer will stop handing traffic to it. So HA is achieved.
+* Backend storage: Distributed storage cluster, e.g.  S3, Openstack Swift or Ceph.
+
+This architecture scales horizontally. That means, you can handle more traffic by adding more machines. The architecture is visualized in the following picture.
+
+![seafile-cluster](../images/seafile-cluster-arch.png)
+
+There are two main components on the Seafile server node: web server (Nginx/Apache) and Seafile app server. The web server passes requests from the clients to Seafile app server. The Seafile app servers work independently. They don't know about each other's state. That means each app server can fail independently without affecting other app server instances. The load balancer is responsible for detecting failure and re-routing requests.
+
+Even though Seafile app servers work independently, they still have to share some session information. All shared session information is stored in memory cache. Thus, all Seafile app servers have to connect to the same memory cache server (cluster). Since Pro Edition 11.0, both memcached and Redis can be used as memory cache. Before 11.0, only memcached is supported. More details about memory cache configuration is available later.
+
+The background server is the workhorse for various background tasks, including full-text indexing, office file preview, virus scanning, LDAP syncing. It should usually be run on a dedicated server for better performance. Currently only one background task server can be running in the entire cluster. If more than one background servers are running, they may conflict with each others when doing some tasks. If you need HA for background task server, you can consider using [Keepalived](http://www.keepalived.org/) to build a hot backup for it.
+
+In the seafile cluster, **only one server** should run the background tasks, including:
+
+* indexing files for search
+* email notification
+* LDAP sync
+* virus scan
+
+Let's assume you have three nodes in your cluster: A, B, and C.
+
+* Node A is backend node that run background tasks.
+* Node B and C are frontend nodes that serving requests from clients.
+
+![cluster-nodes](../images/cluster-nodes.png)
 
 ## Environment
 
+!!! success
+    Since version 11.0, Redis can also be used as memory cache server. But currently only single-node Redis is supported.
+
 !!! note "Prerequisites"
 
-    - We assume you have already deployed ***memcache***, ***MariaDB***, ***ElasticSearch*** in separate machines and use ***S3*** like object storage. 
+    - We assume you have already deployed memory cache server (e.g., ***Memcached***), ***MariaDB***, ***ElasticSearch*** in separate machines and use ***S3*** like object storage. 
 
     - Usually, each node of Seafile Cluster should have at least **2 cores** and **2G memory**. If the above services are deployed together with a node in the Seafile cluster, we recommend that you prepare **4 cores** and **4G memory** for the node (especially if ElasticSearch is also deployed on the node)
-
-System: Ubuntu 24.04
 
 Seafile Server: 2 frontend nodes, 1 backend node
 
@@ -230,13 +261,29 @@ Seafile Server: 2 frontend nodes, 1 backend node
  
 ## Deploy load balance (Optional)
 
+!!! note
+    Since Seafile Pro server 6.0.0, cluster deployment requires "sticky session" settings in the load balancer. Otherwise sometimes folder download on the web UI can't work properly. Read the "Load Balancer Setting" section below for details
+
 Generally speaking, in order to better access the Seafile service, we recommend that you use a load balancing service to access the Seafile cluster and bind your domain name (such as `seafile.cluster.com`) to the load balancing service. Usually, you can use:
 
-- Cloud service provider's load balancing service
+- Cloud service provider's load balancing service (e.g., ***AWS Elastic Load Balancer***)
 - Deploy your own load balancing service, our document will give two of common load balance services:
 
-    - Nginx
-    - HAproxy
+    - ***Nginx***
+    - ***HAproxy***
+
+### AWS Elastic Load Balancer (ELB)
+
+In the AWS ELB management console, after you've added the Seafile server instances to the instance list, you should do two more configurations.
+
+First you should setup HTTP(S) listeners. Ports 443 and 80 of ELB should be forwarded to the ports 80 or 443 of the Seafile servers.
+
+Then you setup health check
+
+![elb-health-check](../images/elb-health-check.png)
+
+Refer to [AWS documentation](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html) about how to setup sticky sessions.
+
 
 ### Nginx
 

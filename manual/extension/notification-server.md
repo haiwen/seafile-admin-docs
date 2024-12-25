@@ -63,7 +63,7 @@ Notification server is enabled on the remote server xxxx
 
 There is no additional features for notification server in the Pro Edition. It works the same as in community edition.
 
-If you enable [clustering](../setup_binary/deploy_in_a_cluster.md), You need to deploy notification server on one of the servers, or a separate server. The load balancer should forward websockets requests to this node.
+If you enable [clustering](../setup_binary/cluster_deployment.md), You need to deploy notification server on one of the servers, or a separate server. The load balancer should forward websockets requests to this node.
 
 Download `.env` and `notification-server.yml` to notification server directory:
 
