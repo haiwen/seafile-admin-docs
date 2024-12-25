@@ -1202,6 +1202,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#environment" class="md-nav__link">
     <span class="md-ellipsis">
       Environment
@@ -1261,6 +1270,15 @@
   
     <nav class="md-nav" aria-label="Deploy load balance (Optional)">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-elastic-load-balancer-elb" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS Elastic Load Balancer (ELB)
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#nginx" class="md-nav__link">
@@ -1676,6 +1694,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../setup_binary/seafile_professional_sdition_software_license_agreement/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../setup_binary/installation_pro/" class="md-nav__link">
         
   
@@ -1696,144 +1735,12 @@
   
   
   
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3_2_3" id="__nav_3_2_3_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Cluster deployment
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2_3">
-            <span class="md-nav__icon md-icon"></span>
-            Cluster deployment
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
     <li class="md-nav__item">
-      <a href="../../setup_binary/deploy_in_a_cluster/" class="md-nav__link">
+      <a href="../../setup_binary/cluster_deployment/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Deploy in a cluster
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../setup_binary/enable_search_and_background_tasks_in_a_cluster/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Search and background tasks in a cluster
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../setup_binary/memcached_mariadb_cluster/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Memcache and MariaDB Cluster
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../setup_binary/setup_seafile_cluster_with_nfs/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Setup Seafile cluster with NFS
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../setup_binary/seafile_professional_sdition_software_license_agreement/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    License
+    Cluster Deployment
   </span>
   
 
@@ -3628,14 +3535,6 @@
     Upgrade Seafile Cluster (Docker)
   </span>
   
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
 
       </a>
     </li>
@@ -4260,6 +4159,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#environment" class="md-nav__link">
     <span class="md-ellipsis">
       Environment
@@ -4321,6 +4229,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#aws-elastic-load-balancer-elb" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS Elastic Load Balancer (ELB)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#nginx" class="md-nav__link">
     <span class="md-ellipsis">
       Nginx
@@ -4380,20 +4297,47 @@
 
 
 <h1 id="seafile-docker-cluster-deployment">Seafile Docker Cluster Deployment<a class="headerlink" href="#seafile-docker-cluster-deployment" title="Permanent link">&para;</a></h1>
-<p>Seafile Docker cluster deployment requires "sticky session" settings in the load balancer. Otherwise sometimes folder download on the web UI can't work properly. Read the <a href="../../setup_binary/deploy_in_a_cluster/#load-balancer-setting">Load Balancer Setting</a> for details.</p>
+<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
+<p>The Seafile cluster solution employs a 3-tier architecture:</p>
+<ul>
+<li>Load balancer tier: Distribute incoming traffic to Seafile servers. HA can be achieved by deploying multiple load balancer instances.</li>
+<li>Seafile server cluster: a cluster of Seafile server instances. If one instance fails, the load balancer will stop handing traffic to it. So HA is achieved.</li>
+<li>Backend storage: Distributed storage cluster, e.g.  S3, Openstack Swift or Ceph.</li>
+</ul>
+<p>This architecture scales horizontally. That means, you can handle more traffic by adding more machines. The architecture is visualized in the following picture.</p>
+<p><img alt="seafile-cluster" src="../../images/seafile-cluster-arch.png" /></p>
+<p>There are two main components on the Seafile server node: web server (Nginx/Apache) and Seafile app server. The web server passes requests from the clients to Seafile app server. The Seafile app servers work independently. They don't know about each other's state. That means each app server can fail independently without affecting other app server instances. The load balancer is responsible for detecting failure and re-routing requests.</p>
+<p>Even though Seafile app servers work independently, they still have to share some session information. All shared session information is stored in memory cache. Thus, all Seafile app servers have to connect to the same memory cache server (cluster). Since Pro Edition 11.0, both memcached and Redis can be used as memory cache. Before 11.0, only memcached is supported. More details about memory cache configuration is available later.</p>
+<p>The background server is the workhorse for various background tasks, including full-text indexing, office file preview, virus scanning, LDAP syncing. It should usually be run on a dedicated server for better performance. Currently only one background task server can be running in the entire cluster. If more than one background servers are running, they may conflict with each others when doing some tasks. If you need HA for background task server, you can consider using <a href="http://www.keepalived.org/">Keepalived</a> to build a hot backup for it.</p>
+<p>In the seafile cluster, <strong>only one server</strong> should run the background tasks, including:</p>
+<ul>
+<li>indexing files for search</li>
+<li>email notification</li>
+<li>LDAP sync</li>
+<li>virus scan</li>
+</ul>
+<p>Let's assume you have three nodes in your cluster: A, B, and C.</p>
+<ul>
+<li>Node A is backend node that run background tasks.</li>
+<li>Node B and C are frontend nodes that serving requests from clients.</li>
+</ul>
+<p><img alt="cluster-nodes" src="../../images/cluster-nodes.png" /></p>
 <h2 id="environment">Environment<a class="headerlink" href="#environment" title="Permanent link">&para;</a></h2>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>Since version 11.0, Redis can also be used as memory cache server. But currently only single-node Redis is supported.</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Prerequisites</p>
 <ul>
 <li>
-<p>We assume you have already deployed <strong><em>memcache</em></strong>, <strong><em>MariaDB</em></strong>, <strong><em>ElasticSearch</em></strong> in separate machines and use <strong><em>S3</em></strong> like object storage. </p>
+<p>We assume you have already deployed memory cache server (e.g., <strong><em>Memcached</em></strong>), <strong><em>MariaDB</em></strong>, <strong><em>ElasticSearch</em></strong> in separate machines and use <strong><em>S3</em></strong> like object storage. </p>
 </li>
 <li>
 <p>Usually, each node of Seafile Cluster should have at least <strong>2 cores</strong> and <strong>2G memory</strong>. If the above services are deployed together with a node in the Seafile cluster, we recommend that you prepare <strong>4 cores</strong> and <strong>4G memory</strong> for the node (especially if ElasticSearch is also deployed on the node)</p>
 </li>
 </ul>
 </div>
-<p>System: Ubuntu 24.04</p>
 <p>Seafile Server: 2 frontend nodes, 1 backend node</p>
 <h2 id="deploy-seafile-service">Deploy Seafile service<a class="headerlink" href="#deploy-seafile-service" title="Permanent link">&para;</a></h2>
 <h3 id="deploy-the-first-seafile-frontend-node">Deploy the first Seafile frontend node<a class="headerlink" href="#deploy-the-first-seafile-frontend-node" title="Permanent link">&para;</a></h3>
@@ -4606,17 +4550,27 @@ Done.
 </li>
 </ol>
 <h2 id="deploy-load-balance-optional">Deploy load balance (Optional)<a class="headerlink" href="#deploy-load-balance-optional" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since Seafile Pro server 6.0.0, cluster deployment requires "sticky session" settings in the load balancer. Otherwise sometimes folder download on the web UI can't work properly. Read the "Load Balancer Setting" section below for details</p>
+</div>
 <p>Generally speaking, in order to better access the Seafile service, we recommend that you use a load balancing service to access the Seafile cluster and bind your domain name (such as <code>seafile.cluster.com</code>) to the load balancing service. Usually, you can use:</p>
 <ul>
-<li>Cloud service provider's load balancing service</li>
+<li>Cloud service provider's load balancing service (e.g., <strong><em>AWS Elastic Load Balancer</em></strong>)</li>
 <li>
 <p>Deploy your own load balancing service, our document will give two of common load balance services:</p>
 <ul>
-<li>Nginx</li>
-<li>HAproxy</li>
+<li><strong><em>Nginx</em></strong></li>
+<li><strong><em>HAproxy</em></strong></li>
 </ul>
 </li>
 </ul>
+<h3 id="aws-elastic-load-balancer-elb">AWS Elastic Load Balancer (ELB)<a class="headerlink" href="#aws-elastic-load-balancer-elb" title="Permanent link">&para;</a></h3>
+<p>In the AWS ELB management console, after you've added the Seafile server instances to the instance list, you should do two more configurations.</p>
+<p>First you should setup HTTP(S) listeners. Ports 443 and 80 of ELB should be forwarded to the ports 80 or 443 of the Seafile servers.</p>
+<p>Then you setup health check</p>
+<p><img alt="elb-health-check" src="../../images/elb-health-check.png" /></p>
+<p>Refer to <a href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html">AWS documentation</a> about how to setup sticky sessions.</p>
 <h3 id="nginx">Nginx<a class="headerlink" href="#nginx" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Install Nginx in the host if you would like to deploy load balance service</li>

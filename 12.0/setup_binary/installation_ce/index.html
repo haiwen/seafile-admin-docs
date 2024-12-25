@@ -1726,6 +1726,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../seafile_professional_sdition_software_license_agreement/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../installation_pro/" class="md-nav__link">
         
   
@@ -1746,144 +1767,12 @@
   
   
   
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3_2_3" id="__nav_3_2_3_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Cluster deployment
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2_3">
-            <span class="md-nav__icon md-icon"></span>
-            Cluster deployment
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
     <li class="md-nav__item">
-      <a href="../deploy_in_a_cluster/" class="md-nav__link">
+      <a href="../cluster_deployment/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Deploy in a cluster
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../enable_search_and_background_tasks_in_a_cluster/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Search and background tasks in a cluster
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../memcached_mariadb_cluster/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Memcache and MariaDB Cluster
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../setup_seafile_cluster_with_nfs/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Setup Seafile cluster with NFS
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../seafile_professional_sdition_software_license_agreement/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    License
+    Cluster Deployment
   </span>
   
 
@@ -3681,14 +3570,6 @@
     Upgrade Seafile Cluster (Docker)
   </span>
   
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
 
       </a>
     </li>
@@ -4523,9 +4404,9 @@ source python-venv/bin/activate
 # Notice that this will usually change your prompt so you know the venv is active
 
 # install packages into the active venv with pip (sudo isn&#39;t needed because this is installing in the venv, not system-wide).
-pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.* \
-    pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
-    psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.16.0 lxml python-ldap==3.4.3
+pip3 install --timeout=3600 django==4.2.* future==1.0.* mysqlclient==2.2.* \
+    pymysql pillow==10.4.* pylibmc captcha==0.6.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.* \
+    psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.9.* pysaml2==7.3.* pycryptodome==3.20.* cffi==1.17.0 lxml python-ldap==3.4.* gevent==24.2.*
 </code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -4561,9 +4442,9 @@ sudo apt-get install -y memcached libmemcached-dev
 sudo mkdir /opt/seafile
 cd /opt/seafile
 
-sudo pip3 install --timeout=3600 django==4.2.* future==0.18.* mysqlclient==2.1.* \
-    pymysql pillow==10.2.* pylibmc captcha==0.5.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 \
-    psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 lxml python-ldap==3.4.3
+sudo pip3 install --timeout=3600 django==4.2.* future==1.0.* mysqlclient==2.2.*  \
+    pymysql pillow==10.4.* pylibmc captcha==0.6.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.* \
+    psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.95.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 python-ldap==3.4.3 lxml gevent==24.2.*
 </code></pre></div>
 </div>
 </div>
@@ -4864,7 +4745,7 @@ systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> 
 <p>Install Redis with package installers in your OS.</p>
 </li>
 <li>
-<p>refer to <a href="https://docs.djangoproject.com/en/4.2/topics/cache/#redis">Django's documentation about using Redis cache</a> to add Redis configurations to <code>seahub_settings.py</code>.</p>
+<p>Refer to <a href="https://docs.djangoproject.com/en/4.2/topics/cache/#redis">Django's documentation about using Redis cache</a> to add Redis configurations to <code>seahub_settings.py</code>.</p>
 </li>
 </ol>
 </div>
@@ -4886,16 +4767,16 @@ systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> 
 <div class="highlight"><pre><span></span><code>pwgen<span class="w"> </span>-s<span class="w"> </span><span class="m">40</span><span class="w"> </span><span class="m">1</span>
 </code></pre></div></p>
 </div>
-<div class="highlight"><pre><span></span><code>JWT_PRIVATE_KEY=&lt;Your jwt private key&gt;
-SEAFILE_SERVER_PROTOCOL=https
-SEAFILE_SERVER_HOSTNAME=seafile.example.com
-SEAFILE_MYSQL_DB_HOST=&lt;your database host&gt;
-SEAFILE_MYSQL_DB_PORT=3306
-SEAFILE_MYSQL_DB_USER=seafile
-SEAFILE_MYSQL_DB_PASSWORD=&lt;your MySQL password&gt;
-SEAFILE_MYSQL_DB_CCNET_DB_NAME=ccnet_db
-SEAFILE_MYSQL_DB_SEAFILE_DB_NAME=seafile_db
-SEAFILE_MYSQL_DB_SEAHUB_DB_NAME=seahub_db
+<div class="highlight"><pre><span></span><code><span class="nv">JWT_PRIVATE_KEY</span><span class="o">=</span>&lt;Your<span class="w"> </span>jwt<span class="w"> </span>private<span class="w"> </span>key&gt;
+<span class="nv">SEAFILE_SERVER_PROTOCOL</span><span class="o">=</span>https
+<span class="nv">SEAFILE_SERVER_HOSTNAME</span><span class="o">=</span>seafile.example.com
+<span class="nv">SEAFILE_MYSQL_DB_HOST</span><span class="o">=</span>&lt;your<span class="w"> </span>database<span class="w"> </span>host&gt;
+<span class="nv">SEAFILE_MYSQL_DB_PORT</span><span class="o">=</span><span class="m">3306</span>
+<span class="nv">SEAFILE_MYSQL_DB_USER</span><span class="o">=</span>seafile
+<span class="nv">SEAFILE_MYSQL_DB_PASSWORD</span><span class="o">=</span>&lt;your<span class="w"> </span>MySQL<span class="w"> </span>password&gt;
+<span class="nv">SEAFILE_MYSQL_DB_CCNET_DB_NAME</span><span class="o">=</span>ccnet_db
+<span class="nv">SEAFILE_MYSQL_DB_SEAFILE_DB_NAME</span><span class="o">=</span>seafile_db
+<span class="nv">SEAFILE_MYSQL_DB_SEAHUB_DB_NAME</span><span class="o">=</span>seahub_db
 </code></pre></div>
 <h2 id="starting-seafile-server">Starting Seafile Server<a class="headerlink" href="#starting-seafile-server" title="Permanent link">&para;</a></h2>
 <p>Run the following commands in <code>/opt/seafile/seafile-server-latest</code>:</p>

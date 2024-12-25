@@ -10,13 +10,13 @@
         <meta name="author" content="seafile">
       
       
-        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/12.0/setup_binary/deploy_in_a_cluster/">
+        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/12.0/setup_binary/cluster_deployment/">
       
       
         <link rel="prev" href="../installation_pro/">
       
       
-        <link rel="next" href="../enable_search_and_background_tasks_in_a_cluster/">
+        <link rel="next" href="../start_seafile_at_system_bootup/">
       
       
       <link rel="icon" href="../../media/favicon.ico">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Deploy in a cluster - Seafile Admin Manual</title>
+        <title>Cluster Deployment - Seafile Admin Manual</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#deploy-in-a-cluster" class="md-skip">
+        <a href="#cluster-deployment" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Deploy in a cluster
+              Cluster Deployment
             
           </span>
         </div>
@@ -1530,6 +1530,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../seafile_professional_sdition_software_license_agreement/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../installation_pro/" class="md-nav__link">
         
   
@@ -1552,48 +1573,6 @@
   
   
   
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_3" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_3_2_3" id="__nav_3_2_3_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Cluster deployment
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_3_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3_2_3">
-            <span class="md-nav__icon md-icon"></span>
-            Cluster deployment
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-    
-  
-  
-  
     <li class="md-nav__item md-nav__item--active">
       
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
@@ -1606,7 +1585,7 @@
           
   
   <span class="md-ellipsis">
-    Deploy in a cluster
+    Cluster Deployment
   </span>
   
 
@@ -1617,7 +1596,7 @@
         
   
   <span class="md-ellipsis">
-    Deploy in a cluster
+    Cluster Deployment
   </span>
   
 
@@ -1639,37 +1618,46 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#architecture" class="md-nav__link">
+  <a href="#environment" class="md-nav__link">
     <span class="md-ellipsis">
-      Architecture
+      Environment
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#preparation" class="md-nav__link">
+  <a href="#preparation-all-nodes" class="md-nav__link">
     <span class="md-ellipsis">
-      Preparation
+      Preparation (all nodes)
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Preparation">
+    <nav class="md-nav" aria-label="Preparation (all nodes)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#hardware-database-memory-cache" class="md-nav__link">
+  <a href="#install-prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
-      Hardware, Database, Memory Cache
+      Install prerequisites
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#install-python-libraries" class="md-nav__link">
+  <a href="#create-user-seafile" class="md-nav__link">
     <span class="md-ellipsis">
-      Install Python libraries
+      Create user seafile
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#placing-the-seafile-pe-license-in-optseafile" class="md-nav__link">
+    <span class="md-ellipsis">
+      Placing the Seafile PE license in /opt/seafile
     </span>
   </a>
   
@@ -1681,42 +1669,42 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#configure-a-single-node" class="md-nav__link">
+  <a href="#setup-the-first-frontend-node" class="md-nav__link">
     <span class="md-ellipsis">
-      Configure a Single Node
+      Setup the first frontend Node
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Configure a Single Node">
+    <nav class="md-nav" aria-label="Setup the first frontend Node">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#get-the-license" class="md-nav__link">
+  <a href="#setup-seafile-server-pro" class="md-nav__link">
     <span class="md-ellipsis">
-      Get the license
+      Setup Seafile server Pro
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#downloaduncompress-seafile-professional-server" class="md-nav__link">
+  <a href="#create-and-modify-configuration-files-in-optseafileconf" class="md-nav__link">
     <span class="md-ellipsis">
-      Download/Uncompress Seafile Professional Server
+      Create and Modify configuration files in /opt/seafile/conf
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Create and Modify configuration files in /opt/seafile/conf">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#env" class="md-nav__link">
+    <span class="md-ellipsis">
+      .env
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#setup-seafile" class="md-nav__link">
-    <span class="md-ellipsis">
-      Setup Seafile
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Setup Seafile">
-      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#seafileconf" class="md-nav__link">
@@ -1760,15 +1748,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#backend-storage-settings" class="md-nav__link">
-    <span class="md-ellipsis">
-      Backend Storage Settings
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#setup-nginxapache-and-http" class="md-nav__link">
     <span class="md-ellipsis">
       Setup Nginx/Apache and HTTP
@@ -1800,15 +1779,6 @@
   
     <nav class="md-nav" aria-label="Configure other nodes">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#copy-the-config-to-all-seafile-servers" class="md-nav__link">
-    <span class="md-ellipsis">
-      Copy the config to all Seafile servers
-    </span>
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#backend-node" class="md-nav__link">
@@ -1862,6 +1832,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nginx
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#haproxy" class="md-nav__link">
     <span class="md-ellipsis">
       HAProxy
@@ -1893,102 +1872,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#https" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTPS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-deploy-seadoc-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      (Optional) Deploy SeaDoc server
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../enable_search_and_background_tasks_in_a_cluster/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Search and background tasks in a cluster
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../memcached_mariadb_cluster/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Memcache and MariaDB Cluster
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../setup_seafile_cluster_with_nfs/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Setup Seafile cluster with NFS
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../seafile_professional_sdition_software_license_agreement/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    License
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -3782,14 +3687,6 @@
     Upgrade Seafile Cluster (Docker)
   </span>
   
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
 
       </a>
     </li>
@@ -4414,37 +4311,46 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#architecture" class="md-nav__link">
+  <a href="#environment" class="md-nav__link">
     <span class="md-ellipsis">
-      Architecture
+      Environment
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#preparation" class="md-nav__link">
+  <a href="#preparation-all-nodes" class="md-nav__link">
     <span class="md-ellipsis">
-      Preparation
+      Preparation (all nodes)
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Preparation">
+    <nav class="md-nav" aria-label="Preparation (all nodes)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#hardware-database-memory-cache" class="md-nav__link">
+  <a href="#install-prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
-      Hardware, Database, Memory Cache
+      Install prerequisites
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#install-python-libraries" class="md-nav__link">
+  <a href="#create-user-seafile" class="md-nav__link">
     <span class="md-ellipsis">
-      Install Python libraries
+      Create user seafile
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#placing-the-seafile-pe-license-in-optseafile" class="md-nav__link">
+    <span class="md-ellipsis">
+      Placing the Seafile PE license in /opt/seafile
     </span>
   </a>
   
@@ -4456,42 +4362,42 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#configure-a-single-node" class="md-nav__link">
+  <a href="#setup-the-first-frontend-node" class="md-nav__link">
     <span class="md-ellipsis">
-      Configure a Single Node
+      Setup the first frontend Node
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Configure a Single Node">
+    <nav class="md-nav" aria-label="Setup the first frontend Node">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#get-the-license" class="md-nav__link">
+  <a href="#setup-seafile-server-pro" class="md-nav__link">
     <span class="md-ellipsis">
-      Get the license
+      Setup Seafile server Pro
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#downloaduncompress-seafile-professional-server" class="md-nav__link">
+  <a href="#create-and-modify-configuration-files-in-optseafileconf" class="md-nav__link">
     <span class="md-ellipsis">
-      Download/Uncompress Seafile Professional Server
+      Create and Modify configuration files in /opt/seafile/conf
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Create and Modify configuration files in /opt/seafile/conf">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#env" class="md-nav__link">
+    <span class="md-ellipsis">
+      .env
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#setup-seafile" class="md-nav__link">
-    <span class="md-ellipsis">
-      Setup Seafile
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Setup Seafile">
-      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#seafileconf" class="md-nav__link">
@@ -4535,15 +4441,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#backend-storage-settings" class="md-nav__link">
-    <span class="md-ellipsis">
-      Backend Storage Settings
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#setup-nginxapache-and-http" class="md-nav__link">
     <span class="md-ellipsis">
       Setup Nginx/Apache and HTTP
@@ -4575,15 +4472,6 @@
   
     <nav class="md-nav" aria-label="Configure other nodes">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#copy-the-config-to-all-seafile-servers" class="md-nav__link">
-    <span class="md-ellipsis">
-      Copy the config to all Seafile servers
-    </span>
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#backend-node" class="md-nav__link">
@@ -4637,6 +4525,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nginx
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#haproxy" class="md-nav__link">
     <span class="md-ellipsis">
       HAProxy
@@ -4668,6 +4565,24 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#https" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTPS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-deploy-seadoc-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      (Optional) Deploy SeaDoc server
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4686,171 +4601,284 @@
   
 
 
-<h1 id="deploy-in-a-cluster">Deploy in a cluster<a class="headerlink" href="#deploy-in-a-cluster" title="Permanent link">&para;</a></h1>
+<h1 id="cluster-deployment">Cluster Deployment<a class="headerlink" href="#cluster-deployment" title="Permanent link">&para;</a></h1>
+<div class="admonition tip">
+<p class="admonition-title">Since version 8.0, the recommend way to install Seafile clsuter is using <a href="../../setup/cluster_deploy_with_docker/"><em>Docker</em></a></p>
+</div>
+<h2 id="environment">Environment<a class="headerlink" href="#environment" title="Permanent link">&para;</a></h2>
+<div class="admonition success">
+<p class="admonition-title">About Redis</p>
+<p>Since version 11.0, Redis can also be used as memory cache server. But currently only single-node Redis is supported.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Prerequisites</p>
+<ul>
+<li>
+<p>We assume you have already deployed memory cache server (e.g., <strong><em>Memcached</em></strong>), <strong><em>MariaDB</em></strong>, <strong><em>ElasticSearch</em></strong> in separate machines and use <strong><em>S3</em></strong> like object storage. </p>
+</li>
+<li>
+<p>Usually, each node of Seafile Cluster should have at least <strong>2 cores</strong> and <strong>2G memory</strong>. If the above services are deployed together with a node in the Seafile cluster, we recommend that you prepare <strong>4 cores</strong> and <strong>4G memory</strong> for the node (especially if ElasticSearch is also deployed on the node)</p>
+</li>
+</ul>
+</div>
+<p>System: Ubuntu 24.04/22.04, Debian 12/11</p>
+<p>Seafile Server: 2 frontend nodes, 1 backend node</p>
+<h2 id="preparation-all-nodes">Preparation (all nodes)<a class="headerlink" href="#preparation-all-nodes" title="Permanent link">&para;</a></h2>
+<h3 id="install-prerequisites">Install prerequisites<a class="headerlink" href="#install-prerequisites" title="Permanent link">&para;</a></h3>
+<p>Please follow <a href="../installation_pro/#installing-prerequisites">here</a> to install prerequisites</p>
+<h3 id="create-user-seafile">Create user <code>seafile</code><a class="headerlink" href="#create-user-seafile" title="Permanent link">&para;</a></h3>
+<p>Create a new user and follow the instructions on the screen:</p>
+<div class="highlight"><pre><span></span><code>adduser seafile
+</code></pre></div>
+<p>Change ownership of the created directory to the new user:</p>
+<div class="highlight"><pre><span></span><code>chown -R seafile: /opt/seafile
+</code></pre></div>
+<p>All the following steps are done as user seafile.</p>
+<p>Change to user seafile:</p>
+<div class="highlight"><pre><span></span><code>su seafile
+</code></pre></div>
+<h3 id="placing-the-seafile-pe-license-in-optseafile">Placing the Seafile PE license in <code>/opt/seafile</code><a class="headerlink" href="#placing-the-seafile-pe-license-in-optseafile" title="Permanent link">&para;</a></h3>
+<p>Save the license file in Seafile's programm directory <code>/opt/seafile</code>. Make sure that the name is <code>seafile-license.txt</code>. </p>
+<div class="admonition danger">
+<p class="admonition-title">If the license file has a different name or cannot be read, Seafile server will not start</p>
+</div>
+<h2 id="setup-the-first-frontend-node">Setup the first frontend Node<a class="headerlink" href="#setup-the-first-frontend-node" title="Permanent link">&para;</a></h2>
+<h3 id="setup-seafile-server-pro">Setup Seafile server Pro<a class="headerlink" href="#setup-seafile-server-pro" title="Permanent link">&para;</a></h3>
+<p>Please follow <em>Installation of Seafile Server Professional Edition</em> to setup:</p>
+<ul>
+<li><a href="../installation_pro/#downloading-the-install-package">Download the install package</a></li>
+<li><a href="../installation_pro/#uncompressing-the-package">Uncompress the package</a></li>
+<li><a href="../installation_pro/#setting-up-seafile-pro-databases">Set up Seafile Pro databases</a></li>
+</ul>
+<h3 id="create-and-modify-configuration-files-in-optseafileconf">Create and Modify configuration files in <code>/opt/seafile/conf</code><a class="headerlink" href="#create-and-modify-configuration-files-in-optseafileconf" title="Permanent link">&para;</a></h3>
+<h4 id="env">.env<a class="headerlink" href="#env" title="Permanent link">&para;</a></h4>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Since Seafile Pro server 6.0.0, cluster deployment requires "sticky session" settings in the load balancer. Otherwise sometimes folder download on the web UI can't work properly. Read the "Load Balancer Setting" section below for details</p>
+<p><code>JWT_PRIVATE_KEY</code>, A random string with a length of no less than 32 characters can be generated from: 
+<div class="highlight"><pre><span></span><code>pwgen<span class="w"> </span>-s<span class="w"> </span><span class="m">40</span><span class="w"> </span><span class="m">1</span>
+</code></pre></div></p>
 </div>
-<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
-<p>The Seafile cluster solution employs a 3-tier architecture:</p>
-<ul>
-<li>Load balancer tier: Distribute incoming traffic to Seafile servers. HA can be achieved by deploying multiple load balancer instances.</li>
-<li>Seafile server cluster: a cluster of Seafile server instances. If one instance fails, the load balancer will stop handing traffic to it. So HA is achieved.</li>
-<li>Backend storage: Distributed storage cluster, e.g.  S3, Openstack Swift or Ceph.</li>
-</ul>
-<p>This architecture scales horizontally. That means, you can handle more traffic by adding more machines. The architecture is visualized in the following picture.</p>
-<p><img alt="seafile-cluster" src="../../images/seafile-cluster-arch.png" /></p>
-<p>There are two main components on the Seafile server node: web server (Nginx/Apache) and Seafile app server. The web server passes requests from the clients to Seafile app server. The Seafile app servers work independently. They don't know about each other's state. That means each app server can fail independently without affecting other app server instances. The load balancer is responsible for detecting failure and re-routing requests.</p>
-<p>Even though Seafile app servers work independently, they still have to share some session information. All shared session information is stored in memory cache. Thus, all Seafile app servers have to connect to the same memory cache server (cluster). Since Pro Edition 11.0, both memcached and Redis can be used as memory cache. Before 11.0, only memcached is supported. More details about memory cache configuration is available later.</p>
-<p>The background server is the workhorse for various background tasks, including full-text indexing, office file preview, virus scanning, LDAP syncing. It should usually be run on a dedicated server for better performance. Currently only one background task server can be running in the entire cluster. If more than one background servers are running, they may conflict with each others when doing some tasks. If you need HA for background task server, you can consider using <a href="http://www.keepalived.org/">Keepalived</a> to build a hot backup for it. More details can be found in <a href="../enable_search_and_background_tasks_in_a_cluster/">background server setup</a>.</p>
-<p>All Seafile app servers access the same set of user data. The user data has two parts: One in the MySQL database and the other one in the backend storage cluster (S3, Ceph etc.). All app servers serve the data equally to the clients.</p>
-<p>All app servers have to connect to the same database or database cluster. We recommend to use MariaDB Galera Cluster if you need a database cluster.</p>
-<p>There are a few steps to deploy a Seafile cluster:</p>
-<ol>
-<li>Prepare hardware, operating systems, memory cache and database</li>
-<li>Setup a single Seafile server node</li>
-<li>Copy the deployment to other Seafile nodes</li>
-<li>Setup Nginx/Apache and firewall rules</li>
-<li>Setup load balancer</li>
-<li><a href="../enable_search_and_background_tasks_in_a_cluster/">Setup backgroup task node</a></li>
-</ol>
-<h2 id="preparation">Preparation<a class="headerlink" href="#preparation" title="Permanent link">&para;</a></h2>
-<h3 id="hardware-database-memory-cache">Hardware, Database, Memory Cache<a class="headerlink" href="#hardware-database-memory-cache" title="Permanent link">&para;</a></h3>
-<p>At least 3 Linux server with at least 4 cores, 8GB RAM. Two servers work as frontend servers, while one server works as background task server. Virtual machines are sufficient for most cases.</p>
-<p>In small cluster, you can re-use the 3 Seafile servers to run memcached cluster and MariaDB cluster. For larger clusters, you can have 3 more dedicated server to run memcached cluster and MariaDB cluster. Because the load on these two clusters are not high, they can share the hardware to save cost. Documentation about how to setup memcached cluster and MariaDB cluster can be found <a href="../memcached_mariadb_cluster/">here</a>.</p>
-<p>Since version 11.0, Redis can also be used as memory cache server. But currently only single-node Redis is supported.</p>
-<h3 id="install-python-libraries">Install Python libraries<a class="headerlink" href="#install-python-libraries" title="Permanent link">&para;</a></h3>
-<p>On each mode, you need to install some python libraries.</p>
-<p>First make sure your have installed Python 2.7, then:</p>
-<div class="highlight"><pre><span></span><code>sudo easy_install pip
-sudo pip install boto
+<div class="highlight"><pre><span></span><code><span class="nv">JWT_PRIVATE_KEY</span><span class="o">=</span>&lt;Your<span class="w"> </span>jwt<span class="w"> </span>private<span class="w"> </span>key&gt;
+<span class="nv">SEAFILE_SERVER_PROTOCOL</span><span class="o">=</span>https
+<span class="nv">SEAFILE_SERVER_HOSTNAME</span><span class="o">=</span>seafile.example.com
+<span class="nv">SEAFILE_MYSQL_DB_HOST</span><span class="o">=</span>&lt;your<span class="w"> </span>database<span class="w"> </span>host&gt;
+<span class="nv">SEAFILE_MYSQL_DB_PORT</span><span class="o">=</span><span class="m">3306</span>
+<span class="nv">SEAFILE_MYSQL_DB_USER</span><span class="o">=</span>seafile
+<span class="nv">SEAFILE_MYSQL_DB_PASSWORD</span><span class="o">=</span>&lt;your<span class="w"> </span>MySQL<span class="w"> </span>password&gt;
+<span class="nv">SEAFILE_MYSQL_DB_CCNET_DB_NAME</span><span class="o">=</span>ccnet_db
+<span class="nv">SEAFILE_MYSQL_DB_SEAFILE_DB_NAME</span><span class="o">=</span>seafile_db
+<span class="nv">SEAFILE_MYSQL_DB_SEAHUB_DB_NAME</span><span class="o">=</span>seahub_db
 </code></pre></div>
-<p>If you receive an error stating "Wheel installs require setuptools &gt;= ...", run this between the pip and boto lines above</p>
-<div class="highlight"><pre><span></span><code>sudo pip install setuptools --no-use-wheel --upgrade
-</code></pre></div>
-<h2 id="configure-a-single-node">Configure a Single Node<a class="headerlink" href="#configure-a-single-node" title="Permanent link">&para;</a></h2>
-<p>You should make sure the config files on every Seafile server are consistent.</p>
-<h3 id="get-the-license">Get the license<a class="headerlink" href="#get-the-license" title="Permanent link">&para;</a></h3>
-<p>Put the license you get under the top level diretory. In our wiki, we use the diretory <code>/data/haiwen/</code> as the top level directory.</p>
-<h3 id="downloaduncompress-seafile-professional-server">Download/Uncompress Seafile Professional Server<a class="headerlink" href="#downloaduncompress-seafile-professional-server" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>tar xf seafile-pro-server_8.0.0_x86-64.tar.gz
-</code></pre></div>
-<p>Now you have:</p>
-<div class="highlight"><pre><span></span><code>haiwen
-├── seafile-license.txt
-└── seafile-pro-server-8.0.0/
-</code></pre></div>
-<h3 id="setup-seafile">Setup Seafile<a class="headerlink" href="#setup-seafile" title="Permanent link">&para;</a></h3>
-<p>Please follow <a href="../installation_pro/">Download and Setup Seafile Professional Server With MySQL</a> to setup a single Seafile server node.</p>
-<div class="admonition note">
-<p class="admonition-title">Use the load balancer's address or domain name for the server address. Don't use the local IP address of each Seafile server machine. This assures the user will always access your service via the load balancers</p>
-</div>
-<p>After the setup process is done, you still have to do a few manual changes to the config files.</p>
 <h4 id="seafileconf">seafile.conf<a class="headerlink" href="#seafileconf" title="Permanent link">&para;</a></h4>
-<p>If you use a single memcached server, you have to add the following configuration to <code>seafile.conf</code></p>
-<div class="highlight"><pre><span></span><code>[cluster]
-enabled = true
-
-[memcached]
-memcached_options = --SERVER=192.168.1.134 --POOL-MIN=10 --POOL-MAX=100
+<ol>
+<li>
+<p>Add or modify the following configuration to <code>seafile.conf</code>:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Memcached</label><label for="__tabbed_1_2">Redis</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>[memcached]
+memcached_options = --SERVER=&lt;your memcached ip&gt;[:&lt;your memcached port&gt;] --POOL-MIN=10 --POOL-MAX=100
 </code></pre></div>
-<p>If you use memcached cluster, the recommended way to setup memcached clusters can be found <a href="../memcached_mariadb_cluster/">here</a>.</p>
-<p>You'll setup two memcached server, in active/standby mode. A floating IP address will be assigned to the current active memcached node. So you have to configure the address in seafile.conf accordingly.</p>
-<div class="highlight"><pre><span></span><code>[cluster]
-enabled = true
-
-[memcached]
-memcached_options = --SERVER=&lt;floating IP address&gt; --POOL-MIN=10 --POOL-MAX=100
-</code></pre></div>
-<p>If you are using Redis as cache, add following configurations:</p>
-<div class="highlight"><pre><span></span><code>[cluster]
-enabled = true
-
-[redis]
-# your redis server address
-redis_server = 127.0.0.1
-# your redis server port
-redis_port = 6379
-# size of connection pool to redis, default is 100
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>[redis]
+redis_host = &lt;your redis ip&gt;
+redis_port = &lt;your redis port, default 6379&gt;
 max_connections = 100
 </code></pre></div>
-<p>Currently only single-node Redis is supported. Redis Sentinel or Cluster is not supported yet.</p>
-<p>(Optional) The Seafile server also opens a port for the load balancers to run health checks. Seafile by default uses port 11001. You can change this by adding the following config option to <code>seafile.conf</code></p>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Enable cluster mode</p>
+<div class="highlight"><pre><span></span><code>[cluster]
+enabled = true
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">More options in <code>cluster</code> section</p>
+<p>The Seafile server also opens a port for the load balancers to run health checks. Seafile by default uses port <code>11001</code>. You can change this by adding the following config:</p>
 <div class="highlight"><pre><span></span><code>[cluster]
 health_check_port = 12345
 </code></pre></div>
+</div>
+</li>
+<li>
+<p>Enable backend storage:</p>
+<ul>
+<li><a href="../../setup/setup_with_s3/">S3</a></li>
+<li><a href="../../setup/setup_with_swift/">OpenStack Swift</a></li>
+<li><a href="../../setup/setup_with_ceph/">Ceph</a></li>
+</ul>
+</li>
+</ol>
 <h4 id="seahub_settingspy">seahub_settings.py<a class="headerlink" href="#seahub_settingspy" title="Permanent link">&para;</a></h4>
-<p>You must setup and use memory cache when deploying Seafile cluster. Refer to <a href="../../config/seahub_settings_py/#cache">"memory cache"</a> to configure memory cache in Seahub.</p>
-<p>Also add following options to seahub_setting.py. These settings tell Seahub to store avatar in database and cache avatar in memcached, and store css CACHE to local memory.</p>
+<ol>
+<li>
+<p>You must setup and use memory cache when deploying Seafile cluster, please add or modify the following configuration to <code>seahub_settings.py</code>:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Memcached</label><label for="__tabbed_2_2">Redis</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">CACHES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;BACKEND&#39;</span><span class="p">:</span> <span class="s1">&#39;django_pylibmc.memcached.PyLibMCCache&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;LOCATION&#39;</span><span class="p">:</span> <span class="s1">&#39;&lt;your Memcached host&gt;:&lt;your Memcached port, default 11211&gt;&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>please Refer to <a href="https://docs.djangoproject.com/en/4.2/topics/cache/#redis">Django's documentation about using Redis cache</a> to add Redis configurations to <code>seahub_settings.py</code>.</p>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Add following options to seahub_setting.py, which will tell Seahub to store avatar in database and cache avatar in memcached, and store css CACHE to local memory.</p>
 <div class="highlight"><pre><span></span><code>AVATAR_FILE_STORAGE = &#39;seahub.base.database_storage.DatabaseStorage&#39;
 </code></pre></div>
+</li>
+</ol>
 <h4 id="seafeventsconf">seafevents.conf<a class="headerlink" href="#seafeventsconf" title="Permanent link">&para;</a></h4>
-<p>Here is an example <code>[INDEX FILES]</code> section:</p>
+<p>Modify the <code>[INDEX FILES]</code> section to enable full test search, we take <em>ElasticSearch</em> for example:</p>
 <div class="highlight"><pre><span></span><code>[INDEX FILES]
 enabled = true
 interval = 10m
-highlight = fvh     # This configuration is only available for Seafile 6.3.0 pro and above.
+highlight = fvh
 index_office_pdf = true
-es_host = background.seafile.com
-es_port = 9200
+es_host = &lt;your ElasticSearch host&gt;
+es_port = &lt;your ElasticSearch port, default 9200&gt;
 </code></pre></div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p><code>enable = true</code> should be left unchanged. It means the file search feature is enabled.</p>
-</div>
 <h3 id="update-seahub-database">Update Seahub Database<a class="headerlink" href="#update-seahub-database" title="Permanent link">&para;</a></h3>
 <p>In cluster environment, we have to store avatars in the database instead of in a local disk.</p>
-<div class="highlight"><pre><span></span><code>CREATE TABLE `avatar_uploaded` (`filename` TEXT NOT NULL, `filename_md5` CHAR(32) NOT NULL PRIMARY KEY, `data` MEDIUMTEXT NOT NULL, `size` INTEGER NOT NULL, `mtime` datetime NOT NULL);
+<div class="highlight"><pre><span></span><code>mysql -h&lt;your MySQL host&gt; -P&lt;your MySQL port&gt; -useafile -p&lt;user seafile&#39;s password&gt;
+
+# enter MySQL environment
+USE seahub_db;
+
+CREATE TABLE `avatar_uploaded` (`filename` TEXT NOT NULL, `filename_md5` CHAR(32) NOT NULL PRIMARY KEY, `data` MEDIUMTEXT NOT NULL, `size` INTEGER NOT NULL, `mtime` datetime NOT NULL);
 </code></pre></div>
-<h3 id="backend-storage-settings">Backend Storage Settings<a class="headerlink" href="#backend-storage-settings" title="Permanent link">&para;</a></h3>
-<p>You also need to add the settings for backend cloud storage systems to the config files.</p>
-<ul>
-<li>For NFS: <a href="../setup_seafile_cluster_with_nfs/">Setup Seafile cluster with NFS</a></li>
-<li>For S3: <a href="../../setup/setup_with_s3/">Setup With Amazon S3</a></li>
-<li>For OpenStack Swift: <a href="../../setup/setup_with_swift/">Setup With OpenStackSwift</a></li>
-</ul>
 <h3 id="setup-nginxapache-and-http">Setup Nginx/Apache and HTTP<a class="headerlink" href="#setup-nginxapache-and-http" title="Permanent link">&para;</a></h3>
 <p>Nginx/Apache with HTTP need to set it up on each machine running Seafile server. This is make sure only port 80 need to be exposed to load balancer. (HTTPS should be setup at the load balancer)</p>
 <p>Please check the following documents on how to setup HTTP with <a href="../https_with_nginx/">Nginx</a>. (HTTPS is not needed)</p>
 <h3 id="run-and-test-the-single-node">Run and Test the Single Node<a class="headerlink" href="#run-and-test-the-single-node" title="Permanent link">&para;</a></h3>
 <p>Once you have finished configuring this single node, start it to test if it runs properly:</p>
-<div class="highlight"><pre><span></span><code>cd /data/haiwen/seafile-server-latest
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For installations using python virtual environment, activate it if it isn't already active</p>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>python-venv/bin/activate
+</code></pre></div>
+</div>
+<div class="highlight"><pre><span></span><code>cd /opt/seafile/seafile-server-latest
+su seafile
 ./seafile.sh start
 ./seahub.sh start
 </code></pre></div>
 <div class="admonition success">
 <p class="admonition-title">Success</p>
-<p>The first time you start seahub, the script would prompt you to create an admin account for your Seafile server.</p>
+<p>The first time you start seahub, the script would prompt you to create an admin account for your Seafile server, then you can visit <code>http://ip-address-of-this-node:80</code> and login with the admin account to test if this node is working fine or not.</p>
 </div>
-<p>Open your browser, visit <code>http://ip-address-of-this-node:80</code> and login with the admin account.</p>
 <h2 id="configure-other-nodes">Configure other nodes<a class="headerlink" href="#configure-other-nodes" title="Permanent link">&para;</a></h2>
-<p>Now you have one node working fine, let's continue to configure more nodes.</p>
-<h3 id="copy-the-config-to-all-seafile-servers">Copy the config to all Seafile servers<a class="headerlink" href="#copy-the-config-to-all-seafile-servers" title="Permanent link">&para;</a></h3>
-<p>Supposed your Seafile installation directory is <code>/data/haiwen</code>, compress this whole directory into a tarball and copy the tarball to all other Seafile server machines. You can simply uncompress the tarball and use it.</p>
-<p>On each node, run <code>./seafile.sh</code> and <code>./seahub.sh</code> to start Seafile server.</p>
+<p>If the first node works fine, you can compress the whole directory <code>/opt/seafile</code> into a tarball and copy it to all other Seafile server nodes. You can simply uncompress it and start the server on other frontend nodes by:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For installations using python virtual environment, activate it if it isn't already active</p>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>python-venv/bin/activate
+</code></pre></div>
+</div>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest
+su<span class="w"> </span>seafile
+./seafile.sh<span class="w"> </span>start
+./seahub.sh<span class="w"> </span>start
+</code></pre></div>
 <h3 id="backend-node">backend node<a class="headerlink" href="#backend-node" title="Permanent link">&para;</a></h3>
 <p>In the backend node, you need to execute the following command to start Seafile server. <strong>CLUSTER_MODE=backend</strong> means this node is seafile backend server.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For installations using python virtual environment, activate it if it isn't already active</p>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>python-venv/bin/activate
+</code></pre></div>
+</div>
 <div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">CLUSTER_MODE</span><span class="o">=</span>backend
+<span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest
+su<span class="w"> </span>seafile
 ./seafile.sh<span class="w"> </span>start
 ./seafile-background-tasks.sh<span class="w"> </span>start
 </code></pre></div>
 <h2 id="start-seafile-service-on-boot">Start Seafile Service on boot<a class="headerlink" href="#start-seafile-service-on-boot" title="Permanent link">&para;</a></h2>
 <p>It would be convenient to setup Seafile service to start on system boot. Follow <a href="../start_seafile_at_system_bootup/">this documentation</a> to set it up on <strong>all nodes</strong>.</p>
 <h2 id="firewall-settings">Firewall Settings<a class="headerlink" href="#firewall-settings" title="Permanent link">&para;</a></h2>
-<!--Beside [standard ports of a seafile server](../deploy/using_firewall.md), t-->
 <p>There are 2 firewall rule changes for Seafile cluster:</p>
 <ul>
 <li>On each Seafile server machine, you should open the health check port (default 11001);</li>
-<li>On the memcached server, you should open the port 11211. For security resons only the Seafile servers should be allowed to access this port.</li>
+<li>On the Cache and ElasticSearch server, please only allow Seafile servers to access this port for security resons.</li>
 </ul>
 <h2 id="load-balancer-setting">Load Balancer Setting<a class="headerlink" href="#load-balancer-setting" title="Permanent link">&para;</a></h2>
-<p>Now that your cluster is already running, fire up the load balancer and welcome your users. Since version 6.0.0, Seafile Pro requires "sticky session" settings in the load balancer. You should refer to the manual of your load balancer for how to set up sticky sessions.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since Seafile Pro server 6.0.0, cluster deployment requires "sticky session" settings in the load balancer. Otherwise sometimes folder download on the web UI can't work properly. Read the "Load Balancer Setting" section below for details</p>
+</div>
+<p>Generally speaking, in order to better access the Seafile service, we recommend that you use a load balancing service to access the Seafile cluster and bind your domain name (such as <code>seafile.cluster.com</code>) to the load balancing service. Usually, you can use:</p>
+<ul>
+<li>Cloud service provider's load balancing service (e.g., <strong><em>AWS Elastic Load Balancer</em></strong>)</li>
+<li>
+<p>Deploy your own load balancing service, our document will give two of common load balance services:</p>
+<ul>
+<li><strong><em>Nginx</em></strong></li>
+<li><strong><em>HAproxy</em></strong></li>
+</ul>
+</li>
+</ul>
 <h3 id="aws-elastic-load-balancer-elb">AWS Elastic Load Balancer (ELB)<a class="headerlink" href="#aws-elastic-load-balancer-elb" title="Permanent link">&para;</a></h3>
 <p>In the AWS ELB management console, after you've added the Seafile server instances to the instance list, you should do two more configurations.</p>
 <p>First you should setup HTTP(S) listeners. Ports 443 and 80 of ELB should be forwarded to the ports 80 or 443 of the Seafile servers.</p>
 <p>Then you setup health check</p>
 <p><img alt="elb-health-check" src="../../images/elb-health-check.png" /></p>
 <p>Refer to <a href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html">AWS documentation</a> about how to setup sticky sessions.</p>
+<h3 id="nginx">Nginx<a class="headerlink" href="#nginx" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Install Nginx in the host if you would like to deploy load balance service</li>
+</ol>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>nginx
+</code></pre></div>
+<ol>
+<li>Create the configurations file for Seafile cluster</li>
+</ol>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/nginx/sites-available/seafile-cluster
+</code></pre></div>
+<p>and, add the following contents into this file:</p>
+<div class="highlight"><pre><span></span><code><span class="k">upstream</span><span class="w"> </span><span class="s">seafile_cluster</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">server</span><span class="w"> </span><span class="s">&lt;IP:</span><span class="w"> </span><span class="s">your</span><span class="w"> </span><span class="s">frontend</span><span class="w"> </span><span class="s">node</span><span class="w"> </span><span class="mi">1</span><span class="s">&gt;:80</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">server</span><span class="w"> </span><span class="s">&lt;IP:</span><span class="w"> </span><span class="s">your</span><span class="w"> </span><span class="s">frontend</span><span class="w"> </span><span class="s">node</span><span class="w"> </span><span class="mi">2</span><span class="s">&gt;:80</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">...</span>
+<span class="err">}</span>
+
+<span class="s">server</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="mi">80</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">server_name</span><span class="w"> </span><span class="s">&lt;your</span><span class="w"> </span><span class="s">domain&gt;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://seafile_cluster</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Host</span><span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Real-IP</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-For</span><span class="w"> </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-Proto</span><span class="w"> </span><span class="nv">$scheme</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">http_502</span><span class="w"> </span><span class="s">http_503</span><span class="w"> </span><span class="s">http_504</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<ol>
+<li>Link the configurations file to <code>sites-enabled</code> directory:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>/etc/nginx/sites-available/seafile-cluster<span class="w"> </span>/etc/nginx/sites-enabled/
+</code></pre></div>
+<ol>
+<li>Test and enable configuration</li>
+</ol>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>nginx<span class="w"> </span>-t
+sudo<span class="w"> </span>nginx<span class="w"> </span>-s<span class="w"> </span>reload
+</code></pre></div>
 <h3 id="haproxy">HAProxy<a class="headerlink" href="#haproxy" title="Permanent link">&para;</a></h3>
 <p>This is a sample <code>/etc/haproxy/haproxy.cfg</code>:</p>
 <p>(Assume your health check port is <code>11001</code>)</p>
@@ -4880,7 +4908,6 @@ listen seafile 0.0.0.0:80
 </code></pre></div>
 <h2 id="see-how-it-runs">See how it runs<a class="headerlink" href="#see-how-it-runs" title="Permanent link">&para;</a></h2>
 <p>Now you should be able to test your cluster. Open <a href="https://seafile.example.com">https://seafile.example.com</a> in your browser and enjoy. You can also synchronize files with Seafile clients.</p>
-<p>If the above works, the next step would be <a href="../enable_search_and_background_tasks_in_a_cluster/">Enable search and background tasks in a cluster</a>.</p>
 <h2 id="the-final-configuration-of-the-front-end-nodes">The final configuration of the front-end nodes<a class="headerlink" href="#the-final-configuration-of-the-front-end-nodes" title="Permanent link">&para;</a></h2>
 <p>Here is the summary of configurations at the front-end node that related to cluster setup. (for version 7.1+)</p>
 <p>For <strong>seafile.conf</strong>:</p>
@@ -4901,6 +4928,10 @@ es_host = &lt;IP of background node&gt;
 es_port = 9200
 </code></pre></div>
 <p>The <code>[INDEX FILES]</code> section is needed to let the front-end node know the file search feature is enabled.</p>
+<h2 id="https">HTTPS<a class="headerlink" href="#https" title="Permanent link">&para;</a></h2>
+<p>You can engaged HTTPS in your load balance service, as you can use certificates manager (e.g., <a href="https://certbot.eff.org">Certbot</a>) to acquire and enable HTTPS to your Seafile cluster. You have to modify the relative URLs from the prefix <code>http://</code> to <code>https://</code> in <code>seahub_settings.py</code> and <code>.env</code>, after enabling HTTPS.</p>
+<h2 id="optional-deploy-seadoc-server">(Optional) Deploy SeaDoc server<a class="headerlink" href="#optional-deploy-seadoc-server" title="Permanent link">&para;</a></h2>
+<p>You can follow <a href="../../extension/setup_seadoc/">here</a> to deploy SeaDoc server. And then modify <code>SEADOC_SERVER_URL</code> in your <code>.env</code> file</p>
 
 
 
@@ -4953,13 +4984,13 @@ es_port = 9200
         
         
           
-          <a href="../enable_search_and_background_tasks_in_a_cluster/" class="md-footer__link md-footer__link--next" aria-label="Next: Search and background tasks in a cluster">
+          <a href="../start_seafile_at_system_bootup/" class="md-footer__link md-footer__link--next" aria-label="Next: Start Seafile at System Bootup">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Search and background tasks in a cluster
+                Start Seafile at System Bootup
               </div>
             </div>
             <div class="md-footer__button md-icon">

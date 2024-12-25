@@ -1515,6 +1515,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../setup_binary/seafile_professional_sdition_software_license_agreement/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../setup_binary/installation_pro/" class="md-nav__link">
         
   
@@ -1535,144 +1556,12 @@
   
   
   
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3_2_3" id="__nav_3_2_3_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Cluster deployment
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2_3">
-            <span class="md-nav__icon md-icon"></span>
-            Cluster deployment
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
     <li class="md-nav__item">
-      <a href="../../setup_binary/deploy_in_a_cluster/" class="md-nav__link">
+      <a href="../../setup_binary/cluster_deployment/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Deploy in a cluster
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../setup_binary/enable_search_and_background_tasks_in_a_cluster/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Search and background tasks in a cluster
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../setup_binary/memcached_mariadb_cluster/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Memcache and MariaDB Cluster
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../setup_binary/setup_seafile_cluster_with_nfs/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Setup Seafile cluster with NFS
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../setup_binary/seafile_professional_sdition_software_license_agreement/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    License
+    Cluster Deployment
   </span>
   
 
@@ -3539,14 +3428,6 @@
     Upgrade Seafile Cluster (Docker)
   </span>
   
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
 
       </a>
     </li>
@@ -4223,15 +4104,15 @@
 </div>
 <h2 id="export-user-traffic-report">Export User Traffic Report<a class="headerlink" href="#export-user-traffic-report" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>cd seafile-server-latest
-./seahub.sh python-env python seahub/manage.py export_user_traffic_report --date 201906
+./seahub.sh python-env python3 seahub/manage.py export_user_traffic_report --date 201906
 </code></pre></div>
 <h2 id="export-user-storage-report">Export User Storage Report<a class="headerlink" href="#export-user-storage-report" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>cd seafile-server-latest
-./seahub.sh python-env python seahub/manage.py export_user_storage_report
+./seahub.sh python-env python3 seahub/manage.py export_user_storage_report
 </code></pre></div>
 <h2 id="export-file-access-log">Export File Access Log<a class="headerlink" href="#export-file-access-log" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>cd seafile-server-latest
-./seahub.sh python-env python seahub/manage.py export_file_access_log --start-date 2019-06-01 --end-date 2019-07-01
+./seahub.sh python-env python3 seahub/manage.py export_file_access_log --start-date 2019-06-01 --end-date 2019-07-01
 </code></pre></div>
 
 

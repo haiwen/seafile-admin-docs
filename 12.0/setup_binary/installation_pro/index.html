@@ -13,10 +13,10 @@
         <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/12.0/setup_binary/installation_pro/">
       
       
-        <link rel="prev" href="../outline_pro/">
+        <link rel="prev" href="../seafile_professional_sdition_software_license_agreement/">
       
       
-        <link rel="next" href="../deploy_in_a_cluster/">
+        <link rel="next" href="../cluster_deployment/">
       
       
       <link rel="icon" href="../../media/favicon.ico">
@@ -1527,6 +1527,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../seafile_professional_sdition_software_license_agreement/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -1649,9 +1670,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#setting-up-seafile-pro" class="md-nav__link">
+  <a href="#setting-up-seafile-pro-databases" class="md-nav__link">
     <span class="md-ellipsis">
-      Setting up Seafile Pro
+      Setting up Seafile Pro databases
     </span>
   </a>
   
@@ -1746,144 +1767,12 @@
   
   
   
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3_2_3" id="__nav_3_2_3_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Cluster deployment
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_2_3">
-            <span class="md-nav__icon md-icon"></span>
-            Cluster deployment
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
     <li class="md-nav__item">
-      <a href="../deploy_in_a_cluster/" class="md-nav__link">
+      <a href="../cluster_deployment/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Deploy in a cluster
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../enable_search_and_background_tasks_in_a_cluster/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Search and background tasks in a cluster
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../memcached_mariadb_cluster/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Memcache and MariaDB Cluster
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../setup_seafile_cluster_with_nfs/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Setup Seafile cluster with NFS
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../seafile_professional_sdition_software_license_agreement/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    License
+    Cluster Deployment
   </span>
   
 
@@ -3681,14 +3570,6 @@
     Upgrade Seafile Cluster (Docker)
   </span>
   
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
 
       </a>
     </li>
@@ -4386,9 +4267,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#setting-up-seafile-pro" class="md-nav__link">
+  <a href="#setting-up-seafile-pro-databases" class="md-nav__link">
     <span class="md-ellipsis">
-      Setting up Seafile Pro
+      Setting up Seafile Pro databases
     </span>
   </a>
   
@@ -4524,9 +4405,9 @@ python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </
 <span class="c1"># Notice that this will usually change your prompt so you know the venv is active</span>
 
 <span class="c1"># install packages into the active venv with pip (sudo isn&#39;t needed because this is installing in the venv, not system-wide).</span>
-pip3<span class="w"> </span>install<span class="w"> </span>--timeout<span class="o">=</span><span class="m">3600</span><span class="w"> </span><span class="nv">django</span><span class="o">==</span><span class="m">4</span>.2.*<span class="w"> </span><span class="nv">future</span><span class="o">==</span><span class="m">0</span>.18.*<span class="w"> </span><span class="nv">mysqlclient</span><span class="o">==</span><span class="m">2</span>.1.*<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>pymysql<span class="w"> </span><span class="nv">pillow</span><span class="o">==</span><span class="m">10</span>.2.*<span class="w"> </span>pylibmc<span class="w"> </span><span class="nv">captcha</span><span class="o">==</span><span class="m">0</span>.5.*<span class="w"> </span><span class="nv">markupsafe</span><span class="o">==</span><span class="m">2</span>.0.1<span class="w"> </span>jinja2<span class="w"> </span><span class="nv">sqlalchemy</span><span class="o">==</span><span class="m">2</span>.0.18<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>psd-tools<span class="w"> </span>django-pylibmc<span class="w"> </span><span class="nv">django_simple_captcha</span><span class="o">==</span><span class="m">0</span>.6.*<span class="w"> </span><span class="nv">djangosaml2</span><span class="o">==</span><span class="m">1</span>.5.*<span class="w"> </span><span class="nv">pysaml2</span><span class="o">==</span><span class="m">7</span>.2.*<span class="w"> </span><span class="nv">pycryptodome</span><span class="o">==</span><span class="m">3</span>.16.*<span class="w"> </span><span class="nv">cffi</span><span class="o">==</span><span class="m">1</span>.16.0<span class="w"> </span>lxml<span class="w"> </span>python-ldap<span class="o">==</span><span class="m">3</span>.4.3
+pip3<span class="w"> </span>install<span class="w"> </span>--timeout<span class="o">=</span><span class="m">3600</span><span class="w"> </span><span class="nv">django</span><span class="o">==</span><span class="m">4</span>.2.*<span class="w"> </span><span class="nv">future</span><span class="o">==</span><span class="m">1</span>.0.*<span class="w"> </span><span class="nv">mysqlclient</span><span class="o">==</span><span class="m">2</span>.2.*<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>pymysql<span class="w"> </span><span class="nv">pillow</span><span class="o">==</span><span class="m">10</span>.4.*<span class="w"> </span>pylibmc<span class="w"> </span><span class="nv">captcha</span><span class="o">==</span><span class="m">0</span>.6.*<span class="w"> </span><span class="nv">markupsafe</span><span class="o">==</span><span class="m">2</span>.0.1<span class="w"> </span>jinja2<span class="w"> </span><span class="nv">sqlalchemy</span><span class="o">==</span><span class="m">2</span>.0.*<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>psd-tools<span class="w"> </span>django-pylibmc<span class="w"> </span><span class="nv">django_simple_captcha</span><span class="o">==</span><span class="m">0</span>.6.*<span class="w"> </span><span class="nv">djangosaml2</span><span class="o">==</span><span class="m">1</span>.9.*<span class="w"> </span><span class="nv">pysaml2</span><span class="o">==</span><span class="m">7</span>.3.*<span class="w"> </span><span class="nv">pycryptodome</span><span class="o">==</span><span class="m">3</span>.20.*<span class="w"> </span><span class="nv">cffi</span><span class="o">==</span><span class="m">1</span>.17.0<span class="w"> </span>lxml<span class="w"> </span>python-ldap<span class="o">==</span><span class="m">3</span>.4.*<span class="w"> </span><span class="nv">gevent</span><span class="o">==</span><span class="m">24</span>.2.*
 </code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -4562,9 +4443,9 @@ apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w">
 <span class="c1"># create the data directory</span>
 mkdir<span class="w"> </span>/opt/seafile
 <span class="nb">cd</span><span class="w"> </span>/opt/seafile
-sudo<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> </span>--timeout<span class="o">=</span><span class="m">3600</span><span class="w"> </span><span class="nv">django</span><span class="o">==</span><span class="m">4</span>.2.*<span class="w"> </span><span class="nv">future</span><span class="o">==</span><span class="m">0</span>.18.*<span class="w"> </span><span class="nv">mysqlclient</span><span class="o">==</span><span class="m">2</span>.1.*<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>pymysql<span class="w"> </span><span class="nv">pillow</span><span class="o">==</span><span class="m">10</span>.2.*<span class="w"> </span>pylibmc<span class="w"> </span><span class="nv">captcha</span><span class="o">==</span><span class="m">0</span>.5.*<span class="w"> </span><span class="nv">markupsafe</span><span class="o">==</span><span class="m">2</span>.0.1<span class="w"> </span>jinja2<span class="w"> </span><span class="nv">sqlalchemy</span><span class="o">==</span><span class="m">2</span>.0.18<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>psd-tools<span class="w"> </span>django-pylibmc<span class="w"> </span><span class="nv">django_simple_captcha</span><span class="o">==</span><span class="m">0</span>.6.*<span class="w"> </span><span class="nv">djangosaml2</span><span class="o">==</span><span class="m">1</span>.5.*<span class="w"> </span><span class="nv">pysaml2</span><span class="o">==</span><span class="m">7</span>.2.*<span class="w"> </span><span class="nv">pycryptodome</span><span class="o">==</span><span class="m">3</span>.16.*<span class="w"> </span><span class="nv">cffi</span><span class="o">==</span><span class="m">1</span>.15.1<span class="w"> </span>python-ldap<span class="o">==</span><span class="m">3</span>.4.3<span class="w"> </span>lxml
+sudo<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> </span>--timeout<span class="o">=</span><span class="m">3600</span><span class="w"> </span><span class="nv">django</span><span class="o">==</span><span class="m">4</span>.2.*<span class="w"> </span><span class="nv">future</span><span class="o">==</span><span class="m">1</span>.0.*<span class="w"> </span><span class="nv">mysqlclient</span><span class="o">==</span><span class="m">2</span>.2.*<span class="w">  </span><span class="se">\</span>
+<span class="w">    </span>pymysql<span class="w"> </span><span class="nv">pillow</span><span class="o">==</span><span class="m">10</span>.4.*<span class="w"> </span>pylibmc<span class="w"> </span><span class="nv">captcha</span><span class="o">==</span><span class="m">0</span>.6.*<span class="w"> </span><span class="nv">markupsafe</span><span class="o">==</span><span class="m">2</span>.0.1<span class="w"> </span>jinja2<span class="w"> </span><span class="nv">sqlalchemy</span><span class="o">==</span><span class="m">2</span>.0.*<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>psd-tools<span class="w"> </span>django-pylibmc<span class="w"> </span><span class="nv">django_simple_captcha</span><span class="o">==</span><span class="m">0</span>.6.*<span class="w"> </span><span class="nv">djangosaml2</span><span class="o">==</span><span class="m">1</span>.95.*<span class="w"> </span><span class="nv">pysaml2</span><span class="o">==</span><span class="m">7</span>.2.*<span class="w"> </span><span class="nv">pycryptodome</span><span class="o">==</span><span class="m">3</span>.16.*<span class="w"> </span><span class="nv">cffi</span><span class="o">==</span><span class="m">1</span>.15.1<span class="w"> </span>python-ldap<span class="o">==</span><span class="m">3</span>.4.3<span class="w"> </span>lxml<span class="w"> </span><span class="nv">gevent</span><span class="o">==</span><span class="m">24</span>.2.*
 </code></pre></div>
 </div>
 </div>
@@ -4582,14 +4463,17 @@ sudo<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> 
 <div class="highlight"><pre><span></span><code>su seafile
 </code></pre></div>
 <h3 id="placing-the-seafile-pe-license">Placing the Seafile PE license<a class="headerlink" href="#placing-the-seafile-pe-license" title="Permanent link">&para;</a></h3>
-<p>Save the license file in Seafile's programm directory <code>/opt/seafile</code>. Make sure that the name is <code>seafile-license.txt</code>. (If the file has a different name or cannot be read, Seafile PE will not start.)</p>
+<p>Save the license file in Seafile's programm directory <code>/opt/seafile</code>. Make sure that the name is <code>seafile-license.txt</code>. </p>
+<div class="admonition danger">
+<p class="admonition-title">If the license file has a different name or cannot be read, Seafile server will not start</p>
+</div>
 <h3 id="downloading-the-install-package">Downloading the install package<a class="headerlink" href="#downloading-the-install-package" title="Permanent link">&para;</a></h3>
 <p>The install packages for Seafile PE are available for download in the the <a href="https://customer.seafile.com">Seafile Customer Center</a>. To access the Customer Center, a  user account is necessary. The registration is free.</p>
 <p>Beginning with Seafile PE 7.0.17, the Seafile Customer Center provides two install packages for every version (using Seafile PE 12.0.6 as an example):</p>
 <ul>
 <li><em>seafile-pro-server_12.0.6_x86-64_Ubuntu.tar.gz</em>, compiled in Ubuntu environment</li>
 </ul>
-<p>The former is suitable for installation on Ubuntu/Debian servers, the latter for CentOS servers.</p>
+<p>The former is suitable for installation on Ubuntu/Debian servers.</p>
 <p>Download the install package using wget (replace the x.x.x with the version you wish to download):</p>
 <div class="highlight"><pre><span></span><code># Debian/Ubuntu
 wget -O &#39;seafile-pro-server_x.x.x_x86-64_Ubuntu.tar.gz&#39; &#39;VERSION_SPECIFIC_LINK_FROM_SEAFILE_CUSTOMER_CENTER&#39;
@@ -4655,7 +4539,7 @@ tar xf seafile-pro-server_12.0.6_x86-64_Ubuntu.tar.gz
 <li>Seafile PE: <code>seafile-pro-server_12.0.6_x86-86.tar.gz</code>; uncompressing into folder <code>seafile-pro-server-12.0.6</code></li>
 </ul>
 </div>
-<h3 id="setting-up-seafile-pro">Setting up Seafile Pro<a class="headerlink" href="#setting-up-seafile-pro" title="Permanent link">&para;</a></h3>
+<h3 id="setting-up-seafile-pro-databases">Setting up Seafile Pro databases<a class="headerlink" href="#setting-up-seafile-pro-databases" title="Permanent link">&para;</a></h3>
 <p>The install package comes with a script that sets Seafile up for you. Specifically, the script creates the required directories and extracts all files in the right place. It can also create a MySQL user and the three databases that <a href="../../introduction/components/">Seafile's components</a> require:</p>
 <ul>
 <li>ccnet server</li>
@@ -4898,13 +4782,17 @@ pip3 install --timeout=3600 pylibmc django-pylibmc
 
 systemctl enable --now memcached
 </code></pre></div>
-<p>Add the following configuration to <code>seahub_settings.py</code>.</p>
-<div class="highlight"><pre><span></span><code>CACHES = {
-    &#39;default&#39;: {
-        &#39;BACKEND&#39;: &#39;django_pylibmc.memcached.PyLibMCCache&#39;,
-        &#39;LOCATION&#39;: &#39;127.0.0.1:11211&#39;,
-    },
-}
+<p>Add or modify the following configuration to <code>seahub_settings.py</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">CACHES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;BACKEND&#39;</span><span class="p">:</span> <span class="s1">&#39;django_pylibmc.memcached.PyLibMCCache&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;LOCATION&#39;</span><span class="p">:</span> <span class="s1">&#39;127.0.0.1:11211&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Add or modify the following configuration to <code>seafile.conf</code>:</p>
+<div class="highlight"><pre><span></span><code>[memcached]
+memcached_options = --SERVER=127.0.0.1 --POOL-MIN=10 --POOL-MAX=100
 </code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -4916,7 +4804,15 @@ systemctl enable --now memcached
 <p>Install Redis with package installers in your OS.</p>
 </li>
 <li>
-<p>refer to <a href="https://docs.djangoproject.com/en/4.2/topics/cache/#redis">Django's documentation about using Redis cache</a> to add Redis configurations to <code>seahub_settings.py</code>.</p>
+<p>Refer to <a href="https://docs.djangoproject.com/en/4.2/topics/cache/#redis">Django's documentation about using Redis cache</a> to add Redis configurations to <code>seahub_settings.py</code>.</p>
+</li>
+<li>
+<p>Add or modify the following configuration to <code>seafile.conf</code>:</p>
+<div class="highlight"><pre><span></span><code>[redis]
+redis_host = 127.0.0.1
+redis_port = 6379
+max_connections = 100
+</code></pre></div>
 </li>
 </ol>
 </div>
@@ -4933,16 +4829,16 @@ systemctl enable --now memcached
 <div class="highlight"><pre><span></span><code>pwgen<span class="w"> </span>-s<span class="w"> </span><span class="m">40</span><span class="w"> </span><span class="m">1</span>
 </code></pre></div></p>
 </div>
-<div class="highlight"><pre><span></span><code>JWT_PRIVATE_KEY=&lt;Your jwt private key&gt;
-SEAFILE_SERVER_PROTOCOL=https
-SEAFILE_SERVER_HOSTNAME=seafile.example.com
-SEAFILE_MYSQL_DB_HOST=&lt;your database host&gt;
-SEAFILE_MYSQL_DB_PORT=3306
-SEAFILE_MYSQL_DB_USER=seafile
-SEAFILE_MYSQL_DB_PASSWORD=&lt;your MySQL password&gt;
-SEAFILE_MYSQL_DB_CCNET_DB_NAME=ccnet_db
-SEAFILE_MYSQL_DB_SEAFILE_DB_NAME=seafile_db
-SEAFILE_MYSQL_DB_SEAHUB_DB_NAME=seahub_db
+<div class="highlight"><pre><span></span><code><span class="nv">JWT_PRIVATE_KEY</span><span class="o">=</span>&lt;Your<span class="w"> </span>jwt<span class="w"> </span>private<span class="w"> </span>key&gt;
+<span class="nv">SEAFILE_SERVER_PROTOCOL</span><span class="o">=</span>https
+<span class="nv">SEAFILE_SERVER_HOSTNAME</span><span class="o">=</span>seafile.example.com
+<span class="nv">SEAFILE_MYSQL_DB_HOST</span><span class="o">=</span>&lt;your<span class="w"> </span>database<span class="w"> </span>host&gt;
+<span class="nv">SEAFILE_MYSQL_DB_PORT</span><span class="o">=</span><span class="m">3306</span>
+<span class="nv">SEAFILE_MYSQL_DB_USER</span><span class="o">=</span>seafile
+<span class="nv">SEAFILE_MYSQL_DB_PASSWORD</span><span class="o">=</span>&lt;your<span class="w"> </span>MySQL<span class="w"> </span>password&gt;
+<span class="nv">SEAFILE_MYSQL_DB_CCNET_DB_NAME</span><span class="o">=</span>ccnet_db
+<span class="nv">SEAFILE_MYSQL_DB_SEAFILE_DB_NAME</span><span class="o">=</span>seafile_db
+<span class="nv">SEAFILE_MYSQL_DB_SEAHUB_DB_NAME</span><span class="o">=</span>seahub_db
 </code></pre></div>
 <h2 id="starting-seafile-server">Starting Seafile Server<a class="headerlink" href="#starting-seafile-server" title="Permanent link">&para;</a></h2>
 <p>Run the following commands in <code>/opt/seafile/seafile-server-latest</code>:</p>
@@ -5048,7 +4944,7 @@ es_port = 9200   # port of ElasticSearch host
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../outline_pro/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Outline">
+          <a href="../seafile_professional_sdition_software_license_agreement/" class="md-footer__link md-footer__link--prev" aria-label="Previous: License">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -5058,20 +4954,20 @@ es_port = 9200   # port of ElasticSearch host
                 Previous
               </span>
               <div class="md-ellipsis">
-                Outline
+                License
               </div>
             </div>
           </a>
         
         
           
-          <a href="../deploy_in_a_cluster/" class="md-footer__link md-footer__link--next" aria-label="Next: Deploy in a cluster">
+          <a href="../cluster_deployment/" class="md-footer__link md-footer__link--next" aria-label="Next: Cluster Deployment">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Deploy in a cluster
+                Cluster Deployment
               </div>
             </div>
             <div class="md-footer__button md-icon">
