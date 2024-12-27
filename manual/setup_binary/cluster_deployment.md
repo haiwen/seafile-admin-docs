@@ -23,6 +23,8 @@ Seafile Server: 2 frontend nodes, 1 backend node
 
 Please follow [here](./installation_pro.md#installing-prerequisites) to install prerequisites
 
+!!! note "Cache server (the first step) is not necessary, if you donot wish this node deploy it"
+
 ### Create user `seafile`
 
 Create a new user and follow the instructions on the screen:
@@ -49,7 +51,94 @@ su seafile
 
 Save the license file in Seafile's programm directory `/opt/seafile`. Make sure that the name is `seafile-license.txt`. 
 
-!!! danger "If the license file has a different name or cannot be read, Seafile server will not start"
+!!! danger "If the license file has a different name or cannot be read, Seafile server will start with in trailer mode with most THREE users"
+
+### Setup and configure Nginx (only for frontend nodes)
+
+For security reasons, the Seafile frontend service will only listen to requests from the local port `8000`. You need to use Nginx to reverse proxy this port to port `80` for external access:
+
+1. Install Nginx
+
+    ```sh
+    sudo apt update
+    sudo apt install nginx
+    ```
+
+2. Create the configurations file for current node
+
+    ```sh
+    sudo nano /etc/nginx/sites-available/seafile.conf
+    ```
+
+    and, add the following contents into this file:
+
+    ```nginx
+    log_format seafileformat '$http_x_forwarded_for $remote_addr [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent" $upstream_response_time';
+
+    server {
+        listen 80;
+        server_name <current node's IP>;
+
+        proxy_set_header X-Forwarded-For $remote_addr;
+
+        location / {
+            proxy_pass         http://127.0.0.1:8000;
+            proxy_set_header   Host $http_host;
+            proxy_set_header   X-Real-IP $remote_addr;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   X-Forwarded-Host $server_name;
+            proxy_read_timeout  1200s;
+
+            # used for view/edit office file via Office Online Server
+            client_max_body_size 0;
+
+            access_log      /var/log/nginx/seahub.access.log seafileformat;
+            error_log       /var/log/nginx/seahub.error.log;
+        }
+
+        location /seafhttp {
+            rewrite ^/seafhttp(.*)$ $1 break;
+            proxy_pass http://127.0.0.1:8082;
+            client_max_body_size 0;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+
+            proxy_read_timeout  36000s;
+            proxy_send_timeout  36000s;
+
+            send_timeout  36000s;
+
+            access_log      /var/log/nginx/seafhttp.access.log seafileformat;
+            error_log       /var/log/nginx/seafhttp.error.log;
+        }
+        location /media {
+            root /opt/seafile/seafile-server-latest/seahub;
+        }
+    }
+    ```
+
+3. Link the configurations file to `sites-enabled` directory:
+
+    ```sh
+    sudo ln -s /etc/nginx/sites-available/seafile.conf /etc/nginx/sites-enabled/
+    ```
+
+4. Test and enable configuration
+
+    ```sh
+    sudo nginx -t
+    sudo nginx -s reload
+    ```
+
+### Start Seafile Service on boot (optional)
+
+It would be convenient to setup Seafile service to start on system boot. Follow [this documentation](./start_seafile_at_system_bootup.md) to set it up on.
+
+### Firewall Settings
+
+There are 2 firewall rule changes for Seafile cluster:
+
+* On each nodes, you should open the health check port (default 11001);
+* On the Cache and ElasticSearch server, please only allow Seafile servers to access this port for security resons.
 
 ## Setup the first frontend Node
 
@@ -175,13 +264,6 @@ USE seahub_db;
 CREATE TABLE `avatar_uploaded` (`filename` TEXT NOT NULL, `filename_md5` CHAR(32) NOT NULL PRIMARY KEY, `data` MEDIUMTEXT NOT NULL, `size` INTEGER NOT NULL, `mtime` datetime NOT NULL);
 ```
 
-### Setup Nginx/Apache and HTTP
-
-Nginx/Apache with HTTP need to set it up on each machine running Seafile server. This is make sure only port 80 need to be exposed to load balancer. (HTTPS should be setup at the load balancer)
-
-Please check the following documents on how to setup HTTP with [Nginx](./https_with_nginx.md). (HTTPS is not needed)
-
-
 ### Run and Test the Single Node
 
 Once you have finished configuring this single node, start it to test if it runs properly:
@@ -201,12 +283,27 @@ su seafile
 ```
 
 !!! success
-    The first time you start seahub, the script would prompt you to create an admin account for your Seafile server, then you can visit `http://ip-address-of-this-node:80` and login with the admin account to test if this node is working fine or not.
+    The first time you start seahub, the script would prompt you to create an admin account for your Seafile server. Then you can see the following message in your console:
+    
+    ```
+    Starting seafile server, please wait ...
+    Seafile server started
+
+    Done.
+
+    Starting seahub at port 8000 ...
+
+    Seahub is started
+
+    Done.
+    ```
+    
+    Finally, you can visit `http://ip-address-of-this-node:80` and login with the admin account to test if this node is working fine or not.
 
 
-## Configure other nodes
+## Configure other frontend nodes
 
-If the first node works fine, you can compress the whole directory `/opt/seafile` into a tarball and copy it to all other Seafile server nodes. You can simply uncompress it and start the server on other frontend nodes by:
+If the first frontend node works fine, you can **compress** the whole directory `/opt/seafile` into a **tarball** and **copy it** to all other Seafile server nodes. You can simply **uncompress** it and **start** the server by:
 
 !!! note
     For installations using python virtual environment, activate it if it isn't already active
@@ -222,7 +319,7 @@ su seafile
 ./seahub.sh start
 ```
 
-### backend node
+## Backend node
 
 In the backend node, you need to execute the following command to start Seafile server. **CLUSTER_MODE=backend** means this node is seafile backend server.
 
@@ -240,17 +337,6 @@ su seafile
 ./seafile.sh start
 ./seafile-background-tasks.sh start
 ```
-
-## Start Seafile Service on boot
-
-It would be convenient to setup Seafile service to start on system boot. Follow [this documentation](./start_seafile_at_system_bootup.md) to set it up on **all nodes**.
-
-## Firewall Settings
-
-There are 2 firewall rule changes for Seafile cluster:
-
-* On each Seafile server machine, you should open the health check port (default 11001);
-* On the Cache and ElasticSearch server, please only allow Seafile servers to access this port for security resons.
 
 ## Load Balancer Setting
 
@@ -281,53 +367,53 @@ Refer to [AWS documentation](http://docs.aws.amazon.com/elasticloadbalancing/lat
 
 1. Install Nginx in the host if you would like to deploy load balance service
 
-```sh
-sudo apt update
-sudo apt install nginx
-```
+    ```sh
+    sudo apt update
+    sudo apt install nginx
+    ```
 
 2. Create the configurations file for Seafile cluster
 
-```sh
-sudo nano /etc/nginx/sites-available/seafile-cluster
-```
+    ```sh
+    sudo nano /etc/nginx/sites-available/seafile-cluster
+    ```
 
-and, add the following contents into this file:
+    and, add the following contents into this file:
 
-```nginx
-upstream seafile_cluster {
-    server <IP: your frontend node 1>:80;
-    server <IP: your frontend node 2>:80;
-    ...
-}
-
-server {
-    listen 80;
-    server_name <your domain>;
-
-    location / {
-        proxy_pass http://seafile_cluster;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        http_502 http_503 http_504;
+    ```nginx
+    upstream seafile_cluster {
+        server <IP: your frontend node 1>:80;
+        server <IP: your frontend node 2>:80;
+        ...
     }
-}
-```
+
+    server {
+        listen 80;
+        server_name <your domain>;
+
+        location / {
+            proxy_pass http://seafile_cluster;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            http_502 http_503 http_504;
+        }
+    }
+    ```
 
 3. Link the configurations file to `sites-enabled` directory:
 
-```sh
-sudo ln -s /etc/nginx/sites-available/seafile-cluster /etc/nginx/sites-enabled/
-```
+    ```sh
+    sudo ln -s /etc/nginx/sites-available/seafile-cluster /etc/nginx/sites-enabled/
+    ```
 
 4. Test and enable configuration
 
-```sh
-sudo nginx -t
-sudo nginx -s reload
-```
+    ```sh
+    sudo nginx -t
+    sudo nginx -s reload
+    ```
 
 
 ### HAProxy

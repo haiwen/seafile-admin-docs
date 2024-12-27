@@ -1,207 +1,147 @@
----
-status: new
----
-
 # Upgrade a Seafile cluster
 
 ## Major and minor version upgrade
 
 Seafile adds new features in major and minor versions. It is likely that some database tables need to be modified or the search index need to be updated. In general, upgrading a cluster contains the following steps:
 
-1. Upgrade the database
-2. Update symbolic link at frontend and backend nodes to point to the newest version
+1. Update Seafile image
+2. Upgrade the database
 3. Update configuration files at each node
 4. Update search index in the backend node
 
 In general, to upgrade a cluster, you need:
 
-1. Run the upgrade script (for example, ./upgrade/upgrade_4_0_4_1.sh) in one frontend node
-2. Run the minor upgrade script (./upgrade/minor_upgrade.sh) in all other nodes to update symbolic link
+1. Download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version. Start with docker compose up.
+2. Run the upgrade script in container (for example, `/opt/seafile/seafile-server-latest/upgrade/upgrade_x_x_x_x.sh`) in one frontend node
 3. Update configuration files at each node according to the documentation for each version
 4. Delete old search index in the backend node if needed
 
-## Maintanence upgrade
+## Upgrade a cluster from Seafile 11 to 12
+
+1. Stop the seafile service in all nodes
 
-Doing maintanence upgrading is simple, you only need to run the script `./upgrade/minor_upgrade.sh` at each node to update the symbolic link.
+    ```sh
+    docker compose down
+    ```
 
-## Specific instructions for each version
+2. Download the docker-compose files for *Seafile 12*
 
-### From 7.0 to 7.1
+    ```sh
+    wget -O .env https://manual.seafile.com/12.0/docker/cluster/env
+    wget https://manual.seafile.com/12.0/docker/cluster/seafile-server.yml
+    ```
 
-In the background node, Seahub no longer need to be started. Nginx is not needed too.
+3. Modify `.env`:
 
-The way of how office converter work is changed. The Seahub in front end nodes directly access a service in background node.
+    - Generate a JWT key
 
-#### For front-end nodes
+        ```sh
+        pwgen -s 40 1
 
-**seahub_settings.py**
+        # e.g., EkosWcXonPCrpPE9CFsnyQLLPqoPhSJZaqA3JMFw
+        ```
 
-```
-OFFICE_CONVERTOR_ROOT = 'http://<ip of node background>'
-⬇️
-OFFICE_CONVERTOR_ROOT = 'http://<ip of node background>:6000'
+    - Fill up the following field according to your configurations using in *Seafile 11*:
 
-```
+        ```sh
+        SEAFILE_SERVER_HOSTNAME=<your loadbalance's host>
+        SEAFILE_SERVER_PROTOCOL=https # or http
+        SEAFILE_MYSQL_DB_HOST=<your mysql host>
+        SEAFILE_MYSQL_DB_USER=seafile # if you don't use `seafile` as your Seafile server's account, please correct it
+        SEAFILE_MYSQL_DB_PASSWORD=<your mysql password for user `seafile`>
+        JWT_PRIVATE_KEY=<your JWT key generated in Sec. 3.1>
+        ```
 
-**seafevents.conf**
+        !!! tip "Remove the variables using in Cluster initialization"
+            Since Seafile has been initialized in Seafile 11, the variables related to Seafile cluster initialization can be removed from `.env`:
 
-```
-[OFFICE CONVERTER]
-enabled = true
-workers = 1
-max-size = 10
+            - INIT_SEAFILE_MYSQL_ROOT_PASSWORD
+            - CLUSTER_INIT_MODE
+            - CLUSTER_INIT_MEMCACHED_HOST
+            - CLUSTER_INIT_ES_HOST
+            - CLUSTER_INIT_ES_PORT
+            - INIT_S3_STORAGE_BACKEND_CONFIG
+            - INIT_S3_COMMIT_BUCKET
+            - INIT_S3_FS_BUCKET
+            - INIT_S3_BLOCK_BUCKET
+            - INIT_S3_KEY_ID
+            - INIT_S3_USE_V4_SIGNATURE
+            - INIT_S3_SECRET_KEY
+            - INIT_S3_AWS_REGION
+            - INIT_S3_HOST
+            - INIT_S3_USE_HTTPS
 
-⬇️
-[OFFICE CONVERTER]
-enabled = true
-workers = 1
-max-size = 10
-host = <ip of node background>
-port = 6000
+4. Start the Seafile in a node
 
-```
+    !!! note
+        According to this upgrade document, a **frontend** service will be started here. If you plan to use this node as a backend node, you need to modify this item in `.env` and set it to `backend`:
 
-#### For backend node
+        ```sh
+        CLUSTER_MODE=backend
+        ```
 
-**seahub_settings.py is not needed. **But you can leave it unchanged.
+    ```sh
+    docker compose up -d
+    ```
 
-**seafevents.conf**
+5. Upgrade Seafile
 
-```
-[OFFICE CONVERTER]
-enabled = true
-workers = 1
-max-size = 10
+    ```sh
+    docker exec -it seafile bash
+    # enter the container `seafile`
 
-⬇️
-[OFFICE CONVERTER]
-enabled = true
-workers = 1
-max-size = 10
-host = <ip of node background>
-port = 6000
+    # stop servers
+    cd /opt/seafile/seafile-server-latest
+    ./seafile.sh stop
+    ./seahub.sh stop
+    
+    # upgrade seafile
+    cd upgrade
+    ./upgrade_11.0_12.0.sh
+    ```
 
-```
+    !!! success
+        After upgrading the Seafile, you can see the following messages in your console:
 
-### From 6.3 to 7.0
+        ```
+        Updating seafile/seahub database ...
 
-No special upgrade operations.
+        [INFO] You are using MySQL
+        [INFO] updating seafile database...
+        [INFO] updating seahub database...
+        [INFO] updating seafevents database...
+        Done
 
-### From 6.2 to 6.3
+        migrating avatars ...
 
-In version 6.2.11, the included Django was upgraded. The memcached configuration needed to be upgraded if you were using a cluster. If you upgrade from a version below 6.1.11, don't forget to change your memcache configuration. If the configuration in your `seahub_settings.py` is:
+        Done
 
-```
-CACHES = {
-    'default': {
-        'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
-        'LOCATION': '<MEMCACHED SERVER IP>:11211',
-    }
-}
+        updating /opt/seafile/seafile-server-latest symbolic link to /opt/seafile/seafile-pro-server-12.0.6 ...
 
-COMPRESS_CACHE_BACKEND = 'django.core.cache.backends.locmem.LocMemCache'
 
-```
 
-Now you need to change to:
+        -----------------------------------------------------------------
+        Upgraded your seafile server successfully.
+        -----------------------------------------------------------------
+        ```
 
-```
-CACHES = {
-    'default': {
-        'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
-        'LOCATION': '<MEMCACHED SERVER IP>:11211',
-    },
-    'locmem': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-    },
-}
-COMPRESS_CACHE_BACKEND = 'locmem'
+        Then you can exit the container by `exit`
 
-```
+6. Restart current node
 
-### From 6.1 to 6.2
+    ```sh
+        docker compose down
+        docker compose up -d
+    ```
 
-No special upgrade operations.
+    !!! tip 
+        - You can use `docker logs -f seafile` to check whether the current node service is running normally
 
-### From 6.0 to 6.1
+7. Operations for other nodes
 
-In version 6.1, we upgraded the included ElasticSearch server. The old server listen on port 9500, new server listen on port 9200. Please change your firewall settings.
+    - Download and modify `.env` similar to the first node (for backend node, you should set `CLUSTER_MODE=backend`)
 
-### From 5.1 to 6.0
-
-In version 6.0, the folder download mechanism has been updated. This requires that, in a cluster deployment, seafile-data/httptemp folder must be in an NFS share. You can make this folder a symlink to the NFS share.
-
-```
-cd /data/haiwen/
-ln -s /nfs-share/seafile-httptemp seafile-data/httptemp
-
-```
-
-The httptemp folder only contains temp files for downloading/uploading file on web UI. So there is no reliability requirement for the NFS share. You can export it from any node in the cluster.
-
-### From v5.0 to v5.1
-
-Because Django is upgraded to 1.8, the COMPRESS_CACHE_BACKEND should be changed
-
-```
-   -    COMPRESS_CACHE_BACKEND = 'locmem://'
-   +    COMPRESS_CACHE_BACKEND = 'django.core.cache.backends.locmem.LocMemCache'
-
-```
-
-### From v4.4 to v5.0
-
-v5.0 introduces some database schema change, and all configuration files (ccnet.conf, seafile.conf, seafevents.conf, seahub_settings.py) are moved to a central config directory.
-
-Perform the following steps to upgrade:
-
-* Run the upgrade script at one fronend node to upgrade the database.
-
-
-```
-./upgrade/upgrade_4.4_5.0.sh
-
-```
-
-* Then, on all other frontend nodes and the background node, run the upgrade script with `SEAFILE_SKIP_DB_UPGRADE` environmental variable turned on:
-
-
-```
-SEAFILE_SKIP_DB_UPGRADE=1 ./upgrade/upgrade_4.4_5.0.sh
-
-```
-
-After the upgrade, you should see the configuration files has been moved to the conf/ folder.
-
-```
-conf/
-  |__ seafile.conf
-  |__ seafevent.conf
-  |__ seafdav.conf
-  |__ seahub_settings.conf
-
-```
-
-### From v4.3 to v4.4
-
-There are no database and search index upgrade from v4.3 to v4.4. Perform the following steps to upgrade:
-
-1. Run the minor upgrade script at frontend and backend nodes
-
-### From v4.2 to v4.3
-
-v4.3 contains no database table change from v4.2. But the old search index will be deleted and regenerated.
-
-A new option COMPRESS_CACHE_BACKEND = 'django.core.cache.backends.locmem.LocMemCache' should be added to seahub_settings.py
-
-The secret key in seahub_settings.py need to be regenerated, the old secret key lack enough randomness.
-
-Perform the following steps to upgrade:
-
-1. Run the upgrade script at one fronend node to modify the seahub_settings.py
-2. Modify seahub_settings.py at each node, replacing the old secret key with the new one and add option COMPRESS_CACHE_BACKEND
-3. Run the minor upgrade script at frontend and backend nodes
-4. Delete the old search index (the folder pro-data/search) at the backend node
-5. Delete the old office preview output folder (/tmp/seafile-office-output) at the backend node
-
-
+    - Start the Seafile server:
+        ```sh
+        docker compose up -d
+        ```     
