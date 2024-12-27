@@ -179,7 +179,7 @@ nav:
     - Outline: upgrade/upgrade.md
     - Upgrade Seafile Docker: upgrade/upgrade_docker.md
     - Upgrade Seafile Cluster: upgrade/upgrade_a_cluster.md
-    - Upgrade Seafile Cluster (Docker): upgrade/upgrade_a_cluster_docker.md
+    - Upgrade Seafile Cluster (binary): upgrade/upgrade_a_cluster_binary.md
     - Upgrade notes for 7.1.x: upgrade/upgrade_notes_for_7.1.x.md
     - Upgrade notes for 8.0.x: upgrade/upgrade_notes_for_8.0.x.md
     - Upgrade notes for 9.0.x: upgrade/upgrade_notes_for_9.0.x.md

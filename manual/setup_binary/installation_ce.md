@@ -23,70 +23,70 @@ Seafile uses the mysql_native_password plugin for authentication. The versions o
 !!! tip
     The standard directory `/opt/seafile` is assumed for Seafile's program and we will use it on the rest of this manual. If you decide to put Seafile in another directory, modify the commands accordingly.
 
-=== "Ubuntu 24.04"
-    !!! note
-        Debian 12 and Ubuntu 24.04 are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables different versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with `source python-venv/bin/activate`.
+1. Install cache server (e.g., *Memcached*)
 
-    ```
-    # Ubuntu 24.04
+    ```sh
     sudo apt-get update
-    sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmysqlclient-dev ldap-utils libldap2-dev python3.12-venv
     sudo apt-get install -y memcached libmemcached-dev
-
-    mkdir /opt/seafile
-    cd /opt/seafile
-
-    # create the vitual environment in the python-venv directory
-    python3 -m venv python-venv
-
-    # activate the venv
-    source python-venv/bin/activate
-    # Notice that this will usually change your prompt so you know the venv is active
-
-    # install packages into the active venv with pip (sudo isn't needed because this is installing in the venv, not system-wide).
-    pip3 install --timeout=3600 django==4.2.* future==1.0.* mysqlclient==2.2.* \
-        pymysql pillow==10.4.* pylibmc captcha==0.6.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.* \
-        psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.9.* pysaml2==7.3.* pycryptodome==3.20.* cffi==1.17.0 lxml python-ldap==3.4.* gevent==24.2.*
     ```
-=== "Debian 12"
-    !!! note
-        Debian 12 and Ubuntu 24.04 are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables different versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with `source python-venv/bin/activate`.
 
-    ```
-    # Debian 12
-    sudo apt-get update
-    sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmariadb-dev-compat ldap-utils libldap2-dev libsasl2-dev python3.11-venv
-    sudo apt-get install -y memcached libmemcached-dev
+2. Install Python and related libraries
 
-    mkdir /opt/seafile
-    cd /opt/seafile
+    === "Ubuntu 24.04"
+        !!! note
+            Debian 12 and Ubuntu 24.04 are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables different versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with `source python-venv/bin/activate`.
 
-    # create the vitual environment in the python-venv directory
-    python3 -m venv python-venv
+        ```
+        sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmysqlclient-dev ldap-utils libldap2-dev python3.12-venv
 
-    # activate the venv
-    source python-venv/bin/activate
-    # Notice that this will usually change your prompt so you know the venv is active
+        mkdir /opt/seafile
+        cd /opt/seafile
 
-    # install packages into the active venv with pip (sudo isn't needed because this is installing in the venv, not system-wide).
-    pip3 install --timeout=3600  django==4.2.* future==0.18.* mysqlclient==2.1.* pymysql pillow==10.0.* pylibmc captcha==0.4 markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 psd-tools django-pylibmc django_simple_captcha==0.5.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 lxml python-ldap==3.4.3
-    ```
-=== "Debian 11/Ubuntu 22.04"
+        # create the vitual environment in the python-venv directory
+        python3 -m venv python-venv
 
-    ```
-    # Ubuntu 22.04 (almost the same for Ubuntu 20.04 and Debian 11, Debian 10)
-    sudo apt-get update
-    sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmysqlclient-dev ldap-utils libldap2-dev
-    sudo apt-get install -y memcached libmemcached-dev
+        # activate the venv
+        source python-venv/bin/activate
+        # Notice that this will usually change your prompt so you know the venv is active
 
-    sudo mkdir /opt/seafile
-    cd /opt/seafile
+        # install packages into the active venv with pip (sudo isn't needed because this is installing in the venv, not system-wide).
+        pip3 install --timeout=3600 django==4.2.* future==1.0.* mysqlclient==2.2.* \
+            pymysql pillow==10.4.* pylibmc captcha==0.6.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.* \
+            psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.9.* pysaml2==7.3.* pycryptodome==3.20.* cffi==1.17.0 lxml python-ldap==3.4.* gevent==24.2.*
+        ```
+    === "Debian 12"
+        !!! note
+            Debian 12 and Ubuntu 24.04 are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables different versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with `source python-venv/bin/activate`.
 
-    sudo pip3 install --timeout=3600 django==4.2.* future==1.0.* mysqlclient==2.2.*  \
-        pymysql pillow==10.4.* pylibmc captcha==0.6.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.* \
-        psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.95.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 python-ldap==3.4.3 lxml gevent==24.2.*
+        ```
+        sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmariadb-dev-compat ldap-utils libldap2-dev libsasl2-dev python3.11-venv
 
-    ```
+        mkdir /opt/seafile
+        cd /opt/seafile
+
+        # create the vitual environment in the python-venv directory
+        python3 -m venv python-venv
+
+        # activate the venv
+        source python-venv/bin/activate
+        # Notice that this will usually change your prompt so you know the venv is active
+
+        # install packages into the active venv with pip (sudo isn't needed because this is installing in the venv, not system-wide).
+        pip3 install --timeout=3600  django==4.2.* future==0.18.* mysqlclient==2.1.* pymysql pillow==10.0.* pylibmc captcha==0.4 markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 psd-tools django-pylibmc django_simple_captcha==0.5.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 lxml python-ldap==3.4.3
+        ```
+    === "Debian 11/Ubuntu 22.04"
+
+        ```
+        sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmysqlclient-dev ldap-utils libldap2-dev
+
+        sudo mkdir /opt/seafile
+        cd /opt/seafile
+
+        sudo pip3 install --timeout=3600 django==4.2.* future==1.0.* mysqlclient==2.2.*  \
+            pymysql pillow==10.4.* pylibmc captcha==0.6.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.* \
+            psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.95.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 python-ldap==3.4.3 lxml gevent==24.2.*
+
+        ```
 
 ### Creating user seafile
 

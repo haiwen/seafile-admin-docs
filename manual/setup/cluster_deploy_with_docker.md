@@ -76,8 +76,13 @@ Seafile Server: 2 frontend nodes, 1 backend node
     !!! tip
         If you have already deployed S3 storage backend and plan to apply it to Seafile cluster, you can modify the variables in `.env` to [set them synchronously during initialization](../config/env.md#s3-storage-backend-configurations-only-valid-in-pro-edition-at-deploying-first-time).
 
+5. Pleace license file
 
-5. Start the Seafile docker
+    If you have a `seafile-license.txt` license file, simply put it in the volume of the Seafile container. The volumne's default path in the Compose file is `/opt/seafile/shared`. If you have modified the path, save the license file under your custom path.
+
+    !!! danger "If the license file has a different name or cannot be read, Seafile server will start with in trailer mode with most THREE users"
+    
+6. Start the Seafile docker
 
     ```sh
     docker compose up -d
@@ -123,13 +128,13 @@ Seafile Server: 2 frontend nodes, 1 backend node
         
         ```
 
-6. In initialization mode, the service will not be started. During this time you can check the generated configuration files (e.g., MySQL, Memcached, Elasticsearch) in configuration files:
+7. In initialization mode, the service will not be started. During this time you can check the generated configuration files (e.g., MySQL, Memcached, Elasticsearch) in configuration files:
 
     - [seafevents.conf](../config/seafevents-conf.md)
     - [seafile.conf](../config/seafile-conf.md)
     - [seahub_settings.py](../config/seahub_settings_py.md)
 
-7. After initailizing the cluster, the following fields can be removed in `.env`
+8. After initailizing the cluster, the following fields can be removed in `.env`
     - `CLUSTER_INIT_MODE`, must be removed from .env file
     - `CLUSTER_INIT_MEMCACHED_HOST`
     - `CLUSTER_INIT_ES_HOST`
@@ -148,7 +153,7 @@ Seafile Server: 2 frontend nodes, 1 backend node
         cp -r /opt/seafile/shared /opt/seafile/shared-bak
         ```
 
-8. Restart the container to start the service in frontend node
+9. Restart the container to start the service in frontend node
 
     ```sh
     docker compose down
@@ -175,7 +180,6 @@ Seafile Server: 2 frontend nodes, 1 backend node
 
 
         Starting seafile server, please wait ...
-        License file /opt/seafile/seafile-license.txt does not exist, allow at most 3 trial users
         Seafile server started
 
         Done.
@@ -250,7 +254,6 @@ Seafile Server: 2 frontend nodes, 1 backend node
 
 
         Starting seafile server, please wait ...
-        License file /opt/seafile/seafile-license.txt does not exist, allow at most 3 trial users
         Seafile server started
 
         Done.
@@ -289,53 +292,53 @@ Refer to [AWS documentation](http://docs.aws.amazon.com/elasticloadbalancing/lat
 
 1. Install Nginx in the host if you would like to deploy load balance service
 
-```sh
-sudo apt update
-sudo apt install nginx
-```
+    ```sh
+    sudo apt update
+    sudo apt install nginx
+    ```
 
 2. Create the configurations file for Seafile cluster
 
-```sh
-sudo nano /etc/nginx/sites-available/seafile-cluster
-```
+    ```sh
+    sudo nano /etc/nginx/sites-available/seafile-cluster
+    ```
 
-and, add the following contents into this file:
+    and, add the following contents into this file:
 
-```nginx
-upstream seafile_cluster {
-    server <IP: your frontend node 1>:80;
-    server <IP: your frontend node 2>:80;
-    ...
-}
-
-server {
-    listen 80;
-    server_name <your domain>;
-
-    location / {
-        proxy_pass http://seafile_cluster;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        http_502 http_503 http_504;
+    ```nginx
+    upstream seafile_cluster {
+        server <IP: your frontend node 1>:80;
+        server <IP: your frontend node 2>:80;
+        ...
     }
-}
-```
+
+    server {
+        listen 80;
+        server_name <your domain>;
+
+        location / {
+            proxy_pass http://seafile_cluster;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            http_502 http_503 http_504;
+        }
+    }
+    ```
 
 3. Link the configurations file to `sites-enabled` directory:
 
-```sh
-sudo ln -s /etc/nginx/sites-available/seafile-cluster /etc/nginx/sites-enabled/
-```
+    ```sh
+    sudo ln -s /etc/nginx/sites-available/seafile-cluster /etc/nginx/sites-enabled/
+    ```
 
 4. Test and enable configuration
 
-```sh
-sudo nginx -t
-sudo nginx -s reload
-```
+    ```sh
+    sudo nginx -t
+    sudo nginx -s reload
+    ```
 
 ### HAproxy and Keepalived services
 

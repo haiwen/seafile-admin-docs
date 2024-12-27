@@ -209,6 +209,8 @@ The system logs are under `/shared/logs/var-log`, or `/opt/seafile-data/logs/var
 
 If you have a `seafile-license.txt` license file, simply put it in the volume of the Seafile container. The volumne's default path in the Compose file is `/opt/seafile-data`. If you have modified the path, save the license file under your custom path.
 
+!!! danger "If the license file has a different name or cannot be read, Seafile server will start with in trailer mode with most THREE users"
+
 Then restart Seafile:
 
 ```bash
