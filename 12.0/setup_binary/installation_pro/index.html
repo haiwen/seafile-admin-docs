@@ -3541,14 +3541,6 @@
     Upgrade Seafile Cluster
   </span>
   
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
 
       </a>
     </li>
@@ -3563,11 +3555,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../upgrade/upgrade_a_cluster_docker/" class="md-nav__link">
+      <a href="../../upgrade/upgrade_a_cluster_binary/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Upgrade Seafile Cluster (Docker)
+    Upgrade Seafile Cluster (binary)
   </span>
   
 
@@ -4382,6 +4374,15 @@
 <p class="admonition-title">Tip</p>
 <p>The standard directory <code>/opt/seafile</code> is assumed for the rest of this manual. If you decide to put Seafile in another directory, some commands need to be modified accordingly</p>
 </div>
+<ol>
+<li>
+<p>Install cache server (e.g., <em>Memcached</em>)</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>memcached<span class="w"> </span>libmemcached-dev
+</code></pre></div>
+</li>
+<li>
+<p>Install Python and related libraries</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Ubuntu 24.04</label><label for="__tabbed_1_2">Debian 12</label><label for="__tabbed_1_3">Ubuntu 22.04/Debian 11</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -4389,9 +4390,8 @@
 <p class="admonition-title">Note</p>
 <p>Debian 12 and Ubuntu 24.04 are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables different versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with <code>source python-venv/bin/activate</code>.</p>
 </div>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
-sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>python3<span class="w"> </span>python3-dev<span class="w"> </span>python3-setuptools<span class="w"> </span>python3-pip<span class="w"> </span>libmysqlclient-dev<span class="w"> </span>ldap-utils<span class="w"> </span>libldap2-dev<span class="w"> </span>python3.12-venv
-sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>memcached<span class="w"> </span>libmemcached-dev
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>python3<span class="w"> </span>python3-dev<span class="w"> </span>python3-setuptools<span class="w"> </span>python3-pip<span class="w"> </span>libmysqlclient-dev<span class="w"> </span>ldap-utils<span class="w"> </span>libldap2-dev<span class="w"> </span>python3.12-venv
+
 
 <span class="c1"># create the data directory</span>
 mkdir<span class="w"> </span>/opt/seafile
@@ -4415,9 +4415,7 @@ pip3<span class="w"> </span>install<span class="w"> </span>--timeout<span class=
 <p class="admonition-title">Note</p>
 <p>Debian 12 and Ubuntu 24.04 are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables different versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with <code>source python-venv/bin/activate</code>.</p>
 </div>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
-sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>python3<span class="w"> </span>python3-dev<span class="w"> </span>python3-setuptools<span class="w"> </span>python3-pip<span class="w"> </span>libmariadb-dev-compat<span class="w"> </span>ldap-utils<span class="w"> </span>libldap2-dev<span class="w"> </span>libsasl2-dev<span class="w"> </span>python3.11-venv
-sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>memcached<span class="w"> </span>libmemcached-dev
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>python3<span class="w"> </span>python3-dev<span class="w"> </span>python3-setuptools<span class="w"> </span>python3-pip<span class="w"> </span>libmariadb-dev-compat<span class="w"> </span>ldap-utils<span class="w"> </span>libldap2-dev<span class="w"> </span>libsasl2-dev<span class="w"> </span>python3.11-venv
 
 <span class="c1"># create the data directory</span>
 mkdir<span class="w"> </span>/opt/seafile
@@ -4436,10 +4434,9 @@ pip3<span class="w"> </span>install<span class="w"> </span>--timeout<span class=
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1"># on  (on , it is almost the same)</span>
-apt-get<span class="w"> </span>update
 apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>python3<span class="w"> </span>python3-dev<span class="w"> </span>python3-setuptools<span class="w"> </span>python3-pip<span class="w"> </span>python3-ldap<span class="w"> </span>libmysqlclient-dev<span class="w"> </span>ldap-utils<span class="w"> </span>libldap2-dev<span class="w"> </span>dnsutils
-apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>memcached<span class="w"> </span>libmemcached-dev
 apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>poppler-utils
+
 <span class="c1"># create the data directory</span>
 mkdir<span class="w"> </span>/opt/seafile
 <span class="nb">cd</span><span class="w"> </span>/opt/seafile
@@ -4450,6 +4447,8 @@ sudo<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> 
 </div>
 </div>
 </div>
+</li>
+</ol>
 <h3 id="creating-user-seafile">Creating user seafile<a class="headerlink" href="#creating-user-seafile" title="Permanent link">&para;</a></h3>
 <p>Elasticsearch, the indexing server, cannot be run as root. More generally, it is good practice not to run applications as root. </p>
 <p>Create a new user and follow the instructions on the screen:</p>
@@ -4465,7 +4464,7 @@ sudo<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> 
 <h3 id="placing-the-seafile-pe-license">Placing the Seafile PE license<a class="headerlink" href="#placing-the-seafile-pe-license" title="Permanent link">&para;</a></h3>
 <p>Save the license file in Seafile's programm directory <code>/opt/seafile</code>. Make sure that the name is <code>seafile-license.txt</code>. </p>
 <div class="admonition danger">
-<p class="admonition-title">If the license file has a different name or cannot be read, Seafile server will not start</p>
+<p class="admonition-title">If the license file has a different name or cannot be read, Seafile server will start with in trailer mode with most THREE users</p>
 </div>
 <h3 id="downloading-the-install-package">Downloading the install package<a class="headerlink" href="#downloading-the-install-package" title="Permanent link">&para;</a></h3>
 <p>The install packages for Seafile PE are available for download in the the <a href="https://customer.seafile.com">Seafile Customer Center</a>. To access the Customer Center, a  user account is necessary. The registration is free.</p>

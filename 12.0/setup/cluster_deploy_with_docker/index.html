@@ -3506,14 +3506,6 @@
     Upgrade Seafile Cluster
   </span>
   
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
 
       </a>
     </li>
@@ -3528,11 +3520,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../upgrade/upgrade_a_cluster_docker/" class="md-nav__link">
+      <a href="../../upgrade/upgrade_a_cluster_binary/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Upgrade Seafile Cluster (Docker)
+    Upgrade Seafile Cluster (binary)
   </span>
   
 
@@ -4370,6 +4362,13 @@ wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/cluster/seafi
 </div>
 </li>
 <li>
+<p>Pleace license file</p>
+<p>If you have a <code>seafile-license.txt</code> license file, simply put it in the volume of the Seafile container. The volumne's default path in the Compose file is <code>/opt/seafile/shared</code>. If you have modified the path, save the license file under your custom path.</p>
+<div class="admonition danger">
+<p class="admonition-title">If the license file has a different name or cannot be read, Seafile server will start with in trailer mode with most THREE users</p>
+</div>
+</li>
+<li>
 <p>Start the Seafile docker</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
@@ -4463,7 +4462,6 @@ Seafile cluster frontend mode
 
 
 Starting seafile server, please wait ...
-License file /opt/seafile/seafile-license.txt does not exist, allow at most 3 trial users
 Seafile server started
 
 Done.
@@ -4538,7 +4536,6 @@ Seafile cluster backend mode
 
 
 Starting seafile server, please wait ...
-License file /opt/seafile/seafile-license.txt does not exist, allow at most 3 trial users
 Seafile server started
 
 Done.
@@ -4573,14 +4570,14 @@ Done.
 <p>Refer to <a href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html">AWS documentation</a> about how to setup sticky sessions.</p>
 <h3 id="nginx">Nginx<a class="headerlink" href="#nginx" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Install Nginx in the host if you would like to deploy load balance service</li>
-</ol>
+<li>
+<p>Install Nginx in the host if you would like to deploy load balance service</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
 sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>nginx
 </code></pre></div>
-<ol>
-<li>Create the configurations file for Seafile cluster</li>
-</ol>
+</li>
+<li>
+<p>Create the configurations file for Seafile cluster</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/nginx/sites-available/seafile-cluster
 </code></pre></div>
 <p>and, add the following contents into this file:</p>
@@ -4604,17 +4601,19 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<ol>
-<li>Link the configurations file to <code>sites-enabled</code> directory:</li>
-</ol>
+</li>
+<li>
+<p>Link the configurations file to <code>sites-enabled</code> directory:</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>/etc/nginx/sites-available/seafile-cluster<span class="w"> </span>/etc/nginx/sites-enabled/
 </code></pre></div>
-<ol>
-<li>Test and enable configuration</li>
-</ol>
+</li>
+<li>
+<p>Test and enable configuration</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>nginx<span class="w"> </span>-t
 sudo<span class="w"> </span>nginx<span class="w"> </span>-s<span class="w"> </span>reload
 </code></pre></div>
+</li>
+</ol>
 <h3 id="haproxy-and-keepalived-services">HAproxy and Keepalived services<a class="headerlink" href="#haproxy-and-keepalived-services" title="Permanent link">&para;</a></h3>
 <p>Execute the following commands on the two Seafile frontend servers:</p>
 <div class="highlight"><pre><span></span><code>$ apt install haproxy keepalived -y

@@ -10,9 +10,13 @@
         <meta name="author" content="seafile">
       
       
-        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/12.0/outdate/outlook_addin_config/">
+        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/12.0/upgrade/upgrade_a_cluster_binary/">
       
       
+        <link rel="prev" href="../upgrade_a_cluster/">
+      
+      
+        <link rel="next" href="../upgrade_notes_for_7.1.x/">
       
       
       <link rel="icon" href="../../media/favicon.ico">
@@ -20,7 +24,7 @@
     
     
       
-        <title>SSO for Seafile Outlook Add-in - Seafile Admin Manual</title>
+        <title>Upgrade Seafile Cluster (binary) - Seafile Admin Manual</title>
       
     
     
@@ -74,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#sso-for-seafile-outlook-add-in" class="md-skip">
+        <a href="#upgrade-a-seafile-cluster-binary" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              SSO for Seafile Outlook Add-in
+              Upgrade Seafile Cluster (binary)
             
           </span>
         </div>
@@ -367,11 +371,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../upgrade/upgrade/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../upgrade/" class="md-tabs__link">
           
   
   Upgrade
@@ -3229,25 +3235,30 @@
       
   
   
+    
   
   
+  
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -3258,7 +3269,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             Upgrade
@@ -3272,7 +3283,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../upgrade/upgrade/" class="md-nav__link">
+      <a href="../upgrade/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3293,7 +3304,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../upgrade/upgrade_docker/" class="md-nav__link">
+      <a href="../upgrade_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3314,21 +3325,13 @@
   
   
     <li class="md-nav__item">
-      <a href="../../upgrade/upgrade_a_cluster/" class="md-nav__link">
+      <a href="../upgrade_a_cluster/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Upgrade Seafile Cluster
   </span>
   
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
 
       </a>
     </li>
@@ -3340,18 +3343,85 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../upgrade/upgrade_a_cluster_docker/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Upgrade Seafile Cluster (binary)
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    Upgrade Seafile Cluster (Docker)
+    Upgrade Seafile Cluster (binary)
   </span>
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#major-and-minor-version-upgrade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Major and minor version upgrade
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#maintanence-upgrade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Maintanence upgrade
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upgrade-from-seafile-11-cluster-all-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upgrade from Seafile 11 cluster (all nodes)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -3364,7 +3434,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../upgrade/upgrade_notes_for_7.1.x/" class="md-nav__link">
+      <a href="../upgrade_notes_for_7.1.x/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3385,7 +3455,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../upgrade/upgrade_notes_for_8.0.x/" class="md-nav__link">
+      <a href="../upgrade_notes_for_8.0.x/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3406,7 +3476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../upgrade/upgrade_notes_for_9.0.x/" class="md-nav__link">
+      <a href="../upgrade_notes_for_9.0.x/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3427,7 +3497,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../upgrade/upgrade_notes_for_10.0.x/" class="md-nav__link">
+      <a href="../upgrade_notes_for_10.0.x/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3448,7 +3518,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../upgrade/upgrade_notes_for_11.0.x/" class="md-nav__link">
+      <a href="../upgrade_notes_for_11.0.x/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3469,7 +3539,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../upgrade/upgrade_notes_for_12.0.x/" class="md-nav__link">
+      <a href="../upgrade_notes_for_12.0.x/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3974,45 +4044,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#requirements" class="md-nav__link">
+  <a href="#major-and-minor-version-upgrade" class="md-nav__link">
     <span class="md-ellipsis">
-      Requirements
+      Major and minor version upgrade
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#installing-prerequisites" class="md-nav__link">
+  <a href="#maintanence-upgrade" class="md-nav__link">
     <span class="md-ellipsis">
-      Installing prerequisites
+      Maintanence upgrade
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#configuring-seahub" class="md-nav__link">
+  <a href="#upgrade-from-seafile-11-cluster-all-nodes" class="md-nav__link">
     <span class="md-ellipsis">
-      Configuring Seahub
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configuring-the-proxy-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      Configuring the proxy server
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#deploying-the-php-script" class="md-nav__link">
-    <span class="md-ellipsis">
-      Deploying the PHP script
+      Upgrade from Seafile 11 cluster (all nodes)
     </span>
   </a>
   
@@ -4036,161 +4088,99 @@
   
 
 
-<h1 id="sso-for-seafile-outlook-add-in">SSO for Seafile Outlook Add-in<a class="headerlink" href="#sso-for-seafile-outlook-add-in" title="Permanent link">&para;</a></h1>
-<p>The Seafile Add-in for Outlook natively supports authentication via username and password. In order to authenticate with SSO, the add-in utilizes SSO support integrated in Seafile's webinterface Seahub. </p>
-<p>Specifically, this is how SSO with the add-in works :</p>
-<ul>
-<li>When clicking the SSO button in the add-in, the add-in opens a browser window and requests <code>http(s)://SEAFILE_SERVER_URL/outlook/</code></li>
-<li>A PHP script redirects the request to <code>http(s)://SEAFILE_SERVER_URL/accounts/login/</code> including a redirect request to /outlook/ following a successful authentication (e.g., <code>https://demo.seafile.com/accounts/login/?next=/jwt-sso/?page=/outlook/</code>)</li>
-<li>The identity provider signals to Seafile the user's successful authentication</li>
-<li>The PHP script sends an API-token to the add-in</li>
-<li>The add-in authorizes all API calls with the API-token</li>
-</ul>
-<p>This document explains how to configure Seafile and the reverse proxy and how to deploy the PHP script.</p>
-<h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
-<p>SSO authentication must be configured in Seafile.</p>
-<p>Seafile Server must be version 8.0 or above.</p>
-<h2 id="installing-prerequisites">Installing prerequisites<a class="headerlink" href="#installing-prerequisites" title="Permanent link">&para;</a></h2>
-<p>The packages php, composer, firebase-jwt, and guzzle must be installed. PHP can usually be downloaded and installed via the distribution's official repositories. firebase-jwt and guzzle are installed using composer.</p>
-<p>First, install the php package and check the installed version:
-<div class="highlight"><pre><span></span><code># CentOS/RedHat
-$ sudo yum install -y php-fpm php-curl
-$ php --version
-
-# Debian/Ubuntu
-$ sudo apt install -y php-fpm php-curl
-$ php --version
-</code></pre></div></p>
-<p>Second, install composer. You find an up-to-date install manual at https://getcomposer.org/ for CentOS, Debian, and Ubuntu.</p>
-<p>Third, use composer to install firebase-jwt and guzzle in a new directory in <code>/var/www</code>:
-<div class="highlight"><pre><span></span><code>$ mkdir -p /var/www/outlook-sso
-$ cd /var/www/outlook-sso
-$ composer require firebase/php-jwt guzzlehttp/guzzle
-</code></pre></div></p>
-<h2 id="configuring-seahub">Configuring Seahub<a class="headerlink" href="#configuring-seahub" title="Permanent link">&para;</a></h2>
-<p>Add this block to the config file <code>seahub_settings.py</code> using a text editor:</p>
-<div class="highlight"><pre><span></span><code>ENABLE_JWT_SSO = True
-JWT_SSO_SECRET_KEY = &#39;SHARED_SECRET&#39;
-ENABLE_SYS_ADMIN_GENERATE_USER_AUTH_TOKEN = True
+<h1 id="upgrade-a-seafile-cluster-binary">Upgrade a Seafile cluster (binary)<a class="headerlink" href="#upgrade-a-seafile-cluster-binary" title="Permanent link">&para;</a></h1>
+<h2 id="major-and-minor-version-upgrade">Major and minor version upgrade<a class="headerlink" href="#major-and-minor-version-upgrade" title="Permanent link">&para;</a></h2>
+<p>Seafile adds new features in major and minor versions. It is likely that some database tables need to be modified or the search index need to be updated. In general, upgrading a cluster contains the following steps:</p>
+<ol>
+<li>Upgrade the database</li>
+<li>Update symbolic link at frontend and backend nodes to point to the newest version</li>
+<li>Update configuration files at each node</li>
+<li>Update search index in the backend node</li>
+</ol>
+<p>In general, to upgrade a cluster, you need:</p>
+<ol>
+<li>Run the upgrade script (for example, ./upgrade/upgrade_4_0_4_1.sh) in one frontend node</li>
+<li>Run the minor upgrade script (./upgrade/minor_upgrade.sh) in all other nodes to update symbolic link</li>
+<li>Update configuration files at each node according to the documentation for each version</li>
+<li>Delete old search index in the backend node if needed</li>
+</ol>
+<h2 id="maintanence-upgrade">Maintanence upgrade<a class="headerlink" href="#maintanence-upgrade" title="Permanent link">&para;</a></h2>
+<p>Doing maintanence upgrading is simple, you only need to run the script <code>./upgrade/minor_upgrade.sh</code> at each node to update the symbolic link.</p>
+<h2 id="upgrade-from-seafile-11-cluster-all-nodes">Upgrade from Seafile 11 cluster (all nodes)<a class="headerlink" href="#upgrade-from-seafile-11-cluster-all-nodes" title="Permanent link">&para;</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Clean Database</p>
+<p>If you have a large number of <code>Activity</code> in MySQL, clear this table first <a href="../../administration/clean_database">Clean Database</a>. Otherwise, the database upgrade will take a long time.</p>
+</div>
+<ol>
+<li>
+<p>Stop Seafile server</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For installations using python virtual environment, activate it if it isn't already active</p>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>python-venv/bin/activate
 </code></pre></div>
-<p>Replace SHARED_SECRET with a secret of your own.</p>
-<h2 id="configuring-the-proxy-server">Configuring the proxy server<a class="headerlink" href="#configuring-the-proxy-server" title="Permanent link">&para;</a></h2>
-<p>The configuration depends on the proxy server use.</p>
-<p>If you use nginx, add the following location block to the nginx configuration:</p>
-<div class="highlight"><pre><span></span><code>location /outlook {
-    alias /var/www/outlook-sso/public;
-    index index.php;
-    location ~ \.php$ {
-      fastcgi_split_path_info ^(.+\.php)(/.+)$;
-      fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
-      fastcgi_param SCRIPT_FILENAME $request_filename;
-      fastcgi_index index.php;
-      include fastcgi_params;
-    }
-}
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Frontend node</label><label for="__tabbed_1_2">Backend node</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest
+su<span class="w"> </span>seafile
+./seafile.sh<span class="w"> </span>stop
+./seahub.sh<span class="w"> </span>stop
 </code></pre></div>
-<p>This sample block assumes that PHP 7.4 is installed. If you have a different PHP version on your system, modify the version in the fastcgi_pass unix.</p>
-<p>Note: The alias path can be altered. We advise against it unless there are good reasons. If you do, make sure you modify the path accordingly in all subsequent steps.</p>
-<p>Finally, check the nginx configuration and restart nginx:</p>
-<div class="highlight"><pre><span></span><code>$ nginx -t
-$ nginx -s reload
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest
+su<span class="w"> </span>seafile
+./seafile.sh<span class="w"> </span>stop
+./seafile-background-tasks.sh<span class="w"> </span>stop
 </code></pre></div>
-<h2 id="deploying-the-php-script">Deploying the PHP script<a class="headerlink" href="#deploying-the-php-script" title="Permanent link">&para;</a></h2>
-<p>The PHP script and corresponding configuration files will be saved in the new directory created earlier. Change into it and add a PHP config file:</p>
-<div class="highlight"><pre><span></span><code>$ cd /var/www/outlook-sso
-$ nano config.php
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Install <a href="../upgrade_notes_for_12.0.x/#new-python-libraries">new Python libraries</a></p>
+</li>
+<li>
+<p><a href="../../setup_binary/installation_pro/#downloading-the-install-package">Download</a> and <a href="../../setup_binary/installation_pro/#uncompressing-the-package">uncompress</a> the package</p>
+</li>
+<li>
+<p>Upgrade </p>
+<div class="highlight"><pre><span></span><code>seafile-pro-server-12.x.x/upgrade/upgrade_11.0_12.0.sh
 </code></pre></div>
-<p>Paste the following content in the <code>config.php</code>:</p>
-<div class="highlight"><pre><span></span><code>&lt;?php
-
-# general settings
-$seafile_url = &#39;SEAFILE_SERVER_URL&#39;;
-$jwt_shared_secret = &#39;SHARED_SECRET&#39;;
-
-# Option 1: provide credentials of a seafile admin user
-$seafile_admin_account = [
-    &#39;username&#39; =&gt; &#39;&#39;,
-    &#39;password&#39; =&gt; &#39;&#39;,
-];
-
-# Option 2: provide the api-token of a seafile admin user
-$seafile_admin_token = &#39;&#39;;
-
-?&gt;
+</li>
+<li>
+<p>Follow <a href="../upgrade_notes_for_12.0.x/#3-create-the-env-file-in-conf-directory">here</a> to create the <code>.env</code> file in <code>conf/</code> directory</p>
+</li>
+<li>
+<p>Start Seafile server</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Frontend node</label><label for="__tabbed_2_2">Backend node</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest
+su<span class="w"> </span>seafile
+./seafile.sh<span class="w"> </span>start
+./seahub.sh<span class="w"> </span>start
 </code></pre></div>
-<p>First, replace SEAFILE_SERVER_URL with the URL of your Seafile Server and SHARED_SECRET with the key used in <a href="#configuring_seahub">Configuring Seahub</a>.</p>
-<p>Second, add either the user credentials of a Seafile user with admin rights or the API-token of such a user.</p>
-<p>In the next step, create the <code>index.php</code> and copy &amp; paste the PHP script:</p>
-<div class="highlight"><pre><span></span><code>mkdir /var/www/outlook-sso/public
-$ cd /var/www/outlook-sso/public
-$ nano index.php
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest
+su<span class="w"> </span>seafile
+./seafile.sh<span class="w"> </span>start
+./seafile-background-tasks.sh<span class="w"> </span>start
 </code></pre></div>
-<p>Paste the following code block:</p>
-<div class="highlight"><pre><span></span><code>&lt;?php
-/** IMPORTANT: there is no need to change anything in this file ! **/
-
-require_once __DIR__ . &#39;/../vendor/autoload.php&#39;;
-require_once __DIR__ . &#39;/../config.php&#39;;
-
-if(!empty($_GET[&#39;jwt-token&#39;])){
-    try {
-        $decoded = Firebase\JWT\JWT::decode($_GET[&#39;jwt-token&#39;], new Firebase\JWT\Key($jwt_shared_secret, &#39;HS256&#39;));
-    }
-    catch (Exception $e){
-        echo json_encode([&quot;error&quot; =&gt; &quot;wrong JWT-Token&quot;]);
-        die();
-    }
-
-    try {
-        // init connetion to seafile api
-        $client = new GuzzleHttp\Client([&#39;base_uri&#39; =&gt; $seafile_url]);
-
-        // get admin api-token with his credentials (if not set)
-        if(empty($seafile_admin_token)){
-            $request = $client-&gt;request(&#39;POST&#39;, &#39;/api2/auth-token/&#39;, [&#39;form_params&#39; =&gt; $seafile_admin_account]);
-            $response = json_decode($request-&gt;getBody());
-            $seafile_admin_token = $response-&gt;token;
-        }
-
-        // get api-token of the user
-        $request = $client-&gt;request(&#39;POST&#39;, &#39;/api/v2.1/admin/generate-user-auth-token/&#39;, [
-            &#39;json&#39; =&gt; [&#39;email&#39; =&gt; $decoded-&gt;email],
-            &#39;headers&#39; =&gt; [&#39;Authorization&#39; =&gt; &#39;Token &#39;. $seafile_admin_token]
-        ]);
-        $response = json_decode($request-&gt;getBody());
-
-        // create the output for the outlook plugin (json like response)
-        echo json_encode([
-            &#39;exp&#39; =&gt; $decoded-&gt;exp,
-            &#39;email&#39; =&gt; $decoded-&gt;email,
-            &#39;name&#39; =&gt; $decoded-&gt;name,
-            &#39;token&#39; =&gt; $response-&gt;token,
-        ]);
-    } catch (GuzzleHttp\Exception\ClientException $e){
-        echo $e-&gt;getResponse()-&gt;getBody();
-    }
-}
-else{ // no jwt-token. therefore redirect to the login page of seafile
-    header(&quot;Location: &quot;. $seafile_url .&quot;/accounts/login/?next=/jwt-sso/?page=/outlook&quot;);
-} ?&gt;
-</code></pre></div>
-<p>Note: Contrary to the config.php, no replacements or modifications are necessary in this file.</p>
-<p>The directory layout in <code>/var/www/sso-outlook/</code> should now look as follows:</p>
-<div class="highlight"><pre><span></span><code>$ tree -L 2 /var/www/outlook-sso
-/var/www/outlook-sso/
-├── composer.json
-├── composer.lock
-├── config.php
-├── public
-|   └── index.php
-└── vendor
-    ├── autoload.php
-    ├── composer
-    └── firebase
-</code></pre></div>
-<p>Seafile and Seahub are now configured to support SSO in the Seafile Add-in for Outlook.</p>
-<h1 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h1>
-<p>You can now test SSO authentication in the add-in. Hit the SSO button in the settings of the Seafile add-in.</p>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Refer <a href="../upgrade_notes_for_12.0.x/#5-upgrade-notification-server">here</a> to upgrade notification server</p>
+</li>
+<li>
+<p>Refer <a href="../upgrade_notes_for_12.0.x/#upgrade-seadoc-from-08-to-10">here</a> to upgrade SeaDoc server</p>
+</li>
+</ol>
 
 
 
@@ -4221,6 +4211,44 @@ else{ // no jwt-token. therefore redirect to the login page of seafile
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../upgrade_a_cluster/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Upgrade Seafile Cluster">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Upgrade Seafile Cluster
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../upgrade_notes_for_7.1.x/" class="md-footer__link md-footer__link--next" aria-label="Next: Upgrade notes for 7.1.x">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Upgrade notes for 7.1.x
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">

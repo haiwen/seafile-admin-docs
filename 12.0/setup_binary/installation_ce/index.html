@@ -3541,14 +3541,6 @@
     Upgrade Seafile Cluster
   </span>
   
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
 
       </a>
     </li>
@@ -3563,11 +3555,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../upgrade/upgrade_a_cluster_docker/" class="md-nav__link">
+      <a href="../../upgrade/upgrade_a_cluster_binary/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Upgrade Seafile Cluster (Docker)
+    Upgrade Seafile Cluster (binary)
   </span>
   
 
@@ -4381,6 +4373,15 @@
 <p class="admonition-title">Tip</p>
 <p>The standard directory <code>/opt/seafile</code> is assumed for Seafile's program and we will use it on the rest of this manual. If you decide to put Seafile in another directory, modify the commands accordingly.</p>
 </div>
+<ol>
+<li>
+<p>Install cache server (e.g., <em>Memcached</em>)</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>memcached<span class="w"> </span>libmemcached-dev
+</code></pre></div>
+</li>
+<li>
+<p>Install Python and related libraries</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Ubuntu 24.04</label><label for="__tabbed_1_2">Debian 12</label><label for="__tabbed_1_3">Debian 11/Ubuntu 22.04</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -4388,10 +4389,7 @@
 <p class="admonition-title">Note</p>
 <p>Debian 12 and Ubuntu 24.04 are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables different versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with <code>source python-venv/bin/activate</code>.</p>
 </div>
-<div class="highlight"><pre><span></span><code># Ubuntu 24.04
-sudo apt-get update
-sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmysqlclient-dev ldap-utils libldap2-dev python3.12-venv
-sudo apt-get install -y memcached libmemcached-dev
+<div class="highlight"><pre><span></span><code>sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmysqlclient-dev ldap-utils libldap2-dev python3.12-venv
 
 mkdir /opt/seafile
 cd /opt/seafile
@@ -4414,10 +4412,7 @@ pip3 install --timeout=3600 django==4.2.* future==1.0.* mysqlclient==2.2.* \
 <p class="admonition-title">Note</p>
 <p>Debian 12 and Ubuntu 24.04 are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables different versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with <code>source python-venv/bin/activate</code>.</p>
 </div>
-<div class="highlight"><pre><span></span><code># Debian 12
-sudo apt-get update
-sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmariadb-dev-compat ldap-utils libldap2-dev libsasl2-dev python3.11-venv
-sudo apt-get install -y memcached libmemcached-dev
+<div class="highlight"><pre><span></span><code>sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmariadb-dev-compat ldap-utils libldap2-dev libsasl2-dev python3.11-venv
 
 mkdir /opt/seafile
 cd /opt/seafile
@@ -4434,10 +4429,7 @@ pip3 install --timeout=3600  django==4.2.* future==0.18.* mysqlclient==2.1.* pym
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code># Ubuntu 22.04 (almost the same for Ubuntu 20.04 and Debian 11, Debian 10)
-sudo apt-get update
-sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmysqlclient-dev ldap-utils libldap2-dev
-sudo apt-get install -y memcached libmemcached-dev
+<div class="highlight"><pre><span></span><code>sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmysqlclient-dev ldap-utils libldap2-dev
 
 sudo mkdir /opt/seafile
 cd /opt/seafile
@@ -4449,6 +4441,8 @@ sudo pip3 install --timeout=3600 django==4.2.* future==1.0.* mysqlclient==2.2.* 
 </div>
 </div>
 </div>
+</li>
+</ol>
 <h3 id="creating-user-seafile">Creating user seafile<a class="headerlink" href="#creating-user-seafile" title="Permanent link">&para;</a></h3>
 <p>It is good practice not to run applications as root. </p>
 <p>Create a new user and follow the instructions on the screen:</p>

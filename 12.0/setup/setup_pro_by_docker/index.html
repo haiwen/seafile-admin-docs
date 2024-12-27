@@ -3524,14 +3524,6 @@
     Upgrade Seafile Cluster
   </span>
   
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
 
       </a>
     </li>
@@ -3546,11 +3538,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../upgrade/upgrade_a_cluster_docker/" class="md-nav__link">
+      <a href="../../upgrade/upgrade_a_cluster_binary/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Upgrade Seafile Cluster (Docker)
+    Upgrade Seafile Cluster (binary)
   </span>
   
 
@@ -4617,6 +4609,9 @@ Done.
 <p>The system logs are under <code>/shared/logs/var-log</code>, or <code>/opt/seafile-data/logs/var-log</code> in the server that run the docker.</p>
 <h3 id="activating-the-seafile-license">Activating the Seafile License<a class="headerlink" href="#activating-the-seafile-license" title="Permanent link">&para;</a></h3>
 <p>If you have a <code>seafile-license.txt</code> license file, simply put it in the volume of the Seafile container. The volumne's default path in the Compose file is <code>/opt/seafile-data</code>. If you have modified the path, save the license file under your custom path.</p>
+<div class="admonition danger">
+<p class="admonition-title">If the license file has a different name or cannot be read, Seafile server will start with in trailer mode with most THREE users</p>
+</div>
 <p>Then restart Seafile:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
 
