@@ -25,7 +25,7 @@ Seafile PE docker requires a minimum of 4 cores and 4GB RAM.
         ```
     - If your machine **dose not** have enough requirements, 2 Cores and 2GB RAM are minimum by chosing one of following two ways **after first-time deployment** of Seafile Pro docker:
 
-        - Use [*SeaSearch*](https://haiwen.github.io/seasearch-docs/config/seafile.md), a lightweight search engine built on open source search engine [*ZincSearch*](https://zincsearch-docs.zinc.dev/), as the indexer
+        - Use [*SeaSearch*](./use_seasearch.md), a lightweight search engine built on open source search engine [*ZincSearch*](https://zincsearch-docs.zinc.dev/), as the indexer
     
         - Deploy *Elasticsearch* in another machine, and modify `es_host` and `es_port` in [seafevents.conf](../config/seafevents-conf.md)
 

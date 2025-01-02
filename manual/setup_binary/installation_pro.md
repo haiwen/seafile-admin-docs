@@ -21,7 +21,7 @@ Seafile PE requires a minimum of 2 cores and 2GB RAM.
         # modify vm.max_map_count
         vm.max_map_count=262144
         ```
-    - If your machine **dose not** have enough requirements, 2 Cores and 2GB RAM are minimum by using [*SeaSearch*](https://haiwen.github.io/seasearch-docs/config/seafile.md), a lightweight search engine built on open source search engine [*ZincSearch*](https://zincsearch-docs.zinc.dev/), as the indexer
+    - If your machine **dose not** have enough requirements, 2 Cores and 2GB RAM are minimum by using [*SeaSearch*](../setup/use_seasearch.md), a lightweight search engine built on open source search engine [*ZincSearch*](https://zincsearch-docs.zinc.dev/), as the indexer
 
 Seafile PE can be used without a paid license with up to three users. Licenses for more user can be purchased in the [Seafile Customer Center](https://customer.seafile.com) or contact Seafile Sales at [sales@seafile.com](mailto:sales@seafile.com) or one of [our partners](https://www.seafile.com/en/partner/).
 
