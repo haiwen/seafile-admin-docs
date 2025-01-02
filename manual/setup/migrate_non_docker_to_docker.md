@@ -1,13 +1,55 @@
----
-status: new
----
-
-
 # Migrate from non-docker Seafile deployment to docker
+
+!!! note "For Seafile cluster"
+    This document is writting to about the single node, you have to do the following opeartions (except database) in **all nodes**
+
+## Before Migration
+    Upgrade the version of the binary package to [latest version](../upgrade/upgrade_notes_for_12.0.x.md), and ensure that the system is running normally. 
+    
+    !!! tip
+        If you running a very old version of Seafile, you can following the [FAQ item](https://cloud.seatable.io/dtable/external-links/7b976c85f504491cbe8e/?tid=0000&vid=0000&row-id=VYQI9DJfRmCv5NggcX4f0Q) to migrate to the latest version
+
+## Stop Services
+
+### Stop Seafile server
+Run the following commands in `/opt/seafile/seafile-server-latest`:
+
+!!! note
+    For installations using python virtual environment, activate it if it isn't already active:
+
+    ```sh
+    source python-venv/bin/activate
+    ```
+
+!!! tip
+    If you have integrated some components (e.g., *SeaDoc*) in your Seafile server, please shutdown them to avoid losting unsaved data
+
+```sh
+su seafile
+./seafile.sh start # Start Seafile service
+./seahub.sh start  # Start seahub website, port defaults to 127.0.0.1:8000
+```
+
+### Stop Nginx and cached server (e.g., *Memcached*)
+
+```sh
+systemctl stop nginx &&  systemctl disable nginx
+systemctl stop memcached &&  systemctl disable memcached
+```
+
+## Backup Seafile
+
+Please follow [here](../administration/backup_recovery.md#backup-and-restore-for-binary-package-based-deployment) to backup:
+
+- Backing up Databases
+- Backing up Seafile library data
+
+## 
+
 
 The recommended steps to migrate from non-docker deployment to docker deployment are:
 
-1. Upgrade the version of the binary package to latest version, and ensure that the system is running normally. (If you running a very old version of Seafile, you can following the [FAQ item](https://cloud.seatable.io/dtable/external-links/7b976c85f504491cbe8e/?tid=0000&vid=0000&row-id=VYQI9DJfRmCv5NggcX4f0Q) to migrate to the latest version)
+1. ss
 2. Close Seafile and native Nginx, Memcached
 3. Create the directory needed for Seafile Docker image to run, and copy some files of the locally deployed Seafile to this directory
 4. Download the docker-compose.yml file and configure Seafile Docker to use non-Docker version configuration information to connect to the old MySQL database and the old seafile-data directory.
