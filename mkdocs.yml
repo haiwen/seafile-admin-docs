@@ -94,6 +94,7 @@ nav:
         - OpenStack Swift Backend: setup/setup_with_swift.md
         - Multiple Storage Backends: setup/setup_with_multiple_storage_backends.md
         - Data migration: setup/migrate_backends_data.md
+      - Use SeaSearch as files indexer (Pro): setup/use_seasearch.md
       - Seafile Docker autostart: setup/seafile_docker_autostart.md
       - Deploy with an existing MySQL server: setup/setup_with_an_existing_mysql_server.md
       - Use other reverse proxy: setup/use_other_reverse_proxy.md
