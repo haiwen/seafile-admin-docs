@@ -1199,6 +1199,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../use_seasearch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Use SeaSearch as search engine (Pro)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../seafile_docker_autostart/" class="md-nav__link">
         
   
@@ -4327,10 +4348,13 @@
 <h1 id="installation-of-seafile-server-professional-edition-with-docker">Installation of Seafile Server Professional Edition with Docker<a class="headerlink" href="#installation-of-seafile-server-professional-edition-with-docker" title="Permanent link">&para;</a></h1>
 <p>This manual explains how to deploy and run Seafile Server Professional Edition (Seafile PE) on a Linux server using Docker and Docker Compose. The deployment has been tested for Debian/Ubuntu and CentOS, but Seafile PE should also work on other Linux distributions.</p>
 <h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
-<p>Seafile PE requires a minimum of 2 cores and 2GB RAM. </p>
+<p>Seafile PE docker requires a minimum of 4 cores and 4GB RAM. </p>
 <div class="admonition note">
 <p class="admonition-title">Other requirements for Seafile PE</p>
-<p>If Elasticsearch is installed on the same server, the minimum requirements are 4 cores and 4 GB RAM, and make sure the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules-store.html#mmapfs">mmapfs counts</a> do not cause excptions like out of memory, which can be increased by following command (see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html</a> for futher details):</p>
+<ul>
+<li>
+<p><strong>By default</strong>, Seafile Pro will use <strong><em>Elasticsearch</em></strong> as the files indexer</p>
+<p>Please make sure the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules-store.html#mmapfs">mmapfs counts</a> do not cause excptions like out of memory, which can be increased by following command (see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html</a> for futher details):</p>
 <div class="highlight"><pre><span></span><code>sysctl<span class="w"> </span>-w<span class="w"> </span>vm.max_map_count<span class="o">=</span><span class="m">262144</span><span class="w"> </span><span class="c1">#run as root</span>
 </code></pre></div>
 <p>or modify <strong>/etc/sysctl.conf</strong> and reboot to set this value permanently:</p>
@@ -4339,6 +4363,19 @@
 <span class="c1"># modify vm.max_map_count</span>
 vm.max_map_count<span class="o">=</span><span class="m">262144</span>
 </code></pre></div>
+</li>
+<li>
+<p>If your machine <strong>dose not</strong> have enough requirements, 2 Cores and 2GB RAM are minimum by chosing one of following two ways <strong>after first-time deployment</strong> of Seafile Pro docker:</p>
+<ul>
+<li>
+<p>Use <a href="../use_seasearch/"><em>SeaSearch</em></a>, a lightweight search engine built on open source search engine <a href="https://zincsearch-docs.zinc.dev/"><em>ZincSearch</em></a>, as the indexer</p>
+</li>
+<li>
+<p>Deploy <em>Elasticsearch</em> in another machine, and modify <code>es_host</code> and <code>es_port</code> in <a href="../../config/seafevents-conf/">seafevents.conf</a></p>
+</li>
+</ul>
+</li>
+</ul>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">About license</p>
