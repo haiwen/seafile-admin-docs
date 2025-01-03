@@ -1,4 +1,4 @@
-# Use SeaSearch as files indexer (Pro)
+# Use SeaSearch as search engine (Pro)
 
 !!! success "New features"
     [SeaSearch](https://haiwen.github.io/seasearch-docs/), a file indexer with more lightweight and efficiency than *Elasticsearch*, is supported from Seafile 12.
