@@ -1,11 +1,9 @@
-services:  
+services:
   seasearch:  
     image: ${SEASEARCH_IMAGE:-seafileltd/seasearch:latest}
-    container_name: seasearch  
+    container_name: seafile-seasearch  
     volumes:  
-      - ${SS_DATA_PATH:-./data}:/opt/seasearch/data  
-    ports:  
-      - "4080:4080" 
+      - ${SS_DATA_PATH:-/opt/seasearch-data}:/opt/seasearch/data  
     environment: 
       - ZINC_FIRST_ADMIN_USER=${INIT_SS_ADMIN_USER:-}
       - ZINC_FIRST_ADMIN_PASSWORD=${INIT_SS_ADMIN_PASSWORD:-}
@@ -13,14 +11,16 @@ services:
       - ZINC_WAL_ENABLE=${SS_WAL_ENABLE:-true}
       - ZINC_STORAGE_TYPE=${SS_STORAGE_TYPE:-}
       - ZINC_SHARD_NUM=${SS_SHARD_NUM:-}
-      - ZINC_MAX_OBJ_CACHE_SIZE=${SS_MAX_OBJ_CACHE_SIZE:-}
+      - ZINC_MAX_OBJ_CACHE_SIZE=${SS_MAX_OBJ_CACHE_SIZE:-10GB}
       - ZINC_S3_ACCESS_ID=${SS_S3_ACCESS_ID:-}
-      - ZINC_S3_USE_V4_SIGNATURE=${SS_S3_USE_V4_SIGNATURE:-}
+      - ZINC_S3_USE_V4_SIGNATURE=${SS_S3_USE_V4_SIGNATURE:-false}
       - ZINC_S3_ACCESS_SECRET=${SS_S3_ACCESS_SECRET:-}
-      - ZINC_S3_ENDPOINT=${SS_S3_ENDPOINT:-}
-      - ZINC_S3_USE_HTTPS=${SS_S3_USE_HTTPS:-}
-      - ZINC_S3_PATH_STYLE_REQUEST=${SS_S3_PATH_STYLE_REQUEST:-}
-      - ZINC_S3_AWS_REGION=${SS_S3_AWS_REGION:-}
+      - ZINC_S3_ENDPOINT=${SS_S3_ENDPOINT:-s3.us-east-1.amazonaws.com`}
+      - ZINC_S3_BUCKET=${SS_S3_BUCKET:-}
+      - ZINC_S3_USE_HTTPS=${SS_S3_USE_HTTPS:-true}
+      - ZINC_S3_PATH_STYLE_REQUEST=${SS_S3_PATH_STYLE_REQUEST:-true}
+      - ZINC_S3_AWS_REGION=${SS_S3_AWS_REGION:-us-east-1}
+      - ZINC_S3_SSE_C_KEY=${SS_S3_SSE_C_KEY:-}
       - ZINC_SERVER_MODE=${SS_SERVER_MODE:-}
       - ZINC_CLUSTER_ID=${SS_CLUSTER_ID:-}
       - ZINC_ETCD_USERNAME=${SS_ETCD_USERNAME:-}
@@ -37,6 +37,7 @@ services:
       - ZINC_CLUSTER_MANAGER_PORT=${SS_CLUSTER_MANAGER_PORT:-4081}
       - ZINC_CLUSTER_MANAGER_ETCD_ENDPOINTS=${SS_CLUSTER_MANAGER_ETCD_ENDPOINTS:-127.0.0.1:2379}
       - ZINC_CLUSTER_MANAGER_ETCD_PREFIX=${SS_CLUSTER_MANAGER_ETCD_PREFIX:-/zinc}
+      - SeaSearch_LOG_TO_STDOUT=${SeaSearch_LOG_TO_STDOUT:-false}
       - ZINC_LOG_OUTPUT=${SS_LOG_OUTPUT:-true}
       - ZINC_LOG_DIR=${SS_LOG_DIR:-/opt/seasearch/data/log}
       - ZINC_LOG_LEVEL=${SS_LOG_LEVEL:-debug}
@@ -48,5 +49,5 @@ services:
 
 
 networks:
-  - seafile-net:
+  seafile-net:
     name: seafile-net

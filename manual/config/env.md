@@ -129,3 +129,7 @@ NOTIFICATION_SERVER_VOLUME=/opt/notification-data
 - `INIT_S3_AWS_REGION`: Region of your buckets (AWS only), default is `us-east-1`. (Only valid when `INIT_S3_USE_V4_SIGNATURE` sets to `true`)
 - `INIT_S3_HOST`: Host of your buckets, default is `s3.us-east-1.amazonaws.com`. (Only valid when `INIT_S3_USE_V4_SIGNATURE` sets to `true`)
 - `INIT_S3_USE_HTTPS`: Use HTTPS connections to S3 if enabled, default is `true`
+
+## SeaSearch
+
+For configurations about SeaSearch in `.env`, please refer [here](https://haiwen.github.io/seasearch-docs/config/) for the details
