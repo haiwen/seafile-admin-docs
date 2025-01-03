@@ -4,23 +4,30 @@ This manual explains how to deploy and run Seafile Server Professional Edition (
 
 ## Requirements
 
-Seafile PE requires a minimum of 2 cores and 2GB RAM. 
+Seafile PE docker requires a minimum of 4 cores and 4GB RAM. 
 
 !!! note "Other requirements for Seafile PE"
-    If Elasticsearch is installed on the same server, the minimum requirements are 4 cores and 4 GB RAM, and make sure the [mmapfs counts](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules-store.html#mmapfs) do not cause excptions like out of memory, which can be increased by following command (see <https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html> for futher details):
+    - **By default**, Seafile Pro will use ***Elasticsearch*** as the files indexer
 
-    ```shell
-    sysctl -w vm.max_map_count=262144 #run as root
-    ```
+        Please make sure the [mmapfs counts](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules-store.html#mmapfs) do not cause excptions like out of memory, which can be increased by following command (see <https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html> for futher details):
 
-    or modify **/etc/sysctl.conf** and reboot to set this value permanently:
+        ```shell
+        sysctl -w vm.max_map_count=262144 #run as root
+        ```
 
-    ```shell
-    nano /etc/sysctl.conf
+        or modify **/etc/sysctl.conf** and reboot to set this value permanently:
 
-    # modify vm.max_map_count
-    vm.max_map_count=262144
-    ```
+        ```shell
+        nano /etc/sysctl.conf
+
+        # modify vm.max_map_count
+        vm.max_map_count=262144
+        ```
+    - If your machine **dose not** have enough requirements, 2 Cores and 2GB RAM are minimum by chosing one of following two ways **after first-time deployment** of Seafile Pro docker:
+
+        - Use [*SeaSearch*](./use_seasearch.md), a lightweight search engine built on open source search engine [*ZincSearch*](https://zincsearch-docs.zinc.dev/), as the indexer
+    
+        - Deploy *Elasticsearch* in another machine, and modify `es_host` and `es_port` in [seafevents.conf](../config/seafevents-conf.md)
 
 !!! tip "About license"
     Seafile PE can be used without a paid license with up to three users. Licenses for more user can be purchased in the [Seafile Customer Center](https://customer.seafile.com) or contact Seafile Sales at [sales@seafile.com](mailto:sales@seafile.com). For futher details, please refer the [license page](../setup_binary/seafile_professional_sdition_software_license_agreement.md) of Seafile PE.

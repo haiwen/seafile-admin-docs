@@ -9,9 +9,9 @@
 
 !!! note "Prerequisites"
 
-    - We assume you have already deployed memory cache server (e.g., ***Memcached***), ***MariaDB***, ***ElasticSearch*** in separate machines and use ***S3*** like object storage. 
+    - We assume you have already deployed memory cache server (e.g., ***Memcached***), ***MariaDB***, file indexer (e.g., ***ElasticSearch***, [*SeaSearch*](https://haiwen.github.io/seasearch-docs/)) in separate machines and use ***S3*** like object storage. 
 
-    - Usually, each node of Seafile Cluster should have at least **2 cores** and **2G memory**. If the above services are deployed together with a node in the Seafile cluster, we recommend that you prepare **4 cores** and **4G memory** for the node (especially if ElasticSearch is also deployed on the node)
+    - Usually, each node of Seafile Cluster should have at least **2 cores** and **2G memory**. If the above services are deployed together with a node in the Seafile cluster especially ***ElasticSearch***, we recommend that you prepare **4 cores** and **4G memory** for that node
 
 System: Ubuntu 24.04/22.04, Debian 12/11
 
