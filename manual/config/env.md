@@ -132,4 +132,4 @@ NOTIFICATION_SERVER_VOLUME=/opt/notification-data
 
 ## SeaSearch
 
-For configurations about SeaSearch in `.env`, please refer [here](https://haiwen.github.io/seasearch-docs/config/) for the details
+For configurations about SeaSearch in `.env`, please refer [here](https://seasearch-manual.seafile.comconfig/) for the details

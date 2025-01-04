@@ -85,9 +85,9 @@ SS_S3_AWS_REGION=us-east-1
 SS_S3_SSE_C_KEY=<your SSE-C key>
 
 ## Log
-SeaSearch_LOG_TO_STDOUT=false
+SS_LOG_TO_STDOUT=false
 SS_LOG_OUTPUT=true
-SS_LOG_LEVEL=debug
+SS_LOG_LEVEL=info
 
 ## Initial variables (can be removed after firstime startup SeaSearch service)
 INIT_SS_ADMIN_USER=<admin-username>
