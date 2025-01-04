@@ -1287,14 +1287,6 @@
     Migrate from non-docker deployment
   </span>
   
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
 
       </a>
     </li>
@@ -4450,7 +4442,6 @@ However, if your storage backup mechanism can finish quickly enough, using the f
 <h2 id="backup-and-restore-for-binary-package-based-deployment">Backup and restore for binary package based deployment<a class="headerlink" href="#backup-and-restore-for-binary-package-based-deployment" title="Permanent link">&para;</a></h2>
 <h3 id="backing-up-databases">Backing up Databases<a class="headerlink" href="#backing-up-databases" title="Permanent link">&para;</a></h3>
 <p>It's recommended to backup the database to a separate file each time. Don't overwrite older database backups for at least a week.</p>
-<p><strong>MySQL</strong></p>
 <p>Assume your database names are <code>ccnet_db</code>, <code>seafile_db</code> and <code>seahub_db</code>. mysqldump automatically locks the tables so you don't need to stop Seafile server when backing up MySQL databases. Since the database tables are usually very small, it won't take long to dump.</p>
 <div class="highlight"><pre><span></span><code>mysqldump -h [mysqlhost] -u[username] -p[password] --opt ccnet_db &gt; /backup/databases/ccnet_db.sql.`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`
 
