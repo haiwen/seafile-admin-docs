@@ -1,7 +1,7 @@
 # Use SeaSearch as search engine (Pro)
 
 !!! success "New features"
-    [SeaSearch](https://seasearch-manual.seafile.com), a file indexer with more lightweight and efficiency than *Elasticsearch*, is supported from Seafile 12.
+    [SeaSearch](https://seasearch-manual.seafile.com/), a file indexer with more lightweight and efficiency than *Elasticsearch*, is supported from Seafile 12.
 
 !!! note "For Seafile deploy from binary package"
     We currently **only support Docker-based** deployment for SeaSearch Server, so this document describes the configuration with the situation of using Docker to deploy Seafile server. 
@@ -21,7 +21,7 @@ wget https://manual.seafile.com/12.0/docker/pro/seasearch.yml
 
 ## Modify `.env`
 
-We have configured the relevant variables in .env. Here you must pay special attention to the following variable information, which will affect the SeaSearch initialization process. For variables in `.env` of SeaSearch service, please refer [here](https://seasearch-manual.seafile.comconfig/) for the details. We use `/opt/seasearch-data` as the persistent directory of SeaSearch:
+We have configured the relevant variables in .env. Here you must pay special attention to the following variable information, which will affect the SeaSearch initialization process. For variables in `.env` of SeaSearch service, please refer [here](https://seasearch-manual.seafile.com/config/) for the details. We use `/opt/seasearch-data` as the persistent directory of SeaSearch:
 
 !!! warning "For Apple's Chips"
     Since Apple's chips (such as M2) do not support [MKL](https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html), you need to set the relevant image to `seafileltd/seasearch-nomkl:latest` if you use an Apple's chip:
