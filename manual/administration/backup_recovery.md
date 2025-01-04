@@ -42,8 +42,6 @@ We assume your seafile data directory is in `/opt/seafile` for binary package ba
 
 It's recommended to backup the database to a separate file each time. Don't overwrite older database backups for at least a week.
 
-**MySQL**
-
 Assume your database names are `ccnet_db`, `seafile_db` and `seahub_db`. mysqldump automatically locks the tables so you don't need to stop Seafile server when backing up MySQL databases. Since the database tables are usually very small, it won't take long to dump.
 
 ```
