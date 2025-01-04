@@ -35,8 +35,8 @@ Run the following commands in `/opt/seafile/seafile-server-latest`:
 
 ```sh
 su seafile
-./seafile.sh start # Start Seafile service
-./seahub.sh start  # Start seahub website, port defaults to 127.0.0.1:8000
+./seafile.sh stop
+./seahub.sh stop
 ```
 
 ### Stop Nginx, cached server (e.g., *Memcached*), ElasticSearch
