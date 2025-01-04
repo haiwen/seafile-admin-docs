@@ -30,6 +30,12 @@ Please check our document for how to upgrade to [12.0](../upgrade/upgrade_notes_
 
 Please check our document for how to upgrade to [11.0](../upgrade/upgrade_notes_for_11.0.x.md)
 
+### 11.0.17 (2024-01-04)
+
+* [fix] Fix a few issues in golang file server related to permission check
+* [fix] Fix a bug in golang file server related to online GC
+
+
 ### 11.0.16 (2024-11-04)
 
 * The storage migration script now does not allow migration to the original bucket
