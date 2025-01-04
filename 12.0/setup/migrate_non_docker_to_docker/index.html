@@ -4268,8 +4268,8 @@
 <p>If you have integrated some components (e.g., <em>SeaDoc</em>) in your Seafile server, please shutdown them to avoid losting unsaved data</p>
 </div>
 <div class="highlight"><pre><span></span><code>su<span class="w"> </span>seafile
-./seafile.sh<span class="w"> </span>start<span class="w"> </span><span class="c1"># Start Seafile service</span>
-./seahub.sh<span class="w"> </span>start<span class="w">  </span><span class="c1"># Start seahub website, port defaults to 127.0.0.1:8000</span>
+./seafile.sh<span class="w"> </span>stop
+./seahub.sh<span class="w"> </span>stop
 </code></pre></div>
 <h3 id="stop-nginx-cached-server-eg-memcached-elasticsearch">Stop Nginx, cached server (e.g., <em>Memcached</em>), ElasticSearch<a class="headerlink" href="#stop-nginx-cached-server-eg-memcached-elasticsearch" title="Permanent link">&para;</a></h3>
 <p>You have to stop the above services to avoid losing data before migrating.</p>
