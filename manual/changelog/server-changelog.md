@@ -9,12 +9,18 @@
 
 Please check our document for how to upgrade to [12.0](../upgrade/upgrade_notes_for_12.0.x.md)
 
+### 12.0.7 (2025-01-08)
+
+* [fix] Some UI improvements and fixes
+* [Wiki] Some UI improvements and fixes
+* Clean inconsistent format in logs
+* [fix] Fix WebDAV upload "0 Byte Files" issue
+
 ### 12.0.6 beta (2024-12-19)
 
 * [fix] Fix seafevents not started
 * Update translation
 * Some UI fixes
-
 
 ### 12.0.4 beta (2024-11-21)
 
