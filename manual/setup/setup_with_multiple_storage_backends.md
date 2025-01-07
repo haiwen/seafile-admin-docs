@@ -280,6 +280,10 @@ Then you can add option `for_new_library` to the backends which are expected to 
 
 ## Multiple Storage Backend Data Migration
 
+!!! warning "Migration from S3"
+
+    Since version 11, when you migrate from S3 to other storage servers, you have to use V4 authentication protocol. This is because version 11 upgrades to Boto3 library, which fails to list objects from S3 when it's configured to use V2 authentication protocol.
+
 Run the `migrate-repo.sh` script to migrate library data between different storage backends.
 
 ```
