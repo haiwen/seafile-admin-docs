@@ -973,14 +973,6 @@
     Multiple Storage Backends
   </span>
   
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
 
           <span class="md-nav__icon md-icon"></span>
         </label>
@@ -991,14 +983,6 @@
   <span class="md-ellipsis">
     Multiple Storage Backends
   </span>
-  
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
   
 
       </a>
@@ -1019,9 +1003,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#outline" class="md-nav__link">
+  <a href="#how-to-engage-multiple-storage-backend" class="md-nav__link">
     <span class="md-ellipsis">
-      Outline
+      How to engage multiple storage backend
     </span>
   </a>
   
@@ -1034,27 +1018,12 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Seafile Configuration">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#notes-for-docker-installs" class="md-nav__link">
-    <span class="md-ellipsis">
-      Notes for Docker Installs
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
-  <a href="#defining-storage-backends" class="md-nav__link">
+  <a href="#exmaple-of-storage-classes-file" class="md-nav__link">
     <span class="md-ellipsis">
-      Defining Storage Backends
+      Exmaple of storage classes file
     </span>
   </a>
   
@@ -4162,9 +4131,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#outline" class="md-nav__link">
+  <a href="#how-to-engage-multiple-storage-backend" class="md-nav__link">
     <span class="md-ellipsis">
-      Outline
+      How to engage multiple storage backend
     </span>
   </a>
   
@@ -4177,27 +4146,12 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Seafile Configuration">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#notes-for-docker-installs" class="md-nav__link">
-    <span class="md-ellipsis">
-      Notes for Docker Installs
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
-  <a href="#defining-storage-backends" class="md-nav__link">
+  <a href="#exmaple-of-storage-classes-file" class="md-nav__link">
     <span class="md-ellipsis">
-      Defining Storage Backends
+      Exmaple of storage classes file
     </span>
   </a>
   
@@ -4290,62 +4244,113 @@
 <h1 id="multiple-storage-backend">Multiple Storage Backend<a class="headerlink" href="#multiple-storage-backend" title="Permanent link">&para;</a></h1>
 <p>There are some use cases that supporting multiple storage backends in Seafile server is needed. Such as:</p>
 <ol>
-<li>Store different types of files into different storage backends. For example, normal files can be stored in primary storage (disks, SSD); Archived files can be stored in cold storage (tapes or other backup systems).</li>
-<li>Combine multiple storage backends to extend storage scalability. For example, a single NFS volume may be limited by size; a single S3 bucket of Ceph RGW may suffer performance decrease when the number of objects become very large.</li>
+<li>
+<p>Store different types of files into different storage backends:</p>
+<ul>
+<li>Normal files can be stored in primary storage (e.g., local disks)</li>
+<li>Archived files can be stored in cold storage (tapes or other backup systems)</li>
+</ul>
+</li>
+<li>
+<p>Combine multiple storage backends to extend storage scalability:</p>
+<ul>
+<li>A single NFS volume may be limited by size</li>
+<li>A single S3 bucket of Ceph RGW may suffer performance decrease when the number of objects become very large.</li>
+</ul>
+</li>
 </ol>
-<p>The library data in Seafile server are spreaded into multiple storage backends in the unit of libraries. All the data in a library will be located in the same storage backend. The mapping from library to its storage backend is stored in a database table. Different mapping policies can be chosen based on the use case.</p>
+<div class="admonition note">
+<p class="admonition-title">About data of library</p>
+<ul>
+<li>The library data in Seafile server are spreaded into multiple storage backends in the unit of libraries. </li>
+<li>All the data in a library will be located in the same storage backend. </li>
+<li>The mapping from library to its storage backend is stored in a database table. </li>
+<li>Different mapping policies can be chosen based on the use case.</li>
+</ul>
+</div>
+<h2 id="how-to-engage-multiple-storage-backend">How to engage multiple storage backend<a class="headerlink" href="#how-to-engage-multiple-storage-backend" title="Permanent link">&para;</a></h2>
 <p>To use this feature, you need to:</p>
 <ol>
-<li>Define storage classes in seafile.conf.</li>
-<li>Enable multiple backend feature in seahub and choose a mapping policy.</li>
+<li>Define <a href="#exmaple-of-storage-classes-file">storage classes</a> in <code>seafile.conf</code>.</li>
+<li>Enable multiple backend feature in <em>Seahub</em> and choose a mapping policy.</li>
 </ol>
-<h2 id="outline">Outline<a class="headerlink" href="#outline" title="Permanent link">&para;</a></h2>
-<p>In Seafile server, a storage backend is represented by the concept of "storage class". A storage class is defined by specifying the following information:</p>
-<ul>
-<li><code>storage_id</code>: an internal string ID to identify the storage class. It's not visible to users. For example "primary storage".</li>
-<li><code>name</code>: A user visible name for the storage class.</li>
-<li><code>is_default</code>: whether this storage class is the default. This option are effective in two cases:</li>
-<li>If the chosen mapping policy allows users to choose storage class for a library, this would be the default if the user doesn't choose one.</li>
-<li>For other mapping policies, this option only takes effect when you have some existing libraries before enabling multiple storage backend feature. For existing libraries, the system will automatically map them to the default storage backend. So in this case you have to set the existing storage backend as the default one.</li>
-<li><code>commits</code>：the storage for storing the commit objects for this class. It can be any storage that Seafile supports, like file system, ceph, s3.</li>
-<li><code>fs</code>：the storage for storing the fs objects for this class. It can be any storage that Seafile supports, like file system, ceph, s3.</li>
-<li><code>blocks</code>：the storage for storing the block objects for this class. It can be any storage that Seafile supports, like file system, ceph, s3.</li>
-</ul>
-<p>commit, fs, and blocks can be stored in different storages. This provides the most flexible way to define storage classes.</p>
 <h2 id="seafile-configuration">Seafile Configuration<a class="headerlink" href="#seafile-configuration" title="Permanent link">&para;</a></h2>
 <p>As Seafile server before 6.3 version doesn't support multiple storage classes, you have to explicitly enable this new feature and define storage classes with a different syntax than how we define storage backend before.</p>
-<p>First, you have to enable this feature in seafile.conf.</p>
+<p>By default, Seafile dose not enable multiple storage classes. So, you have to create a configuration file for storage classes and specify it and enable the feature in <code>seafile.conf</code>:</p>
+<ol>
+<li>
+<p>Create the storage classes file:</p>
+<div class="highlight"><pre><span></span><code>nano<span class="w"> </span>/opt/seafile-date/seafile/conf
+</code></pre></div>
+<p>For the example of this file, please refer <a href="#exmaple-of-storage-classes-file">next section</a></p>
+</li>
+<li>
+<p>Modify <code>seafile.conf</code></p>
 <div class="highlight"><pre><span></span><code>[storage]
 enable_storage_classes = true
-storage_classes_file = /opt/seafile_storage_classes.json
+storage_classes_file = /shared/conf/seafile_storage_classes.json
 </code></pre></div>
 <ul>
-<li>enable_storage_classes ：If this is set to true, the storage class feature is enabled. You must define the storage classes in a JSON file provided in the next configuration option.</li>
-<li>storage_classes_file：Specifies the path for the JSON file that contains the storage class definition.</li>
+<li><code>enable_storage_classes</code> ：If this is set to true, the storage class feature is enabled. You must define the storage classes in a <strong>JSON</strong> file provided in the next configuration option.</li>
+<li><code>storage_classes_file：Specifies</code> the path for the <strong>JSON</strong> file that contains the storage class definition.</li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">You also need to add <a href="../../config/seafile-conf/#cache-pro-edition-only">memory cache configurations</a> to <code>seafile.conf</code></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ul>
+<li>Make sure you have added <a href="../../config/seafile-conf/#cache-pro-edition-only">memory cache configurations</a> to <code>seafile.conf</code></li>
+<li>Due to the <em>Docker persistence strategy</em>, the path of <code>storage_classes_file</code> <strong>in the <em>Seafile container</em></strong> is different from the host usually, so we suggest you put this file in to the Seafile's configurations directory, and use <code>/shared/conf</code> instead of <code>/opt/seafile-date/seafile/conf</code>. Otherwise you have to add another persistent volume mapping strategy in <code>seafile-server.yml</code>. If your Seafile server is not deployed with Docker, we still suggest you put this file into the Seafile configurations file directory.</li>
+</ul>
 </div>
-<h3 id="notes-for-docker-installs">Notes for Docker Installs<a class="headerlink" href="#notes-for-docker-installs" title="Permanent link">&para;</a></h3>
-<p>If installing Seafile as Docker containers, place the <code>seafile_storage_classes.json</code> file on your local disk in a sub-directory of the location that is mounted to the <code>seafile</code> container, and set the <code>storage_classes_file</code> configuration above to a path <strong><em>relative to the <code>/shared/</code> directory mounted on the <code>seafile</code> container</em></strong>.  </p>
-<p>For example, if the configuration of the <code>seafile</code> container in your <code>docker-compose.yml</code> file is similar to the following:
-<div class="highlight"><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">// docker-compose.yml</span>
-<span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
-<span class="w">  </span><span class="nt">seafile</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile</span>
-<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/seafile-data:/shared</span>
-</code></pre></div></p>
-<p>Then place the JSON file within any sub-directory of <code>/opt/seafile-data</code> (such as <code>/opt/seafile-data/conf/</code>) and then configure <code>seafile.conf</code> like so:</p>
-<div class="highlight"><pre><span></span><code><span class="k">[storage]</span>
-<span class="n">enable_storage_classes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
-<span class="n">storage_classes_file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">/shared/conf/seafile</span><span class="mi">_</span><span class="n">storage_classes</span><span class="p">.</span><span class="n">json</span>
-</code></pre></div>
+</li>
+</ol>
+<h2 id="exmaple-of-storage-classes-file">Exmaple of storage classes file<a class="headerlink" href="#exmaple-of-storage-classes-file" title="Permanent link">&para;</a></h2>
+<p>The storage classes JSON file is about <strong>an array consist of objects</strong>, for each defines a <em>storage class</em>. The fields in the definition corresponds to the information we need to specify for a <strong><em>storage class</em></strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Variables</th>
+<th>Descriptions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>storage_id</code></td>
+<td>A unique internal string ID used to identify the storage class. It is not visible to users. For example, "primary storage".</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>A user-visible name for the storage class.</td>
+</tr>
+<tr>
+<td><code>is_default</code></td>
+<td>Indicates whether this storage class is the default one.</td>
+</tr>
+<tr>
+<td><code>commits</code></td>
+<td>The storage used for storing commit objects for this class.</td>
+</tr>
+<tr>
+<td><code>fs</code></td>
+<td>The storage used for storing fs objects for this class.</td>
+</tr>
+<tr>
+<td><code>blocks</code></td>
+<td>The storage used for storing block objects for this class.</td>
+</tr>
+</tbody>
+</table>
 <div class="admonition note">
-<p class="admonition-title">You also need to add <a href="../../config/seafile-conf/#cache-pro-edition-only">memory cache configurations</a> to <code>seafile.conf</code></p>
+<p class="admonition-title">Note</p>
+<ul>
+<li><code>is_default</code> is effective in two cases: <ol>
+<li>When a user does not choose a mapping policy and can use this storage class for a library; </li>
+<li>For other mapping policies, this option only takes effect when you have existing libraries before enabling the multiple storage backend feature, which will be automatically mapped to the default storage backend.</li>
+</ol>
+</li>
+<li><code>commit</code>, <code>fs</code>, and <code>blocks</code> can be stored in different storages. This provides the most flexible way to define storage classes (e.g., a file system, <em>Ceph</em>, or <em>S3</em>.)</li>
+</ul>
 </div>
-<h2 id="defining-storage-backends">Defining Storage Backends<a class="headerlink" href="#defining-storage-backends" title="Permanent link">&para;</a></h2>
-<p>The JSON file is an array of objects. Each object defines a storage class. The fields in the definition corresponds to the information we need to specify for a storage class. Below is an example:</p>
+<p>Here is an example, which uses local file system, S3 (default), Swift and Ceph at the same time.</p>
 <div class="highlight"><pre><span></span><code><span class="p">[</span>
 <span class="w">  </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;storage_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hot_storage&quot;</span><span class="p">,</span>
@@ -4354,20 +4359,20 @@ storage_classes_file = /opt/seafile_storage_classes.json
 <span class="w">    </span><span class="nt">&quot;commits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;s3&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;bucket&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;seafile-commits&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ZjoJ8RPNDqP1vcdD60U4wAHwUQf2oJYqxN27oR09&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;key_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AKIAIOT3GCU5VGCCL44A&quot;</span>
+<span class="w">      </span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;your key&gt;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;key_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;your key id&gt;&quot;</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;fs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;s3&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;bucket&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;seafile-fs&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ZjoJ8RPNDqP1vcdD60U4wAHwUQf2oJYqxN27oR09&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;key_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AKIAIOT3GCU5VGCCL44A&quot;</span>
+<span class="w">      </span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;your key&gt;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;key_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;your key id&gt;&quot;</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;blocks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;s3&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;bucket&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;seafile-blocks&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ZjoJ8RPNDqP1vcdD60U4wAHwUQf2oJYqxN27oR09&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;key_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;AKIAIOT3GCU5VGCCL44A&quot;</span>
+<span class="w">      </span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;your key&gt;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;key_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;your key id&gt;&quot;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">},</span>
 <span class="w">  </span><span class="p">{</span>
@@ -4376,15 +4381,15 @@ storage_classes_file = /opt/seafile_storage_classes.json
 <span class="w">    </span><span class="nt">&quot;is_default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;fs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fs&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/storage/seafile/seafile-data&quot;</span>
+<span class="w">      </span><span class="nt">&quot;dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/share/seafile/seafile-data&quot;</span><span class="w"> </span><span class="c1">// /opt/seafile/seafile-data for binary-install Seafile</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;commits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fs&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/storage/seafile/seafile-data&quot;</span>
+<span class="w">      </span><span class="nt">&quot;dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/share/seafile/seafile-data&quot;</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;blocks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fs&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/storage/seafile/seaflle-data&quot;</span>
+<span class="w">      </span><span class="nt">&quot;dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/share/seafile/seafile-data&quot;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">},</span>
 <span class="w">  </span><span class="p">{</span>
@@ -4392,29 +4397,29 @@ storage_classes_file = /opt/seafile_storage_classes.json
 <span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Swift Storage&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;fs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;swift&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;tenant&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;adminTenant&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;user_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;admin&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;openstack&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;tenant&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;your tenant&gt;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;user_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;your username&gt;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;your password&gt;&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;container&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;seafile-commits&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;auth_host&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.56.31:5000&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;auth_host&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;Swift auth host&gt;:&lt;port, default 5000&gt;&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;auth_ver&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;v2.0&quot;</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;commits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;swift&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;tenant&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;adminTenant&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;user_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;admin&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;openstack&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;container&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;seafile-fs&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;auth_host&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.56.31:5000&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;tenant&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;your tenant&gt;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;user_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;your username&gt;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;your password&gt;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;container&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;seafile-commits&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;auth_host&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;Swift auth host&gt;:&lt;port, default 5000&gt;&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;auth_ver&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;v2.0&quot;</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;blocks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;swift&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;tenant&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;adminTenant&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;user_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;admin&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;openstack&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;container&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;seafile-blocks&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;auth_host&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.56.31:5000&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;tenant&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;your tenant&gt;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;user_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;your username&gt;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;your password&gt;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;container&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;seafile-commits&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;auth_host&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;Swift auth host&gt;:&lt;port, default 5000&gt;&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;auth_ver&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;v2.0&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;region&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;RegionTwo&quot;</span>
 <span class="w">    </span><span class="p">}</span>
@@ -4440,57 +4445,69 @@ storage_classes_file = /opt/seafile_storage_classes.json
 <span class="w">  </span><span class="p">}</span>
 <span class="p">]</span>
 </code></pre></div>
-<p>As you may have seen, the <code>commits</code>, <code>fs</code> and <code>blocks</code> information syntax is similar to what is used in <code>[commit_object_backend]</code>, <code>[fs_object_backend]</code> and <code>[block_backend]</code> section of seafile.conf. Refer to the detailed syntax in the documentation for the storage you use. For exampe, if you use S3 storage, refer to <a href="../setup_with_s3/">S3 Storage</a>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ul>
+<li>
+<p>As you may have seen, the <code>commits</code>, <code>fs</code> and <code>blocks</code> information syntax is similar to what is used in <code>[commit_object_backend]</code>, <code>[fs_object_backend]</code> and <code>[block_backend]</code> section of <code>seafile.conf</code> for a single backend storage. You can refer to the detailed syntax in the documentation for the storage you use (e.g., <a href="../setup_with_s3/">S3 Storage</a> for S3).</p>
+</li>
+<li>
 <p>If you use file system as storage for <code>fs</code>, <code>commits</code> or <code>blocks</code>, you must explicitly provide the path for the <code>seafile-data</code> directory. The objects will be stored in <code>storage/commits</code>, <code>storage/fs</code>, <code>storage/blocks</code> under this path. </p>
-<div class="admonition note">
-<p class="admonition-title">Currently file system, S3 and Swift backends are supported. Ceph/RADOS is also supported since version 7.0.14</p>
+</li>
+</ul>
 </div>
 <h2 id="library-mapping-policies">Library Mapping Policies<a class="headerlink" href="#library-mapping-policies" title="Permanent link">&para;</a></h2>
-<p>Library mapping policies decide the storage class a library uses. Currently we provide 3 policies for 3 different use cases. The storage class of a library is decided on creation and stored in a database table. The storage class of a library won't change if the mapping policy is changed later.</p>
+<p>Library mapping policies decide the storage class a library uses. Currently we provide 3 policies for 3 different use cases:</p>
+<ul>
+<li><strong><em>User Chosen</em></strong></li>
+<li><strong><em>Role-based Mapping</em></strong></li>
+<li><strong><em>Library ID Based Mapping</em></strong></li>
+</ul>
+<p>The storage class of a library is decided on creation and stored in a database table. The storage class of a library won't change if the mapping policy is changed later.</p>
 <p>Before choosing your mapping policy, you need to enable the storage classes feature in seahub_settings.py:</p>
-<div class="highlight"><pre><span></span><code>ENABLE_STORAGE_CLASSES = True
+<div class="highlight"><pre><span></span><code><span class="n">ENABLE_STORAGE_CLASSES</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div>
 <h3 id="user-chosen">User Chosen<a class="headerlink" href="#user-chosen" title="Permanent link">&para;</a></h3>
 <p>This policy lets the users choose which storage class to use when creating a new library. The users can select any storage class that's been defined in the JSON file.</p>
 <p>To use this policy, add following options in seahub_settings.py:</p>
-<div class="highlight"><pre><span></span><code>STORAGE_CLASS_MAPPING_POLICY = &#39;USER_SELECT&#39;
+<div class="highlight"><pre><span></span><code><span class="n">STORAGE_CLASS_MAPPING_POLICY</span> <span class="o">=</span> <span class="s1">&#39;USER_SELECT&#39;</span>
 </code></pre></div>
 <p>If you enable storage class support but don't explicitly set <code>STORAGE_CLASS_MAPPING_POLIICY</code> in seahub_settings.py, this policy is used by default.</p>
 <h3 id="role-based-mapping">Role-based Mapping<a class="headerlink" href="#role-based-mapping" title="Permanent link">&para;</a></h3>
 <p>Due to storage cost or management considerations, sometimes a system admin wants to make different type of users use different storage backends (or classes). You can configure a user's storage classes based on their roles.</p>
 <p>A new option <code>storage_ids</code> is added to the role configuration in <code>seahub_settings.py</code> to assign storage classes to each role. If only one storage class is assigned to a role, the users with this role cannot choose storage class for libraries; otherwise, the users can choose a storage class if more than one class are assigned. If no storage class is assigned to a role, the default class specified in the JSON file will be used. </p>
 <p>Here are the sample options in seahub_settings.py to use this policy:</p>
-<div class="highlight"><pre><span></span><code>ENABLE_STORAGE_CLASSES = True
-STORAGE_CLASS_MAPPING_POLICY = &#39;ROLE_BASED&#39;
+<div class="highlight"><pre><span></span><code><span class="n">ENABLE_STORAGE_CLASSES</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">STORAGE_CLASS_MAPPING_POLICY</span> <span class="o">=</span> <span class="s1">&#39;ROLE_BASED&#39;</span>
 
-ENABLED_ROLE_PERMISSIONS = {
-    &#39;default&#39;: {
-        &#39;can_add_repo&#39;: True,
-        &#39;can_add_group&#39;: True,
-        &#39;can_view_org&#39;: True,
-        &#39;can_use_global_address_book&#39;: True,
-        &#39;can_generate_share_link&#39;: True,
-        &#39;can_generate_upload_link&#39;: True,
-        &#39;can_invite_guest&#39;: True,
-        &#39;can_connect_with_android_clients&#39;: True,
-        &#39;can_connect_with_ios_clients&#39;: True,
-        &#39;can_connect_with_desktop_clients&#39;: True,
-        &#39;storage_ids&#39;: [&#39;old_version_id&#39;, &#39;hot_storage&#39;, &#39;cold_storage&#39;, &#39;a_storage&#39;],
-    },
-    &#39;guest&#39;: {
-        &#39;can_add_repo&#39;: True,
-        &#39;can_add_group&#39;: False,
-        &#39;can_view_org&#39;: False,
-        &#39;can_use_global_address_book&#39;: False,
-        &#39;can_generate_share_link&#39;: False,
-        &#39;can_generate_upload_link&#39;: False,
-        &#39;can_invite_guest&#39;: False,
-        &#39;can_connect_with_android_clients&#39;: False,
-        &#39;can_connect_with_ios_clients&#39;: False,
-        &#39;can_connect_with_desktop_clients&#39;: False,
-        &#39;storage_ids&#39;: [&#39;hot_storage&#39;, &#39;cold_storage&#39;],
-    },
-}
+<span class="n">ENABLED_ROLE_PERMISSIONS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;can_add_repo&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;can_add_group&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;can_view_org&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;can_use_global_address_book&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;can_generate_share_link&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;can_generate_upload_link&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;can_invite_guest&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;can_connect_with_android_clients&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;can_connect_with_ios_clients&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;can_connect_with_desktop_clients&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;storage_ids&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;old_version_id&#39;</span><span class="p">,</span> <span class="s1">&#39;hot_storage&#39;</span><span class="p">,</span> <span class="s1">&#39;cold_storage&#39;</span><span class="p">,</span> <span class="s1">&#39;a_storage&#39;</span><span class="p">],</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;guest&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;can_add_repo&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;can_add_group&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">&#39;can_view_org&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">&#39;can_use_global_address_book&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">&#39;can_generate_share_link&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">&#39;can_generate_upload_link&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">&#39;can_invite_guest&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">&#39;can_connect_with_android_clients&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">&#39;can_connect_with_ios_clients&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">&#39;can_connect_with_desktop_clients&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">&#39;storage_ids&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;hot_storage&#39;</span><span class="p">,</span> <span class="s1">&#39;cold_storage&#39;</span><span class="p">],</span>
+    <span class="p">},</span>
+<span class="p">}</span>
 </code></pre></div>
 <h3 id="library-id-based-mapping">Library ID Based Mapping<a class="headerlink" href="#library-id-based-mapping" title="Permanent link">&para;</a></h3>
 <p>This policy maps libraries to storage classes based on its library ID. The ID of a library is an UUID. In this way, the data in the system can be evenly distributed among the storage classes.</p>
@@ -4499,20 +4516,29 @@ ENABLED_ROLE_PERMISSIONS = {
 <p>This policy is not a designed to be a complete distributed storage solution. It doesn't handle automatic migration of library data between storage classes. If you need to add more storage classes to the configuration, existing libraries will stay in their original storage classes. New libraries can be distributed among the new storage classes (backends). You still have to plan about the total storage capacity of your system at the beginning.</p>
 </div>
 <p>To use this policy, you first add following options in seahub_settings.py:</p>
-<div class="highlight"><pre><span></span><code>STORAGE_CLASS_MAPPING_POLICY = &#39;REPO_ID_MAPPING&#39;
+<div class="highlight"><pre><span></span><code><span class="n">STORAGE_CLASS_MAPPING_POLICY</span> <span class="o">=</span> <span class="s1">&#39;REPO_ID_MAPPING&#39;</span>
 </code></pre></div>
 <p>Then you can add option <code>for_new_library</code> to the backends which are expected to store new libraries in json file:</p>
-<div class="highlight"><pre><span></span><code>[
-{
-&quot;storage_id&quot;: &quot;new_backend&quot;,
-&quot;name&quot;: &quot;New store&quot;,
-&quot;for_new_library&quot;: true,
-&quot;is_default&quot;: false,
-&quot;fs&quot;: {&quot;backend&quot;: &quot;fs&quot;, &quot;dir&quot;: &quot;/storage/seafile/new-data&quot;},
-&quot;commits&quot;: {&quot;backend&quot;: &quot;fs&quot;, &quot;dir&quot;: &quot;/storage/seafile/new-data&quot;},
-&quot;blocks&quot;: {&quot;backend&quot;: &quot;fs&quot;, &quot;dir&quot;: &quot;/storage/seafile/new-data&quot;}
-}
-]
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;storage_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;new_backend&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;New store&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;for_new_library&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;is_default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;fs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fs&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="nt">&quot;dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/storage/seafile/new-data&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;commits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fs&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="nt">&quot;dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/storage/seafile/new-data&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;blocks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fs&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="nt">&quot;dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/storage/seafile/new-data&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
 </code></pre></div>
 <h2 id="multiple-storage-backend-data-migration">Multiple Storage Backend Data Migration<a class="headerlink" href="#multiple-storage-backend-data-migration" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
@@ -4520,27 +4546,35 @@ ENABLED_ROLE_PERMISSIONS = {
 <p>Since version 11, when you migrate from S3 to other storage servers, you have to use V4 authentication protocol. This is because version 11 upgrades to Boto3 library, which fails to list objects from S3 when it's configured to use V2 authentication protocol.</p>
 </div>
 <p>Run the <code>migrate-repo.sh</code> script to migrate library data between different storage backends.</p>
-<div class="highlight"><pre><span></span><code>./migrate-repo.sh [repo_id] origin_storage_id destination_storage_id
+<div class="highlight"><pre><span></span><code>./migrate-repo.sh<span class="w"> </span><span class="o">[</span>repo_id<span class="o">]</span><span class="w"> </span>origin_storage_id<span class="w"> </span>destination_storage_id
 </code></pre></div>
 <ul>
 <li>repo_id: migrated library id</li>
 <li>origin_storage_id: migrated origin storage id</li>
 <li>destination_storage_id: migrated destination storage id</li>
 </ul>
-<p>repo_id is optional, if not specified, all libraries will be migrated.</p>
-<p>Before running the migration script, you can set the <code>OBJECT_LIST_FILE_PATH</code> environment variable to specify a path prefix to store the migrated object list.</p>
+<p>repo_id is optional, if not specified, <strong>all libraries will be migrated</strong>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Specify a path prefix</p>
+<p>You can set the <code>OBJECT_LIST_FILE_PATH</code> environment variable to <strong>specify a path prefix</strong> to store the migrated object list <strong>before</strong> running the migration script</p>
 <p>For example:</p>
-<div class="highlight"><pre><span></span><code>export OBJECT_LIST_FILE_PATH=/opt/test
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">OBJECT_LIST_FILE_PATH</span><span class="o">=</span>/opt/test
 </code></pre></div>
-<p>This will create three files in the specified path (/opt): <code>test_4c731e5c-f589-4eaa-889f-14c00d4893cb.fs</code> <code>test_4c731e5c-f589-4eaa-889f-14c00d4893cb.commits</code> <code>test_4c731e5c-f589-4eaa-889f-14c00d4893cb.blocks</code>
-Setting the <code>OBJECT_LIST_FILE_PATH</code> environment variable has two purposes:</p>
+<p>This will create three files in the specified path (/opt): </p>
+<ul>
+<li><code>test_4c731e5c-f589-4eaa-889f-14c00d4893cb.fs</code></li>
+<li><code>test_4c731e5c-f589-4eaa-889f-14c00d4893cb.commits</code> </li>
+<li><code>test_4c731e5c-f589-4eaa-889f-14c00d4893cb.blocks</code></li>
+</ul>
+<p>Setting the <code>OBJECT_LIST_FILE_PATH</code> environment variable has two purposes:</p>
 <ol>
 <li>If the migrated library is very large, you need to run the migration script multiple times. Setting this environment variable can skip the previously migrated objects.</li>
 <li>After the migration is complete, if you need to delete the objects in the origin storage, you must set this environment variable.</li>
 </ol>
+</div>
 <h3 id="delete-all-objects-in-a-library-in-the-specified-storage-backend">Delete All Objects In a Library In The Specified Storage Backend<a class="headerlink" href="#delete-all-objects-in-a-library-in-the-specified-storage-backend" title="Permanent link">&para;</a></h3>
 <p>Run the <code>remove-objs.sh</code> script (before migration, you need to set the OBJECT_LIST_FILE_PATH environment variable) to delete all objects in a library in the specified storage backend.</p>
-<div class="highlight"><pre><span></span><code>./remove-objs.sh repo_id storage_id
+<div class="highlight"><pre><span></span><code>./remove-objs.sh<span class="w"> </span>repo_id<span class="w"> </span>storage_id
 </code></pre></div>
 
 
@@ -4548,9 +4582,6 @@ Setting the <code>OBJECT_LIST_FILE_PATH</code> environment variable has two purp
 
 
 
-
-  
-  
 
 
 
