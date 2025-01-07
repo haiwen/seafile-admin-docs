@@ -1,82 +1,77 @@
----
-status: new
----
-
-
 # Multiple Storage Backend
 
 There are some use cases that supporting multiple storage backends in Seafile server is needed. Such as:
 
-1. Store different types of files into different storage backends. For example, normal files can be stored in primary storage (disks, SSD); Archived files can be stored in cold storage (tapes or other backup systems).
-2. Combine multiple storage backends to extend storage scalability. For example, a single NFS volume may be limited by size; a single S3 bucket of Ceph RGW may suffer performance decrease when the number of objects become very large.
+1. Store different types of files into different storage backends:
+    - Normal files can be stored in primary storage (e.g., local disks)
+    - Archived files can be stored in cold storage (tapes or other backup systems)
 
-The library data in Seafile server are spreaded into multiple storage backends in the unit of libraries. All the data in a library will be located in the same storage backend. The mapping from library to its storage backend is stored in a database table. Different mapping policies can be chosen based on the use case.
+2. Combine multiple storage backends to extend storage scalability:
+    - A single NFS volume may be limited by size
+    - A single S3 bucket of Ceph RGW may suffer performance decrease when the number of objects become very large.
+
+!!! note "About data of library"
+    - The library data in Seafile server are spreaded into multiple storage backends in the unit of libraries. 
+    - All the data in a library will be located in the same storage backend. 
+    - The mapping from library to its storage backend is stored in a database table. 
+    - Different mapping policies can be chosen based on the use case.
+
+## How to engage multiple storage backend
 
 To use this feature, you need to:
 
-1. Define storage classes in seafile.conf.
-2. Enable multiple backend feature in seahub and choose a mapping policy.
-
-## Outline
-
-In Seafile server, a storage backend is represented by the concept of "storage class". A storage class is defined by specifying the following information:
-
-* `storage_id`: an internal string ID to identify the storage class. It's not visible to users. For example "primary storage".
-* `name`: A user visible name for the storage class.
-* `is_default`: whether this storage class is the default. This option are effective in two cases:
-  * If the chosen mapping policy allows users to choose storage class for a library, this would be the default if the user doesn't choose one.
-  * For other mapping policies, this option only takes effect when you have some existing libraries before enabling multiple storage backend feature. For existing libraries, the system will automatically map them to the default storage backend. So in this case you have to set the existing storage backend as the default one.
-* `commits`：the storage for storing the commit objects for this class. It can be any storage that Seafile supports, like file system, ceph, s3.
-* `fs`：the storage for storing the fs objects for this class. It can be any storage that Seafile supports, like file system, ceph, s3.
-* `blocks`：the storage for storing the block objects for this class. It can be any storage that Seafile supports, like file system, ceph, s3.
-
-commit, fs, and blocks can be stored in different storages. This provides the most flexible way to define storage classes.
+1. Define [storage classes](#exmaple-of-storage-classes-file) in `seafile.conf`.
+2. Enable multiple backend feature in *Seahub* and choose a mapping policy.
 
 ## Seafile Configuration
 
 As Seafile server before 6.3 version doesn't support multiple storage classes, you have to explicitly enable this new feature and define storage classes with a different syntax than how we define storage backend before.
 
-First, you have to enable this feature in seafile.conf.
+By default, Seafile dose not enable multiple storage classes. So, you have to create a configuration file for storage classes and specify it and enable the feature in `seafile.conf`:
 
-```
-[storage]
-enable_storage_classes = true
-storage_classes_file = /opt/seafile_storage_classes.json
+1. Create the storage classes file:
 
-```
+    ```sh
+    nano /opt/seafile-date/seafile/conf
+    ```
 
-* enable_storage_classes ：If this is set to true, the storage class feature is enabled. You must define the storage classes in a JSON file provided in the next configuration option.
-* storage_classes_file：Specifies the path for the JSON file that contains the storage class definition.
+    For the example of this file, please refer [next section](#exmaple-of-storage-classes-file)
 
-!!! note "You also need to add [memory cache configurations](../config/seafile-conf.md#cache-pro-edition-only) to `seafile.conf`"
+2. Modify `seafile.conf`
 
-### Notes for Docker Installs
+    ```conf
+    [storage]
+    enable_storage_classes = true
+    storage_classes_file = /shared/conf/seafile_storage_classes.json
+    ```
 
-If installing Seafile as Docker containers, place the `seafile_storage_classes.json` file on your local disk in a sub-directory of the location that is mounted to the `seafile` container, and set the `storage_classes_file` configuration above to a path ***relative to the `/shared/` directory mounted on the `seafile` container***.  
+    * `enable_storage_classes` ：If this is set to true, the storage class feature is enabled. You must define the storage classes in a **JSON** file provided in the next configuration option.
+    * `storage_classes_file：Specifies` the path for the **JSON** file that contains the storage class definition.
 
-For example, if the configuration of the `seafile` container in your `docker-compose.yml` file is similar to the following:
-```yaml
-// docker-compose.yml
-services:
-  seafile:
-    container_name: seafile
-    volumes:
-      - /opt/seafile-data:/shared
-```
+    !!! tip 
+        - Make sure you have added [memory cache configurations](../config/seafile-conf.md#cache-pro-edition-only) to `seafile.conf`
+        - Due to the *Docker persistence strategy*, the path of `storage_classes_file` **in the *Seafile container*** is different from the host usually, so we suggest you put this file in to the Seafile's configurations directory, and use `/shared/conf` instead of `/opt/seafile-date/seafile/conf`. Otherwise you have to add another persistent volume mapping strategy in `seafile-server.yml`. If your Seafile server is not deployed with Docker, we still suggest you put this file into the Seafile configurations file directory.
 
-Then place the JSON file within any sub-directory of `/opt/seafile-data` (such as `/opt/seafile-data/conf/`) and then configure `seafile.conf` like so:
+## Exmaple of storage classes file
 
-```toml
-[storage]
-enable_storage_classes = true
-storage_classes_file = /shared/conf/seafile_storage_classes.json
-```
+The storage classes JSON file is about **an array consist of objects**, for each defines a *storage class*. The fields in the definition corresponds to the information we need to specify for a ***storage class***:
 
-!!! note "You also need to add [memory cache configurations](../config/seafile-conf.md#cache-pro-edition-only) to `seafile.conf`"
+| Variables | Descriptions |
+|---|---|
+| `storage_id` | A unique internal string ID used to identify the storage class. It is not visible to users. For example, "primary storage". |
+| `name` | A user-visible name for the storage class. |
+| `is_default` | Indicates whether this storage class is the default one. |
+| `commits` | The storage used for storing commit objects for this class. |
+| `fs` | The storage used for storing fs objects for this class. |
+| `blocks` | The storage used for storing block objects for this class.  |
 
-## Defining Storage Backends
+!!! note
+    - `is_default` is effective in two cases: 
+        1. When a user does not choose a mapping policy and can use this storage class for a library; 
+        2. For other mapping policies, this option only takes effect when you have existing libraries before enabling the multiple storage backend feature, which will be automatically mapped to the default storage backend.
+    - `commit`, `fs`, and `blocks` can be stored in different storages. This provides the most flexible way to define storage classes (e.g., a file system, *Ceph*, or *S3*.)
 
-The JSON file is an array of objects. Each object defines a storage class. The fields in the definition corresponds to the information we need to specify for a storage class. Below is an example:
+Here is an example, which uses local file system, S3 (default), Swift and Ceph at the same time.
 
 ```json
 [
@@ -87,20 +82,20 @@ The JSON file is an array of objects. Each object defines a storage class. The f
     "commits": {
       "backend": "s3",
       "bucket": "seafile-commits",
-      "key": "ZjoJ8RPNDqP1vcdD60U4wAHwUQf2oJYqxN27oR09",
-      "key_id": "AKIAIOT3GCU5VGCCL44A"
+      "key": "<your key>",
+      "key_id": "<your key id>"
     },
     "fs": {
       "backend": "s3",
       "bucket": "seafile-fs",
-      "key": "ZjoJ8RPNDqP1vcdD60U4wAHwUQf2oJYqxN27oR09",
-      "key_id": "AKIAIOT3GCU5VGCCL44A"
+      "key": "<your key>",
+      "key_id": "<your key id>"
     },
     "blocks": {
       "backend": "s3",
       "bucket": "seafile-blocks",
-      "key": "ZjoJ8RPNDqP1vcdD60U4wAHwUQf2oJYqxN27oR09",
-      "key_id": "AKIAIOT3GCU5VGCCL44A"
+      "key": "<your key>",
+      "key_id": "<your key id>"
     }
   },
   {
@@ -109,15 +104,15 @@ The JSON file is an array of objects. Each object defines a storage class. The f
     "is_default": false,
     "fs": {
       "backend": "fs",
-      "dir": "/storage/seafile/seafile-data"
+      "dir": "/share/seafile/seafile-data" // /opt/seafile/seafile-data for binary-install Seafile
     },
     "commits": {
       "backend": "fs",
-      "dir": "/storage/seafile/seafile-data"
+      "dir": "/share/seafile/seafile-data"
     },
     "blocks": {
       "backend": "fs",
-      "dir": "/storage/seafile/seaflle-data"
+      "dir": "/share/seafile/seafile-data"
     }
   },
   {
@@ -125,29 +120,29 @@ The JSON file is an array of objects. Each object defines a storage class. The f
     "name": "Swift Storage",
     "fs": {
       "backend": "swift",
-      "tenant": "adminTenant",
-      "user_name": "admin",
-      "password": "openstack",
+      "tenant": "<your tenant>",
+      "user_name": "<your username>",
+      "password": "<your password>",
       "container": "seafile-commits",
-      "auth_host": "192.168.56.31:5000",
+      "auth_host": "<Swift auth host>:<port, default 5000>",
       "auth_ver": "v2.0"
     },
     "commits": {
       "backend": "swift",
-      "tenant": "adminTenant",
-      "user_name": "admin",
-      "password": "openstack",
-      "container": "seafile-fs",
-      "auth_host": "192.168.56.31:5000",
+      "tenant": "<your tenant>",
+      "user_name": "<your username>",
+      "password": "<your password>",
+      "container": "seafile-commits",
+      "auth_host": "<Swift auth host>:<port, default 5000>",
       "auth_ver": "v2.0"
     },
     "blocks": {
       "backend": "swift",
-      "tenant": "adminTenant",
-      "user_name": "admin",
-      "password": "openstack",
-      "container": "seafile-blocks",
-      "auth_host": "192.168.56.31:5000",
+      "tenant": "<your tenant>",
+      "user_name": "<your username>",
+      "password": "<your password>",
+      "container": "seafile-commits",
+      "auth_host": "<Swift auth host>:<port, default 5000>",
       "auth_ver": "v2.0",
       "region": "RegionTwo"
     }
@@ -174,21 +169,26 @@ The JSON file is an array of objects. Each object defines a storage class. The f
 ]
 ```
 
-As you may have seen, the `commits`, `fs` and `blocks` information syntax is similar to what is used in `[commit_object_backend]`, `[fs_object_backend]` and `[block_backend]` section of seafile.conf. Refer to the detailed syntax in the documentation for the storage you use. For exampe, if you use S3 storage, refer to [S3 Storage](setup_with_s3.md).
+!!! tip
+    - As you may have seen, the `commits`, `fs` and `blocks` information syntax is similar to what is used in `[commit_object_backend]`, `[fs_object_backend]` and `[block_backend]` section of `seafile.conf` for a single backend storage. You can refer to the detailed syntax in the documentation for the storage you use (e.g., [S3 Storage](setup_with_s3.md) for S3).
 
-If you use file system as storage for `fs`, `commits` or `blocks`, you must explicitly provide the path for the `seafile-data` directory. The objects will be stored in `storage/commits`, `storage/fs`, `storage/blocks` under this path. 
-
-!!! note "Currently file system, S3 and Swift backends are supported. Ceph/RADOS is also supported since version 7.0.14"
+    - If you use file system as storage for `fs`, `commits` or `blocks`, you must explicitly provide the path for the `seafile-data` directory. The objects will be stored in `storage/commits`, `storage/fs`, `storage/blocks` under this path. 
 
 ## Library Mapping Policies
 
-Library mapping policies decide the storage class a library uses. Currently we provide 3 policies for 3 different use cases. The storage class of a library is decided on creation and stored in a database table. The storage class of a library won't change if the mapping policy is changed later.
+Library mapping policies decide the storage class a library uses. Currently we provide 3 policies for 3 different use cases:
+
+- ***User Chosen***
+- ***Role-based Mapping***
+- ***Library ID Based Mapping***
+
+
+The storage class of a library is decided on creation and stored in a database table. The storage class of a library won't change if the mapping policy is changed later.
 
 Before choosing your mapping policy, you need to enable the storage classes feature in seahub_settings.py:
 
-```
+```py
 ENABLE_STORAGE_CLASSES = True
-
 ```
 
 ### User Chosen
@@ -197,9 +197,8 @@ This policy lets the users choose which storage class to use when creating a new
 
 To use this policy, add following options in seahub_settings.py:
 
-```
+```py
 STORAGE_CLASS_MAPPING_POLICY = 'USER_SELECT'
-
 ```
 
 If you enable storage class support but don't explicitly set `STORAGE_CLASS_MAPPING_POLIICY` in seahub_settings.py, this policy is used by default.
@@ -212,7 +211,7 @@ A new option `storage_ids` is added to the role configuration in `seahub_setting
 
 Here are the sample options in seahub_settings.py to use this policy:
 
-```
+```py
 ENABLE_STORAGE_CLASSES = True
 STORAGE_CLASS_MAPPING_POLICY = 'ROLE_BASED'
 
@@ -256,24 +255,32 @@ This policy maps libraries to storage classes based on its library ID. The ID of
 
 To use this policy, you first add following options in seahub_settings.py:
 
-```
+```py
 STORAGE_CLASS_MAPPING_POLICY = 'REPO_ID_MAPPING'
-
 ```
 
 Then you can add option `for_new_library` to the backends which are expected to store new libraries in json file:
 
-```
+```json
 [
-{
-"storage_id": "new_backend",
-"name": "New store",
-"for_new_library": true,
-"is_default": false,
-"fs": {"backend": "fs", "dir": "/storage/seafile/new-data"},
-"commits": {"backend": "fs", "dir": "/storage/seafile/new-data"},
-"blocks": {"backend": "fs", "dir": "/storage/seafile/new-data"}
-}
+    {
+        "storage_id": "new_backend",
+        "name": "New store",
+        "for_new_library": true,
+        "is_default": false,
+        "fs": {
+            "backend": "fs", 
+            "dir": "/storage/seafile/new-data"
+        },
+        "commits": {
+            "backend": "fs", 
+            "dir": "/storage/seafile/new-data"
+        },
+        "blocks": {
+            "backend": "fs", 
+            "dir": "/storage/seafile/new-data"
+        }
+    }
 ]
 
 ```
@@ -282,39 +289,40 @@ Then you can add option `for_new_library` to the backends which are expected to 
 
 Run the `migrate-repo.sh` script to migrate library data between different storage backends.
 
-```
+```sh
 ./migrate-repo.sh [repo_id] origin_storage_id destination_storage_id
-
 ```
 
 * repo_id: migrated library id
 * origin_storage_id: migrated origin storage id
 * destination_storage_id: migrated destination storage id
 
-repo_id is optional, if not specified, all libraries will be migrated.
+repo_id is optional, if not specified, **all libraries will be migrated**.
 
-Before running the migration script, you can set the `OBJECT_LIST_FILE_PATH` environment variable to specify a path prefix to store the migrated object list.
+!!! tip "Specify a path prefix"
+    You can set the `OBJECT_LIST_FILE_PATH` environment variable to **specify a path prefix** to store the migrated object list **before** running the migration script
 
-For example:
+    For example:
 
-```
-export OBJECT_LIST_FILE_PATH=/opt/test
+    ```sh
+    export OBJECT_LIST_FILE_PATH=/opt/test
+    ```
 
-```
+    This will create three files in the specified path (/opt): 
+    
+    - `test_4c731e5c-f589-4eaa-889f-14c00d4893cb.fs`
+    - `test_4c731e5c-f589-4eaa-889f-14c00d4893cb.commits` 
+    - `test_4c731e5c-f589-4eaa-889f-14c00d4893cb.blocks`
 
-This will create three files in the specified path (/opt): `test_4c731e5c-f589-4eaa-889f-14c00d4893cb.fs` `test_4c731e5c-f589-4eaa-889f-14c00d4893cb.commits` `test_4c731e5c-f589-4eaa-889f-14c00d4893cb.blocks`
-Setting the `OBJECT_LIST_FILE_PATH` environment variable has two purposes:
+    Setting the `OBJECT_LIST_FILE_PATH` environment variable has two purposes:
 
-1. If the migrated library is very large, you need to run the migration script multiple times. Setting this environment variable can skip the previously migrated objects.
-2. After the migration is complete, if you need to delete the objects in the origin storage, you must set this environment variable.
+    1. If the migrated library is very large, you need to run the migration script multiple times. Setting this environment variable can skip the previously migrated objects.
+    2. After the migration is complete, if you need to delete the objects in the origin storage, you must set this environment variable.
 
 ### Delete All Objects In a Library In The Specified Storage Backend
 
 Run the `remove-objs.sh` script (before migration, you need to set the OBJECT_LIST_FILE_PATH environment variable) to delete all objects in a library in the specified storage backend.
 
-```
+```sh
 ./remove-objs.sh repo_id storage_id
-
 ```
-
-
