@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.47">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
     
     
       
@@ -3672,118 +3672,118 @@
 
 <h2 id="config-seafile">Config Seafile<a class="headerlink" href="#config-seafile" title="Permanent link">&para;</a></h2>
 <p>Add the following lines to <strong>seahub_settings.py</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">os</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="n">path</span>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">os</span><span class="w"> </span><span class="kn">import</span> <span class="n">path</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">saml2</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">saml2.saml</span>
 
-<span class="n">CERTS_DIR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&lt;seafile-install-path&gt;/seahub-data/certs&#39;</span>
-<span class="n">SP_SERVICE_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://demo.seafile.com&#39;</span>
-<span class="n">XMLSEC_BINARY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/usr/bin/xmlsec1&#39;</span>
+<span class="n">CERTS_DIR</span> <span class="o">=</span> <span class="s1">&#39;&lt;seafile-install-path&gt;/seahub-data/certs&#39;</span>
+<span class="n">SP_SERVICE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://demo.seafile.com&#39;</span>
+<span class="n">XMLSEC_BINARY</span> <span class="o">=</span> <span class="s1">&#39;/usr/bin/xmlsec1&#39;</span>
 
 <span class="c1"># for 9.0 and later</span>
-<span class="n">ATTRIBUTE_MAP_DIR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&lt;seafile-install-path&gt;/seafile-server-latest/seahub/seahub/adfs_auth/attribute-maps&#39;</span>
+<span class="n">ATTRIBUTE_MAP_DIR</span> <span class="o">=</span> <span class="s1">&#39;&lt;seafile-install-path&gt;/seafile-server-latest/seahub/seahub/adfs_auth/attribute-maps&#39;</span>
 
 <span class="c1"># for 8.0 and previous</span>
-<span class="n">ATTRIBUTE_MAP_DIR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&lt;seafile-install-path&gt;/seafile-server-latest/seahub-extra/seahub_extra/adfs_auth/attribute-maps&#39;</span>
+<span class="n">ATTRIBUTE_MAP_DIR</span> <span class="o">=</span> <span class="s1">&#39;&lt;seafile-install-path&gt;/seafile-server-latest/seahub-extra/seahub_extra/adfs_auth/attribute-maps&#39;</span>
 
-<span class="n">SAML_ATTRIBUTE_MAPPING</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="s1">&#39;DisplayName&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;display_name&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">),</span>
-<span class="w">    </span><span class="s1">&#39;ContactEmail&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;contact_email&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">),</span>
-<span class="w">    </span><span class="s1">&#39;Department&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;department&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">),</span>
-<span class="w">    </span><span class="s1">&#39;Telephone&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;telephone&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">),</span>
+<span class="n">SAML_ATTRIBUTE_MAPPING</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;DisplayName&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;display_name&#39;</span><span class="p">,</span> <span class="p">),</span>
+    <span class="s1">&#39;ContactEmail&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;contact_email&#39;</span><span class="p">,</span> <span class="p">),</span>
+    <span class="s1">&#39;Department&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;department&#39;</span><span class="p">,</span> <span class="p">),</span>
+    <span class="s1">&#39;Telephone&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;telephone&#39;</span><span class="p">,</span> <span class="p">),</span>
 <span class="p">}</span>
 
-<span class="n">ENABLE_ADFS_LOGIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">True</span>
-<span class="n">EXTRA_AUTHENTICATION_BACKENDS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span>
+<span class="n">ENABLE_ADFS_LOGIN</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">EXTRA_AUTHENTICATION_BACKENDS</span> <span class="o">=</span> <span class="p">(</span>
 
-<span class="w">    </span><span class="c1"># for 9.0 and later</span>
-<span class="w">    </span><span class="s1">&#39;seahub.adfs_auth.backends.Saml2Backend&#39;</span><span class="p">,</span>
+    <span class="c1"># for 9.0 and later</span>
+    <span class="s1">&#39;seahub.adfs_auth.backends.Saml2Backend&#39;</span><span class="p">,</span>
 
-<span class="w">    </span><span class="c1"># for 8.0 and previous</span>
-<span class="w">    </span><span class="s1">&#39;seahub_extra.adfs_auth.backends.Saml2Backend&#39;</span><span class="p">,</span>
+    <span class="c1"># for 8.0 and previous</span>
+    <span class="s1">&#39;seahub_extra.adfs_auth.backends.Saml2Backend&#39;</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="n">SAML_USE_NAME_ID_AS_USERNAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">True</span>
-<span class="n">LOGIN_REDIRECT_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/saml2/complete/&#39;</span>
-<span class="n">SAML_CONFIG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1"># full path to the xmlsec1 binary programm</span>
-<span class="w">    </span><span class="s1">&#39;xmlsec_binary&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">XMLSEC_BINARY</span><span class="p">,</span>
+<span class="n">SAML_USE_NAME_ID_AS_USERNAME</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">LOGIN_REDIRECT_URL</span> <span class="o">=</span> <span class="s1">&#39;/saml2/complete/&#39;</span>
+<span class="n">SAML_CONFIG</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># full path to the xmlsec1 binary programm</span>
+    <span class="s1">&#39;xmlsec_binary&#39;</span><span class="p">:</span> <span class="n">XMLSEC_BINARY</span><span class="p">,</span>
 
-<span class="w">    </span><span class="s1">&#39;allow_unknown_attributes&#39;</span><span class="p">:</span><span class="w"> </span><span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;allow_unknown_attributes&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
 
-<span class="w">    </span><span class="c1"># your entity id, usually your subdomain plus the url to the metadata view</span>
-<span class="w">    </span><span class="s1">&#39;entityid&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">SP_SERVICE_URL</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;/saml2/metadata/&#39;</span><span class="p">,</span>
+    <span class="c1"># your entity id, usually your subdomain plus the url to the metadata view</span>
+    <span class="s1">&#39;entityid&#39;</span><span class="p">:</span> <span class="n">SP_SERVICE_URL</span> <span class="o">+</span> <span class="s1">&#39;/saml2/metadata/&#39;</span><span class="p">,</span>
 
-<span class="w">    </span><span class="c1"># directory with attribute mapping</span>
-<span class="w">    </span><span class="s1">&#39;attribute_map_dir&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">ATTRIBUTE_MAP_DIR</span><span class="p">,</span>
+    <span class="c1"># directory with attribute mapping</span>
+    <span class="s1">&#39;attribute_map_dir&#39;</span><span class="p">:</span> <span class="n">ATTRIBUTE_MAP_DIR</span><span class="p">,</span>
 
-<span class="w">    </span><span class="c1"># this block states what services we provide</span>
-<span class="w">    </span><span class="s1">&#39;service&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1"># we are just a lonely SP</span>
-<span class="w">        </span><span class="s1">&#39;sp&#39;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="s2">&quot;allow_unsolicited&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">True</span><span class="p">,</span>
-<span class="w">            </span><span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;Federated Seafile Service&#39;</span><span class="p">,</span>
-<span class="w">            </span><span class="s1">&#39;name_id_format&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">saml2</span><span class="o">.</span><span class="n">saml</span><span class="o">.</span><span class="n">NAMEID_FORMAT_EMAILADDRESS</span><span class="p">,</span>
-<span class="w">            </span><span class="s1">&#39;endpoints&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="c1"># url and binding to the assetion consumer service view</span>
-<span class="w">                </span><span class="c1"># do not change the binding or service name</span>
-<span class="w">                </span><span class="s1">&#39;assertion_consumer_service&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                    </span><span class="p">(</span><span class="n">SP_SERVICE_URL</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;/saml2/acs/&#39;</span><span class="p">,</span>
-<span class="w">                     </span><span class="n">saml2</span><span class="o">.</span><span class="n">BINDING_HTTP_POST</span><span class="p">),</span>
-<span class="w">                </span><span class="p">],</span>
-<span class="w">                </span><span class="c1"># url and binding to the single logout service view</span>
-<span class="w">                </span><span class="c1"># do not change the binding or service name</span>
-<span class="w">                </span><span class="s1">&#39;single_logout_service&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                    </span><span class="p">(</span><span class="n">SP_SERVICE_URL</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;/saml2/ls/&#39;</span><span class="p">,</span>
-<span class="w">                     </span><span class="n">saml2</span><span class="o">.</span><span class="n">BINDING_HTTP_REDIRECT</span><span class="p">),</span>
-<span class="w">                    </span><span class="p">(</span><span class="n">SP_SERVICE_URL</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;/saml2/ls/post&#39;</span><span class="p">,</span>
-<span class="w">                     </span><span class="n">saml2</span><span class="o">.</span><span class="n">BINDING_HTTP_POST</span><span class="p">),</span>
-<span class="w">                </span><span class="p">],</span>
-<span class="w">            </span><span class="p">},</span>
+    <span class="c1"># this block states what services we provide</span>
+    <span class="s1">&#39;service&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="c1"># we are just a lonely SP</span>
+        <span class="s1">&#39;sp&#39;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;allow_unsolicited&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Federated Seafile Service&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;name_id_format&#39;</span><span class="p">:</span> <span class="n">saml2</span><span class="o">.</span><span class="n">saml</span><span class="o">.</span><span class="n">NAMEID_FORMAT_EMAILADDRESS</span><span class="p">,</span>
+            <span class="s1">&#39;endpoints&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="c1"># url and binding to the assetion consumer service view</span>
+                <span class="c1"># do not change the binding or service name</span>
+                <span class="s1">&#39;assertion_consumer_service&#39;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">(</span><span class="n">SP_SERVICE_URL</span> <span class="o">+</span> <span class="s1">&#39;/saml2/acs/&#39;</span><span class="p">,</span>
+                     <span class="n">saml2</span><span class="o">.</span><span class="n">BINDING_HTTP_POST</span><span class="p">),</span>
+                <span class="p">],</span>
+                <span class="c1"># url and binding to the single logout service view</span>
+                <span class="c1"># do not change the binding or service name</span>
+                <span class="s1">&#39;single_logout_service&#39;</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="p">(</span><span class="n">SP_SERVICE_URL</span> <span class="o">+</span> <span class="s1">&#39;/saml2/ls/&#39;</span><span class="p">,</span>
+                     <span class="n">saml2</span><span class="o">.</span><span class="n">BINDING_HTTP_REDIRECT</span><span class="p">),</span>
+                    <span class="p">(</span><span class="n">SP_SERVICE_URL</span> <span class="o">+</span> <span class="s1">&#39;/saml2/ls/post&#39;</span><span class="p">,</span>
+                     <span class="n">saml2</span><span class="o">.</span><span class="n">BINDING_HTTP_POST</span><span class="p">),</span>
+                <span class="p">],</span>
+            <span class="p">},</span>
 
-<span class="w">            </span><span class="c1"># attributes that this project need to identify a user</span>
-<span class="w">            </span><span class="s1">&#39;required_attributes&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;uid&quot;</span><span class="p">],</span>
+            <span class="c1"># attributes that this project need to identify a user</span>
+            <span class="s1">&#39;required_attributes&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;uid&quot;</span><span class="p">],</span>
 
-<span class="w">            </span><span class="c1"># attributes that may be useful to have but not required</span>
-<span class="w">            </span><span class="s1">&#39;optional_attributes&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;eduPersonAffiliation&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">],</span>
+            <span class="c1"># attributes that may be useful to have but not required</span>
+            <span class="s1">&#39;optional_attributes&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;eduPersonAffiliation&#39;</span><span class="p">,</span> <span class="p">],</span>
 
-<span class="w">            </span><span class="c1"># in this section the list of IdPs we talk to are defined</span>
-<span class="w">            </span><span class="s1">&#39;idp&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="c1"># we do not need a WAYF service since there is</span>
-<span class="w">                </span><span class="c1"># only an IdP defined here. This IdP should be</span>
-<span class="w">                </span><span class="c1"># present in our metadata</span>
+            <span class="c1"># in this section the list of IdPs we talk to are defined</span>
+            <span class="s1">&#39;idp&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="c1"># we do not need a WAYF service since there is</span>
+                <span class="c1"># only an IdP defined here. This IdP should be</span>
+                <span class="c1"># present in our metadata</span>
 
-<span class="w">                </span><span class="c1"># the keys of this dictionary are entity ids</span>
-<span class="w">                </span><span class="s1">&#39;https://adfs-server.adfs.com/federationmetadata/2007-06/federationmetadata.xml&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="s1">&#39;single_sign_on_service&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                        </span><span class="n">saml2</span><span class="o">.</span><span class="n">BINDING_HTTP_REDIRECT</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;https://adfs-server.adfs.com/adfs/ls/idpinitiatedsignon.aspx&#39;</span><span class="p">,</span>
-<span class="w">                    </span><span class="p">},</span>
-<span class="w">                  </span><span class="s1">&#39;single_logout_service&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                      </span><span class="n">saml2</span><span class="o">.</span><span class="n">BINDING_HTTP_REDIRECT</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;https://adfs-server.adfs.com/adfs/ls/?wa=wsignout1.0&#39;</span><span class="p">,</span>
-<span class="w">                  </span><span class="p">},</span>
-<span class="w">                </span><span class="p">},</span>
-<span class="w">            </span><span class="p">},</span>
-<span class="w">        </span><span class="p">},</span>
-<span class="w">    </span><span class="p">},</span>
+                <span class="c1"># the keys of this dictionary are entity ids</span>
+                <span class="s1">&#39;https://adfs-server.adfs.com/federationmetadata/2007-06/federationmetadata.xml&#39;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s1">&#39;single_sign_on_service&#39;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="n">saml2</span><span class="o">.</span><span class="n">BINDING_HTTP_REDIRECT</span><span class="p">:</span> <span class="s1">&#39;https://adfs-server.adfs.com/adfs/ls/idpinitiatedsignon.aspx&#39;</span><span class="p">,</span>
+                    <span class="p">},</span>
+                  <span class="s1">&#39;single_logout_service&#39;</span><span class="p">:</span> <span class="p">{</span>
+                      <span class="n">saml2</span><span class="o">.</span><span class="n">BINDING_HTTP_REDIRECT</span><span class="p">:</span> <span class="s1">&#39;https://adfs-server.adfs.com/adfs/ls/?wa=wsignout1.0&#39;</span><span class="p">,</span>
+                  <span class="p">},</span>
+                <span class="p">},</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
 
-<span class="w">    </span><span class="c1"># where the remote metadata is stored</span>
-<span class="w">    </span><span class="s1">&#39;metadata&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="s1">&#39;local&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">CERTS_DIR</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;idp_federation_metadata.xml&#39;</span><span class="p">)],</span>
-<span class="w">    </span><span class="p">},</span>
+    <span class="c1"># where the remote metadata is stored</span>
+    <span class="s1">&#39;metadata&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;local&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">CERTS_DIR</span><span class="p">,</span> <span class="s1">&#39;idp_federation_metadata.xml&#39;</span><span class="p">)],</span>
+    <span class="p">},</span>
 
-<span class="w">    </span><span class="c1"># set to 1 to output debugging information</span>
-<span class="w">    </span><span class="s1">&#39;debug&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+    <span class="c1"># set to 1 to output debugging information</span>
+    <span class="s1">&#39;debug&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
 
-<span class="w">    </span><span class="c1"># Signing</span>
-<span class="w">    </span><span class="s1">&#39;key_file&#39;</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">    </span><span class="s1">&#39;cert_file&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">CERTS_DIR</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;idp.crt&#39;</span><span class="p">),</span><span class="w">  </span><span class="c1"># from IdP</span>
+    <span class="c1"># Signing</span>
+    <span class="s1">&#39;key_file&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;cert_file&#39;</span><span class="p">:</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">CERTS_DIR</span><span class="p">,</span> <span class="s1">&#39;idp.crt&#39;</span><span class="p">),</span>  <span class="c1"># from IdP</span>
 
-<span class="w">    </span><span class="c1"># Encryption</span>
-<span class="w">    </span><span class="s1">&#39;encryption_keypairs&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span>
-<span class="w">        </span><span class="s1">&#39;key_file&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">CERTS_DIR</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;sp.key&#39;</span><span class="p">),</span><span class="w">  </span><span class="c1"># private part</span>
-<span class="w">        </span><span class="s1">&#39;cert_file&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">CERTS_DIR</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;sp.crt&#39;</span><span class="p">),</span><span class="w">  </span><span class="c1"># public part</span>
-<span class="w">    </span><span class="p">}],</span>
+    <span class="c1"># Encryption</span>
+    <span class="s1">&#39;encryption_keypairs&#39;</span><span class="p">:</span> <span class="p">[{</span>
+        <span class="s1">&#39;key_file&#39;</span><span class="p">:</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">CERTS_DIR</span><span class="p">,</span> <span class="s1">&#39;sp.key&#39;</span><span class="p">),</span>  <span class="c1"># private part</span>
+        <span class="s1">&#39;cert_file&#39;</span><span class="p">:</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">CERTS_DIR</span><span class="p">,</span> <span class="s1">&#39;sp.crt&#39;</span><span class="p">),</span>  <span class="c1"># public part</span>
+    <span class="p">}],</span>
 
-<span class="w">    </span><span class="s1">&#39;valid_for&#39;</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">  </span><span class="c1"># how long is our metadata valid</span>
+    <span class="s1">&#39;valid_for&#39;</span><span class="p">:</span> <span class="mi">24</span><span class="p">,</span>  <span class="c1"># how long is our metadata valid</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -3907,7 +3907,7 @@
     <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
       
     
   </body>

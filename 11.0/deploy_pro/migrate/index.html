@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.47">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
     
     
       
@@ -3588,6 +3588,7 @@
 <li>Run final migration</li>
 <li>Replace the original seafile.conf</li>
 </ol>
+<p><strong>Note</strong>: Since version 11, when you migrate from S3 to other storage servers, you have to use V4 authentication protocol. This is because version 11 upgrades to Boto3 library, which fails to list objects from S3 when it's configured to use V2 authentication protocol.</p>
 <h2 id="create-a-new-temporary-seafileconf">Create a new temporary seafile.conf<a class="headerlink" href="#create-a-new-temporary-seafileconf" title="Permanent link">&para;</a></h2>
 <p>We need to add new backend configurations to this file (including <code>[block_backend]</code>, <code>[commit_object_backend]</code>, <code>[fs_object_backend]</code> options) and save it under a readable path.
 Let's assume that we are migrating data to S3 and create temporary seafile.conf under <code>/opt</code></p>
@@ -3752,7 +3753,7 @@ Let's assume that we are migrating data to S3 and create temporary seafile.conf 
     <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
       
     
   </body>

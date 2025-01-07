@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.47">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
     
     
       
@@ -3915,6 +3915,7 @@
 </code></pre></div>
 
 <h2 id="multiple-storage-backend-data-migration">Multiple Storage Backend Data Migration<a class="headerlink" href="#multiple-storage-backend-data-migration" title="Permanent link">&para;</a></h2>
+<p><strong>Note</strong>: Since version 11, when you migrate from S3 to other storage servers, you have to use V4 authentication protocol. This is because version 11 upgrades to Boto3 library, which fails to list objects from S3 when it's configured to use V2 authentication protocol.</p>
 <p>Run the <code>migrate-repo.sh</code> script to migrate library data between different storage backends.</p>
 <div class="codehilite"><pre><span></span><code><span class="p">.</span><span class="o">/</span><span class="n">migrate</span><span class="o">-</span><span class="n">repo</span><span class="p">.</span><span class="n">sh</span><span class="w"> </span><span class="o">[</span><span class="n">repo_id</span><span class="o">]</span><span class="w"> </span><span class="n">origin_storage_id</span><span class="w"> </span><span class="n">destination_storage_id</span>
 </code></pre></div>
@@ -4008,7 +4009,7 @@ Setting the <code>OBJECT_LIST_FILE_PATH</code> environment variable has two purp
     <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
       
     
   </body>

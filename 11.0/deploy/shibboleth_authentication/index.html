@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.47">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
     
     
       
@@ -3964,20 +3964,20 @@
 <div class="codehilite"><pre><span></span><code><span class="c1">#Locate the remote user header.</span>
 <span class="c1"># import pprint; pprint.pprint(request.META)</span>
 <span class="k">try</span><span class="p">:</span>
-<span class="w">    </span><span class="n">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">request</span><span class="o">.</span><span class="n">META</span><span class="p">[</span><span class="n">SHIB_USER_HEADER</span><span class="p">]</span>
-<span class="k">except</span><span class="w"> </span><span class="n">KeyError</span><span class="p">:</span>
-<span class="w">    </span><span class="k">assert</span><span class="w"> </span><span class="kc">False</span>
-<span class="w">    </span><span class="c1"># If specified header doesn&#39;t exist then return (leaving</span>
-<span class="w">    </span><span class="c1"># request.user set to AnonymousUser by the</span>
-<span class="w">    </span><span class="c1"># AuthenticationMiddleware).</span>
-<span class="w">    </span><span class="k">return</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">META</span><span class="p">[</span><span class="n">SHIB_USER_HEADER</span><span class="p">]</span>
+<span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+    <span class="k">assert</span> <span class="kc">False</span>
+    <span class="c1"># If specified header doesn&#39;t exist then return (leaving</span>
+    <span class="c1"># request.user set to AnonymousUser by the</span>
+    <span class="c1"># AuthenticationMiddleware).</span>
+    <span class="k">return</span>
 
-<span class="k">if</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">username</span><span class="p">:</span>
-<span class="w">    </span><span class="k">assert</span><span class="w"> </span><span class="kc">False</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">username</span><span class="p">:</span>
+    <span class="k">assert</span> <span class="kc">False</span>
 
-<span class="n">p_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ccnet_api</span><span class="o">.</span><span class="n">get_primary_id</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
-<span class="k">if</span><span class="w"> </span><span class="n">p_id</span><span class="w"> </span><span class="ow">is</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="n">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p_id</span>
+<span class="n">p_id</span> <span class="o">=</span> <span class="n">ccnet_api</span><span class="o">.</span><span class="n">get_primary_id</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">p_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="n">p_id</span>
 </code></pre></div>
 
 <p>Then restart Seafile and relogin, you will see debug info in web page.</p>
@@ -4049,7 +4049,7 @@
     <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
       
     
   </body>

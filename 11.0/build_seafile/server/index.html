@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.47">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
     
     
       
@@ -4033,15 +4033,15 @@ git checkout master
 
 <p>2, add the following configration to /root/dev/conf/seahub_settings.py</p>
 <div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="n">PROJECT_ROOT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/root/dev/source-code/seahub&#39;</span>
-<span class="n">WEBPACK_LOADER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="s1">&#39;DEFAULT&#39;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="s1">&#39;BUNDLE_DIR_NAME&#39;</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;frontend/&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;STATS_FILE&#39;</span><span class="p">:</span><span class="w"> </span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PROJECT_ROOT</span><span class="p">,</span>
-<span class="w">                                   </span><span class="s1">&#39;frontend/webpack-stats.dev.json&#39;</span><span class="p">),</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="n">PROJECT_ROOT</span> <span class="o">=</span> <span class="s1">&#39;/root/dev/source-code/seahub&#39;</span>
+<span class="n">WEBPACK_LOADER</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;DEFAULT&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;BUNDLE_DIR_NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;frontend/&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;STATS_FILE&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PROJECT_ROOT</span><span class="p">,</span>
+                                   <span class="s1">&#39;frontend/webpack-stats.dev.json&#39;</span><span class="p">),</span>
+    <span class="p">}</span>
 <span class="p">}</span>
-<span class="n">DEBUG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">True</span>
+<span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div>
 
 <p>3, install js modules</p>
@@ -4125,7 +4125,7 @@ npm run dev
     <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
       
     
   </body>
