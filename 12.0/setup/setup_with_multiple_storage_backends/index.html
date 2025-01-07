@@ -4515,6 +4515,10 @@ ENABLED_ROLE_PERMISSIONS = {
 ]
 </code></pre></div>
 <h2 id="multiple-storage-backend-data-migration">Multiple Storage Backend Data Migration<a class="headerlink" href="#multiple-storage-backend-data-migration" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Migration from S3</p>
+<p>Since version 11, when you migrate from S3 to other storage servers, you have to use V4 authentication protocol. This is because version 11 upgrades to Boto3 library, which fails to list objects from S3 when it's configured to use V2 authentication protocol.</p>
+</div>
 <p>Run the <code>migrate-repo.sh</code> script to migrate library data between different storage backends.</p>
 <div class="highlight"><pre><span></span><code>./migrate-repo.sh [repo_id] origin_storage_id destination_storage_id
 </code></pre></div>
