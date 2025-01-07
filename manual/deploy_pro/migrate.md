@@ -9,6 +9,8 @@ Data migration takes 3 steps:
 3. Run final migration
 4. Replace the original seafile.conf
 
+**Note**: Since version 11, when you migrate from S3 to other storage servers, you have to use V4 authentication protocol. This is because version 11 upgrades to Boto3 library, which fails to list objects from S3 when it's configured to use V2 authentication protocol.
+
 ## Create a new temporary seafile.conf
 
 We need to add new backend configurations to this file (including `[block_backend]`, `[commit_object_backend]`, `[fs_object_backend]` options) and save it under a readable path.
