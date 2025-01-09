@@ -108,9 +108,14 @@ It is good practice not to run applications as root.
 
 Create a new user and follow the instructions on the screen:
 
-```
-sudo adduser seafile
-```
+=== "Ubuntu 24.04/22.04"
+    ```
+    adduser seafile
+    ```
+=== "Debian 12/11"
+    ```
+    /usr/sbin/adduser seafile
+    ```
 
 Change ownership of the created directory to the new user:
 
