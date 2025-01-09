@@ -3187,17 +3187,6 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Seafile FSCK
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -3207,76 +3196,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#checking-integrity-of-libraries" class="md-nav__link">
-    <span class="md-ellipsis">
-      Checking Integrity of Libraries
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#repairing-corruption" class="md-nav__link">
-    <span class="md-ellipsis">
-      Repairing Corruption
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Repairing Corruption">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#best-practice-for-repairing-a-library" class="md-nav__link">
-    <span class="md-ellipsis">
-      Best Practice for Repairing a Library
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#speeding-up-fsck-by-not-checking-file-contents" class="md-nav__link">
-    <span class="md-ellipsis">
-      Speeding up FSCK by not checking file contents
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#exporting-libraries-to-file-system" class="md-nav__link">
-    <span class="md-ellipsis">
-      Exporting Libraries to File System
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -4066,65 +3985,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#checking-integrity-of-libraries" class="md-nav__link">
-    <span class="md-ellipsis">
-      Checking Integrity of Libraries
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#repairing-corruption" class="md-nav__link">
-    <span class="md-ellipsis">
-      Repairing Corruption
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Repairing Corruption">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#best-practice-for-repairing-a-library" class="md-nav__link">
-    <span class="md-ellipsis">
-      Best Practice for Repairing a Library
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#speeding-up-fsck-by-not-checking-file-contents" class="md-nav__link">
-    <span class="md-ellipsis">
-      Speeding up FSCK by not checking file contents
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#exporting-libraries-to-file-system" class="md-nav__link">
-    <span class="md-ellipsis">
-      Exporting Libraries to File System
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -4149,28 +4009,33 @@
 <p>If you store the seafile-data directory in a battery-backed NAS (like EMC or NetApp), or use S3 backend available in the Pro edition, the internal objects won't be corrupt.</p>
 </div>
 <p>We provide a seaf-fsck.sh script to check the integrity of libraries. The seaf-fsck tool accepts the following arguments:</p>
-<div class="highlight"><pre><span></span><code>cd seafile-server-latest
-./seaf-fsck.sh [--repair|-r] [--export|-E export_path] [repo_id_1 [repo_id_2 ...]]
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If your Seafile server is deployed with Docker, make sure you have enter the container before executing the script:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>bash
 </code></pre></div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Enter into the docker image, then go to <code>/opt/seafile/seafile-server-latest</code></p>
+<p>This is also required for the other scripts in this document.</p>
 </div>
-<p>There are three modes of operation for seaf-fsck:</p>
-<ol>
-<li>checking integrity of libraries.</li>
-<li>repairing corrupted libraries.</li>
-<li>exporting libraries.</li>
-</ol>
-<h2 id="checking-integrity-of-libraries">Checking Integrity of Libraries<a class="headerlink" href="#checking-integrity-of-libraries" title="Permanent link">&para;</a></h2>
-<p>Running seaf-fsck.sh without any arguments will run a <strong>read-only</strong> integrity check for all libraries.</p>
-<div class="highlight"><pre><span></span><code>./seaf-fsck.sh
+<p><div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest
+./seaf-fsck.sh<span class="w"> </span><span class="o">[</span>--repair<span class="p">|</span>-r<span class="o">]</span><span class="w"> </span><span class="o">[</span>--export<span class="p">|</span>-E<span class="w"> </span>export_path<span class="o">]</span><span class="w"> </span><span class="o">[</span>repo_id_1<span class="w"> </span><span class="o">[</span>repo_id_2<span class="w"> </span>...<span class="o">]]</span>
+
+There<span class="w"> </span>are<span class="w"> </span>three<span class="w"> </span>modes<span class="w"> </span>of<span class="w"> </span>operation<span class="w"> </span><span class="k">for</span><span class="w"> </span>seaf-fsck:
+
+<span class="m">1</span>.<span class="w"> </span>checking<span class="w"> </span>integrity<span class="w"> </span>of<span class="w"> </span>libraries.
+<span class="m">2</span>.<span class="w"> </span>repairing<span class="w"> </span>corrupted<span class="w"> </span>libraries.
+<span class="m">3</span>.<span class="w"> </span>exporting<span class="w"> </span>libraries.
+
+<span class="c1">## Checking Integrity of Libraries</span>
+
+Running<span class="w"> </span>seaf-fsck.sh<span class="w"> </span>without<span class="w"> </span>any<span class="w"> </span>arguments<span class="w"> </span>will<span class="w"> </span>run<span class="w"> </span>a<span class="w"> </span>**read-only**<span class="w"> </span>integrity<span class="w"> </span>check<span class="w"> </span><span class="k">for</span><span class="w"> </span>all<span class="w"> </span>libraries.
 </code></pre></div>
-<p>If you want to check integrity for specific libraries, just append the library id's as arguments:</p>
-<div class="highlight"><pre><span></span><code>./seaf-fsck.sh [library-id1] [library-id2] ...
+./seaf-fsck.sh</p>
+<p><div class="highlight"><pre><span></span><code>If you want to check integrity for specific libraries, just append the library id&#39;s as arguments:
 </code></pre></div>
-<p>The output looks like:</p>
-<div class="highlight"><pre><span></span><code>[02/13/15 16:21:07] fsck.c(470): Running fsck for repo ca1a860d-e1c1-4a52-8123-0bf9def8697f.
+./seaf-fsck.sh [library-id1] [library-id2] ...</p>
+<p><div class="highlight"><pre><span></span><code>The output looks like:
+</code></pre></div>
+[02/13/15 16:21:07] fsck.c(470): Running fsck for repo ca1a860d-e1c1-4a52-8123-0bf9def8697f.
 [02/13/15 16:21:07] fsck.c(413): Checking file system integrity of repo fsck(ca1a860d)...
 [02/13/15 16:21:07] fsck.c(35): Dir 9c09d937397b51e1283d68ee7590cd9ce01fe4c9 is missing.
 [02/13/15 16:21:07] fsck.c(200): Dir /bf/pk/(9c09d937) is corrupted.
@@ -4178,49 +4043,60 @@
 [02/13/15 16:21:07] fsck.c(178): File /bf/02.1.md(ef37e350) is corrupted.
 [02/13/15 16:21:07] fsck.c(85): Block 650fb22495b0b199cff0f1e1ebf036e548fcb95a is missing.
 [02/13/15 16:21:07] fsck.c(178): File /01.2.md(4a73621f) is corrupted.
-[02/13/15 16:21:07] fsck.c(514): Fsck finished for repo ca1a860d.
+[02/13/15 16:21:07] fsck.c(514): Fsck finished for repo ca1a860d.</p>
+<p><div class="highlight"><pre><span></span><code>The corrupted files and directories are reported.
+
+Sometimes you can see output like the following:
 </code></pre></div>
-<p>The corrupted files and directories are reported.</p>
-<p>Sometimes you can see output like the following:</p>
-<div class="highlight"><pre><span></span><code>[02/13/15 16:36:11] Commit 6259251e2b0dd9a8e99925ae6199cbf4c134ec10 is missing
+[02/13/15 16:36:11] Commit 6259251e2b0dd9a8e99925ae6199cbf4c134ec10 is missing
 [02/13/15 16:36:11] fsck.c(476): Repo ca1a860d HEAD commit is corrupted, need to restore to an old version.
 [02/13/15 16:36:11] fsck.c(314): Scanning available commits...
-[02/13/15 16:36:11] fsck.c(376): Find available commit 1b26b13c(created at 2015-02-13 16:10:21) for repo ca1a860d.
+[02/13/15 16:36:11] fsck.c(376): Find available commit 1b26b13c(created at 2015-02-13 16:10:21) for repo ca1a860d.</p>
+<p><div class="highlight"><pre><span></span><code>This means the &quot;head commit&quot; (current state of the library) recorded in database is not consistent with the library data. In such case, fsck will try to find the last consistent state and check the integrity in that state.
+
+!!! tip
+    If you have many libraries, it&#39;s helpful to save the fsck output into a log file for later analysis.
+
+## Repairing Corruption
+
+Corruption repair in seaf-fsck basically works in two steps:
+
+1. If the library state (commit) recorded in database is not found in data directory, find the last available state from data directory.
+2. Check data integrity in that specific state. If files or directories are corrupted, set them to empty files or empty directories. The corrupted paths will be reported, so that the user can recover them from somewhere else.
+
+Running the following command repairs all the libraries:
 </code></pre></div>
-<p>This means the "head commit" (current state of the library) recorded in database is not consistent with the library data. In such case, fsck will try to find the last consistent state and check the integrity in that state.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>If you have many libraries, it's helpful to save the fsck output into a log file for later analysis.</p>
-</div>
-<h2 id="repairing-corruption">Repairing Corruption<a class="headerlink" href="#repairing-corruption" title="Permanent link">&para;</a></h2>
-<p>Corruption repair in seaf-fsck basically works in two steps:</p>
-<ol>
-<li>If the library state (commit) recorded in database is not found in data directory, find the last available state from data directory.</li>
-<li>Check data integrity in that specific state. If files or directories are corrupted, set them to empty files or empty directories. The corrupted paths will be reported, so that the user can recover them from somewhere else.</li>
-</ol>
-<p>Running the following command repairs all the libraries:</p>
-<div class="highlight"><pre><span></span><code>./seaf-fsck.sh --repair
+./seaf-fsck.sh --repair</p>
+<p><div class="highlight"><pre><span></span><code>Most of time you run the read-only integrity check first, to find out which libraries are corrupted. And then you repair specific libraries with the following command:
 </code></pre></div>
-<p>Most of time you run the read-only integrity check first, to find out which libraries are corrupted. And then you repair specific libraries with the following command:</p>
-<div class="highlight"><pre><span></span><code>./seaf-fsck.sh --repair [library-id1] [library-id2] ...
+./seaf-fsck.sh --repair [library-id1] [library-id2] ...</p>
+<p><div class="highlight"><pre><span></span><code>After repairing, in the library history, seaf-fsck includes the list of files and folders that are corrupted. So it&#39;s much easier to located corrupted paths.
+
+### Best Practice for Repairing a Library
+
+To check all libraries and find out which library is corrupted, the system admin can run seaf-fsck.sh without any argument and save the output to a log file. Search for keyword &quot;Fail&quot; in the log file to locate corrupted libraries. You can run seaf-fsck to check all libraries when your Seafile server is running. It won&#39;t damage or change any files.
+
+When the system admin find a library is corrupted, he/she should run seaf-fsck.sh with &quot;--repair&quot; for the library. After the command fixes the library, the admin should inform user to recover files from other places. There are two ways:
+
+* Upload corrupted files or folders via the web interface
+* If the library was synced to some desktop computer, and that computer has a correct version of the corrupted file, resyncing the library on that computer will upload the corrupted files to the server.
+
+## Speeding up FSCK by not checking file contents
+
+Starting from Pro edition 7.1.5, an option is added to speed up FSCK. Most of the running time of seaf-fsck is spent on calculating hashes for file contents. This hash will be compared with block object ID. If they&#39;re not consistent, the block is detected as corrupted.
+
+In many cases, the file contents won&#39;t be corrupted most of time. Some objects are just missing from the system. So it&#39;s enough to only check for object existence. This will greatly speed up the fsck process.
+
+To skip checking file contents, add the &quot;--shallow&quot; or &quot;-s&quot; option to seaf-fsck.
+
+## Exporting Libraries to File System
+
+You can use seaf-fsck to export all the files in libraries to external file system (such as Ext4). This procedure doesn&#39;t rely on the seafile database. As long as you have your seafile-data directory, you can always export your files from Seafile to external file system.
+
+The command syntax is
 </code></pre></div>
-<p>After repairing, in the library history, seaf-fsck includes the list of files and folders that are corrupted. So it's much easier to located corrupted paths.</p>
-<h3 id="best-practice-for-repairing-a-library">Best Practice for Repairing a Library<a class="headerlink" href="#best-practice-for-repairing-a-library" title="Permanent link">&para;</a></h3>
-<p>To check all libraries and find out which library is corrupted, the system admin can run seaf-fsck.sh without any argument and save the output to a log file. Search for keyword "Fail" in the log file to locate corrupted libraries. You can run seaf-fsck to check all libraries when your Seafile server is running. It won't damage or change any files.</p>
-<p>When the system admin find a library is corrupted, he/she should run seaf-fsck.sh with "--repair" for the library. After the command fixes the library, the admin should inform user to recover files from other places. There are two ways:</p>
-<ul>
-<li>Upload corrupted files or folders via the web interface</li>
-<li>If the library was synced to some desktop computer, and that computer has a correct version of the corrupted file, resyncing the library on that computer will upload the corrupted files to the server.</li>
-</ul>
-<h2 id="speeding-up-fsck-by-not-checking-file-contents">Speeding up FSCK by not checking file contents<a class="headerlink" href="#speeding-up-fsck-by-not-checking-file-contents" title="Permanent link">&para;</a></h2>
-<p>Starting from Pro edition 7.1.5, an option is added to speed up FSCK. Most of the running time of seaf-fsck is spent on calculating hashes for file contents. This hash will be compared with block object ID. If they're not consistent, the block is detected as corrupted.</p>
-<p>In many cases, the file contents won't be corrupted most of time. Some objects are just missing from the system. So it's enough to only check for object existence. This will greatly speed up the fsck process.</p>
-<p>To skip checking file contents, add the "--shallow" or "-s" option to seaf-fsck.</p>
-<h2 id="exporting-libraries-to-file-system">Exporting Libraries to File System<a class="headerlink" href="#exporting-libraries-to-file-system" title="Permanent link">&para;</a></h2>
-<p>You can use seaf-fsck to export all the files in libraries to external file system (such as Ext4). This procedure doesn't rely on the seafile database. As long as you have your seafile-data directory, you can always export your files from Seafile to external file system.</p>
-<p>The command syntax is</p>
-<div class="highlight"><pre><span></span><code>./seaf-fsck.sh --export top_export_path [library-id1] [library-id2] ...
-</code></pre></div>
+./seaf-fsck.sh --export top_export_path [library-id1] [library-id2] ...</p>
+<p>```</p>
 <p>The argument <code>top_export_path</code> is a directory to place the exported files. Each library will be exported as a sub-directory of the export path. If you don't specify library ids, all libraries will be exported.</p>
 <p>Currently only un-encrypted libraries can be exported. Encrypted libraries will be skipped.</p>
 

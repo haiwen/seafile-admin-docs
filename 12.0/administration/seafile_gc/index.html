@@ -4169,14 +4169,20 @@
 <li>If you set history length limit on some libraries, the out-dated blocks in those libraries will also be removed.</li>
 </ol>
 <h2 id="run-gc">Run GC<a class="headerlink" href="#run-gc" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If your Seafile server is deployed with Docker, make sure you have enter the container before executing the script:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>bash
+</code></pre></div>
+<p>For all scripts in this document, is located in <code>/opt/seafile/seafile-server-latest</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="sb">`</span>/opt/seafile/seafile-server-latest<span class="w"> </span><span class="c1"># valid both Docker-base Seafile and binary-package-base Seafile</span>
+</code></pre></div>
+<p>This is also required for the other scripts in this document.</p>
+</div>
 <h3 id="dry-run-mode">Dry-run Mode<a class="headerlink" href="#dry-run-mode" title="Permanent link">&para;</a></h3>
 <p>To see how much garbage can be collected without actually removing any garbage, use the dry-run option:</p>
 <div class="highlight"><pre><span></span><code>./seaf-gc.sh --dry-run [repo-id1] [repo-id2] ...
 </code></pre></div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Enter into the docker image, then go to <code>/opt/seafile/seafile-server-latest</code></p>
-</div>
 <p>The output should look like:</p>
 <div class="highlight"><pre><span></span><code>[03/19/15 19:41:49] seafserv-gc.c(115): GC version 1 repo My Library(ffa57d93)
 [03/19/15 19:41:49] gc-core.c(394): GC started. Total block number is 265.

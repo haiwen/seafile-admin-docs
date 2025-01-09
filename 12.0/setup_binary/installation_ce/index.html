@@ -4387,29 +4387,29 @@ sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w
 </li>
 <li>
 <p>Install Python and related libraries</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Ubuntu 24.04</label><label for="__tabbed_1_2">Debian 12</label><label for="__tabbed_1_3">Debian 11/Ubuntu 22.04</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Ubuntu 24.04</label><label for="__tabbed_1_2">Debian 12</label><label for="__tabbed_1_3">Ubuntu 22.04</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Debian 12 and Ubuntu 24.04 are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables different versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with <code>source python-venv/bin/activate</code>.</p>
 </div>
-<div class="highlight"><pre><span></span><code>sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmysqlclient-dev ldap-utils libldap2-dev python3.12-venv
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>python3<span class="w"> </span>python3-dev<span class="w"> </span>python3-setuptools<span class="w"> </span>python3-pip<span class="w"> </span>libmysqlclient-dev<span class="w"> </span>ldap-utils<span class="w"> </span>libldap2-dev<span class="w"> </span>python3.12-venv<span class="w"> </span>default-libmysqlclient-dev<span class="w"> </span>build-essential<span class="w"> </span>pkg-config<span class="w"> </span>libmemcached-dev
 
-mkdir /opt/seafile
-cd /opt/seafile
+mkdir<span class="w"> </span>/opt/seafile
+<span class="nb">cd</span><span class="w"> </span>/opt/seafile
 
-# create the vitual environment in the python-venv directory
-python3 -m venv python-venv
+<span class="c1"># create the vitual environment in the python-venv directory</span>
+python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>python-venv
 
-# activate the venv
-source python-venv/bin/activate
-# Notice that this will usually change your prompt so you know the venv is active
+<span class="c1"># activate the venv</span>
+<span class="nb">source</span><span class="w"> </span>python-venv/bin/activate
+<span class="c1"># Notice that this will usually change your prompt so you know the venv is active</span>
 
-# install packages into the active venv with pip (sudo isn&#39;t needed because this is installing in the venv, not system-wide).
-pip3 install --timeout=3600 django==4.2.* future==1.0.* mysqlclient==2.2.* \
-    pymysql pillow==10.4.* pylibmc captcha==0.6.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.* \
-    psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.9.* pysaml2==7.3.* pycryptodome==3.20.* cffi==1.17.0 lxml python-ldap==3.4.* gevent==24.2.*
+<span class="c1"># install packages into the active venv with pip (sudo isn&#39;t needed because this is installing in the venv, not system-wide).</span>
+pip3<span class="w"> </span>install<span class="w"> </span>--timeout<span class="o">=</span><span class="m">3600</span><span class="w"> </span><span class="nv">django</span><span class="o">==</span><span class="m">4</span>.2.*<span class="w"> </span><span class="nv">future</span><span class="o">==</span><span class="m">1</span>.0.*<span class="w"> </span><span class="nv">mysqlclient</span><span class="o">==</span><span class="m">2</span>.2.*<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>pymysql<span class="w"> </span><span class="nv">pillow</span><span class="o">==</span><span class="m">10</span>.4.*<span class="w"> </span>pylibmc<span class="w"> </span><span class="nv">captcha</span><span class="o">==</span><span class="m">0</span>.6.*<span class="w"> </span><span class="nv">markupsafe</span><span class="o">==</span><span class="m">2</span>.0.1<span class="w"> </span>jinja2<span class="w"> </span><span class="nv">sqlalchemy</span><span class="o">==</span><span class="m">2</span>.0.*<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>psd-tools<span class="w"> </span>django-pylibmc<span class="w"> </span><span class="nv">django_simple_captcha</span><span class="o">==</span><span class="m">0</span>.6.*<span class="w"> </span><span class="nv">djangosaml2</span><span class="o">==</span><span class="m">1</span>.9.*<span class="w"> </span><span class="nv">pysaml2</span><span class="o">==</span><span class="m">7</span>.3.*<span class="w"> </span><span class="nv">pycryptodome</span><span class="o">==</span><span class="m">3</span>.20.*<span class="w"> </span><span class="nv">cffi</span><span class="o">==</span><span class="m">1</span>.17.0<span class="w"> </span>lxml<span class="w"> </span>python-ldap<span class="o">==</span><span class="m">3</span>.4.*<span class="w"> </span><span class="nv">gevent</span><span class="o">==</span><span class="m">24</span>.2.*
 </code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -4417,42 +4417,66 @@ pip3 install --timeout=3600 django==4.2.* future==1.0.* mysqlclient==2.2.* \
 <p class="admonition-title">Note</p>
 <p>Debian 12 and Ubuntu 24.04 are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables different versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with <code>source python-venv/bin/activate</code>.</p>
 </div>
-<div class="highlight"><pre><span></span><code>sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmariadb-dev-compat ldap-utils libldap2-dev libsasl2-dev python3.11-venv
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>python3<span class="w"> </span>python3-dev<span class="w"> </span>python3-setuptools<span class="w"> </span>python3-pip<span class="w"> </span>libmariadb-dev-compat<span class="w"> </span>ldap-utils<span class="w"> </span>libldap2-dev<span class="w"> </span>libsasl2-dev<span class="w"> </span>python3.11-venv<span class="w"> </span>
 
-mkdir /opt/seafile
-cd /opt/seafile
+mkdir<span class="w"> </span>/opt/seafile
+<span class="nb">cd</span><span class="w"> </span>/opt/seafile
 
-# create the vitual environment in the python-venv directory
-python3 -m venv python-venv
+<span class="c1"># create the vitual environment in the python-venv directory</span>
+python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>python-venv
 
-# activate the venv
-source python-venv/bin/activate
-# Notice that this will usually change your prompt so you know the venv is active
+<span class="c1"># activate the venv</span>
+<span class="nb">source</span><span class="w"> </span>python-venv/bin/activate
+<span class="c1"># Notice that this will usually change your prompt so you know the venv is active</span>
 
-# install packages into the active venv with pip (sudo isn&#39;t needed because this is installing in the venv, not system-wide).
-pip3 install --timeout=3600  django==4.2.* future==0.18.* mysqlclient==2.1.* pymysql pillow==10.0.* pylibmc captcha==0.4 markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 psd-tools django-pylibmc django_simple_captcha==0.5.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 lxml python-ldap==3.4.3
+<span class="c1"># install packages into the active venv with pip (sudo isn&#39;t needed because this is installing in the venv, not system-wide).</span>
+pip3<span class="w"> </span>install<span class="w"> </span>--timeout<span class="o">=</span><span class="m">3600</span><span class="w">  </span><span class="nv">django</span><span class="o">==</span><span class="m">4</span>.2.*<span class="w"> </span><span class="nv">future</span><span class="o">==</span><span class="m">0</span>.18.*<span class="w"> </span><span class="nv">mysqlclient</span><span class="o">==</span><span class="m">2</span>.1.*<span class="w"> </span>pymysql<span class="w"> </span><span class="nv">pillow</span><span class="o">==</span><span class="m">10</span>.0.*<span class="w"> </span>pylibmc<span class="w"> </span><span class="nv">captcha</span><span class="o">==</span><span class="m">0</span>.4<span class="w"> </span><span class="nv">markupsafe</span><span class="o">==</span><span class="m">2</span>.0.1<span class="w"> </span>jinja2<span class="w"> </span><span class="nv">sqlalchemy</span><span class="o">==</span><span class="m">2</span>.0.18<span class="w"> </span>psd-tools<span class="w"> </span>django-pylibmc<span class="w"> </span><span class="nv">django_simple_captcha</span><span class="o">==</span><span class="m">0</span>.5.*<span class="w"> </span><span class="nv">djangosaml2</span><span class="o">==</span><span class="m">1</span>.5.*<span class="w"> </span><span class="nv">pysaml2</span><span class="o">==</span><span class="m">7</span>.2.*<span class="w"> </span><span class="nv">pycryptodome</span><span class="o">==</span><span class="m">3</span>.16.*<span class="w"> </span><span class="nv">cffi</span><span class="o">==</span><span class="m">1</span>.15.1<span class="w"> </span>lxml<span class="w"> </span>python-ldap<span class="o">==</span><span class="m">3</span>.4.3
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmysqlclient-dev ldap-utils libldap2-dev
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>python3<span class="w"> </span>python3-dev<span class="w"> </span>python3-setuptools<span class="w"> </span>python3-pip<span class="w"> </span>libmysqlclient-dev<span class="w"> </span>ldap-utils<span class="w"> </span>libldap2-dev<span class="w"> </span>default-libmysqlclient-dev<span class="w"> </span>build-essential<span class="w"> </span>pkg-config<span class="w"> </span>libmemcached-dev
 
-sudo mkdir /opt/seafile
-cd /opt/seafile
+sudo<span class="w"> </span>mkdir<span class="w"> </span>/opt/seafile
+<span class="nb">cd</span><span class="w"> </span>/opt/seafile
 
-sudo pip3 install --timeout=3600 django==4.2.* future==1.0.* mysqlclient==2.2.*  \
-    pymysql pillow==10.4.* pylibmc captcha==0.6.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.* \
-    psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.95.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 python-ldap==3.4.3 lxml gevent==24.2.*
+sudo<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> </span>--timeout<span class="o">=</span><span class="m">3600</span><span class="w"> </span><span class="nv">django</span><span class="o">==</span><span class="m">4</span>.2.*<span class="w"> </span><span class="nv">future</span><span class="o">==</span><span class="m">1</span>.0.*<span class="w"> </span><span class="nv">mysqlclient</span><span class="o">==</span><span class="m">2</span>.1.*<span class="w">  </span><span class="se">\</span>
+<span class="w">    </span>pymysql<span class="w"> </span><span class="nv">pillow</span><span class="o">==</span><span class="m">10</span>.4.*<span class="w"> </span>pylibmc<span class="w"> </span><span class="nv">captcha</span><span class="o">==</span><span class="m">0</span>.6.*<span class="w"> </span><span class="nv">markupsafe</span><span class="o">==</span><span class="m">2</span>.0.1<span class="w"> </span>jinja2<span class="w"> </span><span class="nv">sqlalchemy</span><span class="o">==</span><span class="m">2</span>.0.*<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>psd-tools<span class="w"> </span>django-pylibmc<span class="w"> </span><span class="nv">django_simple_captcha</span><span class="o">==</span><span class="m">0</span>.6.*<span class="w"> </span><span class="nv">djangosaml2</span><span class="o">==</span><span class="m">1</span>.9.*<span class="w"> </span><span class="nv">pysaml2</span><span class="o">==</span><span class="m">7</span>.2.*<span class="w"> </span><span class="nv">pycryptodome</span><span class="o">==</span><span class="m">3</span>.16.*<span class="w"> </span><span class="nv">cffi</span><span class="o">==</span><span class="m">1</span>.15.1<span class="w"> </span>python-ldap<span class="o">==</span><span class="m">3</span>.4.3<span class="w"> </span>lxml<span class="w"> </span><span class="nv">gevent</span><span class="o">==</span><span class="m">24</span>.2.*
 </code></pre></div>
 </div>
 </div>
 </div>
 </li>
 </ol>
+<p>=== "Debian 11"</p>
+<div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="err">```</span><span class="n">sh</span>
+<span class="w">    </span><span class="n">sudo</span><span class="w"> </span><span class="n">apt</span><span class="o">-</span><span class="n">get</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="o">-</span><span class="n">y</span><span class="w"> </span><span class="n">python3</span><span class="w"> </span><span class="n">python3</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">python3</span><span class="o">-</span><span class="n">setuptools</span><span class="w"> </span><span class="n">python3</span><span class="o">-</span><span class="n">pip</span><span class="w"> </span><span class="n">libmysqlclient</span><span class="o">-</span><span class="n">dev</span><span class="o">-</span><span class="n">compat</span><span class="w"> </span><span class="n">ldap</span><span class="o">-</span><span class="n">utils</span><span class="w"> </span><span class="n">libldap2</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="n">libsasl2</span><span class="o">-</span><span class="n">dev</span>
+
+<span class="w">    </span><span class="n">sudo</span><span class="w"> </span><span class="n">mkdir</span><span class="w"> </span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">seafile</span>
+<span class="w">    </span><span class="n">cd</span><span class="w"> </span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">seafile</span>
+
+<span class="w">    </span><span class="n">sudo</span><span class="w"> </span><span class="n">pip3</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="o">--</span><span class="n">timeout</span><span class="o">=</span><span class="mi">3600</span><span class="w"> </span><span class="n">django</span><span class="o">==</span><span class="mf">4.2</span><span class="o">.*</span><span class="w"> </span><span class="n">future</span><span class="o">==</span><span class="mf">1.0</span><span class="o">.*</span><span class="w"> </span><span class="n">mysqlclient</span><span class="o">==</span><span class="mf">2.2</span><span class="o">.*</span><span class="w">  </span>\
+<span class="w">        </span><span class="n">pymysql</span><span class="w"> </span><span class="n">pillow</span><span class="o">==</span><span class="mf">10.4</span><span class="o">.*</span><span class="w"> </span><span class="n">pylibmc</span><span class="w"> </span><span class="n">captcha</span><span class="o">==</span><span class="mf">0.6</span><span class="o">.*</span><span class="w"> </span><span class="n">markupsafe</span><span class="o">==</span><span class="mf">2.0</span><span class="o">.</span><span class="mi">1</span><span class="w"> </span><span class="n">jinja2</span><span class="w"> </span><span class="n">sqlalchemy</span><span class="o">==</span><span class="mf">2.0</span><span class="o">.*</span><span class="w"> </span>\
+<span class="w">        </span><span class="n">psd</span><span class="o">-</span><span class="n">tools</span><span class="w"> </span><span class="n">django</span><span class="o">-</span><span class="n">pylibmc</span><span class="w"> </span><span class="n">django_simple_captcha</span><span class="o">==</span><span class="mf">0.6</span><span class="o">.*</span><span class="w"> </span><span class="n">djangosaml2</span><span class="o">==</span><span class="mf">1.9</span><span class="o">.*</span><span class="w"> </span><span class="n">pysaml2</span><span class="o">==</span><span class="mf">7.2</span><span class="o">.*</span><span class="w"> </span><span class="n">pycryptodome</span><span class="o">==</span><span class="mf">3.16</span><span class="o">.*</span><span class="w"> </span><span class="n">cffi</span><span class="o">==</span><span class="mf">1.15</span><span class="o">.</span><span class="mi">1</span><span class="w"> </span><span class="n">python</span><span class="o">-</span><span class="n">ldap</span><span class="o">==</span><span class="mf">3.4</span><span class="o">.</span><span class="mi">3</span><span class="w"> </span><span class="n">lxml</span><span class="w"> </span><span class="n">gevent</span><span class="o">==</span><span class="mf">24.2</span><span class="o">.*</span>
+
+<span class="w">    </span><span class="err">```</span>
+</code></pre></div>
+
 <h3 id="creating-user-seafile">Creating user seafile<a class="headerlink" href="#creating-user-seafile" title="Permanent link">&para;</a></h3>
 <p>It is good practice not to run applications as root. </p>
 <p>Create a new user and follow the instructions on the screen:</p>
-<div class="highlight"><pre><span></span><code>sudo adduser seafile
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Ubuntu 24.04/22.04</label><label for="__tabbed_2_2">Debian 12/11</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>adduser seafile
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>/usr/sbin/adduser seafile
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>Change ownership of the created directory to the new user:</p>
 <div class="highlight"><pre><span></span><code>sudo chown -R seafile: /opt/seafile
 </code></pre></div>
@@ -4561,7 +4585,7 @@ GRANT ALL PRIVILEGES ON `seahub_db`.* to `seafile`@localhost;
 </table>
 <p>In the next step, choose whether to create new databases for Seafile or to use existing databases. The creation of new databases requires the root password for the SQL server. </p>
 <p><img alt="grafik" src="../../images/seafile-setup-database.png" /></p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">[1] Create new ccnet/seafile/seahub databases</label><label for="__tabbed_2_2">[2] Use existing ccnet/seafile/seahub databases</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">[1] Create new ccnet/seafile/seahub databases</label><label for="__tabbed_3_2">[2] Use existing ccnet/seafile/seahub databases</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>The script creates these databases and a MySQL user that Seafile Server will use to access them. To this effect, you need to answer these questions:</p>
@@ -4716,7 +4740,7 @@ GRANT ALL PRIVILEGES ON `seahub_db`.* to `seafile`@localhost;
 <p>The folder <code>seafile-server-latest</code> is a symbolic link to the current Seafile Server folder. When later you upgrade to a new version, the upgrade scripts update this link to point to the latest Seafile Server folder.</p>
 <h3 id="setup-memory-cache">Setup Memory Cache<a class="headerlink" href="#setup-memory-cache" title="Permanent link">&para;</a></h3>
 <p>Seahub caches items(avatars, profiles, etc) on file system by default(/tmp/seahub_cache/). You can replace with Memcached or Redis.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Memcached</label><label for="__tabbed_3_2">Redis</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Memcached</label><label for="__tabbed_4_2">Redis</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>Use the following commands to install memcached and corresponding libraies on your system:</p>

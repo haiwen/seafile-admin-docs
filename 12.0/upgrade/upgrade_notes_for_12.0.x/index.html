@@ -3547,6 +3547,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#new-system-libraries" class="md-nav__link">
+    <span class="md-ellipsis">
+      New system libraries
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#new-python-libraries" class="md-nav__link">
     <span class="md-ellipsis">
       New Python libraries
@@ -4181,6 +4190,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#new-system-libraries" class="md-nav__link">
+    <span class="md-ellipsis">
+      New system libraries
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#new-python-libraries" class="md-nav__link">
     <span class="md-ellipsis">
       New Python libraries
@@ -4351,6 +4369,19 @@ Please always follow the main <a href="../upgrade/">upgrade guide</a>.</p>
 <p>Deploying Seafile with binary package is now deprecated and probably no longer be supported in version 13.0. We recommend you to migrate your existing Seafile deployment to docker based.</p>
 <h3 id="elasticsearch-change-pro-edition-only">ElasticSearch change (pro edition only)<a class="headerlink" href="#elasticsearch-change-pro-edition-only" title="Permanent link">&para;</a></h3>
 <p>Elasticsearch version is not changed in Seafile version 12.0</p>
+<h2 id="new-system-libraries">New system libraries<a class="headerlink" href="#new-system-libraries" title="Permanent link">&para;</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Ubuntu 24.04/22.04</label><label for="__tabbed_1_2">Debian 11</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>default-libmysqlclient-dev<span class="w"> </span>build-essential<span class="w"> </span>pkg-config<span class="w"> </span>libmemcached-dev
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>libsasl2-dev
+</code></pre></div>
+</div>
+</div>
+</div>
 <h2 id="new-python-libraries">New Python libraries<a class="headerlink" href="#new-python-libraries" title="Permanent link">&para;</a></h2>
 <p>Note, you should install Python libraries system wide using root user or sudo mode.</p>
 <p>For Ubuntu 22.04/24.04</p>
