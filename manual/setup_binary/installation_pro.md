@@ -53,12 +53,9 @@ Seafile uses the `mysql_native_password` plugin for authentication. The versions
         !!! note
             Debian 12 and Ubuntu 24.04 are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables different versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with `source python-venv/bin/activate`.
 
-        ```sh
-        
-        sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmysqlclient-dev ldap-utils libldap2-dev python3.12-venv
-        
+        ```
+        sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmysqlclient-dev ldap-utils libldap2-dev python3.12-venv default-libmysqlclient-dev build-essential pkg-config libmemcached-dev
 
-        # create the data directory
         mkdir /opt/seafile
         cd /opt/seafile
 
@@ -78,10 +75,9 @@ Seafile uses the `mysql_native_password` plugin for authentication. The versions
         !!! note
             Debian 12 and Ubuntu 24.04 are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables different versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with `source python-venv/bin/activate`.
 
-        ```sh
-        sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmariadb-dev-compat ldap-utils libldap2-dev libsasl2-dev python3.11-venv
+        ```
+        sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmariadb-dev-compat ldap-utils libldap2-dev libsasl2-dev python3.11-venv 
 
-        # create the data directory
         mkdir /opt/seafile
         cd /opt/seafile
 
@@ -95,19 +91,32 @@ Seafile uses the `mysql_native_password` plugin for authentication. The versions
         # install packages into the active venv with pip (sudo isn't needed because this is installing in the venv, not system-wide).
         pip3 install --timeout=3600  django==4.2.* future==0.18.* mysqlclient==2.1.* pymysql pillow==10.0.* pylibmc captcha==0.4 markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 psd-tools django-pylibmc django_simple_captcha==0.5.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 lxml python-ldap==3.4.3
         ```
-    === "Ubuntu 22.04/Debian 11"
+    === "Ubuntu 22.04"
 
-        ```sh
-        # on  (on , it is almost the same)
-        apt-get install -y python3 python3-dev python3-setuptools python3-pip python3-ldap libmysqlclient-dev ldap-utils libldap2-dev dnsutils
-        apt-get install -y poppler-utils
+        ```
+        sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmysqlclient-dev ldap-utils libldap2-dev default-libmysqlclient-dev build-essential pkg-config libmemcached-dev
 
-        # create the data directory
-        mkdir /opt/seafile
+        sudo mkdir /opt/seafile
         cd /opt/seafile
+
+        sudo pip3 install --timeout=3600 django==4.2.* future==1.0.* mysqlclient==2.1.*  \
+            pymysql pillow==10.4.* pylibmc captcha==0.6.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.* \
+            psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.9.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 python-ldap==3.4.3 lxml gevent==24.2.*
+
+        ```
+
+   === "Debian 11"
+
+        ```
+        sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmysqlclient-dev-compat ldap-utils libldap2-dev libsasl2-dev
+
+        sudo mkdir /opt/seafile
+        cd /opt/seafile
+
         sudo pip3 install --timeout=3600 django==4.2.* future==1.0.* mysqlclient==2.2.*  \
             pymysql pillow==10.4.* pylibmc captcha==0.6.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.* \
-            psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.95.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 python-ldap==3.4.3 lxml gevent==24.2.*
+            psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.9.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 python-ldap==3.4.3 lxml gevent==24.2.*
+
         ```
 
 ### Creating user seafile
@@ -116,9 +125,14 @@ Elasticsearch, the indexing server, cannot be run as root. More generally, it is
 
 Create a new user and follow the instructions on the screen:
 
-```
-adduser seafile
-```
+=== "Ubuntu 24.04/22.04"
+    ```
+    adduser seafile
+    ```
+=== "Debian 12/11"
+    ```
+    /usr/sbin/adduser seafile
+    ```
 
 Change ownership of the created directory to the new user:
 
