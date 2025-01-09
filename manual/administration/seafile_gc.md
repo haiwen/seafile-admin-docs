@@ -13,6 +13,21 @@ The GC program cleans up two types of unused blocks:
 
 ## Run GC
 
+!!! note
+    If your Seafile server is deployed with Docker, make sure you have enter the container before executing the script:
+
+    ```sh
+    docker exec -it seafile bash
+    ```
+
+    For all scripts in this document, is located in `/opt/seafile/seafile-server-latest`:
+
+    ```sh
+    cd `/opt/seafile/seafile-server-latest # valid both Docker-base Seafile and binary-package-base Seafile
+    ```
+
+    This is also required for the other scripts in this document.
+
 ### Dry-run Mode
 
 To see how much garbage can be collected without actually removing any garbage, use the dry-run option:
@@ -21,10 +36,6 @@ To see how much garbage can be collected without actually removing any garbage, 
 ./seaf-gc.sh --dry-run [repo-id1] [repo-id2] ...
 
 ```
-
-!!! tip
-    Enter into the docker image, then go to `/opt/seafile/seafile-server-latest`
-
 
 The output should look like:
 
