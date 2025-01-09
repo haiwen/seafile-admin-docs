@@ -46,6 +46,20 @@ Deploying Seafile with binary package is now deprecated and probably no longer b
 
 Elasticsearch version is not changed in Seafile version 12.0
 
+## New system libraries
+
+=== "Ubuntu 24.04/22.04"
+
+    ```sh
+    apt-get install -y default-libmysqlclient-dev build-essential pkg-config libmemcached-dev
+    ```
+
+=== "Debian 11"
+    ```sh
+    apt-get install -y libsasl2-dev
+    ```
+
+
 ## New Python libraries
 
 Note, you should install Python libraries system wide using root user or sudo mode.

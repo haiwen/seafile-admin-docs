@@ -9,15 +9,18 @@ With default installation, these internal objects are stored in the server's fil
 
 We provide a seaf-fsck.sh script to check the integrity of libraries. The seaf-fsck tool accepts the following arguments:
 
-```
-cd seafile-server-latest
+!!! note
+    If your Seafile server is deployed with Docker, make sure you have enter the container before executing the script:
+
+    ```sh
+    docker exec -it seafile bash
+    ```
+
+    This is also required for the other scripts in this document.
+
+```sh
+cd /opt/seafile/seafile-server-latest
 ./seaf-fsck.sh [--repair|-r] [--export|-E export_path] [repo_id_1 [repo_id_2 ...]]
-
-```
-
-!!! tip
-    Enter into the docker image, then go to `/opt/seafile/seafile-server-latest`
-
 
 There are three modes of operation for seaf-fsck:
 
