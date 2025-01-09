@@ -36,7 +36,7 @@ Seafile uses the mysql_native_password plugin for authentication. The versions o
         !!! note
             Debian 12 and Ubuntu 24.04 are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables different versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with `source python-venv/bin/activate`.
 
-        ```
+        ```sh
         sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmysqlclient-dev ldap-utils libldap2-dev python3.12-venv default-libmysqlclient-dev build-essential pkg-config libmemcached-dev
 
         mkdir /opt/seafile
@@ -58,7 +58,7 @@ Seafile uses the mysql_native_password plugin for authentication. The versions o
         !!! note
             Debian 12 and Ubuntu 24.04 are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables different versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with `source python-venv/bin/activate`.
 
-        ```
+        ```sh
         sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmariadb-dev-compat ldap-utils libldap2-dev libsasl2-dev python3.11-venv 
 
         mkdir /opt/seafile
@@ -76,7 +76,7 @@ Seafile uses the mysql_native_password plugin for authentication. The versions o
         ```
     === "Ubuntu 22.04"
 
-        ```
+        ```sh
         sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmysqlclient-dev ldap-utils libldap2-dev default-libmysqlclient-dev build-essential pkg-config libmemcached-dev
 
         sudo mkdir /opt/seafile
@@ -90,7 +90,7 @@ Seafile uses the mysql_native_password plugin for authentication. The versions o
 
    === "Debian 11"
 
-        ```
+        ```sh
         sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmysqlclient-dev-compat ldap-utils libldap2-dev libsasl2-dev
 
         sudo mkdir /opt/seafile
