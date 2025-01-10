@@ -16,7 +16,7 @@
 SeaSearch service is currently mainly deployed via docker. We have integrated it into the relevant docker-compose file. You only need to download it to the same directory as `seafile-server.yml`:
 
 ```sh
-wget https://manual.seafile.com/12.0/docker/pro/seasearch.yml
+wget https://manual.seafile.com/12.0/repo/docker/pro/seasearch.yml
 ```
 
 ## Modify `.env`

@@ -39,7 +39,7 @@ Let's assume you have three nodes in your cluster: A, B, and C.
 
 !!! note "Prerequisites"
 
-    - We assume you have already deployed memory cache server (e.g., ***Memcached***), ***MariaDB***, file indexer (e.g., ***ElasticSearch***, [*SeaSearch*](https://seasearch-manual.seafile.com/)) in separate machines and use ***S3*** like object storage. 
+    - We assume you have already deployed memory cache server (e.g., ***Memcached***), ***MariaDB***, file indexer (e.g., ***ElasticSearch***) in separate machines and use ***S3*** like object storage. 
 
     - Usually, each node of Seafile Cluster should have at least **2 cores** and **2G memory**. If the above services are deployed together with a node in the Seafile cluster especially ***ElasticSearch***, we recommend that you prepare **4 cores** and **4G memory** for that node
 
@@ -67,8 +67,8 @@ Seafile Server: 2 frontend nodes, 1 backend node
 3. Download the `seafile-server.yml` and `.env`
 
     ```sh
-    wget -O .env https://manual.seafile.com/12.0/docker/cluster/env
-    wget https://manual.seafile.com/12.0/docker/cluster/seafile-server.yml
+    wget -O .env https://manual.seafile.com/12.0/repo/docker/cluster/env
+    wget https://manual.seafile.com/12.0/repo/docker/cluster/seafile-server.yml
     ```
 
 4. Modify the [variables](../config/env.md) in `.env` (especially the terms like `<...>`). 

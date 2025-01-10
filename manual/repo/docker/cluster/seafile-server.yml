@@ -30,11 +30,10 @@ services:
       - INIT_S3_SECRET_KEY=${INIT_S3_SECRET_KEY:-}
       - INIT_S3_USE_V4_SIGNATURE=${INIT_S3_USE_V4_SIGNATURE:-true}
       - INIT_S3_AWS_REGION=${INIT_S3_AWS_REGION:-us-east-1}
-      - INIT_S3_HOST=${INIT_S3_HOST:-us-east-1:-}
+      - INIT_S3_HOST=${INIT_S3_HOST:-s3.us-east-1.amazonaws.com}
       - INIT_S3_USE_HTTPS=${INIT_S3_USE_HTTPS:-true}
       - JWT_PRIVATE_KEY=${JWT_PRIVATE_KEY:?Variable is not set or empty}
       - SEAFILE_LOG_TO_STDOUT=${SEAFILE_LOG_TO_STDOUT:-false}
       - SITE_ROOT=${SITE_ROOT:-/}
       - ENABLE_SEADOC=${ENABLE_SEADOC:-false}
-      - SEADOC_SERVER_URL=${SEADOC_SERVER_URL:-http://example.example.com/sdoc-server}
-
+      - SEADOC_SERVER_URL=${SEADOC_SERVER_URL:-http://seafile.example.com/sdoc-server}

@@ -25,9 +25,9 @@ mkdir /opt/seafile
 cd /opt/seafile
 
 # Seafile CE 12.0
-wget -O .env https://manual.seafile.com/12.0/docker/ce/env
-wget https://manual.seafile.com/12.0/docker/ce/seafile-server.yml
-wget https://manual.seafile.com/12.0/docker/caddy.yml
+wget -O .env https://manual.seafile.com/12.0/repo/docker/ce/env
+wget https://manual.seafile.com/12.0/repo/docker/ce/seafile-server.yml
+wget https://manual.seafile.com/12.0/repo/docker/caddy.yml
 
 nano .env
 ```

@@ -69,7 +69,7 @@ services:
       - NON_ROOT=${NON_ROOT:-false}
       - JWT_PRIVATE_KEY=${JWT_PRIVATE_KEY:?Variable is not set or empty}
       - ENABLE_SEADOC=${ENABLE_SEADOC:-false}
-      - SEADOC_SERVER_URL=${SEADOC_SERVER_URL:-http://example.example.com/sdoc-server}
+      - SEADOC_SERVER_URL=${SEADOC_SERVER_URL:-http://seafile.example.com/sdoc-server}
       - INIT_S3_STORAGE_BACKEND_CONFIG=${INIT_S3_STORAGE_BACKEND_CONFIG:-false}
       - INIT_S3_COMMIT_BUCKET=${INIT_S3_COMMIT_BUCKET:-}
       - INIT_S3_FS_BUCKET=${INIT_S3_FS_BUCKET:-}

@@ -26,9 +26,9 @@ Download [.env](../docker/ce/env), [seafile-server.yml](../docker/ce/seafile-ser
 === "Seafile community edition"
 
     ```sh
-    wget -O .env https://manual.seafile.com/12.0/docker/ce/env
-    wget https://manual.seafile.com/12.0/docker/ce/seafile-server.yml
-    wget https://manual.seafile.com/12.0/docker/caddy.yml
+    wget -O .env https://manual.seafile.com/12.0/repo/docker/ce/env
+    wget https://manual.seafile.com/12.0/repo/docker/ce/seafile-server.yml
+    wget https://manual.seafile.com/12.0/repo/docker/caddy.yml
     ```
     The following fields merit particular attention:
 
@@ -49,9 +49,9 @@ Download [.env](../docker/ce/env), [seafile-server.yml](../docker/ce/seafile-ser
 === "Seafile pro edition"
 
     ```sh
-    wget -O .env https://manual.seafile.com/12.0/docker/pro/env
-    wget https://manual.seafile.com/12.0/docker/pro/seafile-server.yml
-    wget https://manual.seafile.com/12.0/docker/caddy.yml
+    wget -O .env https://manual.seafile.com/12.0/repo/docker/pro/env
+    wget https://manual.seafile.com/12.0/repo/docker/pro/seafile-server.yml
+    wget https://manual.seafile.com/12.0/repo/docker/caddy.yml
     ```
     The following fields merit particular attention:
 
