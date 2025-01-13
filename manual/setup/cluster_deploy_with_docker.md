@@ -41,9 +41,19 @@ Let's assume you have three nodes in your cluster: A, B, and C.
 
     - We assume you have already deployed memory cache server (e.g., ***Memcached***), ***MariaDB***, file indexer (e.g., ***ElasticSearch***) in separate machines and use ***S3*** like object storage. 
 
-    - Usually, each node of Seafile Cluster should have at least **2 cores** and **2G memory**. If the above services are deployed together with a node in the Seafile cluster especially ***ElasticSearch***, we recommend that you prepare **4 cores** and **4G memory** for that node
+    - Usually, each node of Seafile Cluster should have at least **2 cores** and **2G memory**. If the above services are deployed together with a node in the Seafile cluster especially ***ElasticSearch***, we recommend that you prepare **4 cores** and **4G memory** for that node.  If you donnot have enough hardware requirements for *ElasticSearch*, you can use [*SeaSearch*](./use_seasearch.md) as search engine, which is more lightweight.
 
 Seafile Server: 2 frontend nodes, 1 backend node
+
+!!! tip "More details about the number of nodes"
+    1. If your number of nodes does not meet our recommended number (i.e. 3 nodes), please adjust according to the following strategies:
+        - **2 nodes**: A frontend service and a backend service on the same node
+        - **1 node**: Please refer [here](./setup_pro_by_docker.md) to deploy Seafile in a single node instead a cluster.
+    2. If you have more available nodes for Seafile server, please provide them to the Seafile frontend service and **make sure there is only one backend service running**. Here is a simple relationship between the number of Seafile frontent services ($N_f$) and total nodes ($N_t$):
+        $$
+        N_f = N_t - 1,
+        $$
+        where the number **1** means one node for Seafile backend service.
 
 ## Deploy Seafile service
 

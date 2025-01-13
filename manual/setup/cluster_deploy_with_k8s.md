@@ -29,7 +29,7 @@ For each node, you have to prepare at least **2 cores** cpu, **2G RAM** and 10G 
 !!! tip "More details about the number of nodes"
     1. If your number of nodes does not meet our recommended number (i.e. 3 nodes), please adjust according to the following strategies:
         - **2 nodes**: A frontend service and a backend service on the same node
-        - **1 node**: Please refer [here](./setup_pro_by_docker.md) to deploy Seafile in a single node instead of K8S.
+        - **1 node**: Please refer [here](./setup_pro_by_docker.md) to deploy Seafile in a single node instead a cluster.
     2. If you have more available nodes for Seafile server, please provide them to the Seafile frontend service and **make sure there is only one backend service running**. Here is a simple relationship between the number of Seafile frontent services ($N_f$) and total nodes ($N_t$):
         $$
         N_f = N_t - 1,
