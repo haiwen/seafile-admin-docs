@@ -7,8 +7,8 @@
 3. Download the `.env` and `seafile-server.yml` of Seafile Pro.
 
 ```sh
-wget -O .env https://manual.seafile.com/12.0/docker/pro/env
-wget https://manual.seafile.com/12.0/docker/pro/seafile-server.yml
+wget -O .env https://manual.seafile.com/12.0/repo/docker/pro/env
+wget https://manual.seafile.com/12.0/repo/docker/pro/seafile-server.yml
 ```
 
 ## Migrate

@@ -22,6 +22,7 @@ theme:
     - search.suggest
     - search.highlight
     - search.share
+    - math
 
   palette:
     - scheme: default
@@ -53,6 +54,9 @@ extra:
 extra_css:
   - stylesheets/extra.css
 
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML
+
 # Extensions
 markdown_extensions:
   - markdown.extensions.admonition
@@ -72,6 +76,8 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed: # provides a syntax to easily add tabbed Markdown content
       alternate_style: true
+  - pymdownx.arithmatex: # LaTex format support
+      generic: true
 
 # Page tree
 nav:

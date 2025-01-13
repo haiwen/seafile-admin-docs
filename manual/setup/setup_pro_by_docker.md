@@ -46,17 +46,13 @@ Use the [official installation guide for your OS to install Docker](https://docs
 
 ### Downloading the Seafile Image
 
+!!! success
+    Since v12.0, Seafile PE versions are hosted on DockerHub and does not require username and password to download. For ***older Seafile PE*** versions are available private docker repository (back to Seafile 7.0). You can get the username and password on the download page in the [Customer Center](https://customer.seafile.com/downloads).
+
 ```bash
 docker pull seafileltd/seafile-pro-mc:12.0-latest
 ```
-
-!!! note
-    Since v12.0, Seafile PE versions are hosted on DockerHub and does not require username and password to download.
-
-!!! note
-    Older Seafile PE versions are available private docker repository (back to Seafile 7.0). You can get the username and password on the download page in the [Customer Center](https://customer.seafile.com/downloads).
-
-
+    
 ### Downloading and Modifying `.env`
 
 From Seafile Docker 12.0, we use `.env`, `seafile-server.yml`  and `caddy.yml` files for configuration.
@@ -66,9 +62,9 @@ mkdir /opt/seafile
 cd /opt/seafile
 
 # Seafile PE 12.0
-wget -O .env https://manual.seafile.com/12.0/docker/pro/env
-wget https://manual.seafile.com/12.0/docker/pro/seafile-server.yml
-wget https://manual.seafile.com/12.0/docker/caddy.yml
+wget -O .env https://manual.seafile.com/12.0/repo/docker/pro/env
+wget https://manual.seafile.com/12.0/repo/docker/pro/seafile-server.yml
+wget https://manual.seafile.com/12.0/repo/docker/caddy.yml
 
 nano .env
 ```

@@ -9,7 +9,7 @@ If your Seafile server is deployed using [Docker](../setup/setup_pro_by_docker.m
 Download `clamav.yml`
 
 ```sh
-wget https://manual.seafile.com/12.0/docker/pro/clamav.yml
+wget https://manual.seafile.com/12.0/repo/docker/pro/clamav.yml
 ```
 
 Modify `.env`, insert `clamav.yml` to field `COMPOSE_FILE`

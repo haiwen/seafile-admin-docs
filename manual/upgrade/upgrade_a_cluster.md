@@ -27,8 +27,8 @@ In general, to upgrade a cluster, you need:
 2. Download the docker-compose files for *Seafile 12*
 
     ```sh
-    wget -O .env https://manual.seafile.com/12.0/docker/cluster/env
-    wget https://manual.seafile.com/12.0/docker/cluster/seafile-server.yml
+    wget -O .env https://manual.seafile.com/12.0/repo/docker/cluster/env
+    wget https://manual.seafile.com/12.0/repo/docker/cluster/seafile-server.yml
     ```
 
 3. Modify `.env`:
