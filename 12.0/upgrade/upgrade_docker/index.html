@@ -1181,14 +1181,6 @@
     Setup with Kubernetes (K8s)
   </span>
   
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
 
       </a>
     </li>
@@ -4338,13 +4330,13 @@
 <div class="highlight"><pre><span></span><code>mv<span class="w"> </span>docker-compose.yml<span class="w"> </span>docker-compose.yml.bak
 </code></pre></div>
 <h3 id="download-seafile-120-docker-files">Download Seafile 12.0 Docker files<a class="headerlink" href="#download-seafile-120-docker-files" title="Permanent link">&para;</a></h3>
-<p>Download <a href="../../docker/ce/env">.env</a>, <a href="../../docker/ce/seafile-server.yml">seafile-server.yml</a> and <a href="../../docker/caddy.yml">caddy.yml</a>, and modify .env file according to the old configuration in <code>docker-compose.yml.bak</code></p>
+<p>Download <a href="../docker/ce/env">.env</a>, <a href="../docker/ce/seafile-server.yml">seafile-server.yml</a> and <a href="../docker/caddy.yml">caddy.yml</a>, and modify .env file according to the old configuration in <code>docker-compose.yml.bak</code></p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Seafile community edition</label><label for="__tabbed_1_2">Seafile pro edition</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p><div class="highlight"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/12.0/docker/ce/env
-wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/ce/seafile-server.yml
-wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/caddy.yml
+<p><div class="highlight"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/12.0/repo/docker/ce/env
+wget<span class="w"> </span>https://manual.seafile.com/12.0/repo/docker/ce/seafile-server.yml
+wget<span class="w"> </span>https://manual.seafile.com/12.0/repo/docker/caddy.yml
 </code></pre></div>
 The following fields merit particular attention:</p>
 <table>
@@ -4420,9 +4412,9 @@ The following fields merit particular attention:</p>
 </table>
 </div>
 <div class="tabbed-block">
-<p><div class="highlight"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/12.0/docker/pro/env
-wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/pro/seafile-server.yml
-wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/caddy.yml
+<p><div class="highlight"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/12.0/repo/docker/pro/env
+wget<span class="w"> </span>https://manual.seafile.com/12.0/repo/docker/pro/seafile-server.yml
+wget<span class="w"> </span>https://manual.seafile.com/12.0/repo/docker/caddy.yml
 </code></pre></div>
 The following fields merit particular attention:</p>
 <table>
@@ -4739,10 +4731,12 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share", "math"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
       
     
   </body>

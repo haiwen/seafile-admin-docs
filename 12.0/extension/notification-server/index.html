@@ -1183,14 +1183,6 @@
     Setup with Kubernetes (K8s)
   </span>
   
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
 
       </a>
     </li>
@@ -4157,7 +4149,7 @@
 </ol>
 <h2 id="how-to-configure-and-run">How to configure and run<a class="headerlink" href="#how-to-configure-and-run" title="Permanent link">&para;</a></h2>
 <p>Since Seafile 12.0, we use a separate Docker image to deploy the notification server. First download <code>notification-server.yml</code> to Seafile directory:</p>
-<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/notification-server.yml
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/12.0/repo/docker/notification-server.yml
 </code></pre></div>
 <p>Modify <code>.env</code>, and insert <code>notification-server.yml</code> into <code>COMPOSE_FILE</code>:</p>
 <div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;seafile-server.yml,caddy.yml,notification-server.yml&#39;
@@ -4188,8 +4180,8 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 <p>There is no additional features for notification server in the Pro Edition. It works the same as in community edition.</p>
 <p>If you enable <a href="../../setup_binary/cluster_deployment/">clustering</a>, You need to deploy notification server on one of the servers, or a separate server. The load balancer should forward websockets requests to this node.</p>
 <p>Download <code>.env</code> and <code>notification-server.yml</code> to notification server directory:</p>
-<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/notification-server/standalone/notification-server.yml
-wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/12.0/docker/notification-server/standalone/env
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/12.0/repo/docker/notification-server/standalone/notification-server.yml
+wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/12.0/repo/docker/notification-server/standalone/env
 </code></pre></div>
 <p>Then modify the <code>.env</code> file according to your environment. The following fields are needed to be modified:</p>
 <table>
@@ -4395,10 +4387,12 @@ backend ws_backend
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share", "math"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
       
     
   </body>

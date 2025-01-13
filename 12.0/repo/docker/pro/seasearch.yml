@@ -40,7 +40,7 @@ services:
       - SS_LOG_TO_STDOUT=${SS_LOG_TO_STDOUT:-false}
       - ZINC_LOG_OUTPUT=${SS_LOG_OUTPUT:-true}
       - ZINC_LOG_DIR=${SS_LOG_DIR:-/opt/seasearch/data/log}
-      - ZINC_LOG_LEVEL=${SS_LOG_LEVEL:-debug}
+      - ZINC_LOG_LEVEL=${SS_LOG_LEVEL:-info}
       - ZINC_PLUGIN_GSE_ENABLE = ${SS_PLUGIN_GSE_ENABLE:-false}
       - ZINC_PLUGIN_GSE_DICT_EMBED = ${SS_PLUGIN_GSE_DICT_EMBED:-}
       - ZINC_PLUGIN_GSE_DICT_PATH = ${SS_PLUGIN_GSE_DICT_PATH:-}

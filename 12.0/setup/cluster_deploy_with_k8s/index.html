@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#setup-with-kubernetes" class="md-skip">
+        <a href="#deploy-seafile-cluster-with-kubernetes-k8s" class="md-skip">
           Skip to content
         </a>
       
@@ -1206,14 +1206,6 @@
     Setup with Kubernetes (K8s)
   </span>
   
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
 
           <span class="md-nav__icon md-icon"></span>
         </label>
@@ -1224,14 +1216,6 @@
   <span class="md-ellipsis">
     Setup with Kubernetes (K8s)
   </span>
-  
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
   
 
       </a>
@@ -1252,165 +1236,30 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#gettings-started" class="md-nav__link">
+  <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
-      Gettings started
+      Prerequisites
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#install-kubectl-and-k8s-control-plane" class="md-nav__link">
-    <span class="md-ellipsis">
-      Install kubectl and k8s control plane
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#yaml" class="md-nav__link">
-    <span class="md-ellipsis">
-      YAML
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="YAML">
+    <nav class="md-nav" aria-label="Prerequisites">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#mariadb" class="md-nav__link">
+  <a href="#system-requirements" class="md-nav__link">
     <span class="md-ellipsis">
-      mariadb
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="mariadb">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#mariadb-deploymentyaml" class="md-nav__link">
-    <span class="md-ellipsis">
-      mariadb-deployment.yaml
+      System requirements
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mariadb-serviceyaml" class="md-nav__link">
+  <a href="#k8s-tools" class="md-nav__link">
     <span class="md-ellipsis">
-      mariadb-service.yaml
+      K8S tools
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mariadb-persistentvolumeyaml" class="md-nav__link">
-    <span class="md-ellipsis">
-      mariadb-persistentvolume.yaml
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mariadb-persistentvolumeclaimyaml" class="md-nav__link">
-    <span class="md-ellipsis">
-      mariadb-persistentvolumeclaim.yaml
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#memcached" class="md-nav__link">
-    <span class="md-ellipsis">
-      memcached
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="memcached">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#memcached-deploymentyaml" class="md-nav__link">
-    <span class="md-ellipsis">
-      memcached-deployment.yaml
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#memcached-serviceyaml" class="md-nav__link">
-    <span class="md-ellipsis">
-      memcached-service.yaml
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#seafile" class="md-nav__link">
-    <span class="md-ellipsis">
-      Seafile
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Seafile">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#seafile-deploymentyaml" class="md-nav__link">
-    <span class="md-ellipsis">
-      seafile-deployment.yaml
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#seafile-serviceyaml" class="md-nav__link">
-    <span class="md-ellipsis">
-      seafile-service.yaml
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#seafile-persistentvolumeyaml" class="md-nav__link">
-    <span class="md-ellipsis">
-      seafile-persistentvolume.yaml
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#seafile-persistentvolumeclaimyaml" class="md-nav__link">
-    <span class="md-ellipsis">
-      seafile-persistentvolumeclaim.yaml
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1420,9 +1269,45 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#deploy-pods" class="md-nav__link">
+  <a href="#download-k8s-yaml-files-for-seafile-cluster-without-frontend-node" class="md-nav__link">
     <span class="md-ellipsis">
-      Deploy pods
+      Download K8S YAML files for Seafile cluster (without frontend node)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modify-seafile-envyaml-and-seafile-secretyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modify seafile-env.yaml and seafile-secret.yaml
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#initialize-seafile-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initialize Seafile cluster
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#put-the-license-into-optseafileshared" class="md-nav__link">
+    <span class="md-ellipsis">
+      Put the license into /opt/seafile/shared
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#download-frontend-services-yaml-and-restart-pods-to-start-seafile-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download frontend service's YAML and restart pods to start Seafile server
     </span>
   </a>
   
@@ -1432,6 +1317,15 @@
   <a href="#container-management" class="md-nav__link">
     <span class="md-ellipsis">
       Container management
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#load-balance-and-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      Load balance and HTTPS
     </span>
   </a>
   
@@ -4230,165 +4124,30 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#gettings-started" class="md-nav__link">
+  <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
-      Gettings started
+      Prerequisites
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#install-kubectl-and-k8s-control-plane" class="md-nav__link">
-    <span class="md-ellipsis">
-      Install kubectl and k8s control plane
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#yaml" class="md-nav__link">
-    <span class="md-ellipsis">
-      YAML
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="YAML">
+    <nav class="md-nav" aria-label="Prerequisites">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#mariadb" class="md-nav__link">
+  <a href="#system-requirements" class="md-nav__link">
     <span class="md-ellipsis">
-      mariadb
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="mariadb">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#mariadb-deploymentyaml" class="md-nav__link">
-    <span class="md-ellipsis">
-      mariadb-deployment.yaml
+      System requirements
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#mariadb-serviceyaml" class="md-nav__link">
+  <a href="#k8s-tools" class="md-nav__link">
     <span class="md-ellipsis">
-      mariadb-service.yaml
+      K8S tools
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mariadb-persistentvolumeyaml" class="md-nav__link">
-    <span class="md-ellipsis">
-      mariadb-persistentvolume.yaml
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mariadb-persistentvolumeclaimyaml" class="md-nav__link">
-    <span class="md-ellipsis">
-      mariadb-persistentvolumeclaim.yaml
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#memcached" class="md-nav__link">
-    <span class="md-ellipsis">
-      memcached
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="memcached">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#memcached-deploymentyaml" class="md-nav__link">
-    <span class="md-ellipsis">
-      memcached-deployment.yaml
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#memcached-serviceyaml" class="md-nav__link">
-    <span class="md-ellipsis">
-      memcached-service.yaml
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#seafile" class="md-nav__link">
-    <span class="md-ellipsis">
-      Seafile
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Seafile">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#seafile-deploymentyaml" class="md-nav__link">
-    <span class="md-ellipsis">
-      seafile-deployment.yaml
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#seafile-serviceyaml" class="md-nav__link">
-    <span class="md-ellipsis">
-      seafile-service.yaml
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#seafile-persistentvolumeyaml" class="md-nav__link">
-    <span class="md-ellipsis">
-      seafile-persistentvolume.yaml
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#seafile-persistentvolumeclaimyaml" class="md-nav__link">
-    <span class="md-ellipsis">
-      seafile-persistentvolumeclaim.yaml
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -4398,9 +4157,45 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#deploy-pods" class="md-nav__link">
+  <a href="#download-k8s-yaml-files-for-seafile-cluster-without-frontend-node" class="md-nav__link">
     <span class="md-ellipsis">
-      Deploy pods
+      Download K8S YAML files for Seafile cluster (without frontend node)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modify-seafile-envyaml-and-seafile-secretyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modify seafile-env.yaml and seafile-secret.yaml
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#initialize-seafile-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initialize Seafile cluster
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#put-the-license-into-optseafileshared" class="md-nav__link">
+    <span class="md-ellipsis">
+      Put the license into /opt/seafile/shared
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#download-frontend-services-yaml-and-restart-pods-to-start-seafile-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download frontend service's YAML and restart pods to start Seafile server
     </span>
   </a>
   
@@ -4410,6 +4205,15 @@
   <a href="#container-management" class="md-nav__link">
     <span class="md-ellipsis">
       Container management
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#load-balance-and-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      Load balance and HTTPS
     </span>
   </a>
   
@@ -4433,241 +4237,199 @@
   
 
 
-<h1 id="setup-with-kubernetes">Setup with Kubernetes<a class="headerlink" href="#setup-with-kubernetes" title="Permanent link">&para;</a></h1>
-<p>This manual explains how to deploy and run Seafile Server on a Linux server using Kubernetes (k8s thereafter). </p>
-<h2 id="gettings-started">Gettings started<a class="headerlink" href="#gettings-started" title="Permanent link">&para;</a></h2>
-<p>The two volumes for persisting data, <code>/opt/seafile-data</code> and <code>/opt/seafile-mysql</code>, are still adopted in this manual. What's more, all k8s YAML files will be placed in <code>/opt/seafile-k8s-yaml</code>. It is not recommended to change these paths. If you do, account for it when following these instructions.</p>
-<h2 id="install-kubectl-and-k8s-control-plane">Install kubectl and k8s control plane<a class="headerlink" href="#install-kubectl-and-k8s-control-plane" title="Permanent link">&para;</a></h2>
-<p>The two tools, <strong>kubectl</strong> and a <strong>k8s control plane</strong> tool (i.e., <strong><em>kubeadm</em></strong>), are required and can be installed with <a href="https://kubernetes.io/docs/tasks/tools/">official installation guide</a>. </p>
-<div class="admonition tip">
-<p class="admonition-title">Multi-node deployment</p>
-<p>If it is a multi-node deployment, k8s control plane needs to be installed on each node. After installation, you need to start the k8s control plane service on each node and refer to the k8s official manual for <a href="https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/">creating a cluster</a>. Since this manual still uses the same image as docker deployment, we need to add the following repository to k8s:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>docker-registry<span class="w"> </span>regcred<span class="w"> </span>--docker-server<span class="o">=</span>seafileltd<span class="w"> </span>--docker-username<span class="o">=</span>seafile<span class="w"> </span>--docker-password<span class="o">=</span><span class="nv">zjkmid6rQibdZ</span><span class="o">=</span>uJMuWS
-</code></pre></div>
-</div>
-<h2 id="yaml">YAML<a class="headerlink" href="#yaml" title="Permanent link">&para;</a></h2>
-<p>Seafile mainly involves three different services, namely database service, cache service and seafile service. Since these three services do not have a direct dependency relationship, we need to separate them from the entire docker-compose.yml (in this manual, we use <a href="../../docker/pro/seafile-server.yml">Seafile 12 PRO</a>) and divide them into three pods. For each pod, we need to define a series of YAML files for k8s to read, and we will store these YAMLs in <code>/opt/seafile-k8s-yaml</code>. </p>
+<h1 id="deploy-seafile-cluster-with-kubernetes-k8s">Deploy Seafile cluster with Kubernetes (K8S)<a class="headerlink" href="#deploy-seafile-cluster-with-kubernetes-k8s" title="Permanent link">&para;</a></h1>
+<p>This manual explains how to deploy and run Seafile Server on a Linux server using <em>Kubernetes</em> (<strong><em>k8s</em></strong> thereafter). </p>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<h3 id="system-requirements">System requirements<a class="headerlink" href="#system-requirements" title="Permanent link">&para;</a></h3>
+<p>In theory, you only need to prepare one node to deploy a cluster, but this does not conform to the K8S design concept, so we recommend that you prepare at least 3 nodes ():</p>
+<ul>
+<li><strong>Two</strong> nodes for starting the Seafile frontend service</li>
+<li><strong>One</strong> node for starting the Seafile backend service</li>
+</ul>
+<p>For each node, you have to prepare at least <strong>2 cores</strong> cpu, <strong>2G RAM</strong> and 10G disk space.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This series of YAML mainly includes <strong>Deployment</strong> for pod management and creation, <strong>Service</strong> for exposing services to the external network, <strong>PersistentVolume</strong> for defining the location of a volume used for persistent storage on the host and <strong>Persistentvolumeclaim</strong> for declaring the use of persistent storage in the container. For futher configuration details, you can refer <a href="https://kubernetes.io/docs/tasks/configure-pod-container/">the official documents</a>.</p>
-</div>
-<h3 id="mariadb">mariadb<a class="headerlink" href="#mariadb" title="Permanent link">&para;</a></h3>
-<h4 id="mariadb-deploymentyaml">mariadb-deployment.yaml<a class="headerlink" href="#mariadb-deploymentyaml" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
-<span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mariadb</span>
-<span class="nt">spec</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mariadb</span>
-<span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
-<span class="w">  </span><span class="nt">template</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">metadata</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mariadb</span>
-<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mariadb</span>
-<span class="w">          </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mariadb:10.11</span>
-<span class="w">          </span><span class="nt">env</span><span class="p">:</span>
-<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MARIADB_ROOT_PASSWORD</span>
-<span class="w">              </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;db_password&quot;</span>
-<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MARIADB_AUTO_UPGRADE</span>
-<span class="w">              </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
-<span class="w">          </span><span class="nt">ports</span><span class="p">:</span>
-<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3306</span>
-<span class="w">          </span><span class="nt">volumeMounts</span><span class="p">:</span>
-<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mariadb-data</span>
-<span class="w">              </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/lib/mysql</span>
-<span class="w">      </span><span class="nt">volumes</span><span class="p">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mariadb-data</span>
-<span class="w">          </span><span class="nt">persistentVolumeClaim</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">claimName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mariadb-data</span>
+<p class="admonition-title">More details about System requirements</p>
+<p>We assume you have already deployed memory cache server (e.g., <strong><em>Memcached</em></strong>), <strong><em>MariaDB</em></strong>, file indexer (e.g., <strong><em>ElasticSearch</em></strong>) in separate machines and use <strong><em>S3</em></strong> like object storage. </p>
+<ul>
+<li>
+<p>If some of the above services are deployed on one of the nodes, you may need to prepare more space for the node. Especially for <strong><em>ElasticSearch</em></strong>, you need to prepare at least <strong>4 cores</strong> cpu, <strong>4GB</strong> memory and more disk space on the node. If you donnot have enough hardware requirements for <em>ElasticSearch</em>, you can use <a href="../use_seasearch/"><em>SeaSearch</em></a> as search engine, which is more lightweight.</p>
+</li>
+<li>
+<p>Generally, when deploying Seafile in a cluster, we recommend that you use a storage backend (such as AWS S3) to store Seafile data. However, according to the Seafile image startup rules and K8S persistent storage strategy, you still need to prepare a persistent directory for configuring the startup of the Seafile container. In this document, we use the following path for the persistent directory with maximum 10GB space:</p>
+<div class="highlight"><pre><span></span><code>/opt/seafile/shared
 </code></pre></div>
-<p>Please replease <code>MARIADB_ROOT_PASSWORD</code> to your own mariadb password. </p>
+<p>If you would like to change it or increase the space, you should modify the <code>seafile-persistentvolume.yaml</code> and <code>seafile-persistentvolumeclaim.yaml</code> in this document.</p>
+</li>
+</ul>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">More details about the number of nodes</p>
+<ol>
+<li>If your number of nodes does not meet our recommended number (i.e. 3 nodes), please adjust according to the following strategies:<ul>
+<li><strong>2 nodes</strong>: A frontend service and a backend service on the same node</li>
+<li><strong>1 node</strong>: Please refer <a href="../setup_pro_by_docker/">here</a> to deploy Seafile in a single node instead a cluster.</li>
+</ul>
+</li>
+<li>If you have more available nodes for Seafile server, please provide them to the Seafile frontend service and <strong>make sure there is only one backend service running</strong>. Here is a simple relationship between the number of Seafile frontent services (<span class="arithmatex">\(N_f\)</span>) and total nodes (<span class="arithmatex">\(N_t\)</span>):
+    $$
+    N_f = N_t - 1,
+    $$
+    where the number <strong>1</strong> means one node for Seafile backend service.</li>
+</ol>
+</div>
+<h3 id="k8s-tools">K8S tools<a class="headerlink" href="#k8s-tools" title="Permanent link">&para;</a></h3>
+<p>Two tools are suggested and can be installed with <a href="https://kubernetes.io/docs/tasks/tools/">official installation guide</a> <strong>on all nodes</strong>:</p>
+<ul>
+<li><strong><em>kubectl</em></strong></li>
+<li><strong><em>k8s control plane tool</em></strong> (e.g., <strong><em>kubeadm</em></strong>)</li>
+</ul>
+<p>After installation, you need to start the k8s control plane service on each node and refer to the k8s official manual for <a href="https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/">creating a cluster</a>.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>In the above Deployment configuration file, no restart policy for the pod is specified. The default restart policy is <strong>Always</strong>. If you need to modify it, add the following to the spec attribute:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">restartPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OnFailure</span>
+<p>Although we recommend installing the <em>k8s control plane tool</em> on each node, it does not mean that we will use each node as a control plane node, but it is a necessary tool to create or join a K8S cluster. For details, please refer to the above <a href="https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/">link</a> about <strong>creating or joining into a cluster</strong>.</p>
+</div>
+<h2 id="download-k8s-yaml-files-for-seafile-cluster-without-frontend-node">Download K8S YAML files for Seafile cluster (without frontend node)<a class="headerlink" href="#download-k8s-yaml-files-for-seafile-cluster-without-frontend-node" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/opt/seafile-k8s-yaml
 
-<span class="c1">#Note:</span>
-<span class="c1">#    Always: always restart (include normal exit)</span>
-<span class="c1">#    OnFailure: restart only with unexpected exit</span>
-<span class="c1">#    Never: do not restart</span>
+wget<span class="w"> </span>-P<span class="w"> </span>/opt/seafile-k8s-yaml<span class="w"> </span>https://manual.seafile.com/12.0/repo/k8s/cluster/seafile-backend-deployment.yaml
+wget<span class="w"> </span>-P<span class="w"> </span>/opt/seafile-k8s-yaml<span class="w"> </span>https://manual.seafile.com/12.0/repo/k8s/cluster/seafile-persistentvolume.yaml
+wget<span class="w"> </span>-P<span class="w"> </span>/opt/seafile-k8s-yaml<span class="w"> </span>https://manual.seafile.com/12.0/repo/k8s/cluster/seafile-persistentvolumeclaim.yaml
+wget<span class="w"> </span>-P<span class="w"> </span>/opt/seafile-k8s-yaml<span class="w"> </span>https://manual.seafile.com/12.0/repo/k8s/cluster/seafile-service.yaml
+wget<span class="w"> </span>-P<span class="w"> </span>/opt/seafile-k8s-yaml<span class="w"> </span>https://manual.seafile.com/12.0/repo/k8s/cluster/seafile-env.yaml
+wget<span class="w"> </span>-P<span class="w"> </span>/opt/seafile-k8s-yaml<span class="w"> </span>https://manual.seafile.com/12.0/repo/k8s/cluster/seafile-secret.yaml
+</code></pre></div>
+<p>In here we suppose you download the YAML files in <code>/opt/seafile-k8s-yaml</code>, which mainly include about:</p>
+<ul>
+<li><code>seafile-xx-deployment.yaml</code> for frontend and backend services pod management and creation, </li>
+<li><code>seafile-service.yaml</code> for exposing Seafile services to the external network, </li>
+<li><code>seafile-persistentVolume.yaml</code> for defining the location of a volume used for persistent storage on the host</li>
+<li><code>seafile-persistentvolumeclaim.yaml</code> for declaring the use of persistent storage in the container.</li>
+</ul>
+<p>For futher configuration details, you can refer <a href="https://kubernetes.io/docs/tasks/configure-pod-container/">the official documents</a>.</p>
+<h2 id="modify-seafile-envyaml-and-seafile-secretyaml">Modify <code>seafile-env.yaml</code> and <code>seafile-secret.yaml</code><a class="headerlink" href="#modify-seafile-envyaml-and-seafile-secretyaml" title="Permanent link">&para;</a></h2>
+<p>Similar to Docker-base deployment, Seafile cluster in K8S deployment also supports use files to configure startup progress, you can modify common environment variables by</p>
+<div class="highlight"><pre><span></span><code>nano<span class="w"> </span>/opt/seafile-k8s-yaml/seafile-env.yaml
+</code></pre></div>
+<p>and sensitive information (e.g., password) by</p>
+<div class="highlight"><pre><span></span><code>nano<span class="w"> </span>/opt/seafile-k8s-yaml/seafile-secret.yaml
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">For <code>seafile-secret.yaml</code></p>
+<p>To modify sensitive information (e.g., password), you need to convert the password into base64 encoding before writing it into the <code>seafile-secret.yaml</code> file:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;&lt;your-value&gt;&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64
 </code></pre></div>
 </div>
-<h4 id="mariadb-serviceyaml">mariadb-service.yaml<a class="headerlink" href="#mariadb-serviceyaml" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span>
-<span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mariadb</span>
-<span class="nt">spec</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mariadb</span>
-<span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span>
-<span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3306</span>
-<span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3306</span>
-</code></pre></div>
-<h4 id="mariadb-persistentvolumeyaml">mariadb-persistentvolume.yaml<a class="headerlink" href="#mariadb-persistentvolumeyaml" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PersistentVolume</span>
-<span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mariadb-data</span>
-<span class="nt">spec</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">capacity</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1Gi</span>
-<span class="w">  </span><span class="nt">accessModes</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span>
-<span class="w">  </span><span class="nt">hostPath</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/seafile-mysql/db</span>
-</code></pre></div>
-<h4 id="mariadb-persistentvolumeclaimyaml">mariadb-persistentvolumeclaim.yaml<a class="headerlink" href="#mariadb-persistentvolumeclaimyaml" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PersistentVolumeClaim</span>
-<span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mariadb-data</span>
-<span class="nt">spec</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">accessModes</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span>
-<span class="w">  </span><span class="nt">resources</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">requests</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10Gi</span>
-</code></pre></div>
-<h3 id="memcached">memcached<a class="headerlink" href="#memcached" title="Permanent link">&para;</a></h3>
-<h4 id="memcached-deploymentyaml">memcached-deployment.yaml<a class="headerlink" href="#memcached-deploymentyaml" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
-<span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">memcached</span>
-<span class="nt">spec</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
-<span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">memcached</span>
-<span class="w">  </span><span class="nt">template</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">metadata</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">memcached</span>
-<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">memcached</span>
-<span class="w">          </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">memcached:1.6.18</span>
-<span class="w">          </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;-m&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;256&quot;</span><span class="p p-Indicator">]</span>
-<span class="w">          </span><span class="nt">ports</span><span class="p">:</span>
-<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">11211</span>
-</code></pre></div>
-<h4 id="memcached-serviceyaml">memcached-service.yaml<a class="headerlink" href="#memcached-serviceyaml" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span>
-<span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">memcached</span>
-<span class="nt">spec</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">memcached</span>
-<span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span>
-<span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">11211</span>
-<span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">11211</span>
-</code></pre></div>
-<h3 id="seafile">Seafile<a class="headerlink" href="#seafile" title="Permanent link">&para;</a></h3>
-<h4 id="seafile-deploymentyaml">seafile-deployment.yaml<a class="headerlink" href="#seafile-deploymentyaml" title="Permanent link">&para;</a></h4>
-<p><div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
-<span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile</span>
-<span class="nt">spec</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
-<span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile</span>
-<span class="w">  </span><span class="nt">template</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">metadata</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile</span>
-<span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile</span>
-<span class="w">          </span><span class="c1">#        image: seafileltd/seafile-mc:9.0.10</span>
-<span class="w">          </span><span class="c1">#        image: seafileltd/seafile-mc:11.0-latest</span>
-<span class="w">          </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafileltd/seafile-pro-mc:12.0-latest</span>
-<span class="w">          </span><span class="nt">env</span><span class="p">:</span>
-<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DB_HOST</span>
-<span class="w">              </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;mariadb&quot;</span>
-<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DB_ROOT_PASSWD</span>
-<span class="w">              </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;db_password&quot;</span><span class="w"> </span><span class="c1">#db&#39;s password</span>
-<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TIME_ZONE</span>
-<span class="w">              </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Europe/Berlin&quot;</span>
-<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">INIT_SEAFILE_ADMIN_EMAIL</span>
-<span class="w">              </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;admin@seafile.com&quot;</span><span class="w"> </span><span class="c1">#admin email</span>
-<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">INIT_SEAFILE_ADMIN_PASSWORD</span>
-<span class="w">              </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;admin_password&quot;</span><span class="w"> </span><span class="c1">#admin password</span>
-<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SEAFILE_SERVER_LETSENCRYPT</span>
-<span class="w">              </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;false&quot;</span>
-<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SEAFILE_SERVER_HOSTNAME</span>
-<span class="w">              </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;you_seafile_domain&quot;</span><span class="w"> </span><span class="c1">#hostname</span>
-<span class="w">          </span><span class="nt">ports</span><span class="p">:</span>
-<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
-<span class="w">          </span><span class="c1">#        - containerPort: 443</span>
-<span class="w">          </span><span class="c1">#          name:  seafile-secure</span>
-<span class="w">          </span><span class="nt">volumeMounts</span><span class="p">:</span>
-<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-data</span>
-<span class="w">              </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/shared</span>
-<span class="w">      </span><span class="nt">volumes</span><span class="p">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-data</span>
-<span class="w">          </span><span class="nt">persistentVolumeClaim</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">claimName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-data</span>
-<span class="w">      </span><span class="nt">restartPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Always</span>
-<span class="w">      </span><span class="c1"># to get image from protected repository</span>
-<span class="w">      </span><span class="nt">imagePullSecrets</span><span class="p">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">regcred</span>
-</code></pre></div>
-Please replease the above configurations, such as database root password, admin in seafile.</p>
-<h4 id="seafile-serviceyaml">seafile-service.yaml<a class="headerlink" href="#seafile-serviceyaml" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span>
-<span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile</span>
-<span class="nt">spec</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile</span>
-<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LoadBalancer</span>
-<span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span>
-<span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
-<span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
-<span class="w">      </span><span class="nt">nodePort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30000</span>
-</code></pre></div>
-<h4 id="seafile-persistentvolumeyaml">seafile-persistentvolume.yaml<a class="headerlink" href="#seafile-persistentvolumeyaml" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PersistentVolume</span>
-<span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-data</span>
-<span class="nt">spec</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">capacity</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10Gi</span>
-<span class="w">  </span><span class="nt">accessModes</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span>
-<span class="w">  </span><span class="nt">hostPath</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/seafile-data</span>
-</code></pre></div>
-<h4 id="seafile-persistentvolumeclaimyaml">seafile-persistentvolumeclaim.yaml<a class="headerlink" href="#seafile-persistentvolumeclaimyaml" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PersistentVolumeClaim</span>
-<span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-data</span>
-<span class="nt">spec</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">accessModes</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span>
-<span class="w">  </span><span class="nt">resources</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">requests</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10Gi</span>
-</code></pre></div>
-<h2 id="deploy-pods">Deploy pods<a class="headerlink" href="#deploy-pods" title="Permanent link">&para;</a></h2>
-<p>You can use following command to deploy pods:</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>For the fields marked with <code>&lt;...&gt;</code> are <strong>required</strong>, please make sure these items are filled in, otherwise Seafile server may not run properly.</p>
+</div>
+<h2 id="initialize-seafile-cluster">Initialize Seafile cluster<a class="headerlink" href="#initialize-seafile-cluster" title="Permanent link">&para;</a></h2>
+<p>You can use following command to initialize Seafile cluster now:</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>/opt/seafile-k8s-yaml/
 </code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">About Seafile cluster initialization</p>
+<p>When Seafile cluster is initializing, it will run with the following conditions:</p>
+<ul>
+<li>Only have backend service (i.e., only has the Seafile backend K8S resouce file)</li>
+<li><code>CLUSTER_INIT_MODE=true</code></li>
+</ul>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>You can get the following information through <code>kubectl logs seafile-xxxx</code> (for details about this opeartions, please refer to <a href="#container-management">here</a>) to check the initialization process is done or not:</p>
+<div class="highlight"><pre><span></span><code>---------------------------------
+This is your configuration
+---------------------------------
+
+    server name:            seafile
+    server ip/domain:       seafile.example.com
+
+    seafile data dir:       /opt/seafile/seafile-data
+    fileserver port:        8082
+
+    database:               create new
+    ccnet database:         ccnet_db
+    seafile database:       seafile_db
+    seahub database:        seahub_db
+    database user:          seafile
+
+
+Generating seafile configuration ...
+
+done
+Generating seahub configuration ...
+
+
+-----------------------------------------------------------------
+Your seafile server configuration has been finished successfully.
+-----------------------------------------------------------------
+
+
+[2024-11-21 02:22:37] Updating version stamp
+Start init
+
+Init success
+</code></pre></div>
+<p>When the initialization is complete, the server will stop automaticlly (because no operations will be performed after the initialization is completed). </p>
+<p>We recommend that you check whether the contents of the configuration files in <code>/opt/seafile/shared/seafile/conf</code> are correct when going to next step, which are automatically generated during the initialization process.</p>
+</div>
+<h2 id="put-the-license-into-optseafileshared">Put the license into <code>/opt/seafile/shared</code><a class="headerlink" href="#put-the-license-into-optseafileshared" title="Permanent link">&para;</a></h2>
+<p>You have to locate the <code>/opt/seafile/shared</code> directory generated during initialization firsly, then simply put it in this path, if you have a <code>seafile-license.txt</code> license file. </p>
+<p>Finally you can use the <code>tar -zcvf</code> and <code>tar -zxvf</code> commands to package the entire <code>/opt/seafile/shared</code> directory of the current node, copy it to other nodes, and unpack it to the same directory to take effect on all nodes.</p>
+<div class="admonition danger">
+<p class="admonition-title">If the license file has a different name or cannot be read, Seafile server will start with in trailer mode with most THREE users</p>
+</div>
+<h2 id="download-frontend-services-yaml-and-restart-pods-to-start-seafile-server">Download frontend service's YAML and restart pods to start Seafile server<a class="headerlink" href="#download-frontend-services-yaml-and-restart-pods-to-start-seafile-server" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Download frontend service's YAML by:</p>
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>-P<span class="w"> </span>/opt/seafile-k8s-yaml<span class="w"> </span>https://manual.seafile.com/12.0/repo/k8s/cluster/seafile-frontend-deployment.yaml
+</code></pre></div>
+</li>
+<li>
+<p>Modify <code>seafile-env.yaml</code>, and set <code>CLUSTER_INIT_MODE</code> to <code>false</code> (i.e., disable initialization mode)</p>
+</li>
+<li>
+<p>Run the following command to restart pods to restart Seafile cluster:</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you modify some configurations in <code>/opt/seafile/shared/seafile/conf</code> or YAML files in <code>/opt/seafile-k8s-yaml/</code>, you still need to restart services to make modifications.</p>
+</div>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>/opt/seafile-k8s-yaml/
+kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>/opt/seafile-k8s-yaml/
+</code></pre></div>
+</li>
+</ol>
+<div class="admonition sucess">
+<p class="admonition-title">Sucess</p>
+<p>You can <a href="#container-management">view the pod's log</a> to check the startup progress is normal or not, you will see the following message if server is running normally:</p>
+<div class="highlight"><pre><span></span><code>*** Running /etc/my_init.d/01_create_data_links.sh...
+*** Booting runit daemon...
+*** Runit started as PID 20
+*** Running /scripts/enterpoint.sh...
+2024-11-21 03:02:35 Nginx ready 
+
+2024-11-21 03:02:35 This is an idle script (infinite loop) to keep container running. 
+---------------------------------
+
+Seafile cluster frontend mode
+
+---------------------------------
+
+
+Starting seafile server, please wait ...
+Seafile server started
+
+Done.
+
+Starting seahub at port 8000 ...
+
+Seahub is started
+
+Done.
+</code></pre></div>
+</div>
 <h2 id="container-management">Container management<a class="headerlink" href="#container-management" title="Permanent link">&para;</a></h2>
 <p>Similar to docker installation, you can also manage containers through <a href="https://kubernetes.io/docs/reference/kubectl/#operations">some kubectl commands</a>. For example, you can use the following command to check whether the relevant resources are started successfully and whether the relevant services can be accessed normally. First, execute the following command and remember the pod name with <code>seafile-</code> as the prefix (such as seafile-748b695648-d6l4g)</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods
@@ -4678,19 +4440,18 @@ Please replease the above configurations, such as database root password, admin 
 <p>and enter a container by</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-748b695648-d6l4g<span class="w"> </span>--<span class="w">  </span>bash
 </code></pre></div>
-<p>If you modify some configurations in <code>/opt/seafile-data/conf</code> and need to restart the container, the following command can be refered:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>deployments<span class="w"> </span>--all
-kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>/opt/seafile-k8s-yaml/
-</code></pre></div>
+<h2 id="load-balance-and-https">Load balance and HTTPS<a class="headerlink" href="#load-balance-and-https" title="Permanent link">&para;</a></h2>
+<p>When deploying a Seafile cluster using K8S, you can enable HTTPS and use load balance in the following two ways:</p>
+<ul>
+<li>External load balancing server, such as <em>Nginx</em>. Typically you will need to reverse proxy <code>http://&lt;your control plane&gt;/</code></li>
+<li>K8S Gateway API, e.g., <a href="https://docs.nginx.com/nginx-gateway-fabric/installation/installing-ngf/manifests/">Nginx-gateway</a> and <a href="https://istio.io/latest/docs/tasks/traffic-management/ingress/gateway-api/">Istio-gateway</a></li>
+</ul>
 
 
 
 
 
 
-
-  
-  
 
 
 
@@ -4796,10 +4557,12 @@ kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> <
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share", "math"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
       
     
   </body>

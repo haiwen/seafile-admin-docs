@@ -1375,14 +1375,6 @@
     Setup with Kubernetes (K8s)
   </span>
   
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
 
       </a>
     </li>
@@ -4375,25 +4367,21 @@ vm.max_map_count<span class="o">=</span><span class="m">262144</span>
 <h3 id="installing-docker">Installing Docker<a class="headerlink" href="#installing-docker" title="Permanent link">&para;</a></h3>
 <p>Use the <a href="https://docs.docker.com/engine/install/">official installation guide for your OS to install Docker</a>.</p>
 <h3 id="downloading-the-seafile-image">Downloading the Seafile Image<a class="headerlink" href="#downloading-the-seafile-image" title="Permanent link">&para;</a></h3>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>Since v12.0, Seafile PE versions are hosted on DockerHub and does not require username and password to download. For <strong><em>older Seafile PE</em></strong> versions are available private docker repository (back to Seafile 7.0). You can get the username and password on the download page in the <a href="https://customer.seafile.com/downloads">Customer Center</a>.</p>
+</div>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>seafileltd/seafile-pro-mc:12.0-latest
 </code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Since v12.0, Seafile PE versions are hosted on DockerHub and does not require username and password to download.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Older Seafile PE versions are available private docker repository (back to Seafile 7.0). You can get the username and password on the download page in the <a href="https://customer.seafile.com/downloads">Customer Center</a>.</p>
-</div>
 <h3 id="downloading-and-modifying-env">Downloading and Modifying <code>.env</code><a class="headerlink" href="#downloading-and-modifying-env" title="Permanent link">&para;</a></h3>
 <p>From Seafile Docker 12.0, we use <code>.env</code>, <code>seafile-server.yml</code>  and <code>caddy.yml</code> files for configuration.</p>
 <div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>/opt/seafile
 <span class="nb">cd</span><span class="w"> </span>/opt/seafile
 
 <span class="c1"># Seafile PE 12.0</span>
-wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/12.0/docker/pro/env
-wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/pro/seafile-server.yml
-wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/caddy.yml
+wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/12.0/repo/docker/pro/env
+wget<span class="w"> </span>https://manual.seafile.com/12.0/repo/docker/pro/seafile-server.yml
+wget<span class="w"> </span>https://manual.seafile.com/12.0/repo/docker/caddy.yml
 
 nano<span class="w"> </span>.env
 </code></pre></div>
@@ -4798,10 +4786,12 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share", "math"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
       
     
   </body>

@@ -1077,6 +1077,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#modify-seafile-serveryml-to-disable-elasticsearch-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modify seafile-server.yml to disable elasticSearch service
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#modify-seafeventsconf" class="md-nav__link">
     <span class="md-ellipsis">
       Modify seafevents.conf
@@ -1272,14 +1281,6 @@
   <span class="md-ellipsis">
     Setup with Kubernetes (K8s)
   </span>
-  
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
   
 
       </a>
@@ -4090,6 +4091,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#modify-seafile-serveryml-to-disable-elasticsearch-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modify seafile-server.yml to disable elasticSearch service
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#modify-seafeventsconf" class="md-nav__link">
     <span class="md-ellipsis">
       Modify seafevents.conf
@@ -4141,13 +4151,13 @@
 </div>
 <h2 id="deploy-seasearch-service">Deploy SeaSearch service<a class="headerlink" href="#deploy-seasearch-service" title="Permanent link">&para;</a></h2>
 <p>SeaSearch service is currently mainly deployed via docker. We have integrated it into the relevant docker-compose file. You only need to download it to the same directory as <code>seafile-server.yml</code>:</p>
-<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/12.0/docker/pro/seasearch.yml
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/12.0/repo/docker/pro/seasearch.yml
 </code></pre></div>
 <h2 id="modify-env">Modify <code>.env</code><a class="headerlink" href="#modify-env" title="Permanent link">&para;</a></h2>
 <p>We have configured the relevant variables in .env. Here you must pay special attention to the following variable information, which will affect the SeaSearch initialization process. For variables in <code>.env</code> of SeaSearch service, please refer <a href="https://seasearch-manual.seafile.com/config/">here</a> for the details. We use <code>/opt/seasearch-data</code> as the persistent directory of SeaSearch:</p>
 <div class="admonition warning">
 <p class="admonition-title">For Apple's Chips</p>
-<p>Since Apple's chips (such as M2) do not support <a href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html">MKL</a>, you need to set the relevant image to <code>seafileltd/seasearch-nomkl:latest</code> if you use an Apple's chip:</p>
+<p>Since Apple's chips (such as M2) do not support <a href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html">MKL</a>, you need to set the relevant image to <code>xxx-nomkl:latest</code>, e.g.:</p>
 <div class="highlight"><pre><span></span><code><span class="nv">SEASEARCH_IMAGE</span><span class="o">=</span>seafileltd/seasearch-nomkl:latest
 </code></pre></div>
 </div>
@@ -4160,14 +4170,24 @@
 <span class="nv">INIT_SS_ADMIN_USER</span><span class="o">=</span>&lt;admin-username&gt;<span class="w">  </span>
 <span class="nv">INIT_SS_ADMIN_PASSWORD</span><span class="o">=</span>&lt;admin-password&gt;
 </code></pre></div>
+<h2 id="modify-seafile-serveryml-to-disable-elasticsearch-service">Modify <code>seafile-server.yml</code> to disable <code>elasticSearch</code> service<a class="headerlink" href="#modify-seafile-serveryml-to-disable-elasticsearch-service" title="Permanent link">&para;</a></h2>
+<p>If you would like to use <em>SeaSearch</em> as the search engine, the <code>elasticSearch</code> service can be removed or noted in <code>seafile-server.yml</code>, which is no longer used:</p>
+<div class="highlight"><pre><span></span><code>services:
+    #elasticsearch: # remove or note the whole `elasticsearch` section
+        #... 
+</code></pre></div>
 <h2 id="modify-seafeventsconf">Modify <code>seafevents.conf</code><a class="headerlink" href="#modify-seafeventsconf" title="Permanent link">&para;</a></h2>
-<p>Firstly, you should get your authorization token by base64 code consist of <code>INIT_SS_ADMIN_USER</code> and <code>INIT_SS_ADMIN_PASSWORD</code> defined in <code>.env</code>:</p>
+<ol>
+<li>
+<p>Get your authorization token by base64 code consist of <code>INIT_SS_ADMIN_USER</code> and <code>INIT_SS_ADMIN_PASSWORD</code> defined in <code>.env</code> firsly, which is used to authorize when calling the SeaSearch API:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;username:password&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64
 
 <span class="c1"># example output</span>
 <span class="nv">YWRtaW46YWRtaW5fcGFzc3dvcmQ</span><span class="o">=</span>
 </code></pre></div>
-<p>Then, you have to add the following section in seafevents to enable seafile backend service to access SeaSearch APIs</p>
+</li>
+<li>
+<p>Add the following section in seafevents to enable seafile backend service to access SeaSearch APIs</p>
 <div class="admonition note">
 <p class="admonition-title">SeaSearch server deploy on a different machine with Seafile</p>
 <p>If your SeaSearch server deploy on a <strong>different</strong> machine with Seafile, please replace <code>http://seasearch:4080</code> to the url <code>&lt;scheme&gt;://&lt;address&gt;:&lt;prot&gt;</code> of your SeaSearch server </p>
@@ -4178,6 +4198,15 @@ seasearch_url = http://seasearch:4080
 seasearch_token = &lt;your auth token&gt;
 interval = 10m
 </code></pre></div>
+</li>
+<li>
+<p>Disable the ElasticSearch, as you can set <code>enabled = false</code> in <code>INDEX FILES</code> section:</p>
+<div class="highlight"><pre><span></span><code>[INDEX FILES]
+enabled = false
+...
+</code></pre></div>
+</li>
+</ol>
 <h2 id="restart-seafile-server">Restart Seafile Server<a class="headerlink" href="#restart-seafile-server" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
 docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
@@ -4185,7 +4214,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 <p>After startup the SeaSearch service, you can check the following logs for Whether SeaSearch runs normally and Seafile is called successfully:</p>
 <ul>
 <li>container logs by command <code>docker logs -f seafile-seasearch</code></li>
-<li><code>seafevents.log</code></li>
+<li><code>/opt/seasearch-data/log/seafevents.log</code></li>
 </ul>
 <div class="admonition tip">
 <p class="admonition-title">After first time start SeaSearch Server</p>
@@ -4302,10 +4331,12 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share", "math"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
       
     
   </body>

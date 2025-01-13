@@ -31,8 +31,26 @@ services:
     networks:
       - seafile-net
 
+  elasticsearch:
+    image: ${SEAFILE_ELASTICSEARCH_IMAGE:-elasticsearch:8.15.0}
+    container_name: seafile-elasticsearch
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
+      - "xpack.security.enabled=false"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    mem_limit: 4g
+    volumes:
+      - "${SEAFILE_ELASTICSEARCH_VOLUME:-/opt/seafile-elasticsearch/data}:/usr/share/elasticsearch/data"
+    networks:
+      - seafile-net
+
   seafile:
-    image: ${SEAFILE_IMAGE:-seafileltd/seafile-mc:12.0-latest}
+    image: ${SEAFILE_IMAGE:-seafileltd/seafile-pro-mc:12.0-latest}
     container_name: seafile
     # ports:
     #   - "80:80"
@@ -57,13 +75,24 @@ services:
       - JWT_PRIVATE_KEY=${JWT_PRIVATE_KEY:?Variable is not set or empty}
       - SEAFILE_LOG_TO_STDOUT=${SEAFILE_LOG_TO_STDOUT:-false}
       - ENABLE_SEADOC=${ENABLE_SEADOC:-false}
-      - SEADOC_SERVER_URL=${SEADOC_SERVER_URL:-http://example.example.com/sdoc-server}
+      - SEADOC_SERVER_URL=${SEADOC_SERVER_URL:-http://seafile.example.com/sdoc-server}
+      - INIT_S3_STORAGE_BACKEND_CONFIG=${INIT_S3_STORAGE_BACKEND_CONFIG:-false}
+      - INIT_S3_COMMIT_BUCKET=${INIT_S3_COMMIT_BUCKET:-}
+      - INIT_S3_FS_BUCKET=${INIT_S3_FS_BUCKET:-}
+      - INIT_S3_BLOCK_BUCKET=${INIT_S3_BLOCK_BUCKET:-}
+      - INIT_S3_KEY_ID=${INIT_S3_KEY_ID:-}
+      - INIT_S3_SECRET_KEY=${INIT_S3_SECRET_KEY:-}
+      - INIT_S3_USE_V4_SIGNATURE=${INIT_S3_USE_V4_SIGNATURE:-true}
+      - INIT_S3_AWS_REGION=${INIT_S3_AWS_REGION:-us-east-1}
+      - INIT_S3_HOST=${INIT_S3_HOST:-us-east-1}
+      - INIT_S3_USE_HTTPS=${INIT_S3_USE_HTTPS:-true}
     labels:
       caddy: ${SEAFILE_SERVER_PROTOCOL:-http}://${SEAFILE_SERVER_HOSTNAME:?Variable is not set or empty}
       caddy.reverse_proxy: "{{upstreams 80}}"
     depends_on:
       - db
       - memcached
+      - elasticsearch
     networks:
       - seafile-net
 
