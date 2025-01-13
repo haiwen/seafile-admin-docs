@@ -36,7 +36,7 @@ For each node, you have to prepare at least **2 cores** cpu, **2G RAM** and 10G 
         $$
         where the number **1** means one node for Seafile backend service.
 
-### About kubectl and k8s control plane
+### K8S tools
 
 Two tools are suggested and can be installed with [official installation guide](https://kubernetes.io/docs/tasks/tools/) **on all nodes**:
 
