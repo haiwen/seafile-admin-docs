@@ -86,7 +86,7 @@ nano /opt/seafile-k8s-yaml/seafile-secret.yaml
 ```
 
 !!! note "For `seafile-secret.yaml`"
-    To modify sensitive words, you need to convert the password into base64 encoding and write it into the `seafile-secret.yaml` file:
+    To modify sensitive information (e.g., password), you need to convert the password into base64 encoding before writing it into the `seafile-secret.yaml` file:
 
     ```sh
     echo -n '<your-value>' | base64
@@ -96,19 +96,17 @@ nano /opt/seafile-k8s-yaml/seafile-secret.yaml
     For the fields marked with `<...>` are **required**, please make sure these items are filled in, otherwise Seafile server may not run properly.
 
 ## Initialize Seafile cluster
-You can use following command to initialize Seafile cluster:
+You can use following command to initialize Seafile cluster now:
 
 ```shell
 kubectl apply -f /opt/seafile-k8s-yaml/
 ```
 
 !!! note "About Seafile cluster initialization"
-    When Seafile cluster is initialized, it will run under the following conditions:
+    When Seafile cluster is initializing, it will run with the following conditions:
 
     - Only have backend service (i.e., only has the Seafile backend K8S resouce file)
     - `CLUSTER_INIT_MODE=true`
-
-
 
 !!! success
     You can get the following information through `kubectl logs seafile-xxxx` (for details about this opeartions, please refer to [here](#container-management)) to check the initialization process is done or not:
@@ -148,19 +146,17 @@ kubectl apply -f /opt/seafile-k8s-yaml/
     Init success
     ```
 
-    When the initialization is complete, the service will not run normally (because no operations will be performed after the initialization is completed). 
+    When the initialization is complete, the server will stop automaticlly (because no operations will be performed after the initialization is completed). 
     
     We recommend that you check whether the contents of the configuration files in `/opt/seafile/shared/seafile/conf` are correct when going to next step, which are automatically generated during the initialization process.
 
 ## Put the license into `/opt/seafile/shared`
 
-If you have a `seafile-license.txt` license file, simply put it in the volume of the Seafile container (i.e., `/opt/seafile/shared`).
+You have to locate the `/opt/seafile/shared` directory generated during initialization firsly, then simply put it in this path, if you have a `seafile-license.txt` license file. 
+
+Finally you can use the `tar -zcvf` and `tar -zxvf` commands to package the entire `/opt/seafile/shared` directory of the current node, copy it to other nodes, and unpack it to the same directory to take effect on all nodes.
 
 !!! danger "If the license file has a different name or cannot be read, Seafile server will start with in trailer mode with most THREE users"
-
-## Copy `/opt/seafile/shared` to other nodes
-
-You can use the `tar -zcvf` and `tar -zxvf` commands to package the entire `/opt/seafile/shared` directory of the current node, copy it to other nodes, and unpack it to the same directory.
 
 ## Download frontend service's YAML and restart pods to start Seafile server
 
