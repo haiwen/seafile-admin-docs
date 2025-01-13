@@ -76,7 +76,7 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed: # provides a syntax to easily add tabbed Markdown content
       alternate_style: true
-  - pymdownx.arithmatex:  # LaTeX 数学支持，需要 MathJax
+  - pymdownx.arithmatex: # LaTex format support
       generic: true
 
 # Page tree
