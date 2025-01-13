@@ -26,7 +26,7 @@ spec:
             - name: CLUSTER_SERVER
               value: "true"
             - name: CLUSTER_MODE
-              value: "frontend"
+              value: "backend"
             - name: TIME_ZONE
               valueFrom:
                 configMapKeyRef:

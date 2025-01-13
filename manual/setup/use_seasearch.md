@@ -24,7 +24,7 @@ wget https://manual.seafile.com/12.0/repo/docker/pro/seasearch.yml
 We have configured the relevant variables in .env. Here you must pay special attention to the following variable information, which will affect the SeaSearch initialization process. For variables in `.env` of SeaSearch service, please refer [here](https://seasearch-manual.seafile.com/config/) for the details. We use `/opt/seasearch-data` as the persistent directory of SeaSearch:
 
 !!! warning "For Apple's Chips"
-    Since Apple's chips (such as M2) do not support [MKL](https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html), you need to set the relevant image to `seafileltd/seasearch-nomkl:latest` if you use an Apple's chip:
+    Since Apple's chips (such as M2) do not support [MKL](https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html), you need to set the relevant image to `xxx-nomkl:latest`, e.g.:
 
     ```sh
     SEASEARCH_IMAGE=seafileltd/seasearch-nomkl:latest
@@ -41,29 +41,47 @@ INIT_SS_ADMIN_USER=<admin-username>
 INIT_SS_ADMIN_PASSWORD=<admin-password>
 ```
 
+## Modify `seafile-server.yml` to disable `elasticSearch` service
+
+If you would like to use *SeaSearch* as the search engine, the `elasticSearch` service can be removed or noted in `seafile-server.yml`, which is no longer used:
+
+```yml
+services:
+    #elasticsearch: # remove or note the whole `elasticsearch` section
+        #... 
+```
+
 ## Modify `seafevents.conf`
 
-Firstly, you should get your authorization token by base64 code consist of `INIT_SS_ADMIN_USER` and `INIT_SS_ADMIN_PASSWORD` defined in `.env`:
+1. Get your authorization token by base64 code consist of `INIT_SS_ADMIN_USER` and `INIT_SS_ADMIN_PASSWORD` defined in `.env` firsly, which is used to authorize when calling the SeaSearch API:
 
-```sh
-echo -n 'username:password' | base64
+    ```sh
+    echo -n 'username:password' | base64
 
-# example output
-YWRtaW46YWRtaW5fcGFzc3dvcmQ=
-```
+    # example output
+    YWRtaW46YWRtaW5fcGFzc3dvcmQ=
+    ```
 
-Then, you have to add the following section in seafevents to enable seafile backend service to access SeaSearch APIs
+2. Add the following section in seafevents to enable seafile backend service to access SeaSearch APIs
 
-!!! note "SeaSearch server deploy on a different machine with Seafile"
-    If your SeaSearch server deploy on a **different** machine with Seafile, please replace `http://seasearch:4080` to the url `<scheme>://<address>:<prot>` of your SeaSearch server 
+    !!! note "SeaSearch server deploy on a different machine with Seafile"
+        If your SeaSearch server deploy on a **different** machine with Seafile, please replace `http://seasearch:4080` to the url `<scheme>://<address>:<prot>` of your SeaSearch server 
 
-```conf
-[SEASEARCH]
-enabled = true
-seasearch_url = http://seasearch:4080
-seasearch_token = <your auth token>
-interval = 10m
-```
+    ```conf
+    [SEASEARCH]
+    enabled = true
+    seasearch_url = http://seasearch:4080
+    seasearch_token = <your auth token>
+    interval = 10m
+    ```
+
+3. Disable the ElasticSearch, as you can set `enabled = false` in `INDEX FILES` section:
+
+    ```conf
+    [INDEX FILES]
+    enabled = false
+    ...
+    ```
 
 ## Restart Seafile Server
 
@@ -75,7 +93,7 @@ docker compose up -d
 After startup the SeaSearch service, you can check the following logs for Whether SeaSearch runs normally and Seafile is called successfully:
 
 - container logs by command `docker logs -f seafile-seasearch`
-- `seafevents.log`
+- `/opt/seasearch-data/log/seafevents.log`
 
 
 !!! tip "After first time start SeaSearch Server"

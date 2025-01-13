@@ -8,4 +8,4 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: /opt/seafile-data
+    path: /opt/seafile/shared
