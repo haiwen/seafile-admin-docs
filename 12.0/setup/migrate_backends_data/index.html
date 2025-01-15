@@ -4203,8 +4203,8 @@
 <li>Replace the original seafile.conf</li>
 </ol>
 <div class="admonition warning">
-<p class="admonition-title">Migration from S3</p>
-<p>Since version 11, when you migrate from S3 to other storage servers, you have to use V4 authentication protocol. This is because version 11 upgrades to Boto3 library, which fails to list objects from S3 when it's configured to use V2 authentication protocol.</p>
+<p class="admonition-title">Migration to or from S3</p>
+<p>Since version 11, when you migrate from S3 to other storage servers or from other storage servers to S3, you have to use V4 authentication protocol. This is because version 11 upgrades to Boto3 library, which fails to list objects from S3 when it's configured to use V2 authentication protocol.</p>
 </div>
 <h2 id="create-a-new-temporary-seafileconf">Create a new temporary seafile.conf<a class="headerlink" href="#create-a-new-temporary-seafileconf" title="Permanent link">&para;</a></h2>
 <p>We need to add new backend configurations to this file (including <code>[block_backend]</code>, <code>[commit_object_backend]</code>, <code>[fs_object_backend]</code> options) and save it under a readable path.
