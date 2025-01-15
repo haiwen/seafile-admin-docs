@@ -1,203 +1,161 @@
----
-status: new
----
-
-
 # Migrate data between different backends
 
-Seafile supports data migration between filesystem, s3, ceph, swift and Alibaba oss.
-
-Data migration takes 3 steps:
-
-1. Create a new temporary seafile.conf
-2. Run migrate.sh to initially migrate objects
-3. Run final migration
-4. Replace the original seafile.conf
+Seafile supports data migration between filesystem, s3, ceph, swift and Alibaba oss by a built-in script. Before migration, you have to ensure that **both S3 hosts can be accessed normally**.
 
 !!! warning "Migration from S3"
 
     Since version 11, when you migrate from S3 to other storage servers, you have to use V4 authentication protocol. This is because version 11 upgrades to Boto3 library, which fails to list objects from S3 when it's configured to use V2 authentication protocol.
 
-## Create a new temporary seafile.conf
+## Copy `seafile.conf` and use new S3 configurations
 
-We need to add new backend configurations to this file (including `[block_backend]`, `[commit_object_backend]`, `[fs_object_backend]` options) and save it under a readable path.
-Let's assume that we are migrating data to S3 and create temporary seafile.conf under `/opt`
+During the migration process, Seafile needs to know where the data will be migrated to. The easiest way is to copy the original `seafile.conf` to a new path, and then use the new S3 configurations in this file.
 
-```
-cat > seafile.conf << EOF
-[commit_object_backend]
-name = s3
-bucket = seacomm
-key_id = ******
-key = ******
+=== "Deploy with Docker"
 
-[fs_object_backend]
-name = s3
-bucket = seafs
-key_id = ******
-key = ******
+    !!! warning
+        For deployment with Docker, the new `seafile.conf` has to **be put in the persistent directory** (e.g., `/opt/seafile-data/seafile.conf`) used by Seafile service. Otherwise the script cannot locate the new configurations file.
 
-[block_backend]
-name = s3
-bucket = seablk
-key_id = ******
-key = ******
-EOF
+    ```sh
+    cp /opt/seafile-data/seafile/conf/seafile.conf /opt/seafile-data/seafile.conf
 
-mv seafile.conf /opt
+    nano /opt/seafile-data/seafile.conf
+    ```
 
-```
+=== "Deploy from binary package"
 
-If you want to migrate to a local file system, the seafile.conf temporary configuration example is as follows:
+    ```sh
+    cp /opt/seafile/conf/seafile.conf /opt/seafile.conf
 
-```
-cat > seafile.conf << EOF
+    nano /opt/seafile.conf
+    ```
+
+Then you can follow [here](./setup_with_s3.md) to use the new S3 configurations in the new `seafile.conf`. By the way, if you want to migrate to a local file system, the new `seafile.conf` configurations for S3 example is as follows:
+
+```conf
+# ... other configurations
+
 [commit_object_backend]
 name = fs
-# the dir configuration is the new seafile-data path
 dir = /var/data_backup
 
 [fs_object_backend]
 name = fs
-# the dir configuration is the new seafile-data path
 dir = /var/data_backup
 
 [block_backend]
 name = fs
-# the dir configuration is the new seafile-data path
 dir = /var/data_backup
-
-EOF
-
-mv seafile.conf /opt
-
 ```
 
-Repalce the configurations with your own choice.
+## Stop Seafile Server
 
-### Migrating to SSE-C Encrypted S3 Storage
+Since the data migration process will not affect the operation of the Seafile service, if the original S3 data is operated during this process, the data may not be synchronized with the migrated data. Therefore, we recommend that you stop the Seafile service before executing the migration procedure.
 
-If you are migrating to S3 storage, and want your data to be encrypted at rest, you can configure SSE-C encryption options in the temporary seafile.conf. Note that you have to use Seafile Pro 11 or newer and make sure your S3 storage supports SSE-C.
+=== "Deploy with Docker"
 
-```
-cat > seafile.conf << EOF
-[commit_object_backend]
-name = s3
-bucket = seacomm
-key_id = ******
-key = ******
-use_v4_signature = true
-use_https = true
-sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
+    ```sh
+    docker exec -it seafile bash
+    cd /opt/seafile/seafile-server-latest
+    ./seahub.sh stop
+    ./seafile.sh stop
+    ```
 
-[fs_object_backend]
-name = s3
-bucket = seafs
-key_id = ******
-key = ******
-use_v4_signature = true
-use_https = true
-sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
+=== "Deploy from binary package"
 
-[block_backend]
-name = s3
-bucket = seablk
-key_id = ******
-key = ******
-use_v4_signature = true
-use_https = true
-sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
-EOF
-
-mv seafile.conf /opt
-
-```
-
-`sse_c_key` is a string of 32 characters.
-
-You can generate `sse_c_key` with the following command：
-
-```
-openssl rand -base64 24
-```
-
-## Migrating large number of objects
-
-If you have millions of objects in the storage (especially fs objects), it may take quite long time to migrate all objects. More than half of the time is spent on checking whether an object exists in the destination storage. **Since Pro edition 7.0.8**, a feature is added to speed-up the checking.
-
-Before running the migration script, please set this env variable:
-
-```
-export OBJECT_LIST_FILE_PATH=/path/to/object/list/file
-
-```
-
-3 files will be created: `/path/to/object/list/file.commit`,`/path/to/object/list/file.fs`, `/path/to/object/list/file.blocks`.
-
-When you run the script for the first time, the object list file will be filled with existing objects in the destination. Then, when you run the script for the second time, it will load the existing object list from the file, instead of querying the destination. And newly migrated objects will also be added to the file. During migration, the migration process checks whether an object exists by checking the pre-loaded object list, instead of asking the destination, which will greatly speed-up the migration process.
-
-It's suggested that you don't interrupt the script during the "fetch object list" stage when you run it for the first time. Otherwise the object list in the file will be incomplete.
-
-Another trick to speed-up the migration is to increase the number of worker threads and size of task queue in the migration script. You can modify the `nworker` and `maxsize` variables in the following code:
-
-```
-class ThreadPool(object):
-    
-def __init__(self, do_work, nworker=20):
-        self.do_work = do_work
-        self.nworker = nworker
-        self.task_queue = Queue.Queue(maxsize = 2000)
-
-```
-
-The number of workers can be set to relatively large values, since they're mostly waiting for I/O operations to finished.
-
-## Decrypting encrypted storage backend
-
-If you have an encrypted storage backend (a deprecated feature no long supported now), you can use this script to migrate and decrypt the data from that backend to a new one. You can add the `--decrypt` option, which will decrypt the data while reading it, and then write the unencrypted data to the new backend. Note that you need add this option in all stages of the migration.
-
-```
-cd ~/haiwen/seafile-server-latest
-./migrate.sh /opt --decrypt
-
-```
+    ```sh
+    cd /opt/seafile/seafile-server-latest
+    ./seahub.sh stop
+    ./seafile.sh stop
+    ```
 
 ## Run migrate.sh to initially migrate objects
 
-This step will migrate **most of** objects from the source storage to the destination storage. You don't need to stop Seafile service at this stage as it may take quite long time to finish. Since the service is not stopped, some new objects may be added to the source storage during migration. Those objects will be handled in the next step.
+This step will migrate **most of** objects from the source storage to the destination storage. You don't need to stop Seafile service at this stage as it may take quite long time to finish. Since the service is not stopped, some new objects may be added to the source storage during migration. Those objects will be handled in the next step:
 
-We assume you have installed seafile pro server under `~/haiwen`, enter `~/haiwen/seafile-server-latest` and run migrate.sh with parent path of temporary seafile.conf as parameter, here is `/opt`.
+!!! tip "Speed-up migrating large number of objects"
+    If you have millions of objects in the storage (especially the ***fs*** objects), it may take quite long time to migrate all objects and more than half is using to check whether an object exists in the destination storage. In this situation, you can modify the `nworker` and `maxsize` variables in the `migrate.py`:
 
-```
-cd ~/haiwen/seafile-server-latest
-./migrate.sh /opt
+    ```py
+    class ThreadPool(object):
+        def __init__(self, do_work, nworker=20):
+                self.do_work = do_work
+                self.nworker = nworker
+                self.task_queue = Queue.Queue(maxsize = 2000)
+    ```
 
-```
+    However, if the two values (i.e., `nworker` and `maxsize`) ​​are too large, the improvement in data migration speed may not be obvious because the disk I/O bottleneck has been reached.
 
-!!! tip
-    This script is completely reentrant. So you can stop and restart it, or run it many times. It will check whether an object exists in the destination before sending it.
+!!! note "Encrypted storage backend data (deprecated)"
+    If you have an encrypted storage backend, you can use this script to migrate and decrypt the data from that backend to a new one. You can add the `--decrypt` option in calling the script, which will decrypt the data while reading it, and then write the unencrypted data to the new backend:
 
-## Run final migration
+    ```sh
+    ./migrate.sh /opt --decrypt
+    ```
 
-New objects added during the last migration step will be migrated in this step. To prevent new objects being added, you have to stop Seafile service during the final migration operation. This usually take short time. If you have large number of objects, please following the optimization instruction in previous section.
+=== "Deploy with Docker"
 
-You just have to stop Seafile and Seahub service, then run the migration script again.
+    ```sh
+    # make sure you are in the container and in directory `/opt/seafile/seafile-server-latest`
+    ./migrate.sh /shared
+    
+    # exit container and stop it
+    exit
+    docker compose down
+    ```
 
-```
-cd ~/haiwen/seafile-server-latest
-./migrate.sh /opt
+=== "Deploy from binary package"
 
-```
+    ```sh
+    # make sure you are in the directory `/opt/seafile/seafile-server-latest`
+    ./migrate.sh /opt
+    ```
 
-## Replace the original seafile.conf
+!!! success
+    You can see the following message if the migration process is done:
 
-After running the script, we need replace the original seafile.conf with new one:
+    ```
+    2025-01-15 05:49:39,408 Start to fetch [commits] object from destination
+    2025-01-15 05:49:39,422 Start to fetch [fs] object from destination
+    2025-01-15 05:49:39,442 Start to fetch [blocks] object from destination
+    2025-01-15 05:49:39,677 [commits] [0] objects exist in destination
+    2025-01-15 05:49:39,677 Start to migrate [commits] object
+    2025-01-15 05:49:39,749 [blocks] [0] objects exist in destination
+    2025-01-15 05:49:39,755 Start to migrate [blocks] object
+    2025-01-15 05:49:39,752 [fs] [0] objects exist in destination
+    2025-01-15 05:49:39,762 Start to migrate [fs] object
+    2025-01-15 05:49:40,602 Complete migrate [commits] object
+    2025-01-15 05:49:40,626 Complete migrate [blocks] object
+    2025-01-15 05:49:40,790 Complete migrate [fs] object
+    Done.
+    ```
 
-```
-mv /opt/seafile.conf ~/haiwen/conf
+## Replace the original `seafile.conf` and start Seafile
 
-```
+After running the script, we recommend that you check whether your data already exists on the new S3 storage backend server (i.e., the migration is successful, and the number and size of files should be the same). Then you can remove the file from the old S3 storage backend and replace the original `seafile.conf` from the new one:
 
-now we only have configurations about backend, more config options, e.g. memcache and quota, can then be copied from the original seafile.conf file.
+=== "Deploy with Docker"
 
-After replacing seafile.conf, you can restart seafile server and access the data on the new backend.
+    ```sh
+    mv /opt/seafile-data/seafile.conf /opt/seafile-data/seafile/conf/seafile.conf
+    ```
+=== "Deploy from binary package"
+
+    ```sh
+    mv /opt/seafile.conf /opt/seafile/conf/seafile.conf
+    ```
+
+Finally, you can start Seafile server:
+
+=== "Deploy with Docker"
+
+    ```sh
+    docker compose up -d
+    ```
+
+=== "Deploy from binary package"
+
+    ```sh
+    # make sure you are in the directory `/opt/seafile/seafile-server-latest`
+    ./seahub.sh start
+    ./seafile.sh start
+    ```

@@ -1,32 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: seafile-backend
+  name: seafile
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: seafile-backend
+      app: seafile
   template:
     metadata:
       labels:
-        app: seafile-backend
+        app: seafile
     spec:
-      initContainers:  
-        - name: set-ownership  
-          image: busybox  
-          command: ['sh', '-c', 'chown -R root:root /shared']  
-          volumeMounts:  
-          - name: seafile-data  
-            mountPath: /shared
       containers:
-        - name: seafile-backend
+        - name: seafile
           image: seafileltd/seafile-pro-mc:12.0-latest
           env:
-            - name: CLUSTER_SERVER
-              value: "true"
-            - name: CLUSTER_MODE
-              value: "backend"
             - name: TIME_ZONE
               valueFrom:
                 configMapKeyRef:
@@ -82,26 +71,6 @@ spec:
                 configMapKeyRef:
                   name: seafile-env
                   key: SEAFILE_MYSQL_DB_SEAHUB_DB_NAME
-            - name: CLUSTER_INIT_MODE
-              valueFrom:
-                configMapKeyRef:
-                  name: seafile-env
-                  key: CLUSTER_INIT_MODE
-            - name: CLUSTER_INIT_MEMCACHED_HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: seafile-env
-                  key: CLUSTER_INIT_MEMCACHED_HOST
-            - name: CLUSTER_INIT_ES_HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: seafile-env
-                  key: CLUSTER_INIT_ES_HOST
-            - name: CLUSTER_INIT_ES_PORT
-              valueFrom:
-                configMapKeyRef:
-                  name: seafile-env
-                  key: CLUSTER_INIT_ES_PORT
             - name: INIT_S3_STORAGE_BACKEND_CONFIG
               valueFrom:
                 configMapKeyRef:

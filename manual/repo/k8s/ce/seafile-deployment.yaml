@@ -1,32 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: seafile-backend
+  name: seafile
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: seafile-backend
+      app: seafile
   template:
     metadata:
       labels:
-        app: seafile-backend
+        app: seafile
     spec:
-      initContainers:  
-        - name: set-ownership  
-          image: busybox  
-          command: ['sh', '-c', 'chown -R root:root /shared']  
-          volumeMounts:  
-          - name: seafile-data  
-            mountPath: /shared
       containers:
-        - name: seafile-backend
+        - name: seafile
           image: seafileltd/seafile-pro-mc:12.0-latest
           env:
-            - name: CLUSTER_SERVER
-              value: "true"
-            - name: CLUSTER_MODE
-              value: "backend"
             - name: TIME_ZONE
               valueFrom:
                 configMapKeyRef:
@@ -82,71 +71,6 @@ spec:
                 configMapKeyRef:
                   name: seafile-env
                   key: SEAFILE_MYSQL_DB_SEAHUB_DB_NAME
-            - name: CLUSTER_INIT_MODE
-              valueFrom:
-                configMapKeyRef:
-                  name: seafile-env
-                  key: CLUSTER_INIT_MODE
-            - name: CLUSTER_INIT_MEMCACHED_HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: seafile-env
-                  key: CLUSTER_INIT_MEMCACHED_HOST
-            - name: CLUSTER_INIT_ES_HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: seafile-env
-                  key: CLUSTER_INIT_ES_HOST
-            - name: CLUSTER_INIT_ES_PORT
-              valueFrom:
-                configMapKeyRef:
-                  name: seafile-env
-                  key: CLUSTER_INIT_ES_PORT
-            - name: INIT_S3_STORAGE_BACKEND_CONFIG
-              valueFrom:
-                configMapKeyRef:
-                  name: seafile-env
-                  key: INIT_S3_STORAGE_BACKEND_CONFIG
-            - name: INIT_S3_COMMIT_BUCKET
-              valueFrom:
-                configMapKeyRef:
-                  name: seafile-env
-                  key: INIT_S3_COMMIT_BUCKET
-            - name: INIT_S3_FS_BUCKET
-              valueFrom:
-                configMapKeyRef:
-                  name: seafile-env
-                  key: INIT_S3_FS_BUCKET
-            - name: INIT_S3_BLOCK_BUCKET
-              valueFrom:
-                configMapKeyRef:
-                  name: seafile-env
-                  key: INIT_S3_BLOCK_BUCKET
-            - name: INIT_S3_KEY_ID
-              valueFrom:
-                configMapKeyRef:
-                  name: seafile-env
-                  key: INIT_S3_KEY_ID
-            - name: INIT_S3_USE_V4_SIGNATURE
-              valueFrom:
-                configMapKeyRef:
-                  name: seafile-env
-                  key: INIT_S3_USE_V4_SIGNATURE
-            - name: INIT_S3_AWS_REGION
-              valueFrom:
-                configMapKeyRef:
-                  name: seafile-env
-                  key: INIT_S3_AWS_REGION
-            - name: INIT_S3_HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: seafile-env
-                  key: INIT_S3_HOST
-            - name: INIT_S3_USE_HTTPS
-              valueFrom:
-                configMapKeyRef:
-                  name: seafile-env
-                  key: INIT_S3_USE_HTTPS
             - name: INIT_SEAFILE_ADMIN_EMAIL
               valueFrom:
                 configMapKeyRef:
@@ -167,11 +91,6 @@ spec:
                 secretKeyRef:
                   name: seafile-secret
                   key: INIT_SEAFILE_MYSQL_ROOT_PASSWORD
-            - name: INIT_S3_SECRET_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: seafile-secret
-                  key: INIT_S3_SECRET_KEY
             - name: INIT_SEAFILE_ADMIN_PASSWORD
               valueFrom:
                 secretKeyRef:

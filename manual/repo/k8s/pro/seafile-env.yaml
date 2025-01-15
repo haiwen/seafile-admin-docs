@@ -9,6 +9,8 @@ data:
   SITE_ROOT: "/"
   ENABLE_SEADOC: "false"
   SEADOC_SERVER_URL: "https://seafile.example.com/sdoc-server" # only valid in ENABLE_SEADOC = true
+  SEAFILE_SERVER_HOSTNAME: "seafile.example.com"
+
 
   # for database
   SEAFILE_MYSQL_DB_HOST: "<your MySQL host>"
@@ -18,16 +20,9 @@ data:
   SEAFILE_MYSQL_DB_SEAFILE_DB_NAME: "seafile_db"
   SEAFILE_MYSQL_DB_SEAHUB_DB_NAME: "seahub_db"
 
-  # initialization (only valid in first-time deployment and CLUSTER_INIT_MODE = true)
-  CLUSTER_INIT_MODE: "true"
-
+  # Init
   ## for Seafile admin
   INIT_SEAFILE_ADMIN_EMAIL: "<Seafile admin's email>"
-  
-  ## for cluster basic service
-  CLUSTER_INIT_MEMCACHED_HOST: "<your Memcached server host>"
-  CLUSTER_INIT_ES_HOST: "<your ElasticSearch server host>"
-  CLUSTER_INIT_ES_PORT: "9200"
 
   ## For S3 storage backend (only valid in INIT_S3_STORAGE_BACKEND_CONFIG = true)
   INIT_S3_STORAGE_BACKEND_CONFIG: "false"
