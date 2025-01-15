@@ -16,7 +16,7 @@ Data migration takes 3 steps:
 
 !!! warning "Migration from S3"
 
-    Since version 11, when you migrate from S3 to other storage servers, you have to use V4 authentication protocol. This is because version 11 upgrades to Boto3 library, which fails to list objects from S3 when it's configured to use V2 authentication protocol.
+    Since version 11, when you migrate from S3 to other storage servers or from other storage servers to S3, you have to use V4 authentication protocol. This is because version 11 upgrades to Boto3 library, which fails to list objects from S3 when it's configured to use V2 authentication protocol.
 
 ## Create a new temporary seafile.conf
 
