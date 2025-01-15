@@ -101,6 +101,7 @@ nav:
         - Multiple Storage Backends: setup/setup_with_multiple_storage_backends.md
         - Data migration: setup/migrate_backends_data.md
       - Use SeaSearch as search engine (Pro): setup/use_seasearch.md
+      - Setup with Kubernetes (K8S, single pod mode): setup/k8s_single_node.md
       - Seafile Docker autostart: setup/seafile_docker_autostart.md
       - Deploy with an existing MySQL server: setup/setup_with_an_existing_mysql_server.md
       - Use other reverse proxy: setup/use_other_reverse_proxy.md

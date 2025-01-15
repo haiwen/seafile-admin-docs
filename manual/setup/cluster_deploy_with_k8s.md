@@ -1,6 +1,6 @@
 # Deploy Seafile cluster with Kubernetes (K8S)
 
-This manual explains how to deploy and run Seafile Server on a Linux server using *Kubernetes* (***k8s*** thereafter). 
+This manual explains how to deploy and run Seafile cluster on a Linux server using *Kubernetes* (***k8s*** thereafter). 
 
 ## Prerequisites
 
@@ -29,7 +29,7 @@ For each node, you have to prepare at least **2 cores** cpu, **2G RAM** and 10G 
 !!! tip "More details about the number of nodes"
     1. If your number of nodes does not meet our recommended number (i.e. 3 nodes), please adjust according to the following strategies:
         - **2 nodes**: A frontend service and a backend service on the same node
-        - **1 node**: Please refer [here](./setup_pro_by_docker.md) to deploy Seafile in a single node instead a cluster.
+        - **1 node**: Please refer [here](./k8s_single_node.md) to deploy Seafile in a K8S single node instead a cluster.
     2. If you have more available nodes for Seafile server, please provide them to the Seafile frontend service and **make sure there is only one backend service running**. Here is a simple relationship between the number of Seafile frontent services ($N_f$) and total nodes ($N_t$):
         $$
         N_f = N_t - 1,
@@ -73,7 +73,7 @@ For futher configuration details, you can refer [the official documents](https:/
 
 ## Modify `seafile-env.yaml` and `seafile-secret.yaml`
 
-Similar to Docker-base deployment, Seafile cluster in K8S deployment also supports use files to configure startup progress, you can modify common environment variables by
+Similar to Docker-base deployment, Seafile cluster in K8S deployment also supports use files to configure startup progress, you can modify common [environment variables](./setup_pro_by_docker.md#downloading-and-modifying-env) by
 
 ```sh
 nano /opt/seafile-k8s-yaml/seafile-env.yaml
@@ -179,7 +179,7 @@ Finally you can use the `tar -zcvf` and `tar -zxvf` commands to package the enti
     ```
 
 !!! sucess
-    You can [view the pod's log](#container-management) to check the startup progress is normal or not, you will see the following message if server is running normally:
+    You can [view the pod's log](#container-management) to check the startup progress is normal or not. You can see the following message if server is running normally:
 
     ```
     *** Running /etc/my_init.d/01_create_data_links.sh...
@@ -210,7 +210,7 @@ Finally you can use the `tar -zcvf` and `tar -zxvf` commands to package the enti
 
 ## Container management
 
-Similar to docker installation, you can also manage containers through [some kubectl commands](https://kubernetes.io/docs/reference/kubectl/#operations). For example, you can use the following command to check whether the relevant resources are started successfully and whether the relevant services can be accessed normally. First, execute the following command and remember the pod name with `seafile-` as the prefix (such as seafile-748b695648-d6l4g)
+Similar to docker installation, you can also manage containers through [some kubectl commands](https://kubernetes.io/docs/reference/kubectl/#operations). For example, you can use the following command to check whether the relevant resources are started successfully and whether the relevant services can be accessed normally. First, execute the following command and remember the pod name with `seafile-<node type>-` as the prefix (such as `seafile-frontend-748b695648-d6l4g`)
 
 ```shell
 kubectl get pods
@@ -219,13 +219,13 @@ kubectl get pods
 You can check a status of a pod by 
 
 ```shell
-kubectl logs seafile-748b695648-d6l4g
+kubectl logs seafile-frontend-748b695648-d6l4g
 ```
 
 and enter a container by
 
 ```shell
-kubectl exec -it seafile-748b695648-d6l4g --  bash
+kubectl exec -it seafile-frontend-748b695648-d6l4g --  bash
 ```
 
 ## Load balance and HTTPS
