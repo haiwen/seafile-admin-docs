@@ -147,6 +147,11 @@ spec:
                 configMapKeyRef:
                   name: seafile-env
                   key: INIT_S3_USE_HTTPS
+            - name: INIT_SEAFILE_ADMIN_EMAIL
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: INIT_SEAFILE_ADMIN_EMAIL
             - name: JWT_PRIVATE_KEY
               valueFrom:
                 secretKeyRef:
@@ -167,6 +172,11 @@ spec:
                 secretKeyRef:
                   name: seafile-secret
                   key: INIT_S3_SECRET_KEY
+            - name: INIT_SEAFILE_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: seafile-secret
+                  key: INIT_SEAFILE_ADMIN_PASSWORD
           volumeMounts:
             - name: seafile-data
               mountPath: /shared

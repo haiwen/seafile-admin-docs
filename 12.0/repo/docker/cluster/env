@@ -19,6 +19,10 @@ CLUSTER_INIT_ES_PORT=9200 # only valid in config init
 
 CLUSTER_MODE=frontend # backend for backend node
 
+# Seafile admin
+INIT_SEAFILE_ADMIN_EMAIL=me@example.com
+INIT_SEAFILE_ADMIN_PASSWORD=asecret
+
 # Time zone
 TIME_ZONE=UTC
 

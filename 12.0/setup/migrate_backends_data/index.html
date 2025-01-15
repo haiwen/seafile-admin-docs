@@ -994,14 +994,6 @@
     Data migration
   </span>
   
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
 
           <span class="md-nav__icon md-icon"></span>
         </label>
@@ -1012,14 +1004,6 @@
   <span class="md-ellipsis">
     Data migration
   </span>
-  
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
   
 
       </a>
@@ -1040,42 +1024,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#create-a-new-temporary-seafileconf" class="md-nav__link">
+  <a href="#copy-seafileconf-and-use-new-s3-configurations" class="md-nav__link">
     <span class="md-ellipsis">
-      Create a new temporary seafile.conf
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Create a new temporary seafile.conf">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#migrating-to-sse-c-encrypted-s3-storage" class="md-nav__link">
-    <span class="md-ellipsis">
-      Migrating to SSE-C Encrypted S3 Storage
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#migrating-large-number-of-objects" class="md-nav__link">
-    <span class="md-ellipsis">
-      Migrating large number of objects
+      Copy seafile.conf and use new S3 configurations
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#decrypting-encrypted-storage-backend" class="md-nav__link">
+  <a href="#stop-seafile-server" class="md-nav__link">
     <span class="md-ellipsis">
-      Decrypting encrypted storage backend
+      Stop Seafile Server
     </span>
   </a>
   
@@ -1091,18 +1051,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#run-final-migration" class="md-nav__link">
+  <a href="#replace-the-original-seafileconf-and-start-seafile" class="md-nav__link">
     <span class="md-ellipsis">
-      Run final migration
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#replace-the-original-seafileconf" class="md-nav__link">
-    <span class="md-ellipsis">
-      Replace the original seafile.conf
+      Replace the original seafile.conf and start Seafile
     </span>
   </a>
   
@@ -1137,6 +1088,27 @@
   
   <span class="md-ellipsis">
     Use SeaSearch as search engine (Pro)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../k8s_single_node/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup with Kubernetes (K8S, single pod mode)
   </span>
   
 
@@ -4107,42 +4079,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#create-a-new-temporary-seafileconf" class="md-nav__link">
+  <a href="#copy-seafileconf-and-use-new-s3-configurations" class="md-nav__link">
     <span class="md-ellipsis">
-      Create a new temporary seafile.conf
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Create a new temporary seafile.conf">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#migrating-to-sse-c-encrypted-s3-storage" class="md-nav__link">
-    <span class="md-ellipsis">
-      Migrating to SSE-C Encrypted S3 Storage
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#migrating-large-number-of-objects" class="md-nav__link">
-    <span class="md-ellipsis">
-      Migrating large number of objects
+      Copy seafile.conf and use new S3 configurations
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#decrypting-encrypted-storage-backend" class="md-nav__link">
+  <a href="#stop-seafile-server" class="md-nav__link">
     <span class="md-ellipsis">
-      Decrypting encrypted storage backend
+      Stop Seafile Server
     </span>
   </a>
   
@@ -4158,18 +4106,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#run-final-migration" class="md-nav__link">
+  <a href="#replace-the-original-seafileconf-and-start-seafile" class="md-nav__link">
     <span class="md-ellipsis">
-      Run final migration
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#replace-the-original-seafileconf" class="md-nav__link">
-    <span class="md-ellipsis">
-      Replace the original seafile.conf
+      Replace the original seafile.conf and start Seafile
     </span>
   </a>
   
@@ -4194,155 +4133,157 @@
 
 
 <h1 id="migrate-data-between-different-backends">Migrate data between different backends<a class="headerlink" href="#migrate-data-between-different-backends" title="Permanent link">&para;</a></h1>
-<p>Seafile supports data migration between filesystem, s3, ceph, swift and Alibaba oss.</p>
-<p>Data migration takes 3 steps:</p>
-<ol>
-<li>Create a new temporary seafile.conf</li>
-<li>Run migrate.sh to initially migrate objects</li>
-<li>Run final migration</li>
-<li>Replace the original seafile.conf</li>
-</ol>
+<p>Seafile supports data migration between filesystem, s3, ceph, swift and Alibaba oss by a built-in script. Before migration, you have to ensure that <strong>both S3 hosts can be accessed normally</strong>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Migration to or from S3</p>
 <p>Since version 11, when you migrate from S3 to other storage servers or from other storage servers to S3, you have to use V4 authentication protocol. This is because version 11 upgrades to Boto3 library, which fails to list objects from S3 when it's configured to use V2 authentication protocol.</p>
 </div>
-<h2 id="create-a-new-temporary-seafileconf">Create a new temporary seafile.conf<a class="headerlink" href="#create-a-new-temporary-seafileconf" title="Permanent link">&para;</a></h2>
-<p>We need to add new backend configurations to this file (including <code>[block_backend]</code>, <code>[commit_object_backend]</code>, <code>[fs_object_backend]</code> options) and save it under a readable path.
-Let's assume that we are migrating data to S3 and create temporary seafile.conf under <code>/opt</code></p>
-<div class="highlight"><pre><span></span><code>cat &gt; seafile.conf &lt;&lt; EOF
-[commit_object_backend]
-name = s3
-bucket = seacomm
-key_id = ******
-key = ******
-
-[fs_object_backend]
-name = s3
-bucket = seafs
-key_id = ******
-key = ******
-
-[block_backend]
-name = s3
-bucket = seablk
-key_id = ******
-key = ******
-EOF
-
-mv seafile.conf /opt
-</code></pre></div>
-<p>If you want to migrate to a local file system, the seafile.conf temporary configuration example is as follows:</p>
-<div class="highlight"><pre><span></span><code>cat &gt; seafile.conf &lt;&lt; EOF
-[commit_object_backend]
-name = fs
-# the dir configuration is the new seafile-data path
-dir = /var/data_backup
-
-[fs_object_backend]
-name = fs
-# the dir configuration is the new seafile-data path
-dir = /var/data_backup
-
-[block_backend]
-name = fs
-# the dir configuration is the new seafile-data path
-dir = /var/data_backup
-
-EOF
-
-mv seafile.conf /opt
-</code></pre></div>
-<p>Repalce the configurations with your own choice.</p>
-<h3 id="migrating-to-sse-c-encrypted-s3-storage">Migrating to SSE-C Encrypted S3 Storage<a class="headerlink" href="#migrating-to-sse-c-encrypted-s3-storage" title="Permanent link">&para;</a></h3>
-<p>If you are migrating to S3 storage, and want your data to be encrypted at rest, you can configure SSE-C encryption options in the temporary seafile.conf. Note that you have to use Seafile Pro 11 or newer and make sure your S3 storage supports SSE-C.</p>
-<div class="highlight"><pre><span></span><code>cat &gt; seafile.conf &lt;&lt; EOF
-[commit_object_backend]
-name = s3
-bucket = seacomm
-key_id = ******
-key = ******
-use_v4_signature = true
-use_https = true
-sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
-
-[fs_object_backend]
-name = s3
-bucket = seafs
-key_id = ******
-key = ******
-use_v4_signature = true
-use_https = true
-sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
-
-[block_backend]
-name = s3
-bucket = seablk
-key_id = ******
-key = ******
-use_v4_signature = true
-use_https = true
-sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
-EOF
-
-mv seafile.conf /opt
-</code></pre></div>
-<p><code>sse_c_key</code> is a string of 32 characters.</p>
-<p>You can generate <code>sse_c_key</code> with the following command：</p>
-<div class="highlight"><pre><span></span><code>openssl rand -base64 24
-</code></pre></div>
-<h2 id="migrating-large-number-of-objects">Migrating large number of objects<a class="headerlink" href="#migrating-large-number-of-objects" title="Permanent link">&para;</a></h2>
-<p>If you have millions of objects in the storage (especially fs objects), it may take quite long time to migrate all objects. More than half of the time is spent on checking whether an object exists in the destination storage. <strong>Since Pro edition 7.0.8</strong>, a feature is added to speed-up the checking.</p>
-<p>Before running the migration script, please set this env variable:</p>
-<div class="highlight"><pre><span></span><code>export OBJECT_LIST_FILE_PATH=/path/to/object/list/file
-</code></pre></div>
-<p>3 files will be created: <code>/path/to/object/list/file.commit</code>,<code>/path/to/object/list/file.fs</code>, <code>/path/to/object/list/file.blocks</code>.</p>
-<p>When you run the script for the first time, the object list file will be filled with existing objects in the destination. Then, when you run the script for the second time, it will load the existing object list from the file, instead of querying the destination. And newly migrated objects will also be added to the file. During migration, the migration process checks whether an object exists by checking the pre-loaded object list, instead of asking the destination, which will greatly speed-up the migration process.</p>
-<p>It's suggested that you don't interrupt the script during the "fetch object list" stage when you run it for the first time. Otherwise the object list in the file will be incomplete.</p>
-<p>Another trick to speed-up the migration is to increase the number of worker threads and size of task queue in the migration script. You can modify the <code>nworker</code> and <code>maxsize</code> variables in the following code:</p>
-<div class="highlight"><pre><span></span><code>class ThreadPool(object):
-
-def __init__(self, do_work, nworker=20):
-        self.do_work = do_work
-        self.nworker = nworker
-        self.task_queue = Queue.Queue(maxsize = 2000)
-</code></pre></div>
-<p>The number of workers can be set to relatively large values, since they're mostly waiting for I/O operations to finished.</p>
-<h2 id="decrypting-encrypted-storage-backend">Decrypting encrypted storage backend<a class="headerlink" href="#decrypting-encrypted-storage-backend" title="Permanent link">&para;</a></h2>
-<p>If you have an encrypted storage backend (a deprecated feature no long supported now), you can use this script to migrate and decrypt the data from that backend to a new one. You can add the <code>--decrypt</code> option, which will decrypt the data while reading it, and then write the unencrypted data to the new backend. Note that you need add this option in all stages of the migration.</p>
-<div class="highlight"><pre><span></span><code>cd ~/haiwen/seafile-server-latest
-./migrate.sh /opt --decrypt
-</code></pre></div>
-<h2 id="run-migratesh-to-initially-migrate-objects">Run migrate.sh to initially migrate objects<a class="headerlink" href="#run-migratesh-to-initially-migrate-objects" title="Permanent link">&para;</a></h2>
-<p>This step will migrate <strong>most of</strong> objects from the source storage to the destination storage. You don't need to stop Seafile service at this stage as it may take quite long time to finish. Since the service is not stopped, some new objects may be added to the source storage during migration. Those objects will be handled in the next step.</p>
-<p>We assume you have installed seafile pro server under <code>~/haiwen</code>, enter <code>~/haiwen/seafile-server-latest</code> and run migrate.sh with parent path of temporary seafile.conf as parameter, here is <code>/opt</code>.</p>
-<div class="highlight"><pre><span></span><code>cd ~/haiwen/seafile-server-latest
-./migrate.sh /opt
-</code></pre></div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>This script is completely reentrant. So you can stop and restart it, or run it many times. It will check whether an object exists in the destination before sending it.</p>
+<h2 id="copy-seafileconf-and-use-new-s3-configurations">Copy <code>seafile.conf</code> and use new S3 configurations<a class="headerlink" href="#copy-seafileconf-and-use-new-s3-configurations" title="Permanent link">&para;</a></h2>
+<p>During the migration process, Seafile needs to know where the data will be migrated to. The easiest way is to copy the original <code>seafile.conf</code> to a new path, and then use the new S3 configurations in this file.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Deploy with Docker</label><label for="__tabbed_1_2">Deploy from binary package</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>For deployment with Docker, the new <code>seafile.conf</code> has to <strong>be put in the persistent directory</strong> (e.g., <code>/opt/seafile-data/seafile.conf</code>) used by Seafile service. Otherwise the script cannot locate the new configurations file.</p>
 </div>
-<h2 id="run-final-migration">Run final migration<a class="headerlink" href="#run-final-migration" title="Permanent link">&para;</a></h2>
-<p>New objects added during the last migration step will be migrated in this step. To prevent new objects being added, you have to stop Seafile service during the final migration operation. This usually take short time. If you have large number of objects, please following the optimization instruction in previous section.</p>
-<p>You just have to stop Seafile and Seahub service, then run the migration script again.</p>
-<div class="highlight"><pre><span></span><code>cd ~/haiwen/seafile-server-latest
-./migrate.sh /opt
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>/opt/seafile-data/seafile/conf/seafile.conf<span class="w"> </span>/opt/seafile-data/seafile.conf
+
+nano<span class="w"> </span>/opt/seafile-data/seafile.conf
 </code></pre></div>
-<h2 id="replace-the-original-seafileconf">Replace the original seafile.conf<a class="headerlink" href="#replace-the-original-seafileconf" title="Permanent link">&para;</a></h2>
-<p>After running the script, we need replace the original seafile.conf with new one:</p>
-<div class="highlight"><pre><span></span><code>mv /opt/seafile.conf ~/haiwen/conf
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>/opt/seafile/conf/seafile.conf<span class="w"> </span>/opt/seafile.conf
+
+nano<span class="w"> </span>/opt/seafile.conf
 </code></pre></div>
-<p>now we only have configurations about backend, more config options, e.g. memcache and quota, can then be copied from the original seafile.conf file.</p>
-<p>After replacing seafile.conf, you can restart seafile server and access the data on the new backend.</p>
+</div>
+</div>
+</div>
+<p>Then you can follow <a href="../setup_with_s3/">here</a> to use the new S3 configurations in the new <code>seafile.conf</code>. By the way, if you want to migrate to a local file system, the new <code>seafile.conf</code> configurations for S3 example is as follows:</p>
+<div class="highlight"><pre><span></span><code># ... other configurations
+
+[commit_object_backend]
+name = fs
+dir = /var/data_backup
+
+[fs_object_backend]
+name = fs
+dir = /var/data_backup
+
+[block_backend]
+name = fs
+dir = /var/data_backup
+</code></pre></div>
+<h2 id="stop-seafile-server">Stop Seafile Server<a class="headerlink" href="#stop-seafile-server" title="Permanent link">&para;</a></h2>
+<p>Since the data migration process will not affect the operation of the Seafile service, if the original S3 data is operated during this process, the data may not be synchronized with the migrated data. Therefore, we recommend that you stop the Seafile service before executing the migration procedure.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Deploy with Docker</label><label for="__tabbed_2_2">Deploy from binary package</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>bash
+<span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest
+./seahub.sh<span class="w"> </span>stop
+./seafile.sh<span class="w"> </span>stop
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest
+./seahub.sh<span class="w"> </span>stop
+./seafile.sh<span class="w"> </span>stop
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="run-migratesh-to-initially-migrate-objects">Run migrate.sh to initially migrate objects<a class="headerlink" href="#run-migratesh-to-initially-migrate-objects" title="Permanent link">&para;</a></h2>
+<p>This step will migrate <strong>most of</strong> objects from the source storage to the destination storage. You don't need to stop Seafile service at this stage as it may take quite long time to finish. Since the service is not stopped, some new objects may be added to the source storage during migration. Those objects will be handled in the next step:</p>
+<div class="admonition tip">
+<p class="admonition-title">Speed-up migrating large number of objects</p>
+<p>If you have millions of objects in the storage (especially the <strong><em>fs</em></strong> objects), it may take quite long time to migrate all objects and more than half is using to check whether an object exists in the destination storage. In this situation, you can modify the <code>nworker</code> and <code>maxsize</code> variables in the <code>migrate.py</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ThreadPool</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">do_work</span><span class="p">,</span> <span class="n">nworker</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">do_work</span> <span class="o">=</span> <span class="n">do_work</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nworker</span> <span class="o">=</span> <span class="n">nworker</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">task_queue</span> <span class="o">=</span> <span class="n">Queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">(</span><span class="n">maxsize</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">)</span>
+</code></pre></div>
+<p>However, if the two values (i.e., <code>nworker</code> and <code>maxsize</code>) ​​are too large, the improvement in data migration speed may not be obvious because the disk I/O bottleneck has been reached.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Encrypted storage backend data (deprecated)</p>
+<p>If you have an encrypted storage backend, you can use this script to migrate and decrypt the data from that backend to a new one. You can add the <code>--decrypt</code> option in calling the script, which will decrypt the data while reading it, and then write the unencrypted data to the new backend:</p>
+<div class="highlight"><pre><span></span><code>./migrate.sh<span class="w"> </span>/opt<span class="w"> </span>--decrypt
+</code></pre></div>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Deploy with Docker</label><label for="__tabbed_3_2">Deploy from binary package</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># make sure you are in the container and in directory `/opt/seafile/seafile-server-latest`</span>
+./migrate.sh<span class="w"> </span>/shared
+
+<span class="c1"># exit container and stop it</span>
+<span class="nb">exit</span>
+docker<span class="w"> </span>compose<span class="w"> </span>down
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># make sure you are in the directory `/opt/seafile/seafile-server-latest`</span>
+./migrate.sh<span class="w"> </span>/opt
+</code></pre></div>
+</div>
+</div>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>You can see the following message if the migration process is done:</p>
+<div class="highlight"><pre><span></span><code>2025-01-15 05:49:39,408 Start to fetch [commits] object from destination
+2025-01-15 05:49:39,422 Start to fetch [fs] object from destination
+2025-01-15 05:49:39,442 Start to fetch [blocks] object from destination
+2025-01-15 05:49:39,677 [commits] [0] objects exist in destination
+2025-01-15 05:49:39,677 Start to migrate [commits] object
+2025-01-15 05:49:39,749 [blocks] [0] objects exist in destination
+2025-01-15 05:49:39,755 Start to migrate [blocks] object
+2025-01-15 05:49:39,752 [fs] [0] objects exist in destination
+2025-01-15 05:49:39,762 Start to migrate [fs] object
+2025-01-15 05:49:40,602 Complete migrate [commits] object
+2025-01-15 05:49:40,626 Complete migrate [blocks] object
+2025-01-15 05:49:40,790 Complete migrate [fs] object
+Done.
+</code></pre></div>
+</div>
+<h2 id="replace-the-original-seafileconf-and-start-seafile">Replace the original <code>seafile.conf</code> and start Seafile<a class="headerlink" href="#replace-the-original-seafileconf-and-start-seafile" title="Permanent link">&para;</a></h2>
+<p>After running the script, we recommend that you check whether your data already exists on the new S3 storage backend server (i.e., the migration is successful, and the number and size of files should be the same). Then you can remove the file from the old S3 storage backend and replace the original <code>seafile.conf</code> from the new one:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Deploy with Docker</label><label for="__tabbed_4_2">Deploy from binary package</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>mv<span class="w"> </span>/opt/seafile-data/seafile.conf<span class="w"> </span>/opt/seafile-data/seafile/conf/seafile.conf
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>mv<span class="w"> </span>/opt/seafile.conf<span class="w"> </span>/opt/seafile/conf/seafile.conf
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Finally, you can start Seafile server:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Deploy with Docker</label><label for="__tabbed_5_2">Deploy from binary package</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># make sure you are in the directory `/opt/seafile/seafile-server-latest`</span>
+./seahub.sh<span class="w"> </span>start
+./seafile.sh<span class="w"> </span>start
+</code></pre></div>
+</div>
+</div>
+</div>
 
 
 
 
 
 
-
-  
-  
 
 
 

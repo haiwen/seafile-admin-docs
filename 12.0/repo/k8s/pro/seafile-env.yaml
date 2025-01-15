@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: seafile-env
+data:
+  # for Seafile server
+  TIME_ZONE: "UTC"
+  SEAFILE_LOG_TO_STDOUT: "true"
+  SITE_ROOT: "/"
+  ENABLE_SEADOC: "false"
+  SEADOC_SERVER_URL: "https://seafile.example.com/sdoc-server" # only valid in ENABLE_SEADOC = true
+  SEAFILE_SERVER_HOSTNAME: "seafile.example.com"
+
+
+  # for database
+  SEAFILE_MYSQL_DB_HOST: "<your MySQL host>"
+  SEAFILE_MYSQL_DB_PORT: "3306"
+  SEAFILE_MYSQL_DB_USER: "seafile"
+  SEAFILE_MYSQL_DB_CCNET_DB_NAME: "ccnet_db"
+  SEAFILE_MYSQL_DB_SEAFILE_DB_NAME: "seafile_db"
+  SEAFILE_MYSQL_DB_SEAHUB_DB_NAME: "seahub_db"
+
+  # Init
+  ## for Seafile admin
+  INIT_SEAFILE_ADMIN_EMAIL: "<Seafile admin's email>"
+
+  ## For S3 storage backend (only valid in INIT_S3_STORAGE_BACKEND_CONFIG = true)
+  INIT_S3_STORAGE_BACKEND_CONFIG: "false"
+  INIT_S3_COMMIT_BUCKET: ""
+  INIT_S3_FS_BUCKET: ""
+  INIT_S3_BLOCK_BUCKET: ""
+  INIT_S3_KEY_ID: ""
+  INIT_S3_USE_V4_SIGNATURE: "true"
+  INIT_S3_AWS_REGION: "us-east-1"
+  INIT_S3_HOST: "s3.us-east-1.amazonaws.com"
+  INIT_S3_USE_HTTPS: "true"

@@ -981,14 +981,6 @@
     Data migration
   </span>
   
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
 
       </a>
     </li>
@@ -1016,6 +1008,27 @@
   
   <span class="md-ellipsis">
     Use SeaSearch as search engine (Pro)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../k8s_single_node/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup with Kubernetes (K8S, single pod mode)
   </span>
   
 
@@ -4238,7 +4251,7 @@
 
 
 <h1 id="deploy-seafile-cluster-with-kubernetes-k8s">Deploy Seafile cluster with Kubernetes (K8S)<a class="headerlink" href="#deploy-seafile-cluster-with-kubernetes-k8s" title="Permanent link">&para;</a></h1>
-<p>This manual explains how to deploy and run Seafile Server on a Linux server using <em>Kubernetes</em> (<strong><em>k8s</em></strong> thereafter). </p>
+<p>This manual explains how to deploy and run Seafile cluster on a Linux server using <em>Kubernetes</em> (<strong><em>k8s</em></strong> thereafter). </p>
 <h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
 <h3 id="system-requirements">System requirements<a class="headerlink" href="#system-requirements" title="Permanent link">&para;</a></h3>
 <p>In theory, you only need to prepare one node to deploy a cluster, but this does not conform to the K8S design concept, so we recommend that you prepare at least 3 nodes ():</p>
@@ -4267,7 +4280,7 @@
 <ol>
 <li>If your number of nodes does not meet our recommended number (i.e. 3 nodes), please adjust according to the following strategies:<ul>
 <li><strong>2 nodes</strong>: A frontend service and a backend service on the same node</li>
-<li><strong>1 node</strong>: Please refer <a href="../setup_pro_by_docker/">here</a> to deploy Seafile in a single node instead a cluster.</li>
+<li><strong>1 node</strong>: Please refer <a href="../k8s_single_node/">here</a> to deploy Seafile in a K8S single node instead a cluster.</li>
 </ul>
 </li>
 <li>If you have more available nodes for Seafile server, please provide them to the Seafile frontend service and <strong>make sure there is only one backend service running</strong>. Here is a simple relationship between the number of Seafile frontent services (<span class="arithmatex">\(N_f\)</span>) and total nodes (<span class="arithmatex">\(N_t\)</span>):
@@ -4307,7 +4320,7 @@ wget<span class="w"> </span>-P<span class="w"> </span>/opt/seafile-k8s-yaml<span
 </ul>
 <p>For futher configuration details, you can refer <a href="https://kubernetes.io/docs/tasks/configure-pod-container/">the official documents</a>.</p>
 <h2 id="modify-seafile-envyaml-and-seafile-secretyaml">Modify <code>seafile-env.yaml</code> and <code>seafile-secret.yaml</code><a class="headerlink" href="#modify-seafile-envyaml-and-seafile-secretyaml" title="Permanent link">&para;</a></h2>
-<p>Similar to Docker-base deployment, Seafile cluster in K8S deployment also supports use files to configure startup progress, you can modify common environment variables by</p>
+<p>Similar to Docker-base deployment, Seafile cluster in K8S deployment also supports use files to configure startup progress, you can modify common <a href="../setup_pro_by_docker/#downloading-and-modifying-env">environment variables</a> by</p>
 <div class="highlight"><pre><span></span><code>nano<span class="w"> </span>/opt/seafile-k8s-yaml/seafile-env.yaml
 </code></pre></div>
 <p>and sensitive information (e.g., password) by</p>
@@ -4403,7 +4416,7 @@ kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> <
 </ol>
 <div class="admonition sucess">
 <p class="admonition-title">Sucess</p>
-<p>You can <a href="#container-management">view the pod's log</a> to check the startup progress is normal or not, you will see the following message if server is running normally:</p>
+<p>You can <a href="#container-management">view the pod's log</a> to check the startup progress is normal or not. You can see the following message if server is running normally:</p>
 <div class="highlight"><pre><span></span><code>*** Running /etc/my_init.d/01_create_data_links.sh...
 *** Booting runit daemon...
 *** Runit started as PID 20
@@ -4431,14 +4444,14 @@ Done.
 </code></pre></div>
 </div>
 <h2 id="container-management">Container management<a class="headerlink" href="#container-management" title="Permanent link">&para;</a></h2>
-<p>Similar to docker installation, you can also manage containers through <a href="https://kubernetes.io/docs/reference/kubectl/#operations">some kubectl commands</a>. For example, you can use the following command to check whether the relevant resources are started successfully and whether the relevant services can be accessed normally. First, execute the following command and remember the pod name with <code>seafile-</code> as the prefix (such as seafile-748b695648-d6l4g)</p>
+<p>Similar to docker installation, you can also manage containers through <a href="https://kubernetes.io/docs/reference/kubectl/#operations">some kubectl commands</a>. For example, you can use the following command to check whether the relevant resources are started successfully and whether the relevant services can be accessed normally. First, execute the following command and remember the pod name with <code>seafile-&lt;node type&gt;-</code> as the prefix (such as <code>seafile-frontend-748b695648-d6l4g</code>)</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods
 </code></pre></div>
 <p>You can check a status of a pod by </p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>logs<span class="w"> </span>seafile-748b695648-d6l4g
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>logs<span class="w"> </span>seafile-frontend-748b695648-d6l4g
 </code></pre></div>
 <p>and enter a container by</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-748b695648-d6l4g<span class="w"> </span>--<span class="w">  </span>bash
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-frontend-748b695648-d6l4g<span class="w"> </span>--<span class="w">  </span>bash
 </code></pre></div>
 <h2 id="load-balance-and-https">Load balance and HTTPS<a class="headerlink" href="#load-balance-and-https" title="Permanent link">&para;</a></h2>
 <p>When deploying a Seafile cluster using K8S, you can enable HTTPS and use load balance in the following two ways:</p>
