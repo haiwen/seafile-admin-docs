@@ -8,7 +8,7 @@
 
 Please check our document for how to upgrade to [12.0](../upgrade/upgrade_notes_for_12.0.x.md)
 
-### 12.0.4 beta (to-be-told)
+### 12.0.8 beta (2025-01-17)
 
 * A redesigned Web UI
 * SeaDoc is now stable, providing online notes and documents feature
