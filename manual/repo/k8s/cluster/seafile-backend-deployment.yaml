@@ -27,6 +27,16 @@ spec:
               value: "true"
             - name: CLUSTER_MODE
               value: "backend"
+            - name: SEAFILE_SERVER_HOSTNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: SEAFILE_SERVER_HOSTNAME
+            - name: SEAFILE_SERVER_PROTOCOL
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: SEAFILE_SERVER_PROTOCOL
             - name: TIME_ZONE
               valueFrom:
                 configMapKeyRef:

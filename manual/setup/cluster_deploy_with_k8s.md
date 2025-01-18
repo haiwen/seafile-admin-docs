@@ -234,3 +234,10 @@ When deploying a Seafile cluster using K8S, you can enable HTTPS and use load ba
 
 - External load balancing server, such as *Nginx*. Typically you will need to reverse proxy `http://<your control plane>/`
 - K8S Gateway API, e.g., [Nginx-gateway](https://docs.nginx.com/nginx-gateway-fabric/installation/installing-ngf/manifests/) and [Istio-gateway](https://istio.io/latest/docs/tasks/traffic-management/ingress/gateway-api/)
+
+Finally, you should modify the related URLs in `seahub_settings.py`, from `http://` to `https://`:
+
+```py
+SERVICE_URL = "https://seafile.example.com"
+FILE_SERVER_ROOT = 'https://seafile.example.com/seafhttp'
+```

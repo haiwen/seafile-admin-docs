@@ -112,6 +112,7 @@ upgrade/upgrade_11.0_12.0.sh
 conf/.env
 
 ```env
+TIME_ZONE=UTC
 JWT_PRIVATE_KEY=xxx
 SEAFILE_SERVER_PROTOCOL=https
 SEAFILE_SERVER_HOSTNAME=seafile.example.com

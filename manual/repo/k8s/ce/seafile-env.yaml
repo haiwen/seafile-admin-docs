@@ -10,6 +10,7 @@ data:
   ENABLE_SEADOC: "false"
   SEADOC_SERVER_URL: "https://seafile.example.com/sdoc-server" # only valid in ENABLE_SEADOC = true
   SEAFILE_SERVER_HOSTNAME: "seafile.example.com"
+  SEAFILE_SERVER_PROTOCOL: "http"
 
 
   # for database
