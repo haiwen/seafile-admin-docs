@@ -96,11 +96,10 @@ NOTIFICATION_SERVER_VOLUME=/opt/notification-data
 
 ## Seafile-server configurations
 
-- `SEAFILE_MYSQL_DB_PASSWORD`: The user `seafile` password of MySQL
-- `JWT`: JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: `pwgen -s 40 1`
+- `JWT_PRIVATE_KEY`: JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: `pwgen -s 40 1`
 - `SEAFILE_SERVER_HOSTNAME`: Seafile server hostname or domain
 - `SEAFILE_SERVER_PROTOCOL`: Seafile server protocol (http or https)
-- `TIME_ZONE`: Time zone (default UTC)
+- `TIME_ZONE`: Time zone (default `UTC`)
 - `INIT_SEAFILE_ADMIN_EMAIL`: Admin username
 - `INIT_SEAFILE_ADMIN_PASSWORD`: Admin password
 

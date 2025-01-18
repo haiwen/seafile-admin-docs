@@ -91,7 +91,7 @@ kubectl apply -f /opt/seafile-k8s-yaml/
     - With different service name
     - With different server port
 
-    Please modfiy the files in `/opt/seafile-data/seafile/conf` to make correct the configurations for above services, otherwise the Seafile server cannot start normally. Then restart Seafile server:
+    Please modfiy the files in `/opt/seafile-data/seafile/conf` (especially the `seafevents.conf`, `seafile.conf` and `seahub_settings.py`) to make correct the configurations for above services, otherwise the Seafile server cannot start normally. Then restart Seafile server:
 
     ```sh
     kubectl delete -f /opt/seafile-k8s-yaml/
