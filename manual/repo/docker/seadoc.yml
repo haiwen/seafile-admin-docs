@@ -29,7 +29,8 @@ services:
       caddy.2_handle_path.0_rewrite: "* {uri}"
       caddy.2_handle_path.1_reverse_proxy: "{{upstreams 80}}"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     networks:
       - seafile-net
 
