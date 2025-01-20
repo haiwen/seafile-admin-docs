@@ -30,7 +30,13 @@ Please check our document for how to upgrade to [12.0](../upgrade/upgrade_notes_
 
 Please check our document for how to upgrade to [11.0](../upgrade/upgrade_notes_for_11.0.x.md)
 
-### 11.0.17 (2024-01-04)
+### 11.0.18 (2025-01-20）
+
+* [fix] Fix license check in SAML mode
+* [fix] Do not change a user's role if it is manully set in Shibboleth login
+* Support using different office suites for different roles
+
+### 11.0.17 (2025-01-04)
 
 * [fix] Fix a few issues in golang file server related to permission check
 * [fix] Fix a bug in golang file server related to online GC
