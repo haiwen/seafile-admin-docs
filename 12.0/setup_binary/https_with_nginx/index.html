@@ -1566,15 +1566,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#modifying-seahub_settingspy" class="md-nav__link">
-    <span class="md-ellipsis">
-      Modifying seahub_settings.py
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#modifying-seafileconf-optional" class="md-nav__link">
     <span class="md-ellipsis">
       Modifying seafile.conf (optional)
@@ -4293,15 +4284,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#modifying-seahub_settingspy" class="md-nav__link">
-    <span class="md-ellipsis">
-      Modifying seahub_settings.py
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#modifying-seafileconf-optional" class="md-nav__link">
     <span class="md-ellipsis">
       Modifying seafile.conf (optional)
@@ -4577,23 +4559,6 @@ nginx -s reload
 <p>Modify the following field to <code>https</code></p>
 <div class="highlight"><pre><span></span><code><span class="nv">SEAFILE_SERVER_PROTOCOL</span><span class="o">=</span>https
 </code></pre></div>
-<h3 id="modifying-seahub_settingspy">Modifying seahub_settings.py<a class="headerlink" href="#modifying-seahub_settingspy" title="Permanent link">&para;</a></h3>
-<div class="admonition tip">
-<p class="admonition-title">More convenient</p>
-<p>The <code>SERVICE_URL</code> and <code>FILE_SERVER_ROOT</code> can also be modified in Seahub via <strong>System Admininstration</strong> &gt; <strong>Settings</strong>.  If they are configured via System Admin and in seahub_settings.py, the value in System Admin will take precedence.</p>
-</div>
-<ul>
-<li>
-<p>The <code>SERVICE_URL</code> in <a href="../../config/seahub_settings_py/">seahub_settings.py</a> informs Seafile about the chosen domain, protocol and port. Change the <code>SERVICE_URL</code>so as to account for the switch from HTTP to HTTPS and to correspond to your host name (the <code>http://</code> must not be removed):</p>
-<div class="highlight"><pre><span></span><code><span class="n">SERVICE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://seafile.example.com&#39;</span>
-</code></pre></div>
-</li>
-<li>
-<p>The <code>FILE_SERVER_ROOT</code> in <a href="../../config/seahub_settings_py/">seahub_settings.py</a> informs Seafile about the location of and the protocol used by the file server. Change the <code>FILE_SERVER_ROOT</code> so as to account for the switch from HTTP to HTTPS and to correspond to your host name (the trailing <code>/seafhttp</code> must not be removed):</p>
-<div class="highlight"><pre><span></span><code><span class="n">FILE_SERVER_ROOT</span> <span class="o">=</span> <span class="s1">&#39;https://seafile.example.com/seafhttp&#39;</span>
-</code></pre></div>
-</li>
-</ul>
 <h3 id="modifying-seafileconf-optional">Modifying seafile.conf (optional)<a class="headerlink" href="#modifying-seafileconf-optional" title="Permanent link">&para;</a></h3>
 <p>To improve security, the file server should only be accessible via Nginx.</p>
 <p>Add the following line in the <code>[fileserver]</code> block on <code>seafile.conf</code> in <code>/opt/seafile/conf</code>:</p>
