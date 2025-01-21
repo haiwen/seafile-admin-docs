@@ -5,7 +5,7 @@ metadata:
 data:
   # for Seafile server
   TIME_ZONE: "UTC"
-  SEAFILE_LOG_TO_STDOUT: "true"
+  SEAFILE_LOG_TO_STDOUT: "false"
   SITE_ROOT: "/"
   ENABLE_SEADOC: "false"
   SEADOC_SERVER_URL: "https://seafile.example.com/sdoc-server" # only valid in ENABLE_SEADOC = true

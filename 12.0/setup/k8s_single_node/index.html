@@ -1134,6 +1134,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#seafile-directory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Seafile directory structure
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4166,6 +4175,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#seafile-directory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Seafile directory structure
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4284,7 +4302,13 @@ kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> <
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-748b695648-d6l4g<span class="w"> </span>--<span class="w">  </span>bash
 </code></pre></div>
 <h2 id="https">HTTPS<a class="headerlink" href="#https" title="Permanent link">&para;</a></h2>
-<p>Please refer <a href="../cluster_deploy_with_k8s/#load-balance-and-https">here</a> about suggestions of enabling HTTPS in K8S.</p>
+<p>Please refer to <a href="../cluster_deploy_with_k8s/#load-balance-and-https">here</a> about suggestions of enabling HTTPS in K8S.</p>
+<h2 id="seafile-directory-structure">Seafile directory structure<a class="headerlink" href="#seafile-directory-structure" title="Permanent link">&para;</a></h2>
+<p>Please refer to <a href="../setup_pro_by_docker/#seafile-directory-structure">here</a> for the details.</p>
+<div class="admonition tip">
+<p class="admonition-title">Send logs to Loki</p>
+<p>You can directly view the log files of single-pod Seafile in the persistent volume directory, as the log files are distinguishable even the node of pod has changed (because there will only be one node running Seafile), so by default single-pod Seafile logs are not output to standard output. If you need to record these log files to a log server (e.g., <a href="https://grafana.com/oss/loki/"><em>Loki</em></a>), you can refer to <a href="../cluster_deploy_with_k8s/#log-routing-and-aggregation-system">here</a> for more informations.</p>
+</div>
 
 
 

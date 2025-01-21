@@ -4643,7 +4643,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 <h3 id="path-optseafile-data">Path <code>/opt/seafile-data</code><a class="headerlink" href="#path-optseafile-data" title="Permanent link">&para;</a></h3>
 <p>Placeholder spot for shared volumes. You may elect to store certain persistent information outside of a container, in our case we keep various log files and upload directory outside. This allows you to rebuild containers easily without losing important information.</p>
 <ul>
-<li>/opt/seafile-data/seafile: This is the directory for seafile server configuration 、logs and data.</li>
+<li>/opt/seafile-data/seafile: This is the directory for seafile server configuration, logs and data.</li>
 <li>/opt/seafile-data/seafile/logs: This is the directory that would contain the log files of seafile server processes. For example, you can find seaf-server logs in <code>/opt/seafile-data/seafile/logs/seafile.log</code>.</li>
 <li>/opt/seafile-data/logs: This is the directory for operating system and Nginx logs.</li>
 <li>/opt/seafile-data/logs/var-log: This is the directory that would be mounted as <code>/var/log</code> inside the container. For example, you can find the nginx logs in <code>/opt/seafile-data/logs/var-log/nginx/</code>.</li>
