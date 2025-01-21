@@ -133,4 +133,11 @@ kubectl exec -it seafile-748b695648-d6l4g --  bash
 
 ## HTTPS
 
-Please refer [here](./cluster_deploy_with_k8s.md#load-balance-and-https) about suggestions of enabling HTTPS in K8S.
+Please refer to [here](./cluster_deploy_with_k8s.md#load-balance-and-https) about suggestions of enabling HTTPS in K8S.
+
+## Seafile directory structure
+
+Please refer to [here](./setup_pro_by_docker.md#seafile-directory-structure) for the details.
+
+!!! tip "Send logs to Loki"
+    You can directly view the log files of single-pod Seafile in the persistent volume directory, as the log files are distinguishable even the node of pod has changed (because there will only be one node running Seafile), so by default single-pod Seafile logs are not output to standard output. If you need to record these log files to a log server (e.g., [*Loki*](https://grafana.com/oss/loki/)), you can refer to [here](./cluster_deploy_with_k8s.md#log-routing-and-aggregation-system) for more informations.
