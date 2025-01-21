@@ -64,11 +64,14 @@ docker compose up -d
 Then run the migration script by executing the following command:
 
 ```sh
-docker exec -it seafile /opt/seafile/seafile-server-latest/pro/pro.py setup --migrate
+# enter the container
+docker exec -it seafile bash
 
+# update avatar links
+/opt/seafile/seafile-server-latest/upgrade minor-upgrade.sh
 ```
 
-After the migration script runs successfully, modify `es_host, es_port` in `/opt/seafile-data/seafile/conf/seafevents.conf` manually.
+After the above script runs successfully, modify `es_host, es_port` in `/opt/seafile-data/seafile/conf/seafevents.conf` manually.
 
 ```conf
 [INDEX FILES]
