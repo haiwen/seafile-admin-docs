@@ -6,7 +6,7 @@ This manual explains how to deploy and run Seafile cluster on a Linux server usi
 
 ### System requirements
 
-In theory, you only need to prepare one node to deploy a cluster, but this does not conform to the K8S design concept, so we recommend that you prepare at least 3 nodes ():
+In theory, you only need to prepare one node to deploy a cluster, but this does not conform to the K8S design concept, so we recommend that you prepare at least 3 nodes:
 
 - **Two** nodes for starting the Seafile frontend service
 - **One** node for starting the Seafile backend service
@@ -234,13 +234,6 @@ When deploying a Seafile cluster using K8S, you can enable HTTPS and use load ba
 
 - External load balancing server, such as *Nginx*. Typically you will need to reverse proxy `http://<your control plane>/`
 - K8S Gateway API, e.g., [Nginx-gateway](https://docs.nginx.com/nginx-gateway-fabric/installation/installing-ngf/manifests/) and [Istio-gateway](https://istio.io/latest/docs/tasks/traffic-management/ingress/gateway-api/)
-
-Finally, you should modify the related URLs in `seahub_settings.py`, from `http://` to `https://`:
-
-```py
-SERVICE_URL = "https://seafile.example.com"
-FILE_SERVER_ROOT = 'https://seafile.example.com/seafhttp'
-```
 
 ## Log routing and aggregation system
 
