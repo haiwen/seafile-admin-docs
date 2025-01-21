@@ -226,24 +226,6 @@ Modify the following field to `https`
 SEAFILE_SERVER_PROTOCOL=https
 ```
 
-### Modifying seahub_settings.py
-
-!!! tip "More convenient"
-    The `SERVICE_URL` and `FILE_SERVER_ROOT` can also be modified in Seahub via **System Admininstration** > **Settings**.  If they are configured via System Admin and in seahub_settings.py, the value in System Admin will take precedence.
-
-- The `SERVICE_URL` in [seahub_settings.py](../config/seahub_settings_py.md) informs Seafile about the chosen domain, protocol and port. Change the `SERVICE_URL`so as to account for the switch from HTTP to HTTPS and to correspond to your host name (the `http://` must not be removed):
-
-
-    ```python
-    SERVICE_URL = 'https://seafile.example.com'
-    ```
-
-- The `FILE_SERVER_ROOT` in [seahub_settings.py](../config/seahub_settings_py.md) informs Seafile about the location of and the protocol used by the file server. Change the `FILE_SERVER_ROOT` so as to account for the switch from HTTP to HTTPS and to correspond to your host name (the trailing `/seafhttp` must not be removed):
-
-    ```python
-    FILE_SERVER_ROOT = 'https://seafile.example.com/seafhttp'
-    ```
-
 ### Modifying seafile.conf (optional)
 
 To improve security, the file server should only be accessible via Nginx.
