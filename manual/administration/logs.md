@@ -1,4 +1,4 @@
-# Logs
+# Seafile server logs
 
 ### Log files of seafile server
 

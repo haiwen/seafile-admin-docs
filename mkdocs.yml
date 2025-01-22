@@ -178,7 +178,7 @@ nav:
     - Security features: administration/security_features.md
     - Access logs and auditing: administration/auditing.md
     - Export report: administration/export_report.md
-    - Logs: administration/logs.md
+    - Seafile server logs: administration/logs.md
     - Backup and Recovery: administration/backup_recovery.md
     - Seafile FSCK: administration/seafile_fsck.md
     - Seafile GC: administration/seafile_gc.md

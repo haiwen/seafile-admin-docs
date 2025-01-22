@@ -1,4 +1,4 @@
-# Access log and auditing
+# Access log and auditing (Pro)
 
 In the Pro Edition, Seafile offers four audit logs in system admin panel:
 
@@ -9,14 +9,4 @@ In the Pro Edition, Seafile offers four audit logs in system admin panel:
 
 ![Seafile Auditing Log](../images/admin-audit-log.png)
 
-The logging feature is turned off by default before version 6.0. Add the following option to `seafevents.conf` to turn it on:
-
-```
-[Audit]
-## Audit log is disabled default.
-## Leads to additional SQL tables being filled up, make sure your SQL server is able to handle it.
-enabled = true
-```
-
-
-The audit log data is being saved in `seahub_db`.
+The audit log data is saved in `seahub_db`.
