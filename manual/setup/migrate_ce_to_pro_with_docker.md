@@ -41,7 +41,7 @@ For other fileds (e.g., `SEAFILE_VOLUME`, `SEAFILE_MYSQL_VOLUME`, `SEAFILE_MYSQL
 !!! tip
     For the configurations using to do the initializations (e.g, `INIT_SEAFILE_ADMIN_EMAIL`, `INIT_SEAFILE_MYSQL_ROOT_PASSWORD`, `INIT_S3_STORAGE_BACKEND_CONFIG`), you can remove it from `.env` as well
 
-### Replace seafile-server.yml and .env
+### Replace `seafile-server.yml` and `.env`
 
 Replace the old `seafile-server.yml` and `.env` by the new and modified files, i.e. (if your old `seafile-server.yml` and `.env` are in the `/opt`)
 
@@ -50,25 +50,12 @@ mv -b seafile-server.yml /opt/seafile-server.yml
 mv -b .env /opt/.env
 ```
 
-### Do the migration
+### Modify `seafevents.conf`
 
-The Seafile Pro container needs to be running during the migration process, which means that end users may access the Seafile service during this process. In order to avoid the data confusion caused by this, it is recommended that you take the necessary measures to temporarily prohibit users from accessing the Seafile service. For example, modify the firewall policy.
+Add `[INDEX FILES]` section in `/opt/seafile-data/seafile/conf/seafevents.conf` manually:
 
-Run the following command to run the Seafile-Pro container：
-
-```sh
-docker compose up -d
-
-```
-
-Then run the migration script by executing the following command:
-
-```sh
-docker exec -it seafile /opt/seafile/seafile-server-latest/pro/pro.py setup --migrate
-
-```
-
-After the migration script runs successfully, modify `es_host, es_port` in `/opt/seafile-data/seafile/conf/seafevents.conf` manually.
+!!! tip "Additional system resource requirements"
+    Seafile PE docker requires a minimum of 4 cores and 4GB RAM because of ***Elasticsearch*** deployed simultaneously. If you do not have enough system resources, you can use an alternative search engine, [*SeaSearch*](./use_seasearch.md), a more lightweight search engine built on open source search engine [*ZincSearch*](https://zincsearch-docs.zinc.dev/), as the indexer.
 
 ```conf
 [INDEX FILES]
@@ -78,10 +65,12 @@ enabled = true
 interval = 10m
 ```
 
-Restart the Seafile Pro container.
+### Start Seafile Pro
+
+Run the following command to run the Seafile-Pro container：
 
 ```sh
-docker restart seafile
+docker compose up -d
 ```
 
 Now you have a Seafile Professional service.
