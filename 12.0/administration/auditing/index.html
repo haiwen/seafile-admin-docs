@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#access-log-and-auditing" class="md-skip">
+        <a href="#access-log-and-auditing-pro" class="md-skip">
           Skip to content
         </a>
       
@@ -3155,7 +3155,7 @@
         
   
   <span class="md-ellipsis">
-    Logs
+    Seafile server logs
   </span>
   
 
@@ -4006,7 +4006,7 @@
   
 
 
-<h1 id="access-log-and-auditing">Access log and auditing<a class="headerlink" href="#access-log-and-auditing" title="Permanent link">&para;</a></h1>
+<h1 id="access-log-and-auditing-pro">Access log and auditing (Pro)<a class="headerlink" href="#access-log-and-auditing-pro" title="Permanent link">&para;</a></h1>
 <p>In the Pro Edition, Seafile offers four audit logs in system admin panel:</p>
 <ul>
 <li>Login log</li>
@@ -4015,13 +4015,7 @@
 <li>Permission change log</li>
 </ul>
 <p><img alt="Seafile Auditing Log" src="../../images/admin-audit-log.png" /></p>
-<p>The logging feature is turned off by default before version 6.0. Add the following option to <code>seafevents.conf</code> to turn it on:</p>
-<div class="highlight"><pre><span></span><code>[Audit]
-## Audit log is disabled default.
-## Leads to additional SQL tables being filled up, make sure your SQL server is able to handle it.
-enabled = true
-</code></pre></div>
-<p>The audit log data is being saved in <code>seahub_db</code>.</p>
+<p>The audit log data is saved in <code>seahub_db</code>.</p>
 
 
 
