@@ -11,7 +11,7 @@ SEAFILE_IMAGE=seafileltd/seafile-pro-mc:12.0-latest
 SEAFILE_DB_IMAGE=mariadb:10.11
 SEAFILE_MEMCACHED_IMAGE=memcached:1.6.29
 SEAFILE_ELASTICSEARCH_IMAGE=elasticsearch:8.15.0 # pro edition only
-SEAFILE_CADDY_IMAGE=lucaslorentz/caddy-docker-proxy:2.9
+SEAFILE_CADDY_IMAGE=lucaslorentz/caddy-docker-proxy:2.9-alpine
 
 SEAFILE_VOLUME=/opt/seafile-data
 SEAFILE_MYSQL_VOLUME=/opt/seafile-mysql/db
@@ -73,7 +73,7 @@ NOTIFICATION_SERVER_VOLUME=/opt/notification-data
 - `SEAFILE_DB_IMAGE`: Database server image, default is `mariadb:10.11`.
 - `SEAFILE_MEMCACHED_IMAGE`: Cached server image, default is `memcached:1.6.29`
 - `SEAFILE_ELASTICSEARCH_IMAGE`: Only valid in pro edition. The elasticsearch image, default is `elasticsearch:8.15.0`.
-- `SEAFILE_CADDY_IMAGE`: Caddy server image, default is `lucaslorentz/caddy-docker-proxy:2.9`.
+- `SEAFILE_CADDY_IMAGE`: Caddy server image, default is `lucaslorentz/caddy-docker-proxy:2.9-alpine`.
 - `SEADOC_IMAGE`: Only valid after integrating [SeaDoc](../extension/setup_seadoc.md). SeaDoc server image, default is `seafileltd/sdoc-server:1.0-latest`.
 
 ### Persistent Volume Configurations
