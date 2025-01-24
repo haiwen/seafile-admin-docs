@@ -4258,7 +4258,7 @@
 <span class="nv">SEAFILE_DB_IMAGE</span><span class="o">=</span>mariadb:10.11
 <span class="nv">SEAFILE_MEMCACHED_IMAGE</span><span class="o">=</span>memcached:1.6.29
 <span class="nv">SEAFILE_ELASTICSEARCH_IMAGE</span><span class="o">=</span>elasticsearch:8.15.0<span class="w"> </span><span class="c1"># pro edition only</span>
-<span class="nv">SEAFILE_CADDY_IMAGE</span><span class="o">=</span>lucaslorentz/caddy-docker-proxy:2.9
+<span class="nv">SEAFILE_CADDY_IMAGE</span><span class="o">=</span>lucaslorentz/caddy-docker-proxy:2.9-alpine
 
 <span class="nv">SEAFILE_VOLUME</span><span class="o">=</span>/opt/seafile-data
 <span class="nv">SEAFILE_MYSQL_VOLUME</span><span class="o">=</span>/opt/seafile-mysql/db
@@ -4318,7 +4318,7 @@
 <li><code>SEAFILE_DB_IMAGE</code>: Database server image, default is <code>mariadb:10.11</code>.</li>
 <li><code>SEAFILE_MEMCACHED_IMAGE</code>: Cached server image, default is <code>memcached:1.6.29</code></li>
 <li><code>SEAFILE_ELASTICSEARCH_IMAGE</code>: Only valid in pro edition. The elasticsearch image, default is <code>elasticsearch:8.15.0</code>.</li>
-<li><code>SEAFILE_CADDY_IMAGE</code>: Caddy server image, default is <code>lucaslorentz/caddy-docker-proxy:2.9</code>.</li>
+<li><code>SEAFILE_CADDY_IMAGE</code>: Caddy server image, default is <code>lucaslorentz/caddy-docker-proxy:2.9-alpine</code>.</li>
 <li><code>SEADOC_IMAGE</code>: Only valid after integrating <a href="../../extension/setup_seadoc/">SeaDoc</a>. SeaDoc server image, default is <code>seafileltd/sdoc-server:1.0-latest</code>.</li>
 </ul>
 <h3 id="persistent-volume-configurations">Persistent Volume Configurations<a class="headerlink" href="#persistent-volume-configurations" title="Permanent link">&para;</a></h3>
