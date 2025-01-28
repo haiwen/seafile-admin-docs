@@ -10,13 +10,13 @@
         <meta name="author" content="seafile">
       
       
-        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/12.0/administration/seafile_gc/">
+        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/12.0/extension/metadata-server/">
       
       
-        <link rel="prev" href="../seafile_fsck/">
+        <link rel="prev" href="../notification-server/">
       
       
-        <link rel="next" href="../clean_database/">
+        <link rel="next" href="../webdav/">
       
       
       <link rel="icon" href="../../media/favicon.ico">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Seafile GC - Seafile Admin Manual</title>
+        <title>Metadata Server - Seafile Admin Manual</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#seafile-gc" class="md-skip">
+        <a href="#metadata-server" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Seafile GC
+              Metadata Server
             
           </span>
         </div>
@@ -290,17 +290,21 @@
         
   
   
+    
+  
   
     
     
       
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../extension/setup_seadoc/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../setup_seadoc/" class="md-tabs__link">
           
   
   Extensions
@@ -353,13 +357,11 @@
         
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../administration/" class="md-tabs__link">
           
   
   Administration
@@ -1711,25 +1713,30 @@
       
   
   
+    
   
   
+  
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -1740,7 +1747,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Extensions
@@ -1751,25 +1758,30 @@
                 
   
   
+    
   
   
+  
     
     
     
       
       
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
         
           
-          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -1780,7 +1792,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_1">
             <span class="md-nav__icon md-icon"></span>
             Extra Seafile components
@@ -1794,7 +1806,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/setup_seadoc/" class="md-nav__link">
+      <a href="../setup_seadoc/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1815,7 +1827,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/notification-server/" class="md-nav__link">
+      <a href="../notification-server/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1833,10 +1845,38 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../extension/metadata-server/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Metadata Server
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--new" title="Work in progress">
+    </span>
+  
+
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1853,6 +1893,68 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deployment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deployment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#download-yml-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download YML file
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modify-env-according" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modify .env according
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Start service
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1865,7 +1967,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/webdav/" class="md-nav__link">
+      <a href="../webdav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1886,7 +1988,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/fuse/" class="md-nav__link">
+      <a href="../fuse/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1920,17 +2022,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
         
           
-          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -1955,7 +2060,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/libreoffice_online/" class="md-nav__link">
+      <a href="../libreoffice_online/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1976,7 +2081,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/only_office/" class="md-nav__link">
+      <a href="../only_office/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1997,7 +2102,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/office_web_app/" class="md-nav__link">
+      <a href="../office_web_app/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2031,17 +2136,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
         
           
-          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -2066,7 +2174,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/distributed_indexing/" class="md-nav__link">
+      <a href="../distributed_indexing/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2108,17 +2216,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
         
           
-          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -2143,7 +2254,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/virus_scan/" class="md-nav__link">
+      <a href="../virus_scan/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2164,7 +2275,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
+      <a href="../virus_scan_with_clamav/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2185,7 +2296,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/virus_scan_with_kav4fs/" class="md-nav__link">
+      <a href="../virus_scan_with_kav4fs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2996,30 +3107,25 @@
       
   
   
-    
   
   
-  
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -3030,7 +3136,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Administration
@@ -3044,7 +3150,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../administration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3065,7 +3171,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../account/" class="md-nav__link">
+      <a href="../../administration/account/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3086,7 +3192,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../two_factor_authentication/" class="md-nav__link">
+      <a href="../../administration/two_factor_authentication/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3107,7 +3213,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../security_features/" class="md-nav__link">
+      <a href="../../administration/security_features/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3128,7 +3234,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../auditing/" class="md-nav__link">
+      <a href="../../administration/auditing/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3149,7 +3255,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../export_report/" class="md-nav__link">
+      <a href="../../administration/export_report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3170,7 +3276,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../logs/" class="md-nav__link">
+      <a href="../../administration/logs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3191,7 +3297,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../backup_recovery/" class="md-nav__link">
+      <a href="../../administration/backup_recovery/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3212,7 +3318,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../seafile_fsck/" class="md-nav__link">
+      <a href="../../administration/seafile_fsck/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3230,30 +3336,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Seafile GC
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../administration/seafile_gc/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3262,86 +3348,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#run-gc" class="md-nav__link">
-    <span class="md-ellipsis">
-      Run GC
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Run GC">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#dry-run-mode" class="md-nav__link">
-    <span class="md-ellipsis">
-      Dry-run Mode
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#removing-garbage" class="md-nav__link">
-    <span class="md-ellipsis">
-      Removing Garbage
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#removing-fs-objects" class="md-nav__link">
-    <span class="md-ellipsis">
-      Removing FS objects
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#using-multiple-threads-in-gc" class="md-nav__link">
-    <span class="md-ellipsis">
-      Using Multiple Threads in GC
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#run-gc-based-on-library-id-prefix" class="md-nav__link">
-    <span class="md-ellipsis">
-      Run GC based on library ID prefix
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -3354,7 +3360,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../clean_database/" class="md-nav__link">
+      <a href="../../administration/clean_database/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4116,55 +4122,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#run-gc" class="md-nav__link">
+  <a href="#deployment" class="md-nav__link">
     <span class="md-ellipsis">
-      Run GC
+      Deployment
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Run GC">
+    <nav class="md-nav" aria-label="Deployment">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#dry-run-mode" class="md-nav__link">
+  <a href="#download-yml-file" class="md-nav__link">
     <span class="md-ellipsis">
-      Dry-run Mode
+      Download YML file
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#removing-garbage" class="md-nav__link">
+  <a href="#modify-env-according" class="md-nav__link">
     <span class="md-ellipsis">
-      Removing Garbage
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#removing-fs-objects" class="md-nav__link">
-    <span class="md-ellipsis">
-      Removing FS objects
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#using-multiple-threads-in-gc" class="md-nav__link">
-    <span class="md-ellipsis">
-      Using Multiple Threads in GC
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#run-gc-based-on-library-id-prefix" class="md-nav__link">
-    <span class="md-ellipsis">
-      Run GC based on library ID prefix
+      Modify .env according
     </span>
   </a>
   
@@ -4172,6 +4151,15 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Start service
+    </span>
+  </a>
   
 </li>
       
@@ -4193,114 +4181,186 @@
   
 
 
-<h1 id="seafile-gc">Seafile GC<a class="headerlink" href="#seafile-gc" title="Permanent link">&para;</a></h1>
-<p>Seafile uses storage de-duplication technology to reduce storage usage. The underlying data blocks will not be removed immediately after you delete a file or a library. As a result, the number of unused data blocks will increase on Seafile server.</p>
-<p>To release the storage space occupied by unused blocks, you have to run a
-"garbage collection" program to clean up unused blocks on your server.</p>
-<p>The GC program cleans up two types of unused blocks:</p>
-<ol>
-<li>Blocks that no library references to, that is, the blocks belong to deleted libraries;</li>
-<li>If you set history length limit on some libraries, the out-dated blocks in those libraries will also be removed.</li>
-</ol>
-<h2 id="run-gc">Run GC<a class="headerlink" href="#run-gc" title="Permanent link">&para;</a></h2>
+<h1 id="metadata-server">Metadata server<a class="headerlink" href="#metadata-server" title="Permanent link">&para;</a></h1>
+<p>Metadata server aims to provide metadata management for your libraries, so as to better understand the relevant information of your libraries.</p>
+<h2 id="deployment">Deployment<a class="headerlink" href="#deployment" title="Permanent link">&para;</a></h2>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If your Seafile server is deployed with Docker, make sure you have enter the container before executing the script:</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>bash
-</code></pre></div>
-<p>For all scripts in this document, is located in <code>/opt/seafile/seafile-server-latest</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="sb">`</span>/opt/seafile/seafile-server-latest<span class="w"> </span><span class="c1"># valid both Docker-base Seafile and binary-package-base Seafile</span>
-</code></pre></div>
-<p>This is also required for the other scripts in this document.</p>
+<p class="admonition-title">Prerequisites</p>
+<p>The startup of Metadata server <strong>requires the use of <em>Redis</em> service</strong>, but Seafile server uses <em>Memcached</em> as the cache server by default, so you must <a href="../../config/seafile-conf/#cache-pro-edition-only">deploy <strong><em>Redis</em></strong> for Seafile</a> before using Metadata server, or use an external Redis service.</p>
 </div>
-<h3 id="dry-run-mode">Dry-run Mode<a class="headerlink" href="#dry-run-mode" title="Permanent link">&para;</a></h3>
-<p>To see how much garbage can be collected without actually removing any garbage, use the dry-run option:</p>
-<div class="highlight"><pre><span></span><code>./seaf-gc.sh --dry-run [repo-id1] [repo-id2] ...
+<h3 id="download-yml-file">Download YML file<a class="headerlink" href="#download-yml-file" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="n">Please</span><span class="w"> </span><span class="n">download</span><span class="w"> </span><span class="n">YML</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">**</span><span class="ow">in</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="err">`</span><span class="n">seafile</span><span class="o">-</span><span class="n">server</span><span class="o">.</span><span class="n">yml</span><span class="err">`</span><span class="w"> </span><span class="n">directory</span><span class="o">**</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">following</span><span class="w"> </span><span class="n">command</span><span class="p">:</span>
+
+<span class="err">```</span><span class="n">sh</span>
+<span class="n">wget</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">manual</span><span class="o">.</span><span class="n">seafile</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="mf">12.0</span><span class="o">/</span><span class="n">repo</span><span class="o">/</span><span class="n">docker</span><span class="o">/</span><span class="n">md</span><span class="o">-</span><span class="n">server</span><span class="o">.</span><span class="n">yml</span>
+<span class="err">```</span>
 </code></pre></div>
-<p>The output should look like:</p>
-<div class="highlight"><pre><span></span><code>[03/19/15 19:41:49] seafserv-gc.c(115): GC version 1 repo My Library(ffa57d93)
-[03/19/15 19:41:49] gc-core.c(394): GC started. Total block number is 265.
-[03/19/15 19:41:49] gc-core.c(75): GC index size is 1024 Byte.
-[03/19/15 19:41:49] gc-core.c(408): Populating index.
-[03/19/15 19:41:49] gc-core.c(262): Populating index for repo ffa57d93.
-[03/19/15 19:41:49] gc-core.c(308): Traversed 5 commits, 265 blocks.
-[03/19/15 19:41:49] gc-core.c(440): Scanning unused blocks.
-[03/19/15 19:41:49] gc-core.c(472): GC finished. 265 blocks total, about 265 reachable blocks, 0 blocks can be removed.
 
-[03/19/15 19:41:49] seafserv-gc.c(115): GC version 1 repo aa(f3d0a8d0)
-[03/19/15 19:41:49] gc-core.c(394): GC started. Total block number is 5.
-[03/19/15 19:41:49] gc-core.c(75): GC index size is 1024 Byte.
-[03/19/15 19:41:49] gc-core.c(408): Populating index.
-[03/19/15 19:41:49] gc-core.c(262): Populating index for repo f3d0a8d0.
-[03/19/15 19:41:49] gc-core.c(308): Traversed 8 commits, 5 blocks.
-[03/19/15 19:41:49] gc-core.c(264): Populating index for sub-repo 9217622a.
-[03/19/15 19:41:49] gc-core.c(308): Traversed 4 commits, 4 blocks.
-[03/19/15 19:41:49] gc-core.c(440): Scanning unused blocks.
-[03/19/15 19:41:49] gc-core.c(472): GC finished. 5 blocks total, about 9 reachable blocks, 0 blocks can be removed.
-
-[03/19/15 19:41:49] seafserv-gc.c(115): GC version 1 repo test2(e7d26d93)
-[03/19/15 19:41:49] gc-core.c(394): GC started. Total block number is 507.
-[03/19/15 19:41:49] gc-core.c(75): GC index size is 1024 Byte.
-[03/19/15 19:41:49] gc-core.c(408): Populating index.
-[03/19/15 19:41:49] gc-core.c(262): Populating index for repo e7d26d93.
-[03/19/15 19:41:49] gc-core.c(308): Traversed 577 commits, 507 blocks.
-[03/19/15 19:41:49] gc-core.c(440): Scanning unused blocks.
-[03/19/15 19:41:49] gc-core.c(472): GC finished. 507 blocks total, about 507 reachable blocks, 0 blocks can be removed.
-
-[03/19/15 19:41:50] seafserv-gc.c(124): === Repos deleted by users ===
-[03/19/15 19:41:50] seafserv-gc.c(145): === GC is finished ===
-
-[03/19/15 19:41:50] Following repos have blocks to be removed:
-repo-id1
-repo-id2
-repo-id3
-</code></pre></div>
-<p>If you give specific library ids, only those libraries will be checked; otherwise all libraries will be checked.</p>
-<div class="admonition note">
-<p class="admonition-title">repos have blocks to be removed</p>
-<p>Notice that at the end of the output there is a "repos have blocks to be removed" section. It contains the list of libraries that have garbage blocks. Later when you run GC without --dry-run option, you can use these libraris ids as input arguments to GC program.</p>
+<h3 id="modify-env-according">Modify <code>.env</code> according<a class="headerlink" href="#modify-env-according" title="Permanent link">&para;</a></h3>
+<p>Normally, you don't need to set additional variables in <code>.env</code> for metadata server, because the default settings and necessary environment variables will be consistent with Seafile server (e.g., <code>JWT_PRIVATE_KEY</code>), and the metadata of libraries will be stored locally (default is <code>/opt/md-data</code>). By the way, you can also add or modify relevant environment variables in <code>.env</code> according to the information in the following table:</p>
+<div class="admonition success">
+<p class="admonition-title">Faster configuration</p>
+<p>Metadata-server docker we use an one-time configuration file, which will be generated directly through the environment variable, eliminating the need for you to repeatedly write configuration files (i.e., <strong>no <code>md-server.conf</code></strong>), which will significantly improve your deployment efficiency.</p>
 </div>
-<h3 id="removing-garbage">Removing Garbage<a class="headerlink" href="#removing-garbage" title="Permanent link">&para;</a></h3>
-<p>To actually remove garbage blocks, run without the --dry-run option:</p>
-<div class="highlight"><pre><span></span><code>./seaf-gc.sh [repo-id1] [repo-id2] ...
-</code></pre></div>
-<p>If libraries ids are specified, only those libraries will be checked for garbage.</p>
-<p>As described before, there are two types of garbage blocks to be removed. Sometimes just removing the first type of blocks (those that belong to deleted libraries) is good enough. In this case, the GC program won't bother to check the libraries for outdated historic blocks. The "-r" option implements this feature:</p>
-<div class="highlight"><pre><span></span><code>./seaf-gc.sh -r
+<table>
+<thead>
+<tr>
+<th>Variables</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MD_STORAGE_TYPE</code></td>
+<td>The type of backend storage. Options: <code>file</code> (local storage), <code>s3</code>, <code>oss</code>.</td>
+<td>Optional, default <code>file</code></td>
+</tr>
+<tr>
+<td><code>MD_DATA</code></td>
+<td>Directory where local data (only valid in <code>MD_STORAGE_TYPE=file</code>) and cache are located.</td>
+<td>Optional, default <code>/opt/md-data</code></td>
+</tr>
+<tr>
+<td><code>MD_MAX_CACHE_SIZE</code></td>
+<td>The maximum cache size.</td>
+<td>Optional, default <code>1GB</code></td>
+</tr>
+<tr>
+<td><code>MD_S3_HOST</code></td>
+<td>Host of s3 backend.</td>
+<td>Optional</td>
+</tr>
+<tr>
+<td><code>MD_S3_AWS_REGION</code></td>
+<td>Region of <em>AWS</em> s3 backend.</td>
+<td>Optional</td>
+</tr>
+<tr>
+<td><code>MD_S3_USE_HTTPS</code></td>
+<td>Use https connecting to S3 backend.</td>
+<td>Optional, default <code>true</code></td>
+</tr>
+<tr>
+<td><code>MD_S3_BUCKET</code></td>
+<td>Name of S3 bucket for storaging metadata.</td>
+<td><strong>Required</strong></td>
+</tr>
+<tr>
+<td><code>MD_S3_PATH_STYLE_REQUEST</code></td>
+<td>S3 backend use path style request.</td>
+<td>Optional, default <code>false</code></td>
+</tr>
+<tr>
+<td><code>MD_S3_KEY_ID</code></td>
+<td>S3 backend authorization key ID.</td>
+<td><strong>Required</strong></td>
+</tr>
+<tr>
+<td><code>MD_S3_KEY</code></td>
+<td>S3 backend authorization key secret.</td>
+<td><strong>Required</strong></td>
+</tr>
+<tr>
+<td><code>MD_S3_USE_V4_SIGNATURE</code></td>
+<td>Use V4 signature to S3 storage backend.</td>
+<td>Optional, default <code>true</code></td>
+</tr>
+<tr>
+<td><code>MD_S3_SSE_C_KEY</code></td>
+<td>S3 SSE-C key.</td>
+<td>Optional</td>
+</tr>
+<tr>
+<td><code>MD_OSS_HOST</code></td>
+<td>OSS backend host.</td>
+<td>Optional</td>
+</tr>
+<tr>
+<td><code>MD_OSS_REGION</code></td>
+<td>OSS backend region.</td>
+<td>Optional</td>
+</tr>
+<tr>
+<td><code>MD_OSS_BUCKET</code></td>
+<td>Name of OSS bucket for storaging metadata.</td>
+<td><strong>Required</strong></td>
+</tr>
+<tr>
+<td><code>MD_OSS_KEY_ID</code></td>
+<td>OSS backend authorization key ID.</td>
+<td><strong>Required</strong></td>
+</tr>
+<tr>
+<td><code>MD_OSS_KEY</code></td>
+<td>OSS backend authorization key secret.</td>
+<td><strong>Required</strong></td>
+</tr>
+<tr>
+<td><code>REDIS_HOST</code></td>
+<td>Your <em>Redis</em> service host.</td>
+<td>Optional, default <code>redis</code></td>
+</tr>
+<tr>
+<td><code>REDIS_PORT</code></td>
+<td>Your <em>Redis</em> service port.</td>
+<td>Optional, default <code>6379</code></td>
+</tr>
+<tr>
+<td><code>REDIS_PASSWORD</code></td>
+<td>Your <em>Redis</em> access password.</td>
+<td>Optional</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">More descriptions about <em>Optional</em> and <em>Required</em> in above table</p>
+<ul>
+<li>
+<p>In the table above, although many items are marked as <em>Required</em>, some of them are only required when the storage backend specified by <code>MD_STORAGE_TYPE</code> is used:</p>
+<ul>
+<li><code>MD_S3_xxx</code> only valid in <code>MD_STORAGE_TYPE=s3</code></li>
+<li><code>MD_OSS_xxx</code> only valid in <code>MD_STORAGE_TYPE=oss</code></li>
+</ul>
+</li>
+<li>
+<p>If <code>MD_STORAGE_TYPE</code> is <code>s3</code> or <code>oss</code>, although <code>MD_xxx_HOST</code> and <code>MD_xxx_REGION</code> are marked as <strong><em>Optional</em></strong>, when you use one of these two storage backends, <strong>you must specify at least one of <code>MD_xxx_HOST</code> and <code>MD_xxx_REGION</code>, otherwise the service will fail to start</strong>.</p>
+</li>
+</ul>
+</div>
+<h2 id="start-service">Start service<a class="headerlink" href="#start-service" title="Permanent link">&para;</a></h2>
+<p>You can use following command to start metadata server:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
 <div class="admonition success">
 <p class="admonition-title">Success</p>
-<p>Libraries deleted by the users are not immediately removed from the system. Instead, they're moved into a "trash" in the system admin page. Before they're cleared from the trash, their blocks won't be garbage collected.</p>
+<p>If the container startups normally, the follow message you can get from <code>docker logs -f metadata-server</code>:
+<div class="highlight"><pre><span></span><code>[md-server] [2025-01-24 06:23:44] [INFO] Environment variable validity checked
+[md-server] [2025-01-24 06:23:44] [INFO] Database initialization completed
+[md-server] [2025-01-24 06:23:44] [INFO] Configuration file generated
+[md-server] [2025-01-24 06:45:17] [INFO] starting seaf-md-server
+</code></pre></div></p>
 </div>
-<h3 id="removing-fs-objects">Removing FS objects<a class="headerlink" href="#removing-fs-objects" title="Permanent link">&para;</a></h3>
-<p>Since Pro server 8.0.6 and community edition 9.0, you can remove garbage fs objects. It should be run without the --dry-run option:</p>
-<div class="highlight"><pre><span></span><code>./seaf-gc.sh --rm-fs
+<div class="admonition note">
+<p class="admonition-title">About listening port of Metadata server</p>
+<p>By default, the Metadata server listens on port 8084. You can modify it by specifying <code>MD_PORT</code> in .env. At the same time, due to security reasons, this port is not open to the external network. If you need to open this port, you need to modify <code>md-server.yml</code> to uncomment the following:</p>
+<div class="highlight"><pre><span></span><code>services:
+  metadata-server:
+    ...
+    ports:
+      - ${MD_PORT:-8084}:${MD_PORT:-8084}
+    ...
 </code></pre></div>
-<div class="admonition danger">
-<p class="admonition-title">Bug reports</p>
-<p>This command has bug before Pro Edition 10.0.15 and Community Edition 11.0.7. It could cause virtual libraries (e.g. shared folders) failing to merge into their parent libraries. Please avoid using this option in the affected versions. Please contact our support team if you are affected by this bug.</p>
 </div>
-<h3 id="using-multiple-threads-in-gc">Using Multiple Threads in GC<a class="headerlink" href="#using-multiple-threads-in-gc" title="Permanent link">&para;</a></h3>
-<p>You can specify the thread number in GC. By default,</p>
-<ul>
-<li>If storage backend is S3/Swift/Ceph, 10 threads are started to do the GC work.</li>
-<li>If storage backend is file system, only 1 thread is started.</li>
-</ul>
-<p>You can specify the thread number in with "-t" option. "-t" option can be used together with all other options. Each thread will do GC on one library. For example, the following command will use 20 threads to GC all libraries:</p>
-<div class="highlight"><pre><span></span><code>./seaf-gc.sh -t 20
-</code></pre></div>
-<p>Since the threads are concurrent, the output of each thread may mix with each others. Library ID is printed in each line of output.</p>
-<h3 id="run-gc-based-on-library-id-prefix">Run GC based on library ID prefix<a class="headerlink" href="#run-gc-based-on-library-id-prefix" title="Permanent link">&para;</a></h3>
-<p>Since GC usually runs quite slowly as it needs to traverse the entire library history. You can use multiple threads to run GC in parallel. For even larger deployments, it's also desirable to run GC on multiple server in parallel.</p>
-<p>A simple pattern to divide the workload among multiple GC servers is to assign libraries to servers based on library ID. Since Pro edition 7.1.5, this is supported. You can add "--id-prefix" option to seaf-gc.sh, to specify the library ID prefix. For example, the below command will only process libraries having "a123" as ID prefix.</p>
-<div class="highlight"><pre><span></span><code>./seaf-gc.sh --id-prefix a123
-</code></pre></div>
 
 
 
 
 
 
+
+  
+  
 
 
 
@@ -4330,7 +4390,7 @@ repo-id3
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../seafile_fsck/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Seafile FSCK">
+          <a href="../notification-server/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Notification Server">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -4340,20 +4400,20 @@ repo-id3
                 Previous
               </span>
               <div class="md-ellipsis">
-                Seafile FSCK
+                Notification Server
               </div>
             </div>
           </a>
         
         
           
-          <a href="../clean_database/" class="md-footer__link md-footer__link--next" aria-label="Next: Clean database">
+          <a href="../webdav/" class="md-footer__link md-footer__link--next" aria-label="Next: WebDAV extension">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Clean database
+                WebDAV extension
               </div>
             </div>
             <div class="md-footer__button md-icon">
