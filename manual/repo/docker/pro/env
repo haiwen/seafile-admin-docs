@@ -1,4 +1,4 @@
-COMPOSE_FILE='seafile-server.yml,caddy.yml'
+COMPOSE_FILE='seafile-server.yml,caddy.yml,seadoc.yml'
 COMPOSE_PATH_SEPARATOR=','
 
 # Seafile & Basic services
@@ -51,10 +51,9 @@ INIT_S3_HOST=s3.us-east-1.amazonaws.com
 INIT_S3_USE_HTTPS=true
 
 # SeaDoc service
-ENABLE_SEADOC=false
+ENABLE_SEADOC=true
 SEADOC_IMAGE=seafileltd/sdoc-server:1.0-latest
 SEADOC_VOLUME=/opt/seadoc-data
-SEADOC_SERVER_URL=http://seafile.example.com/sdoc-server
 
 # Notification server
 NOTIFICATION_SERVER_IMAGE=seafileltd/notification-server:12.0-latest

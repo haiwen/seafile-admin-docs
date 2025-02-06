@@ -31,6 +31,11 @@ Here is the workflow when a user open sdoc file in browser
 
 ## Deployment SeaDoc
 
+!!! success "Default extension in Docker deployment"
+    This extension is already installed by default when deploying Seafile (single-node mode) by [Docker](../setup/setup_ce_by_docker.md). 
+
+    If you would like to remove it, you can undo the steps in this section (i.e., remove the `seadoc.yml` in the field `COMPOSE_FILE` and set `ENABLE_SEADOC` to `false`) 
+
 The easiest way to deployment SeaDoc is to deploy it with Seafile server on the same host using the same Docker network. If in some situations, you need to deployment SeaDoc standalone, you can follow the next section.
 
 1. Download the `seadoc.yml` to `/opt/seafile`
