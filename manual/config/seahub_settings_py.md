@@ -310,9 +310,9 @@ ENABLE_GLOBAL_ADDRESSBOOK = False
 # Since 6.0.9
 ENABLE_ADFS_LOGIN = True
 
-# Force user login through ADFS instead of email and password
+# Force user login through ADFS/OAuth instead of email and password
 # Default is False
-# Since 11.0.7
+# Since 11.0.7, in version 12.0, it also controls users via OAuth
 DISABLE_ADFS_USER_PWD_LOGIN = True
 
 # Enable authentication wit Kerberos
