@@ -8,6 +8,15 @@
 
 Please check our document for how to upgrade to [12.0](../upgrade/upgrade_notes_for_12.0.x.md)
 
+### 12.0.9 (2025-02-12)
+
+* [fix] Fix a bug related to smart-link in mutli-tenancy mode
+* Improve consistency of format of logs
+* DISABLE_ADFS_USER_PWD_LOGIN now work for OAuth too
+* [fix] Fix a bug in search indexing with SeaSearch backend
+* [fix] Thumbnail server does not preserve ICC profiles, resulting in washed out colors
+* [fix] A few small UI fixes and improvements
+
 ### 12.0.8 beta (2025-01-17)
 
 * A redesigned Web UI
