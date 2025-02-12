@@ -2,6 +2,16 @@
 
 ## 9.0
 
+### 9.0.12 (2025/02/12)
+
+* Improve sync error descriptions in the main window for file sync errors
+* Don't timeout for fs-id-list requests
+* \[mac] Fix generate internal links bug
+* \[linux] Add option to ignore symlinks
+* \[linux] Fix bug that filenames with different cases cannot be synced
+* \[linux] Auto detect CA location
+* \[linux] Improve support for Wayland
+
 ### 9.0.11 (2024/11/15)
 
 * Fix potential UI freeze in 9.0.10
