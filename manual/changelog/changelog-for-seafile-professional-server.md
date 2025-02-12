@@ -8,7 +8,7 @@
 
 Please check our document for how to upgrade to [12.0](../upgrade/upgrade_notes_for_12.0.x.md)
 
-### 12.0.9 (2025-02-12)
+### 12.0.9 beta (2025-02-12)
 
 * [fix] Fix a bug related to smart-link in mutli-tenancy mode
 * Improve consistency of format of logs
