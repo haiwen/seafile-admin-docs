@@ -9,6 +9,13 @@
 
 Please check our document for how to upgrade to [12.0](../upgrade/upgrade_notes_for_12.0.x.md)
 
+### 12.0.9 (2025-02-14)
+
+* Improve consistency of format of logs
+* [fix] Thumbnail server does not preserve ICC profiles, resulting in washed out colors
+* [fix] A few small UI fixes and improvements
+
+
 ### 12.0.7 (2025-01-08)
 
 * [fix] Some UI improvements and fixes
