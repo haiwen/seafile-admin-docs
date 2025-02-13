@@ -11,7 +11,7 @@ Seafile version 12.0 has following major changes:
 
 * A redesigned Web UI
 * SeaDoc is now stable, providing online notes and documents feature
-* A new wiki module (disabled by default)
+* A new wiki module
 * A new trash mechanism, that deleted files will be recorded in database for fast listing. In the old version, deleted files are scanned from library history, which is slow.
 * Community edition now also support online GC (because SQLite support is dropped)
 
