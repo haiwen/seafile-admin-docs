@@ -1,8 +1,8 @@
 # Installation of Seafile Server Community Edition with Docker
 
-## Requirements
+## System requirements
 
-Seafile Community Edition requires a minimum of 2 cores and 2GB RAM. 
+Please refer [here](./system_requirements.md#seafile-ce) for system requirements about Seafile CE.
 
 ## Getting started
 

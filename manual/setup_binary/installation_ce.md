@@ -4,7 +4,7 @@ This manual explains how to deploy and run Seafile Server Community Edition (Sea
 
 ## Requirements
 
-Seafile CE for x86 architecture requires a minimum of 2 cores and 2GB RAM.
+Please refer [here](../setup/system_requirements.md#seafile-ce) for system requirements about Seafile CE.
 
 
 ## Setup
@@ -348,16 +348,6 @@ Seahub caches items(avatars, profiles, etc) on file system by default(/tmp/seahu
     1. Install Redis with package installers in your OS.
 
     2. Refer to [Django's documentation about using Redis cache](https://docs.djangoproject.com/en/4.2/topics/cache/#redis) to add Redis configurations to `seahub_settings.py`.
-
-
-### Tweaking conf files
-
-Seafile's config files as created by the setup script are prepared for Seafile running behind a reverse proxy.
-
-To access Seafile's web interface and to create working sharing links without a reverse proxy, you need to modify two configuration files in `/opt/seafile/conf`:
-
-- `seahub_settings.py`: Add port 8000 to the `SERVICE_URL` (i.e., SERVICE_URL = 'http://seafile.example.com:8000/').
-- `gunicorn.conf.py`: Change the bind to "0.0.0.0:8000" (i.e., bind = "0.0.0.0:8000")
 
 ### Create the `.env` file in `conf/` directory
 

@@ -1,8 +1,12 @@
-# Setup Seafile with a single K8S pod
+# Setup Seafile with a single K8S pod with K8S resources files
 
 This manual explains how to deploy and run Seafile server on a Linux server using *Kubernetes* (***k8s*** thereafter) in a single pod (i.e., single node mode). So this document is essentially an extended description of the [Docker-based Seafile single-node deployment](./overview.md) (support both CE and Pro). 
 
 For specific environment and configuration requirements, please refer to the description of the [Docker-based Seafile single-node deployment](./setup_pro_by_docker.md#requirements). Please also refer to the description of the ***K8S tool*** section in [here](./cluster_deploy_with_k8s.md#k8s-tools).
+
+## System requirements
+
+Please refer [here](./system_requirements.md) for system requirements about Seafile service. By the way, this will apply to all nodes where Seafile pods may appear in your K8S cluster.
 
 ## Gettings started
 
@@ -79,8 +83,8 @@ You can start Seafile server simply by
 kubectl apply -f /opt/seafile-k8s-yaml/
 ```
 
-!!! warning
-    By default, Seafile will access the ***Memcached*** and ***Elasticsearch*** with the specific service name:
+!!! warning "Important for Pro edition"
+    By default, Seafile (***Pro***) will access the ***Memcached*** and ***Elasticsearch*** with the specific service name:
 
     - ***Memcached***: `memcached` with port 11211
     - ***Elasticsearch***: `elasticsearch` with port 9200
@@ -98,7 +102,7 @@ kubectl apply -f /opt/seafile-k8s-yaml/
     kubectl apply -f /opt/seafile-k8s-yaml/
     ```
 
-## Activating the Seafile License
+## Activating the Seafile License (Pro)
 
 If you have a `seafile-license.txt` license file, simply put it in the volume of the Seafile container. The volumne's default path in the Compose file is `/opt/seafile-data`. If you have modified the path, save the license file under your custom path.
 

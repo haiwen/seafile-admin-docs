@@ -89,6 +89,7 @@ nav:
     - Contribution: introduction/contribution.md
   - Setup:
     - Overview: setup/overview.md
+    - System requirements: setup/system_requirements.md
     - HTTPS and Caddy: setup/caddy.md
     - Single node installation:
       - Setup community edition: setup/setup_ce_by_docker.md
@@ -101,14 +102,18 @@ nav:
         - Multiple Storage Backends: setup/setup_with_multiple_storage_backends.md
         - Data migration: setup/migrate_backends_data.md
       - Use SeaSearch as search engine (Pro): setup/use_seasearch.md
-      - Setup with Kubernetes (K8S, single pod mode): setup/k8s_single_node.md
+      - Setup with Kubernetes (K8S, single pod mode): 
+        - Setup by Seafile Helm Chart: setup/helm_chart_single_node.md
+        - Setup by K8S resource files: setup/k8s_single_node.md
       - Seafile Docker autostart: setup/seafile_docker_autostart.md
       - Deploy with an existing MySQL server: setup/setup_with_an_existing_mysql_server.md
       - Use other reverse proxy: setup/use_other_reverse_proxy.md
       - Run Seafile as non root user inside docker: setup/run_seafile_as_non_root_user_inside_docker.md
     - Cluster installation (Pro):
       - Seafile Docker Cluster Deployment: setup/cluster_deploy_with_docker.md
-      - Setup with Kubernetes (K8s): setup/cluster_deploy_with_k8s.md
+      - Setup with Kubernetes (K8s): 
+        - Setup by Seafile Helm Chart: setup/helm_chart_cluster.md
+        - Setup by K8S resource files: setup/cluster_deploy_with_k8s.md
     - Migration:
       - Migration from Seafile Community: setup/migrate_ce_to_pro_with_docker.md
       - Migrate from non-docker deployment: setup/migrate_non_docker_to_docker.md

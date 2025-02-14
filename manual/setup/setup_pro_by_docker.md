@@ -2,32 +2,9 @@
 
 This manual explains how to deploy and run Seafile Server Professional Edition (Seafile PE) on a Linux server using Docker and Docker Compose. The deployment has been tested for Debian/Ubuntu and CentOS, but Seafile PE should also work on other Linux distributions.
 
-## Requirements
+## System requirements
 
-Seafile PE docker requires a minimum of 4 cores and 4GB RAM. 
-
-!!! note "Other requirements for Seafile PE"
-    - **By default**, Seafile Pro will use ***Elasticsearch*** as the files indexer
-
-        Please make sure the [mmapfs counts](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules-store.html#mmapfs) do not cause excptions like out of memory, which can be increased by following command (see <https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html> for futher details):
-
-        ```shell
-        sysctl -w vm.max_map_count=262144 #run as root
-        ```
-
-        or modify **/etc/sysctl.conf** and reboot to set this value permanently:
-
-        ```shell
-        nano /etc/sysctl.conf
-
-        # modify vm.max_map_count
-        vm.max_map_count=262144
-        ```
-    - If your machine **dose not** have enough requirements, 2 Cores and 2GB RAM are minimum by chosing one of following two ways **after first-time deployment** of Seafile Pro docker:
-
-        - Use [*SeaSearch*](./use_seasearch.md), a lightweight search engine built on open source search engine [*ZincSearch*](https://zincsearch-docs.zinc.dev/), as the indexer
-    
-        - Deploy *Elasticsearch* in another machine, and modify `es_host` and `es_port` in [seafevents.conf](../config/seafevents-conf.md)
+Please refer [here](./system_requirements.md#seafile-pro) for system requirements about Seafile PE.
 
 !!! tip "About license"
     Seafile PE can be used without a paid license with up to three users. Licenses for more user can be purchased in the [Seafile Customer Center](https://customer.seafile.com) or contact Seafile Sales at [sales@seafile.com](mailto:sales@seafile.com). For futher details, please refer the [license page](../setup_binary/seafile_professional_sdition_software_license_agreement.md) of Seafile PE.
