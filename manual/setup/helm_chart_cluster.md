@@ -42,15 +42,18 @@ After installation, you need to start the k8s control plane service on each node
 3. Download and modify the `my-values.yaml` according to your configurations. By the way, you can follow [here](./setup_pro_by_docker.md#downloading-and-modifying-env) for the details:
 
     ```sh
-    wget -O my-values.yaml https://seafileltd.github.io/seafile-helm-chart/values/cluster.yaml
+    wget -O my-values.yaml https://haiwen.github.io/seafile-helm-chart/values/latest/cluster.yaml
 
     nano my-values.yaml
     ```
 
+    !!! tip
+        It is not necessary to use the `my-values.yaml` we provided (i.e., you can create an empty `my-values.yaml` and add required field, as others have defined default values in our chart), because it destroys the flexibility of deploying with Helm, but it contains some formats of how Seafile Helm Chart reads these configurations, as well as all the environment variables and secret variables that can be read directly.
+
 4. Then install the chart use the following command:
 
     ```sh
-    helm repo add seafile https://github.com/seafileltd/seafile-helm-chart
+    helm repo add seafile https://haiwen.github.io/seafile-helm-chart/repo
     helm upgrade --install seafile seafile/cluster  --namespace seafile --create-namespace --values my-values.yaml
     ```
     !!! success
@@ -241,6 +244,47 @@ helm delete seafile --namespace seafile
 ```
 
 ## Advanced operations
+
+### Version control
+
+Seafile Helm Chart is designed to provide fast deployment and version control. You can update and rollback versions using the following setps:
+
+1. Update Helm repo
+
+    ```sh
+    helm repo update
+    ```
+
+    !!! tip
+        When using the repo update command, this will not always take effect immediately, as the previous repo will be stored in the cache.
+
+2. Download (optional) and modify the new `my-values.yaml`
+
+    ```sh
+    wget -O my-values.yaml https://haiwen.github.io/seafile-helm-chart/values/<release-version>/cluster.yaml
+
+    nano my-values.yaml
+    ```
+
+    !!! tip "About version of *Seafile Helm Chart* and *Seafile*"
+        The version of Seafile Helm Chart is same as the major version of Seafile, i.e.:
+
+        - latest Seafile: 12.0.9
+        - latest Seafile Helm Chart release: 12.0
+
+        By default, it will follow the latest Chart and the latest Seafile
+
+3. Upgrade release to a new version
+
+    ```sh
+    helm upgrade --install seafile seafile/cluster --namespace seafile --create-namespace --values my-values.yaml --version <release-version>
+    ```
+
+4. (Rollback) if you would like rollback to your old-running release, you can use following command to rollback your current instances
+
+    ```sh
+    helm rollback seafile -n seafile <revision>
+    ```
 
 ### Extra volumes
 
