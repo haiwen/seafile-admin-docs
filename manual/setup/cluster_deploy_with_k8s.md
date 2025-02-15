@@ -1,40 +1,12 @@
-# Deploy Seafile cluster with Kubernetes (K8S)
+# Deploy Seafile cluster with Kubernetes (K8S) by K8S resources files
 
 This manual explains how to deploy and run Seafile cluster on a Linux server using *Kubernetes* (***k8s*** thereafter). 
 
 ## Prerequisites
 
-### System requirements
+## Cluster requirements
 
-In theory, you only need to prepare one node to deploy a cluster, but this does not conform to the K8S design concept, so we recommend that you prepare at least 3 nodes:
-
-- **Two** nodes for starting the Seafile frontend service
-- **One** node for starting the Seafile backend service
-
-For each node, you have to prepare at least **2 cores** cpu, **2G RAM** and 10G disk space.
-
-!!! note "More details about System requirements"
-    We assume you have already deployed memory cache server (e.g., ***Memcached***), ***MariaDB***, file indexer (e.g., ***ElasticSearch***) in separate machines and use ***S3*** like object storage. 
-    
-    - If some of the above services are deployed on one of the nodes, you may need to prepare more space for the node. Especially for ***ElasticSearch***, you need to prepare at least **4 cores** cpu, **4GB** memory and more disk space on the node. If you donnot have enough hardware requirements for *ElasticSearch*, you can use [*SeaSearch*](./use_seasearch.md) as search engine, which is more lightweight.
-
-    - Generally, when deploying Seafile in a cluster, we recommend that you use a storage backend (such as AWS S3) to store Seafile data. However, according to the Seafile image startup rules and K8S persistent storage strategy, you still need to prepare a persistent directory for configuring the startup of the Seafile container. In this document, we use the following path for the persistent directory with maximum 10GB space:
-
-        ```
-        /opt/seafile/shared
-        ```
-
-        If you would like to change it or increase the space, you should modify the `seafile-persistentvolume.yaml` and `seafile-persistentvolumeclaim.yaml` in this document.
-
-!!! tip "More details about the number of nodes"
-    1. If your number of nodes does not meet our recommended number (i.e. 3 nodes), please adjust according to the following strategies:
-        - **2 nodes**: A frontend service and a backend service on the same node
-        - **1 node**: Please refer [here](./k8s_single_node.md) to deploy Seafile in a K8S single node instead a cluster.
-    2. If you have more available nodes for Seafile server, please provide them to the Seafile frontend service and **make sure there is only one backend service running**. Here is a simple relationship between the number of Seafile frontent services ($N_f$) and total nodes ($N_t$):
-        $$
-        N_f = N_t - 1,
-        $$
-        where the number **1** means one node for Seafile backend service.
+Please refer [here](./system_requirements.md#seafile-cluster) for the details about the cluster requirements for **all nodes** in Seafile cluster.
 
 ### K8S tools
 

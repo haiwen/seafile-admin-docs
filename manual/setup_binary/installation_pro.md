@@ -4,24 +4,7 @@ This manual explains how to deploy and run Seafile Server Professional Edition (
 
 ## Requirements
 
-Seafile PE requires a minimum of 2 cores and 2GB RAM. 
-
-!!! note "Other requirements for Seafile PE"
-    - If elasticsearch is installed on the same server, the minimum requirements are 4 cores and 4 GB RAM and make sure the [mmapfs counts](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules-store.html#mmapfs) do not cause excptions like out of memory, which can be increased by following command (see <https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html> for futher details):
-
-        ```shell
-        sysctl -w vm.max_map_count=262144 #run as root
-        ```
-
-        or modify **/etc/sysctl.conf** and reboot to set this value permanently:
-
-        ```shell
-        nano /etc/sysctl.conf
-
-        # modify vm.max_map_count
-        vm.max_map_count=262144
-        ```
-    - If your machine **dose not** have enough requirements, 2 Cores and 2GB RAM are minimum by using [*SeaSearch*](../setup/use_seasearch.md), a lightweight search engine built on open source search engine [*ZincSearch*](https://zincsearch-docs.zinc.dev/), as the indexer
+Please refer [here](../setup/system_requirements.md#seafile-pro) for system requirements about Seafile PE.
 
 Seafile PE can be used without a paid license with up to three users. Licenses for more user can be purchased in the [Seafile Customer Center](https://customer.seafile.com) or contact Seafile Sales at [sales@seafile.com](mailto:sales@seafile.com) or one of [our partners](https://www.seafile.com/en/partner/).
 
@@ -101,11 +84,11 @@ Seafile uses the `mysql_native_password` plugin for authentication. The versions
 
         sudo pip3 install --timeout=3600 django==4.2.* future==1.0.* mysqlclient==2.1.*  \
             pymysql pillow==10.4.* pylibmc captcha==0.6.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.* \
-            psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.9.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 python-ldap==3.4.3 lxml gevent==24.2.*
+            psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.9.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 python-ldap==3.2.0 lxml gevent==24.2.*
 
         ```
 
-   === "Debian 11"
+    === "Debian 11"
 
         ```
         sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmysqlclient-dev-compat ldap-utils libldap2-dev libsasl2-dev
@@ -115,7 +98,7 @@ Seafile uses the `mysql_native_password` plugin for authentication. The versions
 
         sudo pip3 install --timeout=3600 django==4.2.* future==1.0.* mysqlclient==2.2.*  \
             pymysql pillow==10.4.* pylibmc captcha==0.6.* markupsafe==2.0.1 jinja2 sqlalchemy==2.0.* \
-            psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.9.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 python-ldap==3.4.3 lxml gevent==24.2.*
+            psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.9.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 python-ldap==3.2.0 lxml gevent==24.2.*
 
         ```
 
