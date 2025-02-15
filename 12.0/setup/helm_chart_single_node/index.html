@@ -10,13 +10,13 @@
         <meta name="author" content="seafile">
       
       
-        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/12.0/config/seafevents-conf/">
+        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/12.0/setup/helm_chart_single_node/">
       
       
-        <link rel="prev" href="../seahub_settings_py/">
+        <link rel="prev" href="../use_seasearch/">
       
       
-        <link rel="next" href="../seahub_customization/">
+        <link rel="next" href="../k8s_single_node/">
       
       
       <link rel="icon" href="../../media/favicon.ico">
@@ -24,7 +24,7 @@
     
     
       
-        <title>seafevents.conf - Seafile Admin Manual</title>
+        <title>Setup by Seafile Helm Chart - Seafile Admin Manual</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#configurable-options" class="md-skip">
+        <a href="#setup-seafile-with-a-single-k8s-pod-with-seafile-helm-chart" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              seafevents.conf
+              Setup by Seafile Helm Chart
             
           </span>
         </div>
@@ -245,11 +245,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../setup/overview/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../overview/" class="md-tabs__link">
           
   
   Setup
@@ -317,7 +319,11 @@
         
   
   
+  
     
+    
+      
+  
   
   
     
@@ -325,21 +331,11 @@
       
   
   
-    
-  
   
     
     
-      
-  
-  
-    
-  
-  
-    
-    
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../ldap_in_11.0_ce/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../config/ldap_in_11.0_ce/" class="md-tabs__link">
           
   
   Configuration
@@ -634,25 +630,30 @@
       
   
   
+    
   
   
+  
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -664,7 +665,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Setup
@@ -678,7 +679,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/overview/" class="md-nav__link">
+      <a href="../overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -700,7 +701,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/system_requirements/" class="md-nav__link">
+      <a href="../system_requirements/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -722,7 +723,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/caddy/" class="md-nav__link">
+      <a href="../caddy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -749,17 +750,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
         
           
-          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -785,7 +789,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_ce_by_docker/" class="md-nav__link">
+      <a href="../setup_ce_by_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -807,7 +811,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_pro_by_docker/" class="md-nav__link">
+      <a href="../setup_pro_by_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -834,25 +838,30 @@
                 
   
   
+    
   
   
+  
     
     
     
       
       
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
         
           
-          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -864,7 +873,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_5">
             <span class="md-nav__icon md-icon"></span>
             Advanced topics
@@ -919,7 +928,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_with_s3/" class="md-nav__link">
+      <a href="../setup_with_s3/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -941,7 +950,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_with_ceph/" class="md-nav__link">
+      <a href="../setup_with_ceph/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -963,7 +972,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_with_swift/" class="md-nav__link">
+      <a href="../setup_with_swift/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -985,7 +994,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_with_multiple_storage_backends/" class="md-nav__link">
+      <a href="../setup_with_multiple_storage_backends/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1007,7 +1016,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/migrate_backends_data/" class="md-nav__link">
+      <a href="../migrate_backends_data/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1037,7 +1046,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/use_seasearch/" class="md-nav__link">
+      <a href="../use_seasearch/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1056,8 +1065,10 @@
                 
   
   
+    
   
   
+  
     
     
     
@@ -1067,11 +1078,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5_3" checked>
         
           
           <label class="md-nav__link" for="__nav_2_5_3" id="__nav_2_5_3_label" tabindex="0">
@@ -1086,7 +1097,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_5_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_5_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_5_3">
             <span class="md-nav__icon md-icon"></span>
             Setup with Kubernetes (K8S, single pod mode)
@@ -1097,10 +1108,31 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../setup/helm_chart_single_node/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Setup by Seafile Helm Chart
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1110,6 +1142,128 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preparation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Preparation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      System requirements
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-seafile-helm-chart" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install Seafile helm chart
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#activating-the-seafile-license-pro" class="md-nav__link">
+    <span class="md-ellipsis">
+      Activating the Seafile License (Pro)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#container-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Container management
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uninstall-chart" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uninstall chart
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#version-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      Version control
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extra-volumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extra volumes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-advanced-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other advanced operations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1122,7 +1276,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/k8s_single_node/" class="md-nav__link">
+      <a href="../k8s_single_node/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1152,7 +1306,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/seafile_docker_autostart/" class="md-nav__link">
+      <a href="../seafile_docker_autostart/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1174,7 +1328,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_with_an_existing_mysql_server/" class="md-nav__link">
+      <a href="../setup_with_an_existing_mysql_server/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1196,7 +1350,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/use_other_reverse_proxy/" class="md-nav__link">
+      <a href="../use_other_reverse_proxy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1218,7 +1372,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/run_seafile_as_non_root_user_inside_docker/" class="md-nav__link">
+      <a href="../run_seafile_as_non_root_user_inside_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1253,17 +1407,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
         
           
-          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -1289,7 +1446,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/cluster_deploy_with_docker/" class="md-nav__link">
+      <a href="../cluster_deploy_with_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1352,7 +1509,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/helm_chart_cluster/" class="md-nav__link">
+      <a href="../helm_chart_cluster/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1374,7 +1531,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/cluster_deploy_with_k8s/" class="md-nav__link">
+      <a href="../cluster_deploy_with_k8s/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1417,17 +1574,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
         
           
-          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -1453,7 +1613,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/migrate_ce_to_pro_with_docker/" class="md-nav__link">
+      <a href="../migrate_ce_to_pro_with_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1475,7 +1635,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/migrate_non_docker_to_docker/" class="md-nav__link">
+      <a href="../migrate_non_docker_to_docker/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2456,30 +2616,25 @@
       
   
   
-    
   
   
-  
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -2491,7 +2646,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Configuration
@@ -2510,20 +2665,17 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
         
           
-          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -2590,7 +2742,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ldap_in_11.0_ce/" class="md-nav__link">
+      <a href="../../config/ldap_in_11.0_ce/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2612,7 +2764,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ldap_in_11.0_pro/" class="md-nav__link">
+      <a href="../../config/ldap_in_11.0_pro/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2683,7 +2835,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../single_sign_on/" class="md-nav__link">
+      <a href="../../config/single_sign_on/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2705,7 +2857,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../oauth/" class="md-nav__link">
+      <a href="../../config/oauth/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2727,7 +2879,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../remote_user/" class="md-nav__link">
+      <a href="../../config/remote_user/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2749,7 +2901,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../shibboleth_authentication/" class="md-nav__link">
+      <a href="../../config/shibboleth_authentication/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2771,7 +2923,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../auto_login_seadrive/" class="md-nav__link">
+      <a href="../../config/auto_login_seadrive/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2793,7 +2945,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../saml2_in_10.0/" class="md-nav__link">
+      <a href="../../config/saml2_in_10.0/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2815,7 +2967,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../auth_switch/" class="md-nav__link">
+      <a href="../../config/auth_switch/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2886,7 +3038,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../multi_institutions/" class="md-nav__link">
+      <a href="../../config/multi_institutions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2908,7 +3060,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../roles_permissions/" class="md-nav__link">
+      <a href="../../config/roles_permissions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2930,7 +3082,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../admin_roles_permissions/" class="md-nav__link">
+      <a href="../../config/admin_roles_permissions/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2952,7 +3104,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../multi_tenancy/" class="md-nav__link">
+      <a href="../../config/multi_tenancy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2990,7 +3142,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../details_about_file_search/" class="md-nav__link">
+      <a href="../../config/details_about_file_search/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3012,7 +3164,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ocm/" class="md-nav__link">
+      <a href="../../config/ocm/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3031,30 +3183,25 @@
                 
   
   
-    
   
   
-  
     
     
     
       
       
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
         
           
-          
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -3066,7 +3213,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5_4">
             <span class="md-nav__icon md-icon"></span>
             Available configuration options
@@ -3080,7 +3227,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../config/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3102,7 +3249,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../env/" class="md-nav__link">
+      <a href="../../config/env/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3124,7 +3271,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ccnet-conf/" class="md-nav__link">
+      <a href="../../config/ccnet-conf/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3146,7 +3293,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../seafile-conf/" class="md-nav__link">
+      <a href="../../config/seafile-conf/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3168,7 +3315,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../seahub_settings_py/" class="md-nav__link">
+      <a href="../../config/seahub_settings_py/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3187,31 +3334,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    seafevents.conf
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../config/seafevents-conf/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3221,35 +3347,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#the-following-configurations-for-pro-edition-only" class="md-nav__link">
-    <span class="md-ellipsis">
-      The following configurations for Pro Edition only
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -3262,7 +3359,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../seahub_customization/" class="md-nav__link">
+      <a href="../../config/seahub_customization/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3284,7 +3381,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sending_email/" class="md-nav__link">
+      <a href="../../config/sending_email/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4374,11 +4471,104 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#the-following-configurations-for-pro-edition-only" class="md-nav__link">
+  <a href="#preparation" class="md-nav__link">
     <span class="md-ellipsis">
-      The following configurations for Pro Edition only
+      Preparation
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Preparation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      System requirements
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-seafile-helm-chart" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install Seafile helm chart
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#activating-the-seafile-license-pro" class="md-nav__link">
+    <span class="md-ellipsis">
+      Activating the Seafile License (Pro)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#container-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Container management
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uninstall-chart" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uninstall chart
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#version-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      Version control
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extra-volumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extra volumes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-advanced-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other advanced operations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -4401,110 +4591,230 @@
   
 
 
-<h1 id="configurable-options">Configurable Options<a class="headerlink" href="#configurable-options" title="Permanent link">&para;</a></h1>
-<p>In the file <code>seafevents.conf</code>:</p>
-<div class="highlight"><pre><span></span><code>[DATABASE]
-type = mysql
-host = 192.168.0.2
-port = 3306
-username = seafile
-password = password
-name = seahub_db
-
-[STATISTICS]
-## must be &quot;true&quot; to enable statistics
-enabled = false
-
-[SEAHUB EMAIL]
-## must be &quot;true&quot; to enable user email notifications when there are new unread notifications
-enabled = true
-
-## interval of sending Seahub email. Can be s(seconds), m(minutes), h(hours), d(days)
-interval = 30m
-
-[FILE HISTORY]
-enabled = true
-threshold = 5
-suffix = md,txt,...
-
-## From seafile 7.0.0
-## Recording file history to database for fast access is enabled by default for &#39;Markdown, .txt, ppt, pptx, doc, docx, xls, xlsx&#39;. 
-## After enable the feature, the old histories version for markdown, doc, docx files will not be list in the history page.
-## (Only new histories that stored in database will be listed) But the users can still access the old versions in the library snapshots.
-## For file types not listed in the suffix , histories version will be scanned from the library history as before.
-## The feature default is enable. You can set the &#39;enabled = false&#39; to disable the feature.
-
-## The &#39;threshold&#39; is the time threshold for recording the historical version of a file, in minutes, the default is 5 minutes. 
-## This means that if the interval between two adjacent file saves is less than 5 minutes, the two file changes will be merged and recorded as a historical version. 
-## When set to 0, there is no time limit, which means that each save will generate a separate historical version.
-
-## If you need to modify the file list format, you can add &#39;suffix = md, txt, ...&#39; configuration items to achieve.
+<h1 id="setup-seafile-with-a-single-k8s-pod-with-seafile-helm-chart">Setup Seafile with a single K8S pod with Seafile Helm Chart<a class="headerlink" href="#setup-seafile-with-a-single-k8s-pod-with-seafile-helm-chart" title="Permanent link">&para;</a></h1>
+<p>This manual explains how to deploy and run Seafile server on a Linux server using <a href="https://github.com/seafileltd/seafile-helm-chart"><em>Seafile Helm Chart</em></a> (<strong><em>chart</em></strong> thereafter) in a single pod (i.e., single node mode). Comparing to <a href="../k8s_single_node/">Setup by K8S resource files</a>, deployment with helm chart can simplify the deployment process and provide more flexible deployment control, which the way we recommend in deployment with K8S.</p>
+<p>For specific environment and configuration requirements, please refer to the description of the <a href="../setup_pro_by_docker/#requirements">Docker-based Seafile single-node deployment</a>. Please also refer to the description of the <strong><em>K8S tool</em></strong> section in <a href="../cluster_deploy_with_k8s/#k8s-tools">here</a>.</p>
+<h2 id="preparation">Preparation<a class="headerlink" href="#preparation" title="Permanent link">&para;</a></h2>
+<p>For persisting data using in the docker-base deployment, <code>/opt/seafile-data</code>, is still adopted in this manual. What's more, all K8S YAML files will be placed in <code>/opt/seafile-k8s-yaml</code> (replace it when following these instructions if you would like to use another path).</p>
+<p>By the way, we don't provide the deployment methods of basic services (e.g., <strong>Memcached</strong>, <strong>MySQL</strong> and <strong>Elasticsearch</strong>) and seafile-compatibility components (e.g., <strong>SeaDoc</strong>) for K8S in our document. If you need to install these services in K8S format, <strong><em>you can refer to the rewrite method in <a href="../k8s_single_node/">this document</a>.</em></strong></p>
+<h3 id="system-requirements">System requirements<a class="headerlink" href="#system-requirements" title="Permanent link">&para;</a></h3>
+<p>Please refer <a href="../system_requirements/">here</a> for system requirements about Seafile service. By the way, this will apply to all nodes where Seafile pods may appear in your K8S cluster.</p>
+<h2 id="install-seafile-helm-chart">Install Seafile helm chart<a class="headerlink" href="#install-seafile-helm-chart" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Create namespace</p>
+<div class="highlight"><pre><span></span><code>kubectl create namespace seafile
 </code></pre></div>
-<h2 id="the-following-configurations-for-pro-edition-only">The following configurations for Pro Edition only<a class="headerlink" href="#the-following-configurations-for-pro-edition-only" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>[AUDIT]
-## Audit log is disabled default.
-## Leads to additional SQL tables being filled up, make sure your SQL server is able to handle it.
-enabled = true
-
-[INDEX FILES]
-## must be &quot;true&quot; to enable search
-enabled = true
-
-## The interval the search index is updated. Can be s(seconds), m(minutes), h(hours), d(days)
-interval=10m
-
-## From Seafile 6.3.0 pro, in order to speed up the full-text search speed, you should setup
-highlight = fvh
-
-## If true, indexes the contents of office/pdf files while updating search index
-## Note: If you change this option from &quot;false&quot; to &quot;true&quot;, then you need to clear the search index and update the index again.
-## Refer to file search manual for details.
-index_office_pdf=false
-
-## The default size limit for doc, docx, ppt, pptx, xls, xlsx and pdf files. Files larger than this will not be indexed.
-## Since version 6.2.0
-## Unit: MB
-office_file_size_limit = 10
-
-## From 9.0.7 pro, Seafile supports connecting to Elasticsearch through username and password, you need to configure username and password for the Elasticsearch server
-username = elastic           # username to connect to Elasticsearch
-password = elastic_password  # password to connect to Elasticsearch
-
-## From 9.0.7 pro, Seafile supports connecting to elasticsearch via HTTPS, you need to configure HTTPS for the Elasticsearch server
-scheme = https               # The default is http. If the Elasticsearch server is not configured with HTTPS, the scheme and cafile do not need to be configured
-cafile = path/to/cert.pem    # The certificate path for user authentication. If the Elasticsearch server does not enable certificate authentication, do not need to be configured
-
-## From version 11.0.5 Pro, you can custom ElasticSearch index names for distinct instances when intergrating multiple Seafile servers to a single ElasticSearch Server.
-repo_status_index_name = your-repo-status-index-name  # default is `repo_head`
-repo_files_index_name = your-repo-files-index-name    # default is `repofiles`
-
-## The default loglevel is `warning`.
-## Since version 11.0.4
-loglevel = info
-
-[EVENTS PUBLISH]
-## must be &quot;true&quot; to enable publish events messages
-enabled = false
-## message format: repo-update\t{{repo_id}}}\t{{commit_id}}
-## Currently only support redis message queue
-mq_type = redis
-
-[REDIS]
-## redis use the 0 database and &quot;repo_update&quot; channel
-server = 192.168.1.1
-port = 6379
-password = q!1w@#123
-
-[AUTO DELETION]
-enabled = true     # Default is false, when enabled, users can use file auto deletion feature
-interval = 86400   # The unit is second(s), the default frequency is one day, that is, it runs once a day
-
-[SEASEARCH]
-enabled = true # Default is false, when enabled, seafile can use SeaSearch as the search engine
-seasearch_url = http://seasearch:4080 # If your SeaSearch server deploy on another machine, replace it to the truth address
-seasearch_token = &lt;your auth token&gt; # base64 code consist of `username:password`
-interval = 10m # The interval the search index is updated. Can be s(seconds), m(minutes), h(hours), d(days)
+</li>
+<li>
+<p>Create a secret for sensitive data</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Seafile Pro</label><label for="__tabbed_1_2">Seafile CE</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>generic<span class="w"> </span>seafile-secret<span class="w"> </span>--namespace<span class="w"> </span>seafile<span class="w"> </span><span class="se">\</span>
+--from-literal<span class="o">=</span><span class="nv">JWT_PRIVATE_KEY</span><span class="o">=</span><span class="s1">&#39;&lt;required&gt;&#39;</span><span class="w"> </span><span class="se">\</span>
+--from-literal<span class="o">=</span><span class="nv">SEAFILE_MYSQL_DB_PASSWORD</span><span class="o">=</span><span class="s1">&#39;&lt;required&gt;&#39;</span><span class="w"> </span><span class="se">\</span>
+--from-literal<span class="o">=</span><span class="nv">INIT_SEAFILE_ADMIN_PASSWORD</span><span class="o">=</span><span class="s1">&#39;&lt;required&gt;&#39;</span><span class="w"> </span><span class="se">\</span>
+--from-literal<span class="o">=</span><span class="nv">INIT_SEAFILE_MYSQL_ROOT_PASSWORD</span><span class="o">=</span><span class="s1">&#39;&lt;required&gt;&#39;</span><span class="w"> </span><span class="se">\</span>
+--from-literal<span class="o">=</span><span class="nv">INIT_S3_SECRET_KEY</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="w">  </span>
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>generic<span class="w"> </span>seafile-secret<span class="w"> </span>--namespace<span class="w"> </span>seafile<span class="w"> </span><span class="se">\</span>
+--from-literal<span class="o">=</span><span class="nv">JWT_PRIVATE_KEY</span><span class="o">=</span><span class="s1">&#39;&lt;required&gt;&#39;</span><span class="w"> </span><span class="se">\</span>
+--from-literal<span class="o">=</span><span class="nv">SEAFILE_MYSQL_DB_PASSWORD</span><span class="o">=</span><span class="s1">&#39;&lt;required&gt;&#39;</span><span class="w"> </span><span class="se">\</span>
+--from-literal<span class="o">=</span><span class="nv">INIT_SEAFILE_ADMIN_PASSWORD</span><span class="o">=</span><span class="s1">&#39;&lt;required&gt;&#39;</span><span class="w"> </span><span class="se">\</span>
+--from-literal<span class="o">=</span><span class="nv">INIT_SEAFILE_MYSQL_ROOT_PASSWORD</span><span class="o">=</span><span class="s1">&#39;&lt;required&gt;&#39;</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Download and modify the <code>my-values.yaml</code> according to your configurations. By the way, you can follow <a href="../../config/env/">here</a> for the details:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Seafile Pro</label><label for="__tabbed_2_2">Seafile CE</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>my-values.yaml<span class="w"> </span>https://haiwen.github.io/seafile-helm-chart/values/latest/pro.yaml
+
+nano<span class="w"> </span>my-values.yaml
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>my-values.yaml<span class="w"> </span>https://haiwen.github.io/seafile-helm-chart/values/latest/ce.yaml
+
+nano<span class="w"> </span>my-values.yaml
+</code></pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>It is not necessary to use the <code>my-values.yaml</code> we provided (i.e., you can create an empty <code>my-values.yaml</code> and add required field, as others have defined default values in our chart), because it destroys the flexibility of deploying with Helm, but it contains some formats of how Seafile Helm Chart reads these configurations, as well as all the environment variables and secret variables that can be read directly.</p>
+</div>
+</li>
+<li>
+<p>Then install the chart use the following command:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Seafile Pro</label><label for="__tabbed_3_2">Seafile CE</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>seafile<span class="w"> </span>https://haiwen.github.io/seafile-helm-chart/repo
+helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>seafile<span class="w"> </span>seafile/pro<span class="w">  </span>--namespace<span class="w"> </span>seafile<span class="w"> </span>--create-namespace<span class="w"> </span>--values<span class="w"> </span>my-values.yaml
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>seafile<span class="w"> </span>https://haiwen.github.io/seafile-helm-chart/repo
+helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>seafile<span class="w"> </span>seafile/ce<span class="w">  </span>--namespace<span class="w"> </span>seafile<span class="w"> </span>--create-namespace<span class="w"> </span>--values<span class="w"> </span>my-values.yaml
+</code></pre></div>
+</div>
+</div>
+</div>
+</li>
+</ol>
+<p>After installing the chart, the Seafile pod should startup automaticlly. </p>
+<div class="admonition note">
+<p class="admonition-title">About Seafile service</p>
+<p>The default service type of Seafile is <strong><em>LoadBalancer</em></strong>. You should specify K8S load balancer for Seafile or specify at least one external ip, that can be accessed from external networks.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Important for Pro edition</p>
+<p>By default, Seafile (<strong><em>Pro</em></strong>) will access the <strong><em>Memcached</em></strong> and <strong><em>Elasticsearch</em></strong> with the specific service name:</p>
+<ul>
+<li><strong><em>Memcached</em></strong>: <code>memcached</code> with port 11211</li>
+<li><strong><em>Elasticsearch</em></strong>: <code>elasticsearch</code> with port 9200</li>
+</ul>
+<p>If the above services are:</p>
+<ul>
+<li>Not in your K8S pods (including using an external service)</li>
+<li>With different service name</li>
+<li>With different server port</li>
+</ul>
+<p>Please modfiy the files in <code>/opt/seafile-data/seafile/conf</code> (especially the <code>seafevents.conf</code>, <code>seafile.conf</code> and <code>seahub_settings.py</code>) to make correct the configurations for above services, otherwise the Seafile server cannot start normally. Then restart Seafile server:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.items[*].metadata.name}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>seafile<span class="k">)</span>
+</code></pre></div>
+</div>
+<h2 id="activating-the-seafile-license-pro">Activating the Seafile License (Pro)<a class="headerlink" href="#activating-the-seafile-license-pro" title="Permanent link">&para;</a></h2>
+<p>If you have a <code>seafile-license.txt</code> license file, simply put it in the volume of the Seafile container. The volumne's default path in the Compose file is <code>/opt/seafile-data</code>. If you have modified the path, save the license file under your custom path.</p>
+<div class="admonition danger">
+<p class="admonition-title">If the license file has a different name or cannot be read, Seafile server will start with in trailer mode with most THREE users</p>
+</div>
+<p>Then restart Seafile:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.items[*].metadata.name}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>seafile<span class="k">)</span>
+</code></pre></div>
+<h2 id="container-management">Container management<a class="headerlink" href="#container-management" title="Permanent link">&para;</a></h2>
+<p>Similar to docker installation, you can also manage containers through <a href="https://kubernetes.io/docs/reference/kubectl/#operations">some kubectl commands</a>. For example, you can use the following command to check whether the relevant resources are started successfully and whether the relevant services can be accessed normally. First, execute the following command and remember the pod name with <code>seafile-</code> as the prefix (such as <code>seafile-748b695648-d6l4g</code>)</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile
+</code></pre></div>
+<p>You can check a status of a pod by </p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>logs<span class="w"> </span>seafile-748b695648-d6l4g<span class="w"> </span>-n<span class="w"> </span>seafile
+</code></pre></div>
+<p>and enter a container by</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-748b695648-d6l4g<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span>--<span class="w">  </span>bash
+</code></pre></div>
+<h2 id="uninstall-chart">Uninstall chart<a class="headerlink" href="#uninstall-chart" title="Permanent link">&para;</a></h2>
+<p>You can uninstall chart by the following command:</p>
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>delete<span class="w"> </span>seafile<span class="w"> </span>--namespace<span class="w"> </span>seafile
+</code></pre></div>
+<h2 id="advanced-operations">Advanced operations<a class="headerlink" href="#advanced-operations" title="Permanent link">&para;</a></h2>
+<h3 id="version-control">Version control<a class="headerlink" href="#version-control" title="Permanent link">&para;</a></h3>
+<p>Seafile Helm Chart is designed to provide fast deployment and version control. You can update and rollback versions using the following setps:</p>
+<ol>
+<li>
+<p>Update Helm repo</p>
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>repo<span class="w"> </span>update
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>When using the repo update command, this will not always take effect immediately, as the previous repo will be stored in the cache.</p>
+</div>
+</li>
+<li>
+<p>Download (optional) and modify the new <code>my-values.yaml</code></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Seafile Pro</label><label for="__tabbed_4_2">Seafile CE</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>my-values.yaml<span class="w"> </span>https://haiwen.github.io/seafile-helm-chart/values/&lt;release-version&gt;/cluster.yaml
+
+nano<span class="w"> </span>my-values.yaml
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>my-values.yaml<span class="w"> </span>https://haiwen.github.io/seafile-helm-chart/values/&lt;release-version&gt;/cluster.yaml
+
+nano<span class="w"> </span>my-values.yaml
+</code></pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">About version of <em>Seafile Helm Chart</em> and <em>Seafile</em></p>
+<p>The version of Seafile Helm Chart is same as the major version of Seafile, i.e.:</p>
+<ul>
+<li>latest Seafile: 12.0.9</li>
+<li>latest Seafile Helm Chart release: 12.0</li>
+</ul>
+<p>By default, it will follow the latest Chart and the latest Seafile</p>
+</div>
+</li>
+<li>
+<p>Upgrade release to a new version</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Seafile Pro</label><label for="__tabbed_5_2">Seafile CE</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>seafile<span class="w"> </span>seafile/pro<span class="w"> </span>--namespace<span class="w"> </span>seafile<span class="w"> </span>--create-namespace<span class="w"> </span>--values<span class="w"> </span>my-values.yaml<span class="w"> </span>--version<span class="w"> </span>&lt;release-version&gt;
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>seafile<span class="w"> </span>seafile/ce<span class="w"> </span>--namespace<span class="w"> </span>seafile<span class="w"> </span>--create-namespace<span class="w"> </span>--values<span class="w"> </span>my-values.yaml<span class="w"> </span>--version<span class="w"> </span>&lt;release-version&gt;
+</code></pre></div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>(Rollback) if you would like rollback to your old-running release, you can use following command to rollback your current instances</p>
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>rollback<span class="w"> </span>seafile<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span>&lt;revision&gt;
+</code></pre></div>
+</li>
+</ol>
+<h3 id="extra-volumes">Extra volumes<a class="headerlink" href="#extra-volumes" title="Permanent link">&para;</a></h3>
+<p>In this part, we take encrypted seafile-license file for example. You can also create a <em>secret</em> resource to encrypt your license file in your K8S cluster:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>generic<span class="w"> </span>seafile-license<span class="w"> </span>--from-file<span class="o">=</span>seafile-license.txt<span class="o">=</span><span class="nv">$PATH_TO_YOUR_LICENSE_FILE</span><span class="w"> </span>--namespace<span class="w"> </span>seafile
+</code></pre></div>
+<p>Then modify <code>my-values.yaml</code> to add the information extra volumes:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">seafile</span><span class="p">:</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">extraVolumes</span><span class="p p-Indicator">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafileLicense</span>
+<span class="w">    </span><span class="nt">volumeInfo</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">secret</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-license</span>
+<span class="w">            </span><span class="l l-Scalar l-Scalar-Plain">items</span><span class="p p-Indicator">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-license.txt</span>
+<span class="w">                </span><span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-license.txt</span>
+<span class="w">    </span><span class="nt">subPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-license.txt</span>
+<span class="w">    </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/shared/seafile/seafile-license.txt</span>
+<span class="w">    </span><span class="nt">readOnly</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+<p>Finally you can upgrade your chart by:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Seafile Pro</label><label for="__tabbed_6_2">Seafile CE</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>seafile<span class="w"> </span>seafile/pro<span class="w">  </span>--namespace<span class="w"> </span>seafile<span class="w"> </span>--create-namespace<span class="w"> </span>--values<span class="w"> </span>my-values.yaml
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>seafile<span class="w"> </span>seafile/ce<span class="w">  </span>--namespace<span class="w"> </span>seafile<span class="w"> </span>--create-namespace<span class="w"> </span>--values<span class="w"> </span>my-values.yaml
+</code></pre></div>
+</div>
+</div>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Flexible in Seafile Helm Chart</p>
+<p>No only the extra volumes, you can also define the other environment variables objects (i.e., <code>extraEnv</code>) and resources objects (i.e., <code>extraResources</code>) in <code>my-values.yaml</code></p>
+</div>
+<h3 id="other-advanced-operations">Other advanced operations<a class="headerlink" href="#other-advanced-operations" title="Permanent link">&para;</a></h3>
+<p>Please refer from <a href="../k8s_single_node/#https">here</a> for futher advanced operations.</p>
 
 
 
@@ -4540,7 +4850,7 @@ interval = 10m # The interval the search index is updated. Can be s(seconds), m(
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../seahub_settings_py/" class="md-footer__link md-footer__link--prev" aria-label="Previous: seahub_settings.py">
+          <a href="../use_seasearch/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Use SeaSearch as search engine (Pro)">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -4550,20 +4860,20 @@ interval = 10m # The interval the search index is updated. Can be s(seconds), m(
                 Previous
               </span>
               <div class="md-ellipsis">
-                seahub_settings.py
+                Use SeaSearch as search engine (Pro)
               </div>
             </div>
           </a>
         
         
           
-          <a href="../seahub_customization/" class="md-footer__link md-footer__link--next" aria-label="Next: Seahub customization">
+          <a href="../k8s_single_node/" class="md-footer__link md-footer__link--next" aria-label="Next: Setup by K8S resource files">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Seahub customization
+                Setup by K8S resource files
               </div>
             </div>
             <div class="md-footer__button md-icon">
