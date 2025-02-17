@@ -1,22 +1,22 @@
 # Seafile FSCK
 
-On the server side, Seafile stores the files in the libraries in an internal format. Seafile has its own representation of directories and files (similar to Git).
+On the server side, Seafile stores the files in the libraries in an internal format. Seafile has its own representation of directories and files (similar to *Git*).
 
-With default installation, these internal objects are stored in the server's file system directly (such as Ext4, NTFS). But most file systems don't assure the integrity of file contents after a hard shutdown or system crash. So if new Seafile internal objects are being written when the system crashes, they can be corrupt after the system reboots. This will make part of the corresponding library not accessible.
+With default installation, these internal objects are stored in the server's file system directly (such as ***Ext4***, ***NTFS***). But most file systems don't assure the integrity of file contents after a hard shutdown or system crash. So if new Seafile internal objects are being written when the system crashes, they can be corrupt after the system reboots. This will make part of the corresponding library not accessible.
 
 !!! warning
-    If you store the seafile-data directory in a battery-backed NAS (like EMC or NetApp), or use S3 backend available in the Pro edition, the internal objects won't be corrupt.
-
-We provide a seaf-fsck.sh script to check the integrity of libraries. The seaf-fsck tool accepts the following arguments:
+    If you store the seafile-data directory in a ***battery-backed NAS*** (like *EMC* or *NetApp*), or use S3 backend available in the Pro edition, the internal objects won't be corrupt.
 
 !!! note
-    If your Seafile server is deployed with Docker, make sure you have enter the container before executing the script:
+    If your Seafile server is deployed with Docker, make sure you have enter the container before executing the following commands in this manual:
 
     ```sh
     docker exec -it seafile bash
     ```
 
     This is also required for the other scripts in this document.
+
+We provide a seaf-fsck.sh script to check the integrity of libraries. The seaf-fsck tool accepts the following arguments:
 
 ```sh
 cd /opt/seafile/seafile-server-latest
@@ -60,9 +60,7 @@ The output looks like:
 
 ```
 
-The corrupted files and directories are reported.
-
-Sometimes you can see output like the following:
+The corrupted files and directories are reported in the above message. By the way, you may also see output like the following:
 
 ```
 [02/13/15 16:36:11] Commit 6259251e2b0dd9a8e99925ae6199cbf4c134ec10 is missing
@@ -72,7 +70,7 @@ Sometimes you can see output like the following:
 
 ```
 
-This means the "head commit" (current state of the library) recorded in database is not consistent with the library data. In such case, fsck will try to find the last consistent state and check the integrity in that state.
+This means the ***head commit*** (current state of the library) recorded in database is not consistent with the library data. In such case, fsck will try to find the last consistent state and check the integrity in that state.
 
 !!! tip
     If you have many libraries, it's helpful to save the fsck output into a log file for later analysis.
@@ -115,19 +113,17 @@ Starting from Pro edition 7.1.5, an option is added to speed up FSCK. Most of th
 
 In many cases, the file contents won't be corrupted most of time. Some objects are just missing from the system. So it's enough to only check for object existence. This will greatly speed up the fsck process.
 
-To skip checking file contents, add the "--shallow" or "-s" option to seaf-fsck.
+To skip checking file contents, add the `--shallow` or `-s` option to seaf-fsck.
 
 ## Exporting Libraries to File System
 
-You can use seaf-fsck to export all the files in libraries to external file system (such as Ext4). This procedure doesn't rely on the seafile database. As long as you have your seafile-data directory, you can always export your files from Seafile to external file system.
+You can use seaf-fsck to export all the files in libraries to external file system (such as Ext4). This procedure doesn't rely on the seafile database. As long as you have your seafile-data directory, you can always export your files from Seafile to external file system. The command about this operation is
 
-The command syntax is
-
-```
+```sh
 ./seaf-fsck.sh --export top_export_path [library-id1] [library-id2] ...
-
 ```
 
 The argument `top_export_path` is a directory to place the exported files. Each library will be exported as a sub-directory of the export path. If you don't specify library ids, all libraries will be exported.
 
-Currently only un-encrypted libraries can be exported. Encrypted libraries will be skipped.
+!!! note
+    Currently **only un-encrypted libraries can be exported**. Encrypted libraries will be skipped.
