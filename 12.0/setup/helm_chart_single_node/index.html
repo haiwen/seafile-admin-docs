@@ -13,10 +13,10 @@
         <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/12.0/setup/helm_chart_single_node/">
       
       
-        <link rel="prev" href="../use_seasearch/">
+        <link rel="prev" href="../cluster_deploy_with_docker/">
       
       
-        <link rel="next" href="../k8s_single_node/">
+        <link rel="next" href="../helm_chart_cluster/">
       
       
       <link rel="icon" href="../../media/favicon.ico">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Setup by Seafile Helm Chart - Seafile Admin Manual</title>
+        <title>Single node - Seafile Admin Manual</title>
       
     
     
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Setup by Seafile Helm Chart
+              Single node
             
           </span>
         </div>
@@ -838,8 +838,6 @@
                 
   
   
-    
-  
   
   
     
@@ -854,11 +852,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
         
           
           <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="">
@@ -873,7 +871,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_5">
             <span class="md-nav__icon md-icon"></span>
             Advanced topics
@@ -1065,6 +1063,170 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../seafile_docker_autostart/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Seafile Docker autostart
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup_with_an_existing_mysql_server/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deploy with an existing MySQL server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use_other_reverse_proxy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Use other reverse proxy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../run_seafile_as_non_root_user_inside_docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Run Seafile as non root user inside docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cluster_deploy_with_docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cluster installation (Pro)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Setup with Kubernetes (K8S)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            Setup with Kubernetes (K8S)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
     
   
   
@@ -1082,14 +1244,14 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7_1" checked>
         
           
-          <label class="md-nav__link" for="__nav_2_5_3" id="__nav_2_5_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_7_1" id="__nav_2_7_1_label" tabindex="0">
             
   
   <span class="md-ellipsis">
-    Setup with Kubernetes (K8S, single pod mode)
+    With Helm
     
   </span>
   
@@ -1097,10 +1259,10 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_5_3_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_2_5_3">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_7_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_7_1">
             <span class="md-nav__icon md-icon"></span>
-            Setup with Kubernetes (K8S, single pod mode)
+            With Helm
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1124,7 +1286,7 @@
           
   
   <span class="md-ellipsis">
-    Setup by Seafile Helm Chart
+    Single node
     
   </span>
   
@@ -1136,7 +1298,7 @@
         
   
   <span class="md-ellipsis">
-    Setup by Seafile Helm Chart
+    Single node
     
   </span>
   
@@ -1276,11 +1438,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../k8s_single_node/" class="md-nav__link">
+      <a href="../helm_chart_cluster/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Setup by K8S resource files
+    Cluster (Pro)
     
   </span>
   
@@ -1294,168 +1456,6 @@
           </ul>
         </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../seafile_docker_autostart/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Seafile Docker autostart
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../setup_with_an_existing_mysql_server/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Deploy with an existing MySQL server
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../use_other_reverse_proxy/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Use other reverse proxy
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../run_seafile_as_non_root_user_inside_docker/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Run Seafile as non root user inside docker
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-      
-      
-        
-          
-          
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
-        
-          
-          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="">
-            
-  
-  <span class="md-ellipsis">
-    Cluster installation (Pro)
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_6">
-            <span class="md-nav__icon md-icon"></span>
-            Cluster installation (Pro)
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../cluster_deploy_with_docker/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Seafile Docker Cluster Deployment
-    
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -1480,14 +1480,14 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7_2" >
         
           
-          <label class="md-nav__link" for="__nav_2_6_2" id="__nav_2_6_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_7_2" id="__nav_2_7_2_label" tabindex="0">
             
   
   <span class="md-ellipsis">
-    Setup with Kubernetes (K8s)
+    By K8S resource files
     
   </span>
   
@@ -1495,10 +1495,10 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_6_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_6_2">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7_2">
             <span class="md-nav__icon md-icon"></span>
-            Setup with Kubernetes (K8s)
+            By K8S resource files
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1509,11 +1509,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../helm_chart_cluster/" class="md-nav__link">
+      <a href="../k8s_single_node/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Setup by Seafile Helm Chart
+    Single node
     
   </span>
   
@@ -1535,7 +1535,7 @@
         
   
   <span class="md-ellipsis">
-    Setup by K8S resource files
+    Cluster (Pro)
     
   </span>
   
@@ -1584,10 +1584,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
         
           
-          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -1599,8 +1599,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
             <span class="md-nav__icon md-icon"></span>
             Migration
           </label>
@@ -4850,7 +4850,7 @@ nano<span class="w"> </span>my-values.yaml
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../use_seasearch/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Use SeaSearch as search engine (Pro)">
+          <a href="../cluster_deploy_with_docker/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Cluster installation (Pro)">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -4860,20 +4860,20 @@ nano<span class="w"> </span>my-values.yaml
                 Previous
               </span>
               <div class="md-ellipsis">
-                Use SeaSearch as search engine (Pro)
+                Cluster installation (Pro)
               </div>
             </div>
           </a>
         
         
           
-          <a href="../k8s_single_node/" class="md-footer__link md-footer__link--next" aria-label="Next: Setup by K8S resource files">
+          <a href="../helm_chart_cluster/" class="md-footer__link md-footer__link--next" aria-label="Next: Cluster (Pro)">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Setup by K8S resource files
+                Cluster (Pro)
               </div>
             </div>
             <div class="md-footer__button md-icon">
