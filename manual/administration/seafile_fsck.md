@@ -21,6 +21,7 @@ We provide a seaf-fsck.sh script to check the integrity of libraries. The seaf-f
 ```sh
 cd /opt/seafile/seafile-server-latest
 ./seaf-fsck.sh [--repair|-r] [--export|-E export_path] [repo_id_1 [repo_id_2 ...]]
+```
 
 There are three modes of operation for seaf-fsck:
 
