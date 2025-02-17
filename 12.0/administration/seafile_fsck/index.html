@@ -2049,36 +2049,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/metadata-server/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Metadata Server
-    
-  </span>
-  
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../extension/webdav/" class="md-nav__link">
         
   
@@ -4474,20 +4444,20 @@
 
 
 <h1 id="seafile-fsck">Seafile FSCK<a class="headerlink" href="#seafile-fsck" title="Permanent link">&para;</a></h1>
-<p>On the server side, Seafile stores the files in the libraries in an internal format. Seafile has its own representation of directories and files (similar to Git).</p>
-<p>With default installation, these internal objects are stored in the server's file system directly (such as Ext4, NTFS). But most file systems don't assure the integrity of file contents after a hard shutdown or system crash. So if new Seafile internal objects are being written when the system crashes, they can be corrupt after the system reboots. This will make part of the corresponding library not accessible.</p>
+<p>On the server side, Seafile stores the files in the libraries in an internal format. Seafile has its own representation of directories and files (similar to <em>Git</em>).</p>
+<p>With default installation, these internal objects are stored in the server's file system directly (such as <strong><em>Ext4</em></strong>, <strong><em>NTFS</em></strong>). But most file systems don't assure the integrity of file contents after a hard shutdown or system crash. So if new Seafile internal objects are being written when the system crashes, they can be corrupt after the system reboots. This will make part of the corresponding library not accessible.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>If you store the seafile-data directory in a battery-backed NAS (like EMC or NetApp), or use S3 backend available in the Pro edition, the internal objects won't be corrupt.</p>
+<p>If you store the seafile-data directory in a <strong><em>battery-backed NAS</em></strong> (like <em>EMC</em> or <em>NetApp</em>), or use S3 backend available in the Pro edition, the internal objects won't be corrupt.</p>
 </div>
-<p>We provide a seaf-fsck.sh script to check the integrity of libraries. The seaf-fsck tool accepts the following arguments:</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If your Seafile server is deployed with Docker, make sure you have enter the container before executing the script:</p>
+<p>If your Seafile server is deployed with Docker, make sure you have enter the container before executing the following commands in this manual:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>bash
 </code></pre></div>
 <p>This is also required for the other scripts in this document.</p>
 </div>
+<p>We provide a seaf-fsck.sh script to check the integrity of libraries. The seaf-fsck tool accepts the following arguments:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest
 ./seaf-fsck.sh<span class="w"> </span><span class="o">[</span>--repair<span class="p">|</span>-r<span class="o">]</span><span class="w"> </span><span class="o">[</span>--export<span class="p">|</span>-E<span class="w"> </span>export_path<span class="o">]</span><span class="w"> </span><span class="o">[</span>repo_id_1<span class="w"> </span><span class="o">[</span>repo_id_2<span class="w"> </span>...<span class="o">]]</span>
 </code></pre></div>
@@ -4515,14 +4485,13 @@
 [02/13/15 16:21:07] fsck.c(178): File /01.2.md(4a73621f) is corrupted.
 [02/13/15 16:21:07] fsck.c(514): Fsck finished for repo ca1a860d.
 </code></pre></div>
-<p>The corrupted files and directories are reported.</p>
-<p>Sometimes you can see output like the following:</p>
+<p>The corrupted files and directories are reported in the above message. By the way, you may also see output like the following:</p>
 <div class="highlight"><pre><span></span><code>[02/13/15 16:36:11] Commit 6259251e2b0dd9a8e99925ae6199cbf4c134ec10 is missing
 [02/13/15 16:36:11] fsck.c(476): Repo ca1a860d HEAD commit is corrupted, need to restore to an old version.
 [02/13/15 16:36:11] fsck.c(314): Scanning available commits...
 [02/13/15 16:36:11] fsck.c(376): Find available commit 1b26b13c(created at 2015-02-13 16:10:21) for repo ca1a860d.
 </code></pre></div>
-<p>This means the "head commit" (current state of the library) recorded in database is not consistent with the library data. In such case, fsck will try to find the last consistent state and check the integrity in that state.</p>
+<p>This means the <strong><em>head commit</em></strong> (current state of the library) recorded in database is not consistent with the library data. In such case, fsck will try to find the last consistent state and check the integrity in that state.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>If you have many libraries, it's helpful to save the fsck output into a log file for later analysis.</p>
@@ -4550,14 +4519,16 @@
 <h2 id="speeding-up-fsck-by-not-checking-file-contents">Speeding up FSCK by not checking file contents<a class="headerlink" href="#speeding-up-fsck-by-not-checking-file-contents" title="Permanent link">&para;</a></h2>
 <p>Starting from Pro edition 7.1.5, an option is added to speed up FSCK. Most of the running time of seaf-fsck is spent on calculating hashes for file contents. This hash will be compared with block object ID. If they're not consistent, the block is detected as corrupted.</p>
 <p>In many cases, the file contents won't be corrupted most of time. Some objects are just missing from the system. So it's enough to only check for object existence. This will greatly speed up the fsck process.</p>
-<p>To skip checking file contents, add the "--shallow" or "-s" option to seaf-fsck.</p>
+<p>To skip checking file contents, add the <code>--shallow</code> or <code>-s</code> option to seaf-fsck.</p>
 <h2 id="exporting-libraries-to-file-system">Exporting Libraries to File System<a class="headerlink" href="#exporting-libraries-to-file-system" title="Permanent link">&para;</a></h2>
-<p>You can use seaf-fsck to export all the files in libraries to external file system (such as Ext4). This procedure doesn't rely on the seafile database. As long as you have your seafile-data directory, you can always export your files from Seafile to external file system.</p>
-<p>The command syntax is</p>
-<div class="highlight"><pre><span></span><code>./seaf-fsck.sh --export top_export_path [library-id1] [library-id2] ...
+<p>You can use seaf-fsck to export all the files in libraries to external file system (such as Ext4). This procedure doesn't rely on the seafile database. As long as you have your seafile-data directory, you can always export your files from Seafile to external file system. The command about this operation is</p>
+<div class="highlight"><pre><span></span><code>./seaf-fsck.sh<span class="w"> </span>--export<span class="w"> </span>top_export_path<span class="w"> </span><span class="o">[</span>library-id1<span class="o">]</span><span class="w"> </span><span class="o">[</span>library-id2<span class="o">]</span><span class="w"> </span>...
 </code></pre></div>
 <p>The argument <code>top_export_path</code> is a directory to place the exported files. Each library will be exported as a sub-directory of the export path. If you don't specify library ids, all libraries will be exported.</p>
-<p>Currently only un-encrypted libraries can be exported. Encrypted libraries will be skipped.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently <strong>only un-encrypted libraries can be exported</strong>. Encrypted libraries will be skipped.</p>
+</div>
 
 
 
