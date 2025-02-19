@@ -1468,27 +1468,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#container-management" class="md-nav__link">
+  <a href="#uninstall-seafile-k8s" class="md-nav__link">
     <span class="md-ellipsis">
-      Container management
+      Uninstall Seafile K8S
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#https" class="md-nav__link">
+  <a href="#advanced-operations" class="md-nav__link">
     <span class="md-ellipsis">
-      HTTPS
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#seafile-directory-structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      Seafile directory structure
+      Advanced operations
     </span>
   </a>
   
@@ -1528,6 +1519,28 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../k8s_advanced_management/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Seafile K8S advanced management
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -4474,27 +4487,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#container-management" class="md-nav__link">
+  <a href="#uninstall-seafile-k8s" class="md-nav__link">
     <span class="md-ellipsis">
-      Container management
+      Uninstall Seafile K8S
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#https" class="md-nav__link">
+  <a href="#advanced-operations" class="md-nav__link">
     <span class="md-ellipsis">
-      HTTPS
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#seafile-directory-structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      Seafile directory structure
+      Advanced operations
     </span>
   </a>
   
@@ -4523,7 +4527,7 @@
 <p>This manual explains how to deploy and run Seafile server on a Linux server using <em>Kubernetes</em> (<strong><em>k8s</em></strong> thereafter) in a single pod (i.e., single node mode). So this document is essentially an extended description of the <a href="../overview/">Docker-based Seafile single-node deployment</a> (support both CE and Pro). </p>
 <p>For specific environment and configuration requirements, please refer to the description of the <a href="../setup_pro_by_docker/#requirements">Docker-based Seafile single-node deployment</a>. Please also refer to the description of the <strong><em>K8S tool</em></strong> section in <a href="../cluster_deploy_with_k8s/#k8s-tools">here</a>.</p>
 <h2 id="system-requirements">System requirements<a class="headerlink" href="#system-requirements" title="Permanent link">&para;</a></h2>
-<p>Please refer <a href="../system_requirements/">here</a> for system requirements about Seafile service. By the way, this will apply to all nodes where Seafile pods may appear in your K8S cluster.</p>
+<p>Please refer <a href="../system_requirements/">here</a> for the details of system requirements about Seafile service. By the way, this will apply to all nodes where Seafile pods may appear in your K8S cluster. In general, we recommend that each node should have at least 2G RAM and a 2-core CPU (&gt; 2GHz).</p>
 <h2 id="gettings-started">Gettings started<a class="headerlink" href="#gettings-started" title="Permanent link">&para;</a></h2>
 <p>For persisting data using in the docker-base deployment, <code>/opt/seafile-data</code>, is still adopted in this manual. What's more, all K8S YAML files will be placed in <code>/opt/seafile-k8s-yaml</code> (replace it when following these instructions if you would like to use another path).</p>
 <p>By the way, we don't provide the deployment methods of basic services (e.g., <strong>Memcached</strong>, <strong>MySQL</strong> and <strong>Elasticsearch</strong>) and seafile-compatibility components (e.g., <strong>SeaDoc</strong>) for K8S in our document. If you need to install these services in K8S format, <strong><em>you can refer to the rewrite method of this document.</em></strong></p>
@@ -4580,8 +4584,8 @@ wget<span class="w"> </span>-P<span class="w"> </span>/opt/seafile-k8s-yaml<span
 <p>For the fields marked with <code>&lt;...&gt;</code> are <strong>required</strong>, please make sure these items are filled in, otherwise Seafile server may not run properly. </p>
 </div>
 <h2 id="start-seafile-server">Start Seafile server<a class="headerlink" href="#start-seafile-server" title="Permanent link">&para;</a></h2>
-<p>You can start Seafile server simply by</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>/opt/seafile-k8s-yaml/
+<p>You can start Seafile server and specify the resources into the namespace <code>seafile</code> for easier management by</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>/opt/seafile-k8s-yaml/<span class="w"> </span>-n<span class="w"> </span>seafile
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Important for Pro edition</p>
@@ -4597,8 +4601,7 @@ wget<span class="w"> </span>-P<span class="w"> </span>/opt/seafile-k8s-yaml<span
 <li>With different server port</li>
 </ul>
 <p>Please modfiy the files in <code>/opt/seafile-data/seafile/conf</code> (especially the <code>seafevents.conf</code>, <code>seafile.conf</code> and <code>seahub_settings.py</code>) to make correct the configurations for above services, otherwise the Seafile server cannot start normally. Then restart Seafile server:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>/opt/seafile-k8s-yaml/
-kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>/opt/seafile-k8s-yaml/
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.items[*].metadata.name}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>seafile<span class="k">)</span>
 </code></pre></div>
 </div>
 <h2 id="activating-the-seafile-license-pro">Activating the Seafile License (Pro)<a class="headerlink" href="#activating-the-seafile-license-pro" title="Permanent link">&para;</a></h2>
@@ -4607,27 +4610,14 @@ kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> <
 <p class="admonition-title">If the license file has a different name or cannot be read, Seafile server will start with in trailer mode with most THREE users</p>
 </div>
 <p>Then restart Seafile:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>/opt/seafile-k8s-yaml/
-kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>/opt/seafile-k8s-yaml/
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.items[*].metadata.name}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>seafile<span class="k">)</span>
 </code></pre></div>
-<h2 id="container-management">Container management<a class="headerlink" href="#container-management" title="Permanent link">&para;</a></h2>
-<p>Similar to docker installation, you can also manage containers through <a href="https://kubernetes.io/docs/reference/kubectl/#operations">some kubectl commands</a>. For example, you can use the following command to check whether the relevant resources are started successfully and whether the relevant services can be accessed normally. First, execute the following command and remember the pod name with <code>seafile-</code> as the prefix (such as <code>seafile-748b695648-d6l4g</code>)</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods
+<h2 id="uninstall-seafile-k8s">Uninstall Seafile K8S<a class="headerlink" href="#uninstall-seafile-k8s" title="Permanent link">&para;</a></h2>
+<p>You can uninstall the Seafile K8S by the following command:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>/opt/seafile-k8s-yaml/<span class="w"> </span>-n<span class="w"> </span>seafile
 </code></pre></div>
-<p>You can check a status of a pod by </p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>logs<span class="w"> </span>seafile-748b695648-d6l4g
-</code></pre></div>
-<p>and enter a container by</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-748b695648-d6l4g<span class="w"> </span>--<span class="w">  </span>bash
-</code></pre></div>
-<h2 id="https">HTTPS<a class="headerlink" href="#https" title="Permanent link">&para;</a></h2>
-<p>Please refer to <a href="../cluster_deploy_with_k8s/#load-balance-and-https">here</a> about suggestions of enabling HTTPS in K8S.</p>
-<h2 id="seafile-directory-structure">Seafile directory structure<a class="headerlink" href="#seafile-directory-structure" title="Permanent link">&para;</a></h2>
-<p>Please refer to <a href="../setup_pro_by_docker/#seafile-directory-structure">here</a> for the details.</p>
-<div class="admonition tip">
-<p class="admonition-title">Send logs to Loki</p>
-<p>You can directly view the log files of single-pod Seafile in the persistent volume directory, as the log files are distinguishable even the node of pod has changed (because there will only be one node running Seafile), so by default single-pod Seafile logs are not output to standard output. If you need to record these log files to a log server (e.g., <a href="https://grafana.com/oss/loki/"><em>Loki</em></a>), you can refer to <a href="../cluster_deploy_with_k8s/#log-routing-and-aggregation-system">here</a> for more informations.</p>
-</div>
+<h2 id="advanced-operations">Advanced operations<a class="headerlink" href="#advanced-operations" title="Permanent link">&para;</a></h2>
+<p>Please refer from <a href="./k8s_advanced_management">here</a> for futher advanced operations.</p>
 
 
 

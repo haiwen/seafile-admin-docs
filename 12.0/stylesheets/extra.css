@@ -55,5 +55,9 @@
 }
 
 .md-nav__item--section {
-  margin-top: 2em;
+  margin-top: 3em;
+}
+
+:root [data-md-color-scheme=default]{
+  --md-default-fg-color--light: #333333;
 }

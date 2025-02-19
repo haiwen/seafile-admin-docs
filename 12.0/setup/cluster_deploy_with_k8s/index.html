@@ -16,7 +16,7 @@
         <link rel="prev" href="../k8s_single_node/">
       
       
-        <link rel="next" href="../migrate_ce_to_pro_with_docker/">
+        <link rel="next" href="../k8s_advanced_management/">
       
       
       <link rel="icon" href="../../media/favicon.ico">
@@ -1514,71 +1514,20 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#container-management" class="md-nav__link">
+  <a href="#uninstall-seafile-k8s" class="md-nav__link">
     <span class="md-ellipsis">
-      Container management
+      Uninstall Seafile K8S
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#load-balance-and-https" class="md-nav__link">
+  <a href="#advanced-operations" class="md-nav__link">
     <span class="md-ellipsis">
-      Load balance and HTTPS
+      Advanced operations
     </span>
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#log-routing-and-aggregation-system" class="md-nav__link">
-    <span class="md-ellipsis">
-      Log routing and aggregation system
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Log routing and aggregation system">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#inputer" class="md-nav__link">
-    <span class="md-ellipsis">
-      Inputer
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#parser" class="md-nav__link">
-    <span class="md-ellipsis">
-      Parser
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#filter" class="md-nav__link">
-    <span class="md-ellipsis">
-      Filter
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#output-logs-to-loki" class="md-nav__link">
-    <span class="md-ellipsis">
-      Output log's to Loki
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1594,6 +1543,28 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../k8s_advanced_management/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Seafile K8S advanced management
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -4564,71 +4535,20 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#container-management" class="md-nav__link">
+  <a href="#uninstall-seafile-k8s" class="md-nav__link">
     <span class="md-ellipsis">
-      Container management
+      Uninstall Seafile K8S
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#load-balance-and-https" class="md-nav__link">
+  <a href="#advanced-operations" class="md-nav__link">
     <span class="md-ellipsis">
-      Load balance and HTTPS
+      Advanced operations
     </span>
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#log-routing-and-aggregation-system" class="md-nav__link">
-    <span class="md-ellipsis">
-      Log routing and aggregation system
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Log routing and aggregation system">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#inputer" class="md-nav__link">
-    <span class="md-ellipsis">
-      Inputer
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#parser" class="md-nav__link">
-    <span class="md-ellipsis">
-      Parser
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#filter" class="md-nav__link">
-    <span class="md-ellipsis">
-      Filter
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#output-logs-to-loki" class="md-nav__link">
-    <span class="md-ellipsis">
-      Output log's to Loki
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -4655,7 +4575,7 @@
 <p>This manual explains how to deploy and run Seafile cluster on a Linux server using <em>Kubernetes</em> (<strong><em>k8s</em></strong> thereafter). </p>
 <h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
 <h2 id="cluster-requirements">Cluster requirements<a class="headerlink" href="#cluster-requirements" title="Permanent link">&para;</a></h2>
-<p>Please refer <a href="../system_requirements/#seafile-cluster">here</a> for the details about the cluster requirements for <strong>all nodes</strong> in Seafile cluster.</p>
+<p>Please refer <a href="../system_requirements/#seafile-cluster">here</a> for the details about the cluster requirements for <strong>all nodes</strong> in Seafile cluster.  In general, we recommend that each node should have at least 2G RAM and a 2-core CPU (&gt; 2GHz).</p>
 <h3 id="k8s-tools">K8S tools<a class="headerlink" href="#k8s-tools" title="Permanent link">&para;</a></h3>
 <p>Two tools are suggested and can be installed with <a href="https://kubernetes.io/docs/tasks/tools/">official installation guide</a> <strong>on all nodes</strong>:</p>
 <ul>
@@ -4703,8 +4623,8 @@ wget<span class="w"> </span>-P<span class="w"> </span>/opt/seafile-k8s-yaml<span
 <p>For the fields marked with <code>&lt;...&gt;</code> are <strong>required</strong>, please make sure these items are filled in, otherwise Seafile server may not run properly.</p>
 </div>
 <h2 id="initialize-seafile-cluster">Initialize Seafile cluster<a class="headerlink" href="#initialize-seafile-cluster" title="Permanent link">&para;</a></h2>
-<p>You can use following command to initialize Seafile cluster now:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>/opt/seafile-k8s-yaml/
+<p>You can use following command to initialize Seafile cluster now (the Seafile's K8S resources will be specified in namespace <code>seafile</code> for easier management):</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>/opt/seafile-k8s-yaml/<span class="w"> </span>-n<span class="w"> </span>seafile
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">About Seafile cluster initialization</p>
@@ -4716,7 +4636,7 @@ wget<span class="w"> </span>-P<span class="w"> </span>/opt/seafile-k8s-yaml<span
 </div>
 <div class="admonition success">
 <p class="admonition-title">Success</p>
-<p>You can get the following information through <code>kubectl logs seafile-xxxx</code> (for details about this opeartions, please refer to <a href="#container-management">here</a>) to check the initialization process is done or not:</p>
+<p>You can get the following information through <code>kubectl logs seafile-xxxx -n seafile</code> to check the initialization process is done or not:</p>
 <div class="highlight"><pre><span></span><code>---------------------------------
 This is your configuration
 ---------------------------------
@@ -4775,8 +4695,7 @@ Init success
 <p class="admonition-title">Tip</p>
 <p>If you modify some configurations in <code>/opt/seafile/shared/seafile/conf</code> or YAML files in <code>/opt/seafile-k8s-yaml/</code>, you still need to restart services to make modifications.</p>
 </div>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>/opt/seafile-k8s-yaml/
-kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>/opt/seafile-k8s-yaml/
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.items[*].metadata.name}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>seafile<span class="k">)</span>
 </code></pre></div>
 </li>
 </ol>
@@ -4809,248 +4728,12 @@ Seahub is started
 Done.
 </code></pre></div>
 </div>
-<h2 id="container-management">Container management<a class="headerlink" href="#container-management" title="Permanent link">&para;</a></h2>
-<p>Similar to docker installation, you can also manage containers through <a href="https://kubernetes.io/docs/reference/kubectl/#operations">some kubectl commands</a>. For example, you can use the following command to check whether the relevant resources are started successfully and whether the relevant services can be accessed normally. First, execute the following command and remember the pod name with <code>seafile-&lt;node type&gt;-</code> as the prefix (such as <code>seafile-frontend-748b695648-d6l4g</code>)</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods
+<h2 id="uninstall-seafile-k8s">Uninstall Seafile K8S<a class="headerlink" href="#uninstall-seafile-k8s" title="Permanent link">&para;</a></h2>
+<p>You can uninstall the Seafile K8S by the following command:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>/opt/seafile-k8s-yaml/<span class="w"> </span>-n<span class="w"> </span>seafile
 </code></pre></div>
-<p>You can check a status of a pod by </p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>logs<span class="w"> </span>seafile-frontend-748b695648-d6l4g
-</code></pre></div>
-<p>and enter a container by</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-frontend-748b695648-d6l4g<span class="w"> </span>--<span class="w">  </span>bash
-</code></pre></div>
-<h2 id="load-balance-and-https">Load balance and HTTPS<a class="headerlink" href="#load-balance-and-https" title="Permanent link">&para;</a></h2>
-<p>When deploying a Seafile cluster using K8S, you can enable HTTPS and use load balance in the following two ways:</p>
-<ul>
-<li>External load balancing server, such as <em>Nginx</em>. Typically you will need to reverse proxy <code>http://&lt;your control plane&gt;/</code></li>
-<li>K8S Gateway API, e.g., <a href="https://docs.nginx.com/nginx-gateway-fabric/installation/installing-ngf/manifests/">Nginx-gateway</a> and <a href="https://istio.io/latest/docs/tasks/traffic-management/ingress/gateway-api/">Istio-gateway</a></li>
-</ul>
-<h2 id="log-routing-and-aggregation-system">Log routing and aggregation system<a class="headerlink" href="#log-routing-and-aggregation-system" title="Permanent link">&para;</a></h2>
-<p>Similar to <a href="../k8s_single_node/">Single-pod Seafile</a>, you can browse the log files of Seafile running directly in the persistent volume directory. The difference is that when using K8S to deploy a Seafile cluster (especially in a cloud environment), the persistent volume created is usually shared and synchronized for all nodes. However, <strong><em>the logs generated by the Seafile service do not record the specific node information where these logs are located</em></strong>, so browsing the files in the above folder may make it difficult to identify which node these logs are generated from. Therefore, one solution proposed here is:</p>
-<ol>
-<li>
-<p>Record the generated logs to the standard output. In this way, the logs can be distinguished under each node by <code>kubectl logs</code> (but all types of logs will be output together now). You can enable this feature (<strong>it should be enabled by default in K8S Seafile cluster but not in K8S single-pod Seafile</strong>) by modifing <code>SEAFILE_LOG_TO_STDOUT</code> to <code>true</code> in <code>seafile-env.yaml</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="nn">...</span>
-<span class="nt">data</span><span class="p">:</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">SEAFILE_LOG_TO_STDOUT</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
-</code></pre></div>
-<p>Then restart the Seafile server:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>/opt/seafile-k8s-yaml/
-kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>/opt/seafile-k8s-yaml/
-</code></pre></div>
-</li>
-<li>
-<p>Since the logs in step 1 can be distinguished between nodes, but they are aggregated and output together, it is not convenient for log retrieval. So you have to route the standard output logs (i.e., distinguish logs by corresponding components name) and re-record them in a new file or upload them to a log aggregation system (e.g., <a href="https://grafana.com/oss/loki/"><em>Loki</em></a>).</p>
-</li>
-</ol>
-<p>Currently in the K8S environment, the commonly used log routing plugins are:</p>
-<ul>
-<li><a href="https://fluentbit.io/"><em>Fluent Bit</em></a></li>
-<li><a href="https://www.fluentd.org/"><em>Fluentd</em></a></li>
-<li><a href="https://www.elastic.co/logstash/"><em>Logstash</em></a></li>
-<li><a href="https://grafana.com/loki/docs/sources/promtail/"><em>Promtail</em></a> (also a part of Loki)</li>
-</ul>
-<p><strong><em>Fluent Bit</em></strong> and <strong><em>Promtail</em></strong> are more lightweight (i.e., consume less system resources), while <em>Promtail</em> only supports transferring logs to <em>Loki</em>. Therefore, this document will mainly introduce log routing through <strong><em>Fluent Bit</em></strong> which is a fast, lightweight logs and metrics agent. It is also a CNCF graduated sub-project under the umbrella of <em>Fluentd</em>. <em>Fluent Bit</em> is licensed under the terms of the Apache License v2.0. You should deploy the <em>Fluent Bit</em> in your K8S cluster by following <a href="https://docs.fluentbit.io/manual/installation/kubernetes">offical document</a> firstly. Then modify Fluent-Bit pod settings to mount a new directory to load the configuration files:</p>
-<div class="highlight"><pre><span></span><code><span class="c1">#kubectl edit ds fluent-bit</span>
-
-<span class="nn">...</span>
-<span class="nt">spec</span><span class="p">:</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">spec</span><span class="p p-Indicator">:</span>
-<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
-<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">containers</span><span class="p p-Indicator">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fluent-bit</span>
-<span class="w">          </span><span class="nt">volumeMounts</span><span class="p">:</span>
-<span class="w">            </span><span class="l l-Scalar l-Scalar-Plain">...</span>
-<span class="w">            </span><span class="l l-Scalar l-Scalar-Plain">- mountPath</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/fluent-bit/etc/seafile</span>
-<span class="w">              </span><span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fluent-bit-seafile</span>
-<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/</span>
-<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
-<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">hostPath</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/fluent-bit</span>
-<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fluent-bit-seafile</span>
-</code></pre></div>
-<p>and</p>
-<div class="highlight"><pre><span></span><code><span class="c1">#kubectl edit cm fluent-bit</span>
-
-<span class="nt">data</span><span class="p">:</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">fluent-bit.conf</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
-<span class="w">        </span><span class="no">[SERVICE]</span>
-<span class="w">            </span><span class="no">...</span>
-<span class="w">            </span><span class="no">Parsers_File /fluent-bit/etc/seafile/confs/parsers.conf</span>
-<span class="w">        </span><span class="no">...</span>
-<span class="w">        </span><span class="no">@INCLUDE /fluent-bit/etc/seafile/confs/*-log.conf</span>
-</code></pre></div>
-<p>For example in here, we use <code>/opt/fluent-bit/confs</code> (<strong>it has to be non-shared</strong>). What's more, the parsers will be defined in <code>/opt/fluent-bit/confs/parsers.conf</code>, and for each type log (e.g., <em>seahub</em>'s log, <em>seafevent</em>'s log) will be defined in <code>/opt/fluent-bit/confs/*-log.conf</code>. Each <code>.conf</code> file defines several Fluent-Bit data pipeline components:</p>
-<table>
-<thead>
-<tr>
-<th><strong>Pipeline</strong></th>
-<th><strong>Description</strong></th>
-<th><strong>Required/Optional</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>INPUT</strong></td>
-<td>Specifies where and how Fluent-Bit can get the original log information, and assigns a tag for each log record after read.</td>
-<td>Required</td>
-</tr>
-<tr>
-<td><strong>PARSER</strong></td>
-<td>Parse the read log records. For K8S Docker runtime logs, they are usually in Json format.</td>
-<td>Required</td>
-</tr>
-<tr>
-<td><strong>FILTER</strong></td>
-<td>Filters and selects log records with a specified tag, and assigns a new tag to new records.</td>
-<td>Optional</td>
-</tr>
-<tr>
-<td><strong>OUTPUT</strong></td>
-<td>tells Fluent-Bit what format the log records for the specified tag will be in and where to output them (such as file, <em>Elasticsearch</em>, <em>Loki</em>, etc.).</td>
-<td>Required</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>For <strong><em>PARSER</em></strong>, it can only be stored in <code>/opt/fluent-bit/confs/parsers.conf</code>, otherwise the Fluent-Bit cannot startup normally.</p>
-</div>
-<h3 id="inputer">Inputer<a class="headerlink" href="#inputer" title="Permanent link">&para;</a></h3>
-<p>According to the above, a container will generate a log file (usually in <code>/var/log/containers/&lt;container-name&gt;-xxxxxx.log</code>), so you need to prepare an importer and add the following information (for more details, please refer to offical document about <a href="https://docs.fluentbit.io/manual/pipeline/inputs/tail"><em>TAIL inputer</em></a>) in <code>/opt/fluent-bit/confs/seafile-log.conf</code>:</p>
-<div class="highlight"><pre><span></span><code>[INPUT]
-    Name              tail
-    Path              /var/log/containers/seafile-frontend-*.log
-    Buffer_Chunk_Size 2MB
-    Buffer_Max_Size   10MB
-    Docker_Mode       On
-    Docker_Mode_Flush 5
-    Tag               seafile.*
-    Parser            Docker # for definition, please see the next section as well
-
-[INPUT]
-    Name              tail
-    Path              /var/log/containers/seafile-backend-*.log
-    Buffer_Chunk_Size 2MB
-    Buffer_Max_Size   10MB
-    Docker_Mode       On
-    Docker_Mode_Flush 5
-    Tag               seafile.*
-    Parser            Docker
-</code></pre></div>
-<p>The above defines two importers, which are used to monitor seafile-frontend and seafile-backend services respectively. The reason why they are written together here is that for a node, you may not know when it will run the frontend service and when it will run the backend service, but they have the same tag prefix <code>seafile.</code>.</p>
-<h3 id="parser">Parser<a class="headerlink" href="#parser" title="Permanent link">&para;</a></h3>
-<p>Each input has to use a parser to parse the logs and pass them to the filter. Here, a parser named <code>Docker</code> is created to parse the logs generated by the <em>K8S-docker-runtime container</em>. The parser is placed in <code>/opt/fluent-bit/confs/parser.conf</code> (for more details, please refer to offical document about <a href="https://docs.fluentbit.io/manual/pipeline/parsers/json">JSON parser</a>):</p>
-<div class="highlight"><pre><span></span><code>[PARSER]
-    Name        Docker
-    Format      json
-    Time_Key    time
-    Time_Format %Y-%m-%dT%H:%M:%S.%LZ
-</code></pre></div>
-<div class="admonition tip">
-<p class="admonition-title">Log records after parsing</p>
-<p>The logs of the Docker container are saved in /var/log/containers in <strong>Json</strong> format (see the sample below), which is why we use the <code>Json</code> format in the above parser.</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;log&quot;</span><span class="p">:</span><span class="s2">&quot;[seaf-server] [2025-01-17 07:43:48] [INFO] seafile-session.c(86): fileserver: web_token_expire_time = 3600\n&quot;</span><span class="p">,</span><span class="nt">&quot;stream&quot;</span><span class="p">:</span><span class="s2">&quot;stdout&quot;</span><span class="p">,</span><span class="nt">&quot;time&quot;</span><span class="p">:</span><span class="s2">&quot;2025-01-17T07:43:48.294638442Z&quot;</span><span class="p">}</span>
-<span class="p">{</span><span class="nt">&quot;log&quot;</span><span class="p">:</span><span class="s2">&quot;[seaf-server] [2025-01-17 07:43:48] [INFO] seafile-session.c(98): fileserver: max_index_processing_threads= 3\n&quot;</span><span class="p">,</span><span class="nt">&quot;stream&quot;</span><span class="p">:</span><span class="s2">&quot;stdout&quot;</span><span class="p">,</span><span class="nt">&quot;time&quot;</span><span class="p">:</span><span class="s2">&quot;2025-01-17T07:43:48.294810145Z&quot;</span><span class="p">}</span>
-<span class="p">{</span><span class="nt">&quot;log&quot;</span><span class="p">:</span><span class="s2">&quot;[seaf-server] [2025-01-17 07:43:48] [INFO] seafile-session.c(111): fileserver: fixed_block_size = 8388608\n&quot;</span><span class="p">,</span><span class="nt">&quot;stream&quot;</span><span class="p">:</span><span class="s2">&quot;stdout&quot;</span><span class="p">,</span><span class="nt">&quot;time&quot;</span><span class="p">:</span><span class="s2">&quot;2025-01-17T07:43:48.294879777Z&quot;</span><span class="p">}</span>
-<span class="p">{</span><span class="nt">&quot;log&quot;</span><span class="p">:</span><span class="s2">&quot;[seaf-server] [2025-01-17 07:43:48] [INFO] seafile-session.c(123): fileserver: max_indexing_threads = 1\n&quot;</span><span class="p">,</span><span class="nt">&quot;stream&quot;</span><span class="p">:</span><span class="s2">&quot;stdout&quot;</span><span class="p">,</span><span class="nt">&quot;time&quot;</span><span class="p">:</span><span class="s2">&quot;2025-01-17T07:43:48.295002479Z&quot;</span><span class="p">}</span>
-<span class="p">{</span><span class="nt">&quot;log&quot;</span><span class="p">:</span><span class="s2">&quot;[seaf-server] [2025-01-17 07:43:48] [INFO] seafile-session.c(138): fileserver: put_head_commit_request_timeout = 10\n&quot;</span><span class="p">,</span><span class="nt">&quot;stream&quot;</span><span class="p">:</span><span class="s2">&quot;stdout&quot;</span><span class="p">,</span><span class="nt">&quot;time&quot;</span><span class="p">:</span><span class="s2">&quot;2025-01-17T07:43:48.295082733Z&quot;</span><span class="p">}</span>
-<span class="p">{</span><span class="nt">&quot;log&quot;</span><span class="p">:</span><span class="s2">&quot;[seaf-server] [2025-01-17 07:43:48] [INFO] seafile-session.c(150): fileserver: skip_block_hash = 0\n&quot;</span><span class="p">,</span><span class="nt">&quot;stream&quot;</span><span class="p">:</span><span class="s2">&quot;stdout&quot;</span><span class="p">,</span><span class="nt">&quot;time&quot;</span><span class="p">:</span><span class="s2">&quot;2025-01-17T07:43:48.295195843Z&quot;</span><span class="p">}</span>
-<span class="p">{</span><span class="nt">&quot;log&quot;</span><span class="p">:</span><span class="s2">&quot;[seaf-server] [2025-01-17 07:43:48] [INFO] ../common/seaf-utils.c(553): Use database Mysql\n&quot;</span><span class="p">,</span><span class="nt">&quot;stream&quot;</span><span class="p">:</span><span class="s2">&quot;stdout&quot;</span><span class="p">,</span><span class="nt">&quot;time&quot;</span><span class="p">:</span><span class="s2">&quot;2025-01-17T07:43:48.29704895Z&quot;</span><span class="p">}</span>
-</code></pre></div>
-<p>When these logs are obtained by the importer and parsed by the parser, they will become independent log records with the following fields:</p>
-<ul>
-<li><code>log</code>: The original log content (i.e., same as you seen in <code>kubectl logs seafile-xxx</code>) and an extra line break at the end (i.e., <code>\n</code>). <strong>This is also the field we need to save or upload to the log aggregation system in the end</strong>.</li>
-<li><code>stream</code>: The original log come from. <code>stdout</code> means the <em>standard output</em>.</li>
-<li><code>time</code>: The time when the log is recorded in the corresponding stream (ISO 8601 format).</li>
-</ul>
-</div>
-<h3 id="filter">Filter<a class="headerlink" href="#filter" title="Permanent link">&para;</a></h3>
-<p>Add two filters in <code>/opt/fluent-bit/confs/seafile-log.conf</code> for records filtering and routing. Here, the <a href="https://docs.fluentbit.io/manual/pipeline/filters/record-modifier"><em>record_modifier</em> filter</a> is to select useful keys (see the contents in above <em>tip</em> label, only the <code>log</code> field is what we need) in the log records and <a href="https://docs.fluentbit.io/manual/pipeline/filters/rewrite-tag"><em>rewrite_tag</em> filter</a> is used to route logs according to specific rules:</p>
-<div class="highlight"><pre><span></span><code>[FILTER]        
-    Name record_modifier
-    Match seafile.*
-    Allowlist_key log
-
-
-[FILTER]
-    Name        rewrite_tag
-    Match       seafile.*
-    Rule        $log ^.*\[seaf-server\].*$ seaf-server false # for seafile&#39;s logs
-    Rule        $log ^.*\[seahub\].*$ seahub false # for seahub&#39;s logs
-    Rule        $log ^.*\[seafevents\].*$ seafevents false # for seafevents&#39; lgos
-    Rule        $log ^.*\[seafile-slow-rpc\].*$ seafile-slow-rpc false # for slow-rpc&#39;s logs
-</code></pre></div>
-<h3 id="output-logs-to-loki">Output log's to <em>Loki</em><a class="headerlink" href="#output-logs-to-loki" title="Permanent link">&para;</a></h3>
-<p>Loki is multi-tenant log aggregation system inspired by <em>Prometheus</em>. It is designed to be very cost effective and easy to operate. The Fluent-Bit <em>loki</em> built-in output plugin allows you to send your log or events to a <em>Loki service</em>. It supports data enrichment with Kubernetes labels, custom label keys and Tenant ID within others.</p>
-<div class="admonition tip">
-<p class="admonition-title">Alternative Fluent-Bit Loki plugin by <em>Grafana</em></p>
-<p>For sending logs to Loki, there are <a href="https://grafana.com/docs/loki/latest/send-data/fluentbit/">two plugins</a> for Fluent-Bit:</p>
-<ul>
-<li>The <a href="https://docs.fluentbit.io/manual/pipeline/outputs/loki">built-in <em>Loki</em> plugin</a> maintained by the Fluent-Bit officially, and we will use it in this part because it provides the most complete features.</li>
-<li><a href="https://grafana.com/docs/loki/latest/send-data/fluentbit/community-plugin/"><em>Grafana-loki</em> plugin</a> maintained by <em>Grafana Labs</em>.</li>
-</ul>
-</div>
-<p>Due to each outputer dose not have a distinguishing marks in the configuration files (because Fluent-Bit takes each plugin as a tag workflow): </p>
-<ul>
-<li>
-<p><strong><em>Seaf-server log</em></strong>: Add an outputer to <code>/opt/fluent-bit/confs/seaf-server-log.conf</code>:</p>
-<div class="highlight"><pre><span></span><code>[OUTPUT]
-    Name        loki
-    Match       seaf-server
-    Host        &lt;your Loki&#39;s host&gt;
-    port        &lt;your Loki&#39;s port&gt;
-    labels      job=fluentbit, node_name=&lt;your-node-name&gt;, node_id=&lt;your-node-id&gt; # node_name and node_id is optional, but recommended for identifying the source node
-</code></pre></div>
-</li>
-<li>
-<p><strong><em>seahub log</em></strong>: Add an outputer to <code>/opt/fluent-bit/confs/seahub-log.conf</code>:</p>
-<div class="highlight"><pre><span></span><code>[OUTPUT]
-    Name        loki
-    Match       seahub
-    Host        &lt;your Loki&#39;s host&gt;
-    port        &lt;your Loki&#39;s port&gt;
-    labels      job=fluentbit, node_name=&lt;your-node-name&gt;, node_id=&lt;your-node-id&gt; # node_name and node_id is optional, but recommended for identifying the source node
-</code></pre></div>
-</li>
-<li>
-<p><strong><em>seafevents log</em></strong>: Add an outputer to <code>/opt/fluent-bit/confs/seafevents-log.conf</code>:</p>
-<div class="highlight"><pre><span></span><code>[OUTPUT]
-    Name        loki
-    Match       seafevents
-    Host        &lt;your Loki&#39;s host&gt;
-    port        &lt;your Loki&#39;s port&gt;
-    labels      job=fluentbit, node_name=&lt;your-node-name&gt;, node_id=&lt;your-node-id&gt; # node_name and node_id is optional, but recommended for identifying the source node
-</code></pre></div>
-</li>
-<li>
-<p><strong><em>seafile-slow-rpc log</em></strong>: Add an outputer to <code>/opt/fluent-bit/confs/seafile-slow-rpc-log.conf</code>:</p>
-<div class="highlight"><pre><span></span><code>[OUTPUT]
-    Name        loki
-    Match       seafile-slow-rpc
-    Host        &lt;your Loki&#39;s host&gt;
-    port        &lt;your Loki&#39;s port&gt;
-    labels      job=fluentbit, node_name=&lt;your-node-name&gt;, node_id=&lt;your-node-id&gt; # node_name and node_id is optional, but recommended for identifying the source node
-</code></pre></div>
-</li>
-</ul>
-<div class="admonition tip">
-<p class="admonition-title">Cloud Loki instance</p>
-<p>If you are using a cloud Loki instance, you can follow the <a href="https://docs.fluentbit.io/manual/pipeline/outputs/loki">Fluent-Bit Loki plugin document</a> to fill up all necessary fields. Usually, the following fields are <strong>additional needs</strong> in cloud Loki service:</p>
-<ul>
-<li><code>tls</code></li>
-<li><code>tls.verify</code></li>
-<li><code>http_user</code></li>
-<li><code>http_passwd</code></li>
-</ul>
-</div>
+<h2 id="advanced-operations">Advanced operations<a class="headerlink" href="#advanced-operations" title="Permanent link">&para;</a></h2>
+<p>Please refer from <a href="./k8s_advanced_management">here</a> for futher advanced operations.</p>
 
 
 
@@ -5103,13 +4786,13 @@ kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> <
         
         
           
-          <a href="../migrate_ce_to_pro_with_docker/" class="md-footer__link md-footer__link--next" aria-label="Next: Migration from Seafile Community">
+          <a href="../k8s_advanced_management/" class="md-footer__link md-footer__link--next" aria-label="Next: Seafile K8S advanced management">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Migration from Seafile Community
+                Seafile K8S advanced management
               </div>
             </div>
             <div class="md-footer__button md-icon">

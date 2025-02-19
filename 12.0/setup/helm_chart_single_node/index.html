@@ -1363,9 +1363,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#container-management" class="md-nav__link">
+  <a href="#version-control" class="md-nav__link">
     <span class="md-ellipsis">
-      Container management
+      Version control
     </span>
   </a>
   
@@ -1386,39 +1386,6 @@
       Advanced operations
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Advanced operations">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#version-control" class="md-nav__link">
-    <span class="md-ellipsis">
-      Version control
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#extra-volumes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Extra volumes
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#other-advanced-operations" class="md-nav__link">
-    <span class="md-ellipsis">
-      Other advanced operations
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1549,6 +1516,28 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../k8s_advanced_management/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Seafile K8S advanced management
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -4483,9 +4472,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#container-management" class="md-nav__link">
+  <a href="#version-control" class="md-nav__link">
     <span class="md-ellipsis">
-      Container management
+      Version control
     </span>
   </a>
   
@@ -4506,39 +4495,6 @@
       Advanced operations
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Advanced operations">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#version-control" class="md-nav__link">
-    <span class="md-ellipsis">
-      Version control
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#extra-volumes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Extra volumes
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#other-advanced-operations" class="md-nav__link">
-    <span class="md-ellipsis">
-      Other advanced operations
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -4568,7 +4524,7 @@
 <p>For persisting data using in the docker-base deployment, <code>/opt/seafile-data</code>, is still adopted in this manual. What's more, all K8S YAML files will be placed in <code>/opt/seafile-k8s-yaml</code> (replace it when following these instructions if you would like to use another path).</p>
 <p>By the way, we don't provide the deployment methods of basic services (e.g., <strong>Memcached</strong>, <strong>MySQL</strong> and <strong>Elasticsearch</strong>) and seafile-compatibility components (e.g., <strong>SeaDoc</strong>) for K8S in our document. If you need to install these services in K8S format, <strong><em>you can refer to the rewrite method in <a href="../k8s_single_node/">this document</a>.</em></strong></p>
 <h3 id="system-requirements">System requirements<a class="headerlink" href="#system-requirements" title="Permanent link">&para;</a></h3>
-<p>Please refer <a href="../system_requirements/">here</a> for system requirements about Seafile service. By the way, this will apply to all nodes where Seafile pods may appear in your K8S cluster.</p>
+<p>Please refer <a href="../system_requirements/">here</a> for the details of system requirements about Seafile service. By the way, this will apply to all nodes where Seafile pods may appear in your K8S cluster. In general, we recommend that each node should have at least 2G RAM and a 2-core CPU (&gt; 2GHz).</p>
 <h2 id="install-seafile-helm-chart">Install Seafile helm chart<a class="headerlink" href="#install-seafile-helm-chart" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
@@ -4599,6 +4555,7 @@
 </div>
 </div>
 </div>
+<p>where the <code>JWT_PRIVATE_KEY</code> can be generate by <code>pwgen -s 40 1</code></p>
 </li>
 <li>
 <p>Download and modify the <code>my-values.yaml</code> according to your configurations. By the way, you can follow <a href="../../config/env/">here</a> for the details:</p>
@@ -4671,22 +4628,41 @@ helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class=
 <p>Then restart Seafile:</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.items[*].metadata.name}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>seafile<span class="k">)</span>
 </code></pre></div>
-<h2 id="container-management">Container management<a class="headerlink" href="#container-management" title="Permanent link">&para;</a></h2>
-<p>Similar to docker installation, you can also manage containers through <a href="https://kubernetes.io/docs/reference/kubectl/#operations">some kubectl commands</a>. For example, you can use the following command to check whether the relevant resources are started successfully and whether the relevant services can be accessed normally. First, execute the following command and remember the pod name with <code>seafile-</code> as the prefix (such as <code>seafile-748b695648-d6l4g</code>)</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile
+<div class="admonition tip">
+<p class="admonition-title">A safer way to use your Seafile license file</p>
+<p>You can also create a <em>secret</em> resource to encrypt your license file in your K8S cluster, which is a safer way:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>generic<span class="w"> </span>seafile-license<span class="w"> </span>--from-file<span class="o">=</span>seafile-license.txt<span class="o">=</span><span class="nv">$PATH_TO_YOUR_LICENSE_FILE</span><span class="w"> </span>--namespace<span class="w"> </span>seafile
 </code></pre></div>
-<p>You can check a status of a pod by </p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>logs<span class="w"> </span>seafile-748b695648-d6l4g<span class="w"> </span>-n<span class="w"> </span>seafile
+<p>Then modify <code>my-values.yaml</code> to add the information extra volumes:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">seafile</span><span class="p">:</span>
+<span class="nn">...</span>
+<span class="nt">extraVolumes</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafileLicense</span>
+<span class="w">    </span><span class="nt">volumeInfo</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">secret</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-license</span>
+<span class="w">            </span><span class="l l-Scalar l-Scalar-Plain">items</span><span class="p p-Indicator">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-license.txt</span>
+<span class="w">                </span><span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-license.txt</span>
+<span class="w">    </span><span class="nt">subPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-license.txt</span>
+<span class="w">    </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/shared/seafile/seafile-license.txt</span>
+<span class="w">    </span><span class="nt">readOnly</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
-<p>and enter a container by</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-748b695648-d6l4g<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span>--<span class="w">  </span>bash
+<p>Finally you can upgrade your chart by:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Seafile Pro</label><label for="__tabbed_4_2">Seafile CE</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>seafile<span class="w"> </span>seafile/pro<span class="w">  </span>--namespace<span class="w"> </span>seafile<span class="w"> </span>--create-namespace<span class="w"> </span>--values<span class="w"> </span>my-values.yaml
 </code></pre></div>
-<h2 id="uninstall-chart">Uninstall chart<a class="headerlink" href="#uninstall-chart" title="Permanent link">&para;</a></h2>
-<p>You can uninstall chart by the following command:</p>
-<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>delete<span class="w"> </span>seafile<span class="w"> </span>--namespace<span class="w"> </span>seafile
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>seafile<span class="w"> </span>seafile/ce<span class="w">  </span>--namespace<span class="w"> </span>seafile<span class="w"> </span>--create-namespace<span class="w"> </span>--values<span class="w"> </span>my-values.yaml
 </code></pre></div>
-<h2 id="advanced-operations">Advanced operations<a class="headerlink" href="#advanced-operations" title="Permanent link">&para;</a></h2>
-<h3 id="version-control">Version control<a class="headerlink" href="#version-control" title="Permanent link">&para;</a></h3>
+</div>
+</div>
+</div>
+</div>
+<h2 id="version-control">Version control<a class="headerlink" href="#version-control" title="Permanent link">&para;</a></h2>
 <p>Seafile Helm Chart is designed to provide fast deployment and version control. You can update and rollback versions using the following setps:</p>
 <ol>
 <li>
@@ -4700,7 +4676,7 @@ helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class=
 </li>
 <li>
 <p>Download (optional) and modify the new <code>my-values.yaml</code></p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Seafile Pro</label><label for="__tabbed_4_2">Seafile CE</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Seafile Pro</label><label for="__tabbed_5_2">Seafile CE</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>my-values.yaml<span class="w"> </span>https://haiwen.github.io/seafile-helm-chart/values/&lt;release-version&gt;/cluster.yaml
@@ -4728,7 +4704,7 @@ nano<span class="w"> </span>my-values.yaml
 </li>
 <li>
 <p>Upgrade release to a new version</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Seafile Pro</label><label for="__tabbed_5_2">Seafile CE</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Seafile Pro</label><label for="__tabbed_6_2">Seafile CE</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>seafile<span class="w"> </span>seafile/pro<span class="w"> </span>--namespace<span class="w"> </span>seafile<span class="w"> </span>--create-namespace<span class="w"> </span>--values<span class="w"> </span>my-values.yaml<span class="w"> </span>--version<span class="w"> </span>&lt;release-version&gt;
@@ -4747,44 +4723,12 @@ nano<span class="w"> </span>my-values.yaml
 </code></pre></div>
 </li>
 </ol>
-<h3 id="extra-volumes">Extra volumes<a class="headerlink" href="#extra-volumes" title="Permanent link">&para;</a></h3>
-<p>In this part, we take encrypted seafile-license file for example. You can also create a <em>secret</em> resource to encrypt your license file in your K8S cluster:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>generic<span class="w"> </span>seafile-license<span class="w"> </span>--from-file<span class="o">=</span>seafile-license.txt<span class="o">=</span><span class="nv">$PATH_TO_YOUR_LICENSE_FILE</span><span class="w"> </span>--namespace<span class="w"> </span>seafile
+<h2 id="uninstall-chart">Uninstall chart<a class="headerlink" href="#uninstall-chart" title="Permanent link">&para;</a></h2>
+<p>You can uninstall chart by the following command:</p>
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>delete<span class="w"> </span>seafile<span class="w"> </span>--namespace<span class="w"> </span>seafile
 </code></pre></div>
-<p>Then modify <code>my-values.yaml</code> to add the information extra volumes:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">seafile</span><span class="p">:</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">extraVolumes</span><span class="p p-Indicator">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafileLicense</span>
-<span class="w">    </span><span class="nt">volumeInfo</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">secret</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-license</span>
-<span class="w">            </span><span class="l l-Scalar l-Scalar-Plain">items</span><span class="p p-Indicator">:</span>
-<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-license.txt</span>
-<span class="w">                </span><span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-license.txt</span>
-<span class="w">    </span><span class="nt">subPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-license.txt</span>
-<span class="w">    </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/shared/seafile/seafile-license.txt</span>
-<span class="w">    </span><span class="nt">readOnly</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</code></pre></div>
-<p>Finally you can upgrade your chart by:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Seafile Pro</label><label for="__tabbed_6_2">Seafile CE</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>seafile<span class="w"> </span>seafile/pro<span class="w">  </span>--namespace<span class="w"> </span>seafile<span class="w"> </span>--create-namespace<span class="w"> </span>--values<span class="w"> </span>my-values.yaml
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>seafile<span class="w"> </span>seafile/ce<span class="w">  </span>--namespace<span class="w"> </span>seafile<span class="w"> </span>--create-namespace<span class="w"> </span>--values<span class="w"> </span>my-values.yaml
-</code></pre></div>
-</div>
-</div>
-</div>
-<div class="admonition success">
-<p class="admonition-title">Flexible in Seafile Helm Chart</p>
-<p>No only the extra volumes, you can also define the other environment variables objects (i.e., <code>extraEnv</code>) and resources objects (i.e., <code>extraResources</code>) in <code>my-values.yaml</code></p>
-</div>
-<h3 id="other-advanced-operations">Other advanced operations<a class="headerlink" href="#other-advanced-operations" title="Permanent link">&para;</a></h3>
-<p>Please refer from <a href="../k8s_single_node/#https">here</a> for futher advanced operations.</p>
+<h2 id="advanced-operations">Advanced operations<a class="headerlink" href="#advanced-operations" title="Permanent link">&para;</a></h2>
+<p>Please refer from <a href="../k8s_advanced_management/">here</a> for futher advanced operations.</p>
 
 
 
