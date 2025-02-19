@@ -5,7 +5,7 @@
 
 ## Cluster requirements
 
-Please refer [here](../setup/system_requirements.md#seafile-cluster) for the details about the cluster requirements for **all nodes** in Seafile cluster.
+Please refer [here](../setup/system_requirements.md#seafile-cluster) for the details about the cluster requirements for **all nodes** in Seafile cluster. In general, we recommend that each node should have at least 2G RAM and a 2-core CPU (> 2GHz).
 
 ## Preparation (all nodes)
 

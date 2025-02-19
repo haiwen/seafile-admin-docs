@@ -6,7 +6,7 @@ This manual explains how to deploy and run Seafile cluster on a Linux server usi
 
 ## Cluster requirements
 
-Please refer [here](./system_requirements.md#seafile-cluster) for the details about the cluster requirements for **all nodes** in Seafile cluster.
+Please refer [here](./system_requirements.md#seafile-cluster) for the details about the cluster requirements for **all nodes** in Seafile cluster. In general, we recommend that each node should have at least 2G RAM and a 2-core CPU (> 2GHz).
 
 ### K8S tools
 
@@ -38,6 +38,8 @@ After installation, you need to start the k8s control plane service on each node
     --from-literal=INIT_SEAFILE_MYSQL_ROOT_PASSWORD='<required>' \
     --from-literal=INIT_S3_SECRET_KEY=''  
     ```
+
+    where the `JWT_PRIVATE_KEY` can be generate by `pwgen -s 40 1`
 
 3. Download and modify the `my-values.yaml` according to your configurations. By the way, you can follow [here](./setup_pro_by_docker.md#downloading-and-modifying-env) for the details:
 
@@ -132,7 +134,7 @@ After installation, you need to start the k8s control plane service on each node
 
         ```
 
-5. After the first-time startup, you have to turn off (i.e., set `CLUSTER_INIT_MODE` to `false`) in your `my-values.yaml`, then upgrade the chart:
+5. After the first-time startup, you have to turn off (i.e., set `initMode` to `false`) in your `my-values.yaml`, then upgrade the chart:
 
     ```sh
     helm upgrade --install seafile seafile/cluster  --namespace seafile --create-namespace --values my-values.yaml
@@ -234,18 +236,51 @@ After installation, you need to start the k8s control plane service on each node
     ```bash
     kubectl delete pods -n seafile $(kubectl get pods -n seafile -o jsonpath='{.items[*].metadata.name}' | grep seafile)
     ```
-    
-## Uninstall chart
 
-You can uninstall chart by the following command:
+    !!! tip "A safer way to use your Seafile license file"
+        You can also create a *secret* resource to encrypt your license file in your K8S cluster, which is a safer way:
 
-```sh
-helm delete seafile --namespace seafile
-```
+        ```sh
+        kubectl create secret generic seafile-license --from-file=seafile-license.txt=$PATH_TO_YOUR_LICENSE_FILE --namespace seafile
+        ```
 
-## Advanced operations
+        Then modify `my-values.yaml` to add the information extra volumes:
 
-### Version control
+        ```yaml
+        seafile:
+        ...
+        extraVolumes:
+            backend:
+                - name: seafileLicense
+                volumeInfo:
+                    secret:
+                    secretName: seafile-license
+                        items:
+                        - key: seafile-license.txt
+                            path: seafile-license.txt
+                subPath: seafile-license.txt
+                mountPath: /shared/seafile/seafile-license.txt
+                readOnly: true
+            frontend:
+                - name: seafileLicense
+                volumeInfo:
+                    secret:
+                    secretName: seafile-license
+                        items:
+                        - key: seafile-license.txt
+                            path: seafile-license.txt
+                subPath: seafile-license.txt
+                mountPath: /shared/seafile/seafile-license.txt
+                readOnly: true
+        ```
+
+        Finally you can upgrade your chart by:
+
+        ```sh
+        helm upgrade --install seafile seafile/cluster  --namespace seafile --create-namespace --values my-values.yaml
+        ```
+
+## Version control
 
 Seafile Helm Chart is designed to provide fast deployment and version control. You can update and rollback versions using the following setps:
 
@@ -286,53 +321,14 @@ Seafile Helm Chart is designed to provide fast deployment and version control. Y
     helm rollback seafile -n seafile <revision>
     ```
 
-### Extra volumes
+## Uninstall chart
 
-In this part, we take encrypted seafile-license file for example. You can also create a *secret* resource to encrypt your license file in your K8S cluster:
-
-```sh
-kubectl create secret generic seafile-license --from-file=seafile-license.txt=$PATH_TO_YOUR_LICENSE_FILE --namespace seafile
-```
-
-Then modify `my-values.yaml` to add the information extra volumes:
-
-```yaml
-seafile:
-  ...
-  extraVolumes:
-    backend:
-        - name: seafileLicense
-        volumeInfo:
-            secret:
-            secretName: seafile-license
-                items:
-                - key: seafile-license.txt
-                    path: seafile-license.txt
-        subPath: seafile-license.txt
-        mountPath: /shared/seafile/seafile-license.txt
-        readOnly: true
-    frontend:
-        - name: seafileLicense
-        volumeInfo:
-            secret:
-            secretName: seafile-license
-                items:
-                - key: seafile-license.txt
-                    path: seafile-license.txt
-        subPath: seafile-license.txt
-        mountPath: /shared/seafile/seafile-license.txt
-        readOnly: true
-```
-
-Finally you can upgrade your chart by:
+You can uninstall chart by the following command:
 
 ```sh
-helm upgrade --install seafile seafile/cluster  --namespace seafile --create-namespace --values my-values.yaml
+helm delete seafile --namespace seafile
 ```
 
-!!! success "Flexible in Seafile Helm Chart"
-    No only the extra volumes, you can also define the other environment variables objects (i.e., `extraEnv`) and resources objects (i.e., `extraResources`) in `my-values.yaml`
+## Advanced operations
 
-### Other advanced operations
-
-Please refer from [here](./cluster_deploy_with_k8s.md#load-balance-and-https) for futher advanced operations.
+Please refer from [here](./k8s_advanced_management) for futher advanced operations.

@@ -4,7 +4,7 @@ This manual explains how to deploy and run Seafile Server Community Edition (Sea
 
 ## Requirements
 
-Please refer [here](../setup/system_requirements.md#seafile-ce) for system requirements about Seafile CE.
+Please refer [here](../setup/system_requirements.md#seafile-ce) for system requirements about Seafile CE. In general, we recommend that you should have at least 2G RAM and a 2-core CPU (> 2GHz).
 
 
 ## Setup

@@ -6,7 +6,7 @@ For specific environment and configuration requirements, please refer to the des
 
 ## System requirements
 
-Please refer [here](./system_requirements.md) for system requirements about Seafile service. By the way, this will apply to all nodes where Seafile pods may appear in your K8S cluster.
+Please refer [here](./system_requirements.md) for the details of system requirements about Seafile service. By the way, this will apply to all nodes where Seafile pods may appear in your K8S cluster. In general, we recommend that each node should have at least 2G RAM and a 2-core CPU (> 2GHz).
 
 ## Gettings started
 
@@ -77,10 +77,10 @@ nano /opt/seafile-k8s-yaml/seafile-secret.yaml
 
 ## Start Seafile server
 
-You can start Seafile server simply by
+You can start Seafile server and specify the resources into the namespace `seafile` for easier management by
 
 ```sh
-kubectl apply -f /opt/seafile-k8s-yaml/
+kubectl apply -f /opt/seafile-k8s-yaml/ -n seafile
 ```
 
 !!! warning "Important for Pro edition"
@@ -98,8 +98,7 @@ kubectl apply -f /opt/seafile-k8s-yaml/
     Please modfiy the files in `/opt/seafile-data/seafile/conf` (especially the `seafevents.conf`, `seafile.conf` and `seahub_settings.py`) to make correct the configurations for above services, otherwise the Seafile server cannot start normally. Then restart Seafile server:
 
     ```sh
-    kubectl delete -f /opt/seafile-k8s-yaml/
-    kubectl apply -f /opt/seafile-k8s-yaml/
+    kubectl delete pods -n seafile $(kubectl get pods -n seafile -o jsonpath='{.items[*].metadata.name}' | grep seafile)
     ```
 
 ## Activating the Seafile License (Pro)
@@ -111,37 +110,17 @@ If you have a `seafile-license.txt` license file, simply put it in the volume of
 Then restart Seafile:
 
 ```bash
-kubectl delete -f /opt/seafile-k8s-yaml/
-kubectl apply -f /opt/seafile-k8s-yaml/
+kubectl delete pods -n seafile $(kubectl get pods -n seafile -o jsonpath='{.items[*].metadata.name}' | grep seafile)
 ```
 
-## Container management
+## Uninstall Seafile K8S
 
-Similar to docker installation, you can also manage containers through [some kubectl commands](https://kubernetes.io/docs/reference/kubectl/#operations). For example, you can use the following command to check whether the relevant resources are started successfully and whether the relevant services can be accessed normally. First, execute the following command and remember the pod name with `seafile-` as the prefix (such as `seafile-748b695648-d6l4g`)
+You can uninstall the Seafile K8S by the following command:
 
-```shell
-kubectl get pods
+```sh
+kubectl delete -f /opt/seafile-k8s-yaml/ -n seafile
 ```
 
-You can check a status of a pod by 
+## Advanced operations
 
-```shell
-kubectl logs seafile-748b695648-d6l4g
-```
-
-and enter a container by
-
-```shell
-kubectl exec -it seafile-748b695648-d6l4g --  bash
-```
-
-## HTTPS
-
-Please refer to [here](./cluster_deploy_with_k8s.md#load-balance-and-https) about suggestions of enabling HTTPS in K8S.
-
-## Seafile directory structure
-
-Please refer to [here](./setup_pro_by_docker.md#seafile-directory-structure) for the details.
-
-!!! tip "Send logs to Loki"
-    You can directly view the log files of single-pod Seafile in the persistent volume directory, as the log files are distinguishable even the node of pod has changed (because there will only be one node running Seafile), so by default single-pod Seafile logs are not output to standard output. If you need to record these log files to a log server (e.g., [*Loki*](https://grafana.com/oss/loki/)), you can refer to [here](./cluster_deploy_with_k8s.md#log-routing-and-aggregation-system) for more informations.
+Please refer from [here](./k8s_advanced_management) for futher advanced operations.

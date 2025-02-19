@@ -114,6 +114,7 @@ nav:
       - By K8S resource files:
         - Single node: setup/k8s_single_node.md
         - Cluster (Pro): setup/cluster_deploy_with_k8s.md
+      - Seafile K8S advanced management: setup/k8s_advanced_management.md
     - Migration:
       - Migration from Seafile Community: setup/migrate_ce_to_pro_with_docker.md
       - Migrate from non-docker deployment: setup/migrate_non_docker_to_docker.md
