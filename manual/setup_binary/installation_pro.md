@@ -4,7 +4,7 @@ This manual explains how to deploy and run Seafile Server Professional Edition (
 
 ## Requirements
 
-Please refer [here](../setup/system_requirements.md#seafile-pro) for system requirements about Seafile PE.
+Please refer [here](../setup/system_requirements.md#seafile-pro) for system requirements about Seafile PE. In general, we recommend that you should have at least 4G RAM and a 4-core CPU (> 2GHz).
 
 Seafile PE can be used without a paid license with up to three users. Licenses for more user can be purchased in the [Seafile Customer Center](https://customer.seafile.com) or contact Seafile Sales at [sales@seafile.com](mailto:sales@seafile.com) or one of [our partners](https://www.seafile.com/en/partner/).
 

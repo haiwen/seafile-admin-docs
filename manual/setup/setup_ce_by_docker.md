@@ -2,7 +2,7 @@
 
 ## System requirements
 
-Please refer [here](./system_requirements.md#seafile-ce) for system requirements about Seafile CE.
+Please refer [here](./system_requirements.md#seafile-ce) for system requirements about Seafile CE. In general, we recommend that you have at least 2G RAM and a 2-core CPU (> 2GHz).
 
 ## Getting started
 
