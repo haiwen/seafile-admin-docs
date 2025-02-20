@@ -186,4 +186,21 @@ Placeholder spot for shared volumes. You may elect to store certain persistent i
 
 ## Database used by SeaDoc
 
-SeaDoc used one database table `seahub_db.sdoc_operation_log` to store operation logs.
+SeaDoc used one database table `seahub_db.sdoc_operation_log` to store operation logs. The database table is cleaned automatically.
+
+## Common issues when settings up SeaDoc
+
+### "Server is disconnected. Reconnecting…" error when open a sdoc
+
+This is because websocket for sdoc-server has not been properly configured. If you use the default Caddy proxy, it should be setup correctly.
+
+But if you use your own proxy, you need to make sure it properly proxy `your-sdoc-server-domain/socket.io` to `sdoc-server-docker-image-address/socket.io`
+
+### "Load doc content error" when open a sdoc
+
+This is because the browser cannot correctly load content from sdoc-server. Make sure
+
+* SEADOC_SERVER_URL is correctly set in `.env`
+* Make sure sdoc-server can be accessed via the browser.
+
+You can open developer console of the browser to further debug the issue.
