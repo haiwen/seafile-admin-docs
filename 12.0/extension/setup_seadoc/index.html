@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.4">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.5">
     
     
       
@@ -2128,6 +2128,39 @@
       Database used by SeaDoc
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-issues-when-settings-up-seadoc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common issues when settings up SeaDoc
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common issues when settings up SeaDoc">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#server-is-disconnected-reconnecting-error-when-open-a-sdoc" class="md-nav__link">
+    <span class="md-ellipsis">
+      "Server is disconnected. Reconnecting…" error when open a sdoc
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load-doc-content-error-when-open-a-sdoc" class="md-nav__link">
+    <span class="md-ellipsis">
+      "Load doc content error" when open a sdoc
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -4450,6 +4483,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#common-issues-when-settings-up-seadoc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common issues when settings up SeaDoc
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common issues when settings up SeaDoc">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#server-is-disconnected-reconnecting-error-when-open-a-sdoc" class="md-nav__link">
+    <span class="md-ellipsis">
+      "Server is disconnected. Reconnecting…" error when open a sdoc
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load-doc-content-error-when-open-a-sdoc" class="md-nav__link">
+    <span class="md-ellipsis">
+      "Load doc content error" when open a sdoc
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4670,7 +4736,18 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 <li>/opt/seadoc-data/logs: This is the directory for SeaDoc logs.</li>
 </ul>
 <h2 id="database-used-by-seadoc">Database used by SeaDoc<a class="headerlink" href="#database-used-by-seadoc" title="Permanent link">&para;</a></h2>
-<p>SeaDoc used one database table <code>seahub_db.sdoc_operation_log</code> to store operation logs.</p>
+<p>SeaDoc used one database table <code>seahub_db.sdoc_operation_log</code> to store operation logs. The database table is cleaned automatically.</p>
+<h2 id="common-issues-when-settings-up-seadoc">Common issues when settings up SeaDoc<a class="headerlink" href="#common-issues-when-settings-up-seadoc" title="Permanent link">&para;</a></h2>
+<h3 id="server-is-disconnected-reconnecting-error-when-open-a-sdoc">"Server is disconnected. Reconnecting…" error when open a sdoc<a class="headerlink" href="#server-is-disconnected-reconnecting-error-when-open-a-sdoc" title="Permanent link">&para;</a></h3>
+<p>This is because websocket for sdoc-server has not been properly configured. If you use the default Caddy proxy, it should be setup correctly.</p>
+<p>But if you use your own proxy, you need to make sure it properly proxy <code>your-sdoc-server-domain/socket.io</code> to <code>sdoc-server-docker-image-address/socket.io</code></p>
+<h3 id="load-doc-content-error-when-open-a-sdoc">"Load doc content error" when open a sdoc<a class="headerlink" href="#load-doc-content-error-when-open-a-sdoc" title="Permanent link">&para;</a></h3>
+<p>This is because the browser cannot correctly load content from sdoc-server. Make sure</p>
+<ul>
+<li>SEADOC_SERVER_URL is correctly set in <code>.env</code></li>
+<li>Make sure sdoc-server can be accessed via the browser.</li>
+</ul>
+<p>You can open developer console of the browser to further debug the issue.</p>
 
 
 
