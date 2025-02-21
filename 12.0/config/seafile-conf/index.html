@@ -4678,7 +4678,7 @@ expire_days = 60
 <h2 id="system-trash">System Trash<a class="headerlink" href="#system-trash" title="Permanent link">&para;</a></h2>
 <p>Seafile uses a system trash, where deleted libraries will be moved to. In this way, accidentally deleted libraries can be recovered by system admin.</p>
 <h2 id="cache-pro-edition-only">Cache (Pro Edition Only)<a class="headerlink" href="#cache-pro-edition-only" title="Permanent link">&para;</a></h2>
-<p>Seafile Pro Edition uses memory caches in various cases to improve performance. Some session information is also saved into memory cache to be shared among the cluster nodes. Memcached or Reids can be use for memory cache.</p>
+<p>seaf-server component in Seafile Pro Edition uses memory caches in various cases to improve performance. (seaf-server component in community edition does not use cache) Some session information is also saved into memory cache to be shared among the cluster nodes. Memcached or Reids can be use for memory cache.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Redis support is added in version 11.0. Currently only single-node Redis is supported. Redis Sentinel or Cluster is not supported yet.</p>
