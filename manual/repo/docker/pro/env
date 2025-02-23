@@ -69,7 +69,7 @@ SEASEARCH_IMAGE=seafileltd/seasearch:latest
 SS_STORAGE_TYPE=disk # disk (local storage), s3, oss
 
 ### Local storage mode
-SS_DATA_PATH=./data # Persistent storage path
+SS_DATA_PATH=/opt/seasearch-data # Persistent storage path
 SS_MAX_OBJ_CACHE_SIZE=10GB
 
 ### S3 mode
