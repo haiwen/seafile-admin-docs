@@ -55,12 +55,12 @@ expire_days = 60
 
 Seafile uses a system trash, where deleted libraries will be moved to. In this way, accidentally deleted libraries can be recovered by system admin.
 
-## Cache (Pro Edition Only)
+## Cache
 
-Seafile Pro Edition uses memory caches in various cases to improve performance. Some session information is also saved into memory cache to be shared among the cluster nodes. Memcached or Reids can be use for memory cache.
+Seafile uses memory caches in various cases to improve performance. Some session information is also saved into memory cache to be shared among the cluster nodes. Memcached or Reids can be use for memory cache.
 
 !!! tip
-    Redis support is added in version 11.0. Currently only single-node Redis is supported. Redis Sentinel or Cluster is not supported yet.
+    Redis support is added in version 11.0 and is the default cache server from Seafile 13.0. Currently only single-node Redis is supported. Redis Sentinel or Cluster is not supported yet.
 
 === "memcached"
 

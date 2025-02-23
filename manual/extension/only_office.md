@@ -11,7 +11,7 @@ Seafile supports [OnlyOffice](https://www.onlyoffice.com/) to view/edit office f
 Download the `onlyoffice.yml`
 
 ```shell
-wget https://manual.seafile.com/12.0/repo/docker/onlyoffice.yml
+wget https://manual.seafile.com/13.0/repo/docker/onlyoffice.yml
 ```
 
 insert `onlyoffice.yml` into `COMPOSE_FILE` list (i.e., `COMPOSE_FILE='...,onlyoffice.yml'`), and add the following configurations of onlyoffice in `.env` file.

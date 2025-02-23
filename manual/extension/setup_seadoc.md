@@ -41,7 +41,7 @@ The easiest way to deployment SeaDoc is to deploy it with Seafile server on the 
 1. Download the `seadoc.yml` to `/opt/seafile`
 
     ```shell
-    wget https://manual.seafile.com/12.0/repo/docker/seadoc.yml
+    wget https://manual.seafile.com/13.0/repo/docker/seadoc.yml
     ```
 
 2. Modify `.env`, and insert `seadoc.yml` into `COMPOSE_FILE`, and enable SeaDoc server
@@ -69,8 +69,8 @@ If you deploy Seafile in a cluster or if you deploy Seafile with binary package,
 1. Download and modify the `.env` and `seadoc.yml` files to directory `/opt/seadoc`
 
     ```sh
-    wget https://manual.seafile.com/12.0/repo/docker/seadoc/1.0/standalone/seadoc.yml
-    wget -O .env https://manual.seafile.com/12.0/repo/docker/seadoc/1.0/standalone/env
+    wget https://manual.seafile.com/13.0/repo/docker/seadoc/1.0/standalone/seadoc.yml
+    wget -O .env https://manual.seafile.com/13.0/repo/docker/seadoc/1.0/standalone/env
     ```
 
 2. Then modify the `.env` file according to your environment. The following fields are needed to be modified:

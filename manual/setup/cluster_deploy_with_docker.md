@@ -58,8 +58,8 @@ Please refer [here](./system_requirements.md#seafile-cluster) for the details ab
 3. Download the `seafile-server.yml` and `.env`
 
     ```sh
-    wget -O .env https://manual.seafile.com/12.0/repo/docker/cluster/env
-    wget https://manual.seafile.com/12.0/repo/docker/cluster/seafile-server.yml
+    wget -O .env https://manual.seafile.com/13.0/repo/docker/cluster/env
+    wget https://manual.seafile.com/13.0/repo/docker/cluster/seafile-server.yml
     ```
 
 4. Modify the [variables](../config/env.md) in `.env` (especially the terms like `<...>`). 

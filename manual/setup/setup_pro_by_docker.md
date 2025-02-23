@@ -39,10 +39,10 @@ mkdir /opt/seafile
 cd /opt/seafile
 
 # Seafile PE 12.0
-wget -O .env https://manual.seafile.com/12.0/repo/docker/pro/env
-wget https://manual.seafile.com/12.0/repo/docker/seadoc.yml
-wget https://manual.seafile.com/12.0/repo/docker/pro/seafile-server.yml
-wget https://manual.seafile.com/12.0/repo/docker/caddy.yml
+wget -O .env https://manual.seafile.com/13.0/repo/docker/pro/env
+wget https://manual.seafile.com/13.0/repo/docker/seadoc.yml
+wget https://manual.seafile.com/13.0/repo/docker/pro/seafile-server.yml
+wget https://manual.seafile.com/13.0/repo/docker/caddy.yml
 
 nano .env
 ```

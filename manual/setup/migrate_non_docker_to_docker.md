@@ -65,17 +65,17 @@ You have to download the latest docker-compose files (i.e., series of `.yml` and
 === "Seafile CE"
 
     ```sh
-    wget -O .env https://manual.seafile.com/12.0/repo/docker/ce/env
-    wget https://manual.seafile.com/12.0/repo/docker/ce/seafile-server.yml
-    wget https://manual.seafile.com/12.0/repo/docker/caddy.yml
+    wget -O .env https://manual.seafile.com/13.0/repo/docker/ce/env
+    wget https://manual.seafile.com/13.0/repo/docker/ce/seafile-server.yml
+    wget https://manual.seafile.com/13.0/repo/docker/caddy.yml
     ```
 
 === "Seafile Pro"
 
     ```sh
-    wget -O .env https://manual.seafile.com/12.0/repo/docker/pro/env
-    wget https://manual.seafile.com/12.0/repo/docker/pro/seafile-server.yml
-    wget https://manual.seafile.com/12.0/repo/docker/caddy.yml
+    wget -O .env https://manual.seafile.com/13.0/repo/docker/pro/env
+    wget https://manual.seafile.com/13.0/repo/docker/pro/seafile-server.yml
+    wget https://manual.seafile.com/13.0/repo/docker/caddy.yml
     ```
 
 Then modify the `.env` according to your configurations.

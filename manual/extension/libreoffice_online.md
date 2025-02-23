@@ -27,7 +27,7 @@
 Download the `collabora.yml`
 
 ```sh
-wget https://manual.seafile.com/12.0/repo/docker/collabora.yml
+wget https://manual.seafile.com/13.0/repo/docker/collabora.yml
 ```
 
 Insert `collabora.yml` to field `COMPOSE_FILE` lists (i.e., `COMPOSE_FILE='...,collabora.yml'`) and add the relative options in `.env`

@@ -21,12 +21,12 @@ By the way, we don't provide the deployment methods of basic services (e.g., **M
     ```sh
     mkdir -p /opt/seafile-k8s-yaml
 
-    wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/12.0/repo/k8s/pro/seafile-deployment.yaml
-    wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/12.0/repo/k8s/pro/seafile-persistentvolume.yaml
-    wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/12.0/repo/k8s/pro/seafile-persistentvolumeclaim.yaml
-    wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/12.0/repo/k8s/pro/seafile-service.yaml
-    wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/12.0/repo/k8s/pro/seafile-env.yaml
-    wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/12.0/repo/k8s/pro/seafile-secret.yaml
+    wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/13.0/repo/k8s/pro/seafile-deployment.yaml
+    wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/13.0/repo/k8s/pro/seafile-persistentvolume.yaml
+    wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/13.0/repo/k8s/pro/seafile-persistentvolumeclaim.yaml
+    wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/13.0/repo/k8s/pro/seafile-service.yaml
+    wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/13.0/repo/k8s/pro/seafile-env.yaml
+    wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/13.0/repo/k8s/pro/seafile-secret.yaml
     ```
 
 === "Community edition"
@@ -34,12 +34,12 @@ By the way, we don't provide the deployment methods of basic services (e.g., **M
     ```sh
     mkdir -p /opt/seafile-k8s-yaml
 
-    wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/12.0/repo/k8s/ce/seafile-deployment.yaml
-    wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/12.0/repo/k8s/ce/seafile-persistentvolume.yaml
-    wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/12.0/repo/k8s/ce/seafile-persistentvolumeclaim.yaml
-    wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/12.0/repo/k8s/ce/seafile-service.yaml
-    wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/12.0/repo/k8s/ce/seafile-env.yaml
-    wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/12.0/repo/k8s/ce/seafile-secret.yaml
+    wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/13.0/repo/k8s/ce/seafile-deployment.yaml
+    wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/13.0/repo/k8s/ce/seafile-persistentvolume.yaml
+    wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/13.0/repo/k8s/ce/seafile-persistentvolumeclaim.yaml
+    wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/13.0/repo/k8s/ce/seafile-service.yaml
+    wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/13.0/repo/k8s/ce/seafile-env.yaml
+    wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/13.0/repo/k8s/ce/seafile-secret.yaml
     ```
 
 In here we suppose you download the YAML files in `/opt/seafile-k8s-yaml`, which mainly include about:

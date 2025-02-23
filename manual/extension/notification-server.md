@@ -17,7 +17,7 @@ The notification server uses websocket protocol and maintains a two-way communic
 Since Seafile 12.0, we use a separate Docker image to deploy the notification server. First download `notification-server.yml` to Seafile directory:
 
 ```sh
-wget https://manual.seafile.com/12.0/repo/docker/notification-server.yml
+wget https://manual.seafile.com/13.0/repo/docker/notification-server.yml
 ```
 
 Modify `.env`, and insert `notification-server.yml` into `COMPOSE_FILE`:
@@ -68,8 +68,8 @@ If you enable [clustering](../setup_binary/cluster_deployment.md), You need to d
 Download `.env` and `notification-server.yml` to notification server directory:
 
 ```sh
-wget https://manual.seafile.com/12.0/repo/docker/notification-server/standalone/notification-server.yml
-wget -O .env https://manual.seafile.com/12.0/repo/docker/notification-server/standalone/env
+wget https://manual.seafile.com/13.0/repo/docker/notification-server/standalone/notification-server.yml
+wget -O .env https://manual.seafile.com/13.0/repo/docker/notification-server/standalone/env
 ```
 
 Then modify the `.env` file according to your environment. The following fields are needed to be modified:

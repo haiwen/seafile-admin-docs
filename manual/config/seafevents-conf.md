@@ -40,6 +40,13 @@ suffix = md,txt,...
 
 ## If you need to modify the file list format, you can add 'suffix = md, txt, ...' configuration items to achieve.
 
+# From Seafile 13.0 Redis also support using in CE, and is the default cached server
+[REDIS]
+## redis use the 0 database and "repo_update" channel
+server = 192.168.1.1
+port = 6379
+password = q!1w@#123
+
 ```
 
 
@@ -93,12 +100,6 @@ enabled = false
 ## message format: repo-update\t{{repo_id}}}\t{{commit_id}}
 ## Currently only support redis message queue
 mq_type = redis
-
-[REDIS]
-## redis use the 0 database and "repo_update" channel
-server = 192.168.1.1
-port = 6379
-password = q!1w@#123
 
 [AUTO DELETION]
 enabled = true     # Default is false, when enabled, users can use file auto deletion feature

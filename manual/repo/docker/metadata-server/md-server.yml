@@ -5,11 +5,11 @@ services:
     volumes:
       - ${MD_DATA:-/opt/md-data}:/data
       - ${SEAFILE_VOLUME:-/opt/seafile-data}/seafile:/opt/seafile
-    #ports:
-      # - ${MD_PORT:-8084}:${MD_PORT:-8084}
+    ports:
+       - ${MD_PORT:-8084}:${MD_PORT:-8084}
     environment:
-      - JWT_PRIVATE_KEY=${METADATA_SERVER_SECRET_KEY:?Variable is not set or empty}
-      - SEAFILE_MYSQL_DB_HOST=${SEAFILE_MYSQL_DB_HOST:-db}
+      - JWT_PRIVATE_KEY=${JWT_PRIVATE_KEY:?Variable is not set or empty}
+      - SEAFILE_MYSQL_DB_HOST=${SEAFILE_MYSQL_DB_HOST:?Variable is not set or empty}
       - SEAFILE_MYSQL_DB_PORT=${SEAFILE_MYSQL_DB_PORT:-3306}
       - SEAFILE_MYSQL_DB_USER=${SEAFILE_MYSQL_DB_USER:-seafile}
       - SEAFILE_MYSQL_DB_PASSWORD=${SEAFILE_MYSQL_DB_PASSWORD:?Variable is not set or empty}
@@ -33,16 +33,6 @@ services:
       - MD_OSS_BUCKET=${MD_OSS_BUCKET:-}
       - MD_OSS_KEY_ID=${MD_OSS_KEY_ID:-}
       - MD_OSS_KEY=${MD_OSS_KEY:-}
-      - REDIS_HOST=${REDIS_HOST:-redis}
+      - REDIS_HOST=${REDIS_HOST:?Variable is not set or empty}
       - REDIS_PORT=${REDIS_PORT:-6379}
       - REDIS_PASSWORD=${REDIS_PASSWORD:-}
-    depends_on:
-      db:
-        condition: service_healthy
-
-    networks:
-      - seafile-net
-
-networks:
-  seafile-net:
-    name: seafile-net
