@@ -47,8 +47,16 @@ If you would like to use *SeaSearch* as the search engine, the `elasticSearch` s
 
 ```yml
 services:
-    #elasticsearch: # remove or note the whole `elasticsearch` section
-        #... 
+  seafile:
+    ...
+    depends_on:
+      ...
+      #elasticsearch: # remove or note the `elasticsearch` service Dependency
+        #condition: service_started
+
+
+  #elasticsearch: # remove or note the whole `elasticsearch` section
+    #... 
 ```
 
 ## Modify `seafevents.conf`
