@@ -4505,8 +4505,16 @@
 <h2 id="modify-seafile-serveryml-to-disable-elasticsearch-service">Modify <code>seafile-server.yml</code> to disable <code>elasticSearch</code> service<a class="headerlink" href="#modify-seafile-serveryml-to-disable-elasticsearch-service" title="Permanent link">&para;</a></h2>
 <p>If you would like to use <em>SeaSearch</em> as the search engine, the <code>elasticSearch</code> service can be removed or noted in <code>seafile-server.yml</code>, which is no longer used:</p>
 <div class="highlight"><pre><span></span><code>services:
-    #elasticsearch: # remove or note the whole `elasticsearch` section
-        #... 
+  seafile:
+    ...
+    depends_on:
+      ...
+      #elasticsearch: # remove or note the `elasticsearch` service Dependency
+        #condition: service_started
+
+
+  #elasticsearch: # remove or note the whole `elasticsearch` section
+    #... 
 </code></pre></div>
 <h2 id="modify-seafeventsconf">Modify <code>seafevents.conf</code><a class="headerlink" href="#modify-seafeventsconf" title="Permanent link">&para;</a></h2>
 <ol>
