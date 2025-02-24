@@ -21,7 +21,7 @@ mv docker-compose.yml docker-compose.yml.bak
 
 ### Download Seafile 12.0 Docker files
 
-Download [.env](../docker/ce/env), [seafile-server.yml](../docker/ce/seafile-server.yml) and [caddy.yml](../docker/caddy.yml), and modify .env file according to the old configuration in `docker-compose.yml.bak`
+Download `.env`, `seafile-server.yml` and `caddy.yml` by following commands, and modify .env file according to the old configuration in `docker-compose.yml.bak`
 
 === "Seafile community edition"
 

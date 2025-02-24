@@ -43,6 +43,7 @@ Also modify `seahub_settings.py`
 ENABLE_ONLYOFFICE = True
 ONLYOFFICE_APIJS_URL = 'https://seafile.example.com:6233/web-apps/apps/api/documents/api.js'
 ONLYOFFICE_FILE_EXTENSION = ('doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx', 'odt', 'fodt', 'odp', 'fodp', 'ods', 'fods', 'csv', 'ppsx', 'pps')
+ONLYOFFICE_EDIT_FILE_EXTENSION = ('docx', 'pptx', 'xlsx')
 ONLYOFFICE_JWT_SECRET = '<your jwt secret>'
 ```
 
