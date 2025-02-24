@@ -19,7 +19,7 @@ services:
       - seafile-net
 
   elasticsearch:
-    image: seafileltd/elasticsearch-with-ik:5.6.16
+    image: elasticsearch:5.6.16
     container_name: seafile-elasticsearch
     environment:
       - discovery.type=single-node
