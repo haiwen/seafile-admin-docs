@@ -23,7 +23,7 @@ Please download the file by following command:
 === "Standalone"
 
     !!! note
-        For standalone deployment, the metadata server only supports Seafile using **S3** and **OSS** as storage backend
+        For standalone deployment, the metadata server only supports Seafile using the storage backend such as **S3**.
 
     ```sh
     wget https://manual.seafile.com/13.0/repo/docker/metadata-server/md-server.yml
@@ -69,16 +69,6 @@ And here is other optional values according to your `MD_STORAGE_TYPE` setting:
     | `MD_S3_KEY`         | S3 backend authorization key secret.                                                                                       |  **Required** |
     | `MD_S3_USE_V4_SIGNATURE` | Use V4 signature to S3 storage backend.                                                                              | Optional, default `true`           |
     | `MD_S3_SSE_C_KEY`   | S3 SSE-C key.                                                                                                              | Optional                |
-
-- `MD_STORAGE_TYPE=oss`
-
-    | Variables           | Description                                                                                                                | Required |
-            | --- | --- | --- |
-    | `MD_OSS_HOST`       | OSS backend host.                                                                                                          | Optional                |
-    | `MD_OSS_REGION`     | OSS backend region.                                                                                                        | Optional                |
-    | `MD_OSS_BUCKET`     | Name of OSS bucket for storaging metadata.                                                                               | **Required** |
-    | `MD_OSS_KEY_ID`     | OSS backend authorization key ID.                                                                                          | **Required** |
-    | `MD_OSS_KEY`        | OSS backend authorization key secret.                                                                                      | **Required** |
 
 ### Modify `seahub_settings.py`
 
