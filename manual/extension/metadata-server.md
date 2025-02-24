@@ -42,7 +42,7 @@ By default, you don't need to add additional variables to your `.env` (except fo
 | `JWT_PRIVATE_KEY`   | The JWT key used to connect with Seafile server | **Required** |
 | `MD_DATA`           | Directory where metadata and cache are located.                                  | Optional, default `/opt/md-data`   |
 | `MD_MAX_CACHE_SIZE` | The maximum cache size.                                                                                                    | Optional, default `1GB`            |
-| `MD_STORAGE_TYPE`   | The type of Seafile backend storage. Options: `file` (local storage), `s3`, `oss`.                                                 | Optional, default `file`            |
+| `MD_STORAGE_TYPE`   | The type of Seafile backend storage. Options: `file` (local storage), `s3`, `oss`.                                                 | Optional, default `file` and `s3` in deploying metadata server in the same machine with Seafile and standalone respective |
 | `REDIS_HOST`        | Your *Redis* service host.                                                                                                 | Optional, default `redis`          |
 | `REDIS_PORT`        | Your *Redis* service port.                                                                                                 | Optional, default `6379`           |
 | `REDIS_PASSWORD`    | Your *Redis* access password.                                                                                              | Optional                |
@@ -79,14 +79,6 @@ And here is other optional values according to your `MD_STORAGE_TYPE` setting:
     | `MD_OSS_BUCKET`     | Name of OSS bucket for storaging metadata.                                                                               | **Required** |
     | `MD_OSS_KEY_ID`     | OSS backend authorization key ID.                                                                                          | **Required** |
     | `MD_OSS_KEY`        | OSS backend authorization key secret.                                                                                      | **Required** |
-    
-
-!!! tip "More descriptions about *Optional* and *Required* in above table"
-    - In the table above, although many items are marked as *Required*, some of them are only required when the storage backend specified by `MD_STORAGE_TYPE` is used:
-        - `MD_S3_xxx` only valid in `MD_STORAGE_TYPE=s3`
-        - `MD_OSS_xxx` only valid in `MD_STORAGE_TYPE=oss`
-
-    - If `MD_STORAGE_TYPE` is `s3` or `oss`, although `MD_xxx_HOST` and `MD_xxx_REGION` are marked as ***Optional***, when you use one of these two storage backends, **you must specify at least one of `MD_xxx_HOST` and `MD_xxx_REGION`, otherwise the service will fail to start**.
 
 ### Modify `seahub_settings.py`
 
