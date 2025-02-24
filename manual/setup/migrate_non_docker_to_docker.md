@@ -72,10 +72,14 @@ You have to download the latest docker-compose files (i.e., series of `.yml` and
 
 === "Seafile Pro"
 
+    !!! tip
+        By default, following this document to migrate Seafile Pro will use *ElasticSearch* as the file indexer for search functionality. You can also use [*Seasearch*](./use_seasearch.md) as the search engine without downloading `elasticsearch.yml`
+
     ```sh
     wget -O .env https://manual.seafile.com/13.0/repo/docker/pro/env
     wget https://manual.seafile.com/13.0/repo/docker/pro/seafile-server.yml
     wget https://manual.seafile.com/13.0/repo/docker/caddy.yml
+    wget https://manual.seafile.com/13.0/repo/docker/elasticsearch.yml
     ```
 
 Then modify the `.env` according to your configurations.

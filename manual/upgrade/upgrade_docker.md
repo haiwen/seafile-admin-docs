@@ -19,9 +19,9 @@ From Seafile Docker 12.0, we recommend that you use `.env` and `seafile-server.y
 mv docker-compose.yml docker-compose.yml.bak
 ```
 
-### Download Seafile 12.0 Docker files
+### Download Seafile 13.0 Docker files
 
-Download [.env](../docker/ce/env), [seafile-server.yml](../docker/ce/seafile-server.yml) and [caddy.yml](../docker/caddy.yml), and modify .env file according to the old configuration in `docker-compose.yml.bak`
+Download `.env` and `seafile-server.yml`, and then modify .env file according to the old configuration in `docker-compose.yml.bak`
 
 === "Seafile community edition"
 
@@ -48,10 +48,14 @@ Download [.env](../docker/ce/env), [seafile-server.yml](../docker/ce/seafile-ser
     | `TIME_ZONE`                     | Time zone                                                                                                     | `UTC`                           |  
 === "Seafile pro edition"
 
+    !!! tip
+        By default, following this document to upgrade Seafile will use *ElasticSearch* as the file indexer for search functionality. You can also use [*Seasearch*](./use_seasearch.md) as the search engine without downloading `elasticsearch.yml`
+
     ```sh
     wget -O .env https://manual.seafile.com/13.0/repo/docker/pro/env
     wget https://manual.seafile.com/13.0/repo/docker/pro/seafile-server.yml
     wget https://manual.seafile.com/13.0/repo/docker/caddy.yml
+    wget https://manual.seafile.com/13.0/repo/docker/elasticsearch.yml
     ```
     The following fields merit particular attention:
 

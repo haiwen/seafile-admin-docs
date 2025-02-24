@@ -2,13 +2,18 @@
 
 ## Preparation
 
-1. Make sure you are running a Seafile Community edition that match the latest version of pro edition. For example, if the latest pro edition is version 12.0, you should first upgrade the community edition to version 12.0.
-2. Purchase Seafile Professional license file.
-3. Download the `.env` and `seafile-server.yml` of Seafile Pro.
+1. Make sure your machine has reached the system requirements for [Seafile Pro](./system_requirements.md#seafile-pro).
+2. Make sure you are running a Seafile Community edition that match the latest version of pro edition. For example, if the latest pro edition is version 12.0, you should first upgrade the community edition to version 12.0.
+3. Purchase Seafile Professional license file.
+4. Download the `.env`, `seafile-server.yml` and `elasticsearch.yml` of Seafile Pro.
+
+!!! tip
+    By default, following this document to migrate Seafile will use *ElasticSearch* as the file indexer for search functionality. You can also use [*Seasearch*](./use_seasearch.md) as the search engine without downloading `elasticsearch.yml`
 
 ```sh
 wget -O .env https://manual.seafile.com/13.0/repo/docker/pro/env
 wget https://manual.seafile.com/13.0/repo/docker/pro/seafile-server.yml
+wget https://manual.seafile.com/13.0/repo/docker/pro/elasticsearch.yml
 ```
 
 ## Migrate

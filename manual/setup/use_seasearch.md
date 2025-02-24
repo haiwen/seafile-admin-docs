@@ -30,7 +30,11 @@ We have configured the relevant variables in .env. Here you must pay special att
     SEASEARCH_IMAGE=seafileltd/seasearch-nomkl:latest
     ```
 
+!!! tip
+    You can also disable the *ElasticSearch* service in `.env` if you will no longer use it by removing the `elasticsearch.yml` in the variable `COMPOSE_FILE` as shown in the following statement.
+
 ```sh
+# the `elasticsearch.yml` can also be removed in `COMPOSE_FILE`
 COMPOSE_FILE='...,seasearch.yml' # ... means other docker-compose files
 
 #SEASEARCH_IMAGE=seafileltd/seasearch-nomkl:latest  # for Apple's Chip
@@ -39,23 +43,6 @@ SEASEARCH_IMAGE=seafileltd/seasearch:latest
 SS_DATA_PATH=/opt/seasearch-data
 INIT_SS_ADMIN_USER=<admin-username>  
 INIT_SS_ADMIN_PASSWORD=<admin-password>
-```
-
-## Modify `seafile-server.yml` to disable `elasticSearch` service
-
-If you would like to use *SeaSearch* as the search engine, the `elasticSearch` service can be removed or noted in `seafile-server.yml`, which is no longer used:
-
-```yml
-services:
-  seafile:
-    ...
-    depends_on:
-      ...
-      #elasticsearch: # remove or note the `elasticsearch` service Dependency
-        #condition: service_started
-
-  #elasticsearch: # remove or note the whole `elasticsearch` section
-    #... 
 ```
 
 ## Modify `seafevents.conf`

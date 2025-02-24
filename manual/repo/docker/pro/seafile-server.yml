@@ -31,24 +31,6 @@ services:
     networks:
       - seafile-net
 
-  elasticsearch:
-    image: ${SEAFILE_ELASTICSEARCH_IMAGE:-elasticsearch:8.15.0}
-    container_name: seafile-elasticsearch
-    environment:
-      - discovery.type=single-node
-      - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
-      - "xpack.security.enabled=false"
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    mem_limit: 4g
-    volumes:
-      - "${SEAFILE_ELASTICSEARCH_VOLUME:-/opt/seafile-elasticsearch/data}:/usr/share/elasticsearch/data"
-    networks:
-      - seafile-net
-
   seafile:
     image: ${SEAFILE_IMAGE:-seafileltd/seafile-pro-mc:12.0-latest}
     container_name: seafile
@@ -93,8 +75,6 @@ services:
       db:
         condition: service_healthy
       memcached:
-        condition: service_started
-      elasticsearch:
         condition: service_started
     networks:
       - seafile-net

@@ -43,6 +43,7 @@ wget -O .env https://manual.seafile.com/13.0/repo/docker/pro/env
 wget https://manual.seafile.com/13.0/repo/docker/seadoc.yml
 wget https://manual.seafile.com/13.0/repo/docker/pro/seafile-server.yml
 wget https://manual.seafile.com/13.0/repo/docker/caddy.yml
+wget https://manual.seafile.com/13.0/repo/docker/elasticsearch.yml
 
 nano .env
 ```
