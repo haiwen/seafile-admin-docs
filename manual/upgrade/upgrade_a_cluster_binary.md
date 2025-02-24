@@ -20,7 +20,7 @@ In general, to upgrade a cluster, you need:
 
 Doing maintanence upgrading is simple, you only need to run the script `./upgrade/minor_upgrade.sh` at each node to update the symbolic link.
 
-## Upgrade from Seafile 11 cluster (all nodes)
+## Upgrade a cluster from Seafile 11 to 12
 
 !!! tip "Clean Database"
     If you have a large number of `Activity` in MySQL, clear this table first [Clean Database](../../administration/clean_database). Otherwise, the database upgrade will take a long time.
@@ -53,7 +53,7 @@ Doing maintanence upgrading is simple, you only need to run the script `./upgrad
 
 3. [Download](../setup_binary/installation_pro.md#downloading-the-install-package) and [uncompress](../setup_binary/installation_pro.md#uncompressing-the-package) the package
 
-4. Upgrade 
+4. Run the upgrade script in a single node
 
     ```sh
     seafile-pro-server-12.x.x/upgrade/upgrade_11.0_12.0.sh
@@ -78,6 +78,6 @@ Doing maintanence upgrading is simple, you only need to run the script `./upgrad
         ./seafile-background-tasks.sh start
         ```
 
-7. Refer [here](./upgrade_notes_for_12.0.x.md#5-upgrade-notification-server) to upgrade notification server
+7. (Optional) Refer [here](./upgrade_notes_for_12.0.x.md#5-upgrade-notification-server) to upgrade notification server
 
-8. Refer [here](./upgrade_notes_for_12.0.x.md#upgrade-seadoc-from-08-to-10) to upgrade SeaDoc server
+8. (Optional) Refer [here](./upgrade_notes_for_12.0.x.md#upgrade-seadoc-from-08-to-10) to upgrade SeaDoc server
