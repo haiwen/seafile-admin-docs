@@ -4,7 +4,6 @@ services:
     container_name: metadata-server
     volumes:
       - ${MD_DATA:-/opt/md-data}:/data
-      - ${SEAFILE_VOLUME:-/opt/seafile-data}/seafile:/opt/seafile
     ports:
        - ${MD_PORT:-8084}:${MD_PORT:-8084}
     environment:

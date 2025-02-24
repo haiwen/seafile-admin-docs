@@ -4,9 +4,8 @@ JWT_PRIVATE_KEY=
 MD_PORT=8084 # not recommond to modify
 MD_LOG_LEVEL=info
 MD_MAX_CACHE_SIZE=1GB
-MD_STORAGE_TYPE=file
+MD_STORAGE_TYPE=s3
 MD_DATA=/opt/md-data
-SEAFILE_VOLUME=/opt/seafile-data
 
 # for MySQL
 SEAFILE_MYSQL_DB_HOST=
@@ -16,7 +15,7 @@ SEAFILE_MYSQL_DB_PASSWORD=
 SEAFILE_MYSQL_DB_SEAFILE_DB_NAME=seafile_db
 SEAFILE_LOG_TO_STDOUT=false
 
-# 
+# for s3 configurations
 MD_S3_HOST=
 MD_S3_AWS_REGION=
 MD_S3_USE_HTTPS=true
@@ -27,7 +26,7 @@ MD_S3_KEY=
 MD_S3_USE_V4_SIGNATURE=true
 MD_S3_SSE_C_KEY=
 
-# 
+# for oss configurations
 MD_OSS_HOST=
 MD_OSS_REGION=
 MD_OSS_BUCKET=

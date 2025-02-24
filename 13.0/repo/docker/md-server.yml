@@ -8,7 +8,7 @@ services:
     #ports:
       # - ${MD_PORT:-8084}:${MD_PORT:-8084}
     environment:
-      - JWT_PRIVATE_KEY=${METADATA_SERVER_SECRET_KEY:?Variable is not set or empty}
+      - JWT_PRIVATE_KEY=${JWT_PRIVATE_KEY:?Variable is not set or empty}
       - SEAFILE_MYSQL_DB_HOST=${SEAFILE_MYSQL_DB_HOST:-db}
       - SEAFILE_MYSQL_DB_PORT=${SEAFILE_MYSQL_DB_PORT:-3306}
       - SEAFILE_MYSQL_DB_USER=${SEAFILE_MYSQL_DB_USER:-seafile}
