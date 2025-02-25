@@ -85,38 +85,33 @@ Note, you should install Python libraries system wide using root user or sudo mo
 
 The following instruction is for binary package based installation. If you use Docker based installation, please see [*Updgrade Docker*](./upgrade_docker.md)
 
-!!! note "Notification Server"
-    If you has deployed the [Notification Server](../extension/notification-server.md). The *Notification Server* should be **re-deployed** with the same version as Seafile server.
+### 1) Clean database tables before upgrade
 
-    For example:
-    
-    - Seafile server: 12.0.3
-    - notification-server: 12.0.3
+If you have a large number of `Activity` in MySQL, clear this table first [Clean Database](../../administration/clean_database). Otherwise, the database upgrade will take a long time.
 
-    You can modify `.env` in your Notification Server host to re-deploy:
+### 2) Install new system libraries and Python libraries
 
-    ```sh
-    NOTIFICATION_SERVER_IMAGE=seafileltd/notification-server:12.0-latest
-    ```
+Install new system libraries and Python libraries for your operation system as documented above.
 
-    Restart Notification Server:
 
-    ```sh
-    docker compose restart
-    ```
+### 3) Stop Seafile-11.0.x server
 
-!!! tip "Clean Database"
-    If you have a large number of `Activity` in MySQL, clear this table first [Clean Database](../../administration/clean_database). Otherwise, the database upgrade will take a long time.
+In the folder of Seafile 11.0.x, run the commands:
 
-### 1) Stop Seafile-11.0.x server
+```sh
+./seahub.sh stop
+./seafile.sh stop
+```
 
-### 2) Start from Seafile 12.0.x, run the script
+### 4) Run Seafile 12.0.x upgrade script
+
+In the folder of Seafile 12.0.x, run the upgrade script
 
 ```sh
 upgrade/upgrade_11.0_12.0.sh
 ```
 
-### 3) Create the `.env` file in `conf/` directory
+### 5) Create the `.env` file in `conf/` directory
 
 conf/.env
 
@@ -141,18 +136,25 @@ SEAFILE_MYSQL_DB_SEAHUB_DB_NAME=seahub_db
     pwgen -s 40 1
     ```
 
-### 4) Start Seafile-12.0.x server
+### 6) Start Seafile-12.0.x server
 
-### 5) Upgrade notification server
+In the folder of Seafile 12.0.x, run the command:
 
-Since seafile 12.0, we use docker to deploy the notification server. Please follow the document of [notification server](../extension/notification-server.md).
+```
+./seafile.sh start # starts seaf-server
+./seahub.sh start  # starts seahub
+```
+
+### 7) (Optional) Upgrade notification server
+
+Since seafile 12.0, we use docker to deploy the notification server. Please follow the document of [notification server](../extension/notification-server.md) to re-deploy notification server.
 
 !!! note Notification server and Seafile binary package
 
-    Notification server is designed to be work with Docker based deployment. To make it work with **Seafile binary package** on the same server is, you will need to add Nginx rules for notification server properly.
+    Notification server is designed to be work with Docker based deployment. To make it work with **Seafile binary package** on the same server, you will need to add Nginx rules for notification server properly.
 
 
-## Upgrade SeaDoc from 0.8 to 1.0
+### 8) (Optional) Upgrade SeaDoc from 0.8 to 1.0
 
 If you have deployed SeaDoc v0.8 with Seafile v11.0, you can upgrade it to 1.0 use the following two steps:
 
@@ -164,11 +166,11 @@ If you have deployed SeaDoc v0.8 with Seafile v11.0, you can upgrade it to 1.0 u
     Deploying SeaDoc and **Seafile binary package** on the same server is no longer officially supported. You will need to add Nginx rules for SeaDoc server properly.
 
 
-### Delete sdoc_db
+#### 8.1) Delete sdoc_db
 
 From version 1.0, SeaDoc is using seahub_db database to store its operation logs and no longer need an extra database sdoc_db. The database tables in seahub_db are created automatically when you upgrade Seafile server from v11.0 to v12.0. You can simply delete sdoc_db.
 
-### Deploy a new SeaDoc server
+#### 8.2) Deploy a new SeaDoc server
 
 Please see the document [Setup SeaDoc](../extension/setup_seadoc.md) to install SeaDoc on a separate machine and integrate with your binary packaged based Seafile server v12.0.
 
