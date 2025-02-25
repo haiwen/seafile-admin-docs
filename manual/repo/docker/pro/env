@@ -1,4 +1,4 @@
-COMPOSE_FILE='seafile-server.yml,caddy.yml,seadoc.yml'
+COMPOSE_FILE='seafile-server.yml,caddy.yml,seadoc.yml,elasticsearch.yml'
 COMPOSE_PATH_SEPARATOR=','
 
 # Seafile & Basic services
