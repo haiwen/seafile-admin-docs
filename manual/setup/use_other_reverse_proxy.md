@@ -158,6 +158,21 @@ Modify `nginx.conf` and add reverse proxy for services ***seafile*** and ***sead
         error_log       /var/log/nginx/notification.error.log;
     }
     ```
+=== "onlyoffice"
+    ```conf
+    location /onlyofficeds/ {
+        proxy_pass http://127.0.0.1:6233/;
+        proxy_http_version 1.1;
+        client_max_body_size 100M;
+        proxy_read_timeout 3600s;
+        proxy_connect_timeout 3600s;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $proxy_connection;
+        proxy_set_header X-Forwarded-Host $the_host/onlyofficeds;
+        proxy_set_header X-Forwarded-Proto $the_scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+    ```
 
 ## Modify .env
 
