@@ -3736,9 +3736,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#upgrade-from-seafile-11-cluster-all-nodes" class="md-nav__link">
+  <a href="#upgrade-a-cluster-from-seafile-11-to-12" class="md-nav__link">
     <span class="md-ellipsis">
-      Upgrade from Seafile 11 cluster (all nodes)
+      Upgrade a cluster from Seafile 11 to 12
     </span>
   </a>
   
@@ -4412,9 +4412,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#upgrade-from-seafile-11-cluster-all-nodes" class="md-nav__link">
+  <a href="#upgrade-a-cluster-from-seafile-11-to-12" class="md-nav__link">
     <span class="md-ellipsis">
-      Upgrade from Seafile 11 cluster (all nodes)
+      Upgrade a cluster from Seafile 11 to 12
     </span>
   </a>
   
@@ -4457,7 +4457,7 @@
 </ol>
 <h2 id="maintanence-upgrade">Maintanence upgrade<a class="headerlink" href="#maintanence-upgrade" title="Permanent link">&para;</a></h2>
 <p>Doing maintanence upgrading is simple, you only need to run the script <code>./upgrade/minor_upgrade.sh</code> at each node to update the symbolic link.</p>
-<h2 id="upgrade-from-seafile-11-cluster-all-nodes">Upgrade from Seafile 11 cluster (all nodes)<a class="headerlink" href="#upgrade-from-seafile-11-cluster-all-nodes" title="Permanent link">&para;</a></h2>
+<h2 id="upgrade-a-cluster-from-seafile-11-to-12">Upgrade a cluster from Seafile 11 to 12<a class="headerlink" href="#upgrade-a-cluster-from-seafile-11-to-12" title="Permanent link">&para;</a></h2>
 <div class="admonition tip">
 <p class="admonition-title">Clean Database</p>
 <p>If you have a large number of <code>Activity</code> in MySQL, clear this table first <a href="../../administration/clean_database">Clean Database</a>. Otherwise, the database upgrade will take a long time.</p>
@@ -4497,7 +4497,7 @@ su<span class="w"> </span>seafile
 <p><a href="../../setup_binary/installation_pro/#downloading-the-install-package">Download</a> and <a href="../../setup_binary/installation_pro/#uncompressing-the-package">uncompress</a> the package</p>
 </li>
 <li>
-<p>Upgrade </p>
+<p>Run the upgrade script in a single node</p>
 <div class="highlight"><pre><span></span><code>seafile-pro-server-12.x.x/upgrade/upgrade_11.0_12.0.sh
 </code></pre></div>
 </li>
@@ -4526,10 +4526,10 @@ su<span class="w"> </span>seafile
 </div>
 </li>
 <li>
-<p>Refer <a href="../upgrade_notes_for_12.0.x/#5-upgrade-notification-server">here</a> to upgrade notification server</p>
+<p>(Optional) Refer <a href="../upgrade_notes_for_12.0.x/#5-upgrade-notification-server">here</a> to upgrade notification server</p>
 </li>
 <li>
-<p>Refer <a href="../upgrade_notes_for_12.0.x/#upgrade-seadoc-from-08-to-10">here</a> to upgrade SeaDoc server</p>
+<p>(Optional) Refer <a href="../upgrade_notes_for_12.0.x/#upgrade-seadoc-from-08-to-10">here</a> to upgrade SeaDoc server</p>
 </li>
 </ol>
 
