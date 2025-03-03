@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.5">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
     
     
       
@@ -4765,6 +4765,16 @@ mysqldump -h [mysqlhost] -u[username] -p[password] --opt seafile_db &gt; /backup
 
 mysqldump -h [mysqlhost] -u[username] -p[password] --opt seahub_db &gt; /backup/databases/seahub_db.sql.`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`
 </code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title"><code>mysqldump</code>: command not found</p>
+<p>You may encounter this problem on some machines with a minimal Mariadb server installed. If you encounter this error, use the <code>mariadb-dump</code> command, such as:</p>
+<div class="highlight"><pre><span></span><code>mariadb-dump<span class="w"> </span>-h<span class="w"> </span><span class="o">[</span>mysqlhost<span class="o">]</span><span class="w"> </span>-u<span class="o">[</span>username<span class="o">]</span><span class="w"> </span>-p<span class="o">[</span>password<span class="o">]</span><span class="w"> </span>--opt<span class="w"> </span>ccnet_db<span class="w"> </span>&gt;<span class="w"> </span>/backup/databases/ccnet_db.sql.<span class="sb">`</span>date<span class="w"> </span>+<span class="s2">&quot;%Y-%m-%d-%H-%M-%S&quot;</span><span class="sb">`</span>
+
+mariadb-dump<span class="w"> </span>-h<span class="w"> </span><span class="o">[</span>mysqlhost<span class="o">]</span><span class="w"> </span>-u<span class="o">[</span>username<span class="o">]</span><span class="w"> </span>-p<span class="o">[</span>password<span class="o">]</span><span class="w"> </span>--opt<span class="w"> </span>seafile_db<span class="w"> </span>&gt;<span class="w"> </span>/backup/databases/seafile_db.sql.<span class="sb">`</span>date<span class="w"> </span>+<span class="s2">&quot;%Y-%m-%d-%H-%M-%S&quot;</span><span class="sb">`</span>
+
+mariadb-dump<span class="w"> </span>-h<span class="w"> </span><span class="o">[</span>mysqlhost<span class="o">]</span><span class="w"> </span>-u<span class="o">[</span>username<span class="o">]</span><span class="w"> </span>-p<span class="o">[</span>password<span class="o">]</span><span class="w"> </span>--opt<span class="w"> </span>seahub_db<span class="w"> </span>&gt;<span class="w"> </span>/backup/databases/seahub_db.sql.<span class="sb">`</span>date<span class="w"> </span>+<span class="s2">&quot;%Y-%m-%d-%H-%M-%S&quot;</span><span class="sb">`</span>
+</code></pre></div>
+</div>
 <h3 id="backing-up-seafile-library-data">Backing up Seafile library data<a class="headerlink" href="#backing-up-seafile-library-data" title="Permanent link">&para;</a></h3>
 <p>The data files are all stored in the <code>/opt/seafile</code> directory, so just back up the whole directory. You can directly copy the whole directory to the backup destination, or you can use rsync to do incremental backup. </p>
 <p>To directly copy the whole data directory,</p>
@@ -4784,11 +4794,18 @@ mysqldump -h [mysqlhost] -u[username] -p[password] --opt seahub_db &gt; /backup/
 </ol>
 <h4 id="restore-the-databases">Restore the databases<a class="headerlink" href="#restore-the-databases" title="Permanent link">&para;</a></h4>
 <p>Now with the latest valid database backup files at hand, you can restore them.</p>
-<p><strong>MySQL</strong></p>
 <div class="highlight"><pre><span></span><code>mysql -u[username] -p[password] ccnet_db &lt; ccnet_db.sql.2013-10-19-16-00-05
 mysql -u[username] -p[password] seafile_db &lt; seafile_db.sql.2013-10-19-16-00-20
 mysql -u[username] -p[password] seahub_db &lt; seahub_db.sql.2013-10-19-16-01-05
 </code></pre></div>
+<div class="admonition danger">
+<p class="admonition-title"><code>mysql</code>: command not found</p>
+<p>You may encounter this problem on some machines with a minimal Mariadb server installed. If you encounter this error, use the <code>mariadb</code> command, such as:</p>
+<div class="highlight"><pre><span></span><code>mariadb<span class="w"> </span>-u<span class="o">[</span>username<span class="o">]</span><span class="w"> </span>-p<span class="o">[</span>password<span class="o">]</span><span class="w"> </span>ccnet_db<span class="w"> </span>&lt;<span class="w"> </span>ccnet_db.sql.2013-10-19-16-00-05
+mariadb<span class="w"> </span>-u<span class="o">[</span>username<span class="o">]</span><span class="w"> </span>-p<span class="o">[</span>password<span class="o">]</span><span class="w"> </span>seafile_db<span class="w"> </span>&lt;<span class="w"> </span>seafile_db.sql.2013-10-19-16-00-20
+mariadb<span class="w"> </span>-u<span class="o">[</span>username<span class="o">]</span><span class="w"> </span>-p<span class="o">[</span>password<span class="o">]</span><span class="w"> </span>seahub_db<span class="w"> </span>&lt;<span class="w"> </span>seahub_db.sql.2013-10-19-16-01-05
+</code></pre></div>
+</div>
 <h2 id="backup-and-restore-for-docker-based-deployment">Backup and restore for Docker based deployment<a class="headerlink" href="#backup-and-restore-for-docker-based-deployment" title="Permanent link">&para;</a></h2>
 <h3 id="structure">Structure<a class="headerlink" href="#structure" title="Permanent link">&para;</a></h3>
 <p>We assume your seafile volumns path is in <code>/opt/seafile-data</code>. And you want to backup to <code>/backup</code> directory.</p>
@@ -4938,7 +4955,7 @@ docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </spa
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share", "math"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
       
