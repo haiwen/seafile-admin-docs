@@ -53,6 +53,16 @@ mysqldump -h [mysqlhost] -u[username] -p[password] --opt seahub_db > /backup/dat
 
 ```
 
+!!! danger "`mysqldump`: command not found"
+    You may encounter this problem on some machines with a minimal Mariadb server installed. If you encounter this error, use the `mariadb-dump` command, such as:
+
+    ```sh
+    mariadb-dump -h [mysqlhost] -u[username] -p[password] --opt ccnet_db > /backup/databases/ccnet_db.sql.`date +"%Y-%m-%d-%H-%M-%S"`
+
+    mariadb-dump -h [mysqlhost] -u[username] -p[password] --opt seafile_db > /backup/databases/seafile_db.sql.`date +"%Y-%m-%d-%H-%M-%S"`
+
+    mariadb-dump -h [mysqlhost] -u[username] -p[password] --opt seahub_db > /backup/databases/seahub_db.sql.`date +"%Y-%m-%d-%H-%M-%S"`
+    ```
 
 ### Backing up Seafile library data
 
@@ -87,7 +97,6 @@ Now supposed your primary seafile server is broken, you're switching to a new ma
 
 Now with the latest valid database backup files at hand, you can restore them.
 
-**MySQL**
 
 ```
 mysql -u[username] -p[password] ccnet_db < ccnet_db.sql.2013-10-19-16-00-05
@@ -96,6 +105,14 @@ mysql -u[username] -p[password] seahub_db < seahub_db.sql.2013-10-19-16-01-05
 
 ```
 
+!!! danger "`mysql`: command not found"
+    You may encounter this problem on some machines with a minimal Mariadb server installed. If you encounter this error, use the `mariadb` command, such as:
+
+    ```sh
+    mariadb -u[username] -p[password] ccnet_db < ccnet_db.sql.2013-10-19-16-00-05
+    mariadb -u[username] -p[password] seafile_db < seafile_db.sql.2013-10-19-16-00-20
+    mariadb -u[username] -p[password] seahub_db < seahub_db.sql.2013-10-19-16-01-05
+    ```
 
 ## Backup and restore for Docker based deployment
 
