@@ -4738,7 +4738,9 @@ ENABLE_REPO_SNAPSHOT_LABEL = False
 
 <span class="c1"># version for encrypted library</span>
 <span class="c1"># should only be `2` or `4`.</span>
-<span class="c1"># version 3 is insecure (using AES128 encryption) so it&#39;s not recommended any more.</span>
+<span class="c1"># version 3 is insecure (using AES128 encryption) so it&#39;s not supported any more.</span>
+<span class="c1"># refer to https://manual.seafile.com/latest/administration/security_features/#how-does-an-encrypted-library-work</span>
+<span class="c1"># for the difference between version 2 and 4.</span>
 <span class="n">ENCRYPTED_LIBRARY_VERSION</span> <span class="o">=</span> <span class="mi">2</span>
 
 <span class="c1"># Since version 12, you can choose password hash algorithm for new encrypted libraries.</span>
