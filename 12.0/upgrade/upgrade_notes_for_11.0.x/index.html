@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.8">
     
     
       
@@ -4851,7 +4851,7 @@ sudo<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> 
 <span class="n">DEL_GROUP_IF_NOT_FOUND</span> <span class="o">=</span> <span class="kc">False</span>           <span class="c1"># Set to &quot;true&quot;, sync process will delete the group if not found it in LDAP server.</span>
 <span class="n">DEL_DEPARTMENT_IF_NOT_FOUND</span> <span class="o">=</span> <span class="kc">False</span>      <span class="c1"># Set to &quot;true&quot;, sync process will deleted the department if not found it in LDAP server.</span>
 </code></pre></div></p>
-<p>If you sync users from LDAP to Seafile, when the user login via SSO (ADFS or OAuth), you want Seafile to find the existing account for this user instead of creating a new one, you can set <code>SSO_LDAP_USE_SAME_UID = True</code>:</p>
+<p>If you sync users from LDAP to Seafile, when the user login via SSO (ADFS or OAuth or Shibboleth), you want Seafile to find the existing account for this user instead of creating a new one, you can set <code>SSO_LDAP_USE_SAME_UID = True</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="n">SSO_LDAP_USE_SAME_UID</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div>
 <p>Note, here the UID means the unique user ID, in LDAP it is the attribute you use for <code>LDAP_LOGIN_ATTR</code> (not <code>LDAP_UID_ATTR</code>), in ADFS it is <code>uid</code> attribute. You need make sure you use the same attribute for the two settings.</p>

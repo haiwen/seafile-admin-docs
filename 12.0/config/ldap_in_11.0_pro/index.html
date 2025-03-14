@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.8">
     
     
       
@@ -5318,7 +5318,7 @@ After synchronization is complete, you can see the user's full name, department 
 </code></pre></div>
 
 <h3 id="sso-and-ldap-users-use-the-same-uid">SSO and LDAP users use the same uid<a class="headerlink" href="#sso-and-ldap-users-use-the-same-uid" title="Permanent link">&para;</a></h3>
-<p>If you sync users from LDAP to Seafile, when the user login via SSO (ADFS or OAuth), you want Seafile to find the existing account for this user instead of creating a new one, you can set</p>
+<p>If you sync users from LDAP to Seafile, when the user login via SSO (ADFS or OAuth or Shibboleth), you want Seafile to find the existing account for this user instead of creating a new one, you can set</p>
 <div class="highlight"><pre><span></span><code><span class="n">SSO_LDAP_USE_SAME_UID</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div>
 <div class="admonition note">
