@@ -23,7 +23,7 @@ Please download the file by following command:
 === "Standalone"
 
     !!! note
-        For standalone deployment, the metadata server only supports Seafile using the storage backend such as **S3**.
+        For standalone deployment (usually used in cluster deployment), the metadata server only supports Seafile using the storage backend such as **S3**. 
 
     ```sh
     wget https://manual.seafile.com/13.0/repo/docker/metadata-server/md-server.yml
@@ -40,7 +40,6 @@ By default, you don't need to add additional variables to your `.env` (except fo
 | Variables           | Description                                                                                                                | Required |
 | --- | --- | --- |
 | `JWT_PRIVATE_KEY`   | The JWT key used to connect with Seafile server | **Required** |
-| `MD_DATA`           | Directory where metadata and cache are located.                                  | Optional, default `/opt/md-data`   |
 | `MD_MAX_CACHE_SIZE` | The maximum cache size.                                                                                                    | Optional, default `1GB`            |
 | `MD_STORAGE_TYPE`   | The type of Seafile backend storage. Options: `file` (local storage), `s3`, `oss`.                                                 | Optional, default `file` and `s3` in deploying metadata server in the same machine with Seafile and standalone respective |
 | `REDIS_HOST`        | Your *Redis* service host.                                                                                                 | Optional, default `redis`          |
@@ -105,7 +104,7 @@ docker compose up -d
         [md-server] [2025-01-24 06:23:44] [INFO] Database initialization completed
         [md-server] [2025-01-24 06:23:44] [INFO] Configuration file generated
         ```
-    - `$MD_DATA/log/seaf-md-server.log`
+    - `$SEAFILE_VOLUME/seafile/logs/seaf-md-server.log`
         ```log
         [2025-02-23 06:07:57] [INFO] starting seaf-md-server
         ```
@@ -117,3 +116,10 @@ docker compose up -d
         [2025-02-23 06:08:05] [INFO] seafevents.repo_metadata.slow_task_handler:61 worker_handler slow_task_handler_thread_2 starting update metadata work
         ```
 `
+
+## Directory structure
+
+When you deploy Seafile server and Metadata server to the **same machine**, Metadata server will use the same persistence directory (e.g. /opt/seafile-data) as Seafile server. Metadata server will use the following directories or files:
+
+- `/opt/seafile-data/seafile/md-data`: Metadata server data and cache
+- `/opt/seafile-data/seafile/logs/seaf-md-server.log`: The running log file of Metadata server
