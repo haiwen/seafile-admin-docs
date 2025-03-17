@@ -82,38 +82,21 @@ cp /backup/data/* /opt/seafile-data/seafile
 
 ## Recover the Database (only for the new MySQL service used in Seafile docker)
 
-1. Add a temporary persistent directory, where the database backup files are, to the `seafile-server.yml` for service `db`:
-
-    ```yml
-    services:
-      db:
-        volumes:
-          ...
-          - "<your-path-to-database-backup-files>:/tmp_sqls"
-      ...
-    ```
-
-2. Start the database service **Only**:
+1. Start the database service **Only**:
 
     ```sh
     docker compose up -d --no-deps db
     ```
 
-3. Enter the container and *Mariadb* environment:`
+2. Follow [here](../administration/backup_recovery.md#restore-the-databases_1) to recover the database data.
 
-    ```sh
-    docker exec -it seafile-mysql bash
-    ```
-
-4. Follow [here](../administration/backup_recovery.md#restore-the-databases-1) to recover the database data. Your database backup files should be in the directory `/tmp_sqls`
-
-5. Finally, exit the container and stop the Mariadb service
+3. Exit the container and stop the Mariadb service
 
     ```sh
     docker compose down
     ```
 
-    and remove the temporary persistent directory in `seafile-server.yml` (i.e., undo the step 1)
+4. Remove the temporary persistent directory in `seafile-server.yml` (i.e., undo the step 1).
 
 ## Restart the services
 
