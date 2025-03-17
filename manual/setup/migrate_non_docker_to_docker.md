@@ -96,8 +96,6 @@ cp /backup/data/* /opt/seafile-data/seafile
     docker compose down
     ```
 
-4. Remove the temporary persistent directory in `seafile-server.yml` (i.e., undo the step 1).
-
 ## Restart the services
 
 Finally, the migration is complete. You can restart the Seafile server of Docker-base by restarting the service:
