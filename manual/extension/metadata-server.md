@@ -23,7 +23,7 @@ Please download the file by following command:
 === "Standalone"
 
     !!! note
-        For standalone deployment, the metadata server only supports Seafile using the storage backend such as **S3**.
+        For standalone deployment (usually used in cluster deployment), the metadata server only supports Seafile using the storage backend such as **S3**. 
 
     ```sh
     wget https://manual.seafile.com/13.0/repo/docker/metadata-server/md-server.yml
@@ -123,8 +123,3 @@ When you deploy Seafile server and Metadata server to the **same machine**, Meta
 
 - `/opt/seafile-data/seafile/md-data`: Metadata server data and cache
 - `/opt/seafile-data/seafile/logs/seaf-md-server.log`: The running log file of Metadata server
-
-Otherwise (i.e. **standalone deployment**), the Metadata server will store data and cache in `/opt/md-data` by default (you can modify it by specifying `MD_DATA` in `.env`), and the above two paths will become:
-
-- `/opt/md-data`
-- `/opt/md-data/log/seaf-md-server.log`
