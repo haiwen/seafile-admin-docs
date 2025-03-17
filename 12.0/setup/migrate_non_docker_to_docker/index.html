@@ -4619,33 +4619,17 @@ docker<span class="w"> </span>stop<span class="w"> </span>es<span class="w"> </s
 <h2 id="recover-the-database-only-for-the-new-mysql-service-used-in-seafile-docker">Recover the Database (only for the new MySQL service used in Seafile docker)<a class="headerlink" href="#recover-the-database-only-for-the-new-mysql-service-used-in-seafile-docker" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
-<p>Add a temporary persistent directory, where the database backup files are, to the <code>seafile-server.yml</code> for service <code>db</code>:</p>
-<div class="highlight"><pre><span></span><code>services:
-  db:
-    volumes:
-      ...
-      - &quot;&lt;your-path-to-database-backup-files&gt;:/tmp_sqls&quot;
-  ...
-</code></pre></div>
-</li>
-<li>
 <p>Start the database service <strong>Only</strong>:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--no-deps<span class="w"> </span>db
 </code></pre></div>
 </li>
 <li>
-<p>Enter the container and <em>Mariadb</em> environment:`</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-mysql<span class="w"> </span>bash
-</code></pre></div>
+<p>Follow <a href="../../administration/backup_recovery/#restore-the-databases_1">here</a> to recover the database data.</p>
 </li>
 <li>
-<p>Follow <a href="../../administration/backup_recovery/#restore-the-databases-1">here</a> to recover the database data. Your database backup files should be in the directory <code>/tmp_sqls</code></p>
-</li>
-<li>
-<p>Finally, exit the container and stop the Mariadb service</p>
+<p>Exit the container and stop the Mariadb service</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
 </code></pre></div>
-<p>and remove the temporary persistent directory in <code>seafile-server.yml</code> (i.e., undo the step 1)</p>
 </li>
 </ol>
 <h2 id="restart-the-services">Restart the services<a class="headerlink" href="#restart-the-services" title="Permanent link">&para;</a></h2>
