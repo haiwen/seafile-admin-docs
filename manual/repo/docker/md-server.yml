@@ -3,7 +3,7 @@ services:
     image: ${MD_IMAGE:-seafileltd/metadata-server:latest}
     container_name: metadata-server
     volumes:
-      - ${SEAFILE_VOLUME:-/opt/seafile-data}/seafile:/opt/seafile
+      - ${SEAFILE_VOLUME:-/opt/seafile-data}:/opt/seafile
     #ports:
       # - ${MD_PORT:-8084}:${MD_PORT:-8084}
     environment:
