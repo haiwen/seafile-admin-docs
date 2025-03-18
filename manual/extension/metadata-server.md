@@ -77,7 +77,7 @@ To enable metadata server in Seafile, please add the following field in your `se
     ```py
     ENABLE_METADATA_MANAGEMENT = True
     METADATA_SERVER_SECRET_KEY = '<your JWT key> '
-    METADATA_SERVER_URL = 'http://metadata-server:8084'
+    METADATA_SERVER_URL = 'http://seafile-md-server:8084'
     ```
 === "Standalone"
     ```py
@@ -98,15 +98,11 @@ docker compose up -d
 !!! success
     If the container startups normally, the message you can get from the following logs
     
-    - `docker logs -f metadata-server`:
+    - `docker logs -f seafile-md-server`:
         ```log
         [md-server] [2025-01-24 06:23:44] [INFO] Environment variable validity checked
         [md-server] [2025-01-24 06:23:44] [INFO] Database initialization completed
         [md-server] [2025-01-24 06:23:44] [INFO] Configuration file generated
-        ```
-    - `$SEAFILE_VOLUME/seafile/logs/seaf-md-server.log`
-        ```log
-        [2025-02-23 06:07:57] [INFO] starting seaf-md-server
         ```
     - `$SEAFILE_VOLUME/seafile/logs/seafevents.log`
         ```log
@@ -122,4 +118,4 @@ docker compose up -d
 When you deploy Seafile server and Metadata server to the **same machine**, Metadata server will use the same persistence directory (e.g. /opt/seafile-data) as Seafile server. Metadata server will use the following directories or files:
 
 - `/opt/seafile-data/seafile/md-data`: Metadata server data and cache
-- `/opt/seafile-data/seafile/logs/seaf-md-server.log`: The running log file of Metadata server
+- `/opt/seafile-data/seafile/logs/seaf-md-server`: The logs directory of Metadata server, consist of a running log and an access log.

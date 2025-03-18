@@ -1,5 +1,5 @@
 # metadata server basic variables
-MD_IMAGE=seafileltd/metadata-server:latest
+MD_IMAGE=seafileltd/seafile-md-server:latest
 JWT_PRIVATE_KEY=
 MD_PORT=8084 # not recommond to modify
 MD_LOG_LEVEL=info
