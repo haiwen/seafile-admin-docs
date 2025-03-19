@@ -7,6 +7,51 @@ For major version upgrade, like from 10.0 to 11.0, see instructions below.
 Please check the **upgrade notes** for any special configuration or changes before/while upgrading.
 
 
+## Upgrade from 12.0 to 13.0
+
+From Seafile Docker 13.0, the `elasticsearch.yml` has separated from `seafile-server.yml`, and Seafile will support getting cache configuration from environment variables
+
+1. Stop the services:
+
+    ```sh
+    docker compose down
+    ```
+
+2. Backup the original `seafile-server.yml`
+
+    ```sh
+    mv seafile-server.yml seafile-server.yml.bak
+    ```
+
+3. Download the new `seafile-server.yml` and `elasticsearch.yml` (if your Seafile is Pro edition and still using *Elasticsearch* as the file indexer):
+
+    === "Seafile community edition"
+        ```sh
+        wget https://manual.seafile.com/13.0/repo/docker/ce/seafile-server.yml
+        ```
+    === "Seafile Pro edition"
+        ```sh
+        wget https://manual.seafile.com/13.0/repo/docker/pro/seafile-server.yml
+        wget https://manual.seafile.com/13.0/repo/docker/pro/elasticsearch.yml
+        ```
+4. Modify `.env`, add or modify the following fields:
+
+    ```
+    ## Cache
+    CACHE_PROVIDER=redis # or memcached
+
+    ### Redis
+    REDIS_SERVER=redis
+    REDIS_PORT=6379
+    REDIS_PASSWORD=
+
+    ### Memcached
+    MEMCACHED_SERVER=memcached
+    MEMCACHED_PORT=11211
+    ```
+
+5. Start with `docker compose up`.
+
 ## Upgrade from 11.0 to 12.0
 
 Note: If you have a large number of `Activity` in MySQL, clear this table first [Clean Database](../../administration/clean_database). Otherwise, the database upgrade will take a long time.
@@ -26,9 +71,9 @@ Download `.env`, `seafile-server.yml` and `caddy.yml`, and modify `.env` file ac
 === "Seafile community edition"
 
     ```sh
-    wget -O .env https://manual.seafile.com/13.0/repo/docker/ce/env
-    wget https://manual.seafile.com/13.0/repo/docker/ce/seafile-server.yml
-    wget https://manual.seafile.com/13.0/repo/docker/caddy.yml
+    wget -O .env https://manual.seafile.com/12.0/repo/docker/ce/env
+    wget https://manual.seafile.com/12.0/repo/docker/ce/seafile-server.yml
+    wget https://manual.seafile.com/12.0/repo/docker/caddy.yml
     ```
     The following fields merit particular attention:
 
@@ -49,9 +94,9 @@ Download `.env`, `seafile-server.yml` and `caddy.yml`, and modify `.env` file ac
 === "Seafile pro edition"
 
     ```sh
-    wget -O .env https://manual.seafile.com/13.0/repo/docker/pro/env
-    wget https://manual.seafile.com/13.0/repo/docker/pro/seafile-server.yml
-    wget https://manual.seafile.com/13.0/repo/docker/caddy.yml
+    wget -O .env https://manual.seafile.com/12.0/repo/docker/pro/env
+    wget https://manual.seafile.com/12.0/repo/docker/pro/seafile-server.yml
+    wget https://manual.seafile.com/12.0/repo/docker/caddy.yml
     ```
     The following fields merit particular attention:
 

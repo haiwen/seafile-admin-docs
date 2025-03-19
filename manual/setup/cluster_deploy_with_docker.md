@@ -52,7 +52,7 @@ Please refer [here](./system_requirements.md#seafile-cluster) for the details ab
         Since v12.0, Seafile PE versions are hosted on DockerHub and does not require username and password to download.
 
     ```bash
-    docker pull seafileltd/seafile-pro-mc:12.0-latest
+    docker pull seafileltd/seafile-pro-mc:13.0-latest
     ```
 
 3. Download the `seafile-server.yml` and `.env`

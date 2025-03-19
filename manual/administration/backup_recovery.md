@@ -53,6 +53,16 @@ mysqldump -h [mysqlhost] -u[username] -p[password] --opt seahub_db > /backup/dat
 
 ```
 
+!!! danger "`mysqldump`: command not found"
+    You may encounter this problem on some machines with a minimal (from 10.5) or a newer (from 11.0) Mariadb server installed, of which the `mysql*` series of commands [have been gradually deprecated](https://jira.mariadb.org/browse/MDEV-30203). If you encounter this error, use the `mariadb-dump` command, such as:
+
+    ```sh
+    mariadb-dump -h [mysqlhost] -u[username] -p[password] --opt ccnet_db > /backup/databases/ccnet_db.sql.`date +"%Y-%m-%d-%H-%M-%S"`
+
+    mariadb-dump -h [mysqlhost] -u[username] -p[password] --opt seafile_db > /backup/databases/seafile_db.sql.`date +"%Y-%m-%d-%H-%M-%S"`
+
+    mariadb-dump -h [mysqlhost] -u[username] -p[password] --opt seahub_db > /backup/databases/seahub_db.sql.`date +"%Y-%m-%d-%H-%M-%S"`
+    ```
 
 ### Backing up Seafile library data
 
@@ -87,7 +97,6 @@ Now supposed your primary seafile server is broken, you're switching to a new ma
 
 Now with the latest valid database backup files at hand, you can restore them.
 
-**MySQL**
 
 ```
 mysql -u[username] -p[password] ccnet_db < ccnet_db.sql.2013-10-19-16-00-05
@@ -96,6 +105,14 @@ mysql -u[username] -p[password] seahub_db < seahub_db.sql.2013-10-19-16-01-05
 
 ```
 
+!!! danger "`mysql`: command not found"
+    You may encounter this problem on some machines with a minimal (from 10.5) or a newer (from 11.0) Mariadb server installed, of which the `mysql*` series of commands [have been gradually deprecated](https://jira.mariadb.org/browse/MDEV-30203). If you encounter this error, use the `mariadb` command, such as:
+
+    ```sh
+    mariadb -u[username] -p[password] ccnet_db < ccnet_db.sql.2013-10-19-16-00-05
+    mariadb -u[username] -p[password] seafile_db < seafile_db.sql.2013-10-19-16-00-20
+    mariadb -u[username] -p[password] seahub_db < seahub_db.sql.2013-10-19-16-01-05
+    ```
 
 ## Backup and restore for Docker based deployment
 
@@ -119,10 +136,22 @@ The data files to be backed up:
 ```bash
 # It's recommended to backup the database to a separate file each time. Don't overwrite older database backups for at least a week.
 cd /backup/databases
-docker exec -it seafile-mysql mysqldump  -u[username] -p[password] --opt ccnet_db > ccnet_db.sql
-docker exec -it seafile-mysql mysqldump  -u[username] -p[password] --opt seafile_db > seafile_db.sql
-docker exec -it seafile-mysql mysqldump  -u[username] -p[password] --opt seahub_db > seahub_db.sql
+docker exec -it seafile-mysql mariadb-dump  -u[username] -p[password] --opt ccnet_db > ccnet_db.sql
+docker exec -it seafile-mysql mariadb-dump  -u[username] -p[password] --opt seafile_db > seafile_db.sql
+docker exec -it seafile-mysql mariadb-dump  -u[username] -p[password] --opt seahub_db > seahub_db.sql
 ```
+
+!!! tip
+    The default image of database is ***Mariadb 10.11*** from Seafile 12, you may not be able to find these commands in the container (such as `mysqldump: command not found`), since commands of `mysql*` series [have been gradually deprecated](https://jira.mariadb.org/browse/MDEV-30203). So we recommend that you use the `mariadb*` series of commands. 
+    
+    However, **if you still use the *MySQL* docker image**, you should continue to use `mysqldump` here:
+
+    ```sh
+    docker exec -it seafile-mysql mysqldump  -u[username] -p[password] --opt ccnet_db > ccnet_db.sql
+    docker exec -it seafile-mysql mysqldump  -u[username] -p[password] --opt seafile_db > seafile_db.sql
+    docker exec -it seafile-mysql mysqldump  -u[username] -p[password] --opt seahub_db > seahub_db.sql
+    ```
+
 
 ###  Backing up Seafile library data
 
@@ -147,10 +176,21 @@ docker cp /backup/databases/ccnet_db.sql seafile-mysql:/tmp/ccnet_db.sql
 docker cp /backup/databases/seafile_db.sql seafile-mysql:/tmp/seafile_db.sql
 docker cp /backup/databases/seahub_db.sql seafile-mysql:/tmp/seahub_db.sql
 
-docker exec -it seafile-mysql /bin/sh -c "mysql -u[username] -p[password] ccnet_db < /tmp/ccnet_db.sql"
-docker exec -it seafile-mysql /bin/sh -c "mysql -u[username] -p[password] seafile_db < /tmp/seafile_db.sql"
-docker exec -it seafile-mysql /bin/sh -c "mysql -u[username] -p[password] seahub_db < /tmp/seahub_db.sql"
+docker exec -it seafile-mysql /bin/sh -c "mariadb -u[username] -p[password] ccnet_db < /tmp/ccnet_db.sql"
+docker exec -it seafile-mysql /bin/sh -c "mariadb -u[username] -p[password] seafile_db < /tmp/seafile_db.sql"
+docker exec -it seafile-mysql /bin/sh -c "mariadb -u[username] -p[password] seahub_db < /tmp/seahub_db.sql"
 ```
+
+!!! tip
+    The default image of database is ***Mariadb 10.11*** from Seafile 12, you may not be able to find these commands in the container (such as `mysql: command not found`), since commands of `mysql*` series [have been gradually deprecated](https://jira.mariadb.org/browse/MDEV-30203). So we recommend that you use the `mariadb*` series of commands. 
+    
+    However, **if you still use the *MySQL* docker image**, you should continue to use `mysql` here:
+
+    ```sh
+    docker exec -it seafile-mysql /bin/sh -c "mysql -u[username] -p[password] ccnet_db < /tmp/ccnet_db.sql"
+    docker exec -it seafile-mysql /bin/sh -c "mysql -u[username] -p[password] seafile_db < /tmp/seafile_db.sql"
+    docker exec -it seafile-mysql /bin/sh -c "mysql -u[username] -p[password] seahub_db < /tmp/seahub_db.sql"
+    ```
 
 ### Restore the seafile data
 

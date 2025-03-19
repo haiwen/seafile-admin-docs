@@ -8,6 +8,28 @@
 
 Please check our document for how to upgrade to [12.0](../upgrade/upgrade_notes_for_12.0.x.md)
 
+### 12.0.11 (2025-03-20)
+
+* [fix] Fix a stored XSS issue
+* [fix] Do not show Wiki libraries in clients and WebDAV
+* Add library name in "share admin -> folders"
+* [fix] Fix set of library history keep days
+* [fix] Fix support for enforcing Two-Factor Authentication
+* Update support for working with SeaSearch 0.9.1
+
+### 12.0.10 (2025-03-05)
+
+* [fix] Fix seaf-fuse support
+* [fix] Fix "save to" button in external link
+* [fix] Search library text in system admin page is incorrect
+* [fix] Fix library path displays issue in read-only shared
+* Improve icons for creating Wiki and inviting links
+* [fix] Fix a bug in Collabora integration: Interface in English despite Seafile interface in French
+* Delete temp files if zip download failed
+* Create a record in social_auth table when user login via SSO even if SSO_LDAP_USE_SAME_UID enabled
+* [fix] Cannot create a share link with the “cloud edit” permission for OpenDocument (odt, ods, odp, odg)
+
+
 ### 12.0.9 beta (2025-02-12)
 
 * [fix] Fix a bug related to smart-link in mutli-tenancy mode

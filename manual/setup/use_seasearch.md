@@ -1,7 +1,6 @@
 # Use SeaSearch as search engine (Pro)
 
-!!! success "New features"
-    [SeaSearch](https://seasearch-manual.seafile.com/), a file indexer with more lightweight and efficiency than *Elasticsearch*, is supported from Seafile 12.
+[SeaSearch](https://seasearch-manual.seafile.com/), a file indexer with more lightweight and efficiency than *Elasticsearch*, is supported from Seafile 12.
 
 !!! note "For Seafile deploy from binary package"
     We currently **only support Docker-based** deployment for SeaSearch Server, so this document describes the configuration with the situation of using Docker to deploy Seafile server. 
@@ -43,20 +42,19 @@ INIT_SS_ADMIN_PASSWORD=<admin-password>
 
 ## Modify `seafile-server.yml` to disable `elasticSearch` service
 
-If you would like to use *SeaSearch* as the search engine, the `elasticSearch` service can be removed or noted in `seafile-server.yml`, which is no longer used:
+If you would like to use *SeaSearch* as the search engine, the `elasticSearch` service can be removed, which is no longer used:
 
-```yml
-services:
-  seafile:
-    ...
-    depends_on:
-      ...
-      #elasticsearch: # remove or note the `elasticsearch` service Dependency
-        #condition: service_started
-
-  #elasticsearch: # remove or note the whole `elasticsearch` section
-    #... 
-```
+- `seafile-server.yml`:
+    ```yml
+    services:
+      seafile:
+        ...
+        depends_on:
+        ...
+        #elasticsearch: # remove or note the `elasticsearch` service Dependency
+          #condition: service_started
+    ```
+- `.env`: Remove `elasticsearch.yml` in the list variable `COMPOSE_FILE`
 
 ## Modify `seafevents.conf`
 

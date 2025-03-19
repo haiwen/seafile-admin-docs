@@ -48,22 +48,22 @@ Add configuration `restart: unless-stopped` for each container in [components of
 
 ```
 services:
-db:
+  db:
     image: mariadb:10.11
     container_name: seafile-mysql-1
     restart: unless-stopped
 
-memcached:
-    image: memcached:1.6.18
-    container_name: seafile-memcached
+  redis:
+    image: redis
+    container_name: seafile-redis
     restart: unless-stopped
 
-elasticsearch:
+  elasticsearch:
     image: elasticsearch:8.6.2
     container_name: seafile-elasticsearch
     restart: unless-stopped
 
-seafile:
+  seafile:
     image: seafileltd/seafile-pro-mc:12.0-latest
     container_name: seafile
     restart: unless-stopped

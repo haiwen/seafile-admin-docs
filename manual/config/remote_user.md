@@ -41,7 +41,7 @@ REMOTE_USER_ATTRIBUTE_MAP = {
     "HTTP_ORGANIZATION": 'institution',
     
     # for user role
-    'HTTP_Shibboleth-affiliation': 'affiliation',
+    'HTTP_SHIBBOLETH_AFFILIATION': 'affiliation',
 }
 
 # Map affiliation to user role. Though the config name is SHIBBOLETH_AFFILIATION_ROLE_MAP,

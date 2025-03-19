@@ -25,7 +25,7 @@ This page shows the minimal requirements of Seafile.
 - **Hard disk requirements**: 10G availables, more than 50G are recommended
 - **Docker-base deployment integration services**:
     - *Seafile*
-    - *Memcached*
+    - *Redis*
     - *Mariadb*
     - *Seadoc*
     - *Caddy*
@@ -44,7 +44,7 @@ This page shows the minimal requirements of Seafile.
 - **Hard disk requirements**: More than 50G are recommended
 - **Docker-base deployment integration services**:
     - *Seafile*
-    - *Memcached*
+    - *Redis*
     - *Mariadb*
     - *ElasticSearch*
     - *Seadoc*
