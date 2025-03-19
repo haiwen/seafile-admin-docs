@@ -21,6 +21,18 @@ data:
   SEAFILE_MYSQL_DB_SEAFILE_DB_NAME: "seafile_db"
   SEAFILE_MYSQL_DB_SEAHUB_DB_NAME: "seahub_db"
 
+  # for cached
+  CACHE_PROVIDER: "redis" # or "memcached"
+
+  ## for redis
+  REDIS_SERVER: "<your redis host>"
+  REDIS_PORT: "6379"
+  REDIS_PASSWORD: ""
+
+  ## for memcached
+  MEMCACHED_SERVER: "<your memcached host>"
+  MEMCACHED_PORT: "11211"
+
   # Init
   ## for Seafile admin
   INIT_SEAFILE_ADMIN_EMAIL: "<Seafile admin's email>"

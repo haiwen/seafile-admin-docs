@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: seafile
-          image: seafileltd/seafile-pro-mc:12.0-latest
+          image: seafileltd/seafile-pro-mc:13.0-latest
           env:
             - name: SEAFILE_SERVER_HOSTNAME
               valueFrom:
@@ -86,6 +86,36 @@ spec:
                 configMapKeyRef:
                   name: seafile-env
                   key: INIT_SEAFILE_ADMIN_EMAIL
+            - name: CACHE_PROVIDER
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: CACHE_PROVIDER
+            - name: REDIS_SERVER
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: REDIS_SERVER
+            - name: REDIS_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: REDIS_PORT
+            - name: REDIS_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: REDIS_PASSWORD
+            - name: MEMCACHED_SERVER
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: MEMCACHED_SERVER
+            - name: MEMCACHED_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: MEMCACHED_PORT
             - name: JWT_PRIVATE_KEY
               valueFrom:
                 secretKeyRef:

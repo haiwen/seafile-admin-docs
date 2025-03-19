@@ -46,47 +46,21 @@ services:
     # ... other services
 
     seafile:
-    image: ${SEAFILE_IMAGE:-seafileltd/seafile-pro-mc:12.0-latest}
+    image: ${SEAFILE_IMAGE:-seafileltd/seafile-pro-mc:13.0-latest}
     container_name: seafile
     ports:
        - "80:80"
     volumes:
       - ${SEAFILE_VOLUME:-/opt/seafile-data}:/shared
     environment:
-      - DB_HOST=${SEAFILE_MYSQL_DB_HOST:-db}
-      - DB_PORT=${SEAFILE_MYSQL_DB_PORT:-3306}
-      - DB_ROOT_PASSWD=${INIT_SEAFILE_MYSQL_ROOT_PASSWORD:-}
-      - DB_PASSWORD=${SEAFILE_MYSQL_DB_PASSWORD:?Variable is not set or empty}
-      - SEAFILE_MYSQL_DB_CCNET_DB_NAME=${SEAFILE_MYSQL_DB_CCNET_DB_NAME:-ccnet_db}
-      - SEAFILE_MYSQL_DB_SEAFILE_DB_NAME=${SEAFILE_MYSQL_DB_SEAFILE_DB_NAME:-seafile_db}
-      - SEAFILE_MYSQL_DB_SEAHUB_DB_NAME=${SEAFILE_MYSQL_DB_SEAHUB_DB_NAME:-seahub_db}
-      - TIME_ZONE=${TIME_ZONE:-Etc/UTC}
-      - INIT_SEAFILE_ADMIN_EMAIL=${INIT_SEAFILE_ADMIN_EMAIL:-me@example.com}
-      - INIT_SEAFILE_ADMIN_PASSWORD=${INIT_SEAFILE_ADMIN_PASSWORD:-asecret}
-      - SEAFILE_SERVER_HOSTNAME=${SEAFILE_SERVER_HOSTNAME:?Variable is not set or empty}
-      - SEAFILE_SERVER_PROTOCOL=${SEAFILE_SERVER_PROTOCOL:-http}
-      - SITE_ROOT=${SITE_ROOT:-/}
-      - NON_ROOT=${NON_ROOT:-false}
-      - JWT_PRIVATE_KEY=${JWT_PRIVATE_KEY:?Variable is not set or empty}
-      - ENABLE_SEADOC=${ENABLE_SEADOC:-false}
-      - SEADOC_SERVER_URL=${SEADOC_SERVER_URL:-http://seafile.example.com/sdoc-server}
-      - INIT_S3_STORAGE_BACKEND_CONFIG=${INIT_S3_STORAGE_BACKEND_CONFIG:-false}
-      - INIT_S3_COMMIT_BUCKET=${INIT_S3_COMMIT_BUCKET:-}
-      - INIT_S3_FS_BUCKET=${INIT_S3_FS_BUCKET:-}
-      - INIT_S3_BLOCK_BUCKET=${INIT_S3_BLOCK_BUCKET:-}
-      - INIT_S3_KEY_ID=${INIT_S3_KEY_ID:-}
-      - INIT_S3_SECRET_KEY=${INIT_S3_SECRET_KEY:-}
-      - INIT_S3_USE_V4_SIGNATURE=${INIT_S3_USE_V4_SIGNATURE:-true}
-      - INIT_S3_AWS_REGION=${INIT_S3_AWS_REGION:-us-east-1}
-      - INIT_S3_HOST=${INIT_S3_HOST:-us-east-1}
-      - INIT_S3_USE_HTTPS=${INIT_S3_USE_HTTPS:-true}
-    # please remove the label section
+      ... # enviroment variables map, donnot make change
+
+    # please remove the `label` section
+    #label: ...  <- remove this section
+
     depends_on:
-      - db
-      - memcached
-      - elasticsearch
-    networks:
-      - seafile-net
+      ... # dependencies, donnot make change
+    ...
 
 # ... other options
 ```

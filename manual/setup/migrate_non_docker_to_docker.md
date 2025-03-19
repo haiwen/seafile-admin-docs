@@ -68,25 +68,7 @@ You can follow [here](./overview.md#single-node-deployment) to deploy Seafile wi
 
 ## Recovery libraries data for Seafile Docker
 
-<<<<<<< HEAD
-    ```sh
-    wget -O .env https://manual.seafile.com/13.0/repo/docker/pro/env
-    wget https://manual.seafile.com/13.0/repo/docker/pro/seafile-server.yml
-    wget https://manual.seafile.com/13.0/repo/docker/caddy.yml
-    ```
-
-Then modify the `.env` according to your configurations.
-
-!!! warning "Important"
-    **Do not** use the `.env` in the non-Docker Seafile server as the `.env` in Docker-base Seafile server directly, which misses some key variables in running Docker-base Seafile. Otherwise the Seafile server may **not work properly**.
-
-
-## Create the directory and recovery data for Seafile Docker
-
-In Docker-base Seafile, the default working directory for Seafile is `/opt/seafile-data` (you can modify them in the `.env` file). Here, you have to create this directory, and recovery from backuped file:
-=======
 Firstly, you should stop the Seafile server before recovering Seafile libraries data:
->>>>>>> master
 
 ```sh
 docker compose down

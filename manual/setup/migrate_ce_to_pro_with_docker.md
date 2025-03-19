@@ -2,13 +2,14 @@
 
 ## Preparation
 
-1. Make sure you are running a Seafile Community edition that match the latest version of pro edition. For example, if the latest pro edition is version 12.0, you should first upgrade the community edition to version 12.0.
+1. Make sure you are running a Seafile Community edition that match the latest version of pro edition. For example, if the latest pro edition is version 13.0, you should first upgrade the community edition to version 13.0.
 2. Purchase Seafile Professional license file.
 3. Download the `.env` and `seafile-server.yml` of Seafile Pro.
 
 ```sh
 wget -O .env https://manual.seafile.com/13.0/repo/docker/pro/env
 wget https://manual.seafile.com/13.0/repo/docker/pro/seafile-server.yml
+wget https://manual.seafile.com/13.0/repo/docker/pro/elasticsearch.yml
 ```
 
 ## Migrate
@@ -33,7 +34,7 @@ Modify `.env` based on the old configurations from the old `.env` file. The foll
 
 | Variable                        | Description                                                                                                   | Default Value                   | 
 | ------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------- |  
-| `SEAFILE_IMAGE`                | The Seafile pro docker image, which the tag must be **equal to or newer than** the old Seafile CE docker tag                                                                       | `seafileltd/seafile-pro-mc:12.0-latest`             |
+| `SEAFILE_IMAGE`                | The Seafile pro docker image, which the tag must be **equal to or newer than** the old Seafile CE docker tag                                                                       | `seafileltd/seafile-pro-mc:13.0-latest`             |
 | `SEAFILE_ELASTICSEARCH_VOLUME`  | The volume directory of Elasticsearch data | `/opt/seafile-elasticsearch/data` |
 
 For other fileds (e.g., `SEAFILE_VOLUME`, `SEAFILE_MYSQL_VOLUME`, `SEAFILE_MYSQL_DB_USER`, `SEAFILE_MYSQL_DB_PASSWORD`), **must be consistent** with the old configurations.

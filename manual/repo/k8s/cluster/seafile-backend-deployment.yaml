@@ -21,7 +21,7 @@ spec:
             mountPath: /shared
       containers:
         - name: seafile-backend
-          image: seafileltd/seafile-pro-mc:12.0-latest
+          image: seafileltd/seafile-pro-mc:13.0-latest
           env:
             - name: CLUSTER_SERVER
               value: "true"

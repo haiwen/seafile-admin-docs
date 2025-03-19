@@ -4,9 +4,9 @@ COMPOSE_PATH_SEPARATOR=','
 # Seafile & Basic services
 
 ## Images
-SEAFILE_IMAGE=seafileltd/seafile-pro-mc:12.0-latest
+SEAFILE_IMAGE=seafileltd/seafile-pro-mc:13.0-latest
 SEAFILE_DB_IMAGE=mariadb:10.11
-SEAFILE_MEMCACHED_IMAGE=memcached:1.6.29
+SEAFILE_REDIS_IMAGE=redis
 SEAFILE_ELASTICSEARCH_IMAGE=elasticsearch:8.15.0
 SEAFILE_CADDY_IMAGE=lucaslorentz/caddy-docker-proxy:2.9-alpine
 
@@ -20,6 +20,18 @@ SEAFILE_CADDY_VOLUME=/opt/seafile-caddy
 SEAFILE_MYSQL_DB_HOST=db
 SEAFILE_MYSQL_DB_USER=seafile
 SEAFILE_MYSQL_DB_PASSWORD=PASSWORD
+
+## Cache
+CACHE_PROVIDER=redis # or memcached
+
+### Redis
+REDIS_SERVER=redis
+REDIS_PORT=6379
+REDIS_PASSWORD=
+
+### Memcached
+MEMCACHED_SERVER=memcached
+MEMCACHED_PORT=11211
 
 ## Scheme
 SEAFILE_SERVER_HOSTNAME=seafile.example.com
@@ -50,29 +62,31 @@ INIT_S3_AWS_REGION=us-east-1
 INIT_S3_HOST=s3.us-east-1.amazonaws.com
 INIT_S3_USE_HTTPS=true
 
-# SeaDoc service
+
+# Extension
+## SeaDoc service
 ENABLE_SEADOC=true
 SEADOC_IMAGE=seafileltd/sdoc-server:1.0-latest
 SEADOC_VOLUME=/opt/seadoc-data
 
-# Notification server
+## Notification server
 NOTIFICATION_SERVER_IMAGE=seafileltd/notification-server:12.0-latest
 NOTIFICATION_SERVER_VOLUME=/opt/notification-data
 
-# SeaSearch
+## SeaSearch
 
-## Image
+### Image
 #SEASEARCH_IMAGE=seafileltd/seasearch-nomkl:latest # Apple's Chip
 SEASEARCH_IMAGE=seafileltd/seasearch:latest
 
-## Storage
+### Storage
 SS_STORAGE_TYPE=disk # disk (local storage), s3, oss
 
-### Local storage mode
+#### Local storage mode
 SS_DATA_PATH=/opt/seasearch-data # Persistent storage path
 SS_MAX_OBJ_CACHE_SIZE=10GB
 
-### S3 mode
+#### S3 mode
 SS_S3_USE_V4_SIGNATURE=false
 SS_S3_ACCESS_ID=<your access id>
 SS_S3_ACCESS_SECRET=<your access secret>
@@ -83,11 +97,11 @@ SS_S3_PATH_STYLE_REQUEST=true
 SS_S3_AWS_REGION=us-east-1
 SS_S3_SSE_C_KEY=<your SSE-C key>
 
-## Log
+### Log
 SS_LOG_TO_STDOUT=false
 SS_LOG_OUTPUT=true
 SS_LOG_LEVEL=info
 
-## Initial variables (can be removed after firstime startup SeaSearch service)
+### Initial variables (can be removed after firstime startup SeaSearch service)
 INIT_SS_ADMIN_USER=<admin-username>
 INIT_SS_ADMIN_PASSWORD=<admin-password>

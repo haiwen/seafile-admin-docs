@@ -11,3 +11,9 @@ To engage HTTPS, users only needs to correctly configure the following fields in
 SEAFILE_SERVER_PROTOCOL=https
 SEAFILE_SERVER_HOSTNAME=example.com
 ```
+
+After Seafile Docker startup, you can use following command to access the logs of *Caddy*
+
+```sh
+docker logs seafile-caddy -f
+```
