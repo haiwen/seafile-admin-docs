@@ -9,6 +9,15 @@
 
 Please check our document for how to upgrade to [12.0](../upgrade/upgrade_notes_for_12.0.x.md)
 
+### 12.0.11 (2025-03-19)
+
+* [fix] Fix a stored XSS issue
+* [fix] Do not show Wiki libraries in clients and WebDAV
+* Add library name in "share admin -> folders"
+* [fix] Fix set of library history keep days
+* [fix] Fix support for enforcing Two-Factor Authentication
+
+
 ### 12.0.10 (2025-03-03)
 
 * [fix] Fix seaf-fuse support
