@@ -88,7 +88,7 @@ Seafile uses the mysql_native_password plugin for authentication. The versions o
 
         ```
 
-   === "Debian 11"
+    === "Debian 11"
 
         ```sh
         sudo apt-get install -y python3 python3-dev python3-setuptools python3-pip libmysqlclient-dev-compat ldap-utils libldap2-dev libsasl2-dev
