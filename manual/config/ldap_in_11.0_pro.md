@@ -428,7 +428,7 @@ MULTI_LDAP_1_DEPT_NAME_ATTR = ''
 
 ### SSO and LDAP users use the same uid
 
-If you sync users from LDAP to Seafile, when the user login via SSO (ADFS or OAuth), you want Seafile to find the existing account for this user instead of creating a new one, you can set
+If you sync users from LDAP to Seafile, when the user login via SSO (ADFS or OAuth or Shibboleth), you want Seafile to find the existing account for this user instead of creating a new one, you can set
 
 ```python
 SSO_LDAP_USE_SAME_UID = True

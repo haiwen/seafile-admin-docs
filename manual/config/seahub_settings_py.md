@@ -162,7 +162,9 @@ ENABLE_ENCRYPTED_LIBRARY = True
 
 # version for encrypted library
 # should only be `2` or `4`.
-# version 3 is insecure (using AES128 encryption) so it's not recommended any more.
+# version 3 is insecure (using AES128 encryption) so it's not supported any more.
+# refer to https://manual.seafile.com/latest/administration/security_features/#how-does-an-encrypted-library-work
+# for the difference between version 2 and 4.
 ENCRYPTED_LIBRARY_VERSION = 2
 
 # Since version 12, you can choose password hash algorithm for new encrypted libraries.

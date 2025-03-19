@@ -25,7 +25,11 @@ Add the following content
     ...
     volumes:
       ...
-      - /opt/seafile-fuse: /seafile-fuse
+      - type: bind
+        source: /opt/seafile-fuse
+        target: /seafile-fuse
+        bind:
+          propagation: rshared
     privileged: true
     cap_add:
       - SYS_ADMIN

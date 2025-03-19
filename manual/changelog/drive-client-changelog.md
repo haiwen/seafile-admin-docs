@@ -1,6 +1,16 @@
 # SeaDrive Client Changelog
 
-### 3.0.12 (2024/12/03)¶
+### 3.0.13 (2025/03/06)
+
+* Support PDF previews
+* Don't timeout for fs-id-list requests
+* Upgrade OpenSSL
+* \[mac] Fix handling of "._DS" files
+* \[win] Add user name in the SeaDrive entry in Windows Explorer
+* \[linux] Support importing CA certificates from OS
+* \[linux] Auto lock Office files opened by LibreOffice and WPS
+
+### 3.0.12 (2024/12/03)
 * Handle changes of invisible sub-folder permissions
 * Support encrypted library with custom password hash algorithms
 * [mac] Add back file search UI

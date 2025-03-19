@@ -224,7 +224,7 @@ SHIBBOLETH_ATTRIBUTE_MAP  = {
     "HTTP_SN": (False, "surname"),
     "HTTP_MAIL": (False, "contact_email"),
     "HTTP_ORGANIZATION": (False, "institution"),
-    "HTTP_Shibboleth-affiliation": (False, "affiliation"),
+    "HTTP_SHIBBOLETH_AFFILIATION": (False, "affiliation"),
 }
 
 ```

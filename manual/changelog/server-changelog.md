@@ -9,6 +9,15 @@
 
 Please check our document for how to upgrade to [12.0](../upgrade/upgrade_notes_for_12.0.x.md)
 
+### 12.0.10 (2025-03-03)
+
+* [fix] Fix seaf-fuse support
+* [fix] Fix "save to" button in external link
+* [fix] Search library text in system admin page is incorrect  
+* [fix] Fix library path displays issue in read-only shared
+* Improve icons for creating Wiki and inviting links
+* [fix] Fix a bug in Collabora integration: Interface in English despite Seafile interface in French
+
 ### 12.0.9 (2025-02-14)
 
 * Improve consistency of format of logs

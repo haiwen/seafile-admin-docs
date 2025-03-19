@@ -19,21 +19,9 @@ The following setups are required for building and packaging Sync Client on Wind
     * Qt WebChannel
     * Qt WebEngine
 * Qt VS Tools
-* vcpkg
-    * curl\[openssl\]:x64-windows
-    * getopt:x64-windows
-    * glib:x64-windows
-    * jansson:x64-windows
-    * libevent:x64-windows
-    * libwebsockets:x64-windows
-    * openssl:x64-windows
-    * pthreads:x64-windows
-    * sqlite3:x64-windows
-    * zlib:x64-windows
-    * argon2:x64-windows
+* vcpkg (it is recommended to update to the latest version)
 
-            # Example of the install command:
-            $ ./vcpkg.exe install curl[core,openssl]:x64-windows
+    Note: Dependencies will be automatically downloaded and compiled when building VS projects.
 
 * Python 3.7
 * [wix](https://github.com/wixtoolset/wix3/releases/tag/wix3111rtm)
