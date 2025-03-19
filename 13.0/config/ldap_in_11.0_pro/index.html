@@ -1,0 +1,5507 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="seafile">
+      
+      
+        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/13.0/config/ldap_in_11.0_pro/">
+      
+      
+        <link rel="prev" href="../ldap_in_11.0_ce/">
+      
+      
+        <link rel="next" href="../single_sign_on/">
+      
+      
+      <link rel="icon" href="../../media/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+    
+    
+      
+        <title>LDAP Integration (Pro) - Seafile Admin Manual</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#configure-seafile-pro-edition-to-use-ldap" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Seafile Admin Manual" class="md-header__button md-logo" aria-label="Seafile Admin Manual" data-md-component="logo">
+      
+  <img src="../../media/seafile-transparent-1024.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Seafile Admin Manual
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              LDAP Integration (Pro)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/haiwen/seafile-admin-docs/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    haiwen/seafile-admin-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  Introduction
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../setup/overview/" class="md-tabs__link">
+          
+  
+  Setup
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../setup_binary/outline_ce/" class="md-tabs__link">
+          
+  
+  Setup (binary)
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../extension/setup_seadoc/" class="md-tabs__link">
+          
+  
+  Extensions
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../ldap_in_11.0_ce/" class="md-tabs__link">
+          
+  
+  Configuration
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../administration/" class="md-tabs__link">
+          
+  
+  Administration
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../upgrade/upgrade/" class="md-tabs__link">
+          
+  
+  Upgrade
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../develop/" class="md-tabs__link">
+          
+  
+  Developing
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../changelog/server-changelog/" class="md-tabs__link">
+          
+  
+  ChangeLog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Seafile Admin Manual" class="md-nav__button md-logo" aria-label="Seafile Admin Manual" data-md-component="logo">
+      
+  <img src="../../media/seafile-transparent-1024.png" alt="logo">
+
+    </a>
+    Seafile Admin Manual
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/haiwen/seafile-admin-docs/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    haiwen/seafile-admin-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Introduction
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/components/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Seafile Components
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/file_permission_management/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    File permission management
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/roadmap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Roadmap
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/contribution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contribution
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Setup
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Setup
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/system_requirements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    System requirements
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/caddy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPS and Caddy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Single node installation
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Single node installation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/setup_ce_by_docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup community edition
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/setup_pro_by_docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup pro edition
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Advanced topics
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced topics
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5_1" id="__nav_2_5_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Storage Backends
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            Storage Backends
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/setup_with_s3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    S3 Backend
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/setup_with_ceph/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ceph Backend
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/setup_with_swift/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OpenStack Swift Backend
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/setup_with_multiple_storage_backends/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multiple Storage Backends
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/migrate_backends_data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data migration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/use_seasearch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Use SeaSearch as search engine (Pro)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/seafile_docker_autostart/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Seafile Docker autostart
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/setup_with_an_existing_mysql_server/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deploy with an existing MySQL server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/use_other_reverse_proxy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Use other reverse proxy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/run_seafile_as_non_root_user_inside_docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Run Seafile as non root user inside docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/cluster_deploy_with_docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cluster installation (Pro)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Setup with Kubernetes (K8S)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            Setup with Kubernetes (K8S)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7_1" id="__nav_2_7_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    With Helm
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            With Helm
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/helm_chart_single_node/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Single node
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/helm_chart_cluster/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cluster (Pro)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7_2" id="__nav_2_7_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    By K8S resource files
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            By K8S resource files
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/k8s_single_node/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Single node
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/cluster_deploy_with_k8s/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cluster (Pro)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/k8s_advanced_management/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Seafile K8S advanced management
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Migration
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            Migration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/migrate_ce_to_pro_with_docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Migration from Seafile Community
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/migrate_non_docker_to_docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Migrate from non-docker deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Setup (binary)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Setup (binary)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Seafile Community Setup
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Seafile Community Setup
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup_binary/outline_ce/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Outline
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup_binary/installation_ce/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup_binary/https_with_nginx/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPS with Nginx
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Seafile Professional Setup
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Seafile Professional Setup
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup_binary/outline_pro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Outline
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup_binary/seafile_professional_sdition_software_license_agreement/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup_binary/installation_pro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup_binary/cluster_deployment/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cluster Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Other deployment notes
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Other deployment notes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup_binary/start_seafile_at_system_bootup/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Start Seafile at System Bootup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup_binary/using_logrotate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logrotate
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup_binary/migrate_from_sqlite_to_mysql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Migrate From SQLite to MySQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Extensions
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Extensions
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Extra Seafile components
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Extra Seafile components
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extension/setup_seadoc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SeaDoc Integration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extension/notification-server/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Notification Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extension/metadata-server/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Metadata Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extension/webdav/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WebDAV extension
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extension/fuse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FUSE extension
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Online Office
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Online Office
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extension/libreoffice_online/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Collabora Online Integration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extension/only_office/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OnlyOffice Integration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extension/office_web_app/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Office Online Server Integration (Pro)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Cluster (Pro)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Cluster (Pro)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extension/distributed_indexing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Distributed indexing
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--new" title="Work in progress">
+    </span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Virus Scan (Pro)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            Virus Scan (Pro)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extension/virus_scan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Outline
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Virus scan with ClamAV
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extension/virus_scan_with_kav4fs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Virus scan with Kav4fs
+    
+  </span>
+  
+    
+  
+  
+    <span class="md-status md-status--new" title="Work in progress">
+    </span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Configuration
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Configuration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Authentication & Users
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            Authentication & Users
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_1_1" id="__nav_5_1_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    LDAP/AD Integration
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_1_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            LDAP/AD Integration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ldap_in_11.0_ce/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LDAP Integration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    LDAP Integration (Pro)
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    LDAP Integration (Pro)
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-does-ldap-user-management-work-in-seafile" class="md-nav__link">
+    <span class="md-ellipsis">
+      How does LDAP User Management work in Seafile
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-ldap-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic LDAP Integration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic LDAP Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#integration-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-ldap-user-sync-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting Up LDAP User Sync (optional)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setting Up LDAP User Sync (optional)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sync-configuration-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sync configuration items
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#importing-users-without-activating-them" class="md-nav__link">
+    <span class="md-ellipsis">
+      Importing Users without Activating Them
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reactivating-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reactivating Users
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manually-trigger-synchronization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manually Trigger Synchronization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-ldap-group-sync-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting Up LDAP Group Sync (optional)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setting Up LDAP Group Sync (optional)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      How It Works
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sync-ou-as-departments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sync OU as Departments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#periodical-and-manual-sync" class="md-nav__link">
+    <span class="md-ellipsis">
+      Periodical and Manual Sync
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-ldap-integration-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced LDAP Integration Options
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced LDAP Integration Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multiple-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multiple BASE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-search-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Search Filter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limiting-seafile-users-to-a-group-in-active-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limiting Seafile Users to a Group in Active Directory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-tls-connection-to-ldap-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using TLS connection to LDAP server
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-paged-results-extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use paged results extension
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#follow-referrals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Follow referrals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-multi-ldap-servers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure Multi-ldap Servers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sso-and-ldap-users-use-the-same-uid" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSO and LDAP users use the same uid
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#importing-roles-from-ldap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Importing Roles from LDAP
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1_2" id="__nav_5_1_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Single Sign On
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            Single Sign On
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../single_sign_on/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Outline
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../oauth/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OAuth Authentication
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../remote_user/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Remote User Authentication
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shibboleth_authentication/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Shibboleth Authentication
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auto_login_seadrive/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Auto Login to SeaDrive on Windows
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../saml2_in_10.0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SAML 2.0 (Pro)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auth_switch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Switch authentication
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1_3" id="__nav_5_1_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Advanced User Management (Pro)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced User Management (Pro)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi_institutions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multi-Institutions Support
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../roles_permissions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Roles and Permissions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../admin_roles_permissions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Administrator Roles and Permissions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi_tenancy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multi-Tenancy Support
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../details_about_file_search/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Advanced File Search configuration (Pro)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ocm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Open Cloud Mesh
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Available configuration options
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            Available configuration options
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Outline
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../env/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Environment variables
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ccnet-conf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ccnet.conf
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../seafile-conf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    seafile.conf
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../seahub_settings_py/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    seahub_settings.py
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../seafevents-conf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    seafevents.conf
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../seahub_customization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Seahub customization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sending_email/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Email Sending
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Administration
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Administration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../administration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Outline
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../administration/account/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Account management
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../administration/two_factor_authentication/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Two-factor Authentication
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../administration/security_features/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Security features
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../administration/auditing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Access logs and auditing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../administration/export_report/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Export report
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../administration/logs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Seafile server logs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../administration/backup_recovery/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Backup and Recovery
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../administration/seafile_fsck/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Seafile FSCK
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../administration/seafile_gc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Seafile GC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../administration/clean_database/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Clean database
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Upgrade
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Upgrade
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upgrade/upgrade/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Outline
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upgrade/upgrade_docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upgrade Seafile Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upgrade/upgrade_a_cluster/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upgrade Seafile Cluster
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upgrade/upgrade_a_cluster_binary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upgrade Seafile Cluster (binary)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upgrade/upgrade_notes_for_7.1.x/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upgrade notes for 7.1.x
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upgrade/upgrade_notes_for_8.0.x/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upgrade notes for 8.0.x
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upgrade/upgrade_notes_for_9.0.x/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upgrade notes for 9.0.x
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upgrade/upgrade_notes_for_10.0.x/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upgrade notes for 10.0.x
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upgrade/upgrade_notes_for_11.0.x/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upgrade notes for 11.0.x
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../upgrade/upgrade_notes_for_12.0.x/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Upgrade notes for 12.0.x
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Developing
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Developing
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../develop/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Outline
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    How to Build Seafile
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_2">
+            <span class="md-nav__icon md-icon"></span>
+            How to Build Seafile
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../develop/build_seafile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Outline
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../develop/linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../develop/osx/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    macOS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../develop/windows/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Windows
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../develop/server/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Server development
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../develop/rpi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Server binary package
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../develop/translation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Translation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../develop/web_api_v2.1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Web API V2.1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/rene-s/Seafile-PHP-SDK" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PHP API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../develop/data_model/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    ChangeLog
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            ChangeLog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/server-changelog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Seafile Community Edition
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/changelog-for-seafile-professional-server/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Seafile Professional Edition
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/client-changelog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Seafile Client
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/drive-client-changelog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Drive Client
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-does-ldap-user-management-work-in-seafile" class="md-nav__link">
+    <span class="md-ellipsis">
+      How does LDAP User Management work in Seafile
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-ldap-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic LDAP Integration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic LDAP Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#integration-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-ldap-user-sync-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting Up LDAP User Sync (optional)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setting Up LDAP User Sync (optional)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sync-configuration-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sync configuration items
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#importing-users-without-activating-them" class="md-nav__link">
+    <span class="md-ellipsis">
+      Importing Users without Activating Them
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reactivating-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reactivating Users
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manually-trigger-synchronization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manually Trigger Synchronization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-ldap-group-sync-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting Up LDAP Group Sync (optional)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setting Up LDAP Group Sync (optional)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      How It Works
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sync-ou-as-departments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sync OU as Departments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#periodical-and-manual-sync" class="md-nav__link">
+    <span class="md-ellipsis">
+      Periodical and Manual Sync
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-ldap-integration-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced LDAP Integration Options
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced LDAP Integration Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multiple-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multiple BASE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-search-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Search Filter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limiting-seafile-users-to-a-group-in-active-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limiting Seafile Users to a Group in Active Directory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-tls-connection-to-ldap-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using TLS connection to LDAP server
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-paged-results-extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use paged results extension
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#follow-referrals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Follow referrals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-multi-ldap-servers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure Multi-ldap Servers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sso-and-ldap-users-use-the-same-uid" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSO and LDAP users use the same uid
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#importing-roles-from-ldap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Importing Roles from LDAP
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="configure-seafile-pro-edition-to-use-ldap">Configure Seafile Pro Edition to use LDAP<a class="headerlink" href="#configure-seafile-pro-edition-to-use-ldap" title="Permanent link">&para;</a></h1>
+<h2 id="how-does-ldap-user-management-work-in-seafile">How does LDAP User Management work in Seafile<a class="headerlink" href="#how-does-ldap-user-management-work-in-seafile" title="Permanent link">&para;</a></h2>
+<p>When Seafile is integrated with LDAP, users in the system can be divided into two tiers:</p>
+<ul>
+<li>
+<p>Users within Seafile's internal user database. Some attributes are attached to these users, such as whether it's a system admin user, whether it's activated.</p>
+</li>
+<li>
+<p>Users in LDAP server. These are all the intended users of Seafile inside the LDAP server. Seafile doesn't manipulate these users directly. It has to import them into its internal database before setting attributes on them.</p>
+</li>
+</ul>
+<p>When Seafile counts the number of users in the system, it only counts the <strong>activated</strong> users in its internal database.</p>
+<h2 id="basic-ldap-integration">Basic LDAP Integration<a class="headerlink" href="#basic-ldap-integration" title="Permanent link">&para;</a></h2>
+<p>The only requirement for Seafile to use LDAP for authentication is that there must be a unique identifier for each user in the LDAP server. This id should also be user-friendly as the users will use it as username when login. Below are some usual options for this unique identifier:</p>
+<ul>
+<li>Email address: this is the most common choice. Most organizations assign unique email address for each member.</li>
+<li>UserPrincipalName: this is a user attribute only available in Active Directory. It's format is <code>user-login-name@domain-name</code>, e.g. <code>john@example.com</code>. It's not a real email address, but it works fine as the unique identifier.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">The identifier is stored in table <code>social_auth_usersocialauth</code> to map the identifier to internal user ID in Seafile. When this ID is changed in LDAP for a user, you only need to update <code>social_auth_usersocialauth</code> table</p>
+</div>
+<h3 id="integration-configuration">Integration Configuration<a class="headerlink" href="#integration-configuration" title="Permanent link">&para;</a></h3>
+<p>Add the following options to <code>seahub_settings.py</code>. Examples are as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="n">ENABLE_LDAP</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">LDAP_SERVER_URL</span> <span class="o">=</span> <span class="s1">&#39;ldap://192.168.0.1&#39;</span>       
+<span class="n">LDAP_BASE_DN</span> <span class="o">=</span> <span class="s1">&#39;ou=test,dc=seafile,dc=ren&#39;</span>                     
+<span class="n">LDAP_ADMIN_DN</span> <span class="o">=</span> <span class="s1">&#39;administrator@example.com&#39;</span>  
+<span class="n">LDAP_ADMIN_PASSWORD</span> <span class="o">=</span> <span class="s1">&#39;yourpassword&#39;</span>         
+<span class="n">LDAP_PROVIDER</span> <span class="o">=</span> <span class="s1">&#39;ldap&#39;</span>                                     
+<span class="n">LDAP_LOGIN_ATTR</span> <span class="o">=</span> <span class="s1">&#39;email&#39;</span>                                                            
+<span class="n">LDAP_CONTACT_EMAIL_ATTR</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>                
+<span class="n">LDAP_USER_ROLE_ATTR</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>                     
+<span class="n">LDAP_USER_FIRST_NAME_ATTR</span> <span class="o">=</span> <span class="s1">&#39;givenName&#39;</span>     
+<span class="n">LDAP_USER_LAST_NAME_ATTR</span> <span class="o">=</span> <span class="s1">&#39;sn&#39;</span>              
+<span class="n">LDAP_USER_NAME_REVERSE</span> <span class="o">=</span> <span class="kc">False</span>               
+<span class="n">LDAP_FILTER</span> <span class="o">=</span> <span class="s1">&#39;memberOf=CN=testgroup,OU=test,DC=seafile,DC=ren&#39;</span> 
+</code></pre></div>
+<p>Meaning of some options:</p>
+<table>
+<thead>
+<tr>
+<th>variable</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LDAP_SERVER_URL</code></td>
+<td>The URL of LDAP server</td>
+</tr>
+<tr>
+<td><code>LDAP_BASE_DN</code></td>
+<td>The root node of users who can log in to Seafile in the LDAP server</td>
+</tr>
+<tr>
+<td><code>LDAP_ADMIN_DN</code></td>
+<td>DN of the administrator used to query the LDAP server for information. For OpenLDAP, it may be <code>cn=admin,dc=example,dc=com</code></td>
+</tr>
+<tr>
+<td><code>LDAP_ADMIN_PASSWORD</code></td>
+<td>Password of <code>LDAP_ADMIN_DN</code></td>
+</tr>
+<tr>
+<td><code>LDAP_PROVIDER</code></td>
+<td>Identify the source of the user, used in the table <code>social_auth_usersocialauth</code>, defaults to 'ldap'</td>
+</tr>
+<tr>
+<td><code>LDAP_LOGIN_ATTR</code></td>
+<td>User's attribute used to log in to Seafile. It should be a unique identifier for the user in LDAP server. Learn more about this id from the descriptions at the beginning of this section.</td>
+</tr>
+<tr>
+<td><code>LDAP_CONTACT_EMAIL_ATTR</code></td>
+<td>LDAP user's <code>contact_email</code> attribute</td>
+</tr>
+<tr>
+<td><code>LDAP_USER_ROLE_ATTR</code></td>
+<td>LDAP user's role attribute</td>
+</tr>
+<tr>
+<td><code>LDAP_USER_FIRST_NAME_ATTR</code></td>
+<td>Attribute for user's first name. It's <code>"givenName"</code> by default.</td>
+</tr>
+<tr>
+<td><code>LDAP_USER_LAST_NAME_ATTR</code></td>
+<td>Attribute for user's last name. It's <code>"sn"</code> by default.</td>
+</tr>
+<tr>
+<td><code>LDAP_USER_NAME_REVERSE</code></td>
+<td>In some languages, such as Chinese, the display order of the first and last name is reversed. Set this option if you need it.</td>
+</tr>
+<tr>
+<td><code>LDAP_FILTER</code></td>
+<td>Additional filter conditions. Users who meet the filter conditions can log in, otherwise they cannot log in.</td>
+</tr>
+</tbody>
+</table>
+<p>Tips for choosing <code>LDAP_BASE_DN</code> and <code>LDAP_ADMIN_DN</code>:</p>
+<ul>
+<li>
+<p>To determine the <code>LDAP_BASE_DN</code>, you first have to navigate your organization hierachy on the domain controller GUI.</p>
+<ul>
+<li>
+<p>If you want to allow all users to use Seafile, you can use <code>cn=users,dc=yourdomain,dc=com</code> as <code>LDAP_BASE_DN</code> (with proper adjustment for your own needs).</p>
+</li>
+<li>
+<p>If you want to limit users to a certain OU (Organization Unit), you run <code>dsquery</code> command on the domain controller to find out the DN for this OU. For example, if the OU is <code>staffs</code>, you can run <code>dsquery ou -name staff</code>. More information can be found <a href="https://technet.microsoft.com/en-us/library/cc770509.aspx">here</a>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>AD supports <code>user@domain.name</code> format for the <code>LDAP_ADMIN_DN</code> option. For example you can use administrator@example.com for <code>LDAP_ADMIN_DN</code>. Sometime the domain controller doesn't recognize this format. You can still use <code>dsquery</code> command to find out user's DN. For example, if the user name is 'seafileuser', run <code>dsquery user -name seafileuser</code>. More information <a href="https://technet.microsoft.com/en-us/library/cc725702.aspx">here</a>.</p>
+</li>
+</ul>
+<h2 id="setting-up-ldap-user-sync-optional">Setting Up LDAP User Sync (optional)<a class="headerlink" href="#setting-up-ldap-user-sync-optional" title="Permanent link">&para;</a></h2>
+<p>In Seafile Pro, except for importing users into internal database when they log in, you can also configure Seafile to periodically sync user information from LDAP server into the internal database.</p>
+<p>User's full name, department and contact email address can be synced to internal database. Users can use this information to more easily search for a specific user.
+User's Windows or Unix login id can be synced to the internal database. This allows the user to log in with its familiar login id.
+When a user is removed from LDAP, the corresponding user in Seafile will be deactivated. Otherwise, he could still sync files with Seafile client or access the web interface.
+After synchronization is complete, you can see the user's full name, department and contact email on its profile page.</p>
+<h3 id="sync-configuration-items">Sync configuration items<a class="headerlink" href="#sync-configuration-items" title="Permanent link">&para;</a></h3>
+<p>Add the following options to <code>seahub_settings.py</code>. Examples are as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Basic configuration items</span>
+<span class="n">ENABLE_LDAP</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="o">......</span>
+
+<span class="c1"># ldap user sync options.</span>
+<span class="n">LDAP_SYNC_INTERVAL</span> <span class="o">=</span> <span class="mi">60</span>                  
+<span class="n">ENABLE_LDAP_USER_SYNC</span> <span class="o">=</span> <span class="kc">True</span>             
+<span class="n">LDAP_USER_OBJECT_CLASS</span> <span class="o">=</span> <span class="s1">&#39;person&#39;</span>
+<span class="n">LDAP_DEPT_ATTR</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>                      
+<span class="n">LDAP_UID_ATTR</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>                               
+<span class="n">LDAP_AUTO_REACTIVATE_USERS</span> <span class="o">=</span> <span class="kc">True</span>        
+<span class="n">LDAP_USE_PAGED_RESULT</span> <span class="o">=</span> <span class="kc">False</span>           
+<span class="n">IMPORT_NEW_USER</span> <span class="o">=</span> <span class="kc">True</span>                   
+<span class="n">ACTIVATE_USER_WHEN_IMPORT</span> <span class="o">=</span> <span class="kc">True</span>         
+<span class="n">DEACTIVE_USER_IF_NOTFOUND</span> <span class="o">=</span> <span class="kc">False</span>        
+<span class="n">ENABLE_EXTRA_USER_INFO_SYNC</span> <span class="o">=</span> <span class="kc">True</span>       
+</code></pre></div>
+<p>Meaning of some options:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LDAP_SYNC_INTERVAL</strong></td>
+<td>The interval to sync. Unit is minutes. Defaults to 60 minutes.</td>
+</tr>
+<tr>
+<td><strong>ENABLE_LDAP_USER_SYNC</strong></td>
+<td>set to "true" if you want to enable ldap user synchronization</td>
+</tr>
+<tr>
+<td><strong>LDAP_USER_OBJECT_CLASS</strong></td>
+<td>This is the name of the class used to search for user objects. In Active Directory, it's usually "person". The default value is "person".</td>
+</tr>
+<tr>
+<td><strong>LDAP_DEPT_ATTR</strong></td>
+<td>Attribute for department info.</td>
+</tr>
+<tr>
+<td><strong>LDAP_UID_ATTR</strong></td>
+<td>Attribute for Windows login name. If this is synchronized, users can also log in with their Windows login name. In AD, the attribute <code>sAMAccountName</code> can be used as <code>UID_ATTR</code>. The attribute will be stored as login_id in Seafile (in seahub_db.profile_profile table).</td>
+</tr>
+<tr>
+<td><strong>LDAP_AUTO_REACTIVATE_USERS</strong></td>
+<td>Whether to auto activate deactivated user, default by 'true'</td>
+</tr>
+<tr>
+<td><strong>LDAP_USE_PAGED_RESULT</strong></td>
+<td>Whether to use pagination extension. It is useful when you have more than 1000 users in LDAP server.</td>
+</tr>
+<tr>
+<td><strong>IMPORT_NEW_USER</strong></td>
+<td>Whether to import new users when sync user.</td>
+</tr>
+<tr>
+<td><strong>ACTIVE_USER_WHEN_IMPORT</strong></td>
+<td>Whether to activate the user automatically when imported.</td>
+</tr>
+<tr>
+<td><strong>DEACTIVE_USER_IF_NOTFOUND</strong></td>
+<td>set to "true" if you want to deactivate a user when he/she was deleted in AD server.</td>
+</tr>
+<tr>
+<td><strong>ENABLE_EXTRA_USER_INFO_SYNC</strong></td>
+<td>Enable synchronization of additional user information, including user's full name, department, and Windows login name, etc.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="importing-users-without-activating-them">Importing Users without Activating Them<a class="headerlink" href="#importing-users-without-activating-them" title="Permanent link">&para;</a></h3>
+<p>The users imported with the above configuration will be activated by default. For some organizations with large number of users, they may want to import user information (such as user full name) without activating the imported users. Activating all imported users will require licenses for all users in LDAP, which may not be affordable.</p>
+<p>Seafile provides a combination of options for such use case. You can modify below option in <code>seahub_settings.py</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">ACTIVATE_USER_WHEN_IMPORT</span> <span class="o">=</span> <span class="kc">False</span>
+</code></pre></div>
+<p>This prevents Seafile from activating imported users. Then, add below option to <code>seahub_settings.py</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">ACTIVATE_AFTER_FIRST_LOGIN</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+<p>This option will automatically activate users when they login to Seafile for the first time.</p>
+<h3 id="reactivating-users">Reactivating Users<a class="headerlink" href="#reactivating-users" title="Permanent link">&para;</a></h3>
+<p>When you set the <code>DEACTIVE_USER_IF_NOTFOUND</code> option, a user will be deactivated when he/she is not found in LDAP server. By default, even after this user reappears in the LDAP server, it won't be reactivated automatically. This is to prevent auto reactivating a user that was manually deactivated by the system admin.</p>
+<p>However, sometimes it's desirable to auto reactivate such users. You can modify below option in <code>seahub_settings.py</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">LDAP_AUTO_REACTIVATE_USERS</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+<h3 id="manually-trigger-synchronization">Manually Trigger Synchronization<a class="headerlink" href="#manually-trigger-synchronization" title="Permanent link">&para;</a></h3>
+<p>To test your LDAP sync configuration, you can run the sync command manually.</p>
+<p>To trigger LDAP sync manually:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>seafile-server-latest
+./pro/pro.py<span class="w"> </span>ldapsync
+</code></pre></div>
+<p>For Seafile Docker</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>/opt/seafile/seafile-server-latest/pro/pro.py<span class="w"> </span>ldapsync
+</code></pre></div>
+<h2 id="setting-up-ldap-group-sync-optional">Setting Up LDAP Group Sync (optional)<a class="headerlink" href="#setting-up-ldap-group-sync-optional" title="Permanent link">&para;</a></h2>
+<h3 id="how-it-works">How It Works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h3>
+<p>The importing or syncing process maps groups from LDAP directory server to groups in Seafile's internal database. This process is one-way.</p>
+<ul>
+<li>
+<p>Any changes to groups in the database won't propagate back to LDAP;</p>
+</li>
+<li>
+<p>Any changes to groups in the database, except for "setting a member as group admin", will be overwritten in the next LDAP sync operation. If you want to add or delete members, you can only do that on LDAP server.</p>
+</li>
+<li>
+<p>The creator of imported groups will be set to the system admin.</p>
+</li>
+</ul>
+<p>There are two modes of operation:</p>
+<ul>
+<li>
+<p>Periodical: the syncing process will be executed in a fixed interval</p>
+</li>
+<li>
+<p>Manual: there is a script you can run to trigger the syncing once</p>
+</li>
+</ul>
+<h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h3>
+<p>Before enabling LDAP group sync, you should have configured LDAP authentication. See <a href="#basic-ldap-integration">Basic LDAP Integration</a> for details.</p>
+<p>The following are LDAP group sync related options:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># ldap group sync options.</span>
+<span class="n">ENABLE_LDAP_GROUP_SYNC</span> <span class="o">=</span> <span class="kc">True</span>            <span class="c1"># Whether to enable group sync</span>
+<span class="n">LDAP_GROUP_OBJECT_CLASS</span> <span class="o">=</span> <span class="s1">&#39;group&#39;</span>        <span class="c1"># This is the name of the class used to search for group objects.</span>
+<span class="n">LDAP_GROUP_MEMBER_ATTR</span> <span class="o">=</span> <span class="s1">&#39;member&#39;</span>        <span class="c1"># The attribute field to use when loading the group&#39;s members. </span>
+                                         <span class="c1"># For most directory servers, the attributes is &quot;member&quot; </span>
+                                         <span class="c1"># which is the default value.For &quot;posixGroup&quot;, it should be set to &quot;memberUid&quot;.</span>
+<span class="n">LDAP_USER_ATTR_IN_MEMBERUID</span> <span class="o">=</span> <span class="s1">&#39;uid&#39;</span>      <span class="c1"># The user attribute set in &#39;memberUid&#39; option, </span>
+                                         <span class="c1"># which is used in &quot;posixGroup&quot;.The default value is &quot;uid&quot;.</span>
+<span class="n">LDAP_GROUP_UUID_ATTR</span> <span class="o">=</span> <span class="s1">&#39;objectGUID&#39;</span>      <span class="c1"># Used to uniquely identify groups in LDAP</span>
+<span class="n">LDAP_GROUP_FILTER</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>                   <span class="c1"># An additional filter to use when searching group objects.</span>
+                                         <span class="c1"># If it&#39;s set, the final filter used to run search is &quot;(&amp;(objectClass=GROUP_OBJECT_CLASS)(GROUP_FILTER))&quot;;</span>
+                                         <span class="c1"># otherwise the final filter would be &quot;(objectClass=GROUP_OBJECT_CLASS)&quot;.</span>
+<span class="n">LDAP_USE_GROUP_MEMBER_RANGE_QUERY</span> <span class="o">=</span> <span class="kc">False</span>   <span class="c1"># When a group contains too many members, </span>
+                                         <span class="c1"># AD will only return part of them. Set this option to TRUE</span>
+                                         <span class="c1"># to make LDAP sync work with large groups.</span>
+<span class="n">DEL_GROUP_IF_NOT_FOUND</span> <span class="o">=</span> <span class="kc">False</span>           <span class="c1"># Set to &quot;true&quot;, sync process will delete the group if not found it in LDAP server.</span>
+<span class="n">LDAP_SYNC_GROUP_AS_DEPARTMENT</span> <span class="o">=</span> <span class="kc">False</span>    <span class="c1"># Whether to sync groups as top-level departments in Seafile.</span>
+                                         <span class="c1"># Learn more about departments in Seafile [here](https://help.seafile.com/sharing_collaboration/departments/).</span>
+<span class="n">LDAP_DEPT_NAME_ATTR</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>                 <span class="c1"># Used to get the department name.</span>
+</code></pre></div>
+<p>Meaning of some options:</p>
+<table>
+<thead>
+<tr>
+<th>variable</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ENABLE_LDAP_GROUP_SYNC</td>
+<td>Whether to enable group sync.</td>
+</tr>
+<tr>
+<td>LDAP_GROUP_OBJECT_CLASS</td>
+<td>This is the name of the class used to search for group objects.</td>
+</tr>
+<tr>
+<td>LDAP_GROUP_MEMBER_ATTR</td>
+<td>The attribute field to use when loading the group's members. For most directory servers, the attribute is "member" which is the default value. For "posixGroup", it should be set to "memberUid".</td>
+</tr>
+<tr>
+<td>LDAP_USER_ATTR_IN_MEMBERUID</td>
+<td>The user attribute set in 'memberUid' option, which is used in "posixGroup". The default value is "uid".</td>
+</tr>
+<tr>
+<td>LDAP_GROUP_UUID_ATTR</td>
+<td>Used to uniquely identify groups in LDAP.</td>
+</tr>
+<tr>
+<td>LDAP_GROUP_FILTER</td>
+<td>An additional filter to use when searching group objects. If it's set, the final filter used to run search is <code>(&amp;(objectClass=GROUP_OBJECT_CLASS)(GROUP_FILTER))</code>; otherwise the final filter would be <code>(objectClass=GROUP_OBJECT_CLASS)</code>.</td>
+</tr>
+<tr>
+<td>LDAP_USER_GROUP_MEMBER_RANGE_QUERY</td>
+<td>When a group contains too many members, AD will only return part of them. Set this option to TRUE to make LDAP sync work with large groups.</td>
+</tr>
+<tr>
+<td>DEL_GROUP_IF_NOT_FOUND</td>
+<td>Set to "true", sync process will delete the group if not found in the LDAP server.</td>
+</tr>
+<tr>
+<td>LDAP_SYNC_GROUP_AS_DEPARTMENT</td>
+<td>Whether to sync groups as top-level departments in Seafile. Learn more about departments in Seafile <a href="https://help.seafile.com/sharing_collaboration/departments/">here</a>.</td>
+</tr>
+<tr>
+<td>LDAP_DEPT_NAME_ATTR</td>
+<td>Used to get the department name.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ul>
+<li>
+<p>The search base for groups is the option <code>LDAP_BASE_DN</code>.</p>
+</li>
+<li>
+<p>Some LDAP server, such as Active Directory, allows a group to be a member of another group. This is called "group nesting". If we find a nested group B in group A, we should recursively add all the members from group B into group A. And group B should still be imported a separate group. That is, all members of group B are also members in group A.</p>
+</li>
+<li>
+<p>In some LDAP server, such as OpenLDAP, it's common practice to use Posix groups to store group membership. To import Posix groups as Seafile groups, set <code>LDAP_GROUP_OBJECT_CLASS</code> option to <code>posixGroup</code>. A <code>posixGroup</code> object in LDAP usually contains a multi-value attribute for the list of member UIDs. The name of this attribute can be set with the <code>LDAP_GROUP_MEMBER_ATTR</code> option. It's <code>MemberUid</code> by default. The value of the <code>MemberUid</code> attribute is an ID that can be used to identify a user, which corresponds to an attribute in the user object. The name of this ID attribute is usually <code>uid</code>, but can be set via the <code>LDAP_USER_ATTR_IN_MEMBERUID</code> option. Note that <code>posixGroup</code> doesn't support nested groups.</p>
+</li>
+</ul>
+</div>
+<h3 id="sync-ou-as-departments">Sync OU as Departments<a class="headerlink" href="#sync-ou-as-departments" title="Permanent link">&para;</a></h3>
+<p>A department in Seafile is a special group. In addition to what you can do with a group, there are two key new features for departments:</p>
+<ul>
+<li>
+<p>Department supports hierarchy. A department can have any levels of sub-departments.</p>
+</li>
+<li>
+<p>Department can have storage quota.</p>
+</li>
+</ul>
+<p>Seafile supports syncing OU (Organizational Units) from AD/LDAP to departments. The sync process keeps the hierarchical structure of the OUs.</p>
+<p>Options for syncing departments from OU:</p>
+<div class="highlight"><pre><span></span><code><span class="n">LDAP_SYNC_DEPARTMENT_FROM_OU</span> <span class="o">=</span> <span class="kc">True</span>      <span class="c1"># Whether to enable sync departments from OU.</span>
+<span class="n">LDAP_DEPT_NAME_ATTR</span> <span class="o">=</span> <span class="s1">&#39;description&#39;</span>      <span class="c1"># Used to get the department name.</span>
+<span class="n">LDAP_CREATE_DEPARTMENT_LIBRARY</span> <span class="o">=</span> <span class="kc">False</span>   <span class="c1"># If you decide to sync the group as a department,</span>
+                                         <span class="c1"># you can set this option to &quot;true&quot;. In this way, when </span>
+                                         <span class="c1"># the group is synchronized for the first time, a library</span>
+                                         <span class="c1"># is automatically created for the department, and the </span>
+                                         <span class="c1"># library&#39;s name is the department&#39;s name.</span>
+<span class="n">LDAP_DEPT_REPO_PERM</span> <span class="o">=</span> <span class="s1">&#39;rw&#39;</span>               <span class="c1"># Set the permissions of the department repo, default permission is &#39;rw&#39;.</span>
+<span class="n">LDAP_DEFAULT_DEPARTMENT_QUOTA</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>       <span class="c1"># You can set a default space quota for each department</span>
+                                         <span class="c1"># when you synchronize a group for the first time. The </span>
+                                         <span class="c1"># quota is set to unlimited if this option is not set.</span>
+                                         <span class="c1"># Unit is MB.</span>
+<span class="n">DEL_DEPARTMENT_IF_NOT_FOUND</span> <span class="o">=</span> <span class="kc">False</span>      <span class="c1"># Set to &quot;true&quot;, sync process will deleted the department if not found it in LDAP server.</span>
+</code></pre></div>
+<h3 id="periodical-and-manual-sync">Periodical and Manual Sync<a class="headerlink" href="#periodical-and-manual-sync" title="Permanent link">&para;</a></h3>
+<p>Periodical sync won't happen immediately after you restart seafile server. It gets scheduled after the first sync interval. For example if you set sync interval to 30 minutes, the first auto sync will happen after 30 minutes you restarts. To sync immediately, you need to manually trigger it.</p>
+<p>After the sync is run, you should see log messages like the following in logs/seafevents.log. And you should be able to see the groups in system admin page.</p>
+<div class="highlight"><pre><span></span><code>[2023-03-30 18:15:05,109] [DEBUG] create group 1, and add dn pair CN=DnsUpdateProxy,CN=Users,DC=Seafile,DC=local&lt;-&gt;1 success.
+[2023-03-30 18:15:05,145] [DEBUG] create group 2, and add dn pair CN=Domain Computers,CN=Users,DC=Seafile,DC=local&lt;-&gt;2 success.
+[2023-03-30 18:15:05,154] [DEBUG] create group 3, and add dn pair CN=Domain Users,CN=Users,DC=Seafile,DC=local&lt;-&gt;3 success.
+[2023-03-30 18:15:05,164] [DEBUG] create group 4, and add dn pair CN=Domain Admins,CN=Users,DC=Seafile,DC=local&lt;-&gt;4 success.
+[2023-03-30 18:15:05,176] [DEBUG] create group 5, and add dn pair CN=RAS and IAS Servers,CN=Users,DC=Seafile,DC=local&lt;-&gt;5 success.
+[2023-03-30 18:15:05,186] [DEBUG] create group 6, and add dn pair CN=Enterprise Admins,CN=Users,DC=Seafile,DC=local&lt;-&gt;6 success.
+[2023-03-30 18:15:05,197] [DEBUG] create group 7, and add dn pair CN=dev,CN=Users,DC=Seafile,DC=local&lt;-&gt;7 success.
+</code></pre></div>
+<p>To trigger LDAP sync manually,</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>seafile-server-latest
+./pro/pro.py<span class="w"> </span>ldapsync
+</code></pre></div>
+<p>For Seafile Docker</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>/opt/seafile/seafile-server-latest/pro/pro.py<span class="w"> </span>ldapsync
+</code></pre></div>
+<h2 id="advanced-ldap-integration-options">Advanced LDAP Integration Options<a class="headerlink" href="#advanced-ldap-integration-options" title="Permanent link">&para;</a></h2>
+<h3 id="multiple-base">Multiple BASE<a class="headerlink" href="#multiple-base" title="Permanent link">&para;</a></h3>
+<p>Multiple base DN is useful when your company has more than one OUs to use Seafile. You can specify a list of base DN in the <code>LDAP_BASE_DN</code> option. The DNs are separated by ";", e.g.</p>
+<div class="highlight"><pre><span></span><code><span class="n">LDAP_BASE_DN</span> <span class="o">=</span> <span class="s1">&#39;ou=developers,dc=example,dc=com;ou=marketing,dc=example,dc=com&#39;</span>
+</code></pre></div>
+<h3 id="additional-search-filter">Additional Search Filter<a class="headerlink" href="#additional-search-filter" title="Permanent link">&para;</a></h3>
+<p>Search filter is very useful when you have a large organization but only a portion of people want to use Seafile. The filter can be given by setting <code>LDAP_FILTER</code> option. The value of this option follows standard LDAP search filter syntax (https://msdn.microsoft.com/en-us/library/aa746475(v=vs.85).aspx).</p>
+<p>The final filter used for searching for users is <code>(&amp;($LOGIN_ATTR=*)($LDAP_FILTER))</code>. <code>$LOGIN_ATTR</code> and <code>$LDAP_FILTER</code> will be replaced by your option values.</p>
+<p>For example, add below option to <code>seahub_settings.py</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">LDAP_FILTER</span> <span class="o">=</span> <span class="s1">&#39;memberOf=CN=group,CN=developers,DC=example,DC=com&#39;</span>
+</code></pre></div>
+<p>The final search filter would be <code>(&amp;(mail=*)(memberOf=CN=group,CN=developers,DC=example,DC=com))</code></p>
+<div class="admonition note">
+<p class="admonition-title">The case of attribute names in the above example is significant. The <code>memberOf</code> attribute is only available in Active Directory</p>
+</div>
+<h3 id="limiting-seafile-users-to-a-group-in-active-directory">Limiting Seafile Users to a Group in Active Directory<a class="headerlink" href="#limiting-seafile-users-to-a-group-in-active-directory" title="Permanent link">&para;</a></h3>
+<p>You can use the <code>LDAP_FILTER</code> option to limit user scope to a certain AD group.</p>
+<ol>
+<li>
+<p>First, you should find out the DN for the group. Again, we'll use the <code>dsquery</code> command on the domain controller. For example, if group name is 'seafilegroup', run <code>dsquery group -name seafilegroup</code>.</p>
+</li>
+<li>
+<p>Add below option to <code>seahub_settings.py</code>:</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="n">LDAP_FILTER</span> <span class="o">=</span> <span class="s1">&#39;memberOf={output of dsquery command}&#39;</span>
+</code></pre></div>
+<h3 id="using-tls-connection-to-ldap-server">Using TLS connection to LDAP server<a class="headerlink" href="#using-tls-connection-to-ldap-server" title="Permanent link">&para;</a></h3>
+<p>If your LDAP service supports TLS connections, you can configure <code>LDAP_SERVER_URL</code> as the access address of the ldaps protocol to use TLS to connect to the LDAP service, for example:</p>
+<div class="highlight"><pre><span></span><code><span class="n">LDAP_SERVER_URL</span> <span class="o">=</span> <span class="s1">&#39;ldaps://192.168.0.1:636/&#39;</span>
+</code></pre></div>
+<h3 id="use-paged-results-extension">Use paged results extension<a class="headerlink" href="#use-paged-results-extension" title="Permanent link">&para;</a></h3>
+<p>LDAP protocol version 3 supports "paged results" (PR) extension. When you have large number of users, this option can greatly improve the performance of listing users. Most directory server nowadays support this extension.</p>
+<p>In Seafile Pro Edition, add this option to <code>seahub_settings.py</code> to enable PR:</p>
+<div class="highlight"><pre><span></span><code><span class="n">LDAP_USE_PAGED_RESULT</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+<h3 id="follow-referrals">Follow referrals<a class="headerlink" href="#follow-referrals" title="Permanent link">&para;</a></h3>
+<p>Seafile Pro Edition supports auto following referrals in LDAP search. This is useful for partitioned LDAP or AD servers, where users may be spreaded on multiple directory servers. For more information about referrals, you can refer to <a href="https://technet.microsoft.com/en-us/library/cc978014.aspx">this article</a>.</p>
+<p>To configure, add below option to <code>seahub_settings.py</code>, e.g.:</p>
+<div class="highlight"><pre><span></span><code><span class="n">LDAP_FOLLOW_REFERRALS</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+<h3 id="configure-multi-ldap-servers">Configure Multi-ldap Servers<a class="headerlink" href="#configure-multi-ldap-servers" title="Permanent link">&para;</a></h3>
+<p>Seafile Pro Edition supports multi-ldap servers, you can configure two ldap servers to work with seafile. Multi-ldap servers mean that, when get or search ldap user, it will iterate all configured ldap servers until a match is found; When listing all ldap users, it will iterate all ldap servers to get all users; For Ldap sync it will sync all user/group info in all configured ldap servers to seafile.</p>
+<p><strong>Currently, only two LDAP servers are supported.</strong></p>
+<p>If you want to use multi-ldap servers, please replace <code>LDAP</code> in the options with <code>MULTI_LDAP_1</code>, and then add them to <code>seahub_settings.py</code>, for example:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Basic config options</span>
+<span class="n">ENABLE_LDAP</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="o">......</span>
+
+<span class="c1"># Multi ldap config options</span>
+<span class="n">ENABLE_MULTI_LDAP_1</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">MULTI_LDAP_1_SERVER_URL</span> <span class="o">=</span> <span class="s1">&#39;ldap://192.168.0.2&#39;</span>
+<span class="n">MULTI_LDAP_1_BASE_DN</span> <span class="o">=</span> <span class="s1">&#39;ou=test,dc=seafile,dc=top&#39;</span>
+<span class="n">MULTI_LDAP_1_ADMIN_DN</span> <span class="o">=</span> <span class="s1">&#39;administrator@example.top&#39;</span>
+<span class="n">MULTI_LDAP_1_ADMIN_PASSWORD</span> <span class="o">=</span> <span class="s1">&#39;Hello@123&#39;</span>
+<span class="n">MULTI_LDAP_1_PROVIDER</span> <span class="o">=</span> <span class="s1">&#39;ldap1&#39;</span>
+<span class="n">MULTI_LDAP_1_LOGIN_ATTR</span> <span class="o">=</span> <span class="s1">&#39;userPrincipalName&#39;</span>
+
+<span class="c1"># Optional configs</span>
+<span class="n">MULTI_LDAP_1_USER_FIRST_NAME_ATTR</span> <span class="o">=</span> <span class="s1">&#39;givenName&#39;</span>
+<span class="n">MULTI_LDAP_1_USER_LAST_NAME_ATTR</span> <span class="o">=</span> <span class="s1">&#39;sn&#39;</span>
+<span class="n">MULTI_LDAP_1_USER_NAME_REVERSE</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">ENABLE_MULTI_LDAP_1_EXTRA_USER_INFO_SYNC</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="n">MULTI_LDAP_1_FILTER</span> <span class="o">=</span> <span class="s1">&#39;memberOf=CN=testgroup,OU=test,DC=seafile,DC=ren&#39;</span> 
+<span class="n">MULTI_LDAP_1_USE_PAGED_RESULT</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">MULTI_LDAP_1_FOLLOW_REFERRALS</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">ENABLE_MULTI_LDAP_1_USER_SYNC</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">ENABLE_MULTI_LDAP_1_GROUP_SYNC</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">MULTI_LDAP_1_SYNC_DEPARTMENT_FROM_OU</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="n">MULTI_LDAP_1_USER_OBJECT_CLASS</span> <span class="o">=</span> <span class="s1">&#39;person&#39;</span>
+<span class="n">MULTI_LDAP_1_DEPT_ATTR</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">MULTI_LDAP_1_UID_ATTR</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">MULTI_LDAP_1_CONTACT_EMAIL_ATTR</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">MULTI_LDAP_1_USER_ROLE_ATTR</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">MULTI_LDAP_1_AUTO_REACTIVATE_USERS</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="n">MULTI_LDAP_1_GROUP_OBJECT_CLASS</span> <span class="o">=</span> <span class="s1">&#39;group&#39;</span>
+<span class="n">MULTI_LDAP_1_GROUP_FILTER</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">MULTI_LDAP_1_GROUP_MEMBER_ATTR</span> <span class="o">=</span> <span class="s1">&#39;member&#39;</span>
+<span class="n">MULTI_LDAP_1_GROUP_UUID_ATTR</span> <span class="o">=</span> <span class="s1">&#39;objectGUID&#39;</span>
+<span class="n">MULTI_LDAP_1_CREATE_DEPARTMENT_LIBRARY</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">MULTI_LDAP_1_DEPT_REPO_PERM</span> <span class="o">=</span> <span class="s1">&#39;rw&#39;</span>
+<span class="n">MULTI_LDAP_1_DEFAULT_DEPARTMENT_QUOTA</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+<span class="n">MULTI_LDAP_1_SYNC_GROUP_AS_DEPARTMENT</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">MULTI_LDAP_1_USE_GROUP_MEMBER_RANGE_QUERY</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">MULTI_LDAP_1_USER_ATTR_IN_MEMBERUID</span> <span class="o">=</span> <span class="s1">&#39;uid&#39;</span>
+<span class="n">MULTI_LDAP_1_DEPT_NAME_ATTR</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="o">......</span>
+</code></pre></div>
+<p>!!! note:
+    There are still some shared config options are used for all LDAP servers, as follows:</p>
+<div class="codehilite"><pre><span></span><code><span class="err">```</span><span class="n">python</span>
+<span class="c1"># Common user sync options</span>
+<span class="n">LDAP_SYNC_INTERVAL</span> <span class="o">=</span> <span class="mi">60</span>
+<span class="n">IMPORT_NEW_USER</span> <span class="o">=</span> <span class="kc">True</span>                   <span class="c1"># Whether to import new users when sync user</span>
+<span class="n">ACTIVATE_USER_WHEN_IMPORT</span> <span class="o">=</span> <span class="kc">True</span>         <span class="c1"># Whether to activate the user when importing new user</span>
+<span class="n">DEACTIVE_USER_IF_NOTFOUND</span> <span class="o">=</span> <span class="kc">False</span>        <span class="c1"># Set to &quot;true&quot; if you want to deactivate a user </span>
+                                        <span class="c1"># when he/she was deleted in AD server.</span>
+
+<span class="c1"># Common group sync options</span>
+<span class="n">DEL_GROUP_IF_NOT_FOUND</span> <span class="o">=</span> <span class="kc">False</span>           <span class="c1"># Set to &quot;true&quot;, sync process will delete the group if not found it in LDAP server.</span>
+<span class="n">DEL_DEPARTMENT_IF_NOT_FOUND</span> <span class="o">=</span> <span class="kc">False</span>      <span class="c1"># Set to &quot;true&quot;, sync process will deleted the department if not found it in LDAP server.</span>
+<span class="err">```</span>
+</code></pre></div>
+
+<h3 id="sso-and-ldap-users-use-the-same-uid">SSO and LDAP users use the same uid<a class="headerlink" href="#sso-and-ldap-users-use-the-same-uid" title="Permanent link">&para;</a></h3>
+<p>If you sync users from LDAP to Seafile, when the user login via SSO (ADFS or OAuth or Shibboleth), you want Seafile to find the existing account for this user instead of creating a new one, you can set</p>
+<div class="highlight"><pre><span></span><code><span class="n">SSO_LDAP_USE_SAME_UID</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Here the UID means the unique user ID, in LDAP it is the attribute you use for <code>LDAP_LOGIN_ATTR</code> (not <code>LDAP_UID_ATTR</code>), in ADFS it is <code>uid</code> attribute. You need make sure you use the same attribute for the two settings</p>
+</div>
+<p>On this basis, if you only want users to login using SSO and not through LDAP, you can set</p>
+<div class="highlight"><pre><span></span><code><span class="n">USE_LDAP_SYNC_ONLY</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+<h2 id="importing-roles-from-ldap">Importing Roles from LDAP<a class="headerlink" href="#importing-roles-from-ldap" title="Permanent link">&para;</a></h2>
+<p>Seafile Pro Edition supports syncing roles from LDAP or Active Directory.</p>
+<p>To enable this feature, add below option to <code>seahub_settings.py</code>, e.g.</p>
+<div class="highlight"><pre><span></span><code><span class="n">LDAP_USER_ROLE_ATTR</span> <span class="o">=</span> <span class="s1">&#39;title&#39;</span>
+</code></pre></div>
+<p><code>LDAP_USER_ROLE_ATTR</code> is the attribute field to configure roles in LDAP. You can write a custom function to map the role by creating a file <code>seahub_custom_functions.py</code> under conf/ and edit it like:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="c1"># The AD roles attribute returns a list of roles (role_list).</span>
+<span class="c1"># The following function use the first entry in the list.</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">ldap_role_mapping</span><span class="p">(</span><span class="n">role</span><span class="p">):</span>
+    <span class="k">if</span> <span class="s1">&#39;staff&#39;</span> <span class="ow">in</span> <span class="n">role</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;Staff&#39;</span>
+    <span class="k">if</span> <span class="s1">&#39;guest&#39;</span> <span class="ow">in</span> <span class="n">role</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;Guest&#39;</span>
+    <span class="k">if</span> <span class="s1">&#39;manager&#39;</span> <span class="ow">in</span> <span class="n">role</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;Manager&#39;</span>
+
+<span class="c1"># From version 11.0.11-pro, you can define the following function</span>
+<span class="c1"># to calculate a role from the role_list.</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">ldap_role_list_mapping</span><span class="p">(</span><span class="n">role_list</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">role_list</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">for</span> <span class="n">role</span> <span class="ow">in</span> <span class="n">role_list</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s1">&#39;staff&#39;</span> <span class="ow">in</span> <span class="n">role</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;Staff&#39;</span>
+        <span class="k">if</span> <span class="s1">&#39;guest&#39;</span> <span class="ow">in</span> <span class="n">role</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;Guest&#39;</span>
+        <span class="k">if</span> <span class="s1">&#39;manager&#39;</span> <span class="ow">in</span> <span class="n">role</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;Manager&#39;</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">You should only define one of the two functions</p>
+</div>
+<p>You can rewrite the function (in python) to make your own mapping rules. If the file or function doesn't exist, the first entry in role_list will be synced.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../ldap_in_11.0_ce/" class="md-footer__link md-footer__link--prev" aria-label="Previous: LDAP Integration">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                LDAP Integration
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../single_sign_on/" class="md-footer__link md-footer__link--next" aria-label="Next: Outline">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Outline
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 Seafile Ltd.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/haiwen/seafile-admin-docs/" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share", "math"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

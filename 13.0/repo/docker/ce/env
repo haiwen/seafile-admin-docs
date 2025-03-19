@@ -1,0 +1,56 @@
+COMPOSE_FILE='seafile-server.yml,caddy.yml,seadoc.yml'
+COMPOSE_PATH_SEPARATOR=','
+
+# Seafile & Basic services
+
+## Images
+SEAFILE_IMAGE=seafileltd/seafile-mc:13.0-latest
+SEAFILE_DB_IMAGE=mariadb:10.11
+SEAFILE_REDIS_IMAGE=redis
+SEAFILE_CADDY_IMAGE=lucaslorentz/caddy-docker-proxy:2.9-alpine
+
+## Persistent Storage
+SEAFILE_VOLUME=/opt/seafile-data
+SEAFILE_MYSQL_VOLUME=/opt/seafile-mysql/db
+SEAFILE_CADDY_VOLUME=/opt/seafile-caddy
+
+## Database
+SEAFILE_MYSQL_DB_HOST=db
+INIT_SEAFILE_MYSQL_ROOT_PASSWORD=ROOT_PASSWORD
+SEAFILE_MYSQL_DB_USER=seafile
+SEAFILE_MYSQL_DB_PASSWORD=PASSWORD
+
+## Cache
+CACHE_PROVIDER=redis # or memcached
+
+### Redis
+REDIS_SERVER=redis
+REDIS_PORT=6379
+REDIS_PASSWORD=
+
+### Memcached
+MEMCACHED_SERVER=memcached
+MEMCACHED_PORT=11211
+
+## Scheme
+SEAFILE_SERVER_HOSTNAME=seafile.example.com
+SEAFILE_SERVER_PROTOCOL=http
+
+## Startup parameters
+TIME_ZONE=Etc/UTC
+JWT_PRIVATE_KEY=
+
+
+## Initial variables (can be removed after firstime startup)
+INIT_SEAFILE_ADMIN_EMAIL=me@example.com
+INIT_SEAFILE_ADMIN_PASSWORD=asecret
+
+# Extension
+## SeaDoc service
+ENABLE_SEADOC=true
+SEADOC_IMAGE=seafileltd/sdoc-server:1.0-latest
+SEADOC_VOLUME=/opt/seadoc-data
+
+## Notification server
+NOTIFICATION_SERVER_IMAGE=seafileltd/notification-server:12.0-latest
+NOTIFICATION_SERVER_VOLUME=/opt/notification-data

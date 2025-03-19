@@ -1,0 +1,116 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: seafile-frontend
+spec:
+  replicas: 2 # change to your frontend service number, i.e., N_f
+  selector:
+    matchLabels:
+      app: seafile-frontend
+  template:
+    metadata:
+      labels:
+        app: seafile-frontend
+    spec:
+      initContainers:  
+        - name: set-ownership  
+          image: busybox  
+          command: ['sh', '-c', 'chown -R root:root /shared']  
+          volumeMounts:  
+          - name: seafile-data  
+            mountPath: /shared
+      containers:
+        - name: seafile-frontend
+          image: seafileltd/seafile-pro-mc:13.0-latest
+          env:
+            - name: CLUSTER_SERVER
+              value: "true"
+            - name: CLUSTER_MODE
+              value: "frontend"
+            - name: SEAFILE_SERVER_HOSTNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: SEAFILE_SERVER_HOSTNAME
+            - name: SEAFILE_SERVER_PROTOCOL
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: SEAFILE_SERVER_PROTOCOL
+            - name: TIME_ZONE
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: TIME_ZONE
+            - name: SEAFILE_LOG_TO_STDOUT
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: SEAFILE_LOG_TO_STDOUT
+            - name: SITE_ROOT
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: SITE_ROOT
+            - name: ENABLE_SEADOC
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: ENABLE_SEADOC
+            - name: SEADOC_SERVER_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: SEADOC_SERVER_URL
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: SEAFILE_MYSQL_DB_HOST
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: SEAFILE_MYSQL_DB_PORT
+            - name: DB_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: SEAFILE_MYSQL_DB_USER
+            - name: SEAFILE_MYSQL_DB_CCNET_DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: SEAFILE_MYSQL_DB_CCNET_DB_NAME
+            - name: SEAFILE_MYSQL_DB_SEAFILE_DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: SEAFILE_MYSQL_DB_SEAFILE_DB_NAME
+            - name: SEAFILE_MYSQL_DB_SEAHUB_DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: SEAFILE_MYSQL_DB_SEAHUB_DB_NAME
+            - name: JWT_PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: seafile-secret
+                  key: JWT_PRIVATE_KEY
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: seafile-secret
+                  key: SEAFILE_MYSQL_DB_PASSWORD
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: seafile-data
+              mountPath: /shared
+      volumes:
+        - name: seafile-data
+          persistentVolumeClaim:
+            claimName: seafile-data
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: regcred
