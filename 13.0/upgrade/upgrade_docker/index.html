@@ -4723,9 +4723,13 @@ wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/pro/elas
 </div>
 </div>
 </div>
-<ol>
-<li>Modify <code>.env</code>, add or modify the following fields:</li>
-</ol>
+</li>
+<li>
+<p>Modify <code>.env</code>, add or modify the following fields:</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>From Seafile 13, we recommend you to use <strong><em>Redis</em></strong> as the cache server for supporting some new features (please refer the <strong><em>upgradte notes</em></strong>). You can also refer to more details about Redis in Seafile Docker <a href="../../setup/setup_pro_by_docker/#about-redis">here</a>.</p>
+</div>
 <div class="highlight"><pre><span></span><code>## Cache
 CACHE_PROVIDER=redis # or memcached
 

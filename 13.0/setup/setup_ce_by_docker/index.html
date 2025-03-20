@@ -965,6 +965,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="FAQ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#seafile-service-and-container-maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Seafile service and container maintenance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#about-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      About cache
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -4636,6 +4660,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="FAQ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#seafile-service-and-container-maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Seafile service and container maintenance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#about-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      About cache
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -4681,25 +4729,6 @@ wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/caddy.ym
 
 nano<span class="w"> </span>.env
 </code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Redis in Seafile Docker 13.0</p>
-<p>From Seafile Docker 13, the <strong><em>Redis</em></strong> takes the default cache server, and has integrated in Seafile Docker 13 and can be configured directly in environment variables (refer the following tables for the details).</p>
-<p>The integrated <em>Redis</em> service in Seafile Docker 13 does not have password. If you would like to set password for this service, you should remove the following comment markers in <code>seafile-server.yml</code> to make <code>REDIS_PASSWORD</code> effective:</p>
-<div class="highlight"><pre><span></span><code>services:
-  ...
-  redis:
-    image: ${SEAFILE_REDIS_IMAGE:-redis}
-    container_name: seafile-redis
-    # remove the following comment markers
-    command:
-      - /bin/sh
-      - -c
-      - redis-server --requirepass &quot;$${REDIS_PASSWORD:?Variable is not set or empty}&quot;
-    networks:
-    - seafile-net
-  ...
-</code></pre></div>
-</div>
 <p>The following fields merit particular attention:</p>
 <table>
 <thead>
@@ -4935,6 +4964,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> 
 <h2 id="garbage-collection">Garbage collection<a class="headerlink" href="#garbage-collection" title="Permanent link">&para;</a></h2>
 <p>When files are deleted, the blocks comprising those files are not immediately removed as there may be other files that reference those blocks (due to the magic of deduplication). To remove them, Seafile requires a <a href="../../administration/seafile_gc/">'garbage collection'</a> process to be run, which detects which blocks no longer used and purges them.</p>
 <h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
+<h3 id="seafile-service-and-container-maintenance">Seafile service and container maintenance<a class="headerlink" href="#seafile-service-and-container-maintenance" title="Permanent link">&para;</a></h3>
 <p>Q: If I want enter into the Docker container, which command I can use?</p>
 <p>A: You can enter into the docker container using the command:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>/bin/bash
@@ -4948,6 +4978,32 @@ docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> 
 <p>A: Remove the directories /opt/seafile, /opt/seafile-data and /opt/seafile-mysql and start again.</p>
 <p>Q: Something goes wrong during the start of the containers. How can I find out more?</p>
 <p>A: You can view the docker logs using this command: <code>docker compose logs -f</code>.</p>
+<h3 id="about-cache">About cache<a class="headerlink" href="#about-cache" title="Permanent link">&para;</a></h3>
+<p>Q: How Seafile use cache?</p>
+<p>A: Seafile uses cache to improve performance in many situations. The content includes but is not limited to user session information, avatars, profiles, records from database, etc. From Seafile Docker 13, the <strong><em>Redis</em></strong> takes the default cache server for supporting the new features (please refer the <strong><em>upgradte notes</em></strong>), which has integrated in Seafile Docker 13 and can be configured directly in environment variables in <code>.env</code> (<strong>no additional settings are required by default</strong>)</p>
+<p>Q: Is the Redis integrated in Seafile Docker safe? Does it have an access password?</p>
+<p>A: Although the Redis integrated by Seafile Docker does not have a password set by default, it can only be accessed through the Docker private network and will not expose the service port externally. Of course, you can also set a password for it if necessary. You can set <code>REDIS_PASSWORD</code> in <code>.env</code> and remove the following comment markers in <code>seafile-server.yml</code> to set the integrated Redis' password:</p>
+<div class="highlight"><pre><span></span><code>services:
+    ...
+    redis:
+    image: ${SEAFILE_REDIS_IMAGE:-redis}
+    container_name: seafile-redis
+    # remove the following comment markers
+    command:
+        - /bin/sh
+        - -c
+        - redis-server --requirepass &quot;$${REDIS_PASSWORD:?Variable is not set or empty}&quot;
+    networks:
+    - seafile-net
+    ...
+</code></pre></div>
+<p>Q: For some reason, I still have to use Memcached as my cache server. How can I do this?</p>
+<p>A: If you still want to use the <strong><em>Memcached</em></strong> (is not provided from Seafile Docker 13), just follow the steps below:</p>
+<ul>
+<li>Set <code>CACHE_PROVIDER</code> to <code>memcached</code> and modify <code>MEMCACHED_xxx</code> in <code>.env</code></li>
+<li>Remove the <code>redis</code> part and and the <code>redis</code> dependency in <code>seafile</code> service section in <code>seafile-server.yml</code>. </li>
+</ul>
+<p>By the way, you can make changes to the cache server after the service is started (by setting environment variables in <code>.env</code>), but the corresponding configuration files will not be updated directly (e.g., <code>seahub_settings.py</code>, <code>seafile.conf</code> and <code>seafevents.conf</code>). To avoid ambiguity, we recommend that you also update these configuration files.</p>
 
 
 
