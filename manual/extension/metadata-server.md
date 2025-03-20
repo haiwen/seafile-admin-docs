@@ -32,10 +32,7 @@ Please download the file by following command:
 
 ### Modify `.env`
 
-!!! success "Faster configuration"
-    Metadata-server docker we use an one-time configuration file, which will be generated directly through the environment variable, eliminating the need for you to repeatedly write configuration files (i.e., **no `md-server.conf`**), which will significantly improve your deployment efficiency.
-
-By default, you don't need to add additional variables to your `.env` (except for standalone deployment) to get the metadata server started, because it will read the exact same configuration as the Seafile server (including `JWT_PRIVATE_KEY` ) and keep the repository metadata locally (default `/opt/md-server`). The following table is all the related environment variables with metadata-server:
+Metadata server read all configurations from environtment and **does not need a dedicated configuration file**, and you don't need to add additional variables to your `.env` (except for standalone deployment) to get the metadata server started, because it will read the exact same configuration as the Seafile server (including `JWT_PRIVATE_KEY` ) and keep the repository metadata locally (default `/opt/seafile-data/seafile/md-data`). The following table is all the related environment variables with metadata-server:
 
 | Variables           | Description                                                                                                                | Required |
 | --- | --- | --- |
