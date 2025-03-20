@@ -4552,11 +4552,7 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 </div>
 </div>
 <h3 id="modify-env">Modify <code>.env</code><a class="headerlink" href="#modify-env" title="Permanent link">&para;</a></h3>
-<div class="admonition success">
-<p class="admonition-title">Faster configuration</p>
-<p>Metadata-server docker we use an one-time configuration file, which will be generated directly through the environment variable, eliminating the need for you to repeatedly write configuration files (i.e., <strong>no <code>md-server.conf</code></strong>), which will significantly improve your deployment efficiency.</p>
-</div>
-<p>By default, you don't need to add additional variables to your <code>.env</code> (except for standalone deployment) to get the metadata server started, because it will read the exact same configuration as the Seafile server (including <code>JWT_PRIVATE_KEY</code> ) and keep the repository metadata locally (default <code>/opt/md-server</code>). The following table is all the related environment variables with metadata-server:</p>
+<p>Metadata server read all configurations from environtment and <strong>does not need a dedicated configuration file</strong>, and you don't need to add additional variables to your <code>.env</code> (except for standalone deployment) to get the metadata server started, because it will read the exact same configuration as the Seafile server (including <code>JWT_PRIVATE_KEY</code> ) and keep the repository metadata locally (default <code>/opt/seafile-data/seafile/md-data</code>). The following table is all the related environment variables with metadata-server:</p>
 <table>
 <thead>
 <tr>
