@@ -32,7 +32,13 @@ Please download the file by following command:
 
 ### Modify `.env`
 
-Metadata server read all configurations from environtment and **does not need a dedicated configuration file**, and you don't need to add additional variables to your `.env` (except for standalone deployment) to get the metadata server started, because it will read the exact same configuration as the Seafile server (including `JWT_PRIVATE_KEY` ) and keep the repository metadata locally (default `/opt/seafile-data/seafile/md-data`). The following table is all the related environment variables with metadata-server:
+Metadata server read all configurations from environtment and **does not need a dedicated configuration file**, and you don't need to add additional variables to your `.env` (except for standalone deployment) to get the metadata server started, because it will read the exact same configuration as the Seafile server (including `JWT_PRIVATE_KEY` ) and keep the repository metadata locally (default `/opt/seafile-data/seafile/md-data`). But you still need to modify the `COMPOSE_FILE` list in `.env`, and add `md-server.yml` to enable the metadata server:
+
+```
+COMPOSE_FILE='...,md-server.yml'
+```
+
+The following table is all the related environment variables with metadata-server:
 
 | Variables           | Description                                                                                                                | Required |
 | --- | --- | --- |
