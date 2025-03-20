@@ -35,10 +35,7 @@ From Seafile Docker 13.0, the `elasticsearch.yml` has separated from `seafile-se
         wget https://manual.seafile.com/13.0/repo/docker/pro/elasticsearch.yml
         ```
         
-4. Modify `.env`, add or modify the following fields:
-    
-    !!! tip
-        From Seafile 13, we recommend you to use ***Redis*** as the cache server for supporting some new features (please refer the ***upgradte notes***). You can also refer to more details about Redis in Seafile Docker [here](../setup/setup_pro_by_docker.md#about-redis).
+4. Starting from Seafile 13, Redis will be recommended as the primary cache server for supporting some new features (please refer the ***upgradte notes***, you can also refer to more details about Redis in Seafile Docker [here](../setup/setup_pro_by_docker.md#about-redis)) and can be configured directly from environment variables. So you should modify `.env`, add or modify the following fields:
 
     ```
     ## Cache
@@ -53,6 +50,12 @@ From Seafile Docker 13.0, the `elasticsearch.yml` has separated from `seafile-se
     MEMCACHED_SERVER=memcached
     MEMCACHED_PORT=11211
     ```
+
+    Although you can configure the cache directly through environment variables, since Seafile Docker 12 uses Memcached by default, we recommend that you remove or modify the cache configuration in the following files to avoid ambiguity：
+
+    - `seafile.conf`: remove the `[memcached]` section
+
+    - `seahub_settings.py`: remove the key `default` in variable `CACHES`
 
 5. Start with `docker compose up`.
 
