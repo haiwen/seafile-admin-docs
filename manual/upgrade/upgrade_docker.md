@@ -34,7 +34,11 @@ From Seafile Docker 13.0, the `elasticsearch.yml` has separated from `seafile-se
         wget https://manual.seafile.com/13.0/repo/docker/pro/seafile-server.yml
         wget https://manual.seafile.com/13.0/repo/docker/pro/elasticsearch.yml
         ```
+        
 4. Modify `.env`, add or modify the following fields:
+    
+    !!! tip
+        From Seafile 13, we recommend you to use ***Redis*** as the cache server for supporting some new features (please refer the ***upgradte notes***). You can also refer to more details about Redis in Seafile Docker [here](../setup/setup_pro_by_docker.md#about-redis).
 
     ```
     ## Cache

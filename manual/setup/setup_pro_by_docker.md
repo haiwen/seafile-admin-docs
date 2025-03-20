@@ -47,27 +47,6 @@ wget https://manual.seafile.com/13.0/repo/docker/caddy.yml
 nano .env
 ```
 
-!!! note "Redis in Seafile Docker 13.0"
-    From Seafile Docker 13, the ***Redis*** takes the default cache server, and has integrated in Seafile Docker 13 and can be configured directly in environment variables (refer the following tables for the details).
-
-    The integrated *Redis* service in Seafile Docker 13 does not have password. If you would like to set password for this service, you should remove the following comment markers in `seafile-server.yml` to make `REDIS_PASSWORD` effective:
-
-    ```yml
-    services:
-      ...
-      redis:
-        image: ${SEAFILE_REDIS_IMAGE:-redis}
-        container_name: seafile-redis
-        # remove the following comment markers
-        command:
-          - /bin/sh
-          - -c
-          - redis-server --requirepass "$${REDIS_PASSWORD:?Variable is not set or empty}"
-        networks:
-        - seafile-net
-      ...
-    ```
-
 The following fields merit particular attention:
 
 | Variable                        | Description                                                                                                   | Default Value                   |  
@@ -280,6 +259,8 @@ When files are deleted, the blocks comprising those files are not immediately re
 
 ## FAQ
 
+### Seafile service and container maintenance
+
 Q: If I want enter into the Docker container, which command I can use?
 
 A: You can enter into the docker container using the command:
@@ -299,11 +280,47 @@ docker exec -it seafile /opt/seafile/seafile-server-latest/reset-admin.sh
 
 The Seafile service must be up when running the superuser command.
 
+
 Q: If, for whatever reason, the installation fails, how do I to start from a clean slate again?
 
-A: Remove the directories /opt/seafile, /opt/seafile-data, /opt/seafile-elasticsearch, and /opt/seafile-mysql and start again.
+A: Remove the directories /opt/seafile, /opt/seafile-data and /opt/seafile-mysql and start again.
+
 
 Q: Something goes wrong during the start of the containers. How can I find out more?
 
 A: You can view the docker logs using this command: `docker compose logs -f`.
 
+### About cache
+
+Q: How Seafile use cache?
+
+A: Seafile uses cache to improve performance in many situations. The content includes but is not limited to user session information, avatars, profiles, records from database, etc. From Seafile Docker 13, the ***Redis*** takes the default cache server for supporting the new features (please refer the ***upgradte notes***), which has integrated in Seafile Docker 13 and can be configured directly in environment variables in `.env` (**no additional settings are required by default**)
+
+Q: Is the Redis integrated in Seafile Docker safe? Does it have an access password?
+
+A: Although the Redis integrated by Seafile Docker does not have a password set by default, it can only be accessed through the Docker private network and will not expose the service port externally. Of course, you can also set a password for it if necessary. You can set `REDIS_PASSWORD` in `.env` and remove the following comment markers in `seafile-server.yml` to set the integrated Redis' password:
+
+```yml
+services:
+    ...
+    redis:
+    image: ${SEAFILE_REDIS_IMAGE:-redis}
+    container_name: seafile-redis
+    # remove the following comment markers
+    command:
+        - /bin/sh
+        - -c
+        - redis-server --requirepass "$${REDIS_PASSWORD:?Variable is not set or empty}"
+    networks:
+    - seafile-net
+    ...
+```
+
+Q: For some reason, I still have to use Memcached as my cache server. How can I do this?
+
+A: If you still want to use the ***Memcached*** (is not provided from Seafile Docker 13), just follow the steps below:
+
+- Set `CACHE_PROVIDER` to `memcached` and modify `MEMCACHED_xxx` in `.env`
+- Remove the `redis` part and and the `redis` dependency in `seafile` service section in `seafile-server.yml`. 
+
+By the way, you can make changes to the cache server after the service is started (by setting environment variables in `.env`), but the corresponding configuration files will not be updated directly (e.g., `seahub_settings.py`, `seafile.conf` and `seafevents.conf`). To avoid ambiguity, we recommend that you also update these configuration files.
