@@ -4522,19 +4522,7 @@
 <span class="nv">INIT_SS_ADMIN_PASSWORD</span><span class="o">=</span>&lt;admin-password&gt;
 </code></pre></div>
 <h2 id="modify-seafile-serveryml-to-disable-elasticsearch-service">Modify <code>seafile-server.yml</code> to disable <code>elasticSearch</code> service<a class="headerlink" href="#modify-seafile-serveryml-to-disable-elasticsearch-service" title="Permanent link">&para;</a></h2>
-<p>If you would like to use <em>SeaSearch</em> as the search engine, the <code>elasticSearch</code> service can be removed, which is no longer used:</p>
-<ul>
-<li><code>seafile-server.yml</code>:
-    <div class="highlight"><pre><span></span><code>services:
-  seafile:
-    ...
-    depends_on:
-    ...
-    #elasticsearch: # remove or note the `elasticsearch` service Dependency
-      #condition: service_started
-</code></pre></div></li>
-<li><code>.env</code>: Remove <code>elasticsearch.yml</code> in the list variable <code>COMPOSE_FILE</code></li>
-</ul>
+<p>If you would like to use <em>SeaSearch</em> as the search engine, the <code>elasticSearch</code> service can be removed, which is no longer used: remove <code>elasticsearch.yml</code> in the list variable <code>COMPOSE_FILE</code> on the file <code>.env</code>.</p>
 <h2 id="modify-seafeventsconf">Modify <code>seafevents.conf</code><a class="headerlink" href="#modify-seafeventsconf" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
