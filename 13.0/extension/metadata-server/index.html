@@ -4552,7 +4552,10 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 </div>
 </div>
 <h3 id="modify-env">Modify <code>.env</code><a class="headerlink" href="#modify-env" title="Permanent link">&para;</a></h3>
-<p>Metadata server read all configurations from environtment and <strong>does not need a dedicated configuration file</strong>, and you don't need to add additional variables to your <code>.env</code> (except for standalone deployment) to get the metadata server started, because it will read the exact same configuration as the Seafile server (including <code>JWT_PRIVATE_KEY</code> ) and keep the repository metadata locally (default <code>/opt/seafile-data/seafile/md-data</code>). The following table is all the related environment variables with metadata-server:</p>
+<p>Metadata server read all configurations from environtment and <strong>does not need a dedicated configuration file</strong>, and you don't need to add additional variables to your <code>.env</code> (except for standalone deployment) to get the metadata server started, because it will read the exact same configuration as the Seafile server (including <code>JWT_PRIVATE_KEY</code> ) and keep the repository metadata locally (default <code>/opt/seafile-data/seafile/md-data</code>). But you still need to modify the <code>COMPOSE_FILE</code> list in <code>.env</code>, and add <code>md-server.yml</code> to enable the metadata server:</p>
+<div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;...,md-server.yml&#39;
+</code></pre></div>
+<p>The following table is all the related environment variables with metadata-server:</p>
 <table>
 <thead>
 <tr>
