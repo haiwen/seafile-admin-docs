@@ -42,19 +42,7 @@ INIT_SS_ADMIN_PASSWORD=<admin-password>
 
 ## Modify `seafile-server.yml` to disable `elasticSearch` service
 
-If you would like to use *SeaSearch* as the search engine, the `elasticSearch` service can be removed, which is no longer used:
-
-- `seafile-server.yml`:
-    ```yml
-    services:
-      seafile:
-        ...
-        depends_on:
-        ...
-        #elasticsearch: # remove or note the `elasticsearch` service Dependency
-          #condition: service_started
-    ```
-- `.env`: Remove `elasticsearch.yml` in the list variable `COMPOSE_FILE`
+If you would like to use *SeaSearch* as the search engine, the `elasticSearch` service can be removed, which is no longer used: remove `elasticsearch.yml` in the list variable `COMPOSE_FILE` on the file `.env`.
 
 ## Modify `seafevents.conf`
 
