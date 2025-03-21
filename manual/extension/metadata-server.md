@@ -114,7 +114,13 @@ docker compose up -d
         [2025-02-23 06:08:05] [INFO] seafevents.repo_metadata.slow_task_handler:61 worker_handler slow_task_handler_thread_1 starting update metadata work
         [2025-02-23 06:08:05] [INFO] seafevents.repo_metadata.slow_task_handler:61 worker_handler slow_task_handler_thread_2 starting update metadata work
         ```
-`
+
+!!! tip "Access denied for MySQL"
+    If you have confirmed that your database configuration is correct, this error may also occur when you deploy the Metadata server at the same time as deploying Seafile. You can restart the Metadata server by executing the following command after Seafile is initialized:
+
+    ```sh
+    docker compose restart seafile-md-server
+    ```
 
 ## Directory structure
 
