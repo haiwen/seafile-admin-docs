@@ -32,7 +32,7 @@ services:
       - MD_OSS_BUCKET=${MD_OSS_BUCKET:-}
       - MD_OSS_KEY_ID=${MD_OSS_KEY_ID:-}
       - MD_OSS_KEY=${MD_OSS_KEY:-}
-      - REDIS_HOST=${REDIS_HOST:-redis}
+      - REDIS_SERVER=${REDIS_SERVER:-redis}
       - REDIS_PORT=${REDIS_PORT:-6379}
       - REDIS_PASSWORD=${REDIS_PASSWORD:-}
     depends_on:

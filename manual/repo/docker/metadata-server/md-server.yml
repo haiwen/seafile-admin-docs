@@ -32,6 +32,6 @@ services:
       - MD_OSS_BUCKET=${MD_OSS_BUCKET:-}
       - MD_OSS_KEY_ID=${MD_OSS_KEY_ID:-}
       - MD_OSS_KEY=${MD_OSS_KEY:-}
-      - REDIS_HOST=${REDIS_HOST:?Variable is not set or empty}
+      - REDIS_SERVER=${REDIS_SERVER:?Variable is not set or empty}
       - REDIS_PORT=${REDIS_PORT:-6379}
       - REDIS_PASSWORD=${REDIS_PASSWORD:-}

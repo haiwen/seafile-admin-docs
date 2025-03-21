@@ -45,7 +45,7 @@ The following table is all the related environment variables with metadata-serve
 | `JWT_PRIVATE_KEY`   | The JWT key used to connect with Seafile server | **Required** |
 | `MD_MAX_CACHE_SIZE` | The maximum cache size.                                                                                                    | Optional, default `1GB`            |
 | `MD_STORAGE_TYPE`   | The type of Seafile backend storage. Options: `file` (local storage), `s3`, `oss`.                                                 | Optional, default `file` and `s3` in deploying metadata server in the same machine with Seafile and standalone respective |
-| `REDIS_HOST`        | Your *Redis* service host.                                                                                                 | Optional, default `redis`          |
+| `REDIS_SERVER`        | Your *Redis* service host.                                                                                                 | Optional, default `redis`          |
 | `REDIS_PORT`        | Your *Redis* service port.                                                                                                 | Optional, default `6379`           |
 | `REDIS_PASSWORD`    | Your *Redis* access password.                                                                                              | Optional                |
 
