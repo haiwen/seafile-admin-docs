@@ -61,6 +61,13 @@ Please check our document for how to upgrade to [12.0](../upgrade/upgrade_notes_
 
 Please check our document for how to upgrade to [11.0](../upgrade/upgrade_notes_for_11.0.x.md)
 
+### 11.0.19 (2025-03-21)
+
+* [fix] Fix a stored XSS issue
+* SSO_LDAP_USE_SAME_UID option now support Shibboleth login method
+* [fix] Fix a bug when a user view a shared file belong to a deleted user
+* Improve SAML error message when exceed number of user limit of license
+
 ### 11.0.18 (2025-01-20）
 
 * [fix] Fix license check in SAML mode
