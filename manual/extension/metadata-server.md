@@ -45,7 +45,7 @@ The following table is all the related environment variables with metadata-serve
 | `JWT_PRIVATE_KEY`   | The JWT key used to connect with Seafile server | **Required** |
 | `MD_MAX_CACHE_SIZE` | The maximum cache size.                                                                                                    | Optional, default `1GB`            |
 | `MD_STORAGE_TYPE`   | The type of Seafile backend storage. Options: `file` (local storage), `s3`, `oss`.                                                 | Optional, default `file` and `s3` in deploying metadata server in the same machine with Seafile and standalone respective |
-| `REDIS_HOST`        | Your *Redis* service host.                                                                                                 | Optional, default `redis`          |
+| `REDIS_SERVER`        | Your *Redis* service host.                                                                                                 | Optional, default `redis`          |
 | `REDIS_PORT`        | Your *Redis* service port.                                                                                                 | Optional, default `6379`           |
 | `REDIS_PASSWORD`    | Your *Redis* access password.                                                                                              | Optional                |
 
@@ -114,7 +114,13 @@ docker compose up -d
         [2025-02-23 06:08:05] [INFO] seafevents.repo_metadata.slow_task_handler:61 worker_handler slow_task_handler_thread_1 starting update metadata work
         [2025-02-23 06:08:05] [INFO] seafevents.repo_metadata.slow_task_handler:61 worker_handler slow_task_handler_thread_2 starting update metadata work
         ```
-`
+
+!!! tip "Access denied for MySQL"
+    If you have confirmed that your database configuration is correct, this error may also occur when you deploy the Metadata server at the same time as deploying Seafile. You can restart the Metadata server by executing the following command after Seafile is initialized:
+
+    ```sh
+    docker compose restart seafile-md-server
+    ```
 
 ## Directory structure
 

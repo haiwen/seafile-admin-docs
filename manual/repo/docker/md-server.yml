@@ -3,7 +3,7 @@ services:
     image: ${MD_IMAGE:-seafileltd/seafile-md-server:latest}
     container_name: seafile-md-server
     volumes:
-      - ${SEAFILE_VOLUME:-/opt/seafile-data}:/opt/seafile
+      - ${SEAFILE_VOLUME:-/opt/seafile-data}:/shared
     #ports:
       # - ${MD_PORT:-8084}:${MD_PORT:-8084}
     environment:
@@ -32,7 +32,7 @@ services:
       - MD_OSS_BUCKET=${MD_OSS_BUCKET:-}
       - MD_OSS_KEY_ID=${MD_OSS_KEY_ID:-}
       - MD_OSS_KEY=${MD_OSS_KEY:-}
-      - REDIS_HOST=${REDIS_HOST:-redis}
+      - REDIS_SERVER=${REDIS_SERVER:-redis}
       - REDIS_PORT=${REDIS_PORT:-6379}
       - REDIS_PASSWORD=${REDIS_PASSWORD:-}
     depends_on:
