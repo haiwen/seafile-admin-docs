@@ -23,7 +23,7 @@ From Seafile Docker 13.0, the `elasticsearch.yml` has separated from `seafile-se
     mv seafile-server.yml seafile-server.yml.bak
     ```
 
-3. Download the new `seafile-server.yml` and `elasticsearch.yml` (if your Seafile is Pro edition and still using *Elasticsearch* as the file indexer):
+3. Download the new `seafile-server.yml`:
 
     === "Seafile community edition"
         ```sh
@@ -32,10 +32,23 @@ From Seafile Docker 13.0, the `elasticsearch.yml` has separated from `seafile-se
     === "Seafile Pro edition"
         ```sh
         wget https://manual.seafile.com/13.0/repo/docker/pro/seafile-server.yml
+        ```
+
+4. From Seafile Docker 13.0 (**Pro**), the *ElasticSearch* service will be controlled by a separate resource file (i.e., `elasticsearch.yml`). If you are using Seafile Pro and still plan to use *ElasticSearch*, please download the `elasticsearch.yml` and update the `COMPOSE_FILE` list in `.env`:
+
+    - Download the `elasticsearch.yml`:
+
+        ```sh
         wget https://manual.seafile.com/13.0/repo/docker/pro/elasticsearch.yml
         ```
+    
+    - Modify `.env` to add `elasticsearch.yml` in `COMPOSE_FILE` list:
+
+        ```
+        COMPOSE_FILE='...,elasticsearch.yml'
+        ```
         
-4. Starting from Seafile 13, Redis will be recommended as the primary cache server for supporting some new features (please refer the ***upgradte notes***, you can also refer to more details about Redis in Seafile Docker [here](../setup/setup_pro_by_docker.md#about-redis)) and can be configured directly from environment variables. So you should modify `.env`, add or modify the following fields:
+5. Since Seafile 13, Redis will be recommended as the primary cache server for supporting some new features (please refer the ***upgradte notes***, you can also refer to more details about Redis in Seafile Docker [here](../setup/setup_pro_by_docker.md#about-redis)) and can be configured directly from environment variables. So you should modify `.env`, add or modify the following fields:
 
     ```
     ## Cache
@@ -57,7 +70,7 @@ From Seafile Docker 13.0, the `elasticsearch.yml` has separated from `seafile-se
 
     - `seahub_settings.py`: remove the key `default` in variable `CACHES`
 
-5. Start with `docker compose up`.
+6. Start with `docker compose up -d`.
 
 ## Upgrade from 11.0 to 12.0
 
