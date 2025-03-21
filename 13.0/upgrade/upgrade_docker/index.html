@@ -4709,7 +4709,7 @@
 </code></pre></div>
 </li>
 <li>
-<p>Download the new <code>seafile-server.yml</code> and <code>elasticsearch.yml</code> (if your Seafile is Pro edition and still using <em>Elasticsearch</em> as the file indexer):</p>
+<p>Download the new <code>seafile-server.yml</code>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Seafile community edition</label><label for="__tabbed_1_2">Seafile Pro edition</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -4718,14 +4718,28 @@
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/pro/seafile-server.yml
-wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/pro/elasticsearch.yml
 </code></pre></div>
 </div>
 </div>
 </div>
 </li>
 <li>
-<p>Starting from Seafile 13, Redis will be recommended as the primary cache server for supporting some new features (please refer the <strong><em>upgradte notes</em></strong>, you can also refer to more details about Redis in Seafile Docker <a href="../../setup/setup_pro_by_docker/#about-redis">here</a>) and can be configured directly from environment variables. So you should modify <code>.env</code>, add or modify the following fields:</p>
+<p>From Seafile Docker 13.0 (<strong>Pro</strong>), the <em>ElasticSearch</em> service will be controlled by a separate resource file (i.e., <code>elasticsearch.yml</code>). If you are using Seafile Pro and still plan to use <em>ElasticSearch</em>, please download the <code>elasticsearch.yml</code> and update the <code>COMPOSE_FILE</code> list in <code>.env</code>:</p>
+<ul>
+<li>
+<p>Download the <code>elasticsearch.yml</code>:</p>
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/pro/elasticsearch.yml
+</code></pre></div>
+</li>
+<li>
+<p>Modify <code>.env</code> to add <code>elasticsearch.yml</code> in <code>COMPOSE_FILE</code> list:</p>
+<div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;...,elasticsearch.yml&#39;
+</code></pre></div>
+</li>
+</ul>
+</li>
+<li>
+<p>Since Seafile 13, Redis will be recommended as the primary cache server for supporting some new features (please refer the <strong><em>upgradte notes</em></strong>, you can also refer to more details about Redis in Seafile Docker <a href="../../setup/setup_pro_by_docker/#about-redis">here</a>) and can be configured directly from environment variables. So you should modify <code>.env</code>, add or modify the following fields:</p>
 <div class="highlight"><pre><span></span><code>## Cache
 CACHE_PROVIDER=redis # or memcached
 
@@ -4749,7 +4763,7 @@ MEMCACHED_PORT=11211
 </ul>
 </li>
 <li>
-<p>Start with <code>docker compose up</code>.</p>
+<p>Start with <code>docker compose up -d</code>.</p>
 </li>
 </ol>
 <h2 id="upgrade-from-110-to-120">Upgrade from 11.0 to 12.0<a class="headerlink" href="#upgrade-from-110-to-120" title="Permanent link">&para;</a></h2>
