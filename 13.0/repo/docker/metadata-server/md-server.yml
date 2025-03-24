@@ -3,7 +3,7 @@ services:
     image: ${MD_IMAGE:-seafileltd/seafile-md-server:latest}
     container_name: seafile-md-server
     volumes:
-      - ${SEAFILE_VOLUME:-/opt/seafile}:/opt/seafile
+      - ${SEAFILE_VOLUME:-/opt/seafile}:/shared
     ports:
        - ${MD_PORT:-8084}:${MD_PORT:-8084}
     environment:
