@@ -48,7 +48,7 @@ ONLYOFFICE_JWT_SECRET = '<your jwt secret>'
 ```
 
 !!! tip
-    By default OnlyOffice will use port **6233** used for communication between Seafile and Document Server, You can modify the bound port by specifying `ONLYOFFICE_PORT`, and port in the term `ONLYOFFICE_APIJS_URL` in `seahub_settings.py` has been modified together.
+    By default OnlyOffice will use port **6233** used for communication between Seafile and Document Server, You can modify the bound port by specifying `ONLYOFFICE_PORT`, and the port in the term `ONLYOFFICE_APIJS_URL` in `seahub_settings.py` should be modified together.
 
 ### Advanced: Custom settings of OnlyOffice
 
