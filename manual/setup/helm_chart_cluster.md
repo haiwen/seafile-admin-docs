@@ -50,7 +50,16 @@ After installation, you need to start the k8s control plane service on each node
     ```
 
     !!! tip
-        It is not necessary to use the `my-values.yaml` we provided (i.e., you can create an empty `my-values.yaml` and add required field, as others have defined default values in our chart), because it destroys the flexibility of deploying with Helm, but it contains some formats of how Seafile Helm Chart reads these configurations, as well as all the environment variables and secret variables that can be read directly.
+        - It is not necessary to use the `my-values.yaml` we provided (i.e., you can create an empty `my-values.yaml` and add required field, as others have defined default values in our chart), because it destroys the flexibility of deploying with Helm, but it contains some formats of how Seafile Helm Chart reads these configurations, as well as all the environment variables and secret variables that can be read directly.
+        - In addition, you can also create a custom ***storageClassName*** for the persistence directory used by Seafile. You only need to specify `storageClassName` in the `seafile.config.seafileDataVolume` object in `my-values.yaml`:
+
+            ```yaml
+            seafile:
+              configs:
+                seafileDataVolume:
+                  storageClassName: <your seafile storage class name>
+              ...
+            ```
 
 4. Then install the chart use the following command:
 
