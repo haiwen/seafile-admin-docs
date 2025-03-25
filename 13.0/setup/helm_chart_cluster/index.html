@@ -4581,7 +4581,18 @@ nano<span class="w"> </span>my-values.yaml
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>It is not necessary to use the <code>my-values.yaml</code> we provided (i.e., you can create an empty <code>my-values.yaml</code> and add required field, as others have defined default values in our chart), because it destroys the flexibility of deploying with Helm, but it contains some formats of how Seafile Helm Chart reads these configurations, as well as all the environment variables and secret variables that can be read directly.</p>
+<ul>
+<li>It is not necessary to use the <code>my-values.yaml</code> we provided (i.e., you can create an empty <code>my-values.yaml</code> and add required field, as others have defined default values in our chart), because it destroys the flexibility of deploying with Helm, but it contains some formats of how Seafile Helm Chart reads these configurations, as well as all the environment variables and secret variables that can be read directly.</li>
+<li>
+<p>In addition, you can also create a custom <strong><em>storageClassName</em></strong> for the persistence directory used by Seafile. You only need to specify <code>storageClassName</code> in the <code>seafile.config.seafileDataVolume</code> object in <code>my-values.yaml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">seafile</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">configs</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">seafileDataVolume</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">storageClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;your seafile storage class name&gt;</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</code></pre></div>
+</li>
+</ul>
 </div>
 </li>
 <li>
