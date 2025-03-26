@@ -2886,6 +2886,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#custom-set-user-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom set user role
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4593,6 +4602,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#custom-set-user-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom set user role
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4841,6 +4859,30 @@ EXTRA_AUTHENTICATION_BACKENDS = (
 }
 </code></pre></div>
 <p>After Shibboleth login, Seafile should calcualte user's role from affiliation and SHIBBOLETH_AFFILIATION_ROLE_MAP.</p>
+<h3 id="custom-set-user-role">Custom set user role<a class="headerlink" href="#custom-set-user-role" title="Permanent link">&para;</a></h3>
+<p>If you are unable to set user roles by obtaining affiliation information, or if you wish to have a more customized way of setting user roles, you can add the following configuration to achieve this.</p>
+<p>For example, set all users whose email addresses end with <code>@seafile.com</code> as <code>default</code>, and set other users as <code>guest</code>.</p>
+<p>First, update the <code>SHIBBOLETH_ATTRIBUTE_MAP</code> configuration in seahub_settings.py, and add <code>HTTP_REMOTE_USER</code>.</p>
+<div class="highlight"><pre><span></span><code>SHIBBOLETH_ATTRIBUTE_MAP = {
+    ....
+    &quot;HTTP_REMOTE_USER&quot;: (False, &quot;remote_user&quot;),
+    ....
+}
+</code></pre></div>
+<p>Then, create <code>/opt/seafile/conf/seahub_custom_functions/__init__.py</code> file and add the following code.
+<div class="highlight"><pre><span></span><code># function name `custom_shibboleth_get_user_role` should NOT be changed
+def custom_shibboleth_get_user_role(shib_meta):
+
+    remote_user = shib_meta.get(&#39;remote_user&#39;, &#39;&#39;)
+    if not remote_user:
+        return &#39;&#39;
+
+    remote_user = remote_user.lower()
+    if remote_user.endswith(&#39;@seafile.com&#39;):
+        return &#39;default&#39;
+    else:
+        return &#39;guest&#39;
+</code></pre></div></p>
 <h2 id="verify">Verify<a class="headerlink" href="#verify" title="Permanent link">&para;</a></h2>
 <p>After restarting Apache and Seahub service (<code>./seahub.sh restart</code>), you can then test the shibboleth login workflow.</p>
 <h2 id="debug">Debug<a class="headerlink" href="#debug" title="Permanent link">&para;</a></h2>
