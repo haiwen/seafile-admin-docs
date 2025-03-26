@@ -1,41 +1,65 @@
+#################################
+# Docker compose configurations #
+#################################
 COMPOSE_FILE='seafile-server.yml'
 COMPOSE_PATH_SEPARATOR=','
 SEAFILE_IMAGE=seafileltd/seafile-pro-mc:13.0-latest
 SEAFILE_VOLUME=/opt/seafile/shared
+
+#################################
+#      Startup parameters       #
+#################################
 SEAFILE_SERVER_HOSTNAME=seafile.example.com
 SEAFILE_SERVER_PROTOCOL=http
-
-# mysql
-SEAFILE_MYSQL_DB_HOST=<your MySQL host>
-INIT_SEAFILE_MYSQL_ROOT_PASSWORD=<your MySQL root password>
-SEAFILE_MYSQL_DB_USER=seafile
-SEAFILE_MYSQL_DB_PASSWORD=<MySQL password for user seafile>
-
-# Cluster
-CLUSTER_INIT_MODE=true # if you have the configurations file, please set to false
-CLUSTER_INIT_MEMCACHED_HOST=<your memcached host> # only valid in config init
-CLUSTER_INIT_ES_HOST=<your elasticsearch server HOST> # only valid in config init
-CLUSTER_INIT_ES_PORT=9200 # only valid in config init
-
+TIME_ZONE=UTC
+JWT_PRIVATE_KEY=<your jwt private key>
 CLUSTER_MODE=frontend # backend for backend node
 
-# Seafile admin
+#####################################
+# Third-party service configuration #
+#####################################
+
+# mysql
+## Database ##
+SEAFILE_MYSQL_DB_HOST=db
+SEAFILE_MYSQL_DB_USER=seafile
+SEAFILE_MYSQL_DB_PASSWORD=PASSWORD
+SEAFILE_MYSQL_DB_CCNET_DB_NAME=ccnet_db
+SEAFILE_MYSQL_DB_SEAFILE_DB_NAME=seafile_db
+SEAFILE_MYSQL_DB_SEAHUB_DB_NAME=seahub_db
+
+######################################
+#        Initial variables           #
+# (Only valid in first-time startup) #
+######################################
+
+## Cluster init ##
+CLUSTER_INIT_MODE=true # set to false after finishing initial progress
+CLUSTER_INIT_MEMCACHED_HOST=<your memcached host> 
+CLUSTER_INIT_ES_HOST=<your elasticsearch server HOST>
+CLUSTER_INIT_ES_PORT=9200
+
+## Database root password ##
+## Used to create Seafile users ##
+INIT_SEAFILE_MYSQL_ROOT_PASSWORD=ROOT_PASSWORD
+
+## Seafile admin user ##
 INIT_SEAFILE_ADMIN_EMAIL=me@example.com
-INIT_SEAFILE_ADMIN_PASSWORD=asecret
+INIT_SEAFILE_ADMIN_PASSWORD=asecre
 
-# Time zone
-TIME_ZONE=UTC
+## Init S3 configurations ##
+INIT_S3_STORAGE_BACKEND_CONFIG=false
 
-# S3 storage backend (the below configurations are only valid in configuration - files initial mode)
-INIT_S3_STORAGE_BACKEND_CONFIG=false # if you use S3 as backend storage, please set to true
-INIT_S3_COMMIT_BUCKET=<your-commit-objects>
-INIT_S3_FS_BUCKET=<your-fs-objects>
-INIT_S3_BLOCK_BUCKET=<your-block-objects>
-INIT_S3_KEY_ID=<your-key-id>
-INIT_S3_SECRET_KEY=<your-secret-key>
-INIT_S3_USE_V4_SIGNATURE=true
-INIT_S3_AWS_REGION=us-east-1
-INIT_S3_HOST=s3.us-east-1.amazonaws.com
-INIT_S3_USE_HTTPS=true
+#################################
+# S3 Storage Backend (optional) #
+#################################
 
-JWT_PRIVATE_KEY=<your jwt private key>
+## S3 authorization ##
+SEAFILE_S3_KEY_ID=<your-key-id>
+SEAFILE_S3_SECRET_KEY=<your-secret-key>
+SEAFILE_S3_USE_V4_SIGNATURE=true
+SEAFILE_S3_PATH_STYLE_REQUEST=true # false for AWS
+SEAFILE_S3_AWS_REGION=us-east-1
+SEAFILE_S3_HOST=s3.us-east-1.amazonaws.com
+SEAFILE_S3_USE_HTTPS=true
+SEAFILE_S3_SSE_C_KEY=

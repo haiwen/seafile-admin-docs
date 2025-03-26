@@ -34,19 +34,45 @@ From Seafile Docker 13.0, the `elasticsearch.yml` has separated from `seafile-se
         wget https://manual.seafile.com/13.0/repo/docker/pro/seafile-server.yml
         ```
 
-4. From Seafile Docker 13.0 (**Pro**), the *ElasticSearch* service will be controlled by a separate resource file (i.e., `elasticsearch.yml`). If you are using Seafile Pro and still plan to use *ElasticSearch*, please download the `elasticsearch.yml` and update the `COMPOSE_FILE` list in `.env`:
+4. From Seafile Docker 13.0 (**Pro**), the *ElasticSearch* service will be controlled by a separate resource file (i.e., `elasticsearch.yml`). If you are using Seafile Pro and still plan to use *ElasticSearch*, please download the `elasticsearch.yml`
 
-    - Download the `elasticsearch.yml`:
+    ```sh
+    wget https://manual.seafile.com/13.0/repo/docker/pro/elasticsearch.yml
+    ```
+
+5. Modify `.env`, update image version and :
+
+    !!! tip "About `.env`"
+        Normally you don't need to download the latest `.env` file during the upgrade process from Seafile 12 to 13, but we recommend that you download the latest version of the `.env` file, which is usually more concise and convenient for your subsequent configuration work. You can upgrade your `.env` file by following commands, but you must ensure that the configuration is exactly the same as the old `.env`:
+
+        === "Seafile Pro"
+
+            ```sh
+            mv .env .env.bak
+            wget -O .env https://manual.seafile.com/13.0/repo/docker/pro/env
+            ```
+        
+        === "Seafile CE"
+
+            ```sh
+            mv .env .env.bak
+            wget -O .env https://manual.seafile.com/13.0/repo/docker/ce/env
+            ```
+
+    
+    === "Seafile Pro"
 
         ```sh
-        wget https://manual.seafile.com/13.0/repo/docker/pro/elasticsearch.yml
+        COMPOSE_FILE='...,elasticsearch.yml' # add `elasticsearch.yml` if you are still using ElasticSearch
+        SEAFILE_IMAGE=seafileltd/seafile-pro-mc:13.0-latest
         ```
     
-    - Modify `.env` to add `elasticsearch.yml` in `COMPOSE_FILE` list:
+    === "Seafile CE"
 
+        ```sh
+        SEAFILE_IMAGE=seafileltd/seafile-mc:13.0-latest
         ```
-        COMPOSE_FILE='...,elasticsearch.yml'
-        ```
+
         
 5. Since Seafile 13, Redis will be recommended as the primary cache server for supporting some new features (please refer the ***upgradte notes***, you can also refer to more details about Redis in Seafile Docker [here](../setup/setup_pro_by_docker.md#about-redis)) and can be configured directly from environment variables. So you should modify `.env`, add or modify the following fields:
 

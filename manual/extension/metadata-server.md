@@ -38,7 +38,40 @@ Metadata server read all configurations from environtment and **does not need a 
 COMPOSE_FILE='...,md-server.yml'
 ```
 
-The following table is all the related environment variables with metadata-server:
+To facilitate your deployment, we still provide two different configuration solutions for your reference:
+
+#### Example `.env` for Seafile data is stored locally
+
+In this case you don't need to add any additional configuration to your `.env`. You can also specify image version, maximum local cache size, etc., but you must make sure `MD_STORAGE_TYPE=file`
+
+```
+MD_IMAGE=seafileltd/seafile-md-server:latest
+MD_MAX_CACHE_SIZE=1GB
+MD_STORAGE_TYPE=file
+```
+
+#### Example `.env` for  Seafile data is stored in the storage backend (e.g., S3)
+
+Normally your `.env` will use the same S3 backend access data as Seafile (such as `key_id`, etc., which will be automatically obtained through `INIT_S3_xxx`, and can also be changed manually), but you must also specify the bucket name used by the Metadata server to store metadata separately, and make sure `MD_STORAGE_TYPE=s3`
+
+```
+MD_IMAGE=seafileltd/seafile-md-server:latest
+MD_STORAGE_TYPE=s3
+D_S3_BUCKET=<your md data bucket name>
+
+# The authorization configurations will use the same configuration scheme as Seafile by default, you can modify it manually
+MD_S3_HOST=$SEAFILE_S3_HOST
+MD_S3_AWS_REGION=$SEAFILE_S3_AWS_REGION
+MD_S3_USE_HTTPS=$SEAFILE_S3_USE_HTTPS
+MD_S3_PATH_STYLE_REQUEST=$SEAFILE_S3_PATH_STYLE_REQUEST
+MD_S3_KEY_ID=$SEAFILE_S3_KEY_ID
+MD_S3_KEY=$SEAFILE_S3_SECRET_KEY
+MD_S3_USE_V4_SIGNATURE=$SEAFILE_S3_USE_V4_SIGNATURE
+MD_S3_SSE_C_KEY=$SEAFILE_S3_SSE_C_KEY
+```
+
+#### List of environment variables for Metadata server
+The following table is all the related environment variables with Metadata server:
 
 | Variables           | Description                                                                                                                | Required |
 | --- | --- | --- |
@@ -98,23 +131,34 @@ docker compose down
 docker compose up -d
 ```
 
-!!! success
-    If the container startups normally, the message you can get from the following logs
-    
-    - `docker logs -f seafile-md-server`:
-        ```log
-        [md-server] [2025-01-24 06:23:44] [INFO] Environment variable validity checked
-        [md-server] [2025-01-24 06:23:44] [INFO] Database initialization completed
-        [md-server] [2025-01-24 06:23:44] [INFO] Configuration file generated
-        ```
-    - `$SEAFILE_VOLUME/seafile/logs/seafevents.log`
-        ```log
-        [2025-02-23 06:08:05] [INFO] seafevents.repo_metadata.index_worker:134 refresh_lock refresh_thread Starting refresh locks
-        [2025-02-23 06:08:05] [INFO] seafevents.repo_metadata.slow_task_handler:61 worker_handler slow_task_handler_thread_0 starting update metadata work
-        [2025-02-23 06:08:05] [INFO] seafevents.repo_metadata.slow_task_handler:61 worker_handler slow_task_handler_thread_1 starting update metadata work
-        [2025-02-23 06:08:05] [INFO] seafevents.repo_metadata.slow_task_handler:61 worker_handler slow_task_handler_thread_2 starting update metadata work
-        ```
-`
+## Verify Metadata server and enable it in the Seafile
+
+1. Check container log for `seafile-md-server`, you can see the following message if it runs fine:
+
+    ```
+    $docker logs -f seafile-md-server
+
+    [md-server] [2025-01-24 06:23:44] [INFO] Environment variable validity checked
+    [md-server] [2025-01-24 06:23:44] [INFO] Database initialization completed
+    [md-server] [2025-01-24 06:23:44] [INFO] Configuration file generated
+    [md-server] [2025-01-24 06:23:44] [INFO] Starting Metadata server
+    ```
+2. Check the `seafevents.log` and `seahub.log`, as you can see the following information in `seafevents.log` and **no error log** is reported in `seahub.log`:
+
+    ```log
+    [2025-02-23 06:08:05] [INFO] seafevents.repo_metadata.index_worker:134 refresh_lock refresh_thread Starting refresh locks
+    [2025-02-23 06:08:05] [INFO] seafevents.repo_metadata.slow_task_handler:61 worker_handler slow_task_handler_thread_0 starting update metadata work
+    [2025-02-23 06:08:05] [INFO] seafevents.repo_metadata.slow_task_handler:61 worker_handler slow_task_handler_thread_1 starting update metadata work
+    [2025-02-23 06:08:05] [INFO] seafevents.repo_metadata.slow_task_handler:61 worker_handler slow_task_handler_thread_2 starting update metadata work
+    ```
+
+3. Switch ***Enable extended properties*** in button ***Settings***
+
+    ![md-server-des-1](../images/md-server-des-1.png)
+
+3. Finally, you can see the metadata of your library in ***views*** tab
+
+    ![md-server-des-2](../images/md-server-des-2.png)
 
 ## Directory structure
 
