@@ -54,6 +54,19 @@ MD_STORAGE_TYPE=file
 
 First you need to create a bucket for Metadata on your S3 storage backend provider. Then add or modify the following information to `.env`:
 
+!!! success "Easier to configure S3 for Seafile and its components"
+    Since Seafile Pro 13.0, in order to facilitate users to deploy Seafile's related extension components and other services in the future, a section will be provided in `.env` to store the **default S3 authorization information configuration**. You can locate it with the following title bar:
+    
+    ```sh
+    ###########################################
+    # Default S3 authorization Configurations #
+    ###########################################
+    ```
+    
+    The S3 authorization configuration part (i.e., ***without buckets name***) in Seafile initialization and some extension components (such as *SeaSearch*, *Metadata server*) configuration will be read from this configuration by default. 
+    
+    By the way, you can also manually modify the configurations for specific service (this is the situation when you have selected different S3 service providers for these components).
+
 ```sh
 MD_IMAGE=seafileltd/seafile-md-server:latest
 MD_STORAGE_TYPE=s3
