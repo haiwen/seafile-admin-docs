@@ -58,6 +58,19 @@ REDIS_PASSWORD=
 MEMCACHED_SERVER=memcached
 MEMCACHED_PORT=11211
 
+###########################################
+# Default S3 authorization Configurations #
+###########################################
+
+DEFAULT_S3_KEY_ID=<your-key-id>
+DEFAULT_S3_SECRET_KEY=<your-secret-key>
+DEFAULT_S3_USE_V4_SIGNATURE=true
+DEFAULT_S3_PATH_STYLE_REQUEST=true # false for AWS
+DEFAULT_S3_AWS_REGION=us-east-1
+DEFAULT_S3_HOST=s3.us-east-1.amazonaws.com
+DEFAULT_S3_USE_HTTPS=true
+DEFAULT_S3_SSE_C_KEY=
+
 ######################################
 #        Initial variables           #
 # (Only valid in first-time startup) #
@@ -78,6 +91,17 @@ INIT_SS_ADMIN_PASSWORD=$INIT_SEAFILE_ADMIN_PASSWORD
 
 ## Init S3 configurations ##
 INIT_S3_STORAGE_BACKEND_CONFIG=false
+INIT_S3_COMMIT_BUCKET=<your commit bucket name>
+INIT_S3_FS_BUCKET=<your fs bucket name>
+INIT_S3_BLOCK_BUCKET=<your block bucket name>
+INIT_S3_KEY_ID=$DEFAULT_S3_KEY_ID
+INIT_S3_SECRET_KEY=$DEFAULT_S3_SECRET_KEY
+INIT_S3_USE_V4_SIGNATURE=$DEFAULT_S3_USE_V4_SIGNATURE
+INIT_S3_PATH_STYLE_REQUEST=$DEFAULT_S3_PATH_STYLE_REQUEST # false for AWS
+INIT_S3_AWS_REGION=$DEFAULT_S3_AWS_REGION
+INIT_S3_HOST=$DEFAULT_S3_HOST
+INIT_S3_USE_HTTPS=$DEFAULT_S3_USE_HTTPS
+INIT_S3_SSE_C_KEY=$DEFAULT_S3_SSE_C_KEY
 
 ############################################
 # Additional configurations for extensions #
@@ -94,6 +118,17 @@ SS_STORAGE_TYPE=disk # options: disk (local disk), s3
 ### Local cache
 SS_MAX_OBJ_CACHE_SIZE=10GB
 
+### S3
+SS_S3_BUCKET=<your seasearch bucket name>
+SS_S3_USE_V4_SIGNATURE=$DEFAULT_S3_USE_V4_SIGNATURE
+SS_S3_ACCESS_ID=$DEFAULT_S3_KEY_ID
+SS_S3_ACCESS_SECRET=$DEFAULT_S3_SECRET_KEY
+SS_S3_ENDPOINT=$DEFAULT_S3_HOST
+SS_S3_USE_HTTPS=$DEFAULT_S3_USE_HTTPS
+SS_S3_PATH_STYLE_REQUEST=$DEFAULT_S3_PATH_STYLE_REQUEST
+SS_S3_AWS_REGION=$DEFAULT_S3_AWS_REGION
+SS_S3_SSE_C_KEY=$DEFAULT_S3_SSE_C_KEY
+
 ### Log
 SS_LOG_TO_STDOUT=false
 SS_LOG_OUTPUT=true
@@ -102,43 +137,13 @@ SS_LOG_LEVEL=info
 ## Metadata server ##
 MD_STORAGE_TYPE=file # options: file (local disk), s3, oss
 
-#################################
-# S3 Storage Backend (optional) #
-#################################
-
-## S3 authorization ##
-SEAFILE_S3_KEY_ID=<your-key-id>
-SEAFILE_S3_SECRET_KEY=<your-secret-key>
-SEAFILE_S3_USE_V4_SIGNATURE=true
-SEAFILE_S3_PATH_STYLE_REQUEST=true # false for AWS
-SEAFILE_S3_AWS_REGION=us-east-1
-SEAFILE_S3_HOST=s3.us-east-1.amazonaws.com
-SEAFILE_S3_USE_HTTPS=true
-SEAFILE_S3_SSE_C_KEY=
-
-## S3 bucket ##
-SEAFILE_S3_COMMIT_BUCKET=<your commit bucket name>
-SEAFILE_S3_FS_BUCKET=<your fs bucket name>
-SEAFILE_S3_BLOCK_BUCKET=<your block bucket name>
-SS_S3_BUCKET=<your seasearch bucket name> # valid in enabling SeaSearch
-MD_S3_BUCKET=<your metadata bucket name> # valid in enabling Metadata server extension
-
-## SeaSearch S3 authorization configuration (same as Seafile by default) ##
-SS_S3_USE_V4_SIGNATURE=$SEAFILE_S3_USE_V4_SIGNATURE
-SS_S3_ACCESS_ID=$SEAFILE_S3_KEY_ID
-SS_S3_ACCESS_SECRET=$SEAFILE_S3_SECRET_KEY
-SS_S3_ENDPOINT=$SEAFILE_S3_HOST
-SS_S3_USE_HTTPS=$SEAFILE_S3_USE_HTTPS
-SS_S3_PATH_STYLE_REQUEST=$SEAFILE_S3_PATH_STYLE_REQUEST
-SS_S3_AWS_REGION=$SEAFILE_S3_AWS_REGION
-SS_S3_SSE_C_KEY=$SEAFILE_S3_SSE_C_KEY
-
-## Metadata server S3 authorization configuration (same as Seafile by default). ##
-MD_S3_HOST=$SEAFILE_S3_HOST
-MD_S3_AWS_REGION=$SEAFILE_S3_AWS_REGION
-MD_S3_USE_HTTPS=$SEAFILE_S3_USE_HTTPS
-MD_S3_PATH_STYLE_REQUEST=$SEAFILE_S3_PATH_STYLE_REQUEST
-MD_S3_KEY_ID=$SEAFILE_S3_KEY_ID
-MD_S3_KEY=$SEAFILE_S3_SECRET_KEY
-MD_S3_USE_V4_SIGNATURE=$SEAFILE_S3_USE_V4_SIGNATURE
-MD_S3_SSE_C_KEY=$SEAFILE_S3_SSE_C_KEY
+### S3
+MD_S3_BUCKET=<your metadata bucket name>
+MD_S3_HOST=$DEFAULT_S3_HOST
+MD_S3_AWS_REGION=$DEFAULT_S3_AWS_REGION
+MD_S3_USE_HTTPS=$DEFAULT_S3_USE_HTTPS
+MD_S3_PATH_STYLE_REQUEST=$DEFAULT_S3_PATH_STYLE_REQUEST
+MD_S3_KEY_ID=$DEFAULT_S3_KEY_ID
+MD_S3_KEY=$DEFAULT_S3_SECRET_KEY
+MD_S3_USE_V4_SIGNATURE=$DEFAULT_S3_USE_V4_SIGNATURE
+MD_S3_SSE_C_KEY=$DEFAULT_S3_SSE_C_KEY

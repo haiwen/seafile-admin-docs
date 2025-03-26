@@ -55,11 +55,11 @@ INIT_S3_STORAGE_BACKEND_CONFIG=false
 #################################
 
 ## S3 authorization ##
-SEAFILE_S3_KEY_ID=<your-key-id>
-SEAFILE_S3_SECRET_KEY=<your-secret-key>
-SEAFILE_S3_USE_V4_SIGNATURE=true
-SEAFILE_S3_PATH_STYLE_REQUEST=true # false for AWS
-SEAFILE_S3_AWS_REGION=us-east-1
-SEAFILE_S3_HOST=s3.us-east-1.amazonaws.com
-SEAFILE_S3_USE_HTTPS=true
-SEAFILE_S3_SSE_C_KEY=
+INIT_S3_KEY_ID=<your-key-id>
+INIT_S3_SECRET_KEY=<your-secret-key>
+INIT_S3_USE_V4_SIGNATURE=true
+INIT_S3_PATH_STYLE_REQUEST=true # false for AWS
+INIT_S3_AWS_REGION=us-east-1
+INIT_S3_HOST=s3.us-east-1.amazonaws.com
+INIT_S3_USE_HTTPS=true
+INIT_S3_SSE_C_KEY=

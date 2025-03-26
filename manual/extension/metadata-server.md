@@ -52,22 +52,20 @@ MD_STORAGE_TYPE=file
 
 #### Example `.env` for  Seafile data is stored in the storage backend (e.g., S3)
 
-Normally your `.env` will use the same S3 backend access data as Seafile (such as `key_id`, etc., which will be automatically obtained through `INIT_S3_xxx`, and can also be changed manually), but you must also specify the bucket name used by the Metadata server to store metadata separately, and make sure `MD_STORAGE_TYPE=s3`
+First you need to create a bucket for Metadata on your S3 storage backend provider. Then add or modify the following information to `.env`:
 
-```
+```sh
 MD_IMAGE=seafileltd/seafile-md-server:latest
 MD_STORAGE_TYPE=s3
-D_S3_BUCKET=<your md data bucket name>
-
-# The authorization configurations will use the same configuration scheme as Seafile by default, you can modify it manually
-MD_S3_HOST=$SEAFILE_S3_HOST
-MD_S3_AWS_REGION=$SEAFILE_S3_AWS_REGION
-MD_S3_USE_HTTPS=$SEAFILE_S3_USE_HTTPS
-MD_S3_PATH_STYLE_REQUEST=$SEAFILE_S3_PATH_STYLE_REQUEST
-MD_S3_KEY_ID=$SEAFILE_S3_KEY_ID
-MD_S3_KEY=$SEAFILE_S3_SECRET_KEY
-MD_S3_USE_V4_SIGNATURE=$SEAFILE_S3_USE_V4_SIGNATURE
-MD_S3_SSE_C_KEY=$SEAFILE_S3_SSE_C_KEY
+MD_S3_BUCKET=<your md data bucket name>
+MD_S3_HOST=<your s3 host>
+MD_S3_AWS_REGION=<your aws region> # only needed for AWS
+MD_S3_USE_HTTPS=true
+MD_S3_PATH_STYLE_REQUEST=true
+MD_S3_KEY_ID=<your s3 key id>
+MD_S3_KEY=<your s3 key>
+MD_S3_USE_V4_SIGNATURE=true
+MD_S3_SSE_C_KEY=
 ```
 
 #### List of environment variables for Metadata server
