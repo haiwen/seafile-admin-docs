@@ -4732,7 +4732,10 @@
 <p>Modify <code>.env</code>, update image version and :</p>
 <div class="admonition tip">
 <p class="admonition-title">About <code>.env</code></p>
-<p>Normally you don't need to download the latest <code>.env</code> file during the upgrade process from Seafile 12 to 13, but we recommend that you download the latest version of the <code>.env</code> file, which is usually more concise and convenient for your subsequent configuration work. You can upgrade your <code>.env</code> file by following commands, but you must ensure that the configuration is exactly the same as the old <code>.env</code>:</p>
+<p>Normally you don't need to download the latest <code>.env</code> file during the upgrade process from Seafile 12 to 13, but we recommend that you download the latest version of the <code>.env</code> file, which is usually more concise and convenient for your subsequent configuration work. You can upgrade your <code>.env</code> file by following commands, but you must be sure to copy configurations from the old <code>.env</code> file:</p>
+<ol>
+<li>
+<p>Download the latest <code>.env</code> file:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Seafile Pro</label><label for="__tabbed_2_2">Seafile CE</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -4747,6 +4750,11 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 </div>
 </div>
 </div>
+</li>
+<li>
+<p>Copy the configurations from <code>.env.bak</code> (the old <code>.env</code>) to the new <code>.env</code>.</p>
+</li>
+</ol>
 </div>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Seafile Pro</label><label for="__tabbed_3_2">Seafile CE</label></div>
 <div class="tabbed-content">
@@ -4776,7 +4784,7 @@ REDIS_PASSWORD=
 MEMCACHED_SERVER=memcached
 MEMCACHED_PORT=11211
 </code></pre></div>
-<p>Although you can configure the cache directly through environment variables, since Seafile Docker 12 uses Memcached by default, we recommend that you remove or modify the cache configuration in the following files to avoid ambiguity：</p>
+<p>Although the configurations in environment have higher priority than the configurations in config files, we recommend that you remove or modify the cache configuration in the following files to avoid ambiguity:：</p>
 <ul>
 <li>
 <p><code>seafile.conf</code>: remove the <code>[memcached]</code> section</p>
