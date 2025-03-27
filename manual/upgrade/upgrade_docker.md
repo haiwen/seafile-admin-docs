@@ -43,20 +43,33 @@ From Seafile Docker 13.0, the `elasticsearch.yml` has separated from `seafile-se
 5. Modify `.env`, update image version and :
 
     !!! tip "About `.env`"
-        Normally you don't need to download the latest `.env` file during the upgrade process from Seafile 12 to 13, but we recommend that you download the latest version of the `.env` file, which is usually more concise and convenient for your subsequent configuration work. You can upgrade your `.env` file by following commands, but you must ensure that the configuration is exactly the same as the old `.env`:
+        Normally you don't need to download the latest `.env` file during the upgrade process from Seafile 12 to 13, but we recommend that you download the latest version of the `.env` file, which is usually more concise and convenient for your subsequent configuration work. You can upgrade your `.env` file by following commands, but you must be sure to copy configurations from the old `.env` file:
 
-        === "Seafile Pro"
+        1. Download the latest `.env` file:
+
+            === "Seafile Pro"
+
+                ```sh
+                mv .env .env.bak
+                wget -O .env https://manual.seafile.com/13.0/repo/docker/pro/env
+                ```
+            
+            === "Seafile CE"
+
+                ```sh
+                mv .env .env.bak
+                wget -O .env https://manual.seafile.com/13.0/repo/docker/ce/env
+                ```
+
+        2. Copy the configuration from `.env.bak` (the old `.env`) to the new `.env`, as taking `JWT_PRIVATE_KEY` for example:
 
             ```sh
-            mv .env .env.bak
-            wget -O .env https://manual.seafile.com/13.0/repo/docker/pro/env
-            ```
-        
-        === "Seafile CE"
+            # get the JWT_PRIVATE_KEY from the old .env
+            cat .env.bak | grep JWT_PRIVATE_KEY
+            JWT_PRIVATE_KEY=REHSJYkeEYRfMcYS2aUWbDTVZp8avW5RJtwyYnBQ
 
-            ```sh
-            mv .env .env.bak
-            wget -O .env https://manual.seafile.com/13.0/repo/docker/ce/env
+            # update the JWT_PRIVATE_KEY in the new .env
+            sed -i "s/^JWT_PRIVATE_KEY=.*/JWT_PRIVATE_KEY=REHSJYkeEYRfMcYS2aUWbDTVZp8avW5RJtwyYnBQ/" .env
             ```
 
     
@@ -90,7 +103,7 @@ From Seafile Docker 13.0, the `elasticsearch.yml` has separated from `seafile-se
     MEMCACHED_PORT=11211
     ```
 
-    Although you can configure the cache directly through environment variables, since Seafile Docker 12 uses Memcached by default, we recommend that you remove or modify the cache configuration in the following files to avoid ambiguity：
+    Although the configurations in environment have higher priority than the configurations in config files, we recommend that you remove or modify the cache configuration in the following files to avoid ambiguity:：
 
     - `seafile.conf`: remove the `[memcached]` section
 
