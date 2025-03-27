@@ -4850,6 +4850,10 @@ nano<span class="w"> </span>.env
 <p>Start Seafile server with the following command</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">ERROR: Named volume "xxx" is used in service "xxx" but no declaration was found in the volumes section</p>
+<p>You may encounter this problem when your Docker (or docker-compose) version is out of date. You can upgrade or reinstall the Docker service to solve this problem according to the <code>Docker official documentation</code></p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>You must run the above command in the directory with the <code>.env</code>. If <code>.env</code> file is elsewhere, please run</p>

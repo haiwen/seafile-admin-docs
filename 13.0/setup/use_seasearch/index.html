@@ -4505,7 +4505,7 @@
 <div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/pro/seasearch.yml
 </code></pre></div>
 <h2 id="modify-env">Modify <code>.env</code><a class="headerlink" href="#modify-env" title="Permanent link">&para;</a></h2>
-<p>We have configured the relevant variables in .env. Here you must pay special attention to the following variable information, which will affect the SeaSearch initialization process. For variables in <code>.env</code> of SeaSearch service, please refer <a href="https://seasearch-manual.seafile.com/config/">here</a> for the details. We use <code>/opt/seasearch-data</code> as the persistent directory of SeaSearch:</p>
+<p>We have configured the relevant variables in .env. Here you must pay special attention to the following variable information, which will affect the SeaSearch initialization process. For variables in <code>.env</code> of SeaSearch service, please refer <a href="https://seasearch-manual.seafile.com/config/">here</a> for the details. We use <code>/opt/seasearch-data</code> as the persistent directory of SeaSearch (the information of administrator are same as Seafile's admin by default from Seafile 13):</p>
 <div class="admonition warning">
 <p class="admonition-title">For Apple's Chips</p>
 <p>Since Apple's chips (such as M2) do not support <a href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html">MKL</a>, you need to set the relevant image to <code>xxx-nomkl:latest</code>, e.g.:</p>

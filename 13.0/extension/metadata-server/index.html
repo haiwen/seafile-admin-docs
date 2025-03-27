@@ -2156,6 +2156,39 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Modify .env">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-env-for-seafile-data-is-stored-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example .env for Seafile data is stored locally
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-env-for-seafile-data-is-stored-in-the-storage-backend-eg-s3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example .env for Seafile data is stored in the storage backend (e.g., S3)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-of-environment-variables-for-metadata-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      List of environment variables for Metadata server
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -2176,6 +2209,15 @@
   <a href="#start-service" class="md-nav__link">
     <span class="md-ellipsis">
       Start service
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-metadata-server-and-enable-it-in-the-seafile" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify Metadata server and enable it in the Seafile
     </span>
   </a>
   
@@ -4468,6 +4510,39 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Modify .env">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-env-for-seafile-data-is-stored-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example .env for Seafile data is stored locally
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-env-for-seafile-data-is-stored-in-the-storage-backend-eg-s3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example .env for Seafile data is stored in the storage backend (e.g., S3)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-of-environment-variables-for-metadata-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      List of environment variables for Metadata server
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -4488,6 +4563,15 @@
   <a href="#start-service" class="md-nav__link">
     <span class="md-ellipsis">
       Start service
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-metadata-server-and-enable-it-in-the-seafile" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify Metadata server and enable it in the Seafile
     </span>
   </a>
   
@@ -4528,6 +4612,10 @@
 <p class="admonition-title">Prerequisites</p>
 <p>The startup of Metadata server requires using <strong><em>Redis</em></strong> as the cache server (it should be the default cache server in Seafile 13.0). So you must deploy <em>Redis</em> for Seafile, then modify <a href="../../config/seafile-conf/#cache-pro-edition-only"><code>seafile.conf</code></a>, <a href="https://docs.djangoproject.com/en/4.2/topics/cache/#redis"><code>seahub_settings.py</code></a> and <a href="../../config/seafevents-conf/"><code>seafevents.conf</code></a> to enable it before deploying metadata server.</p>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Please make sure your Seafile service has been deployed <strong>before</strong> deploying Metadata server. This is because Metadata server needs to read Seafile's configuration file <code>seafile.conf</code>. If you deploy Metadata server before or at the same time with Seafile, it may not be able to detect <code>seafile.conf</code> and fail to start.</p>
+</div>
 <h3 id="download-docker-compose-file">Download docker-compose file<a class="headerlink" href="#download-docker-compose-file" title="Permanent link">&para;</a></h3>
 <p>Please download the file by following command:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Deploy in the same machine with Seafile</label><label for="__tabbed_1_2">Standalone</label></div>
@@ -4555,7 +4643,39 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 <p>Metadata server read all configurations from environtment and <strong>does not need a dedicated configuration file</strong>, and you don't need to add additional variables to your <code>.env</code> (except for standalone deployment) to get the metadata server started, because it will read the exact same configuration as the Seafile server (including <code>JWT_PRIVATE_KEY</code> ) and keep the repository metadata locally (default <code>/opt/seafile-data/seafile/md-data</code>). But you still need to modify the <code>COMPOSE_FILE</code> list in <code>.env</code>, and add <code>md-server.yml</code> to enable the metadata server:</p>
 <div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;...,md-server.yml&#39;
 </code></pre></div>
-<p>The following table is all the related environment variables with metadata-server:</p>
+<p>To facilitate your deployment, we still provide two different configuration solutions for your reference:</p>
+<h4 id="example-env-for-seafile-data-is-stored-locally">Example <code>.env</code> for Seafile data is stored locally<a class="headerlink" href="#example-env-for-seafile-data-is-stored-locally" title="Permanent link">&para;</a></h4>
+<p>In this case you don't need to add any additional configuration to your <code>.env</code>. You can also specify image version, maximum local cache size, etc., but you must make sure <code>MD_STORAGE_TYPE=file</code></p>
+<div class="highlight"><pre><span></span><code>MD_IMAGE=seafileltd/seafile-md-server:latest
+MD_MAX_CACHE_SIZE=1GB
+MD_STORAGE_TYPE=file
+</code></pre></div>
+<h4 id="example-env-for-seafile-data-is-stored-in-the-storage-backend-eg-s3">Example <code>.env</code> for  Seafile data is stored in the storage backend (e.g., S3)<a class="headerlink" href="#example-env-for-seafile-data-is-stored-in-the-storage-backend-eg-s3" title="Permanent link">&para;</a></h4>
+<p>First you need to create a bucket for Metadata on your S3 storage backend provider. Then add or modify the following information to <code>.env</code>:</p>
+<div class="admonition success">
+<p class="admonition-title">Easier to configure S3 for Seafile and its components</p>
+<p>Since Seafile Pro 13.0, in order to facilitate users to deploy Seafile's related extension components and other services in the future, a section will be provided in <code>.env</code> to store the <strong>default S3 authorization information configuration</strong>. You can locate it with the following title bar:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">###########################################</span>
+<span class="c1"># Default S3 authorization Configurations #</span>
+<span class="c1">###########################################</span>
+</code></pre></div>
+<p>The S3 authorization configuration part (i.e., <strong><em>without buckets name</em></strong>) in Seafile initialization and some extension components (such as <em>SeaSearch</em>, <em>Metadata server</em>) configuration will be read from this configuration by default. </p>
+<p>By the way, you can also manually modify the configurations for specific service (this is the situation when you have selected different S3 service providers for these components).</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="nv">MD_IMAGE</span><span class="o">=</span>seafileltd/seafile-md-server:latest
+<span class="nv">MD_STORAGE_TYPE</span><span class="o">=</span>s3
+<span class="nv">MD_S3_BUCKET</span><span class="o">=</span>&lt;your<span class="w"> </span>md<span class="w"> </span>data<span class="w"> </span>bucket<span class="w"> </span>name&gt;
+<span class="nv">MD_S3_HOST</span><span class="o">=</span>&lt;your<span class="w"> </span>s3<span class="w"> </span>host&gt;
+<span class="nv">MD_S3_AWS_REGION</span><span class="o">=</span>&lt;your<span class="w"> </span>aws<span class="w"> </span>region&gt;<span class="w"> </span><span class="c1"># only needed for AWS</span>
+<span class="nv">MD_S3_USE_HTTPS</span><span class="o">=</span><span class="nb">true</span>
+<span class="nv">MD_S3_PATH_STYLE_REQUEST</span><span class="o">=</span><span class="nb">false</span>
+<span class="nv">MD_S3_KEY_ID</span><span class="o">=</span>&lt;your<span class="w"> </span>s3<span class="w"> </span>key<span class="w"> </span>id&gt;
+<span class="nv">MD_S3_KEY</span><span class="o">=</span>&lt;your<span class="w"> </span>s3<span class="w"> </span>key&gt;
+<span class="nv">MD_S3_USE_V4_SIGNATURE</span><span class="o">=</span><span class="nb">true</span>
+<span class="nv">MD_S3_SSE_C_KEY</span><span class="o">=</span>
+</code></pre></div>
+<h4 id="list-of-environment-variables-for-metadata-server">List of environment variables for Metadata server<a class="headerlink" href="#list-of-environment-variables-for-metadata-server" title="Permanent link">&para;</a></h4>
+<p>The following table is all the related environment variables with Metadata server:</p>
 <table>
 <thead>
 <tr>
@@ -4597,29 +4717,7 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 </tr>
 </tbody>
 </table>
-<p>And here is other optional values according to your <code>MD_STORAGE_TYPE</code> setting:</p>
-<ul>
-<li>
-<p><code>MD_STORAGE_TYPE=file</code> (only for deploying the metadata server in the same machine with Seafile)</p>
-<table>
-<thead>
-<tr>
-<th>Variables</th>
-<th>Description</th>
-<th>Required</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>SEAFILE_VOLUME</code></td>
-<td>Directory for Seafile data</td>
-<td>Optional, default <code>/opt/seafile-data</code></td>
-</tr>
-</tbody>
-</table>
-</li>
-<li>
-<p><code>MD_STORAGE_TYPE=s3</code></p>
+<p>And here is other optional values when your `MD_STORAGE_TYPE=s3:</p>
 <table>
 <thead>
 <tr>
@@ -4676,21 +4774,19 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 </tr>
 </tbody>
 </table>
-</li>
-</ul>
 <h3 id="modify-seahub_settingspy">Modify <code>seahub_settings.py</code><a class="headerlink" href="#modify-seahub_settingspy" title="Permanent link">&para;</a></h3>
 <p>To enable metadata server in Seafile, please add the following field in your <code>seahub_settings.py</code>:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Deploy in the same machine with Seafile</label><label for="__tabbed_2_2">Standalone</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="n">ENABLE_METADATA_MANAGEMENT</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">METADATA_SERVER_SECRET_KEY</span> <span class="o">=</span> <span class="s1">&#39;&lt;your JWT key&gt; &#39;</span>
+<span class="n">METADATA_SERVER_SECRET_KEY</span> <span class="o">=</span> <span class="s1">&#39;&lt;your JWT key&gt;&#39;</span>
 <span class="n">METADATA_SERVER_URL</span> <span class="o">=</span> <span class="s1">&#39;http://seafile-md-server:8084&#39;</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="n">ENABLE_METADATA_MANAGEMENT</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">METADATA_SERVER_SECRET_KEY</span> <span class="o">=</span> <span class="s1">&#39;&lt;your JWT key&gt; &#39;</span>
+<span class="n">METADATA_SERVER_SECRET_KEY</span> <span class="o">=</span> <span class="s1">&#39;&lt;your JWT key&gt;&#39;</span>
 <span class="n">METADATA_SERVER_URL</span> <span class="o">=</span> <span class="s1">&#39;http://&lt;your metadata-server host&gt;:8084&#39;</span>
 </code></pre></div>
 </div>
@@ -4701,24 +4797,32 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
 docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
-<div class="admonition success">
-<p class="admonition-title">Success</p>
-<p>If the container startups normally, the message you can get from the following logs</p>
-<ul>
-<li><code>docker logs -f seafile-md-server</code>:
-    <div class="highlight"><pre><span></span><code>[md-server] [2025-01-24 06:23:44] [INFO] Environment variable validity checked
-[md-server] [2025-01-24 06:23:44] [INFO] Database initialization completed
-[md-server] [2025-01-24 06:23:44] [INFO] Configuration file generated
-</code></pre></div></li>
-<li><code>$SEAFILE_VOLUME/seafile/logs/seafevents.log</code>
-    <div class="highlight"><pre><span></span><code>[2025-02-23 06:08:05] [INFO] seafevents.repo_metadata.index_worker:134 refresh_lock refresh_thread Starting refresh locks
+<h2 id="verify-metadata-server-and-enable-it-in-the-seafile">Verify Metadata server and enable it in the Seafile<a class="headerlink" href="#verify-metadata-server-and-enable-it-in-the-seafile" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Check container log for <code>seafile-md-server</code>, you can see the following message if it runs fine:</p>
+<p><div class="highlight"><pre><span></span><code>$docker logs -f seafile-md-server
+
+[md-server] [2025-03-27 02:30:55] [INFO] Created data links
+[md-server] [2025-03-27 02:30:55] [INFO] Database initialization completed
+[md-server] [2025-03-27 02:30:55] [INFO] Starting Metadata server
+</code></pre></div>
+2. Check the <code>seafevents.log</code> and <code>seahub.log</code>, as you can see the following information in <code>seafevents.log</code> and <strong>no error log</strong> is reported in <code>seahub.log</code>:</p>
+<div class="highlight"><pre><span></span><code>[2025-02-23 06:08:05] [INFO] seafevents.repo_metadata.index_worker:134 refresh_lock refresh_thread Starting refresh locks
 [2025-02-23 06:08:05] [INFO] seafevents.repo_metadata.slow_task_handler:61 worker_handler slow_task_handler_thread_0 starting update metadata work
 [2025-02-23 06:08:05] [INFO] seafevents.repo_metadata.slow_task_handler:61 worker_handler slow_task_handler_thread_1 starting update metadata work
 [2025-02-23 06:08:05] [INFO] seafevents.repo_metadata.slow_task_handler:61 worker_handler slow_task_handler_thread_2 starting update metadata work
-</code></pre></div></li>
-</ul>
-</div>
-<p>`</p>
+</code></pre></div>
+</li>
+<li>
+<p>Switch <strong><em>Enable extended properties</em></strong> in button <strong><em>Settings</em></strong></p>
+<p><img alt="md-server-des-1" src="../../images/md-server-des-1.png" /></p>
+</li>
+<li>
+<p>Finally, you can see the metadata of your library in <strong><em>views</em></strong> tab</p>
+<p><img alt="md-server-des-2" src="../../images/md-server-des-2.png" /></p>
+</li>
+</ol>
 <h2 id="directory-structure">Directory structure<a class="headerlink" href="#directory-structure" title="Permanent link">&para;</a></h2>
 <p>When you deploy Seafile server and Metadata server to the <strong>same machine</strong>, Metadata server will use the same persistence directory (e.g. /opt/seafile-data) as Seafile server. Metadata server will use the following directories or files:</p>
 <ul>

@@ -4724,19 +4724,43 @@
 </div>
 </li>
 <li>
-<p>From Seafile Docker 13.0 (<strong>Pro</strong>), the <em>ElasticSearch</em> service will be controlled by a separate resource file (i.e., <code>elasticsearch.yml</code>). If you are using Seafile Pro and still plan to use <em>ElasticSearch</em>, please download the <code>elasticsearch.yml</code> and update the <code>COMPOSE_FILE</code> list in <code>.env</code>:</p>
-<ul>
-<li>
-<p>Download the <code>elasticsearch.yml</code>:</p>
+<p>From Seafile Docker 13.0 (<strong>Pro</strong>), the <em>ElasticSearch</em> service will be controlled by a separate resource file (i.e., <code>elasticsearch.yml</code>). If you are using Seafile Pro and still plan to use <em>ElasticSearch</em>, please download the <code>elasticsearch.yml</code></p>
 <div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/pro/elasticsearch.yml
 </code></pre></div>
 </li>
 <li>
-<p>Modify <code>.env</code> to add <code>elasticsearch.yml</code> in <code>COMPOSE_FILE</code> list:</p>
-<div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;...,elasticsearch.yml&#39;
+<p>Modify <code>.env</code>, update image version and :</p>
+<div class="admonition tip">
+<p class="admonition-title">About <code>.env</code></p>
+<p>Normally you don't need to download the latest <code>.env</code> file during the upgrade process from Seafile 12 to 13, but we recommend that you download the latest version of the <code>.env</code> file, which is usually more concise and convenient for your subsequent configuration work. You can upgrade your <code>.env</code> file by following commands, but you must ensure that the configuration is exactly the same as the old <code>.env</code>:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Seafile Pro</label><label for="__tabbed_2_2">Seafile CE</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>mv<span class="w"> </span>.env<span class="w"> </span>.env.bak
+wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/pro/env
 </code></pre></div>
-</li>
-</ul>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>mv<span class="w"> </span>.env<span class="w"> </span>.env.bak
+wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/ce/env
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Seafile Pro</label><label for="__tabbed_3_2">Seafile CE</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nv">COMPOSE_FILE</span><span class="o">=</span><span class="s1">&#39;...,elasticsearch.yml&#39;</span><span class="w"> </span><span class="c1"># add `elasticsearch.yml` if you are still using ElasticSearch</span>
+<span class="nv">SEAFILE_IMAGE</span><span class="o">=</span>seafileltd/seafile-pro-mc:13.0-latest
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nv">SEAFILE_IMAGE</span><span class="o">=</span>seafileltd/seafile-mc:13.0-latest
+</code></pre></div>
+</div>
+</div>
+</div>
 </li>
 <li>
 <p>Since Seafile 13, Redis will be recommended as the primary cache server for supporting some new features (please refer the <strong><em>upgradte notes</em></strong>, you can also refer to more details about Redis in Seafile Docker <a href="../../setup/setup_pro_by_docker/#about-redis">here</a>) and can be configured directly from environment variables. So you should modify <code>.env</code>, add or modify the following fields:</p>
@@ -4774,7 +4798,7 @@ MEMCACHED_PORT=11211
 </code></pre></div>
 <h3 id="download-seafile-120-docker-files">Download Seafile 12.0 Docker files<a class="headerlink" href="#download-seafile-120-docker-files" title="Permanent link">&para;</a></h3>
 <p>Download <code>.env</code>, <code>seafile-server.yml</code> and <code>caddy.yml</code>, and modify <code>.env</code> file according to the old configuration in <code>docker-compose.yml.bak</code></p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Seafile community edition</label><label for="__tabbed_2_2">Seafile pro edition</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Seafile community edition</label><label for="__tabbed_4_2">Seafile pro edition</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p><div class="highlight"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/12.0/repo/docker/ce/env
