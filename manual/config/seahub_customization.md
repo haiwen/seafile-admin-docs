@@ -39,7 +39,7 @@ Add your favicon file to `custom/`
 Overwrite `FAVICON_PATH` in `seahub_settings.py`
 
 ```py
-LOGO_PATH = 'custom/favicon.png'
+FAVICON_PATH = 'custom/favicon.png'
 ```
 
 ### Customize Seahub CSS
@@ -49,7 +49,7 @@ Add your css file to `custom/`, for example, `custom.css`
 Overwrite `BRANDING_CSS` in `seahub_settings.py`
 
 ```py
-LOGO_PATH = 'custom/custom.css'
+BRANDING_CSS = 'custom/custom.css'
 ```
 
 ## Customize help page
@@ -58,16 +58,16 @@ LOGO_PATH = 'custom/custom.css'
     ```sh
     mkdir -p /opt/seafile-data/seahub/media/custom/templates/help/
     cd /opt/seafile-data/seahub/media/custom
-    cp ../../help/templates/help/install.html templates/help/
+    cp ../../help/templates/help/base.html templates/help/
     ```
 === "Deploy from binary packages"
     ```sh
     mkdir /opt/seafile/seafile-server-latest/seahub/media/custom/templates/help/
     cd /opt/seafile/seafile-server-latest/seahub/media/custom
-    cp ../../help/templates/help/install.html templates/help/
+    cp ../../help/templates/help/base.html templates/help/
     ```
 
-Modify the `templates/help/install.html` file and save it. You will see the new help page.
+Modify the `templates/help/base.html` file and save it. You will see the new help page.
 
 ## Add an extra note in sharing dialog
 
@@ -112,18 +112,6 @@ Then restart the Seahub service to take effect.
 
 Once you log in to the Seafile system homepage again, you will see the new navigation entry under the `Tools` navigation bar on the left.
 
-## Add more links to the bottom bar
-
-```
-ADDITIONAL_APP_BOTTOM_LINKS = {
-    'seafile': 'https://example.seahub.com/seahub',
-    'dtable-web': 'https://example.seahub.com/web'
-}
-```
-
-Result:
-
-![](../images/additional-app-bottom-links.png)
 
 ## Add more links to about dialog
 
