@@ -64,7 +64,7 @@ INIT_SEAFILE_MYSQL_ROOT_PASSWORD=ROOT_PASSWORD
 
 ## Seafile admin user ##
 INIT_SEAFILE_ADMIN_EMAIL=me@example.com
-INIT_SEAFILE_ADMIN_PASSWORD=asecre
+INIT_SEAFILE_ADMIN_PASSWORD=asecret
 
 ############################################
 # Additional configurations for extensions #

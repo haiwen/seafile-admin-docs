@@ -36,7 +36,7 @@ services:
       - INIT_S3_AWS_REGION=${INIT_S3_AWS_REGION:-us-east-1}
       - INIT_S3_HOST=${INIT_S3_HOST:-s3.us-east-1.amazonaws.com}
       - INIT_S3_USE_HTTPS=${INIT_S3_USE_HTTPS:-true}
-      - INIT_S3_PATH_STYLE_REQUEST=${INIT_S3_PATH_STYLE_REQUEST:-true}
+      - INIT_S3_PATH_STYLE_REQUEST=${INIT_S3_PATH_STYLE_REQUEST:-false}
       - INIT_S3_SSE_C_KEY=${INIT_S3_SSE_C_KEY:-}
       - JWT_PRIVATE_KEY=${JWT_PRIVATE_KEY:?Variable is not set or empty}
       - SEAFILE_LOG_TO_STDOUT=${SEAFILE_LOG_TO_STDOUT:-false}
