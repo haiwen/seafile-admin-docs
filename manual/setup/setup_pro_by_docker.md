@@ -115,7 +115,7 @@ docker compose up -d
 ```
 
 !!! warning "ERROR: Named volume "xxx" is used in service "xxx" but no declaration was found in the volumes section"
-    You may encounter this problem when your Docker (or docker-compose) version is out of date. You can upgrade or reinstall the Docker service to solve this problem according to the `Docker official documentation`
+    You may encounter this problem when your Docker (or docker-compose) version is out of date. You can upgrade or reinstall the Docker service to solve this problem according to the [Docker official documentation](https://docs.docker.com/engine/install/).
 
 
 !!! note
