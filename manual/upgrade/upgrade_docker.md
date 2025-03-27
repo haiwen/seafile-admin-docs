@@ -61,16 +61,7 @@ From Seafile Docker 13.0, the `elasticsearch.yml` has separated from `seafile-se
                 wget -O .env https://manual.seafile.com/13.0/repo/docker/ce/env
                 ```
 
-        2. Copy the configuration from `.env.bak` (the old `.env`) to the new `.env`, as taking `JWT_PRIVATE_KEY` for example:
-
-            ```sh
-            # get the JWT_PRIVATE_KEY from the old .env
-            cat .env.bak | grep JWT_PRIVATE_KEY
-            JWT_PRIVATE_KEY=REHSJYkeEYRfMcYS2aUWbDTVZp8avW5RJtwyYnBQ
-
-            # update the JWT_PRIVATE_KEY in the new .env
-            sed -i "s/^JWT_PRIVATE_KEY=.*/JWT_PRIVATE_KEY=REHSJYkeEYRfMcYS2aUWbDTVZp8avW5RJtwyYnBQ/" .env
-            ```
+        2. Copy the configurations from `.env.bak` (the old `.env`) to the new `.env`.
 
     
     === "Seafile Pro"
