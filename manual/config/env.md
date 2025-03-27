@@ -57,7 +57,6 @@ SEADOC_SERVER_URL=http://seafile.example.com/sdoc-server
 
 
 NOTIFICATION_SERVER_IMAGE=seafileltd/notification-server:12.0-latest
-NOTIFICATION_SERVER_VOLUME=/opt/notification-data
 ```
 
 ## Seafile-docker configurations

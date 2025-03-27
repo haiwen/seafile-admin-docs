@@ -76,7 +76,6 @@ Then modify the `.env` file according to your environment. The following fields 
 
 | variable               | description                                                                                                   |  
 |------------------------|---------------------------------------------------------------------------------------------------------------|  
-| `NOTIFICATION_SERVER_VOLUME`        | The volume directory of notification server data                                                                            |  
 | `SEAFILE_MYSQL_DB_HOST`| Seafile MySQL host                                                                                            |  
 | `SEAFILE_MYSQL_DB_USER`| Seafile MySQL user, default is `seafile`                                                                       |  
 | `SEAFILE_MYSQL_DB_PASSWORD`| Seafile MySQL password                                                                                    |  
