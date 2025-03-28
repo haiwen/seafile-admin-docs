@@ -3321,15 +3321,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#add-more-links-to-the-bottom-bar" class="md-nav__link">
-    <span class="md-ellipsis">
-      Add more links to the bottom bar
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#add-more-links-to-about-dialog" class="md-nav__link">
     <span class="md-ellipsis">
       Add more links to about dialog
@@ -4513,15 +4504,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#add-more-links-to-the-bottom-bar" class="md-nav__link">
-    <span class="md-ellipsis">
-      Add more links to the bottom bar
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#add-more-links-to-about-dialog" class="md-nav__link">
     <span class="md-ellipsis">
       Add more links to about dialog
@@ -4577,12 +4559,12 @@
 <h3 id="customize-favicon">Customize Favicon<a class="headerlink" href="#customize-favicon" title="Permanent link">&para;</a></h3>
 <p>Add your favicon file to <code>custom/</code></p>
 <p>Overwrite <code>FAVICON_PATH</code> in <code>seahub_settings.py</code></p>
-<div class="highlight"><pre><span></span><code><span class="n">LOGO_PATH</span> <span class="o">=</span> <span class="s1">&#39;custom/favicon.png&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">FAVICON_PATH</span> <span class="o">=</span> <span class="s1">&#39;custom/favicon.png&#39;</span>
 </code></pre></div>
 <h3 id="customize-seahub-css">Customize Seahub CSS<a class="headerlink" href="#customize-seahub-css" title="Permanent link">&para;</a></h3>
 <p>Add your css file to <code>custom/</code>, for example, <code>custom.css</code></p>
 <p>Overwrite <code>BRANDING_CSS</code> in <code>seahub_settings.py</code></p>
-<div class="highlight"><pre><span></span><code><span class="n">LOGO_PATH</span> <span class="o">=</span> <span class="s1">&#39;custom/custom.css&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">BRANDING_CSS</span> <span class="o">=</span> <span class="s1">&#39;custom/custom.css&#39;</span>
 </code></pre></div>
 <h2 id="customize-help-page">Customize help page<a class="headerlink" href="#customize-help-page" title="Permanent link">&para;</a></h2>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Deploy in Docker</label><label for="__tabbed_2_2">Deploy from binary packages</label></div>
@@ -4590,18 +4572,22 @@
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/opt/seafile-data/seahub/media/custom/templates/help/
 <span class="nb">cd</span><span class="w"> </span>/opt/seafile-data/seahub/media/custom
-cp<span class="w"> </span>../../help/templates/help/install.html<span class="w"> </span>templates/help/
+cp<span class="w"> </span>../../help/templates/help/base.html<span class="w"> </span>templates/help/
 </code></pre></div>
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>/opt/seafile/seafile-server-latest/seahub/media/custom/templates/help/
 <span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest/seahub/media/custom
-cp<span class="w"> </span>../../help/templates/help/install.html<span class="w"> </span>templates/help/
+cp<span class="w"> </span>../../help/templates/help/base.html<span class="w"> </span>templates/help/
 </code></pre></div>
 </div>
 </div>
 </div>
-<p>Modify the <code>templates/help/install.html</code> file and save it. You will see the new help page.</p>
+<p>For example, modify the <code>templates/help/base.html</code> file and save it. You will see the new help page.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There are some more help pages available for modifying, you can find the list of the html file <a href="https://github.com/haiwen/seahub/tree/master/seahub/help/templates/help">here</a></p>
+</div>
 <h2 id="add-an-extra-note-in-sharing-dialog">Add an extra note in sharing dialog<a class="headerlink" href="#add-an-extra-note-in-sharing-dialog" title="Permanent link">&para;</a></h2>
 <p>You can add an extra note in sharing dialog in seahub_settings.py</p>
 <div class="highlight"><pre><span></span><code>ADDITIONAL_SHARE_DIALOG_NOTE = {
@@ -4630,18 +4616,10 @@ cp<span class="w"> </span>../../help/templates/help/install.html<span class="w">
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The <code>icon</code> field currently only supports icons in Seafile that begin with <code>sf2-icon</code>. You can find the list of icons here: <hhttps://github.com/haiwen/seahub/blob/master/media/css/seahub.css></p>
+<p>The <code>icon</code> field currently only supports icons in Seafile that begin with <code>sf2-icon</code>. You can find the list of icons <a href="https://github.com/haiwen/seahub/blob/master/media/css/seahub.css">here</a></p>
 </div>
 <p>Then restart the Seahub service to take effect.</p>
 <p>Once you log in to the Seafile system homepage again, you will see the new navigation entry under the <code>Tools</code> navigation bar on the left.</p>
-<h2 id="add-more-links-to-the-bottom-bar">Add more links to the bottom bar<a class="headerlink" href="#add-more-links-to-the-bottom-bar" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>ADDITIONAL_APP_BOTTOM_LINKS = {
-    &#39;seafile&#39;: &#39;https://example.seahub.com/seahub&#39;,
-    &#39;dtable-web&#39;: &#39;https://example.seahub.com/web&#39;
-}
-</code></pre></div>
-<p>Result:</p>
-<p><img alt="" src="../../images/additional-app-bottom-links.png" /></p>
 <h2 id="add-more-links-to-about-dialog">Add more links to about dialog<a class="headerlink" href="#add-more-links-to-about-dialog" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>ADDITIONAL_ABOUT_DIALOG_LINKS = {
     &#39;seafile&#39;: &#39;https://example.seahub.com/seahub&#39;,
