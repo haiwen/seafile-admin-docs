@@ -76,7 +76,7 @@ The following fields merit particular attention:
 | `INIT_S3_STORAGE_BACKEND_CONFIG`   | Whether to configure S3 storage backend synchronously during initialization (i.e., the following s3 variables, for more details, please refer to [AWS S3](./setup_with_s3.md)) | false |
 | `S3_COMMIT_BUCKET`   | S3 storage backend commit objects bucket | (required when you would like to initialize with S3) |
 | `S3_FS_BUCKET`   | S3 storage backend fs objects bucket | (required when you would like to initialize with S3) |
-| `INIT_S3_BLOCK_BUCKET`   | S3 storage backend block objects bucket | (required when you would like to initialize with S3) |
+| `S3_BLOCK_BUCKET`   | S3 storage backend block objects bucket | (required when you would like to initialize with S3) |
 | `S3_KEY_ID`   | S3 storage backend key ID | (required when you would like to initialize with S3) |
 | `S3_SECRET_KEY`   | S3 storage backend secret key | (required when you would like to initialize with S3) |
 | `S3_USE_V4_SIGNATURE`   | Use the v4 protocol of S3 if enabled | `true` |
