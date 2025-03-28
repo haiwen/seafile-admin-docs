@@ -67,7 +67,11 @@ BRANDING_CSS = 'custom/custom.css'
     cp ../../help/templates/help/base.html templates/help/
     ```
 
-Modify the `templates/help/base.html` file and save it. You will see the new help page.
+For example, modify the `templates/help/base.html` file and save it. You will see the new help page.
+
+!!! note
+    There are some more help pages available for modifying, you can find the list of the html file [here](https://github.com/haiwen/seahub/tree/master/seahub/help/templates/help)
+
 
 ## Add an extra note in sharing dialog
 
@@ -106,7 +110,7 @@ CUSTOM_NAV_ITEMS = [
 ```
 
 !!! note
-    The `icon` field currently only supports icons in Seafile that begin with `sf2-icon`. You can find the list of icons here: <hhttps://github.com/haiwen/seahub/blob/master/media/css/seahub.css>
+    The `icon` field currently only supports icons in Seafile that begin with `sf2-icon`. You can find the list of icons [here](https://github.com/haiwen/seahub/blob/master/media/css/seahub.css)
 
 Then restart the Seahub service to take effect.
 
