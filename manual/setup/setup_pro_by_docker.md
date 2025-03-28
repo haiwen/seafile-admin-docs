@@ -73,12 +73,12 @@ The following fields merit particular attention:
 | `TIME_ZONE`                     | Time zone                                                                                                     | `UTC`                           |  
 | `INIT_SEAFILE_ADMIN_EMAIL`      | Synchronously set admin username during initialization | me@example.com |  
 | `INIT_SEAFILE_ADMIN_PASSWORD`   | Synchronously set admin password during initialization | asecret |
-| `INIT_S3_STORAGE_BACKEND_CONFIG`   | Whether to configure S3 storage backend synchronously during initialization (i.e., the following variables with prefix `INIT_S3_*`, for more details, please refer to [AWS S3](./setup_with_s3.md)) | false |
-| `INIT_S3_COMMIT_BUCKET`   | S3 storage backend commit objects bucket | (required when `INIT_S3_STORAGE_BACKEND_CONFIG` sets to `true`) |
-| `INIT_S3_FS_BUCKET`   | S3 storage backend fs objects bucket | (required when `INIT_S3_STORAGE_BACKEND_CONFIG` sets to `true`) |
-| `INIT_S3_BLOCK_BUCKET`   | S3 storage backend block objects bucket | (required when `INIT_S3_STORAGE_BACKEND_CONFIG` sets to `true`) |
-| `S3_KEY_ID`   | S3 storage backend key ID | (none) |
-| `S3_SECRET_KEY`   | S3 storage backend secret key | (none) |
+| `INIT_S3_STORAGE_BACKEND_CONFIG`   | Whether to configure S3 storage backend synchronously during initialization (i.e., the following s3 variables, for more details, please refer to [AWS S3](./setup_with_s3.md)) | false |
+| `S3_COMMIT_BUCKET`   | S3 storage backend commit objects bucket | (required when you would like to initialize with S3) |
+| `S3_FS_BUCKET`   | S3 storage backend fs objects bucket | (required when you would like to initialize with S3) |
+| `INIT_S3_BLOCK_BUCKET`   | S3 storage backend block objects bucket | (required when you would like to initialize with S3) |
+| `S3_KEY_ID`   | S3 storage backend key ID | (required when you would like to initialize with S3) |
+| `S3_SECRET_KEY`   | S3 storage backend secret key | (required when you would like to initialize with S3) |
 | `S3_USE_V4_SIGNATURE`   | Use the v4 protocol of S3 if enabled | `true` |
 | `S3_AWS_REGION`   | Region of your buckets | `us-east-1` |
 | `S3_HOST`   | Host of your buckets | `s3.us-east-1.amazonaws.com` |
@@ -99,7 +99,7 @@ The following fields merit particular attention:
     
     The S3 authorization configuration part (i.e., ***without buckets name***) in Seafile initialization and some extension components (such as *SeaSearch*, *Metadata server*) configuration will be read from this configuration by default. 
     
-    However, please note that **Seafile currently still reads S3 configurations [through `seafile.conf`](../setup/setup_with_s3.md), and the configuration in `.env` is only used for initialization of Seafile services**. Please **make sure they are consistent**.
+    However, please note that **Seafile currently still reads S3 configurations [through `seafile.conf`](../setup/setup_with_s3.md), and the configuration in `.env` is only used for initialization of Seafile services**. But you have to **make sure they are consistent**.
 
 To conclude, set the directory permissions of the Elasticsearch volumne:
 

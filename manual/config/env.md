@@ -75,9 +75,9 @@ This part of configurations is only valid in `CACHE_PROVIDER=memcached`
 ## S3 storage backend configurations (only valid in pro edition at deploying first time)
 
 - `INIT_S3_STORAGE_BACKEND_CONFIG`: Whether to configure S3 storage backend synchronously during initialization (i.e., the following features in this section, for more details, please refer to [AWS S3](../setup/setup_with_s3.md)), default is `false`.
-- `INIT_S3_COMMIT_BUCKET`: S3 storage backend fs objects bucket
-- `INIT_S3_FS_BUCKET`: S3 storage backend block objects bucket
-- `INIT_S3_BLOCK_BUCKET`: S3 storage backend block objects bucket
+- `S3_COMMIT_BUCKET`: S3 storage backend fs objects bucket
+- `S3_FS_BUCKET`: S3 storage backend block objects bucket
+- `S3_BLOCK_BUCKET`: S3 storage backend block objects bucket
 - `S3_KEY_ID`: S3 storage backend key ID
 - `S3_SECRET_KEY`: S3 storage backend secret key
 - `S3_USE_V4_SIGNATURE`: Use the v4 protocol of S3 if enabled, default is `true`
@@ -100,7 +100,7 @@ This part of configurations is only valid in `CACHE_PROVIDER=memcached`
     
     The S3 authorization configuration part (i.e., ***without buckets name***) in Seafile initialization and some extension components (such as *SeaSearch*, *Metadata server*) configuration will be read from this configuration by default. 
     
-    However, please note that **Seafile currently still reads S3 configurations [through `seafile.conf`](../setup/setup_with_s3.md), and the configuration in `.env` is only used for initialization of Seafile services**. Please **make sure they are consistent**.
+    However, please note that **Seafile currently still reads S3 configurations [through `seafile.conf`](../setup/setup_with_s3.md), and the configuration in `.env` is only used for initialization of Seafile services**. But you have to **make sure they are consistent**.
 
 ## SeaSearch
 

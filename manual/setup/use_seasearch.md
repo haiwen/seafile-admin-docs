@@ -56,7 +56,7 @@ INIT_SS_ADMIN_PASSWORD=<admin-password>
     In other words, if you deploy SeaSearch and Seafile together, and if you have deployed Seafile Pro following [here](../setup/setup_pro_by_docker.md#downloading-and-modifying-env) (and using the latest `.env`), you only need to specify the following variables in `.env` to make it work:
 
     ```sh
-    SS_S3_BUCKET=<your s3 bucket name for SeaSearch>
+    S3_SS_BUCKET=<your s3 bucket name for SeaSearch>
     ```
 
 ## Modify `seafile-server.yml` to disable `elasticSearch` service

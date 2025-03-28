@@ -18,7 +18,7 @@ services:
       - MD_LOG_LEVEL=${MD_LOG_LEVEL:-info}
       - MD_MAX_CACHE_SIZE=${MD_MAX_CACHE_SIZE:-1GB}
       - MD_STORAGE_TYPE=${MD_STORAGE_TYPE:-file}
-      - MD_S3_BUCKET=${MD_S3_BUCKET:-}
+      - MD_S3_BUCKET=${S3_MD_BUCKET:-}
       - MD_S3_HOST=${S3_HOST:-}
       - MD_S3_AWS_REGION=${S3_AWS_REGION:-}
       - MD_S3_USE_HTTPS=${S3_USE_HTTPS:-true}

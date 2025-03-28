@@ -73,13 +73,13 @@ First you need to create a bucket for Metadata on your S3 storage backend provid
     In other words, if you deploy SeaSearch and Seafile together, and if you have deployed Seafile Pro following [here](../setup/setup_pro_by_docker.md#downloading-and-modifying-env) (and using the latest `.env`), you only need to specify the following variables in `.env` to make it work:
 
     ```sh
-    MD_S3_BUCKET=<your s3 bucket name for Metadata>
+    S3_MD_BUCKET=<your s3 bucket name for Metadata>
     ```
 
 ```sh
 MD_IMAGE=seafileltd/seafile-md-server:latest
 MD_STORAGE_TYPE=s3
-MD_S3_BUCKET=<your md data bucket name>
+S3_MD_BUCKET=<your md data bucket name>
 ```
 
 #### List of environment variables for Metadata server
