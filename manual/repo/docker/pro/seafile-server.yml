@@ -71,14 +71,14 @@ services:
       - INIT_S3_COMMIT_BUCKET=${INIT_S3_COMMIT_BUCKET:-}
       - INIT_S3_FS_BUCKET=${INIT_S3_FS_BUCKET:-}
       - INIT_S3_BLOCK_BUCKET=${INIT_S3_BLOCK_BUCKET:-}
-      - INIT_S3_KEY_ID=${INIT_S3_KEY_ID:-}
-      - INIT_S3_SECRET_KEY=${INIT_S3_SECRET_KEY:-}
-      - INIT_S3_USE_V4_SIGNATURE=${INIT_S3_USE_V4_SIGNATURE:-true}
-      - INIT_S3_AWS_REGION=${INIT_S3_AWS_REGION:-us-east-1}
-      - INIT_S3_HOST=${INIT_S3_HOST:-s3.us-east-1.amazonaws.com}
-      - INIT_S3_USE_HTTPS=${INIT_S3_USE_HTTPS:-true}
-      - INIT_S3_PATH_STYLE_REQUEST=${INIT_S3_PATH_STYLE_REQUEST:-false}
-      - INIT_S3_SSE_C_KEY=${INIT_S3_SSE_C_KEY:-}
+      - INIT_S3_KEY_ID=${S3_KEY_ID:-}
+      - INIT_S3_SECRET_KEY=${S3_SECRET_KEY:-}
+      - INIT_S3_USE_V4_SIGNATURE=${S3_USE_V4_SIGNATURE:-true}
+      - INIT_S3_AWS_REGION=${S3_AWS_REGION:-us-east-1}
+      - INIT_S3_HOST=${S3_HOST:-s3.us-east-1.amazonaws.com}
+      - INIT_S3_USE_HTTPS=${S3_USE_HTTPS:-true}
+      - INIT_S3_PATH_STYLE_REQUEST=${S3_PATH_STYLE_REQUEST:-false}
+      - INIT_S3_SSE_C_KEY=${S3_SSE_C_KEY:-}
     labels:
       caddy: ${SEAFILE_SERVER_PROTOCOL:-http}://${SEAFILE_SERVER_HOSTNAME:?Variable is not set or empty}
       caddy.reverse_proxy: "{{upstreams 80}}"

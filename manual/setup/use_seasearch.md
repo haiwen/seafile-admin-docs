@@ -40,6 +40,25 @@ INIT_SS_ADMIN_USER=<admin-username>
 INIT_SS_ADMIN_PASSWORD=<admin-password>
 ```
 
+!!! success "Easier to configure S3 for Seafile and its components"
+    Since Seafile Pro 13.0, in order to facilitate users to deploy Seafile's related extension components and other services in the future, a section will be provided in `.env` to store the **S3 authorization Configurations**. You can locate it with the following title bar:
+    
+    ```sh
+    ###################################
+    # S3 authorization Configurations #
+    #    (This configurations will    #
+    #     apply to all components)    #
+    ###################################
+    ```
+    
+    The S3 authorization configuration part (i.e., ***without buckets name***) in Seafile initialization and some extension components (such as *SeaSearch*, *Metadata server*) configuration will be read from this configuration by default. 
+
+    In other words, if you deploy SeaSearch and Seafile together, and if you have deployed Seafile Pro following [here](../setup/setup_pro_by_docker.md#downloading-and-modifying-env) (and using the latest `.env`), you only need to specify the following variables in `.env` to make it work:
+
+    ```sh
+    SS_S3_BUCKET=<your s3 bucket name for SeaSearch>
+    ```
+
 ## Modify `seafile-server.yml` to disable `elasticSearch` service
 
 If you would like to use *SeaSearch* as the search engine, the `elasticSearch` service can be removed, which is no longer used: remove `elasticsearch.yml` in the list variable `COMPOSE_FILE` on the file `.env`.
