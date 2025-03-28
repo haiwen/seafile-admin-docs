@@ -99,7 +99,7 @@ The following fields merit particular attention:
     
     The S3 authorization configuration part (i.e., ***without buckets name***) in Seafile initialization and some extension components (such as *SeaSearch*, *Metadata server*) configuration will be read from this configuration by default. 
     
-    However, please note that **Seafile currently still reads S3 configurations [through `seafile.conf`](../setup/setup_with_s3.md), and the configuration in `.env` is only used for initialization of Seafile services**.
+    However, please note that **Seafile currently still reads S3 configurations [through `seafile.conf`](../setup/setup_with_s3.md), and the configuration in `.env` is only used for initialization of Seafile services**. Please **make sure they are consistent**.
 
 To conclude, set the directory permissions of the Elasticsearch volumne:
 
