@@ -40,65 +40,50 @@ From Seafile Docker 13.0, the `elasticsearch.yml` has separated from `seafile-se
     wget https://manual.seafile.com/13.0/repo/docker/pro/elasticsearch.yml
     ```
 
-5. Modify `.env`, update image version and :
+5. Modify `.env`, update image version and add cache configurations:
 
-    !!! tip "About `.env`"
-        Normally you don't need to download the latest `.env` file during the upgrade process from Seafile 12 to 13, but we recommend that you download the latest version of the `.env` file, which is usually more concise and convenient for your subsequent configuration work. You can upgrade your `.env` file by following commands, but you must be sure to copy configurations from the old `.env` file:
+    !!! note "Variables change logs for `.env`"
+        1. From Seafile docker 13, the configurations of database and cache can get from environment variables directly (you can define it in the `.env`). What's more, the Redis will be recommended as the primary cache server for supporting some new features (please refer the ***upgradte notes***, you can also refer to more details about Redis in Seafile Docker [here](../setup/setup_pro_by_docker.md#about-redis)) and is the default type of cache provided  in Seafile 13. 
 
-        1. Download the latest `.env` file:
+        2. Starting from Seafile 13, When initializing Seafile, the configuration of S3, the SeaSearch component, and the newly supported Metadata server component all use unified variables (i.e., `S3_xxx`) for the authorization information of S3 in the new deployment. Please refer to the end of [the table in Seafile Pro deployment](../setup/setup_pro_by_docker.md#downloading-and-modifying-env) for details. If you plan to deploy or redeploy these components in the future, **please pay attention to changes in variable names**.
 
-            === "Seafile Pro"
-
-                ```sh
-                mv .env .env.bak
-                wget -O .env https://manual.seafile.com/13.0/repo/docker/pro/env
-                ```
-            
-            === "Seafile CE"
-
-                ```sh
-                mv .env .env.bak
-                wget -O .env https://manual.seafile.com/13.0/repo/docker/ce/env
-                ```
-
-        2. Copy the configurations from `.env.bak` (the old `.env`) to the new `.env`.
-
+    - Update image version to Seafile 13
     
-    === "Seafile Pro"
+        === "Seafile Pro"
 
-        ```sh
-        COMPOSE_FILE='...,elasticsearch.yml' # add `elasticsearch.yml` if you are still using ElasticSearch
-        SEAFILE_IMAGE=seafileltd/seafile-pro-mc:13.0-latest
-        ```
-    
-    === "Seafile CE"
-
-        ```sh
-        SEAFILE_IMAGE=seafileltd/seafile-mc:13.0-latest
-        ```
-
+            ```sh
+            COMPOSE_FILE='...,elasticsearch.yml' # add `elasticsearch.yml` if you are still using ElasticSearch
+            SEAFILE_IMAGE=seafileltd/seafile-pro-mc:13.0-latest
+            ```
         
-5. Since Seafile 13, Redis will be recommended as the primary cache server for supporting some new features (please refer the ***upgradte notes***, you can also refer to more details about Redis in Seafile Docker [here](../setup/setup_pro_by_docker.md#about-redis)) and can be configured directly from environment variables. So you should modify `.env`, add or modify the following fields:
+        === "Seafile CE"
 
-    ```
-    ## Cache
-    CACHE_PROVIDER=redis # or memcached
+            ```sh
+            SEAFILE_IMAGE=seafileltd/seafile-mc:13.0-latest
+            ```
 
-    ### Redis
-    REDIS_SERVER=redis
-    REDIS_PORT=6379
-    REDIS_PASSWORD=
+    - Add configurations for cache:
 
-    ### Memcached
-    MEMCACHED_SERVER=memcached
-    MEMCACHED_PORT=11211
-    ```
+        ```sh
+        ## Cache
+        CACHE_PROVIDER=redis # or memcached
 
-    Although the configurations in environment have higher priority than the configurations in config files, we recommend that you remove or modify the cache configuration in the following files to avoid ambiguity:：
+        ### Redis
+        REDIS_HOST=redis
+        REDIS_PORT=6379
+        REDIS_PASSWORD=
 
-    - `seafile.conf`: remove the `[memcached]` section
+        ### Memcached
+        MEMCACHED_HOST=memcached
+        MEMCACHED_PORT=11211
+        ```
 
-    - `seahub_settings.py`: remove the key `default` in variable `CACHES`
+    !!! tip "Optional but recommended modifications for further configuration files"
+        Although the configurations in environment (i.e., `.env`) have higher priority than the configurations in config files, we recommend that you remove or modify the cache configuration in the following files to avoid ambiguity:：
+
+        - `seafile.conf`: remove the `[memcached]` section
+
+        - `seahub_settings.py`: remove the key `default` in variable `CACHES`
 
 6. Start with `docker compose up -d`.
 

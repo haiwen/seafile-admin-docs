@@ -45,12 +45,12 @@ SEAFILE_MYSQL_DB_SEAHUB_DB_NAME=seahub_db
 CACHE_PROVIDER=redis # or memcached
 
 ### Redis
-REDIS_SERVER=redis
+REDIS_HOST=redis
 REDIS_PORT=6379
 REDIS_PASSWORD=
 
 ### Memcached
-MEMCACHED_SERVER=memcached
+MEMCACHED_HOST=memcached
 MEMCACHED_PORT=11211
 
 ######################################

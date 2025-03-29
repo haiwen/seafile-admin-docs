@@ -50,12 +50,12 @@ SEAFILE_MYSQL_DB_SEAHUB_DB_NAME=seahub_db
 CACHE_PROVIDER=redis # options: redis (recommend), memcached
 
 ### Redis
-REDIS_SERVER=redis
+REDIS_HOST=redis
 REDIS_PORT=6379
 REDIS_PASSWORD=
 
 ### Memcached
-MEMCACHED_SERVER=memcached
+MEMCACHED_HOST=memcached
 MEMCACHED_PORT=11211
 
 ### S3
@@ -79,9 +79,6 @@ INIT_SEAFILE_ADMIN_PASSWORD=asecret
 ## (valid in enabling SeaSearch and use Seafile admin by default)
 INIT_SS_ADMIN_USER=$INIT_SEAFILE_ADMIN_EMAIL
 INIT_SS_ADMIN_PASSWORD=$INIT_SEAFILE_ADMIN_PASSWORD
-
-## Init S3 configurations
-INIT_S3_STORAGE_BACKEND_CONFIG=false
 
 ############################################
 # Additional configurations for extensions #

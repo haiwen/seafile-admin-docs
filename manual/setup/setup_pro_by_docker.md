@@ -65,15 +65,14 @@ The following fields merit particular attention:
 | `SEAFILE_SERVER_HOSTNAME`       | Seafile server hostname or domain                                                                  | (required)  |  
 | `SEAFILE_SERVER_PROTOCOL`       | Seafile server protocol (http or https)                                                                       | `http` |  
 | `CACHE_PROVIDER`       | The type of cache server used for Seafile. The available options are `redis` and `memcached`. Since Seafile 13, it is recommended to use `redis` as the cache service to support new features, and `memcached` will no longer be integrated into Seafile Docker by default.    | `redis` |
-| `REDIS_SERVER`       | Redis server host | `redis` |
+| `REDIS_HOST`       | Redis server host | `redis` |
 | `REDIS_PORT`       | Redis server port | `6379` |
 | `REDIS_PASSWORD`       | Redis server password | (none) |
-| `MEMCACHED_SERVER`       | Memcached server host | `memcached` |
+| `MEMCACHED_HOST`       | Memcached server host | `memcached` |
 | `MEMCACHED_PORT`       | Memcached server port | `11211` |
 | `TIME_ZONE`                     | Time zone                                                                                                     | `UTC`                           |  
 | `INIT_SEAFILE_ADMIN_EMAIL`      | Synchronously set admin username during initialization | me@example.com |  
 | `INIT_SEAFILE_ADMIN_PASSWORD`   | Synchronously set admin password during initialization | asecret |
-| `INIT_S3_STORAGE_BACKEND_CONFIG`   | Whether to configure S3 storage backend synchronously during initialization (i.e., the following s3 variables, for more details, please refer to [AWS S3](./setup_with_s3.md)) | false |
 | `S3_COMMIT_BUCKET`   | S3 storage backend commit objects bucket | (required when you would like to initialize with S3) |
 | `S3_FS_BUCKET`   | S3 storage backend fs objects bucket | (required when you would like to initialize with S3) |
 | `S3_BLOCK_BUCKET`   | S3 storage backend block objects bucket | (required when you would like to initialize with S3) |
