@@ -36,7 +36,8 @@ After installation, you need to start the k8s control plane service on each node
     --from-literal=SEAFILE_MYSQL_DB_PASSWORD='<required>' \
     --from-literal=INIT_SEAFILE_ADMIN_PASSWORD='<required>' \
     --from-literal=INIT_SEAFILE_MYSQL_ROOT_PASSWORD='<required>' \
-    --from-literal=INIT_S3_SECRET_KEY=''  
+    --from-literal=INIT_S3_SECRET_KEY='' \
+    --from-literal=INIT_S3_SSE_C_KEY=''
     ```
 
     where the `JWT_PRIVATE_KEY` can be generate by `pwgen -s 40 1`

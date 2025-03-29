@@ -65,7 +65,9 @@ Please refer [here](./system_requirements.md#seafile-cluster) for the details ab
 4. Modify the [variables](../config/env.md) in `.env` (especially the terms like `<...>`). 
 
     !!! tip
-        If you have already deployed S3 storage backend and plan to apply it to Seafile cluster, you can modify the variables in `.env` to [set them synchronously during initialization](../config/env.md#s3-storage-backend-configurations-only-valid-in-pro-edition-at-deploying-first-time).
+        - If you have already deployed S3 storage backend and plan to apply it to Seafile cluster, you can modify the variables in `.env` to [set them synchronously during initialization](../config/env.md#s3-storage-backend-configurations-only-valid-in-pro-edition-at-deploying-first-time).
+
+        - Although the current Seafile cluster only supports *Memcached* as the cache, it also supports setting configurations through '. env'. **Therefore, you do not need to pay attention to the selection of `CACHE_PROVIDER`**, so you only need to correctly set `MEMCACHED_HOST` and `MEMCACHED_PORT` in `.env`.
 
 5. Pleace license file
 
@@ -127,10 +129,8 @@ Please refer [here](./system_requirements.md#seafile-cluster) for the details ab
 
 8. After initailizing the cluster, the following fields can be removed in `.env`
     - `CLUSTER_INIT_MODE`, must be removed from .env file
-    - `CLUSTER_INIT_MEMCACHED_HOST`
     - `CLUSTER_INIT_ES_HOST`
     - `CLUSTER_INIT_ES_PORT`
-    - `INIT_S3_STORAGE_BACKEND_CONFIG`
     - `INIT_S3_COMMIT_BUCKET`
     - `INIT_S3_FS_BUCKET`
     - `INIT_S3_BLOCK_BUCKET`
