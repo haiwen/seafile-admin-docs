@@ -93,24 +93,9 @@ The following table is all the related environment variables with Metadata serve
 | `REDIS_HOST`        | Your *Redis* service host.                                                                                                 | Optional, default `redis`          |
 | `REDIS_PORT`        | Your *Redis* service port.                                                                                                 | Optional, default `6379`           |
 | `REDIS_PASSWORD`    | Your *Redis* access password.                                                                                              | Optional                |
+| `S3_MD_BUCKET`    | Your S3 bucket name for the bucket storing metadata | Required when using S3 |
 
-And here is other optional values when your `MD_STORAGE_TYPE=s3:
-
-- Deployment in the same machine with Seafile, for which case is only one variable (`MD_S3_BUCKET`, the name of S3 bucket for storaging metadata) of S3 for Metadata server in `.env`.
-
-- Standalone deployment, please read following table:
-
-    | Variables           | Description                                                                                                                | Required |
-        | --- | --- | --- |
-    | `MD_S3_HOST`        | Host of s3 backend.                                                                                                        | Optional                |
-    | `MD_S3_AWS_REGION`  | Region of *AWS* s3 backend.                                                                                                | Optional                |
-    | `MD_S3_USE_HTTPS`   | Use https connecting to S3 backend.                                                                                        | Optional, default `true`          |
-    | `MD_S3_BUCKET`      | Name of S3 bucket for storaging metadata.                                                                                 |  **Required** |
-    | `MD_S3_PATH_STYLE_REQUEST` | S3 backend use path style request.                                                                                 | Optional, default `false`          |
-    | `MD_S3_KEY_ID`      | S3 backend authorization key ID.                                                                                           | **Required** |
-    | `MD_S3_KEY`         | S3 backend authorization key secret.                                                                                       |  **Required** |
-    | `MD_S3_USE_V4_SIGNATURE` | Use V4 signature to S3 storage backend.                                                                              | Optional, default `true`           |
-    | `MD_S3_SSE_C_KEY`   | S3 SSE-C key.                                                                                                              | Optional                |
+In addition, there are some environment variables **related to S3 authorization**, please refer to the part with `S3_` prefix in this [table](../setup/setup_pro_by_docker.md#downloading-and-modifying-env).
 
 ### Modify `seahub_settings.py`
 
