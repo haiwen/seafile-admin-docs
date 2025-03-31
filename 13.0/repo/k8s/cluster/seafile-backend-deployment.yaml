@@ -62,17 +62,17 @@ spec:
                 configMapKeyRef:
                   name: seafile-env
                   key: SEADOC_SERVER_URL
-            - name: DB_HOST
+            - name: SEAFILE_MYSQL_DB_HOST
               valueFrom:
                 configMapKeyRef:
                   name: seafile-env
                   key: SEAFILE_MYSQL_DB_HOST
-            - name: DB_PORT
+            - name: SEAFILE_MYSQL_DB_PORT
               valueFrom:
                 configMapKeyRef:
                   name: seafile-env
                   key: SEAFILE_MYSQL_DB_PORT
-            - name: DB_USER
+            - name: SEAFILE_MYSQL_DB_USER
               valueFrom:
                 configMapKeyRef:
                   name: seafile-env
@@ -92,16 +92,23 @@ spec:
                 configMapKeyRef:
                   name: seafile-env
                   key: SEAFILE_MYSQL_DB_SEAHUB_DB_NAME
+            - name: CACHE_PROVIDER
+              value: "memcached"
+            - name: MEMCACHED_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: MEMCACHED_HOST
+            - name: MEMCACHED_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: MEMCACHED_PORT
             - name: CLUSTER_INIT_MODE
               valueFrom:
                 configMapKeyRef:
                   name: seafile-env
                   key: CLUSTER_INIT_MODE
-            - name: CLUSTER_INIT_MEMCACHED_HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: seafile-env
-                  key: CLUSTER_INIT_MEMCACHED_HOST
             - name: CLUSTER_INIT_ES_HOST
               valueFrom:
                 configMapKeyRef:
@@ -112,11 +119,11 @@ spec:
                 configMapKeyRef:
                   name: seafile-env
                   key: CLUSTER_INIT_ES_PORT
-            - name: INIT_S3_STORAGE_BACKEND_CONFIG
+            - name: USE_S3_STORAGE
               valueFrom:
                 configMapKeyRef:
                   name: seafile-env
-                  key: INIT_S3_STORAGE_BACKEND_CONFIG
+                  key: USE_S3_STORAGE
             - name: INIT_S3_COMMIT_BUCKET
               valueFrom:
                 configMapKeyRef:
@@ -157,6 +164,11 @@ spec:
                 configMapKeyRef:
                   name: seafile-env
                   key: INIT_S3_USE_HTTPS
+            - name: INIT_S3_PATH_STYLE_REQUEST
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: INIT_S3_PATH_STYLE_REQUEST
             - name: INIT_SEAFILE_ADMIN_EMAIL
               valueFrom:
                 configMapKeyRef:
@@ -167,12 +179,12 @@ spec:
                 secretKeyRef:
                   name: seafile-secret
                   key: JWT_PRIVATE_KEY
-            - name: DB_PASSWORD
+            - name: SEAFILE_MYSQL_DB_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: seafile-secret
                   key: SEAFILE_MYSQL_DB_PASSWORD
-            - name: DB_ROOT_PASSWD
+            - name: INIT_SEAFILE_MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: seafile-secret
@@ -187,6 +199,11 @@ spec:
                 secretKeyRef:
                   name: seafile-secret
                   key: INIT_SEAFILE_ADMIN_PASSWORD
+            - name: INIT_S3_SSE_C_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: seafile-secret
+                  key: INIT_S3_SSE_C_KEY
           volumeMounts:
             - name: seafile-data
               mountPath: /shared
