@@ -17,23 +17,8 @@
             The configuration options differ for different S3 storage. We'll describe the configurations in separate sections. You also need to add [memory cache configurations](../config/seafile-conf.md#cache-pro-edition-only)
     
 
-!!! tip "New feature from 12.0 pro edition"
-    If your will deploy Seafile server in Docker, you can modify the following fields in `.env` **before starting the services**:
-
-    ```sh
-    INIT_S3_STORAGE_BACKEND_CONFIG=true
-    INIT_S3_COMMIT_BUCKET=<your-commit-objects>
-    INIT_S3_FS_BUCKET=<your-fs-objects>
-    INIT_S3_BLOCK_BUCKET=<your-block-objects>
-    INIT_S3_KEY_ID=<your-key-id>
-    INIT_S3_SECRET_KEY=<your-secret-key>
-    INIT_S3_USE_V4_SIGNATURE=true
-    INIT_S3_AWS_REGION=us-east-1 # your AWS Region
-    INIT_S3_HOST=s3.us-east-1.amazonaws.com # your S3 Host
-    INIT_S3_USE_HTTPS=true
-    ```
-
-    The above modifications will generate the same configuration file as this manual and will take effect when the service is started for the first time.
+!!! tip "New feature from 13.0 pro edition"
+    If your will deploy Seafile server in Docker, you can specify your S3 configurations in `S3 authorization Configurations` title bar in `.env` **before starting the services** to deploy with S3 together. This operation will generate the same configuration file as this manual and will take effect when the service is started for the first time.
 
 ## How to configure S3 in Seafile
 Seafile configures S3 storage by adding or modifying the following section in `seafile.conf`:

@@ -62,17 +62,17 @@ spec:
                 configMapKeyRef:
                   name: seafile-env
                   key: SEADOC_SERVER_URL
-            - name: DB_HOST
+            - name: SEAFILE_MYSQL_DB_HOST
               valueFrom:
                 configMapKeyRef:
                   name: seafile-env
                   key: SEAFILE_MYSQL_DB_HOST
-            - name: DB_PORT
+            - name: SEAFILE_MYSQL_DB_PORT
               valueFrom:
                 configMapKeyRef:
                   name: seafile-env
                   key: SEAFILE_MYSQL_DB_PORT
-            - name: DB_USER
+            - name: SEAFILE_MYSQL_DB_USER
               valueFrom:
                 configMapKeyRef:
                   name: seafile-env
@@ -92,12 +92,29 @@ spec:
                 configMapKeyRef:
                   name: seafile-env
                   key: SEAFILE_MYSQL_DB_SEAHUB_DB_NAME
+            - name: CACHE_PROVIDER
+              value: "memcached"
+            - name: MEMCACHED_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: MEMCACHED_HOST
+            - name: MEMCACHED_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: MEMCACHED_PORT
+            - name: USE_S3_STORAGE
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: USE_S3_STORAGE
             - name: JWT_PRIVATE_KEY
               valueFrom:
                 secretKeyRef:
                   name: seafile-secret
                   key: JWT_PRIVATE_KEY
-            - name: DB_PASSWORD
+            - name: SEAFILE_MYSQL_DB_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: seafile-secret

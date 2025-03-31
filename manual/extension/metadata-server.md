@@ -58,30 +58,28 @@ MD_STORAGE_TYPE=file
 First you need to create a bucket for Metadata on your S3 storage backend provider. Then add or modify the following information to `.env`:
 
 !!! success "Easier to configure S3 for Seafile and its components"
-    Since Seafile Pro 13.0, in order to facilitate users to deploy Seafile's related extension components and other services in the future, a section will be provided in `.env` to store the **default S3 authorization information configuration**. You can locate it with the following title bar:
+    Since Seafile Pro 13.0, in order to facilitate users to deploy Seafile's related extension components and other services in the future, a section will be provided in `.env` to store the **S3 authorization Configurations**. You can locate it with the following title bar:
     
     ```sh
-    ###########################################
-    # Default S3 authorization Configurations #
-    ###########################################
+    ###################################
+    # S3 authorization Configurations #
+    #    (This configurations will    #
+    #     apply to all components)    #
+    ###################################
     ```
     
     The S3 authorization configuration part (i.e., ***without buckets name***) in Seafile initialization and some extension components (such as *SeaSearch*, *Metadata server*) configuration will be read from this configuration by default. 
-    
-    By the way, you can also manually modify the configurations for specific service (this is the situation when you have selected different S3 service providers for these components).
+
+    In other words, if you deploy SeaSearch and Seafile together, and if you have deployed Seafile Pro following [here](../setup/setup_pro_by_docker.md#downloading-and-modifying-env) (and using the latest `.env`), you only need to specify the following variables in `.env` to make it work:
+
+    ```sh
+    S3_MD_BUCKET=<your s3 bucket name for Metadata>
+    ```
 
 ```sh
 MD_IMAGE=seafileltd/seafile-md-server:latest
 MD_STORAGE_TYPE=s3
-MD_S3_BUCKET=<your md data bucket name>
-MD_S3_HOST=<your s3 host>
-MD_S3_AWS_REGION=<your aws region> # only needed for AWS
-MD_S3_USE_HTTPS=true
-MD_S3_PATH_STYLE_REQUEST=false
-MD_S3_KEY_ID=<your s3 key id>
-MD_S3_KEY=<your s3 key>
-MD_S3_USE_V4_SIGNATURE=true
-MD_S3_SSE_C_KEY=
+S3_MD_BUCKET=<your md data bucket name>
 ```
 
 #### List of environment variables for Metadata server
@@ -95,20 +93,9 @@ The following table is all the related environment variables with Metadata serve
 | `REDIS_HOST`        | Your *Redis* service host.                                                                                                 | Optional, default `redis`          |
 | `REDIS_PORT`        | Your *Redis* service port.                                                                                                 | Optional, default `6379`           |
 | `REDIS_PASSWORD`    | Your *Redis* access password.                                                                                              | Optional                |
+| `S3_MD_BUCKET`    | Your S3 bucket name for the bucket storing metadata | Required when using S3 |
 
-And here is other optional values when your `MD_STORAGE_TYPE=s3:
-
-| Variables           | Description                                                                                                                | Required |
-    | --- | --- | --- |
-| `MD_S3_HOST`        | Host of s3 backend.                                                                                                        | Optional                |
-| `MD_S3_AWS_REGION`  | Region of *AWS* s3 backend.                                                                                                | Optional                |
-| `MD_S3_USE_HTTPS`   | Use https connecting to S3 backend.                                                                                        | Optional, default `true`          |
-| `MD_S3_BUCKET`      | Name of S3 bucket for storaging metadata.                                                                                 |  **Required** |
-| `MD_S3_PATH_STYLE_REQUEST` | S3 backend use path style request.                                                                                 | Optional, default `false`          |
-| `MD_S3_KEY_ID`      | S3 backend authorization key ID.                                                                                           | **Required** |
-| `MD_S3_KEY`         | S3 backend authorization key secret.                                                                                       |  **Required** |
-| `MD_S3_USE_V4_SIGNATURE` | Use V4 signature to S3 storage backend.                                                                              | Optional, default `true`           |
-| `MD_S3_SSE_C_KEY`   | S3 SSE-C key.                                                                                                              | Optional                |
+In addition, there are some environment variables **related to S3 authorization**, please refer to the part with `S3_` prefix in this [table](../setup/setup_pro_by_docker.md#downloading-and-modifying-env).
 
 ### Modify `seahub_settings.py`
 

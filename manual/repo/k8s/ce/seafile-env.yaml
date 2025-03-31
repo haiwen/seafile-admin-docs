@@ -25,12 +25,11 @@ data:
   CACHE_PROVIDER: "redis" # or "memcached"
 
   ## for redis
-  REDIS_SERVER: "<your redis host>"
+  REDIS_HOST: "<your redis host>"
   REDIS_PORT: "6379"
-  REDIS_PASSWORD: ""
 
   ## for memcached
-  MEMCACHED_SERVER: "<your memcached host>"
+  MEMCACHED_HOST: "<your memcached host>"
   MEMCACHED_PORT: "11211"
 
   # Init

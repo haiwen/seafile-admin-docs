@@ -8,7 +8,7 @@ For specific environment and configuration requirements, please refer to the des
 
 For persisting data using in the docker-base deployment, `/opt/seafile-data`, is still adopted in this manual. What's more, all K8S YAML files will be placed in `/opt/seafile-k8s-yaml` (replace it when following these instructions if you would like to use another path).
 
-By the way, we don't provide the deployment methods of basic services (e.g., **Memcached**, **MySQL** and **Elasticsearch**) and seafile-compatibility components (e.g., **SeaDoc**) for K8S in our document. If you need to install these services in K8S format, ***you can refer to the rewrite method in [this document](./k8s_single_node.md).***
+By the way, we don't provide the deployment methods of basic services (e.g., **Redis**, **MySQL** and **Elasticsearch**) and seafile-compatibility components (e.g., **SeaDoc**) for K8S in our document. If you need to install these services in K8S format, ***you can refer to the rewrite method in [this document](./k8s_single_node.md).***
 
 ### System requirements
 
@@ -32,7 +32,9 @@ Please refer [here](./system_requirements.md) for the details of system requirem
         --from-literal=SEAFILE_MYSQL_DB_PASSWORD='<required>' \
         --from-literal=INIT_SEAFILE_ADMIN_PASSWORD='<required>' \
         --from-literal=INIT_SEAFILE_MYSQL_ROOT_PASSWORD='<required>' \
-        --from-literal=INIT_S3_SECRET_KEY=''  
+        --from-literal=REDIS_PASSWORD='' \
+        --from-literal=INIT_S3_SECRET_KEY='' \ 
+        --from-literal=INIT_S3_SSE_C_KEY='' 
         ```
     === "Seafile CE"
 
@@ -97,10 +99,10 @@ After installing the chart, the Seafile pod should startup automaticlly.
 !!! note "About Seafile service"
     The default service type of Seafile is ***LoadBalancer***. You should specify K8S load balancer for Seafile or specify at least one external ip, that can be accessed from external networks.
 
-!!! warning "Important for Pro edition"
-    By default, Seafile (***Pro***) will access the ***Memcached*** and ***Elasticsearch*** with the specific service name:
+!!! warning "Important for deployment"
+    By default, Seafile will access the ***Redis*** (the default cache from Seafile 13) and ***Elasticsearch*** (Pro only) with the specific service name:
 
-    - ***Memcached***: `memcached` with port 11211
+    - ***Redis***: `redis` with port 6379
     - ***Elasticsearch***: `elasticsearch` with port 9200
 
     If the above services are:
