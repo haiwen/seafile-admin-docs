@@ -24,6 +24,9 @@ data:
   MEMCACHED_HOST: "<your Memcached server host>"
   MEMCACHED_PORT: "11211"
 
+  # for s3
+  USE_S3_STORAGE: "false"
+
   # initialization (only valid in first-time deployment and CLUSTER_INIT_MODE = true)
   CLUSTER_INIT_MODE: "true"
 

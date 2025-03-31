@@ -73,11 +73,12 @@ The following fields merit particular attention:
 | `TIME_ZONE`                     | Time zone                                                                                                     | `UTC`                           |  
 | `INIT_SEAFILE_ADMIN_EMAIL`      | Synchronously set admin username during initialization | me@example.com |  
 | `INIT_SEAFILE_ADMIN_PASSWORD`   | Synchronously set admin password during initialization | asecret |
-| `S3_COMMIT_BUCKET`   | S3 storage backend commit objects bucket | (required when you would like to initialize with S3) |
+| `USE_S3_STORAGE`   | Use S3 backend storage in Seafile server | `false` |
+| `S3_COMMIT_BUCKET`   | S3 storage backend commit objects bucket | (required when `USE_S3_STORAGE=true`) |
 | `S3_FS_BUCKET`   | S3 storage backend fs objects bucket | (required when you would like to initialize with S3) |
-| `S3_BLOCK_BUCKET`   | S3 storage backend block objects bucket | (required when you would like to initialize with S3) |
-| `S3_KEY_ID`   | S3 storage backend key ID | (required when you would like to initialize with S3) |
-| `S3_SECRET_KEY`   | S3 storage backend secret key | (required when you would like to initialize with S3) |
+| `S3_BLOCK_BUCKET`   | S3 storage backend block objects bucket | (required when `USE_S3_STORAGE=true`) |
+| `S3_KEY_ID`   | S3 storage backend key ID | (required when `USE_S3_STORAGE=true`) |
+| `S3_SECRET_KEY`   | S3 storage backend secret key | (required when `USE_S3_STORAGE=true`) |
 | `S3_AWS_REGION`   | Region of your buckets | `us-east-1` |
 | `S3_HOST`   | Host of your buckets | `s3.us-east-1.amazonaws.com` |
 | `S3_USE_HTTPS`   | Use HTTPS connections to S3 if enabled | `true` |

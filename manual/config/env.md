@@ -71,7 +71,11 @@ This part of configurations is only valid in `CACHE_PROVIDER=memcached`
 - `CLUSTER_INIT_ES_PORT`: (only valid in pro edition at deploying first time). Your cluster Elasticsearch server port. Default is `9200`.
 - `CLUSTER_MODE`: Seafile service node type, i.e., `frontend` (default) or `backend`
 
-## S3 storage backend configurations (only valid in pro edition at deploying first time)
+## S3 storage backend configurations 
+
+- `USE_S3_STORAGE`: Use S3 backend storage in Seafile server
+
+### S3 storage backend configurations in initialization
 
 - `S3_COMMIT_BUCKET`: S3 storage backend fs objects bucket
 - `S3_FS_BUCKET`: S3 storage backend block objects bucket

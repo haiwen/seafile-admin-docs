@@ -59,6 +59,7 @@ MEMCACHED_HOST=memcached
 MEMCACHED_PORT=11211
 
 ### S3
+USE_S3_STORAGE=false
 S3_COMMIT_BUCKET=<your commit bucket name>
 S3_FS_BUCKET=<your fs bucket name>
 S3_BLOCK_BUCKET=<your block bucket name>

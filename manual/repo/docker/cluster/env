@@ -31,6 +31,9 @@ SEAFILE_MYSQL_DB_SEAHUB_DB_NAME=seahub_db
 MEMCACHED_HOST=<your memcached host>
 MEMCACHED_PORT=11211
 
+## S3
+USE_S3_STORAGE=false
+
 ######################################
 #        Initial variables           #
 # (Only valid in first-time startup) #

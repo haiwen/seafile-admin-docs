@@ -104,6 +104,11 @@ spec:
                 configMapKeyRef:
                   name: seafile-env
                   key: MEMCACHED_PORT
+            - name: USE_S3_STORAGE
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: USE_S3_STORAGE
             - name: JWT_PRIVATE_KEY
               valueFrom:
                 secretKeyRef:
