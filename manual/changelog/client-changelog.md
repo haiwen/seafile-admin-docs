@@ -2,6 +2,14 @@
 
 ## 9.0
 
+### 9.0.13 (2025/04/02)
+
+* \[win] Fix bug that some items of context menu in Windows Explorer don't show up
+* \[mac] Fix bug of handling rename events, that can cause files moved to wrong folder
+* \[linux] Support Wayland
+* \[linux] Auto lock Office files opened by LibreOffice and WPS
+* Upgrade OpenSSL
+
 ### 9.0.12 (2025/02/12)
 
 * Improve sync error descriptions in the main window for file sync errors
