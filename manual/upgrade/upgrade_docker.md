@@ -181,6 +181,16 @@ If you have deployed SeaDoc older version, you should remove `/sdoc-server/`, `/
 
 Please see the document [Setup SeaDoc](../extension/setup_seadoc.md) to install SeaDoc with Seafile.
 
+### Other configuration changes
+
+#### Enable passing of REMOTE_USER
+
+REMOTE_USER header is not passed to Seafile by default, you need to change `gunicorn.conf.py` if you need REMOTE_USER header for SSO.
+
+```python
+forwarder_headers = 'SCRIPT_NAME,PATH_INFO,REMOTE_USER'
+```
+
 
 ## Upgrade from 10.0 to 11.0
 
