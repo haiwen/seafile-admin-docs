@@ -3893,6 +3893,30 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#other-configuration-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other configuration changes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Other configuration changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable-passing-of-remote_user" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable passing of REMOTE_USER
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4759,6 +4783,30 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#other-configuration-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other configuration changes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Other configuration changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable-passing-of-remote_user" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable passing of REMOTE_USER
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5094,6 +5142,11 @@ listen 80;
 </code></pre></div>
 <h4 id="deploy-a-new-seadoc-server">Deploy a new SeaDoc server<a class="headerlink" href="#deploy-a-new-seadoc-server" title="Permanent link">&para;</a></h4>
 <p>Please see the document <a href="../../extension/setup_seadoc/">Setup SeaDoc</a> to install SeaDoc with Seafile.</p>
+<h3 id="other-configuration-changes">Other configuration changes<a class="headerlink" href="#other-configuration-changes" title="Permanent link">&para;</a></h3>
+<h4 id="enable-passing-of-remote_user">Enable passing of REMOTE_USER<a class="headerlink" href="#enable-passing-of-remote_user" title="Permanent link">&para;</a></h4>
+<p>REMOTE_USER header is not passed to Seafile by default, you need to change <code>gunicorn.conf.py</code> if you need REMOTE_USER header for SSO.</p>
+<div class="highlight"><pre><span></span><code><span class="n">forwarder_headers</span> <span class="o">=</span> <span class="s1">&#39;SCRIPT_NAME,PATH_INFO,REMOTE_USER&#39;</span>
+</code></pre></div>
 <h2 id="upgrade-from-100-to-110">Upgrade from 10.0 to 11.0<a class="headerlink" href="#upgrade-from-100-to-110" title="Permanent link">&para;</a></h2>
 <p>Download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version. Taking the <a href="../../setup/setup_ce_by_docker/">community edition</a> as an example, you have to modify</p>
 <div class="highlight"><pre><span></span><code>...
