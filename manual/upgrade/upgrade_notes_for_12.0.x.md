@@ -184,6 +184,25 @@ If you deployed single sign on (SSO) by Shibboleth protocol, the following line 
 forwarder_headers = 'SCRIPT_NAME,PATH_INFO,REMOTE_USER'
 ```
 
+### 10) (Optional) Other configuration changes
+
+#### Enable passing of REMOTE_USER
+
+REMOTE_USER header is not passed to Seafile by default, you need to change `gunicorn.conf.py` if you need REMOTE_USER header for SSO.
+
+```python
+forwarder_headers = 'SCRIPT_NAME,PATH_INFO,REMOTE_USER'
+```
+
+#### Supplement or remove ALLOWED_HOSTS in seahub_settings.py
+
+Since version 12.0, the seaf-server component need to send internal requests to seahub component to check permissions, as reporting ***400 Error*** when downloading files if the `ALLOWED_HOSTS` set incorrect. In this case, you can either **remove** `ALLOWED_HOSTS` in `seahub_settings.py` or **supplement** `127.0.0.1` in `ALLOWED_HOSTS` list:
+
+```py
+# seahub_settings.py
+
+ALLOWED_HOSTS = ['...(your domain)', '127.0.0.1']
+```
 
 ## FAQ
 

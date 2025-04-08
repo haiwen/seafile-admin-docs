@@ -191,6 +191,15 @@ REMOTE_USER header is not passed to Seafile by default, you need to change `guni
 forwarder_headers = 'SCRIPT_NAME,PATH_INFO,REMOTE_USER'
 ```
 
+#### Supplement or remove ALLOWED_HOSTS in seahub_settings.py
+
+Since version 12.0, the seaf-server component need to send internal requests to seahub component to check permissions, as reporting ***400 Error*** when downloading files if the `ALLOWED_HOSTS` set incorrect. In this case, you can either **remove** `ALLOWED_HOSTS` in `seahub_settings.py` or **supplement** `127.0.0.1` in `ALLOWED_HOSTS` list:
+
+```py
+# seahub_settings.py
+
+ALLOWED_HOSTS = ['...(your domain)', '127.0.0.1']
+```
 
 ## Upgrade from 10.0 to 11.0
 
