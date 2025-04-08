@@ -175,6 +175,16 @@ From version 1.0, SeaDoc is using seahub_db database to store its operation logs
 Please see the document [Setup SeaDoc](../extension/setup_seadoc.md) to install SeaDoc on a separate machine and integrate with your binary packaged based Seafile server v12.0.
 
 
+### 9) (Optional) Update `gunicorn.conf.py` file in `conf/` directory
+
+If you deployed single sign on (SSO) by Shibboleth protocol, the following line should be added to the gunicorn config file.
+
+```python
+
+forwarder_headers = 'SCRIPT_NAME,PATH_INFO,REMOTE_USER'
+```
+
+
 ## FAQ
 
 We have documented common issues encountered by users when upgrading to version 12.0 in our FAQ <https://cloud.seatable.io/dtable/external-links/7b976c85f504491cbe8e/?tid=0000&vid=0000>.
