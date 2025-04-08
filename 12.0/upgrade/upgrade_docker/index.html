@@ -3912,6 +3912,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#supplement-or-remove-allowed_hosts-in-seahub_settingspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supplement or remove ALLOWED_HOSTS in seahub_settings.py
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4802,6 +4811,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#supplement-or-remove-allowed_hosts-in-seahub_settingspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supplement or remove ALLOWED_HOSTS in seahub_settings.py
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5146,6 +5164,12 @@ listen 80;
 <h4 id="enable-passing-of-remote_user">Enable passing of REMOTE_USER<a class="headerlink" href="#enable-passing-of-remote_user" title="Permanent link">&para;</a></h4>
 <p>REMOTE_USER header is not passed to Seafile by default, you need to change <code>gunicorn.conf.py</code> if you need REMOTE_USER header for SSO.</p>
 <div class="highlight"><pre><span></span><code><span class="n">forwarder_headers</span> <span class="o">=</span> <span class="s1">&#39;SCRIPT_NAME,PATH_INFO,REMOTE_USER&#39;</span>
+</code></pre></div>
+<h4 id="supplement-or-remove-allowed_hosts-in-seahub_settingspy">Supplement or remove ALLOWED_HOSTS in seahub_settings.py<a class="headerlink" href="#supplement-or-remove-allowed_hosts-in-seahub_settingspy" title="Permanent link">&para;</a></h4>
+<p>Since version 12.0, the seaf-server component need to send internal requests to seahub component to check permissions, as reporting <strong><em>400 Error</em></strong> when downloading files if the <code>ALLOWED_HOSTS</code> set incorrect. In this case, you can either <strong>remove</strong> <code>ALLOWED_HOSTS</code> in <code>seahub_settings.py</code> or <strong>supplement</strong> <code>127.0.0.1</code> in <code>ALLOWED_HOSTS</code> list:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># seahub_settings.py</span>
+
+<span class="n">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;...(your domain)&#39;</span><span class="p">,</span> <span class="s1">&#39;127.0.0.1&#39;</span><span class="p">]</span>
 </code></pre></div>
 <h2 id="upgrade-from-100-to-110">Upgrade from 10.0 to 11.0<a class="headerlink" href="#upgrade-from-100-to-110" title="Permanent link">&para;</a></h2>
 <p>Download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version. Taking the <a href="../../setup/setup_ce_by_docker/">community edition</a> as an example, you have to modify</p>
