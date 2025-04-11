@@ -48,7 +48,7 @@ ONLYOFFICE_JWT_SECRET = '<your jwt secret>'
 # The following two configurations, do NOT need to configure them explicitly.
 # The default values are as follows.
 # If you have custom needs, you can also configure them, which will override the default values.
-ONLYOFFICE_FILE_EXTENSION = ('doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx', 'odt', 'fodt', 'odp', 'fodp', 'ods', 'fods', 'csv', 'ppsx', 'pps', 'csv')
+ONLYOFFICE_FILE_EXTENSION = ('doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx', 'odt', 'fodt', 'odp', 'fodp', 'ods', 'fods', 'ppsx', 'pps', 'csv')
 ONLYOFFICE_EDIT_FILE_EXTENSION = ('docx', 'pptx', 'xlsx', 'csv')
 ```
 
