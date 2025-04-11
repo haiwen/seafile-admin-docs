@@ -42,9 +42,14 @@ Also modify `seahub_settings.py`
 ```py
 ENABLE_ONLYOFFICE = True
 ONLYOFFICE_APIJS_URL = 'https://seafile.example.com:6233/web-apps/apps/api/documents/api.js'
-ONLYOFFICE_FILE_EXTENSION = ('doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx', 'odt', 'fodt', 'odp', 'fodp', 'ods', 'fods', 'csv', 'ppsx', 'pps')
-ONLYOFFICE_EDIT_FILE_EXTENSION = ('docx', 'pptx', 'xlsx')
 ONLYOFFICE_JWT_SECRET = '<your jwt secret>'
+
+# NOTE
+# The following two configurations, do NOT need to configure them explicitly.
+# The default values are as follows.
+# If you have custom needs, you can also configure them, which will override the default values.
+ONLYOFFICE_FILE_EXTENSION = ('doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx', 'odt', 'fodt', 'odp', 'fodp', 'ods', 'fods', 'csv', 'ppsx', 'pps', 'csv')
+ONLYOFFICE_EDIT_FILE_EXTENSION = ('docx', 'pptx', 'xlsx', 'csv')
 ```
 
 !!! tip
@@ -133,7 +138,6 @@ In general, you only need to specify the values ​​of the following fields in
 ```py
 ENABLE_ONLYOFFICE = True
 ONLYOFFICE_APIJS_URL = 'http{s}://<Your OnlyOffice host url>/web-apps/apps/api/documents/api.js'
-ONLYOFFICE_FILE_EXTENSION = ('doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx', 'odt', 'fodt', 'odp', 'fodp', 'ods', 'fods', 'csv', 'ppsx', 'pps')
 ONLYOFFICE_JWT_SECRET = '<your jwt secret>'
 ```
 
