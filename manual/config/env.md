@@ -42,14 +42,16 @@ The [`.env`](../repo/docker/pro/env) file will be used to specify the components
 
 ### Redis configurations
 
-This part of configurations is only valid in `CACHE_PROVIDER=redis`
+This part of configurations is only valid in `CACHE_PROVIDER=redis`:
+
 - `REDIS_HOST`: Redis server host, default is `redis`
 - `REDIS_PORT`: Redis server port, default is `6379`
 - `REDIS_PASSWORD`: Redis server password. 
 
-### Redis configurations
+### Memcached configurations
 
-This part of configurations is only valid in `CACHE_PROVIDER=memcached`
+This part of configurations is only valid in `CACHE_PROVIDER=memcached`:
+
 - `MEMCACHED_HOST`: Memcached server host, default is `memcached`
 - `MEMCACHED_PORT`: Memcached server port, default is `11211`
 
