@@ -75,7 +75,7 @@ The following fields merit particular attention:
 | `INIT_S3_SECRET_KEY`   | S3 storage backend secret key (only valid when `INIT_S3_STORAGE_BACKEND_CONFIG` sets to `true`) | (required when `INIT_S3_STORAGE_BACKEND_CONFIG` sets to `true`) |
 | `INIT_S3_USE_V4_SIGNATURE`   | Use the v4 protocol of S3 if enabled (only valid when `INIT_S3_STORAGE_BACKEND_CONFIG` sets to `true`) | `true` |
 | `INIT_S3_AWS_REGION`   | Region of your buckets (only valid when `INIT_S3_STORAGE_BACKEND_CONFIG` and `INIT_S3_USE_V4_SIGNATURE` sets to `true`) | `us-east-1` |
-| `INIT_S3_HOST`   | Host of your buckets (only valid when `INIT_S3_STORAGE_BACKEND_CONFIG` and `INIT_S3_USE_V4_SIGNATURE` sets to `true`) | `s3.us-east-1.amazonaws.com` |
+| `INIT_S3_HOST`   | Host of your buckets (only valid when `INIT_S3_STORAGE_BACKEND_CONFIG` and `INIT_S3_USE_V4_SIGNATURE` sets to `true`) | (required when not use AWS) |
 | `INIT_S3_USE_HTTPS`   | Use HTTPS connections to S3 if enabled (only valid when `INIT_S3_STORAGE_BACKEND_CONFIG` sets to `true`) | `true` |
 
 To conclude, set the directory permissions of the Elasticsearch volumne:
