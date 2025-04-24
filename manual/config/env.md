@@ -37,15 +37,18 @@ The [`.env`](../repo/docker/pro/env) file will be used to specify the components
 - `SEAFILE_MYSQL_DB_SEAHUB_DB_NAME`: The name of seahub database name, default is `seahub_db`
 
 ## Cache configurations
+
 - `CACHE_PROVIDER`: The type of cache server used for Seafile. The available options are `redis` and `memcached`. Since Seafile 13, it is recommended to use `redis` as the cache service to support new features, and `memcached` will no longer be integrated into Seafile Docker by default. Default is `redis`
 
 ### Redis configurations
+
 This part of configurations is only valid in `CACHE_PROVIDER=redis`
 - `REDIS_HOST`: Redis server host, default is `redis`
 - `REDIS_PORT`: Redis server port, default is `6379`
-- `REDIS_PASSWORD`: Redis server password. You need to uncheck the mark of the `command` part of the `redis` service in `seafile-server.yml` to enable this feature if you are using the integrated Redis server in Seafile Docker.
+- `REDIS_PASSWORD`: Redis server password. 
 
 ### Redis configurations
+
 This part of configurations is only valid in `CACHE_PROVIDER=memcached`
 - `MEMCACHED_HOST`: Memcached server host, default is `memcached`
 - `MEMCACHED_PORT`: Memcached server port, default is `11211`
