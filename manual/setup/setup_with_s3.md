@@ -29,7 +29,7 @@
     INIT_S3_SECRET_KEY=<your-secret-key>
     INIT_S3_USE_V4_SIGNATURE=true
     INIT_S3_AWS_REGION=us-east-1 # your AWS Region
-    INIT_S3_HOST= # your S3 Host
+    INIT_S3_HOST= # your S3 Host (specify when not use AWS)
     INIT_S3_USE_HTTPS=true
     ```
 
