@@ -3375,9 +3375,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#redis-configurations_1" class="md-nav__link">
+  <a href="#memcached-configurations" class="md-nav__link">
     <span class="md-ellipsis">
-      Redis configurations
+      Memcached configurations
     </span>
   </a>
   
@@ -4795,9 +4795,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#redis-configurations_1" class="md-nav__link">
+  <a href="#memcached-configurations" class="md-nav__link">
     <span class="md-ellipsis">
-      Redis configurations
+      Memcached configurations
     </span>
   </a>
   
@@ -4936,14 +4936,18 @@
 <li><code>CACHE_PROVIDER</code>: The type of cache server used for Seafile. The available options are <code>redis</code> and <code>memcached</code>. Since Seafile 13, it is recommended to use <code>redis</code> as the cache service to support new features, and <code>memcached</code> will no longer be integrated into Seafile Docker by default. Default is <code>redis</code></li>
 </ul>
 <h3 id="redis-configurations">Redis configurations<a class="headerlink" href="#redis-configurations" title="Permanent link">&para;</a></h3>
-<p>This part of configurations is only valid in <code>CACHE_PROVIDER=redis</code>
-- <code>REDIS_HOST</code>: Redis server host, default is <code>redis</code>
-- <code>REDIS_PORT</code>: Redis server port, default is <code>6379</code>
-- <code>REDIS_PASSWORD</code>: Redis server password. </p>
-<h3 id="redis-configurations_1">Redis configurations<a class="headerlink" href="#redis-configurations_1" title="Permanent link">&para;</a></h3>
-<p>This part of configurations is only valid in <code>CACHE_PROVIDER=memcached</code>
-- <code>MEMCACHED_HOST</code>: Memcached server host, default is <code>memcached</code>
-- <code>MEMCACHED_PORT</code>: Memcached server port, default is <code>11211</code></p>
+<p>This part of configurations is only valid in <code>CACHE_PROVIDER=redis</code>:</p>
+<ul>
+<li><code>REDIS_HOST</code>: Redis server host, default is <code>redis</code></li>
+<li><code>REDIS_PORT</code>: Redis server port, default is <code>6379</code></li>
+<li><code>REDIS_PASSWORD</code>: Redis server password. </li>
+</ul>
+<h3 id="memcached-configurations">Memcached configurations<a class="headerlink" href="#memcached-configurations" title="Permanent link">&para;</a></h3>
+<p>This part of configurations is only valid in <code>CACHE_PROVIDER=memcached</code>:</p>
+<ul>
+<li><code>MEMCACHED_HOST</code>: Memcached server host, default is <code>memcached</code></li>
+<li><code>MEMCACHED_PORT</code>: Memcached server port, default is <code>11211</code></li>
+</ul>
 <h2 id="seafile-server-configurations">Seafile-server configurations<a class="headerlink" href="#seafile-server-configurations" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>JWT_PRIVATE_KEY</code>: JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, generate example: <code>pwgen -s 40 1</code></li>
