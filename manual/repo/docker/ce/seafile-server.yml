@@ -27,10 +27,12 @@ services:
   redis:
     image: ${SEAFILE_REDIS_IMAGE:-redis}
     container_name: seafile-redis
-    #command:
-    #  - /bin/sh
-    #  - -c
-    #  - redis-server --requirepass "$${REDIS_PASSWORD:?Variable is not set or empty}"
+    command:
+      - /bin/sh
+      - -c
+      - redis-server --requirepass "$$REDIS_PASSWORD"
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-}
     networks:
       - seafile-net
 
