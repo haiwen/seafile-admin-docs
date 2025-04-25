@@ -34,18 +34,19 @@ data:
 
   # for S3
   USE_S3_STORAGE: "false"
+  S3_COMMIT_BUCKET: ""
+  S3_FS_BUCKET: ""
+  S3_BLOCK_BUCKET: ""
+  S3_KEY_ID: ""
+  S3_USE_V4_SIGNATURE: "true"
+  S3_AWS_REGION: "us-east-1"
+  S3_HOST: ""
+  S3_USE_HTTPS: "true"
+  S3_PATH_STYLE_REQUEST: "false"
+
+  # for notification
+  NOTIFICATION_SERVER_URL: ""
 
   # Init
   ## for Seafile admin
   INIT_SEAFILE_ADMIN_EMAIL: "<Seafile admin's email>"
-
-  ## For S3 storage backend
-  INIT_S3_COMMIT_BUCKET: ""
-  INIT_S3_FS_BUCKET: ""
-  INIT_S3_BLOCK_BUCKET: ""
-  INIT_S3_KEY_ID: ""
-  INIT_S3_USE_V4_SIGNATURE: "true"
-  INIT_S3_AWS_REGION: "us-east-1"
-  INIT_S3_HOST: "s3.us-east-1.amazonaws.com"
-  INIT_S3_USE_HTTPS: "true"
-  INIT_S3_PATH_STYLE_REQUEST: "false"

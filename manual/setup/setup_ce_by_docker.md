@@ -54,7 +54,8 @@ The following fields merit particular attention:
 | `REDIS_PASSWORD`       | Redis server password | (none) |
 | `MEMCACHED_HOST`       | Memcached server host | `memcached` |
 | `MEMCACHED_PORT`       | Memcached server port | `11211` |
-| `TIME_ZONE`                     | Time zone                                                                                                     | `UTC`                           |  
+| `TIME_ZONE`                     | Time zone                                                                                                     | `UTC`                           |
+| `NOTIFICATION_SERVER_URL`   | The [notification server](../extension/notification-server.md) url, leave blank to disable it | (none) |  
 | `INIT_SEAFILE_ADMIN_EMAIL`      | Admin username                                                                                                | `me@example.com` (Recommend modifications) |  
 | `INIT_SEAFILE_ADMIN_PASSWORD`   | Admin password       | `asecret` (Recommend modifications) |
 

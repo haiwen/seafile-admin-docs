@@ -26,6 +26,19 @@ data:
 
   # for s3
   USE_S3_STORAGE: "false"
+  S3_STORAGE_BACKEND_CONFIG: "false"
+  S3_COMMIT_BUCKET: ""
+  S3_FS_BUCKET: ""
+  S3_BLOCK_BUCKET: ""
+  S3_KEY_ID: ""
+  S3_USE_V4_SIGNATURE: "true"
+  S3_AWS_REGION: "us-east-1"
+  S3_HOST: ""
+  S3_USE_HTTPS: "true"
+  S3_PATH_STYLE_REQUEST: "false"
+
+  # for notification
+  NOTIFICATION_SERVER_URL: ""
 
   # initialization (only valid in first-time deployment and CLUSTER_INIT_MODE = true)
   CLUSTER_INIT_MODE: "true"
@@ -36,15 +49,3 @@ data:
   ## for cluster basic service
   CLUSTER_INIT_ES_HOST: "<your ElasticSearch server host>"
   CLUSTER_INIT_ES_PORT: "9200"
-
-  ## For S3 storage backend (only valid in INIT_S3_STORAGE_BACKEND_CONFIG = true)
-  INIT_S3_STORAGE_BACKEND_CONFIG: "false"
-  INIT_S3_COMMIT_BUCKET: ""
-  INIT_S3_FS_BUCKET: ""
-  INIT_S3_BLOCK_BUCKET: ""
-  INIT_S3_KEY_ID: ""
-  INIT_S3_USE_V4_SIGNATURE: "true"
-  INIT_S3_AWS_REGION: "us-east-1"
-  INIT_S3_HOST: "s3.us-east-1.amazonaws.com"
-  INIT_S3_USE_HTTPS: "true"
-  INIT_S3_PATH_STYLE_REQUEST: "false"

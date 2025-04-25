@@ -68,7 +68,7 @@ First you need to create a bucket for Metadata on your S3 storage backend provid
     ###################################
     ```
     
-    The S3 authorization configuration part (i.e., ***without buckets name***) in Seafile initialization and some extension components (such as *SeaSearch*, *Metadata server*) configuration will be read from this configuration by default. 
+    The S3 authorization configuration part (i.e., ***without buckets name***) in Seafile and some extension components (such as *SeaSearch*, *Metadata server*) configuration will be read from this configuration by default. 
 
     In other words, if you deploy SeaSearch and Seafile together, and if you have deployed Seafile Pro following [here](../setup/setup_pro_by_docker.md#downloading-and-modifying-env) (and using the latest `.env`), you only need to specify the following variables in `.env` to make it work:
 

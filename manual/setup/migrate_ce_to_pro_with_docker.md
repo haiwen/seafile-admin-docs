@@ -40,7 +40,7 @@ Modify `.env` based on the old configurations from the old `.env` file. The foll
 For other fileds (e.g., `SEAFILE_VOLUME`, `SEAFILE_MYSQL_VOLUME`, `SEAFILE_MYSQL_DB_USER`, `SEAFILE_MYSQL_DB_PASSWORD`), **must be consistent** with the old configurations.
 
 !!! tip
-    For the configurations using to do the initializations (e.g, `INIT_SEAFILE_ADMIN_EMAIL`, `INIT_SEAFILE_MYSQL_ROOT_PASSWORD`, `INIT_S3_STORAGE_BACKEND_CONFIG`), you can remove it from `.env` as well
+    For the configurations using to do the initializations (e.g, `INIT_SEAFILE_ADMIN_EMAIL`, `INIT_SEAFILE_MYSQL_ROOT_PASSWORD`), you can remove it from `.env` as well
 
 ### Replace `seafile-server.yml` and `.env`
 

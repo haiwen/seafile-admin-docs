@@ -32,6 +32,9 @@ data:
   MEMCACHED_HOST: "<your memcached host>"
   MEMCACHED_PORT: "11211"
 
+  # for notification
+  NOTIFICATION_SERVER_URL: ""
+
   # Init
   ## for Seafile admin
   INIT_SEAFILE_ADMIN_EMAIL: "<Seafile admin's email>"
