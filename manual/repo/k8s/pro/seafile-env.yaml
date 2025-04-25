@@ -44,6 +44,9 @@ data:
   S3_USE_HTTPS: "true"
   S3_PATH_STYLE_REQUEST: "false"
 
+  # for notification
+  NOTIFICATION_SERVER_URL: ""
+
   # Init
   ## for Seafile admin
   INIT_SEAFILE_ADMIN_EMAIL: "<Seafile admin's email>"

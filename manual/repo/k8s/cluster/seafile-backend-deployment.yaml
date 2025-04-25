@@ -169,6 +169,11 @@ spec:
                 configMapKeyRef:
                   name: seafile-env
                   key: S3_PATH_STYLE_REQUEST
+            - name: NOTIFICATION_SERVER_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: NOTIFICATION_SERVER_URL
             - name: INIT_SEAFILE_ADMIN_EMAIL
               valueFrom:
                 configMapKeyRef:
@@ -189,16 +194,16 @@ spec:
                 secretKeyRef:
                   name: seafile-secret
                   key: INIT_SEAFILE_MYSQL_ROOT_PASSWORD
-            - name: S3_SECRET_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: seafile-secret
-                  key: S3_SECRET_KEY
             - name: INIT_SEAFILE_ADMIN_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: seafile-secret
                   key: INIT_SEAFILE_ADMIN_PASSWORD
+            - name: S3_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: seafile-secret
+                  key: S3_SECRET_KEY
             - name: S3_SSE_C_KEY
               valueFrom:
                 secretKeyRef:

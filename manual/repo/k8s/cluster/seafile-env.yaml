@@ -37,6 +37,9 @@ data:
   S3_USE_HTTPS: "true"
   S3_PATH_STYLE_REQUEST: "false"
 
+  # for notification
+  NOTIFICATION_SERVER_URL: ""
+
   # initialization (only valid in first-time deployment and CLUSTER_INIT_MODE = true)
   CLUSTER_INIT_MODE: "true"
 
