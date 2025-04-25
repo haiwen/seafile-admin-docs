@@ -86,56 +86,56 @@ spec:
                 configMapKeyRef:
                   name: seafile-env
                   key: USE_S3_STORAGE
-            - name: INIT_S3_STORAGE_BACKEND_CONFIG
+            - name: S3_STORAGE_BACKEND_CONFIG
               valueFrom:
                 configMapKeyRef:
                   name: seafile-env
-                  key: INIT_S3_STORAGE_BACKEND_CONFIG
-            - name: INIT_S3_COMMIT_BUCKET
+                  key: S3_STORAGE_BACKEND_CONFIG
+            - name: S3_COMMIT_BUCKET
               valueFrom:
                 configMapKeyRef:
                   name: seafile-env
-                  key: INIT_S3_COMMIT_BUCKET
-            - name: INIT_S3_FS_BUCKET
+                  key: S3_COMMIT_BUCKET
+            - name: S3_FS_BUCKET
               valueFrom:
                 configMapKeyRef:
                   name: seafile-env
-                  key: INIT_S3_FS_BUCKET
-            - name: INIT_S3_BLOCK_BUCKET
+                  key: S3_FS_BUCKET
+            - name: S3_BLOCK_BUCKET
               valueFrom:
                 configMapKeyRef:
                   name: seafile-env
-                  key: INIT_S3_BLOCK_BUCKET
-            - name: INIT_S3_KEY_ID
+                  key: S3_BLOCK_BUCKET
+            - name: S3_KEY_ID
               valueFrom:
                 configMapKeyRef:
                   name: seafile-env
-                  key: INIT_S3_KEY_ID
-            - name: INIT_S3_USE_V4_SIGNATURE
+                  key: S3_KEY_ID
+            - name: S3_USE_V4_SIGNATURE
               valueFrom:
                 configMapKeyRef:
                   name: seafile-env
-                  key: INIT_S3_USE_V4_SIGNATURE
-            - name: INIT_S3_AWS_REGION
+                  key: S3_USE_V4_SIGNATURE
+            - name: S3_AWS_REGION
               valueFrom:
                 configMapKeyRef:
                   name: seafile-env
-                  key: INIT_S3_AWS_REGION
-            - name: INIT_S3_HOST
+                  key: S3_AWS_REGION
+            - name: S3_HOST
               valueFrom:
                 configMapKeyRef:
                   name: seafile-env
-                  key: INIT_S3_HOST
-            - name: INIT_S3_USE_HTTPS
+                  key: S3_HOST
+            - name: S3_USE_HTTPS
               valueFrom:
                 configMapKeyRef:
                   name: seafile-env
-                  key: INIT_S3_USE_HTTPS
-            - name: INIT_S3_PATH_STYLE_REQUEST
+                  key: S3_USE_HTTPS
+            - name: S3_PATH_STYLE_REQUEST
               valueFrom:
                 configMapKeyRef:
                   name: seafile-env
-                  key: INIT_S3_PATH_STYLE_REQUEST
+                  key: S3_PATH_STYLE_REQUEST
             - name: INIT_SEAFILE_ADMIN_EMAIL
               valueFrom:
                 configMapKeyRef:
@@ -181,11 +181,11 @@ spec:
                 secretKeyRef:
                   name: seafile-secret
                   key: INIT_SEAFILE_MYSQL_ROOT_PASSWORD
-            - name: INIT_S3_SECRET_KEY
+            - name: S3_SECRET_KEY
               valueFrom:
                 secretKeyRef:
                   name: seafile-secret
-                  key: INIT_S3_SECRET_KEY
+                  key: S3_SECRET_KEY
             - name: INIT_SEAFILE_ADMIN_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -196,11 +196,11 @@ spec:
                 secretKeyRef:
                   name: seafile-secret
                   key: REDIS_PASSWORD
-            - name: INIT_S3_SSE_C_KEY
+            - name: S3_SSE_C_KEY
               valueFrom:
                 secretKeyRef:
                   name: seafile-secret
-                  key: INIT_S3_SSE_C_KEY
+                  key: S3_SSE_C_KEY
           volumeMounts:
             - name: seafile-data
               mountPath: /shared

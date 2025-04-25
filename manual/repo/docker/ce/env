@@ -71,3 +71,6 @@ INIT_SEAFILE_ADMIN_PASSWORD=asecret
 
 ## SeaDoc service
 ENABLE_SEADOC=true
+
+## Notification
+NOTIFICATION_SERVER_URL=

@@ -42,10 +42,12 @@ From Seafile Docker 13.0, the `elasticsearch.yml` has separated from `seafile-se
 
 5. Modify `.env`, update image version and add cache configurations:
 
-    !!! note "Variables change logs for `.env`"
-        1. From Seafile docker 13, the configurations of database and cache can get from environment variables directly (you can define it in the `.env`). What's more, the Redis will be recommended as the primary cache server for supporting some new features (please refer the ***upgradte notes***, you can also refer to more details about Redis in Seafile Docker [here](../setup/setup_pro_by_docker.md#about-redis)) and is the default type of cache provided  in Seafile 13. 
+    !!! note "Variables change logs for `.env` in Seafile 13"
+        1. The configurations of database and cache can get from environment variables directly (you can define it in the `.env`). What's more, the Redis will be recommended as the primary cache server for supporting some new features (please refer the ***upgradte notes***, you can also refer to more details about Redis in Seafile Docker [here](../setup/setup_pro_by_docker.md#about-redis)) and is the default type of cache provided  in Seafile 13. 
 
-        2. Starting from Seafile 13, When initializing Seafile, the configuration of S3, the SeaSearch component, and the newly supported Metadata server component all use unified variables (i.e., `S3_xxx`) for the authorization information of S3 in the new deployment. Please refer to the end of [the table in Seafile Pro deployment](../setup/setup_pro_by_docker.md#downloading-and-modifying-env) for details. If you plan to deploy or redeploy these components in the future, **please pay attention to changes in variable names**.
+        2. The configuration of S3 (including Seafile server, SeaSearch, and the newly supported Metadata server) will use unified variables (i.e., `S3_xxx`) for the authorization information of S3 in the new deployment. Please refer to the end of [the table in Seafile Pro deployment](../setup/setup_pro_by_docker.md#downloading-and-modifying-env) for details. If you plan to deploy or redeploy these components in the future, **please pay attention to changes in variable names**.
+
+        3. The configuration of notification server will no longer read from `seafile.conf`, rather than the variable `NOTIFICATION_SERVER_URL` in the `.env` and leave blank to disable this feature.
 
     - Update image version to Seafile 13
     
@@ -76,6 +78,12 @@ From Seafile Docker 13.0, the `elasticsearch.yml` has separated from `seafile-se
         ### Memcached
         MEMCACHED_HOST=memcached
         MEMCACHED_PORT=11211
+        ```
+    
+    - Add configuration for notification server (if is enabled in Seafile 12):
+
+        ```sh
+        NOTIFICATION_SERVER_URL=<your notification server url>
         ```
 
     !!! tip "Optional but recommended modifications for further configuration files"

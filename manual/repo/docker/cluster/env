@@ -33,6 +33,17 @@ MEMCACHED_PORT=11211
 
 ## S3
 USE_S3_STORAGE=false
+S3_KEY_ID=<your-key-id>
+S3_SECRET_KEY=<your-secret-key>
+S3_USE_V4_SIGNATURE=true
+S3_PATH_STYLE_REQUEST=false
+S3_AWS_REGION=us-east-1
+S3_HOST=
+S3_USE_HTTPS=true
+S3_SSE_C_KEY=
+
+## Notification
+NOTIFICATION_SERVER_URL=
 
 ######################################
 #        Initial variables           #
@@ -50,13 +61,3 @@ INIT_SEAFILE_MYSQL_ROOT_PASSWORD=ROOT_PASSWORD
 ## Seafile admin user
 INIT_SEAFILE_ADMIN_EMAIL=me@example.com
 INIT_SEAFILE_ADMIN_PASSWORD=asecret
-
-## Init S3 configurations
-INIT_S3_KEY_ID=<your-key-id>
-INIT_S3_SECRET_KEY=<your-secret-key>
-INIT_S3_USE_V4_SIGNATURE=true
-INIT_S3_PATH_STYLE_REQUEST=false
-INIT_S3_AWS_REGION=us-east-1
-INIT_S3_HOST=s3.us-east-1.amazonaws.com
-INIT_S3_USE_HTTPS=true
-INIT_S3_SSE_C_KEY=

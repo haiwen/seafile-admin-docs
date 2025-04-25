@@ -131,12 +131,7 @@ Please refer [here](./system_requirements.md#seafile-cluster) for the details ab
     - `CLUSTER_INIT_MODE`, must be removed from .env file
     - `CLUSTER_INIT_ES_HOST`
     - `CLUSTER_INIT_ES_PORT`
-    - `INIT_S3_COMMIT_BUCKET`
-    - `INIT_S3_FS_BUCKET`
-    - `INIT_S3_BLOCK_BUCKET`
-    - `INIT_S3_KEY_ID`
-    - `INIT_S3_SECRET_KEY`
-
+    
     !!! tip
         We recommend that you check that the relevant configuration files are correct and copy the `SEAFILE_VOLUME` directory before the service is officially started, because only the configuration files are generated after initialization. You can directly migrate the entire copied `SEAFILE_VOLUME` to other nodes later:
 

@@ -26,18 +26,20 @@ Modify `.env`, and insert `notification-server.yml` into `COMPOSE_FILE`:
 COMPOSE_FILE='seafile-server.yml,caddy.yml,notification-server.yml'
 ```
 
-And you need to add the following configurations under seafile.conf:
+then add or modify `NOTIFICATION_SERVER_URL`:
 
-```conf
-[notification]
-enabled = true
-# the ip of notification server. (default is `notification-server` in Docker)
-host = notification-server
-# the port of notification server
-port = 8083
-```
+=== "Deploy with Seafile"
+    
+    ```sh
+    NOTIFICATION_SERVER_URL=http://notification-server
+    ```
+=== "Standalone deployment"
+    
+    ```sh
+    NOTIFICATION_SERVER_URL=<your notification server URL>
+    ```
 
-You can run notification server with the following command:
+Finally, You can run notification server with the following command:
 
 ```sh
 docker compose down
