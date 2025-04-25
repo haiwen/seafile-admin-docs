@@ -4701,15 +4701,20 @@
 <p>Modify <code>.env</code>, and insert <code>notification-server.yml</code> into <code>COMPOSE_FILE</code>:</p>
 <div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;seafile-server.yml,caddy.yml,notification-server.yml&#39;
 </code></pre></div>
-<p>And you need to add the following configurations under seafile.conf:</p>
-<div class="highlight"><pre><span></span><code>[notification]
-enabled = true
-# the ip of notification server. (default is `notification-server` in Docker)
-host = notification-server
-# the port of notification server
-port = 8083
+<p>then add or modify <code>NOTIFICATION_SERVER_URL</code>:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Deploy with Seafile</label><label for="__tabbed_1_2">Standalone deployment</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nv">NOTIFICATION_SERVER_URL</span><span class="o">=</span>http://notification-server
 </code></pre></div>
-<p>You can run notification server with the following command:</p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nv">NOTIFICATION_SERVER_URL</span><span class="o">=</span>&lt;your<span class="w"> </span>notification<span class="w"> </span>server<span class="w"> </span>URL&gt;
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Finally, You can run notification server with the following command:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
 docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>

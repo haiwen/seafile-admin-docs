@@ -3407,35 +3407,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#cluster-init-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cluster init configuration
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#s3-storage-backend-configurations" class="md-nav__link">
     <span class="md-ellipsis">
       S3 storage backend configurations
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="S3 storage backend configurations">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#s3-storage-backend-configurations-in-initialization" class="md-nav__link">
-    <span class="md-ellipsis">
-      S3 storage backend configurations in initialization
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -3452,6 +3428,24 @@
   <a href="#metadata-server" class="md-nav__link">
     <span class="md-ellipsis">
       Metadata server
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notification-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notification server
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cluster-init-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cluster init configuration
     </span>
   </a>
   
@@ -4827,35 +4821,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#cluster-init-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cluster init configuration
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#s3-storage-backend-configurations" class="md-nav__link">
     <span class="md-ellipsis">
       S3 storage backend configurations
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="S3 storage backend configurations">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#s3-storage-backend-configurations-in-initialization" class="md-nav__link">
-    <span class="md-ellipsis">
-      S3 storage backend configurations in initialization
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -4872,6 +4842,24 @@
   <a href="#metadata-server" class="md-nav__link">
     <span class="md-ellipsis">
       Metadata server
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notification-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notification server
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cluster-init-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cluster init configuration
     </span>
   </a>
   
@@ -4962,19 +4950,9 @@
 <li><code>ENABLE_SEADOC</code>: Enable the SeaDoc server or not, default is <code>false</code>.</li>
 <li><code>SEADOC_SERVER_URL</code>: Only valid in <code>ENABLE_SEADOC=true</code>. Url of Seadoc server (e.g., http://seafile.example.com/sdoc-server).</li>
 </ul>
-<h2 id="cluster-init-configuration">Cluster init configuration<a class="headerlink" href="#cluster-init-configuration" title="Permanent link">&para;</a></h2>
-<ul>
-<li><code>CLUSTER_INIT_MODE</code>: (only valid in pro edition at deploying first time). Cluster initialization mode, in which the necessary configuration files for the service to run will be generated (but <strong>the service will not be started</strong>). If the configuration file already exists, no operation will be performed. The default value is <code>true</code>. When the configuration file is generated, <strong><em>be sure to set this item to <code>false</code></em></strong>.</li>
-<li><code>CLUSTER_INIT_ES_HOST</code>: (only valid in pro edition at deploying first time). Your cluster Elasticsearch server host.</li>
-<li><code>CLUSTER_INIT_ES_PORT</code>: (only valid in pro edition at deploying first time). Your cluster Elasticsearch server port. Default is <code>9200</code>.</li>
-<li><code>CLUSTER_MODE</code>: Seafile service node type, i.e., <code>frontend</code> (default) or <code>backend</code></li>
-</ul>
 <h2 id="s3-storage-backend-configurations">S3 storage backend configurations<a class="headerlink" href="#s3-storage-backend-configurations" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>USE_S3_STORAGE</code>: Use S3 backend storage in Seafile server</li>
-</ul>
-<h3 id="s3-storage-backend-configurations-in-initialization">S3 storage backend configurations in initialization<a class="headerlink" href="#s3-storage-backend-configurations-in-initialization" title="Permanent link">&para;</a></h3>
-<ul>
 <li><code>S3_COMMIT_BUCKET</code>: S3 storage backend fs objects bucket</li>
 <li><code>S3_FS_BUCKET</code>: S3 storage backend block objects bucket</li>
 <li><code>S3_BLOCK_BUCKET</code>: S3 storage backend block objects bucket</li>
@@ -4982,7 +4960,7 @@
 <li><code>S3_SECRET_KEY</code>: S3 storage backend secret key</li>
 <li><code>S3_USE_V4_SIGNATURE</code>: Use the v4 protocol of S3 if enabled, default is <code>true</code></li>
 <li><code>S3_AWS_REGION</code>: Region of your buckets (AWS only), default is <code>us-east-1</code>.</li>
-<li><code>S3_HOST</code>: Host of your buckets, default is <code>s3.us-east-1.amazonaws.com</code>.</li>
+<li><code>S3_HOST</code>: Host of your buckets (required when not use AWS).</li>
 <li><code>S3_USE_HTTPS</code>: Use HTTPS connections to S3 if enabled, default is <code>true</code></li>
 <li><code>S3_PATH_STYLE_REQUEST</code>: This option asks Seafile to use URLs like <code>https://192.168.1.123:8080/bucketname/object</code> to access objects. In <em>Amazon S3</em>, the default URL format is in virtual host style, such as <code>https://bucketname.s3.amazonaws.com/object</code>. But this style relies on advanced DNS server setup. So most self-hosted storage systems only implement the path style format. Default <code>false</code>.</li>
 <li><code>S3_SSE_C_KEY</code>: A string of 32 characters can be generated by openssl rand -base64 24. It can be any 32-character long random string. It's required to use V4 authentication protocol and https if you enable SSE-C.</li>
@@ -4996,13 +4974,24 @@
 <span class="c1">#     apply to all components)    #</span>
 <span class="c1">###################################</span>
 </code></pre></div>
-<p>The S3 authorization configuration part (i.e., <strong><em>without buckets name</em></strong>) in Seafile initialization and some extension components (such as <em>SeaSearch</em>, <em>Metadata server</em>) configuration will be read from this configuration by default. </p>
-<p>However, please note that <strong>Seafile currently still reads S3 configurations <a href="../../setup/setup_with_s3/">through <code>seafile.conf</code></a>, and the configuration in <code>.env</code> is only used for initialization of Seafile services</strong>. But you have to <strong>make sure they are consistent</strong>.</p>
+<p>The S3 authorization configuration part (i.e., <strong><em>without buckets name</em></strong>) in Seafile and some extension components (such as <em>SeaSearch</em>, <em>Metadata server</em>) configuration will be read from this configuration by default. </p>
+<p>However, please note that Seafile only support configuring S3 in <code>.env</code> for <strong>single storage backend mode</strong> (i.e., when <code>USE_S3_STORAGE=true</code>), if you would like to use multiple backends, please set <code>USE_S3_STORAGE=false</code> in <code>.env</code> and refer <a href="../../setup/setup_with_multiple_storage_backends/">here</a> for the details.</p>
 </div>
 <h2 id="seasearch">SeaSearch<a class="headerlink" href="#seasearch" title="Permanent link">&para;</a></h2>
 <p>For configurations about SeaSearch in <code>.env</code>, please refer <a href="https://seasearch-manual.seafile.com/config/">here</a> for the details.</p>
 <h2 id="metadata-server">Metadata server<a class="headerlink" href="#metadata-server" title="Permanent link">&para;</a></h2>
 <p>For configurations about Metadata server in <code>.env</code>, please refer <a href="../../extension/metadata-server/#list-of-environment-variables-of-metadata-server">here</a> for the details.</p>
+<h2 id="notification-server">Notification server<a class="headerlink" href="#notification-server" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>NOTIFICATION_SERVER_URL</code>: The <a href="../../extension/notification-server/">notification server</a> url, leave blank to disable it (default).</li>
+</ul>
+<h2 id="cluster-init-configuration">Cluster init configuration<a class="headerlink" href="#cluster-init-configuration" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>CLUSTER_INIT_MODE</code>: (only valid in pro edition at deploying first time). Cluster initialization mode, in which the necessary configuration files for the service to run will be generated (but <strong>the service will not be started</strong>). If the configuration file already exists, no operation will be performed. The default value is <code>true</code>. When the configuration file is generated, <strong><em>be sure to set this item to <code>false</code></em></strong>.</li>
+<li><code>CLUSTER_INIT_ES_HOST</code>: (only valid in pro edition at deploying first time). Your cluster Elasticsearch server host.</li>
+<li><code>CLUSTER_INIT_ES_PORT</code>: (only valid in pro edition at deploying first time). Your cluster Elasticsearch server port. Default is <code>9200</code>.</li>
+<li><code>CLUSTER_MODE</code>: Seafile service node type, i.e., <code>frontend</code> (default) or <code>backend</code>.</li>
+</ul>
 
 
 

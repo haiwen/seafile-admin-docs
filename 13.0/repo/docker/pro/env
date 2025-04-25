@@ -58,11 +58,12 @@ REDIS_PASSWORD=
 MEMCACHED_HOST=memcached
 MEMCACHED_PORT=11211
 
-### S3
+## S3
 USE_S3_STORAGE=false
 S3_COMMIT_BUCKET=<your commit bucket name>
 S3_FS_BUCKET=<your fs bucket name>
 S3_BLOCK_BUCKET=<your block bucket name>
+
 
 ######################################
 #        Initial variables           #
@@ -110,6 +111,9 @@ MD_STORAGE_TYPE=file # options: file (local disk), s3, oss
 ### S3
 S3_MD_BUCKET=<your metadata bucket name>
 
+## Notification
+NOTIFICATION_SERVER_URL=
+
 ###################################
 # S3 authorization Configurations #
 #    (This configurations will    #
@@ -121,6 +125,6 @@ S3_SECRET_KEY=<your-secret-key>
 S3_USE_V4_SIGNATURE=true
 S3_PATH_STYLE_REQUEST=false
 S3_AWS_REGION=us-east-1
-S3_HOST=s3.us-east-1.amazonaws.com
+S3_HOST=
 S3_USE_HTTPS=true
 S3_SSE_C_KEY=

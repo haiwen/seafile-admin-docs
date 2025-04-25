@@ -4854,7 +4854,7 @@ MD_STORAGE_TYPE=file
 <span class="c1">#     apply to all components)    #</span>
 <span class="c1">###################################</span>
 </code></pre></div>
-<p>The S3 authorization configuration part (i.e., <strong><em>without buckets name</em></strong>) in Seafile initialization and some extension components (such as <em>SeaSearch</em>, <em>Metadata server</em>) configuration will be read from this configuration by default. </p>
+<p>The S3 authorization configuration part (i.e., <strong><em>without buckets name</em></strong>) in Seafile and some extension components (such as <em>SeaSearch</em>, <em>Metadata server</em>) configuration will be read from this configuration by default. </p>
 <p>In other words, if you deploy SeaSearch and Seafile together, and if you have deployed Seafile Pro following <a href="../../setup/setup_pro_by_docker/#downloading-and-modifying-env">here</a> (and using the latest <code>.env</code>), you only need to specify the following variables in <code>.env</code> to make it work:</p>
 <div class="highlight"><pre><span></span><code><span class="nv">S3_MD_BUCKET</span><span class="o">=</span>&lt;your<span class="w"> </span>s3<span class="w"> </span>bucket<span class="w"> </span>name<span class="w"> </span><span class="k">for</span><span class="w"> </span>Metadata&gt;
 </code></pre></div>

@@ -4924,13 +4924,16 @@
 <li>
 <p>Modify <code>.env</code>, update image version and add cache configurations:</p>
 <div class="admonition note">
-<p class="admonition-title">Variables change logs for <code>.env</code></p>
+<p class="admonition-title">Variables change logs for <code>.env</code> in Seafile 13</p>
 <ol>
 <li>
-<p>From Seafile docker 13, the configurations of database and cache can get from environment variables directly (you can define it in the <code>.env</code>). What's more, the Redis will be recommended as the primary cache server for supporting some new features (please refer the <strong><em>upgradte notes</em></strong>, you can also refer to more details about Redis in Seafile Docker <a href="../../setup/setup_pro_by_docker/#about-redis">here</a>) and is the default type of cache provided  in Seafile 13. </p>
+<p>The configurations of database and cache can get from environment variables directly (you can define it in the <code>.env</code>). What's more, the Redis will be recommended as the primary cache server for supporting some new features (please refer the <strong><em>upgradte notes</em></strong>, you can also refer to more details about Redis in Seafile Docker <a href="../../setup/setup_pro_by_docker/#about-redis">here</a>) and is the default type of cache provided  in Seafile 13. </p>
 </li>
 <li>
-<p>Starting from Seafile 13, When initializing Seafile, the configuration of S3, the SeaSearch component, and the newly supported Metadata server component all use unified variables (i.e., <code>S3_xxx</code>) for the authorization information of S3 in the new deployment. Please refer to the end of <a href="../../setup/setup_pro_by_docker/#downloading-and-modifying-env">the table in Seafile Pro deployment</a> for details. If you plan to deploy or redeploy these components in the future, <strong>please pay attention to changes in variable names</strong>.</p>
+<p>The configuration of S3 (including Seafile server, SeaSearch, and the newly supported Metadata server) will use unified variables (i.e., <code>S3_xxx</code>) for the authorization information of S3 in the new deployment. Please refer to the end of <a href="../../setup/setup_pro_by_docker/#downloading-and-modifying-env">the table in Seafile Pro deployment</a> for details. If you plan to deploy or redeploy these components in the future, <strong>please pay attention to changes in variable names</strong>.</p>
+</li>
+<li>
+<p>The configuration of notification server will no longer read from <code>seafile.conf</code>, rather than the variable <code>NOTIFICATION_SERVER_URL</code> in the <code>.env</code> and leave blank to disable this feature.</p>
 </li>
 </ol>
 </div>
@@ -4964,6 +4967,11 @@
 <span class="c1">### Memcached</span>
 <span class="nv">MEMCACHED_HOST</span><span class="o">=</span>memcached
 <span class="nv">MEMCACHED_PORT</span><span class="o">=</span><span class="m">11211</span>
+</code></pre></div>
+</li>
+<li>
+<p>Add configuration for notification server (if is enabled in Seafile 12):</p>
+<div class="highlight"><pre><span></span><code><span class="nv">NOTIFICATION_SERVER_URL</span><span class="o">=</span>&lt;your<span class="w"> </span>notification<span class="w"> </span>server<span class="w"> </span>url&gt;
 </code></pre></div>
 </li>
 </ul>
