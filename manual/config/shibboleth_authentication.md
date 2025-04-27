@@ -248,6 +248,38 @@ SHIBBOLETH_AFFILIATION_ROLE_MAP = {
 
 After Shibboleth login, Seafile should calcualte user's role from affiliation and SHIBBOLETH_AFFILIATION_ROLE_MAP.
 
+### Custom set user role
+
+If you are unable to set user roles by obtaining affiliation information, or if you wish to have a more customized way of setting user roles, you can add the following configuration to achieve this.
+
+For example, set all users whose email addresses end with `@seafile.com` as `default`, and set other users as `guest`.
+
+First, update the `SHIBBOLETH_ATTRIBUTE_MAP` configuration in seahub_settings.py, and add `HTTP_REMOTE_USER`.
+
+```
+SHIBBOLETH_ATTRIBUTE_MAP = {
+    ....
+    "HTTP_REMOTE_USER": (False, "remote_user"),
+    ....
+}
+```
+
+Then, create `/opt/seafile/conf/seahub_custom_functions/__init__.py` file and add the following code.
+```
+# function name `custom_shibboleth_get_user_role` should NOT be changed
+def custom_shibboleth_get_user_role(shib_meta):
+
+    remote_user = shib_meta.get('remote_user', '')
+    if not remote_user:
+        return ''
+
+    remote_user = remote_user.lower()
+    if remote_user.endswith('@seafile.com'):
+        return 'default'
+    else:
+        return 'guest'
+```
+
 ## Verify
 
 After restarting Apache and Seahub service (`./seahub.sh restart`), you can then test the shibboleth login workflow.
