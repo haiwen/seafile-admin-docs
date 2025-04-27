@@ -4169,6 +4169,48 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#9-optional-update-gunicornconfpy-file-in-conf-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      9) (Optional) Update gunicorn.conf.py file in conf/ directory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-optional-other-configuration-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      10) (Optional) Other configuration changes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10) (Optional) Other configuration changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable-passing-of-remote_user" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable passing of REMOTE_USER
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supplement-or-remove-allowed_hosts-in-seahub_settingspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supplement or remove ALLOWED_HOSTS in seahub_settings.py
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4869,6 +4911,48 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#9-optional-update-gunicornconfpy-file-in-conf-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      9) (Optional) Update gunicorn.conf.py file in conf/ directory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-optional-other-configuration-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      10) (Optional) Other configuration changes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10) (Optional) Other configuration changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable-passing-of-remote_user" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable passing of REMOTE_USER
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supplement-or-remove-allowed_hosts-in-seahub_settingspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supplement or remove ALLOWED_HOSTS in seahub_settings.py
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4930,6 +5014,7 @@ Please always follow the main <a href="../upgrade/">upgrade guide</a>.</p>
 <li>SERVICE_URL and FILE_SERVER_ROOT are removed. SERVICE_URL will be calculated from SEAFILE_SERVER_PROTOCOL and SEAFILE_SERVER_HOSTNAME in <code>.env</code> file.</li>
 <li><code>ccnet.conf</code> is removed. Some of its configuration items are moved from <code>.env</code> file, others are read from items in <code>seafile.conf</code> with same name.</li>
 <li>Two role permissions are added, <code>can_create_wiki</code> and <code>can_publish_wiki</code> are used to control whether a role can create a Wiki and publish a Wiki. The old role permission <code>can_publish_repo</code> is removed.</li>
+<li>REMOTE_USER header is not passed to Seafile by default, you need to change <code>gunicorn.conf.py</code> if you need REMOTE_USER header for SSO.</li>
 </ul>
 <p>Other changes:</p>
 <ul>
@@ -5035,6 +5120,21 @@ SEAFILE_MYSQL_DB_SEAHUB_DB_NAME=seahub_db
 <p>From version 1.0, SeaDoc is using seahub_db database to store its operation logs and no longer need an extra database sdoc_db. The database tables in seahub_db are created automatically when you upgrade Seafile server from v11.0 to v12.0. You can simply delete sdoc_db.</p>
 <h4 id="82-deploy-a-new-seadoc-server">8.2) Deploy a new SeaDoc server<a class="headerlink" href="#82-deploy-a-new-seadoc-server" title="Permanent link">&para;</a></h4>
 <p>Please see the document <a href="../../extension/setup_seadoc/">Setup SeaDoc</a> to install SeaDoc on a separate machine and integrate with your binary packaged based Seafile server v12.0.</p>
+<h3 id="9-optional-update-gunicornconfpy-file-in-conf-directory">9) (Optional) Update <code>gunicorn.conf.py</code> file in <code>conf/</code> directory<a class="headerlink" href="#9-optional-update-gunicornconfpy-file-in-conf-directory" title="Permanent link">&para;</a></h3>
+<p>If you deployed single sign on (SSO) by Shibboleth protocol, the following line should be added to the gunicorn config file.</p>
+<div class="highlight"><pre><span></span><code><span class="n">forwarder_headers</span> <span class="o">=</span> <span class="s1">&#39;SCRIPT_NAME,PATH_INFO,REMOTE_USER&#39;</span>
+</code></pre></div>
+<h3 id="10-optional-other-configuration-changes">10) (Optional) Other configuration changes<a class="headerlink" href="#10-optional-other-configuration-changes" title="Permanent link">&para;</a></h3>
+<h4 id="enable-passing-of-remote_user">Enable passing of REMOTE_USER<a class="headerlink" href="#enable-passing-of-remote_user" title="Permanent link">&para;</a></h4>
+<p>REMOTE_USER header is not passed to Seafile by default, you need to change <code>gunicorn.conf.py</code> if you need REMOTE_USER header for SSO.</p>
+<div class="highlight"><pre><span></span><code><span class="n">forwarder_headers</span> <span class="o">=</span> <span class="s1">&#39;SCRIPT_NAME,PATH_INFO,REMOTE_USER&#39;</span>
+</code></pre></div>
+<h4 id="supplement-or-remove-allowed_hosts-in-seahub_settingspy">Supplement or remove ALLOWED_HOSTS in seahub_settings.py<a class="headerlink" href="#supplement-or-remove-allowed_hosts-in-seahub_settingspy" title="Permanent link">&para;</a></h4>
+<p>Since version 12.0, the seaf-server component need to send internal requests to seahub component to check permissions, as reporting <strong><em>400 Error</em></strong> when downloading files if the <code>ALLOWED_HOSTS</code> set incorrect. In this case, you can either <strong>remove</strong> <code>ALLOWED_HOSTS</code> in <code>seahub_settings.py</code> or <strong>supplement</strong> <code>127.0.0.1</code> in <code>ALLOWED_HOSTS</code> list:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># seahub_settings.py</span>
+
+<span class="n">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;...(your domain)&#39;</span><span class="p">,</span> <span class="s1">&#39;127.0.0.1&#39;</span><span class="p">]</span>
+</code></pre></div>
 <h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
 <p>We have documented common issues encountered by users when upgrading to version 12.0 in our FAQ <a href="https://cloud.seatable.io/dtable/external-links/7b976c85f504491cbe8e/?tid=0000&amp;vid=0000">https://cloud.seatable.io/dtable/external-links/7b976c85f504491cbe8e/?tid=0000&amp;vid=0000</a>.</p>
 <p>If you encounter any issue, please give it a check.</p>
