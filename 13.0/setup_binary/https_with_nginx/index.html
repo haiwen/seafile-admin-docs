@@ -4911,7 +4911,7 @@
 
 
 <h1 id="enabling-https-with-nginx">Enabling HTTPS with Nginx<a class="headerlink" href="#enabling-https-with-nginx" title="Permanent link">&para;</a></h1>
-<p>After completing the installation of <a href="./installation_ce.md">Seafile Server Community Edition</a> and <a href="../installation_pro/">Seafile Server Professional Edition</a>, communication between the Seafile server and clients runs over (unencrypted) HTTP. While HTTP is ok for testing purposes, switching to HTTPS is imperative for production use.</p>
+<p>After completing the installation of <a href="../installation_pro/">Seafile Server Professional Edition</a>, communication between the Seafile server and clients runs over (unencrypted) HTTP. While HTTP is ok for testing purposes, switching to HTTPS is imperative for production use.</p>
 <p>HTTPS requires a SSL certificate from a Certificate Authority (CA). Unless you already have a SSL certificate, we recommend that you get your SSL certificate from <a href="https://letsencrypt.org/">Let’s Encrypt</a> using Certbot. If you have a SSL certificate from another CA, skip the section "Getting a Let's Encrypt certificate".</p>
 <p>A second requirement is a reverse proxy supporting SSL. <a href="http://nginx.org/">Nginx</a>, a popular and resource-friendly web server and reverse proxy, is a good option.  Nginx's documentation is available at http://nginx.org/en/docs/.</p>
 <h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
