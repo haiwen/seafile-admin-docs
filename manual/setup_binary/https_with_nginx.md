@@ -1,6 +1,6 @@
 # Enabling HTTPS with Nginx
 
-After completing the installation of [Seafile Server Community Edition](./installation_ce.md) and [Seafile Server Professional Edition](./installation_pro.md), communication between the Seafile server and clients runs over (unencrypted) HTTP. While HTTP is ok for testing purposes, switching to HTTPS is imperative for production use.
+After completing the installation of [Seafile Server Professional Edition](./installation_pro.md), communication between the Seafile server and clients runs over (unencrypted) HTTP. While HTTP is ok for testing purposes, switching to HTTPS is imperative for production use.
 
 HTTPS requires a SSL certificate from a Certificate Authority (CA). Unless you already have a SSL certificate, we recommend that you get your SSL certificate from [Let’s Encrypt](https://letsencrypt.org/) using Certbot. If you have a SSL certificate from another CA, skip the section "Getting a Let's Encrypt certificate".
 
