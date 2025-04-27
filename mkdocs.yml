@@ -121,12 +121,11 @@ nav:
   - Setup (binary):
     - Seafile Community Setup:
       - Outline: setup_binary/outline_ce.md
-      - Installation: setup_binary/installation_ce.md
-      - HTTPS with Nginx: setup_binary/https_with_nginx.md
     - Seafile Professional Setup:
       - Outline: setup_binary/outline_pro.md
       - License: setup_binary/seafile_professional_sdition_software_license_agreement.md
       - Installation: setup_binary/installation_pro.md
+      - HTTPS with Nginx: setup_binary/https_with_nginx.md
       - Cluster Deployment: setup_binary/cluster_deployment.md
     - Other deployment notes:
       - Start Seafile at System Bootup: setup_binary/start_seafile_at_system_bootup.md
