@@ -8,6 +8,12 @@
 
 Please check our document for how to upgrade to [12.0](../upgrade/upgrade_notes_for_12.0.x.md)
 
+### 12.0.12 (2025-04-21)
+
+* [fix] Fix a UI bug in "share admin -> share links"
+* [fix] Fix a bug in rendering "system admin -> users"
+* Update translations
+
 ### 12.0.11 (2025-03-20)
 
 * [fix] Fix a stored XSS issue
