@@ -152,15 +152,15 @@ nav:
   - Configuration:
     - Authentication & Users:
       - LDAP/AD Integration:
-        - LDAP Integration: config/ldap_in_11.0_ce.md
-        - LDAP Integration (Pro): config/ldap_in_11.0_pro.md
+        - LDAP Integration: config/ldap_in_ce.md
+        - LDAP Integration (Pro): config/ldap_in_pro.md
       - Single Sign On:
         - Outline: config/single_sign_on.md
         - OAuth Authentication: config/oauth.md
         - Remote User Authentication: config/remote_user.md
         - Shibboleth Authentication: config/shibboleth_authentication.md
         - Auto Login to SeaDrive on Windows: config/auto_login_seadrive.md
-        - SAML 2.0 (Pro): config/saml2_in_10.0.md
+        - SAML 2.0 (Pro): config/saml2.md
         - Switch authentication: config/auth_switch.md
       - Advanced User Management (Pro):
         - Multi-Institutions Support: config/multi_institutions.md
