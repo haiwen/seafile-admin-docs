@@ -1,0 +1,24 @@
+services:
+
+  index-server:
+    image: ${INDEX_SERVER_IMAGE:-seafileltd/index-server:13.0-latest}
+    container_name: index-server
+    volumes:
+      - ${SEAFILE_VOLUME:-/opt/seafile-data/}:/shared
+    environment:
+      - SEAFILE_MYSQL_DB_HOST=${SEAFILE_MYSQL_DB_HOST:-db}
+      - SEAFILE_MYSQL_DB_PORT=${SEAFILE_MYSQL_DB_PORT:-3306}
+      - SEAFILE_MYSQL_DB_USER=${SEAFILE_MYSQL_DB_USER:-seafile}
+      - SEAFILE_MYSQL_DB_PASSWORD=${SEAFILE_MYSQL_DB_PASSWORD:?Variable is not set or empty}
+      - SEAFILE_MYSQL_DB_SEAFILE_DB_NAME=${SEAFILE_MYSQL_DB_SEAFILE_DB_NAME:-seafile_db}
+      - TIME_ZONE=${TIME_ZONE:-Etc/UTC}
+      - REDIS_HOST=${REDIS_HOST:-redis}
+      - REDIS_PORT=${REDIS_PORT:-6379}
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-}
+      - CLUSTER_MODE=${CLUSTER_MODE:-master}
+    networks:
+      - seafile-net
+
+networks:
+  seafile-net:
+    name: seafile-net
