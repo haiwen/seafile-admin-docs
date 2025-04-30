@@ -1,7 +1,7 @@
 services:
 
   index-server:
-    image: ${INDEX_SERVER_IMAGE:-seafileltd/index-server:13.0-latest}
+    image: ${INDEX_SERVER_IMAGE:-seafileltd/index-server:12.0.13-testing}
     container_name: index-server
     volumes:
       - ${SEAFILE_VOLUME:-/opt/seafile-data/}:/shared
