@@ -74,40 +74,52 @@ enabled=false
 
 ## Deploy distributed indexing
 
-First, prepare a seafes master node and several seafes slave nodes, the number of slave nodes depends on your needs. Deploy Seafile on these nodes, and copy the configuration files in the `conf` directory from the frontend nodes. The master node and slave nodes do not need to start Seafile, but need to read the configuration files to obtain the necessary information.
+First, prepare a seafes master node and several seafes slave nodes, the number of slave nodes depends on your needs. Copy the configuration files in the `conf` directory from the Seafile frontend nodes to `/opt/seafile-data/seafile/conf`. The master node and slave nodes need to read the configuration files to obtain the necessary information.
+
+Then download `.env` and `index-server.yml` to `/opt/seafile` in all nodes. Modify mysql and redis configurations in `.env`.
+
+```env
+SEAFILE_MYSQL_DB_HOST=192.168.0.x
+SEAFILE_MYSQL_DB_PORT=3306
+SEAFILE_MYSQL_DB_USER=seafile
+SEAFILE_MYSQL_DB_PASSWORD=PASSWORD
+
+REDIS_HOST=192.168.0.x
+REDIS_PORT=6379
+REDIS_PASSWORD=
+
+CLUSTER_MODE=master
+```
+
+!!! note
+    CLUSTER_MODE needs to be configured as master on the master node, and needs to be configured as worker on the slave nodes.
 
 Next, create a configuration file `index-master.conf` in the `conf` directory of the master node, e.g.
 
-```
+```conf
 [DEFAULT]
-mq_type=redis   # must be redis
-
-[REDIS]
-server=127.0.0.1   # your redis server host
-port=6379          # your redis server port
-password=xxx       # your redis server password, if not password, do not set this item
+mq_type=redis
 ```
 
-Execute `./run_index_master.sh [start/stop/restart]` in the `seafile-server-last` directory (or `/scripts` inner the Seafile-docker container) to control the program to start, stop and restart.
+Start master node.
+
+```bash
+docker compose up -d
+```
 
 Next, create a configuration file `index-slave.conf` in the `conf` directory of all slave nodes, e.g.
 
-```
+```conf
 [DEFAULT]
-mq_type=redis     # must be redis
-index_workers=2   # number of threads to create/update indexes, you can increase this value according to your needs
-
-[REDIS]
-server=127.0.0.1   # your redis server host
-port=6379          # your redis server port
-password=xxx       # your redis server password, if not password, do not set this item
+mq_type=redis
+index_workers=2
 ```
 
-Execute `./run_index_worker.sh [start/stop/restart]` in the `seafile-server-last` directory (or `/scripts` inner the Seafile-docker container) to control the program to start, stop and restart.
+Start all slave nodes.
 
-!!! note
-
-    The index worker connects to backend storage directly. You don't need to run seaf-server in index worker node. 
+```bash
+docker compose up -d
+```
 
 ## Some commands in distributed indexing
 
@@ -124,4 +136,4 @@ List the number of indexing tasks currently remaining, execute in the `seafile-s
 $ ./run_index_master.sh python-env index_op.py --mode show_all_task
 ```
 
-The above commands need to be run on the master node.
+The above commands need to be run on the Seafile node.
