@@ -19,7 +19,6 @@ SEAFILE_VOLUME=$BASIC_STORAGE_PATH/seafile-data
 SEAFILE_MYSQL_VOLUME=$BASIC_STORAGE_PATH/seafile-mysql/db
 SEAFILE_CADDY_VOLUME=$BASIC_STORAGE_PATH/seafile-caddy
 SEADOC_VOLUME=$BASIC_STORAGE_PATH/seadoc-data
-NOTIFICATION_SERVER_VOLUME=$BASIC_STORAGE_PATH/notification-data
 
 #################################
 #      Startup parameters       #
