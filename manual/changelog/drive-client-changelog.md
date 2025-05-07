@@ -3,7 +3,7 @@
 ### 3.0.14 (2025/05/07)
 
 * \[win] Avoid potential file overwriting issue after internal metadata is removed by Anti-virus
-* \[win] Keep encryption keys after auto-resyncing an encrypted library
+* \[win] Keep encryption keys after auto-resyncing an encrypted library, when internal metadata is removed by Anti-virus
 * \[win] Enhance handling of pinned files
 * \[mac] Auto lock office files when they're opened (requires macOS 15+)
 
