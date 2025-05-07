@@ -1190,6 +1190,30 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#other-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other configurations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Other configurations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-tokenization-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set tokenization language
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4640,6 +4664,30 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#other-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other configurations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Other configurations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-tokenization-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set tokenization language
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4751,6 +4799,14 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 <p class="admonition-title">After first time start SeaSearch Server</p>
 <p>You can remove the initial admin account informations in <code>.env</code> (e.g., <code>INIT_SS_ADMIN_USER</code>, <code>INIT_SS_ADMIN_PASSWORD</code>), which are only used in the SeaSearch initialization progress (i.e., the <strong>first time</strong> to start services). But make sure <strong>you have recorded it somewhere else in case you forget the password</strong>.</p>
 </div>
+<h2 id="other-configurations">Other configurations<a class="headerlink" href="#other-configurations" title="Permanent link">&para;</a></h2>
+<h3 id="set-tokenization-language">Set tokenization language<a class="headerlink" href="#set-tokenization-language" title="Permanent link">&para;</a></h3>
+<p>By default, SeaSearch use word based tokenizer designed for English/German/French language. You can add following configuration to use tokenizer designed for Chinese language.</p>
+<div class="highlight"><pre><span></span><code>[SEASEARCH]
+enabled = true
+...
+lang = chinese
+</code></pre></div>
 
 
 
