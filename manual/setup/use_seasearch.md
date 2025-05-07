@@ -111,3 +111,15 @@ After startup the SeaSearch service, you can check the following logs for Whethe
 !!! tip "After first time start SeaSearch Server"
     You can remove the initial admin account informations in `.env` (e.g., `INIT_SS_ADMIN_USER`, `INIT_SS_ADMIN_PASSWORD`), which are only used in the SeaSearch initialization progress (i.e., the **first time** to start services). But make sure **you have recorded it somewhere else in case you forget the password**.
 
+## Other configurations
+
+### Set tokenization language
+
+By default, SeaSearch use word based tokenizer designed for English/German/French language. You can add following configuration to use tokenizer designed for Chinese language.
+
+```
+[SEASEARCH]
+enabled = true
+...
+lang = chinese
+```
