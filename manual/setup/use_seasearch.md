@@ -85,6 +85,7 @@ If you would like to use *SeaSearch* as the search engine, the `elasticSearch` s
     seasearch_url = http://seasearch:4080
     seasearch_token = <your auth token>
     interval = 10m
+    lang = chinese
     ```
 
 3. Disable the ElasticSearch, as you can set `enabled = false` in `INDEX FILES` section:
