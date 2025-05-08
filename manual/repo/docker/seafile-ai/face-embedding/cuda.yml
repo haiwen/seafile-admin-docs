@@ -1,0 +1,26 @@
+services:
+  face-embedding:
+    image: ${FACE_EMBEDDING_IMAGE:-seafileltd/face-embedding:cuda-latest}
+    container_name: face-embedding
+    # ports:
+    #  - 8886:8886
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    devices:
+      - "/dev/dri:/dev/dri"
+    volumes:
+      - ${FACE_EMBEDDING_VOLUME:-/opt/face_embedding}/models:/models
+      - ${FACE_EMBEDDING_VOLUME:-/opt/face_embedding}/logs:/logs
+    environment:
+      - FACE_EMBEDDING_SERVICE_KEY=${JWT_PRIVATE_KEY:?JWT_PRIVATE_KEY is not set or empty}
+    # - FACE_EMBEDDING_SERVICE_KEY=$FACE_EMBEDDING_SERVICE_KEY
+    networks:
+      - seafile-net
+networks:
+  seafile-net:
+    name: seafile-net
