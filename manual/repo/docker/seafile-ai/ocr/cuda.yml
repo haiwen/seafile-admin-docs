@@ -1,0 +1,26 @@
+services:
+  face-embedding:
+    image: ${OCR_IMAGE:-seafileltd/ocr:cuda-latest}
+    container_name: face-embedding
+    # ports:
+    #  - 8887:8887
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    devices:
+      - "/dev/dri:/dev/dri"
+    volumes:
+      - ${OCR_VOLUME:-/opt/ocr}/models:/models
+      - ${OCR_VOLUME:-/opt/ocr}/logs:/logs
+    environment:
+      - OCR_SERVICE_KEY=${JWT_PRIVATE_KEY:?JWT_PRIVATE_KEY is not set or empty}
+    # - OCR_SERVICE_KEY=$OCR_SERVICE_KEY
+    networks:
+      - seafile-net
+networks:
+  seafile-net:
+    name: seafile-net
