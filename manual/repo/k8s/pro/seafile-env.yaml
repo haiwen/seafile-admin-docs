@@ -47,6 +47,10 @@ data:
   # for notification
   NOTIFICATION_SERVER_URL: ""
 
+  # Seafile AI
+  ENABLE_SEAFILE_AI: "false"
+  SEAFILE_AI_SERVER_URL: "<required when ENABLE_SEAFILE_AI=true>"
+
   # Init
   ## for Seafile admin
   INIT_SEAFILE_ADMIN_EMAIL: "<Seafile admin's email>"

@@ -45,6 +45,10 @@ S3_SSE_C_KEY=
 ## Notification
 NOTIFICATION_SERVER_URL=
 
+## Seafile AI
+ENABLE_SEAFILE_AI=false
+SEAFILE_AI_SERVER_URL=
+
 ######################################
 #        Initial variables           #
 # (Only valid in first-time startup) #
