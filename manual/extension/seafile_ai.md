@@ -1,4 +1,4 @@
-# Seafile AI extension (Pro)
+# Seafile AI extension
 
 From Seafile 13 Pro, users can enable ***Seafile AI*** to support the following features:
 
@@ -14,7 +14,7 @@ The Seafile AI basic service will use API calls to external large language model
 1. Download `seafile-ai.yml`
 
     ```sh
-    wget https://manual.seafile.com/13.0/repo/docker/pro/seafile-ai.yml
+    wget https://manual.seafile.com/13.0/repo/docker/seafile-ai.yml
     ```
 
     !!! note "Deploy in a cluster"
@@ -119,14 +119,13 @@ Since the model service may need to be deployed on some hosts with GPU(s), it ma
         face-embedding:
         ...
         ports:
-            - 8886:8886
+            - 80:8886
     ```
 
 2. Modify the `.env` of the Seafile AI basic service:
 
     ```
-    # donot forget to add the port number corresponding to the service at the end of the address, e.g., `8886` for face embedding
-    FACE_EMBEDDING_SERVICE_URL=<your face embedding service URL>:8886
+    FACE_EMBEDDING_SERVICE_URL=<your face embedding service URL>
     ```
 
 3. Make sure `JWT_PRIVATE_KEY` has set in the `.env` for model service and is same as the Seafile server
