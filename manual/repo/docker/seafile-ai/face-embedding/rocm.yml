@@ -3,7 +3,7 @@ services:
     image: ${FACE_EMBEDDING_IMAGE:-seafileltd/face-embedding:rocm-latest}
     container_name: face-embedding
     # ports:
-    #  - 8886:8886
+    #  - 80:8886
     devices:
       - "/dev/kfd:/dev/kfd"
     volumes:
