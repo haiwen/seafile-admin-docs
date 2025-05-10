@@ -78,7 +78,7 @@ services:
       - INIT_S3_SECRET_KEY=${INIT_S3_SECRET_KEY:-}
       - INIT_S3_USE_V4_SIGNATURE=${INIT_S3_USE_V4_SIGNATURE:-true}
       - INIT_S3_AWS_REGION=${INIT_S3_AWS_REGION:-us-east-1}
-      - INIT_S3_HOST=${INIT_S3_HOST:-us-east-1}
+      - INIT_S3_HOST=${INIT_S3_HOST:-}
       - INIT_S3_USE_HTTPS=${INIT_S3_USE_HTTPS:-true}
     # please remove the label section
     depends_on:
