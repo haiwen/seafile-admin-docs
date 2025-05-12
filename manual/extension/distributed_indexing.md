@@ -76,17 +76,13 @@ enabled=false
 
 First, prepare a seafes master node and several seafes slave nodes, the number of slave nodes depends on your needs. Copy the configuration files in the `conf` directory from the Seafile frontend nodes to `/opt/seafile-data/seafile/conf`. The master node and slave nodes need to read the configuration files to obtain the necessary information.
 
-Then download `.env` and `index-server.yml` to `/opt/seafile` in all nodes. Modify mysql and redis configurations in `.env`.
+Then download `.env` and `index-server.yml` to `/opt/seafile` in all nodes. Modify mysql configurations in `.env`.
 
 ```env
-SEAFILE_MYSQL_DB_HOST=192.168.0.x
+SEAFILE_MYSQL_DB_HOST=127.0.0.1
 SEAFILE_MYSQL_DB_PORT=3306
 SEAFILE_MYSQL_DB_USER=seafile
 SEAFILE_MYSQL_DB_PASSWORD=PASSWORD
-
-REDIS_HOST=192.168.0.x
-REDIS_PORT=6379
-REDIS_PASSWORD=
 
 CLUSTER_MODE=master
 ```
@@ -98,7 +94,12 @@ Next, create a configuration file `index-master.conf` in the `conf` directory of
 
 ```conf
 [DEFAULT]
-mq_type=redis
+mq_type=redis      # must be redis
+
+[REDIS]
+server=127.0.0.1   # your redis server host
+port=6379          # your redis server port
+password=xxx       # your redis server password, if not password, do not set this item
 ```
 
 Start master node.
@@ -111,8 +112,13 @@ Next, create a configuration file `index-slave.conf` in the `conf` directory of 
 
 ```conf
 [DEFAULT]
-mq_type=redis
-index_workers=2
+mq_type=redis      # must be redis
+index_workers=2    # number of threads to create/update indexes, you can increase this value according to your needs
+
+[REDIS]
+server=127.0.0.1   # your redis server host
+port=6379          # your redis server port
+password=xxx       # your redis server password, if not password, do not set this item
 ```
 
 Start all slave nodes.
