@@ -124,17 +124,22 @@ docker compose up -d
 
 ## Some commands in distributed indexing
 
-Rebuild search index, execute in the `seafile-server-last` directory (or `/scripts` inner the Seafile-docker container):
+Rebuild search index, first execute the command in the Seafile node:
 
-```
-$ ./pro/pro.py search --clear
-$ ./run_index_master.sh python-env index_op.py --mode resotre_all_repo
-```
-
-List the number of indexing tasks currently remaining, execute in the `seafile-server-last` directory (or `/scripts` inner the Seafile-docker container):
-
-```
-$ ./run_index_master.sh python-env index_op.py --mode show_all_task
+```bash
+cd /opt/seafile/seafile-server-last/
+./pro/pro.py search --clear
 ```
 
-The above commands need to be run on the Seafile node.
+Then execute the command in the index-server master node:
+
+```bash
+docker exec -it index-server bash
+/opt/seafile/index-server/index-server.sh restore-all-repo
+```
+
+List the number of indexing tasks currently remaining, execute the command in the index-server master node:
+
+```bash
+/opt/seafile/index-server/index-server.sh show-all-task
+```
