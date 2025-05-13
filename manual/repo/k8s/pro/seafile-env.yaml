@@ -33,5 +33,5 @@ data:
   INIT_S3_KEY_ID: ""
   INIT_S3_USE_V4_SIGNATURE: "true"
   INIT_S3_AWS_REGION: "us-east-1"
-  INIT_S3_HOST: "s3.us-east-1.amazonaws.com"
+  INIT_S3_HOST: ""
   INIT_S3_USE_HTTPS: "true"

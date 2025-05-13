@@ -47,7 +47,7 @@ INIT_S3_KEY_ID=<your-key-id>
 INIT_S3_SECRET_KEY=<your-secret-key>
 INIT_S3_USE_V4_SIGNATURE=true
 INIT_S3_AWS_REGION=us-east-1
-INIT_S3_HOST=s3.us-east-1.amazonaws.com
+INIT_S3_HOST=
 INIT_S3_USE_HTTPS=true
 
 # SeaDoc service
@@ -76,7 +76,7 @@ SS_MAX_OBJ_CACHE_SIZE=10GB
 SS_S3_USE_V4_SIGNATURE=false
 SS_S3_ACCESS_ID=<your access id>
 SS_S3_ACCESS_SECRET=<your access secret>
-SS_S3_ENDPOINT=s3.us-east-1.amazonaws.com
+SS_S3_ENDPOINT=
 SS_S3_BUCKET=<your bucket name>
 SS_S3_USE_HTTPS=true
 SS_S3_PATH_STYLE_REQUEST=true
