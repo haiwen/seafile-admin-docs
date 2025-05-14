@@ -4812,7 +4812,7 @@ password=xxx       # your redis server password, if not password, do not set thi
 <p>Start master node.</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
-<p>Next, create a configuration file <code>index-slave.conf</code> in the <code>conf</code> directory of all slave nodes, e.g.</p>
+<p>Next, create a configuration file <code>index-worker.conf</code> in the <code>conf</code> directory of all slave nodes, e.g.</p>
 <div class="highlight"><pre><span></span><code>[DEFAULT]
 mq_type=redis      # must be redis
 index_workers=2    # number of threads to create/update indexes, you can increase this value according to your needs
