@@ -69,9 +69,16 @@ enabled=false
 
 ## Deploy distributed indexing
 
-First, prepare a seafes master node and several seafes slave nodes, the number of slave nodes depends on your needs. Copy the configuration files in the `conf` directory from the Seafile frontend nodes to `/opt/seafile-data/seafile/conf`. The master node and slave nodes need to read the configuration files to obtain the necessary information.
+First, prepare a seafes master node and several seafes slave nodes, the number of slave nodes depends on your needs. Copy the `seafile.conf` and the `seafevents.conf` in the `conf` directory from the Seafile frontend nodes to `/opt/seafile-data/seafile/conf` in index-server nodes. The master node and slave nodes need to read the configuration files to obtain the necessary information.
 
-Then download `.env` and `index-server.yml` to `/opt/seafile` in all nodes. Modify mysql configurations in `.env`.
+Then download `.env` and `index-server.yml` to `/opt/seafile` in all index-server nodes.
+
+```bash
+wget https://manual.seafile.com/12.0/repo/docker/index-server/index-server.yml
+wget -O .env https://manual.seafile.com/12.0/repo/docker/index-server/env
+```
+
+Modify mysql configurations in `.env`.
 
 ```env
 SEAFILE_MYSQL_DB_HOST=127.0.0.1
@@ -83,7 +90,7 @@ CLUSTER_MODE=master
 ```
 
 !!! note
-    CLUSTER_MODE needs to be configured as master on the master node, and needs to be configured as worker on the slave nodes.
+    CLUSTER_MODE needs to be configured as `master` on the master node, and needs to be configured as `worker` on the slave nodes.
 
 Next, create a configuration file `index-master.conf` in the `conf` directory of the master node, e.g.
 
