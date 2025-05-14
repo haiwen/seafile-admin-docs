@@ -69,11 +69,17 @@ enabled=false
 
 ## Deploy distributed indexing
 
-First, prepare a seafes master node and several seafes slave nodes, the number of slave nodes depends on your needs. Copy the `seafile.conf` and the `seafevents.conf` in the `conf` directory from the Seafile frontend nodes to `/opt/seafile-data/seafile/conf` in index-server nodes. The master node and slave nodes need to read the configuration files to obtain the necessary information.
+First, prepare a index-server master node and several index-server slave nodes, the number of slave nodes depends on your needs. Copy the `seafile.conf` and the `seafevents.conf` in the `conf` directory from the Seafile frontend nodes to `/opt/seafile-data/seafile/conf` in index-server nodes. The master node and slave nodes need to read the configuration files to obtain the necessary information.
+
+```bash
+mkdir -p /opt/seafile-data/seafile/conf
+mkdir -p /opt/seafile
+```
 
 Then download `.env` and `index-server.yml` to `/opt/seafile` in all index-server nodes.
 
 ```bash
+cd /opt/seafile
 wget https://manual.seafile.com/12.0/repo/docker/index-server/index-server.yml
 wget -O .env https://manual.seafile.com/12.0/repo/docker/index-server/env
 ```
