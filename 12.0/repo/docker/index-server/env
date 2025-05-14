@@ -2,7 +2,7 @@ COMPOSE_FILE='index-server.yml'
 COMPOSE_PATH_SEPARATOR=','
 
 
-INDEX_SERVER_IMAGE=seafileltd/index-server:13.0-latest
+INDEX_SERVER_IMAGE=seafileltd/index-server:12.0.13-testing
 
 SEAFILE_VOLUME=/opt/seafile-data
 
