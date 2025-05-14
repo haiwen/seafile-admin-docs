@@ -116,7 +116,7 @@ Start master node.
 docker compose up -d
 ```
 
-Next, create a configuration file `index-slave.conf` in the `conf` directory of all slave nodes, e.g.
+Next, create a configuration file `index-worker.conf` in the `conf` directory of all slave nodes, e.g.
 
 ```conf
 [DEFAULT]
