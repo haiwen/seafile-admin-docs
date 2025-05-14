@@ -101,6 +101,8 @@ If you deploy Seafile in a cluster or if you deploy Seafile with binary package,
 
 4. Add a reverse proxy for SeaDoc server. In cluster environtment, it means you need to add reverse proxy rules at load balance. Here, we use Nginx as an example  (**please replace `127.0.0.1:80` to `host:port` of your Seadoc server**)
 
+=== "Nginx"
+
     ```
     ...
     server {
@@ -134,6 +136,23 @@ If you deploy Seafile in a cluster or if you deploy Seafile with binary package,
             proxy_set_header X-NginX-Proxy true;
         }
     }
+    ```
+
+=== "Apache"
+
+    ```
+        <Location /sdoc-server>
+            ProxyPass "http://127.0.0.1:80"
+            ProxyPassReverse "http://127.0.0.1:80"
+        </Location>
+
+        <Location /socket.io>
+            ProxyPass "http://127.0.0.1:80"
+            RewriteEngine on
+            RewriteCond %{HTTP:Upgrade} websocket [NC]
+            RewriteCond %{HTTP:Connection} upgrade [NC]
+            RewriteRule ^/?(.*) "ws://127.0.0.1:80/$1" [P,L]
+        </Location>
     ```
 
 5. Start SeaDoc server server with the following command
