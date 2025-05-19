@@ -4840,6 +4840,11 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 </li>
 <li>
 <p>Add a reverse proxy for SeaDoc server. In cluster environtment, it means you need to add reverse proxy rules at load balance. Here, we use Nginx as an example  (<strong>please replace <code>127.0.0.1:80</code> to <code>host:port</code> of your Seadoc server</strong>)</p>
+</li>
+</ol>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Nginx</label><label for="__tabbed_1_2">Apache</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>...
 server {
     ...
@@ -4873,7 +4878,22 @@ server {
     }
 }
 </code></pre></div>
-</li>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>    &lt;Location /sdoc-server/&gt;
+        ProxyPass &quot;http://127.0.0.1:80/&quot;
+        ProxyPassReverse &quot;http://127.0.0.1:80/&quot;
+    &lt;/Location&gt;
+
+    &lt;Location /socket.io/&gt;
+        # Since Apache HTTP Server 2.4.47
+        ProxyPass &quot;http://127.0.0.1:80/socket.io/&quot; upgrade=websocket
+    &lt;/Location&gt;
+</code></pre></div>
+</div>
+</div>
+</div>
+<ol>
 <li>
 <p>Start SeaDoc server server with the following command</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
@@ -4897,7 +4917,7 @@ server {
 <span class="nv">SEADOC_SERVER_URL</span><span class="o">=</span>https://seafile.example.com/sdoc-server
 </code></pre></div>
 <p>Restart Seafile server</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Deploy in Docker (including cluster mode)</label><label for="__tabbed_1_2">Deploy from binary packages</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Deploy in Docker (including cluster mode)</label><label for="__tabbed_2_2">Deploy from binary packages</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
