@@ -142,13 +142,13 @@ kubectl delete pods -n seafile $(kubectl get pods -n seafile -o jsonpath='{.item
     seafile:
     ...
     extraVolumes:
-        - name: seafileLicense
-        volumeInfo:
-            secret:
-            secretName: seafile-license
-                items:
-                - key: seafile-license.txt
-                    path: seafile-license.txt
+      - name: seafileLicense
+      volumeInfo:
+        secret:
+        secretName: seafile-license
+          items:
+            - key: seafile-license.txt
+            path: seafile-license.txt
         subPath: seafile-license.txt
         mountPath: /shared/seafile/seafile-license.txt
         readOnly: true

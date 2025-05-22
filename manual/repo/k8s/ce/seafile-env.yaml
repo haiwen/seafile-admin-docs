@@ -7,8 +7,6 @@ data:
   TIME_ZONE: "UTC"
   SEAFILE_LOG_TO_STDOUT: "false"
   SITE_ROOT: "/"
-  ENABLE_SEADOC: "false"
-  SEADOC_SERVER_URL: "https://seafile.example.com/sdoc-server" # only valid in ENABLE_SEADOC = true
   SEAFILE_SERVER_HOSTNAME: "seafile.example.com"
   SEAFILE_SERVER_PROTOCOL: "http"
 
@@ -34,6 +32,10 @@ data:
 
   # for notification
   NOTIFICATION_SERVER_URL: ""
+
+  # for seadoc
+  ENABLE_SEADOC: "false"
+  SEADOC_SERVER_URL: "" # only valid in ENABLE_SEADOC = true
 
   # Init
   ## for Seafile admin
