@@ -4741,7 +4741,7 @@
 <p>Here is the workflow when a user open sdoc file in browser</p>
 <ol>
 <li>When a user open a sdoc file in the browser, a file loading request will be sent to Caddy, and Caddy proxy the request to SeaDoc server (see <a href="../../setup/overview/">Seafile instance archticture</a> for the details).</li>
-<li>SeaDoc server will send the file's content back if it is already cached, otherwise SeaDoc serve will sends a request to Seafile server.</li>
+<li>SeaDoc server will send the file's content back if it is already cached, otherwise SeaDoc server will sends a request to Seafile server.</li>
 <li>Seafile server loads the content, then sends it to SeaDoc server and write it to the cache at the same time.</li>
 <li>After SeaDoc receives the content, it will be sent to the browser.</li>
 </ol>
