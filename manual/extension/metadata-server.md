@@ -45,12 +45,11 @@ To facilitate your deployment, we still provide two different configuration solu
 
 #### Example `.env` for Seafile data is stored locally
 
-In this case you don't need to add any additional configuration to your `.env`. You can also specify image version, maximum local cache size, etc., but you must make sure `MD_STORAGE_TYPE=file`
+In this case you don't need to add any additional configuration to your `.env`. You can also specify image version, maximum local cache size, etc.
 
 ```
 MD_IMAGE=seafileltd/seafile-md-server:latest
 MD_MAX_CACHE_SIZE=1GB
-MD_STORAGE_TYPE=file
 ```
 
 #### Example `.env` for  Seafile data is stored in the storage backend (e.g., S3)
@@ -58,28 +57,24 @@ MD_STORAGE_TYPE=file
 First you need to create a bucket for Metadata on your S3 storage backend provider. Then add or modify the following information to `.env`:
 
 !!! success "Easier to configure S3 for Seafile and its components"
-    Since Seafile Pro 13.0, in order to facilitate users to deploy Seafile's related extension components and other services in the future, a section will be provided in `.env` to store the **S3 authorization Configurations**. You can locate it with the following title bar:
-    
-    ```sh
-    ###################################
-    # S3 authorization Configurations #
-    #    (This configurations will    #
-    #     apply to all components)    #
-    ###################################
-    ```
-    
-    The S3 authorization configuration part (i.e., ***without buckets name***) in Seafile and some extension components (such as *SeaSearch*, *Metadata server*) configuration will be read from this configuration by default. 
+    Since Seafile Pro 13.0, in order to facilitate users to deploy Seafile's related extension components and other services in the future, a section will be provided in `.env` to store the **S3 Configurations** for Seafile and some extension components (such as *SeaSearch*, *Metadata server*). You can locate it with the title bar **\#\#S3**.
 
-    In other words, if you deploy SeaSearch and Seafile together, and if you have deployed Seafile Pro following [here](../setup/setup_pro_by_docker.md#downloading-and-modifying-env) (and using the latest `.env`), you only need to specify the following variables in `.env` to make it work:
+    In other words, if you deploy SeaSearch and Seafile together, and if you have deployed Seafile Pro following [here](../setup/setup_pro_by_docker.md#downloading-and-modifying-env) (and using the latest `.env`), you only need to specify the following variables in `.env` to make it work (that is, the `USE_S3_STORAGE` is set to `true`):
 
     ```sh
+    S3_COMMIT_BUCKET=<your s3 bucket name for Seafile commit>
+    S3_FS_BUCKET=<your s3 bucket name for Seafile file storage>
+    S3_BLOCK_BUCKET=<your s3 bucket name for Seafile block>
     S3_MD_BUCKET=<your s3 bucket name for Metadata>
     ```
 
 ```sh
 MD_IMAGE=seafileltd/seafile-md-server:latest
-MD_STORAGE_TYPE=s3
-S3_MD_BUCKET=<your md data bucket name>
+USE_S3_STORAGE=true
+S3_COMMIT_BUCKET=...
+S3_FS_BUCKET=...
+S3_BLOCK_BUCKET=...
+S3_MD_BUCKET=...
 ```
 
 #### List of environment variables for Metadata server
@@ -89,13 +84,15 @@ The following table is all the related environment variables with Metadata serve
 | --- | --- | --- |
 | `JWT_PRIVATE_KEY`   | The JWT key used to connect with Seafile server | **Required** |
 | `MD_MAX_CACHE_SIZE` | The maximum cache size.                                                                                                    | Optional, default `1GB`            |
-| `MD_STORAGE_TYPE`   | The type of Seafile backend storage. Options: `file` (local storage), `s3`, `oss`.                                                 | Optional, default `file` and `s3` in deploying metadata server in the same machine with Seafile and standalone respective |
 | `REDIS_HOST`        | Your *Redis* service host.                                                                                                 | Optional, default `redis`          |
 | `REDIS_PORT`        | Your *Redis* service port.                                                                                                 | Optional, default `6379`           |
 | `REDIS_PASSWORD`    | Your *Redis* access password.                                                                                              | Optional                |
-| `S3_MD_BUCKET`    | Your S3 bucket name for the bucket storing metadata | Required when using S3 |
+| `S3_MD_BUCKET`    | Your S3 bucket name for the bucket storing metadata | Required when using S3 (`USE_S3_STORAGE` = `true`) |
 
-In addition, there are some environment variables **related to S3 authorization**, please refer to the part with `S3_` prefix in this [table](../setup/setup_pro_by_docker.md#downloading-and-modifying-env).
+In addition, there are some environment variables **related to S3 authorization**, please refer to the part with `S3_` prefix in this [table](../setup/setup_pro_by_docker.md#downloading-and-modifying-env) (**the buckets name for Seafile are also needed**).
+
+!!! warning "Metadata server supports *Redis* only"
+    To enable metadata feature, you have to use *Redis* for cache, as the `CACHE_PROVIDER` must be set to `redis` in your `.env`
 
 ### Modify `seahub_settings.py`
 

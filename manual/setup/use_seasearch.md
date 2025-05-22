@@ -41,21 +41,12 @@ INIT_SS_ADMIN_PASSWORD=<admin-password>
 ```
 
 !!! success "Easier to configure S3 for Seafile and its components"
-    Since Seafile Pro 13.0, in order to facilitate users to deploy Seafile's related extension components and other services in the future, a section will be provided in `.env` to store the **S3 authorization Configurations**. You can locate it with the following title bar:
-    
-    ```sh
-    ###################################
-    # S3 authorization Configurations #
-    #    (This configurations will    #
-    #     apply to all components)    #
-    ###################################
-    ```
-    
-    The S3 authorization configuration part (i.e., ***without buckets name***) in Seafile and some extension components (such as *SeaSearch*, *Metadata server*) configuration will be read from this configuration by default. 
+    Since Seafile Pro 13.0, in order to facilitate users to deploy Seafile's related extension components and other services in the future, a section will be provided in `.env` to store the **S3 Configurations** for Seafile and some extension components (such as *SeaSearch*, *Metadata server*). You can locate it with the title bar **\#\#S3**.
 
-    In other words, if you deploy SeaSearch and Seafile together, and if you have deployed Seafile Pro following [here](../setup/setup_pro_by_docker.md#downloading-and-modifying-env) (and using the latest `.env`), you only need to specify the following variables in `.env` to make it work:
+    In other words, if you deploy SeaSearch and Seafile together, and if you have deployed Seafile Pro following [here](../setup/setup_pro_by_docker.md#downloading-and-modifying-env) (and using the latest `.env`), you only need to specify the following variables in `.env` to make it work (that is, the `USE_S3_STORAGE` is set to `true`):
 
     ```sh
+    USE_S3_STORAGE=true
     S3_SS_BUCKET=<your s3 bucket name for SeaSearch>
     ```
 

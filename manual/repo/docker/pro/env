@@ -63,7 +63,16 @@ USE_S3_STORAGE=false
 S3_COMMIT_BUCKET=<your commit bucket name>
 S3_FS_BUCKET=<your fs bucket name>
 S3_BLOCK_BUCKET=<your block bucket name>
-
+S3_SS_BUCKET=<your seasearch bucket name> # for seasearch
+S3_MD_BUCKET=<your metadata bucket name> # for metadata-server
+S3_KEY_ID=<your-key-id>
+S3_SECRET_KEY=<your-secret-key>
+S3_USE_V4_SIGNATURE=true
+S3_PATH_STYLE_REQUEST=false
+S3_AWS_REGION=us-east-1
+S3_HOST=
+S3_USE_HTTPS=true
+S3_SSE_C_KEY=
 
 ######################################
 #        Initial variables           #
@@ -91,40 +100,13 @@ ENABLE_SEADOC=true
 
 ## SeaSearch
 
-### Storage type
-SS_STORAGE_TYPE=disk # options: disk (local disk), s3
-
 ### Local cache
 SS_MAX_OBJ_CACHE_SIZE=10GB
-
-### S3
-S3_SS_BUCKET=<your seasearch bucket name>
 
 ### Log
 SS_LOG_TO_STDOUT=false
 SS_LOG_OUTPUT=true
 SS_LOG_LEVEL=info
 
-## Metadata server
-MD_STORAGE_TYPE=file # options: file (local disk), s3, oss
-
-### S3
-S3_MD_BUCKET=<your metadata bucket name>
-
 ## Notification
 NOTIFICATION_SERVER_URL=
-
-###################################
-# S3 authorization Configurations #
-#    (This configurations will    #
-#     apply to all components)    #
-###################################
-
-S3_KEY_ID=<your-key-id>
-S3_SECRET_KEY=<your-secret-key>
-S3_USE_V4_SIGNATURE=true
-S3_PATH_STYLE_REQUEST=false
-S3_AWS_REGION=us-east-1
-S3_HOST=
-S3_USE_HTTPS=true
-S3_SSE_C_KEY=

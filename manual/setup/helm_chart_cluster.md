@@ -260,28 +260,28 @@ After installation, you need to start the k8s control plane service on each node
         seafile:
         ...
         extraVolumes:
-            backend:
-                - name: seafileLicense
-                volumeInfo:
-                    secret:
-                    secretName: seafile-license
-                        items:
-                        - key: seafile-license.txt
-                            path: seafile-license.txt
-                subPath: seafile-license.txt
-                mountPath: /shared/seafile/seafile-license.txt
-                readOnly: true
-            frontend:
-                - name: seafileLicense
-                volumeInfo:
-                    secret:
-                    secretName: seafile-license
-                        items:
-                        - key: seafile-license.txt
-                            path: seafile-license.txt
-                subPath: seafile-license.txt
-                mountPath: /shared/seafile/seafile-license.txt
-                readOnly: true
+          backend:
+            - name: seafileLicense
+            volumeInfo:
+              secret:
+              secretName: seafile-license
+                items:
+                  - key: seafile-license.txt
+                  path: seafile-license.txt
+            subPath: seafile-license.txt
+            mountPath: /shared/seafile/seafile-license.txt
+            readOnly: true
+          frontend:
+            - name: seafileLicense
+            volumeInfo:
+              secret:
+                secretName: seafile-license
+                  items:
+                    - key: seafile-license.txt
+                    path: seafile-license.txt
+            subPath: seafile-license.txt
+            mountPath: /shared/seafile/seafile-license.txt
+            readOnly: true
         ```
 
         Finally you can upgrade your chart by:
