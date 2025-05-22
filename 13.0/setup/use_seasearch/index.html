@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.2afb09e1.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -4741,16 +4741,10 @@
 </code></pre></div>
 <div class="admonition success">
 <p class="admonition-title">Easier to configure S3 for Seafile and its components</p>
-<p>Since Seafile Pro 13.0, in order to facilitate users to deploy Seafile's related extension components and other services in the future, a section will be provided in <code>.env</code> to store the <strong>S3 authorization Configurations</strong>. You can locate it with the following title bar:</p>
-<div class="highlight"><pre><span></span><code><span class="c1">###################################</span>
-<span class="c1"># S3 authorization Configurations #</span>
-<span class="c1">#    (This configurations will    #</span>
-<span class="c1">#     apply to all components)    #</span>
-<span class="c1">###################################</span>
-</code></pre></div>
-<p>The S3 authorization configuration part (i.e., <strong><em>without buckets name</em></strong>) in Seafile and some extension components (such as <em>SeaSearch</em>, <em>Metadata server</em>) configuration will be read from this configuration by default. </p>
-<p>In other words, if you deploy SeaSearch and Seafile together, and if you have deployed Seafile Pro following <a href="../setup_pro_by_docker/#downloading-and-modifying-env">here</a> (and using the latest <code>.env</code>), you only need to specify the following variables in <code>.env</code> to make it work:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">S3_SS_BUCKET</span><span class="o">=</span>&lt;your<span class="w"> </span>s3<span class="w"> </span>bucket<span class="w"> </span>name<span class="w"> </span><span class="k">for</span><span class="w"> </span>SeaSearch&gt;
+<p>Since Seafile Pro 13.0, in order to facilitate users to deploy Seafile's related extension components and other services in the future, a section will be provided in <code>.env</code> to store the <strong>S3 Configurations</strong> for Seafile and some extension components (such as <em>SeaSearch</em>, <em>Metadata server</em>). You can locate it with the title bar <strong>##S3</strong>.</p>
+<p>In other words, if you deploy SeaSearch and Seafile together, and if you have deployed Seafile Pro following <a href="../setup_pro_by_docker/#downloading-and-modifying-env">here</a> (and using the latest <code>.env</code>), you only need to specify the following variables in <code>.env</code> to make it work (that is, the <code>USE_S3_STORAGE</code> is set to <code>true</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="nv">USE_S3_STORAGE</span><span class="o">=</span><span class="nb">true</span>
+<span class="nv">S3_SS_BUCKET</span><span class="o">=</span>&lt;your<span class="w"> </span>s3<span class="w"> </span>bucket<span class="w"> </span>name<span class="w"> </span><span class="k">for</span><span class="w"> </span>SeaSearch&gt;
 </code></pre></div>
 </div>
 <h2 id="modify-seafile-serveryml-to-disable-elasticsearch-service">Modify <code>seafile-server.yml</code> to disable <code>elasticSearch</code> service<a class="headerlink" href="#modify-seafile-serveryml-to-disable-elasticsearch-service" title="Permanent link">&para;</a></h2>
@@ -4920,10 +4914,10 @@ lang = chinese
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share", "math"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share", "math"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
       
