@@ -32,8 +32,8 @@ We have configured the relevant variables in .env. Here you must pay special att
 ```sh
 COMPOSE_FILE='...,seasearch.yml' # ... means other docker-compose files
 
-#SEASEARCH_IMAGE=seafileltd/seasearch-nomkl:latest  # for Apple's Chip
-SEASEARCH_IMAGE=seafileltd/seasearch:latest
+#SEASEARCH_IMAGE=seafileltd/seasearch-nomkl:1.0-latest  # for Apple's Chip
+SEASEARCH_IMAGE=seafileltd/seasearch:1.0-latest
 
 SS_DATA_PATH=/opt/seasearch-data
 INIT_SS_ADMIN_USER=<admin-username>  
