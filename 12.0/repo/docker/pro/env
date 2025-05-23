@@ -62,8 +62,8 @@ NOTIFICATION_SERVER_VOLUME=/opt/notification-data
 # SeaSearch
 
 ## Image
-#SEASEARCH_IMAGE=seafileltd/seasearch-nomkl:latest # Apple's Chip
-SEASEARCH_IMAGE=seafileltd/seasearch:latest
+#SEASEARCH_IMAGE=seafileltd/seasearch-nomkl:0.9-latest # Apple's Chip
+SEASEARCH_IMAGE=seafileltd/seasearch:0.9-latest
 
 ## Storage
 SS_STORAGE_TYPE=disk # disk (local storage), s3, oss
