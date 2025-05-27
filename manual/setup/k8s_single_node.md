@@ -123,4 +123,4 @@ kubectl delete -f /opt/seafile-k8s-yaml/ -n seafile
 
 ## Advanced operations
 
-Please refer from [here](./k8s_advanced_management) for futher advanced operations.
+Please refer from [here](./k8s_advanced_management.md) for futher advanced operations.
