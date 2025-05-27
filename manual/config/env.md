@@ -17,6 +17,7 @@ The [`.env`](../repo/docker/pro/env) file will be used to specify the components
 - `SEAFILE_ELASTICSEARCH_IMAGE`: Only valid in pro edition. The elasticsearch image, default is `elasticsearch:8.15.0`.
 - `SEAFILE_CADDY_IMAGE`: Caddy server image, default is `lucaslorentz/caddy-docker-proxy:2.9-alpine`.
 - `SEADOC_IMAGE`: Only valid after integrating [SeaDoc](../extension/setup_seadoc.md). SeaDoc server image, default is `seafileltd/sdoc-server:1.0-latest`.
+- `NON_ROOT`: Run Seafile container without a root user, default is `false`
 
 ### Persistent Volume Configurations
 
@@ -29,6 +30,7 @@ The [`.env`](../repo/docker/pro/env) file will be used to specify the components
 ## MySQL configurations
 
 - `SEAFILE_MYSQL_DB_HOST`: The host address of Mysql, default is the pre-defined service name `db` in Seafile-docker instance.
+- `SEAFILE_MYSQL_DB_PORT`: The port of Mysql, default is `3306`.
 - `INIT_SEAFILE_MYSQL_ROOT_PASSWORD`: (Only required on first deployment) The `root` password of MySQL. 
 - `SEAFILE_MYSQL_DB_USER`: The user of MySQL (`database` - `user` can be found in `conf/seafile.conf`).
 - `SEAFILE_MYSQL_DB_PASSWORD`: The user `seafile` password of MySQL.
