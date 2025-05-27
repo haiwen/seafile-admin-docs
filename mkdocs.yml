@@ -23,6 +23,8 @@ theme:
     - search.highlight
     - search.share
     - math
+    - content.code.copy
+    - content.code.annotate
 
   palette:
     - scheme: default
