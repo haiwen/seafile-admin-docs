@@ -2530,14 +2530,6 @@
     
   </span>
   
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
 
       </a>
     </li>
@@ -4749,7 +4741,7 @@
 <p>Here is the workflow when a user open sdoc file in browser</p>
 <ol>
 <li>When a user open a sdoc file in the browser, a file loading request will be sent to Caddy, and Caddy proxy the request to SeaDoc server (see <a href="../../setup/overview/">Seafile instance archticture</a> for the details).</li>
-<li>SeaDoc server will send the file's content back if it is already cached, otherwise SeaDoc serve will sends a request to Seafile server.</li>
+<li>SeaDoc server will send the file's content back if it is already cached, otherwise SeaDoc server will sends a request to Seafile server.</li>
 <li>Seafile server loads the content, then sends it to SeaDoc server and write it to the cache at the same time.</li>
 <li>After SeaDoc receives the content, it will be sent to the browser.</li>
 </ol>
@@ -4848,6 +4840,11 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 </li>
 <li>
 <p>Add a reverse proxy for SeaDoc server. In cluster environtment, it means you need to add reverse proxy rules at load balance. Here, we use Nginx as an example  (<strong>please replace <code>127.0.0.1:80</code> to <code>host:port</code> of your Seadoc server</strong>)</p>
+</li>
+</ol>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Nginx</label><label for="__tabbed_1_2">Apache</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>...
 server {
     ...
@@ -4881,7 +4878,22 @@ server {
     }
 }
 </code></pre></div>
-</li>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>    &lt;Location /sdoc-server/&gt;
+        ProxyPass &quot;http://127.0.0.1:80/&quot;
+        ProxyPassReverse &quot;http://127.0.0.1:80/&quot;
+    &lt;/Location&gt;
+
+    &lt;Location /socket.io/&gt;
+        # Since Apache HTTP Server 2.4.47
+        ProxyPass &quot;http://127.0.0.1:80/socket.io/&quot; upgrade=websocket
+    &lt;/Location&gt;
+</code></pre></div>
+</div>
+</div>
+</div>
+<ol>
 <li>
 <p>Start SeaDoc server server with the following command</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
@@ -4905,7 +4917,7 @@ server {
 <span class="nv">SEADOC_SERVER_URL</span><span class="o">=</span>https://seafile.example.com/sdoc-server
 </code></pre></div>
 <p>Restart Seafile server</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Deploy in Docker (including cluster mode)</label><label for="__tabbed_1_2">Deploy from binary packages</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Deploy in Docker (including cluster mode)</label><label for="__tabbed_2_2">Deploy from binary packages</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
@@ -5053,7 +5065,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share", "math"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share", "math", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
