@@ -848,14 +848,6 @@
     
   </span>
   
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
 
           <span class="md-nav__icon md-icon"></span>
         </label>
@@ -868,14 +860,6 @@
     Setup community edition
     
   </span>
-  
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
   
 
       </a>
@@ -1072,14 +1056,6 @@
     Setup pro edition
     
   </span>
-  
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
   
 
       </a>
@@ -1377,14 +1353,6 @@
     Deploy with an existing MySQL server
     
   </span>
-  
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
   
 
       </a>
@@ -4970,6 +4938,16 @@ nano<span class="w"> </span>.env
 <td>(Only required on first deployment)</td>
 </tr>
 <tr>
+<td><code>SEAFILE_MYSQL_DB_HOST</code></td>
+<td>The host of MySQL</td>
+<td><code>db</code></td>
+</tr>
+<tr>
+<td><code>SEAFILE_MYSQL_DB_PORT</code></td>
+<td>The port of MySQL</td>
+<td><code>3306</code></td>
+</tr>
+<tr>
 <td><code>SEAFILE_MYSQL_DB_USER</code></td>
 <td>The user of MySQL (<code>database</code> - <code>user</code> can be found in <code>conf/seafile.conf</code>)</td>
 <td><code>seafile</code></td>
@@ -5058,6 +5036,11 @@ nano<span class="w"> </span>.env
 <td><code>INIT_SEAFILE_ADMIN_PASSWORD</code></td>
 <td>Admin password</td>
 <td><code>asecret</code> (Recommend modifications)</td>
+</tr>
+<tr>
+<td><code>NON_ROOT</code></td>
+<td>Run Seafile container without a root user</td>
+<td><code>false</code></td>
 </tr>
 </tbody>
 </table>
@@ -5229,9 +5212,6 @@ docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> 
 
 
 
-
-  
-  
 
 
 

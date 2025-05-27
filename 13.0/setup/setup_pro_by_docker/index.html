@@ -839,14 +839,6 @@
     
   </span>
   
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
 
       </a>
     </li>
@@ -879,14 +871,6 @@
     
   </span>
   
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
 
           <span class="md-nav__icon md-icon"></span>
         </label>
@@ -899,14 +883,6 @@
     Setup pro edition
     
   </span>
-  
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
   
 
       </a>
@@ -1386,14 +1362,6 @@
     Deploy with an existing MySQL server
     
   </span>
-  
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
   
 
       </a>
@@ -4955,10 +4923,10 @@
 <p class="admonition-title">Success</p>
 <p>Since v12.0, Seafile PE versions are hosted on DockerHub and does not require username and password to download. For <strong><em>older Seafile PE</em></strong> versions are available private docker repository (back to Seafile 7.0). You can get the username and password on the download page in the <a href="https://customer.seafile.com/downloads">Customer Center</a>.</p>
 </div>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>seafileltd/seafile-pro-mc:12.0-latest
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>seafileltd/seafile-pro-mc:13.0-latest
 </code></pre></div>
 <h3 id="downloading-and-modifying-env">Downloading and Modifying <code>.env</code><a class="headerlink" href="#downloading-and-modifying-env" title="Permanent link">&para;</a></h3>
-<p>From Seafile Docker 12.0, we use <code>.env</code>, <code>seafile-server.yml</code>  and <code>caddy.yml</code> files for configuration.</p>
+<p>Seafile uses <code>.env</code>, <code>seafile-server.yml</code>  and <code>caddy.yml</code> files for configuration.</p>
 <div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>/opt/seafile
 <span class="nb">cd</span><span class="w"> </span>/opt/seafile
 
@@ -5004,6 +4972,16 @@ nano<span class="w"> </span>.env
 <td><code>INIT_SEAFILE_MYSQL_ROOT_PASSWORD</code></td>
 <td>The <code>root</code> password of MySQL</td>
 <td>(Only required on first deployment)</td>
+</tr>
+<tr>
+<td><code>SEAFILE_MYSQL_DB_HOST</code></td>
+<td>The host of MySQL</td>
+<td><code>db</code></td>
+</tr>
+<tr>
+<td><code>SEAFILE_MYSQL_DB_PORT</code></td>
+<td>The port of MySQL</td>
+<td><code>3306</code></td>
 </tr>
 <tr>
 <td><code>SEAFILE_MYSQL_DB_USER</code></td>
@@ -5154,6 +5132,11 @@ nano<span class="w"> </span>.env
 <td><code>NOTIFICATION_SERVER_URL</code></td>
 <td>The <a href="../../extension/notification-server/">notification server</a> url, leave blank to disable it</td>
 <td>(none)</td>
+</tr>
+<tr>
+<td><code>NON_ROOT</code></td>
+<td>Run Seafile container without a root user</td>
+<td><code>false</code></td>
 </tr>
 </tbody>
 </table>
@@ -5347,9 +5330,6 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 
 
 
-
-  
-  
 
 
 

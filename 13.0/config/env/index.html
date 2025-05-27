@@ -833,14 +833,6 @@
     
   </span>
   
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
 
       </a>
     </li>
@@ -863,14 +855,6 @@
     Setup pro edition
     
   </span>
-  
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
   
 
       </a>
@@ -1165,14 +1149,6 @@
     Deploy with an existing MySQL server
     
   </span>
-  
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
   
 
       </a>
@@ -4909,6 +4885,7 @@
 <li><code>SEAFILE_ELASTICSEARCH_IMAGE</code>: Only valid in pro edition. The elasticsearch image, default is <code>elasticsearch:8.15.0</code>.</li>
 <li><code>SEAFILE_CADDY_IMAGE</code>: Caddy server image, default is <code>lucaslorentz/caddy-docker-proxy:2.9-alpine</code>.</li>
 <li><code>SEADOC_IMAGE</code>: Only valid after integrating <a href="../../extension/setup_seadoc/">SeaDoc</a>. SeaDoc server image, default is <code>seafileltd/sdoc-server:1.0-latest</code>.</li>
+<li><code>NON_ROOT</code>: Run Seafile container without a root user, default is <code>false</code></li>
 </ul>
 <h3 id="persistent-volume-configurations">Persistent Volume Configurations<a class="headerlink" href="#persistent-volume-configurations" title="Permanent link">&para;</a></h3>
 <ul>
@@ -4921,6 +4898,7 @@
 <h2 id="mysql-configurations">MySQL configurations<a class="headerlink" href="#mysql-configurations" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>SEAFILE_MYSQL_DB_HOST</code>: The host address of Mysql, default is the pre-defined service name <code>db</code> in Seafile-docker instance.</li>
+<li><code>SEAFILE_MYSQL_DB_PORT</code>: The port of Mysql, default is <code>3306</code>.</li>
 <li><code>INIT_SEAFILE_MYSQL_ROOT_PASSWORD</code>: (Only required on first deployment) The <code>root</code> password of MySQL. </li>
 <li><code>SEAFILE_MYSQL_DB_USER</code>: The user of MySQL (<code>database</code> - <code>user</code> can be found in <code>conf/seafile.conf</code>).</li>
 <li><code>SEAFILE_MYSQL_DB_PASSWORD</code>: The user <code>seafile</code> password of MySQL.</li>
