@@ -1,7 +1,3 @@
----
-status: new
----
-
 # Deploy with an existing MySQL server
 
 The entire `db` service needs to be removed (or noted) in `seafile-server.yml` if you would like to use an existing MySQL server, otherwise there is a redundant database service is running 
@@ -25,7 +21,8 @@ What's more, you have to modify the `.env` to set correctly the fields with MySQ
 SEAFILE_MYSQL_DB_HOST=192.168.0.2
 SEAFILE_MYSQL_DB_PORT=3306
 INIT_SEAFILE_MYSQL_ROOT_PASSWORD=ROOT_PASSWORD
-SEAFILE_MYSQL_DB_PASSWORD=PASSWORD
+SEAFILE_MYSQL_DB_USER=seafile # the user name of the user you like to use for Seafile server
+SEAFILE_MYSQL_DB_PASSWORD=PASSWORD # the password of the user you like to use for Seafile server
 ```
 
 !!! tip

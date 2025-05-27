@@ -1,7 +1,3 @@
----
-status: new
----
-
 # Installation of Seafile Server Community Edition with Docker
 
 ## System requirements
@@ -44,6 +40,8 @@ The following fields merit particular attention:
 | `SEAFILE_MYSQL_VOLUME`          | The volume directory of MySQL data                                                                            | `/opt/seafile-mysql/db`         |  
 | `SEAFILE_CADDY_VOLUME`          | The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's                    | `/opt/seafile-caddy`            |  
 | `INIT_SEAFILE_MYSQL_ROOT_PASSWORD` | The `root` password of MySQL                                                                                  | (Only required on first deployment) |  
+| `SEAFILE_MYSQL_DB_HOST`         | The host of MySQL | `db`  | 
+| `SEAFILE_MYSQL_DB_PORT`         | The port of MySQL | `3306`  | 
 | `SEAFILE_MYSQL_DB_USER`         | The user of MySQL (`database` - `user` can be found in `conf/seafile.conf`)                                    | `seafile`  |  
 | `SEAFILE_MYSQL_DB_PASSWORD`     | The user `seafile` password of MySQL                                                                          | (required)  |  
 | `SEAFILE_MYSQL_DB_CCNET_DB_NAME`     | The database name of ccnet | `ccnet_db`  |
@@ -62,6 +60,7 @@ The following fields merit particular attention:
 | `NOTIFICATION_SERVER_URL`   | The [notification server](../extension/notification-server.md) url, leave blank to disable it | (none) |  
 | `INIT_SEAFILE_ADMIN_EMAIL`      | Admin username                                                                                                | `me@example.com` (Recommend modifications) |  
 | `INIT_SEAFILE_ADMIN_PASSWORD`   | Admin password       | `asecret` (Recommend modifications) |
+| `NON_ROOT`   | Run Seafile container without a root user      | `false` |
 
 ### Start Seafile server
 
