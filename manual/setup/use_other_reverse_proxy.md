@@ -160,6 +160,18 @@ Modify `nginx.conf` and add reverse proxy for services ***seafile*** and ***sead
     ```
 === "onlyoffice"
     ```conf
+    map $http_x_forwarded_proto $the_scheme {
+        default $http_x_forwarded_proto;
+        "" $scheme;
+    }
+    map $http_x_forwarded_host $the_host {
+        default $http_x_forwarded_host;
+        "" $host;
+    }
+    map $http_upgrade $proxy_connection {
+        default upgrade;
+        "" close;
+    }
     location /onlyofficeds/ {
         proxy_pass http://127.0.0.1:6233/;
         proxy_http_version 1.1;
