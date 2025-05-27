@@ -1,3 +1,7 @@
+---
+status: new
+---
+
 # Installation of Seafile Server Professional Edition with Docker
 
 This manual explains how to deploy and run Seafile Server Professional Edition (Seafile PE) on a Linux server using Docker and Docker Compose. The deployment has been tested for Debian/Ubuntu and CentOS, but Seafile PE should also work on other Linux distributions.

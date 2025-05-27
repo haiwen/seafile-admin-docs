@@ -1,3 +1,7 @@
+---
+status: new
+---
+
 # Deploy with an existing MySQL server
 
 The entire `db` service needs to be removed (or noted) in `seafile-server.yml` if you would like to use an existing MySQL server, otherwise there is a redundant database service is running 
