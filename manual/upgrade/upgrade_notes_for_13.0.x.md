@@ -9,17 +9,18 @@ Please always follow the main [upgrade guide](./upgrade.md).
 
 Seafile version 13.0 has following major changes:
 
-* A redesigned Web UI
-* SeaDoc is now version 2.0, beside support sdoc, it support whiteboard too
-* A new thumbnail server component is added to improve performance for thumbnail generating and support thumbnail for videos
-* A new metadata server component is avaible to manage extended file properties
-* The web interface now support real-time update when other people add or remove files
-* SeaSearch is now version 1.0 and support full-text search
+* SeaDoc: SeaDoc is now version 2.0, beside support sdoc, it support whiteboard too
+* Thumbnail server: A new thumbnail server component is added to improve performance for thumbnail generating and support thumbnail for videos
+* Metadata server: A new metadata server component is avaible to manage extended file properties
+* Notification server: The web interface now support real-time update when other people add or remove files if notification-server is enabled
+* SeaSearch: SeaSearch is now version 1.0 and support full-text search
 
 
 Configuration changes:
 
-* S3, database and memcache configurations are added to `.env` too
+* Database and memcache configurations are added to `.env`, it is recommended to use environment variables to config database and memcache
+* Redis is recommended to be used as memcache server
+* (Optional) S3 configuration can be done via environment variables and is much simplified
 * Elastic search is now have its own yml file
 
 Breaking changes
