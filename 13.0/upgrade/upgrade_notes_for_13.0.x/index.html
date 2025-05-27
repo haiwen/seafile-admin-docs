@@ -4852,16 +4852,17 @@ Please always follow the main <a href="../upgrade/">upgrade guide</a>.</p>
 <h2 id="important-release-changes">Important release changes<a class="headerlink" href="#important-release-changes" title="Permanent link">&para;</a></h2>
 <p>Seafile version 13.0 has following major changes:</p>
 <ul>
-<li>A redesigned Web UI</li>
-<li>SeaDoc is now version 2.0, beside support sdoc, it support whiteboard too</li>
-<li>A new thumbnail server component is added to improve performance for thumbnail generating and support thumbnail for videos</li>
-<li>A new metadata server component is avaible to manage extended file properties</li>
-<li>The web interface now support real-time update when other people add or remove files</li>
-<li>SeaSearch is now version 1.0 and support full-text search</li>
+<li>SeaDoc: SeaDoc is now version 2.0, beside support sdoc, it support whiteboard too</li>
+<li>Thumbnail server: A new thumbnail server component is added to improve performance for thumbnail generating and support thumbnail for videos</li>
+<li>Metadata server: A new metadata server component is avaible to manage extended file properties</li>
+<li>Notification server: The web interface now support real-time update when other people add or remove files if notification-server is enabled</li>
+<li>SeaSearch: SeaSearch is now version 1.0 and support full-text search</li>
 </ul>
 <p>Configuration changes:</p>
 <ul>
-<li>S3, database and memcache configurations are added to <code>.env</code> too</li>
+<li>Database and memcache configurations are added to <code>.env</code>, it is recommended to use environment variables to config database and memcache</li>
+<li>Redis is recommended to be used as memcache server</li>
+<li>(Optional) S3 configuration can be done via environment variables and is much simplified</li>
 <li>Elastic search is now have its own yml file</li>
 </ul>
 <p>Breaking changes</p>
