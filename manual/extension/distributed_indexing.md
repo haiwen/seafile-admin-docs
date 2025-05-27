@@ -1,8 +1,3 @@
----
-status: new
----
-
-
 # Distributed indexing
 
 If you use a cluster to deploy Seafile, you can use distributed indexing to realize real-time indexing and improve indexing efficiency. The indexing process is as follows:
@@ -74,13 +69,40 @@ enabled=false
 
 ## Deploy distributed indexing
 
-First, prepare a seafes master node and several seafes slave nodes, the number of slave nodes depends on your needs. Deploy Seafile on these nodes, and copy the configuration files in the `conf` directory from the frontend nodes. The master node and slave nodes do not need to start Seafile, but need to read the configuration files to obtain the necessary information.
+First, prepare a index-server master node and several index-server slave nodes, the number of slave nodes depends on your needs. Copy the `seafile.conf` and the `seafevents.conf` in the `conf` directory from the Seafile frontend nodes to `/opt/seafile-data/seafile/conf` in index-server nodes. The master node and slave nodes need to read the configuration files to obtain the necessary information.
+
+```bash
+mkdir -p /opt/seafile-data/seafile/conf
+mkdir -p /opt/seafile
+```
+
+Then download `.env` and `index-server.yml` to `/opt/seafile` in all index-server nodes.
+
+```bash
+cd /opt/seafile
+wget https://manual.seafile.com/12.0/repo/docker/index-server/index-server.yml
+wget -O .env https://manual.seafile.com/12.0/repo/docker/index-server/env
+```
+
+Modify mysql configurations in `.env`.
+
+```env
+SEAFILE_MYSQL_DB_HOST=127.0.0.1
+SEAFILE_MYSQL_DB_PORT=3306
+SEAFILE_MYSQL_DB_USER=seafile
+SEAFILE_MYSQL_DB_PASSWORD=PASSWORD
+
+CLUSTER_MODE=master
+```
+
+!!! note
+    CLUSTER_MODE needs to be configured as `master` on the master node, and needs to be configured as `worker` on the slave nodes.
 
 Next, create a configuration file `index-master.conf` in the `conf` directory of the master node, e.g.
 
-```
+```conf
 [DEFAULT]
-mq_type=redis   # must be redis
+mq_type=redis      # must be redis
 
 [REDIS]
 server=127.0.0.1   # your redis server host
@@ -88,14 +110,18 @@ port=6379          # your redis server port
 password=xxx       # your redis server password, if not password, do not set this item
 ```
 
-Execute `./run_index_master.sh [start/stop/restart]` in the `seafile-server-last` directory (or `/scripts` inner the Seafile-docker container) to control the program to start, stop and restart.
+Start master node.
 
-Next, create a configuration file `index-slave.conf` in the `conf` directory of all slave nodes, e.g.
-
+```bash
+docker compose up -d
 ```
+
+Next, create a configuration file `index-worker.conf` in the `conf` directory of all slave nodes, e.g.
+
+```conf
 [DEFAULT]
-mq_type=redis     # must be redis
-index_workers=2   # number of threads to create/update indexes, you can increase this value according to your needs
+mq_type=redis      # must be redis
+index_workers=2    # number of threads to create/update indexes, you can increase this value according to your needs
 
 [REDIS]
 server=127.0.0.1   # your redis server host
@@ -103,25 +129,30 @@ port=6379          # your redis server port
 password=xxx       # your redis server password, if not password, do not set this item
 ```
 
-Execute `./run_index_worker.sh [start/stop/restart]` in the `seafile-server-last` directory (or `/scripts` inner the Seafile-docker container) to control the program to start, stop and restart.
+Start all slave nodes.
 
-!!! note
-
-    The index worker connects to backend storage directly. You don't need to run seaf-server in index worker node. 
+```bash
+docker compose up -d
+```
 
 ## Some commands in distributed indexing
 
-Rebuild search index, execute in the `seafile-server-last` directory (or `/scripts` inner the Seafile-docker container):
+Rebuild search index, first execute the command in the Seafile node:
 
-```
-$ ./pro/pro.py search --clear
-$ ./run_index_master.sh python-env index_op.py --mode resotre_all_repo
-```
-
-List the number of indexing tasks currently remaining, execute in the `seafile-server-last` directory (or `/scripts` inner the Seafile-docker container):
-
-```
-$ ./run_index_master.sh python-env index_op.py --mode show_all_task
+```bash
+cd /opt/seafile/seafile-server-last/
+./pro/pro.py search --clear
 ```
 
-The above commands need to be run on the master node.
+Then execute the command in the index-server master node:
+
+```bash
+docker exec -it index-server bash
+/opt/seafile/index-server/index-server.sh restore-all-repo
+```
+
+List the number of indexing tasks currently remaining, execute the command in the index-server master node:
+
+```bash
+/opt/seafile/index-server/index-server.sh show-all-task
+```

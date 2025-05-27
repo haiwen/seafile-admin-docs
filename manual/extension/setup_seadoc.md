@@ -25,7 +25,7 @@ The SeaDoc archticture is demonstrated as below:
 Here is the workflow when a user open sdoc file in browser
 
 1. When a user open a sdoc file in the browser, a file loading request will be sent to Caddy, and Caddy proxy the request to SeaDoc server (see [Seafile instance archticture](../setup/overview.md) for the details).
-2. SeaDoc server will send the file's content back if it is already cached, otherwise SeaDoc serve will sends a request to Seafile server.
+2. SeaDoc server will send the file's content back if it is already cached, otherwise SeaDoc server will sends a request to Seafile server.
 3. Seafile server loads the content, then sends it to SeaDoc server and write it to the cache at the same time.
 4. After SeaDoc receives the content, it will be sent to the browser.
 
@@ -101,6 +101,8 @@ If you deploy Seafile in a cluster or if you deploy Seafile with binary package,
 
 4. Add a reverse proxy for SeaDoc server. In cluster environtment, it means you need to add reverse proxy rules at load balance. Here, we use Nginx as an example  (**please replace `127.0.0.1:80` to `host:port` of your Seadoc server**)
 
+=== "Nginx"
+
     ```
     ...
     server {
@@ -134,6 +136,20 @@ If you deploy Seafile in a cluster or if you deploy Seafile with binary package,
             proxy_set_header X-NginX-Proxy true;
         }
     }
+    ```
+
+=== "Apache"
+
+    ```
+        <Location /sdoc-server/>
+            ProxyPass "http://127.0.0.1:80/"
+            ProxyPassReverse "http://127.0.0.1:80/"
+        </Location>
+
+        <Location /socket.io/>
+            # Since Apache HTTP Server 2.4.47
+            ProxyPass "http://127.0.0.1:80/socket.io/" upgrade=websocket
+        </Location>
     ```
 
 5. Start SeaDoc server server with the following command

@@ -341,4 +341,4 @@ helm delete seafile --namespace seafile
 
 ## Advanced operations
 
-Please refer from [here](./k8s_advanced_management) for futher advanced operations.
+Please refer from [here](./k8s_advanced_management.md) for futher advanced operations.
