@@ -31,7 +31,7 @@ data:
   MEMCACHED_PORT: "11211"
 
   # for S3
-  USE_S3_STORAGE: "false"
+  SEAF_SERVER_STORAGE_TYPE: "disk"
   S3_COMMIT_BUCKET: ""
   S3_FS_BUCKET: ""
   S3_BLOCK_BUCKET: ""
