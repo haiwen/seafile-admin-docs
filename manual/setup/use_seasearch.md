@@ -38,17 +38,20 @@ SEASEARCH_IMAGE=seafileltd/seasearch:1.0-latest
 SS_DATA_PATH=/opt/seasearch-data
 INIT_SS_ADMIN_USER=<admin-username>  
 INIT_SS_ADMIN_PASSWORD=<admin-password>
+
+
+# if you would like to use S3 for saving seasearch data
+SS_STORAGE_TYPE=s3
+S3_SS_BUCKET=...
+S3_KEY_ID=<your-key-id>
+S3_SECRET_KEY=<your-secret-key>
+S3_USE_V4_SIGNATURE=true
+S3_PATH_STYLE_REQUEST=false
+S3_AWS_REGION=us-east-1
+S3_HOST=
+S3_USE_HTTPS=true
+S3_SSE_C_KEY=
 ```
-
-!!! success "Easier to configure S3 for Seafile and its components"
-    Since Seafile Pro 13.0, in order to facilitate users to deploy Seafile's related extension components and other services in the future, a section will be provided in `.env` to store the **S3 Configurations** for Seafile and some extension components (such as *SeaSearch*, *Metadata server*). You can locate it with the title bar **\#\#S3**.
-
-    In other words, if you deploy SeaSearch and Seafile together, and if you have deployed Seafile Pro following [here](../setup/setup_pro_by_docker.md#downloading-and-modifying-env) (and using the latest `.env`), you only need to specify the following variables in `.env` to make it work (that is, the `USE_S3_STORAGE` is set to `true`):
-
-    ```sh
-    USE_S3_STORAGE=true
-    S3_SS_BUCKET=<your s3 bucket name for SeaSearch>
-    ```
 
 ## Modify `seafile-server.yml` to disable `elasticSearch` service
 

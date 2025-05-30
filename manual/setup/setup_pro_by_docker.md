@@ -75,12 +75,12 @@ The following fields merit particular attention:
 | `TIME_ZONE`                     | Time zone                                                                                                     | `UTC`                           |  
 | `INIT_SEAFILE_ADMIN_EMAIL`      | Synchronously set admin username during initialization | me@example.com |  
 | `INIT_SEAFILE_ADMIN_PASSWORD`   | Synchronously set admin password during initialization | asecret |
-| `USE_S3_STORAGE`   | Use S3 backend storage in Seafile server | `false` |
-| `S3_COMMIT_BUCKET`   | S3 storage backend commit objects bucket | (required when `USE_S3_STORAGE=true`) |
-| `S3_FS_BUCKET`   | S3 storage backend fs objects bucket | (required when you would like to initialize with S3) |
-| `S3_BLOCK_BUCKET`   | S3 storage backend block objects bucket | (required when `USE_S3_STORAGE=true`) |
-| `S3_KEY_ID`   | S3 storage backend key ID | (required when `USE_S3_STORAGE=true`) |
-| `S3_SECRET_KEY`   | S3 storage backend secret key | (required when `USE_S3_STORAGE=true`) |
+| `SEAF_SERVER_STORAGE_TYPE`   | What kind of the Seafile data for storage. Available options are `disk` (i.e., local disk), `s3` and `multiple` (see the details of [multiple storage backends](./setup_with_multiple_storage_backends.md)) | `disk` |
+| `S3_COMMIT_BUCKET`   | S3 storage backend commit objects bucket | (required when `SEAF_SERVER_STORAGE_TYPE=s3`) |
+| `S3_FS_BUCKET`   | S3 storage backend fs objects bucket | (required when `SEAF_SERVER_STORAGE_TYPE=s3`) |
+| `S3_BLOCK_BUCKET`   | S3 storage backend block objects bucket | (required when `SEAF_SERVER_STORAGE_TYPE=s3`) |
+| `S3_KEY_ID`   | S3 storage backend key ID | (required when `SEAF_SERVER_STORAGE_TYPE=s3`) |
+| `S3_SECRET_KEY`   | S3 storage backend secret key | (required when `SEAF_SERVER_STORAGE_TYPE=s3`) |
 | `S3_AWS_REGION`   | Region of your buckets | `us-east-1` |
 | `S3_HOST`   | Host of your buckets | (required when not use AWS) |
 | `S3_USE_HTTPS`   | Use HTTPS connections to S3 if enabled | `true` |
@@ -91,9 +91,10 @@ The following fields merit particular attention:
 | `NON_ROOT`   | Run Seafile container without a root user      | `false` |
 
 !!! success "Easier to configure S3 for Seafile and its components"
-    Since Seafile Pro 13.0, in order to facilitate users to deploy Seafile's related extension components and other services in the future, a section will be provided in `.env` to store the **S3 Configurations** for Seafile and some extension components (such as *SeaSearch*, *Metadata server*). You can locate it with the title bar **\#\#S3**.
-    
-    However, please note that Seafile only support configuring S3 in `.env` for **single storage backend mode** (i.e., when `USE_S3_STORAGE=true`), if you would like to use multiple backends, please set `USE_S3_STORAGE=false` in `.env` and refer [here](../setup/setup_with_multiple_storage_backends.md) for the details.
+    Since Seafile Pro 13.0, in order to facilitate users to deploy Seafile's related extension components and other services in the future, a section will be provided in `.env` to store the **S3 Configurations** for Seafile and some extension components (such as *SeaSearch*, *Metadata server*). You can locate it with the title bar **Storage configurations for S3**.
+
+!!! warning "S3 configurations in `.env` only support single S3 storage backend mode"
+    The Seafile server only support configuring S3 in `.env` for **single S3 storage backend mode** (i.e., when `SEAF_SERVER_STORAGE_TYPE=s3`). If you would like to use other storage backend (e.g., [Ceph](./setup_with_ceph.md), [Swift](./setup_with_swift.md)) or other settings that can only be set in `seafile.conf` (like [multiple storage backends](./setup_with_multiple_storage_backends.md)), please set `SEAF_SERVER_STORAGE_TYPE` to `multiple`, and set `MD_STORAGE_TYPE` and `SS_STORAGE_TYPE` according to your configurations.
 
 To conclude, set the directory permissions of the Elasticsearch volumne:
 

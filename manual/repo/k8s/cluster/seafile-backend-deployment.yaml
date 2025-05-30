@@ -119,11 +119,11 @@ spec:
                 configMapKeyRef:
                   name: seafile-env
                   key: CLUSTER_INIT_ES_PORT
-            - name: USE_S3_STORAGE
+            - name: SEAF_SERVER_STORAGE_TYPE
               valueFrom:
                 configMapKeyRef:
                   name: seafile-env
-                  key: USE_S3_STORAGE
+                  key: SEAF_SERVER_STORAGE_TYPE
             - name: S3_COMMIT_BUCKET
               valueFrom:
                 configMapKeyRef:
