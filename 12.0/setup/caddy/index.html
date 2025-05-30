@@ -768,6 +768,19 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    HTTPS and Caddy
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -779,6 +792,67 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#engage-https-by-caddy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Engage HTTPS by caddy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Engage HTTPS by caddy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#with-a-automatically-generated-certificate" class="md-nav__link">
+    <span class="md-ellipsis">
+      With a automatically generated certificate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-a-custom-existing-certificate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using a custom (existing) certificate
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modify-seahub_settingspy-and-restart-the-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modify seahub_settings.py and restart the server
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -4502,6 +4576,56 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#engage-https-by-caddy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Engage HTTPS by caddy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Engage HTTPS by caddy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#with-a-automatically-generated-certificate" class="md-nav__link">
+    <span class="md-ellipsis">
+      With a automatically generated certificate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-a-custom-existing-certificate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using a custom (existing) certificate
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modify-seahub_settingspy-and-restart-the-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modify seahub_settings.py and restart the server
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -4525,9 +4649,60 @@
 <p>From Seafile Docker 12.0, HTTPS will be handled by the <a href="https://caddyserver.com/docs/"><strong><em>Caddy</em></strong></a>. The default caddy image used of Seafile docker is <a href="https://github.com/lucaslorentz/caddy-docker-proxy"><code>lucaslorentz/caddy-docker-proxy:2.9-alpine</code></a>.</p>
 </div>
 <p>Caddy is a modern open source web server that mainly binds external traffic and internal services in <a href="../overview/">seafile docker</a>. In addition to the advantages of traditional proxy components (e.g., <em>nginx</em>), Caddy also makes it easier for users to complete the acquisition and update of HTTPS certificates by providing simpler configurations. </p>
+<h2 id="engage-https-by-caddy">Engage HTTPS by caddy<a class="headerlink" href="#engage-https-by-caddy" title="Permanent link">&para;</a></h2>
+<p>We provide two options for enabling HTTPS via <em>Caddy</em>, which mainly rely on The caddy docker proxy container from <a href="https://github.com/lucaslorentz/caddy-docker-proxy">Lucaslorentz</a> supports dynamic configuration with labels:</p>
+<ul>
+<li>With a automatically generated certificate</li>
+<li>Using a custom (existing) certificate</li>
+</ul>
+<h3 id="with-a-automatically-generated-certificate">With a automatically generated certificate<a class="headerlink" href="#with-a-automatically-generated-certificate" title="Permanent link">&para;</a></h3>
 <p>To engage HTTPS, users only needs to correctly configure the following fields in <code>.env</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="nv">SEAFILE_SERVER_PROTOCOL</span><span class="o">=</span>https
 <span class="nv">SEAFILE_SERVER_HOSTNAME</span><span class="o">=</span>example.com
+</code></pre></div>
+<h3 id="using-a-custom-existing-certificate">Using a custom (existing) certificate<a class="headerlink" href="#using-a-custom-existing-certificate" title="Permanent link">&para;</a></h3>
+<p>With the <code>caddy.yml</code>, a default volume-mount is created: <code>/opt/seafile-caddy</code> (as you can change it by modifying <code>SEAFILE_CADDY_VOLUME</code> in <code>.env</code>). By convention you should provide your certificate &amp; key files in the container host filesystem under <code>/opt/seafile-caddy/certs/</code> to make it available to caddy:</p>
+<div class="highlight"><pre><span></span><code>/opt/seafile-caddy/certs/
+├──<span class="w"> </span>cert.pem<span class="w">  </span><span class="c1"># xxx.crt in some case</span>
+├──<span class="w"> </span>key.pem<span class="w"> </span><span class="c1"># xxx.key in some case</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Command to generate custom certificates</p>
+<p>With this command, you can generate your own custom certificates:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/seafile-caddy/certs
+openssl<span class="w"> </span>req<span class="w"> </span>-x509<span class="w"> </span>-nodes<span class="w"> </span>-days<span class="w"> </span><span class="m">365</span><span class="w"> </span>-newkey<span class="w"> </span>rsa:2048<span class="w"> </span>-keyout<span class="w"> </span>./key.pem<span class="w"> </span>-out<span class="w"> </span>./cert.pem
+</code></pre></div>
+<p><strong>Please be aware that custom certicates can not be used for ip-adresses</strong></p>
+</div>
+<p>Then modify <code>seafile-server.yml</code> to enable your custom certificate, by the way, we strongly recommend you to make a backup of <code>seafile-server.yml</code> before doing this:</p>
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>seafile-server.yml<span class="w"> </span>seafile-server.yml.bak
+nano<span class="w"> </span>seafile-server.yml
+</code></pre></div>
+<p>and</p>
+<div class="highlight"><pre><span></span><code>services:
+  ...
+  seafile:
+    ...
+    volumes:
+      ...
+      # If you use a self-generated certificate, please add it to the Seafile server trusted directory (i.e. remove the comment symbol below)
+      # - &quot;/opt/seafile-caddy/certs/cert.pem:/usr/local/share/ca-certificates/cert.crt&quot;
+    labels:
+      caddy: ${SEAFILE_SERVER_HOSTNAME:?Variable is not set or empty} # leave this variables only
+      caddy.tls: &quot;/data/caddy/certs/cert.pem /data/caddy/certs/key.pem&quot;
+      ...
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">DNS resolution must work inside the container</p>
+<p>If you're using a <strong><em>non-public url</em></strong> like <code>my-custom-setup.local</code>, you have to make sure, that the docker container can resolve this DNS query. If you don't run your own DNS servers, you have to add extras_hosts to your <code>.yml</code> file.</p>
+</div>
+<h2 id="modify-seahub_settingspy-and-restart-the-server">Modify <code>seahub_settings.py</code> and restart the server<a class="headerlink" href="#modify-seahub_settingspy-and-restart-the-server" title="Permanent link">&para;</a></h2>
+<p>If you enabled HTTPS during initial deployment, you can skip this section (the HTTPS will take effect with the first time startup).</p>
+<ol>
+<li>Modify <code>seahub_settings.py</code> and change all <code>http://seafile.example.com</code> to <code>https://seafile.example.com</code>.</li>
+<li>Restart the server:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
 
 
