@@ -54,28 +54,24 @@ MD_MAX_CACHE_SIZE=1GB
 
 #### Example `.env` for  Seafile data is stored in the storage backend (e.g., S3)
 
-First you need to create a bucket for Metadata on your S3 storage backend provider. Then add or modify the following information to `.env`:
-
-!!! success "Easier to configure S3 for Seafile and its components"
-    Since Seafile Pro 13.0, in order to facilitate users to deploy Seafile's related extension components and other services in the future, a section will be provided in `.env` to store the **S3 Configurations** for Seafile and some extension components (such as *SeaSearch*, *Metadata server*). You can locate it with the title bar **\#\#S3**.
-
-    In other words, if you deploy SeaSearch and Seafile together, and if you have deployed Seafile Pro following [here](../setup/setup_pro_by_docker.md#downloading-and-modifying-env) (and using the latest `.env`), you only need to specify the following variables in `.env` to make it work (that is, the `USE_S3_STORAGE` is set to `true`):
-
-    ```sh
-    S3_COMMIT_BUCKET=<your s3 bucket name for Seafile commit>
-    S3_FS_BUCKET=<your s3 bucket name for Seafile file storage>
-    S3_BLOCK_BUCKET=<your s3 bucket name for Seafile block>
-    S3_MD_BUCKET=<your s3 bucket name for Metadata>
-    ```
+First you need to create a bucket for metadata on your S3 storage backend provider. Then add or modify the following information to `.env`:
 
 ```sh
 MD_IMAGE=seafileltd/seafile-md-server:latest
-USE_S3_STORAGE=true
-S3_COMMIT_BUCKET=...
-S3_FS_BUCKET=...
-S3_BLOCK_BUCKET=...
+MD_STORAGE_TYPE=s3
 S3_MD_BUCKET=...
+S3_KEY_ID=<your-key-id>
+S3_SECRET_KEY=<your-secret-key>
+S3_USE_V4_SIGNATURE=true
+S3_PATH_STYLE_REQUEST=false
+S3_AWS_REGION=us-east-1
+S3_HOST=
+S3_USE_HTTPS=true
+S3_SSE_C_KEY=
 ```
+
+!!! note "Data for Seafile server should be accessible for Metadata server"
+    In order to correctly obtain metadata information, you must ensure that the data of your Seafile server can be correctly accessed. In the case of deploying Metadata server and Seafile server together, Metadata server will be able to automatically obtain the configuration information of Seafile server, so you don't need to worry about this. But if your Metadata server is deployed in Standalone (usually in a cluster environment), then you need to ensure that the description of the Seafile server storage part in the `.env` deployed by Metadata server needs to be consistent with the `.env` deployed by Seafile server (e.g., `SEAF_SERVER_STORAGE_TYPE`), and can access the configuration file information of Seafile server (e.g., `seafile.conf`) to ensure that Metadata server can correctly obtain data from Seafile server.
 
 #### List of environment variables for Metadata server
 The following table is all the related environment variables with Metadata server:
@@ -87,7 +83,8 @@ The following table is all the related environment variables with Metadata serve
 | `REDIS_HOST`        | Your *Redis* service host.                                                                                                 | Optional, default `redis`          |
 | `REDIS_PORT`        | Your *Redis* service port.                                                                                                 | Optional, default `6379`           |
 | `REDIS_PASSWORD`    | Your *Redis* access password.                                                                                              | Optional                |
-| `S3_MD_BUCKET`    | Your S3 bucket name for the bucket storing metadata | Required when using S3 (`USE_S3_STORAGE` = `true`) |
+| `MD_STORAGE_TYPE`    | Where the metadata storage in. Available options are `disk` (local storage) and `s3` | `disk` |
+| `S3_MD_BUCKET`    | Your S3 bucket name for the bucket storing metadata | Required when using S3 (`MD_STORAGE_TYPE=s3`) |
 
 In addition, there are some environment variables **related to S3 authorization**, please refer to the part with `S3_` prefix in this [table](../setup/setup_pro_by_docker.md#downloading-and-modifying-env) (**the buckets name for Seafile are also needed**).
 

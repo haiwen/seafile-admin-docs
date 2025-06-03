@@ -1,60 +1,46 @@
----
-status: new
----
-
 # Setup With S3 Storage
 
-!!! note "Deployment notes"
-    - This feature is only for ***Pro Edition***
-    - If your Seafile server is deployed from [binary packages](../setup_binary/installation_pro.md), you have to do the following steps before deploying:
+From Seafile 13, there are two ways to configure S3 storage (**single S3 storage backend**) for Seafile server:
+
+- Environment variables (**recommend** since Seafile 13)
+- Config file (`seafile.conf`)
+
+!!! note "Setup note for binary packages deployment (Pro)"
+    If your Seafile server is deployed from [binary packages](../setup_binary/installation_pro.md), you have to do the following steps before deploying:
     
-        1. **install `boto3` to your machine**
+    1. **install `boto3` to your machine**
 
-            ```sh
-            sudo pip install boto3
-            ```
+        ```sh
+        sudo pip install boto3
+        ```
 
-        2. **Install and configure [memcached or Redis](../setup_binary/installation_pro.md#setup-memory-cache)**. 
-        
-            For best performance, Seafile requires enable memory cache for objects. We recommend to **at least allocate 128MB** memory for memcached or Redis.
-
-            The configuration options differ for different S3 storage. We'll describe the configurations in separate sections. You also need to add [memory cache configurations](../config/seafile-conf.md#cache-pro-edition-only)
+    2. **Install and configure [memcached or Redis](../setup_binary/installation_pro.md#setup-memory-cache)**. 
     
+        For best performance, Seafile requires enable memory cache for objects. We recommend to **at least allocate 128MB** memory for memcached or Redis.
 
-!!! tip "New feature from 13.0 pro edition"
-    If your will deploy Seafile server in Docker, you can specify your S3 configurations in `S3` title bar in `.env` to deploy with S3 together. This operation will generate the same configuration file as this manual. 
-    
-    However, please note that Seafile only support configuring S3 in `.env` for **single storage backend mode** (i.e., when `USE_S3_STORAGE=true`), if you would like to use multiple backends, please set `USE_S3_STORAGE=false` in `.env` and refer [here](../setup/setup_with_multiple_storage_backends.md) for the details.
+        The configuration options differ for different S3 storage. We'll describe the configurations in separate sections. You also need to add [memory cache configurations](../config/seafile-conf.md#cache-pro-edition-only)
 
-## How to configure S3 in Seafile
-Seafile configures S3 storage by adding or modifying the following section in `seafile.conf`:
+## Setup swith environment variables (recommend)
 
-```conf
-[xxx_object_backend]
-name = s3
-bucket = my-xxx-objects
-key_id = your-key-id
-key = your-secret-key
-use_v4_signature = true
-use_https = true
-... ; other optional configurations
-```
+From Seafile 13, configuring S3 from environment variables will be supported and will provide a more convenient way. You can refer to the detailed description of this part in the introduction of `.env` file. Generally, 
 
-You have to create at least **3** buckets for Seafile, corresponding to the sections: `commit_object_backend`, `fs_object_backend` and `block_backend`. For the configurations for each backend section, please refer to the following table:
+1. Prepare at least **3** buckets for Seafile (`S3_COMMIT_BUCKET`, `S3_FS_BUCKET` and `S3_BLOCK_BUCKET`). 
+2. Set `SEAF_SERVER_STORAGE_TYPE` to `true`
+3. Fill in the corresponding variable values in `.env` ​​according to the following table:
 
-| Variable | Description |  
-| --- | --- |  
-| `bucket` | Bucket name for commit, fs, and block objects. Make sure it follows [S3 naming rules](https://docs.aws.amazon.com/AmazonS3/latest/userguide/BucketRestrictions.html#bucketnamingrules) (you can refer the notes below the table). |  
-| `key_id` | The `key_id` is required to authenticate you to S3. You can find the `key_id` in the "security credentials" section on your AWS account page or from your storage provider. |  
-| `key` | The `key` is required to authenticate you to S3. You can find the `key` in the "security credentials" section on your AWS account page or from your storage provider. |  
-| `use_v4_signature` | There are two versions of authentication protocols that can be used with S3 storage: Version 2 (older, may still be supported by some regions) and Version 4 (current, used by most regions). If you don't set this option, Seafile will use the v2 protocol. It's suggested to use the v4 protocol. |  
-| `use_https` | Use https to connect to S3. It's recommended to use https. |
-| `aws_region` | (**Optional**) If you use the v4 protocol and AWS S3, set this option to the region you chose when you create the buckets. If it's not set and you're using the v4 protocol, Seafile will use `us-east-1` as the default. This option will be ignored if you use the v2 protocol. |
-| `host` | (**Optional**) The endpoint by which you access the storage service. Usually it starts with the region name. It's required to provide the host address if you use storage provider other than AWS, *otherwise Seafile will use AWS's address* (i.e., `s3.us-east-1.amazonaws.com`).|
-| `sse_c_key` | (**Optional**) A string of 32 characters can be generated by `openssl rand -base64 24`. It can be any 32-character long random string. It's required to use V4 authentication protocol and https if you enable SSE-C. |
-| `path_style_request` | (**Optional**) This option asks Seafile to use URLs like `https://192.168.1.123:8080/bucketname/object` to access objects. In Amazon S3, the default URL format is in virtual host style, such as `https://bucketname.s3.amazonaws.com/object`. But this style relies on advanced DNS server setup. So most self-hosted storage systems only implement the path style format. So we recommend to set this option to true for self-hosted storage. |
-
-[1]: <https://docs.aws.amazon.com/AmazonS3/latest/userguide/BucketRestrictions.html#bucketnamingrules> (Replace this placeholder with the actual link to the S3 bucket naming rules documentation if necessary)
+| Variable                        | Description                                                                                                   | Default Value                   |  
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------- |
+| `S3_COMMIT_BUCKET`   | S3 storage backend commit objects bucket | (required) |
+| `S3_FS_BUCKET`   | S3 storage backend fs objects bucket | (required) |
+| `S3_BLOCK_BUCKET`   | S3 storage backend block objects bucket | (required) |
+| `S3_KEY_ID`   | S3 storage backend key ID | (required) |
+| `S3_SECRET_KEY`   | S3 storage backend secret key | (required) |
+| `S3_AWS_REGION`   | Region of your buckets | `us-east-1` |
+| `S3_HOST`   | Host of your buckets | (required when not use AWS) |
+| `S3_USE_HTTPS`   | Use HTTPS connections to S3 if enabled | `true` |
+| `S3_USE_V4_SIGNATURE`   | Use the v4 protocol of S3 if enabled | `true` |
+| `S3_PATH_STYLE_REQUEST`   | This option asks Seafile to use URLs like `https://192.168.1.123:8080/bucketname/object` to access objects. In *Amazon S3*, the default URL format is in virtual host style, such as `https://bucketname.s3.amazonaws.com/object`. But this style relies on advanced DNS server setup. So most self-hosted storage systems only implement the path style format. | `false` |
+| `S3_SSE_C_KEY`   | A string of 32 characters can be generated by openssl rand -base64 24. It can be any 32-character long random string. It's required to use V4 authentication protocol and https if you enable SSE-C. | (none) |
 
 !!! warning "Bucket naming conventions"
 
@@ -72,47 +58,138 @@ You have to create at least **3** buckets for Seafile, corresponding to the sect
         - seafileFSObject
         - seafile block object
 
+!!! note "About S3_SSE_C_KEY"
+    `S3_SSE_C_KEY` is a string of 32 characters.
 
-### Use server-side encryption with customer-provided keys (SSE-C) in Seafile
+    You can generate sse_c_key with the following command. Note that the key doesn't have to be base64 encoded. It can be any 32-character long random string. The example just show one possible way to generate such a key.
 
-Since Pro 11.0, you can use SSE-C to S3. Add the following `sse_c_key` to seafile.conf (as shown in the above variables table):
+    ```
+    openssl rand -base64 24
+    ```
+
+    Howevery, if you have existing data in your S3 storage bucket, **turning on the above configuration will make your data inaccessible**. That's because Seafile server doesn't support encrypted and non-encrypted objects mixed in the same bucket. You have to create a new bucket, and migrate your data to it by following [storage backend migration documentation](./migrate_backends_data.md#migrating-to-sse-c-encrypted-s3-storage).
+
+!!! tip "For other S3 support extensions"
+    In addition to Seafile server, the following extensions (if already installed) will share the same S3 authorization information in `.env` with Seafile server:
+
+    - [SeaSearch](./use_seasearch.md): Enable the feature by specifying `SS_STORAGE_TYPE=s3` and `S3_SS_BUCKET`
+    - [Metadata server](../extension/metadata-server.md): Enable the feature by specifying `MD_STORAGE_TYPE=s3` and `S3_MD_BUCKET`
+
+### Example configurations
+
+=== "AWS"
+
+    ```sh
+    SEAF_SERVER_STORAGE_TYPE=s3
+    S3_COMMIT_BUCKET=my-commit-objects
+    S3_FS_BUCKET=my-fs-objects
+    S3_BLOCK_BUCKET=my-block-objects
+    S3_KEY_ID=your-key-id
+    S3_SECRET_KEY=your-secret-key
+    S3_USE_V4_SIGNATURE=true
+    S3_PATH_STYLE_REQUEST=false
+    S3_AWS_REGION=eu-central-1
+    S3_HOST=
+    S3_USE_HTTPS=true
+    ```
+=== "Exoscale"
+
+    ```conf
+    SEAF_SERVER_STORAGE_TYPE=s3
+    S3_COMMIT_BUCKET=my-commit-objects
+    S3_FS_BUCKET=my-fs-objects
+    S3_BLOCK_BUCKET=my-block-objects
+    S3_KEY_ID=your-key-id
+    S3_SECRET_KEY=your-secret-key
+    S3_USE_V4_SIGNATURE=true
+    S3_PATH_STYLE_REQUEST=true
+    S3_AWS_REGION=eu-central-1 # will be ignored when S3_HOST is specified
+    S3_HOST=sos-de-fra-1.exo.io
+    S3_USE_HTTPS=true
+    ```
+=== "Hetzner"
+
+    ```conf
+    SEAF_SERVER_STORAGE_TYPE=s3
+    S3_COMMIT_BUCKET=my-commit-objects
+    S3_FS_BUCKET=my-fs-objects
+    S3_BLOCK_BUCKET=my-block-objects
+    S3_KEY_ID=your-key-id
+    S3_SECRET_KEY=your-secret-key
+    S3_USE_V4_SIGNATURE=true
+    S3_PATH_STYLE_REQUEST=true
+    S3_AWS_REGION=eu-central-1 # will be ignored when S3_HOST is specified
+    S3_HOST=fsn1.your-objectstorage.com
+    S3_USE_HTTPS=true
+    ```
+
+=== "Other Public Hosted S3 Storage"
+
+    There are other S3-compatible cloud storage providers in the market, such as ***Blackblaze*** and ***Wasabi***. Configuration for those providers are just a bit different from AWS. We don't assure the following configuration works for all providers. If you have problems please contact our support
+
+    ```
+    SEAF_SERVER_STORAGE_TYPE=s3
+    S3_COMMIT_BUCKET=my-commit-objects
+    S3_FS_BUCKET=my-fs-objects
+    S3_BLOCK_BUCKET=my-block-objects
+    S3_KEY_ID=your-key-id
+    S3_SECRET_KEY=your-secret-key
+    S3_USE_V4_SIGNATURE=true
+    S3_PATH_STYLE_REQUEST=true
+    S3_AWS_REGION=eu-central-1 # will be ignored when S3_HOST is specified
+    S3_HOST=<access endpoint for storage provider>
+    S3_USE_HTTPS=true
+    ```
+=== "Self-hosted S3 Storage"
+
+    Many self-hosted object storage systems are now compatible with the S3 API, such as ***OpenStack Swift***, ***Ceph's RADOS Gateway*** and ***Minio***. You can use these S3-compatible storage systems as backend for Seafile. Here is an example config:
+
+    ```
+    SEAF_SERVER_STORAGE_TYPE=s3
+    S3_COMMIT_BUCKET=my-commit-objects
+    S3_FS_BUCKET=my-fs-objects
+    S3_BLOCK_BUCKET=my-block-objects
+    S3_KEY_ID=your-key-id
+    S3_SECRET_KEY=your-secret-key
+    S3_USE_V4_SIGNATURE=true
+    S3_PATH_STYLE_REQUEST=true
+    S3_AWS_REGION=eu-central-1 # will be ignored when S3_HOST is specified
+    S3_HOST=<your s3 api endpoint host>:<your s3 api endpoint port>
+    S3_USE_HTTPS=true # according to your S3 configuration
+    ```
+
+## Setup with config file
+
+Seafile configures S3 storage by adding or modifying the following section in `seafile.conf`:
 
 ```conf
-[commit_object_backend]
+[xxx_object_backend]
 name = s3
-......
+bucket = my-xxx-objects
+key_id = your-key-id
+key = your-secret-key
 use_v4_signature = true
 use_https = true
-sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
-
-[fs_object_backend]
-name = s3
-......
-use_v4_signature = true
-use_https = true
-sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
-
-[block_backend]
-name = s3
-......
-use_v4_signature = true
-use_https = true
-sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
+... ; other optional configurations
 ```
 
-`sse_c_key` is a string of 32 characters.
+Similar to configure in `.env`, you have to create at least **3** buckets for Seafile too, corresponding to the sections: `commit_object_backend`, `fs_object_backend` and `block_backend`. For the configurations for each backend section, please refer to the following table:
 
-You can generate sse_c_key with the following command. Note that the key doesn't have to be base64 encoded. It can be any 32-character long random string. The example just show one possible way to generate such a key.
+| Variable | Description |  
+| --- | --- |  
+| `bucket` | Bucket name for commit, fs, and block objects. Make sure it follows [S3 naming rules](https://docs.aws.amazon.com/AmazonS3/latest/userguide/BucketRestrictions.html#bucketnamingrules) (you can refer the notes below the table). |  
+| `key_id` | The `key_id` is required to authenticate you to S3. You can find the `key_id` in the "security credentials" section on your AWS account page or from your storage provider. |  
+| `key` | The `key` is required to authenticate you to S3. You can find the `key` in the "security credentials" section on your AWS account page or from your storage provider. |  
+| `use_v4_signature` | There are two versions of authentication protocols that can be used with S3 storage: Version 2 (older, may still be supported by some regions) and Version 4 (current, used by most regions). If you don't set this option, Seafile will use the v2 protocol. It's suggested to use the v4 protocol. |  
+| `use_https` | Use https to connect to S3. It's recommended to use https. |
+| `aws_region` | (**Optional**) If you use the v4 protocol and AWS S3, set this option to the region you chose when you create the buckets. If it's not set and you're using the v4 protocol, Seafile will use `us-east-1` as the default. This option will be ignored if you use the v2 protocol. |
+| `host` | (**Optional**) The endpoint by which you access the storage service. Usually it starts with the region name. It's required to provide the host address if you use storage provider other than AWS, *otherwise Seafile will use AWS's address* (i.e., `s3.us-east-1.amazonaws.com`).|
+| `sse_c_key` | (**Optional**) A string of 32 characters can be generated by `openssl rand -base64 24`. It can be any 32-character long random string. It's required to use V4 authentication protocol and https if you enable SSE-C. |
+| `path_style_request` | (**Optional**) This option asks Seafile to use URLs like `https://192.168.1.123:8080/bucketname/object` to access objects. In Amazon S3, the default URL format is in virtual host style, such as `https://bucketname.s3.amazonaws.com/object`. But this style relies on advanced DNS server setup. So most self-hosted storage systems only implement the path style format. So we recommend to set this option to true for self-hosted storage. |
 
-```
-openssl rand -base64 24
-```
+[1]: <https://docs.aws.amazon.com/AmazonS3/latest/userguide/BucketRestrictions.html#bucketnamingrules> (Replace this placeholder with the actual link to the S3 bucket naming rules documentation if necessary)
 
-!!! warning
-
-    If you have existing data in your S3 storage bucket, turning on the above configuration will make your data inaccessible. That's because Seafile server doesn't support encrypted and non-encrypted objects mixed in the same bucket. You have to create a new bucket, and migrate your data to it by following [storage backend migration documentation](./migrate_backends_data.md#migrating-to-sse-c-encrypted-s3-storage).
-
-## Example
+### Example configurations
 
 === "AWS"
 
@@ -276,6 +353,33 @@ openssl rand -base64 24
     path_style_request = true
     use_v4_signature = true
     use_https = true
+    ```
+
+!!! tip "Use server-side encryption with customer-provided keys (SSE-C) in Seafile"
+
+    Since Pro 11.0, you can use SSE-C to S3. Add the following `sse_c_key` to seafile.conf (as shown in the above variables table):
+
+    ```conf
+    [commit_object_backend]
+    name = s3
+    ......
+    use_v4_signature = true
+    use_https = true
+    sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
+
+    [fs_object_backend]
+    name = s3
+    ......
+    use_v4_signature = true
+    use_https = true
+    sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
+
+    [block_backend]
+    name = s3
+    ......
+    use_v4_signature = true
+    use_https = true
+    sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
     ```
 
 ## Run and Test ##

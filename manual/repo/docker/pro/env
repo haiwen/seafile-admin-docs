@@ -16,7 +16,14 @@ NOTIFICATION_SERVER_IMAGE=seafileltd/notification-server:12.0-latest
 SEASEARCH_IMAGE=seafileltd/seasearch:1.0-latest
 MD_IMAGE=seafileltd/seafile-md-server:latest
 
-## Persistent Storage
+## Storage
+
+### Storage type
+SEAF_SERVER_STORAGE_TYPE=disk # disk, s3, multiple
+MD_STORAGE_TYPE=$SEAF_SERVER_STORAGE_TYPE # disk, s3
+SS_STORAGE_TYPE=$SEAF_SERVER_STORAGE_TYPE # disk, s3
+
+### Local storage path
 BASIC_STORAGE_PATH=/opt
 SEAFILE_VOLUME=$BASIC_STORAGE_PATH/seafile-data
 SEAFILE_MYSQL_VOLUME=$BASIC_STORAGE_PATH/seafile-mysql/db
@@ -25,6 +32,21 @@ SEAFILE_CADDY_VOLUME=$BASIC_STORAGE_PATH/seafile-caddy
 NOTIFICATION_SERVER_VOLUME=$BASIC_STORAGE_PATH/notification-data
 SS_DATA_PATH=$BASIC_STORAGE_PATH/seasearch-data 
 SEADOC_VOLUME=$BASIC_STORAGE_PATH/seadoc-data
+
+### Storage configurations for S3 (only valid in XXX_STORAGE_TYPE=s3)
+S3_COMMIT_BUCKET=<your commit bucket name>
+S3_FS_BUCKET=<your fs bucket name>
+S3_BLOCK_BUCKET=<your block bucket name>
+S3_SS_BUCKET=<your seasearch bucket name> # for seasearch
+S3_MD_BUCKET=<your metadata bucket name> # for metadata-server
+S3_KEY_ID=<your-key-id>
+S3_SECRET_KEY=<your-secret-key>
+S3_USE_V4_SIGNATURE=true
+S3_PATH_STYLE_REQUEST=false
+S3_AWS_REGION=us-east-1
+S3_HOST=
+S3_USE_HTTPS=true
+S3_SSE_C_KEY=
 
 #################################
 #      Startup parameters       #
@@ -57,22 +79,6 @@ REDIS_PASSWORD=
 ### Memcached
 MEMCACHED_HOST=memcached
 MEMCACHED_PORT=11211
-
-## S3
-USE_S3_STORAGE=false
-S3_COMMIT_BUCKET=<your commit bucket name>
-S3_FS_BUCKET=<your fs bucket name>
-S3_BLOCK_BUCKET=<your block bucket name>
-S3_SS_BUCKET=<your seasearch bucket name> # for seasearch
-S3_MD_BUCKET=<your metadata bucket name> # for metadata-server
-S3_KEY_ID=<your-key-id>
-S3_SECRET_KEY=<your-secret-key>
-S3_USE_V4_SIGNATURE=true
-S3_PATH_STYLE_REQUEST=false
-S3_AWS_REGION=us-east-1
-S3_HOST=
-S3_USE_HTTPS=true
-S3_SSE_C_KEY=
 
 ######################################
 #        Initial variables           #
