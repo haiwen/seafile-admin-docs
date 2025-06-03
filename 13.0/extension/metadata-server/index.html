@@ -971,14 +971,6 @@
     
   </span>
   
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
 
       </a>
     </li>
@@ -4828,24 +4820,23 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 MD_MAX_CACHE_SIZE=1GB
 </code></pre></div>
 <h4 id="example-env-for-seafile-data-is-stored-in-the-storage-backend-eg-s3">Example <code>.env</code> for  Seafile data is stored in the storage backend (e.g., S3)<a class="headerlink" href="#example-env-for-seafile-data-is-stored-in-the-storage-backend-eg-s3" title="Permanent link">&para;</a></h4>
-<p>First you need to create a bucket for Metadata on your S3 storage backend provider. Then add or modify the following information to <code>.env</code>:</p>
-<div class="admonition success">
-<p class="admonition-title">Easier to configure S3 for Seafile and its components</p>
-<p>Since Seafile Pro 13.0, in order to facilitate users to deploy Seafile's related extension components and other services in the future, a section will be provided in <code>.env</code> to store the <strong>S3 Configurations</strong> for Seafile and some extension components (such as <em>SeaSearch</em>, <em>Metadata server</em>). You can locate it with the title bar <strong>##S3</strong>.</p>
-<p>In other words, if you deploy SeaSearch and Seafile together, and if you have deployed Seafile Pro following <a href="../../setup/setup_pro_by_docker/#downloading-and-modifying-env">here</a> (and using the latest <code>.env</code>), you only need to specify the following variables in <code>.env</code> to make it work (that is, the <code>USE_S3_STORAGE</code> is set to <code>true</code>):</p>
-<div class="highlight"><pre><span></span><code><span class="nv">S3_COMMIT_BUCKET</span><span class="o">=</span>&lt;your<span class="w"> </span>s3<span class="w"> </span>bucket<span class="w"> </span>name<span class="w"> </span><span class="k">for</span><span class="w"> </span>Seafile<span class="w"> </span>commit&gt;
-<span class="nv">S3_FS_BUCKET</span><span class="o">=</span>&lt;your<span class="w"> </span>s3<span class="w"> </span>bucket<span class="w"> </span>name<span class="w"> </span><span class="k">for</span><span class="w"> </span>Seafile<span class="w"> </span>file<span class="w"> </span>storage&gt;
-<span class="nv">S3_BLOCK_BUCKET</span><span class="o">=</span>&lt;your<span class="w"> </span>s3<span class="w"> </span>bucket<span class="w"> </span>name<span class="w"> </span><span class="k">for</span><span class="w"> </span>Seafile<span class="w"> </span>block&gt;
-<span class="nv">S3_MD_BUCKET</span><span class="o">=</span>&lt;your<span class="w"> </span>s3<span class="w"> </span>bucket<span class="w"> </span>name<span class="w"> </span><span class="k">for</span><span class="w"> </span>Metadata&gt;
-</code></pre></div>
-</div>
+<p>First you need to create a bucket for metadata on your S3 storage backend provider. Then add or modify the following information to <code>.env</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="nv">MD_IMAGE</span><span class="o">=</span>seafileltd/seafile-md-server:latest
-<span class="nv">USE_S3_STORAGE</span><span class="o">=</span><span class="nb">true</span>
-<span class="nv">S3_COMMIT_BUCKET</span><span class="o">=</span>...
-<span class="nv">S3_FS_BUCKET</span><span class="o">=</span>...
-<span class="nv">S3_BLOCK_BUCKET</span><span class="o">=</span>...
+<span class="nv">MD_STORAGE_TYPE</span><span class="o">=</span>s3
 <span class="nv">S3_MD_BUCKET</span><span class="o">=</span>...
+<span class="nv">S3_KEY_ID</span><span class="o">=</span>&lt;your-key-id&gt;
+<span class="nv">S3_SECRET_KEY</span><span class="o">=</span>&lt;your-secret-key&gt;
+<span class="nv">S3_USE_V4_SIGNATURE</span><span class="o">=</span><span class="nb">true</span>
+<span class="nv">S3_PATH_STYLE_REQUEST</span><span class="o">=</span><span class="nb">false</span>
+<span class="nv">S3_AWS_REGION</span><span class="o">=</span>us-east-1
+<span class="nv">S3_HOST</span><span class="o">=</span>
+<span class="nv">S3_USE_HTTPS</span><span class="o">=</span><span class="nb">true</span>
+<span class="nv">S3_SSE_C_KEY</span><span class="o">=</span>
 </code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Data for Seafile server should be accessible for Metadata server</p>
+<p>In order to correctly obtain metadata information, you must ensure that the data of your Seafile server can be correctly accessed. In the case of deploying Metadata server and Seafile server together, Metadata server will be able to automatically obtain the configuration information of Seafile server, so you don't need to worry about this. But if your Metadata server is deployed in Standalone (usually in a cluster environment), then you need to ensure that the description of the Seafile server storage part in the <code>.env</code> deployed by Metadata server needs to be consistent with the <code>.env</code> deployed by Seafile server (e.g., <code>SEAF_SERVER_STORAGE_TYPE</code>), and can access the configuration file information of Seafile server (e.g., <code>seafile.conf</code>) to ensure that Metadata server can correctly obtain data from Seafile server.</p>
+</div>
 <h4 id="list-of-environment-variables-for-metadata-server">List of environment variables for Metadata server<a class="headerlink" href="#list-of-environment-variables-for-metadata-server" title="Permanent link">&para;</a></h4>
 <p>The following table is all the related environment variables with Metadata server:</p>
 <table>
@@ -4883,9 +4874,14 @@ MD_MAX_CACHE_SIZE=1GB
 <td>Optional</td>
 </tr>
 <tr>
+<td><code>MD_STORAGE_TYPE</code></td>
+<td>Where the metadata storage in. Available options are <code>disk</code> (local storage) and <code>s3</code></td>
+<td><code>disk</code></td>
+</tr>
+<tr>
 <td><code>S3_MD_BUCKET</code></td>
 <td>Your S3 bucket name for the bucket storing metadata</td>
-<td>Required when using S3 (<code>USE_S3_STORAGE</code> = <code>true</code>)</td>
+<td>Required when using S3 (<code>MD_STORAGE_TYPE=s3</code>)</td>
 </tr>
 </tbody>
 </table>

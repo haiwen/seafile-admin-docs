@@ -32,7 +32,7 @@ MEMCACHED_HOST=<your memcached host>
 MEMCACHED_PORT=11211
 
 ## S3
-USE_S3_STORAGE=false
+SEAF_SERVER_STORAGE_TYPE=disk
 S3_KEY_ID=<your-key-id>
 S3_SECRET_KEY=<your-secret-key>
 S3_USE_V4_SIGNATURE=true

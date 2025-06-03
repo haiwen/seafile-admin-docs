@@ -973,14 +973,6 @@
     
   </span>
   
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
 
       </a>
     </li>
@@ -3392,9 +3384,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#s3-storage-backend-configurations" class="md-nav__link">
+  <a href="#s3-storage-backend-configurations-pro" class="md-nav__link">
     <span class="md-ellipsis">
-      S3 storage backend configurations
+      S3 storage backend configurations (pro)
     </span>
   </a>
   
@@ -4806,9 +4798,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#s3-storage-backend-configurations" class="md-nav__link">
+  <a href="#s3-storage-backend-configurations-pro" class="md-nav__link">
     <span class="md-ellipsis">
-      S3 storage backend configurations
+      S3 storage backend configurations (pro)
     </span>
   </a>
   
@@ -4937,9 +4929,9 @@
 <li><code>ENABLE_SEADOC</code>: Enable the SeaDoc server or not, default is <code>false</code>.</li>
 <li><code>SEADOC_SERVER_URL</code>: Only valid in <code>ENABLE_SEADOC=true</code>. Url of Seadoc server (e.g., http://seafile.example.com/sdoc-server).</li>
 </ul>
-<h2 id="s3-storage-backend-configurations">S3 storage backend configurations<a class="headerlink" href="#s3-storage-backend-configurations" title="Permanent link">&para;</a></h2>
+<h2 id="s3-storage-backend-configurations-pro">S3 storage backend configurations (pro)<a class="headerlink" href="#s3-storage-backend-configurations-pro" title="Permanent link">&para;</a></h2>
 <ul>
-<li><code>USE_S3_STORAGE</code>: Use S3 backend storage in Seafile server</li>
+<li><code>SEAF_SERVER_STORAGE_TYPE</code>: What kind of the Seafile data for storage. Available options are <code>disk</code> (i.e., local disk), <code>s3</code> and <code>multiple</code> (see the details of <a href="../../setup/setup_with_multiple_storage_backends/">multiple storage backends</a>)</li>
 <li><code>S3_COMMIT_BUCKET</code>: S3 storage backend fs objects bucket</li>
 <li><code>S3_FS_BUCKET</code>: S3 storage backend block objects bucket</li>
 <li><code>S3_BLOCK_BUCKET</code>: S3 storage backend block objects bucket</li>
@@ -4956,8 +4948,19 @@
 </ul>
 <div class="admonition success">
 <p class="admonition-title">Easier to configure S3 for Seafile and its components</p>
-<p>Since Seafile Pro 13.0, in order to facilitate users to deploy Seafile's related extension components and other services in the future, a section will be provided in <code>.env</code> to store the <strong>S3 Configurations</strong> for Seafile and some extension components (such as <em>SeaSearch</em>, <em>Metadata server</em>). You can locate it with the title bar <strong>##S3</strong>.</p>
-<p>However, please note that Seafile only support configuring S3 in <code>.env</code> for <strong>single storage backend mode</strong> (i.e., when <code>USE_S3_STORAGE=true</code>), if you would like to use multiple backends, please set <code>USE_S3_STORAGE=false</code> in <code>.env</code> and refer <a href="../../setup/setup_with_multiple_storage_backends/">here</a> for the details.</p>
+<p>Since Seafile Pro 13.0, in order to facilitate users to deploy Seafile's related extension components and other services in the future, a section will be provided in <code>.env</code> to store the <strong>S3 Configurations</strong> for Seafile and some extension components (such as <em>SeaSearch</em>, <em>Metadata server</em>). You can locate it with the title bar <strong>Storage configurations for S3</strong>.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">S3 configurations in <code>.env</code> only support single S3 storage backend mode</p>
+<p>The Seafile server only support configuring S3 in <code>.env</code> for <strong>single S3 storage backend mode</strong> (i.e., when <code>SEAF_SERVER_STORAGE_TYPE=s3</code>). If you would like to use other storage backend (e.g., <a href="./setup_with_ceph.md">Ceph</a>, <a href="./setup_with_swift.md">Swift</a>) or other settings that can only be set in <code>seafile.conf</code> (like <a href="./setup_with_multiple_storage_backends.md">multiple storage backends</a>), please set <code>SEAF_SERVER_STORAGE_TYPE</code> to <code>multiple</code>, and set <code>MD_STORAGE_TYPE</code> and <code>SS_STORAGE_TYPE</code> according to your configurations.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">The S3 configurations only valid with at least one <code>STORAGE_TYPE</code> has specified to <code>s3</code></p>
+<p>Now there are three (pro) and one (cluster) <strong><em>STORAGE_TYPE</em></strong> we provided in <code>.env</code>:
+    - SEAF_SERVER_STORAGE_TYPE (pro &amp; cluster)
+    - MD_STORAGE_TYPE (pro, see the <a href="#metadata-server">Metadata server</a> section for the details)
+    - SS_STORAGE_TYPE (pro, see the <a href="#seasearch">SeaSearch</a> section for the details)</p>
+<p>You have to specify at least one of them as s3 for the above configuration to take effect.</p>
 </div>
 <h2 id="seasearch">SeaSearch<a class="headerlink" href="#seasearch" title="Permanent link">&para;</a></h2>
 <p>For configurations about SeaSearch in <code>.env</code>, please refer <a href="https://seasearch-manual.seafile.com/config/">here</a> for the details.</p>

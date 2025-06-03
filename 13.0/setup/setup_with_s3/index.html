@@ -993,14 +993,6 @@
     
   </span>
   
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
 
           <span class="md-nav__icon md-icon"></span>
         </label>
@@ -1013,14 +1005,6 @@
     S3 Backend
     
   </span>
-  
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
   
 
       </a>
@@ -1041,19 +1025,19 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#how-to-configure-s3-in-seafile" class="md-nav__link">
+  <a href="#setup-swith-environment-variables-recommend" class="md-nav__link">
     <span class="md-ellipsis">
-      How to configure S3 in Seafile
+      Setup swith environment variables (recommend)
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="How to configure S3 in Seafile">
+    <nav class="md-nav" aria-label="Setup swith environment variables (recommend)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#use-server-side-encryption-with-customer-provided-keys-sse-c-in-seafile" class="md-nav__link">
+  <a href="#example-configurations" class="md-nav__link">
     <span class="md-ellipsis">
-      Use server-side encryption with customer-provided keys (SSE-C) in Seafile
+      Example configurations
     </span>
   </a>
   
@@ -1065,11 +1049,26 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
+  <a href="#setup-with-config-file" class="md-nav__link">
     <span class="md-ellipsis">
-      Example
+      Setup with config file
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Setup with config file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-configurations_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example configurations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -4611,19 +4610,19 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#how-to-configure-s3-in-seafile" class="md-nav__link">
+  <a href="#setup-swith-environment-variables-recommend" class="md-nav__link">
     <span class="md-ellipsis">
-      How to configure S3 in Seafile
+      Setup swith environment variables (recommend)
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="How to configure S3 in Seafile">
+    <nav class="md-nav" aria-label="Setup swith environment variables (recommend)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#use-server-side-encryption-with-customer-provided-keys-sse-c-in-seafile" class="md-nav__link">
+  <a href="#example-configurations" class="md-nav__link">
     <span class="md-ellipsis">
-      Use server-side encryption with customer-provided keys (SSE-C) in Seafile
+      Example configurations
     </span>
   </a>
   
@@ -4635,11 +4634,26 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
+  <a href="#setup-with-config-file" class="md-nav__link">
     <span class="md-ellipsis">
-      Example
+      Setup with config file
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Setup with config file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-configurations_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example configurations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -4672,11 +4686,13 @@
 
 
 <h1 id="setup-with-s3-storage">Setup With S3 Storage<a class="headerlink" href="#setup-with-s3-storage" title="Permanent link">&para;</a></h1>
-<div class="admonition note">
-<p class="admonition-title">Deployment notes</p>
+<p>From Seafile 13, there are two ways to configure S3 storage (<strong>single S3 storage backend</strong>) for Seafile server:</p>
 <ul>
-<li>This feature is only for <strong><em>Pro Edition</em></strong></li>
-<li>
+<li>Environment variables (<strong>recommend</strong> since Seafile 13)</li>
+<li>Config file (<code>seafile.conf</code>)</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Setup note for binary packages deployment (Pro)</p>
 <p>If your Seafile server is deployed from <a href="../../setup_binary/installation_pro/">binary packages</a>, you have to do the following steps before deploying:</p>
 <ol>
 <li>
@@ -4690,15 +4706,196 @@
 <p>The configuration options differ for different S3 storage. We'll describe the configurations in separate sections. You also need to add <a href="../../config/seafile-conf/#cache-pro-edition-only">memory cache configurations</a></p>
 </li>
 </ol>
-</li>
+</div>
+<h2 id="setup-swith-environment-variables-recommend">Setup swith environment variables (recommend)<a class="headerlink" href="#setup-swith-environment-variables-recommend" title="Permanent link">&para;</a></h2>
+<p>From Seafile 13, configuring S3 from environment variables will be supported and will provide a more convenient way. You can refer to the detailed description of this part in the introduction of <code>.env</code> file. Generally, </p>
+<ol>
+<li>Prepare at least <strong>3</strong> buckets for Seafile (<code>S3_COMMIT_BUCKET</code>, <code>S3_FS_BUCKET</code> and <code>S3_BLOCK_BUCKET</code>). </li>
+<li>Set <code>SEAF_SERVER_STORAGE_TYPE</code> to <code>true</code></li>
+<li>Fill in the corresponding variable values in <code>.env</code> ​​according to the following table:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>S3_COMMIT_BUCKET</code></td>
+<td>S3 storage backend commit objects bucket</td>
+<td>(required)</td>
+</tr>
+<tr>
+<td><code>S3_FS_BUCKET</code></td>
+<td>S3 storage backend fs objects bucket</td>
+<td>(required)</td>
+</tr>
+<tr>
+<td><code>S3_BLOCK_BUCKET</code></td>
+<td>S3 storage backend block objects bucket</td>
+<td>(required)</td>
+</tr>
+<tr>
+<td><code>S3_KEY_ID</code></td>
+<td>S3 storage backend key ID</td>
+<td>(required)</td>
+</tr>
+<tr>
+<td><code>S3_SECRET_KEY</code></td>
+<td>S3 storage backend secret key</td>
+<td>(required)</td>
+</tr>
+<tr>
+<td><code>S3_AWS_REGION</code></td>
+<td>Region of your buckets</td>
+<td><code>us-east-1</code></td>
+</tr>
+<tr>
+<td><code>S3_HOST</code></td>
+<td>Host of your buckets</td>
+<td>(required when not use AWS)</td>
+</tr>
+<tr>
+<td><code>S3_USE_HTTPS</code></td>
+<td>Use HTTPS connections to S3 if enabled</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>S3_USE_V4_SIGNATURE</code></td>
+<td>Use the v4 protocol of S3 if enabled</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>S3_PATH_STYLE_REQUEST</code></td>
+<td>This option asks Seafile to use URLs like <code>https://192.168.1.123:8080/bucketname/object</code> to access objects. In <em>Amazon S3</em>, the default URL format is in virtual host style, such as <code>https://bucketname.s3.amazonaws.com/object</code>. But this style relies on advanced DNS server setup. So most self-hosted storage systems only implement the path style format.</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>S3_SSE_C_KEY</code></td>
+<td>A string of 32 characters can be generated by openssl rand -base64 24. It can be any 32-character long random string. It's required to use V4 authentication protocol and https if you enable SSE-C.</td>
+<td>(none)</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Bucket naming conventions</p>
+<p>No matter if you using AWS or any other S3 compatible object storage, we recommend that you follow <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/BucketRestrictions.html#bucketnamingrules">S3 naming rules</a>. When you create buckets on S3, please read the <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html">S3 rules for naming</a> first. Note, especially do not use capital letters in the name of the bucket (do not use camel-style naming, such as MyCommitObjects).</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Good naming of a bucket</label><label for="__tabbed_1_2">Bad naming of a bucket</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li>seafile-commit-object</li>
+<li>seafile-fs-object</li>
+<li>seafile-block-object</li>
 </ul>
 </div>
-<div class="admonition tip">
-<p class="admonition-title">New feature from 13.0 pro edition</p>
-<p>If your will deploy Seafile server in Docker, you can specify your S3 configurations in <code>S3</code> title bar in <code>.env</code> to deploy with S3 together. This operation will generate the same configuration file as this manual. </p>
-<p>However, please note that Seafile only support configuring S3 in <code>.env</code> for <strong>single storage backend mode</strong> (i.e., when <code>USE_S3_STORAGE=true</code>), if you would like to use multiple backends, please set <code>USE_S3_STORAGE=false</code> in <code>.env</code> and refer <a href="../setup_with_multiple_storage_backends/">here</a> for the details.</p>
+<div class="tabbed-block">
+<ul>
+<li>SeafileCommitObject</li>
+<li>seafileFSObject</li>
+<li>seafile block object</li>
+</ul>
 </div>
-<h2 id="how-to-configure-s3-in-seafile">How to configure S3 in Seafile<a class="headerlink" href="#how-to-configure-s3-in-seafile" title="Permanent link">&para;</a></h2>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">About S3_SSE_C_KEY</p>
+<p><code>S3_SSE_C_KEY</code> is a string of 32 characters.</p>
+<p>You can generate sse_c_key with the following command. Note that the key doesn't have to be base64 encoded. It can be any 32-character long random string. The example just show one possible way to generate such a key.</p>
+<div class="highlight"><pre><span></span><code>openssl rand -base64 24
+</code></pre></div>
+<p>Howevery, if you have existing data in your S3 storage bucket, <strong>turning on the above configuration will make your data inaccessible</strong>. That's because Seafile server doesn't support encrypted and non-encrypted objects mixed in the same bucket. You have to create a new bucket, and migrate your data to it by following <a href="../migrate_backends_data/#migrating-to-sse-c-encrypted-s3-storage">storage backend migration documentation</a>.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">For other S3 support extensions</p>
+<p>In addition to Seafile server, the following extensions (if already installed) will share the same S3 authorization information in <code>.env</code> with Seafile server:</p>
+<ul>
+<li><a href="../use_seasearch/">SeaSearch</a>: Enable the feature by specifying <code>SS_STORAGE_TYPE=s3</code> and <code>S3_SS_BUCKET</code></li>
+<li><a href="../../extension/metadata-server/">Metadata server</a>: Enable the feature by specifying <code>MD_STORAGE_TYPE=s3</code> and <code>S3_MD_BUCKET</code></li>
+</ul>
+</div>
+<h3 id="example-configurations">Example configurations<a class="headerlink" href="#example-configurations" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:5"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><input id="__tabbed_2_5" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">AWS</label><label for="__tabbed_2_2">Exoscale</label><label for="__tabbed_2_3">Hetzner</label><label for="__tabbed_2_4">Other Public Hosted S3 Storage</label><label for="__tabbed_2_5">Self-hosted S3 Storage</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nv">SEAF_SERVER_STORAGE_TYPE</span><span class="o">=</span>s3
+<span class="nv">S3_COMMIT_BUCKET</span><span class="o">=</span>my-commit-objects
+<span class="nv">S3_FS_BUCKET</span><span class="o">=</span>my-fs-objects
+<span class="nv">S3_BLOCK_BUCKET</span><span class="o">=</span>my-block-objects
+<span class="nv">S3_KEY_ID</span><span class="o">=</span>your-key-id
+<span class="nv">S3_SECRET_KEY</span><span class="o">=</span>your-secret-key
+<span class="nv">S3_USE_V4_SIGNATURE</span><span class="o">=</span><span class="nb">true</span>
+<span class="nv">S3_PATH_STYLE_REQUEST</span><span class="o">=</span><span class="nb">false</span>
+<span class="nv">S3_AWS_REGION</span><span class="o">=</span>eu-central-1
+<span class="nv">S3_HOST</span><span class="o">=</span>
+<span class="nv">S3_USE_HTTPS</span><span class="o">=</span><span class="nb">true</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>SEAF_SERVER_STORAGE_TYPE=s3
+S3_COMMIT_BUCKET=my-commit-objects
+S3_FS_BUCKET=my-fs-objects
+S3_BLOCK_BUCKET=my-block-objects
+S3_KEY_ID=your-key-id
+S3_SECRET_KEY=your-secret-key
+S3_USE_V4_SIGNATURE=true
+S3_PATH_STYLE_REQUEST=true
+S3_AWS_REGION=eu-central-1 # will be ignored when S3_HOST is specified
+S3_HOST=sos-de-fra-1.exo.io
+S3_USE_HTTPS=true
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>SEAF_SERVER_STORAGE_TYPE=s3
+S3_COMMIT_BUCKET=my-commit-objects
+S3_FS_BUCKET=my-fs-objects
+S3_BLOCK_BUCKET=my-block-objects
+S3_KEY_ID=your-key-id
+S3_SECRET_KEY=your-secret-key
+S3_USE_V4_SIGNATURE=true
+S3_PATH_STYLE_REQUEST=true
+S3_AWS_REGION=eu-central-1 # will be ignored when S3_HOST is specified
+S3_HOST=fsn1.your-objectstorage.com
+S3_USE_HTTPS=true
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>There are other S3-compatible cloud storage providers in the market, such as <strong><em>Blackblaze</em></strong> and <strong><em>Wasabi</em></strong>. Configuration for those providers are just a bit different from AWS. We don't assure the following configuration works for all providers. If you have problems please contact our support</p>
+<div class="highlight"><pre><span></span><code>SEAF_SERVER_STORAGE_TYPE=s3
+S3_COMMIT_BUCKET=my-commit-objects
+S3_FS_BUCKET=my-fs-objects
+S3_BLOCK_BUCKET=my-block-objects
+S3_KEY_ID=your-key-id
+S3_SECRET_KEY=your-secret-key
+S3_USE_V4_SIGNATURE=true
+S3_PATH_STYLE_REQUEST=true
+S3_AWS_REGION=eu-central-1 # will be ignored when S3_HOST is specified
+S3_HOST=&lt;access endpoint for storage provider&gt;
+S3_USE_HTTPS=true
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Many self-hosted object storage systems are now compatible with the S3 API, such as <strong><em>OpenStack Swift</em></strong>, <strong><em>Ceph's RADOS Gateway</em></strong> and <strong><em>Minio</em></strong>. You can use these S3-compatible storage systems as backend for Seafile. Here is an example config:</p>
+<div class="highlight"><pre><span></span><code>SEAF_SERVER_STORAGE_TYPE=s3
+S3_COMMIT_BUCKET=my-commit-objects
+S3_FS_BUCKET=my-fs-objects
+S3_BLOCK_BUCKET=my-block-objects
+S3_KEY_ID=your-key-id
+S3_SECRET_KEY=your-secret-key
+S3_USE_V4_SIGNATURE=true
+S3_PATH_STYLE_REQUEST=true
+S3_AWS_REGION=eu-central-1 # will be ignored when S3_HOST is specified
+S3_HOST=&lt;your s3 api endpoint host&gt;:&lt;your s3 api endpoint port&gt;
+S3_USE_HTTPS=true # according to your S3 configuration
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="setup-with-config-file">Setup with config file<a class="headerlink" href="#setup-with-config-file" title="Permanent link">&para;</a></h2>
 <p>Seafile configures S3 storage by adding or modifying the following section in <code>seafile.conf</code>:</p>
 <div class="highlight"><pre><span></span><code>[xxx_object_backend]
 name = s3
@@ -4709,7 +4906,7 @@ use_v4_signature = true
 use_https = true
 ... ; other optional configurations
 </code></pre></div>
-<p>You have to create at least <strong>3</strong> buckets for Seafile, corresponding to the sections: <code>commit_object_backend</code>, <code>fs_object_backend</code> and <code>block_backend</code>. For the configurations for each backend section, please refer to the following table:</p>
+<p>Similar to configure in <code>.env</code>, you have to create at least <strong>3</strong> buckets for Seafile too, corresponding to the sections: <code>commit_object_backend</code>, <code>fs_object_backend</code> and <code>block_backend</code>. For the configurations for each backend section, please refer to the following table:</p>
 <table>
 <thead>
 <tr>
@@ -4756,61 +4953,8 @@ use_https = true
 </tr>
 </tbody>
 </table>
-<div class="admonition warning">
-<p class="admonition-title">Bucket naming conventions</p>
-<p>No matter if you using AWS or any other S3 compatible object storage, we recommend that you follow <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/BucketRestrictions.html#bucketnamingrules">S3 naming rules</a>. When you create buckets on S3, please read the <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html">S3 rules for naming</a> first. Note, especially do not use capital letters in the name of the bucket (do not use camel-style naming, such as MyCommitObjects).</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Good naming of a bucket</label><label for="__tabbed_1_2">Bad naming of a bucket</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<ul>
-<li>seafile-commit-object</li>
-<li>seafile-fs-object</li>
-<li>seafile-block-object</li>
-</ul>
-</div>
-<div class="tabbed-block">
-<ul>
-<li>SeafileCommitObject</li>
-<li>seafileFSObject</li>
-<li>seafile block object</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<h3 id="use-server-side-encryption-with-customer-provided-keys-sse-c-in-seafile">Use server-side encryption with customer-provided keys (SSE-C) in Seafile<a class="headerlink" href="#use-server-side-encryption-with-customer-provided-keys-sse-c-in-seafile" title="Permanent link">&para;</a></h3>
-<p>Since Pro 11.0, you can use SSE-C to S3. Add the following <code>sse_c_key</code> to seafile.conf (as shown in the above variables table):</p>
-<div class="highlight"><pre><span></span><code>[commit_object_backend]
-name = s3
-......
-use_v4_signature = true
-use_https = true
-sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
-
-[fs_object_backend]
-name = s3
-......
-use_v4_signature = true
-use_https = true
-sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
-
-[block_backend]
-name = s3
-......
-use_v4_signature = true
-use_https = true
-sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
-</code></pre></div>
-<p><code>sse_c_key</code> is a string of 32 characters.</p>
-<p>You can generate sse_c_key with the following command. Note that the key doesn't have to be base64 encoded. It can be any 32-character long random string. The example just show one possible way to generate such a key.</p>
-<div class="highlight"><pre><span></span><code>openssl rand -base64 24
-</code></pre></div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>If you have existing data in your S3 storage bucket, turning on the above configuration will make your data inaccessible. That's because Seafile server doesn't support encrypted and non-encrypted objects mixed in the same bucket. You have to create a new bucket, and migrate your data to it by following <a href="../migrate_backends_data/#migrating-to-sse-c-encrypted-s3-storage">storage backend migration documentation</a>.</p>
-</div>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:5"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><input id="__tabbed_2_5" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">AWS</label><label for="__tabbed_2_2">Exoscale</label><label for="__tabbed_2_3">Hetzner</label><label for="__tabbed_2_4">Other Public Hosted S3 Storage</label><label for="__tabbed_2_5">Self-hosted S3 Storage</label></div>
+<h3 id="example-configurations_1">Example configurations<a class="headerlink" href="#example-configurations_1" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:5"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><input id="__tabbed_3_4" name="__tabbed_3" type="radio" /><input id="__tabbed_3_5" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">AWS</label><label for="__tabbed_3_2">Exoscale</label><label for="__tabbed_3_3">Hetzner</label><label for="__tabbed_3_4">Other Public Hosted S3 Storage</label><label for="__tabbed_3_5">Self-hosted S3 Storage</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>[commit_object_backend]
@@ -4969,6 +5113,31 @@ use_https = true
 </div>
 </div>
 </div>
+<div class="admonition tip">
+<p class="admonition-title">Use server-side encryption with customer-provided keys (SSE-C) in Seafile</p>
+<p>Since Pro 11.0, you can use SSE-C to S3. Add the following <code>sse_c_key</code> to seafile.conf (as shown in the above variables table):</p>
+<div class="highlight"><pre><span></span><code>[commit_object_backend]
+name = s3
+......
+use_v4_signature = true
+use_https = true
+sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
+
+[fs_object_backend]
+name = s3
+......
+use_v4_signature = true
+use_https = true
+sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
+
+[block_backend]
+name = s3
+......
+use_v4_signature = true
+use_https = true
+sse_c_key = XiqMSf3x5ja4LRibBbV0sVntVpdHXl3P
+</code></pre></div>
+</div>
 <h2 id="run-and-test">Run and Test<a class="headerlink" href="#run-and-test" title="Permanent link">&para;</a></h2>
 <p>Now you can start Seafile and test</p>
 
@@ -4977,9 +5146,6 @@ use_https = true
 
 
 
-
-  
-  
 
 
 

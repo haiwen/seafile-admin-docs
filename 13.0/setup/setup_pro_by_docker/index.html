@@ -1186,14 +1186,6 @@
     
   </span>
   
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
 
       </a>
     </li>
@@ -5069,34 +5061,34 @@ nano<span class="w"> </span>.env
 <td>asecret</td>
 </tr>
 <tr>
-<td><code>USE_S3_STORAGE</code></td>
-<td>Use S3 backend storage in Seafile server</td>
-<td><code>false</code></td>
+<td><code>SEAF_SERVER_STORAGE_TYPE</code></td>
+<td>What kind of the Seafile data for storage. Available options are <code>disk</code> (i.e., local disk), <code>s3</code> and <code>multiple</code> (see the details of <a href="../setup_with_multiple_storage_backends/">multiple storage backends</a>)</td>
+<td><code>disk</code></td>
 </tr>
 <tr>
 <td><code>S3_COMMIT_BUCKET</code></td>
 <td>S3 storage backend commit objects bucket</td>
-<td>(required when <code>USE_S3_STORAGE=true</code>)</td>
+<td>(required when <code>SEAF_SERVER_STORAGE_TYPE=s3</code>)</td>
 </tr>
 <tr>
 <td><code>S3_FS_BUCKET</code></td>
 <td>S3 storage backend fs objects bucket</td>
-<td>(required when you would like to initialize with S3)</td>
+<td>(required when <code>SEAF_SERVER_STORAGE_TYPE=s3</code>)</td>
 </tr>
 <tr>
 <td><code>S3_BLOCK_BUCKET</code></td>
 <td>S3 storage backend block objects bucket</td>
-<td>(required when <code>USE_S3_STORAGE=true</code>)</td>
+<td>(required when <code>SEAF_SERVER_STORAGE_TYPE=s3</code>)</td>
 </tr>
 <tr>
 <td><code>S3_KEY_ID</code></td>
 <td>S3 storage backend key ID</td>
-<td>(required when <code>USE_S3_STORAGE=true</code>)</td>
+<td>(required when <code>SEAF_SERVER_STORAGE_TYPE=s3</code>)</td>
 </tr>
 <tr>
 <td><code>S3_SECRET_KEY</code></td>
 <td>S3 storage backend secret key</td>
-<td>(required when <code>USE_S3_STORAGE=true</code>)</td>
+<td>(required when <code>SEAF_SERVER_STORAGE_TYPE=s3</code>)</td>
 </tr>
 <tr>
 <td><code>S3_AWS_REGION</code></td>
@@ -5142,8 +5134,11 @@ nano<span class="w"> </span>.env
 </table>
 <div class="admonition success">
 <p class="admonition-title">Easier to configure S3 for Seafile and its components</p>
-<p>Since Seafile Pro 13.0, in order to facilitate users to deploy Seafile's related extension components and other services in the future, a section will be provided in <code>.env</code> to store the <strong>S3 Configurations</strong> for Seafile and some extension components (such as <em>SeaSearch</em>, <em>Metadata server</em>). You can locate it with the title bar <strong>##S3</strong>.</p>
-<p>However, please note that Seafile only support configuring S3 in <code>.env</code> for <strong>single storage backend mode</strong> (i.e., when <code>USE_S3_STORAGE=true</code>), if you would like to use multiple backends, please set <code>USE_S3_STORAGE=false</code> in <code>.env</code> and refer <a href="../setup_with_multiple_storage_backends/">here</a> for the details.</p>
+<p>Since Seafile Pro 13.0, in order to facilitate users to deploy Seafile's related extension components and other services in the future, a section will be provided in <code>.env</code> to store the <strong>S3 Configurations</strong> for Seafile and some extension components (such as <em>SeaSearch</em>, <em>Metadata server</em>). You can locate it with the title bar <strong>Storage configurations for S3</strong>.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">S3 configurations in <code>.env</code> only support single S3 storage backend mode</p>
+<p>The Seafile server only support configuring S3 in <code>.env</code> for <strong>single S3 storage backend mode</strong> (i.e., when <code>SEAF_SERVER_STORAGE_TYPE=s3</code>). If you would like to use other storage backend (e.g., <a href="../setup_with_ceph/">Ceph</a>, <a href="../setup_with_swift/">Swift</a>) or other settings that can only be set in <code>seafile.conf</code> (like <a href="../setup_with_multiple_storage_backends/">multiple storage backends</a>), please set <code>SEAF_SERVER_STORAGE_TYPE</code> to <code>multiple</code>, and set <code>MD_STORAGE_TYPE</code> and <code>SS_STORAGE_TYPE</code> according to your configurations.</p>
 </div>
 <p>To conclude, set the directory permissions of the Elasticsearch volumne:</p>
 <div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/opt/seafile-elasticsearch/data

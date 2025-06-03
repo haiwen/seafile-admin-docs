@@ -982,14 +982,6 @@
     
   </span>
   
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
 
       </a>
     </li>
@@ -4746,15 +4738,20 @@
 <span class="nv">SS_DATA_PATH</span><span class="o">=</span>/opt/seasearch-data
 <span class="nv">INIT_SS_ADMIN_USER</span><span class="o">=</span>&lt;admin-username&gt;<span class="w">  </span>
 <span class="nv">INIT_SS_ADMIN_PASSWORD</span><span class="o">=</span>&lt;admin-password&gt;
+
+
+<span class="c1"># if you would like to use S3 for saving seasearch data</span>
+<span class="nv">SS_STORAGE_TYPE</span><span class="o">=</span>s3
+<span class="nv">S3_SS_BUCKET</span><span class="o">=</span>...
+<span class="nv">S3_KEY_ID</span><span class="o">=</span>&lt;your-key-id&gt;
+<span class="nv">S3_SECRET_KEY</span><span class="o">=</span>&lt;your-secret-key&gt;
+<span class="nv">S3_USE_V4_SIGNATURE</span><span class="o">=</span><span class="nb">true</span>
+<span class="nv">S3_PATH_STYLE_REQUEST</span><span class="o">=</span><span class="nb">false</span>
+<span class="nv">S3_AWS_REGION</span><span class="o">=</span>us-east-1
+<span class="nv">S3_HOST</span><span class="o">=</span>
+<span class="nv">S3_USE_HTTPS</span><span class="o">=</span><span class="nb">true</span>
+<span class="nv">S3_SSE_C_KEY</span><span class="o">=</span>
 </code></pre></div>
-<div class="admonition success">
-<p class="admonition-title">Easier to configure S3 for Seafile and its components</p>
-<p>Since Seafile Pro 13.0, in order to facilitate users to deploy Seafile's related extension components and other services in the future, a section will be provided in <code>.env</code> to store the <strong>S3 Configurations</strong> for Seafile and some extension components (such as <em>SeaSearch</em>, <em>Metadata server</em>). You can locate it with the title bar <strong>##S3</strong>.</p>
-<p>In other words, if you deploy SeaSearch and Seafile together, and if you have deployed Seafile Pro following <a href="../setup_pro_by_docker/#downloading-and-modifying-env">here</a> (and using the latest <code>.env</code>), you only need to specify the following variables in <code>.env</code> to make it work (that is, the <code>USE_S3_STORAGE</code> is set to <code>true</code>):</p>
-<div class="highlight"><pre><span></span><code><span class="nv">USE_S3_STORAGE</span><span class="o">=</span><span class="nb">true</span>
-<span class="nv">S3_SS_BUCKET</span><span class="o">=</span>&lt;your<span class="w"> </span>s3<span class="w"> </span>bucket<span class="w"> </span>name<span class="w"> </span><span class="k">for</span><span class="w"> </span>SeaSearch&gt;
-</code></pre></div>
-</div>
 <h2 id="modify-seafile-serveryml-to-disable-elasticsearch-service">Modify <code>seafile-server.yml</code> to disable <code>elasticSearch</code> service<a class="headerlink" href="#modify-seafile-serveryml-to-disable-elasticsearch-service" title="Permanent link">&para;</a></h2>
 <p>If you would like to use <em>SeaSearch</em> as the search engine, the <code>elasticSearch</code> service can be removed, which is no longer used: remove <code>elasticsearch.yml</code> in the list variable <code>COMPOSE_FILE</code> on the file <code>.env</code>.</p>
 <h2 id="modify-seafeventsconf">Modify <code>seafevents.conf</code><a class="headerlink" href="#modify-seafeventsconf" title="Permanent link">&para;</a></h2>
