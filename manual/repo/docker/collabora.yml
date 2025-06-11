@@ -7,6 +7,7 @@ services:
   collabora:
     image: ${COLLABORA_IMAGE:-collabora/code:24.04.5.1.1}
     container_name: seafile-collabora
+    restart: unless-stopped
     expose:
       - 9980
     cap_add:
