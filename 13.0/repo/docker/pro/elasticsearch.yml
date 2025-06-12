@@ -2,6 +2,7 @@ services:
   elasticsearch:
     image: ${SEAFILE_ELASTICSEARCH_IMAGE:-elasticsearch:8.15.0}
     container_name: seafile-elasticsearch
+    restart: unless-stopped
     environment:
       - discovery.type=single-node
       - bootstrap.memory_lock=true
