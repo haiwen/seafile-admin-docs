@@ -98,13 +98,11 @@ To enable metadata server in Seafile, please add the following field in your `se
 === "Deploy in the same machine with Seafile"
     ```py
     ENABLE_METADATA_MANAGEMENT = True
-    METADATA_SERVER_SECRET_KEY = '<your JWT key>'
     METADATA_SERVER_URL = 'http://seafile-md-server:8084'
     ```
 === "Standalone"
     ```py
     ENABLE_METADATA_MANAGEMENT = True
-    METADATA_SERVER_SECRET_KEY = '<your JWT key>'
     METADATA_SERVER_URL = 'http://<your metadata-server host>:8084'
     ```
 
