@@ -1,7 +1,7 @@
 services:
 
   sdoc-server:
-    image: seafileltd/sdoc-server:latest
+    image: seafileltd/sdoc-server:0.8.0
     container_name: sdoc-server
     ports:
       - 80:80

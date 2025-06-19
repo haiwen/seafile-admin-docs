@@ -174,7 +174,7 @@ services:
     ...
 
   sdoc-server:
-    image: seafileltd/sdoc-server:latest
+    image: seafileltd/sdoc-server:0.8.0
     container_name: sdoc-server
     # ports:
       # - 80:80
@@ -326,7 +326,7 @@ Placeholder spot for shared volumes. You may elect to store certain persistent i
 To upgrade to latest version of SeaDoc server:
 
 ```sh
-docker pull seafileltd/sdoc-server:latest
+docker pull seafileltd/sdoc-server:0.8.0
 docker compose down
 docker compose up -d
 
