@@ -370,6 +370,12 @@ Go fileserver caches fs objects in memory. On the one hand, it avoids repeated c
 fs_cache_limit = 100
 ```
 
+Since Pro 12.0.10 version, you can set the max threads of fs-id-list requests. When you download a repo, Seafile client will request fs id list, and you can control the maximum concurrency for handling fs-id-list requests in the go fileserver through `fs_id_list_max_threads` configuration, which defaults to 10.
+```
+[fileserver]
+fs_id_list_max_threads = 20
+```
+
 ## Profiling Go Fileserver Performance
 
 Since Seafile 9.0.7, you can enable the profile function of go fileserver by adding the following configuration options:
