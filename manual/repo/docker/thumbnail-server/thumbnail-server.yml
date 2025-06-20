@@ -1,0 +1,27 @@
+services:
+
+  thumbnail-server:
+    image: ${THUMBNAIL_SERVER_IMAGE:-seafileltd/thumbnail-server:1.0.0-testing}
+    container_name: thumbnail-server
+    restart: always
+    volumes:
+      - ${SEAFILE_VOLUME:-/opt/seafile-data}:/shared
+    ports:
+      - "80:80"
+    environment:
+      - TIME_ZONE=${TIME_ZONE:-Etc/UTC}
+      - SEAFILE_MYSQL_DB_HOST=${SEAFILE_MYSQL_DB_HOST:-db}
+      - SEAFILE_MYSQL_DB_PORT=${SEAFILE_MYSQL_DB_PORT:-3306}
+      - SEAFILE_MYSQL_DB_USER=${SEAFILE_MYSQL_DB_USER:-seafile}
+      - SEAFILE_MYSQL_DB_PASSWORD=${SEAFILE_MYSQL_DB_PASSWORD:?Variable is not set or empty}
+      - SEAFILE_MYSQL_DB_CCNET_DB_NAME=${SEAFILE_MYSQL_DB_CCNET_DB_NAME:-ccnet_db}
+      - SEAFILE_MYSQL_DB_SEAFILE_DB_NAME=${SEAFILE_MYSQL_DB_SEAFILE_DB_NAME:-seafile_db}
+      - JWT_PRIVATE_KEY=${JWT_PRIVATE_KEY:?Variable is not set or empty}
+      - SITE_ROOT=${SITE_ROOT:-/}
+      - INNER_SEAHUB_SERVICE_URL=${INNER_SEAHUB_SERVICE_URL:Variable is not set or empty}
+    networks:
+      - seafile-net
+
+networks:
+  seafile-net:
+    name: seafile-net
