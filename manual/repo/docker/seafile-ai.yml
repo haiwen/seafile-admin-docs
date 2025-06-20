@@ -5,20 +5,16 @@ services:
     volumes:
       - ${SEAFILE_VOLUME:-/opt/seafile-data}:/shared
     # ports:
-    # - 8888:8888
+    #   - 8888:8888
     environment:
-      - JWT_PRIVATE_KEY=${JWT_PRIVATE_KEY:?Variable is not set or empty}
-      - IMAGE_TAGS_SERVICE_KEY=${IMAGE_TAGS_SERVICE_KEY:-}
-      - FACE_EMBEDDING_SERVICE_KEY=${FACE_EMBEDDING_SERVICE_KEY:-}
-      - OCR_SERVICE_KEY=${OCR_SERVICE_KEY:-}
-      - SEAFILE_AI_LLM_TYPE=${SEAFILE_AI_LLM_TYPE:-open-ai}
-      - SEAFILE_AI_LLM_URL=$SEAFILE_AI_LLM_URL
-      - SEAFILE_AI_LLM_KEY=$SEAFILE_AI_LLM_KEY
-      - IMAGE_TAGS_SERVICE_URL=${IMAGE_TAGS_SERVICE_URL:-http://image-tags:8885}
+      - SEAFILE_AI_LLM_TYPE=${SEAFILE_AI_LLM_TYPE:-openai}
+      - SEAFILE_AI_LLM_URL=${SEAFILE_AI_LLM_URL:-}
+      - SEAFILE_AI_LLM_KEY=${SEAFILE_AI_LLM_KEY:-}
       - FACE_EMBEDDING_SERVICE_URL=${FACE_EMBEDDING_SERVICE_URL:-http://face-embedding:8886}
-      - OCR_SERVICE_URL=${OCR_SERVICE_URL:-http://ocr:8887}
-      - SEAFILE_SERVER_HOSTNAME=${SEAFILE_SERVER_HOSTNAME:?Variable is not set or empty}
-      - SEAFILE_SERVER_PROTOCOL=${SEAFILE_SERVER_PROTOCOL:-http}
+      - FACE_EMBEDDING_SERVICE_KEY=${FACE_EMBEDDING_SERVICE_KEY:-${JWT_PRIVATE_KEY:?Variable is not set or empty}}
+      - SEAFILE_SERVER_URL=${SEAFILE_SERVER_PROTOCOL:-http}://${SEAFILE_SERVER_HOSTNAME:?Variable is not set or empty}
+      - JWT_PRIVATE_KEY=${JWT_PRIVATE_KEY:?Variable is not set or empty}
+      - SEAFILE_AI_LOG_LEVEL=${SEAFILE_AI_LOG_LEVEL:-info}
     networks:
       - seafile-net
 
