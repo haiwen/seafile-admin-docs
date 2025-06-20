@@ -4709,8 +4709,8 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 <p>There is no additional features for notification server in the Pro Edition. It works the same as in community edition.</p>
 <p>If you enable <a href="../../setup_binary/cluster_deployment/">clustering</a>, You need to deploy notification server on one of the servers, or a separate server. The load balancer should forward websockets requests to this node.</p>
 <p>Download <code>.env</code> and <code>notification-server.yml</code> to notification server directory:</p>
-<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/notification-server/standalone/notification-server.yml
-wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/notification-server/standalone/env
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/notification-server/notification-server.yml
+wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/notification-server/env
 </code></pre></div>
 <p>Then modify the <code>.env</code> file according to your environment. The following fields are needed to be modified:</p>
 <table>
