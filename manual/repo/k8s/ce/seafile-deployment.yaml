@@ -116,6 +116,16 @@ spec:
                 configMapKeyRef:
                   name: seafile-env
                   key: NOTIFICATION_SERVER_URL
+            - name: ENABLE_SEAFILE_AI
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: ENABLE_SEAFILE_AI
+            - name: SEAFILE_AI_SERVER_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: SEAFILE_AI_SERVER_URL
             - name: JWT_PRIVATE_KEY
               valueFrom:
                 secretKeyRef:
@@ -141,6 +151,11 @@ spec:
                 secretKeyRef:
                   name: seafile-secret
                   key: REDIS_PASSWORD
+            - name: SEAFILE_AI_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: seafile-secret
+                  key: JWT_PRIVATE_KEY
           volumeMounts:
             - name: seafile-data
               mountPath: /shared

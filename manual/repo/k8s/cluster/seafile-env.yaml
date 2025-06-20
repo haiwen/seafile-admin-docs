@@ -50,3 +50,7 @@ data:
   ## for cluster basic service
   CLUSTER_INIT_ES_HOST: "<your ElasticSearch server host>"
   CLUSTER_INIT_ES_PORT: "9200"
+
+  # Seafile AI
+  ENABLE_SEAFILE_AI: "false"
+  SEAFILE_AI_SERVER_URL: "<required when ENABLE_SEAFILE_AI=true>"
