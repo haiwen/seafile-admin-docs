@@ -1,6 +1,6 @@
 services:
   face-embedding:
-    image: ${FACE_EMBEDDING_IMAGE:-seafileltd/face_embedding:cpu}
+    image: ${FACE_EMBEDDING_IMAGE:-seafileltd/face_embedding:latest-cpu}
     container_name: face-embedding
     # ports:
     #   - 8886:8886

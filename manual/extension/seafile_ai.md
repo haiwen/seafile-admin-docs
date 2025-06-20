@@ -147,20 +147,6 @@ Since the face embedding service may need to be deployed on some hosts with GPU(
     docker compose up -d
     ```
 
-### Specify required version of CUDA or ROCM
-
-You can specify a required version of CUDA or ROCM (note that this may also affect the version of the code) by specifying the face embedding service image tag in `.env`, like 
-
-=== "CUDA"
-
-    ```
-    FACE_EMBEDDING_IMAGE=seafileltd/face-embedding:cuda-12.8
-    ```
-=== "ROCM"
-    ```
-    FACE_EMBEDDING_IMAGE=seafileltd/face-embedding:rocm-6.4
-    ```
-
 ### Persistent volume and model management
 
 By default, the persistent volume is `/opt/face_embedding`. It will consist of two subdirectories:
