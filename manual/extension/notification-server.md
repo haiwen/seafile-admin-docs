@@ -70,8 +70,8 @@ If you enable [clustering](../setup_binary/cluster_deployment.md), You need to d
 Download `.env` and `notification-server.yml` to notification server directory:
 
 ```sh
-wget https://manual.seafile.com/13.0/repo/docker/notification-server/standalone/notification-server.yml
-wget -O .env https://manual.seafile.com/13.0/repo/docker/notification-server/standalone/env
+wget https://manual.seafile.com/13.0/repo/docker/notification-server/notification-server.yml
+wget -O .env https://manual.seafile.com/13.0/repo/docker/notification-server/env
 ```
 
 Then modify the `.env` file according to your environment. The following fields are needed to be modified:
