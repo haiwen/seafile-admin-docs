@@ -138,9 +138,9 @@ nav:
       - SeaDoc Integration: extension/setup_seadoc.md
       - Notification Server: extension/notification-server.md
       - Metadata Server: extension/metadata-server.md
+      - Thumbnail Server: extension/thumbnail-server.md
       - WebDAV extension: extension/webdav.md
       - FUSE extension: extension/fuse.md
-      - Thumbnail Server: extension/thumbnail-server.md
     - Online Office:
       - Collabora Online Integration: extension/libreoffice_online.md
       - OnlyOffice Integration: extension/only_office.md
