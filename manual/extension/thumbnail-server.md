@@ -1,8 +1,10 @@
 # Thumbnail Server Overview
 
+Since Seafile 13.0, a new component thumbnail server is added. Thumbnail server can create thumbnails for images, videos, PDFs and other file types. Thumbnail server uses a task queue based architecture, it can better handle workloads than thumbnail generating inside Seahub component. 
+
 ## How to configure and run
 
-Since Seafile 13.0, we use a separate Docker image to deploy the thumbnail server. First download `thumbnail-server.yml` to Seafile directory:
+First download `thumbnail-server.yml` to Seafile directory:
 
 ```sh
 wget https://manual.seafile.com/13.0/repo/docker/thumbnail-server.yml
