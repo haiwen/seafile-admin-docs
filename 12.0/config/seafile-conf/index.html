@@ -5073,6 +5073,10 @@ use_go_fileserver = true
 # The unit is in M. Default to 2G.
 fs_cache_limit = 100
 </code></pre></div>
+<p>Since Pro 12.0.10 version, you can set the max threads of fs-id-list requests. When you download a repo, Seafile client will request fs id list, and you can control the maximum concurrency for handling fs-id-list requests in the go fileserver through <code>fs_id_list_max_threads</code> configuration, which defaults to 10.
+<div class="highlight"><pre><span></span><code>[fileserver]
+fs_id_list_max_threads = 20
+</code></pre></div></p>
 <h2 id="profiling-go-fileserver-performance">Profiling Go Fileserver Performance<a class="headerlink" href="#profiling-go-fileserver-performance" title="Permanent link">&para;</a></h2>
 <p>Since Seafile 9.0.7, you can enable the profile function of go fileserver by adding the following configuration options:</p>
 <div class="highlight"><pre><span></span><code># profile_password is required, change it for your need
