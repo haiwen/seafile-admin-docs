@@ -1,7 +1,7 @@
 services:
 
   thumbnail-server:
-    image: ${THUMBNAIL_SERVER_IMAGE:-seafileltd/thumbnail-server:1.0.0-testing}
+    image: ${THUMBNAIL_SERVER_IMAGE:-seafileltd/thumbnail-server:13.0.0-testing}
     container_name: thumbnail-server
     restart: always
     volumes:
