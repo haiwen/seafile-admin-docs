@@ -18,6 +18,13 @@ Modify `.env`, and insert `thumbnail-server.yml` into `COMPOSE_FILE`:
 COMPOSE_FILE='seafile-server.yml,caddy.yml,thumbnail-server.yml'
 ```
 
+Add following configuration in `seahub_settings.py` to enable thumbnail for videos:
+
+```py
+# video thumbnails (disabled by default)
+ENABLE_VIDEO_THUMBNAIL = True
+```
+
 Finally, You can run thumbnail server with the following command:
 
 ```sh
@@ -110,23 +117,6 @@ backend thumbnail_backend
 
     - If you are using multiple storage backends, you have to copy the `seafile.conf` of the Seafile node to the `/opt/seafile-data/seafile/conf` directory of the thumbnail node, and set `SEAF_SERVER_STORAGE_TYPE=multiple` in `.env`.
 
-## Enable thumbnails for other file types
-
-Thumbnail server also supports generating video and pdf thumbnails. You need to add configuration items in `seahub_settings.py`:
-
-```py
-# video thumbnails
-ENABLE_VIDEO_THUMBNAIL = True
-
-# pdf thumbnails
-ENABLE_PDF_THUMBNAIL = True
-```
-
-Then restart Seafile:
-
-```bash
-docker compose restart
-```
 
 ## Thumbnail server directory structure
 
