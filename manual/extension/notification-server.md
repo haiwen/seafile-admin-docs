@@ -31,7 +31,7 @@ then add or modify `NOTIFICATION_SERVER_URL`:
 === "Deploy with Seafile"
     
     ```sh
-    NOTIFICATION_SERVER_URL=http://notification-server
+    NOTIFICATION_SERVER_URL=https://seafile.example.com/notification
     ```
 === "Standalone deployment"
     
