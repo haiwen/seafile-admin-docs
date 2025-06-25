@@ -4672,13 +4672,18 @@
 
 
 <h1 id="thumbnail-server-overview">Thumbnail Server Overview<a class="headerlink" href="#thumbnail-server-overview" title="Permanent link">&para;</a></h1>
-<p>Since Seafile 13.0, a new component thumbnail server is added. Thumbnail server can create thumbnails for images, videos, PDFs and other file types. Thumbnail server uses a task queue based architecture, it can better handle workloads than thumbnail generating inside Seahub component. </p>
+<p>Since Seafile 13.0, a new component thumbnail server is added. Thumbnail server can create thumbnails for images, videos, PDFs and other file types. Thumbnail server uses a task queue based architecture, it can better handle workloads than thumbnail generating inside Seahub component.</p>
+<p>Use this feature by forwarding thumbnail requests directly to thumbnail server via caddy or a reverse proxy.</p>
 <h2 id="how-to-configure-and-run">How to configure and run<a class="headerlink" href="#how-to-configure-and-run" title="Permanent link">&para;</a></h2>
 <p>First download <code>thumbnail-server.yml</code> to Seafile directory:</p>
 <div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/thumbnail-server.yml
 </code></pre></div>
 <p>Modify <code>.env</code>, and insert <code>thumbnail-server.yml</code> into <code>COMPOSE_FILE</code>:</p>
 <div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;seafile-server.yml,caddy.yml,thumbnail-server.yml&#39;
+</code></pre></div>
+<p>Add following configuration in <code>seahub_settings.py</code> to enable thumbnail for videos:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># video thumbnails (disabled by default)</span>
+<span class="n">ENABLE_VIDEO_THUMBNAIL</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div>
 <p>Finally, You can run thumbnail server with the following command:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
@@ -4812,7 +4817,7 @@ backend thumbnail_backend
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Thumbnail server has to access Seafile' storage</p>
-<p>The thumbnail server needs to access Seafile storage. </p>
+<p>The thumbnail server needs to access Seafile storage.</p>
 <ul>
 <li>
 <p>If you use local storage, you need to mount the <code>/opt/seafile-data</code> directory of the Seafile node to the thumbnail node, and set <code>SEAFILE_VOLUME</code> to the mounted directory correctly.</p>
