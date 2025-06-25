@@ -10,13 +10,13 @@
         <meta name="author" content="seafile">
       
       
-        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/13.0/setup/cluster_deploy_with_docker/">
+        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/13.0/extension/seafile_ai/">
       
       
-        <link rel="prev" href="../run_seafile_as_non_root_user_inside_docker/">
+        <link rel="prev" href="../fuse/">
       
       
-        <link rel="next" href="../helm_chart_single_node/">
+        <link rel="next" href="../libreoffice_online/">
       
       
       <link rel="icon" href="../../media/favicon.ico">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Cluster installation (Pro) - Seafile Admin Manual</title>
+        <title>Seafile AI extension - Seafile Admin Manual</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#seafile-docker-cluster-deployment" class="md-skip">
+        <a href="#seafile-ai-extension" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Cluster installation (Pro)
+              Seafile AI extension
             
           </span>
         </div>
@@ -251,13 +251,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../overview/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../setup/overview/" class="md-tabs__link">
           
   
   
@@ -303,6 +301,8 @@
   
   
   
+    
+  
   
     
     
@@ -310,11 +310,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../extension/setup_seadoc/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../setup_seadoc/" class="md-tabs__link">
           
   
   
@@ -662,31 +664,26 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
   
@@ -699,7 +696,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Setup
@@ -713,7 +710,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../overview/" class="md-nav__link">
+      <a href="../../setup/overview/" class="md-nav__link">
         
   
   
@@ -736,7 +733,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../system_requirements/" class="md-nav__link">
+      <a href="../../setup/system_requirements/" class="md-nav__link">
         
   
   
@@ -759,7 +756,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../caddy/" class="md-nav__link">
+      <a href="../../setup/caddy/" class="md-nav__link">
         
   
   
@@ -788,20 +785,17 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
         
           
-          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
             
   
   
@@ -828,7 +822,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup_ce_by_docker/" class="md-nav__link">
+      <a href="../../setup/setup_ce_by_docker/" class="md-nav__link">
         
   
   
@@ -851,7 +845,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup_pro_by_docker/" class="md-nav__link">
+      <a href="../../setup/setup_pro_by_docker/" class="md-nav__link">
         
   
   
@@ -888,20 +882,17 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
         
           
-          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
             
   
   
@@ -971,7 +962,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup_with_s3/" class="md-nav__link">
+      <a href="../../setup/setup_with_s3/" class="md-nav__link">
         
   
   
@@ -994,7 +985,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup_with_ceph/" class="md-nav__link">
+      <a href="../../setup/setup_with_ceph/" class="md-nav__link">
         
   
   
@@ -1017,7 +1008,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup_with_swift/" class="md-nav__link">
+      <a href="../../setup/setup_with_swift/" class="md-nav__link">
         
   
   
@@ -1040,7 +1031,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup_with_multiple_storage_backends/" class="md-nav__link">
+      <a href="../../setup/setup_with_multiple_storage_backends/" class="md-nav__link">
         
   
   
@@ -1063,7 +1054,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../migrate_backends_data/" class="md-nav__link">
+      <a href="../../setup/migrate_backends_data/" class="md-nav__link">
         
   
   
@@ -1094,7 +1085,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../use_seasearch/" class="md-nav__link">
+      <a href="../../setup/use_seasearch/" class="md-nav__link">
         
   
   
@@ -1117,7 +1108,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../seafile_docker_autostart/" class="md-nav__link">
+      <a href="../../setup/seafile_docker_autostart/" class="md-nav__link">
         
   
   
@@ -1140,7 +1131,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup_with_an_existing_mysql_server/" class="md-nav__link">
+      <a href="../../setup/setup_with_an_existing_mysql_server/" class="md-nav__link">
         
   
   
@@ -1163,7 +1154,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../use_other_reverse_proxy/" class="md-nav__link">
+      <a href="../../setup/use_other_reverse_proxy/" class="md-nav__link">
         
   
   
@@ -1186,7 +1177,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../run_seafile_as_non_root_user_inside_docker/" class="md-nav__link">
+      <a href="../../setup/run_seafile_as_non_root_user_inside_docker/" class="md-nav__link">
         
   
   
@@ -1214,32 +1205,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Cluster installation (Pro)
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../setup/cluster_deploy_with_docker/" class="md-nav__link">
         
   
   
@@ -1250,146 +1219,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#architecture" class="md-nav__link">
-    <span class="md-ellipsis">
-      Architecture
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cluster-requirements" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cluster requirements
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#deploy-seafile-service" class="md-nav__link">
-    <span class="md-ellipsis">
-      Deploy Seafile service
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Deploy Seafile service">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#deploy-the-first-seafile-frontend-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      Deploy the first Seafile frontend node
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#deploy-the-others-seafile-frontend-nodes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Deploy the others Seafile frontend nodes
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#deploy-seafile-backend-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      Deploy seafile backend node
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#deploy-load-balance-optional" class="md-nav__link">
-    <span class="md-ellipsis">
-      Deploy load balance (Optional)
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Deploy load balance (Optional)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#aws-elastic-load-balancer-elb" class="md-nav__link">
-    <span class="md-ellipsis">
-      AWS Elastic Load Balancer (ELB)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#nginx" class="md-nav__link">
-    <span class="md-ellipsis">
-      Nginx
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#haproxy-and-keepalived-services" class="md-nav__link">
-    <span class="md-ellipsis">
-      HAproxy and Keepalived services
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#https" class="md-nav__link">
-    <span class="md-ellipsis">
-      HTTPS
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#optional-deploy-seadoc-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      (Optional) Deploy SeaDoc server
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1408,20 +1237,17 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
         
           
-          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
             
   
   
@@ -1491,7 +1317,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../helm_chart_single_node/" class="md-nav__link">
+      <a href="../../setup/helm_chart_single_node/" class="md-nav__link">
         
   
   
@@ -1514,7 +1340,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../helm_chart_cluster/" class="md-nav__link">
+      <a href="../../setup/helm_chart_cluster/" class="md-nav__link">
         
   
   
@@ -1588,7 +1414,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../k8s_single_node/" class="md-nav__link">
+      <a href="../../setup/k8s_single_node/" class="md-nav__link">
         
   
   
@@ -1611,7 +1437,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cluster_deploy_with_k8s/" class="md-nav__link">
+      <a href="../../setup/cluster_deploy_with_k8s/" class="md-nav__link">
         
   
   
@@ -1642,7 +1468,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../k8s_advanced_management/" class="md-nav__link">
+      <a href="../../setup/k8s_advanced_management/" class="md-nav__link">
         
   
   
@@ -1679,20 +1505,17 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
         
           
-          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
             
   
   
@@ -1719,7 +1542,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../migrate_ce_to_pro_with_docker/" class="md-nav__link">
+      <a href="../../setup/migrate_ce_to_pro_with_docker/" class="md-nav__link">
         
   
   
@@ -1742,7 +1565,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../migrate_non_docker_to_docker/" class="md-nav__link">
+      <a href="../../setup/migrate_non_docker_to_docker/" class="md-nav__link">
         
   
   
@@ -2195,26 +2018,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   
@@ -2227,7 +2055,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Extensions
@@ -2238,26 +2066,31 @@
                 
   
   
+    
   
   
+  
     
     
     
     
       
       
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
         
           
-          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="">
             
   
   
@@ -2270,7 +2103,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_1">
             <span class="md-nav__icon md-icon"></span>
             Extra Seafile components
@@ -2284,7 +2117,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/setup_seadoc/" class="md-nav__link">
+      <a href="../setup_seadoc/" class="md-nav__link">
         
   
   
@@ -2307,7 +2140,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/notification-server/" class="md-nav__link">
+      <a href="../notification-server/" class="md-nav__link">
         
   
   
@@ -2330,7 +2163,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/metadata-server/" class="md-nav__link">
+      <a href="../metadata-server/" class="md-nav__link">
         
   
   
@@ -2353,7 +2186,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/thumbnail-server/" class="md-nav__link">
+      <a href="../thumbnail-server/" class="md-nav__link">
         
   
   
@@ -2376,7 +2209,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/webdav/" class="md-nav__link">
+      <a href="../webdav/" class="md-nav__link">
         
   
   
@@ -2399,7 +2232,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/fuse/" class="md-nav__link">
+      <a href="../fuse/" class="md-nav__link">
         
   
   
@@ -2419,10 +2252,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../extension/seafile_ai/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Seafile AI extension
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -2433,6 +2288,35 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-seafile-ai-basic-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploy Seafile AI basic service
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2459,17 +2343,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
         
           
-          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="">
             
   
   
@@ -2496,7 +2383,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/libreoffice_online/" class="md-nav__link">
+      <a href="../libreoffice_online/" class="md-nav__link">
         
   
   
@@ -2519,7 +2406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/only_office/" class="md-nav__link">
+      <a href="../only_office/" class="md-nav__link">
         
   
   
@@ -2542,7 +2429,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/office_web_app/" class="md-nav__link">
+      <a href="../office_web_app/" class="md-nav__link">
         
   
   
@@ -2579,17 +2466,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
         
           
-          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="">
             
   
   
@@ -2616,7 +2506,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/distributed_indexing/" class="md-nav__link">
+      <a href="../distributed_indexing/" class="md-nav__link">
         
   
   
@@ -2653,17 +2543,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
         
           
-          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="">
             
   
   
@@ -2690,7 +2583,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/virus_scan/" class="md-nav__link">
+      <a href="../virus_scan/" class="md-nav__link">
         
   
   
@@ -2713,7 +2606,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
+      <a href="../virus_scan_with_clamav/" class="md-nav__link">
         
   
   
@@ -2736,7 +2629,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../extension/virus_scan_with_kav4fs/" class="md-nav__link">
+      <a href="../virus_scan_with_kav4fs/" class="md-nav__link">
         
   
   
@@ -4715,120 +4608,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#architecture" class="md-nav__link">
+  <a href="#deploy-seafile-ai-basic-service" class="md-nav__link">
     <span class="md-ellipsis">
-      Architecture
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cluster-requirements" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cluster requirements
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#deploy-seafile-service" class="md-nav__link">
-    <span class="md-ellipsis">
-      Deploy Seafile service
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Deploy Seafile service">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#deploy-the-first-seafile-frontend-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      Deploy the first Seafile frontend node
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#deploy-the-others-seafile-frontend-nodes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Deploy the others Seafile frontend nodes
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#deploy-seafile-backend-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      Deploy seafile backend node
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#deploy-load-balance-optional" class="md-nav__link">
-    <span class="md-ellipsis">
-      Deploy load balance (Optional)
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Deploy load balance (Optional)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#aws-elastic-load-balancer-elb" class="md-nav__link">
-    <span class="md-ellipsis">
-      AWS Elastic Load Balancer (ELB)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#nginx" class="md-nav__link">
-    <span class="md-ellipsis">
-      Nginx
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#haproxy-and-keepalived-services" class="md-nav__link">
-    <span class="md-ellipsis">
-      HAproxy and Keepalived services
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#https" class="md-nav__link">
-    <span class="md-ellipsis">
-      HTTPS
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#optional-deploy-seadoc-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      (Optional) Deploy SeaDoc server
+      Deploy Seafile AI basic service
     </span>
   </a>
   
@@ -4853,428 +4635,59 @@
   
 
 
-<h1 id="seafile-docker-cluster-deployment">Seafile Docker Cluster Deployment<a class="headerlink" href="#seafile-docker-cluster-deployment" title="Permanent link">&para;</a></h1>
-<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
-<p>The Seafile cluster solution employs a 3-tier architecture:</p>
+<h1 id="seafile-ai-extension">Seafile AI extension<a class="headerlink" href="#seafile-ai-extension" title="Permanent link">&para;</a></h1>
+<p>From Seafile 13 Pro, users can enable <strong><em>Seafile AI</em></strong> to support the following features:</p>
 <ul>
-<li>Load balancer tier: Distribute incoming traffic to Seafile servers. HA can be achieved by deploying multiple load balancer instances.</li>
-<li>Seafile server cluster: a cluster of Seafile server instances. If one instance fails, the load balancer will stop handing traffic to it. So HA is achieved.</li>
-<li>Backend storage: Distributed storage cluster, e.g.  S3, Openstack Swift or Ceph.</li>
+<li>File tags, file and image summaries, text translation, sdoc writing assistance</li>
+<li>Given an image, generate its corresponding tags (including objects, weather, color, etc.)</li>
+<li>Detect faces in images and encode them</li>
+<li>Detect text locations in images and recognize them</li>
 </ul>
-<p>This architecture scales horizontally. That means, you can handle more traffic by adding more machines. The architecture is visualized in the following picture.</p>
-<p><img alt="seafile-cluster" src="../../images/seafile-cluster-arch.png" /></p>
-<p>There are two main components on the Seafile server node: web server (Nginx/Apache) and Seafile app server. The web server passes requests from the clients to Seafile app server. The Seafile app servers work independently. They don't know about each other's state. That means each app server can fail independently without affecting other app server instances. The load balancer is responsible for detecting failure and re-routing requests.</p>
-<p>Even though Seafile app servers work independently, they still have to share some session information. All shared session information is stored in memory cache. Thus, all Seafile app servers have to connect to the same memory cache server (cluster). Since Pro Edition 11.0, both memcached and Redis can be used as memory cache. Before 11.0, only memcached is supported. More details about memory cache configuration is available later.</p>
-<p>The background server is the workhorse for various background tasks, including full-text indexing, office file preview, virus scanning, LDAP syncing. It should usually be run on a dedicated server for better performance. Currently only one background task server can be running in the entire cluster. If more than one background servers are running, they may conflict with each others when doing some tasks. If you need HA for background task server, you can consider using <a href="http://www.keepalived.org/">Keepalived</a> to build a hot backup for it.</p>
-<p>In the seafile cluster, <strong>only one server</strong> should run the background tasks, including:</p>
-<ul>
-<li>indexing files for search</li>
-<li>email notification</li>
-<li>LDAP sync</li>
-<li>virus scan</li>
-</ul>
-<p>Let's assume you have three nodes in your cluster: A, B, and C.</p>
-<ul>
-<li>Node A is backend node that run background tasks.</li>
-<li>Node B and C are frontend nodes that serving requests from clients.</li>
-</ul>
-<p><img alt="cluster-nodes" src="../../images/cluster-nodes.png" /></p>
-<h2 id="cluster-requirements">Cluster requirements<a class="headerlink" href="#cluster-requirements" title="Permanent link">&para;</a></h2>
-<p>Please refer <a href="../system_requirements/#seafile-cluster">here</a> for the details about the cluster requirements for <strong>all nodes</strong> in Seafile cluster.  In general, we recommend that each node should have at least 2G RAM and a 2-core CPU (&gt; 2GHz).</p>
-<h2 id="deploy-seafile-service">Deploy Seafile service<a class="headerlink" href="#deploy-seafile-service" title="Permanent link">&para;</a></h2>
-<h3 id="deploy-the-first-seafile-frontend-node">Deploy the first Seafile frontend node<a class="headerlink" href="#deploy-the-first-seafile-frontend-node" title="Permanent link">&para;</a></h3>
+<h2 id="deploy-seafile-ai-basic-service">Deploy Seafile AI basic service<a class="headerlink" href="#deploy-seafile-ai-basic-service" title="Permanent link">&para;</a></h2>
+<p>The Seafile AI basic service will use API calls to external large language model service (e.g., <em>GPT-4o-mini</em>) to implement file labeling, file and image summaries, text translation, and sdoc writing assistance.</p>
 <ol>
 <li>
-<p>Create the mount directory</p>
-<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/opt/seafile/shared
+<p>Download <code>seafile-ai.yml</code></p>
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/seafile-ai.yml
 </code></pre></div>
-</li>
-<li>
-<p>Pulling Seafile image</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Since v12.0, Seafile PE versions are hosted on DockerHub and does not require username and password to download.</p>
-</div>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>seafileltd/seafile-pro-mc:13.0-latest
+<div class="admonition note">
+<p class="admonition-title">Deploy in a cluster</p>
+<p>If you deploy Seafile in a cluster and would like to deploy Seafile AI, please expose port <code>8888</code> in <code>seafile-ai.yml</code>:</p>
+<div class="highlight"><pre><span></span><code>services:
+  seafile-ai:
+    ...
+    ports:
+      - 8888:8888
 </code></pre></div>
-</li>
-<li>
-<p>Download the <code>seafile-server.yml</code> and <code>.env</code></p>
-<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/cluster/env
-wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/cluster/seafile-server.yml
-</code></pre></div>
-</li>
-<li>
-<p>Modify the <a href="../../config/env/">variables</a> in <code>.env</code> (especially the terms like <code>&lt;...&gt;</code>). </p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<ul>
-<li>
-<p>If you have already deployed S3 storage backend and plan to apply it to Seafile cluster, you can modify the variables in <code>.env</code> to <a href="../../config/env/#s3-storage-backend-configurations-only-valid-in-pro-edition-at-deploying-first-time">set them synchronously during initialization</a>.</p>
-</li>
-<li>
-<p>Although the current Seafile cluster only supports <em>Memcached</em> as the cache, it also supports setting configurations through '. env'. <strong>Therefore, you do not need to pay attention to the selection of <code>CACHE_PROVIDER</code></strong>, so you only need to correctly set <code>MEMCACHED_HOST</code> and <code>MEMCACHED_PORT</code> in <code>.env</code>.</p>
-</li>
-</ul>
+<p>At the same time, Seafile AI should be deployed on one of the cluster nodes.</p>
 </div>
 </li>
 <li>
-<p>Pleace license file</p>
-<p>If you have a <code>seafile-license.txt</code> license file, simply put it in the volume of the Seafile container. The volumne's default path in the Compose file is <code>/opt/seafile/shared</code>. If you have modified the path, save the license file under your custom path.</p>
-<div class="admonition danger">
-<p class="admonition-title">If the license file has a different name or cannot be read, Seafile server will start with in trailer mode with most THREE users</p>
+<p>Modify <code>.env</code>, insert or modify the following fields:</p>
+<div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;...,seafile-ai.yml&#39; # add seafile-ai.yml
+
+ENABLE_SEAFILE_AI=true
+SEAFILE_AI_LLM_TYPE=open-ai
+SEAFILE_AI_LLM_URL=&lt;your LLM endpoint URL&gt;
+SEAFILE_AI_LLM_KEY=&lt;your LLM access key&gt;
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Deploy in a cluster</p>
+<p>Please also specify <code>SEAFILE_AI_SERVER_URL</code> to the host where deploys your Seafile AI basic service in <code>.env</code>, if you deploy Seafile in a cluster.</p>
 </div>
 </li>
 <li>
-<p>Start the Seafile docker</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
-<div class="admonition success">
-<p class="admonition-title">Cluster init mode</p>
-<p>Because CLUSTER_INIT_MODE is true in the <code>.env</code> file, Seafile docker will be started in init mode and generate configuration files. As the results, you can see the following lines if you trace the Seafile container (i.e., <code>docker logs seafile</code>):</p>
-<div class="highlight"><pre><span></span><code>---------------------------------
-This is your configuration
----------------------------------
-
-    server name:            seafile
-    server ip/domain:       seafile.example.com
-
-    seafile data dir:       /opt/seafile/seafile-data
-    fileserver port:        8082
-
-    database:               create new
-    ccnet database:         ccnet_db
-    seafile database:       seafile_db
-    seahub database:        seahub_db
-    database user:          seafile
-
-
-Generating seafile configuration ...
-
-done
-Generating seahub configuration ...
-
-
------------------------------------------------------------------
-Your seafile server configuration has been finished successfully.
------------------------------------------------------------------
-
-
-[2024-11-21 02:22:37] Updating version stamp
-Start init
-
-Init success
-</code></pre></div>
-</div>
-</li>
-<li>
-<p>In initialization mode, the service will not be started. During this time you can check the generated configuration files (e.g., MySQL, Memcached, Elasticsearch) in configuration files:</p>
-<ul>
-<li><a href="../../config/seafevents-conf/">seafevents.conf</a></li>
-<li><a href="../../config/seafile-conf/">seafile.conf</a></li>
-<li><a href="../../config/seahub_settings_py/">seahub_settings.py</a></li>
-</ul>
-</li>
-<li>
-<p>After initailizing the cluster, the following fields can be removed in <code>.env</code></p>
-<ul>
-<li><code>CLUSTER_INIT_MODE</code>, must be removed from .env file</li>
-<li><code>CLUSTER_INIT_ES_HOST</code></li>
-<li><code>CLUSTER_INIT_ES_PORT</code></li>
-</ul>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>We recommend that you check that the relevant configuration files are correct and copy the <code>SEAFILE_VOLUME</code> directory before the service is officially started, because only the configuration files are generated after initialization. You can directly migrate the entire copied <code>SEAFILE_VOLUME</code> to other nodes later:</p>
-<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-r<span class="w"> </span>/opt/seafile/shared<span class="w"> </span>/opt/seafile/shared-bak
-</code></pre></div>
-</div>
-</li>
-<li>
-<p>Restart the container to start the service in frontend node</p>
+<p>Restart Seafile server:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
 docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
-<div class="admonition success">
-<p class="admonition-title">Frontend node starts successfully</p>
-<p>After executing the above command, you can trace the logs of container <code>seafile</code> (i.e., <code>docker logs seafile</code>). You can see the following message if the frontend node starts successfully:</p>
-<div class="highlight"><pre><span></span><code>*** Running /etc/my_init.d/01_create_data_links.sh...
-*** Booting runit daemon...
-*** Runit started as PID 20
-*** Running /scripts/enterpoint.sh...
-2024-11-21 03:02:35 Nginx ready 
-
-2024-11-21 03:02:35 This is an idle script (infinite loop) to keep container running. 
----------------------------------
-
-Seafile cluster frontend mode
-
----------------------------------
-
-
-Starting seafile server, please wait ...
-Seafile server started
-
-Done.
-
-Starting seahub at port 8000 ...
-
-Seahub is started
-
-Done.
-</code></pre></div>
-</div>
 </li>
 </ol>
-<h3 id="deploy-the-others-seafile-frontend-nodes">Deploy the others Seafile frontend nodes<a class="headerlink" href="#deploy-the-others-seafile-frontend-nodes" title="Permanent link">&para;</a></h3>
-<ol>
-<li>
-<p>Create the mount directory</p>
-<div class="highlight"><pre><span></span><code>$ mkdir -p /opt/seafile/shared
-</code></pre></div>
-</li>
-<li>
-<p>Pull Seafile image</p>
-</li>
-<li>
-<p>Copy <code>seafile-server.yml</code>, <code>.env</code>and configuration files from the first frontend node</p>
-</li>
-<li>
-<p>Start the service</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
-</li>
-</ol>
-<h3 id="deploy-seafile-backend-node">Deploy seafile backend node<a class="headerlink" href="#deploy-seafile-backend-node" title="Permanent link">&para;</a></h3>
-<ol>
-<li>
-<p>Create the mount directory</p>
-<div class="highlight"><pre><span></span><code>$ mkdir -p /opt/seafile/shared
-</code></pre></div>
-</li>
-<li>
-<p>Pull Seafile image</p>
-</li>
-<li>
-<p>Copy <code>seafile-server.yml</code>, <code>.env</code> and configuration files from frontend node</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The configuration files from frontend node have to be put in the same path as the frontend node, i.e., <code>/opt/seafile/shared/seafile/conf/*</code></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Since the file tagging feature requires <a href="../metadata-server/">deploying the metadata service</a> first, the file tagging feature is not enabled by default. You can enable this feature in the repo's settings after enabling extension properties (see the figure below, it will only be enabled if you have management permissions for this repo).</p>
+<p><img alt="Enable Seafile AI File tags" src="../../images/seafile-ai-file-tags.png" /></p>
 </div>
-</li>
-<li>
-<p>Modify <code>.env</code>, set <code>CLUSTER_MODE</code> to <code>backend</code></p>
-</li>
-<li>
-<p>Start the service in the backend node</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
-<div class="admonition success">
-<p class="admonition-title">Backend node starts successfully</p>
-<p>After executing the above command, you can trace the logs of container <code>seafile</code> (i.e., <code>docker logs seafile</code>). You can see the following message if the backend node starts successfully:</p>
-<div class="highlight"><pre><span></span><code>*** Running /etc/my_init.d/01_create_data_links.sh...
-*** Booting runit daemon...
-*** Runit started as PID 21
-*** Running /scripts/enterpoint.sh...
-2024-11-21 03:11:59 Nginx ready 
-2024-11-21 03:11:59 This is an idle script (infinite loop) to keep container running. 
-
----------------------------------
-
-Seafile cluster backend mode
-
----------------------------------
-
-
-Starting seafile server, please wait ...
-Seafile server started
-
-Done.
-
-Starting seafile background tasks ...
-Done.
-</code></pre></div>
-</div>
-</li>
-</ol>
-<h2 id="deploy-load-balance-optional">Deploy load balance (Optional)<a class="headerlink" href="#deploy-load-balance-optional" title="Permanent link">&para;</a></h2>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Since Seafile Pro server 6.0.0, cluster deployment requires "sticky session" settings in the load balancer. Otherwise sometimes folder download on the web UI can't work properly. Read the "Load Balancer Setting" section below for details</p>
-</div>
-<p>Generally speaking, in order to better access the Seafile service, we recommend that you use a load balancing service to access the Seafile cluster and bind your domain name (such as <code>seafile.cluster.com</code>) to the load balancing service. Usually, you can use:</p>
-<ul>
-<li>Cloud service provider's load balancing service (e.g., <strong><em>AWS Elastic Load Balancer</em></strong>)</li>
-<li>
-<p>Deploy your own load balancing service, our document will give two of common load balance services:</p>
-<ul>
-<li><strong><em>Nginx</em></strong></li>
-<li><strong><em>HAproxy</em></strong></li>
-</ul>
-</li>
-</ul>
-<h3 id="aws-elastic-load-balancer-elb">AWS Elastic Load Balancer (ELB)<a class="headerlink" href="#aws-elastic-load-balancer-elb" title="Permanent link">&para;</a></h3>
-<p>In the AWS ELB management console, after you've added the Seafile server instances to the instance list, you should do two more configurations.</p>
-<p>First you should setup HTTP(S) listeners. Ports 443 and 80 of ELB should be forwarded to the ports 80 or 443 of the Seafile servers.</p>
-<p>Then you setup health check</p>
-<p><img alt="elb-health-check" src="../../images/elb-health-check.png" /></p>
-<p>Refer to <a href="http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-sticky-sessions.html">AWS documentation</a> about how to setup sticky sessions.</p>
-<h3 id="nginx">Nginx<a class="headerlink" href="#nginx" title="Permanent link">&para;</a></h3>
-<ol>
-<li>
-<p>Install Nginx in the host if you would like to deploy load balance service</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
-sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>nginx
-</code></pre></div>
-</li>
-<li>
-<p>Create the configurations file for Seafile cluster</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/nginx/sites-available/seafile-cluster
-</code></pre></div>
-<p>and, add the following contents into this file:</p>
-<div class="highlight"><pre><span></span><code><span class="k">upstream</span><span class="w"> </span><span class="s">seafile_cluster</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kn">server</span><span class="w"> </span><span class="s">&lt;IP:</span><span class="w"> </span><span class="s">your</span><span class="w"> </span><span class="s">frontend</span><span class="w"> </span><span class="s">node</span><span class="w"> </span><span class="mi">1</span><span class="s">&gt;:80</span><span class="p">;</span>
-<span class="w">    </span><span class="kn">server</span><span class="w"> </span><span class="s">&lt;IP:</span><span class="w"> </span><span class="s">your</span><span class="w"> </span><span class="s">frontend</span><span class="w"> </span><span class="s">node</span><span class="w"> </span><span class="mi">2</span><span class="s">&gt;:80</span><span class="p">;</span>
-<span class="w">    </span><span class="kn">...</span>
-<span class="err">}</span>
-
-<span class="s">server</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="mi">80</span><span class="p">;</span>
-<span class="w">    </span><span class="kn">server_name</span><span class="w"> </span><span class="s">&lt;your</span><span class="w"> </span><span class="s">domain&gt;</span><span class="p">;</span>
-
-<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://seafile_cluster</span><span class="p">;</span>
-<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Host</span><span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
-<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Real-IP</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="p">;</span>
-<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-For</span><span class="w"> </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
-<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-Proto</span><span class="w"> </span><span class="nv">$scheme</span><span class="p">;</span>
-<span class="w">        </span><span class="kn">http_502</span><span class="w"> </span><span class="s">http_503</span><span class="w"> </span><span class="s">http_504</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-</li>
-<li>
-<p>Link the configurations file to <code>sites-enabled</code> directory:</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>/etc/nginx/sites-available/seafile-cluster<span class="w"> </span>/etc/nginx/sites-enabled/
-</code></pre></div>
-</li>
-<li>
-<p>Test and enable configuration</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>nginx<span class="w"> </span>-t
-sudo<span class="w"> </span>nginx<span class="w"> </span>-s<span class="w"> </span>reload
-</code></pre></div>
-</li>
-</ol>
-<h3 id="haproxy-and-keepalived-services">HAproxy and Keepalived services<a class="headerlink" href="#haproxy-and-keepalived-services" title="Permanent link">&para;</a></h3>
-<p>Execute the following commands on the two Seafile frontend servers:</p>
-<div class="highlight"><pre><span></span><code>$ apt install haproxy keepalived -y
-
-$ mv /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.bak
-
-$ cat &gt; /etc/haproxy/haproxy.cfg &lt;&lt; &#39;EOF&#39;
-global
-    log 127.0.0.1 local1 notice
-    maxconn 4096
-    user haproxy
-    group haproxy
-
-defaults
-    log global
-    mode http
-    retries 3
-    timeout connect 10000
-    timeout client 300000
-    timeout server 36000000
-
-listen seafile 0.0.0.0:80
-    mode http
-    option httplog
-    option dontlognull
-    option forwardfor
-    cookie SERVERID insert indirect nocache
-    server seafile01 Front-End01-IP:8001 check port 11001 cookie seafile01
-    server seafile02 Front-End02-IP:8001 check port 11001 cookie seafile02
-EOF
-</code></pre></div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Please <strong>correctly</strong> modify the IP address (<code>Front-End01-IP</code> and <code>Front-End02-IP</code>) of the frontend server in the above configuration file. Other wise it cannot work properly.</p>
-</div>
-<p><strong>Choose one of the above two servers as the master node, and the other as the slave node.</strong></p>
-<p>Perform the following operations on the master node:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>&gt;<span class="w"> </span>/etc/keepalived/keepalived.conf<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
-<span class="s">! Configuration File for keepalived</span>
-
-<span class="s">global_defs {</span>
-<span class="s">    notification_email {</span>
-<span class="s">        root@localhost</span>
-<span class="s">    }</span>
-<span class="s">    notification_email_from keepalived@localhost</span>
-<span class="s">    smtp_server 127.0.0.1</span>
-<span class="s">    smtp_connect_timeout 30</span>
-<span class="s">    router_id node1</span>
-<span class="s">    vrrp_mcast_group4 224.0.100.18</span>
-<span class="s">}</span>
-
-<span class="s">vrrp_instance VI_1 {</span>
-<span class="s">    state MASTER</span>
-<span class="s">    interface eno1   # Set to the device name of a valid network interface on the current server, and the virtual IP will be bound to the network interface</span>
-<span class="s">    virtual_router_id 50</span>
-<span class="s">    priority 100</span>
-<span class="s">    advert_int 1</span>
-<span class="s">    authentication {</span>
-<span class="s">        auth_type PASS</span>
-<span class="s">        auth_pass seafile123</span>
-<span class="s">    }</span>
-<span class="s">    virtual_ipaddress {</span>
-<span class="s">        172.26.154.45/24 dev eno1  # Configure to the correct virtual IP and network interface device name</span>
-<span class="s">    }</span>
-<span class="s">}</span>
-<span class="s">EOF</span>
-</code></pre></div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Please <strong>correctly</strong> configure the virtual IP address and network interface device name in the above file. Other wise it cannot work properly.</p>
-</div>
-<p>Perform the following operations on the standby node:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>&gt;<span class="w"> </span>/etc/keepalived/keepalived.conf<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
-<span class="s">! Configuration File for keepalived</span>
-
-<span class="s">global_defs {</span>
-<span class="s">    notification_email {</span>
-<span class="s">        root@localhost</span>
-<span class="s">    }</span>
-<span class="s">    notification_email_from keepalived@localhost</span>
-<span class="s">    smtp_server 127.0.0.1</span>
-<span class="s">    smtp_connect_timeout 30</span>
-<span class="s">    router_id node2</span>
-<span class="s">    vrrp_mcast_group4 224.0.100.18</span>
-<span class="s">}</span>
-
-<span class="s">vrrp_instance VI_1 {</span>
-<span class="s">    state BACKUP</span>
-<span class="s">    interface eno1   # Set to the device name of a valid network interface on the current server, and the virtual IP will be bound to the network interface</span>
-<span class="s">    virtual_router_id 50</span>
-<span class="s">    priority 98</span>
-<span class="s">    advert_int 1</span>
-<span class="s">    authentication {</span>
-<span class="s">        auth_type PASS</span>
-<span class="s">        auth_pass seafile123</span>
-<span class="s">    }</span>
-<span class="s">    virtual_ipaddress {</span>
-<span class="s">        172.26.154.45/24 dev eno1   # Configure to the correct virtual IP and network interface device name</span>
-<span class="s">    }</span>
-<span class="s">}</span>
-<span class="s">EOF</span>
-</code></pre></div>
-<p>Finally, run the following commands on the two Seafile frontend servers to start the corresponding services:</p>
-<div class="highlight"><pre><span></span><code>$ systemctl enable --now haproxy
-$ systemctl enable --now keepalived
-</code></pre></div>
-<p>So far, Seafile cluster has been deployed.</p>
-<h2 id="https">HTTPS<a class="headerlink" href="#https" title="Permanent link">&para;</a></h2>
-<p>You can engaged HTTPS in your load balance service, as you can use certificates manager (e.g., <a href="https://certbot.eff.org">Certbot</a>) to acquire and enable HTTPS to your Seafile cluster. You have to modify the relative URLs from the prefix <code>http://</code> to <code>https://</code> in <code>seahub_settings.py</code> and <code>.env</code>, after enabling HTTPS.</p>
-<h2 id="optional-deploy-seadoc-server">(Optional) Deploy SeaDoc server<a class="headerlink" href="#optional-deploy-seadoc-server" title="Permanent link">&para;</a></h2>
-<p>You can follow <a href="../../extension/setup_seadoc/">here</a> to deploy SeaDoc server. And then modify <code>SEADOC_SERVER_URL</code> in your <code>.env</code> file</p>
 
 
 
@@ -5310,7 +4723,7 @@ $ systemctl enable --now keepalived
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../run_seafile_as_non_root_user_inside_docker/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Run Seafile as non root user inside docker">
+          <a href="../fuse/" class="md-footer__link md-footer__link--prev" aria-label="Previous: FUSE extension">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -5320,20 +4733,20 @@ $ systemctl enable --now keepalived
                 Previous
               </span>
               <div class="md-ellipsis">
-                Run Seafile as non root user inside docker
+                FUSE extension
               </div>
             </div>
           </a>
         
         
           
-          <a href="../helm_chart_single_node/" class="md-footer__link md-footer__link--next" aria-label="Next: Single node">
+          <a href="../libreoffice_online/" class="md-footer__link md-footer__link--next" aria-label="Next: Collabora Online Integration">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Single node
+                Collabora Online Integration
               </div>
             </div>
             <div class="md-footer__button md-icon">
