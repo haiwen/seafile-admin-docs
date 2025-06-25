@@ -1,6 +1,8 @@
 # Thumbnail Server Overview
 
-Since Seafile 13.0, a new component thumbnail server is added. Thumbnail server can create thumbnails for images, videos, PDFs and other file types. Thumbnail server uses a task queue based architecture, it can better handle workloads than thumbnail generating inside Seahub component. 
+Since Seafile 13.0, a new component thumbnail server is added. Thumbnail server can create thumbnails for images, videos, PDFs and other file types. Thumbnail server uses a task queue based architecture, it can better handle workloads than thumbnail generating inside Seahub component.
+
+Use this feature by forwarding thumbnail requests directly to thumbnail server via caddy or a reverse proxy.
 
 ## How to configure and run
 
@@ -51,10 +53,10 @@ Then modify the `.env` file according to your environment. The following fields 
 | `S3_COMMIT_BUCKET`   | S3 storage backend commit objects bucket |
 | `S3_FS_BUCKET`   | S3 storage backend fs objects bucket |
 | `S3_BLOCK_BUCKET`   | S3 storage backend block objects bucket |
-| `S3_KEY_ID`   | S3 storage backend key ID | 
-| `S3_SECRET_KEY`   | S3 storage backend secret key | 
-| `S3_AWS_REGION`   | Region of your buckets | 
-| `S3_HOST`   | Host of your buckets | 
+| `S3_KEY_ID`   | S3 storage backend key ID |
+| `S3_SECRET_KEY`   | S3 storage backend secret key |
+| `S3_AWS_REGION`   | Region of your buckets |
+| `S3_HOST`   | Host of your buckets |
 | `S3_USE_HTTPS`   | Use HTTPS connections to S3 if enabled |
 | `S3_USE_V4_SIGNATURE`   | Use the v4 protocol of S3 if enabled |
 | `S3_PATH_STYLE_REQUEST`   | This option asks Seafile to use URLs like `https://192.168.1.123:8080/bucketname/object` to access objects. In *Amazon S3*, the default URL format is in virtual host style, such as `https://bucketname.s3.amazonaws.com/object`. But this style relies on advanced DNS server setup. So most self-hosted storage systems only implement the path style format. |
@@ -100,13 +102,31 @@ backend thumbnail_backend
 ```
 
 !!! warning "Thumbnail server has to access Seafile' storage"
-    The thumbnail server needs to access Seafile storage. 
+    The thumbnail server needs to access Seafile storage.
 
     - If you use local storage, you need to mount the `/opt/seafile-data` directory of the Seafile node to the thumbnail node, and set `SEAFILE_VOLUME` to the mounted directory correctly.
 
     - If you use single backend S3 storage, please correctly set relative environment vairables in `.env`.
 
     - If you are using multiple storage backends, you have to copy the `seafile.conf` of the Seafile node to the `/opt/seafile-data/seafile/conf` directory of the thumbnail node, and set `SEAF_SERVER_STORAGE_TYPE=multiple` in `.env`.
+
+## Enable thumbnails for other file types
+
+Thumbnail server also supports generating video and pdf thumbnails. You need to add configuration items in `seahub_settings.py`:
+
+```py
+# video thumbnails
+ENABLE_VIDEO_THUMBNAIL = True
+
+# pdf thumbnails
+ENABLE_PDF_THUMBNAIL = True
+```
+
+Then restart Seafile:
+
+```bash
+docker compose restart
+```
 
 ## Thumbnail server directory structure
 
