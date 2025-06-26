@@ -169,6 +169,11 @@ spec:
                 configMapKeyRef:
                   name: seafile-env
                   key: S3_PATH_STYLE_REQUEST
+            - name: INNER_NOTIFICATION_SERVER_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: NOTIFICATION_SERVER_URL
             - name: NOTIFICATION_SERVER_URL
               valueFrom:
                 configMapKeyRef:
