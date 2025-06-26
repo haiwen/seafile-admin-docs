@@ -31,13 +31,18 @@ then add or modify `NOTIFICATION_SERVER_URL`:
 === "Deploy with Seafile"
     
     ```sh
-    NOTIFICATION_SERVER_URL=https://seafile.example.com/notification
+    NOTIFICATION_SERVER_URL=$SEAFILE_SERVER_PROTOCOL://$SEAFILE_SERVER_HOSTNAME/notification
     ```
 === "Standalone deployment"
     
     ```sh
     NOTIFICATION_SERVER_URL=<your notification server URL>
+    INNER_NOTIFICATION_SERVER_URL=$NOTIFICATION_SERVER_URL
     ```
+
+!!! tip "Difference between `NOTIFICATION_SERVER_URL` and `INNER_NOTIFICATION_SERVER_URL`"
+    - `NOTIFICATION_SERVER_URL`: used to do the connection between client (i.e., user's browser) and notification server
+    - `INNER_NOTIFICATION_SERVER_URL`: used to do the connection between Seafile server and notification server
 
 Finally, You can run notification server with the following command:
 
@@ -48,7 +53,7 @@ docker compose up -d
 
 ## Checking notification server status
 
-When the notification server is working, you can access `http://127.0.0.1:8083/ping` from your browser, which will answer `{"ret": "pong"}`. If you have a proxy configured, you can access `https://{server}/notification/ping` from your browser instead.
+When the notification server is working, you can access `http://127.0.0.1:8083/ping` from your browser, which will answer `{"ret": "pong"}`. If you have a proxy configured, you can access `https://seafile.example.com/notification/ping` from your browser instead.
 
 ## Compatible client
 
@@ -78,7 +83,6 @@ Then modify the `.env` file according to your environment. The following fields 
 
 | variable               | description                                                                                                   |  
 |------------------------|---------------------------------------------------------------------------------------------------------------|  
-| `NOTIFICATION_SERVER_VOLUME`        | The volume directory of notification server data                                                                            |  
 | `SEAFILE_MYSQL_DB_HOST`| Seafile MySQL host                                                                                            |  
 | `SEAFILE_MYSQL_DB_USER`| Seafile MySQL user, default is `seafile`                                                                       |  
 | `SEAFILE_MYSQL_DB_PASSWORD`| Seafile MySQL password                                                                                    |  

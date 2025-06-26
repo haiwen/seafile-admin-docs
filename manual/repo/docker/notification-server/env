@@ -2,9 +2,9 @@ COMPOSE_FILE='notification-server.yml'
 COMPOSE_PATH_SEPARATOR=','
 
 
-NOTIFICATION_SERVER_IMAGE=seafileltd/notification-server:12.0-latest
+NOTIFICATION_SERVER_IMAGE=seafileltd/notification-server:13.0-latest
 
-NOTIFICATION_SERVER_VOLUME=/opt/notification-data
+SEAFILE_VOLUME=/opt/seafile-data
 
 SEAFILE_MYSQL_DB_HOST=192.168.0.2
 SEAFILE_MYSQL_DB_USER=seafile

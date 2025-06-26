@@ -114,6 +114,9 @@ For configurations about Metadata server in `.env`, please refer [here](../exten
 
 - `NOTIFICATION_SERVER_URL`: The [notification server](../extension/notification-server.md) url, leave blank to disable it (default).
 
+!!! note "In Seafile cluster or standalone-deployment notification server"
+    In addition to `NOTIFICATION_SERVER_URL`, you also need to specify `INNER_NOTIFICATION_SERVER_URL=$NOTIFICATION_SERVER_URL`, which will be used for the connection between Seafile server and notification server.
+
 ## Cluster init configuration 
 
 - `CLUSTER_INIT_MODE`: (only valid in pro edition at deploying first time). Cluster initialization mode, in which the necessary configuration files for the service to run will be generated (but **the service will not be started**). If the configuration file already exists, no operation will be performed. The default value is `true`. When the configuration file is generated, ***be sure to set this item to `false`***.
