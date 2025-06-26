@@ -10,7 +10,7 @@ SEAFILE_DB_IMAGE=mariadb:10.11
 SEAFILE_REDIS_IMAGE=redis
 SEAFILE_CADDY_IMAGE=lucaslorentz/caddy-docker-proxy:2.9-alpine
 SEADOC_IMAGE=seafileltd/sdoc-server:1.0-latest
-NOTIFICATION_SERVER_IMAGE=seafileltd/notification-server:12.0-latest
+NOTIFICATION_SERVER_IMAGE=seafileltd/notification-server:13.0-latest
 MD_IMAGE=seafileltd/seafile-md-server:latest
 
 ## Persistent Storage
