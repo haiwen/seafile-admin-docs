@@ -11,7 +11,7 @@ SEAFILE_REDIS_IMAGE=redis
 SEAFILE_ELASTICSEARCH_IMAGE=elasticsearch:8.15.0
 SEAFILE_CADDY_IMAGE=lucaslorentz/caddy-docker-proxy:2.9-alpine
 SEADOC_IMAGE=seafileltd/sdoc-server:1.0-latest
-NOTIFICATION_SERVER_IMAGE=seafileltd/notification-server:12.0-latest
+NOTIFICATION_SERVER_IMAGE=seafileltd/notification-server:13.0-latest
 #SEASEARCH_IMAGE=seafileltd/seasearch-nomkl:1.0-latest # Apple's Chip for SeaSearch
 SEASEARCH_IMAGE=seafileltd/seasearch:1.0-latest
 MD_IMAGE=seafileltd/seafile-md-server:latest
@@ -29,7 +29,6 @@ SEAFILE_VOLUME=$BASIC_STORAGE_PATH/seafile-data
 SEAFILE_MYSQL_VOLUME=$BASIC_STORAGE_PATH/seafile-mysql/db
 SEAFILE_ELASTICSEARCH_VOLUME=$BASIC_STORAGE_PATH/seafile-elasticsearch/data
 SEAFILE_CADDY_VOLUME=$BASIC_STORAGE_PATH/seafile-caddy
-NOTIFICATION_SERVER_VOLUME=$BASIC_STORAGE_PATH/notification-data
 SS_DATA_PATH=$BASIC_STORAGE_PATH/seasearch-data 
 SEADOC_VOLUME=$BASIC_STORAGE_PATH/seadoc-data
 

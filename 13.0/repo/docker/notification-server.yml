@@ -1,12 +1,11 @@
 services:
 
   notification-server:
-    image: ${NOTIFICATION_SERVER_IMAGE:-seafileltd/notification-server:12.0-latest}
+    image: ${NOTIFICATION_SERVER_IMAGE:-seafileltd/notification-server:13.0-latest}
     container_name: notification-server
     restart: always
     volumes:
-      - ${NOTIFICATION_SERVER_VOLUME:-/opt/notification-data}:/shared
-      - ${NOTIFICATION_SERVER_VOLUME:-/opt/notification-data}/logs:/shared/logs
+      - ${SEAFILE_VOLUME:-/opt/seafile-data}/seafile/logs:/shared/seafile/logs
     # ports:
     #   - "8083:8083"
     environment:

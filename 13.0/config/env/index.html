@@ -5016,6 +5016,10 @@
 <ul>
 <li><code>NOTIFICATION_SERVER_URL</code>: The <a href="../../extension/notification-server/">notification server</a> url, leave blank to disable it (default).</li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">In Seafile cluster or standalone-deployment notification server</p>
+<p>In addition to <code>NOTIFICATION_SERVER_URL</code>, you also need to specify <code>INNER_NOTIFICATION_SERVER_URL=$NOTIFICATION_SERVER_URL</code>, which will be used for the connection between Seafile server and notification server.</p>
+</div>
 <h2 id="cluster-init-configuration">Cluster init configuration<a class="headerlink" href="#cluster-init-configuration" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>CLUSTER_INIT_MODE</code>: (only valid in pro edition at deploying first time). Cluster initialization mode, in which the necessary configuration files for the service to run will be generated (but <strong>the service will not be started</strong>). If the configuration file already exists, no operation will be performed. The default value is <code>true</code>. When the configuration file is generated, <strong><em>be sure to set this item to <code>false</code></em></strong>.</li>

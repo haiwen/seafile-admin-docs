@@ -4728,21 +4728,29 @@
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Deploy with Seafile</label><label for="__tabbed_1_2">Standalone deployment</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="nv">NOTIFICATION_SERVER_URL</span><span class="o">=</span>https://seafile.example.com/notification
+<div class="highlight"><pre><span></span><code><span class="nv">NOTIFICATION_SERVER_URL</span><span class="o">=</span><span class="nv">$SEAFILE_SERVER_PROTOCOL</span>://<span class="nv">$SEAFILE_SERVER_HOSTNAME</span>/notification
 </code></pre></div>
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="nv">NOTIFICATION_SERVER_URL</span><span class="o">=</span>&lt;your<span class="w"> </span>notification<span class="w"> </span>server<span class="w"> </span>URL&gt;
+<span class="nv">INNER_NOTIFICATION_SERVER_URL</span><span class="o">=</span><span class="nv">$NOTIFICATION_SERVER_URL</span>
 </code></pre></div>
 </div>
 </div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Difference between <code>NOTIFICATION_SERVER_URL</code> and <code>INNER_NOTIFICATION_SERVER_URL</code></p>
+<ul>
+<li><code>NOTIFICATION_SERVER_URL</code>: used to do the connection between client (i.e., user's browser) and notification server</li>
+<li><code>INNER_NOTIFICATION_SERVER_URL</code>: used to do the connection between Seafile server and notification server</li>
+</ul>
 </div>
 <p>Finally, You can run notification server with the following command:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
 docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
 <h2 id="checking-notification-server-status">Checking notification server status<a class="headerlink" href="#checking-notification-server-status" title="Permanent link">&para;</a></h2>
-<p>When the notification server is working, you can access <code>http://127.0.0.1:8083/ping</code> from your browser, which will answer <code>{"ret": "pong"}</code>. If you have a proxy configured, you can access <code>https://{server}/notification/ping</code> from your browser instead.</p>
+<p>When the notification server is working, you can access <code>http://127.0.0.1:8083/ping</code> from your browser, which will answer <code>{"ret": "pong"}</code>. If you have a proxy configured, you can access <code>https://seafile.example.com/notification/ping</code> from your browser instead.</p>
 <h2 id="compatible-client">Compatible client<a class="headerlink" href="#compatible-client" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Seadrive 3.0.1 or later.</li>
@@ -4767,10 +4775,6 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>NOTIFICATION_SERVER_VOLUME</code></td>
-<td>The volume directory of notification server data</td>
-</tr>
 <tr>
 <td><code>SEAFILE_MYSQL_DB_HOST</code></td>
 <td>Seafile MySQL host</td>
