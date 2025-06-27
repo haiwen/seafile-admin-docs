@@ -141,7 +141,7 @@ nav:
       - Thumbnail Server: extension/thumbnail-server.md
       - WebDAV extension: extension/webdav.md
       - FUSE extension: extension/fuse.md
-      - Seafile AI extension: extension/seafile_ai.md
+      - Seafile AI extension: extension/seafile-ai.md
     - Online Office:
       - Collabora Online Integration: extension/libreoffice_online.md
       - OnlyOffice Integration: extension/only_office.md
