@@ -1,0 +1,19 @@
+services:
+  face-embedding:
+    image: ${FACE_EMBEDDING_IMAGE:-seafileltd/face-embedding:latest-rocm}
+    container_name: face-embedding
+    ports:
+      - 8886:8886
+    devices:
+      - "/dev/kfd:/dev/kfd"
+    volumes:
+      - ${FACE_EMBEDDING_VOLUME:-/opt/face_embedding}/models:/models
+      - ${FACE_EMBEDDING_VOLUME:-/opt/face_embedding}/logs:/logs
+    environment:
+      - FACE_EMBEDDING_SERVICE_KEY=${FACE_EMBEDDING_SERVICE_KEY:-${JWT_PRIVATE_KEY:?Variable is not set or empty}}
+    networks:
+      - seafile-net
+
+networks:
+  seafile-net:
+    name: seafile-net

@@ -10,7 +10,7 @@
         <meta name="author" content="seafile">
       
       
-        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/13.0/extension/seafile_ai/">
+        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/13.0/extension/seafile-ai/">
       
       
         <link rel="prev" href="../fuse/">
@@ -2310,6 +2310,48 @@
       Deploy Seafile AI basic service
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-face-embedding-service-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploy face embedding service (Optional)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deploy face embedding service (Optional)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deploy-the-face-embedding-service-on-a-different-machine-than-the-seafile-ai-basic-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploy the face embedding service on a different machine than the Seafile AI basic service
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#persistent-volume-and-model-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Persistent volume and model management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customizing-model-serving-access-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      Customizing model serving access keys
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -4616,6 +4658,48 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#deploy-face-embedding-service-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploy face embedding service (Optional)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deploy face embedding service (Optional)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deploy-the-face-embedding-service-on-a-different-machine-than-the-seafile-ai-basic-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploy the face embedding service on a different machine than the Seafile AI basic service
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#persistent-volume-and-model-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Persistent volume and model management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customizing-model-serving-access-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      Customizing model serving access keys
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4644,14 +4728,14 @@
 <li>Detect text in images (OCR)</li>
 </ul>
 <h2 id="deploy-seafile-ai-basic-service">Deploy Seafile AI basic service<a class="headerlink" href="#deploy-seafile-ai-basic-service" title="Permanent link">&para;</a></h2>
-<p>The Seafile AI basic service will use API calls to external large language model service (e.g., <em>GPT-4o-mini</em>) to implement file labeling, file and image summaries, text translation, and sdoc writing assistance.</p>
+<p>The Seafile AI basic service will use API calls to external large language model service to implement file labeling, file and image summaries, text translation, and sdoc writing assistance.</p>
 <ol>
 <li>
 <p>Download <code>seafile-ai.yml</code></p>
 <div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/seafile-ai.yml
 </code></pre></div>
 <div class="admonition note">
-<p class="admonition-title">Deploy in a cluster</p>
+<p class="admonition-title">Deploy in a cluster or standalone deployment</p>
 <p>If you deploy Seafile in a cluster and would like to deploy Seafile AI, please expose port <code>8888</code> in <code>seafile-ai.yml</code>:</p>
 <div class="highlight"><pre><span></span><code>services:
   seafile-ai:
@@ -4667,17 +4751,130 @@
 <div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;...,seafile-ai.yml&#39; # add seafile-ai.yml
 
 ENABLE_SEAFILE_AI=true
-SEAFILE_AI_LLM_TYPE=open-ai
-SEAFILE_AI_LLM_URL=&lt;your LLM endpoint URL&gt;
 SEAFILE_AI_LLM_KEY=&lt;your LLM access key&gt;
 </code></pre></div>
 <div class="admonition note">
-<p class="admonition-title">Deploy in a cluster</p>
-<p>Please also specify <code>SEAFILE_AI_SERVER_URL</code> to the host where deploys your Seafile AI basic service in <code>.env</code>, if you deploy Seafile in a cluster.</p>
+<p class="admonition-title">Deploy in a cluster or standalone deployment</p>
+<p>Please also specify the following items in <code>.env</code>:</p>
+<ul>
+<li><code>.env</code> on the host where deploys Seafile server:</li>
+<li><code>SEAFILE_AI_SERVER_URL</code>: the service url of Seafile AI (e.g., <code>http://seafile-ai.example.com:8888</code>)</li>
+<li><code>.env</code> on the host where deploys Seafile AI:
+  <code>SEAFILE_SERVER_URL</code>: your Seafile server's url (e.g., <code>https://seafile.example.com</code>)</li>
+</ul>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">About LLM configs</p>
+<p>By default, Seafile uses the <strong><em>GPT-4o-mini</em></strong> model from <em>OpenAI</em>. You only need to provide your <strong><em>OpenAI API Key</em></strong>. If you need to use other LLM (including self-deployed LLM service), you also need to specify the following in <code>.env</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">SEAFILE_AI_LLM_TYPE</span><span class="o">=</span>&lt;your<span class="w"> </span>LLM<span class="w"> </span>type&gt;
+<span class="nv">SEAFILE_AI_LLM_URL</span><span class="o">=</span>&lt;your<span class="w"> </span>LLM<span class="w"> </span>endpoint&gt;
+<span class="nv">SEAFILE_AI_LLM_KEY</span><span class="o">=</span>&lt;your<span class="w"> </span>LLM<span class="w"> </span>API<span class="w"> </span>key&gt;
+</code></pre></div>
 </div>
 </li>
 <li>
 <p>Restart Seafile server:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</li>
+</ol>
+<h2 id="deploy-face-embedding-service-optional">Deploy face embedding service (Optional)<a class="headerlink" href="#deploy-face-embedding-service-optional" title="Permanent link">&para;</a></h2>
+<p>The Face Embedding service is used to detect and encode faces in images. Generally, we <strong>recommend</strong> that you deploy the service on a machine with a <strong>GPU</strong> and a graphics card driver that supports <a href="https://onnxruntime.ai/docs/">OnnxRuntime</a> (so it can also be deployed on a different machine from the Seafile AI base service). Currently, the Seafile AI Face Embedding service only supports the following modes:</p>
+<ul>
+<li><em>Nvidia</em> GPU, which will use the <strong><em>CUDA 12.4</em></strong> acceleration environment (at least the minimum Nvidia Geforce 531.18 driver) and requires the installation of the <a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html">Nvidia container toolkit</a>.</li>
+</ul>
+<!-- - *AMD* GPU, which will use the ***ROCm 6.4.1*** acceleration environment.-->
+<ul>
+<li>Pure <em>CPU</em> mode</li>
+</ul>
+<p>If you plan to deploy these face embeddings in an environment using a GPU, you need to make sure your graphics card is <strong>in the range supported by the acceleration environment</strong> and <strong>correctly mapped in <code>/dev/dri</code> directory</strong> (so cloud servers and <a href="https://learn.microsoft.com/en-us/windows/wsl/install">WSL</a> under certain driver versions will not be supported).</p>
+<ol>
+<li>
+<p>Download Docker compose files</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">CUDA</label><label for="__tabbed_1_2">CPU</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>face-embedding.yml<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/face-embedding/cuda.yml
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>face-embedding.yml<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/face-embedding/cpu.yml
+</code></pre></div>
+</div>
+</div>
+</div>
+</li>
+</ol>
+<!--
+    === "ROCM"
+
+        <div class="highlight"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>face-embedding.yml<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/face-embedding/rocm.yml
+</code></pre></div>
+-->
+
+<ol>
+<li>
+<p>Modify <code>.env</code>, insert or modify the following fields:</p>
+<div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;...,face-embedding.yml&#39; # add face-embedding.yml
+
+FACE_EMBEDDING_VOLUME=/opt/face_embedding
+</code></pre></div>
+</li>
+<li>
+<p>Restart Seafile server</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</li>
+<li>
+<p>Enable face recognition in the repo's settings:</p>
+<p><img alt="Enable face recognition" src="../../images/face-embedding.png" /></p>
+</li>
+</ol>
+<h3 id="deploy-the-face-embedding-service-on-a-different-machine-than-the-seafile-ai-basic-service">Deploy the face embedding service on a different machine than the Seafile AI basic service<a class="headerlink" href="#deploy-the-face-embedding-service-on-a-different-machine-than-the-seafile-ai-basic-service" title="Permanent link">&para;</a></h3>
+<p>Since the face embedding service may need to be deployed on some hosts with GPU(s), it may not be deployed together with the Seafile AI basic service. At this time, you should make some changes to the Docker compose file so that the service can be accessed normally.</p>
+<ol>
+<li>
+<p>Modify <code>.yml</code> file, delete the commented out lines to expose the service port:</p>
+<div class="highlight"><pre><span></span><code>services:
+    face-embedding:
+    ...
+    ports:
+        - 8886:8886
+</code></pre></div>
+</li>
+<li>
+<p>Modify the <code>.env</code> of the Seafile AI basic service:</p>
+<div class="highlight"><pre><span></span><code>FACE_EMBEDDING_SERVICE_URL=http://&lt;your face embedding service host&gt;:8886
+</code></pre></div>
+</li>
+<li>
+<p>Make sure <code>JWT_PRIVATE_KEY</code> has set in the <code>.env</code> for face embedding and is same as the Seafile server</p>
+</li>
+<li>
+<p>Restart Seafile server</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</li>
+</ol>
+<h3 id="persistent-volume-and-model-management">Persistent volume and model management<a class="headerlink" href="#persistent-volume-and-model-management" title="Permanent link">&para;</a></h3>
+<p>By default, the persistent volume is <code>/opt/face_embedding</code>. It will consist of two subdirectories:</p>
+<ul>
+<li><code>/opt/face_embedding/logs</code>: Contains the startup log and access log of the face embedding</li>
+<li><code>/opt/face_embedding/models</code>: Contains the model files of the face embedding. It will automatically obtain the latest applicable models at each startup. These models are hosted by <a href="https://huggingface.co/Seafile/face-embedding">our Hugging Face repository</a>. Of course, you can also manually download their own model files before the first startup (<strong>If you fail to automatically pull the model, you can also manually download the model to this directory</strong>).</li>
+</ul>
+<h3 id="customizing-model-serving-access-keys">Customizing model serving access keys<a class="headerlink" href="#customizing-model-serving-access-keys" title="Permanent link">&para;</a></h3>
+<p>By default, the access key used by the face embedding is the same as that used by the Seafile server, which is <code>JWT_PRIVATE_KEY</code>. At some point, this will have to be modified for security reasons. If you need to customize the access key for the face embedding, you can do the following steps:</p>
+<ol>
+<li>
+<p>Modify <code>.env</code> file for both face embedding and Seafile AI:</p>
+<div class="highlight"><pre><span></span><code>FACE_EMBEDDING_SERVICE_KEY=&lt;your customizing access keys&gt;
+</code></pre></div>
+</li>
+<li>
+<p>Restart Seafile server</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
 docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
