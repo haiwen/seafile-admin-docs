@@ -8,6 +8,11 @@
 
 Please check our document for how to upgrade to [12.0](../upgrade/upgrade_notes_for_12.0.x.md)
 
+### 12.0.14 (2025-05-28)
+
+* [fix] Fix two stored XSS issues (In rendering terms and conditions and in institution admin page)
+* [fix] Do not close the search popover when click a result
+
 ### 12.0.13 (2025-05-09)
 
 * Add S/MIME support for emails
