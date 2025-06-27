@@ -12,7 +12,7 @@ In `seahub_settings.py`, add `MULTI_INSTITUTION = True` to enable multi-institut
     )
 ```
 
-!!! tip "Please replease `+=` to `=` if `EXTRA_MIDDLEWARE_CLASSES` or `EXTRA_MIDDLEWARE` is not defined"
+!!! tip "Please replease `+=` to `=` if `EXTRA_MIDDLEWARE` is not defined"
 
 ## Add institutions and institution admins
 

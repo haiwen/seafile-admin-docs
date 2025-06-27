@@ -9,6 +9,14 @@
 
 Please check our document for how to upgrade to [12.0](../upgrade/upgrade_notes_for_12.0.x.md)
 
+### 12.0.14 (2025-05-29)
+
+* [fix] Fix two stored XSS issues (In rendering terms and conditions and in institution admin page)
+* Add S/MIME support for emails
+* [fix] Fix a UI bug in "share admin -> share links"
+* [fix] Fix a bug in rendering "system admin -> users"
+* Update translations
+
 ### 12.0.11 (2025-03-19)
 
 * [fix] Fix a stored XSS issue

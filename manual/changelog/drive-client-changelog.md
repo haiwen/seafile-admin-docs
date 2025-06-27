@@ -1,5 +1,14 @@
 # SeaDrive Client Changelog
 
+### 3.0.15 (2025/06/26)
+
+* Persist file sync errors over restart
+* Save encryption keys for encrypted libraries after delete confirmation "No"
+* Increase fs-id-list request timeout to 30 minutes
+* Update parent folder modification time when file are updated
+* \[mac] Fix memory leaks when removing downloaded items from cache
+* \[linux] Add Nautilus extension for GNOME
+
 ### 3.0.14 (2025/05/07)
 
 * \[win] Avoid potential file overwriting issue after internal metadata is removed by Anti-virus

@@ -2,6 +2,16 @@
 
 ## 9.0
 
+### 9.0.14 (2025/06/16)
+
+* Improve cloud file browser dialog
+* Improve icons for system notification area
+* Add link to FAQ in file sync error dialog
+* Check and notify when client uses wrong key for encryption
+* Update some seahub APIs
+* Update grandparent modification time when file is updated
+* \[win] Skip syncing special legacy folders under Documents ("My Music", "My Pictures" and "My Videos"), to avoid permission errors
+
 ### 9.0.13 (2025/04/02)
 
 * \[win] Fix bug that some items of context menu in Windows Explorer don't show up
