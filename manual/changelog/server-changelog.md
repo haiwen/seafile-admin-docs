@@ -3,6 +3,28 @@
 > You can check Seafile release table to find the lifetime of each release and current supported OS: <https://cloud.seatable.io/dtable/external-links/a85d4221e41344c19566/?tid=0000&vid=0000>
 
 
+## 13.0
+
+**Upgrade**
+
+Please check our document for how to upgrade to [13.0](../upgrade/upgrade_notes_for_13.0.x.md)
+
+### 13.0.6 beta (2025-07-15)
+
+
+Deploying Seafile with binary package is no longer supported for community edition. We recommend you to migrate your existing Seafile deployment to docker based.
+
+* SeaDoc: SeaDoc is now version 2.0
+* Thumbnail server: A new thumbnail server component is added to improve performance for thumbnail generating and support thumbnail for videos
+* Metadata server: A new metadata server component is available to manage extended file properties
+* Notification server: The web interface now support real-time update when other people add or remove files if notification-server is enabled
+* Database and memcache configurations are added to `.env`, it is recommended to use environment variables to config database and memcache
+* Redis is recommended to be used as memcache server
+* For security reason, WebDAV no longer support login with LDAP account, the user with LDAP account must generate a WebDAV token at the profile page
+* [File tags] The old file tags feature can no longer be used, the interface provide an upgrade notice for migrate the data to the new file tags feature
+* Some UI updated and fixes
+
+
 ## 12.0
 
 **Upgrade**
