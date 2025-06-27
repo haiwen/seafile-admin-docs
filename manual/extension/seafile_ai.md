@@ -5,7 +5,7 @@ From Seafile 13 Pro, users can enable ***Seafile AI*** to support the following 
 - File tags, file and image summaries, text translation, sdoc writing assistance
 - Given an image, generate its corresponding tags (including objects, weather, color, etc.)
 - Detect faces in images and encode them
-- Detect text locations in images and recognize them
+- Detect text in images (OCR)
 
 ## Deploy Seafile AI basic service
 
@@ -52,7 +52,3 @@ The Seafile AI basic service will use API calls to external large language model
     docker compose up -d
     ```
 
-!!! tip
-    Since the file tagging feature requires [deploying the metadata service](./metadata-server.md) first, the file tagging feature is not enabled by default. You can enable this feature in the repo's settings after enabling extension properties (see the figure below, it will only be enabled if you have management permissions for this repo).
-
-    ![Enable Seafile AI File tags](../images/seafile-ai-file-tags.png)
