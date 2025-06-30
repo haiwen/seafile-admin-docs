@@ -348,10 +348,10 @@ LDAP_USE_PAGED_RESULT = True
 
 Seafile Pro Edition supports auto following referrals in LDAP search. This is useful for partitioned LDAP or AD servers, where users may be spreaded on multiple directory servers. For more information about referrals, you can refer to [this article](https://technet.microsoft.com/en-us/library/cc978014.aspx).
 
-To configure, add below option to `seahub_settings.py`, e.g.:
+Note: If you get the error like `Invalid credentials`, you can try to set the `LDAP_FOLLOW_REFERRALS = False` to solve the problem:
 
 ```python
-LDAP_FOLLOW_REFERRALS = True
+LDAP_FOLLOW_REFERRALS = False
 ```
 
 ### Configure Multi-ldap Servers
