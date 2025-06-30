@@ -11,6 +11,9 @@ From Seafile 13 Pro, users can enable ***Seafile AI*** to support the following 
 
 The Seafile AI basic service will use API calls to external large language model service to implement file labeling, file and image summaries, text translation, and sdoc writing assistance.
 
+!!! warning "Seafile AI requires Redis cache"
+    In order to deploy Seafile AI correctly, you need to use Redis cache. Please set `CACHE_PROVIDER=redis` in .env and set Redis related configuration information correctly.
+
 1. Download `seafile-ai.yml`
 
     ```sh
@@ -44,9 +47,12 @@ The Seafile AI basic service will use API calls to external large language model
         Please also specify the following items in `.env`:
 
         - `.env` on the host where deploys Seafile server:
-          - `SEAFILE_AI_SERVER_URL`: the service url of Seafile AI (e.g., `http://seafile-ai.example.com:8888`)
+            - `SEAFILE_AI_SERVER_URL`: the service url of Seafile AI (e.g., `http://seafile-ai.example.com:8888`)
         - `.env` on the host where deploys Seafile AI:
-          `SEAFILE_SERVER_URL`: your Seafile server's url (e.g., `https://seafile.example.com`)
+            - `SEAFILE_SERVER_URL`: your Seafile server's url (e.g., `https://seafile.example.com`)
+            - `REDIS_HOST`: your redis host
+            - `REDIS_PORT`: your redis port
+            - `REDIS_PASSWORD`: your redis password
     
     !!! tip "About LLM configs"
         By default, Seafile uses the ***GPT-4o-mini*** model from *OpenAI*. You only need to provide your ***OpenAI API Key***. If you need to use other LLM (including self-deployed LLM service), you also need to specify the following in `.env`:
@@ -66,13 +72,13 @@ The Seafile AI basic service will use API calls to external large language model
 
 ## Deploy face embedding service (Optional)
 
-The Face Embedding service is used to detect and encode faces in images. Generally, we **recommend** that you deploy the service on a machine with a **GPU** and a graphics card driver that supports [OnnxRuntime](https://onnxruntime.ai/docs/) (so it can also be deployed on a different machine from the Seafile AI base service). Currently, the Seafile AI Face Embedding service only supports the following modes:
+The face embedding service is used to detect and encode faces in images and is an extension component of Seafile AI. Generally, we **recommend** that you deploy the service on a machine with a **GPU** and a graphics card driver that supports [OnnxRuntime](https://onnxruntime.ai/docs/) (so it can also be deployed on a different machine from the Seafile AI base service). Currently, the Seafile AI face embedding service only supports the following modes:
 
 - *Nvidia* GPU, which will use the ***CUDA 12.4*** acceleration environment (at least the minimum Nvidia Geforce 531.18 driver) and requires the installation of the [Nvidia container toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html).
 <!-- - *AMD* GPU, which will use the ***ROCm 6.4.1*** acceleration environment.-->
 - Pure *CPU* mode
 
-If you plan to deploy these face embeddings in an environment using a GPU, you need to make sure your graphics card is **in the range supported by the acceleration environment** and **correctly mapped in `/dev/dri` directory** (so cloud servers and [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) under certain driver versions will not be supported).
+If you plan to deploy these face embeddings in an environment using a GPU, you need to make sure your graphics card is **in the range supported by the acceleration environment** (e.g., CUDA 12.4 is supported) and **correctly mapped in `/dev/dri` directory**. So in some case, the cloud servers and [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) under some driver versions may not be supported.
 
 1. Download Docker compose files
 
@@ -148,7 +154,7 @@ Since the face embedding service may need to be deployed on some hosts with GPU(
 By default, the persistent volume is `/opt/face_embedding`. It will consist of two subdirectories:
 
 - `/opt/face_embedding/logs`: Contains the startup log and access log of the face embedding
-- `/opt/face_embedding/models`: Contains the model files of the face embedding. It will automatically obtain the latest applicable models at each startup. These models are hosted by [our Hugging Face repository](https://huggingface.co/Seafile/face-embedding). Of course, you can also manually download their own model files before the first startup (**If you fail to automatically pull the model, you can also manually download the model to this directory**).
+- `/opt/face_embedding/models`: Contains the model files of the face embedding. It will automatically obtain the latest applicable models at each startup. These models are hosted by [our Hugging Face repository](https://huggingface.co/Seafile/face-embedding). Of course, you can also manually download your own models on this directory (**If you fail to automatically pull the model, you can also manually download it**).
 
 ### Customizing model serving access keys
 
