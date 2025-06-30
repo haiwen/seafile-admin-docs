@@ -5486,8 +5486,8 @@ After synchronization is complete, you can see the user's full name, department 
 </code></pre></div>
 <h3 id="follow-referrals">Follow referrals<a class="headerlink" href="#follow-referrals" title="Permanent link">&para;</a></h3>
 <p>Seafile Pro Edition supports auto following referrals in LDAP search. This is useful for partitioned LDAP or AD servers, where users may be spreaded on multiple directory servers. For more information about referrals, you can refer to <a href="https://technet.microsoft.com/en-us/library/cc978014.aspx">this article</a>.</p>
-<p>To configure, add below option to <code>seahub_settings.py</code>, e.g.:</p>
-<div class="highlight"><pre><span></span><code><span class="n">LDAP_FOLLOW_REFERRALS</span> <span class="o">=</span> <span class="kc">True</span>
+<p>Note: If you get the error like <code>Invalid credentials</code>, you can try to set the <code>LDAP_FOLLOW_REFERRALS = False</code> to solve the problem:</p>
+<div class="highlight"><pre><span></span><code><span class="n">LDAP_FOLLOW_REFERRALS</span> <span class="o">=</span> <span class="kc">False</span>
 </code></pre></div>
 <h3 id="configure-multi-ldap-servers">Configure Multi-ldap Servers<a class="headerlink" href="#configure-multi-ldap-servers" title="Permanent link">&para;</a></h3>
 <p>Seafile Pro Edition supports multi-ldap servers, you can configure two ldap servers to work with seafile. Multi-ldap servers mean that, when get or search ldap user, it will iterate all configured ldap servers until a match is found; When listing all ldap users, it will iterate all ldap servers to get all users; For Ldap sync it will sync all user/group info in all configured ldap servers to seafile.</p>
