@@ -194,16 +194,16 @@ Please specify the storage type used by Seafile in `.env` according to the usage
 
 ### Start Seafile
 
-    ```sh
-    docker compose up -d
-    ```
+```sh
+docker compose up -d
+```
 
-    !!! tip "Optional but recommended modifications for further configuration files"
-        Although the configurations in environment (i.e., `.env`) have higher priority than the configurations in config files, we recommend that you remove or modify the cache configuration in the following files to avoid ambiguity:：
+!!! tip "Optional but recommended modifications for further configuration files"
+    Although the configurations in environment (i.e., `.env`) have higher priority than the configurations in config files, we recommend that you remove or modify the cache configuration in the following files to avoid ambiguity:：
 
-        - `seafile.conf`: remove the `[memcached]` section. If you are using single S3 backend and have specified `SEAF_SERVER_STORAGE_TYPE=s3` in `.env`, the `[commit_object_backend]`, `[fs_object_backend]` and `[block_backend]` also can be removed.
+    - `seafile.conf`: remove the `[memcached]` section. If you are using single S3 backend and have specified `SEAF_SERVER_STORAGE_TYPE=s3` in `.env`, the `[commit_object_backend]`, `[fs_object_backend]` and `[block_backend]` also can be removed.
 
-        - `seahub_settings.py`: remove the key `default` in variable `CACHES`
+    - `seahub_settings.py`: remove the key `default` in variable `CACHES`
 
 ## Upgrade from 11.0 to 12.0
 
