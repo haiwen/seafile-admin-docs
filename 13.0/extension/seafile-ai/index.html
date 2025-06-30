@@ -4729,6 +4729,10 @@
 </ul>
 <h2 id="deploy-seafile-ai-basic-service">Deploy Seafile AI basic service<a class="headerlink" href="#deploy-seafile-ai-basic-service" title="Permanent link">&para;</a></h2>
 <p>The Seafile AI basic service will use API calls to external large language model service to implement file labeling, file and image summaries, text translation, and sdoc writing assistance.</p>
+<div class="admonition warning">
+<p class="admonition-title">Seafile AI requires Redis cache</p>
+<p>In order to deploy Seafile AI correctly, you need to use Redis cache. Please set <code>CACHE_PROVIDER=redis</code> in .env and set Redis related configuration information correctly.</p>
+</div>
 <ol>
 <li>
 <p>Download <code>seafile-ai.yml</code></p>
@@ -4757,10 +4761,17 @@ SEAFILE_AI_LLM_KEY=&lt;your LLM access key&gt;
 <p class="admonition-title">Deploy in a cluster or standalone deployment</p>
 <p>Please also specify the following items in <code>.env</code>:</p>
 <ul>
-<li><code>.env</code> on the host where deploys Seafile server:</li>
+<li><code>.env</code> on the host where deploys Seafile server:<ul>
 <li><code>SEAFILE_AI_SERVER_URL</code>: the service url of Seafile AI (e.g., <code>http://seafile-ai.example.com:8888</code>)</li>
-<li><code>.env</code> on the host where deploys Seafile AI:
-  <code>SEAFILE_SERVER_URL</code>: your Seafile server's url (e.g., <code>https://seafile.example.com</code>)</li>
+</ul>
+</li>
+<li><code>.env</code> on the host where deploys Seafile AI:<ul>
+<li><code>SEAFILE_SERVER_URL</code>: your Seafile server's url (e.g., <code>https://seafile.example.com</code>)</li>
+<li><code>REDIS_HOST</code>: your redis host</li>
+<li><code>REDIS_PORT</code>: your redis port</li>
+<li><code>REDIS_PASSWORD</code>: your redis password</li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="admonition tip">
@@ -4780,7 +4791,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 </li>
 </ol>
 <h2 id="deploy-face-embedding-service-optional">Deploy face embedding service (Optional)<a class="headerlink" href="#deploy-face-embedding-service-optional" title="Permanent link">&para;</a></h2>
-<p>The Face Embedding service is used to detect and encode faces in images. Generally, we <strong>recommend</strong> that you deploy the service on a machine with a <strong>GPU</strong> and a graphics card driver that supports <a href="https://onnxruntime.ai/docs/">OnnxRuntime</a> (so it can also be deployed on a different machine from the Seafile AI base service). Currently, the Seafile AI Face Embedding service only supports the following modes:</p>
+<p>The face embedding service is used to detect and encode faces in images and is an extension component of Seafile AI. Generally, we <strong>recommend</strong> that you deploy the service on a machine with a <strong>GPU</strong> and a graphics card driver that supports <a href="https://onnxruntime.ai/docs/">OnnxRuntime</a> (so it can also be deployed on a different machine from the Seafile AI base service). Currently, the Seafile AI face embedding service only supports the following modes:</p>
 <ul>
 <li><em>Nvidia</em> GPU, which will use the <strong><em>CUDA 12.4</em></strong> acceleration environment (at least the minimum Nvidia Geforce 531.18 driver) and requires the installation of the <a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html">Nvidia container toolkit</a>.</li>
 </ul>
@@ -4788,7 +4799,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 <ul>
 <li>Pure <em>CPU</em> mode</li>
 </ul>
-<p>If you plan to deploy these face embeddings in an environment using a GPU, you need to make sure your graphics card is <strong>in the range supported by the acceleration environment</strong> and <strong>correctly mapped in <code>/dev/dri</code> directory</strong> (so cloud servers and <a href="https://learn.microsoft.com/en-us/windows/wsl/install">WSL</a> under certain driver versions will not be supported).</p>
+<p>If you plan to deploy these face embeddings in an environment using a GPU, you need to make sure your graphics card is <strong>in the range supported by the acceleration environment</strong> (e.g., CUDA 12.4 is supported) and <strong>correctly mapped in <code>/dev/dri</code> directory</strong>. So in some case, the cloud servers and <a href="https://learn.microsoft.com/en-us/windows/wsl/install">WSL</a> under some driver versions may not be supported.</p>
 <ol>
 <li>
 <p>Download Docker compose files</p>
@@ -4863,7 +4874,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 <p>By default, the persistent volume is <code>/opt/face_embedding</code>. It will consist of two subdirectories:</p>
 <ul>
 <li><code>/opt/face_embedding/logs</code>: Contains the startup log and access log of the face embedding</li>
-<li><code>/opt/face_embedding/models</code>: Contains the model files of the face embedding. It will automatically obtain the latest applicable models at each startup. These models are hosted by <a href="https://huggingface.co/Seafile/face-embedding">our Hugging Face repository</a>. Of course, you can also manually download their own model files before the first startup (<strong>If you fail to automatically pull the model, you can also manually download the model to this directory</strong>).</li>
+<li><code>/opt/face_embedding/models</code>: Contains the model files of the face embedding. It will automatically obtain the latest applicable models at each startup. These models are hosted by <a href="https://huggingface.co/Seafile/face-embedding">our Hugging Face repository</a>. Of course, you can also manually download your own models on this directory (<strong>If you fail to automatically pull the model, you can also manually download it</strong>).</li>
 </ul>
 <h3 id="customizing-model-serving-access-keys">Customizing model serving access keys<a class="headerlink" href="#customizing-model-serving-access-keys" title="Permanent link">&para;</a></h3>
 <p>By default, the access key used by the face embedding is the same as that used by the Seafile server, which is <code>JWT_PRIVATE_KEY</code>. At some point, this will have to be modified for security reasons. If you need to customize the access key for the face embedding, you can do the following steps:</p>
