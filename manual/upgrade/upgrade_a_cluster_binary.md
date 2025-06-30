@@ -51,7 +51,7 @@ Doing maintanence upgrading is simple, you only need to run the script `./upgrad
 
 2. Install [new Python libraries](./upgrade_notes_for_12.0.x.md#new-python-libraries)
 
-3. [Download](../setup_binary/installation_pro.md#downloading-the-install-package) and [uncompress](../setup_binary/installation_pro.md#uncompressing-the-package) the package
+3. [Download](../setup_binary/installation.md#downloading-the-install-package) and [uncompress](../setup_binary/installation.md#uncompressing-the-package) the package
 
 4. Run the upgrade script in a single node
 

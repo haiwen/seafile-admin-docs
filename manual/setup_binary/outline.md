@@ -1,9 +1,12 @@
 # Deploy Seafile Pro Edition
 
+!!! danger
+    Since version 13.0, binary based deployment for community edition is no longer supported.
+
 There are two ways to deploy Seafile Pro Edition. Since version 8.0, the recommend way to install Seafile Pro Edition is using Docker.
 
 - Method 1 (***Recommend***): Deploy Seafile with [Docker](../setup/setup_pro_by_docker.md)
-- Method 2: [Download and Setup Seafile Professional Server Step by Step](./installation_pro.md)
+- Method 2: [Download and Setup Seafile Professional Server Step by Step](./installation.md)
 
 ## Migration from community edition
 
