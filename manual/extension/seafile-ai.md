@@ -1,6 +1,6 @@
 # Seafile AI extension
 
-From Seafile 13 Pro, users can enable ***Seafile AI*** to support the following features:
+From Seafile 13, users can enable ***Seafile AI*** to support the following features:
 
 - File tags, file and image summaries, text translation, sdoc writing assistance
 - Given an image, generate its corresponding tags (including objects, weather, color, etc.)
