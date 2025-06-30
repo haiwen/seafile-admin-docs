@@ -6,7 +6,7 @@ From Seafile 13, there are two ways to configure S3 storage (**single S3 storage
 - Config file (`seafile.conf`)
 
 !!! note "Setup note for binary packages deployment (Pro)"
-    If your Seafile server is deployed from [binary packages](../setup_binary/installation_pro.md), you have to do the following steps before deploying:
+    If your Seafile server is deployed from [binary packages](../setup_binary/installation.md), you have to do the following steps before deploying:
     
     1. **install `boto3` to your machine**
 
@@ -14,7 +14,7 @@ From Seafile 13, there are two ways to configure S3 storage (**single S3 storage
         sudo pip install boto3
         ```
 
-    2. **Install and configure [memcached or Redis](../setup_binary/installation_pro.md#setup-memory-cache)**. 
+    2. **Install and configure [memcached or Redis](../setup_binary/installation.md#setup-memory-cache)**. 
     
         For best performance, Seafile requires enable memory cache for objects. We recommend to **at least allocate 128MB** memory for memcached or Redis.
 

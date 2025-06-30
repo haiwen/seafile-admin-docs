@@ -11,7 +11,7 @@ Please refer [here](../setup/system_requirements.md#seafile-cluster) for the det
 
 ### Install prerequisites
 
-Please follow [here](./installation_pro.md#installing-prerequisites) to install prerequisites
+Please follow [here](./installation.md#installing-prerequisites) to install prerequisites
 
 !!! note 
     Cache server (the first step) is not necessary, if you donot wish this node deploy it.
@@ -137,9 +137,9 @@ There are 2 firewall rule changes for Seafile cluster:
 
 Please follow *Installation of Seafile Server Professional Edition* to setup:
 
-- [Download the install package](./installation_pro.md#downloading-the-install-package)
-- [Uncompress the package](./installation_pro.md#uncompressing-the-package)
-- [Set up Seafile Pro databases](./installation_pro.md#setting-up-seafile-pro-databases)
+- [Download the install package](./installation.md#downloading-the-install-package)
+- [Uncompress the package](./installation.md#uncompressing-the-package)
+- [Set up Seafile Pro databases](./installation.md#setting-up-seafile-pro-databases)
 
 ### Create and Modify configuration files in `/opt/seafile/conf`
 

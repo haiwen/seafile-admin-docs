@@ -5,7 +5,7 @@
 !!! note "For Seafile deploy from binary package"
     We currently **only support Docker-based** deployment for SeaSearch Server, so this document describes the configuration with the situation of using Docker to deploy Seafile server. 
     
-    If your Seafile Server deploy from binary package, please refer [here](../setup_binary/installation_pro.md#starting-seafile-server) to start or stop Seafile Server.
+    If your Seafile Server deploy from binary package, please refer [here](../setup_binary/installation.md#starting-seafile-server) to start or stop Seafile Server.
 
 !!! tip "For Seafile cluster"
     Theoretically, **at least** the backend node has to restart, if your Seafile server deploy in cluster mode, but we still suggest you configure and restart **all node** to make sure the consistency and synchronization in the cluster

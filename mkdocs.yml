@@ -87,9 +87,10 @@ nav:
     - Introduction: README.md
     - Seafile Components: introduction/components.md
     - File permission management: introduction/file_permission_management.md
+    - Seafile Pro edition license: introduction/seafile_professional_sdition_software_license_agreement.md
     - Roadmap: introduction/roadmap.md
     - Contribution: introduction/contribution.md
-  - Setup:
+  - Docker-based installation:
     - Overview: setup/overview.md
     - System requirements: setup/system_requirements.md
     - HTTPS and Caddy: setup/caddy.md
@@ -120,15 +121,11 @@ nav:
     - Migration:
       - Migration from Seafile Community: setup/migrate_ce_to_pro_with_docker.md
       - Migrate from non-docker deployment: setup/migrate_non_docker_to_docker.md
-  - Setup (binary):
-    - Seafile Community Setup:
-      - Outline: setup_binary/outline_ce.md
-    - Seafile Professional Setup:
-      - Outline: setup_binary/outline_pro.md
-      - License: setup_binary/seafile_professional_sdition_software_license_agreement.md
-      - Installation: setup_binary/installation_pro.md
-      - HTTPS with Nginx: setup_binary/https_with_nginx.md
-      - Cluster Deployment: setup_binary/cluster_deployment.md
+  - Binary-based installation (pro):
+    - Outline: setup_binary/outline.md
+    - Installation: setup_binary/installation.md
+    - HTTPS with Nginx: setup_binary/https_with_nginx.md
+    - Cluster Deployment: setup_binary/cluster_deployment.md
     - Other deployment notes:
       - Start Seafile at System Bootup: setup_binary/start_seafile_at_system_bootup.md
       - Logrotate: setup_binary/using_logrotate.md
