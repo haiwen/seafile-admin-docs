@@ -85,7 +85,6 @@ markdown_extensions:
 nav:
   - Introduction:
     - Introduction: README.md
-    - Seafile Components: introduction/components.md
     - File permission management: introduction/file_permission_management.md
     - Roadmap: introduction/roadmap.md
     - Contribution: introduction/contribution.md
