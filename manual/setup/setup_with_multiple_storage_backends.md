@@ -20,8 +20,9 @@ There are some use cases that supporting multiple storage backends in Seafile se
 
 To use this feature, you need to:
 
-1. Define [storage classes](#exmaple-of-storage-classes-file) in `seafile.conf`.
-2. Enable multiple backend feature in *Seahub* and choose a mapping policy.
+1. Set `SEAF_SERVER_STORAGE_TYPE=multiple` in `.env`.
+2. Define [storage classes](#exmaple-of-storage-classes-file) in `seafile.conf`.
+3. Enable multiple backend feature in *Seahub* and choose a mapping policy.
 
 ## Seafile Configuration
 
