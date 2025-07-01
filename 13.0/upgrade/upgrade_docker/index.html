@@ -3792,9 +3792,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-34-add-configurations-for-storage-backend-optional" class="md-nav__link">
+  <a href="#step-34-add-configurations-for-storage-backend-pro" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 3.4) Add configurations for storage backend (Optional)
+      Step 3.4) Add configurations for storage backend (Pro)
     </span>
   </a>
   
@@ -4817,9 +4817,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-34-add-configurations-for-storage-backend-optional" class="md-nav__link">
+  <a href="#step-34-add-configurations-for-storage-backend-pro" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 3.4) Add configurations for storage backend (Optional)
+      Step 3.4) Add configurations for storage backend (Pro)
     </span>
   </a>
   
@@ -5156,18 +5156,13 @@ wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/pro/seas
 </div>
 </div>
 </div>
-<h4 id="step-34-add-configurations-for-storage-backend-optional">Step 3.4) Add configurations for storage backend (Optional)<a class="headerlink" href="#step-34-add-configurations-for-storage-backend-optional" title="Permanent link">&para;</a></h4>
+<h4 id="step-34-add-configurations-for-storage-backend-pro">Step 3.4) Add configurations for storage backend (Pro)<a class="headerlink" href="#step-34-add-configurations-for-storage-backend-pro" title="Permanent link">&para;</a></h4>
 <p>Seafile 13.0 add a new environment <code>SEAF_SERVER_STORAGE_TYPE</code> to determine the storage backend of seaf-server component. You can delete the variable or set it to empty (<code>SEAF_SERVER_STORAGE_TYPE=</code>) to use the old way, i.e., determining the storage backend from seafile.conf.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="6:4"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><input id="__tabbed_6_3" name="__tabbed_6" type="radio" /><input id="__tabbed_6_4" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Local disk (default)</label><label for="__tabbed_6_2">Use the configuration in <code>seafile.conf</code></label><label for="__tabbed_6_3">S3 backend</label><label for="__tabbed_6_4">Multiple storage backends</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:4"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><input id="__tabbed_6_3" name="__tabbed_6" type="radio" /><input id="__tabbed_6_4" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Local disk (default)</label><label for="__tabbed_6_2">S3 backend</label><label for="__tabbed_6_3">Multiple storage backends</label><label for="__tabbed_6_4">Use the configuration in <code>seafile.conf</code></label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>Set <code>SEAF_SERVER_STORAGE_TYPE</code> to <code>disk</code> (default value):</p>
 <div class="highlight"><pre><span></span><code><span class="nv">SEAF_SERVER_STORAGE_TYPE</span><span class="o">=</span>disk
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<p>If you would like to use the storage configuration in <code>seafile.conf</code>, please remove default value of <code>SEAF_SERVER_STORAGE_TYPE</code> in <code>.env</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">SEAF_SERVER_STORAGE_TYPE</span><span class="o">=</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -5194,14 +5189,33 @@ wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/pro/seas
 <div class="highlight"><pre><span></span><code><span class="nv">SEAF_SERVER_STORAGE_TYPE</span><span class="o">=</span>multiple
 </code></pre></div>
 </div>
+<div class="tabbed-block">
+<p>If you would like to use the storage configuration in <code>seafile.conf</code>, please remove default value of <code>SEAF_SERVER_STORAGE_TYPE</code> in <code>.env</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">SEAF_SERVER_STORAGE_TYPE</span><span class="o">=</span>
+</code></pre></div>
+</div>
 </div>
 </div>
 <h3 id="step-4-remove-obsolote-configurations">Step 4) Remove obsolote configurations<a class="headerlink" href="#step-4-remove-obsolote-configurations" title="Permanent link">&para;</a></h3>
-<p>Although the configurations in environment (i.e., <code>.env</code>) have higher priority than the configurations in config files, we recommend that you remove or modify the cache configuration in the following files to avoid ambiguity:：</p>
+<p>Although the configurations in environment (i.e., <code>.env</code>) have higher priority than the configurations in config files, we recommend that you remove or modify the cache configuration in the following files to avoid ambiguity:</p>
+<ol>
+<li>
+<p>Backup the old configuration files:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># please replace /opt/seafile-data to your $SEAFILE_VOLUME</span>
+
+cp<span class="w"> </span>/opt/seafile-data/seafile/conf/seafile.conf<span class="w"> </span>/opt/seafile-data/seafile/conf/seafile.conf.bak
+cp<span class="w"> </span>/opt/seafile-data/seafile/conf/seahub_settings.py<span class="w"> </span>/opt/seafile-data/seafile/conf/seahub_settings.py.bak
+</code></pre></div>
+</li>
+<li>
+<p>Clean up redundant configuration items in the configuration files:</p>
 <ul>
-<li><code>seafile.conf</code>: remove the <code>[memcached]</code> section. If you are using single S3 backend and have specified <code>SEAF_SERVER_STORAGE_TYPE=s3</code> in <code>.env</code>, the <code>[commit_object_backend]</code>, <code>[fs_object_backend]</code> and <code>[block_backend]</code> also can be removed.</li>
-<li><code>seahub_settings.py</code>: remove the key <code>default</code> in variable <code>CACHES</code></li>
+<li>Open <code>/opt/seafile-data/seafile/conf/seafile.conf</code> and remove the entire <code>[memcached]</code>, <code>[database]</code>, <code>[commit_object_backend]</code>, <code>[fs_object_backend]</code> and <code>[block_backend]</code> if above sections have correctly specified in <code>.env</code>.</li>
+<li>Open <code>/opt/seafile-data/seafile/conf/seahub_settings.py</code> and remove the entire blocks for <code>DATABASES = {...}</code> and <code>CAHCES = {...}</code></li>
 </ul>
+<p>In the most cases, the <code>seafile.conf</code> only include the listen port <code>8082</code> of Seafile file server.</p>
+</li>
+</ol>
 <h3 id="step-5-start-seafile">Step 5) Start Seafile<a class="headerlink" href="#step-5-start-seafile" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
