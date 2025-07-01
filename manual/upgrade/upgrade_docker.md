@@ -126,7 +126,7 @@ If you are using notification server in Seafile 12, please specify the notificat
     NOTIFICATION_SERVER_URL=http://<your notification server host>:8083
     ```
 
-#### Step 3.4) Add configurations for storage backend (Optional)
+#### Step 3.4) Add configurations for storage backend (Pro)
 
 Seafile 13.0 add a new environment `SEAF_SERVER_STORAGE_TYPE` to determine the storage backend of seaf-server component. You can delete the variable or set it to empty (`SEAF_SERVER_STORAGE_TYPE=`) to use the old way, i.e., determining the storage backend from seafile.conf.
 
@@ -136,14 +136,6 @@ Seafile 13.0 add a new environment `SEAF_SERVER_STORAGE_TYPE` to determine the s
 
     ```sh
     SEAF_SERVER_STORAGE_TYPE=disk
-    ```
-
-=== "Use the configuration in `seafile.conf`"
-
-    If you would like to use the storage configuration in `seafile.conf`, please remove default value of `SEAF_SERVER_STORAGE_TYPE` in `.env`:
-
-    ```sh
-    SEAF_SERVER_STORAGE_TYPE=
     ```
 
 === "S3 backend"
@@ -176,13 +168,33 @@ Seafile 13.0 add a new environment `SEAF_SERVER_STORAGE_TYPE` to determine the s
     SEAF_SERVER_STORAGE_TYPE=multiple
     ```
 
+=== "Use the configuration in `seafile.conf`"
+
+    If you would like to use the storage configuration in `seafile.conf`, please remove default value of `SEAF_SERVER_STORAGE_TYPE` in `.env`:
+
+    ```sh
+    SEAF_SERVER_STORAGE_TYPE=
+    ```
+
 ### Step 4) Remove obsolote configurations
 
+Although the configurations in environment (i.e., `.env`) have higher priority than the configurations in config files, we recommend that you remove or modify the cache configuration in the following files to avoid ambiguity:
 
-Although the configurations in environment (i.e., `.env`) have higher priority than the configurations in config files, we recommend that you remove or modify the cache configuration in the following files to avoid ambiguity:：
+1. Backup the old configuration files:
 
-- `seafile.conf`: remove the `[memcached]` section. If you are using single S3 backend and have specified `SEAF_SERVER_STORAGE_TYPE=s3` in `.env`, the `[commit_object_backend]`, `[fs_object_backend]` and `[block_backend]` also can be removed.
-- `seahub_settings.py`: remove the key `default` in variable `CACHES`
+    ```sh
+    # please replace /opt/seafile-data to your $SEAFILE_VOLUME
+
+    cp /opt/seafile-data/seafile/conf/seafile.conf /opt/seafile-data/seafile/conf/seafile.conf.bak
+    cp /opt/seafile-data/seafile/conf/seahub_settings.py /opt/seafile-data/seafile/conf/seahub_settings.py.bak
+    ```
+
+2. Clean up redundant configuration items in the configuration files:
+
+    - Open `/opt/seafile-data/seafile/conf/seafile.conf` and remove the entire `[memcached]`, `[database]`, `[commit_object_backend]`, `[fs_object_backend]` and `[block_backend]` if above sections have correctly specified in `.env`.
+    - Open `/opt/seafile-data/seafile/conf/seahub_settings.py` and remove the entire blocks for `DATABASES = {...}` and `CAHCES = {...}`
+
+    In the most cases, the `seafile.conf` only include the listen port `8082` of Seafile file server.
 
 ### Step 5) Start Seafile
 
