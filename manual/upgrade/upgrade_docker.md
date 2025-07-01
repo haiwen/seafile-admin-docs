@@ -11,7 +11,7 @@ Please check the **upgrade notes** for any special configuration or changes befo
 
 From Seafile Docker 13.0, the `elasticsearch.yml` has separated from `seafile-server.yml`, and Seafile will support getting cache configuration from environment variables
 
-### Stop the services:
+### Step 1) Stop the services:
 
 Before upgrading, please shutdown you Seafile server
 
@@ -19,9 +19,9 @@ Before upgrading, please shutdown you Seafile server
 docker compose down
 ```
 
-### Download the newest `.yml` files
+### Step 2) Download the newest `.yml` files
 
-#### Download `seafile-server.yml`
+#### Step 2.1) Download `seafile-server.yml`
 
 Before downloading the newest `seafile-server.yml`, please backup your original one:
 
@@ -40,7 +40,7 @@ Then download the new `seafile-server.yml` according to the following commands:
     wget https://manual.seafile.com/13.0/repo/docker/pro/seafile-server.yml
     ```
 
-#### Update `.yml` file for search engine
+#### Step 2.2) Download `.yml` file for search engine (Pro edition)
 
 === "ElasticSearch"
 
@@ -59,9 +59,17 @@ Then download the new `seafile-server.yml` according to the following commands:
     wget https://manual.seafile.com/13.0/repo/docker/pro/seasearch.yml
     ```
 
-### Modify `.env`, update image version and add cache configurations:
+### Step 3) Modify `.env`, update image version and add cache configurations
 
-#### Update image version to Seafile 13
+#### Step 3.1) Update image version to Seafile 13
+
+=== "Seafile CE"
+
+    ```sh
+    SEAFILE_IMAGE=seafileltd/seafile-mc:13.0-latest
+    SEADOC_IMAGE=seafileltd/sdoc-server:1.0-latest
+    NOTIFICATION_SERVER_IMAGE=seafileltd/notification-server:13.0-latest
+    ```
 
 === "Seafile Pro"
 
@@ -78,17 +86,9 @@ Then download the new `seafile-server.yml` according to the following commands:
     
     ```
 
-=== "Seafile CE"
+#### Step 3.2) Add configurations for cache
 
-    ```sh
-    SEAFILE_IMAGE=seafileltd/seafile-mc:13.0-latest
-    SEADOC_IMAGE=seafileltd/sdoc-server:1.0-latest
-    NOTIFICATION_SERVER_IMAGE=seafileltd/notification-server:13.0-latest
-    ```
-
-#### Add configurations for cache
-
-From Seafile 13, the configurations of database and cache can get from environment variables directly (you can define it in the `.env`). What's more, the Redis will be recommended as the primary cache server for supporting some new features (please refer the ***upgradte notes***, you can also refer to more details about Redis in Seafile Docker [here](../setup/setup_pro_by_docker.md#about-redis)).
+From Seafile 13, the configurations of database and cache can be set via environment variables directly (you can define it in the `.env`). What's more, the Redis will be recommended as the primary cache server for supporting some new features (please refer the ***upgradte notes***, you can also refer to more details about Redis in Seafile Docker [here](../setup/setup_pro_by_docker.md#about-redis)).
 
 
 === "Redis"
@@ -112,8 +112,8 @@ From Seafile 13, the configurations of database and cache can get from environme
     MEMCACHED_HOST=memcached
     MEMCACHED_PORT=11211
     ```
-    
-#### Add configuration for notification server
+
+#### Step 3.3)  Add configuration for notification server
 
 If you are using notification server in Seafile 12, please specify the notification server url in `.env`:
 
@@ -125,10 +125,10 @@ If you are using notification server in Seafile 12, please specify the notificat
     ```sh
     NOTIFICATION_SERVER_URL=http://<your notification server host>:8083
     ```
-    
-#### Add configurations for file storages (Pro)
 
-Please specify the storage type used by Seafile in `.env` according to the usage environment. It will affect ***Seafile***, ***SeaSearch*** and ***Metadata server*** at the same time
+#### Step 3.4) Add configurations for storage backend (Optional)
+
+Seafile 13.0 add a new environment `SEAF_SERVER_STORAGE_TYPE` to determine the storage backend of seaf-server component. You can delete the variable or set it to empty (`SEAF_SERVER_STORAGE_TYPE=`) to use the old way, i.e., determining the storage backend from seafile.conf.
 
 === "Local disk (default)"
 
@@ -137,15 +137,16 @@ Please specify the storage type used by Seafile in `.env` according to the usage
     ```sh
     SEAF_SERVER_STORAGE_TYPE=disk
     ```
-=== "Policies in `seafile.conf`"
 
-    If you would like to use the storage policies in `seafile.conf` (used before Seafile 12 by default), please remove default value of `SEAF_SERVER_STORAGE_TYPE` in `.env`:
+=== "Use the configuration in `seafile.conf`"
+
+    If you would like to use the storage configuration in `seafile.conf`, please remove default value of `SEAF_SERVER_STORAGE_TYPE` in `.env`:
 
     ```sh
     SEAF_SERVER_STORAGE_TYPE=
     ```
 
-=== "Single S3 backend"
+=== "S3 backend"
 
     Set `SEAF_SERVER_STORAGE_TYPE` to `s3`, and add your s3 configurations:
 
@@ -169,41 +170,26 @@ Please specify the storage type used by Seafile in `.env` according to the usage
 
 === "Multiple storage backends"
 
-    Set `SEAF_SERVER_STORAGE_TYPE` to `multiple`. If you are using SeaSearch in Seafile 12, please also modify `SS_STORAGE_TYPE` according to your configurations. In this case, you don't need to change the content in `seafile.conf`
+    Set `SEAF_SERVER_STORAGE_TYPE` to `multiple`. In this case, you don't need to change the storage configuration in `seafile.conf`.
 
     ```sh
     SEAF_SERVER_STORAGE_TYPE=multiple
-
-    SS_STORAGE_TYPE=disk # or s3
     ```
 
-    !!! note
-        If you are using multiple storage backends, and SeaSearch also use S3, please specify the S3 configurations in `.env`:
+### Step 4) Remove obsolote configurations
 
-        ```sh
-        S3_SS_BUCKET=<your seasearch bucket name>
-        S3_KEY_ID=<your-key-id>
-        S3_SECRET_KEY=<your-secret-key>
-        S3_USE_V4_SIGNATURE=true
-        S3_PATH_STYLE_REQUEST=false
-        S3_AWS_REGION=us-east-1
-        S3_HOST=
-        S3_USE_HTTPS=true
-        S3_SSE_C_KEY=
-        ```
 
-### Start Seafile
+Although the configurations in environment (i.e., `.env`) have higher priority than the configurations in config files, we recommend that you remove or modify the cache configuration in the following files to avoid ambiguity:：
+
+- `seafile.conf`: remove the `[memcached]` section. If you are using single S3 backend and have specified `SEAF_SERVER_STORAGE_TYPE=s3` in `.env`, the `[commit_object_backend]`, `[fs_object_backend]` and `[block_backend]` also can be removed.
+- `seahub_settings.py`: remove the key `default` in variable `CACHES`
+
+### Step 5) Start Seafile
 
 ```sh
 docker compose up -d
 ```
 
-!!! tip "Optional but recommended modifications for further configuration files"
-    Although the configurations in environment (i.e., `.env`) have higher priority than the configurations in config files, we recommend that you remove or modify the cache configuration in the following files to avoid ambiguity:：
-
-    - `seafile.conf`: remove the `[memcached]` section. If you are using single S3 backend and have specified `SEAF_SERVER_STORAGE_TYPE=s3` in `.env`, the `[commit_object_backend]`, `[fs_object_backend]` and `[block_backend]` also can be removed.
-
-    - `seahub_settings.py`: remove the key `default` in variable `CACHES`
 
 ## Upgrade from 11.0 to 12.0
 
