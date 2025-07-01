@@ -178,13 +178,23 @@ Seafile 13.0 add a new environment `SEAF_SERVER_STORAGE_TYPE` to determine the s
 
 ### Step 4) Remove obsolote configurations
 
+Although the configurations in environment (i.e., `.env`) have higher priority than the configurations in config files, we recommend that you remove or modify the cache configuration in the following files to avoid ambiguity:
 
-Although the configurations in environment (i.e., `.env`) have higher priority than the configurations in config files, we recommend that you remove or modify the cache configuration in the following files to avoid ambiguity:：
+1. Backup the old configuration files:
 
-- Open `/opt/seafile-data/seafile/conf/seafile.conf` and remove the entire `[memcached]`, `[commit_object_backend]`, `[fs_object_backend]` and `[block_backend]` if above sections have correctly specified in `.env`.
-- Open `/opt/seafile-data/seafile/conf/seahub_settings.py` and remove the entire blocks for `DATABASES = {...}` and `CAHCES = {...}`
+    ```sh
+    # please replace /opt/seafile-data to your $SEAFILE_VOLUME
 
-In the most cases, the `seafile.conf` only include the listen port `8082` of Seafile file server.
+    cp /opt/seafile-data/seafile/conf/seafile.conf /opt/seafile-data/seafile/conf/seafile.conf.bak
+    cp /opt/seafile-data/seafile/conf/seahub_settings.py /opt/seafile-data/seafile/conf/seahub_settings.py.bak
+    ```
+
+2. Clean up redundant configuration items in the configuration files:
+
+    - Open `/opt/seafile-data/seafile/conf/seafile.conf` and remove the entire `[memcached]`, `[commit_object_backend]`, `[fs_object_backend]` and `[block_backend]` if above sections have correctly specified in `.env`.
+    - Open `/opt/seafile-data/seafile/conf/seahub_settings.py` and remove the entire blocks for `DATABASES = {...}` and `CAHCES = {...}`
+
+    In the most cases, the `seafile.conf` only include the listen port `8082` of Seafile file server.
 
 ### Step 5) Start Seafile
 
