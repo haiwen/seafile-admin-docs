@@ -556,29 +556,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../introduction/components/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Seafile Components
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../introduction/file_permission_management/" class="md-nav__link">
         
   
@@ -4547,16 +4524,19 @@
 <h1 id="seafile-docker-overview">Seafile Docker overview<a class="headerlink" href="#seafile-docker-overview" title="Permanent link">&para;</a></h1>
 <p>Seafile docker based installation consist of the following components (docker images):</p>
 <ul>
-<li>Seafile server: Seafile core services, see <a href="../../introduction/components/">Seafile Components</a> for the details.</li>
-<li>Sdoc server: SeaDoc server, provide a lightweight online collaborative document editor, see <a href="../../extension/setup_seadoc/#architecture">SeaDoc</a> for the details.</li>
-<li>Database: Stores data related to Seafile and SeaDoc.</li>
-<li>Memcached: Cache server.</li>
-<li>Caddy: Caddy server enables user to access the Seafile service (i.e., Seafile server and Sdoc server) externally and handles <code>SSL</code> configuration</li>
+<li>Seafile server: Seafile core services, see <a href="../introduction/components.md">Seafile Components</a> for the details.</li>
+<li>MySQL: Database stores data related to Seafile and SeaDoc.</li>
+<li>Redis: Cache server.</li>
+<li>Caddy: Caddy server enables user to access the Seafile service (i.e., Seafile server and Sdoc server) externally and handles <code>SSL</code> configuration.</li>
+<li>Seafile optional extension:<ul>
+<li><a href="../../extension/setup_seadoc/#architecture">SeaDoc Server</a>: SeaDoc server, provide a lightweight online collaborative document editor,.</li>
+<li><a href="../../extension/notification-server/">Notification Server</a>: Notify clients of updates of the library, providing realtime update feature.</li>
+<li><a href="../../extension/metadata-server/">Metadata Server</a>: Provide metadata management for libraries.</li>
+<li><a href="../../extension/seafile-ai/">Seafile AI &amp; face embedding</a>: Users can enable Seafile AI to support features such as file tags, file and image summaries, text translation, sdoc writing assistance, generating image tags (including objects, weather, color, etc.), face detection and encoding in images, and text detection in images (OCR).</li>
 </ul>
-<p><img alt="Seafile Docker Structure" src="../../images/seafile-12.0-docker-structure.png" /></p>
-<div class="admonition note">
-<p class="admonition-title">Seafile version 11.0 or later is required to work with SeaDoc</p>
-</div>
+</li>
+</ul>
+<p><img alt="Seafile Docker Structure" src="../../images/docker-structure.png" /></p>
 <h2 id="document-guidelines">Document guidelines<a class="headerlink" href="#document-guidelines" title="Permanent link">&para;</a></h2>
 <h3 id="single-node-deployment">Single Node deployment<a class="headerlink" href="#single-node-deployment" title="Permanent link">&para;</a></h3>
 <ul>
