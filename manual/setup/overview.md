@@ -3,10 +3,15 @@
 Seafile docker based installation consist of the following components (docker images):
 
 - Seafile server: Seafile core services, see [Seafile Components](../introduction/components.md) for the details.
-- Sdoc server: SeaDoc server, provide a lightweight online collaborative document editor, see [SeaDoc](../extension/setup_seadoc.md#architecture) for the details.
-- Database: Stores data related to Seafile and SeaDoc.
+- MySQL: Database stores data related to Seafile and SeaDoc.
 - Redis: Cache server.
-- Caddy: Caddy server enables user to access the Seafile service (i.e., Seafile server and Sdoc server) externally and handles `SSL` configuration
+- Caddy: Caddy server enables user to access the Seafile service (i.e., Seafile server and Sdoc server) externally and handles `SSL` configuration.
+- Seafile optional extension:
+    - [SeaDoc Server](../extension/setup_seadoc.md#architecture): SeaDoc server, provide a lightweight online collaborative document editor,.
+    - [Notification Server](../extension/notification-server.md): Notify clients of updates to the repository status.
+    - [Metadata Server](../extension/metadata-server.md): Provide metadata management for your libraries.
+    - [Seafile AI & face embedding](../extension/seafile-ai.md): Users can enable Seafile AI to support features such as file tags, file and image summaries, text translation, sdoc writing assistance, generating image tags (including objects, weather, color, etc.), face detection and encoding in images, and text detection in images (OCR).
+
 
 ![Seafile Docker Structure](../images/docker-structure.png)
 
