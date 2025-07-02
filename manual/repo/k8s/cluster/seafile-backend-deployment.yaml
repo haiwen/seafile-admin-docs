@@ -52,16 +52,6 @@ spec:
                 configMapKeyRef:
                   name: seafile-env
                   key: SITE_ROOT
-            - name: ENABLE_SEADOC
-              valueFrom:
-                configMapKeyRef:
-                  name: seafile-env
-                  key: ENABLE_SEADOC
-            - name: SEADOC_SERVER_URL
-              valueFrom:
-                configMapKeyRef:
-                  name: seafile-env
-                  key: SEADOC_SERVER_URL
             - name: DB_HOST
               valueFrom:
                 configMapKeyRef:

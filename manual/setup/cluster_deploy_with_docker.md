@@ -4,7 +4,7 @@
 
 The Seafile cluster solution employs a 3-tier architecture:
 
-* Load balancer tier: Distribute incoming traffic to Seafile servers. HA can be achieved by deploying multiple load balancer instances.
+* Load balancer tier: Distribute incoming traffic to Seafile servers. HA (high availability) can be achieved by deploying multiple load balancer instances.
 * Seafile server cluster: a cluster of Seafile server instances. If one instance fails, the load balancer will stop handing traffic to it. So HA is achieved.
 * Backend storage: Distributed storage cluster, e.g.  S3, Openstack Swift or Ceph.
 
@@ -47,9 +47,6 @@ Please refer [here](./system_requirements.md#seafile-cluster) for the details ab
     ```
 
 2. Pulling Seafile image
-
-    !!! tip
-        Since v12.0, Seafile PE versions are hosted on DockerHub and does not require username and password to download.
 
     ```bash
     docker pull seafileltd/seafile-pro-mc:12.0-latest
