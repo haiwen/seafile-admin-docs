@@ -13,5 +13,4 @@ TIME_ZONE=Etc/UTC
 
 JWT_PRIVATE_KEY=... # your jwt private key
 
-SEAFILE_SERVER_PROTOCOL=http
-SEAFILE_SERVER_HOSTNAME=... # your seafile hostname
+INNER_SEAHUB_SERVICE_URL=    # https://seafile.example.com
