@@ -1650,9 +1650,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#stop-nginx-cache-server-eg-memcached-elasticsearch" class="md-nav__link">
+  <a href="#stop-nginx-cache-server-eg-redis-elasticsearch" class="md-nav__link">
     <span class="md-ellipsis">
-      Stop Nginx, cache server (e.g., Memcached), ElasticSearch
+      Stop Nginx, cache server (e.g., Redis), ElasticSearch
     </span>
   </a>
   
@@ -4554,9 +4554,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#stop-nginx-cache-server-eg-memcached-elasticsearch" class="md-nav__link">
+  <a href="#stop-nginx-cache-server-eg-redis-elasticsearch" class="md-nav__link">
     <span class="md-ellipsis">
-      Stop Nginx, cache server (e.g., Memcached), ElasticSearch
+      Stop Nginx, cache server (e.g., Redis), ElasticSearch
     </span>
   </a>
   
@@ -4642,7 +4642,7 @@
 <p>The recommended steps to migrate from non-docker deployment to docker deployment on two different machines are:</p>
 <ol>
 <li>Upgrade your Seafile server to the latest version.</li>
-<li>Shutdown the Seafile, Nginx and Memcached according to your situations.</li>
+<li>Shutdown the Seafile, Nginx and cache server (e.g., Redis) according to your situations.</li>
 <li>Backup MySQL databse and Seafile libraries data.</li>
 <li>Deploy the Seafile Docker in the new machine.</li>
 <li>Recover the Seafile libraries and MySQL database in the new machine.</li>
@@ -4671,10 +4671,10 @@
 ./seafile.sh<span class="w"> </span>stop
 ./seahub.sh<span class="w"> </span>stop
 </code></pre></div>
-<h3 id="stop-nginx-cache-server-eg-memcached-elasticsearch">Stop Nginx, cache server (e.g., <em>Memcached</em>), ElasticSearch<a class="headerlink" href="#stop-nginx-cache-server-eg-memcached-elasticsearch" title="Permanent link">&para;</a></h3>
+<h3 id="stop-nginx-cache-server-eg-redis-elasticsearch">Stop Nginx, cache server (e.g., <em>Redis</em>), ElasticSearch<a class="headerlink" href="#stop-nginx-cache-server-eg-redis-elasticsearch" title="Permanent link">&para;</a></h3>
 <p>You have to stop the above services to avoid losing data before migrating.</p>
 <div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>stop<span class="w"> </span>nginx<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w">  </span>systemctl<span class="w"> </span>disable<span class="w"> </span>nginx
-systemctl<span class="w"> </span>stop<span class="w"> </span>memcached<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w">  </span>systemctl<span class="w"> </span>disable<span class="w"> </span>memcached
+systemctl<span class="w"> </span>stop<span class="w"> </span>redis<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w">  </span>systemctl<span class="w"> </span>disable<span class="w"> </span>redis
 docker<span class="w"> </span>stop<span class="w"> </span>es<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>docker<span class="w"> </span>remove<span class="w"> </span>es
 </code></pre></div>
 <h2 id="backup-mysql-database-and-seafile-server">Backup MySQL database and Seafile server<a class="headerlink" href="#backup-mysql-database-and-seafile-server" title="Permanent link">&para;</a></h2>
