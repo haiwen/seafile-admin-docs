@@ -1,7 +1,7 @@
 # Deploy Seafile Pro Edition
 
-!!! danger
-    Since version 13.0, binary based deployment for community edition is no longer supported.
+!!! danger "Binary-based community edition Seafile is not supported since version 13.0"
+    Since version 13.0, binary-based deployment for community edition is no longer supported.
 
 There are two ways to deploy Seafile Pro Edition. Since version 8.0, the recommend way to install Seafile Pro Edition is using Docker.
 
