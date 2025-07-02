@@ -14,7 +14,7 @@ This architecture scales horizontally. That means, you can handle more traffic b
 
 There are two main components on the Seafile server node: web server (Nginx/Apache) and Seafile app server. The web server passes requests from the clients to Seafile app server. The Seafile app servers work independently. They don't know about each other's state. That means each app server can fail independently without affecting other app server instances. The load balancer is responsible for detecting failure and re-routing requests.
 
-Even though Seafile app servers work independently, they still have to share some session information. All shared session information is stored in memory cache. Thus, all Seafile app servers have to connect to the same memory cache server (cluster). Since Pro Edition 11.0, both memcached and Redis can be used as memory cache. Before 11.0, only memcached is supported. More details about memory cache configuration is available later.
+Even though Seafile app servers work independently, they still have to share some session information. All shared session information is stored in memory cache. Thus, all Seafile app servers have to connect to the same memory cache server (cluster). Since Pro Edition 11.0, both memcached and Redis can be used as memory cache. Before 11.0, only memcached is supported. More details about memory cache configuration is available later. Since Seafile 13.0, we recommend that you use Redis as a cache to adapt to new features (such as Seafile AI, Metadata management, etc.).
 
 The background server is the workhorse for various background tasks, including full-text indexing, office file preview, virus scanning, LDAP syncing. It should usually be run on a dedicated server for better performance. Currently only one background task server can be running in the entire cluster. If more than one background servers are running, they may conflict with each others when doing some tasks. If you need HA for background task server, you can consider using [Keepalived](http://www.keepalived.org/) to build a hot backup for it.
 
@@ -63,11 +63,6 @@ Please refer [here](./system_requirements.md#seafile-cluster) for the details ab
     ```
 
 4. Modify the [variables](../config/env.md) in `.env` (especially the terms like `<...>`). 
-
-    !!! tip
-        - If you have already deployed S3 storage backend and plan to apply it to Seafile cluster, you can modify the variables in `.env` to [set them synchronously during initialization](../config/env.md#s3-storage-backend-configurations-only-valid-in-pro-edition-at-deploying-first-time).
-
-        - Although the current Seafile cluster only supports *Memcached* as the cache, it also supports setting configurations through '. env'. **Therefore, you do not need to pay attention to the selection of `CACHE_PROVIDER`**, so you only need to correctly set `MEMCACHED_HOST` and `MEMCACHED_PORT` in `.env`.
 
 5. Pleace license file
 
@@ -120,12 +115,6 @@ Please refer [here](./system_requirements.md#seafile-cluster) for the details ab
         Init success
         
         ```
-
-7. In initialization mode, the service will not be started. During this time you can check the generated configuration files (e.g., MySQL, Memcached, Elasticsearch) in configuration files:
-
-    - [seafevents.conf](../config/seafevents-conf.md)
-    - [seafile.conf](../config/seafile-conf.md)
-    - [seahub_settings.py](../config/seahub_settings_py.md)
 
 8. After initailizing the cluster, the following fields can be removed in `.env`
     - `CLUSTER_INIT_MODE`, must be removed from .env file
