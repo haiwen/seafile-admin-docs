@@ -62,7 +62,7 @@ The Seafile AI basic service will use API calls to external large language model
     |------------------------|---------------------------------------------------------------------------------------------------------------|  
     | `SEAFILE_VOLUME`        | The volume directory of thumbnail server data                                                                            | 
     | `JWT_PRIVATE_KEY`      | JWT key, the same as the config in Seafile `.env` file                                                         |
-    | `INNER_SEAHUB_SERVICE_URL`| Inner Seafile url  |  
+    | `INNER_SEAHUB_SERVICE_URL`| Inner Seafile url (e.g., `https://seafile.example.com`)  |  
     | `REDIS_HOST`       | Redis server host | 
     | `REDIS_PORT`       | Redis server port | 
     | `REDIS_PASSWORD`       | Redis server password | 
