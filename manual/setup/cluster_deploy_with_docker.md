@@ -78,7 +78,7 @@ Please refer [here](./system_requirements.md#seafile-cluster) for the details ab
 
     !!! success "Cluster init mode"
     
-        Because CLUSTER_INIT_MODE is true in the `.env` file, Seafile docker will be started in init mode and generate configuration files. As the results, you can see the following lines if you trace the Seafile container (i.e., `docker logs seafile`):
+        Because `CLUSTER_INIT_MODE` is true in the `.env` file, Seafile docker will be started in init mode and generate configuration files. As the results, you can see the following lines if you trace the Seafile container (i.e., `docker logs seafile`):
 
         ```log
         ---------------------------------
@@ -123,7 +123,7 @@ Please refer [here](./system_requirements.md#seafile-cluster) for the details ab
     - [seahub_settings.py](../config/seahub_settings_py.md)
 
 8. After initailizing the cluster, the following fields can be removed in `.env`
-    - `CLUSTER_INIT_MODE`, must be removed from .env file
+    - `CLUSTER_INIT_MODE`, must be removed from `.env` file
     - `CLUSTER_INIT_MEMCACHED_HOST`
     - `CLUSTER_INIT_ES_HOST`
     - `CLUSTER_INIT_ES_PORT`
