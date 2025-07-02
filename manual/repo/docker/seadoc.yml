@@ -16,7 +16,7 @@ services:
       - TIME_ZONE=${TIME_ZONE:-Etc/UTC}
       - JWT_PRIVATE_KEY=${JWT_PRIVATE_KEY:?Variable is not set or empty}
       - NON_ROOT=${NON_ROOT:-false}
-      - SEAHUB_SERVICE_URL=${SEAFILE_SERVER_PROTOCOL:-http}://${SEAFILE_SERVER_HOSTNAME:?Variable is not set or empty}
+      - SEAHUB_SERVICE_URL=${SEAFILE_SERVER_URL:-http://seafile}
     labels:
       caddy: ${SEAFILE_SERVER_PROTOCOL:-http}://${SEAFILE_SERVER_HOSTNAME:?Variable is not set or empty}
       caddy.@ws.0_header: "Connection *Upgrade*"
