@@ -7,7 +7,7 @@
 The recommended steps to migrate from non-docker deployment to docker deployment on two different machines are:
 
 1. Upgrade your Seafile server to the latest version.
-2. Shutdown the Seafile, Nginx and Memcached according to your situations.
+2. Shutdown the Seafile, Nginx and cache server (e.g., Redis) according to your situations.
 3. Backup MySQL databse and Seafile libraries data.
 4. Deploy the Seafile Docker in the new machine.
 5. Recover the Seafile libraries and MySQL database in the new machine.
@@ -41,13 +41,13 @@ su seafile
 ./seahub.sh stop
 ```
 
-### Stop Nginx, cache server (e.g., *Memcached*), ElasticSearch
+### Stop Nginx, cache server (e.g., *Redis*), ElasticSearch
 
 You have to stop the above services to avoid losing data before migrating.
 
 ```sh
 systemctl stop nginx &&  systemctl disable nginx
-systemctl stop memcached &&  systemctl disable memcached
+systemctl stop redis &&  systemctl disable redis
 docker stop es && docker remove es
 ```
 
