@@ -45,7 +45,7 @@ ONLYOFFICE_APIJS_URL = 'https://seafile.example.com:6233/web-apps/apps/api/docum
 ONLYOFFICE_FILE_EXTENSION = ('doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx', 'odt', 'fodt', 'odp', 'fodp', 'ods', 'fods', 'csv', 'ppsx', 'pps')
 ONLYOFFICE_EDIT_FILE_EXTENSION = ('docx', 'pptx', 'xlsx')
 ONLYOFFICE_JWT_SECRET = '<your jwt secret>'
-OFFICE_PREVIEW_MAX_SIZE = 2 * 1024 * 1024 # preview size, 2 MB by default
+OFFICE_PREVIEW_MAX_SIZE = 30 * 1024 * 1024 # preview size, 30 MB
 ```
 
 !!! tip
@@ -136,7 +136,7 @@ ENABLE_ONLYOFFICE = True
 ONLYOFFICE_APIJS_URL = 'http{s}://<Your OnlyOffice host url>/web-apps/apps/api/documents/api.js'
 ONLYOFFICE_FILE_EXTENSION = ('doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx', 'odt', 'fodt', 'odp', 'fodp', 'ods', 'fods', 'csv', 'ppsx', 'pps')
 ONLYOFFICE_JWT_SECRET = '<your jwt secret>'
-OFFICE_PREVIEW_MAX_SIZE = 2 * 1024 * 1024 # preview size, 2 MB by default
+OFFICE_PREVIEW_MAX_SIZE = 30 * 1024 * 1024 # preview size, 30 MB
 ```
 
 ### About SSL
