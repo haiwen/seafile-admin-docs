@@ -161,6 +161,11 @@ spec:
                 configMapKeyRef:
                   name: seafile-env
                   key: MEMCACHED_PORT
+            - name: ENABLE_NOTIFICATION_SERVER
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: ENABLE_NOTIFICATION_SERVER
             - name: INNER_NOTIFICATION_SERVER_URL
               valueFrom:
                 configMapKeyRef:

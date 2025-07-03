@@ -57,7 +57,8 @@ The following fields merit particular attention:
 | `MEMCACHED_HOST`       | Memcached server host | `memcached` |
 | `MEMCACHED_PORT`       | Memcached server port | `11211` |
 | `TIME_ZONE`                     | Time zone                                                                                                     | `UTC`                           |
-| `NOTIFICATION_SERVER_URL`   | The [notification server](../extension/notification-server.md) url, leave blank to disable it | (none) |  
+| `ENABLE_NOTIFICATION_SERVER`   | Enable (`true`) or disable (`false`) notification feature for Seafile | `false` |  
+| `NOTIFICATION_SERVER_URL`   | The [notification server](../extension/notification-server.md) url | (none) |  
 | `INIT_SEAFILE_ADMIN_EMAIL`      | Admin username                                                                                                | `me@example.com` (Recommend modifications) |  
 | `INIT_SEAFILE_ADMIN_PASSWORD`   | Admin password       | `asecret` (Recommend modifications) |
 | `NON_ROOT`   | Run Seafile container without a root user      | `false` |

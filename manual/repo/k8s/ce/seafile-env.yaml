@@ -31,6 +31,7 @@ data:
   MEMCACHED_PORT: "11211"
 
   # for notification
+  ENABLE_NOTIFICATION_SERVER: "false"
   NOTIFICATION_SERVER_URL: ""
 
   # for seadoc
