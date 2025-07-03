@@ -18,7 +18,14 @@ data:
   SEAFILE_MYSQL_DB_SEAFILE_DB_NAME: "seafile_db"
   SEAFILE_MYSQL_DB_SEAHUB_DB_NAME: "seahub_db"
 
-  # for memcached
+  # for cached
+  CACHE_PROVIDER: "redis" # or "memcached"
+
+  ## for redis
+  REDIS_HOST: "<your redis host>"
+  REDIS_PORT: "6379"
+
+  ## for memcached
   MEMCACHED_HOST: "<your Memcached server host>"
   MEMCACHED_PORT: "11211"
 

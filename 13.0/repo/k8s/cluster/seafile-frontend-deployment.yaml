@@ -93,7 +93,20 @@ spec:
                   name: seafile-env
                   key: SEAFILE_MYSQL_DB_SEAHUB_DB_NAME
             - name: CACHE_PROVIDER
-              value: "memcached"
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: CACHE_PROVIDER
+            - name: REDIS_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: REDIS_HOST
+            - name: REDIS_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: REDIS_PORT
             - name: MEMCACHED_HOST
               valueFrom:
                 configMapKeyRef:
@@ -194,6 +207,11 @@ spec:
                 secretKeyRef:
                   name: seafile-secret
                   key: S3_SSE_C_KEY
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: seafile-secret
+                  key: REDIS_PASSWORD
             - name: SEAFILE_AI_SECRET_KEY
               valueFrom:
                 secretKeyRef:
