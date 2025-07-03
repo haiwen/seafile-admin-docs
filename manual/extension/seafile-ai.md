@@ -9,30 +9,18 @@ From Seafile 13, users can enable ***Seafile AI*** to support the following feat
 
 ## Deploy Seafile AI basic service
 
+### Deploy Seafile AI on the host with Seafile
+
 The Seafile AI basic service will use API calls to external large language model service to implement file labeling, file and image summaries, text translation, and sdoc writing assistance.
 
 !!! warning "Seafile AI requires Redis cache"
-    In order to deploy Seafile AI correctly, you need to use Redis cache. Please set `CACHE_PROVIDER=redis` in .env and set Redis related configuration information correctly.
+    In order to deploy Seafile AI correctly, you have to use ***Redis*** as the cache. Please set `CACHE_PROVIDER=redis` in `.env` and set Redis related configuration information correctly.
 
 1. Download `seafile-ai.yml`
 
     ```sh
     wget https://manual.seafile.com/13.0/repo/docker/seafile-ai.yml
     ```
-
-    !!! note "Deploy in a cluster or standalone deployment"
-
-        If you deploy Seafile in a cluster and would like to deploy Seafile AI, please expose port `8888` in `seafile-ai.yml`:
-
-        ```yml
-        services:
-          seafile-ai:
-            ...
-            ports:
-              - 8888:8888
-        ```
-
-        At the same time, Seafile AI should be deployed on one of the cluster nodes.
 
 2. Modify `.env`, insert or modify the following fields:
 
@@ -42,17 +30,6 @@ The Seafile AI basic service will use API calls to external large language model
     ENABLE_SEAFILE_AI=true
     SEAFILE_AI_LLM_KEY=<your LLM access key>
     ```
-
-    !!! note "Deploy in a cluster or standalone deployment"
-        Please also specify the following items in `.env`:
-
-        - `.env` on the host where deploys Seafile server:
-            - `SEAFILE_AI_SERVER_URL`: the service url of Seafile AI (e.g., `http://seafile-ai.example.com:8888`)
-        - `.env` on the host where deploys Seafile AI:
-            - `SEAFILE_SERVER_URL`: your Seafile server's url (e.g., `https://seafile.example.com`)
-            - `REDIS_HOST`: your redis host
-            - `REDIS_PORT`: your redis port
-            - `REDIS_PASSWORD`: your redis password
     
     !!! tip "About LLM configs"
         By default, Seafile uses the ***GPT-4o-mini*** model from *OpenAI*. You only need to provide your ***OpenAI API Key***. If you need to use other LLM (including self-deployed LLM service), you also need to specify the following in `.env`:
@@ -68,6 +45,48 @@ The Seafile AI basic service will use API calls to external large language model
     ```sh
     docker compose down
     docker compose up -d
+    ```
+
+### Deploy Seafile AI on another host to Seafile
+
+1. Download `seafile-ai.yml` and `.env`:
+
+    ```sh
+    wget https://manual.seafile.com/13.0/repo/docker/seafile-ai/seafile-ai.yml
+    wget -O .env https://manual.seafile.com/13.0/repo/docker/seafile-ai/env
+    ```
+
+2. Modify `.env` in the host will deploy Seafile AI according to following table
+
+    | variable               | description                                                                                                   |  
+    |------------------------|---------------------------------------------------------------------------------------------------------------|  
+    | `SEAFILE_VOLUME`        | The volume directory of thumbnail server data                                                                            | 
+    | `JWT_PRIVATE_KEY`      | JWT key, the same as the config in Seafile `.env` file                                                         |
+    | `INNER_SEAHUB_SERVICE_URL`| Intranet URL for accessing Seahub component, like `http://<your Seafile server intranet IP>`.  |  
+    | `REDIS_HOST`       | Redis server host | 
+    | `REDIS_PORT`       | Redis server port | 
+    | `REDIS_PASSWORD`       | Redis server password | 
+    | `SEAFILE_AI_LLM_TYPE`       | Large Language Model (LLM) API Type (e.g., `openai`) | 
+    | `SEAFILE_AI_LLM_URL`       | LLM API url (leave blank if you would like to use official OpenAI's API endpoint) | 
+    | `SEAFILE_AI_LLM_KEY`       | LLM API key | 
+    | `FACE_EMBEDDING_SERVICE_URL`       | Face embedding service url |
+
+    then start your Seafile AI server:
+
+    ```sh
+    docker compose up -d
+    ```
+
+3. Modify `.env` in the host deployed Seafile
+
+    ```env
+    SEAFILE_AI_SERVER_URL=http://<your seafile ai host>:8888
+    ```
+
+    then restart your Seafile server
+
+    ```sh
+    docker compose down && docker compose up -d
     ```
 
 ## Deploy face embedding service (Optional)
@@ -134,7 +153,7 @@ Since the face embedding service may need to be deployed on some hosts with GPU(
             - 8886:8886
     ```
 
-2. Modify the `.env` of the Seafile AI basic service:
+2. Modify the `.env` of where deployed Seafile AI:
 
     ```
     FACE_EMBEDDING_SERVICE_URL=http://<your face embedding service host>:8886
