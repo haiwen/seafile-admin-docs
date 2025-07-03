@@ -69,6 +69,17 @@ After installation, you need to start the k8s control plane service on each node
     helm repo add seafile https://haiwen.github.io/seafile-helm-chart/repo
     helm upgrade --install seafile seafile/cluster  --namespace seafile --create-namespace --values my-values.yaml
     ```
+
+    !!! tip "Seafile helm chart 13.0 support variable validity checking"
+
+        Starting from Seafile helm chart 13.0, the validity of variables in `my-values.yaml` will be checked at deployment time. When there is a variable validity check that fails, you may encounter the following error message:
+
+        ```
+        You have enabled <Some feature> but <Variable> is not specified and is not allowed to be empty
+        ```
+
+        If you encounter the following message, please check the relevant configuration in `my-values.yaml`.
+
     !!! success
         After installing the chart, the cluster is going to initial progress, you can see the following message by `kubectl logs seafile-<string> -n seafile`:
 
