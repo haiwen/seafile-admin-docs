@@ -2153,6 +2153,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Deploy Seafile AI basic service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deploy-seafile-ai-on-the-host-with-seafile" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploy Seafile AI on the host with Seafile
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploy-seafile-ai-on-another-host-to-seafile" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploy Seafile AI on another host to Seafile
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4514,6 +4538,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Deploy Seafile AI basic service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deploy-seafile-ai-on-the-host-with-seafile" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploy Seafile AI on the host with Seafile
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploy-seafile-ai-on-another-host-to-seafile" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploy Seafile AI on another host to Seafile
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4586,27 +4634,17 @@
 <li>Detect text in images (OCR)</li>
 </ul>
 <h2 id="deploy-seafile-ai-basic-service">Deploy Seafile AI basic service<a class="headerlink" href="#deploy-seafile-ai-basic-service" title="Permanent link">&para;</a></h2>
+<h3 id="deploy-seafile-ai-on-the-host-with-seafile">Deploy Seafile AI on the host with Seafile<a class="headerlink" href="#deploy-seafile-ai-on-the-host-with-seafile" title="Permanent link">&para;</a></h3>
 <p>The Seafile AI basic service will use API calls to external large language model service to implement file labeling, file and image summaries, text translation, and sdoc writing assistance.</p>
 <div class="admonition warning">
 <p class="admonition-title">Seafile AI requires Redis cache</p>
-<p>In order to deploy Seafile AI correctly, you need to use Redis cache. Please set <code>CACHE_PROVIDER=redis</code> in .env and set Redis related configuration information correctly.</p>
+<p>In order to deploy Seafile AI correctly, you have to use <strong><em>Redis</em></strong> as the cache. Please set <code>CACHE_PROVIDER=redis</code> in <code>.env</code> and set Redis related configuration information correctly.</p>
 </div>
 <ol>
 <li>
 <p>Download <code>seafile-ai.yml</code></p>
 <div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/seafile-ai.yml
 </code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Deploy in a cluster or standalone deployment</p>
-<p>If you deploy Seafile in a cluster and would like to deploy Seafile AI, please expose port <code>8888</code> in <code>seafile-ai.yml</code>:</p>
-<div class="highlight"><pre><span></span><code>services:
-  seafile-ai:
-    ...
-    ports:
-      - 8888:8888
-</code></pre></div>
-<p>At the same time, Seafile AI should be deployed on one of the cluster nodes.</p>
-</div>
 </li>
 <li>
 <p>Modify <code>.env</code>, insert or modify the following fields:</p>
@@ -4615,23 +4653,6 @@
 ENABLE_SEAFILE_AI=true
 SEAFILE_AI_LLM_KEY=&lt;your LLM access key&gt;
 </code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Deploy in a cluster or standalone deployment</p>
-<p>Please also specify the following items in <code>.env</code>:</p>
-<ul>
-<li><code>.env</code> on the host where deploys Seafile server:<ul>
-<li><code>SEAFILE_AI_SERVER_URL</code>: the service url of Seafile AI (e.g., <code>http://seafile-ai.example.com:8888</code>)</li>
-</ul>
-</li>
-<li><code>.env</code> on the host where deploys Seafile AI:<ul>
-<li><code>SEAFILE_SERVER_URL</code>: your Seafile server's url (e.g., <code>https://seafile.example.com</code>)</li>
-<li><code>REDIS_HOST</code>: your redis host</li>
-<li><code>REDIS_PORT</code>: your redis port</li>
-<li><code>REDIS_PASSWORD</code>: your redis password</li>
-</ul>
-</li>
-</ul>
-</div>
 <div class="admonition tip">
 <p class="admonition-title">About LLM configs</p>
 <p>By default, Seafile uses the <strong><em>GPT-4o-mini</em></strong> model from <em>OpenAI</em>. You only need to provide your <strong><em>OpenAI API Key</em></strong>. If you need to use other LLM (including self-deployed LLM service), you also need to specify the following in <code>.env</code>:</p>
@@ -4645,6 +4666,79 @@ SEAFILE_AI_LLM_KEY=&lt;your LLM access key&gt;
 <p>Restart Seafile server:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
 docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</li>
+</ol>
+<h3 id="deploy-seafile-ai-on-another-host-to-seafile">Deploy Seafile AI on another host to Seafile<a class="headerlink" href="#deploy-seafile-ai-on-another-host-to-seafile" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Download <code>seafile-ai.yml</code> and <code>.env</code>:</p>
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/seafile-ai/seafile-ai.yml
+wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/seafile-ai/env
+</code></pre></div>
+</li>
+<li>
+<p>Modify <code>.env</code> in the host will deploy Seafile AI according to following table</p>
+<table>
+<thead>
+<tr>
+<th>variable</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SEAFILE_VOLUME</code></td>
+<td>The volume directory of thumbnail server data</td>
+</tr>
+<tr>
+<td><code>JWT_PRIVATE_KEY</code></td>
+<td>JWT key, the same as the config in Seafile <code>.env</code> file</td>
+</tr>
+<tr>
+<td><code>INNER_SEAHUB_SERVICE_URL</code></td>
+<td>Intranet URL for accessing Seahub component, like <code>http://&lt;your Seafile server intranet IP&gt;</code>.</td>
+</tr>
+<tr>
+<td><code>REDIS_HOST</code></td>
+<td>Redis server host</td>
+</tr>
+<tr>
+<td><code>REDIS_PORT</code></td>
+<td>Redis server port</td>
+</tr>
+<tr>
+<td><code>REDIS_PASSWORD</code></td>
+<td>Redis server password</td>
+</tr>
+<tr>
+<td><code>SEAFILE_AI_LLM_TYPE</code></td>
+<td>Large Language Model (LLM) API Type (e.g., <code>openai</code>)</td>
+</tr>
+<tr>
+<td><code>SEAFILE_AI_LLM_URL</code></td>
+<td>LLM API url (leave blank if you would like to use official OpenAI's API endpoint)</td>
+</tr>
+<tr>
+<td><code>SEAFILE_AI_LLM_KEY</code></td>
+<td>LLM API key</td>
+</tr>
+<tr>
+<td><code>FACE_EMBEDDING_SERVICE_URL</code></td>
+<td>Face embedding service url</td>
+</tr>
+</tbody>
+</table>
+<p>then start your Seafile AI server:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</li>
+<li>
+<p>Modify <code>.env</code> in the host deployed Seafile</p>
+<div class="highlight"><pre><span></span><code>SEAFILE_AI_SERVER_URL=http://&lt;your seafile ai host&gt;:8888
+</code></pre></div>
+<p>then restart your Seafile server</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
 </li>
 </ol>
@@ -4714,7 +4808,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 </code></pre></div>
 </li>
 <li>
-<p>Modify the <code>.env</code> of the Seafile AI basic service:</p>
+<p>Modify the <code>.env</code> of where deployed Seafile AI:</p>
 <div class="highlight"><pre><span></span><code>FACE_EMBEDDING_SERVICE_URL=http://&lt;your face embedding service host&gt;:8886
 </code></pre></div>
 </li>

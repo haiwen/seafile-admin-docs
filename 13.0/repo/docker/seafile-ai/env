@@ -1,0 +1,24 @@
+COMPOSE_FILE='seafile-ai.yml'
+COMPOSE_PATH_SEPARATOR=','
+
+SEAFILE_AI_IMAGE=seafileltd/seafile-ai:latest
+
+SEAFILE_VOLUME=/opt/seafile-data
+
+SEAFILE_SERVER_PROTOCOL=http
+SEAFILE_SERVER_HOSTNAME=
+
+CACHE_PROVIDER=redis
+REDIS_HOST=... # your redis host
+REDIS_PORT=6379
+REDIS_PASSWORD=
+
+JWT_PRIVATE_KEY=
+
+FACE_EMBEDDING_SERVICE_URL=
+
+SEAFILE_AI_LLM_TYPE=openai
+SEAFILE_AI_LLM_URL=
+SEAFILE_AI_LLM_KEY=... # your llm key
+
+INNER_SEAHUB_SERVICE_URL=    # https://seafile.example.com
