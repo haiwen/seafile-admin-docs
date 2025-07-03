@@ -5163,11 +5163,14 @@ wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/pro/seas
 <div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Deploy in the same host with Seafile</label><label for="__tabbed_5_2">Standalone deployment</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="nv">NOTIFICATION_SERVER_URL</span><span class="o">=</span><span class="nv">$SEAFILE_SERVER_PROTOCOL</span>://<span class="nv">$SEAFILE_SERVER_HOSTNAME</span>/notification
+<div class="highlight"><pre><span></span><code><span class="nv">ENABLE_NOTIFICATION_SERVER</span><span class="o">=</span><span class="nb">true</span>
+<span class="nv">NOTIFICATION_SERVER_URL</span><span class="o">=</span><span class="nv">$SEAFILE_SERVER_PROTOCOL</span>://<span class="nv">$SEAFILE_SERVER_HOSTNAME</span>/notification
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="nv">NOTIFICATION_SERVER_URL</span><span class="o">=</span>http://&lt;your<span class="w"> </span>notification<span class="w"> </span>server<span class="w"> </span>host&gt;:8083
+<div class="highlight"><pre><span></span><code><span class="nv">ENABLE_NOTIFICATION_SERVER</span><span class="o">=</span><span class="nb">true</span>
+<span class="nv">NOTIFICATION_SERVER_URL</span><span class="o">=</span>http://&lt;your<span class="w"> </span>notification<span class="w"> </span>server<span class="w"> </span>host&gt;:8083
+<span class="nv">INNER_NOTIFICATION_SERVER_URL</span><span class="o">=</span><span class="nv">$NOTIFICATION_SERVER_URL</span>
 </code></pre></div>
 </div>
 </div>

@@ -4582,27 +4582,10 @@
 <p>Modify <code>.env</code>, and insert <code>notification-server.yml</code> into <code>COMPOSE_FILE</code>:</p>
 <div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;seafile-server.yml,caddy.yml,notification-server.yml&#39;
 </code></pre></div>
-<p>then add or modify <code>NOTIFICATION_SERVER_URL</code>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Deploy with Seafile</label><label for="__tabbed_1_2">Standalone deployment</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="nv">NOTIFICATION_SERVER_URL</span><span class="o">=</span><span class="nv">$SEAFILE_SERVER_PROTOCOL</span>://<span class="nv">$SEAFILE_SERVER_HOSTNAME</span>/notification
+<p>then add or modify <code>ENABLE_NOTIFICATION_SERVER</code> and <code>NOTIFICATION_SERVER_URL</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">ENABLE_NOTIFICATION_SERVER</span><span class="o">=</span><span class="nb">true</span>
+<span class="nv">NOTIFICATION_SERVER_URL</span><span class="o">=</span><span class="nv">$SEAFILE_SERVER_PROTOCOL</span>://<span class="nv">$SEAFILE_SERVER_HOSTNAME</span>/notification
 </code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="nv">NOTIFICATION_SERVER_URL</span><span class="o">=</span>&lt;your<span class="w"> </span>notification<span class="w"> </span>server<span class="w"> </span>URL&gt;
-<span class="nv">INNER_NOTIFICATION_SERVER_URL</span><span class="o">=</span><span class="nv">$NOTIFICATION_SERVER_URL</span>
-</code></pre></div>
-</div>
-</div>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">Difference between <code>NOTIFICATION_SERVER_URL</code> and <code>INNER_NOTIFICATION_SERVER_URL</code></p>
-<ul>
-<li><code>NOTIFICATION_SERVER_URL</code>: used to do the connection between client (i.e., user's browser) and notification server</li>
-<li><code>INNER_NOTIFICATION_SERVER_URL</code>: used to do the connection between Seafile server and notification server</li>
-</ul>
-</div>
 <p>Finally, You can run notification server with the following command:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
 docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
@@ -4663,18 +4646,22 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 </tr>
 </tbody>
 </table>
-<p>You can run notification server with the following command:</p>
+<p>Now, you can run notification server with the following command:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
-<p>And you need to add the following configurations under <code>seafile.conf</code> and restart Seafile server:</p>
-<div class="highlight"><pre><span></span><code>[notification]
-enabled = true
-# the ip of notification server.
-host = 192.168.0.83
-# the port of notification server
-port = 8083
+<p>then you need to modify the <strong><code>.env</code> on the host deployed Seafile</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">ENABLE_NOTIFICATION_SERVER</span><span class="o">=</span><span class="nb">true</span>
+<span class="nv">NOTIFICATION_SERVER_URL</span><span class="o">=</span>http://&lt;your<span class="w"> </span>notification<span class="w"> </span>server<span class="w"> </span>host&gt;:8083
+<span class="nv">INNER_NOTIFICATION_SERVER_URL</span><span class="o">=</span><span class="nv">$NOTIFICATION_SERVER_URL</span>
 </code></pre></div>
-<p>You need to configure load balancer according to the following forwarding rules:</p>
+<div class="admonition tip">
+<p class="admonition-title">Difference between <code>NOTIFICATION_SERVER_URL</code> and <code>INNER_NOTIFICATION_SERVER_URL</code></p>
+<ul>
+<li><code>NOTIFICATION_SERVER_URL</code>: used to do the connection between client (i.e., user's browser) and notification server</li>
+<li><code>INNER_NOTIFICATION_SERVER_URL</code>: used to do the connection between Seafile server and notification server</li>
+</ul>
+</div>
+<p>Finally, you need to configure load balancer according to the following forwarding rules:</p>
 <ol>
 <li>Forward <code>/notification/ping</code> requests to notification server via http protocol.</li>
 <li>Forward websockets requests with URL prefix <code>/notification</code> to notification server.</li>

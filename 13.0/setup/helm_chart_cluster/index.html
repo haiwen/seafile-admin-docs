@@ -4676,6 +4676,13 @@ nano<span class="w"> </span>my-values.yaml
 <div class="highlight"><pre><span></span><code>helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>seafile<span class="w"> </span>https://haiwen.github.io/seafile-helm-chart/repo
 helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>seafile<span class="w"> </span>seafile/cluster<span class="w">  </span>--namespace<span class="w"> </span>seafile<span class="w"> </span>--create-namespace<span class="w"> </span>--values<span class="w"> </span>my-values.yaml
 </code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Seafile helm chart 13.0 support variable validity checking</p>
+<p>Starting from Seafile helm chart 13.0, the validity of variables in <code>my-values.yaml</code> will be checked at deployment time. When there is a variable validity check that fails, you may encounter the following error message:</p>
+<div class="highlight"><pre><span></span><code>You have enabled &lt;Some feature&gt; but &lt;Variable&gt; is not specified and is not allowed to be empty
+</code></pre></div>
+<p>If you encounter the following message, please check the relevant configuration in <code>my-values.yaml</code>.</p>
+</div>
 <div class="admonition success">
 <p class="admonition-title">Success</p>
 <p>After installing the chart, the cluster is going to initial progress, you can see the following message by <code>kubectl logs seafile-&lt;string&gt; -n seafile</code>:</p>
