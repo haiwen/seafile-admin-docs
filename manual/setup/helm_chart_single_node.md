@@ -43,7 +43,8 @@ Please refer [here](./system_requirements.md) for the details of system requirem
         --from-literal=JWT_PRIVATE_KEY='<required>' \
         --from-literal=SEAFILE_MYSQL_DB_PASSWORD='<required>' \
         --from-literal=INIT_SEAFILE_ADMIN_PASSWORD='<required>' \
-        --from-literal=INIT_SEAFILE_MYSQL_ROOT_PASSWORD='<required>'
+        --from-literal=INIT_SEAFILE_MYSQL_ROOT_PASSWORD='<required>' \
+        --from-literal=REDIS_PASSWORD=''
         ```
 
     where the `JWT_PRIVATE_KEY` can be generate by `pwgen -s 40 1`
@@ -93,6 +94,16 @@ Please refer [here](./system_requirements.md) for the details of system requirem
         helm repo add seafile https://haiwen.github.io/seafile-helm-chart/repo
         helm upgrade --install seafile seafile/ce  --namespace seafile --create-namespace --values my-values.yaml
         ```
+
+    !!! tip "Seafile helm chart 13.0 support variable validity checking"
+
+        Starting from Seafile helm chart 13.0, the validity of variables in `my-values.yaml` will be checked at deployment time. When there is a variable validity check that fails, you may encounter the following error message:
+
+        ```
+        You have enabled <Some feature> but <Variable> is not specified and is not allowed to be empty
+        ```
+
+        If you encounter the following message, please check the relevant configuration in `my-values.yaml`.
 
 After installing the chart, the Seafile pod should startup automaticlly. 
 

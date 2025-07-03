@@ -119,11 +119,14 @@ If you are using notification server in Seafile 12, please specify the notificat
 
 === "Deploy in the same host with Seafile"
     ```sh
+    ENABLE_NOTIFICATION_SERVER=true
     NOTIFICATION_SERVER_URL=$SEAFILE_SERVER_PROTOCOL://$SEAFILE_SERVER_HOSTNAME/notification
     ```
 === "Standalone deployment"
     ```sh
+    ENABLE_NOTIFICATION_SERVER=true
     NOTIFICATION_SERVER_URL=http://<your notification server host>:8083
+    INNER_NOTIFICATION_SERVER_URL=$NOTIFICATION_SERVER_URL
     ```
 
 #### Step 3.4) Add configurations for storage backend (Pro)

@@ -112,7 +112,8 @@ For configurations about Metadata server in `.env`, please refer [here](../exten
 
 ## Notification server
 
-- `NOTIFICATION_SERVER_URL`: The [notification server](../extension/notification-server.md) url, leave blank to disable it (default).
+- `ENABLE_NOTIFICATION_SERVER`: Enable (`true`) or disable (`false`) notification feature for Seafile. Default is `false`.
+- `NOTIFICATION_SERVER_URL`: The [notification server](../extension/notification-server.md) url.
 
 !!! note "In Seafile cluster or standalone-deployment notification server"
     In addition to `NOTIFICATION_SERVER_URL`, you also need to specify `INNER_NOTIFICATION_SERVER_URL=$NOTIFICATION_SERVER_URL`, which will be used for the connection between Seafile server and notification server.

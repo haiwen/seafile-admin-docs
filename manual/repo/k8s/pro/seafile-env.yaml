@@ -43,6 +43,7 @@ data:
   S3_PATH_STYLE_REQUEST: "false"
 
   # for notification
+  ENABLE_NOTIFICATION_SERVER: "false"
   NOTIFICATION_SERVER_URL: ""
 
   # for seadoc

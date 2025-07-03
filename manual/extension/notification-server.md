@@ -26,23 +26,12 @@ Modify `.env`, and insert `notification-server.yml` into `COMPOSE_FILE`:
 COMPOSE_FILE='seafile-server.yml,caddy.yml,notification-server.yml'
 ```
 
-then add or modify `NOTIFICATION_SERVER_URL`:
+then add or modify `ENABLE_NOTIFICATION_SERVER` and `NOTIFICATION_SERVER_URL`:
 
-=== "Deploy with Seafile"
-    
-    ```sh
-    NOTIFICATION_SERVER_URL=$SEAFILE_SERVER_PROTOCOL://$SEAFILE_SERVER_HOSTNAME/notification
-    ```
-=== "Standalone deployment"
-    
-    ```sh
-    NOTIFICATION_SERVER_URL=<your notification server URL>
-    INNER_NOTIFICATION_SERVER_URL=$NOTIFICATION_SERVER_URL
-    ```
-
-!!! tip "Difference between `NOTIFICATION_SERVER_URL` and `INNER_NOTIFICATION_SERVER_URL`"
-    - `NOTIFICATION_SERVER_URL`: used to do the connection between client (i.e., user's browser) and notification server
-    - `INNER_NOTIFICATION_SERVER_URL`: used to do the connection between Seafile server and notification server
+```sh
+ENABLE_NOTIFICATION_SERVER=true
+NOTIFICATION_SERVER_URL=$SEAFILE_SERVER_PROTOCOL://$SEAFILE_SERVER_HOSTNAME/notification
+```
 
 Finally, You can run notification server with the following command:
 
@@ -91,24 +80,25 @@ Then modify the `.env` file according to your environment. The following fields 
 | `SEAFILE_SERVER_HOSTNAME`| Seafile host name                                                                                           |  
 | `SEAFILE_SERVER_PROTOCOL`| http or https                                                                                               |  
 
-You can run notification server with the following command:
+Now, you can run notification server with the following command:
 
 ```sh
 docker compose up -d
 ```
 
-And you need to add the following configurations under `seafile.conf` and restart Seafile server:
+then you need to modify the **`.env` on the host deployed Seafile**:
 
-```conf
-[notification]
-enabled = true
-# the ip of notification server.
-host = 192.168.0.83
-# the port of notification server
-port = 8083
+```sh
+ENABLE_NOTIFICATION_SERVER=true
+NOTIFICATION_SERVER_URL=http://<your notification server host>:8083
+INNER_NOTIFICATION_SERVER_URL=$NOTIFICATION_SERVER_URL
 ```
 
-You need to configure load balancer according to the following forwarding rules:
+!!! tip "Difference between `NOTIFICATION_SERVER_URL` and `INNER_NOTIFICATION_SERVER_URL`"
+    - `NOTIFICATION_SERVER_URL`: used to do the connection between client (i.e., user's browser) and notification server
+    - `INNER_NOTIFICATION_SERVER_URL`: used to do the connection between Seafile server and notification server
+
+Finally, you need to configure load balancer according to the following forwarding rules:
 
 1. Forward `/notification/ping` requests to notification server via http protocol.
 2. Forward websockets requests with URL prefix `/notification` to notification server.
