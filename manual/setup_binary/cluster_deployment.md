@@ -454,7 +454,6 @@ For **seafile.conf**:
 ```
 [cluster]
 enabled = true
-memcached_options = --SERVER=<IP of memcached node> --POOL-MIN=10 --POOL-MAX=100
 
 ```
 

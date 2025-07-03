@@ -50,6 +50,7 @@ ONLYOFFICE_JWT_SECRET = '<your jwt secret>'
 # If you have custom needs, you can also configure them, which will override the default values.
 ONLYOFFICE_FILE_EXTENSION = ('doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx', 'odt', 'fodt', 'odp', 'fodp', 'ods', 'fods', 'ppsx', 'pps', 'csv')
 ONLYOFFICE_EDIT_FILE_EXTENSION = ('docx', 'pptx', 'xlsx', 'csv')
+OFFICE_PREVIEW_MAX_SIZE = 30 * 1024 * 1024 # preview size, 30 MB
 ```
 
 !!! tip
@@ -139,6 +140,7 @@ In general, you only need to specify the values ​​of the following fields in
 ENABLE_ONLYOFFICE = True
 ONLYOFFICE_APIJS_URL = 'http{s}://<Your OnlyOffice host url>/web-apps/apps/api/documents/api.js'
 ONLYOFFICE_JWT_SECRET = '<your jwt secret>'
+OFFICE_PREVIEW_MAX_SIZE = 30 * 1024 * 1024 # preview size, 30 MB
 ```
 
 ### About SSL
