@@ -55,7 +55,7 @@ Then modify the `.env` file according to your environment. The following fields 
 | `SEAFILE_MYSQL_DB_PASSWORD`| Seafile MySQL password                                                                                    |  
 | `TIME_ZONE`            | Time zone                                                                                                     |  
 | `JWT_PRIVATE_KEY`      | JWT key, the same as the config in Seafile `.env` file                                                         |  
-| `INNER_SEAHUB_SERVICE_URL`| Inner Seafile url (e.g., `https://seafile.example.com`) |  
+| `INNER_SEAHUB_SERVICE_URL`| Intranet URL for accessing Seahub component, like `http://<your Seafile server intranet IP>`.  |   
 | `SEAF_SERVER_STORAGE_TYPE`   | What kind of the Seafile data for storage. Available options are `disk` (i.e., local disk), `s3` and `multiple` (see the details of [multiple storage backends](../setup/setup_with_multiple_storage_backends.md)) |
 | `S3_COMMIT_BUCKET`   | S3 storage backend commit objects bucket |
 | `S3_FS_BUCKET`   | S3 storage backend fs objects bucket |
