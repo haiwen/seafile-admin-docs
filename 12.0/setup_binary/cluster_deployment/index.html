@@ -5475,7 +5475,6 @@ listen seafile 0.0.0.0:80
 <p>For <strong>seafile.conf</strong>:</p>
 <div class="highlight"><pre><span></span><code>[cluster]
 enabled = true
-memcached_options = --SERVER=&lt;IP of memcached node&gt; --POOL-MIN=10 --POOL-MAX=100
 </code></pre></div>
 <p>The <code>enabled</code> option will prevent the start of background tasks by <code>./seafile.sh start</code> in the front-end node. The tasks should be explicitly started by <code>./seafile-background-tasks.sh start</code> at the back-end node.</p>
 <p>For <strong>seahub_settings.py</strong>:</p>

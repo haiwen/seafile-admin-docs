@@ -4762,7 +4762,7 @@ vm.max_map_count<span class="o">=</span><span class="m">262144</span>
 <p class="admonition-title">More suggestions in Seafile cluster</p>
 <ul>
 <li>
-<p>We assume you have already deployed <strong><em>Memcached</em></strong> (<em>redis</em> is not supported in cluster), <strong><em>MariaDB</em></strong>, file indexer (e.g., <strong><em>ElasticSearch</em></strong>) in separate machines and use <strong><em>S3</em></strong> like object storage. </p>
+<p>We assume you have already deployed <strong><em>Memcached</em></strong> (or <em>redis</em>), <strong><em>MariaDB</em></strong>, file indexer (e.g., <strong><em>ElasticSearch</em></strong>) in separate machines and use <strong><em>S3</em></strong> like object storage. </p>
 </li>
 <li>
 <p>Generally, when deploying Seafile in a cluster, we recommend that you use a <strong>storage backend</strong> (such as AWS S3) to store Seafile data. However, according to the Seafile image startup rules and K8S persistent storage strategy, you still need to <strong>prepare a persistent directory</strong> for configuring the startup of the Seafile container. </p>
