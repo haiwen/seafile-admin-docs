@@ -91,6 +91,6 @@ This page shows the minimal requirements of Seafile.
 - **Docker-base deployment integration services**: *Seafile* only
 
 !!! note "More suggestions in Seafile cluster"
-    - We assume you have already deployed ***Memcached*** (*redis* is not supported in cluster), ***MariaDB***, file indexer (e.g., ***ElasticSearch***) in separate machines and use ***S3*** like object storage. 
+    - We assume you have already deployed ***Memcached*** (or *redis*), ***MariaDB***, file indexer (e.g., ***ElasticSearch***) in separate machines and use ***S3*** like object storage. 
 
     - Generally, when deploying Seafile in a cluster, we recommend that you use a **storage backend** (such as AWS S3) to store Seafile data. However, according to the Seafile image startup rules and K8S persistent storage strategy, you still need to **prepare a persistent directory** for configuring the startup of the Seafile container. 
