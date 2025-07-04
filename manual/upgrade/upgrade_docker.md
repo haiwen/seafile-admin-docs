@@ -120,7 +120,6 @@ If you are using notification server in Seafile 12, please specify the notificat
 === "Deploy in the same host with Seafile"
     ```sh
     ENABLE_NOTIFICATION_SERVER=true
-    NOTIFICATION_SERVER_URL=$SEAFILE_SERVER_PROTOCOL://$SEAFILE_SERVER_HOSTNAME/notification
     ```
 === "Standalone deployment"
     ```sh

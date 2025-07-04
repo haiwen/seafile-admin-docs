@@ -30,7 +30,6 @@ then add or modify `ENABLE_NOTIFICATION_SERVER` and `NOTIFICATION_SERVER_URL`:
 
 ```sh
 ENABLE_NOTIFICATION_SERVER=true
-NOTIFICATION_SERVER_URL=$SEAFILE_SERVER_PROTOCOL://$SEAFILE_SERVER_HOSTNAME/notification
 ```
 
 Finally, You can run notification server with the following command:
