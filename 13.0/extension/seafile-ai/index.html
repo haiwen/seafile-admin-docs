@@ -4633,6 +4633,17 @@
 <li>Detect faces in images and encode them</li>
 <li>Detect text in images (OCR)</li>
 </ul>
+<div class="admonition danger">
+<p class="admonition-title">AIGC statement in Seafile</p>
+<p>With the help of large language models and face recognition models and algorithm development, Seafile AI supports image recognition and text generation. The generated content is <strong>diverse</strong> and <strong>random</strong>, and users need to identify the generated content. <strong>Seafile will not be responsible for AI-generated content (AIGC)</strong>.</p>
+<p>At the same time, Seafile AI supports the use of custom LLM and face recognition models. Different large language models will have different impacts on AIGC (including functions and performance), so <strong>Seafile will not be responsible for the corresponding rate (i.e., tokens/s), token consumption, and generated content</strong>. Including but not limited to</p>
+<ul>
+<li>Basic model (including model basic algorithm)</li>
+<li>Parameter quantity</li>
+<li>Quantization level</li>
+</ul>
+<p>When users use their own OpenAI-compatibility-API LLM service (e.g., <em>LM studio</em>, <em>Ollama</em>) and use self-ablated or abliterated models, <strong>Seafile will not be responsible for possible bugs</strong> (such as infinite loops outputting the same meaningless content). At the same time, Seafile does not recommend using documents such as SeaDoc to evaluate the performance of ablated models.</p>
+</div>
 <h2 id="deploy-seafile-ai-basic-service">Deploy Seafile AI basic service<a class="headerlink" href="#deploy-seafile-ai-basic-service" title="Permanent link">&para;</a></h2>
 <h3 id="deploy-seafile-ai-on-the-host-with-seafile">Deploy Seafile AI on the host with Seafile<a class="headerlink" href="#deploy-seafile-ai-on-the-host-with-seafile" title="Permanent link">&para;</a></h3>
 <p>The Seafile AI basic service will use API calls to external large language model service to implement file labeling, file and image summaries, text translation, and sdoc writing assistance.</p>
@@ -4648,18 +4659,32 @@
 </li>
 <li>
 <p>Modify <code>.env</code>, insert or modify the following fields:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Use <strong><em>gpt-4o-mini</em></strong> model</label><label for="__tabbed_1_2">Use other models</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;...,seafile-ai.yml&#39; # add seafile-ai.yml
 
 ENABLE_SEAFILE_AI=true
+SEAFILE_AI_LLM_KEY=&lt;your openai LLM access key&gt;
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;...,seafile-ai.yml&#39; # add seafile-ai.yml
+
+ENABLE_SEAFILE_AI=true
+SEAFILE_AI_LLM_TYPE=other
+SEAFILE_AI_LLM_URL=https://api.openai.com/v1 # your LLM API endpoint
 SEAFILE_AI_LLM_KEY=&lt;your LLM access key&gt;
+SEAFILE_AI_LLM_MODEL=gpt-4o-mini # your model id
 </code></pre></div>
-<div class="admonition tip">
-<p class="admonition-title">About LLM configs</p>
-<p>By default, Seafile uses the <strong><em>GPT-4o-mini</em></strong> model from <em>OpenAI</em>. You only need to provide your <strong><em>OpenAI API Key</em></strong>. If you need to use other LLM (including self-deployed LLM service), you also need to specify the following in <code>.env</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">SEAFILE_AI_LLM_TYPE</span><span class="o">=</span>&lt;your<span class="w"> </span>LLM<span class="w"> </span>type&gt;
-<span class="nv">SEAFILE_AI_LLM_URL</span><span class="o">=</span>&lt;your<span class="w"> </span>LLM<span class="w"> </span>endpoint&gt;
-<span class="nv">SEAFILE_AI_LLM_KEY</span><span class="o">=</span>&lt;your<span class="w"> </span>LLM<span class="w"> </span>API<span class="w"> </span>key&gt;
-</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">About use custom model</p>
+<p>Seafile AI supports the use of custom large models, but the following conditions must be met:
+- OpenAI compatibility API
+- The large model supports multi-modality (such as supporting images, etc.)</p>
+</div>
+</div>
+</div>
 </div>
 </li>
 <li>
@@ -4713,11 +4738,11 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 </tr>
 <tr>
 <td><code>SEAFILE_AI_LLM_TYPE</code></td>
-<td>Large Language Model (LLM) API Type (e.g., <code>openai</code>)</td>
+<td>Large Language Model (LLM) Type. <code>openai</code> (default) will use OpenAI's <strong><em>gpt-4o-mini</em></strong> model and <code>other</code> for user-custom models which support multimodality</td>
 </tr>
 <tr>
 <td><code>SEAFILE_AI_LLM_URL</code></td>
-<td>LLM API url (leave blank if you would like to use official OpenAI's API endpoint)</td>
+<td>LLM API endpoint, only needs to be specified when <code>SEAFILE_AI_LLM_TYPE=other</code>. Default is <code>https://api.openai.com/v1</code></td>
 </tr>
 <tr>
 <td><code>SEAFILE_AI_LLM_KEY</code></td>
@@ -4726,6 +4751,10 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 <tr>
 <td><code>FACE_EMBEDDING_SERVICE_URL</code></td>
 <td>Face embedding service url</td>
+</tr>
+<tr>
+<td><code>SEAFILE_AI_LLM_MODEL</code></td>
+<td>LLM model id (or name), only needs to be specified when <code>SEAFILE_AI_LLM_TYPE=other</code>. Default is <strong><em>gpt-4o-mini</em></strong></td>
 </tr>
 </tbody>
 </table>
@@ -4755,7 +4784,7 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 <ol>
 <li>
 <p>Download Docker compose files</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">CUDA</label><label for="__tabbed_1_2">CPU</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">CUDA</label><label for="__tabbed_2_2">CPU</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>face-embedding.yml<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/face-embedding/cuda.yml
