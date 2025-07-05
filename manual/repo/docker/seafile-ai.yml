@@ -8,8 +8,9 @@ services:
     #   - 8888:8888
     environment:
       - SEAFILE_AI_LLM_TYPE=${SEAFILE_AI_LLM_TYPE:-openai}
-      - SEAFILE_AI_LLM_URL=${SEAFILE_AI_LLM_URL:-}
-      - SEAFILE_AI_LLM_KEY=${SEAFILE_AI_LLM_KEY:-}
+      - SEAFILE_AI_LLM_URL=${SEAFILE_AI_LLM_URL:-https://api.openai.com/v1}
+      - SEAFILE_AI_LLM_KEY=${SEAFILE_AI_LLM_KEY:?Variable is not set or empty}
+      - SEAFILE_AI_LLM_MODEL=${SEAFILE_AI_LLM_MODEL:-gpt-4o-mini}
       - FACE_EMBEDDING_SERVICE_URL=${FACE_EMBEDDING_SERVICE_URL:-http://face-embedding:8886}
       - FACE_EMBEDDING_SERVICE_KEY=${FACE_EMBEDDING_SERVICE_KEY:-${JWT_PRIVATE_KEY:?Variable is not set or empty}}
       - SEAFILE_SERVER_URL=${INNER_SEAHUB_SERVICE_URL:-http://seafile}
