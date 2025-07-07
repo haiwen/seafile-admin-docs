@@ -2221,6 +2221,30 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#advanced-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable-ai-usage-statistics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable AI usage statistics
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4606,6 +4630,30 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#advanced-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced operations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable-ai-usage-statistics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable AI usage statistics
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4870,6 +4918,28 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
 docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
+</li>
+</ol>
+<h2 id="advanced-operations">Advanced operations<a class="headerlink" href="#advanced-operations" title="Permanent link">&para;</a></h2>
+<h3 id="enable-ai-usage-statistics">Enable AI usage statistics<a class="headerlink" href="#enable-ai-usage-statistics" title="Permanent link">&para;</a></h3>
+<p>Seafile supports counting users' AI usage (how many tokens are used) and setting monthly AI quotas for users.</p>
+<ol>
+<li>
+<p>Open <code>$SEAFILE_VOLUME/seafile/conf/seahub_settings.py</code> and add AI prices (i.e., how much per token) informations:</p>
+<div class="highlight"><pre><span></span><code><span class="n">AI_PRICES</span> <span class="o">=</span> <span class="p">{</span>
+<span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="c1"># replace gpt-4o-mini to your model name</span>
+    <span class="s2">&quot;input_tokens_1k&quot;</span><span class="p">:</span> <span class="mf">0.0011</span><span class="p">,</span> <span class="c1"># input price per token</span>
+    <span class="s2">&quot;output_tokens_1k&quot;</span><span class="p">:</span> <span class="mf">0.0044</span> <span class="c1"># output price per token</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>Refer management of <a href="../../config/roles_permissions/">roles and permission</a> to specify <code>monthly_ai_credit_per_user</code> (<code>-1</code> is unlimited), and the unit should be the same as in <code>AI_PRICES</code>.</p>
+<div class="admonition note">
+<p class="admonition-title"><code>monthly_ai_credit_per_user</code> for organization user</p>
+<p>For organizational team users, <code>monthly_ai_credit_per_user</code> will apply to the entire team. For example, when <code>monthly_ai_credit_per_user</code> is set to <code>2</code> (unit of doller for example) and there are 10 members in the team, all members in the team will share the quota of <span class="arithmatex">\(2\times10=20\$\)</span>.</p>
+</div>
 </li>
 </ol>
 

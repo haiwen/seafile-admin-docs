@@ -4602,6 +4602,11 @@
         <span class="s1">&#39;can_publish_wiki&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
         <span class="s1">&#39;upload_rate_limit&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1"># unit: kb/s</span>
         <span class="s1">&#39;download_rate_limit&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s1">&#39;monthly_rate_limit&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;monthly_rate_limit_per_user&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;can_choose_office_suite&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;monthly_ai_credit_per_user&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+        <span class="s1">&#39;can_use_sso_in_multi_tenancy&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
     <span class="p">},</span>
 </code></pre></div>
 <p>While a guest user can only read files/folders in the system, here are the permissions for a guest user:</p>
@@ -4627,6 +4632,10 @@
         <span class="s1">&#39;can_publish_wiki&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
         <span class="s1">&#39;upload_rate_limit&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
         <span class="s1">&#39;download_rate_limit&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s1">&#39;monthly_rate_limit&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;monthly_rate_limit_per_user&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;can_choose_office_suite&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">&#39;can_use_sso_in_multi_tenancy&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">},</span>
 </code></pre></div>
 <h2 id="edit-build-in-roles">Edit build-in roles<a class="headerlink" href="#edit-build-in-roles" title="Permanent link">&para;</a></h2>
@@ -4654,6 +4663,11 @@
         <span class="s1">&#39;can_publish_wiki&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
         <span class="s1">&#39;upload_rate_limit&#39;</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span>  <span class="c1"># unit: kb/s</span>
         <span class="s1">&#39;download_rate_limit&#39;</span><span class="p">:</span> <span class="mi">4000</span><span class="p">,</span>
+        <span class="s1">&#39;monthly_rate_limit&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;monthly_rate_limit_per_user&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;can_choose_office_suite&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;monthly_ai_credit_per_user&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+        <span class="s1">&#39;can_use_sso_in_multi_tenancy&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
     <span class="p">},</span>
     <span class="s1">&#39;guest&#39;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s1">&#39;can_add_repo&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
@@ -4677,6 +4691,10 @@
         <span class="s1">&#39;can_publish_wiki&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
         <span class="s1">&#39;upload_rate_limit&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
         <span class="s1">&#39;download_rate_limit&#39;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+        <span class="s1">&#39;monthly_rate_limit&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;monthly_rate_limit_per_user&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;can_choose_office_suite&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">&#39;can_use_sso_in_multi_tenancy&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -4722,6 +4740,11 @@ INVITATIONS_TOKEN_AGE = 72 # hours
         <span class="s1">&#39;can_publish_wiki&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
         <span class="s1">&#39;upload_rate_limit&#39;</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span>  <span class="c1"># unit: kb/s</span>
         <span class="s1">&#39;download_rate_limit&#39;</span><span class="p">:</span> <span class="mi">4000</span><span class="p">,</span>
+        <span class="s1">&#39;monthly_rate_limit&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;monthly_rate_limit_per_user&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;can_choose_office_suite&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;monthly_ai_credit_per_user&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+        <span class="s1">&#39;can_use_sso_in_multi_tenancy&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
     <span class="p">},</span>
     <span class="s1">&#39;guest&#39;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s1">&#39;can_add_repo&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
@@ -4745,6 +4768,10 @@ INVITATIONS_TOKEN_AGE = 72 # hours
         <span class="s1">&#39;can_publish_wiki&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
         <span class="s1">&#39;upload_rate_limit&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
         <span class="s1">&#39;download_rate_limit&#39;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+        <span class="s1">&#39;monthly_rate_limit&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;monthly_rate_limit_per_user&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;can_choose_office_suite&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">&#39;can_use_sso_in_multi_tenancy&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">},</span>
     <span class="s1">&#39;employee&#39;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s1">&#39;can_add_repo&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
@@ -4768,6 +4795,11 @@ INVITATIONS_TOKEN_AGE = 72 # hours
         <span class="s1">&#39;can_publish_wiki&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
         <span class="s1">&#39;upload_rate_limit&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
         <span class="s1">&#39;download_rate_limit&#39;</span><span class="p">:</span> <span class="mi">800</span><span class="p">,</span>
+        <span class="s1">&#39;monthly_rate_limit&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;monthly_rate_limit_per_user&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;can_choose_office_suite&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;monthly_ai_credit_per_user&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> 
+        <span class="s1">&#39;can_use_sso_in_multi_tenancy&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
     <span class="p">},</span>
 <span class="p">}</span>
 </code></pre></div>
