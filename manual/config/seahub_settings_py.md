@@ -295,17 +295,18 @@ THUMBNAIL_SIZE_FOR_ORIGINAL = 1024
 Options for map service:
 
 ```python
-# You can choose either Baidu Map or Google Map to enable the map service.
-
-# baidu map
-# API key for Baidu Map. Leave empty if not used.
-BAIDU_MAP_KEY = ''
-
-# google map
-# API key for Google Map. Leave empty if not used.
-GOOGLE_MAP_KEY = ''
-SERVER_GOOGLE_MAP_KEY = ''
+# The map service currently relies on the Google Maps API and requires two API keys.
+GOOGLE_MAP_KEY = '<replace with your Google Maps API Key>'
+SERVER_GOOGLE_MAP_KEY = '<replace with your Google Maps API Key>'
 ```
+!!! warning "Required scope of the API keys"
+
+    To safeguard your Google API Keys from abuse, restrict their usage. However, even with restrictions in place, abuse remains a risk—especially since `GOOGLE_MAP_KEY` must be included in your source code and is therefore publicly accessible. Additionally, heavy use of the maps plugin may increase your Google billing, so monitor your spending closely.
+
+    | Key | Application restriction | API restriction | 
+    | --- | --- | --- |
+    | `GOOGLE_MAP_KEY` | Restrict to your Server URL,<br>like `https://cloud.seafile.io` | Maps Javascript API |
+    | `SERVER_GOOGLE_MAP_KEY` | **No website restriction** | Geocoding API | 
 
 ## Cloud Mode
 
