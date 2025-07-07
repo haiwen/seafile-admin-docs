@@ -292,6 +292,21 @@ THUMBNAIL_SIZE_FOR_ORIGINAL = 1024
 
 ```
 
+Options for map service:
+
+```python
+# You can choose either Baidu Map or Google Map to enable the map service.
+
+# baidu map
+# API key for Baidu Map. Leave empty if not used.
+BAIDU_MAP_KEY = ''
+
+# google map
+# API key for Google Map. Leave empty if not used.
+GOOGLE_MAP_KEY = ''
+SERVER_GOOGLE_MAP_KEY = ''
+```
+
 ## Cloud Mode
 
 You should enable cloud mode if you use Seafile with an unknown user base. It disables the organization tab in Seahub's website to ensure that users can't access the user list. Cloud mode provides some nice features like sharing content with unregistered users and sending invitations to them. Therefore you also want to enable user registration. Through the global address book (since version 4.2.3) you can do a search for every user account. So you probably want to disable it.
