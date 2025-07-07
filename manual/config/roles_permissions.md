@@ -54,6 +54,11 @@ Seafile comes with two build-in roles `default` and `guest`, a default user is a
         'can_publish_wiki': True,
         'upload_rate_limit': 0,  # unit: kb/s
         'download_rate_limit': 0,
+        'monthly_rate_limit': '',
+        'monthly_rate_limit_per_user': '',
+        'can_choose_office_suite': True,
+        'monthly_ai_credit_per_user': -1,
+        'can_use_sso_in_multi_tenancy': True,
     },
 ```
 
@@ -82,6 +87,10 @@ While a guest user can only read files/folders in the system, here are the permi
         'can_publish_wiki': False,
         'upload_rate_limit': 0,
         'download_rate_limit': 0,
+        'monthly_rate_limit': '',
+        'monthly_rate_limit_per_user': '',
+        'can_choose_office_suite': False,
+        'can_use_sso_in_multi_tenancy': False,
     },
 ```
 
@@ -113,6 +122,11 @@ ENABLED_ROLE_PERMISSIONS = {
         'can_publish_wiki': True,
         'upload_rate_limit': 2000,  # unit: kb/s
         'download_rate_limit': 4000,
+        'monthly_rate_limit': '',
+        'monthly_rate_limit_per_user': '',
+        'can_choose_office_suite': True,
+        'monthly_ai_credit_per_user': -1,
+        'can_use_sso_in_multi_tenancy': True,
     },
     'guest': {
         'can_add_repo': False,
@@ -136,6 +150,10 @@ ENABLED_ROLE_PERMISSIONS = {
         'can_publish_wiki': False,
         'upload_rate_limit': 100,
         'download_rate_limit': 200,
+        'monthly_rate_limit': '',
+        'monthly_rate_limit_per_user': '',
+        'can_choose_office_suite': False,
+        'can_use_sso_in_multi_tenancy': False,
     }
 }
 ```
@@ -196,6 +214,11 @@ ENABLED_ROLE_PERMISSIONS = {
         'can_publish_wiki': True,
         'upload_rate_limit': 2000,  # unit: kb/s
         'download_rate_limit': 4000,
+        'monthly_rate_limit': '',
+        'monthly_rate_limit_per_user': '',
+        'can_choose_office_suite': True,
+        'monthly_ai_credit_per_user': -1,
+        'can_use_sso_in_multi_tenancy': True,
     },
     'guest': {
         'can_add_repo': False,
@@ -219,6 +242,10 @@ ENABLED_ROLE_PERMISSIONS = {
         'can_publish_wiki': False,
         'upload_rate_limit': 100,
         'download_rate_limit': 200,
+        'monthly_rate_limit': '',
+        'monthly_rate_limit_per_user': '',
+        'can_choose_office_suite': False,
+        'can_use_sso_in_multi_tenancy': False,
     },
     'employee': {
         'can_add_repo': True,
@@ -242,6 +269,11 @@ ENABLED_ROLE_PERMISSIONS = {
         'can_publish_wiki': True,
         'upload_rate_limit': 500,
         'download_rate_limit': 800,
+        'monthly_rate_limit': '',
+        'monthly_rate_limit_per_user': '',
+        'can_choose_office_suite': True,
+        'monthly_ai_credit_per_user': -1, 
+        'can_use_sso_in_multi_tenancy': True,
     },
 }
 ```

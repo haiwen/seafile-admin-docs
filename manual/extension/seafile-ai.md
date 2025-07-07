@@ -213,3 +213,25 @@ By default, the access key used by the face embedding is the same as that used b
     docker compose down
     docker compose up -d
     ```
+
+## Advanced operations
+
+### Enable AI usage statistics
+
+Seafile supports counting users' AI usage (how many tokens are used) and setting monthly AI quotas for users.
+
+1. Open `$SEAFILE_VOLUME/seafile/conf/seahub_settings.py` and add AI prices (i.e., how much per token) informations:
+
+    ```py
+    AI_PRICES = {
+    "gpt-4o-mini": { # replace gpt-4o-mini to your model name
+        "input_tokens_1k": 0.0011, # input price per token
+        "output_tokens_1k": 0.0044 # output price per token
+        }
+    }
+    ```
+
+2. Refer management of [roles and permission](../config/roles_permissions.md) to specify `monthly_ai_credit_per_user` (`-1` is unlimited), and the unit should be the same as in `AI_PRICES`.
+
+    !!! note "`monthly_ai_credit_per_user` for organization user"
+        For organizational team users, `monthly_ai_credit_per_user` will apply to the entire team. For example, when `monthly_ai_credit_per_user` is set to `2` (unit of doller for example) and there are 10 members in the team, all members in the team will share the quota of $2\times10=20\$$.
