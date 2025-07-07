@@ -292,6 +292,22 @@ THUMBNAIL_SIZE_FOR_ORIGINAL = 1024
 
 ```
 
+Options for map service:
+
+```python
+# The map service currently relies on the Google Maps API and requires two API keys.
+GOOGLE_MAP_KEY = '<replace with your Google Maps API Key>'
+SERVER_GOOGLE_MAP_KEY = '<replace with your Google Maps API Key>'
+```
+!!! warning "Required scope of the API keys"
+
+    To safeguard your Google API Keys from abuse, restrict their usage. However, even with restrictions in place, abuse remains a risk—especially since `GOOGLE_MAP_KEY` must be included in your source code and is therefore publicly accessible. Additionally, heavy use of the maps plugin may increase your Google billing, so monitor your spending closely.
+
+    | Key | Application restriction | API restriction | 
+    | --- | --- | --- |
+    | `GOOGLE_MAP_KEY` | Restrict to your Server URL,<br>like `https://cloud.seafile.io` | Maps Javascript API |
+    | `SERVER_GOOGLE_MAP_KEY` | **No website restriction** | Geocoding API | 
+
 ## Cloud Mode
 
 You should enable cloud mode if you use Seafile with an unknown user base. It disables the organization tab in Seahub's website to ensure that users can't access the user list. Cloud mode provides some nice features like sharing content with unregistered users and sending invitations to them. Therefore you also want to enable user registration. Through the global address book (since version 4.2.3) you can do a search for every user account. So you probably want to disable it.
