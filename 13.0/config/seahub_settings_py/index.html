@@ -4958,6 +4958,36 @@ ENABLE_REPO_SNAPSHOT_LABEL = False
 <span class="c1"># NOTE: since version 6.1.1</span>
 <span class="n">THUMBNAIL_SIZE_FOR_ORIGINAL</span> <span class="o">=</span> <span class="mi">1024</span>
 </code></pre></div>
+<p>Options for map service:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># The map service currently relies on the Google Maps API and requires two API keys.</span>
+<span class="n">GOOGLE_MAP_KEY</span> <span class="o">=</span> <span class="s1">&#39;&lt;replace with your Google Maps API Key&gt;&#39;</span>
+<span class="n">SERVER_GOOGLE_MAP_KEY</span> <span class="o">=</span> <span class="s1">&#39;&lt;replace with your Google Maps API Key&gt;&#39;</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Required scope of the API keys</p>
+<p>To safeguard your Google API Keys from abuse, restrict their usage. However, even with restrictions in place, abuse remains a risk—especially since <code>GOOGLE_MAP_KEY</code> must be included in your source code and is therefore publicly accessible. Additionally, heavy use of the maps plugin may increase your Google billing, so monitor your spending closely.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Application restriction</th>
+<th>API restriction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GOOGLE_MAP_KEY</code></td>
+<td>Restrict to your Server URL,<br>like <code>https://cloud.seafile.io</code></td>
+<td>Maps Javascript API</td>
+</tr>
+<tr>
+<td><code>SERVER_GOOGLE_MAP_KEY</code></td>
+<td><strong>No website restriction</strong></td>
+<td>Geocoding API</td>
+</tr>
+</tbody>
+</table>
+</div>
 <h2 id="cloud-mode">Cloud Mode<a class="headerlink" href="#cloud-mode" title="Permanent link">&para;</a></h2>
 <p>You should enable cloud mode if you use Seafile with an unknown user base. It disables the organization tab in Seahub's website to ensure that users can't access the user list. Cloud mode provides some nice features like sharing content with unregistered users and sending invitations to them. Therefore you also want to enable user registration. Through the global address book (since version 4.2.3) you can do a search for every user account. So you probably want to disable it.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Enable cloude mode and hide `Organization` tab.</span>
