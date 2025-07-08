@@ -108,8 +108,6 @@ To enable metadata server in Seafile, please add the following field in your `se
     METADATA_SERVER_URL = 'http://<your metadata-server host>:8084'
     ```
 
-    !!! note "Standalone deploy
-
 ## Start service
 
 You can use following command to start metadata server (and the Seafile service also have to restart):
