@@ -79,6 +79,9 @@ If you would like to use *SeaSearch* as the search engine, the `elasticSearch` s
     seasearch_url = http://seasearch:4080
     seasearch_token = <your auth token>
     interval = 10m
+
+    # if you would like to enable full-text indexing (i.e., search for document content), also set the option below to true (support from 13.0 Pro)
+    index_office_pdf = true
     ```
 
 3. Disable the ElasticSearch, as you can set `enabled = false` in `INDEX FILES` section:
