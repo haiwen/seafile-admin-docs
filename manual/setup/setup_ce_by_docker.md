@@ -58,7 +58,8 @@ The following fields merit particular attention:
 | `MEMCACHED_PORT`       | Memcached server port | `11211` |
 | `TIME_ZONE`                     | Time zone                                                                                                     | `UTC`                           |
 | `ENABLE_NOTIFICATION_SERVER`   | Enable (`true`) or disable (`false`) notification feature for Seafile | `false` |  
-| `NOTIFICATION_SERVER_URL`   | The [notification server](../extension/notification-server.md) url | (none) |  
+| `NOTIFICATION_SERVER_URL`   | The [notification server](../extension/notification-server.md) url | (none) |
+| `MD_FILE_COUNT_LIMIT` | (only valid when deployed [metadata server](../extension/metadata-server.md)). The maximum number of files in a repository that the metadata feature allows. If the number of files in a repository exceeds this value, the metadata management function will not be enabled for the repository. For a repository with metadata management enabled, if the number of records in it reaches this value but there are still some files that are not recorded in metadata server, the metadata management of the unrecorded files will be skipped. | `100000` |  
 | `INIT_SEAFILE_ADMIN_EMAIL`      | Admin username                                                                                                | `me@example.com` (Recommend modifications) |  
 | `INIT_SEAFILE_ADMIN_PASSWORD`   | Admin password       | `asecret` (Recommend modifications) |
 | `NON_ROOT`   | Run Seafile container without a root user      | `false` |

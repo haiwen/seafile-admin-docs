@@ -116,6 +116,10 @@ For configurations about Metadata server in `.env`, please refer [here](../exten
 - `NOTIFICATION_SERVER_URL`: Used to do the connection between client (i.e., user's browser) and notification server. Default is `https://seafile.example.com/notification`. 
 - `INNER_NOTIFICATION_SERVER_URL`: Used to do the connection between Seafile server and notification server. Default is `http://notification-server:8083`.
 
+## Metadata server
+
+- `MD_FILE_COUNT_LIMIT`: The maximum number of files in a repository that the metadata feature allows. If the number of files in a repository exceeds this value, the metadata management function will not be enabled for the repository. For a repository with metadata management enabled, if the number of records in it reaches this value but there are still some files that are not recorded in metadata server, the metadata management of the unrecorded files will be skipped. Default is `100000`.
+
 ## Cluster init configuration 
 
 - `CLUSTER_INIT_MODE`: (only valid in pro edition at deploying first time). Cluster initialization mode, in which the necessary configuration files for the service to run will be generated (but **the service will not be started**). If the configuration file already exists, no operation will be performed. The default value is `true`. When the configuration file is generated, ***be sure to set this item to `false`***.

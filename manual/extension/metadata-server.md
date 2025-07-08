@@ -85,6 +85,8 @@ The following table is all the related environment variables with Metadata serve
 | `REDIS_PASSWORD`    | Your *Redis* access password.                                                                                              | Optional                |
 | `MD_STORAGE_TYPE`    | Where the metadata storage in. Available options are `disk` (local storage) and `s3` | `disk` |
 | `S3_MD_BUCKET`    | Your S3 bucket name for the bucket storing metadata | Required when using S3 (`MD_STORAGE_TYPE=s3`) |
+| `MD_CHECK_UPDATE_INTERVAL`    | The interval for updating metadata of the repository | `30m` |
+| `MD_FILE_COUNT_LIMIT` | The maximum number of files in a repository that the metadata feature allows. If the number of files in a repository exceeds this value, the metadata management function will not be enabled for the repository. For a repository with metadata management enabled, if the number of records in it reaches this value but there are still some files that are not recorded in metadata server, the metadata management of the unrecorded files will be skipped. | `100000` |
 
 In addition, there are some environment variables **related to S3 authorization**, please refer to the part with `S3_` prefix in this [table](../setup/setup_pro_by_docker.md#downloading-and-modifying-env) (**the buckets name for Seafile are also needed**).
 

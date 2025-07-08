@@ -54,6 +54,9 @@ data:
   ENABLE_SEAFILE_AI: "false"
   SEAFILE_AI_SERVER_URL: "<required when ENABLE_SEAFILE_AI=true>"
 
+  # Matedata server
+  MD_FILE_COUNT_LIMIT: "100000"
+
   # Init
   ## for Seafile admin
   INIT_SEAFILE_ADMIN_EMAIL: "<Seafile admin's email>"

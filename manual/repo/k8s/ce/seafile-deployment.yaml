@@ -136,6 +136,11 @@ spec:
                 configMapKeyRef:
                   name: seafile-env
                   key: SEAFILE_AI_SERVER_URL
+            - name: MD_FILE_COUNT_LIMIT
+              valueFrom:
+                configMapKeyRef:
+                  name: seafile-env
+                  key: MD_FILE_COUNT_LIMIT
             - name: JWT_PRIVATE_KEY
               valueFrom:
                 secretKeyRef:
