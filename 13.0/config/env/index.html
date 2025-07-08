@@ -3308,6 +3308,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#metadata-server_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metadata server
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cluster-init-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       Cluster init configuration
@@ -4738,6 +4747,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#metadata-server_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metadata server
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#cluster-init-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       Cluster init configuration
@@ -4875,6 +4893,10 @@
 <li><code>ENABLE_NOTIFICATION_SERVER</code>: Enable (<code>true</code>) or disable (<code>false</code>) notification feature for Seafile. Default is <code>false</code>.</li>
 <li><code>NOTIFICATION_SERVER_URL</code>: Used to do the connection between client (i.e., user's browser) and notification server. Default is <code>https://seafile.example.com/notification</code>. </li>
 <li><code>INNER_NOTIFICATION_SERVER_URL</code>: Used to do the connection between Seafile server and notification server. Default is <code>http://notification-server:8083</code>.</li>
+</ul>
+<h2 id="metadata-server_1">Metadata server<a class="headerlink" href="#metadata-server_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>MD_FILE_COUNT_LIMIT</code>: The maximum number of files in a repository that the metadata feature allows. If the number of files in a repository exceeds this value, the metadata management function will not be enabled for the repository. For a repository with metadata management enabled, if the number of records in it reaches this value but there are still some files that are not recorded in metadata server, the metadata management of the unrecorded files will be skipped. Default is <code>100000</code>.</li>
 </ul>
 <h2 id="cluster-init-configuration">Cluster init configuration<a class="headerlink" href="#cluster-init-configuration" title="Permanent link">&para;</a></h2>
 <ul>

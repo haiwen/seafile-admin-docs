@@ -4929,6 +4929,11 @@ nano<span class="w"> </span>.env
 <td>(none)</td>
 </tr>
 <tr>
+<td><code>MD_FILE_COUNT_LIMIT</code></td>
+<td>(only valid when deployed <a href="../../extension/metadata-server/">metadata server</a>). The maximum number of files in a repository that the metadata feature allows. If the number of files in a repository exceeds this value, the metadata management function will not be enabled for the repository. For a repository with metadata management enabled, if the number of records in it reaches this value but there are still some files that are not recorded in metadata server, the metadata management of the unrecorded files will be skipped.</td>
+<td><code>100000</code></td>
+</tr>
+<tr>
 <td><code>INIT_SEAFILE_ADMIN_EMAIL</code></td>
 <td>Admin username</td>
 <td><code>me@example.com</code> (Recommend modifications)</td>

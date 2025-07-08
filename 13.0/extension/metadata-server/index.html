@@ -4787,6 +4787,16 @@ MD_MAX_CACHE_SIZE=1GB
 <td>Your S3 bucket name for the bucket storing metadata</td>
 <td>Required when using S3 (<code>MD_STORAGE_TYPE=s3</code>)</td>
 </tr>
+<tr>
+<td><code>MD_CHECK_UPDATE_INTERVAL</code></td>
+<td>The interval for updating metadata of the repository</td>
+<td><code>30m</code></td>
+</tr>
+<tr>
+<td><code>MD_FILE_COUNT_LIMIT</code></td>
+<td>The maximum number of files in a repository that the metadata feature allows. If the number of files in a repository exceeds this value, the metadata management function will not be enabled for the repository. For a repository with metadata management enabled, if the number of records in it reaches this value but there are still some files that are not recorded in metadata server, the metadata management of the unrecorded files will be skipped.</td>
+<td><code>100000</code></td>
+</tr>
 </tbody>
 </table>
 <p>In addition, there are some environment variables <strong>related to S3 authorization</strong>, please refer to the part with <code>S3_</code> prefix in this <a href="../../setup/setup_pro_by_docker/#downloading-and-modifying-env">table</a> (<strong>the buckets name for Seafile are also needed</strong>).</p>
