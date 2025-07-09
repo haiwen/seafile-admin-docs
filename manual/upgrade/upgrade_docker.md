@@ -67,7 +67,7 @@ Then download the new `seafile-server.yml` according to the following commands:
 
     ```sh
     SEAFILE_IMAGE=seafileltd/seafile-mc:13.0-latest
-    SEADOC_IMAGE=seafileltd/sdoc-server:1.0-latest
+    SEADOC_IMAGE=seafileltd/sdoc-server:2.0-latest
     NOTIFICATION_SERVER_IMAGE=seafileltd/notification-server:13.0-latest
     ```
 
@@ -81,7 +81,7 @@ Then download the new `seafile-server.yml` according to the following commands:
     # SEASEARCH_IMAGE=seafileltd/seasearch:1.0-latest # or seafileltd/seasearch-nomkl:1.0-latest for Apple chips
 
     SEAFILE_IMAGE=seafileltd/seafile-pro-mc:13.0-latest
-    SEADOC_IMAGE=seafileltd/sdoc-server:1.0-latest
+    SEADOC_IMAGE=seafileltd/sdoc-server:2.0-latest
     NOTIFICATION_SERVER_IMAGE=seafileltd/notification-server:13.0-latest
     
     ```
