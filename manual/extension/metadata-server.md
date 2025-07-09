@@ -48,7 +48,7 @@ To facilitate your deployment, we still provide two different configuration solu
 In this case you don't need to add any additional configuration to your `.env`. You can also specify image version, maximum local cache size, etc.
 
 ```
-MD_IMAGE=seafileltd/seafile-md-server:latest
+MD_IMAGE=seafileltd/seafile-md-server:13.0-latest
 MD_MAX_CACHE_SIZE=1GB
 ```
 
@@ -57,7 +57,7 @@ MD_MAX_CACHE_SIZE=1GB
 First you need to create a bucket for metadata on your S3 storage backend provider. Then add or modify the following information to `.env`:
 
 ```sh
-MD_IMAGE=seafileltd/seafile-md-server:latest
+MD_IMAGE=seafileltd/seafile-md-server:13.0-latest
 MD_STORAGE_TYPE=s3
 S3_MD_BUCKET=...
 S3_KEY_ID=<your-key-id>

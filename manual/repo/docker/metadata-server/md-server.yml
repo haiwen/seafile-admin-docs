@@ -1,6 +1,6 @@
 services:
   seafile-md-server:
-    image: ${MD_IMAGE:-seafileltd/seafile-md-server:latest}
+    image: ${MD_IMAGE:-seafileltd/seafile-md-server:13.0-latest}
     container_name: seafile-md-server
     restart: unless-stopped
     volumes:

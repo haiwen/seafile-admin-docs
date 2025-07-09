@@ -1,6 +1,6 @@
 services:
   face-embedding:
-    image: ${FACE_EMBEDDING_IMAGE:-seafileltd/face-embedding:latest-cuda}
+    image: ${FACE_EMBEDDING_IMAGE:-seafileltd/face-embedding:13.0-latest-cuda}
     container_name: face-embedding
     deploy:
       resources:
