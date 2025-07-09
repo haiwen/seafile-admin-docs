@@ -4720,12 +4720,12 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 <p>To facilitate your deployment, we still provide two different configuration solutions for your reference:</p>
 <h4 id="example-env-for-seafile-data-is-stored-locally">Example <code>.env</code> for Seafile data is stored locally<a class="headerlink" href="#example-env-for-seafile-data-is-stored-locally" title="Permanent link">&para;</a></h4>
 <p>In this case you don't need to add any additional configuration to your <code>.env</code>. You can also specify image version, maximum local cache size, etc.</p>
-<div class="highlight"><pre><span></span><code>MD_IMAGE=seafileltd/seafile-md-server:latest
+<div class="highlight"><pre><span></span><code>MD_IMAGE=seafileltd/seafile-md-server:13.0-latest
 MD_MAX_CACHE_SIZE=1GB
 </code></pre></div>
 <h4 id="example-env-for-seafile-data-is-stored-in-the-storage-backend-eg-s3">Example <code>.env</code> for  Seafile data is stored in the storage backend (e.g., S3)<a class="headerlink" href="#example-env-for-seafile-data-is-stored-in-the-storage-backend-eg-s3" title="Permanent link">&para;</a></h4>
 <p>First you need to create a bucket for metadata on your S3 storage backend provider. Then add or modify the following information to <code>.env</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">MD_IMAGE</span><span class="o">=</span>seafileltd/seafile-md-server:latest
+<div class="highlight"><pre><span></span><code><span class="nv">MD_IMAGE</span><span class="o">=</span>seafileltd/seafile-md-server:13.0-latest
 <span class="nv">MD_STORAGE_TYPE</span><span class="o">=</span>s3
 <span class="nv">S3_MD_BUCKET</span><span class="o">=</span>...
 <span class="nv">S3_KEY_ID</span><span class="o">=</span>&lt;your-key-id&gt;

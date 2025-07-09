@@ -1,6 +1,6 @@
 services:
   seafile-ai:
-    image: ${SEAFILE_AI_IMAGE:-seafileltd/seafile-ai:latest}
+    image: ${SEAFILE_AI_IMAGE:-seafileltd/seafile-ai:13.0-latest}
     container_name: seafile-ai
     volumes:
       - ${SEAFILE_VOLUME:-/opt/seafile-data}:/shared

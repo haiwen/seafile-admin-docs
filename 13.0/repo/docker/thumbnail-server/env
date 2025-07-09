@@ -2,7 +2,7 @@ COMPOSE_FILE='thumbnail-server.yml'
 COMPOSE_PATH_SEPARATOR=','
 
 
-THUMBNAIL_SERVER_IMAGE=seafileltd/thumbnail-server:13.0.0-testing
+THUMBNAIL_SERVER_IMAGE=seafileltd/thumbnail-server:13.0-latest
 
 SEAFILE_VOLUME=/opt/seafile-data
 
