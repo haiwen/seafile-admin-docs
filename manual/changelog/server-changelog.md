@@ -9,7 +9,7 @@
 
 Please check our document for how to upgrade to [13.0](../upgrade/upgrade_notes_for_13.0.x.md)
 
-### 13.0.6 beta (2025-07-15)
+### 13.0.7 beta (2025-07-14)
 
 
 Deploying Seafile with binary package is no longer supported for community edition. We recommend you to migrate your existing Seafile deployment to docker based.
