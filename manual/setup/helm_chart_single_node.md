@@ -64,7 +64,8 @@ Please refer [here](./system_requirements.md) for the details of system requirem
         nano my-values.yaml
         ```
 
-    !!! tip
+    !!! tip "About installation with Helm chart"
+
         - It is not necessary to use the `my-values.yaml` we provided (i.e., you can create an empty `my-values.yaml` and add required field, as others have defined default values in our chart), because it destroys the flexibility of deploying with Helm, but it contains some formats of how Seafile Helm Chart reads these configurations, as well as all the environment variables and secret variables that can be read directly.
         - In addition, you can also create a custom ***storageClassName*** for the persistence directory used by Seafile. You only need to specify `storageClassName` in the `seafile.config.seafileDataVolume` object in `my-values.yaml`:
 
@@ -75,6 +76,23 @@ Please refer [here](./system_requirements.md) for the details of system requirem
                   storageClassName: <your seafile storage class name>
               ...
             ```
+
+            On the other hand, if you would like to create a persistence volume (PV) for Seafile with a real host path (like `/opt/seafile-data`), you can download, modify the path and apply the `seafile-persistentvolume.yaml`:
+
+            === "Seafile Pro"
+
+                ```sh
+                wget -P https://manual.seafile.com/12.0/repo/k8s/pro/seafile-persistentvolume.yaml
+
+                kubectl apply -f seafile-persistentvolume.yaml
+                ```
+            === "Seafile CE"
+
+                ```sh
+                wget -P https://manual.seafile.com/12.0/repo/k8s/ce/seafile-persistentvolume.yaml
+
+                kubectl apply -f seafile-persistentvolume.yaml
+                ```
 
 4. Then install the chart use the following command:
 
