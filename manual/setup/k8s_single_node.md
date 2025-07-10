@@ -14,6 +14,32 @@ For persisting data using in the docker-base deployment, `/opt/seafile-data`, is
 
 By the way, we don't provide the deployment methods of basic services (e.g., **Memcached**, **MySQL** and **Elasticsearch**) and seafile-compatibility components (e.g., **SeaDoc**) for K8S in our document. If you need to install these services in K8S format, ***you can refer to the rewrite method of this document.***
 
+## Create namespace and secretMap
+
+=== "Seafile Pro"
+
+    ```sh
+    kubectl create ns seafile
+
+    kubectl create secret generic seafile-secret --namespace seafile \
+    --from-literal=JWT_PRIVATE_KEY='<required>' \
+    --from-literal=DB_PASSWORD='<required>' \
+    --from-literal=DB_ROOT_PASSWD='<required>' \
+    --from-literal=INIT_SEAFILE_ADMIN_PASSWORD='<required>' \
+    --from-literal=INIT_S3_SECRET_KEY=''  
+    ```
+=== "Seafile CE"
+
+    ```sh
+    kubectl create ns seafile
+
+    kubectl create secret generic seafile-secret --namespace seafile \
+    --from-literal=JWT_PRIVATE_KEY='<required>' \
+    --from-literal=DB_PASSWORD='<required>' \
+    --from-literal=DB_ROOT_PASSWD='<required>' \
+    --from-literal=INIT_SEAFILE_ADMIN_PASSWORD='<required>'
+    ```
+
 ## Down load the YAML files for Seafile Server
 
 === "Pro edition"
@@ -26,7 +52,6 @@ By the way, we don't provide the deployment methods of basic services (e.g., **M
     wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/12.0/repo/k8s/pro/seafile-persistentvolumeclaim.yaml
     wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/12.0/repo/k8s/pro/seafile-service.yaml
     wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/12.0/repo/k8s/pro/seafile-env.yaml
-    wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/12.0/repo/k8s/pro/seafile-secret.yaml
     ```
 
 === "Community edition"
@@ -39,7 +64,6 @@ By the way, we don't provide the deployment methods of basic services (e.g., **M
     wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/12.0/repo/k8s/ce/seafile-persistentvolumeclaim.yaml
     wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/12.0/repo/k8s/ce/seafile-service.yaml
     wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/12.0/repo/k8s/ce/seafile-env.yaml
-    wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/12.0/repo/k8s/ce/seafile-secret.yaml
     ```
 
 In here we suppose you download the YAML files in `/opt/seafile-k8s-yaml`, which mainly include about:
@@ -49,28 +73,22 @@ In here we suppose you download the YAML files in `/opt/seafile-k8s-yaml`, which
 - `seafile-persistentVolume.yaml` for defining the location of a volume used for persistent storage on the host
 - `seafile-persistentvolumeclaim.yaml` for declaring the use of persistent storage in the container.
 
+!!! tip "Use PV bound from a storage class"
+    If you would like to use automatically allocated persistent volume (PV) by a storage class, please modify `seafile-persistentvolumeclaim.yaml` and specify `storageClassName`. On the other hand, the PV defined by `seafile-persistentvolume.yaml` can be disabled:
+
+    ```sh
+    rm /opt/seafile-k8s-yaml/seafile-persistentvolume.yaml
+    ```
+
 For futher configuration details, you can refer [the official documents](https://kubernetes.io/docs/tasks/configure-pod-container/).
 
-## Modify `seafile-env.yaml` and `seafile-secret.yaml`
+## Modify `seafile-env.yaml`
 
 Similar to Docker-base deployment, Seafile cluster in K8S deployment also supports use files to configure startup progress, you can modify common [environment variables](./setup_pro_by_docker.md#downloading-and-modifying-env) by
 
 ```sh
 nano /opt/seafile-k8s-yaml/seafile-env.yaml
 ```
-
-and sensitive information (e.g., password) by
-
-```sh
-nano /opt/seafile-k8s-yaml/seafile-secret.yaml
-```
-
-!!! note "For `seafile-secret.yaml`"
-    To modify sensitive information (e.g., password), you need to convert the password into base64 encoding before writing it into the `seafile-secret.yaml` file:
-
-    ```sh
-    echo -n '<your-value>' | base64
-    ```
 
 !!! warning
     For the fields marked with `<...>` are **required**, please make sure these items are filled in, otherwise Seafile server may not run properly. 
