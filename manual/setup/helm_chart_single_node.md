@@ -100,14 +100,14 @@ Please refer [here](./system_requirements.md) for the details of system requirem
 
         ```sh
         helm repo add seafile https://haiwen.github.io/seafile-helm-chart/repo
-        helm upgrade --install seafile seafile/pro  --namespace seafile --create-namespace --values my-values.yaml
+        helm upgrade --install seafile seafile/pro-12.0  --namespace seafile --create-namespace --values my-values.yaml
         ```
 
     === "Seafile CE"
 
         ```sh
         helm repo add seafile https://haiwen.github.io/seafile-helm-chart/repo
-        helm upgrade --install seafile seafile/ce  --namespace seafile --create-namespace --values my-values.yaml
+        helm upgrade --install seafile seafile/ce-12.0  --namespace seafile --create-namespace --values my-values.yaml
         ```
 
 After installing the chart, the Seafile pod should startup automaticlly. 
@@ -175,13 +175,13 @@ kubectl delete pods -n seafile $(kubectl get pods -n seafile -o jsonpath='{.item
     === "Seafile Pro"
 
         ```sh
-        helm upgrade --install seafile seafile/pro  --namespace seafile --create-namespace --values my-values.yaml
+        helm upgrade --install seafile seafile/pro-12.0  --namespace seafile --create-namespace --values my-values.yaml
         ```
 
     === "Seafile CE"
 
         ```sh
-        helm upgrade --install seafile seafile/ce  --namespace seafile --create-namespace --values my-values.yaml
+        helm upgrade --install seafile seafile/ce-12.0  --namespace seafile --create-namespace --values my-values.yaml
         ```
 
 ## Version control
@@ -226,11 +226,11 @@ Seafile Helm Chart is designed to provide fast deployment and version control. Y
     === "Seafile Pro"
 
         ```sh
-        helm upgrade --install seafile seafile/pro --namespace seafile --create-namespace --values my-values.yaml --version <release-version>
+        helm upgrade --install seafile seafile/pro-12.0 --namespace seafile --create-namespace --values my-values.yaml --version <release-version>
         ```
     === "Seafile CE"
         ```sh
-        helm upgrade --install seafile seafile/ce --namespace seafile --create-namespace --values my-values.yaml --version <release-version>
+        helm upgrade --install seafile seafile/ce-12.0 --namespace seafile --create-namespace --values my-values.yaml --version <release-version>
         ```
     
 
