@@ -64,7 +64,8 @@ Please refer [here](./system_requirements.md) for the details of system requirem
         nano my-values.yaml
         ```
 
-    !!! tip
+    !!! tip "About installation with Helm chart"
+
         - It is not necessary to use the `my-values.yaml` we provided (i.e., you can create an empty `my-values.yaml` and add required field, as others have defined default values in our chart), because it destroys the flexibility of deploying with Helm, but it contains some formats of how Seafile Helm Chart reads these configurations, as well as all the environment variables and secret variables that can be read directly.
         - In addition, you can also create a custom ***storageClassName*** for the persistence directory used by Seafile. You only need to specify `storageClassName` in the `seafile.config.seafileDataVolume` object in `my-values.yaml`:
 
@@ -76,26 +77,43 @@ Please refer [here](./system_requirements.md) for the details of system requirem
               ...
             ```
 
+            On the other hand, if you would like to create a persistence volume (PV) for Seafile with a real host path (like `/opt/seafile-data`), you can download, modify the path and apply the `seafile-persistentvolume.yaml`:
+
+            === "Seafile Pro"
+
+                ```sh
+                wget -P https://manual.seafile.com/12.0/repo/k8s/pro/seafile-persistentvolume.yaml
+
+                kubectl apply -f seafile-persistentvolume.yaml
+                ```
+            === "Seafile CE"
+
+                ```sh
+                wget -P https://manual.seafile.com/12.0/repo/k8s/ce/seafile-persistentvolume.yaml
+
+                kubectl apply -f seafile-persistentvolume.yaml
+                ```
+
 4. Then install the chart use the following command:
 
     === "Seafile Pro"
 
         ```sh
         helm repo add seafile https://haiwen.github.io/seafile-helm-chart/repo
-        helm upgrade --install seafile seafile/pro  --namespace seafile --create-namespace --values my-values.yaml
+        helm upgrade --install seafile seafile/12.0/pro  --namespace seafile --create-namespace --values my-values.yaml
         ```
 
     === "Seafile CE"
 
         ```sh
         helm repo add seafile https://haiwen.github.io/seafile-helm-chart/repo
-        helm upgrade --install seafile seafile/ce  --namespace seafile --create-namespace --values my-values.yaml
+        helm upgrade --install seafile seafile/12.0/ce  --namespace seafile --create-namespace --values my-values.yaml
         ```
 
 After installing the chart, the Seafile pod should startup automaticlly. 
 
 !!! note "About Seafile service"
-    The default service type of Seafile is ***LoadBalancer***. You should specify K8S load balancer for Seafile or specify at least one external ip, that can be accessed from external networks.
+    The default service type of Seafile is ***ClusterIP***. You need to use an [appropriate ingress strategy](./k8s_advanced_management.md#k8s-gateway-and-https) to make Seafile accessible from the external network.
 
 !!! warning "Important for Pro edition"
     By default, Seafile (***Pro***) will access the ***Memcached*** and ***Elasticsearch*** with the specific service name:
@@ -157,13 +175,13 @@ kubectl delete pods -n seafile $(kubectl get pods -n seafile -o jsonpath='{.item
     === "Seafile Pro"
 
         ```sh
-        helm upgrade --install seafile seafile/pro  --namespace seafile --create-namespace --values my-values.yaml
+        helm upgrade --install seafile seafile/12.0/pro  --namespace seafile --create-namespace --values my-values.yaml
         ```
 
     === "Seafile CE"
 
         ```sh
-        helm upgrade --install seafile seafile/ce  --namespace seafile --create-namespace --values my-values.yaml
+        helm upgrade --install seafile seafile/12.0/ce --namespace seafile --create-namespace --values my-values.yaml
         ```
 
 ## Version control
@@ -201,18 +219,18 @@ Seafile Helm Chart is designed to provide fast deployment and version control. Y
         - latest Seafile: 12.0.9
         - latest Seafile Helm Chart release: 12.0
 
-        By default, it will follow the latest Chart and the latest Seafile
+        By default, it will follow the latest Chart and the latest Seafile. You can go [here](https://github.com/haiwen/seafile-helm-chart/tree/main/repo) to view the full version list of Seafile Helm Chart release.
 
 3. Upgrade release to a new version
 
     === "Seafile Pro"
 
         ```sh
-        helm upgrade --install seafile seafile/pro --namespace seafile --create-namespace --values my-values.yaml --version <release-version>
+        helm upgrade --install seafile seafile/12.0/pro --namespace seafile --create-namespace --values my-values.yaml --version <release-version>
         ```
     === "Seafile CE"
         ```sh
-        helm upgrade --install seafile seafile/ce --namespace seafile --create-namespace --values my-values.yaml --version <release-version>
+        helm upgrade --install seafile seafile/12.0/ce --namespace seafile --create-namespace --values my-values.yaml --version <release-version>
         ```
     
 
