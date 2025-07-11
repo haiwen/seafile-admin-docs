@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: seafile-env
+  namespace: seafile
 data:
   # for Seafile server
   TIME_ZONE: "UTC"
@@ -14,9 +15,9 @@ data:
 
 
   # for database
-  SEAFILE_MYSQL_DB_HOST: "<your MySQL host>"
-  SEAFILE_MYSQL_DB_PORT: "3306"
-  SEAFILE_MYSQL_DB_USER: "seafile"
+  DB_HOST: "<your MySQL host>"
+  DB_PORT: "3306"
+  DB_USER: "seafile"
   SEAFILE_MYSQL_DB_CCNET_DB_NAME: "ccnet_db"
   SEAFILE_MYSQL_DB_SEAFILE_DB_NAME: "seafile_db"
   SEAFILE_MYSQL_DB_SEAHUB_DB_NAME: "seahub_db"
