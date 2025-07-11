@@ -113,7 +113,7 @@ Please refer [here](./system_requirements.md) for the details of system requirem
 After installing the chart, the Seafile pod should startup automaticlly. 
 
 !!! note "About Seafile service"
-    The default service type of Seafile is ***LoadBalancer***. You should specify K8S load balancer for Seafile or specify at least one external ip, that can be accessed from external networks.
+    The default service type of Seafile is ***ClusterIP***. You need to use an [appropriate ingress strategy](./k8s_advanced_management.md#k8s-gateway-and-https) to make Seafile accessible from the external network.
 
 !!! warning "Important for Pro edition"
     By default, Seafile (***Pro***) will access the ***Memcached*** and ***Elasticsearch*** with the specific service name:
