@@ -65,7 +65,7 @@ After installation, you need to start the k8s control plane service on each node
 
     ```sh
     helm repo add seafile https://haiwen.github.io/seafile-helm-chart/repo
-    helm upgrade --install seafile seafile/cluster-12.0  --namespace seafile --create-namespace --values my-values.yaml
+    helm upgrade --install seafile seafile/12.0/cluster  --namespace seafile --create-namespace --values my-values.yaml
     ```
     !!! success
         After installing the chart, the cluster is going to initial progress, you can see the following message by `kubectl logs seafile-<string> -n seafile`:
@@ -146,7 +146,7 @@ After installation, you need to start the k8s control plane service on each node
 5. After the first-time startup, you have to turn off (i.e., set `initMode` to `false`) in your `my-values.yaml`, then upgrade the chart:
 
     ```sh
-    helm upgrade --install seafile seafile/cluster-12.0  --namespace seafile --create-namespace --values my-values.yaml
+    helm upgrade --install seafile seafile/12.0/cluster  --namespace seafile --create-namespace --values my-values.yaml
     ```
 
     !!! success
@@ -286,7 +286,7 @@ After installation, you need to start the k8s control plane service on each node
         Finally you can upgrade your chart by:
 
         ```sh
-        helm upgrade --install seafile seafile/cluster-12.0  --namespace seafile --create-namespace --values my-values.yaml
+        helm upgrade --install seafile seafile/12.0/cluster  --namespace seafile --create-namespace --values my-values.yaml
         ```
 
 ## Version control
@@ -316,12 +316,12 @@ Seafile Helm Chart is designed to provide fast deployment and version control. Y
         - latest Seafile: 12.0.9
         - latest Seafile Helm Chart release: 12.0
 
-        By default, it will follow the latest Chart and the latest Seafile
+        By default, it will follow the latest Chart and the latest Seafile. You can go [here](https://github.com/haiwen/seafile-helm-chart/tree/main/repo) to view the full version list of Seafile Helm Chart release.
 
 3. Upgrade release to a new version
 
     ```sh
-    helm upgrade --install seafile seafile/cluster-12.0 --namespace seafile --create-namespace --values my-values.yaml --version <release-version>
+    helm upgrade --install seafile seafile/12.0/cluster --namespace seafile --create-namespace --values my-values.yaml --version <release-version>
     ```
 
 4. (Rollback) if you would like rollback to your old-running release, you can use following command to rollback your current instances
