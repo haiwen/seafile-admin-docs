@@ -83,7 +83,7 @@ Note, you should install Python libraries system wide using root user or sudo mo
 
 ## Upgrade to 12.0 (for binary installation)
 
-The following instruction is for binary package based installation. If you use Docker based installation, please see [*Updgrade Docker*](./upgrade_docker.md)
+The following instruction is for binary package based installation. If you use Docker based installation, please see [*Upgrade Docker*](./upgrade_docker.md)
 
 ### 1) Clean database tables before upgrade
 
