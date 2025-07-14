@@ -46,7 +46,7 @@ After installation, you need to start the k8s control plane service on each node
 3. Download and modify the `my-values.yaml` according to your configurations. By the way, you can follow [here](./setup_pro_by_docker.md#downloading-and-modifying-env) for the details:
 
     ```sh
-    wget -O my-values.yaml https://haiwen.github.io/seafile-helm-chart/values/latest/cluster.yaml
+    wget -O my-values.yaml https://haiwen.github.io/seafile-helm-chart/values/13.0/cluster.yaml
 
     nano my-values.yaml
     ```
@@ -67,7 +67,7 @@ After installation, you need to start the k8s control plane service on each node
 
     ```sh
     helm repo add seafile https://haiwen.github.io/seafile-helm-chart/repo
-    helm upgrade --install seafile seafile/cluster  --namespace seafile --create-namespace --values my-values.yaml
+    helm upgrade --install seafile seafile/cluster --version 13.0 --namespace seafile --create-namespace --values my-values.yaml
     ```
 
     !!! tip "Seafile helm chart 13.0 support variable validity checking"
@@ -159,7 +159,7 @@ After installation, you need to start the k8s control plane service on each node
 5. After the first-time startup, you have to turn off (i.e., set `initMode` to `false`) in your `my-values.yaml`, then upgrade the chart:
 
     ```sh
-    helm upgrade --install seafile seafile/cluster  --namespace seafile --create-namespace --values my-values.yaml
+    helm upgrade --install seafile seafile/cluster --version 13.0 --namespace seafile --create-namespace --values my-values.yaml
     ```
 
     !!! success
@@ -299,7 +299,7 @@ After installation, you need to start the k8s control plane service on each node
         Finally you can upgrade your chart by:
 
         ```sh
-        helm upgrade --install seafile seafile/cluster  --namespace seafile --create-namespace --values my-values.yaml
+        helm upgrade --install seafile seafile/cluster --version 13.0 --namespace seafile --create-namespace --values my-values.yaml
         ```
 
 ## Version control

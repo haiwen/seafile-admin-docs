@@ -33,7 +33,7 @@ Please refer [here](./system_requirements.md) for the details of system requirem
         --from-literal=INIT_SEAFILE_ADMIN_PASSWORD='<required>' \
         --from-literal=INIT_SEAFILE_MYSQL_ROOT_PASSWORD='<required>' \
         --from-literal=REDIS_PASSWORD='' \
-        --from-literal=S3_SECRET_KEY='' \ 
+        --from-literal=S3_SECRET_KEY='' \
         --from-literal=S3_SSE_C_KEY='' 
         ```
     === "Seafile CE"
@@ -54,7 +54,7 @@ Please refer [here](./system_requirements.md) for the details of system requirem
     === "Seafile Pro"
 
         ```sh
-        wget -O my-values.yaml https://haiwen.github.io/seafile-helm-chart/values/latest/pro.yaml
+        wget -O my-values.yaml https://haiwen.github.io/seafile-helm-chart/values/13.0/pro.yaml
 
         nano my-values.yaml
         ```
@@ -62,7 +62,7 @@ Please refer [here](./system_requirements.md) for the details of system requirem
     === "Seafile CE"
 
         ```sh
-        wget -O my-values.yaml https://haiwen.github.io/seafile-helm-chart/values/latest/ce.yaml
+        wget -O my-values.yaml https://haiwen.github.io/seafile-helm-chart/values/13.0/ce.yaml
 
         nano my-values.yaml
         ```
@@ -85,14 +85,14 @@ Please refer [here](./system_requirements.md) for the details of system requirem
 
         ```sh
         helm repo add seafile https://haiwen.github.io/seafile-helm-chart/repo
-        helm upgrade --install seafile seafile/pro  --namespace seafile --create-namespace --values my-values.yaml
+        helm upgrade --install seafile seafile/pro --version 13.0 --namespace seafile --create-namespace --values my-values.yaml
         ```
 
     === "Seafile CE"
 
         ```sh
         helm repo add seafile https://haiwen.github.io/seafile-helm-chart/repo
-        helm upgrade --install seafile seafile/ce  --namespace seafile --create-namespace --values my-values.yaml
+        helm upgrade --install seafile seafile/ce --version 13.0 --namespace seafile --create-namespace --values my-values.yaml
         ```
 
     !!! tip "Seafile helm chart 13.0 support variable validity checking"
@@ -111,9 +111,7 @@ After installing the chart, the Seafile pod should startup automaticlly.
     The default service type of Seafile is ***LoadBalancer***. You should specify K8S load balancer for Seafile or specify at least one external ip, that can be accessed from external networks.
 
 !!! warning "Important for deployment"
-    By default, Seafile will access the ***Redis*** (the default cache from Seafile 13) and ***Elasticsearch*** (Pro only) with the specific service name:
-
-    - ***Redis***: `redis` with port 6379
+    By default, Seafile will access the ***Elasticsearch*** (Pro only) with the specific service name:
     - ***Elasticsearch***: `elasticsearch` with port 9200
 
     If the above services are:
@@ -122,7 +120,7 @@ After installing the chart, the Seafile pod should startup automaticlly.
     - With different service name
     - With different server port
 
-    Please modfiy the files in `/opt/seafile-data/seafile/conf` (especially the `seafevents.conf`, `seafile.conf` and `seahub_settings.py`) to make correct the configurations for above services, otherwise the Seafile server cannot start normally. Then restart Seafile server:
+    Please modfiy the files in `/opt/seafile-data/seafile/conf` to make correct the configurations for above services, otherwise the Seafile server cannot start normally. Then restart Seafile server:
 
     ```sh
     kubectl delete pods -n seafile $(kubectl get pods -n seafile -o jsonpath='{.items[*].metadata.name}' | grep seafile)
@@ -170,13 +168,13 @@ kubectl delete pods -n seafile $(kubectl get pods -n seafile -o jsonpath='{.item
     === "Seafile Pro"
 
         ```sh
-        helm upgrade --install seafile seafile/pro  --namespace seafile --create-namespace --values my-values.yaml
+        helm upgrade --install seafile seafile/pro --version 13.0 --namespace seafile --create-namespace --values my-values.yaml
         ```
 
     === "Seafile CE"
 
         ```sh
-        helm upgrade --install seafile seafile/ce  --namespace seafile --create-namespace --values my-values.yaml
+        helm upgrade --install seafile seafile/ce --version 13.0 --namespace seafile --create-namespace --values my-values.yaml
         ```
 
 ## Version control

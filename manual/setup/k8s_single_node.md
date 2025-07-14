@@ -12,7 +12,7 @@ Please refer [here](./system_requirements.md) for the details of system requirem
 
 For persisting data using in the docker-base deployment, `/opt/seafile-data`, is still adopted in this manual. What's more, all K8S YAML files will be placed in `/opt/seafile-k8s-yaml` (replace it when following these instructions if you would like to use another path).
 
-By the way, we don't provide the deployment methods of basic services (e.g., **Memcached**, **MySQL** and **Elasticsearch**) and seafile-compatibility components (e.g., **SeaDoc**) for K8S in our document. If you need to install these services in K8S format, ***you can refer to the rewrite method of this document.***
+By the way, we don't provide the deployment methods of basic services (e.g., **Redis**, **MySQL** and **Elasticsearch**) and seafile-compatibility components (e.g., **SeaDoc**) for K8S in our document. If you need to install these services in K8S format, ***you can refer to the rewrite method of this document.***
 
 ## Down load the YAML files for Seafile Server
 
@@ -84,9 +84,8 @@ kubectl apply -f /opt/seafile-k8s-yaml/ -n seafile
 ```
 
 !!! warning "Important for Pro edition"
-    By default, Seafile (***Pro***) will access the ***Memcached*** and ***Elasticsearch*** with the specific service name:
+    By default, Seafile (***Pro***) will access the ***Elasticsearch*** with the specific service name:
 
-    - ***Memcached***: `memcached` with port 11211
     - ***Elasticsearch***: `elasticsearch` with port 9200
 
     If the above services are:
@@ -95,7 +94,7 @@ kubectl apply -f /opt/seafile-k8s-yaml/ -n seafile
     - With different service name
     - With different server port
 
-    Please modfiy the files in `/opt/seafile-data/seafile/conf` (especially the `seafevents.conf`, `seafile.conf` and `seahub_settings.py`) to make correct the configurations for above services, otherwise the Seafile server cannot start normally. Then restart Seafile server:
+    Please modfiy the files in `/opt/seafile-data/seafile/conf/seafevents.conf` to make correct the configurations for above services, otherwise the Seafile server cannot start normally. Then restart Seafile server:
 
     ```sh
     kubectl delete pods -n seafile $(kubectl get pods -n seafile -o jsonpath='{.items[*].metadata.name}' | grep seafile)
