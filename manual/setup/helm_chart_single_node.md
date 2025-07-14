@@ -86,14 +86,14 @@ Please refer [here](./system_requirements.md) for the details of system requirem
 
         ```sh
         helm repo add seafile https://haiwen.github.io/seafile-helm-chart/repo
-        helm upgrade --install seafile seafile/pro  --namespace seafile --create-namespace --values my-values.yaml
+        helm upgrade --install seafile seafile/pro --version 12.0 --namespace seafile --create-namespace --values my-values.yaml
         ```
 
     === "Seafile CE"
 
         ```sh
         helm repo add seafile https://haiwen.github.io/seafile-helm-chart/repo
-        helm upgrade --install seafile seafile/ce  --namespace seafile --create-namespace --values my-values.yaml
+        helm upgrade --install seafile seafile/ce --version 12.0 --namespace seafile --create-namespace --values my-values.yaml
         ```
 
 After installing the chart, the Seafile pod should startup automaticlly. 
@@ -161,13 +161,13 @@ kubectl delete pods -n seafile $(kubectl get pods -n seafile -o jsonpath='{.item
     === "Seafile Pro"
 
         ```sh
-        helm upgrade --install seafile seafile/pro  --namespace seafile --create-namespace --values my-values.yaml
+        helm upgrade --install seafile seafile/pro --version 12.0 --namespace seafile --create-namespace --values my-values.yaml
         ```
 
     === "Seafile CE"
 
         ```sh
-        helm upgrade --install seafile seafile/ce  --namespace seafile --create-namespace --values my-values.yaml
+        helm upgrade --install seafile seafile/ce --version 12.0 --namespace seafile --create-namespace --values my-values.yaml
         ```
 
 ## Version control
@@ -188,13 +188,13 @@ Seafile Helm Chart is designed to provide fast deployment and version control. Y
     === "Seafile Pro"
 
         ```sh
-        wget -O my-values.yaml https://haiwen.github.io/seafile-helm-chart/values/<release-version>/cluster.yaml
+        wget -O my-values.yaml https://haiwen.github.io/seafile-helm-chart/values/<seafile-version>/pro.yaml
 
         nano my-values.yaml
         ```
     === "Seafile CE"
         ```sh
-        wget -O my-values.yaml https://haiwen.github.io/seafile-helm-chart/values/<release-version>/cluster.yaml
+        wget -O my-values.yaml https://haiwen.github.io/seafile-helm-chart/values/<seafile-version>/ce.yaml
 
         nano my-values.yaml
         ```
@@ -212,11 +212,11 @@ Seafile Helm Chart is designed to provide fast deployment and version control. Y
     === "Seafile Pro"
 
         ```sh
-        helm upgrade --install seafile seafile/pro --namespace seafile --create-namespace --values my-values.yaml --version <release-version>
+        helm upgrade --install seafile seafile/pro --version 12.0 --namespace seafile --create-namespace --values my-values.yaml --version <release-version>
         ```
     === "Seafile CE"
         ```sh
-        helm upgrade --install seafile seafile/ce --namespace seafile --create-namespace --values my-values.yaml --version <release-version>
+        helm upgrade --install seafile seafile/ce --version 12.0 --namespace seafile --create-namespace --values my-values.yaml --version <release-version>
         ```
     
 
