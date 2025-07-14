@@ -4626,7 +4626,7 @@
 <p>Please refer <a href="../system_requirements/">here</a> for the details of system requirements about Seafile service. By the way, this will apply to all nodes where Seafile pods may appear in your K8S cluster. In general, we recommend that each node should have at least 2G RAM and a 2-core CPU (&gt; 2GHz).</p>
 <h2 id="gettings-started">Gettings started<a class="headerlink" href="#gettings-started" title="Permanent link">&para;</a></h2>
 <p>For persisting data using in the docker-base deployment, <code>/opt/seafile-data</code>, is still adopted in this manual. What's more, all K8S YAML files will be placed in <code>/opt/seafile-k8s-yaml</code> (replace it when following these instructions if you would like to use another path).</p>
-<p>By the way, we don't provide the deployment methods of basic services (e.g., <strong>Memcached</strong>, <strong>MySQL</strong> and <strong>Elasticsearch</strong>) and seafile-compatibility components (e.g., <strong>SeaDoc</strong>) for K8S in our document. If you need to install these services in K8S format, <strong><em>you can refer to the rewrite method of this document.</em></strong></p>
+<p>By the way, we don't provide the deployment methods of basic services (e.g., <strong>Redis</strong>, <strong>MySQL</strong> and <strong>Elasticsearch</strong>) and seafile-compatibility components (e.g., <strong>SeaDoc</strong>) for K8S in our document. If you need to install these services in K8S format, <strong><em>you can refer to the rewrite method of this document.</em></strong></p>
 <h2 id="down-load-the-yaml-files-for-seafile-server">Down load the YAML files for Seafile Server<a class="headerlink" href="#down-load-the-yaml-files-for-seafile-server" title="Permanent link">&para;</a></h2>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Pro edition</label><label for="__tabbed_1_2">Community edition</label></div>
 <div class="tabbed-content">
@@ -4685,9 +4685,8 @@ wget<span class="w"> </span>-P<span class="w"> </span>/opt/seafile-k8s-yaml<span
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Important for Pro edition</p>
-<p>By default, Seafile (<strong><em>Pro</em></strong>) will access the <strong><em>Memcached</em></strong> and <strong><em>Elasticsearch</em></strong> with the specific service name:</p>
+<p>By default, Seafile (<strong><em>Pro</em></strong>) will access the <strong><em>Elasticsearch</em></strong> with the specific service name:</p>
 <ul>
-<li><strong><em>Memcached</em></strong>: <code>memcached</code> with port 11211</li>
 <li><strong><em>Elasticsearch</em></strong>: <code>elasticsearch</code> with port 9200</li>
 </ul>
 <p>If the above services are:</p>
@@ -4696,7 +4695,7 @@ wget<span class="w"> </span>-P<span class="w"> </span>/opt/seafile-k8s-yaml<span
 <li>With different service name</li>
 <li>With different server port</li>
 </ul>
-<p>Please modfiy the files in <code>/opt/seafile-data/seafile/conf</code> (especially the <code>seafevents.conf</code>, <code>seafile.conf</code> and <code>seahub_settings.py</code>) to make correct the configurations for above services, otherwise the Seafile server cannot start normally. Then restart Seafile server:</p>
+<p>Please modfiy the files in <code>/opt/seafile-data/seafile/conf/seafevents.conf</code> to make correct the configurations for above services, otherwise the Seafile server cannot start normally. Then restart Seafile server:</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.items[*].metadata.name}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>seafile<span class="k">)</span>
 </code></pre></div>
 </div>

@@ -4651,7 +4651,7 @@
 </li>
 <li>
 <p>Download and modify the <code>my-values.yaml</code> according to your configurations. By the way, you can follow <a href="../setup_pro_by_docker/#downloading-and-modifying-env">here</a> for the details:</p>
-<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>my-values.yaml<span class="w"> </span>https://haiwen.github.io/seafile-helm-chart/values/latest/cluster.yaml
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>my-values.yaml<span class="w"> </span>https://haiwen.github.io/seafile-helm-chart/values/13.0/cluster.yaml
 
 nano<span class="w"> </span>my-values.yaml
 </code></pre></div>
@@ -4674,7 +4674,7 @@ nano<span class="w"> </span>my-values.yaml
 <li>
 <p>Then install the chart use the following command:</p>
 <div class="highlight"><pre><span></span><code>helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>seafile<span class="w"> </span>https://haiwen.github.io/seafile-helm-chart/repo
-helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>seafile<span class="w"> </span>seafile/cluster<span class="w">  </span>--namespace<span class="w"> </span>seafile<span class="w"> </span>--create-namespace<span class="w"> </span>--values<span class="w"> </span>my-values.yaml
+helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>seafile<span class="w"> </span>seafile/cluster<span class="w"> </span>--version<span class="w"> </span><span class="m">13</span>.0<span class="w"> </span>--namespace<span class="w"> </span>seafile<span class="w"> </span>--create-namespace<span class="w"> </span>--values<span class="w"> </span>my-values.yaml
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Seafile helm chart 13.0 support variable validity checking</p>
@@ -4760,7 +4760,7 @@ Init success
 </li>
 <li>
 <p>After the first-time startup, you have to turn off (i.e., set <code>initMode</code> to <code>false</code>) in your <code>my-values.yaml</code>, then upgrade the chart:</p>
-<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>seafile<span class="w"> </span>seafile/cluster<span class="w">  </span>--namespace<span class="w"> </span>seafile<span class="w"> </span>--create-namespace<span class="w"> </span>--values<span class="w"> </span>my-values.yaml
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>seafile<span class="w"> </span>seafile/cluster<span class="w"> </span>--version<span class="w"> </span><span class="m">13</span>.0<span class="w"> </span>--namespace<span class="w"> </span>seafile<span class="w"> </span>--create-namespace<span class="w"> </span>--values<span class="w"> </span>my-values.yaml
 </code></pre></div>
 <div class="admonition success">
 <p class="admonition-title">Success</p>
@@ -4890,7 +4890,7 @@ Done.
 <span class="w">    </span><span class="nt">readOnly</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 <p>Finally you can upgrade your chart by:</p>
-<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>seafile<span class="w"> </span>seafile/cluster<span class="w">  </span>--namespace<span class="w"> </span>seafile<span class="w"> </span>--create-namespace<span class="w"> </span>--values<span class="w"> </span>my-values.yaml
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>seafile<span class="w"> </span>seafile/cluster<span class="w"> </span>--version<span class="w"> </span><span class="m">13</span>.0<span class="w"> </span>--namespace<span class="w"> </span>seafile<span class="w"> </span>--create-namespace<span class="w"> </span>--values<span class="w"> </span>my-values.yaml
 </code></pre></div>
 </div>
 </li>

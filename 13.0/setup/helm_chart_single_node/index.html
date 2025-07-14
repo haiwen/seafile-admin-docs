@@ -4639,7 +4639,7 @@
 --from-literal<span class="o">=</span><span class="nv">INIT_SEAFILE_ADMIN_PASSWORD</span><span class="o">=</span><span class="s1">&#39;&lt;required&gt;&#39;</span><span class="w"> </span><span class="se">\</span>
 --from-literal<span class="o">=</span><span class="nv">INIT_SEAFILE_MYSQL_ROOT_PASSWORD</span><span class="o">=</span><span class="s1">&#39;&lt;required&gt;&#39;</span><span class="w"> </span><span class="se">\</span>
 --from-literal<span class="o">=</span><span class="nv">REDIS_PASSWORD</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="se">\</span>
---from-literal<span class="o">=</span><span class="nv">S3_SECRET_KEY</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="se">\ </span>
+--from-literal<span class="o">=</span><span class="nv">S3_SECRET_KEY</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="se">\</span>
 --from-literal<span class="o">=</span><span class="nv">S3_SSE_C_KEY</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="w"> </span>
 </code></pre></div>
 </div>
@@ -4661,13 +4661,13 @@
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Seafile Pro</label><label for="__tabbed_2_2">Seafile CE</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>my-values.yaml<span class="w"> </span>https://haiwen.github.io/seafile-helm-chart/values/latest/pro.yaml
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>my-values.yaml<span class="w"> </span>https://haiwen.github.io/seafile-helm-chart/values/13.0/pro.yaml
 
 nano<span class="w"> </span>my-values.yaml
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>my-values.yaml<span class="w"> </span>https://haiwen.github.io/seafile-helm-chart/values/latest/ce.yaml
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>my-values.yaml<span class="w"> </span>https://haiwen.github.io/seafile-helm-chart/values/13.0/ce.yaml
 
 nano<span class="w"> </span>my-values.yaml
 </code></pre></div>
@@ -4696,12 +4696,12 @@ nano<span class="w"> </span>my-values.yaml
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>seafile<span class="w"> </span>https://haiwen.github.io/seafile-helm-chart/repo
-helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>seafile<span class="w"> </span>seafile/pro<span class="w">  </span>--namespace<span class="w"> </span>seafile<span class="w"> </span>--create-namespace<span class="w"> </span>--values<span class="w"> </span>my-values.yaml
+helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>seafile<span class="w"> </span>seafile/pro<span class="w"> </span>--version<span class="w"> </span><span class="m">13</span>.0<span class="w"> </span>--namespace<span class="w"> </span>seafile<span class="w"> </span>--create-namespace<span class="w"> </span>--values<span class="w"> </span>my-values.yaml
 </code></pre></div>
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>seafile<span class="w"> </span>https://haiwen.github.io/seafile-helm-chart/repo
-helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>seafile<span class="w"> </span>seafile/ce<span class="w">  </span>--namespace<span class="w"> </span>seafile<span class="w"> </span>--create-namespace<span class="w"> </span>--values<span class="w"> </span>my-values.yaml
+helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>seafile<span class="w"> </span>seafile/ce<span class="w"> </span>--version<span class="w"> </span><span class="m">13</span>.0<span class="w"> </span>--namespace<span class="w"> </span>seafile<span class="w"> </span>--create-namespace<span class="w"> </span>--values<span class="w"> </span>my-values.yaml
 </code></pre></div>
 </div>
 </div>
@@ -4722,18 +4722,15 @@ helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class=
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Important for deployment</p>
-<p>By default, Seafile will access the <strong><em>Redis</em></strong> (the default cache from Seafile 13) and <strong><em>Elasticsearch</em></strong> (Pro only) with the specific service name:</p>
-<ul>
-<li><strong><em>Redis</em></strong>: <code>redis</code> with port 6379</li>
-<li><strong><em>Elasticsearch</em></strong>: <code>elasticsearch</code> with port 9200</li>
-</ul>
+<p>By default, Seafile will access the <strong><em>Elasticsearch</em></strong> (Pro only) with the specific service name:
+- <strong><em>Elasticsearch</em></strong>: <code>elasticsearch</code> with port 9200</p>
 <p>If the above services are:</p>
 <ul>
 <li>Not in your K8S pods (including using an external service)</li>
 <li>With different service name</li>
 <li>With different server port</li>
 </ul>
-<p>Please modfiy the files in <code>/opt/seafile-data/seafile/conf</code> (especially the <code>seafevents.conf</code>, <code>seafile.conf</code> and <code>seahub_settings.py</code>) to make correct the configurations for above services, otherwise the Seafile server cannot start normally. Then restart Seafile server:</p>
+<p>Please modfiy the files in <code>/opt/seafile-data/seafile/conf</code> to make correct the configurations for above services, otherwise the Seafile server cannot start normally. Then restart Seafile server:</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.items[*].metadata.name}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>seafile<span class="k">)</span>
 </code></pre></div>
 </div>
@@ -4769,11 +4766,11 @@ helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class=
 <div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Seafile Pro</label><label for="__tabbed_4_2">Seafile CE</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>seafile<span class="w"> </span>seafile/pro<span class="w">  </span>--namespace<span class="w"> </span>seafile<span class="w"> </span>--create-namespace<span class="w"> </span>--values<span class="w"> </span>my-values.yaml
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>seafile<span class="w"> </span>seafile/pro<span class="w"> </span>--version<span class="w"> </span><span class="m">13</span>.0<span class="w"> </span>--namespace<span class="w"> </span>seafile<span class="w"> </span>--create-namespace<span class="w"> </span>--values<span class="w"> </span>my-values.yaml
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>seafile<span class="w"> </span>seafile/ce<span class="w">  </span>--namespace<span class="w"> </span>seafile<span class="w"> </span>--create-namespace<span class="w"> </span>--values<span class="w"> </span>my-values.yaml
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>seafile<span class="w"> </span>seafile/ce<span class="w"> </span>--version<span class="w"> </span><span class="m">13</span>.0<span class="w"> </span>--namespace<span class="w"> </span>seafile<span class="w"> </span>--create-namespace<span class="w"> </span>--values<span class="w"> </span>my-values.yaml
 </code></pre></div>
 </div>
 </div>
