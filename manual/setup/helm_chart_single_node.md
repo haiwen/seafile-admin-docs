@@ -111,9 +111,7 @@ After installing the chart, the Seafile pod should startup automaticlly.
     The default service type of Seafile is ***LoadBalancer***. You should specify K8S load balancer for Seafile or specify at least one external ip, that can be accessed from external networks.
 
 !!! warning "Important for deployment"
-    By default, Seafile will access the ***Redis*** (the default cache from Seafile 13) and ***Elasticsearch*** (Pro only) with the specific service name:
-
-    - ***Redis***: `redis` with port 6379
+    By default, Seafile will access the ***Elasticsearch*** (Pro only) with the specific service name:
     - ***Elasticsearch***: `elasticsearch` with port 9200
 
     If the above services are:
@@ -122,7 +120,7 @@ After installing the chart, the Seafile pod should startup automaticlly.
     - With different service name
     - With different server port
 
-    Please modfiy the files in `/opt/seafile-data/seafile/conf` (especially the `seafevents.conf`, `seafile.conf` and `seahub_settings.py`) to make correct the configurations for above services, otherwise the Seafile server cannot start normally. Then restart Seafile server:
+    Please modfiy the files in `/opt/seafile-data/seafile/conf` to make correct the configurations for above services, otherwise the Seafile server cannot start normally. Then restart Seafile server:
 
     ```sh
     kubectl delete pods -n seafile $(kubectl get pods -n seafile -o jsonpath='{.items[*].metadata.name}' | grep seafile)
