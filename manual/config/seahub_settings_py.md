@@ -441,7 +441,8 @@ LIBRARY_TEMPLATES = {
 # Since version 6.2.11
 ENABLE_CHANGE_PASSWORD = True
 
-# Enable a user with SSO account to change/reset password in 'settings' page. Default to `True`
+# Enable a user associated with SSO account to change/reset local password in 'settings' page. Default to `True`.
+# Change it to false to disable SSO account to change local password
 ENABLE_SSO_USER_CHANGE_PASSWORD = True
 
 # If show contact email when search user.
