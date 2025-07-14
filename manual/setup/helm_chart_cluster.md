@@ -33,9 +33,9 @@ After installation, you need to start the k8s control plane service on each node
     ```sh
     kubectl create secret generic seafile-secret --namespace seafile \
     --from-literal=JWT_PRIVATE_KEY='<required>' \
-    --from-literal=SEAFILE_MYSQL_DB_PASSWORD='<required>' \
+    --from-literal=DB_PASSWORD='<required>' \
+    --from-literal=DB_ROOT_PASSWD='<required>' \
     --from-literal=INIT_SEAFILE_ADMIN_PASSWORD='<required>' \
-    --from-literal=INIT_SEAFILE_MYSQL_ROOT_PASSWORD='<required>' \
     --from-literal=INIT_S3_SECRET_KEY=''  
     ```
 
@@ -44,7 +44,7 @@ After installation, you need to start the k8s control plane service on each node
 3. Download and modify the `my-values.yaml` according to your configurations. By the way, you can follow [here](./setup_pro_by_docker.md#downloading-and-modifying-env) for the details:
 
     ```sh
-    wget -O my-values.yaml https://haiwen.github.io/seafile-helm-chart/values/latest/cluster.yaml
+    wget -O my-values.yaml https://haiwen.github.io/seafile-helm-chart/values/12.0/cluster.yaml
 
     nano my-values.yaml
     ```
