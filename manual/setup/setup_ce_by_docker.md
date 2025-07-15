@@ -65,7 +65,7 @@ docker compose up -d
     You must run the above command in the directory with the `.env`. If `.env` file is elsewhere, please run
 
     ```sh
-    docker compose -f /path/to/.env up -d
+    docker compose --env-file /path/to/.env up -d
     ```
 
 !!! success
@@ -167,12 +167,12 @@ To monitor container logs (from outside of the container), please use the follow
 # if the `.env` file is in current directory:
 docker compose logs --follow
 # if the `.env` file is elsewhere:
-docker compose -f /path/to/.env logs --follow
+docker compose --env-file /path/to/.env logs --follow
 
 # you can also specify container name:
 docker compose logs seafile --follow
 # or, if the `.env` file is elsewhere:
-docker compose -f /path/to/.env logs seafile --follow
+docker compose --env-file /path/to/.env logs seafile --follow
 ```
 
 The Seafile logs are under `/shared/logs/seafile` in the docker, or `/opt/seafile-data/logs/seafile` in the server that run the docker.
