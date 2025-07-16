@@ -35,10 +35,10 @@ kubectl delete pods -n seafile $(kubectl get pods -n seafile -o jsonpath='{.item
 
 ## K8S Gateway and HTTPS
 
-Since the Ingress feature [is no longer supported](https://kubernetes.io/docs/concepts/services-networking/ingress/) in the new version of K8S (even the commonly used *Nginx-Ingress* will not be deployed after 1.24), this article will introduce how to use the new version of K8S feature [*K8S Gateway*](https://kubernetes.io/docs/concepts/services-networking/gateway/) to implement Seafile service exposure and load balancing.
+Since the support of Ingress feature [is frozen](https://kubernetes.io/docs/concepts/services-networking/ingress/) in the new version of K8S, this article will introduce how to use the new version of K8S feature [*K8S Gateway*](https://kubernetes.io/docs/concepts/services-networking/gateway/) to implement Seafile service exposure and load balancing.
 
 !!! tip "Still use *Nginx-Ingress*"
-    If your K8S is still running with an old version, and still using *Nginx-Ingress*, you can follow [here](https://artifacthub.io/packages/helm/datamate/seafile#deploy-an-ingress-controller-ingress-nginx) to setup ingress controller and HTTPS. We sincerely thanks *Datamate* to give an example to this configuration.
+    If your K8S is still using *Nginx-Ingress*, you can follow [here](https://artifacthub.io/packages/helm/datamate/seafile#deploy-an-ingress-controller-ingress-nginx) to setup ingress controller and HTTPS. We sincerely thanks *Datamate* to give an example to this configuration.
 
 For the details and features about ***K8S Gateway***, please refer to the K8S [official document](https://kubernetes.io/docs/concepts/services-networking/gateway/#design-principles), you can simpily install it by
 
