@@ -37,7 +37,8 @@ Breaking changes
 * For security reason, WebDAV no longer support login with LDAP account, the user with LDAP account must generate a WebDAV token at the profile page
 * [File tags] The current file tags feature is deprecated. We will re-implement a new one in version 13.0 with a new general metadata management module.
 * For ElasticSearch based search, full text search of doc/xls/ppt file types are no longer supported. This enable us to remove Java dependency in Seafile side.
-
+* The search dialog now support loading more items when scroll down and the original separate detailed file search page is no longer used
+* The right side panel is redesigned and the seldom used file comments feature in the panel is removed
 
 Deploying Seafile with binary package is now deprecated and probably no longer be supported in version 13.0. We recommend you to migrate your existing Seafile deployment to docker based.
 
