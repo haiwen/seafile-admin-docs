@@ -4893,6 +4893,11 @@ download_limit = 100
 # default is false
 check_virus_on_web_upload = true
 </code></pre></div>
+<p>Since Seafile 12.0.4, after the upload is completed by the client, seafile server will check whether the uploaded blocks are complete. Ii's enabled by default.</p>
+<div class="highlight"><pre><span></span><code>[fileserver]
+# default is true
+verify_client_blocks_after_sync = true
+</code></pre></div>
 <h2 id="database-configuration">Database configuration<a class="headerlink" href="#database-configuration" title="Permanent link">&para;</a></h2>
 <p>The configurations of database are stored in the <code>[database]</code> section.</p>
 <div class="admonition danger">

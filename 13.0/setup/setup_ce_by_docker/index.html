@@ -4961,7 +4961,7 @@ nano<span class="w"> </span>.env
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>You must run the above command in the directory with the <code>.env</code>. If <code>.env</code> file is elsewhere, please run</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>/path/to/.env<span class="w"> </span>up<span class="w"> </span>-d
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>/path/to/.env<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
 </div>
 <div class="admonition success">
@@ -5048,12 +5048,12 @@ Done.
 <div class="highlight"><pre><span></span><code><span class="c1"># if the `.env` file is in current directory:</span>
 docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>--follow
 <span class="c1"># if the `.env` file is elsewhere:</span>
-docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>/path/to/.env<span class="w"> </span>logs<span class="w"> </span>--follow
+docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>/path/to/.env<span class="w"> </span>logs<span class="w"> </span>--follow
 
 <span class="c1"># you can also specify container name:</span>
 docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>seafile<span class="w"> </span>--follow
 <span class="c1"># or, if the `.env` file is elsewhere:</span>
-docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>/path/to/.env<span class="w"> </span>logs<span class="w"> </span>seafile<span class="w"> </span>--follow
+docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>/path/to/.env<span class="w"> </span>logs<span class="w"> </span>seafile<span class="w"> </span>--follow
 </code></pre></div>
 <p>The Seafile logs are under <code>/shared/logs/seafile</code> in the docker, or <code>/opt/seafile-data/logs/seafile</code> in the server that run the docker.</p>
 <p>The system logs are under <code>/shared/logs/var-log</code>, or <code>/opt/seafile-data/logs/var-log</code> in the server that run the docker.</p>
