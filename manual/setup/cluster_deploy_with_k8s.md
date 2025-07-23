@@ -43,7 +43,6 @@ wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/12.0/repo/k8s/cluster/s
 wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/12.0/repo/k8s/cluster/seafile-persistentvolumeclaim.yaml
 wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/12.0/repo/k8s/cluster/seafile-service.yaml
 wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/12.0/repo/k8s/cluster/seafile-env.yaml
-wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/12.0/repo/k8s/cluster/seafile-secret.yaml
 ```
 
 
