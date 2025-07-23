@@ -318,7 +318,7 @@ Seafile Helm Chart is designed to provide fast deployment and version control. Y
 2. Download (optional) and modify the new `my-values.yaml`
 
     ```sh
-    wget -O my-values.yaml https://haiwen.github.io/seafile-helm-chart/values/<release-version>/cluster.yaml
+    wget -O my-values.yaml https://haiwen.github.io/seafile-helm-chart/values/<seafile-version>/cluster.yaml
 
     nano my-values.yaml
     ```

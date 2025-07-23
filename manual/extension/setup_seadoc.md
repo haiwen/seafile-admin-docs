@@ -50,7 +50,6 @@ The easiest way to deployment SeaDoc is to deploy it with Seafile server on the 
     COMPOSE_FILE='seafile-server.yml,caddy.yml,seadoc.yml'
 
     ENABLE_SEADOC=true
-    SEADOC_SERVER_URL=https://seafile.example.com/sdoc-server
     ```
 
 3. Start SeaDoc server server with the following command
