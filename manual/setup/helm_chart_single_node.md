@@ -27,6 +27,8 @@ Please refer [here](./system_requirements.md) for the details of system requirem
     === "Seafile Pro"
 
         ```sh
+        kubectl create ns seafile
+
         kubectl create secret generic seafile-secret --namespace seafile \
         --from-literal=JWT_PRIVATE_KEY='<required>' \
         --from-literal=SEAFILE_MYSQL_DB_PASSWORD='<required>' \
@@ -34,11 +36,13 @@ Please refer [here](./system_requirements.md) for the details of system requirem
         --from-literal=INIT_SEAFILE_MYSQL_ROOT_PASSWORD='<required>' \
         --from-literal=REDIS_PASSWORD='' \
         --from-literal=S3_SECRET_KEY='' \
-        --from-literal=S3_SSE_C_KEY='' 
+        --from-literal=S3_SSE_C_KEY=''
         ```
     === "Seafile CE"
 
         ```sh
+        kubectl create ns seafile
+
         kubectl create secret generic seafile-secret --namespace seafile \
         --from-literal=JWT_PRIVATE_KEY='<required>' \
         --from-literal=SEAFILE_MYSQL_DB_PASSWORD='<required>' \
@@ -195,13 +199,13 @@ Seafile Helm Chart is designed to provide fast deployment and version control. Y
     === "Seafile Pro"
 
         ```sh
-        wget -O my-values.yaml https://haiwen.github.io/seafile-helm-chart/values/<release-version>/cluster.yaml
+        wget -O my-values.yaml https://haiwen.github.io/seafile-helm-chart/values/<seafile-version>/pro.yaml
 
         nano my-values.yaml
         ```
     === "Seafile CE"
         ```sh
-        wget -O my-values.yaml https://haiwen.github.io/seafile-helm-chart/values/<release-version>/cluster.yaml
+        wget -O my-values.yaml https://haiwen.github.io/seafile-helm-chart/values/<seafile-version>/ce.yaml
 
         nano my-values.yaml
         ```

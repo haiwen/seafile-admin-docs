@@ -226,6 +226,14 @@ Since Seafile 11.0.7 Pro, you can ask file server to check virus for every file 
 check_virus_on_web_upload = true
 ```
 
+Since Seafile 12.0.4, after the upload is completed by the client, seafile server will check whether the uploaded blocks are complete. Ii's enabled by default.
+
+```
+[fileserver]
+# default is true
+verify_client_blocks_after_sync = true
+```
+
 ## Database configuration
 
 The configurations of database are stored in the `[database]` section.

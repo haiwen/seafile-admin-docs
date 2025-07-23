@@ -20,6 +20,21 @@ After installation, you need to start the k8s control plane service on each node
 !!! tip
     Although we recommend installing the *k8s control plane tool* on each node, it does not mean that we will use each node as a control plane node, but it is a necessary tool to create or join a K8S cluster. For details, please refer to the above [link](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/) about **creating or joining into a cluster**.
 
+## Create namespace and secretMap
+
+```sh
+kubectl create ns seafile
+
+kubectl create secret generic seafile-secret --namespace seafile \
+--from-literal=JWT_PRIVATE_KEY='<required>' \
+--from-literal=SEAFILE_MYSQL_DB_PASSWORD='<required>' \
+--from-literal=INIT_SEAFILE_ADMIN_PASSWORD='<required>' \
+--from-literal=INIT_SEAFILE_MYSQL_ROOT_PASSWORD='<required>' \
+--from-literal=REDIS_PASSWORD='' \
+--from-literal=S3_SECRET_KEY='' \
+--from-literal=S3_SSE_C_KEY=''
+```
+
 ## Download K8S YAML files for Seafile cluster (without frontend node)
 
 ```sh
@@ -30,7 +45,6 @@ wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/13.0/repo/k8s/cluster/s
 wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/13.0/repo/k8s/cluster/seafile-persistentvolumeclaim.yaml
 wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/13.0/repo/k8s/cluster/seafile-service.yaml
 wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/13.0/repo/k8s/cluster/seafile-env.yaml
-wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/13.0/repo/k8s/cluster/seafile-secret.yaml
 ```
 
 
@@ -43,29 +57,20 @@ In here we suppose you download the YAML files in `/opt/seafile-k8s-yaml`, which
 
 For futher configuration details, you can refer [the official documents](https://kubernetes.io/docs/tasks/configure-pod-container/).
 
-## Modify `seafile-env.yaml` and `seafile-secret.yaml`
+!!! tip "Use PV bound from a storage class"
+    If you would like to use automatically allocated persistent volume (PV) by a storage class, please modify `seafile-persistentvolumeclaim.yaml` and specify `storageClassName`. On the other hand, the PV defined by `seafile-persistentvolume.yaml` can be disabled:
+
+    ```sh
+    rm /opt/seafile-k8s-yaml/seafile-persistentvolume.yaml
+    ```
+
+## Modify `seafile-env.yaml`
 
 Similar to Docker-base deployment, Seafile cluster in K8S deployment also supports use files to configure startup progress, you can modify common [environment variables](./setup_pro_by_docker.md#downloading-and-modifying-env) by
 
 ```sh
 nano /opt/seafile-k8s-yaml/seafile-env.yaml
 ```
-
-and sensitive information (e.g., password) by
-
-```sh
-nano /opt/seafile-k8s-yaml/seafile-secret.yaml
-```
-
-!!! note "For `seafile-secret.yaml`"
-    To modify sensitive information (e.g., password), you need to convert the password into base64 encoding before writing it into the `seafile-secret.yaml` file:
-
-    ```sh
-    echo -n '<your-value>' | base64
-    ```
-
-!!! warning
-    For the fields marked with `<...>` are **required**, please make sure these items are filled in, otherwise Seafile server may not run properly.
 
 ## Initialize Seafile cluster
 You can use following command to initialize Seafile cluster now (the Seafile's K8S resources will be specified in namespace `seafile` for easier management):
@@ -138,7 +143,11 @@ Finally you can use the `tar -zcvf` and `tar -zxvf` commands to package the enti
     wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/13.0/repo/k8s/cluster/seafile-frontend-deployment.yaml
     ```
 
-2. Modify `seafile-env.yaml`, and set `CLUSTER_INIT_MODE` to `false` (i.e., disable initialization mode)
+2. Modify `seafile-env.yaml`, and set `CLUSTER_INIT_MODE` to `false` (i.e., disable initialization mode), then re-apply `seafile-env.yaml` again:
+
+    ```sh
+    kubectl apply -f /opt/seafile-k8s-yaml
+    ```
 
 3. Run the following command to restart pods to restart Seafile cluster:
 

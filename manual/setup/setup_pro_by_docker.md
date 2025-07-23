@@ -121,7 +121,7 @@ docker compose up -d
     You must run the above command in the directory with the `.env`. If `.env` file is elsewhere, please run
 
     ```sh
-    docker compose -f /path/to/.env up -d
+    docker compose --env-file /path/to/.env up -d
     ```
 
 !!! success
