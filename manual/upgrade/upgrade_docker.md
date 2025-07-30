@@ -40,7 +40,18 @@ Then download the new `seafile-server.yml` according to the following commands:
     wget https://manual.seafile.com/13.0/repo/docker/pro/seafile-server.yml
     ```
 
-#### Step 2.2) Download `.yml` file for search engine (Pro edition)
+#### Step 2.2) Download `.yml` file for notification server
+
+=== "Deployment with Seafile"
+    ```sh
+    wget https://manual.seafile.com/13.0/repo/docker/notification-server.yml
+    ```
+=== "Standalone deployment"
+    ```sh
+    wget https://manual.seafile.com/13.0/repo/docker/notification-server/notification-server.yml
+    ```
+
+#### Step 2.3) Download `.yml` file for search engine (Pro edition)
 
 === "ElasticSearch"
 
