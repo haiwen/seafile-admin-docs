@@ -15,12 +15,13 @@ Before making changes to the configuration files, you **have to** know the servi
 
 
 | YML | Service | Suggest exposed port | Service listen port | Require WebSocket |
-| --- | --- | --- | --- | --- |
-| `seafile-server.yml` | *seafile* | 80 | 80 | No |
-| `seadoc.yml` | *seadoc* | 8888 | 80 | Yes |
-| `notification-server.yml` | *notification-server* | 8083 | 8083 | Yes |
-| `collabora.yml` | *collabora* | 6232 | 9980 | No |
-| `onlyoffice.yml` | *onlyoffice* | 6233 | 80 | No |
+| -- | --- |----------------------| --- | --- |
+| `seafile-server.yml` | *seafile* | 80                   | 80 | No |
+| `seadoc.yml` | *seadoc* | 8888                 | 80 | Yes |
+| `notification-server.yml` | *notification-server* | 8083                 | 8083 | Yes |
+| `collabora.yml` | *collabora* | 6232                 | 9980 | No |
+| `onlyoffice.yml` | *onlyoffice* | 6233                 | 80 | No |
+| `thumbnail-server.yml` | *thumbnail* | 8084                 | 80 | No |
 
 ## Modify YML files
 
@@ -157,6 +158,21 @@ Modify `nginx.conf` and add reverse proxy for services ***seafile*** and ***sead
         proxy_set_header X-Forwarded-Host $the_host/onlyofficeds;
         proxy_set_header X-Forwarded-Proto $the_scheme;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+    ```
+
+=== "thumbnail"
+    ```conf
+    location /thumbnail {
+        proxy_pass http://127.0.0.1:8084/;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        access_log /var/log/nginx/thumbnail.access.log;
+        error_log  /var/log/nginx/thumbnail.error.log;
     }
     ```
 
