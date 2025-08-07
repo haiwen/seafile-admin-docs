@@ -101,14 +101,20 @@ port = 6379
 password = q!1w@#123
 
 [AUTO DELETION]
-enabled = true     # Default is false, when enabled, users can use file auto deletion feature
-interval = 86400   # The unit is second(s), the default frequency is one day, that is, it runs once a day
+## Default is false, when enabled, users can use file auto deletion feature
+enabled = true
+## The unit is second(s), the default frequency is one day, that is, it runs once a day
+interval = 86400
 
 [SEASEARCH]
-enabled = true # Default is false, when enabled, seafile can use SeaSearch as the search engine
-seasearch_url = http://seasearch:4080 # If your SeaSearch server deploy on another machine, replace it to the truth address
-seasearch_token = <your auth token> # base64 code consist of `username:password`
-interval = 10m # The interval the search index is updated. Can be s(seconds), m(minutes), h(hours), d(days)
+## Default is false, when enabled, seafile can use SeaSearch as the search engine
+enabled = true
+## If your SeaSearch server deploy on another machine, replace it to the truth address
+seasearch_url = http://seasearch:4080
+## base64 code consist of `username:password`
+seasearch_token = <your auth token>
+## The interval the search index is updated. Can be s(seconds), m(minutes), h(hours), d(days)
+interval = 10m
 
 ```
 
