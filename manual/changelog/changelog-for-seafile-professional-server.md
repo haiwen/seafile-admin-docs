@@ -8,6 +8,13 @@
 
 Please check our document for how to upgrade to [12.0](../upgrade/upgrade_notes_for_12.0.x.md)
 
+### 12.0.15 (2025-08-15)
+
+[fix] Fix OCM support
+[fix] Fix sending anti-virus email to system admin using contract email
+[fix] Fix expiring check for upload link
+[fix] Fix smart-link accessing for shared folders in multi-tenancy mode
+
 ### 12.0.14 (2025-05-28)
 
 * [fix] Fix two stored XSS issues (In rendering terms and conditions and in institution admin page)
