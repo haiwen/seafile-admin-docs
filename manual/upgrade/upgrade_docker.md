@@ -189,7 +189,7 @@ Seafile 13.0 add a new environment `SEAF_SERVER_STORAGE_TYPE` to determine the s
     SEAF_SERVER_STORAGE_TYPE=
     ```
 
-### Step 4) Remove obsolote configurations
+### Step 4) Remove obsolete configurations
 
 Although the configurations in environment (i.e., `.env`) have higher priority than the configurations in config files, we recommend that you remove or modify the cache configuration in the following files to avoid ambiguity:
 
