@@ -9,6 +9,22 @@
 
 Please check our document for how to upgrade to [13.0](../upgrade/upgrade_notes_for_13.0.x.md)
 
+
+### 13.0.9 beta (2025-08-28)
+
+* [metadata] Edit and add location information for photos
+* [metadata] Videos cannot be displayed directly in detail panel
+* [metadata] UI improvement for table view
+* [UI] Polishing the dark mode
+* Enable editing of SeaDoc or Markdown Documents via Sharing Link
+* Support OnlyOffice Form building
+* Update Django to version 5.2
+* Fix reading MySQL environment variables in go fileserver
+* Fix an error in database upgrade script
+* Fix seadoc reports an error when accessing history
+* Fix a XSS issue in upload link
+
+
 ### 13.0.8 beta (2025-07-30)
 
 * Add basic support for dark mode, it will be polished in a later version
