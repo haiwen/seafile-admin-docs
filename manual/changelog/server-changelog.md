@@ -16,6 +16,7 @@ Please check our document for how to upgrade to [13.0](../upgrade/upgrade_notes_
 * [metadata] Videos cannot be displayed directly in detail panel
 * [metadata] UI improvement for table view
 * [UI] Polishing the dark mode
+* Add Excalidraw
 * Enable editing of SeaDoc or Markdown Documents via Sharing Link
 * Support OnlyOffice Form building
 * Update Django to version 5.2
