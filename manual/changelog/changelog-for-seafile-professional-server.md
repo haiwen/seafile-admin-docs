@@ -8,6 +8,11 @@
 
 Please check our document for how to upgrade to [12.0](../upgrade/upgrade_notes_for_12.0.x.md)
 
+### 12.0.16 (2025-08-29)
+
+* [fix] Fix a XSS issue in upload link
+* [fix] Fix a permission check issue for "shared with all" libraries in mutli-tenancy mode
+
 ### 12.0.15 (2025-08-15)
 
 * [fix] Fix OCM support
