@@ -88,6 +88,10 @@ Please check our document for how to upgrade to [12.0](../upgrade/upgrade_notes_
 
 Please check our document for how to upgrade to [11.0](../upgrade/upgrade_notes_for_11.0.x.md)
 
+### 11.0.20 (2025-08-29)
+
+* [fix] Fix a permission check issue for "shared with all" libraries in mutli-tenancy mode
+
 ### 11.0.19 (2025-03-21)
 
 * [fix] Fix a stored XSS issue
