@@ -20,5 +20,6 @@ FACE_EMBEDDING_SERVICE_URL=
 SEAFILE_AI_LLM_TYPE=openai
 SEAFILE_AI_LLM_URL=
 SEAFILE_AI_LLM_KEY=... # your llm key
+SEAFILE_AI_LLM_MODEL=gpt-4o-mini
 
 INNER_SEAHUB_SERVICE_URL=    # https://seafile.example.com
