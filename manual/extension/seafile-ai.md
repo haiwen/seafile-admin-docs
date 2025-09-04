@@ -2,6 +2,9 @@
 
 From Seafile 13, users can enable ***Seafile AI*** to support the following features:
 
+!!! note "Prerequisites of Seafile AI deployment"
+    To deploy Seafile AI, you have to deploy [Metadat mmanagement](./metadata-server.md) extension firstly. Then you can follow this manual to deploy Seafile AI.
+
 - File tags, file and image summaries, text translation, sdoc writing assistance
 - Given an image, generate its corresponding tags (including objects, weather, color, etc.)
 - Detect faces in images and encode them
@@ -35,30 +38,85 @@ The Seafile AI basic service will use API calls to external large language model
 
 2. Modify `.env`, insert or modify the following fields:
 
-    === "Use ***gpt-4o-mini*** model"
+    === "OpenAI"
 
         ```
         COMPOSE_FILE='...,seafile-ai.yml' # add seafile-ai.yml
 
         ENABLE_SEAFILE_AI=true
+        SEAFILE_AI_LLM_TYPE=openai
         SEAFILE_AI_LLM_KEY=<your openai LLM access key>
+        SEAFILE_AI_LLM_MODEL=gpt-4o-mini # recommend
         ```
-    === "Use other models"
+    === "Deepseek"
         ```
         COMPOSE_FILE='...,seafile-ai.yml' # add seafile-ai.yml
 
         ENABLE_SEAFILE_AI=true
-        SEAFILE_AI_LLM_TYPE=other
-        SEAFILE_AI_LLM_URL=https://api.openai.com/v1 # your LLM API endpoint
+        SEAFILE_AI_LLM_TYPE=deepseek
         SEAFILE_AI_LLM_KEY=<your LLM access key>
-        SEAFILE_AI_LLM_MODEL=gpt-4o-mini # your model id
+        SEAFILE_AI_LLM_MODEL=deepseek-chat # recommend
+        ```
+    === "Azure OpenAI"
+        ```
+        COMPOSE_FILE='...,seafile-ai.yml' # add seafile-ai.yml
+
+        ENABLE_SEAFILE_AI=true
+        SEAFILE_AI_LLM_TYPE=azure
+        SEAFILE_AI_LLM_URL= # your deployment url, leave blank to use default endpoint
+        SEAFILE_AI_LLM_KEY=<your API key>
+        SEAFILE_AI_LLM_MODEL=<your_deployment_name>
+        ```
+    === "Ollama"
+        ```
+        COMPOSE_FILE='...,seafile-ai.yml' # add seafile-ai.yml
+
+        ENABLE_SEAFILE_AI=true
+        SEAFILE_AI_LLM_TYPE=ollama
+        SEAFILE_AI_LLM_URL=<your LLM endpoint>
+        SEAFILE_AI_LLM_KEY=<your LLM access key>
+        SEAFILE_AI_LLM_MODEL=<your model-id>
+        ```
+    === "HuggingFace"
+        ```
+        COMPOSE_FILE='...,seafile-ai.yml' # add seafile-ai.yml
+
+        ENABLE_SEAFILE_AI=true
+        SEAFILE_AI_LLM_TYPE=huggingface
+        SEAFILE_AI_LLM_URL=<LLM Provider>/<your huggingface API endpoint>
+        SEAFILE_AI_LLM_KEY=<your huggingface API key>
+        SEAFILE_AI_LLM_MODEL=<model-id>
+        ```
+    === "Self-proxy Server"
+        ```
+        COMPOSE_FILE='...,seafile-ai.yml' # add seafile-ai.yml
+
+        ENABLE_SEAFILE_AI=true
+        SEAFILE_AI_LLM_TYPE=proxy
+        SEAFILE_AI_LLM_URL=<your proxy url>
+        SEAFILE_AI_LLM_KEY=<your proxy virtual key>
+        SEAFILE_AI_LLM_MODEL=<model-id>
+        ```
+    === "Other"
+        Seafile AI utilizes [LiteLLM](https://docs.litellm.ai/docs/) to interact with LLM services. For a complete list of supported LLM providers, please refer to [this documentation](https://docs.litellm.ai/docs/providers). Then fill the following fields in your `.env`:
+
+        ```
+        COMPOSE_FILE='...,seafile-ai.yml' # add seafile-ai.yml
+        ENABLE_SEAFILE_AI=true
+
+        # according to your situation
+        SEAFILE_AI_LLM_TYPE=...
+        SEAFILE_AI_LLM_URL=...
+        SEAFILE_AI_LLM_KEY=...
+        SEAFILE_AI_LLM_MODEL=...
         ```
 
-        !!! note "About use custom model"
+        For example, if you are using a LLM service with ***OpenAI-compatible endpoints***, you should set `SEAFILE_AI_LLM_TYPE` to `other` or `openai`, and set other LLM configuration items accurately.
 
-            Seafile AI supports the use of custom large models, but the following conditions must be met:
-            - OpenAI compatibility API
-            - The large model supports multi-modality (such as supporting images, etc.)
+            
+    !!! note "About model selection"
+
+        Seafile AI supports using large model providers from [LiteLLM](https://docs.litellm.ai/docs/providers) or large model services with OpenAI-compatible endpoints. Therefore, Seafile AI is compatible with most custom large model services except the default model (*gpt-4o-mini*), but in order to ensure the normal use of Seafile AI features, you need to select a **multimodal large model** (such as supporting image input and recognition)
 
 
 3. Restart Seafile server:
@@ -87,11 +145,11 @@ The Seafile AI basic service will use API calls to external large language model
     | `REDIS_HOST`       | Redis server host | 
     | `REDIS_PORT`       | Redis server port | 
     | `REDIS_PASSWORD`       | Redis server password | 
-    | `SEAFILE_AI_LLM_TYPE`       | Large Language Model (LLM) Type. `openai` (default) will use OpenAI's ***gpt-4o-mini*** model and `other` for user-custom models which support multimodality | 
-    | `SEAFILE_AI_LLM_URL`       | LLM API endpoint, only needs to be specified when `SEAFILE_AI_LLM_TYPE=other`. Default is `https://api.openai.com/v1`  | 
+    | `SEAFILE_AI_LLM_TYPE`       | Large Language Model (LLM) Type. Default is `openai`. | 
+    | `SEAFILE_AI_LLM_URL`       | LLM API endpoint. Default is `` (none)  | 
     | `SEAFILE_AI_LLM_KEY`       | LLM API key | 
     | `FACE_EMBEDDING_SERVICE_URL`       | Face embedding service url |
-    | `SEAFILE_AI_LLM_MODEL`       | LLM model id (or name), only needs to be specified when `SEAFILE_AI_LLM_TYPE=other`. Default is ***gpt-4o-mini*** |
+    | `SEAFILE_AI_LLM_MODEL`       | LLM model id (or name). Default is ***gpt-4o-mini*** |
 
     then start your Seafile AI server:
 
