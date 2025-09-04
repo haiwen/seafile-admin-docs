@@ -65,7 +65,7 @@ The Seafile AI basic service will use API calls to external large language model
         SEAFILE_AI_LLM_TYPE=azure
         SEAFILE_AI_LLM_URL= # your deployment url, leave blank to use default endpoint
         SEAFILE_AI_LLM_KEY=<your API key>
-        SEAFILE_AI_LLM_MODEL=<your_deployment_name>
+        SEAFILE_AI_LLM_MODEL=<your deployment name>
         ```
     === "Ollama"
         ```
@@ -83,9 +83,9 @@ The Seafile AI basic service will use API calls to external large language model
 
         ENABLE_SEAFILE_AI=true
         SEAFILE_AI_LLM_TYPE=huggingface
-        SEAFILE_AI_LLM_URL=<LLM Provider>/<your huggingface API endpoint>
+        SEAFILE_AI_LLM_URL=<your huggingface API endpoint>
         SEAFILE_AI_LLM_KEY=<your huggingface API key>
-        SEAFILE_AI_LLM_MODEL=<model-id>
+        SEAFILE_AI_LLM_MODEL=<model provider>/<model-id>
         ```
     === "Self-proxy Server"
         ```
@@ -94,7 +94,7 @@ The Seafile AI basic service will use API calls to external large language model
         ENABLE_SEAFILE_AI=true
         SEAFILE_AI_LLM_TYPE=proxy
         SEAFILE_AI_LLM_URL=<your proxy url>
-        SEAFILE_AI_LLM_KEY=<your proxy virtual key>
+        SEAFILE_AI_LLM_KEY=<your proxy virtual key> # optional
         SEAFILE_AI_LLM_MODEL=<model-id>
         ```
     === "Other"
