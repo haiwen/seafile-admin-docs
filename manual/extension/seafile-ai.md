@@ -146,10 +146,10 @@ The Seafile AI basic service will use API calls to external large language model
     | `REDIS_PORT`       | Redis server port | 
     | `REDIS_PASSWORD`       | Redis server password | 
     | `SEAFILE_AI_LLM_TYPE`       | Large Language Model (LLM) Type. Default is `openai`. | 
-    | `SEAFILE_AI_LLM_URL`       | LLM API endpoint. Default is `` (none)  | 
-    | `SEAFILE_AI_LLM_KEY`       | LLM API key | 
-    | `FACE_EMBEDDING_SERVICE_URL`       | Face embedding service url |
+    | `SEAFILE_AI_LLM_URL`       | LLM API endpoint.  | 
+    | `SEAFILE_AI_LLM_KEY`       | LLM API key. | 
     | `SEAFILE_AI_LLM_MODEL`       | LLM model id (or name). Default is ***gpt-4o-mini*** |
+    | `FACE_EMBEDDING_SERVICE_URL`       | Face embedding service url |
 
     then start your Seafile AI server:
 
