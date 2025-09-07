@@ -3120,29 +3120,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../ccnet-conf/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    ccnet.conf
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../seafile-conf/" class="md-nav__link">
         
   
@@ -3225,15 +3202,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#cache" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cache
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#security-settings" class="md-nav__link">
     <span class="md-ellipsis">
       Security settings
@@ -3246,6 +3214,15 @@
   <a href="#user-management-options" class="md-nav__link">
     <span class="md-ellipsis">
       User management options
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#single-sign-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      Single Sign On
     </span>
   </a>
   
@@ -3270,18 +3247,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#cloud-mode" class="md-nav__link">
+  <a href="#map-service" class="md-nav__link">
     <span class="md-ellipsis">
-      Cloud Mode
+      Map service
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#single-sign-on" class="md-nav__link">
+  <a href="#cloud-mode" class="md-nav__link">
     <span class="md-ellipsis">
-      Single Sign On
+      Cloud Mode
     </span>
   </a>
   
@@ -4547,15 +4524,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#cache" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cache
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#security-settings" class="md-nav__link">
     <span class="md-ellipsis">
       Security settings
@@ -4568,6 +4536,15 @@
   <a href="#user-management-options" class="md-nav__link">
     <span class="md-ellipsis">
       User management options
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#single-sign-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      Single Sign On
     </span>
   </a>
   
@@ -4592,18 +4569,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#cloud-mode" class="md-nav__link">
+  <a href="#map-service" class="md-nav__link">
     <span class="md-ellipsis">
-      Cloud Mode
+      Map service
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#single-sign-on" class="md-nav__link">
+  <a href="#cloud-mode" class="md-nav__link">
     <span class="md-ellipsis">
-      Single Sign On
+      Cloud Mode
     </span>
   </a>
   
@@ -4671,41 +4648,6 @@
 </div>
 <h2 id="sending-email-notifications-on-seahub">Sending Email Notifications on Seahub<a class="headerlink" href="#sending-email-notifications-on-seahub" title="Permanent link">&para;</a></h2>
 <p>Refer to <a href="../sending_email/">email sending documentation</a>.</p>
-<h2 id="cache">Cache<a class="headerlink" href="#cache" title="Permanent link">&para;</a></h2>
-<p>Seahub caches items(avatars, profiles, etc) on file system by default(/tmp/seahub_cache/). You can replace with Memcached or Redis.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Memcached</label><label for="__tabbed_1_2">Redis</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code># on Debian/Ubuntu 18.04+
-apt-get install memcached libmemcached-dev -y
-pip3 install --timeout=3600 pylibmc django-pylibmc
-
-systemctl enable --now memcached
-</code></pre></div>
-<p>Add the following configuration to <code>seahub_settings.py</code>.</p>
-<div class="highlight"><pre><span></span><code>CACHES = {
-    &#39;default&#39;: {
-        &#39;BACKEND&#39;: &#39;django_pylibmc.memcached.PyLibMCCache&#39;,
-        &#39;LOCATION&#39;: &#39;127.0.0.1:11211&#39;,
-    },
-}
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="admonition success">
-<p class="admonition-title">Redis supported is added in Seafile version 11.0</p>
-</div>
-<ol>
-<li>
-<p>Install Redis with package installers in your OS.</p>
-</li>
-<li>
-<p>Please refer to <a href="https://docs.djangoproject.com/en/4.2/topics/cache/#redis">Django's documentation about using Redis cache</a>.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
 <h2 id="security-settings">Security settings<a class="headerlink" href="#security-settings" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="c1"># For security consideration, please set to match the host/domain of your site, e.g., ALLOWED_HOSTS = [&#39;.example.com&#39;].</span>
 <span class="c1"># Please refer https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts for details.</span>
@@ -4751,14 +4693,6 @@ systemctl enable --now memcached
 <span class="c1"># Since version 5.1.2 or pro 5.1.3</span>
 <span class="n">FREEZE_USER_ON_LOGIN_FAILED</span> <span class="o">=</span> <span class="kc">False</span>
 
-<span class="c1"># mininum length for user&#39;s password</span>
-<span class="n">USER_PASSWORD_MIN_LENGTH</span> <span class="o">=</span> <span class="mi">6</span>
-
-<span class="c1"># LEVEL based on four types of input:</span>
-<span class="c1"># num, upper letter, lower letter, other symbols</span>
-<span class="c1"># &#39;3&#39; means password must have at least 3 types of the above.</span>
-<span class="n">USER_PASSWORD_STRENGTH_LEVEL</span> <span class="o">=</span> <span class="mi">3</span>
-
 <span class="c1"># default False, only check USER_PASSWORD_MIN_LENGTH</span>
 <span class="c1"># when True, check password strength level, STRONG(or above) is allowed</span>
 <span class="n">USER_STRONG_PASSWORD_REQUIRED</span> <span class="o">=</span> <span class="kc">False</span>
@@ -4775,10 +4709,6 @@ systemctl enable --now memcached
 
 <span class="c1"># Whether to save the session data on every request. Default is `False`</span>
 <span class="n">SESSION_SAVE_EVERY_REQUEST</span> <span class="o">=</span> <span class="kc">False</span>
-
-<span class="c1"># Whether enable the feature &quot;published library&quot;. Default is `False`</span>
-<span class="c1"># Since 6.1.0 CE</span>
-<span class="n">ENABLE_WIKI</span> <span class="o">=</span> <span class="kc">True</span>
 
 <span class="c1"># In old version, if you use Single Sign On, the password is not saved in Seafile.</span>
 <span class="c1"># Users can&#39;t use WebDAV because Seafile can&#39;t check whether the password is correct.</span>
@@ -4799,6 +4729,48 @@ systemctl enable --now memcached
 <span class="c1"># The prerequisite is that the administrator should &#39;enable two factor authentication&#39; in the &#39;System Admin -&gt; Settings&#39; page.</span>
 <span class="c1"># Then you can add the following configuration information to the configuration file.</span>
 <span class="n">ENABLE_FORCE_2FA_TO_ALL_USERS</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># Enable two factor authentication for accounts. Defaults to `False`.</span>
+<span class="c1"># Since version 6.0</span>
+<span class="n">ENABLE_TWO_FACTOR_AUTH</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># Enable a user to change password in &#39;settings&#39; page. Default to `True`</span>
+<span class="c1"># Since version 6.2.11</span>
+<span class="n">ENABLE_CHANGE_PASSWORD</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># If show contact email when search user.</span>
+<span class="n">ENABLE_SHOW_CONTACT_EMAIL_WHEN_SEARCH_USER</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+<h2 id="single-sign-on">Single Sign On<a class="headerlink" href="#single-sign-on" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># Enable authentication with ADFS</span>
+<span class="c1"># Default is False</span>
+<span class="c1"># Since 6.0.9</span>
+<span class="n">ENABLE_ADFS_LOGIN</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># Force user login through ADFS/OAuth instead of email and password</span>
+<span class="c1"># Default is False</span>
+<span class="c1"># Since 11.0.7, in version 12.0, it also controls users via OAuth</span>
+<span class="n">DISABLE_ADFS_USER_PWD_LOGIN</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># Enable authentication wit Kerberos</span>
+<span class="c1"># Default is False</span>
+<span class="n">ENABLE_KRB5_LOGIN</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># Enable authentication with Shibboleth</span>
+<span class="c1"># Default is False</span>
+<span class="n">ENABLE_SHIBBOLETH_LOGIN</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># Enable a user associated with SSO account to change/reset local password in &#39;settings&#39; page. Default to `True`.</span>
+<span class="c1"># Change it to false to disable SSO account to change local password</span>
+<span class="n">ENABLE_SSO_USER_CHANGE_PASSWORD</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># Enable client to open an external browser for single sign on</span>
+<span class="c1"># When it is false, the old buitin browser is opened for single sign on</span>
+<span class="c1"># When it is true, the default browser of the operation system is opened</span>
+<span class="c1"># The benefit of using system browser is that it can support hardware 2FA</span>
+<span class="c1"># Since 11.0.0, and sync client 9.0.5, drive client 3.0.8</span>
+<span class="n">CLIENT_SSO_VIA_LOCAL_BROWSER</span> <span class="o">=</span> <span class="kc">True</span>   <span class="c1"># default is False</span>
+<span class="n">CLIENT_SSO_UUID_EXPIRATION</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="mi">60</span>   <span class="c1"># in seconds</span>
 </code></pre></div>
 <h2 id="library-snapshot-label-feature">Library snapshot label feature<a class="headerlink" href="#library-snapshot-label-feature" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code># Turn on this option to let users to add a label to a library snapshot. Default is `False`
@@ -4918,23 +4890,8 @@ ENABLE_REPO_SNAPSHOT_LABEL = False
 <span class="c1"># Seafile only generates thumbnails for images smaller than the following size.</span>
 <span class="c1"># Since version 6.3.8 pro, suport the psd online preview.</span>
 <span class="n">THUMBNAIL_IMAGE_SIZE_LIMIT</span> <span class="o">=</span> <span class="mi">30</span> <span class="c1"># MB</span>
-
-<span class="c1"># Enable or disable thumbnail for video. ffmpeg and moviepy should be installed first.</span>
-<span class="c1"># For details, please refer to https://manual.seafile.com/deploy/video_thumbnails.html</span>
-<span class="c1"># NOTE: this option is deprecated in version 7.1</span>
-<span class="n">ENABLE_VIDEO_THUMBNAIL</span> <span class="o">=</span> <span class="kc">False</span>
-
-<span class="c1"># Use the frame at 5 second as thumbnail</span>
-<span class="c1"># NOTE: this option is deprecated in version 7.1</span>
-<span class="n">THUMBNAIL_VIDEO_FRAME_TIME</span> <span class="o">=</span> <span class="mi">5</span>
-
-<span class="c1"># Absolute filesystem path to the directory that will hold thumbnail files.</span>
-<span class="n">THUMBNAIL_ROOT</span> <span class="o">=</span> <span class="s1">&#39;/haiwen/seahub-data/thumbnail/thumb/&#39;</span>
-
-<span class="c1"># Default size for picture preview. Enlarge this size can improve the preview quality.</span>
-<span class="c1"># NOTE: since version 6.1.1</span>
-<span class="n">THUMBNAIL_SIZE_FOR_ORIGINAL</span> <span class="o">=</span> <span class="mi">1024</span>
 </code></pre></div>
+<h2 id="map-service">Map service<a class="headerlink" href="#map-service" title="Permanent link">&para;</a></h2>
 <p>Options for map service:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># The map service currently relies on the Google Maps API and requires two API keys.</span>
 <span class="n">GOOGLE_MAP_KEY</span> <span class="o">=</span> <span class="s1">&#39;&lt;replace with your Google Maps API Key&gt;&#39;</span>
@@ -4973,41 +4930,8 @@ ENABLE_REPO_SNAPSHOT_LABEL = False
 <span class="c1"># Disable global address book</span>
 <span class="n">ENABLE_GLOBAL_ADDRESSBOOK</span> <span class="o">=</span> <span class="kc">False</span>
 </code></pre></div>
-<h2 id="single-sign-on">Single Sign On<a class="headerlink" href="#single-sign-on" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="c1"># Enable authentication with ADFS</span>
-<span class="c1"># Default is False</span>
-<span class="c1"># Since 6.0.9</span>
-<span class="n">ENABLE_ADFS_LOGIN</span> <span class="o">=</span> <span class="kc">True</span>
-
-<span class="c1"># Force user login through ADFS/OAuth instead of email and password</span>
-<span class="c1"># Default is False</span>
-<span class="c1"># Since 11.0.7, in version 12.0, it also controls users via OAuth</span>
-<span class="n">DISABLE_ADFS_USER_PWD_LOGIN</span> <span class="o">=</span> <span class="kc">True</span>
-
-<span class="c1"># Enable authentication wit Kerberos</span>
-<span class="c1"># Default is False</span>
-<span class="n">ENABLE_KRB5_LOGIN</span> <span class="o">=</span> <span class="kc">True</span>
-
-<span class="c1"># Enable authentication with Shibboleth</span>
-<span class="c1"># Default is False</span>
-<span class="n">ENABLE_SHIBBOLETH_LOGIN</span> <span class="o">=</span> <span class="kc">True</span>
-
-<span class="c1"># Enable client to open an external browser for single sign on</span>
-<span class="c1"># When it is false, the old buitin browser is opened for single sign on</span>
-<span class="c1"># When it is true, the default browser of the operation system is opened</span>
-<span class="c1"># The benefit of using system browser is that it can support hardware 2FA</span>
-<span class="c1"># Since 11.0.0, and sync client 9.0.5, drive client 3.0.8</span>
-<span class="n">CLIENT_SSO_VIA_LOCAL_BROWSER</span> <span class="o">=</span> <span class="kc">True</span>   <span class="c1"># default is False</span>
-<span class="n">CLIENT_SSO_UUID_EXPIRATION</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="mi">60</span>   <span class="c1"># in seconds</span>
-</code></pre></div>
 <h2 id="other-options">Other options<a class="headerlink" href="#other-options" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="c1"># This is outside URL for Seahub(Seafile Web). </span>
-<span class="c1"># The domain part (i.e., www.example.com) will be used in generating share links and download/upload file via web.</span>
-<span class="c1"># Note: SERVICE_URL is moved to seahub_settings.py since 9.0.0</span>
-<span class="c1"># Note: SERVICE_URL is no longer used since version 12.0</span>
-<span class="c1"># SERVICE_URL = &#39;https://seafile.example.com:&#39;</span>
-
-<span class="c1"># Disable settings via Web interface in system admin-&gt;settings</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Disable settings via Web interface in system admin-&gt;settings</span>
 <span class="c1"># Default is True</span>
 <span class="c1"># Since 5.1.3</span>
 <span class="n">ENABLE_SETTINGS_VIA_WEB</span> <span class="o">=</span> <span class="kc">False</span>
@@ -5037,9 +4961,8 @@ ENABLE_REPO_SNAPSHOT_LABEL = False
 <span class="c1"># Browser tab&#39;s title</span>
 <span class="n">SITE_TITLE</span> <span class="o">=</span> <span class="s1">&#39;Private Seafile&#39;</span>
 
-<span class="c1"># If you don&#39;t want to run seahub website on your site&#39;s root path, set this option to your preferred path.</span>
-<span class="c1"># e.g. setting it to &#39;/seahub/&#39; would run seahub on http://example.com/seahub/.</span>
-<span class="n">SITE_ROOT</span> <span class="o">=</span> <span class="s1">&#39;/&#39;</span>
+<span class="c1"># Whether enable the feature Wiki (requires sdoc integration). Default is `True`</span>
+<span class="n">ENABLE_WIKI</span> <span class="o">=</span> <span class="kc">True</span>
 
 <span class="c1"># Max number of files when user upload file/folder.</span>
 <span class="c1"># Since version 6.0.4</span>
@@ -5066,41 +4989,15 @@ ENABLE_REPO_SNAPSHOT_LABEL = False
 <span class="c1"># Since 8.0.6 CE/PRO version.</span>
 <span class="c1"># Url redirected to after user logout Seafile.</span>
 <span class="c1"># Usually configured as Single Logout url.</span>
-<span class="n">LOGOUT_REDIRECT_URL</span> <span class="o">=</span> <span class="s1">&#39;http</span><span class="si">{s}</span><span class="s1">://www.example-url.com&#39;</span>
+<span class="n">LOGOUT_REDIRECT_URL</span> <span class="o">=</span> <span class="s1">&#39;https://www.example-url.com&#39;</span>
 
 
 <span class="c1"># Enable system admin add T&amp;C, all users need to accept terms before using. Defaults to `False`.</span>
 <span class="c1"># Since version 6.0</span>
 <span class="n">ENABLE_TERMS_AND_CONDITIONS</span> <span class="o">=</span> <span class="kc">True</span>
-
-<span class="c1"># Enable two factor authentication for accounts. Defaults to `False`.</span>
-<span class="c1"># Since version 6.0</span>
-<span class="n">ENABLE_TWO_FACTOR_AUTH</span> <span class="o">=</span> <span class="kc">True</span>
-
-<span class="c1"># Enable user select a template when he/she creates library.</span>
-<span class="c1"># When user select a template, Seafile will create folders releated to the pattern automaticly.</span>
-<span class="c1"># Since version 6.0</span>
-<span class="n">LIBRARY_TEMPLATES</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;Technology&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;/Develop/Python&#39;</span><span class="p">,</span> <span class="s1">&#39;/Test&#39;</span><span class="p">],</span>
-    <span class="s1">&#39;Finance&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;/Current assets&#39;</span><span class="p">,</span> <span class="s1">&#39;/Fixed assets/Computer&#39;</span><span class="p">]</span>
-<span class="p">}</span>
-
-<span class="c1"># Enable a user to change password in &#39;settings&#39; page. Default to `True`</span>
-<span class="c1"># Since version 6.2.11</span>
-<span class="n">ENABLE_CHANGE_PASSWORD</span> <span class="o">=</span> <span class="kc">True</span>
-
-<span class="c1"># Enable a user associated with SSO account to change/reset local password in &#39;settings&#39; page. Default to `True`.</span>
-<span class="c1"># Change it to false to disable SSO account to change local password</span>
-<span class="n">ENABLE_SSO_USER_CHANGE_PASSWORD</span> <span class="o">=</span> <span class="kc">True</span>
-
-<span class="c1"># If show contact email when search user.</span>
-<span class="n">ENABLE_SHOW_CONTACT_EMAIL_WHEN_SEARCH_USER</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div>
 <h2 id="pro-edition-only-options">Pro edition only options<a class="headerlink" href="#pro-edition-only-options" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="c1"># Whether to show the used traffic in user&#39;s profile popup dialog. Default is True</span>
-<span class="n">SHOW_TRAFFIC</span> <span class="o">=</span> <span class="kc">True</span>
-
-<span class="c1"># Allow administrator to view user&#39;s file in UNENCRYPTED libraries</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Allow administrator to view user&#39;s file in UNENCRYPTED libraries</span>
 <span class="c1"># through Libraries page in System Admin. Default is False.</span>
 <span class="n">ENABLE_SYS_ADMIN_VIEW_REPO</span> <span class="o">=</span> <span class="kc">True</span>
 
@@ -5202,7 +5099,7 @@ def custom_get_groups(request):
 <ul>
 <li>You need to restart seahub so that your changes take effect.</li>
 </ul>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Deploy in Docker</label><label for="__tabbed_2_2">Deploy from binary packages</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Deploy in Docker</label><label for="__tabbed_1_2">Deploy from binary packages</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>restart
