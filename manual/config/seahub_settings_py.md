@@ -7,39 +7,6 @@
 
 Refer to [email sending documentation](sending_email.md).
 
-## Cache
-
-Seahub caches items(avatars, profiles, etc) on file system by default(/tmp/seahub_cache/). You can replace with Memcached or Redis.
-
-=== "Memcached"
-
-    ```
-    # on Debian/Ubuntu 18.04+
-    apt-get install memcached libmemcached-dev -y
-    pip3 install --timeout=3600 pylibmc django-pylibmc
-
-    systemctl enable --now memcached
-    ```
-
-
-    Add the following configuration to `seahub_settings.py`.
-
-    ```
-    CACHES = {
-        'default': {
-            'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
-            'LOCATION': '127.0.0.1:11211',
-        },
-    }
-
-    ```
-=== "Redis"
-
-    !!! success "Redis supported is added in Seafile version 11.0"
-
-    1. Install Redis with package installers in your OS.
-
-    2. Please refer to [Django's documentation about using Redis cache](https://docs.djangoproject.com/en/4.2/topics/cache/#redis).
 
 ## Security settings
 
@@ -93,14 +60,6 @@ LOGIN_ATTEMPT_LIMIT = 3
 # Since version 5.1.2 or pro 5.1.3
 FREEZE_USER_ON_LOGIN_FAILED = False
 
-# mininum length for user's password
-USER_PASSWORD_MIN_LENGTH = 6
-
-# LEVEL based on four types of input:
-# num, upper letter, lower letter, other symbols
-# '3' means password must have at least 3 types of the above.
-USER_PASSWORD_STRENGTH_LEVEL = 3
-
 # default False, only check USER_PASSWORD_MIN_LENGTH
 # when True, check password strength level, STRONG(or above) is allowed
 USER_STRONG_PASSWORD_REQUIRED = False
@@ -117,10 +76,6 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
 # Whether to save the session data on every request. Default is `False`
 SESSION_SAVE_EVERY_REQUEST = False
-
-# Whether enable the feature "published library". Default is `False`
-# Since 6.1.0 CE
-ENABLE_WIKI = True
 
 # In old version, if you use Single Sign On, the password is not saved in Seafile.
 # Users can't use WebDAV because Seafile can't check whether the password is correct.
@@ -142,6 +97,50 @@ WEBDAV_SECRET_STRENGTH_LEVEL = 1
 # Then you can add the following configuration information to the configuration file.
 ENABLE_FORCE_2FA_TO_ALL_USERS = True
 
+# Enable two factor authentication for accounts. Defaults to `False`.
+# Since version 6.0
+ENABLE_TWO_FACTOR_AUTH = True
+
+# Enable a user to change password in 'settings' page. Default to `True`
+# Since version 6.2.11
+ENABLE_CHANGE_PASSWORD = True
+
+# If show contact email when search user.
+ENABLE_SHOW_CONTACT_EMAIL_WHEN_SEARCH_USER = True
+```
+
+## Single Sign On
+
+```python
+# Enable authentication with ADFS
+# Default is False
+# Since 6.0.9
+ENABLE_ADFS_LOGIN = True
+
+# Force user login through ADFS/OAuth instead of email and password
+# Default is False
+# Since 11.0.7, in version 12.0, it also controls users via OAuth
+DISABLE_ADFS_USER_PWD_LOGIN = True
+
+# Enable authentication wit Kerberos
+# Default is False
+ENABLE_KRB5_LOGIN = True
+
+# Enable authentication with Shibboleth
+# Default is False
+ENABLE_SHIBBOLETH_LOGIN = True
+
+# Enable a user associated with SSO account to change/reset local password in 'settings' page. Default to `True`.
+# Change it to false to disable SSO account to change local password
+ENABLE_SSO_USER_CHANGE_PASSWORD = True
+
+# Enable client to open an external browser for single sign on
+# When it is false, the old buitin browser is opened for single sign on
+# When it is true, the default browser of the operation system is opened
+# The benefit of using system browser is that it can support hardware 2FA
+# Since 11.0.0, and sync client 9.0.5, drive client 3.0.8
+CLIENT_SSO_VIA_LOCAL_BROWSER = True   # default is False
+CLIENT_SSO_UUID_EXPIRATION = 5 * 60   # in seconds
 ```
 
 ## Library snapshot label feature
@@ -274,23 +273,9 @@ groovy, rst, patch, go"""
 # Since version 6.3.8 pro, suport the psd online preview.
 THUMBNAIL_IMAGE_SIZE_LIMIT = 30 # MB
 
-# Enable or disable thumbnail for video. ffmpeg and moviepy should be installed first.
-# For details, please refer to https://manual.seafile.com/deploy/video_thumbnails.html
-# NOTE: this option is deprecated in version 7.1
-ENABLE_VIDEO_THUMBNAIL = False
-
-# Use the frame at 5 second as thumbnail
-# NOTE: this option is deprecated in version 7.1
-THUMBNAIL_VIDEO_FRAME_TIME = 5
-
-# Absolute filesystem path to the directory that will hold thumbnail files.
-THUMBNAIL_ROOT = '/haiwen/seahub-data/thumbnail/thumb/'
-
-# Default size for picture preview. Enlarge this size can improve the preview quality.
-# NOTE: since version 6.1.1
-THUMBNAIL_SIZE_FOR_ORIGINAL = 1024
-
 ```
+
+## Map service
 
 Options for map service:
 
@@ -299,6 +284,7 @@ Options for map service:
 GOOGLE_MAP_KEY = '<replace with your Google Maps API Key>'
 SERVER_GOOGLE_MAP_KEY = '<replace with your Google Maps API Key>'
 ```
+
 !!! warning "Required scope of the API keys"
 
     To safeguard your Google API Keys from abuse, restrict their usage. However, even with restrictions in place, abuse remains a risk—especially since `GOOGLE_MAP_KEY` must be included in your source code and is therefore publicly accessible. Additionally, heavy use of the maps plugin may increase your Google billing, so monitor your spending closely.
@@ -307,6 +293,7 @@ SERVER_GOOGLE_MAP_KEY = '<replace with your Google Maps API Key>'
     | --- | --- | --- |
     | `GOOGLE_MAP_KEY` | Restrict to your Server URL,<br>like `https://cloud.seafile.io` | Maps Javascript API |
     | `SERVER_GOOGLE_MAP_KEY` | **No website restriction** | Geocoding API | 
+
 
 ## Cloud Mode
 
@@ -320,45 +307,10 @@ CLOUD_MODE = True
 ENABLE_GLOBAL_ADDRESSBOOK = False
 ```
 
-## Single Sign On
-
-```python
-# Enable authentication with ADFS
-# Default is False
-# Since 6.0.9
-ENABLE_ADFS_LOGIN = True
-
-# Force user login through ADFS/OAuth instead of email and password
-# Default is False
-# Since 11.0.7, in version 12.0, it also controls users via OAuth
-DISABLE_ADFS_USER_PWD_LOGIN = True
-
-# Enable authentication wit Kerberos
-# Default is False
-ENABLE_KRB5_LOGIN = True
-
-# Enable authentication with Shibboleth
-# Default is False
-ENABLE_SHIBBOLETH_LOGIN = True
-
-# Enable client to open an external browser for single sign on
-# When it is false, the old buitin browser is opened for single sign on
-# When it is true, the default browser of the operation system is opened
-# The benefit of using system browser is that it can support hardware 2FA
-# Since 11.0.0, and sync client 9.0.5, drive client 3.0.8
-CLIENT_SSO_VIA_LOCAL_BROWSER = True   # default is False
-CLIENT_SSO_UUID_EXPIRATION = 5 * 60   # in seconds
-```
 
 ## Other options
 
 ```python
-# This is outside URL for Seahub(Seafile Web). 
-# The domain part (i.e., www.example.com) will be used in generating share links and download/upload file via web.
-# Note: SERVICE_URL is moved to seahub_settings.py since 9.0.0
-# Note: SERVICE_URL is no longer used since version 12.0
-# SERVICE_URL = 'https://seafile.example.com:'
-
 # Disable settings via Web interface in system admin->settings
 # Default is True
 # Since 5.1.3
@@ -389,9 +341,8 @@ SITE_NAME = 'Seafile'
 # Browser tab's title
 SITE_TITLE = 'Private Seafile'
 
-# If you don't want to run seahub website on your site's root path, set this option to your preferred path.
-# e.g. setting it to '/seahub/' would run seahub on http://example.com/seahub/.
-SITE_ROOT = '/'
+# Whether enable the feature Wiki (requires sdoc integration). Default is `True`
+ENABLE_WIKI = True
 
 # Max number of files when user upload file/folder.
 # Since version 6.0.4
@@ -418,43 +369,17 @@ ENABLE_GET_AUTH_TOKEN_BY_SESSION = True
 # Since 8.0.6 CE/PRO version.
 # Url redirected to after user logout Seafile.
 # Usually configured as Single Logout url.
-LOGOUT_REDIRECT_URL = 'http{s}://www.example-url.com'
+LOGOUT_REDIRECT_URL = 'https://www.example-url.com'
 
 
 # Enable system admin add T&C, all users need to accept terms before using. Defaults to `False`.
 # Since version 6.0
 ENABLE_TERMS_AND_CONDITIONS = True
-
-# Enable two factor authentication for accounts. Defaults to `False`.
-# Since version 6.0
-ENABLE_TWO_FACTOR_AUTH = True
-
-# Enable user select a template when he/she creates library.
-# When user select a template, Seafile will create folders releated to the pattern automaticly.
-# Since version 6.0
-LIBRARY_TEMPLATES = {
-    'Technology': ['/Develop/Python', '/Test'],
-    'Finance': ['/Current assets', '/Fixed assets/Computer']
-}
-
-# Enable a user to change password in 'settings' page. Default to `True`
-# Since version 6.2.11
-ENABLE_CHANGE_PASSWORD = True
-
-# Enable a user associated with SSO account to change/reset local password in 'settings' page. Default to `True`.
-# Change it to false to disable SSO account to change local password
-ENABLE_SSO_USER_CHANGE_PASSWORD = True
-
-# If show contact email when search user.
-ENABLE_SHOW_CONTACT_EMAIL_WHEN_SEARCH_USER = True
 ```
 
 ## Pro edition only options
 
 ```python
-# Whether to show the used traffic in user's profile popup dialog. Default is True
-SHOW_TRAFFIC = True
-
 # Allow administrator to view user's file in UNENCRYPTED libraries
 # through Libraries page in System Admin. Default is False.
 ENABLE_SYS_ADMIN_VIEW_REPO = True

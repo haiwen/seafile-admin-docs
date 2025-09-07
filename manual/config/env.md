@@ -69,7 +69,7 @@ This part of configurations is only valid in `CACHE_PROVIDER=memcached`:
 ## SeaDoc configurations (only valid after integrating SeaDoc)
 
 - `ENABLE_SEADOC`: Enable the SeaDoc server or not, default is `false`.
-- `SEADOC_SERVER_URL`: Only valid in `ENABLE_SEADOC=true`. Url of Seadoc server (e.g., http://seafile.example.com/sdoc-server).
+- `SEADOC_SERVER_URL`: Only valid in `ENABLE_SEADOC=true`. External URL of Seadoc server (e.g., https://seafile.example.com/sdoc-server).
 
 ## S3 storage backend configurations (pro)
 
