@@ -70,6 +70,14 @@ Then download the new `seafile-server.yml` according to the following commands:
     wget https://manual.seafile.com/13.0/repo/docker/pro/seasearch.yml
     ```
 
+#### Step 2.4) Download `.yml` file for SeaDoc (optional)
+
+If you use SeaDoc extension, the seadoc.yml file need to be updated too: 
+
+```sh
+wget https://manual.seafile.com/13.0/repo/docker/seadoc.yml
+```
+
 ### Step 3) Modify `.env`, update image version and add cache configurations
 
 #### Step 3.1) Update image version to Seafile 13
