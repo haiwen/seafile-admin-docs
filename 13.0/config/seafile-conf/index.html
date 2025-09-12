@@ -3206,15 +3206,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#cache" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cache
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#seafile-fileserver-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       Seafile fileserver configuration
@@ -4569,15 +4560,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#cache" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cache
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#seafile-fileserver-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       Seafile fileserver configuration
@@ -4709,33 +4691,6 @@ expire_days = 60
 </code></pre></div>
 <h2 id="system-trash">System Trash<a class="headerlink" href="#system-trash" title="Permanent link">&para;</a></h2>
 <p>Seafile uses a system trash, where deleted libraries will be moved to. In this way, accidentally deleted libraries can be recovered by system admin.</p>
-<h2 id="cache">Cache<a class="headerlink" href="#cache" title="Permanent link">&para;</a></h2>
-<p>seaf-server component in Seafile Pro Edition uses memory caches in various cases to improve performance. (seaf-server component in community edition does not use cache) Some session information is also saved into memory cache to be shared among the cluster nodes. Memcached or Reids can be use for memory cache.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Redis support is added in version 11.0 and is the default cache server from Seafile 13.0. Currently only single-node Redis is supported. Redis Sentinel or Cluster is not supported yet.</p>
-</div>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">memcached</label><label for="__tabbed_1_2">Redis</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>[memcached]
-# Replace `localhost` with the memcached address:port if you&#39;re using remote memcached
-# POOL-MIN and POOL-MAX is used to control connection pool size. Usually the default is good enough.
-memcached_options = --SERVER=localhost --POOL-MIN=10 --POOL-MAX=100
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>[redis]
-# your redis server address
-redis_host = 127.0.0.1
-# your redis server port
-redis_port = 6379
-# size of connection pool to redis, default is 100
-max_connections = 100
-</code></pre></div>
-</div>
-</div>
-</div>
 <h2 id="seafile-fileserver-configuration">Seafile fileserver configuration<a class="headerlink" href="#seafile-fileserver-configuration" title="Permanent link">&para;</a></h2>
 <p>The configuration of seafile fileserver is in the <code>[fileserver]</code> section of the file <code>seafile.conf</code></p>
 <div class="highlight"><pre><span></span><code>[fileserver]

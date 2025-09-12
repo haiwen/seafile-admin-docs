@@ -4445,15 +4445,7 @@
 
 <h1 id="configurable-options">Configurable Options<a class="headerlink" href="#configurable-options" title="Permanent link">&para;</a></h1>
 <p>In the file <code>seafevents.conf</code>:</p>
-<div class="highlight"><pre><span></span><code>[DATABASE]
-type = mysql
-host = 192.168.0.2
-port = 3306
-username = seafile
-password = password
-name = seahub_db
-
-[STATISTICS]
+<div class="highlight"><pre><span></span><code>[STATISTICS]
 ## must be &quot;true&quot; to enable statistics
 enabled = false
 
@@ -4481,13 +4473,6 @@ suffix = md,txt,...
 ## When set to 0, there is no time limit, which means that each save will generate a separate historical version.
 
 ## If you need to modify the file list format, you can add &#39;suffix = md, txt, ...&#39; configuration items to achieve.
-
-# From Seafile 13.0 Redis also support using in CE, and is the default cached server
-[REDIS]
-## redis use the 0 database and &quot;repo_update&quot; channel
-server = 192.168.1.1
-port = 6379
-password = q!1w@#123
 </code></pre></div>
 <h2 id="the-following-configurations-for-pro-edition-only">The following configurations for Pro Edition only<a class="headerlink" href="#the-following-configurations-for-pro-edition-only" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>[AUDIT]

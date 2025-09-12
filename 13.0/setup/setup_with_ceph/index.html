@@ -4550,7 +4550,7 @@ ceph_config = /etc/ceph/ceph.conf
 pool = seafile-fs
 </code></pre></div>
 <div class="admonition note">
-<p class="admonition-title">You also need to add <a href="../../config/seafile-conf/#cache-pro-edition-only">memory cache configurations</a></p>
+<p class="admonition-title">You also need to add <a href="../../config/env/#cache-configurations">memory cache configurations</a></p>
 </div>
 <p>It's required to create separate pools for commit, fs, and block objects.</p>
 <div class="highlight"><pre><span></span><code>ceph-admin-node# rados mkpool seafile-blocks

@@ -4672,7 +4672,7 @@ storage_classes_file = /shared/conf/seafile_storage_classes.json
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <ul>
-<li>Make sure you have added <a href="../../config/seafile-conf/#cache-pro-edition-only">memory cache configurations</a> to <code>seafile.conf</code></li>
+<li>Make sure you have added <a href="../../config/env/#cache-configurations">memory cache configurations</a> to <code>seafile.conf</code></li>
 <li>Due to the <em>Docker persistence strategy</em>, the path of <code>storage_classes_file</code> <strong>in the <em>Seafile container</em></strong> is different from the host usually, so we suggest you put this file in to the Seafile's configurations directory, and use <code>/shared/conf</code> instead of <code>/opt/seafile-date/seafile/conf</code>. Otherwise you have to add another persistent volume mapping strategy in <code>seafile-server.yml</code>. If your Seafile server is not deployed with Docker, we still suggest you put this file into the Seafile configurations file directory.</li>
 </ul>
 </div>
