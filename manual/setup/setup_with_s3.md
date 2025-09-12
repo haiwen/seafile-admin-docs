@@ -18,7 +18,7 @@ From Seafile 13, there are two ways to configure S3 storage (**single S3 storage
     
         For best performance, Seafile requires enable memory cache for objects. We recommend to **at least allocate 128MB** memory for memcached or Redis.
 
-        The configuration options differ for different S3 storage. We'll describe the configurations in separate sections. You also need to add [memory cache configurations](../config/seafile-conf.md#cache-pro-edition-only)
+        The configuration options differ for different S3 storage. We'll describe the configurations in separate sections. You also need to add [memory cache configurations](../config/env.md#cache-configurations)
 
 ## Setup swith environment variables (recommend)
 

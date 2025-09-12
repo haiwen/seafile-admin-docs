@@ -5,7 +5,7 @@ Metadata server aims to provide metadata management for your libraries, so as to
 ## Deployment
 
 !!! note "Prerequisites"
-    The startup of Metadata server requires using ***Redis*** as the cache server (it should be the default cache server in Seafile 13.0). So you must deploy *Redis* for Seafile, then modify [`seafile.conf`](../config/seafile-conf.md#cache-pro-edition-only), [`seahub_settings.py`](https://docs.djangoproject.com/en/4.2/topics/cache/#redis) and [`seafevents.conf`](../config/seafevents-conf.md) to enable it before deploying metadata server.
+    The startup of Metadata server requires using ***Redis*** as the cache server (it should be the default cache server in Seafile 13.0). So you must deploy *Redis* for Seafile, then modify [`seafile.conf`](../config/env.md#cache-configurations), [`seahub_settings.py`](https://docs.djangoproject.com/en/4.2/topics/cache/#redis) and [`seafevents.conf`](../config/seafevents-conf.md) to enable it before deploying metadata server.
 
 !!! warning
     Please make sure your Seafile service has been deployed **before** deploying Metadata server. This is because Metadata server needs to read Seafile's configuration file `seafile.conf`. If you deploy Metadata server before or at the same time with Seafile, it may not be able to detect `seafile.conf` and fail to start.

@@ -50,7 +50,7 @@ By default, Seafile dose not enable multiple storage classes. So, you have to cr
     * `storage_classes_file：Specifies` the path for the **JSON** file that contains the storage class definition.
 
     !!! tip 
-        - Make sure you have added [memory cache configurations](../config/seafile-conf.md#cache-pro-edition-only) to `seafile.conf`
+        - Make sure you have added [memory cache configurations](../config/env.md#cache-configurations) to `seafile.conf`
         - Due to the *Docker persistence strategy*, the path of `storage_classes_file` **in the *Seafile container*** is different from the host usually, so we suggest you put this file in to the Seafile's configurations directory, and use `/shared/conf` instead of `/opt/seafile-date/seafile/conf`. Otherwise you have to add another persistent volume mapping strategy in `seafile-server.yml`. If your Seafile server is not deployed with Docker, we still suggest you put this file into the Seafile configurations file directory.
 
 ## Exmaple of storage classes file
