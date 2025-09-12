@@ -5235,7 +5235,7 @@ cp<span class="w"> </span>/opt/seafile-data/seafile/conf/seahub_settings.py<span
 <li>
 <p>Clean up redundant configuration items in the configuration files:</p>
 <ul>
-<li>Open <code>/opt/seafile-data/seafile/conf/seafile.conf</code> and remove the entire <code>[memcached]</code>, <code>[database]</code>, <code>[commit_object_backend]</code>, <code>[fs_object_backend]</code> and <code>[block_backend]</code> if above sections have correctly specified in <code>.env</code>.</li>
+<li>Open <code>/opt/seafile-data/seafile/conf/seafile.conf</code> and remove the entire <code>[memcached]</code>, <code>[database]</code>, <code>[commit_object_backend]</code>, <code>[fs_object_backend]</code>, <code>[notification]</code> and <code>[block_backend]</code> if above sections have correctly specified in <code>.env</code>.</li>
 <li>Open <code>/opt/seafile-data/seafile/conf/seahub_settings.py</code> and remove the entire blocks for <code>DATABASES = {...}</code> and <code>CAHCES = {...}</code></li>
 </ul>
 <p>In the most cases, the <code>seafile.conf</code> only include the listen port <code>8082</code> of Seafile file server.</p>

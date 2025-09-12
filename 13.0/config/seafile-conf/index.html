@@ -3295,15 +3295,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#notification-server-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      Notification server configuration
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -4667,15 +4658,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#notification-server-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      Notification server configuration
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -4959,20 +4941,6 @@ profile_password = 8kcUz1I2sLaywQhCRtn2x1
 <div class="highlight"><pre><span></span><code>go tool pprof http://localhost:8082/debug/pprof/heap?password=8kcUz1I2sLaywQhCRtn2x1
 go tool pprof http://localhost:8082/debug/pprof/profile?password=8kcUz1I2sLaywQhCRtn2x1
 </code></pre></div>
-<h2 id="notification-server-configuration">Notification server configuration<a class="headerlink" href="#notification-server-configuration" title="Permanent link">&para;</a></h2>
-<p>Since Seafile 10.0.0, you can ask Seafile server to send notifications (file changes, lock changes and folder permission changes) to <a href="../../extension/notification-server/">Notification Server component</a>.</p>
-<div class="highlight"><pre><span></span><code>[notification]
-enabled = true
-# IP address of the server running notification server
-# or &quot;notification-server&quot; if you are running notification server container on the same host as Seafile server
-host = 192.168.0.83
-# the port of notification server
-port = 8083
-</code></pre></div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>The configuration here only works for version &gt;= 12.0. The configuration for notificaton server has been changed in 12.0 to make it clearer. The new configuration is not compatible with older versions.</p>
-</div>
 
 
 
