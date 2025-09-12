@@ -403,18 +403,3 @@ go tool pprof http://localhost:8082/debug/pprof/heap?password=8kcUz1I2sLaywQhCRt
 go tool pprof http://localhost:8082/debug/pprof/profile?password=8kcUz1I2sLaywQhCRtn2x1
 ```
 
-## Notification server configuration
-Since Seafile 10.0.0, you can ask Seafile server to send notifications (file changes, lock changes and folder permission changes) to [Notification Server component](../extension/notification-server.md).
-
-```
-[notification]
-enabled = true
-# IP address of the server running notification server
-# or "notification-server" if you are running notification server container on the same host as Seafile server
-host = 192.168.0.83
-# the port of notification server
-port = 8083
-```
-
-!!! tip
-    The configuration here only works for version >= 12.0. The configuration for notificaton server has been changed in 12.0 to make it clearer. The new configuration is not compatible with older versions.

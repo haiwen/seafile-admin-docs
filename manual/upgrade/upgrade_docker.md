@@ -212,7 +212,7 @@ Although the configurations in environment (i.e., `.env`) have higher priority t
 
 2. Clean up redundant configuration items in the configuration files:
 
-    - Open `/opt/seafile-data/seafile/conf/seafile.conf` and remove the entire `[memcached]`, `[database]`, `[commit_object_backend]`, `[fs_object_backend]` and `[block_backend]` if above sections have correctly specified in `.env`.
+    - Open `/opt/seafile-data/seafile/conf/seafile.conf` and remove the entire `[memcached]`, `[database]`, `[commit_object_backend]`, `[fs_object_backend]`, `[notification]` and `[block_backend]` if above sections have correctly specified in `.env`.
     - Open `/opt/seafile-data/seafile/conf/seahub_settings.py` and remove the entire blocks for `DATABASES = {...}` and `CAHCES = {...}`
 
     In the most cases, the `seafile.conf` only include the listen port `8082` of Seafile file server.
