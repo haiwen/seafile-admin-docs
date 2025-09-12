@@ -48,7 +48,7 @@ region = yourRegion
 
 ```
 
-!!! note "You also need to add [memory cache configurations](../config/seafile-conf.md#cache-pro-edition-only)"
+!!! note "You also need to add [memory cache configurations](../config/env.md#cache-configurations)"
 
 The above config is just an example. You should replace the options according to your own environment.
 

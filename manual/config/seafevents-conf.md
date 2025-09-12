@@ -3,14 +3,6 @@
 In the file `seafevents.conf`:
 
 ```
-[DATABASE]
-type = mysql
-host = 192.168.0.2
-port = 3306
-username = seafile
-password = password
-name = seahub_db
-
 [STATISTICS]
 ## must be "true" to enable statistics
 enabled = false
@@ -39,14 +31,6 @@ suffix = md,txt,...
 ## When set to 0, there is no time limit, which means that each save will generate a separate historical version.
 
 ## If you need to modify the file list format, you can add 'suffix = md, txt, ...' configuration items to achieve.
-
-# From Seafile 13.0 Redis also support using in CE, and is the default cached server
-[REDIS]
-## redis use the 0 database and "repo_update" channel
-server = 192.168.1.1
-port = 6379
-password = q!1w@#123
-
 ```
 
 
