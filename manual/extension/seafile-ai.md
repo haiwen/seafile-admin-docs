@@ -3,7 +3,7 @@
 From Seafile 13, users can enable ***Seafile AI*** to support the following features:
 
 !!! note "Prerequisites of Seafile AI deployment"
-    To deploy Seafile AI, you have to deploy [Metadat mmanagement](./metadata-server.md) extension firstly. Then you can follow this manual to deploy Seafile AI.
+    To deploy Seafile AI, you have to deploy [metadata server](./metadata-server.md) extension firstly. Then you can follow this manual to deploy Seafile AI.
 
 - File tags, file and image summaries, text translation, sdoc writing assistance
 - Given an image, generate its corresponding tags (including objects, weather, color, etc.)
