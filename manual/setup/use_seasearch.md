@@ -73,7 +73,7 @@ services:
 2. Add the following section in seafevents to enable seafile backend service to access SeaSearch APIs
 
     !!! note "SeaSearch server deploy on a different machine with Seafile"
-        If your SeaSearch server deploy on a **different** machine with Seafile, please replace `http://seasearch:4080` to the url `<scheme>://<address>:<prot>` of your SeaSearch server 
+        If your SeaSearch server deploy on a **different** machine with Seafile, please replace `http://seasearch:4080` to the url `<scheme>://<address>:<port>` of your SeaSearch server 
 
     ```conf
     [SEASEARCH]
