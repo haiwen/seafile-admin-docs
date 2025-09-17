@@ -127,3 +127,9 @@ The argument `top_export_path` is a directory to place the exported files. Each 
 
 !!! note
     Currently **only un-encrypted libraries can be exported**. Encrypted libraries will be skipped.
+
+## Checking file size
+
+Starting from version 13.0.9, fsck has added an option to check whether the file size matches the actual file content. Some problematic clients may upload incorrect blocks, causing the actual file size to not match the file content. With this option, you can detect files with size mismatches, along with the method and time of their upload.
+
+To check whether the file size matches, add the `--check-file-size` or `-S` option to seaf-fsck.
