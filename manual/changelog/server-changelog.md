@@ -9,6 +9,16 @@
 
 Please check our document for how to upgrade to [13.0](../upgrade/upgrade_notes_for_13.0.x.md)
 
+### 13.0.11 (2025-09-22)
+
+* [metadata] Add a new view type "Statistics"
+* [metadata] Some UI fixes
+* Support realtime comments update for file types like PDF, Markdown and so on
+* Collabora: Fix clipboard issue
+* Add access log for sdoc-server
+* Some other UI fixes
+* [sdoc] Fix images are lost after restoring a sdoc file from trash
+
 
 ### 13.0.9 beta (2025-08-28)
 
