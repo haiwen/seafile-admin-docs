@@ -2,6 +2,7 @@ services:
   seafile-ai:
     image: ${SEAFILE_AI_IMAGE:-seafileltd/seafile-ai:13.0-latest}
     container_name: seafile-ai
+    restart: unless-stopped
     volumes:
       - ${SEAFILE_VOLUME:-/opt/seafile-data}:/shared
     # ports:
