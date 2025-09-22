@@ -6,8 +6,8 @@ services:
 
   onlyoffice:
     image: ${ONLYOFFICE_IMAGE:-onlyoffice/documentserver:8.1.0.1}
-    restart: unless-stopped
     container_name: seafile-onlyoffice
+    restart: unless-stopped
     environment:
       #- DB_TYPE=${DB_TYPE:-mariadb}
       #- DB_HOST=${SEAFILE_MYSQL_DB_HOST:-db}

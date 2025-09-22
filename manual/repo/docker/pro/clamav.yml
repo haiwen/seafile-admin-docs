@@ -2,6 +2,7 @@ services:
   av:
     image: clamav/clamav:latest
     container_name: seafile-clamav
+    restart: unless-stopped
     networks:
       - seafile-net
 

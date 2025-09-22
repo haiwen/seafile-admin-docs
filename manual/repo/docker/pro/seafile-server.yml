@@ -2,6 +2,7 @@ services:
   db:
     image: ${SEAFILE_DB_IMAGE:-mariadb:10.11}
     container_name: seafile-mysql
+    restart: unless-stopped
     environment:
       - MYSQL_ROOT_PASSWORD=${INIT_SEAFILE_MYSQL_ROOT_PASSWORD:-}
       - MYSQL_LOG_CONSOLE=true
@@ -27,6 +28,7 @@ services:
   memcached:
     image: ${SEAFILE_MEMCACHED_IMAGE:-memcached:1.6.29}
     container_name: seafile-memcached
+    restart: unless-stopped
     entrypoint: memcached -m 256
     networks:
       - seafile-net
@@ -34,6 +36,7 @@ services:
   elasticsearch:
     image: ${SEAFILE_ELASTICSEARCH_IMAGE:-elasticsearch:8.15.0}
     container_name: seafile-elasticsearch
+    restart: unless-stopped
     environment:
       - discovery.type=single-node
       - bootstrap.memory_lock=true
@@ -52,6 +55,7 @@ services:
   seafile:
     image: ${SEAFILE_IMAGE:-seafileltd/seafile-pro-mc:12.0-latest}
     container_name: seafile
+    restart: unless-stopped
     # ports:
     #   - "80:80"
     volumes:

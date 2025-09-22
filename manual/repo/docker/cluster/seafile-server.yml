@@ -2,6 +2,7 @@ services:
   seafile:
     image: ${SEAFILE_IMAGE:-seafileltd/seafile-pro-mc:12.0-latest}
     container_name: seafile
+    restart: unless-stopped
     ports:
       - 80:80
     volumes:

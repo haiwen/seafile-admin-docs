@@ -3,6 +3,7 @@ services:
   seadoc:
     image: ${SEADOC_IMAGE:-seafileltd/sdoc-server:1.0-latest}
     container_name: seadoc
+    restart: unless-stopped
     volumes:
       - ${SEADOC_VOLUME:-/opt/seadoc-data/}:/shared
     # ports:
