@@ -4896,7 +4896,7 @@ sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w
 </li>
 <li>
 <p>Install Python and related libraries</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Ubuntu 24.04</label><label for="__tabbed_1_2">Debian 12</label><label for="__tabbed_1_3">Ubuntu 22.04</label><label for="__tabbed_1_4">Debian 11</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:5"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Ubuntu 24.04</label><label for="__tabbed_1_2">Debian 12</label><label for="__tabbed_1_3">Ubuntu 22.04</label><label for="__tabbed_1_4">Debian 11</label><label for="__tabbed_1_5">Rocky Linux 9</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="admonition note">
@@ -4964,6 +4964,23 @@ sudo pip3 install --timeout=3600 django==4.2.* future==1.0.* mysqlclient==2.2.* 
     psd-tools django-pylibmc django_simple_captcha==0.6.* djangosaml2==1.9.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 python-ldap==3.2.0 lxml gevent==24.2.*
 </code></pre></div>
 </div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>sudo dnf --enablerepo=crb install -y mysql-devel libmemcached-awesome libmemcached-awesome-devel &amp;&amp; sudo dnf install -y gcc python3.12 python3.12-devel python3.12-pip python3.12-setuptools python3-devel python3-ldap openldap-devel libffi-devel
+
+mkdir /opt/seafile
+cd /opt/seafile
+
+# create the vitual environment in the python-venv directory
+python3.12 -m venv python-venv
+
+# activate the venv
+source python-venv/bin/activate
+# Notice that this will usually change your prompt so you know the venv is active
+
+# install packages into the active venv with pip (sudo isn&#39;t needed because this is installing in the venv, not system-wide).
+pip3 install --timeout=3600  django==4.2.* future==0.18.* mysqlclient==2.1.* pymysql pillow==10.0.* pylibmc captcha==0.4 markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 psd-tools django-pylibmc django_simple_captcha==0.5.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 lxml python-ldap==3.4.3
+</code></pre></div>
+</div>
 </div>
 </div>
 </li>
@@ -4971,7 +4988,7 @@ sudo pip3 install --timeout=3600 django==4.2.* future==1.0.* mysqlclient==2.2.* 
 <h3 id="creating-user-seafile">Creating user seafile<a class="headerlink" href="#creating-user-seafile" title="Permanent link">&para;</a></h3>
 <p>Elasticsearch, the indexing server, cannot be run as root. More generally, it is good practice not to run applications as root. </p>
 <p>Create a new user and follow the instructions on the screen:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Ubuntu 24.04/22.04</label><label for="__tabbed_2_2">Debian 12/11</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Ubuntu 24.04/22.04</label><label for="__tabbed_2_2">Debian 12/11</label><label for="__tabbed_2_3">Rocky Linux 9</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>adduser seafile
@@ -4979,6 +4996,10 @@ sudo pip3 install --timeout=3600 django==4.2.* future==1.0.* mysqlclient==2.2.* 
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>/usr/sbin/adduser seafile
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>adduser seafile
 </code></pre></div>
 </div>
 </div>
