@@ -18,7 +18,6 @@ Package names are according to Ubuntu 24.04. For other Linux distros, please fin
 * git
 * cmake
 * libtool
-* python-simplejson (for seaf-cli)
 * libssl-dev
 * libargon2-dev
 * libglib2.0-dev
