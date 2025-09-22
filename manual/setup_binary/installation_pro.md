@@ -102,6 +102,25 @@ Seafile uses the `mysql_native_password` plugin for authentication. The versions
 
         ```
 
+    === "Rocky Linux 9"
+
+        ```
+        sudo dnf --enablerepo=crb install -y mysql-devel libmemcached-awesome libmemcached-awesome-devel && sudo dnf install -y gcc python3.12 python3.12-devel python3.12-pip python3.12-setuptools python3-devel python3-ldap openldap-devel libffi-devel
+
+        mkdir /opt/seafile
+        cd /opt/seafile
+
+        # create the vitual environment in the python-venv directory
+        python3.12 -m venv python-venv
+
+        # activate the venv
+        source python-venv/bin/activate
+        # Notice that this will usually change your prompt so you know the venv is active
+
+        # install packages into the active venv with pip (sudo isn't needed because this is installing in the venv, not system-wide).
+        pip3 install --timeout=3600  django==4.2.* future==0.18.* mysqlclient==2.1.* pymysql pillow==10.0.* pylibmc captcha==0.4 markupsafe==2.0.1 jinja2 sqlalchemy==2.0.18 psd-tools django-pylibmc django_simple_captcha==0.5.* djangosaml2==1.5.* pysaml2==7.2.* pycryptodome==3.16.* cffi==1.15.1 lxml python-ldap==3.4.3
+        ```
+
 ### Creating user seafile
 
 Elasticsearch, the indexing server, cannot be run as root. More generally, it is good practice not to run applications as root. 
@@ -115,6 +134,10 @@ Create a new user and follow the instructions on the screen:
 === "Debian 12/11"
     ```
     /usr/sbin/adduser seafile
+    ```
+=== "Rocky Linux 9"
+    ```
+    adduser seafile
     ```
 
 Change ownership of the created directory to the new user:
