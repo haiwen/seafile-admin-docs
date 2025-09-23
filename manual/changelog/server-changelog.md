@@ -9,7 +9,7 @@
 
 Please check our document for how to upgrade to [13.0](../upgrade/upgrade_notes_for_13.0.x.md)
 
-### 13.0.11 (2025-09-22)
+### 13.0.11 beta (2025-09-22)
 
 * [metadata] Add a new view type "Statistics"
 * [metadata] Some UI fixes
