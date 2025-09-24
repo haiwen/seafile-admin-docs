@@ -128,5 +128,13 @@ docker compose up -d
 ```
 
 ### CollaboraOnline server on a separate host
-
-If your CollaboraOnline server on a separate host, you just need to modify the `seahub_settings.py` similar to [deploy on the same host](#config-seafile). The only different is you have to change the field `OFFICE_WEB_APP_BASE_URL` to your CollaboraOnline host (e.g., `https://collabora-online.seafile.com/hosting/discovery`). 
+For independent deployment of CollaboraOnline on a single server, please refer to the [official documentation](https://sdk.collaboraonline.com/docs/installation/CODE_Docker_image.html#code-docker-image). After a successful deployment, you only need to specify the values of the following fields in `seahub_settings.py` and then restart the service.
+```py
+OFFICE_SERVER_TYPE = 'CollaboraOffice'
+ENABLE_OFFICE_WEB_APP = True
+OFFICE_WEB_APP_BASE_URL = 'https://<Your CollaboraOnline host url>/hosting/discovery'
+WOPI_ACCESS_TOKEN_EXPIRATION = 30 * 60   
+OFFICE_WEB_APP_FILE_EXTENSION = ('odp', 'ods', 'odt', 'xls', 'xlsb', 'xlsm', 'xlsx','ppsx', 'ppt', 'pptm', 'pptx', 'doc', 'docm', 'docx')
+ENABLE_OFFICE_WEB_APP_EDIT = True
+OFFICE_WEB_APP_EDIT_FILE_EXTENSION = ('odp', 'ods', 'odt', 'xls', 'xlsb', 'xlsm', 'xlsx','ppsx', 'ppt', 'pptm', 'pptx', 'doc', 'docm', 'docx')
+```

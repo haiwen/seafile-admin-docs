@@ -133,14 +133,15 @@ Starting from OnlyOffice Docker-DocumentServer version 7.2, JWT is enabled by de
 So, for security reason, please **Configure OnlyOffice to use JWT Secret**.
 
 ### OnlyOffice on a separate host and URL
-
-In general, you only need to specify the values ​​of the following fields in `seahub_settings.py` and then restart the service.
+For independent deployment of OnlyOffice on a single server, please refer to the [official documentation](https://api.onlyoffice.com/docs/docs-api/get-started/installation/self-hosted/). After a successful deployment, you only need to specify the values of the following fields in `seahub_settings.py` and then restart the service.
 
 ```py
 ENABLE_ONLYOFFICE = True
 ONLYOFFICE_APIJS_URL = 'http{s}://<Your OnlyOffice host url>/web-apps/apps/api/documents/api.js'
 ONLYOFFICE_JWT_SECRET = '<your jwt secret>'
-OFFICE_PREVIEW_MAX_SIZE = 30 * 1024 * 1024 # preview size, 30 MB
+ONLYOFFICE_FILE_EXTENSION = ('doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx', 'odt', 'fodt', 'odp', 'fodp', 'ods', 'fods', 'ppsx', 'pps', 'csv')
+ONLYOFFICE_EDIT_FILE_EXTENSION = ('docx', 'pptx', 'xlsx', 'csv')
+OFFICE_PREVIEW_MAX_SIZE = 30 * 1024 * 1024
 ```
 
 ### About SSL
