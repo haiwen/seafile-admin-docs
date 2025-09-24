@@ -4647,7 +4647,13 @@ docker<span class="w"> </span>compose<span class="w"> </span>down
 docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
 <h3 id="collaboraonline-server-on-a-separate-host">CollaboraOnline server on a separate host<a class="headerlink" href="#collaboraonline-server-on-a-separate-host" title="Permanent link">&para;</a></h3>
-<p>If your CollaboraOnline server on a separate host, you just need to modify the <code>seahub_settings.py</code> similar to <a href="#config-seafile">deploy on the same host</a>. The only different is you have to change the field <code>OFFICE_WEB_APP_BASE_URL</code> to your CollaboraOnline host (e.g., <code>https://collabora-online.seafile.com/hosting/discovery</code>). </p>
+<p>For independent deployment of CollaboraOnline on a single server, please refer to the <a href="https://sdk.collaboraonline.com/docs/installation/CODE_Docker_image.html#code-docker-image">official documentation</a>. After a successful deployment, you only need to specify the values of the following fields in <code>seahub_settings.py</code> and then restart the service.
+<div class="highlight"><pre><span></span><code><span class="n">OFFICE_SERVER_TYPE</span> <span class="o">=</span> <span class="s1">&#39;CollaboraOffice&#39;</span>
+<span class="n">ENABLE_OFFICE_WEB_APP</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">OFFICE_WEB_APP_BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://&lt;Your CollaboraOnline host url&gt;/hosting/discovery&#39;</span>
+<span class="n">WOPI_ACCESS_TOKEN_EXPIRATION</span> <span class="o">=</span> <span class="mi">30</span> <span class="o">*</span> <span class="mi">60</span>   
+<span class="n">ENABLE_OFFICE_WEB_APP_EDIT</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div></p>
 
 
 

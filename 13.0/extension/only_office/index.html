@@ -4697,11 +4697,11 @@ Error: DNS lookup {local IP} (family:undefined, host:undefined) is not allowed. 
 <p>Starting from OnlyOffice Docker-DocumentServer version 7.2, JWT is enabled by default on OnlyOffice server.</p>
 <p>So, for security reason, please <strong>Configure OnlyOffice to use JWT Secret</strong>.</p>
 <h3 id="onlyoffice-on-a-separate-host-and-url">OnlyOffice on a separate host and URL<a class="headerlink" href="#onlyoffice-on-a-separate-host-and-url" title="Permanent link">&para;</a></h3>
-<p>In general, you only need to specify the values ​​of the following fields in <code>seahub_settings.py</code> and then restart the service.</p>
+<p>For independent deployment of OnlyOffice on a single server, please refer to the <a href="https://api.onlyoffice.com/docs/docs-api/get-started/installation/self-hosted/">official documentation</a>. After a successful deployment, you only need to specify the values of the following fields in <code>seahub_settings.py</code> and then restart the service.</p>
 <div class="highlight"><pre><span></span><code><span class="n">ENABLE_ONLYOFFICE</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">ONLYOFFICE_APIJS_URL</span> <span class="o">=</span> <span class="s1">&#39;http</span><span class="si">{s}</span><span class="s1">://&lt;Your OnlyOffice host url&gt;/web-apps/apps/api/documents/api.js&#39;</span>
 <span class="n">ONLYOFFICE_JWT_SECRET</span> <span class="o">=</span> <span class="s1">&#39;&lt;your jwt secret&gt;&#39;</span>
-<span class="n">OFFICE_PREVIEW_MAX_SIZE</span> <span class="o">=</span> <span class="mi">30</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span> <span class="c1"># preview size, 30 MB</span>
+<span class="n">OFFICE_PREVIEW_MAX_SIZE</span> <span class="o">=</span> <span class="mi">30</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span>
 </code></pre></div>
 <h3 id="about-ssl">About SSL<a class="headerlink" href="#about-ssl" title="Permanent link">&para;</a></h3>
 <p>For deployments using the <code>onlyoffice.yml</code> file in this document, SSL is primarily handled by the <code>Caddy</code>. If the OnlyOffice document server and Seafile server are not on the same machine, please refer to the <a href="https://github.com/ONLYOFFICE/Docker-DocumentServer">official document</a> to configure SSL for OnlyOffice.</p>
