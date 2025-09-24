@@ -139,8 +139,6 @@ For independent deployment of OnlyOffice on a single server, please refer to the
 ENABLE_ONLYOFFICE = True
 ONLYOFFICE_APIJS_URL = 'http{s}://<Your OnlyOffice host url>/web-apps/apps/api/documents/api.js'
 ONLYOFFICE_JWT_SECRET = '<your jwt secret>'
-ONLYOFFICE_FILE_EXTENSION = ('doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx', 'odt', 'fodt', 'odp', 'fodp', 'ods', 'fods', 'ppsx', 'pps', 'csv')
-ONLYOFFICE_EDIT_FILE_EXTENSION = ('docx', 'pptx', 'xlsx', 'csv')
 OFFICE_PREVIEW_MAX_SIZE = 30 * 1024 * 1024
 ```
 
