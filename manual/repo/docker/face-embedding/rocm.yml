@@ -2,6 +2,7 @@ services:
   face-embedding:
     image: ${FACE_EMBEDDING_IMAGE:-seafileltd/face-embedding:13.0-latest-rocm}
     container_name: face-embedding
+    restart: unless-stopped
     ports:
       - 8886:8886
     devices:
