@@ -65,7 +65,6 @@ SAML_REMOTE_METADATA_URL = 'https://login.microsoftonline.com/xxx/federationmeta
 
 ```python
 ENABLE_ADFS_LOGIN = True
-LOGIN_REDIRECT_URL = '/saml2/complete/'
 SAML_ATTRIBUTE_MAPPING = {
     'name': ('display_name', ),
     'mail': ('contact_email', ),
@@ -135,7 +134,6 @@ If you use Microsoft ADFS to achieve single sign-on, please follow the steps bel
 
 ```python
 ENABLE_ADFS_LOGIN = True
-LOGIN_REDIRECT_URL = '/saml2/complete/'
 SAML_ATTRIBUTE_MAPPING = {
     'name': ('display_name', ),
     'mail': ('contact_email', ),
