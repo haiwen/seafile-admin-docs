@@ -96,7 +96,7 @@ services:
 Modify `nginx.conf` and add reverse proxy for services ***seafile*** and ***seadoc***:
 
 !!! note
-    If your proxy server's host is not the same as the host the Seafile deployed to, please **replase `127.0.0.1` to your Seafile server's host**
+    If your proxy server's host is not the same as the host the Seafile deployed to, please **replace `127.0.0.1` to your Seafile server's host**, especially since Seafile 12.0, which use a separate Docker image for the notification server. It might look like `proxy_pass http://notification-server:8083/;`
 
 === "seafile"
     ```conf
