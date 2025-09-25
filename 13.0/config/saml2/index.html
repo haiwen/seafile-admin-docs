@@ -4548,7 +4548,6 @@ $ openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout sp.key -out sp.cr
 </code></pre></div>
 <p><strong>Next</strong>, add <code>ENABLE_ADFS_LOGIN</code>, <code>LOGIN_REDIRECT_URL</code> and <code>SAML_ATTRIBUTE_MAPPING</code> options to seahub_settings.py, and then restart Seafile, e.g:</p>
 <div class="highlight"><pre><span></span><code><span class="n">ENABLE_ADFS_LOGIN</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">LOGIN_REDIRECT_URL</span> <span class="o">=</span> <span class="s1">&#39;/saml2/complete/&#39;</span>
 <span class="n">SAML_ATTRIBUTE_MAPPING</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;display_name&#39;</span><span class="p">,</span> <span class="p">),</span>
     <span class="s1">&#39;mail&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;contact_email&#39;</span><span class="p">,</span> <span class="p">),</span>
@@ -4624,7 +4623,6 @@ $ openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout sp.key -out sp.cr
 </ul>
 <p><strong>Next</strong>, add the following configurations to seahub_settings.py and then restart Seafile:</p>
 <div class="highlight"><pre><span></span><code><span class="n">ENABLE_ADFS_LOGIN</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">LOGIN_REDIRECT_URL</span> <span class="o">=</span> <span class="s1">&#39;/saml2/complete/&#39;</span>
 <span class="n">SAML_ATTRIBUTE_MAPPING</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;display_name&#39;</span><span class="p">,</span> <span class="p">),</span>
     <span class="s1">&#39;mail&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;contact_email&#39;</span><span class="p">,</span> <span class="p">),</span>

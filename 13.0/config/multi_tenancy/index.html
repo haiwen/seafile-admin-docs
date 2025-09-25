@@ -4589,7 +4589,6 @@ multi_tenancy = true
 <span class="n">ORG_ENABLE_ADMIN_CUSTOM_LOGO</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># Default is False, if set to True, organization logo can be customized</span>
 
 <span class="n">ENABLE_MULTI_ADFS</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># Default is False, if set to True, support per organization custom ADFS/SAML2 login</span>
-<span class="n">LOGIN_REDIRECT_URL</span> <span class="o">=</span> <span class="s1">&#39;/saml2/complete/&#39;</span>
 <span class="n">SAML_ATTRIBUTE_MAPPING</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;display_name&#39;</span><span class="p">,</span> <span class="p">),</span>
     <span class="s1">&#39;mail&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;contact_email&#39;</span><span class="p">,</span> <span class="p">),</span>
@@ -4621,7 +4620,6 @@ $ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout sp.key -out sp.crt
 </div>
 <p>2) Add the following configuration to seahub_settings.py and then restart Seafile:</p>
 <div class="highlight"><pre><span></span><code><span class="n">ENABLE_MULTI_ADFS</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">LOGIN_REDIRECT_URL</span> <span class="o">=</span> <span class="s1">&#39;/saml2/complete/&#39;</span>
 <span class="n">SAML_ATTRIBUTE_MAPPING</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;display_name&#39;</span><span class="p">,</span> <span class="p">),</span>
     <span class="s1">&#39;mail&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;contact_email&#39;</span><span class="p">,</span> <span class="p">),</span>
