@@ -2,8 +2,8 @@ services:
 
   caddy:
     image: ${SEAFILE_CADDY_IMAGE:-lucaslorentz/caddy-docker-proxy:2.9-alpine}
-    restart: unless-stopped
     container_name: seafile-caddy
+    restart: unless-stopped
     ports:
       - 80:80
       - 443:443

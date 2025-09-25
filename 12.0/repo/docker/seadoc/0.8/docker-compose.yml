@@ -3,6 +3,7 @@ services:
   sdoc-server:
     image: seafileltd/sdoc-server:0.8.0
     container_name: sdoc-server
+    restart: unless-stopped
     ports:
       - 80:80
       # - 443:443
