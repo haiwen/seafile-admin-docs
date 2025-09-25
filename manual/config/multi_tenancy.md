@@ -21,7 +21,6 @@ ORG_ENABLE_ADMIN_CUSTOM_NAME = True  # Default is True, meaning organization nam
 ORG_ENABLE_ADMIN_CUSTOM_LOGO = False  # Default is False, if set to True, organization logo can be customized
 
 ENABLE_MULTI_ADFS = True  # Default is False, if set to True, support per organization custom ADFS/SAML2 login
-LOGIN_REDIRECT_URL = '/saml2/complete/'
 SAML_ATTRIBUTE_MAPPING = {
     'name': ('display_name', ),
     'mail': ('contact_email', ),
@@ -69,7 +68,6 @@ $ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout sp.key -out sp.crt
 
 ```python
 ENABLE_MULTI_ADFS = True
-LOGIN_REDIRECT_URL = '/saml2/complete/'
 SAML_ATTRIBUTE_MAPPING = {
     'name': ('display_name', ),
     'mail': ('contact_email', ),
