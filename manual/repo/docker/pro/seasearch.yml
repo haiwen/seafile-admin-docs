@@ -2,6 +2,7 @@ services:
   seasearch:  
     image: ${SEASEARCH_IMAGE:-seafileltd/seasearch:0.9-latest}
     container_name: seafile-seasearch  
+    restart: unless-stopped
     volumes:  
       - ${SS_DATA_PATH:-/opt/seasearch-data}:/opt/seasearch/data  
     environment: 
