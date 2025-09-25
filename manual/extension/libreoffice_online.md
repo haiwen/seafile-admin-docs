@@ -51,7 +51,7 @@ Add following config option to seahub_settings.py:
 ``` python
 OFFICE_SERVER_TYPE = 'CollaboraOffice'
 ENABLE_OFFICE_WEB_APP = True
-OFFICE_WEB_APP_BASE_URL = 'http://collabora:9980/hosting/discovery'
+OFFICE_WEB_APP_BASE_URL = 'http(s)://<seafile-server-hostname>:6232/hosting/discovery'
 
 # Expiration of WOPI access token
 # WOPI access token is a string used by Seafile to determine the file's
