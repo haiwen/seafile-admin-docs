@@ -4629,6 +4629,10 @@
 
 <h1 id="seafile-ai-extension">Seafile AI extension<a class="headerlink" href="#seafile-ai-extension" title="Permanent link">&para;</a></h1>
 <p>From Seafile 13, users can enable <strong><em>Seafile AI</em></strong> to support the following features:</p>
+<div class="admonition note">
+<p class="admonition-title">Prerequisites of Seafile AI deployment</p>
+<p>To deploy Seafile AI, you have to deploy <a href="../metadata-server/">metadata server</a> extension firstly. Then you can follow this manual to deploy Seafile AI.</p>
+</div>
 <ul>
 <li>File tags, file and image summaries, text translation, sdoc writing assistance</li>
 <li>Given an image, generate its corresponding tags (including objects, weather, color, etc.)</li>
@@ -4661,32 +4665,84 @@
 </li>
 <li>
 <p>Modify <code>.env</code>, insert or modify the following fields:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Use <strong><em>gpt-4o-mini</em></strong> model</label><label for="__tabbed_1_2">Use other models</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:7"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><input id="__tabbed_1_6" name="__tabbed_1" type="radio" /><input id="__tabbed_1_7" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">OpenAI</label><label for="__tabbed_1_2">Deepseek</label><label for="__tabbed_1_3">Azure OpenAI</label><label for="__tabbed_1_4">Ollama</label><label for="__tabbed_1_5">HuggingFace</label><label for="__tabbed_1_6">Self-proxy Server</label><label for="__tabbed_1_7">Other</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;...,seafile-ai.yml&#39; # add seafile-ai.yml
 
 ENABLE_SEAFILE_AI=true
+SEAFILE_AI_LLM_TYPE=openai
 SEAFILE_AI_LLM_KEY=&lt;your openai LLM access key&gt;
+SEAFILE_AI_LLM_MODEL=gpt-4o-mini # recommend
 </code></pre></div>
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;...,seafile-ai.yml&#39; # add seafile-ai.yml
 
 ENABLE_SEAFILE_AI=true
-SEAFILE_AI_LLM_TYPE=other
-SEAFILE_AI_LLM_URL=https://api.openai.com/v1 # your LLM API endpoint
+SEAFILE_AI_LLM_TYPE=deepseek
 SEAFILE_AI_LLM_KEY=&lt;your LLM access key&gt;
-SEAFILE_AI_LLM_MODEL=gpt-4o-mini # your model id
+SEAFILE_AI_LLM_MODEL=deepseek-chat # recommend
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;...,seafile-ai.yml&#39; # add seafile-ai.yml
+
+ENABLE_SEAFILE_AI=true
+SEAFILE_AI_LLM_TYPE=azure
+SEAFILE_AI_LLM_URL= # your deployment url, leave blank to use default endpoint
+SEAFILE_AI_LLM_KEY=&lt;your API key&gt;
+SEAFILE_AI_LLM_MODEL=&lt;your deployment name&gt;
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;...,seafile-ai.yml&#39; # add seafile-ai.yml
+
+ENABLE_SEAFILE_AI=true
+SEAFILE_AI_LLM_TYPE=ollama
+SEAFILE_AI_LLM_URL=&lt;your LLM endpoint&gt;
+SEAFILE_AI_LLM_KEY=&lt;your LLM access key&gt;
+SEAFILE_AI_LLM_MODEL=&lt;your model-id&gt;
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;...,seafile-ai.yml&#39; # add seafile-ai.yml
+
+ENABLE_SEAFILE_AI=true
+SEAFILE_AI_LLM_TYPE=huggingface
+SEAFILE_AI_LLM_URL=&lt;your huggingface API endpoint&gt;
+SEAFILE_AI_LLM_KEY=&lt;your huggingface API key&gt;
+SEAFILE_AI_LLM_MODEL=&lt;model provider&gt;/&lt;model-id&gt;
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;...,seafile-ai.yml&#39; # add seafile-ai.yml
+
+ENABLE_SEAFILE_AI=true
+SEAFILE_AI_LLM_TYPE=proxy
+SEAFILE_AI_LLM_URL=&lt;your proxy url&gt;
+SEAFILE_AI_LLM_KEY=&lt;your proxy virtual key&gt; # optional
+SEAFILE_AI_LLM_MODEL=&lt;model-id&gt;
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Seafile AI utilizes <a href="https://docs.litellm.ai/docs/">LiteLLM</a> to interact with LLM services. For a complete list of supported LLM providers, please refer to <a href="https://docs.litellm.ai/docs/providers">this documentation</a>. Then fill the following fields in your <code>.env</code>:</p>
+<div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;...,seafile-ai.yml&#39; # add seafile-ai.yml
+ENABLE_SEAFILE_AI=true
+
+# according to your situation
+SEAFILE_AI_LLM_TYPE=...
+SEAFILE_AI_LLM_URL=...
+SEAFILE_AI_LLM_KEY=...
+SEAFILE_AI_LLM_MODEL=...
+</code></pre></div>
+<p>For example, if you are using a LLM service with <strong><em>OpenAI-compatible endpoints</em></strong>, you should set <code>SEAFILE_AI_LLM_TYPE</code> to <code>other</code> or <code>openai</code>, and set other LLM configuration items accurately.</p>
+</div>
+</div>
+</div>
 <div class="admonition note">
-<p class="admonition-title">About use custom model</p>
-<p>Seafile AI supports the use of custom large models, but the following conditions must be met:
-- OpenAI compatibility API
-- The large model supports multi-modality (such as supporting images, etc.)</p>
-</div>
-</div>
-</div>
+<p class="admonition-title">About model selection</p>
+<p>Seafile AI supports using large model providers from <a href="https://docs.litellm.ai/docs/providers">LiteLLM</a> or large model services with OpenAI-compatible endpoints. Therefore, Seafile AI is compatible with most custom large model services except the default model (<em>gpt-4o-mini</em>), but in order to ensure the normal use of Seafile AI features, you need to select a <strong>multimodal large model</strong> (such as supporting image input and recognition)</p>
 </div>
 </li>
 <li>
@@ -4740,23 +4796,23 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 </tr>
 <tr>
 <td><code>SEAFILE_AI_LLM_TYPE</code></td>
-<td>Large Language Model (LLM) Type. <code>openai</code> (default) will use OpenAI's <strong><em>gpt-4o-mini</em></strong> model and <code>other</code> for user-custom models which support multimodality</td>
+<td>Large Language Model (LLM) Type. Default is <code>openai</code>.</td>
 </tr>
 <tr>
 <td><code>SEAFILE_AI_LLM_URL</code></td>
-<td>LLM API endpoint, only needs to be specified when <code>SEAFILE_AI_LLM_TYPE=other</code>. Default is <code>https://api.openai.com/v1</code></td>
+<td>LLM API endpoint.</td>
 </tr>
 <tr>
 <td><code>SEAFILE_AI_LLM_KEY</code></td>
-<td>LLM API key</td>
+<td>LLM API key.</td>
+</tr>
+<tr>
+<td><code>SEAFILE_AI_LLM_MODEL</code></td>
+<td>LLM model id (or name). Default is <strong><em>gpt-4o-mini</em></strong></td>
 </tr>
 <tr>
 <td><code>FACE_EMBEDDING_SERVICE_URL</code></td>
 <td>Face embedding service url</td>
-</tr>
-<tr>
-<td><code>SEAFILE_AI_LLM_MODEL</code></td>
-<td>LLM model id (or name), only needs to be specified when <code>SEAFILE_AI_LLM_TYPE=other</code>. Default is <strong><em>gpt-4o-mini</em></strong></td>
 </tr>
 </tbody>
 </table>
