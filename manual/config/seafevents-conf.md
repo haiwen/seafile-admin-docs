@@ -5,7 +5,7 @@ In the file `seafevents.conf`:
 ```
 [STATISTICS]
 ## must be "true" to enable statistics
-enabled = false
+enabled = true
 
 [SEAHUB EMAIL]
 ## must be "true" to enable user email notifications when there are new unread notifications

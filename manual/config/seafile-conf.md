@@ -3,13 +3,7 @@
 !!! warning "Important"
     Every entry in this configuration file is **case-sensitive**.
 
-You need to restart seafile and seahub so that your changes take effect.
-
-```
-./seahub.sh restart
-./seafile.sh restart
-
-```
+You need to restart Seafile docker image so that your changes take effect.
 
 ## Storage Quota Setting
 
@@ -43,7 +37,7 @@ keep_days = days of history to keep
 
 ## Default trash expiration time
 
-The default time for automatic cleanup of the libraries trash is 30 days.You can modify this time by adding the following configuration：
+The default time for automatic cleanup of the libraries trash is 30 days. You can modify this time by adding the following configuration：
 
 ```
 [library_trash]
@@ -51,26 +45,12 @@ expire_days = 60
 
 ```
 
-## System Trash
-
-Seafile uses a system trash, where deleted libraries will be moved to. In this way, accidentally deleted libraries can be recovered by system admin.
 
 ## Seafile fileserver configuration
 
 The configuration of seafile fileserver is in the `[fileserver]` section of the file `seafile.conf`
 
-```
-[fileserver]
-# bind address for fileserver
-# default to 0.0.0.0, if deployed without proxy: no access restriction
-# set to 127.0.0.1, if used with local proxy: only access by local
-host = 127.0.0.1
-# tcp port for fileserver
-port = 8082
-
-```
-
-Since Community Edition 6.2 and Pro Edition 6.1.9, you can set the number of worker threads to server http requests. Default value is 10, which is a good value for most use cases.
+You can set the number of worker threads to server http requests. Default value is 10, which is a good value for most use cases.
 
 ```
 [fileserver]
@@ -140,9 +120,7 @@ http_temp_scan_interval = x
 
 ```
 
-New in Seafile Pro 7.1.16 and Pro 8.0.3: You can set the maximum number of files contained in a library that can be synced by the Seafile client. The default is 100000. When you download a repo, Seafile client will request fs id list, and you can control the timeout period of this request through `fs_id_list_request_timeout` configuration, which defaults to 5 minutes. These two options are added to prevent long fs-id-list requests from overloading the server.
-
-Since Pro 8.0.4 version, you can set both options to -1, to allow unlimited size and timeout.
+You can set the maximum number of files contained in a library that can be synced by the Seafile client. The default is 100000. When you download a repo, Seafile client will request fs id list, and you can control the timeout period of this request through `fs_id_list_request_timeout` configuration, which defaults to 5 minutes. These two options are added to prevent long fs-id-list requests from overloading the server. You can set both options to -1, to allow unlimited size and timeout.
 
 ```
 [fileserver]
