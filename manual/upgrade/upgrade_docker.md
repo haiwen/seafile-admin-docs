@@ -29,6 +29,7 @@ Download `.env`, `seafile-server.yml` and `caddy.yml`, and modify `.env` file ac
     wget -O .env https://manual.seafile.com/12.0/repo/docker/ce/env
     wget https://manual.seafile.com/12.0/repo/docker/ce/seafile-server.yml
     wget https://manual.seafile.com/12.0/repo/docker/caddy.yml
+    wget https://manual.seafile.com/12.0/repo/docker/seadoc.yml
     ```
     The following fields merit particular attention:
 
