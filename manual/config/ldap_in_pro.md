@@ -100,18 +100,18 @@ ENABLE_EXTRA_USER_INFO_SYNC = True
 
 Meaning of some options:
 
-| Variable                       | Description                                                                                                                                                                                                |  
+| Variable                 | Description                                                                                                                                                                                                |  
 | --- | ------ |  
-| **LDAP_SYNC_INTERVAL**         | The interval to sync. Unit is minutes. Defaults to 60 minutes.                                                                                                                                            |  
-| **ENABLE_LDAP_USER_SYNC**      | set to "true" if you want to enable ldap user synchronization                                                                                                                                             |  
-| **LDAP_USER_OBJECT_CLASS**     | This is the name of the class used to search for user objects. In Active Directory, it's usually "person". The default value is "person".                                                                   |  
-| **LDAP_DEPT_ATTR**             | Attribute for department info.                                                                                                                                                                           |  
-| **LDAP_UID_ATTR**              | Attribute for Windows login name. If this is synchronized, users can also log in with their Windows login name. In AD, the attribute `sAMAccountName` can be used as `UID_ATTR`. The attribute will be stored as login_id in Seafile (in seahub_db.profile_profile table). |  
+| **LDAP_SYNC_INTERVAL**   | The interval to sync. Unit is minutes. Defaults to 60 minutes.                                                                                                                                            |  
+| **ENABLE_LDAP_USER_SYNC** | set to "true" if you want to enable ldap user synchronization                                                                                                                                             |  
+| **LDAP_USER_OBJECT_CLASS** | This is the name of the class used to search for user objects. In Active Directory, it's usually "person". The default value is "person".                                                                   |  
+| **LDAP_DEPT_ATTR**       | Attribute for department info.                                                                                                                                                                           |  
+| **LDAP_UID_ATTR**        | Attribute for Windows login name. If this is synchronized, users can also log in with their Windows login name. In AD, the attribute `sAMAccountName` can be used as `UID_ATTR`. The attribute will be stored as login_id in Seafile (in seahub_db.profile_profile table). |  
 | **LDAP_AUTO_REACTIVATE_USERS** | Whether to auto activate deactivated user, default by 'true'                                                                                                                                              |  
-| **LDAP_USE_PAGED_RESULT**      | Whether to use pagination extension. It is useful when you have more than 1000 users in LDAP server.                                                                                                      |  
-| **IMPORT_NEW_USER**            | Whether to import new users when sync user.                                                                                                                                                               |  
-| **ACTIVE_USER_WHEN_IMPORT**    | Whether to activate the user automatically when imported.                                                                                                                                                |  
-| **DEACTIVE_USER_IF_NOTFOUND**  | set to "true" if you want to deactivate a user when he/she was deleted in AD server.                                                                                                                      |  
+| **LDAP_USE_PAGED_RESULT** | Whether to use pagination extension. It is useful when you have more than 1000 users in LDAP server.                                                                                                      |  
+| **IMPORT_NEW_USER**      | Whether to import new users when sync user.                                                                                                                                                               |  
+| **ACTIVATE_USER_WHEN_IMPORT**    | Whether to activate the user automatically when imported.                                                                                                                                                |  
+| **DEACTIVE_USER_IF_NOTFOUND** | set to "true" if you want to deactivate a user when he/she was deleted in AD server.                                                                                                                      |  
 | **ENABLE_EXTRA_USER_INFO_SYNC**| Enable synchronization of additional user information, including user's full name, department, and Windows login name, etc.                                                                                |
 
 ### Importing Users without Activating Them
