@@ -368,7 +368,7 @@ ENABLE_LDAP = True
 ......
 
 # Multi ldap config options
-ENABLE_MULTI_LDAP_1 = True
+ENABLE_MULTI_LDAP = True
 MULTI_LDAP_1_SERVER_URL = 'ldap://192.168.0.2'
 MULTI_LDAP_1_BASE_DN = 'ou=test,dc=seafile,dc=top'
 MULTI_LDAP_1_ADMIN_DN = 'administrator@example.top'
