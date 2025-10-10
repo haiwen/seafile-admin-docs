@@ -3648,14 +3648,6 @@
     
   </span>
   
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
 
           <span class="md-nav__icon md-icon"></span>
         </label>
@@ -3668,14 +3660,6 @@
     Upgrade Seafile Cluster
     
   </span>
-  
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
   
 
       </a>
@@ -3699,15 +3683,6 @@
   <a href="#major-and-minor-version-upgrade" class="md-nav__link">
     <span class="md-ellipsis">
       Major and minor version upgrade
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#upgrade-a-cluster-from-seafile-11-to-12" class="md-nav__link">
-    <span class="md-ellipsis">
-      Upgrade a cluster from Seafile 11 to 12
     </span>
   </a>
   
@@ -3839,6 +3814,15 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upgrade-a-cluster-from-seafile-11-to-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upgrade a cluster from Seafile 11 to 12
+    </span>
+  </a>
   
 </li>
       
@@ -4559,15 +4543,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#upgrade-a-cluster-from-seafile-11-to-12" class="md-nav__link">
-    <span class="md-ellipsis">
-      Upgrade a cluster from Seafile 11 to 12
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#upgrade-a-cluster-from-seafile-12-to-13" class="md-nav__link">
     <span class="md-ellipsis">
       Upgrade a cluster from Seafile 12 to 13
@@ -4696,6 +4671,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#upgrade-a-cluster-from-seafile-11-to-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      Upgrade a cluster from Seafile 11 to 12
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4730,139 +4714,6 @@
 <li>Run the upgrade script in container (for example, <code>/opt/seafile/seafile-server-latest/upgrade/upgrade_x_x_x_x.sh</code>) in one frontend node</li>
 <li>Update configuration files at each node according to the documentation for each version</li>
 <li>Delete old search index in the backend node if needed</li>
-</ol>
-<h2 id="upgrade-a-cluster-from-seafile-11-to-12">Upgrade a cluster from Seafile 11 to 12<a class="headerlink" href="#upgrade-a-cluster-from-seafile-11-to-12" title="Permanent link">&para;</a></h2>
-<ol>
-<li>
-<p>Stop the seafile service in all nodes</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
-</code></pre></div>
-</li>
-<li>
-<p>Download the docker-compose files for <em>Seafile 12</em></p>
-<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/cluster/env
-wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/cluster/seafile-server.yml
-</code></pre></div>
-</li>
-<li>
-<p>Modify <code>.env</code>:</p>
-<ul>
-<li>
-<p>Generate a JWT key</p>
-<div class="highlight"><pre><span></span><code>pwgen<span class="w"> </span>-s<span class="w"> </span><span class="m">40</span><span class="w"> </span><span class="m">1</span>
-
-<span class="c1"># e.g., EkosWcXonPCrpPE9CFsnyQLLPqoPhSJZaqA3JMFw</span>
-</code></pre></div>
-</li>
-<li>
-<p>Fill up the following field according to your configurations using in <em>Seafile 11</em>:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">SEAFILE_SERVER_HOSTNAME</span><span class="o">=</span>&lt;your<span class="w"> </span>loadbalance<span class="s1">&#39;s host&gt;</span>
-<span class="s1">SEAFILE_SERVER_PROTOCOL=https # or http</span>
-<span class="s1">SEAFILE_MYSQL_DB_HOST=&lt;your mysql host&gt;</span>
-<span class="s1">SEAFILE_MYSQL_DB_USER=seafile # if you don&#39;</span>t<span class="w"> </span>use<span class="w"> </span><span class="sb">`</span>seafile<span class="sb">`</span><span class="w"> </span>as<span class="w"> </span>your<span class="w"> </span>Seafile<span class="w"> </span>server<span class="err">&#39;</span>s<span class="w"> </span>account,<span class="w"> </span>please<span class="w"> </span>correct<span class="w"> </span>it
-<span class="nv">SEAFILE_MYSQL_DB_PASSWORD</span><span class="o">=</span>&lt;your<span class="w"> </span>mysql<span class="w"> </span>password<span class="w"> </span><span class="k">for</span><span class="w"> </span>user<span class="w"> </span><span class="sb">`</span>seafile<span class="sb">`</span>&gt;
-<span class="nv">JWT_PRIVATE_KEY</span><span class="o">=</span>&lt;your<span class="w"> </span>JWT<span class="w"> </span>key<span class="w"> </span>generated<span class="w"> </span><span class="k">in</span><span class="w"> </span>Sec.<span class="w"> </span><span class="m">3</span>.1&gt;
-</code></pre></div>
-<div class="admonition tip">
-<p class="admonition-title">Remove the variables using in Cluster initialization</p>
-<p>Since Seafile has been initialized in Seafile 11, the variables related to Seafile cluster initialization can be removed from <code>.env</code>:</p>
-<ul>
-<li>INIT_SEAFILE_MYSQL_ROOT_PASSWORD</li>
-<li>CLUSTER_INIT_MODE</li>
-<li>CLUSTER_INIT_MEMCACHED_HOST</li>
-<li>CLUSTER_INIT_ES_HOST</li>
-<li>CLUSTER_INIT_ES_PORT</li>
-<li>INIT_S3_STORAGE_BACKEND_CONFIG</li>
-<li>INIT_S3_COMMIT_BUCKET</li>
-<li>INIT_S3_FS_BUCKET</li>
-<li>INIT_S3_BLOCK_BUCKET</li>
-<li>INIT_S3_KEY_ID</li>
-<li>INIT_S3_USE_V4_SIGNATURE</li>
-<li>INIT_S3_SECRET_KEY</li>
-<li>INIT_S3_AWS_REGION</li>
-<li>INIT_S3_HOST</li>
-<li>INIT_S3_USE_HTTPS</li>
-</ul>
-</div>
-</li>
-</ul>
-</li>
-<li>
-<p>Start the Seafile in a node</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>According to this upgrade document, a <strong>frontend</strong> service will be started here. If you plan to use this node as a backend node, you need to modify this item in <code>.env</code> and set it to <code>backend</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">CLUSTER_MODE</span><span class="o">=</span>backend
-</code></pre></div>
-</div>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
-</li>
-<li>
-<p>Upgrade Seafile</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>bash
-<span class="c1"># enter the container `seafile`</span>
-
-<span class="c1"># stop servers</span>
-<span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest
-./seafile.sh<span class="w"> </span>stop
-./seahub.sh<span class="w"> </span>stop
-
-<span class="c1"># upgrade seafile</span>
-<span class="nb">cd</span><span class="w"> </span>upgrade
-./upgrade_11.0_12.0.sh
-</code></pre></div>
-<div class="admonition success">
-<p class="admonition-title">Success</p>
-<p>After upgrading the Seafile, you can see the following messages in your console:</p>
-<div class="highlight"><pre><span></span><code>Updating seafile/seahub database ...
-
-[INFO] You are using MySQL
-[INFO] updating seafile database...
-[INFO] updating seahub database...
-[INFO] updating seafevents database...
-Done
-
-migrating avatars ...
-
-Done
-
-updating /opt/seafile/seafile-server-latest symbolic link to /opt/seafile/seafile-pro-server-12.0.6 ...
-
-
-
------------------------------------------------------------------
-Upgraded your seafile server successfully.
------------------------------------------------------------------
-</code></pre></div>
-<p>Then you can exit the container by <code>exit</code></p>
-</div>
-</li>
-<li>
-<p>Restart current node</p>
-<div class="highlight"><pre><span></span><code><span class="w">    </span>docker<span class="w"> </span>compose<span class="w"> </span>down
-<span class="w">    </span>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<ul>
-<li>You can use <code>docker logs -f seafile</code> to check whether the current node service is running normally</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Operations for other nodes</p>
-<ul>
-<li>
-<p>Download and modify <code>.env</code> similar to the first node (for backend node, you should set <code>CLUSTER_MODE=backend</code>)</p>
-</li>
-<li>
-<p>Start the Seafile server:
-    <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div></p>
-</li>
-</ul>
-</li>
 </ol>
 <h2 id="upgrade-a-cluster-from-seafile-12-to-13">Upgrade a cluster from Seafile 12 to 13<a class="headerlink" href="#upgrade-a-cluster-from-seafile-12-to-13" title="Permanent link">&para;</a></h2>
 <h3 id="step-1-stop-the-services">Step 1) Stop the services<a class="headerlink" href="#step-1-stop-the-services" title="Permanent link">&para;</a></h3>
@@ -5037,15 +4888,145 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 </code></pre></div></p>
 </li>
 </ul>
+<h2 id="upgrade-a-cluster-from-seafile-11-to-12">Upgrade a cluster from Seafile 11 to 12<a class="headerlink" href="#upgrade-a-cluster-from-seafile-11-to-12" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Stop the seafile service in all nodes</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
+</code></pre></div>
+</li>
+<li>
+<p>Download the docker-compose files for <em>Seafile 12</em></p>
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/cluster/env
+wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/cluster/seafile-server.yml
+</code></pre></div>
+</li>
+<li>
+<p>Modify <code>.env</code>:</p>
+<ul>
+<li>
+<p>Generate a JWT key</p>
+<div class="highlight"><pre><span></span><code>pwgen<span class="w"> </span>-s<span class="w"> </span><span class="m">40</span><span class="w"> </span><span class="m">1</span>
+
+<span class="c1"># e.g., EkosWcXonPCrpPE9CFsnyQLLPqoPhSJZaqA3JMFw</span>
+</code></pre></div>
+</li>
+<li>
+<p>Fill up the following field according to your configurations using in <em>Seafile 11</em>:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">SEAFILE_SERVER_HOSTNAME</span><span class="o">=</span>&lt;your<span class="w"> </span>loadbalance<span class="s1">&#39;s host&gt;</span>
+<span class="s1">SEAFILE_SERVER_PROTOCOL=https # or http</span>
+<span class="s1">SEAFILE_MYSQL_DB_HOST=&lt;your mysql host&gt;</span>
+<span class="s1">SEAFILE_MYSQL_DB_USER=seafile # if you don&#39;</span>t<span class="w"> </span>use<span class="w"> </span><span class="sb">`</span>seafile<span class="sb">`</span><span class="w"> </span>as<span class="w"> </span>your<span class="w"> </span>Seafile<span class="w"> </span>server<span class="err">&#39;</span>s<span class="w"> </span>account,<span class="w"> </span>please<span class="w"> </span>correct<span class="w"> </span>it
+<span class="nv">SEAFILE_MYSQL_DB_PASSWORD</span><span class="o">=</span>&lt;your<span class="w"> </span>mysql<span class="w"> </span>password<span class="w"> </span><span class="k">for</span><span class="w"> </span>user<span class="w"> </span><span class="sb">`</span>seafile<span class="sb">`</span>&gt;
+<span class="nv">JWT_PRIVATE_KEY</span><span class="o">=</span>&lt;your<span class="w"> </span>JWT<span class="w"> </span>key<span class="w"> </span>generated<span class="w"> </span><span class="k">in</span><span class="w"> </span>Sec.<span class="w"> </span><span class="m">3</span>.1&gt;
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Remove the variables using in Cluster initialization</p>
+<p>Since Seafile has been initialized in Seafile 11, the variables related to Seafile cluster initialization can be removed from <code>.env</code>:</p>
+<ul>
+<li>INIT_SEAFILE_MYSQL_ROOT_PASSWORD</li>
+<li>CLUSTER_INIT_MODE</li>
+<li>CLUSTER_INIT_MEMCACHED_HOST</li>
+<li>CLUSTER_INIT_ES_HOST</li>
+<li>CLUSTER_INIT_ES_PORT</li>
+<li>INIT_S3_STORAGE_BACKEND_CONFIG</li>
+<li>INIT_S3_COMMIT_BUCKET</li>
+<li>INIT_S3_FS_BUCKET</li>
+<li>INIT_S3_BLOCK_BUCKET</li>
+<li>INIT_S3_KEY_ID</li>
+<li>INIT_S3_USE_V4_SIGNATURE</li>
+<li>INIT_S3_SECRET_KEY</li>
+<li>INIT_S3_AWS_REGION</li>
+<li>INIT_S3_HOST</li>
+<li>INIT_S3_USE_HTTPS</li>
+</ul>
+</div>
+</li>
+</ul>
+</li>
+<li>
+<p>Start the Seafile in a node</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>According to this upgrade document, a <strong>frontend</strong> service will be started here. If you plan to use this node as a backend node, you need to modify this item in <code>.env</code> and set it to <code>backend</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">CLUSTER_MODE</span><span class="o">=</span>backend
+</code></pre></div>
+</div>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+</li>
+<li>
+<p>Upgrade Seafile</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>bash
+<span class="c1"># enter the container `seafile`</span>
+
+<span class="c1"># stop servers</span>
+<span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest
+./seafile.sh<span class="w"> </span>stop
+./seahub.sh<span class="w"> </span>stop
+
+<span class="c1"># upgrade seafile</span>
+<span class="nb">cd</span><span class="w"> </span>upgrade
+./upgrade_11.0_12.0.sh
+</code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>After upgrading the Seafile, you can see the following messages in your console:</p>
+<div class="highlight"><pre><span></span><code>Updating seafile/seahub database ...
+
+[INFO] You are using MySQL
+[INFO] updating seafile database...
+[INFO] updating seahub database...
+[INFO] updating seafevents database...
+Done
+
+migrating avatars ...
+
+Done
+
+updating /opt/seafile/seafile-server-latest symbolic link to /opt/seafile/seafile-pro-server-12.0.6 ...
+
+
+
+-----------------------------------------------------------------
+Upgraded your seafile server successfully.
+-----------------------------------------------------------------
+</code></pre></div>
+<p>Then you can exit the container by <code>exit</code></p>
+</div>
+</li>
+<li>
+<p>Restart current node</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span>docker<span class="w"> </span>compose<span class="w"> </span>down
+<span class="w">    </span>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ul>
+<li>You can use <code>docker logs -f seafile</code> to check whether the current node service is running normally</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Operations for other nodes</p>
+<ul>
+<li>
+<p>Download and modify <code>.env</code> similar to the first node (for backend node, you should set <code>CLUSTER_MODE=backend</code>)</p>
+</li>
+<li>
+<p>Start the Seafile server:
+    <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div></p>
+</li>
+</ul>
+</li>
+</ol>
 
 
 
 
 
 
-
-  
-  
 
 
 
