@@ -1632,15 +1632,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#upgrade-your-seafile-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      Upgrade your Seafile server
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#stop-basic-services-except-mysql" class="md-nav__link">
     <span class="md-ellipsis">
       Stop basic Services (except MySQL)
@@ -4630,15 +4621,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#upgrade-your-seafile-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      Upgrade your Seafile server
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#stop-basic-services-except-mysql" class="md-nav__link">
     <span class="md-ellipsis">
       Stop basic Services (except MySQL)
@@ -4745,19 +4727,12 @@
 </div>
 <p>The recommended steps to migrate from non-docker deployment to docker deployment on two different machines are:</p>
 <ol>
-<li>Upgrade your Seafile server to the latest version.</li>
 <li>Shutdown the Seafile, Nginx and Memcached according to your situations.</li>
 <li>Backup MySQL databse and Seafile libraries data.</li>
-<li>Deploy the Seafile Docker in the new machine.</li>
+<li>Deploy the Seafile Docker (same version as your binary one) in the new machine.</li>
 <li>Recover the Seafile libraries and MySQL database in the new machine.</li>
 <li>Start Seafile Docker and shutdown the old MySQL (or Mariadb) according to your situations.</li>
 </ol>
-<h2 id="upgrade-your-seafile-server">Upgrade your Seafile server<a class="headerlink" href="#upgrade-your-seafile-server" title="Permanent link">&para;</a></h2>
-<p>You have to upgrade the version of the binary package to <a href="../../upgrade/upgrade_notes_for_12.0.x/">latest version</a> before the migration, and ensure that the system is running normally. </p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>If you running a very old version of Seafile, you can following the <a href="https://cloud.seatable.io/dtable/external-links/7b976c85f504491cbe8e/?tid=0000&amp;vid=0000&amp;row-id=VYQI9DJfRmCv5NggcX4f0Q">FAQ item</a> to migrate to the latest version</p>
-</div>
 <h2 id="stop-basic-services-except-mysql">Stop basic Services (except MySQL)<a class="headerlink" href="#stop-basic-services-except-mysql" title="Permanent link">&para;</a></h2>
 <h3 id="stop-seafile-server">Stop Seafile server<a class="headerlink" href="#stop-seafile-server" title="Permanent link">&para;</a></h3>
 <p>Run the following commands in <code>/opt/seafile/seafile-server-latest</code>:</p>
