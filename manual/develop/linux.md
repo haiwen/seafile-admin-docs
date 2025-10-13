@@ -4,80 +4,57 @@
 
 The following list is what you need to install on your development machine. **You should install all of them before you build Seafile**.
 
-Package names are according to Ubuntu 14.04. For other Linux distros, please find their corresponding names yourself.
+Package names are according to Ubuntu 24.04. For other Linux distros, please find their corresponding names yourself.
 
-* autoconf/automake/libtool
+* autotools-dev
 * libevent-dev ( 2.0 or later )
 * libcurl4-openssl-dev  (1.0.0 or later)
 * libgtk2.0-dev ( 2.24 or later)
 * uuid-dev
 * intltool (0.40 or later)
 * libsqlite3-dev (3.7 or later)
-* valac  (only needed if you build from git repo)
 * libjansson-dev
-* qtchooser
-* qtbase5-dev
-* libqt5webkit5-dev
-* qttools5-dev
-* qttools5-dev-tools
 * valac
+* git
 * cmake
-* python-simplejson (for seaf-cli)
+* libtool
 * libssl-dev
 * libargon2-dev
+* libglib2.0-dev
+* libwebsockets-dev
+* qtwebengine5-dev
+* libqt5webkit5-dev
+* qtbase5-dev
+* qtchooser
+* qttools5-dev
+* qttools5-dev-tools
+* qtwayland5
 
-=== "Ubuntu"
-    ```bash
-    sudo apt-get install autoconf automake libtool libevent-dev libcurl4-openssl-dev libgtk2.0-dev uuid-dev intltool libsqlite3-dev valac libjansson-dev cmake qtchooser qtbase5-dev libqt5webkit5-dev qttools5-dev qttools5-dev-tools libssl-dev libargon2-dev
+##### Ubuntu
 
-    ```
-=== "Fedora 20/23"
-
-    ```bash
-    $ sudo yum install wget gcc libevent-devel openssl-devel gtk2-devel libuuid-devel sqlite-devel jansson-devel intltool cmake libtool vala gcc-c++ qt5-qtbase-devel qt5-qttools-devel qt5-qtwebkit-devel libcurl-devel openssl-devel argon2-devel
-
-    ```
+```bash
+sudo apt-get install build-essential autotools-dev libtool libevent-dev libcurl4-openssl-dev libgtk2.0-dev uuid-dev intltool libsqlite3-dev valac git libjansson-dev cmake libwebsockets-dev qtchooser qtbase5-dev libqt5webkit5-dev qttools5-dev qttools5-dev-tools libssl-dev libargon2-dev libglib2.0-dev qtwebengine5-dev qtwayland5
+```
 
 #### Building
 
-First you should get the latest source of libsearpc/ccnet/seafile/seafile-client:
+First you should get the latest source of libsearpc/seafile/seafile-client:
 
-Download the source tarball of the latest tag from
+Download the source code of the latest tag from
 
-* <https://github.com/haiwen/libsearpc/tags> (use v3.2-latest)
-* <https://github.com/haiwen/seafile/tags>
-* <https://github.com/haiwen/seafile-client/tags>
+* <https://github.com/haiwen/libsearpc> (use v3.2-latest)
+* <https://github.com/haiwen/seafile>
+* <https://github.com/haiwen/seafile-client>
 
-For example, if the latest released seafile client is 8.0.0, then just use the **v8.0.0** tags of the four projects. You should get four tarballs:
-
-* libsearpc-v3.2-latest.tar.gz
-* seafile-8.0.0.tar.gz
-* seafile-client-8.0.0.tar.gz
+For example, if the latest released seafile client is 9.0.15, then just use the **v9.0.15** tags of the three projects.
 
 ```sh
-# without alias wget= might not work
-shopt -s expand_aliases
-
-export version=8.0.0
-alias wget='wget --content-disposition -nc'
-wget https://github.com/haiwen/libsearpc/archive/v3.2-latest.tar.gz
-wget https://github.com/haiwen/ccnet/archive/v${version}.tar.gz 
-wget https://github.com/haiwen/seafile/archive/v${version}.tar.gz
-wget https://github.com/haiwen/seafile-client/archive/v${version}.tar.gz
-
+git clone --branch v3.2-latest https://github.com/haiwen/libsearpc.git
+git clone --branch v9.0.15 https://github.com/haiwen/seafile.git
+git clone --branch v9.0.15 https://github.com/haiwen/seafile-client.git
 ```
 
-Now uncompress them:
-
-```sh
-tar xf libsearpc-3.2-latest.tar.gz
-tar xf ccnet-${version}.tar.gz
-tar xf seafile-${version}.tar.gz
-tar xf seafile-client-${version}.tar.gz
-
-```
-
-To build Seafile client, you need first build **libsearpc** and **ccnet**, **seafile**.
+To build Seafile client, you need first build **libsearpc** and **seafile**.
 
 ##### set paths
 
@@ -91,7 +68,7 @@ export PATH="$PREFIX/bin:$PATH"
 ##### libsearpc
 
 ```bash
-cd libsearpc-3.2-latest
+cd libsearpc
 ./autogen.sh
 ./configure --prefix=$PREFIX
 make
@@ -102,36 +79,22 @@ cd ..
 
 ##### seafile
 
-In order to support notification server, you need to build libwebsockets first.
 ```bash
-git clone --branch=v4.3.0 https://github.com/warmcat/libwebsockets
-cd libwebsockets
-mkdir build
-cd build
-cmake ..
-make
-sudo make install
-cd ..
-
-```
-
-You can set `--enable-ws` to no to disable notification server.
-After that, you can build seafile:
-
-```bash
-cd seafile-${version}/
+cd seafile
 ./autogen.sh
-./configure --prefix=$PREFIX --disable-fuse
+./configure --prefix=$PREFIX --enable-ws=yes
 make
 sudo make install
 cd ..
 
 ```
+
+If you don't need notification server, you can set `--enable-ws=no` to disable notification server.
 
 #### seafile-client
 
 ```bash
-cd seafile-client-${version}
+cd seafile-client
 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$PREFIX .
 make
 sudo make install
@@ -150,11 +113,11 @@ export LD_LIBRARY_PATH="$PREFIX/lib:$LD_LIBRARY_PATH"
 export PATH="$PREFIX/bin:$PATH"
 exec seafile-applet $@
 END
-cat >$PREFIX/bin/seaf-cli.sh <<END
+cat >$PREFIX/bin/seaf-cli.sh <<'END'
 export LD_LIBRARY_PATH="$PREFIX/lib:$LD_LIBRARY_PATH"
 export PATH="$PREFIX/bin:$PATH"
-export PYTHONPATH=$PREFIX/lib/python2.7/site-packages
-exec seaf-cli $@
+export PYTHONPATH=$PREFIX/lib/python3.12/site-packages
+exec seaf-cli "$@"
 END
 chmod +x $PREFIX/bin/seafile-applet.sh $PREFIX/bin/seaf-cli.sh
 
