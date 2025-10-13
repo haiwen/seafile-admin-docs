@@ -6,19 +6,11 @@
 
 The recommended steps to migrate from non-docker deployment to docker deployment on two different machines are:
 
-1. Upgrade your Seafile server to the latest version.
-2. Shutdown the Seafile, Nginx and cache server (e.g., Redis) according to your situations.
-3. Backup MySQL databse and Seafile libraries data.
-4. Deploy the Seafile Docker in the new machine.
-5. Recover the Seafile libraries and MySQL database in the new machine.
-6. Start Seafile Docker and shutdown the old MySQL (or Mariadb) according to your situations.
-
-## Upgrade your Seafile server
-
-You have to upgrade the version of the binary package to [latest version](../upgrade/upgrade_notes_for_12.0.x.md) before the migration, and ensure that the system is running normally. 
-
-!!! tip
-    If you running a very old version of Seafile, you can following the [FAQ item](https://cloud.seatable.io/dtable/external-links/7b976c85f504491cbe8e/?tid=0000&vid=0000&row-id=VYQI9DJfRmCv5NggcX4f0Q) to migrate to the latest version
+1. Shutdown the Seafile, Nginx and cache server (e.g., Redis) according to your situations.
+2. Backup MySQL databse and Seafile libraries data.
+3. Deploy the Seafile Docker in the new machine.
+4. Recover the Seafile libraries and MySQL database in the new machine.
+5. Start Seafile Docker and shutdown the old MySQL (or Mariadb) according to your situations.
 
 ## Stop basic Services (except MySQL)
 
