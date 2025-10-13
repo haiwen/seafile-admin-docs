@@ -4462,78 +4462,56 @@
 <h1 id="linux">Linux<a class="headerlink" href="#linux" title="Permanent link">&para;</a></h1>
 <h4 id="preparation">Preparation<a class="headerlink" href="#preparation" title="Permanent link">&para;</a></h4>
 <p>The following list is what you need to install on your development machine. <strong>You should install all of them before you build Seafile</strong>.</p>
-<p>Package names are according to Ubuntu 14.04. For other Linux distros, please find their corresponding names yourself.</p>
+<p>Package names are according to Ubuntu 24.04. For other Linux distros, please find their corresponding names yourself.</p>
 <ul>
-<li>autoconf/automake/libtool</li>
+<li>autotools-dev</li>
 <li>libevent-dev ( 2.0 or later )</li>
 <li>libcurl4-openssl-dev  (1.0.0 or later)</li>
 <li>libgtk2.0-dev ( 2.24 or later)</li>
 <li>uuid-dev</li>
 <li>intltool (0.40 or later)</li>
 <li>libsqlite3-dev (3.7 or later)</li>
-<li>valac  (only needed if you build from git repo)</li>
 <li>libjansson-dev</li>
-<li>qtchooser</li>
-<li>qtbase5-dev</li>
-<li>libqt5webkit5-dev</li>
-<li>qttools5-dev</li>
-<li>qttools5-dev-tools</li>
 <li>valac</li>
+<li>git</li>
 <li>cmake</li>
-<li>python-simplejson (for seaf-cli)</li>
+<li>libtool</li>
 <li>libssl-dev</li>
 <li>libargon2-dev</li>
+<li>libglib2.0-dev</li>
+<li>libwebsockets-dev</li>
+<li>qtwebengine5-dev</li>
+<li>libqt5webkit5-dev</li>
+<li>qtbase5-dev</li>
+<li>qtchooser</li>
+<li>qttools5-dev</li>
+<li>qttools5-dev-tools</li>
+<li>qtwayland5</li>
 </ul>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Ubuntu</label><label for="__tabbed_1_2">Fedora 20/23</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>autoconf<span class="w"> </span>automake<span class="w"> </span>libtool<span class="w"> </span>libevent-dev<span class="w"> </span>libcurl4-openssl-dev<span class="w"> </span>libgtk2.0-dev<span class="w"> </span>uuid-dev<span class="w"> </span>intltool<span class="w"> </span>libsqlite3-dev<span class="w"> </span>valac<span class="w"> </span>libjansson-dev<span class="w"> </span>cmake<span class="w"> </span>qtchooser<span class="w"> </span>qtbase5-dev<span class="w"> </span>libqt5webkit5-dev<span class="w"> </span>qttools5-dev<span class="w"> </span>qttools5-dev-tools<span class="w"> </span>libssl-dev<span class="w"> </span>libargon2-dev
+<h5 id="ubuntu">Ubuntu<a class="headerlink" href="#ubuntu" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>build-essential<span class="w"> </span>autotools-dev<span class="w"> </span>libtool<span class="w"> </span>libevent-dev<span class="w"> </span>libcurl4-openssl-dev<span class="w"> </span>libgtk2.0-dev<span class="w"> </span>uuid-dev<span class="w"> </span>intltool<span class="w"> </span>libsqlite3-dev<span class="w"> </span>valac<span class="w"> </span>git<span class="w"> </span>libjansson-dev<span class="w"> </span>cmake<span class="w"> </span>libwebsockets-dev<span class="w"> </span>qtchooser<span class="w"> </span>qtbase5-dev<span class="w"> </span>libqt5webkit5-dev<span class="w"> </span>qttools5-dev<span class="w"> </span>qttools5-dev-tools<span class="w"> </span>libssl-dev<span class="w"> </span>libargon2-dev<span class="w"> </span>libglib2.0-dev<span class="w"> </span>qtwebengine5-dev<span class="w"> </span>qtwayland5
 </code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>wget<span class="w"> </span>gcc<span class="w"> </span>libevent-devel<span class="w"> </span>openssl-devel<span class="w"> </span>gtk2-devel<span class="w"> </span>libuuid-devel<span class="w"> </span>sqlite-devel<span class="w"> </span>jansson-devel<span class="w"> </span>intltool<span class="w"> </span>cmake<span class="w"> </span>libtool<span class="w"> </span>vala<span class="w"> </span>gcc-c++<span class="w"> </span>qt5-qtbase-devel<span class="w"> </span>qt5-qttools-devel<span class="w"> </span>qt5-qtwebkit-devel<span class="w"> </span>libcurl-devel<span class="w"> </span>openssl-devel<span class="w"> </span>argon2-devel
-</code></pre></div>
-</div>
-</div>
-</div>
 <h4 id="building">Building<a class="headerlink" href="#building" title="Permanent link">&para;</a></h4>
-<p>First you should get the latest source of libsearpc/ccnet/seafile/seafile-client:</p>
-<p>Download the source tarball of the latest tag from</p>
+<p>First you should get the latest source of libsearpc/seafile/seafile-client:</p>
+<p>Download the source code of the latest tag from</p>
 <ul>
-<li><a href="https://github.com/haiwen/libsearpc/tags">https://github.com/haiwen/libsearpc/tags</a> (use v3.2-latest)</li>
-<li><a href="https://github.com/haiwen/seafile/tags">https://github.com/haiwen/seafile/tags</a></li>
-<li><a href="https://github.com/haiwen/seafile-client/tags">https://github.com/haiwen/seafile-client/tags</a></li>
+<li><a href="https://github.com/haiwen/libsearpc">https://github.com/haiwen/libsearpc</a> (use v3.2-latest)</li>
+<li><a href="https://github.com/haiwen/seafile">https://github.com/haiwen/seafile</a></li>
+<li><a href="https://github.com/haiwen/seafile-client">https://github.com/haiwen/seafile-client</a></li>
 </ul>
-<p>For example, if the latest released seafile client is 8.0.0, then just use the <strong>v8.0.0</strong> tags of the four projects. You should get four tarballs:</p>
-<ul>
-<li>libsearpc-v3.2-latest.tar.gz</li>
-<li>seafile-8.0.0.tar.gz</li>
-<li>seafile-client-8.0.0.tar.gz</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="c1"># without alias wget= might not work</span>
-<span class="nb">shopt</span><span class="w"> </span>-s<span class="w"> </span>expand_aliases
-
-<span class="nb">export</span><span class="w"> </span><span class="nv">version</span><span class="o">=</span><span class="m">8</span>.0.0
-<span class="nb">alias</span><span class="w"> </span><span class="nv">wget</span><span class="o">=</span><span class="s1">&#39;wget --content-disposition -nc&#39;</span>
-wget<span class="w"> </span>https://github.com/haiwen/libsearpc/archive/v3.2-latest.tar.gz
-wget<span class="w"> </span>https://github.com/haiwen/ccnet/archive/v<span class="si">${</span><span class="nv">version</span><span class="si">}</span>.tar.gz<span class="w"> </span>
-wget<span class="w"> </span>https://github.com/haiwen/seafile/archive/v<span class="si">${</span><span class="nv">version</span><span class="si">}</span>.tar.gz
-wget<span class="w"> </span>https://github.com/haiwen/seafile-client/archive/v<span class="si">${</span><span class="nv">version</span><span class="si">}</span>.tar.gz
+<p>For example, if the latest released seafile client is 9.0.15, then just use the <strong>v9.0.15</strong> tags of the three projects.</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span>v3.2-latest<span class="w"> </span>https://github.com/haiwen/libsearpc.git
+git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span>v9.0.15<span class="w"> </span>https://github.com/haiwen/seafile.git
+git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span>v9.0.15<span class="w"> </span>https://github.com/haiwen/seafile-client.git
 </code></pre></div>
-<p>Now uncompress them:</p>
-<div class="highlight"><pre><span></span><code>tar<span class="w"> </span>xf<span class="w"> </span>libsearpc-3.2-latest.tar.gz
-tar<span class="w"> </span>xf<span class="w"> </span>ccnet-<span class="si">${</span><span class="nv">version</span><span class="si">}</span>.tar.gz
-tar<span class="w"> </span>xf<span class="w"> </span>seafile-<span class="si">${</span><span class="nv">version</span><span class="si">}</span>.tar.gz
-tar<span class="w"> </span>xf<span class="w"> </span>seafile-client-<span class="si">${</span><span class="nv">version</span><span class="si">}</span>.tar.gz
-</code></pre></div>
-<p>To build Seafile client, you need first build <strong>libsearpc</strong> and <strong>ccnet</strong>, <strong>seafile</strong>.</p>
+<p>To build Seafile client, you need first build <strong>libsearpc</strong> and <strong>seafile</strong>.</p>
 <h5 id="set-paths">set paths<a class="headerlink" href="#set-paths" title="Permanent link">&para;</a></h5>
 <div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">PREFIX</span><span class="o">=</span>/usr
 <span class="nb">export</span><span class="w"> </span><span class="nv">PKG_CONFIG_PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$PREFIX</span><span class="s2">/lib/pkgconfig:</span><span class="nv">$PKG_CONFIG_PATH</span><span class="s2">&quot;</span>
 <span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$PREFIX</span><span class="s2">/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
 </code></pre></div>
 <h5 id="libsearpc">libsearpc<a class="headerlink" href="#libsearpc" title="Permanent link">&para;</a></h5>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>libsearpc-3.2-latest
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>libsearpc
 ./autogen.sh
 ./configure<span class="w"> </span>--prefix<span class="o">=</span><span class="nv">$PREFIX</span>
 make
@@ -4541,27 +4519,16 @@ sudo<span class="w"> </span>make<span class="w"> </span>install
 <span class="nb">cd</span><span class="w"> </span>..
 </code></pre></div>
 <h5 id="seafile">seafile<a class="headerlink" href="#seafile" title="Permanent link">&para;</a></h5>
-<p>In order to support notification server, you need to build libwebsockets first.
-<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="o">=</span>v4.3.0<span class="w"> </span>https://github.com/warmcat/libwebsockets
-<span class="nb">cd</span><span class="w"> </span>libwebsockets
-mkdir<span class="w"> </span>build
-<span class="nb">cd</span><span class="w"> </span>build
-cmake<span class="w"> </span>..
-make
-sudo<span class="w"> </span>make<span class="w"> </span>install
-<span class="nb">cd</span><span class="w"> </span>..
-</code></pre></div></p>
-<p>You can set <code>--enable-ws</code> to no to disable notification server.
-After that, you can build seafile:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>seafile-<span class="si">${</span><span class="nv">version</span><span class="si">}</span>/
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>seafile
 ./autogen.sh
-./configure<span class="w"> </span>--prefix<span class="o">=</span><span class="nv">$PREFIX</span><span class="w"> </span>--disable-fuse
+./configure<span class="w"> </span>--prefix<span class="o">=</span><span class="nv">$PREFIX</span><span class="w"> </span>--enable-ws<span class="o">=</span>yes
 make
 sudo<span class="w"> </span>make<span class="w"> </span>install
 <span class="nb">cd</span><span class="w"> </span>..
 </code></pre></div>
+<p>If you don't need notification server, you can set <code>--enable-ws=no</code> to disable notification server.</p>
 <h4 id="seafile-client">seafile-client<a class="headerlink" href="#seafile-client" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>seafile-client-<span class="si">${</span><span class="nv">version</span><span class="si">}</span>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>seafile-client
 cmake<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span><span class="nv">$PREFIX</span><span class="w"> </span>.
 make
 sudo<span class="w"> </span>make<span class="w"> </span>install
@@ -4575,11 +4542,11 @@ sudo<span class="w"> </span>make<span class="w"> </span>install
 <span class="s">export PATH=&quot;$PREFIX/bin:$PATH&quot;</span>
 <span class="s">exec seafile-applet $@</span>
 <span class="s">END</span>
-cat<span class="w"> </span>&gt;<span class="nv">$PREFIX</span>/bin/seaf-cli.sh<span class="w"> </span><span class="s">&lt;&lt;END</span>
+cat<span class="w"> </span>&gt;<span class="nv">$PREFIX</span>/bin/seaf-cli.sh<span class="w"> </span><span class="s">&lt;&lt;&#39;END&#39;</span>
 <span class="s">export LD_LIBRARY_PATH=&quot;$PREFIX/lib:$LD_LIBRARY_PATH&quot;</span>
 <span class="s">export PATH=&quot;$PREFIX/bin:$PATH&quot;</span>
-<span class="s">export PYTHONPATH=$PREFIX/lib/python2.7/site-packages</span>
-<span class="s">exec seaf-cli $@</span>
+<span class="s">export PYTHONPATH=$PREFIX/lib/python3.12/site-packages</span>
+<span class="s">exec seaf-cli &quot;$@&quot;</span>
 <span class="s">END</span>
 chmod<span class="w"> </span>+x<span class="w"> </span><span class="nv">$PREFIX</span>/bin/seafile-applet.sh<span class="w"> </span><span class="nv">$PREFIX</span>/bin/seaf-cli.sh
 </code></pre></div>
