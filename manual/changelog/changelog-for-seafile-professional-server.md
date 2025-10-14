@@ -8,6 +8,17 @@
 
 Please check our document for how to upgrade to [12.0](../upgrade/upgrade_notes_for_12.0.x.md)
 
+### 12.0.17 (2025-10-14)
+
+* [fix] Fix a XSS issue for SVG file view in sharing link if golang file server is used
+* [fix] Support line wrap for text file view
+* [fix] Fix PDF view does not work when sharing a library with Online Read-Only
+
+### 12.0.16 (2025-08-29)
+
+* [fix] Fix a XSS issue in upload link
+* [fix] Fix a permission check issue for "shared with all" libraries in mutli-tenancy mode
+
 ### 12.0.15 (2025-08-15)
 
 * [fix] Fix OCM support
