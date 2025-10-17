@@ -20,18 +20,18 @@ Seafile supports MySQL and MariaDB. We recommend that you use the preferred SQL 
 
 You can find step-by-step how-tos for installing MySQL and MariaDB in the [tutorials on the Digital Ocean website](https://www.digitalocean.com/community/tutorials).
 
-Seafile uses the `mysql_native_password` plugin for authentication. The versions of MySQL and MariaDB installed on CentOS 8, Debian 10, and Ubuntu 20.04 use a different authentication plugin by default. It is therefore required to change to authentication plugin to `mysql_native_password` for the root user prior to the installation of Seafile. The above mentioned tutorials explain how to do it.
+Seafile uses the `mysql_native_password` plugin for authentication. The versions of MySQL and MariaDB installed on Ubuntu/Debian use a different authentication plugin by default. It is therefore required to change to authentication plugin to `mysql_native_password` for the root user prior to the installation of Seafile. The above mentioned tutorials explain how to do it.
 
 ### Installing prerequisites
 
 !!! tip
     The standard directory `/opt/seafile` is assumed for the rest of this manual. If you decide to put Seafile in another directory, some commands need to be modified accordingly
 
-1. Install cache server (e.g., *Memcached*)
+1. Install cache server (e.g., *Redis*)
 
     ```sh
     sudo apt-get update
-    sudo apt-get install -y memcached libmemcached-dev
+    sudo apt-get install -y redis-server libhiredis-dev
     ```
 
 2. Install Python and related libraries
@@ -146,9 +146,9 @@ Save the license file in Seafile's programm directory `/opt/seafile`. Make sure 
 
 The install packages for Seafile PE are available for download in the the [Seafile Customer Center](https://customer.seafile.com). To access the Customer Center, a  user account is necessary. The registration is free.
 
-Beginning with Seafile PE 7.0.17, the Seafile Customer Center provides two install packages for every version (using Seafile PE 12.0.6 as an example):
+Beginning with Seafile PE 7.0.17, the Seafile Customer Center provides two install packages for every version (using Seafile PE 13.0.10 as an example):
 
-* _seafile-pro-server_12.0.6_x86-64_Ubuntu.tar.gz_, compiled in Ubuntu environment
+* _seafile-pro-server_13.0.10_x86-64_Ubuntu.tar.gz_, compiled in Ubuntu environment
 
 The former is suitable for installation on Ubuntu/Debian servers.
 
@@ -160,7 +160,7 @@ Download the install package using wget (replace the x.x.x with the version you 
 wget -O 'seafile-pro-server_x.x.x_x86-64_Ubuntu.tar.gz' 'VERSION_SPECIFIC_LINK_FROM_SEAFILE_CUSTOMER_CENTER'
 ```
 
-We use Seafile version 12.0.6 as an example in the remainder of these instructions.
+We use Seafile version 13.0.10 as an example in the remainder of these instructions.
 
 ### Uncompressing the package
 
@@ -378,65 +378,6 @@ The directory layout then looks as follows:
 
 The folder `seafile-server-latest` is a symbolic link to the current Seafile Server folder. When later you upgrade to a new version, the upgrade scripts update this link to point to the latest Seafile Server folder.
 
-### Setup Memory Cache
-
-Memory cache is mandatory for pro edition. You may use Memcached or Reids as cache server.
-
-=== "Memcached"
-
-    Use the following commands to install memcached and corresponding libraies on your system:
-
-    ```
-    # on Debian/Ubuntu 18.04+
-    apt-get install memcached libmemcached-dev -y
-    pip3 install --timeout=3600 pylibmc django-pylibmc
-
-    systemctl enable --now memcached
-    ```
-
-
-    Add or modify the following configuration to `seahub_settings.py`:
-
-    ```py
-    CACHES = {
-        'default': {
-            'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
-            'LOCATION': '127.0.0.1:11211',
-        },
-    }
-
-    ```
-
-    Add or modify the following configuration to `seafile.conf`:
-
-    ```
-    [memcached]
-    memcached_options = --SERVER=127.0.0.1 --POOL-MIN=10 --POOL-MAX=100
-    ```
-
-=== "Redis"
-
-    !!! success "Redis is supported since version 11.0"
-
-    1. Install Redis with package installers in your OS.
-
-    2. Refer to [Django's documentation about using Redis cache](https://docs.djangoproject.com/en/4.2/topics/cache/#redis) to add Redis configurations to `seahub_settings.py`.
-
-    3. Add or modify the following configuration to `seafile.conf`:
-
-        ```
-        [redis]
-        redis_host = 127.0.0.1
-        redis_port = 6379
-        max_connections = 100
-        ```
-
-
-### Enabling HTTP/HTTPS (Optional but Recommended)
-
-You need at least setup HTTP to make Seafile's web interface work. This manual provides instructions for enabling HTTP/HTTPS for the two most popular web servers and reverse proxies (e.g., [Nginx](./https_with_nginx.md)).
-
-
 ### Create the `.env` file in `conf/` directory
 
 ```sh
@@ -460,7 +401,83 @@ SEAFILE_MYSQL_DB_PASSWORD=<your MySQL password>
 SEAFILE_MYSQL_DB_CCNET_DB_NAME=ccnet_db
 SEAFILE_MYSQL_DB_SEAFILE_DB_NAME=seafile_db
 SEAFILE_MYSQL_DB_SEAHUB_DB_NAME=seahub_db
+
+## Cache
+CACHE_PROVIDER=redis # options: redis (recommend), memcached
+
+### Redis
+REDIS_HOST=redis
+REDIS_PORT=6379
+REDIS_PASSWORD=
+
+### Memcached
+MEMCACHED_HOST=memcached
+MEMCACHED_PORT=11211
 ```
+
+### Setup Memory Cache
+
+Memory cache is mandatory for pro edition. You may use Memcached or Reids as cache server.
+
+=== "Memcached"
+
+    Use the following commands to install memcached and corresponding libraies on your system:
+
+    ```
+    # on Debian/Ubuntu 18.04+
+    apt-get install memcached libmemcached-dev -y
+    pip3 install --timeout=3600 pylibmc django-pylibmc
+
+    systemctl enable --now memcached
+    ```
+
+
+    Add or modify the following configuration to `/opt/seafile/conf/.env`:
+
+    ```py
+    ## Cache
+    CACHE_PROVIDER=memcached
+    
+    ### Memcached
+    MEMCACHED_HOST=memcached
+    MEMCACHED_PORT=11211
+
+    ```
+
+=== "Redis"
+    !!! success "Redis is supported since version 11.0"
+
+    Use the following commands to install redis and corresponding libraies on your system:
+
+    ```
+    # on Debian/Ubuntu 18.04+
+    apt-get install -y redis-server libhiredis-dev
+    pip3 install redis django-redis
+
+    systemctl enable --now redis-server
+    ```
+
+
+    Add or modify the following configuration to `/opt/seafile/conf/.env`:
+
+    ```py
+    ## Cache
+    CACHE_PROVIDER=redis
+
+    ### Redis
+    REDIS_HOST=redis
+    REDIS_PORT=6379
+    REDIS_PASSWORD=
+
+    ```
+
+
+
+
+### Enabling HTTP/HTTPS (Optional but Recommended)
+
+You need at least setup HTTP to make Seafile's web interface work. This manual provides instructions for enabling HTTP/HTTPS for the two most popular web servers and reverse proxies (e.g., [Nginx](./https_with_nginx.md)).
+
 
 ## Starting Seafile Server
 
