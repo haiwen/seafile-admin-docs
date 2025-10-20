@@ -209,5 +209,21 @@ docker exec -it seafile-mysql /bin/sh -c "mysql -u[username] -p[password] seahub
 ### Restore the seafile data
 
 ```bash
-cp -R /backup/data/* /opt/seafile-data/seafile/
+# Recommended: use rsync to restore, preserving ownership/permissions/ACL/xattrs.
+# Run a dry-run first to review the changes.
+# Dry-run (no changes made)
+sudo rsync -aHAX --dry-run --itemize-changes /backup/data/seafile/ /opt/seafile-data/seafile/
+
+# Restore (apply changes)
+sudo rsync -aHAX /backup/data/seafile/ /opt/seafile-data/seafile/
+
+# Optional: make the target an exact mirror of the backup
+# (will delete files present in the target but not in the backup;
+# add only after reviewing the dry-run output)
+# sudo rsync -aHAX --delete /backup/data/seafile/ /opt/seafile-data/seafile/
 ```
+!!! note
+    Trailing “/” on the source means “copy the directory CONTENTS”.
+    
+    Run with sudo to preserve owners, groups, ACLs (-A) and xattrs (-X).
+
