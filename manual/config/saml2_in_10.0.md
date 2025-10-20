@@ -1,10 +1,13 @@
 # SAML 2.0 in version 10.0+
 
-In this document, we use Microsoft Azure SAML single sign-on app and Microsoft on-premise ADFS to show how Seafile integrate SAML 2.0. Other SAML 2.0 provider should be similar.
+In this document, we demonstrate how to integrate Seafile with SAML single sign-on. We will use the Microsoft Azure SAML single sign-on app, Microsoft on-premise ADFS, and Keycloak as three examples. Other SAML 2.0 providers should follow a similar approach.
 
 ## Preparations for SAML 2.0
 
-**First**, install xmlsec1 package:
+### Install xmlsec1 package (binary deployment only)
+
+!!! note "This step is not needed for Docker based deployment"
+
 
 ```
 $ apt update
@@ -12,7 +15,7 @@ $ apt install xmlsec1
 $ apt install dnsutils  # For multi-tenancy feature
 ```
 
-**Second**, prepare SP(Seafile) certificate directory and SP certificates:
+### Prepare SP(Seafile) certificate directory and SP certificates:
 
 Create certs dir
 
@@ -29,9 +32,10 @@ $ openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout sp.key -out sp.cr
 
 !!! tip "The `days` option indicates the validity period of the generated certificate. The unit is day. The system admin needs to update the certificate regularly"
 
+
 ## Integration with ADFS/SAML single sign-on
 
-### Microsoft Azure SAML single sign-on app
+### Example 1: Microsoft Azure SAML single sign-on app
 
 If you use Microsoft Azure SAML app to achieve single sign-on, please follow the steps below:
 
@@ -97,7 +101,7 @@ SAML_REMOTE_METADATA_URL = 'https://login.microsoftonline.com/xxx/federationmeta
 
 **Finally**, open the browser and enter the Seafile login page, click `Single Sign-On`, and use the user assigned to SAML app to perform a SAML login test.
 
-### On-premise ADFS
+### Example 2: On-premise ADFS
 
 If you use Microsoft ADFS to achieve single sign-on, please follow the steps below:
 
@@ -189,3 +193,6 @@ SAML_REMOTE_METADATA_URL = 'https://temp.adfs.com/federationmetadata/2007-06/fed
 !!! tip "When creating claims rule, you can also select other LDAP Attributes, such as E-Mail-Addresses, depending on your ADFS service"
 
 **Finally**, open the browser and enter the Seafile login page, click `Single Sign-On` to perform ADFS login test.
+
+
+### Example 3: Keycloak SAML 2.0
