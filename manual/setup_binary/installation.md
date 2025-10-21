@@ -54,7 +54,7 @@ Seafile uses the `mysql_native_password` plugin for authentication. The versions
         # Notice that this will usually change your prompt so you know the venv is active
 
         # install packages into the active venv with pip (sudo isn't needed because this is installing in the venv, not system-wide).
-        pip3 install --timeout=3600 boto3 oss2 twilio configparser \
+        pip3 install --timeout=3600 boto3 oss2 twilio configparser pytz \
             sqlalchemy==2.0.* pymysql==1.1.* jinja2 django-pylibmc pylibmc psd-tools lxml \
             django==5.2.* cffi==1.17.1 future==1.0.* mysqlclient==2.2.* captcha==0.7.* django_simple_captcha==0.6.* \
             pyjwt==2.10.* djangosaml2==1.11.* pysaml2==7.5.* pycryptodome==3.23.* python-ldap==3.4.* pillow==11.3.* pillow-heif==1.0.*
@@ -78,7 +78,7 @@ Seafile uses the `mysql_native_password` plugin for authentication. The versions
         # Notice that this will usually change your prompt so you know the venv is active
 
         # install packages into the active venv with pip (sudo isn't needed because this is installing in the venv, not system-wide).
-        pip3 install --timeout=3600 boto3 oss2 twilio configparser \
+        pip3 install --timeout=3600 boto3 oss2 twilio configparser pytz \
             sqlalchemy==2.0.* pymysql==1.1.* jinja2 django-pylibmc pylibmc psd-tools lxml \
             django==5.2.* cffi==1.17.1 future==1.0.* mysqlclient==2.2.* captcha==0.7.* django_simple_captcha==0.6.* \
             pyjwt==2.10.* djangosaml2==1.11.* pysaml2==7.5.* pycryptodome==3.23.* python-ldap==3.4.* pillow==11.3.* pillow-heif==1.0.*
@@ -101,7 +101,7 @@ Seafile uses the `mysql_native_password` plugin for authentication. The versions
         # Notice that this will usually change your prompt so you know the venv is active
 
         # install packages into the active venv with pip (sudo isn't needed because this is installing in the venv, not system-wide).
-        pip3 install --timeout=3600 boto3 oss2 twilio configparser \
+        pip3 install --timeout=3600 boto3 oss2 twilio configparser pytz \
             sqlalchemy==2.0.* pymysql==1.1.* jinja2 django-pylibmc pylibmc psd-tools lxml \
             django==5.2.* cffi==1.17.1 future==1.0.* mysqlclient==2.2.* captcha==0.7.* django_simple_captcha==0.6.* \
             pyjwt==2.10.* djangosaml2==1.11.* pysaml2==7.5.* pycryptodome==3.23.* python-ldap==3.4.* pillow==11.3.* pillow-heif==1.0.*
