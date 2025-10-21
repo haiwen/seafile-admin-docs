@@ -4805,7 +4805,7 @@ openssl<span class="w"> </span>req<span class="w"> </span>-x509<span class="w"> 
 <p><img alt="" src="../../images/auto-upload/417d-a48a-3e10c46b98f0.png" /></p>
 <p><strong>Next</strong>, download the base64 format SAML app's certificate and rename to idp.crt:</p>
 <p><img alt="" src="../../images/auto-upload/0a693563-d511-4c3c-ac30-82a26d10cfab.png" /></p>
-<p>and put it under the certs directory(<code>/opt/seafile/seahub-data/certs</code>).</p>
+<p>and put it under the certs directory(<code>/opt/seafile-data/seafile/seahub-data/certs</code>).</p>
 <p><strong>Next</strong>, copy the metadata URL of the SAML app:</p>
 <p><img alt="" src="../../images/auto-upload/1426318f-0a61-462d-a514-13768ca0b18c.png" /></p>
 <p>and paste it into the <code>SAML_REMOTE_METADATA_URL</code> option in seahub_settings.py, e.g.:</p>
@@ -4832,11 +4832,6 @@ openssl<span class="w"> </span>req<span class="w"> </span>-x509<span class="w"> 
 </code></pre></div>
 <p>View where the xmlsec1 binary is located:</p>
 <div class="highlight"><pre><span></span><code>$ which xmlsec1
-</code></pre></div>
-<ul>
-<li>If certificates are <strong>not placed in</strong> <code>/opt/seafile/seahub-data/certs</code>, you need to add the following configuration in seahub_settings.py:</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="n">SAML_CERTS_DIR</span> <span class="o">=</span> <span class="s1">&#39;/path/to/certs&#39;</span>
 </code></pre></div>
 </div>
 <p><strong>Finally</strong>, open the browser and enter the Seafile login page, click <code>Single Sign-On</code>, and use the user assigned to SAML app to perform a SAML login test.</p>
@@ -4964,9 +4959,8 @@ openssl<span class="w"> </span>req<span class="w"> </span>-x509<span class="w"> 
 <p><strong>Finally</strong>, open the browser and enter the Seafile login page, click <code>Single Sign-On</code> to perform ADFS login test.</p>
 <h3 id="example-3-keycloak-saml-20">Example 3: Keycloak SAML 2.0<a class="headerlink" href="#example-3-keycloak-saml-20" title="Permanent link">&para;</a></h3>
 <p>In this part, we use Keycloak SAML single sign-on app to show how Seafile integrate SAML 2.0.</p>
+<p>We assume Seafile is deployed at <code>https://demo.seafile.top</code>.</p>
 <h4 id="keycloak-saml-single-sign-on-app">Keycloak SAML single sign-on app<a class="headerlink" href="#keycloak-saml-single-sign-on-app" title="Permanent link">&para;</a></h4>
-<p>If you use Keycloak SAML app to achieve single sign-on, please follow the steps below:</p>
-<p>The test domain name here is exemplified by <code>https://demo.seafile.top</code>.</p>
 <p><strong>First</strong>, Create a new Client: </p>
 <ul>
 <li>
