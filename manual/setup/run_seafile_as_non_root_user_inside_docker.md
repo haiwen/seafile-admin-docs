@@ -2,6 +2,8 @@
 
 You can use run Seafile as non root user in docker.
 
+Note: In non root mode, the `seafile` user is automatically created in the container, with uid 8000 and gid 8000.
+
 First deploy Seafile with docker, and destroy the containers.
 
 ```bash
