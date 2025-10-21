@@ -63,7 +63,7 @@ If you use Microsoft Azure SAML app to achieve single sign-on, please follow the
 
 ![](../images/auto-upload/0a693563-d511-4c3c-ac30-82a26d10cfab.png)
 
-and put it under the certs directory(`/opt/seafile/seahub-data/certs`).
+and put it under the certs directory(`/opt/seafile-data/seafile/seahub-data/certs`).
 
 **Next**, copy the metadata URL of the SAML app:
 
@@ -103,11 +103,6 @@ SAML_REMOTE_METADATA_URL = 'https://login.microsoftonline.com/xxx/federationmeta
     $ which xmlsec1
     ```
 
-    - If certificates are **not placed in** `/opt/seafile/seahub-data/certs`, you need to add the following configuration in seahub_settings.py:
-
-    ```python
-    SAML_CERTS_DIR = '/path/to/certs'
-    ```
 
 **Finally**, open the browser and enter the Seafile login page, click `Single Sign-On`, and use the user assigned to SAML app to perform a SAML login test.
 
@@ -206,13 +201,12 @@ SAML_REMOTE_METADATA_URL = 'https://temp.adfs.com/federationmetadata/2007-06/fed
 
 
 ### Example 3: Keycloak SAML 2.0
+
 In this part, we use Keycloak SAML single sign-on app to show how Seafile integrate SAML 2.0.
 
+We assume Seafile is deployed at `https://demo.seafile.top`.
+
 #### Keycloak SAML single sign-on app
-
-If you use Keycloak SAML app to achieve single sign-on, please follow the steps below:
-
-The test domain name here is exemplified by `https://demo.seafile.top`.
 
 **First**, Create a new Client: 
 
@@ -284,7 +278,6 @@ SAML_ATTRIBUTE_MAPPING = {
     'name': ('display_name', ),
     'mail': ('contact_email', ),
 }
-
 
 ```
 
