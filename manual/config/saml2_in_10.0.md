@@ -42,8 +42,9 @@ openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout sp.key -out sp.crt
 
 !!! tip "The `days` option indicates the validity period of the generated certificate. The unit is day. The system admin needs to update the certificate regularly"
 
-
 ## Integrate with Identity Provider
+
+In the following examples, we assume Seafile is deployed at `https://demo.seafile.top`. You should change the domain in the exmapels to the domain of your Seafile server. 
 
 ### Example 1: Microsoft Azure SAML single sign-on app
 
@@ -204,9 +205,8 @@ SAML_REMOTE_METADATA_URL = 'https://temp.adfs.com/federationmetadata/2007-06/fed
 
 In this part, we use Keycloak SAML single sign-on app to show how Seafile integrate SAML 2.0.
 
-We assume Seafile is deployed at `https://demo.seafile.top`.
 
-#### Keycloak SAML single sign-on app
+#### In Keycloak
 
 **First**, Create a new Client: 
 
