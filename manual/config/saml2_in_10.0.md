@@ -15,7 +15,7 @@ $ apt install xmlsec1
 $ apt install dnsutils  # For multi-tenancy feature
 ```
 
-### Prepare SP(Seafile) certificate directory and SP certificates:
+### Prepare SP(Seafile) certificate directory and SP certificates
 
 Create certs dir：
 
