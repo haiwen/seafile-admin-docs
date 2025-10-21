@@ -71,13 +71,21 @@ mkdir -p /data/seafile-fuse
 ./seaf-fuse.sh start /data/seafile-fuse
 ```
 
+##### Stop seaf-fuse
+
+```
+./seaf-fuse.sh stop
+```
+
+## Start options
+
 seaf-fuse supports standard mount options for FUSE. For example, you can specify ownership for the mounted folder:
 
 ```
 ./seaf-fuse.sh start -o uid=<uid> /data/seafile-fuse
 ```
 
-The fuse enables the block cache function by default to cache block objects, thereby reducing access to backend storage, but this function will occupy local disk space. Since Seafile-pro-10.0.0, you can disable block cache by adding following options:
+In Pro edition, seaf-fuse enables the block cache function by default to cache block objects when object storage backend is used, thereby reducing access to backend storage, but this function will occupy local disk space. Since Seafile-pro-10.0.0, you can disable block cache by adding following options:
 
 ```
 ./seaf-fuse.sh start --disable-block-cache /data/seafile-fuse
@@ -85,14 +93,7 @@ The fuse enables the block cache function by default to cache block objects, the
 
 You can find the complete list of supported options in `man fuse`.
 
-
-##### Stop seaf-fuse
-
-```
-./seaf-fuse.sh stop
-```
-
-### Contents of the mounted folder
+## Contents of the mounted folder
 
 ##### The top level folder
 
