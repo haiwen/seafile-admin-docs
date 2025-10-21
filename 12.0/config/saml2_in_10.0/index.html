@@ -3027,9 +3027,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#keycloak-saml-single-sign-on-app" class="md-nav__link">
+  <a href="#in-keycloak" class="md-nav__link">
     <span class="md-ellipsis">
-      Keycloak SAML single sign-on app
+      In Keycloak
     </span>
   </a>
   
@@ -4713,9 +4713,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#keycloak-saml-single-sign-on-app" class="md-nav__link">
+  <a href="#in-keycloak" class="md-nav__link">
     <span class="md-ellipsis">
-      Keycloak SAML single sign-on app
+      In Keycloak
     </span>
   </a>
   
@@ -4796,6 +4796,7 @@ openssl<span class="w"> </span>req<span class="w"> </span>-x509<span class="w"> 
 <p class="admonition-title">The <code>days</code> option indicates the validity period of the generated certificate. The unit is day. The system admin needs to update the certificate regularly</p>
 </div>
 <h2 id="integrate-with-identity-provider">Integrate with Identity Provider<a class="headerlink" href="#integrate-with-identity-provider" title="Permanent link">&para;</a></h2>
+<p>In the following examples, we assume Seafile is deployed at <code>https://demo.seafile.top</code>. You should change the domain in the exmapels to the domain of your Seafile server. </p>
 <h3 id="example-1-microsoft-azure-saml-single-sign-on-app">Example 1: Microsoft Azure SAML single sign-on app<a class="headerlink" href="#example-1-microsoft-azure-saml-single-sign-on-app" title="Permanent link">&para;</a></h3>
 <p>If you use Microsoft Azure SAML app to achieve single sign-on, please follow the steps below:</p>
 <p><strong>First</strong>, add SAML single sign-on app and assign users, refer to: <a href="https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal">add an Azure AD SAML application</a>, <a href="https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal-assign-users">create and assign users</a>.</p>
@@ -4959,8 +4960,7 @@ openssl<span class="w"> </span>req<span class="w"> </span>-x509<span class="w"> 
 <p><strong>Finally</strong>, open the browser and enter the Seafile login page, click <code>Single Sign-On</code> to perform ADFS login test.</p>
 <h3 id="example-3-keycloak-saml-20">Example 3: Keycloak SAML 2.0<a class="headerlink" href="#example-3-keycloak-saml-20" title="Permanent link">&para;</a></h3>
 <p>In this part, we use Keycloak SAML single sign-on app to show how Seafile integrate SAML 2.0.</p>
-<p>We assume Seafile is deployed at <code>https://demo.seafile.top</code>.</p>
-<h4 id="keycloak-saml-single-sign-on-app">Keycloak SAML single sign-on app<a class="headerlink" href="#keycloak-saml-single-sign-on-app" title="Permanent link">&para;</a></h4>
+<h4 id="in-keycloak">In Keycloak<a class="headerlink" href="#in-keycloak" title="Permanent link">&para;</a></h4>
 <p><strong>First</strong>, Create a new Client: </p>
 <ul>
 <li>
