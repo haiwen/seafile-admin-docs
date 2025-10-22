@@ -216,6 +216,6 @@ But if you use your own proxy, you need to make sure it properly proxy `your-sdo
 This is because the browser cannot correctly load content from sdoc-server. Make sure
 
 * SEADOC_SERVER_URL is correctly set in `.env`
-* sdoc-server is accessible through the browser. You can check this by visiting https://<your-seafile-domain>/sdoc-server/ in your browser. If you see "Welcome to sdoc-server," then sdoc-server is successfully accessible via the browser.
+* sdoc-server is accessible through the browser. You can check this by visiting https://your-seafile-domain/sdoc-server/ in your browser. If you see "Welcome to sdoc-server," then sdoc-server is successfully accessible via the browser.
  
 You can open developer console of the browser to further debug the issue.
