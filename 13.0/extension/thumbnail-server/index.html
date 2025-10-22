@@ -2081,6 +2081,30 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#common-issues-when-settings-up-thumbnail-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common issues when settings up thumbnail server
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common issues when settings up thumbnail server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#thumbnails-cannot-be-generated-for-high-resolution-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      Thumbnails cannot be generated for high-resolution images
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4433,6 +4457,30 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#common-issues-when-settings-up-thumbnail-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common issues when settings up thumbnail server
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common issues when settings up thumbnail server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#thumbnails-cannot-be-generated-for-high-resolution-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      Thumbnails cannot be generated for high-resolution images
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4620,6 +4668,9 @@ backend thumbnail_backend
 <li>/opt/seafile-data/seafile-data: This is the directory for seafile storage (if you use local storage).</li>
 <li>/opt/seafile-data/seahub-data/thumbnail: This is the directory for thumbnail files.</li>
 </ul>
+<h2 id="common-issues-when-settings-up-thumbnail-server">Common issues when settings up thumbnail server<a class="headerlink" href="#common-issues-when-settings-up-thumbnail-server" title="Permanent link">&para;</a></h2>
+<h3 id="thumbnails-cannot-be-generated-for-high-resolution-images">Thumbnails cannot be generated for high-resolution images<a class="headerlink" href="#thumbnails-cannot-be-generated-for-high-resolution-images" title="Permanent link">&para;</a></h3>
+<p>This is because generating thumbnails for high-resolution images can impact system performance. You can raise the threshold by setting the <code>THUMBNAIL_IMAGE_ORIGINAL_SIZE_LIMIT</code> environment variable in the env file; the default is 256 (MB).</p>
 
 
 
