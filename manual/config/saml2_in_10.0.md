@@ -52,7 +52,7 @@ If you use Microsoft Azure SAML app to achieve single sign-on, please follow the
 
 **First**, add SAML single sign-on app and assign users, refer to: [add an Azure AD SAML application](https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal), [create and assign users](https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal-assign-users).
 
-**Second**, setup the _Identifier_, _Reply URL_, and _Sign on URL_ of the SAML app based on your service URL, refer to: [enable single sign-on for saml app](https://learn.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal-setup-sso). The format of the _Identifier_, _Reply URL_, and _Sign on URL_ are: https://example.com/saml2/metadata/, https://example.com/saml2/acs/, https://example.com/, e.g.:
+**Second**, setup the _Identifier_, _Reply URL_, and _Sign on URL_ of the SAML app based on your service URL, refer to: [enable single sign-on for saml app](https://learn.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal-setup-sso). The format of the _Identifier_, _Reply URL_, and _Sign on URL_ are: https://demo.seafile.top/saml2/metadata/, https://demo.seafile.top/saml2/acs/, https://demo.seafile.top/, e.g.:
 
 ![](../images/auto-upload/72c7b210-4a91-4e86-ba2e-df5ae0a4a0b0.png)
 
@@ -117,7 +117,7 @@ If you use Microsoft ADFS to achieve single sign-on, please follow the steps bel
 
 2. A valid SSL certificate for ADFS server, and here we use `temp.adfs.com` as the domain name example.
 
-3. A valid SSL certificate for Seafile server, and here we use `demo.seafile.com` as the domain name example.
+3. A valid SSL certificate for Seafile server, and here we use `demo.seafile.top` as the domain name example.
 
 **Second**, download the base64 format certificate and upload it:
 
@@ -164,7 +164,7 @@ SAML_REMOTE_METADATA_URL = 'https://temp.adfs.com/federationmetadata/2007-06/fed
 
 * On the Welcome page, choose **Claims aware** and click **Start**.
 
-* Select **Import data about the relying party published online or on a local network**, type your metadate url in **Federation metadata address (host name or URL)**, and then click **Next**. Your metadate url format is: `https://example.com/saml2/metadata/`, e.g.:
+* Select **Import data about the relying party published online or on a local network**, type your metadate url in **Federation metadata address (host name or URL)**, and then click **Next**. Your metadate url format is: `https://demo.seafile.top/saml2/metadata/`, e.g.:
 
 ![](../images/auto-upload/4d6412ee-009e-42df-b0eb-081735d873c5.png)
 
