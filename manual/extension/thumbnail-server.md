@@ -128,3 +128,8 @@ Placeholder spot for shared volumes. You may elect to store certain persistent i
 * /opt/seafile-data/logs: This is the directory for logs.
 * /opt/seafile-data/seafile-data: This is the directory for seafile storage (if you use local storage).
 * /opt/seafile-data/seahub-data/thumbnail: This is the directory for thumbnail files.
+
+## Common issues when settings up thumbnail server
+
+### Thumbnails cannot be generated for high-resolution images
+This is because generating thumbnails for high-resolution images can impact system performance. You can raise the threshold by setting the `THUMBNAIL_IMAGE_ORIGINAL_SIZE_LIMIT` environment variable in the env file; the default is 256 (MB).
