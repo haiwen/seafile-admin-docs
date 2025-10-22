@@ -132,4 +132,4 @@ Placeholder spot for shared volumes. You may elect to store certain persistent i
 ## Common issues when settings up thumbnail server
 
 ### Thumbnails cannot be generated for high-resolution images
-This is because generating thumbnails for high-resolution images can impact system performance. You can raise the threshold by setting the `THUMBNAIL_IMAGE_ORIGINAL_SIZE_LIMIT` environment variable in the env file; the default is 256.
+This is because generating thumbnails for high-resolution images can impact system performance. You can raise the threshold by setting the `THUMBNAIL_IMAGE_ORIGINAL_SIZE_LIMIT` environment variable in the env file; the default is 256 (MB).
