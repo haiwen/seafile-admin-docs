@@ -4635,7 +4635,7 @@ openssl<span class="w"> </span>req<span class="w"> </span>-x509<span class="w"> 
 <h3 id="example-1-microsoft-azure-saml-single-sign-on-app">Example 1: Microsoft Azure SAML single sign-on app<a class="headerlink" href="#example-1-microsoft-azure-saml-single-sign-on-app" title="Permanent link">&para;</a></h3>
 <p>If you use Microsoft Azure SAML app to achieve single sign-on, please follow the steps below:</p>
 <p><strong>First</strong>, add SAML single sign-on app and assign users, refer to: <a href="https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal">add an Azure AD SAML application</a>, <a href="https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal-assign-users">create and assign users</a>.</p>
-<p><strong>Second</strong>, setup the <em>Identifier</em>, <em>Reply URL</em>, and <em>Sign on URL</em> of the SAML app based on your service URL, refer to: <a href="https://learn.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal-setup-sso">enable single sign-on for saml app</a>. The format of the <em>Identifier</em>, <em>Reply URL</em>, and <em>Sign on URL</em> are: https://example.com/saml2/metadata/, https://example.com/saml2/acs/, https://example.com/, e.g.:</p>
+<p><strong>Second</strong>, setup the <em>Identifier</em>, <em>Reply URL</em>, and <em>Sign on URL</em> of the SAML app based on your service URL, refer to: <a href="https://learn.microsoft.com/en-us/azure/active-directory/manage-apps/add-application-portal-setup-sso">enable single sign-on for saml app</a>. The format of the <em>Identifier</em>, <em>Reply URL</em>, and <em>Sign on URL</em> are: https://demo.seafile.top/saml2/metadata/, https://demo.seafile.top/saml2/acs/, https://demo.seafile.top/, e.g.:</p>
 <p><img alt="" src="../../images/auto-upload/72c7b210-4a91-4e86-ba2e-df5ae0a4a0b0.png" /></p>
 <p><strong>Next</strong>, <a href="https://learn.microsoft.com/en-us/azure/active-directory/develop/saml-claims-customization">edit saml attributes &amp; claims</a>. Keep the default attributes &amp; claims of SAML app unchanged, the <em>uid</em> attribute must be added, the <em>mail</em> and <em>name</em> attributes are optional, e.g.:</p>
 <p><img alt="" src="../../images/auto-upload/417d-a48a-3e10c46b98f0.png" /></p>
@@ -4682,7 +4682,7 @@ openssl<span class="w"> </span>req<span class="w"> </span>-x509<span class="w"> 
 <p>A valid SSL certificate for ADFS server, and here we use <code>temp.adfs.com</code> as the domain name example.</p>
 </li>
 <li>
-<p>A valid SSL certificate for Seafile server, and here we use <code>demo.seafile.com</code> as the domain name example.</p>
+<p>A valid SSL certificate for Seafile server, and here we use <code>demo.seafile.top</code> as the domain name example.</p>
 </li>
 </ol>
 <p><strong>Second</strong>, download the base64 format certificate and upload it:</p>
@@ -4741,7 +4741,7 @@ openssl<span class="w"> </span>req<span class="w"> </span>-x509<span class="w"> 
 <p>On the Welcome page, choose <strong>Claims aware</strong> and click <strong>Start</strong>.</p>
 </li>
 <li>
-<p>Select <strong>Import data about the relying party published online or on a local network</strong>, type your metadate url in <strong>Federation metadata address (host name or URL)</strong>, and then click <strong>Next</strong>. Your metadate url format is: <code>https://example.com/saml2/metadata/</code>, e.g.:</p>
+<p>Select <strong>Import data about the relying party published online or on a local network</strong>, type your metadate url in <strong>Federation metadata address (host name or URL)</strong>, and then click <strong>Next</strong>. Your metadate url format is: <code>https://demo.seafile.top/saml2/metadata/</code>, e.g.:</p>
 </li>
 </ul>
 <p><img alt="" src="../../images/auto-upload/4d6412ee-009e-42df-b0eb-081735d873c5.png" /></p>
