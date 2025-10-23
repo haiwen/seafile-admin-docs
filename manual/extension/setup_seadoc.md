@@ -60,6 +60,9 @@ The easiest way to deployment SeaDoc is to deploy it with Seafile server on the 
 
 Now you can use SeaDoc!
 
+!!! tip "SEAFILE_SERVICE_URL"
+    By default, SeaDoc will access Seaf-server through the Docker subnet `seafile-net` (the full URL is obtained by concatenating `http://seafile` and `/seafhttp`). In some cases, you may need to manually specify `SEAFILE_SERVICE_URL` (such as `https://seafile.example.com`) to ensure that SeaDoc can access Seaf-server normally.
+
 
 ## Deploy SeaDoc standalone
 
@@ -84,6 +87,7 @@ If you deploy Seafile in a cluster or if you deploy Seafile with binary package,
     | `JWT_PRIVATE_KEY`      | JWT key, the same as the config in Seafile `.env` file                                                         |  
     | `SEAFILE_SERVER_HOSTNAME`| Seafile host name                                                                                           |  
     | `SEAFILE_SERVER_PROTOCOL`| http or https                                                                                               |  
+    | `SEAFILE_SERVICE_URL`| URL of Seafile service (e.g., `https://seafile.example.com`, the above two variables `SEAFILE_SERVER_HOSTNAME` and `SEAFILE_SERVER_PROTOCOL` will be ignored if specified this one) | 
 
 3. (Optional) By default, SeaDoc server will bind to port 80 on the host machine. If the port is already taken by another service, ***you have to change the listening port of SeaDoc***:
 
