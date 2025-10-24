@@ -9,6 +9,16 @@
 
 Please check our document for how to upgrade to [13.0](../upgrade/upgrade_notes_for_13.0.x.md)
 
+### 13.0.12 (2025-10-24)
+
+* [fix] Add missing is_department_owner field in database table to make sure community edition and pro edition have same database schema
+* [fix] Fix LDAP and LDAP(Imported) page in system admin panel
+* [fix] Fix if ENABLE_WIKI set to false, wiki module still be shown
+* [fix] Fix a XSS issue for SVG file view in sharing link if golang file server is used (We'd like to thank [Jose Alfredo Bukit](https://github.com/x0root) for reporting the issue to us
+* Support open docxf file type with OnlyOffice
+* Other UI fixes and consistency improvements
+
+
 ### 13.0.11 beta (2025-09-22)
 
 * [metadata] Add a new view type "Statistics"
