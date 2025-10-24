@@ -22,6 +22,7 @@ Configuration changes:
 * Redis is recommended to be used as memcache server
 * (Optional) S3 configuration can be done via environment variables and is much simplified
 * Elastic search is now have its own yml file
+* The Nginx bundled in seafile docker image no longer generates and reads configurations from mapped volume. The Nginx is used for servering static files in Seahub, and map the ports of different components in seafile docker image to a single 80 port.
 
 Breaking changes
 
