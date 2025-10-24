@@ -4276,6 +4276,30 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#130" class="md-nav__link">
+    <span class="md-ellipsis">
+      13.0
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#13012-beta-2025-10-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      13.0.12 beta (2025-10-24)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#120" class="md-nav__link">
     <span class="md-ellipsis">
       12.0
@@ -5141,6 +5165,30 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#130" class="md-nav__link">
+    <span class="md-ellipsis">
+      13.0
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13.0">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#13012-beta-2025-10-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      13.0.12 beta (2025-10-24)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#120" class="md-nav__link">
     <span class="md-ellipsis">
       12.0
@@ -5940,6 +5988,20 @@
 <blockquote>
 <p>You can check Seafile release table to find the lifetime of each release and current supported OS: <a href="https://cloud.seatable.io/dtable/external-links/a85d4221e41344c19566/?tid=0000&amp;vid=0000">https://cloud.seatable.io/dtable/external-links/a85d4221e41344c19566/?tid=0000&amp;vid=0000</a></p>
 </blockquote>
+<h2 id="130">13.0<a class="headerlink" href="#130" title="Permanent link">&para;</a></h2>
+<p><strong>Upgrade</strong></p>
+<p>Please check our document for how to upgrade to <a href="../../upgrade/upgrade_notes_for_13.0.x/">13.0</a></p>
+<h3 id="13012-beta-2025-10-24">13.0.12 beta (2025-10-24)<a class="headerlink" href="#13012-beta-2025-10-24" title="Permanent link">&para;</a></h3>
+<ul>
+<li>SeaDoc: SeaDoc is now version 2.0</li>
+<li>Thumbnail server: A new thumbnail server component is added to improve performance for thumbnail generating and support thumbnail for videos</li>
+<li>Metadata server: A new metadata server component is available to manage extended file properties</li>
+<li>Notification server: The web interface now support real-time update when other people add or remove files if notification-server is enabled</li>
+<li>Database and memcache configurations are added to <code>.env</code>, it is recommended to use environment variables to config database and memcache</li>
+<li>Redis is recommended to be used as memcache server</li>
+<li>For security reason, WebDAV no longer support login with LDAP account, the user with LDAP account must generate a WebDAV token at the profile page</li>
+<li>[File tags] The old file tags feature can no longer be used, the interface provide an upgrade notice for migrate the data to the new file tags feature</li>
+</ul>
 <h2 id="120">12.0<a class="headerlink" href="#120" title="Permanent link">&para;</a></h2>
 <p><strong>Upgrade</strong></p>
 <p>Please check our document for how to upgrade to <a href="../../upgrade/upgrade_notes_for_12.0.x/">12.0</a></p>
