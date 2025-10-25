@@ -163,18 +163,6 @@ Modify `nginx.conf` and add reverse proxy for services ***seafile*** and ***sead
 
 === "thumbnail"
     ```conf
-    location /thumbnail/ping {
-        proxy_pass http://127.0.0.1:8084/ping;
-        proxy_http_version 1.1;
-        proxy_set_header Host              $host;
-        proxy_set_header X-Real-IP         $remote_addr;
-        proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-
-        access_log /var/log/nginx/thumbnail.access.log;
-        error_log  /var/log/nginx/thumbnail.error.log;
-    }
-
     location /thumbnail {
         proxy_pass http://127.0.0.1:8084;
         proxy_http_version 1.1;
