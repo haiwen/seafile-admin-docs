@@ -4045,21 +4045,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Environment Setup">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#breakpad" class="md-nav__link">
-    <span class="md-ellipsis">
-      Breakpad
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -4432,21 +4417,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Environment Setup">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#breakpad" class="md-nav__link">
-    <span class="md-ellipsis">
-      Breakpad
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -4528,73 +4498,10 @@
 </ul>
 </li>
 <li>Qt VS Tools</li>
-<li>
-<p>vcpkg (it is recommended to update to the latest version)</p>
-<p>Note: Dependencies will be automatically downloaded and compiled when building VS projects.</p>
-</li>
-<li>
-<p>Python 3.7</p>
-</li>
-<li><a href="https://github.com/wixtoolset/wix3/releases/tag/wix3111rtm">wix</a><ul>
-<li>install to C:\wix</li>
+<li>vcpkg (it is recommended to update to the latest version)<ul>
+<li>Run <code>vcpkg.exe integrate install</code> to integrates vcpkg with projects.</li>
+<li>Note: Dependencies will be automatically downloaded and compiled when building VS projects.</li>
 </ul>
-</li>
-<li><a href="https://github.com/Wintellect/Paraffin/releases">Paraffin</a><ul>
-<li>copy Paraffin.exe to C:\wix\bin</li>
-</ul>
-</li>
-<li>Breakpad</li>
-<li>
-<p>Certificates</p>
-<ul>
-<li>install to C:\certs</li>
-</ul>
-<p>Note: certificates for Windows application are issued by third-party certificate authority.</p>
-</li>
-</ul>
-<h3 id="breakpad">Breakpad<a class="headerlink" href="#breakpad" title="Permanent link">&para;</a></h3>
-<p>Support for Breakpad can be added by running following steps:</p>
-<ul>
-<li>
-<p>install gyp tool</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>--depth<span class="o">=</span><span class="m">1</span><span class="w"> </span>git@github.com:chromium/gyp.git
-$<span class="w"> </span>python<span class="w"> </span>setup.py<span class="w"> </span>install
-</code></pre></div>
-
-</li>
-<li>
-<p>compile breakpad</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>--depth<span class="o">=</span><span class="m">1</span><span class="w"> </span>git@github.com:google/breakpad.git
-$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>breakpad
-$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/google/googletest.git<span class="w"> </span>testing
-$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>..
-<span class="c1"># create vs solution, this may throw an error &quot;module collections.abc has no attribute OrderedDict&quot;, you should open the msvs.py and replace &#39;collections.abc&#39; with &#39;collections&#39;.</span>
-$<span class="w"> </span>gyp<span class="w"> </span>–-no-circular-check<span class="w"> </span>breakpad<span class="se">\s</span>rc<span class="se">\c</span>lient<span class="se">\w</span>indows<span class="se">\b</span>reakpad_client.gyp
-</code></pre></div>
-
-<ul>
-<li>open breakpad_client.sln and configure C++ Language Standard to C++17 and C/C++ ---&gt; Code Generation ---&gt; Runtime Library to Multi-threaded DLL (/MD)</li>
-<li>build breakpad</li>
-</ul>
-</li>
-<li>
-<p>compile dump_syms tool</p>
-<p>create vs solution</p>
-<div class="codehilite"><pre><span></span><code><span class="n">gyp</span><span class="w"> </span><span class="err">–</span><span class="o">-</span><span class="n">no</span><span class="o">-</span><span class="n">circular</span><span class="o">-</span><span class="n">check</span><span class="w"> </span><span class="n">breakpad</span>\<span class="n">src</span>\<span class="n">tools</span>\<span class="n">windows</span>\<span class="n">tools_windows</span><span class="o">.</span><span class="n">gyp</span>
-</code></pre></div>
-
-<ul>
-<li>open tools_windows.sln and build tools_windows</li>
-<li>Insert #include in the source file about unique_ptr compilation error and recompile.</li>
-<li>build dump_syms</li>
-<li>Copy C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Remote Debugger\x64\msdia140.dll to breakpad\src\tools\windows\Release.</li>
-</ul>
-</li>
-<li>
-<p>copy VC merge modules</p>
-<div class="codehilite"><pre><span></span><code><span class="nx">copy</span><span class="w"> </span><span class="nx">C</span><span class="p">:</span><span class="err">\</span><span class="nx">Program</span><span class="w"> </span><span class="nx">Files</span><span class="w"> </span><span class="p">(</span><span class="nx">x86</span><span class="p">)</span><span class="err">\</span><span class="nx">Microsoft</span><span class="w"> </span><span class="nx">Visual</span><span class="w"> </span><span class="nx">Studio</span><span class="err">\</span><span class="mi">2019</span><span class="err">\</span><span class="nx">Community</span><span class="err">\</span><span class="nx">VC</span><span class="err">\</span><span class="nx">Redist</span><span class="err">\</span><span class="nx">MSVC</span><span class="err">\</span><span class="nx">v142</span><span class="err">\</span><span class="nx">MergeModules</span><span class="err">\</span><span class="nx">MergeModules</span><span class="err">\</span><span class="nx">Microsoft_VC142_CRT_x64</span><span class="p">.</span><span class="nx">msm</span><span class="w"> </span><span class="nx">C</span><span class="p">:</span><span class="err">\</span><span class="nx">packagelib</span>
-</code></pre></div>
-
 </li>
 </ul>
 <h2 id="building-sync-client">Building Sync Client<a class="headerlink" href="#building-sync-client" title="Permanent link">&para;</a></h2>
@@ -4607,29 +4514,51 @@ seafile-workspace/seafile-shell-ext/
 </code></pre></div>
 <p>The source code of these projects can be downloaded at <a href="https://github.com/haiwen/libsearpc">github.com/haiwen/libsearpc</a>, <a href="https://github.com/haiwen/seafile">github.com/haiwen/seafile</a>, <a href="https://github.com/haiwen/seafile-client">github.com/haiwen/seafile-client</a>, and <a href="https://github.com/haiwen/seafile-shell-ext">github.com/haiwen/seafile-shell-ext</a>.</p>
 <h3 id="building">Building<a class="headerlink" href="#building" title="Permanent link">&para;</a></h3>
-<p>Note: the building commands have been included in the packaging script, you can skip building commands while packaging.</p>
+<p>Note: these commands are run in "x64 Native Tools Command Prompt for VS 2019". The "Debug|x64" configuration is simplified to build, which does not include breakpad and other dependencies.</p>
 <p>To build libsearpc:</p>
 <div class="highlight"><pre><span></span><code>$ cd seafile-workspace/libsearpc/
-$ devenv libsearpc.sln /build &quot;Release|x64&quot;
+$ devenv libsearpc.sln /build &quot;Debug|x64&quot;
 </code></pre></div>
 <p>To build seafile</p>
 <div class="highlight"><pre><span></span><code>$ cd seafile-workspace/seafile/
-$ devenv seafile.sln /build &quot;Release|x64&quot;
-$ devenv msi/custom/seafile_custom.sln /build &quot;Release|x64&quot;
+$ devenv seafile.sln /build &quot;Debug|x64&quot;
+$ devenv msi/custom/seafile_custom.sln /build &quot;Debug|x64&quot;
 </code></pre></div>
 <p>To build seafile-client</p>
 <div class="highlight"><pre><span></span><code>$ cd seafile-workspace/seafile-client/
-$ devenv third_party/quazip/quazip.sln /build &quot;Release|x64&quot;
-$ devenv seafile-client.sln /build &quot;Release|x64&quot;
+$ devenv third_party/quazip/quazip.sln /build &quot;Debug|x64&quot;
+$ devenv seafile-client.sln /build &quot;Debug|x64&quot;
 </code></pre></div>
 <p>To build seafile-shell-ext</p>
 <div class="highlight"><pre><span></span><code>$ cd seafile-workspace/seafile-shell-ext/
-$ devenv extensions/seafile_ext.sln /build &quot;Release|x64&quot;
-$ devenv seadrive-thumbnail-ext/seadrive_thumbnail_ext.sln /build &quot;Release|x64&quot;
+$ devenv extensions/seafile_ext.sln /build &quot;Debug|x64&quot;
+$ devenv seadrive-thumbnail-ext/seadrive_thumbnail_ext.sln /build &quot;Debug|x64&quot;
 </code></pre></div>
 <h3 id="packaging">Packaging<a class="headerlink" href="#packaging" title="Permanent link">&para;</a></h3>
-<ol>
-<li>Update the CERTFILE configure in <strong>seafile-workspace/seafile/scripts/build/build-msi-vs.py</strong> .</li>
+<p>Additional setups are required for packaging:</p>
+<ul>
+<li>Python 3.7</li>
+<li><a href="https://github.com/wixtoolset/wix3/releases/tag/wix3111rtm">wix</a><ul>
+<li>install to C:\wix</li>
+</ul>
+</li>
+<li><a href="https://github.com/Wintellect/Paraffin/releases">Paraffin</a><ul>
+<li>copy Paraffin.exe to C:\wix\bin</li>
+</ul>
+</li>
+<li>Breakpad<ul>
+<li>Seafile Client is currently using an older version of Breakpad. The latest version may not be fully compatible, and we are in the process of upgrading it.</li>
+</ul>
+</li>
+<li>
+<p>Certificates</p>
+<ul>
+<li>install to C:\certs</li>
+</ul>
+</li>
+<li>
+<p>Update the CERTFILE configure in <strong>seafile-workspace/seafile/scripts/build/build-msi-vs.py</strong> .</p>
+</li>
 <li>Run commands:<div class="codehilite"><pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>seafile-workspace/seafile-client/third_party/quazip
 $<span class="w"> </span>devenv<span class="w"> </span>quazip.sln<span class="w"> </span>/build<span class="w"> </span>Release<span class="p">|</span>x64
 $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>seafile-workspace/seafile/scripts/build
@@ -4637,7 +4566,7 @@ $<span class="w"> </span>python<span class="w"> </span>build-msi-vs.py<span clas
 </code></pre></div>
 
 </li>
-</ol>
+</ul>
 
 
 
