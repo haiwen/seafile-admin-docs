@@ -82,6 +82,7 @@ Additional setups are required for packaging:
 * [Paraffin](https://github.com/Wintellect/Paraffin/releases)
     * copy Paraffin.exe to C:\wix\bin
 * Breakpad
+    * Seafile Client is currently using an older version of Breakpad. The latest version may not be fully compatible, and we are in the process of upgrading it.
 * Certificates
     * install to C:\certs
 
