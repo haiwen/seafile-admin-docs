@@ -20,55 +20,8 @@ The following setups are required for building and packaging Sync Client on Wind
     * Qt WebEngine
 * Qt VS Tools
 * vcpkg (it is recommended to update to the latest version)
-
-    Note: Dependencies will be automatically downloaded and compiled when building VS projects.
-
-* Python 3.7
-* [wix](https://github.com/wixtoolset/wix3/releases/tag/wix3111rtm)
-    * install to C:\wix
-* [Paraffin](https://github.com/Wintellect/Paraffin/releases)
-    * copy Paraffin.exe to C:\wix\bin
-* Breakpad
-* Certificates
-    * install to C:\certs
-
-    Note: certificates for Windows application are issued by third-party certificate authority.
-
-### Breakpad
-
-Support for Breakpad can be added by running following steps:
-
-* install gyp tool
-
-        $ git clone --depth=1 git@github.com:chromium/gyp.git
-        $ python setup.py install
-
-* compile breakpad
-
-        $ git clone --depth=1 git@github.com:google/breakpad.git
-        $ cd breakpad
-        $ git clone https://github.com/google/googletest.git testing
-        $ cd ..
-        # create vs solution, this may throw an error "module collections.abc has no attribute OrderedDict", you should open the msvs.py and replace 'collections.abc' with 'collections'.
-        $ gyp –-no-circular-check breakpad\src\client\windows\breakpad_client.gyp
-
-    * open breakpad_client.sln and configure C++ Language Standard to C++17 and C/C++ ---> Code Generation ---> Runtime Library to Multi-threaded DLL (/MD)
-    * build breakpad
-
-* compile dump_syms tool
-
-    create vs solution
-
-        gyp –-no-circular-check breakpad\src\tools\windows\tools_windows.gyp
-
-    * open tools_windows.sln and build tools_windows
-    * Insert #include in the source file about unique_ptr compilation error and recompile.
-    * build dump_syms
-    * Copy C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Remote Debugger\x64\msdia140.dll to breakpad\src\tools\windows\Release.
-
-* copy VC merge modules
-
-        copy C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Redist\MSVC\v142\MergeModules\MergeModules\Microsoft_VC142_CRT_x64.msm C:\packagelib
+    * Run `vcpkg.exe integrate install` to integrates vcpkg with projects.
+    * Note: Dependencies will be automatically downloaded and compiled when building VS projects.
 
 ## Building Sync Client
 
@@ -86,40 +39,52 @@ The source code of these projects can be downloaded at [github.com/haiwen/libsea
 
 ### Building
 
-Note: the building commands have been included in the packaging script, you can skip building commands while packaging.
+Note: these commands are run in "x64 Native Tools Command Prompt for VS 2019". The "Debug|x64" configuration is simplified to build, which does not include breakpad and other dependencies.
 
 To build libsearpc:
 
 ```
 $ cd seafile-workspace/libsearpc/
-$ devenv libsearpc.sln /build "Release|x64"
+$ devenv libsearpc.sln /build "Debug|x64"
 ```
 
 To build seafile
 
 ```
 $ cd seafile-workspace/seafile/
-$ devenv seafile.sln /build "Release|x64"
-$ devenv msi/custom/seafile_custom.sln /build "Release|x64"
+$ devenv seafile.sln /build "Debug|x64"
+$ devenv msi/custom/seafile_custom.sln /build "Debug|x64"
 ```
 
 To build seafile-client
 
 ```
 $ cd seafile-workspace/seafile-client/
-$ devenv third_party/quazip/quazip.sln /build "Release|x64"
-$ devenv seafile-client.sln /build "Release|x64"
+$ devenv third_party/quazip/quazip.sln /build "Debug|x64"
+$ devenv seafile-client.sln /build "Debug|x64"
 ```
 
 To build seafile-shell-ext
 
 ```
 $ cd seafile-workspace/seafile-shell-ext/
-$ devenv extensions/seafile_ext.sln /build "Release|x64"
-$ devenv seadrive-thumbnail-ext/seadrive_thumbnail_ext.sln /build "Release|x64"
+$ devenv extensions/seafile_ext.sln /build "Debug|x64"
+$ devenv seadrive-thumbnail-ext/seadrive_thumbnail_ext.sln /build "Debug|x64"
 ```
 
 ### Packaging
+
+Additional setups are required for packaging:
+
+* Python 3.7
+* [wix](https://github.com/wixtoolset/wix3/releases/tag/wix3111rtm)
+    * install to C:\wix
+* [Paraffin](https://github.com/Wintellect/Paraffin/releases)
+    * copy Paraffin.exe to C:\wix\bin
+* Breakpad
+    * Seafile Client is currently using an older version of Breakpad. The latest version may not be fully compatible, and we are in the process of upgrading it.
+* Certificates
+    * install to C:\certs
 
 1. Update the CERTFILE configure in __seafile-workspace/seafile/scripts/build/build-msi-vs.py__ .
 2. Run commands:
