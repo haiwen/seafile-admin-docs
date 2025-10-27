@@ -26,7 +26,7 @@ Modify `.env`, and insert `notification-server.yml` into `COMPOSE_FILE`:
 COMPOSE_FILE='seafile-server.yml,caddy.yml,notification-server.yml'
 ```
 
-then add or modify `ENABLE_NOTIFICATION_SERVER` and `NOTIFICATION_SERVER_URL`:
+then add or modify `ENABLE_NOTIFICATION_SERVER`:
 
 ```sh
 ENABLE_NOTIFICATION_SERVER=true
