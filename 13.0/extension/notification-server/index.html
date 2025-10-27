@@ -4573,8 +4573,8 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 </code></pre></div>
 <p>then you need to modify the <strong><code>.env</code> on the host deployed Seafile</strong>:</p>
 <div class="highlight"><pre><span></span><code><span class="nv">ENABLE_NOTIFICATION_SERVER</span><span class="o">=</span><span class="nb">true</span>
-<span class="nv">NOTIFICATION_SERVER_URL</span><span class="o">=</span>http://&lt;your<span class="w"> </span>notification<span class="w"> </span>server<span class="w"> </span>host&gt;:8083
-<span class="nv">INNER_NOTIFICATION_SERVER_URL</span><span class="o">=</span><span class="nv">$NOTIFICATION_SERVER_URL</span>
+<span class="nv">NOTIFICATION_SERVER_URL</span><span class="o">=</span>https://seafile.example.com/notification
+<span class="nv">INNER_NOTIFICATION_SERVER_URL</span><span class="o">=</span>http://&lt;your<span class="w"> </span>notification<span class="w"> </span>server<span class="w"> </span>host&gt;:8083
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Difference between <code>NOTIFICATION_SERVER_URL</code> and <code>INNER_NOTIFICATION_SERVER_URL</code></p>
