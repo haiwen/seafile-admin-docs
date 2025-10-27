@@ -89,8 +89,8 @@ then you need to modify the **`.env` on the host deployed Seafile**:
 
 ```sh
 ENABLE_NOTIFICATION_SERVER=true
-NOTIFICATION_SERVER_URL=http://<your notification server host>:8083
-INNER_NOTIFICATION_SERVER_URL=$NOTIFICATION_SERVER_URL
+NOTIFICATION_SERVER_URL=https://seafile.example.com/notification
+INNER_NOTIFICATION_SERVER_URL=http://<your notification server host>:8083
 ```
 
 !!! tip "Difference between `NOTIFICATION_SERVER_URL` and `INNER_NOTIFICATION_SERVER_URL`"
