@@ -13,6 +13,7 @@ spec:
       labels:
         app: seafile-backend
     spec:
+      enableServiceLinks: false
       initContainers:  
         - name: set-ownership  
           image: busybox  
