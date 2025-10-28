@@ -3486,6 +3486,24 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#log-files-for-seadoc-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Log files for seadoc server
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#log-files-for-seasearch-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Log files for seasearch server
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4399,6 +4417,24 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#log-files-for-seadoc-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Log files for seadoc server
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#log-files-for-seasearch-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Log files for seasearch server
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4433,6 +4469,23 @@
 <li>seafevents.log: Empty</li>
 <li>seafile-background-tasks.log: logs for background tasks and office file convertion</li>
 <li>seahub_email_sender.log: logs for periodically email sending of background tasks</li>
+</ul>
+<h3 id="log-files-for-seadoc-server">Log files for seadoc server<a class="headerlink" href="#log-files-for-seadoc-server" title="Permanent link">&para;</a></h3>
+<p>The logs for seadoc server are located in the <code>/opt/seadoc-data/logs</code> directory.</p>
+<ul>
+<li>sdoc-access.log: logs for recording each API request’s method, URL, response status, and processing time to support access auditing and performance monitoring.</li>
+<li>sdoc-access-slow.log: logs for sdoc-server's slow requests.</li>
+<li>sdoc-server.log: logs for tracking the sdoc-server’s periodic background save tasks to verify autosave behavior and service health.</li>
+<li>sdoc-socket.log: logs for tracking real-time collaborative editing operations over the document WebSocket connection to monitor realtime sync performance and diagnose lag.</li>
+<li>sdoc-socket-slow.log: logs for capturing collaborative editing socket operations that exceed the latency threshold to detect realtime performance bottlenecks and diagnose editing lag.</li>
+<li>sdoc_operation_log_clean.log: logs for recording the periodic cleanup task that purges old operation_log records from the database to control log growth and maintain storage health.</li>
+<li>seadoc-converter.log: logs for recording the scheduler activity of the seadoc-converter service’s operation log cleanup job to verify the maintenance task is running on schedule.</li>
+</ul>
+<h3 id="log-files-for-seasearch-server">Log files for seasearch server<a class="headerlink" href="#log-files-for-seasearch-server" title="Permanent link">&para;</a></h3>
+<p>The logs for seasearch server are located in the <code>/opt/seasearch-data/log</code> directory.</p>
+<ul>
+<li>seasearch.log: logs for recording the SeaSearch service startup and runtime status to confirm the search engine is initialized and ready to serve requests.</li>
+<li>seasearch-access.log: logs for recording incoming HTTP requests to the SeaSearch service to audit search/index queries and detect auth or access issues.</li>
 </ul>
 
 
