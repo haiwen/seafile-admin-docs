@@ -26,9 +26,7 @@ The logs for seadoc server are located under `/opt/seadoc-data/logs`.
 * sdoc-server.log: logs for tracking the sdoc-server’s periodic background save tasks to verify autosave behavior and service health.
 * sdoc-socket.log: logs for tracking real-time collaborative editing operations over the document WebSocket connection to monitor realtime sync performance and diagnose lag.
 * sdoc-socket-slow.log: logs for capturing collaborative editing socket operations that exceed the latency threshold to detect realtime performance bottlenecks and diagnose editing lag.
-* sdoc_operation_log_clean.log: logs for recording the periodic cleanup task that purges old operation_log records from the database to control log growth and maintain storage health.
-* seadoc-converter.log: logs for recording the scheduler activity of the seadoc-converter service’s operation log cleanup job.
-
+* sdoc_operation_log_clean.log: logs for recording the scheduler activity of the seadoc-converter service’s operation log cleanup job to verify the maintenance task is running on schedule.
 
 ### Log files for seasearch server 
 
