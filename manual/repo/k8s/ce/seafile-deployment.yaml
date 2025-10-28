@@ -13,6 +13,7 @@ spec:
       labels:
         app: seafile
     spec:
+      enableServiceLinks: false
       containers:
         - name: seafile
           image: seafileltd/seafile-mc:13.0-latest
