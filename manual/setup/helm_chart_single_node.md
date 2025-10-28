@@ -27,8 +27,6 @@ Please refer [here](./system_requirements.md) for the details of system requirem
     === "Seafile Pro"
 
         ```sh
-        kubectl create ns seafile
-
         kubectl create secret generic seafile-secret --namespace seafile \
         --from-literal=JWT_PRIVATE_KEY='<required>' \
         --from-literal=DB_PASSWORD='<required>' \
@@ -39,8 +37,6 @@ Please refer [here](./system_requirements.md) for the details of system requirem
     === "Seafile CE"
 
         ```sh
-        kubectl create ns seafile
-
         kubectl create secret generic seafile-secret --namespace seafile \
         --from-literal=JWT_PRIVATE_KEY='<required>' \
         --from-literal=DB_PASSWORD='<required>' \
