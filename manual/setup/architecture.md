@@ -1,6 +1,6 @@
 # Architecture
 
-Seafile Docker and other components are built using x86 architecture. Starting from version 13.0, we started to support the ARM architecture.
+Seafile Docker and its components are support both x86 and ARM64 architecture. You can find detailes below.
 
 ## Support status
 
@@ -17,7 +17,7 @@ Seafile Docker and other components are built using x86 architecture. Starting f
 | seasearch | √ | X |
 | face-embedding | √ | X |
 | index-server  | √ | X |
-| office-preview | √ | X |
+
 
 ## Pull the ARM image
 
