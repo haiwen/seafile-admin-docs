@@ -92,7 +92,7 @@ nav:
   - Setup:
     - Overview: setup/overview.md
     - System requirements: setup/system_requirements.md
-    - Architecture: setup/architecture.md
+    - Supported architecture: setup/architecture.md
     - HTTPS and Caddy: setup/caddy.md
     - Single node installation:
       - Setup community edition: setup/setup_ce_by_docker.md
