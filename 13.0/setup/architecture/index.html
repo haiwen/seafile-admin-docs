@@ -10,13 +10,13 @@
         <meta name="author" content="seafile">
       
       
-        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/13.0/upgrade/upgrade_notes_for_11.0.x/">
+        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/13.0/setup/architecture/">
       
       
-        <link rel="prev" href="../upgrade_notes_for_12.0.x/">
+        <link rel="prev" href="../system_requirements/">
       
       
-        <link rel="next" href="../upgrade_notes_for_10.0.x/">
+        <link rel="next" href="../caddy/">
       
       
       <link rel="icon" href="../../media/favicon.ico">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Upgrade notes for 11.0.x - Seafile Admin Manual</title>
+        <title>Supported architecture - Seafile Admin Manual</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#upgrade-notes-for-110" class="md-skip">
+        <a href="#architecture" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Upgrade notes for 11.0.x
+              Supported architecture
             
           </span>
         </div>
@@ -251,11 +251,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../setup/overview/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../overview/" class="md-tabs__link">
           
   
   
@@ -381,13 +383,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../upgrade/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../upgrade/upgrade/" class="md-tabs__link">
           
   
   
@@ -652,26 +652,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -684,7 +689,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Setup
@@ -698,7 +703,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/overview/" class="md-nav__link">
+      <a href="../overview/" class="md-nav__link">
         
   
   
@@ -721,7 +726,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/system_requirements/" class="md-nav__link">
+      <a href="../system_requirements/" class="md-nav__link">
         
   
   
@@ -741,10 +746,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../setup/architecture/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Supported architecture
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -755,6 +782,44 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#support-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Support status
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pull-the-arm-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pull the ARM image
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -767,7 +832,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/caddy/" class="md-nav__link">
+      <a href="../caddy/" class="md-nav__link">
         
   
   
@@ -796,17 +861,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
         
           
-          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="">
             
   
   
@@ -833,7 +901,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_ce_by_docker/" class="md-nav__link">
+      <a href="../setup_ce_by_docker/" class="md-nav__link">
         
   
   
@@ -856,7 +924,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_pro_by_docker/" class="md-nav__link">
+      <a href="../setup_pro_by_docker/" class="md-nav__link">
         
   
   
@@ -893,17 +961,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
         
           
-          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="">
             
   
   
@@ -973,7 +1044,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_with_s3/" class="md-nav__link">
+      <a href="../setup_with_s3/" class="md-nav__link">
         
   
   
@@ -996,7 +1067,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_with_ceph/" class="md-nav__link">
+      <a href="../setup_with_ceph/" class="md-nav__link">
         
   
   
@@ -1019,7 +1090,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_with_swift/" class="md-nav__link">
+      <a href="../setup_with_swift/" class="md-nav__link">
         
   
   
@@ -1042,7 +1113,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_with_multiple_storage_backends/" class="md-nav__link">
+      <a href="../setup_with_multiple_storage_backends/" class="md-nav__link">
         
   
   
@@ -1065,7 +1136,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/migrate_backends_data/" class="md-nav__link">
+      <a href="../migrate_backends_data/" class="md-nav__link">
         
   
   
@@ -1096,7 +1167,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/use_seasearch/" class="md-nav__link">
+      <a href="../use_seasearch/" class="md-nav__link">
         
   
   
@@ -1119,7 +1190,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/seafile_docker_autostart/" class="md-nav__link">
+      <a href="../seafile_docker_autostart/" class="md-nav__link">
         
   
   
@@ -1142,7 +1213,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_with_an_existing_mysql_server/" class="md-nav__link">
+      <a href="../setup_with_an_existing_mysql_server/" class="md-nav__link">
         
   
   
@@ -1165,7 +1236,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/use_other_reverse_proxy/" class="md-nav__link">
+      <a href="../use_other_reverse_proxy/" class="md-nav__link">
         
   
   
@@ -1188,7 +1259,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/run_seafile_as_non_root_user_inside_docker/" class="md-nav__link">
+      <a href="../run_seafile_as_non_root_user_inside_docker/" class="md-nav__link">
         
   
   
@@ -1219,7 +1290,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/cluster_deploy_with_docker/" class="md-nav__link">
+      <a href="../cluster_deploy_with_docker/" class="md-nav__link">
         
   
   
@@ -1248,17 +1319,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
         
           
-          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="">
             
   
   
@@ -1328,7 +1402,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/helm_chart_single_node/" class="md-nav__link">
+      <a href="../helm_chart_single_node/" class="md-nav__link">
         
   
   
@@ -1351,7 +1425,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/helm_chart_cluster/" class="md-nav__link">
+      <a href="../helm_chart_cluster/" class="md-nav__link">
         
   
   
@@ -1425,7 +1499,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/k8s_single_node/" class="md-nav__link">
+      <a href="../k8s_single_node/" class="md-nav__link">
         
   
   
@@ -1448,7 +1522,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/cluster_deploy_with_k8s/" class="md-nav__link">
+      <a href="../cluster_deploy_with_k8s/" class="md-nav__link">
         
   
   
@@ -1479,7 +1553,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/k8s_advanced_management/" class="md-nav__link">
+      <a href="../k8s_advanced_management/" class="md-nav__link">
         
   
   
@@ -1516,17 +1590,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9" >
         
           
-          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="">
             
   
   
@@ -1553,7 +1630,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/migrate_ce_to_pro_with_docker/" class="md-nav__link">
+      <a href="../migrate_ce_to_pro_with_docker/" class="md-nav__link">
         
   
   
@@ -1576,7 +1653,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/migrate_non_docker_to_docker/" class="md-nav__link">
+      <a href="../migrate_non_docker_to_docker/" class="md-nav__link">
         
   
   
@@ -3556,31 +3633,26 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
             
   
   
@@ -3593,7 +3665,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             Upgrade
@@ -3607,7 +3679,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../upgrade/" class="md-nav__link">
+      <a href="../../upgrade/upgrade/" class="md-nav__link">
         
   
   
@@ -3630,7 +3702,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../upgrade_docker/" class="md-nav__link">
+      <a href="../../upgrade/upgrade_docker/" class="md-nav__link">
         
   
   
@@ -3653,7 +3725,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../upgrade_a_cluster/" class="md-nav__link">
+      <a href="../../upgrade/upgrade_a_cluster/" class="md-nav__link">
         
   
   
@@ -3676,7 +3748,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../upgrade_a_cluster_binary/" class="md-nav__link">
+      <a href="../../upgrade/upgrade_a_cluster_binary/" class="md-nav__link">
         
   
   
@@ -3707,7 +3779,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../upgrade_notes_for_13.0.x/" class="md-nav__link">
+      <a href="../../upgrade/upgrade_notes_for_13.0.x/" class="md-nav__link">
         
   
   
@@ -3730,7 +3802,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../upgrade_notes_for_12.0.x/" class="md-nav__link">
+      <a href="../../upgrade/upgrade_notes_for_12.0.x/" class="md-nav__link">
         
   
   
@@ -3750,32 +3822,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Upgrade notes for 11.0.x
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../upgrade/upgrade_notes_for_11.0.x/" class="md-nav__link">
         
   
   
@@ -3786,206 +3836,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#important-release-changes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Important release changes
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Important release changes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#change-of-user-identity" class="md-nav__link">
-    <span class="md-ellipsis">
-      Change of user identity
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#reimplementation-of-ldap-integration" class="md-nav__link">
-    <span class="md-ellipsis">
-      Reimplementation of LDAP Integration
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#oauth-authentication-and-other-sso-methods" class="md-nav__link">
-    <span class="md-ellipsis">
-      OAuth authentication and other SSO methods
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#dropped-sqlite-database-support" class="md-nav__link">
-    <span class="md-ellipsis">
-      Dropped SQLite Database Support
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#elasticsearch-change-pro-edition-only" class="md-nav__link">
-    <span class="md-ellipsis">
-      ElasticSearch change (pro edition only)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#new-saml-prerequisites-multi_tenancy-only" class="md-nav__link">
-    <span class="md-ellipsis">
-      New SAML prerequisites (MULTI_TENANCY only)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#django-csrf-protection-issue" class="md-nav__link">
-    <span class="md-ellipsis">
-      Django CSRF protection issue
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#new-python-libraries" class="md-nav__link">
-    <span class="md-ellipsis">
-      New Python libraries
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#upgrade-to-110x" class="md-nav__link">
-    <span class="md-ellipsis">
-      Upgrade to 11.0.x
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Upgrade to 11.0.x">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-stop-seafile-100x-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      1) Stop Seafile-10.0.x server.
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-start-from-seafile-110x-run-the-script" class="md-nav__link">
-    <span class="md-ellipsis">
-      2) Start from Seafile 11.0.x, run the script:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3modify-configurations-and-migrate-ldap-records" class="md-nav__link">
-    <span class="md-ellipsis">
-      3）Modify configurations and migrate LDAP records
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3）Modify configurations and migrate LDAP records">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#change-configurations-for-ldap" class="md-nav__link">
-    <span class="md-ellipsis">
-      Change configurations for LDAP
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#migrate-ldap-records" class="md-nav__link">
-    <span class="md-ellipsis">
-      Migrate LDAP records
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#change-configuration-for-oauth" class="md-nav__link">
-    <span class="md-ellipsis">
-      Change configuration for OAuth:
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-start-seafile-110x-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      4) Start Seafile-11.0.x server.
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#faq" class="md-nav__link">
-    <span class="md-ellipsis">
-      FAQ
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -3998,7 +3848,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../upgrade_notes_for_10.0.x/" class="md-nav__link">
+      <a href="../../upgrade/upgrade_notes_for_10.0.x/" class="md-nav__link">
         
   
   
@@ -4021,7 +3871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../upgrade_notes_for_9.0.x/" class="md-nav__link">
+      <a href="../../upgrade/upgrade_notes_for_9.0.x/" class="md-nav__link">
         
   
   
@@ -4567,180 +4417,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#important-release-changes" class="md-nav__link">
+  <a href="#support-status" class="md-nav__link">
     <span class="md-ellipsis">
-      Important release changes
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Important release changes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#change-of-user-identity" class="md-nav__link">
-    <span class="md-ellipsis">
-      Change of user identity
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#reimplementation-of-ldap-integration" class="md-nav__link">
-    <span class="md-ellipsis">
-      Reimplementation of LDAP Integration
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#oauth-authentication-and-other-sso-methods" class="md-nav__link">
-    <span class="md-ellipsis">
-      OAuth authentication and other SSO methods
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#dropped-sqlite-database-support" class="md-nav__link">
-    <span class="md-ellipsis">
-      Dropped SQLite Database Support
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#elasticsearch-change-pro-edition-only" class="md-nav__link">
-    <span class="md-ellipsis">
-      ElasticSearch change (pro edition only)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#new-saml-prerequisites-multi_tenancy-only" class="md-nav__link">
-    <span class="md-ellipsis">
-      New SAML prerequisites (MULTI_TENANCY only)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#django-csrf-protection-issue" class="md-nav__link">
-    <span class="md-ellipsis">
-      Django CSRF protection issue
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#new-python-libraries" class="md-nav__link">
-    <span class="md-ellipsis">
-      New Python libraries
+      Support status
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#upgrade-to-110x" class="md-nav__link">
+  <a href="#pull-the-arm-image" class="md-nav__link">
     <span class="md-ellipsis">
-      Upgrade to 11.0.x
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Upgrade to 11.0.x">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-stop-seafile-100x-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      1) Stop Seafile-10.0.x server.
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-start-from-seafile-110x-run-the-script" class="md-nav__link">
-    <span class="md-ellipsis">
-      2) Start from Seafile 11.0.x, run the script:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3modify-configurations-and-migrate-ldap-records" class="md-nav__link">
-    <span class="md-ellipsis">
-      3）Modify configurations and migrate LDAP records
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3）Modify configurations and migrate LDAP records">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#change-configurations-for-ldap" class="md-nav__link">
-    <span class="md-ellipsis">
-      Change configurations for LDAP
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#migrate-ldap-records" class="md-nav__link">
-    <span class="md-ellipsis">
-      Migrate LDAP records
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#change-configuration-for-oauth" class="md-nav__link">
-    <span class="md-ellipsis">
-      Change configuration for OAuth:
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-start-seafile-110x-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      4) Start Seafile-11.0.x server.
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#faq" class="md-nav__link">
-    <span class="md-ellipsis">
-      FAQ
+      Pull the ARM image
     </span>
   </a>
   
@@ -4765,168 +4453,79 @@
   
 
 
-<h1 id="upgrade-notes-for-110">Upgrade notes for 11.0<a class="headerlink" href="#upgrade-notes-for-110" title="Permanent link">&para;</a></h1>
-<p>These notes give additional information about changes.
-Please always follow the main <a href="../upgrade/">upgrade guide</a>.</p>
-<p>For docker based version, please check <a href="../upgrade_docker/">upgrade Seafile Docker image</a></p>
-<h2 id="important-release-changes">Important release changes<a class="headerlink" href="#important-release-changes" title="Permanent link">&para;</a></h2>
-<h3 id="change-of-user-identity">Change of user identity<a class="headerlink" href="#change-of-user-identity" title="Permanent link">&para;</a></h3>
-<p>Previous Seafile versions directly used a user's email address or SSO identity as their internal user ID.</p>
-<p>Seafile 11.0 introduces virtual user IDs - random, internal identifiers like "adc023e7232240fcbb83b273e1d73d36@auth.local". For new users, a virtual ID will be generated instead of directly using their email. A mapping between the email and virtual ID will be stored in the "profile_profile" database table. For SSO users,the mapping between SSO ID and virtual ID is stored in the "social_auth_usersocialauth" table.</p>
-<p>Overall this brings more flexibility to handle user accounts and identity changes. Existing users will use the same old ID.</p>
-<h3 id="reimplementation-of-ldap-integration">Reimplementation of LDAP Integration<a class="headerlink" href="#reimplementation-of-ldap-integration" title="Permanent link">&para;</a></h3>
-<p>Previous Seafile versions handled LDAP authentication in the ccnet-server component. In Seafile 11.0, LDAP is reimplemented within the Seahub Python codebase.</p>
-<p>LDAP configuration has been moved from ccnet.conf to seahub_settings.py. The ccnet_db.LDAPImported table is no longer used - LDAP users are now stored in ccnet_db.EmailUsers along with other users.</p>
-<p>Benefits of this new implementation:</p>
-<ul>
-<li>Improved compatibility across different systems. Python code is more portable than the previous C implementation.</li>
-<li>Consistent handling of users whether they login via LDAP or other methods like email/password.</li>
-</ul>
-<p>You need to run <code>migrate_ldapusers.py</code> script to merge ccnet_db.LDAPImported table to ccnet_db.EmailUsers table. The setting files need to be changed manually. (See more details below)</p>
-<h3 id="oauth-authentication-and-other-sso-methods">OAuth authentication and other SSO methods<a class="headerlink" href="#oauth-authentication-and-other-sso-methods" title="Permanent link">&para;</a></h3>
-<p>If you use OAuth authentication, the configuration need to be changed a bit.</p>
-<p>If you use SAML, you don't need to change configuration files. For SAML2, in version 10, the name_id field is returned from SAML server, and is used as the username (the email field in ccnet_dbEmailUser). In version 11, for old users, Seafile will find the old user and create a name_id to name_id mapping in social_auth_usersocialauth. For new users, Seafile will create a new user with random ID and add a name_id to the random ID mapping in social_auth_usersocialauth. In addition, we have added a feature where you can configure to disable login with a username and password for saml users by using the config of <code>DISABLE_ADFS_USER_PWD_LOGIN = True</code> in seahub_settings.py.</p>
-<h3 id="dropped-sqlite-database-support">Dropped SQLite Database Support<a class="headerlink" href="#dropped-sqlite-database-support" title="Permanent link">&para;</a></h3>
-<p>Seafile 11.0 <strong>dropped</strong> using SQLite as the database. It is better to migrate from SQLite database to MySQL database before upgrading to version 11.0.</p>
-<p>There are several reasons driving this change:</p>
-<ul>
-<li>Focus on collaborative features - SQLite's limitations make advanced concurrency and locking difficult, which collaborative editing requires. Different Seafile components need simultaneous database access. Especially after adding seafevents component in version 11.0 for the community edition.</li>
-<li>Docker deployments - Our official Docker images do not support SQLite. MySQL is the preferred option.</li>
-<li>Migration difficulties - Migrating SQLite databases to MySQL via SQL translation is unreliable.</li>
-</ul>
-<p>To migrate from SQLite database to MySQL database, you can follow the document <a href="../setup_binary/migrate_from_sqlite_to_mysql.md">Migrate from SQLite to MySQL</a>. If you have issues in the migration, just post a thread in our forum. We are glad to help you.</p>
-<h3 id="elasticsearch-change-pro-edition-only">ElasticSearch change (pro edition only)<a class="headerlink" href="#elasticsearch-change-pro-edition-only" title="Permanent link">&para;</a></h3>
-<p>Elasticsearch version is not changed in Seafile version 11.0</p>
-<h3 id="new-saml-prerequisites-multi_tenancy-only">New SAML prerequisites (MULTI_TENANCY only)<a class="headerlink" href="#new-saml-prerequisites-multi_tenancy-only" title="Permanent link">&para;</a></h3>
-<p>For Ubuntu 20.04/22.04</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
-sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>dnsutils
+<h1 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h1>
+<p>Seafile Docker and its components are support both x86 and ARM64 architecture. You can find detailes below.</p>
+<h2 id="support-status">Support status<a class="headerlink" href="#support-status" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>x86</th>
+<th>ARM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>seafile-mc</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>seafile-pro-mc</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>sdoc-server</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>notification-server</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>seafile-md-server</td>
+<td>√</td>
+<td>Coming soon</td>
+</tr>
+<tr>
+<td>seafile-ai</td>
+<td>√</td>
+<td>Coming soon</td>
+</tr>
+<tr>
+<td>thumbnail-server</td>
+<td>√</td>
+<td>Coming soon</td>
+</tr>
+<tr>
+<td>seaseach-nomkl</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>seasearch</td>
+<td>√</td>
+<td>X</td>
+</tr>
+<tr>
+<td>face-embedding</td>
+<td>√</td>
+<td>X</td>
+</tr>
+<tr>
+<td>index-server</td>
+<td>√</td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
+<h2 id="pull-the-arm-image">Pull the ARM image<a class="headerlink" href="#pull-the-arm-image" title="Permanent link">&para;</a></h2>
+<p>You can use the X.0-latest tag to pull the ARM image without specifying the arm tag.</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>seafileltd/seafile-mc:13.0-latest
 </code></pre></div>
-<h3 id="django-csrf-protection-issue">Django CSRF protection issue<a class="headerlink" href="#django-csrf-protection-issue" title="Permanent link">&para;</a></h3>
-<p>Django 4.* has introduced a new check for the origin http header in CSRF verification. It now compares the values of the origin field in HTTP header and the host field in HTTP header. If they are different, an error is triggered.</p>
-<p>If you deploy Seafile behind a proxy, or if you use a non-standard port, or if you deploy Seafile in cluster, it is likely the <strong>origin</strong> field in HTTP header received by Django and the <strong>host</strong> field in HTTP header received by Django are different. Because the <strong>host</strong> field in HTTP header is likely to be modified by proxy. This mismatch results in a CSRF error.</p>
-<p>You can add CSRF_TRUSTED_ORIGINS to seahub_settings.py to solve the problem:</p>
-<div class="highlight"><pre><span></span><code>CSRF_TRUSTED_ORIGINS = [&quot;https://&lt;your-domain&gt;&quot;]
-</code></pre></div>
-<h2 id="new-python-libraries">New Python libraries<a class="headerlink" href="#new-python-libraries" title="Permanent link">&para;</a></h2>
-<p>Note, you should install Python libraries system wide using root user or sudo mode.</p>
-<p>For Ubuntu 20.04/22.04</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
-sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>python3-dev<span class="w"> </span>ldap-utils<span class="w"> </span>libldap2-dev
-
-sudo<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> </span><span class="nv">future</span><span class="o">==</span><span class="m">0</span>.18.*<span class="w"> </span><span class="nv">mysqlclient</span><span class="o">==</span><span class="m">2</span>.1.*<span class="w"> </span><span class="nv">pillow</span><span class="o">==</span><span class="m">10</span>.2.*<span class="w"> </span><span class="nv">sqlalchemy</span><span class="o">==</span><span class="m">2</span>.0.18<span class="w"> </span><span class="nv">captcha</span><span class="o">==</span><span class="m">0</span>.5.*<span class="w"> </span><span class="nv">django_simple_captcha</span><span class="o">==</span><span class="m">0</span>.6.*<span class="w"> </span><span class="nv">djangosaml2</span><span class="o">==</span><span class="m">1</span>.5.*<span class="w"> </span><span class="nv">pysaml2</span><span class="o">==</span><span class="m">7</span>.2.*<span class="w"> </span><span class="nv">pycryptodome</span><span class="o">==</span><span class="m">3</span>.16.*<span class="w"> </span><span class="nv">cffi</span><span class="o">==</span><span class="m">1</span>.15.1<span class="w"> </span>python-ldap<span class="o">==</span><span class="m">3</span>.4.3
-</code></pre></div>
-<h2 id="upgrade-to-110x">Upgrade to 11.0.x<a class="headerlink" href="#upgrade-to-110x" title="Permanent link">&para;</a></h2>
-<h3 id="1-stop-seafile-100x-server">1) Stop Seafile-10.0.x server.<a class="headerlink" href="#1-stop-seafile-100x-server" title="Permanent link">&para;</a></h3>
-<h3 id="2-start-from-seafile-110x-run-the-script">2) Start from Seafile 11.0.x, run the script:<a class="headerlink" href="#2-start-from-seafile-110x-run-the-script" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>upgrade/upgrade_10.0_11.0.sh
-</code></pre></div>
-<h3 id="3modify-configurations-and-migrate-ldap-records">3）Modify configurations and migrate LDAP records<a class="headerlink" href="#3modify-configurations-and-migrate-ldap-records" title="Permanent link">&para;</a></h3>
-<h4 id="change-configurations-for-ldap">Change configurations for LDAP<a class="headerlink" href="#change-configurations-for-ldap" title="Permanent link">&para;</a></h4>
-<p>The configuration items of LDAP login and LDAP sync tasks are migrated from ccnet.conf to seahub_settings.py. The name of the configuration item is based on the 10.0 version, and the characters 'LDAP_' or 'MULTI_LDAP_1' are added. Examples are as follows:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Basic configuration items for LDAP login</span>
-<span class="n">ENABLE_LDAP</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">LDAP_SERVER_URL</span> <span class="o">=</span> <span class="s1">&#39;ldap://192.168.0.125&#39;</span>     <span class="c1"># The URL of LDAP server</span>
-<span class="n">LDAP_BASE_DN</span> <span class="o">=</span> <span class="s1">&#39;ou=test,dc=seafile,dc=ren&#39;</span>   <span class="c1"># The root node of users who can </span>
-                                             <span class="c1"># log in to Seafile in the LDAP server</span>
-<span class="n">LDAP_ADMIN_DN</span> <span class="o">=</span> <span class="s1">&#39;administrator@seafile.ren&#39;</span>  <span class="c1"># DN of the administrator used </span>
-                                             <span class="c1"># to query the LDAP server for information</span>
-<span class="n">LDAP_ADMIN_PASSWORD</span> <span class="o">=</span> <span class="s1">&#39;Hello@123&#39;</span>            <span class="c1"># Password of LDAP_ADMIN_DN</span>
-<span class="n">LDAP_PROVIDER</span> <span class="o">=</span> <span class="s1">&#39;ldap&#39;</span>                       <span class="c1"># Identify the source of the user, used in </span>
-                                             <span class="c1"># the table social_auth_usersocialauth, defaults to &#39;ldap&#39;</span>
-<span class="n">LDAP_LOGIN_ATTR</span> <span class="o">=</span> <span class="s1">&#39;userPrincipalName&#39;</span>        <span class="c1"># User&#39;s attribute used to log in to Seafile, </span>
-                                             <span class="c1"># can be mail or userPrincipalName, cannot be changed</span>
-<span class="n">LDAP_FILTER</span> <span class="o">=</span> <span class="s1">&#39;memberOf=CN=testgroup,OU=test,DC=seafile,DC=ren&#39;</span>  <span class="c1"># Additional filter conditions,</span>
-                                                                 <span class="c1"># users who meet the filter conditions can log in, otherwise they cannot log in</span>
-<span class="c1"># For update user info when login</span>
-<span class="n">LDAP_CONTACT_EMAIL_ATTR</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>             <span class="c1"># For update user&#39;s contact_email</span>
-<span class="n">LDAP_USER_ROLE_ATTR</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>                 <span class="c1"># For update user&#39;s role</span>
-<span class="n">LDAP_USER_FIRST_NAME_ATTR</span> <span class="o">=</span> <span class="s1">&#39;givenName&#39;</span>  <span class="c1"># For update user&#39;s first name</span>
-<span class="n">LDAP_USER_LAST_NAME_ATTR</span> <span class="o">=</span> <span class="s1">&#39;sn&#39;</span>          <span class="c1"># For update user&#39;s last name</span>
-<span class="n">LDAP_USER_NAME_REVERSE</span> <span class="o">=</span> <span class="kc">False</span>           <span class="c1"># Whether to reverse the user&#39;s first and last name</span>
-</code></pre></div>
-<p>The following configuration items are only for Pro Edition:
-<div class="highlight"><pre><span></span><code><span class="c1"># Configuration items for LDAP sync tasks.</span>
-<span class="n">LDAP_SYNC_INTERVAL</span> <span class="o">=</span> <span class="mi">60</span>                  <span class="c1"># LDAP sync task period, in minutes</span>
-
-<span class="c1"># LDAP user sync configuration items.</span>
-<span class="n">ENABLE_LDAP_USER_SYNC</span> <span class="o">=</span> <span class="kc">True</span>             <span class="c1"># Whether to enable user sync</span>
-<span class="n">LDAP_USER_OBJECT_CLASS</span> <span class="o">=</span> <span class="s1">&#39;person&#39;</span>        <span class="c1"># This is the name of the class used to search for user objects. </span>
-                                         <span class="c1"># In Active Directory, it&#39;s usually &quot;person&quot;. The default value is &quot;person&quot;.</span>
-<span class="n">LDAP_DEPT_ATTR</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>                      <span class="c1"># LDAP user&#39;s department info</span>
-<span class="n">LDAP_UID_ATTR</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>                       <span class="c1"># LDAP user&#39;s login_id attribute</span>
-<span class="n">LDAP_AUTO_REACTIVATE_USERS</span> <span class="o">=</span> <span class="kc">True</span>        <span class="c1"># Whether to auto activate deactivated user</span>
-<span class="n">LDAP_USE_PAGED_RESULT</span> <span class="o">=</span> <span class="kc">False</span>            <span class="c1"># Whether to use pagination extension</span>
-<span class="n">IMPORT_NEW_USER</span> <span class="o">=</span> <span class="kc">True</span>                   <span class="c1"># Whether to import new users when sync user</span>
-<span class="n">ACTIVATE_USER_WHEN_IMPORT</span> <span class="o">=</span> <span class="kc">True</span>         <span class="c1"># Whether to activate the user when importing new user</span>
-<span class="n">ENABLE_EXTRA_USER_INFO_SYNC</span> <span class="o">=</span> <span class="kc">True</span>       <span class="c1"># Whether to enable sync of additional user information,</span>
-                                         <span class="c1"># including user&#39;s full name, contact_email, department, and Windows login name, etc.</span>
-<span class="n">DEACTIVE_USER_IF_NOTFOUND</span> <span class="o">=</span> <span class="kc">False</span>        <span class="c1"># Set to &quot;true&quot; if you want to deactivate a user </span>
-                                         <span class="c1"># when he/she was deleted in AD server.</span>
-
-<span class="c1"># LDAP group sync configuration items.</span>
-<span class="n">ENABLE_LDAP_GROUP_SYNC</span> <span class="o">=</span> <span class="kc">True</span>            <span class="c1"># Whether to enable group sync</span>
-<span class="n">LDAP_GROUP_FILTER</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>                   <span class="c1"># Group sync filter</span>
-<span class="n">LDAP_SYNC_DEPARTMENT_FROM_OU</span> <span class="o">=</span> <span class="kc">True</span>      <span class="c1"># Whether to enable sync departments from OU.</span>
-<span class="n">LDAP_GROUP_OBJECT_CLASS</span> <span class="o">=</span> <span class="s1">&#39;group&#39;</span>        <span class="c1"># This is the name of the class used to search for group objects.</span>
-<span class="n">LDAP_GROUP_MEMBER_ATTR</span> <span class="o">=</span> <span class="s1">&#39;member&#39;</span>        <span class="c1"># The attribute field to use when loading the group&#39;s members. </span>
-                                         <span class="c1"># For most directory servers, the attributes is &quot;member&quot; </span>
-                                         <span class="c1"># which is the default value.For &quot;posixGroup&quot;, it should be set to &quot;memberUid&quot;.</span>
-<span class="n">LDAP_USER_ATTR_IN_MEMBERUID</span> <span class="o">=</span> <span class="s1">&#39;uid&#39;</span>      <span class="c1"># The user attribute set in &#39;memberUid&#39; option, </span>
-                                         <span class="c1"># which is used in &quot;posixGroup&quot;.The default value is &quot;uid&quot;.</span>
-<span class="n">LDAP_GROUP_UUID_ATTR</span> <span class="o">=</span> <span class="s1">&#39;objectGUID&#39;</span>      <span class="c1"># Used to uniquely identify groups in LDAP</span>
-<span class="n">LDAP_USE_GROUP_MEMBER_RANGE_QUERY</span> <span class="o">=</span> <span class="kc">False</span>   <span class="c1"># When a group contains too many members, </span>
-                                            <span class="c1"># AD will only return part of them. Set this option to TRUE</span>
-                                            <span class="c1"># to make LDAP sync work with large groups.</span>
-<span class="n">LDAP_SYNC_GROUP_AS_DEPARTMENT</span> <span class="o">=</span> <span class="kc">False</span>    <span class="c1"># Whether to sync groups as top-level departments in Seafile</span>
-<span class="n">LDAP_DEPT_NAME_ATTR</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>                 <span class="c1"># Used to get the department name.</span>
-<span class="n">LDAP_CREATE_DEPARTMENT_LIBRARY</span> <span class="o">=</span> <span class="kc">False</span>   <span class="c1"># If you decide to sync the group as a department,</span>
-                                         <span class="c1"># you can set this option to &quot;true&quot;. In this way, when </span>
-                                         <span class="c1"># the group is synchronized for the first time, a library</span>
-                                         <span class="c1"># is automatically created for the department, and the </span>
-                                         <span class="c1"># library&#39;s name is the department&#39;s name.</span>
-<span class="n">LDAP_DEPT_REPO_PERM</span> <span class="o">=</span> <span class="s1">&#39;rw&#39;</span>               <span class="c1"># Set the permissions of the department repo, default permission is &#39;rw&#39;.</span>
-<span class="n">LDAP_DEFAULT_DEPARTMENT_QUOTA</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>       <span class="c1"># You can set a default space quota for each department</span>
-                                         <span class="c1"># when you synchronize a group for the first time. The </span>
-                                         <span class="c1"># quota is set to unlimited if this option is not set.</span>
-                                         <span class="c1"># Unit is MB.</span>
-<span class="n">DEL_GROUP_IF_NOT_FOUND</span> <span class="o">=</span> <span class="kc">False</span>           <span class="c1"># Set to &quot;true&quot;, sync process will delete the group if not found it in LDAP server.</span>
-<span class="n">DEL_DEPARTMENT_IF_NOT_FOUND</span> <span class="o">=</span> <span class="kc">False</span>      <span class="c1"># Set to &quot;true&quot;, sync process will deleted the department if not found it in LDAP server.</span>
-</code></pre></div></p>
-<p>If you sync users from LDAP to Seafile, when the user login via SSO (ADFS or OAuth or Shibboleth), you want Seafile to find the existing account for this user instead of creating a new one, you can set <code>SSO_LDAP_USE_SAME_UID = True</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="n">SSO_LDAP_USE_SAME_UID</span> <span class="o">=</span> <span class="kc">True</span>
-</code></pre></div>
-<p>Note, here the UID means the unique user ID, in LDAP it is the attribute you use for <code>LDAP_LOGIN_ATTR</code> (not <code>LDAP_UID_ATTR</code>), in ADFS it is <code>uid</code> attribute. You need make sure you use the same attribute for the two settings.</p>
-<h4 id="migrate-ldap-records">Migrate LDAP records<a class="headerlink" href="#migrate-ldap-records" title="Permanent link">&para;</a></h4>
-<p>Run the following script to migrate users in <code>LDAPImported</code> to <code>EmailUsers</code></p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>&lt;install-path&gt;/seafile-server-latest
-python3<span class="w"> </span>migrate_ldapusers.py
-</code></pre></div>
-<p>For Seafile docker</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>/usr/bin/python3<span class="w"> </span>/opt/seafile/seafile-server-latest/migrate_ldapusers.py
-</code></pre></div>
-<h4 id="change-configuration-for-oauth">Change configuration for OAuth:<a class="headerlink" href="#change-configuration-for-oauth" title="Permanent link">&para;</a></h4>
-<p>In the new version, the OAuth login configuration should keep the email attribute unchanged to be compatible with new and old user logins. In version 11.0, a new uid attribute is added to be used as a user's external unique ID. The uid will be stored in social_auth_usersocialauth to map to internal virtual ID. For old users, the original  email is used the internal virtual ID. The example is as follows:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Version 10.0 or earlier</span>
-<span class="n">OAUTH_ATTRIBUTE_MAP</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;contact_email&quot;</span><span class="p">),</span>
-<span class="p">}</span>
-
-<span class="c1"># Since 11.0 version, added &#39;uid&#39; attribute.</span>
-<span class="n">OAUTH_ATTRIBUTE_MAP</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">),</span>  <span class="c1"># In the new version, the email attribute configuration should be kept unchanged to be compatible with old and new user logins</span>
-    <span class="s2">&quot;uid&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;uid&quot;</span><span class="p">),</span>   <span class="c1"># Seafile use &#39;uid&#39; as the external unique identifier of the user. Different OAuth systems have different attributes, which may be: &#39;uid&#39; or &#39;username&#39;, etc.</span>
-    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;contact_email&quot;</span><span class="p">),</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>When a user login, Seafile will first use "id -&gt; email" map to find the old user and then create "uid -&gt; uid" map for this old user. After all users login once, you can delete the configuration  <code>"id": (True, "email")</code>. You can also manully add records in social_auth_usersocialauth to map extenral uid to old users.</p>
-<h3 id="4-start-seafile-110x-server">4) Start Seafile-11.0.x server.<a class="headerlink" href="#4-start-seafile-110x-server" title="Permanent link">&para;</a></h3>
-<h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
-<p>We have documented common issues encountered by users when upgrading to version 11.0 in our FAQ <a href="https://cloud.seatable.io/dtable/external-links/7b976c85f504491cbe8e/?tid=0000&amp;vid=0000">https://cloud.seatable.io/dtable/external-links/7b976c85f504491cbe8e/?tid=0000&amp;vid=0000</a>.</p>
-<p>If you encounter any issue, please give it a check. </p>
 
 
 
@@ -4962,7 +4561,7 @@ python3<span class="w"> </span>migrate_ldapusers.py
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../upgrade_notes_for_12.0.x/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Upgrade notes for 12.0.x">
+          <a href="../system_requirements/" class="md-footer__link md-footer__link--prev" aria-label="Previous: System requirements">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -4972,20 +4571,20 @@ python3<span class="w"> </span>migrate_ldapusers.py
                 Previous
               </span>
               <div class="md-ellipsis">
-                Upgrade notes for 12.0.x
+                System requirements
               </div>
             </div>
           </a>
         
         
           
-          <a href="../upgrade_notes_for_10.0.x/" class="md-footer__link md-footer__link--next" aria-label="Next: Upgrade notes for 10.0.x">
+          <a href="../caddy/" class="md-footer__link md-footer__link--next" aria-label="Next: HTTPS and Caddy">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Upgrade notes for 10.0.x
+                HTTPS and Caddy
               </div>
             </div>
             <div class="md-footer__button md-icon">
