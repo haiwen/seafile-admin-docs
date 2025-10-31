@@ -201,7 +201,7 @@ Placeholder spot for shared volumes. You may elect to store certain persistent i
 
 ## Database used by SeaDoc
 
-SeaDoc used one database table `seahub_db.sdoc_operation_log` to store operation logs. The database table is cleaned automatically.
+SeaDoc uses one database table `seahub_db.sdoc_operation_log` to store operation logs. The database table is cleaned automatically.
 
 ## Common issues when settings up SeaDoc
 
