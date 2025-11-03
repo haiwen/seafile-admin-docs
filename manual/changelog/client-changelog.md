@@ -2,6 +2,11 @@
 
 ## 9.0
 
+### 9.0.15 (2025/08/12)
+
+* Support redirection of http requests, like to another domain or to https
+* Set timeout for fs-id-list requests to 30 minutes, to avoid infinitely waiting on bad connections
+
 ### 9.0.14 (2025/06/16)
 
 * Improve cloud file browser dialog

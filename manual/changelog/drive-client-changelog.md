@@ -1,5 +1,12 @@
 # SeaDrive Client Changelog
 
+### 3.0.16 (2025/08/22)
+
+* Don't persist network errors after restart
+* Properly handle request redirection in syncing
+* Fix open file via client from web interface
+* \[win] Allow users to choose sync root folder names when login an account for the first time
+
 ### 3.0.15 (2025/06/26)
 
 * Persist file sync errors over restart
