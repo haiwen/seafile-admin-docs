@@ -1,5 +1,16 @@
 # SeaDrive Client Changelog
 
+### 3.0.17 (2025/11/04)
+
+* \[win] Add read-only icons for files with read-only permissions
+* \[win] Fix UI freezing issue after entering password for encrypted library
+* \[win] Fix sync issue after changing the character cases for file names
+* \[linux] Fix corrupted icon in system notification
+* Add link to FAQ in file sync error dialog
+* Automatically rotate logs when it gets large
+* Add User Agent header for websockets requests
+* Reconnect to notification server after computer wake up
+
 ### 3.0.16 (2025/08/22)
 
 * Don't persist network errors after restart
