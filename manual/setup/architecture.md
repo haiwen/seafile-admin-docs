@@ -11,8 +11,8 @@ Seafile Docker and its components are support both x86 and ARM64 architecture. Y
 | sdoc-server | √ | √ |
 | notification-server | √ | √ |
 | seafile-md-server | √ | √ |
-| seafile-ai | √ | Coming soon |
-| thumbnail-server | √ | Coming soon |
+| seafile-ai | √ | √ |
+| thumbnail-server | √ | √ |
 | seaseach-nomkl | √ | √ |
 | seasearch | √ | X |
 | face-embedding | √ | X |
