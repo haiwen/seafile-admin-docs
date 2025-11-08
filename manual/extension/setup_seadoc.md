@@ -22,12 +22,11 @@ The SeaDoc archticture is demonstrated as below:
 
 ![SeaDoc](../images/seadoc-arch.png)
 
-Here is the workflow when a user open sdoc file in browser
+Here is the workflow when a user opens an sdoc file in a browser:
 
-1. When a user open a sdoc file in the browser, a file loading request will be sent to Caddy, and Caddy proxy the request to SeaDoc server (see [Seafile instance archticture](../setup/overview.md) for the details).
-2. SeaDoc server will send the file's content back if it is already cached, otherwise SeaDoc server will sends a request to Seafile server.
-3. Seafile server loads the content, then sends it to SeaDoc server and write it to the cache at the same time.
-4. After SeaDoc receives the content, it will be sent to the browser.
+1. When a user opens an sdoc file in the browser, a document loading request is sent to the sdoc-server.
+2. The sdoc-server retrieves the file contents from the Seafile server.
+3. The sdoc-server then sends the document content back to the browser.
 
 ## Deployment SeaDoc
 
