@@ -13,10 +13,12 @@ Seafile Docker and its components are support both x86 and ARM64 architecture. Y
 | seafile-md-server | √ | √ |
 | seafile-ai | √ | √ |
 | thumbnail-server | √ | √ |
-| seaseach-nomkl | √ | √ |
-| seasearch | √ | X |
+| seasearch | √ | √ |
 | face-embedding | √ | X |
-| index-server  | √ | X |
+| index-server (distributed indexing) | √ | X |
+
+Note, for SeaSearch, you should use seaseach-nomkl version to work on ARM architecture.
+
 
 
 ## Pull the ARM image
