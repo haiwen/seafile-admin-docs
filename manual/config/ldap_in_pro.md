@@ -330,7 +330,7 @@ LDAP_FILTER = 'memberOf={output of dsquery command}'
 If your LDAP service supports TLS connections, you can configure `LDAP_SERVER_URL` as the access address of the ldaps protocol to use TLS to connect to the LDAP service, for example:
 
 ```python
-LDAP_SERVER_URL = 'ldaps://192.168.0.1:636/'
+LDAP_SERVER_URL = 'ldaps://192.168.0.1:636'
 ```
 
 ### Use paged results extension
