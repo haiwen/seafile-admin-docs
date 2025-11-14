@@ -42,6 +42,8 @@ services:
     depends_on:
       db:
         condition: service_healthy
+      seafile:
+        condition: service_healthy
     networks:
       - seafile-net
 
