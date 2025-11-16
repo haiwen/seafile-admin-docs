@@ -21,6 +21,9 @@ services:
       - REDIS_HOST=${REDIS_HOST:-redis}
       - REDIS_PORT=${REDIS_PORT:-6379}
       - REDIS_PASSWORD=${REDIS_PASSWORD:-}
+    depends_on:
+      seafile:
+        condition: service_healthy
     networks:
       - seafile-net
 
