@@ -27,6 +27,12 @@ Please check our document for how to upgrade to [13.0](../upgrade/upgrade_notes_
 
 Please check our document for how to upgrade to [12.0](../upgrade/upgrade_notes_for_12.0.x.md)
 
+### 12.0.18 (2025-11-17)
+
+* Preview PDF files by the default viewer and after user clicking edit button, the PDF file will be edited in OnlyOffice.
+* [fix] Update bundled Django version to 4.2.26 in Docker image
+* [fix] Fix tranfering a library to another user in system admin panel
+
 ### 12.0.17 (2025-10-14)
 
 * [fix] Fix a XSS issue for SVG file view in sharing link if golang file server is used
