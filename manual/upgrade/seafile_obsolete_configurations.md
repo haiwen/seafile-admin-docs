@@ -2,7 +2,7 @@
 
 The Seafile configuration files are located in the `/opt/seafile-data/seafile/conf/` directory.
 
-## **Seafile 12 to 13 Obsolete Configurations**
+## Seafile 12 to 13 Obsolete Configurations
 
 ### seafevents.conf
 
@@ -44,7 +44,7 @@ SS_S3_AWS_REGION=us-east-1
 SS_S3_SSE_C_KEY=<your SSE-C key>
 ```
 
-## **Seafile 11 to 12 Obsolete Configurations**
+## Seafile 11 to 12 Obsolete Configurations
 
 ### ccnet.conf
 You should remove the entire `ccnet.conf` configuration file.
