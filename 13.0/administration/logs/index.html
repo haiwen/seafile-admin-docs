@@ -4132,7 +4132,18 @@
   <a href="#log-files-for-seasearch-server" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Log files for seasearch server
+        Log files for SeaSearch server
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#log-files-for-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log files for Nginx
       
     </span>
   </a>
@@ -5275,7 +5286,18 @@
   <a href="#log-files-for-seasearch-server" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Log files for seasearch server
+        Log files for SeaSearch server
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#log-files-for-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log files for Nginx
       
     </span>
   </a>
@@ -5329,11 +5351,21 @@
 <li>sdoc_operation_log_clean.log: logs for recording the periodic cleanup task that purges old operation_log records from the database to control log growth and maintain storage health.</li>
 <li>seadoc-converter.log: logs for recording the scheduler activity of the seadoc-converter service’s operation log cleanup job to verify the maintenance task is running on schedule.</li>
 </ul>
-<h3 id="log-files-for-seasearch-server">Log files for seasearch server<a class="headerlink" href="#log-files-for-seasearch-server" title="Permanent link">&para;</a></h3>
+<h3 id="log-files-for-seasearch-server">Log files for SeaSearch server<a class="headerlink" href="#log-files-for-seasearch-server" title="Permanent link">&para;</a></h3>
 <p>The logs for seasearch server are located in the <code>/opt/seasearch-data/log</code> directory.</p>
 <ul>
 <li>seasearch.log: logs for recording the SeaSearch service startup and runtime status to confirm the search engine is initialized and ready to serve requests.</li>
 <li>seasearch-access.log: logs for recording incoming HTTP requests to the SeaSearch service to audit search/index queries and detect auth or access issues.</li>
+</ul>
+<h3 id="log-files-for-nginx">Log files for Nginx<a class="headerlink" href="#log-files-for-nginx" title="Permanent link">&para;</a></h3>
+<p>The logs for Nginx are located in the <code>/opt/seafile-data/seafile/logs</code> directory.</p>
+<ul>
+<li>seahub.access.log: logs for recording HTTP/API access to the Seafile web interface for troubleshooting, auditing, and usage analysis.</li>
+<li>seahub.error.log: logs for recording seahub errors.</li>
+<li>seafhttp.access.log: logs for recording HTTP access to the seafhttp file server for troubleshooting, auditing, and usage analysis.</li>
+<li>seafhttp.error.log: logs for recording seafhttp errors.</li>
+<li>seafdav.access.log: logs for recording HTTP/WebDAV access and authentication attempts to the seafdav endpoint for troubleshooting, auditing, and usage analysis.</li>
+<li>seafdav.error.log: logs for recording seafdav errors.</li>
 </ul>
 
 
