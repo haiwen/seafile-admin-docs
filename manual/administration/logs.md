@@ -37,3 +37,13 @@ The logs for seasearch server are located in the `/opt/seasearch-data/log` direc
 * seasearch.log: logs for recording the SeaSearch service startup and runtime status to confirm the search engine is initialized and ready to serve requests.
 * seasearch-access.log: logs for recording incoming HTTP requests to the SeaSearch service to audit search/index queries and detect auth or access issues.
 
+### Log files for nginx
+
+The logs for nginx are located in the `/opt/seafile-data/seafile/logs` directory.
+
+* seahub.access.log: logs for recording HTTP/API access to the Seafile web interface for troubleshooting, auditing, and usage analysis.
+* seahub.error.log: logs for recording seahub errors.
+* seafhttp.access.log: logs for recording HTTP access to the seafhttp file server for troubleshooting, auditing, and usage analysis.
+* seafhttp.error.log: logs for recording seafhttp errors.
+* seafdav.access.log: logs for recording HTTP/WebDAV access and authentication attempts to the seafdav endpoint for troubleshooting, auditing, and usage analysis.
+* seafdav.error.log: logs for recording seafdav errors.
