@@ -6,7 +6,7 @@ Create customize folder
 
 === "Deploy in Docker"
     ```sh
-    mkdir -p /opt/seafile-data/seahub/media/custom
+    mkdir -p /opt/seafile-data/seafile/seahub-data/custom
     ```
 === "Deploy from binary packages"
     ```sh
@@ -56,9 +56,9 @@ BRANDING_CSS = 'custom/custom.css'
 
 === "Deploy in Docker"
     ```sh
-    mkdir -p /opt/seafile-data/seahub/media/custom/templates/help/
-    cd /opt/seafile-data/seahub/media/custom
-    cp ../../help/templates/help/base.html templates/help/
+    mkdir -p /opt/seafile-data/seafile/seahub-data/custom/templates/help/
+    cd /opt/seafile-data/seafile/seahub-data/custom
+    cp ../../help/templates/help/install.html templates/help/
     ```
 === "Deploy from binary packages"
     ```sh
@@ -67,7 +67,7 @@ BRANDING_CSS = 'custom/custom.css'
     cp ../../help/templates/help/base.html templates/help/
     ```
 
-For example, modify the `templates/help/base.html` file and save it. You will see the new help page.
+For example, modify the `templates/help/install.html` file and save it. You will see the new help page.
 
 !!! note
     There are some more help pages available for modifying, you can find the list of the html file [here](https://github.com/haiwen/seahub/tree/master/seahub/help/templates/help)
