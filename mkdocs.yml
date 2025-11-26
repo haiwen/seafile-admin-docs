@@ -201,11 +201,12 @@ nav:
     - Summary of obsolete configurations: upgrade/seafile_obsolete_configurations.md
   - Developing:
     - Outline: develop/README.md
-    - How to Build Seafile:
-      - Outline: develop/build_seafile.md
+    - Seafile client:
       - Linux: develop/linux.md
       - macOS: develop/osx.md
       - Windows: develop/windows.md
+    - How to Build Seafile:
+      - Outline: develop/build_seafile.md
       - Server development: develop/server.md
       - Server binary package: develop/rpi.md
     - Translation: develop/translation.md
