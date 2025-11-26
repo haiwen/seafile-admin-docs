@@ -1,4 +1,4 @@
-This is the document for deploying Seafile open source development environment in Ubuntu 2204 docker container.
+This is the document for deploying Seafile open source development environment in Ubuntu 24.04 docker container.
 
 ## Create persistent directories
 
@@ -22,7 +22,7 @@ docker run --mount type=bind,source=/root/seafile-ce-docker/source-code,target=/
            --mount type=bind,source=/root/seafile-ce-docker/logs,target=/root/dev/logs \
            --mount type=bind,source=/root/seafile-ce-docker/seafile-data,target=/root/dev/seafile-data \
            --mount type=bind,source=/root/seafile-ce-docker/mysql-data,target=/var/lib/mysql \
-           -it -p 8000:8000 -p 8082:8082 -p 3000:3000 --name seafile-ce-env ubuntu:22.04 bash
+           -it -p 8000:8000 -p 8082:8082 -p 3000:3000 --name seafile-ce-env ubuntu:24.04 bash
 ```
 
 Note, the following commands are all executed in the seafile-ce-env docker container.
@@ -34,14 +34,13 @@ Update base system and install base dependencies:
 ```
 apt-get update && apt-get upgrade -y
 
-apt-get install -y ssh libevent-dev libcurl4-openssl-dev libglib2.0-dev uuid-dev intltool libsqlite3-dev libmysqlclient-dev libarchive-dev libtool libjansson-dev valac libfuse-dev python3-dateutil cmake re2c flex sqlite3 python3-pip python3-simplejson git libssl-dev libldap2-dev libonig-dev vim vim-scripts wget cmake gcc autoconf automake mysql-client librados-dev libxml2-dev curl sudo telnet netcat unzip netbase ca-certificates apt-transport-https build-essential libxslt1-dev libffi-dev libpcre3-dev libz-dev xz-utils nginx pkg-config poppler-utils libmemcached-dev sudo ldap-utils libldap2-dev libjwt-dev
+apt-get install -y ssh libevent-dev libcurl4-openssl-dev libglib2.0-dev uuid-dev intltool libsqlite3-dev libmysqlclient-dev libarchive-dev libtool libjansson-dev valac libfuse-dev python3-dateutil cmake re2c flex sqlite3 python3-pip python3-simplejson git libssl-dev libldap2-dev libonig-dev vim vim-scripts wget cmake gcc autoconf automake mysql-client librados-dev libxml2-dev curl sudo telnet netcat unzip netbase ca-certificates apt-transport-https build-essential libxslt1-dev libffi-dev libpcre3-dev libz-dev xz-utils nginx pkg-config poppler-utils libmemcached-dev sudo ldap-utils libldap2-dev libjwt-dev libunwind-dev libhiredis-dev google-perftools libgoogle-perftools-dev
 ```
 
-Install Node 16 from nodesource:
+Install Node 20 from nodesource:
 
 ```
-curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
-echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_16.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+curl -sL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 apt-get install -y nodejs
 ```
 
@@ -52,7 +51,7 @@ apt-get install -y python3 python3-dev python3-pip python3-setuptools python3-ld
 
 python3 -m pip install --upgrade pip
 
-pip3 install Django==4.2.* django-statici18n==2.3.* django_webpack_loader==1.7.* django_picklefield==3.1 django_formtools==2.4 django_simple_captcha==0.6.* djangosaml2==1.5.* djangorestframework==3.14.* python-dateutil==2.8.* pyjwt==2.6.* pycryptodome==3.16.* python-cas==1.6.* pysaml2==7.2.* requests==2.28.* requests_oauthlib==1.3.* future==0.18.* gunicorn==20.1.* mysqlclient==2.1.* qrcode==7.3.* pillow==10.2.* chardet==5.1.* cffi==1.15.1 captcha==0.5.* openpyxl==3.0.* Markdown==3.4.* bleach==5.0.* python-ldap==3.4.* sqlalchemy==2.0.18 redis mock pytest pymysql configparser pylibmc django-pylibmc nose exam splinter pytest-django
+pip3 install pytz jinja2 Django==5.2.* django-statici18n==2.3.* django_webpack_loader==1.7.* django_picklefield==3.1 django_formtools==2.4 django_simple_captcha==0.6.* djangosaml2==1.11.* djangorestframework==3.14.* python-dateutil==2.8.* pyjwt==2.10.* pycryptodome==3.23.* python-cas==1.6.* pysaml2==7.5.* requests==2.28.* requests_oauthlib==1.3.* future==1.0.* gunicorn==20.1.* mysqlclient==2.2.* qrcode==7.3.* pillow==11.3.* pillow-heif==1.0.* chardet==5.1.* cffi==1.17.1 captcha==0.7.* openpyxl==3.0.* Markdown==3.4.* bleach==5.0.* python-ldap==3.4.* sqlalchemy==2.0.* redis mock pytest pymysql==1.1.* configparser pylibmc django-pylibmc nose exam splinter pytest-django psd-tools lxml
 ```
 
 ## Install MariaDB and Create Databases
