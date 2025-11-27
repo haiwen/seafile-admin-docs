@@ -5504,7 +5504,7 @@ index_office_pdf=true
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>bash
-<span class="nb">cd</span><span class="w"> </span>/scripts
+<span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest
 ./seafile.sh<span class="w"> </span>restart
 
 <span class="c1"># delete the existing search index and recreate it</span>
@@ -5530,7 +5530,7 @@ index_office_pdf=true
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>bash
-<span class="nb">cd</span><span class="w"> </span>/scripts
+<span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest
 ./pro/pro.py<span class="w"> </span>search<span class="w"> </span>--clear
 ./pro/pro.py<span class="w"> </span>search<span class="w"> </span>--update
 </code></pre></div>
@@ -5586,7 +5586,7 @@ repo_files_index_name = your-repo-files-index-name    # default is `repofiles`
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>bash
-<span class="nb">cd</span><span class="w"> </span>/scripts
+<span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest
 ./pro/pro.py<span class="w"> </span>search<span class="w"> </span>--update
 </code></pre></div>
 </div>
