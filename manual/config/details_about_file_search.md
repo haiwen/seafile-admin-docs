@@ -64,7 +64,7 @@ index_office_pdf=true
 === "Deploy in Docker"
     ```sh
     docker exec -it seafile bash
-    cd /scripts
+    cd /opt/seafile/seafile-server-latest
     ./seafile.sh restart
 
     # delete the existing search index and recreate it
@@ -91,7 +91,7 @@ You can rebuild search index by running:
 === "Deploy in Docker"
     ```sh
     docker exec -it seafile bash
-    cd /scripts
+    cd /opt/seafile/seafile-server-latest
     ./pro/pro.py search --clear
     ./pro/pro.py search --update
     ```
@@ -144,7 +144,7 @@ The search index is updated every 10 minutes by default. So before the first ind
 === "Deploy in Docker"
     ```sh
     docker exec -it seafile bash
-    cd /scripts
+    cd /opt/seafile/seafile-server-latest
     ./pro/pro.py search --update
     ```
 === "Deploy from binary packages"
