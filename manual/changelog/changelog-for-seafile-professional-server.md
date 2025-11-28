@@ -9,6 +9,18 @@
 
 Please check our document for how to upgrade to [13.0](../upgrade/upgrade_notes_for_13.0.x.md)
 
+### 13.0.14 (2025-11-28)
+
+* Preview PDF files by the default viewer and after user clicking edit button, the PDF file will be edited in OnlyOffice
+* Support generating thumbnails for SVG files
+* Accessibility improvement
+* [fix] Fix fsck crash when head commit is corrupt
+* [fix] 1000 files upload limit doesn't get flushed when upload finishes
+* [fix] Safari race condition prevents PDF preview
+* [fix] Fix SeaSearch can’t search the content of PDF files
+* Other UI fixes and improvements
+
+
 ### 13.0.12 beta (2025-10-24)
 
 * SeaDoc: SeaDoc is now version 2.0
