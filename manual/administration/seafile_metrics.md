@@ -1,7 +1,6 @@
-# Integrate Seafile Metrics with Third-Party Monitoring Tools
-Seafile provides a standardized interface to expose system operational metrics, enabling integration with third-party monitoring tools such as Prometheus and Grafana.
+# Monitor Seafile with Prometheus
+Seafile provides a standardized interface tailored to expose system operational metrics, enabling seamless integration with Prometheus and Grafana.
 This allows administrators to real-time monitor Seafile service status, including (but not limited to)  I/O queue length and background task latency.
-
 
 ## Configuration Steps
 To enable metric monitoring for Seafile, follow these steps:
@@ -13,7 +12,7 @@ Edit the Seafile configuration file `seahub_settings.py` (located in the Seafile
 # Enable the metric exposure function (set to True to activate)
 ENABLE_METRIC = True
 
-# Authentication username for monitoring tools (e.g., Prometheus)
+# Authentication username
 # Used for HTTP Basic Authentication when accessing Seafile's metric endpoint
 METRIC_AUTH_USER = "your_prometheus_username"
 
@@ -24,8 +23,8 @@ METRIC_AUTH_PWD = "your_prometheus_password"
 > **Note**: Replace `your_prometheus_username` and `your_prometheus_password` with custom credentials (recommend using strong, unique passwords for security).
 
 
-### 2. Configure Third-Party Monitoring Tools
-After completing the above Seafile configuration, monitoring tools can retrieve Seafile metrics via the `/metrics` endpoint. Key requirements for tool configuration:
+### 2. Configure Prometheus
+After completing the above Seafile configuration, Prometheus can retrieve Seafile metrics via the `/metrics` endpoint. Key requirements for such configuration:
 
 * Endpoint: Seafile’s metric data is accessible at `http://<seafile-server-ip>:<port>/metrics` (replace `<seafile-server-ip>` and `<port>` with your Seafile server’s actual IP and port).
 * Authentication: Use HTTP Basic Authentication and input the `METRIC_AUTH_USER` and `METRIC_AUTH_PWD` configured in Step 1.
