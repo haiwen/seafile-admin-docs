@@ -188,6 +188,7 @@ nav:
     - Seafile FSCK: administration/seafile_fsck.md
     - Seafile GC: administration/seafile_gc.md
     - Clean database: administration/clean_database.md
+    - Monitor Seafile with Prometheus: administration/seafile_metrics.md
   - Upgrade:
     - Outline: upgrade/upgrade.md
     - Upgrade Seafile Docker: upgrade/upgrade_docker.md
