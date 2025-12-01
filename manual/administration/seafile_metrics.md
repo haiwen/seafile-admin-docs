@@ -1,5 +1,5 @@
 # Monitor Seafile with Prometheus
-Seafile provides a standardized interface tailored to expose system operational metrics, enabling seamless integration with Prometheus and Grafana.
+Seafile provides a standardized interface to expose system operational metrics, enabling integration with Prometheus and Grafana.
 This allows administrators to real-time monitor Seafile service status, including (but not limited to)  I/O queue length and background task latency.
 
 ## Configuration Steps
