@@ -6101,6 +6101,9 @@ GRANT ALL PRIVILEGES ON `seahub_db`.* to `seafile`@localhost;
 <p>Use the following commands to install memcached and corresponding libraies on your system:</p>
 <div class="highlight"><pre><span></span><code># on Debian/Ubuntu 18.04+
 apt-get install memcached libmemcached-dev -y
+
+# activate the venv
+source python-venv/bin/activate
 pip3 install --timeout=3600 pylibmc django-pylibmc
 
 systemctl enable --now memcached
@@ -6121,6 +6124,9 @@ systemctl enable --now memcached
 <p>Use the following commands to install redis and corresponding libraies on your system:</p>
 <div class="highlight"><pre><span></span><code># on Debian/Ubuntu 18.04+
 apt-get install -y redis-server libhiredis-dev
+
+# activate the venv
+source python-venv/bin/activate
 pip3 install redis django-redis
 
 systemctl enable --now redis-server
