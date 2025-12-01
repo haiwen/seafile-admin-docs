@@ -10,27 +10,31 @@
         <meta name="author" content="seafile">
       
       
-        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/13.0/changelog/">
+        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/13.0/administration/seafile_metrics/">
       
       
+        <link rel="prev" href="../clean_database/">
+      
+      
+        <link rel="next" href="../../upgrade/upgrade/">
       
       
         
       
       
-      <link rel="icon" href="../media/favicon.ico">
+      <link rel="icon" href="../../media/favicon.ico">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
     
     
       
-        <title>Changelog - Seafile Admin Manual</title>
+        <title>Monitor Seafile with Prometheus - Seafile Admin Manual</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -49,9 +53,9 @@
       
     
     
-      <link rel="stylesheet" href="../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -76,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#changelog" class="md-skip">
+        <a href="#monitor-seafile-with-prometheus" class="md-skip">
           Skip to content
         </a>
       
@@ -94,9 +98,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Seafile Admin Manual" class="md-header__button md-logo" aria-label="Seafile Admin Manual" data-md-component="logo">
+    <a href="../.." title="Seafile Admin Manual" class="md-header__button md-logo" aria-label="Seafile Admin Manual" data-md-component="logo">
       
-  <img src="../media/seafile-transparent-1024.png" alt="logo">
+  <img src="../../media/seafile-transparent-1024.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -113,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Changelog
+              Monitor Seafile with Prometheus
             
           </span>
         </div>
@@ -233,7 +237,7 @@
     
     
       <li class="md-tabs__item">
-        <a href=".." class="md-tabs__link">
+        <a href="../.." class="md-tabs__link">
           
   
   
@@ -253,7 +257,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../setup/overview/" class="md-tabs__link">
+        <a href="../../setup/overview/" class="md-tabs__link">
           
   
   
@@ -273,7 +277,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../setup_binary/outline/" class="md-tabs__link">
+        <a href="../../setup_binary/outline/" class="md-tabs__link">
           
   
   
@@ -300,7 +304,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../extension/setup_seadoc/" class="md-tabs__link">
+        <a href="../../extension/setup_seadoc/" class="md-tabs__link">
           
   
   
@@ -337,7 +341,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../config/ldap_in_ce/" class="md-tabs__link">
+        <a href="../../config/ldap_in_ce/" class="md-tabs__link">
           
   
   
@@ -359,11 +363,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../administration/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -383,7 +389,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../upgrade/upgrade/" class="md-tabs__link">
+        <a href="../../upgrade/upgrade/" class="md-tabs__link">
           
   
   
@@ -403,7 +409,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../develop/" class="md-tabs__link">
+        <a href="../../develop/" class="md-tabs__link">
           
   
   
@@ -423,7 +429,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="server-changelog/" class="md-tabs__link">
+        <a href="../../changelog/server-changelog/" class="md-tabs__link">
           
   
   
@@ -457,9 +463,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Seafile Admin Manual" class="md-nav__button md-logo" aria-label="Seafile Admin Manual" data-md-component="logo">
+    <a href="../.." title="Seafile Admin Manual" class="md-nav__button md-logo" aria-label="Seafile Admin Manual" data-md-component="logo">
       
-  <img src="../media/seafile-transparent-1024.png" alt="logo">
+  <img src="../../media/seafile-transparent-1024.png" alt="logo">
 
     </a>
     Seafile Admin Manual
@@ -538,7 +544,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -566,7 +572,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../introduction/file_permission_management/" class="md-nav__link">
+      <a href="../../introduction/file_permission_management/" class="md-nav__link">
         
   
   
@@ -594,7 +600,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../introduction/seafile_professional_sdition_software_license_agreement/" class="md-nav__link">
+      <a href="../../introduction/seafile_professional_sdition_software_license_agreement/" class="md-nav__link">
         
   
   
@@ -622,7 +628,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../introduction/roadmap/" class="md-nav__link">
+      <a href="../../introduction/roadmap/" class="md-nav__link">
         
   
   
@@ -650,7 +656,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../introduction/contribution/" class="md-nav__link">
+      <a href="../../introduction/contribution/" class="md-nav__link">
         
   
   
@@ -737,7 +743,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/overview/" class="md-nav__link">
+      <a href="../../setup/overview/" class="md-nav__link">
         
   
   
@@ -765,7 +771,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/system_requirements/" class="md-nav__link">
+      <a href="../../setup/system_requirements/" class="md-nav__link">
         
   
   
@@ -793,7 +799,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/architecture/" class="md-nav__link">
+      <a href="../../setup/architecture/" class="md-nav__link">
         
   
   
@@ -821,7 +827,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/caddy/" class="md-nav__link">
+      <a href="../../setup/caddy/" class="md-nav__link">
         
   
   
@@ -901,7 +907,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/setup_ce_by_docker/" class="md-nav__link">
+      <a href="../../setup/setup_ce_by_docker/" class="md-nav__link">
         
   
   
@@ -929,7 +935,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/setup_pro_by_docker/" class="md-nav__link">
+      <a href="../../setup/setup_pro_by_docker/" class="md-nav__link">
         
   
   
@@ -1069,7 +1075,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/setup_with_s3/" class="md-nav__link">
+      <a href="../../setup/setup_with_s3/" class="md-nav__link">
         
   
   
@@ -1097,7 +1103,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/setup_with_ceph/" class="md-nav__link">
+      <a href="../../setup/setup_with_ceph/" class="md-nav__link">
         
   
   
@@ -1125,7 +1131,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/setup_with_swift/" class="md-nav__link">
+      <a href="../../setup/setup_with_swift/" class="md-nav__link">
         
   
   
@@ -1153,7 +1159,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/setup_with_multiple_storage_backends/" class="md-nav__link">
+      <a href="../../setup/setup_with_multiple_storage_backends/" class="md-nav__link">
         
   
   
@@ -1181,7 +1187,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/migrate_backends_data/" class="md-nav__link">
+      <a href="../../setup/migrate_backends_data/" class="md-nav__link">
         
   
   
@@ -1217,7 +1223,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/use_seasearch/" class="md-nav__link">
+      <a href="../../setup/use_seasearch/" class="md-nav__link">
         
   
   
@@ -1245,7 +1251,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/seafile_docker_autostart/" class="md-nav__link">
+      <a href="../../setup/seafile_docker_autostart/" class="md-nav__link">
         
   
   
@@ -1273,7 +1279,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/setup_with_an_existing_mysql_server/" class="md-nav__link">
+      <a href="../../setup/setup_with_an_existing_mysql_server/" class="md-nav__link">
         
   
   
@@ -1301,7 +1307,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/use_other_reverse_proxy/" class="md-nav__link">
+      <a href="../../setup/use_other_reverse_proxy/" class="md-nav__link">
         
   
   
@@ -1329,7 +1335,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/run_seafile_as_non_root_user_inside_docker/" class="md-nav__link">
+      <a href="../../setup/run_seafile_as_non_root_user_inside_docker/" class="md-nav__link">
         
   
   
@@ -1365,7 +1371,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/cluster_deploy_with_docker/" class="md-nav__link">
+      <a href="../../setup/cluster_deploy_with_docker/" class="md-nav__link">
         
   
   
@@ -1497,7 +1503,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/helm_chart_single_node/" class="md-nav__link">
+      <a href="../../setup/helm_chart_single_node/" class="md-nav__link">
         
   
   
@@ -1525,7 +1531,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/helm_chart_cluster/" class="md-nav__link">
+      <a href="../../setup/helm_chart_cluster/" class="md-nav__link">
         
   
   
@@ -1613,7 +1619,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/k8s_single_node/" class="md-nav__link">
+      <a href="../../setup/k8s_single_node/" class="md-nav__link">
         
   
   
@@ -1641,7 +1647,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/cluster_deploy_with_k8s/" class="md-nav__link">
+      <a href="../../setup/cluster_deploy_with_k8s/" class="md-nav__link">
         
   
   
@@ -1677,7 +1683,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/k8s_advanced_management/" class="md-nav__link">
+      <a href="../../setup/k8s_advanced_management/" class="md-nav__link">
         
   
   
@@ -1765,7 +1771,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/migrate_ce_to_pro_with_docker/" class="md-nav__link">
+      <a href="../../setup/migrate_ce_to_pro_with_docker/" class="md-nav__link">
         
   
   
@@ -1793,7 +1799,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup/migrate_non_docker_to_docker/" class="md-nav__link">
+      <a href="../../setup/migrate_non_docker_to_docker/" class="md-nav__link">
         
   
   
@@ -1888,7 +1894,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup_binary/outline/" class="md-nav__link">
+      <a href="../../setup_binary/outline/" class="md-nav__link">
         
   
   
@@ -1916,7 +1922,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup_binary/installation/" class="md-nav__link">
+      <a href="../../setup_binary/installation/" class="md-nav__link">
         
   
   
@@ -1952,7 +1958,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup_binary/https_with_nginx/" class="md-nav__link">
+      <a href="../../setup_binary/https_with_nginx/" class="md-nav__link">
         
   
   
@@ -1980,7 +1986,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup_binary/cluster_deployment/" class="md-nav__link">
+      <a href="../../setup_binary/cluster_deployment/" class="md-nav__link">
         
   
   
@@ -2060,7 +2066,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup_binary/start_seafile_at_system_bootup/" class="md-nav__link">
+      <a href="../../setup_binary/start_seafile_at_system_bootup/" class="md-nav__link">
         
   
   
@@ -2088,7 +2094,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup_binary/using_logrotate/" class="md-nav__link">
+      <a href="../../setup_binary/using_logrotate/" class="md-nav__link">
         
   
   
@@ -2235,7 +2241,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../extension/setup_seadoc/" class="md-nav__link">
+      <a href="../../extension/setup_seadoc/" class="md-nav__link">
         
   
   
@@ -2263,7 +2269,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../extension/notification-server/" class="md-nav__link">
+      <a href="../../extension/notification-server/" class="md-nav__link">
         
   
   
@@ -2291,7 +2297,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../extension/metadata-server/" class="md-nav__link">
+      <a href="../../extension/metadata-server/" class="md-nav__link">
         
   
   
@@ -2319,7 +2325,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../extension/thumbnail-server/" class="md-nav__link">
+      <a href="../../extension/thumbnail-server/" class="md-nav__link">
         
   
   
@@ -2347,7 +2353,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../extension/webdav/" class="md-nav__link">
+      <a href="../../extension/webdav/" class="md-nav__link">
         
   
   
@@ -2375,7 +2381,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../extension/fuse/" class="md-nav__link">
+      <a href="../../extension/fuse/" class="md-nav__link">
         
   
   
@@ -2403,7 +2409,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../extension/seafile-ai/" class="md-nav__link">
+      <a href="../../extension/seafile-ai/" class="md-nav__link">
         
   
   
@@ -2491,7 +2497,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../extension/libreoffice_online/" class="md-nav__link">
+      <a href="../../extension/libreoffice_online/" class="md-nav__link">
         
   
   
@@ -2519,7 +2525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../extension/only_office/" class="md-nav__link">
+      <a href="../../extension/only_office/" class="md-nav__link">
         
   
   
@@ -2547,7 +2553,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../extension/office_web_app/" class="md-nav__link">
+      <a href="../../extension/office_web_app/" class="md-nav__link">
         
   
   
@@ -2635,7 +2641,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../extension/distributed_indexing/" class="md-nav__link">
+      <a href="../../extension/distributed_indexing/" class="md-nav__link">
         
   
   
@@ -2723,7 +2729,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../extension/virus_scan/" class="md-nav__link">
+      <a href="../../extension/virus_scan/" class="md-nav__link">
         
   
   
@@ -2751,7 +2757,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../extension/virus_scan_with_clamav/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_clamav/" class="md-nav__link">
         
   
   
@@ -2779,7 +2785,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../extension/virus_scan_with_kav4fs/" class="md-nav__link">
+      <a href="../../extension/virus_scan_with_kav4fs/" class="md-nav__link">
         
   
   
@@ -2986,7 +2992,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../config/ldap_in_ce/" class="md-nav__link">
+      <a href="../../config/ldap_in_ce/" class="md-nav__link">
         
   
   
@@ -3014,7 +3020,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../config/ldap_in_pro/" class="md-nav__link">
+      <a href="../../config/ldap_in_pro/" class="md-nav__link">
         
   
   
@@ -3102,7 +3108,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../config/single_sign_on/" class="md-nav__link">
+      <a href="../../config/single_sign_on/" class="md-nav__link">
         
   
   
@@ -3130,7 +3136,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../config/oauth/" class="md-nav__link">
+      <a href="../../config/oauth/" class="md-nav__link">
         
   
   
@@ -3158,7 +3164,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../config/remote_user/" class="md-nav__link">
+      <a href="../../config/remote_user/" class="md-nav__link">
         
   
   
@@ -3186,7 +3192,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../config/shibboleth_authentication/" class="md-nav__link">
+      <a href="../../config/shibboleth_authentication/" class="md-nav__link">
         
   
   
@@ -3214,7 +3220,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../config/auto_login_seadrive/" class="md-nav__link">
+      <a href="../../config/auto_login_seadrive/" class="md-nav__link">
         
   
   
@@ -3242,7 +3248,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../config/saml2/" class="md-nav__link">
+      <a href="../../config/saml2/" class="md-nav__link">
         
   
   
@@ -3270,7 +3276,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../config/auth_switch/" class="md-nav__link">
+      <a href="../../config/auth_switch/" class="md-nav__link">
         
   
   
@@ -3358,7 +3364,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../config/multi_institutions/" class="md-nav__link">
+      <a href="../../config/multi_institutions/" class="md-nav__link">
         
   
   
@@ -3386,7 +3392,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../config/roles_permissions/" class="md-nav__link">
+      <a href="../../config/roles_permissions/" class="md-nav__link">
         
   
   
@@ -3414,7 +3420,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../config/admin_roles_permissions/" class="md-nav__link">
+      <a href="../../config/admin_roles_permissions/" class="md-nav__link">
         
   
   
@@ -3442,7 +3448,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../config/multi_tenancy/" class="md-nav__link">
+      <a href="../../config/multi_tenancy/" class="md-nav__link">
         
   
   
@@ -3486,7 +3492,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../config/details_about_file_search/" class="md-nav__link">
+      <a href="../../config/details_about_file_search/" class="md-nav__link">
         
   
   
@@ -3514,7 +3520,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../config/ocm/" class="md-nav__link">
+      <a href="../../config/ocm/" class="md-nav__link">
         
   
   
@@ -3594,7 +3600,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../config/" class="md-nav__link">
+      <a href="../../config/" class="md-nav__link">
         
   
   
@@ -3622,7 +3628,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../config/env/" class="md-nav__link">
+      <a href="../../config/env/" class="md-nav__link">
         
   
   
@@ -3650,7 +3656,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../config/seafile-conf/" class="md-nav__link">
+      <a href="../../config/seafile-conf/" class="md-nav__link">
         
   
   
@@ -3678,7 +3684,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../config/seahub_settings_py/" class="md-nav__link">
+      <a href="../../config/seahub_settings_py/" class="md-nav__link">
         
   
   
@@ -3706,7 +3712,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../config/seafevents-conf/" class="md-nav__link">
+      <a href="../../config/seafevents-conf/" class="md-nav__link">
         
   
   
@@ -3734,7 +3740,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../config/seahub_customization/" class="md-nav__link">
+      <a href="../../config/seahub_customization/" class="md-nav__link">
         
   
   
@@ -3762,7 +3768,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../config/sending_email/" class="md-nav__link">
+      <a href="../../config/sending_email/" class="md-nav__link">
         
   
   
@@ -3802,26 +3808,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
             
   
   
@@ -3839,7 +3850,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -3857,7 +3868,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../administration/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -3885,7 +3896,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../administration/account/" class="md-nav__link">
+      <a href="../account/" class="md-nav__link">
         
   
   
@@ -3913,7 +3924,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../administration/two_factor_authentication/" class="md-nav__link">
+      <a href="../two_factor_authentication/" class="md-nav__link">
         
   
   
@@ -3941,7 +3952,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../administration/security_features/" class="md-nav__link">
+      <a href="../security_features/" class="md-nav__link">
         
   
   
@@ -3969,7 +3980,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../administration/auditing/" class="md-nav__link">
+      <a href="../auditing/" class="md-nav__link">
         
   
   
@@ -3997,7 +4008,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../administration/export_report/" class="md-nav__link">
+      <a href="../export_report/" class="md-nav__link">
         
   
   
@@ -4025,7 +4036,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../administration/logs/" class="md-nav__link">
+      <a href="../logs/" class="md-nav__link">
         
   
   
@@ -4053,7 +4064,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../administration/backup_recovery/" class="md-nav__link">
+      <a href="../backup_recovery/" class="md-nav__link">
         
   
   
@@ -4081,7 +4092,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../administration/seafile_fsck/" class="md-nav__link">
+      <a href="../seafile_fsck/" class="md-nav__link">
         
   
   
@@ -4109,7 +4120,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../administration/seafile_gc/" class="md-nav__link">
+      <a href="../seafile_gc/" class="md-nav__link">
         
   
   
@@ -4137,7 +4148,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../administration/clean_database/" class="md-nav__link">
+      <a href="../clean_database/" class="md-nav__link">
         
   
   
@@ -4162,10 +4173,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../administration/seafile_metrics/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monitor Seafile with Prometheus
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -4181,6 +4219,76 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration Steps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-enable-metric-exposure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Enable Metric Exposure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-configure-prometheus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Configure Prometheus
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#effect-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Effect Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -4252,7 +4360,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../upgrade/upgrade/" class="md-nav__link">
+      <a href="../../upgrade/upgrade/" class="md-nav__link">
         
   
   
@@ -4280,7 +4388,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../upgrade/upgrade_docker/" class="md-nav__link">
+      <a href="../../upgrade/upgrade_docker/" class="md-nav__link">
         
   
   
@@ -4308,7 +4416,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../upgrade/upgrade_a_cluster/" class="md-nav__link">
+      <a href="../../upgrade/upgrade_a_cluster/" class="md-nav__link">
         
   
   
@@ -4336,7 +4444,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../upgrade/upgrade_a_cluster_binary/" class="md-nav__link">
+      <a href="../../upgrade/upgrade_a_cluster_binary/" class="md-nav__link">
         
   
   
@@ -4372,7 +4480,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../upgrade/upgrade_notes_for_13.0.x/" class="md-nav__link">
+      <a href="../../upgrade/upgrade_notes_for_13.0.x/" class="md-nav__link">
         
   
   
@@ -4400,7 +4508,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../upgrade/upgrade_notes_for_12.0.x/" class="md-nav__link">
+      <a href="../../upgrade/upgrade_notes_for_12.0.x/" class="md-nav__link">
         
   
   
@@ -4428,7 +4536,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../upgrade/upgrade_notes_for_11.0.x/" class="md-nav__link">
+      <a href="../../upgrade/upgrade_notes_for_11.0.x/" class="md-nav__link">
         
   
   
@@ -4456,7 +4564,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../upgrade/upgrade_notes_for_10.0.x/" class="md-nav__link">
+      <a href="../../upgrade/upgrade_notes_for_10.0.x/" class="md-nav__link">
         
   
   
@@ -4484,7 +4592,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../upgrade/upgrade_notes_for_9.0.x/" class="md-nav__link">
+      <a href="../../upgrade/upgrade_notes_for_9.0.x/" class="md-nav__link">
         
   
   
@@ -4512,7 +4620,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../upgrade/seafile_obsolete_configurations/" class="md-nav__link">
+      <a href="../../upgrade/seafile_obsolete_configurations/" class="md-nav__link">
         
   
   
@@ -4599,7 +4707,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../develop/" class="md-nav__link">
+      <a href="../../develop/" class="md-nav__link">
         
   
   
@@ -4679,7 +4787,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../develop/build_seafile/" class="md-nav__link">
+      <a href="../../develop/build_seafile/" class="md-nav__link">
         
   
   
@@ -4707,7 +4815,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../develop/linux/" class="md-nav__link">
+      <a href="../../develop/linux/" class="md-nav__link">
         
   
   
@@ -4735,7 +4843,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../develop/osx/" class="md-nav__link">
+      <a href="../../develop/osx/" class="md-nav__link">
         
   
   
@@ -4763,7 +4871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../develop/windows/" class="md-nav__link">
+      <a href="../../develop/windows/" class="md-nav__link">
         
   
   
@@ -4791,7 +4899,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../develop/server/" class="md-nav__link">
+      <a href="../../develop/server/" class="md-nav__link">
         
   
   
@@ -4819,7 +4927,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../develop/rpi/" class="md-nav__link">
+      <a href="../../develop/rpi/" class="md-nav__link">
         
   
   
@@ -4855,7 +4963,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../develop/translation/" class="md-nav__link">
+      <a href="../../develop/translation/" class="md-nav__link">
         
   
   
@@ -4883,7 +4991,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../develop/web_api_v2.1/" class="md-nav__link">
+      <a href="../../develop/web_api_v2.1/" class="md-nav__link">
         
   
   
@@ -4939,7 +5047,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../develop/data_model/" class="md-nav__link">
+      <a href="../../develop/data_model/" class="md-nav__link">
         
   
   
@@ -5026,7 +5134,7 @@
   
   
     <li class="md-nav__item">
-      <a href="server-changelog/" class="md-nav__link">
+      <a href="../../changelog/server-changelog/" class="md-nav__link">
         
   
   
@@ -5054,7 +5162,7 @@
   
   
     <li class="md-nav__item">
-      <a href="changelog-for-seafile-professional-server/" class="md-nav__link">
+      <a href="../../changelog/changelog-for-seafile-professional-server/" class="md-nav__link">
         
   
   
@@ -5082,7 +5190,7 @@
   
   
     <li class="md-nav__item">
-      <a href="client-changelog/" class="md-nav__link">
+      <a href="../../changelog/client-changelog/" class="md-nav__link">
         
   
   
@@ -5110,7 +5218,7 @@
   
   
     <li class="md-nav__item">
-      <a href="drive-client-changelog/" class="md-nav__link">
+      <a href="../../changelog/drive-client-changelog/" class="md-nav__link">
         
   
   
@@ -5165,10 +5273,49 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#changelogs" class="md-nav__link">
+  <a href="#configuration-steps" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Changelogs
+        Configuration Steps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-enable-metric-exposure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Enable Metric Exposure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-configure-prometheus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Configure Prometheus
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#effect-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Effect Description
       
     </span>
   </a>
@@ -5195,16 +5342,48 @@
   
 
 
-<h1 id="changelog">Changelog<a class="headerlink" href="#changelog" title="Permanent link">&para;</a></h1>
-<h3 id="changelogs">Changelogs<a class="headerlink" href="#changelogs" title="Permanent link">&para;</a></h3>
+<h1 id="monitor-seafile-with-prometheus">Monitor Seafile with Prometheus<a class="headerlink" href="#monitor-seafile-with-prometheus" title="Permanent link">&para;</a></h1>
+<p>Seafile provides a standardized interface to expose system operational metrics, enabling integration with Prometheus and Grafana.
+This allows administrators to real-time monitor Seafile service status, including (but not limited to)  I/O queue length and background task latency.</p>
+<h2 id="configuration-steps">Configuration Steps<a class="headerlink" href="#configuration-steps" title="Permanent link">&para;</a></h2>
+<p>To enable metric monitoring for Seafile, follow these steps:</p>
+<h3 id="1-enable-metric-exposure">1. Enable Metric Exposure<a class="headerlink" href="#1-enable-metric-exposure" title="Permanent link">&para;</a></h3>
+<p>Edit the Seafile configuration file <code>seahub_settings.py</code> (located in the Seafile configuration directory) and add the following configuration items. If the items already exist, update their values accordingly:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Enable the metric exposure function (set to True to activate)</span>
+<span class="n">ENABLE_METRIC</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># Authentication username</span>
+<span class="c1"># Used for HTTP Basic Authentication when accessing Seafile&#39;s metric endpoint</span>
+<span class="n">METRIC_AUTH_USER</span> <span class="o">=</span> <span class="s2">&quot;your_prometheus_username&quot;</span>
+
+<span class="c1"># Authentication password corresponding to the above username</span>
+<span class="n">METRIC_AUTH_PWD</span> <span class="o">=</span> <span class="s2">&quot;your_prometheus_password&quot;</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Replace <code>your_prometheus_username</code> and <code>your_prometheus_password</code> with custom credentials (recommend using strong, unique passwords for security).</p>
+</div>
+<h3 id="2-configure-prometheus">2. Configure Prometheus<a class="headerlink" href="#2-configure-prometheus" title="Permanent link">&para;</a></h3>
+<p>After completing the above Seafile configuration, Prometheus can retrieve Seafile metrics via the <code>/metrics</code> endpoint. Key requirements for such configuration:</p>
 <ul>
-<li><a href="server-changelog/">Seafile Community Edition</a></li>
-<li><a href="changelog-for-seafile-professional-server/">Seafile Professional Edition</a></li>
-<li><a href="client-changelog/">Seafile Sync Client</a></li>
-<li><a href="drive-client-changelog/">Seafile Drive Client (SeaDrive)</a></li>
-<li><a href="https://github.com/haiwen/seadroid/releases">Seafile Android Client (Seadroid)</a></li>
-<li><a href="https://github.com/haiwen/seafile-iOS/releases">Seafile iOS Client</a></li>
+<li>Endpoint: Seafile’s metric data is accessible at <code>http://&lt;seafile-server-ip&gt;:&lt;port&gt;/metrics</code> (replace <code>&lt;seafile-server-ip&gt;</code> and <code>&lt;port&gt;</code> with your Seafile server’s actual IP and port).</li>
+<li>Authentication: Use HTTP Basic Authentication and input the <code>METRIC_AUTH_USER</code> and <code>METRIC_AUTH_PWD</code> configured in Step 1.</li>
+<li>Data Scraping: For tools like Prometheus, configure a scrape job to periodically pull data from the <code>/metrics</code> endpoint (refer to Prometheus documentation for details).</li>
 </ul>
+<p>For detailed configuration guides of monitoring tools, refer to the official documentation below:</p>
+<ul>
+<li><a href="https://prometheus.io/docs/prometheus/latest/getting_started/">Prometheus Official Documentation - Configuration</a>
+  Learn how to set up Prometheus scrape jobs, data storage, and metric query rules.</li>
+<li><a href="https://grafana.com/docs/grafana/latest/datasources/prometheus/">Grafana Official Documentation - Prometheus Data Source</a>
+  Learn how to connect Grafana to Prometheus, create visual dashboards, and set up alert rules.</li>
+</ul>
+<h2 id="effect-description">Effect Description<a class="headerlink" href="#effect-description" title="Permanent link">&para;</a></h2>
+<p>Once the configuration is complete:</p>
+<ol>
+<li>Prometheus will periodically scrape Seafile metrics from the <code>/metrics</code> endpoint (based on the configured scrape interval).</li>
+<li>You can create custom visual dashboards in Grafana (e.g., "Seafile Monitoring Dashboard" ) to visualize metrics in real time.</li>
+<li>Alerts can be set up in Grafana (e.g., trigger an alert when Seafile storage usage exceeds 90%) to proactively monitor system health.</li>
+</ol>
 
 
 
@@ -5235,6 +5414,44 @@
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../clean_database/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Clean database">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Clean database
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../upgrade/upgrade/" class="md-footer__link md-footer__link--next" aria-label="Next: Outline">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Outline
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
@@ -5282,10 +5499,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share", "math", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share", "math", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
       
