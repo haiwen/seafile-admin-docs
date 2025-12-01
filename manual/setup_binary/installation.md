@@ -426,6 +426,9 @@ Memory cache is mandatory for pro edition. You may use Memcached or Reids as cac
     ```
     # on Debian/Ubuntu 18.04+
     apt-get install memcached libmemcached-dev -y
+
+    # activate the venv
+    source python-venv/bin/activate
     pip3 install --timeout=3600 pylibmc django-pylibmc
 
     systemctl enable --now memcached
@@ -452,6 +455,9 @@ Memory cache is mandatory for pro edition. You may use Memcached or Reids as cac
     ```
     # on Debian/Ubuntu 18.04+
     apt-get install -y redis-server libhiredis-dev
+
+    # activate the venv
+    source python-venv/bin/activate
     pip3 install redis django-redis
 
     systemctl enable --now redis-server
