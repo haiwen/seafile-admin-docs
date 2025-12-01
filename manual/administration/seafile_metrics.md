@@ -20,7 +20,8 @@ METRIC_AUTH_USER = "your_prometheus_username"
 METRIC_AUTH_PWD = "your_prometheus_password"
 ```
 
-> **Note**: Replace `your_prometheus_username` and `your_prometheus_password` with custom credentials (recommend using strong, unique passwords for security).
+!!! Note
+    Replace `your_prometheus_username` and `your_prometheus_password` with custom credentials (recommend using strong, unique passwords for security).
 
 
 ### 2. Configure Prometheus
