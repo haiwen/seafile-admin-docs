@@ -481,7 +481,7 @@ Memory cache is mandatory for pro edition. You may use Memcached or Reids as cac
 
 
 
-### Enabling HTTP/HTTPS (Optional but Recommended)
+### Enabling HTTP/HTTPS
 
 You need at least setup HTTP to make Seafile's web interface work. This manual provides instructions for enabling HTTP/HTTPS for the two most popular web servers and reverse proxies (e.g., [Nginx](./https_with_nginx.md)).
 
