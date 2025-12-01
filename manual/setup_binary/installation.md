@@ -391,6 +391,7 @@ nano /opt/seafile/conf/.env
     ```
 
 ```sh
+IS_PRO_VERSION=true
 JWT_PRIVATE_KEY=<Your jwt private key>
 SEAFILE_SERVER_PROTOCOL=https
 SEAFILE_SERVER_HOSTNAME=seafile.example.com
