@@ -1,5 +1,13 @@
 # SeaDrive Client Changelog
 
+### 3.0.18 (2025/12/02)
+
+* When renaming a folder having many duplicated files or empty files, avoid unnecessary deletion confirmation
+* \[win] Pop notifications when downloading a folder containing files/sub-folders with invalid names
+* \[win] Fix edge case for syncing files with case conflicts
+* \[mac] Change logo to rectangle to better adapt macOS 26
+* \[linux] Add "download" and "remove cache" menue itmes to file context menu
+
 ### 3.0.17 (2025/11/04)
 
 * \[win] Add read-only icons for files with read-only permissions
