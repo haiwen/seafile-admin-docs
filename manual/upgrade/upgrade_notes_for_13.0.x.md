@@ -82,8 +82,8 @@ Install new system libraries and Python libraries for your operation system as d
 In the folder of Seafile 12.0.x, run the commands:
 
 ```sh
-./seahub.sh stop
 ./seafile.sh stop
+./seahub.sh stop
 ```
 
 ### 4) Run Seafile 13.0.x upgrade script
