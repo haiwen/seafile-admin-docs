@@ -39,6 +39,10 @@ Please check our document for how to upgrade to [13.0](../upgrade/upgrade_notes_
 
 Please check our document for how to upgrade to [12.0](../upgrade/upgrade_notes_for_12.0.x.md)
 
+### 12.0.19 (2025-12-03)
+
+* [fix] Fix backgrand tasks are started at the front-end node in clustering environment.
+
 ### 12.0.18 (2025-11-17)
 
 * Preview PDF files by the default viewer and after user clicking edit button, the PDF file will be edited in OnlyOffice.
