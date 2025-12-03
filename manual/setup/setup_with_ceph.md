@@ -99,7 +99,7 @@ ceph_config = /etc/ceph/ceph.conf
 ceph_client_id = seafile
 pool = seafile-fs
 
-# Memcached or Reids configs
+# Memcached or Redis configs
 ......
 
 ```

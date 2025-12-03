@@ -418,7 +418,7 @@ MEMCACHED_PORT=11211
 
 ### Setup Memory Cache
 
-Memory cache is mandatory for pro edition. You may use Memcached or Reids as cache server.
+Memory cache is mandatory for pro edition. You may use Memcached or Redis as cache server.
 
 === "Memcached"
 
