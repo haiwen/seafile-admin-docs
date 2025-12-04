@@ -99,7 +99,6 @@ upgrade/upgrade_12.0_13.0.sh
 conf/.env
 
 ```env
-IS_PRO_VERSION=true
 JWT_PRIVATE_KEY=<Your jwt private key>
 SEAFILE_SERVER_PROTOCOL=https
 SEAFILE_SERVER_HOSTNAME=seafile.example.com
