@@ -402,12 +402,12 @@ SEAFILE_MYSQL_DB_SEAHUB_DB_NAME=seahub_db
 CACHE_PROVIDER=redis # options: redis (recommend), memcached
 
 ### Redis
-REDIS_HOST=<your redis host>
+REDIS_HOST='<your redis host>'
 REDIS_PORT=6379
 REDIS_PASSWORD=
 
 ### Memcached
-MEMCACHED_HOST=<your memcached host>
+MEMCACHED_HOST='<your memcached host>'
 MEMCACHED_PORT=11211
 ```
 
@@ -438,7 +438,7 @@ Memory cache is mandatory for pro edition. You may use Memcached or Redis as cac
     CACHE_PROVIDER=memcached
     
     ### Memcached
-    MEMCACHED_HOST=memcached
+    MEMCACHED_HOST='<your memcached host>'
     MEMCACHED_PORT=11211
 
     ```
@@ -467,7 +467,7 @@ Memory cache is mandatory for pro edition. You may use Memcached or Redis as cac
     CACHE_PROVIDER=redis
 
     ### Redis
-    REDIS_HOST=redis
+    REDIS_HOST='<your redis host>'
     REDIS_PORT=6379
     REDIS_PASSWORD=
 
