@@ -6069,12 +6069,12 @@ GRANT ALL PRIVILEGES ON `seahub_db`.* to `seafile`@localhost;
 <span class="nv">CACHE_PROVIDER</span><span class="o">=</span>redis<span class="w"> </span><span class="c1"># options: redis (recommend), memcached</span>
 
 <span class="c1">### Redis</span>
-<span class="nv">REDIS_HOST</span><span class="o">=</span>&lt;your<span class="w"> </span>redis<span class="w"> </span>host&gt;
+<span class="nv">REDIS_HOST</span><span class="o">=</span><span class="s1">&#39;&lt;your redis host&gt;&#39;</span>
 <span class="nv">REDIS_PORT</span><span class="o">=</span><span class="m">6379</span>
 <span class="nv">REDIS_PASSWORD</span><span class="o">=</span>
 
 <span class="c1">### Memcached</span>
-<span class="nv">MEMCACHED_HOST</span><span class="o">=</span>&lt;your<span class="w"> </span>memcached<span class="w"> </span>host&gt;
+<span class="nv">MEMCACHED_HOST</span><span class="o">=</span><span class="s1">&#39;&lt;your memcached host&gt;&#39;</span>
 <span class="nv">MEMCACHED_PORT</span><span class="o">=</span><span class="m">11211</span>
 </code></pre></div>
 <h3 id="setup-memory-cache">Setup Memory Cache<a class="headerlink" href="#setup-memory-cache" title="Permanent link">&para;</a></h3>
@@ -6097,7 +6097,7 @@ systemctl enable --now memcached
 <span class="n">CACHE_PROVIDER</span><span class="o">=</span><span class="n">memcached</span>
 
 <span class="c1">### Memcached</span>
-<span class="n">MEMCACHED_HOST</span><span class="o">=</span><span class="n">memcached</span>
+<span class="n">MEMCACHED_HOST</span><span class="o">=</span><span class="s1">&#39;&lt;your memcached host&gt;&#39;</span>
 <span class="n">MEMCACHED_PORT</span><span class="o">=</span><span class="mi">11211</span>
 </code></pre></div>
 </div>
@@ -6120,7 +6120,7 @@ systemctl enable --now redis-server
 <span class="n">CACHE_PROVIDER</span><span class="o">=</span><span class="n">redis</span>
 
 <span class="c1">### Redis</span>
-<span class="n">REDIS_HOST</span><span class="o">=</span><span class="n">redis</span>
+<span class="n">REDIS_HOST</span><span class="o">=</span><span class="s1">&#39;&lt;your redis host&gt;&#39;</span>
 <span class="n">REDIS_PORT</span><span class="o">=</span><span class="mi">6379</span>
 <span class="n">REDIS_PASSWORD</span><span class="o">=</span>
 </code></pre></div>
