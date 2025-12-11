@@ -42,12 +42,12 @@ Elasticsearch version is not changed in Seafile version 13.0
 === "Ubuntu 24.04/22.04"
 
     ```sh
-    apt-get install -y python3 python3-dev python3-setuptools python3-pip python3-ldap python3-rados libmysqlclient-dev memcached libmemcached-dev redis-server libhiredis-dev ldap-utils libldap2-dev python3.12-venv default-libmysqlclient-dev build-essential pkg-config
+    apt-get install -y python3 python3-dev python3-setuptools python3-pip python3-ldap python3-rados libmysqlclient-dev ldap-utils libldap2-dev python3.12-venv default-libmysqlclient-dev build-essential pkg-config
     ```
 
 === "Debian 12/13"
     ```sh
-    apt-get install -y python3 python3-dev python3-setuptools python3-pip python3-ldap python3-rados libmariadb-dev-compat memcached libmemcached-dev redis-server libhiredis-dev ldap-utils libldap2-dev libsasl2-dev pkg-config python3.13-venv
+    apt-get install -y python3 python3-dev python3-setuptools python3-pip python3-ldap python3-rados libmariadb-dev-compat ldap-utils libldap2-dev libsasl2-dev pkg-config python3.13-venv
     ```
 
 
@@ -156,7 +156,27 @@ MEMCACHED_PORT=11211
     pwgen -s 40 1
     ```
 
-### 6) Start Seafile-13.0.x server
+### 6) Remove obsolete configurations
+
+Although the configurations in environment (i.e., `.env`) have higher priority than the configurations in config files, we recommend that you remove or modify the cache configuration in the following files to avoid ambiguity:
+
+1. Backup the old configuration files:
+
+    ```sh
+    # please replace /opt/seafile-data to your $SEAFILE_VOLUME
+
+    cp /opt/seafile/conf/seafile.conf /opt/seafile/conf/seafile.conf.bak
+    cp /opt/seafile/conf/seahub_settings.py /opt/seafile/conf/seahub_settings.py.bak
+    ```
+
+2. Clean up redundant configuration items in the configuration files:
+
+    - Open `/opt/seafile/conf/seafile.conf` and remove the entire `[memcached]`, `[database]`, `[commit_object_backend]`, `[fs_object_backend]`, `[notification]` and `[block_backend]` if above sections have correctly specified in `.env`.
+    - Open `/opt/seafile/conf/seahub_settings.py` and remove the entire blocks for `DATABASES = {...}` and `CAHCES = {...}`
+
+    In the most cases, the `seafile.conf` only include the listen port `8082` of Seafile file server.
+
+### 7) Start Seafile-13.0.x server
 
 In the folder of Seafile 13.0.x, run the command:
 
@@ -165,7 +185,7 @@ In the folder of Seafile 13.0.x, run the command:
 ./seahub.sh start  # starts seahub
 ```
 
-### 7) (Optional) Upgrade notification server
+### 8) (Optional) Upgrade notification server
 
 Since seafile 12.0, we use docker to deploy the notification server. Please follow the document of [notification server](../extension/notification-server.md) to re-deploy notification server.
 
@@ -173,7 +193,7 @@ Since seafile 12.0, we use docker to deploy the notification server. Please foll
 
     Notification server is designed to be work with Docker based deployment. To make it work with **Seafile binary package** on the same server, you will need to add Nginx rules for notification server properly.
 
-### 8) (Optional) Upgrade SeaDoc from 1.0 to 2.0
+### 9) (Optional) Upgrade SeaDoc from 1.0 to 2.0
 
 Since seafile 12.0, we use docker to deploy the seadoc server. Please see the document [Setup SeaDoc](../extension/setup_seadoc.md) to install SeaDoc on a separate machine and integrate with your binary packaged based Seafile server v13.0.
 
