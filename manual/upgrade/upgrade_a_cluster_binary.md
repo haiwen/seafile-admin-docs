@@ -22,9 +22,6 @@ Doing maintanence upgrading is simple, you only need to run the script `./upgrad
 
 ## Upgrade a cluster from Seafile 12 to 13
 
-!!! tip "Clean Database"
-    If you have a large number of `Activity` in MySQL, clear this table first [Clean Database](../../administration/clean_database). Otherwise, the database upgrade will take a long time.
-
 1. Stop Seafile server
 
     !!! note
