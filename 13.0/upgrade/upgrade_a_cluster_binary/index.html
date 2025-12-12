@@ -4362,14 +4362,6 @@
   </span>
   
   
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
 
           <span class="md-nav__icon md-icon"></span>
         </label>
@@ -4387,14 +4379,6 @@
     
   </span>
   
-  
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
   
 
       </a>
@@ -4430,6 +4414,17 @@
     <span class="md-ellipsis">
       
         Maintanence upgrade
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upgrade-a-cluster-from-seafile-12-to-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upgrade a cluster from Seafile 12 to 13
       
     </span>
   </a>
@@ -5278,6 +5273,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#upgrade-a-cluster-from-seafile-12-to-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upgrade a cluster from Seafile 12 to 13
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#upgrade-a-cluster-from-seafile-11-to-12" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5326,6 +5332,77 @@
 </ol>
 <h2 id="maintanence-upgrade">Maintanence upgrade<a class="headerlink" href="#maintanence-upgrade" title="Permanent link">&para;</a></h2>
 <p>Doing maintanence upgrading is simple, you only need to run the script <code>./upgrade/minor_upgrade.sh</code> at each node to update the symbolic link.</p>
+<h2 id="upgrade-a-cluster-from-seafile-12-to-13">Upgrade a cluster from Seafile 12 to 13<a class="headerlink" href="#upgrade-a-cluster-from-seafile-12-to-13" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Stop Seafile server</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For installations using python virtual environment, activate it if it isn't already active</p>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>python-venv/bin/activate
+</code></pre></div>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Frontend node</label><label for="__tabbed_1_2">Backend node</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest
+su<span class="w"> </span>seafile
+./seafile.sh<span class="w"> </span>stop
+./seahub.sh<span class="w"> </span>stop
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest
+su<span class="w"> </span>seafile
+./seafile.sh<span class="w"> </span>stop
+./seafile-background-tasks.sh<span class="w"> </span>stop
+</code></pre></div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Install <a href="../upgrade_notes_for_13.0.x/#new-python-libraries">new Python libraries</a></p>
+</li>
+<li>
+<p><a href="../../setup_binary/installation/#downloading-the-install-package">Download</a> and <a href="../../setup_binary/installation/#uncompressing-the-package">uncompress</a> the package</p>
+</li>
+<li>
+<p>Run the upgrade script in a single node</p>
+<div class="highlight"><pre><span></span><code>seafile-pro-server-13.x.x/upgrade/upgrade_12.0_13.0.sh
+</code></pre></div>
+</li>
+<li>
+<p>Follow <a href="../upgrade_notes_for_13.0.x/#5-modify-the-env-file-in-conf-directory">here</a> to modify the <code>.env</code> file in <code>conf/</code> directory</p>
+</li>
+<li>
+<p>Start Seafile server</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Frontend node</label><label for="__tabbed_2_2">Backend node</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest
+su<span class="w"> </span>seafile
+./seafile.sh<span class="w"> </span>start
+./seahub.sh<span class="w"> </span>start
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest
+su<span class="w"> </span>seafile
+./seafile.sh<span class="w"> </span>start
+./seafile-background-tasks.sh<span class="w"> </span>start
+</code></pre></div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>(Optional) Refer <a href="../upgrade_notes_for_13.0.x/#8-optional-upgrade-notification-server">here</a> to upgrade notification server</p>
+</li>
+<li>
+<p>(Optional) Refer <a href="../upgrade_notes_for_13.0.x/#9-optional-upgrade-seadoc-from-10-to-20">here</a> to upgrade SeaDoc server</p>
+</li>
+</ol>
 <h2 id="upgrade-a-cluster-from-seafile-11-to-12">Upgrade a cluster from Seafile 11 to 12<a class="headerlink" href="#upgrade-a-cluster-from-seafile-11-to-12" title="Permanent link">&para;</a></h2>
 <div class="admonition tip">
 <p class="admonition-title">Clean Database</p>
@@ -5340,7 +5417,7 @@
 <div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>python-venv/bin/activate
 </code></pre></div>
 </div>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Frontend node</label><label for="__tabbed_1_2">Backend node</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Frontend node</label><label for="__tabbed_3_2">Backend node</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest
@@ -5375,7 +5452,7 @@ su<span class="w"> </span>seafile
 </li>
 <li>
 <p>Start Seafile server</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Frontend node</label><label for="__tabbed_2_2">Backend node</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Frontend node</label><label for="__tabbed_4_2">Backend node</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest
@@ -5407,9 +5484,6 @@ su<span class="w"> </span>seafile
 
 
 
-
-  
-  
 
 
 

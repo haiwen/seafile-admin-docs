@@ -4353,14 +4353,6 @@
   </span>
   
   
-    
-  
-  
-    <span class="md-status md-status--new" title="Work in progress">
-    </span>
-  
-
-  
 
       </a>
     </li>
@@ -4552,10 +4544,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#6-start-seafile-130x-server" class="md-nav__link">
+  <a href="#6-remove-obsolete-configurations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6) Start Seafile-13.0.x server
+        6) Remove obsolete configurations
       
     </span>
   </a>
@@ -4563,10 +4555,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#7-optional-upgrade-notification-server" class="md-nav__link">
+  <a href="#7-start-seafile-130x-server" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7) (Optional) Upgrade notification server
+        7) Start Seafile-13.0.x server
       
     </span>
   </a>
@@ -4574,10 +4566,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#8-optional-upgrade-seadoc-from-10-to-20" class="md-nav__link">
+  <a href="#8-optional-upgrade-notification-server" class="md-nav__link">
     <span class="md-ellipsis">
       
-        8) (Optional) Upgrade SeaDoc from 1.0 to 2.0
+        8) (Optional) Upgrade notification server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-optional-upgrade-seadoc-from-10-to-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9) (Optional) Upgrade SeaDoc from 1.0 to 2.0
       
     </span>
   </a>
@@ -5498,10 +5501,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#6-start-seafile-130x-server" class="md-nav__link">
+  <a href="#6-remove-obsolete-configurations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6) Start Seafile-13.0.x server
+        6) Remove obsolete configurations
       
     </span>
   </a>
@@ -5509,10 +5512,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#7-optional-upgrade-notification-server" class="md-nav__link">
+  <a href="#7-start-seafile-130x-server" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7) (Optional) Upgrade notification server
+        7) Start Seafile-13.0.x server
       
     </span>
   </a>
@@ -5520,10 +5523,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#8-optional-upgrade-seadoc-from-10-to-20" class="md-nav__link">
+  <a href="#8-optional-upgrade-notification-server" class="md-nav__link">
     <span class="md-ellipsis">
       
-        8) (Optional) Upgrade SeaDoc from 1.0 to 2.0
+        8) (Optional) Upgrade notification server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-optional-upgrade-seadoc-from-10-to-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9) (Optional) Upgrade SeaDoc from 1.0 to 2.0
       
     </span>
   </a>
@@ -5605,11 +5619,11 @@ Please always follow the main <a href="../upgrade/">upgrade guide</a>.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Ubuntu 24.04/22.04</label><label for="__tabbed_1_2">Debian 12/13</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>python3<span class="w"> </span>python3-dev<span class="w"> </span>python3-setuptools<span class="w"> </span>python3-pip<span class="w"> </span>python3-ldap<span class="w"> </span>python3-rados<span class="w"> </span>libmysqlclient-dev<span class="w"> </span>memcached<span class="w"> </span>libmemcached-dev<span class="w"> </span>redis-server<span class="w"> </span>libhiredis-dev<span class="w"> </span>ldap-utils<span class="w"> </span>libldap2-dev<span class="w"> </span>python3.12-venv<span class="w"> </span>default-libmysqlclient-dev<span class="w"> </span>build-essential<span class="w"> </span>pkg-config
+<div class="highlight"><pre><span></span><code>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>python3<span class="w"> </span>python3-dev<span class="w"> </span>python3-setuptools<span class="w"> </span>python3-pip<span class="w"> </span>python3-ldap<span class="w"> </span>python3-rados<span class="w"> </span>libmysqlclient-dev<span class="w"> </span>ldap-utils<span class="w"> </span>libldap2-dev<span class="w"> </span>python3.12-venv<span class="w"> </span>default-libmysqlclient-dev<span class="w"> </span>build-essential<span class="w"> </span>pkg-config
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>python3<span class="w"> </span>python3-dev<span class="w"> </span>python3-setuptools<span class="w"> </span>python3-pip<span class="w"> </span>python3-ldap<span class="w"> </span>python3-rados<span class="w"> </span>libmariadb-dev-compat<span class="w"> </span>memcached<span class="w"> </span>libmemcached-dev<span class="w"> </span>redis-server<span class="w"> </span>libhiredis-dev<span class="w"> </span>ldap-utils<span class="w"> </span>libldap2-dev<span class="w"> </span>libsasl2-dev<span class="w"> </span>pkg-config<span class="w"> </span>python3.13-venv
+<div class="highlight"><pre><span></span><code>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>python3<span class="w"> </span>python3-dev<span class="w"> </span>python3-setuptools<span class="w"> </span>python3-pip<span class="w"> </span>python3-ldap<span class="w"> </span>python3-rados<span class="w"> </span>libmariadb-dev-compat<span class="w"> </span>ldap-utils<span class="w"> </span>libldap2-dev<span class="w"> </span>libsasl2-dev<span class="w"> </span>pkg-config<span class="w"> </span>python3.13-venv
 </code></pre></div>
 </div>
 </div>
@@ -5694,18 +5708,38 @@ systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> 
 <div class="highlight"><pre><span></span><code>pwgen<span class="w"> </span>-s<span class="w"> </span><span class="m">40</span><span class="w"> </span><span class="m">1</span>
 </code></pre></div>
 </div>
-<h3 id="6-start-seafile-130x-server">6) Start Seafile-13.0.x server<a class="headerlink" href="#6-start-seafile-130x-server" title="Permanent link">&para;</a></h3>
+<h3 id="6-remove-obsolete-configurations">6) Remove obsolete configurations<a class="headerlink" href="#6-remove-obsolete-configurations" title="Permanent link">&para;</a></h3>
+<p>Although the configurations in environment (i.e., <code>.env</code>) have higher priority than the configurations in config files, we recommend that you remove or modify the cache configuration in the following files to avoid ambiguity:</p>
+<ol>
+<li>
+<p>Backup the old configuration files:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># please replace /opt/seafile-data to your $SEAFILE_VOLUME</span>
+
+cp<span class="w"> </span>/opt/seafile/conf/seafile.conf<span class="w"> </span>/opt/seafile/conf/seafile.conf.bak
+cp<span class="w"> </span>/opt/seafile/conf/seahub_settings.py<span class="w"> </span>/opt/seafile/conf/seahub_settings.py.bak
+</code></pre></div>
+</li>
+<li>
+<p>Clean up redundant configuration items in the configuration files:</p>
+<ul>
+<li>Open <code>/opt/seafile/conf/seafile.conf</code> and remove the entire <code>[memcached]</code>, <code>[database]</code>, <code>[commit_object_backend]</code>, <code>[fs_object_backend]</code>, <code>[notification]</code> and <code>[block_backend]</code> if above sections have correctly specified in <code>.env</code>.</li>
+<li>Open <code>/opt/seafile/conf/seahub_settings.py</code> and remove the entire blocks for <code>DATABASES = {...}</code> and <code>CAHCES = {...}</code></li>
+</ul>
+<p>In the most cases, the <code>seafile.conf</code> only include the listen port <code>8082</code> of Seafile file server.</p>
+</li>
+</ol>
+<h3 id="7-start-seafile-130x-server">7) Start Seafile-13.0.x server<a class="headerlink" href="#7-start-seafile-130x-server" title="Permanent link">&para;</a></h3>
 <p>In the folder of Seafile 13.0.x, run the command:</p>
 <div class="highlight"><pre><span></span><code>./seafile.sh start # starts seaf-server
 ./seahub.sh start  # starts seahub
 </code></pre></div>
-<h3 id="7-optional-upgrade-notification-server">7) (Optional) Upgrade notification server<a class="headerlink" href="#7-optional-upgrade-notification-server" title="Permanent link">&para;</a></h3>
+<h3 id="8-optional-upgrade-notification-server">8) (Optional) Upgrade notification server<a class="headerlink" href="#8-optional-upgrade-notification-server" title="Permanent link">&para;</a></h3>
 <p>Since seafile 12.0, we use docker to deploy the notification server. Please follow the document of <a href="../../extension/notification-server/">notification server</a> to re-deploy notification server.</p>
 <div class="admonition note notification server and seafile binary package">
 <p class="admonition-title">Note</p>
 <p>Notification server is designed to be work with Docker based deployment. To make it work with <strong>Seafile binary package</strong> on the same server, you will need to add Nginx rules for notification server properly.</p>
 </div>
-<h3 id="8-optional-upgrade-seadoc-from-10-to-20">8) (Optional) Upgrade SeaDoc from 1.0 to 2.0<a class="headerlink" href="#8-optional-upgrade-seadoc-from-10-to-20" title="Permanent link">&para;</a></h3>
+<h3 id="9-optional-upgrade-seadoc-from-10-to-20">9) (Optional) Upgrade SeaDoc from 1.0 to 2.0<a class="headerlink" href="#9-optional-upgrade-seadoc-from-10-to-20" title="Permanent link">&para;</a></h3>
 <p>Since seafile 12.0, we use docker to deploy the seadoc server. Please see the document <a href="../../extension/setup_seadoc/">Setup SeaDoc</a> to install SeaDoc on a separate machine and integrate with your binary packaged based Seafile server v13.0.</p>
 <div class="admonition note">
 <p class="admonition-title">SeaDoc and Seafile binary package</p>
