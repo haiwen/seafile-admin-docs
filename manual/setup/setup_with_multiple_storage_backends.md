@@ -33,7 +33,7 @@ By default, Seafile dose not enable multiple storage classes. So, you have to cr
 1. Create the storage classes file:
 
     ```sh
-    nano /opt/seafile-date/seafile/conf
+    nano /opt/seafile-data/seafile/conf
     ```
 
     For the example of this file, please refer [next section](#exmaple-of-storage-classes-file)
@@ -51,7 +51,7 @@ By default, Seafile dose not enable multiple storage classes. So, you have to cr
 
     !!! tip 
         - Make sure you have added [memory cache configurations](../config/env.md#cache-configurations) to `seafile.conf`
-        - Due to the *Docker persistence strategy*, the path of `storage_classes_file` **in the *Seafile container*** is different from the host usually, so we suggest you put this file in to the Seafile's configurations directory, and use `/shared/conf` instead of `/opt/seafile-date/seafile/conf`. Otherwise you have to add another persistent volume mapping strategy in `seafile-server.yml`. If your Seafile server is not deployed with Docker, we still suggest you put this file into the Seafile configurations file directory.
+        - Due to the *Docker persistence strategy*, the path of `storage_classes_file` **in the *Seafile container*** is different from the host usually, so we suggest you put this file in to the Seafile's configurations directory, and use `/shared/conf` instead of `/opt/seafile-data/seafile/conf`. Otherwise you have to add another persistent volume mapping strategy in `seafile-server.yml`. If your Seafile server is not deployed with Docker, we still suggest you put this file into the Seafile configurations file directory.
 
 ## Exmaple of storage classes file
 

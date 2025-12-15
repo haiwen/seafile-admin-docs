@@ -107,6 +107,9 @@ ENABLE_CHANGE_PASSWORD = True
 
 # If show contact email when search user.
 ENABLE_SHOW_CONTACT_EMAIL_WHEN_SEARCH_USER = True
+
+# SECRET_KEY is used by the Django framework to generate sessions and CSRF tokens. If it is changed, all users need to re-login again.
+SECRET_KEY = <your SECRET_KEY>
 ```
 
 ## Single Sign On
