@@ -27,6 +27,8 @@ CSRF_COOKIE_SAMESITE = 'Strict'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#csrf-trusted-origins
 CSRF_TRUSTED_ORIGINS = ['https://www.myseafile.com']
 
+# SECRET_KEY is used by the Django framework to generate sessions and CSRF tokens. If it is changed, all users need to re-login again.
+SECRET_KEY = <your SECRET_KEY>
 ```
 
 ## User management options
@@ -107,9 +109,6 @@ ENABLE_CHANGE_PASSWORD = True
 
 # If show contact email when search user.
 ENABLE_SHOW_CONTACT_EMAIL_WHEN_SEARCH_USER = True
-
-# SECRET_KEY is used by the Django framework to generate sessions and CSRF tokens. If it is changed, all users need to re-login again.
-SECRET_KEY = <your SECRET_KEY>
 ```
 
 ## Single Sign On
