@@ -1,5 +1,9 @@
 # SeaDrive Client Changelog
 
+### 3.0.19 (2025/12/17)
+
+* \[win] Fix file deletion bug when renaming a placeholder file into new name with only case difference
+
 ### 3.0.18 (2025/12/02)
 
 * When renaming a folder having many duplicated files or empty files, avoid unnecessary deletion confirmation
