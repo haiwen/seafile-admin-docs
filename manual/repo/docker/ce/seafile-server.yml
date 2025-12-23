@@ -64,6 +64,7 @@ services:
       - NON_ROOT=${NON_ROOT:-false}
       - JWT_PRIVATE_KEY=${JWT_PRIVATE_KEY:?Variable is not set or empty}
       - SEAFILE_LOG_TO_STDOUT=${SEAFILE_LOG_TO_STDOUT:-false}
+      - ENABLE_GO_FILESERVER=${ENABLE_GO_FILESERVER:-true}
       - ENABLE_SEADOC=${ENABLE_SEADOC:-true}
       - SEADOC_SERVER_URL=${SEAFILE_SERVER_PROTOCOL:-http}://${SEAFILE_SERVER_HOSTNAME:?Variable is not set or empty}/sdoc-server
       - CACHE_PROVIDER=${CACHE_PROVIDER:-redis}
@@ -74,7 +75,7 @@ services:
       - MEMCACHED_PORT=${MEMCACHED_PORT:-11211}
       - ENABLE_NOTIFICATION_SERVER=${ENABLE_NOTIFICATION_SERVER:-false}
       - INNER_NOTIFICATION_SERVER_URL=${INNER_NOTIFICATION_SERVER_URL:-http://notification-server:8083}
-      -  NOTIFICATION_SERVER_URL=${NOTIFICATION_SERVER_URL:-${SEAFILE_SERVER_PROTOCOL:-http}://${SEAFILE_SERVER_HOSTNAME:?Variable is not set or empty}/notification}
+      - NOTIFICATION_SERVER_URL=${NOTIFICATION_SERVER_URL:-${SEAFILE_SERVER_PROTOCOL:-http}://${SEAFILE_SERVER_HOSTNAME:?Variable is not set or empty}/notification}
       - ENABLE_SEAFILE_AI=${ENABLE_SEAFILE_AI:-false}
       - SEAFILE_AI_SERVER_URL=${SEAFILE_AI_SERVER_URL:-http://seafile-ai:8888}
       - SEAFILE_AI_SECRET_KEY=${JWT_PRIVATE_KEY:?Variable is not set or empty}

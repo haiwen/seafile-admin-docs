@@ -47,6 +47,7 @@ services:
       - JWT_PRIVATE_KEY=${JWT_PRIVATE_KEY:?Variable is not set or empty}
       - SEAFILE_LOG_TO_STDOUT=${SEAFILE_LOG_TO_STDOUT:-false}
       - SITE_ROOT=${SITE_ROOT:-/}
+      - ENABLE_GO_FILESERVER=${ENABLE_GO_FILESERVER:-true}
       - ENABLE_SEADOC=${ENABLE_SEADOC:-false}
       - SEADOC_SERVER_URL=${SEADOC_SERVER_URL:-http://seafile.example.com/sdoc-server}
       - ENABLE_NOTIFICATION_SERVER=${ENABLE_NOTIFICATION_SERVER:-false}

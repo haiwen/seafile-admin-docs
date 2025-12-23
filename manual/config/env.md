@@ -65,6 +65,7 @@ This part of configurations is only valid in `CACHE_PROVIDER=memcached`:
 - `TIME_ZONE`: Time zone (default `UTC`)
 - `INIT_SEAFILE_ADMIN_EMAIL`: Admin username
 - `INIT_SEAFILE_ADMIN_PASSWORD`: Admin password
+- `ENABLE_GO_FILESERVER`: Use Go fileserver
 
 ## SeaDoc configurations (only valid after integrating SeaDoc)
 
