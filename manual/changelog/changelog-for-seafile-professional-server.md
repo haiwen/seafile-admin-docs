@@ -9,6 +9,12 @@
 
 Please check our document for how to upgrade to [13.0](../upgrade/upgrade_notes_for_13.0.x.md)
 
+### 13.0.15 (2025-12-23)
+
+* [fix] Do not print error message when using memcached as cache server
+* Other UI fixes and improvements
+
+
 ### 13.0.14 (2025-11-28)
 
 * Preview PDF files by the default viewer and after user clicking edit button, the PDF file will be edited in OnlyOffice
