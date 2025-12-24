@@ -9,6 +9,18 @@
 
 Please check our document for how to upgrade to [13.0](../upgrade/upgrade_notes_for_13.0.x.md)
 
+
+### 13.0.15 (2025-12-23)
+
+* [fix] Do not print error message when using memcached as cache server
+* Preview PDF files by the default viewer and after user clicking edit button, the PDF file will be edited in OnlyOffice
+* Support generating thumbnails for SVG files
+* Accessibility improvement
+* [fix] Fix fsck crash when head commit is corrupt
+* [fix] 1000 files upload limit doesn't get flushed when upload finishes
+* [fix] Safari race condition prevents PDF preview
+* Other UI fixes and improvements
+
 ### 13.0.12 (2025-10-24)
 
 * [fix] Add missing is_department_owner field in database table to make sure community edition and pro edition have same database schema
