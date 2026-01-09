@@ -2,6 +2,19 @@
 
 ## 9.0
 
+### 9.0.16 (2026/01/09)
+
+* Fix bug of auto unsyncing library when switching to an account with the same user name
+* \[win] Further fix to index errors for special folders under Documents folder
+* \[linux] Fix broken icon in notification messages
+* Correctly display last modification time for search results
+* Fix connection problem after computer resume from sleep
+* Rotate large log files in the background
+* Fix sync bug when downloading file names with only case difference
+* Re-render interface after changing column width in cloud file browser
+* \[mac] Update logo to retangular
+* Don't stop syncing when detecting encryption key is broken for encrypted libraries
+
 ### 9.0.15 (2025/08/12)
 
 * Support redirection of http requests, like to another domain or to https
