@@ -16,10 +16,10 @@ Then add the `NON_ROOT=true` to the `.env`.
 NON_ROOT=true
 ```
 
-Then modify `/opt/seafile-data/seafile/` permissions.
+Then modify `/opt/seafile-data/` permissions.
 
 ```bash
-chmod -R a+rwx /opt/seafile-data/seafile/
+chmod -R a+rwx /opt/seafile-data/
 ```
 
 Start Seafile:
