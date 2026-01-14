@@ -41,6 +41,9 @@ MEMCACHED_PORT=11211
 
 ## S3
 SEAF_SERVER_STORAGE_TYPE=disk
+S3_COMMIT_BUCKET=<your commit bucket name>
+S3_FS_BUCKET=<your fs bucket name>
+S3_BLOCK_BUCKET=<your block bucket name>
 S3_KEY_ID=<your-key-id>
 S3_SECRET_KEY=<your-secret-key>
 S3_USE_V4_SIGNATURE=true
