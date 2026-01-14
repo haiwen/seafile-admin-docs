@@ -6,7 +6,7 @@ services:
     volumes:
       - ${SEAFILE_VOLUME:-/opt/seafile}:/shared
     ports:
-       - ${MD_PORT:-8084}:${MD_PORT:-8084}
+       - ${MD_PORT:-8084}:8084
     environment:
       - JWT_PRIVATE_KEY=${JWT_PRIVATE_KEY:?Variable is not set or empty}
       - SEAFILE_MYSQL_DB_HOST=${SEAFILE_MYSQL_DB_HOST:?Variable is not set or empty}
@@ -15,7 +15,6 @@ services:
       - SEAFILE_MYSQL_DB_PASSWORD=${SEAFILE_MYSQL_DB_PASSWORD:?Variable is not set or empty}
       - SEAFILE_MYSQL_DB_SEAFILE_DB_NAME=${SEAFILE_MYSQL_DB_SEAFILE_DB_NAME:-seafile_db}
       - SEAFILE_LOG_TO_STDOUT=${SEAFILE_LOG_TO_STDOUT:-false}
-      - MD_PORT=${MD_PORT:-8084}
       - MD_LOG_LEVEL=${MD_LOG_LEVEL:-info}
       - MD_MAX_CACHE_SIZE=${MD_MAX_CACHE_SIZE:-1GB}
       - MD_CHECK_UPDATE_INTERVAL=${MD_CHECK_UPDATE_INTERVAL:-30m}
