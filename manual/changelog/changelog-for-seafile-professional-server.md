@@ -9,6 +9,15 @@
 
 Please check our document for how to upgrade to [13.0](../upgrade/upgrade_notes_for_13.0.x.md)
 
+
+### 13.0.16 (2026-01-23)
+
+* [fix] Fix a security bug in guest invitation
+* Improve error handing in metadata server when initializing metadata feature for a library
+* fsck and gc should not use cache
+* [fix] Fix performance issues of thumbnail-server based on a real-world heavy usage scenary
+
+
 ### 13.0.15 (2025-12-23)
 
 * [fix] Do not print error message when using memcached as cache server
