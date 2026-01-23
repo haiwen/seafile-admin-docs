@@ -21,7 +21,7 @@ There are some use cases that supporting multiple storage backends in Seafile se
 To use this feature, you need to:
 
 1. Set `SEAF_SERVER_STORAGE_TYPE=multiple` in `.env`.
-2. Define [storage classes](#exmaple-of-storage-classes-file) in `seafile.conf`.
+2. Define [storage classes](#example-of-storage-classes-file) in `seafile.conf`.
 3. Enable multiple backend feature in *Seahub* and choose a mapping policy.
 
 ## Seafile Configuration
@@ -36,7 +36,7 @@ By default, Seafile dose not enable multiple storage classes. So, you have to cr
     nano /opt/seafile-data/seafile/conf
     ```
 
-    For the example of this file, please refer [next section](#exmaple-of-storage-classes-file)
+    For the example of this file, please refer [next section](#example-of-storage-classes-file)
 
 2. Modify `seafile.conf`
 
@@ -53,7 +53,7 @@ By default, Seafile dose not enable multiple storage classes. So, you have to cr
         - Make sure you have added [memory cache configurations](../config/env.md#cache-configurations) to `seafile.conf`
         - Due to the *Docker persistence strategy*, the path of `storage_classes_file` **in the *Seafile container*** is different from the host usually, so we suggest you put this file in to the Seafile's configurations directory, and use `/shared/conf` instead of `/opt/seafile-data/seafile/conf`. Otherwise you have to add another persistent volume mapping strategy in `seafile-server.yml`. If your Seafile server is not deployed with Docker, we still suggest you put this file into the Seafile configurations file directory.
 
-## Exmaple of storage classes file
+## Example of storage classes file
 
 The storage classes JSON file is about **an array consist of objects**, for each defines a *storage class*. The fields in the definition corresponds to the information we need to specify for a ***storage class***:
 
