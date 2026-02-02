@@ -54,6 +54,13 @@ Please check our document for how to upgrade to [13.0](../upgrade/upgrade_notes_
 
 Please check our document for how to upgrade to [12.0](../upgrade/upgrade_notes_for_12.0.x.md)
 
+### 12.0.20 (2025-02-03)
+
+* [fix] [security] Fix a stored XSS problem in sdoc link element
+* [fix] [security] Fix guest invitation can activate a normal inactive user
+* [fix] [security] Fix permission handling in invisibile permission
+* [fix] Fix translation issue for file modification time in file list page
+
 ### 12.0.19 (2025-12-03)
 
 * [fix] Fix backgrand tasks are started at the front-end node in clustering environment.
