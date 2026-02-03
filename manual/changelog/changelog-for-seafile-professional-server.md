@@ -9,6 +9,18 @@
 
 Please check our document for how to upgrade to [13.0](../upgrade/upgrade_notes_for_13.0.x.md)
 
+### 13.0.17 (2026-02-03)
+
+* [fix] [security] Fix a stored XSS problem in sdoc link element
+* [fix] [security] Fix guest invitation can activate a normal inactive user
+* [fix] [security] Fix permission handling in invisibile permission
+* Add copy and download button for QR code for sharing links
+* Add resource control in generating thumbnails for PDFs
+* [fix] Fix invalid escape sequences in Seahub regex patterns
+* [fix] [security] Fix read-only permission check for sdoc
+* Support loading more search result when scroll down (maximum of 100 results)
+* Add option SAML_CREATE_UNKNOWN_USER for SAML login
+
 
 ### 13.0.16 (2026-01-23)
 
