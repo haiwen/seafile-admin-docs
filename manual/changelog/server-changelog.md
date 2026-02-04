@@ -9,6 +9,11 @@
 
 Please check our document for how to upgrade to [13.0](../upgrade/upgrade_notes_for_13.0.x.md)
 
+### 13.0.18 (2026-02-04)
+
+* [fix] Fix a bug in sdoc
+* [fix] Remove old API that download file via share link token
+* [fix] Fix import seadoc not checking CSRF token
 
 ### 13.0.17 (2026-02-03)
 
