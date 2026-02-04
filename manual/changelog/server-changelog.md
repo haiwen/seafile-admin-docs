@@ -10,6 +10,14 @@
 Please check our document for how to upgrade to [13.0](../upgrade/upgrade_notes_for_13.0.x.md)
 
 
+### 13.0.17 (2026-02-03)
+
+* [fix] [security] Fix a stored XSS problem in sdoc link element
+* Add copy and download button for QR code for sharing links
+* Add resource control in generating thumbnails for PDFs
+* [fix] Fix invalid escape sequences in Seahub regex patterns
+* [fix] [security] Fix read-only permission check for sdoc
+
 ### 13.0.15 (2025-12-23)
 
 * [fix] Do not print error message when using memcached as cache server
