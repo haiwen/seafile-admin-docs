@@ -203,7 +203,12 @@ SHIBBOLETH_ATTRIBUTE_MAP  = {
 
 ```
 
-In the above config, the hash key is Shibboleth attribute name, the second element in the hash value is Seahub's property name. You can adjust the Shibboleth attribute name for your own needs. 
+1. The hash key (e.g., HTTP_GIVENNAME) refers to the name of the Shibboleth attribute passed to Seahub.
+2. The hash value is a two-element tuple, where:
+    * The first boolean element (True/False) indicates whether the Shibboleth attribute is mandatory for user provisioning. If set to True (mandatory) but the value of the corresponding key cannot be retrieved from Shibboleth, an error will be thrown and the user authentication/creation process will fail.
+    * The second string element (e.g., givenname) is the name of the Seahub user property that the Shibboleth attribute maps to.
+
+You can adjust the Shibboleth attribute name for your own needs.
 
 !!! tip "You may have to change attribute-map.xml in your Shibboleth SP, so that the desired attributes are passed to Seahub. And you have to make sure the IdP sends these attributes to the SP"
 
