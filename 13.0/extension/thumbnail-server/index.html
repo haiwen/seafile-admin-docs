@@ -5484,7 +5484,7 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 </tr>
 <tr>
 <td><code>INNER_SEAHUB_SERVICE_URL</code></td>
-<td>Intranet URL for accessing Seahub component, like <code>http://&lt;your Seafile server intranet IP&gt;</code>.</td>
+<td>Intranet URL for accessing Seahub component, like <code>http://&lt;your Seahub component intranet IP&gt;</code>.</td>
 </tr>
 <tr>
 <td><code>SEAF_SERVER_STORAGE_TYPE</code></td>
@@ -5540,7 +5540,13 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 </tr>
 </tbody>
 </table>
-<p>Then you can run thumbnail server with the following command:</p>
+<div class="admonition tip">
+<p class="admonition-title">About INNER_SEAHUB_SERVICE_URL</p>
+<p>The thumbnail server must call the Seahub component to verify permissions.</p>
+<p>The INNER_SEAHUB_SERVICE_URL should point to the Seahub URL located at one of the front-end nodes, such as http://192.168.0.10 .</p>
+<p>Alternatively, you can use an external URL for the thumbnail server to access Seahub, like https://seafile.example.com . In this scenario, it is essential to ensure that the CA is trusted on the thumbnail server node.</p>
+</div>
+<p>You can run thumbnail server with the following command:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
 <p>You need to configure load balancer according to the following forwarding rules:</p>
