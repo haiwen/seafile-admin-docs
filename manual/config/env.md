@@ -126,4 +126,5 @@ For configurations about Metadata server in `.env`, please refer [here](../exten
 - `CLUSTER_INIT_MODE`: (only valid in pro edition at deploying first time). Cluster initialization mode, in which the necessary configuration files for the service to run will be generated (but **the service will not be started**). If the configuration file already exists, no operation will be performed. The default value is `true`. When the configuration file is generated, ***be sure to set this item to `false`***.
 - `CLUSTER_INIT_ES_HOST`: (only valid in pro edition at deploying first time). Your cluster Elasticsearch server host.
 - `CLUSTER_INIT_ES_PORT`: (only valid in pro edition at deploying first time). Your cluster Elasticsearch server port. Default is `9200`.
+- `CLUSTER_SERVER`: Enable cluster function (it cannot be modified in cluster `seafile-server.yml`).
 - `CLUSTER_MODE`: Seafile service node type, i.e., `frontend` (default) or `backend`.
