@@ -8,6 +8,11 @@
 
 Please check our document for how to upgrade to [12.0](../upgrade/upgrade_notes_for_12.0.x.md)
 
+### 12.0.21 (2025-02-12)
+
+* [fix] [security] Fix read-only permission check for sdoc
+* [fix] [security] Fix a stored XSS problem in Wiki history page
+
 ### 12.0.20 (2025-02-03)
 
 * [fix] [security] Fix a stored XSS problem in sdoc link element
