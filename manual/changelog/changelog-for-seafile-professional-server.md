@@ -12,18 +12,18 @@ Please check our document for how to upgrade to [13.0](../upgrade/upgrade_notes_
 ### 13.0.18 (2026-02-05)
 
 * [fix] Fix a bug in sdoc
-* [fix] Remove old API that download file via share link token
-* [fix] Fix import seadoc not checking CSRF token
+* [fix] Remove old API that download file via share link token. Thanks to [Paolo Gabriele Schiraldi](https://github.com/gabdevele) for reporting the issue.
+* [fix] Fix import seadoc not checking CSRF token. Thanks to [Paolo Gabriele Schiraldi](https://github.com/gabdevele) for reporting the issue.
 
 ### 13.0.17 (2026-02-03)
 
-* [fix] [security] Fix a stored XSS problem in sdoc link element
+* [fix] [security] Fix a stored XSS problem in sdoc link element. Thanks to [Paolo Gabriele Schiraldi](https://github.com/gabdevele) for reporting the issue.
 * [fix] [security] Fix guest invitation can activate a normal inactive user
 * [fix] [security] Fix permission handling in invisibile permission
 * Add copy and download button for QR code for sharing links
 * Add resource control in generating thumbnails for PDFs
 * [fix] Fix invalid escape sequences in Seahub regex patterns
-* [fix] [security] Fix read-only permission check for sdoc
+* [fix] [security] Fix read-only permission check for sdoc. Thanks to [Paolo Gabriele Schiraldi](https://github.com/gabdevele) for reporting the issue.
 * Support loading more search result when scroll down (maximum of 100 results)
 * Add option SAML_CREATE_UNKNOWN_USER for SAML login
 
@@ -74,8 +74,8 @@ Please check our document for how to upgrade to [12.0](../upgrade/upgrade_notes_
 
 ### 12.0.21 (2025-02-12)
 
-* [fix] [security] Fix read-only permission check for sdoc
-* [fix] [security] Fix a stored XSS problem in Wiki history page
+* [fix] [security] Fix read-only permission check for sdoc. Thanks to [Paolo Gabriele Schiraldi](https://github.com/gabdevele) for reporting the issue.
+* [fix] [security] Fix a stored XSS problem in Wiki history page. Thanks to [Paolo Gabriele Schiraldi](https://github.com/gabdevele) for reporting the issue.
 
 ### 12.0.20 (2025-02-03)
 
