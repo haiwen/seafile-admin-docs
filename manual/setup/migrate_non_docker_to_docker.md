@@ -69,7 +69,7 @@ docker compose down
 Then recover the data from backuped file:
 
 ```sh
-cp /backup/data/* /opt/seafile-data/seafile
+cp /backup/data/seafile/* /opt/seafile-data/seafile
 ```
 
 ## Recover the Database (only for the new MySQL service used in Seafile docker)
