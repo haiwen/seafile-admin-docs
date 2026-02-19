@@ -48,7 +48,7 @@ Additionally, run the following two commands in the seafile-server-latest direct
 
 ### Submit your translation
 
-Please submit translations via Transifex: <https://www.transifex.com/projects/p/seahub/>
+Please submit translations via Transifex: <https://explore.transifex.com/haiwen/seahub/>
 
 Steps:
 
