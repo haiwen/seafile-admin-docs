@@ -104,7 +104,7 @@ Meaning of some options:
 * **LDAP_USER_OBJECT_CLASS**: This is the name of the class used to search for user objects. In Active Directory, it's usually "person". The default value is "person".
 * **LDAP_DEPT_ATTR**:  Attribute for depatment info.
 * **LDAP_UID_ATTR**: Attribute for Windows login name. If this is synchronized, users can also log in with their Windows login name. In AD, the attribute `sAMAccountName` can be used as `UID_ATTR`. The attribute will be stored as login_id in Seafile (in seahub_db.profile_profile table).
-* **LDAP_AUTO_REACTIVATE_USERS**: Whether to auto activate deactivated user, default by 'true'
+* **LDAP_AUTO_REACTIVATE_USERS**: Whether to auto activate deactivated user, default by 'False'
 * **LDAP_USE_PAGED_RESULT:**  Whether to use pagination extension.It is useful when you have more than 1000 users in LDAP server.
 * **IMPORT_NEW_USER:** Whether to import new users when sync user.
 * **ACTIVE_USER_WHEN_IMPORT:** Whether to activate the user automatically when imported. 
