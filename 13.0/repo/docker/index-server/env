@@ -14,16 +14,3 @@ SEAFILE_MYSQL_DB_PASSWORD=PASSWORD
 TIME_ZONE=Etc/UTC
 
 CLUSTER_MODE=master
-
-SEAF_SERVER_STORAGE_TYPE=s3
-S3_COMMIT_BUCKET=<your commit bucket name>
-S3_FS_BUCKET=<your fs bucket name>
-S3_BLOCK_BUCKET=<your block bucket name>
-S3_KEY_ID=<your-key-id>
-S3_SECRET_KEY=<your-secret-key>
-S3_USE_V4_SIGNATURE=true
-S3_PATH_STYLE_REQUEST=false
-S3_AWS_REGION=us-east-1
-S3_HOST=
-S3_USE_HTTPS=true
-S3_SSE_C_KEY=
