@@ -61,6 +61,9 @@ services:
 
 ## Modify `seafevents.conf`
 
+!!! note "For the Seafile cluster"
+    If you are using a Seafile cluster server, you only need to ensure that the `seafevents.conf` configuration file on your **backend node** (it should be only one) machine has the following changes.
+
 1. Get your authorization token by base64 code consist of `INIT_SS_ADMIN_USER` and `INIT_SS_ADMIN_PASSWORD` defined in `.env` firsly, which is used to authorize when calling the SeaSearch API:
 
     ```sh
