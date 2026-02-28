@@ -105,7 +105,7 @@ This part of configurations is only valid in `CACHE_PROVIDER=memcached`:
 
 ## SeaSearch
 
-For configurations about SeaSearch in `.env`, please refer [here](https://seasearch-manual.seafile.com/config/) for the details.
+For configurations about SeaSearch in `.env`, please refer [here](https://seasearch-manual.seafile.com/latest/config/) for the details.
 
 ## Metadata server
 

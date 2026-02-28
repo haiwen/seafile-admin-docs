@@ -20,7 +20,7 @@ wget https://manual.seafile.com/13.0/repo/docker/pro/seasearch.yml
 
 ## Modify `.env`
 
-We have configured the relevant variables in .env. Here you must pay special attention to the following variable information, which will affect the SeaSearch initialization process. For variables in `.env` of SeaSearch service, please refer [here](https://seasearch-manual.seafile.com/config/) for the details. We use `/opt/seasearch-data` as the persistent directory of SeaSearch (the information of administrator are same as Seafile's admin by default from Seafile 13):
+We have configured the relevant variables in .env. Here you must pay special attention to the following variable information, which will affect the SeaSearch initialization process. For variables in `.env` of SeaSearch service, please refer [here](https://seasearch-manual.seafile.com/latest/config/) for the details. We use `/opt/seasearch-data` as the persistent directory of SeaSearch (the information of administrator are same as Seafile's admin by default from Seafile 13):
 
 !!! warning "For Apple's Chips"
     Since Apple's chips (such as M2) do not support [MKL](https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html), you need to set the relevant image to `xxx-nomkl:latest`, e.g.:
@@ -59,6 +59,9 @@ If you would like to use *SeaSearch* as the search engine, the `elasticSearch` s
 
 ## Modify `seafevents.conf`
 
+!!! note "For the Seafile cluster"
+    If you are using a Seafile cluster server, you need to ensure that the `seafevents.conf` configuration file on your **backend node** machine has made the following changes, but we still suggest you to make the same configurations in **all node** to make sure the consistency and synchronization in the cluster
+
 1. Get your authorization token by base64 code consist of `INIT_SS_ADMIN_USER` and `INIT_SS_ADMIN_PASSWORD` defined in `.env` firsly, which is used to authorize when calling the SeaSearch API:
 
     ```sh
@@ -71,7 +74,7 @@ If you would like to use *SeaSearch* as the search engine, the `elasticSearch` s
 2. Add the following section in seafevents to enable seafile backend service to access SeaSearch APIs
 
     !!! note "SeaSearch server deploy on a different machine with Seafile"
-        If your SeaSearch server deploy on a **different** machine with Seafile, please replace `http://seasearch:4080` to the url `<scheme>://<address>:<prot>` of your SeaSearch server 
+        If your SeaSearch server deploy on a **different** machine with Seafile, please replace `http://seasearch:4080` to the url `<scheme>://<address>:<port>` of your SeaSearch server 
 
     ```conf
     [SEASEARCH]
@@ -107,16 +110,3 @@ After startup the SeaSearch service, you can check the following logs for Whethe
 
 !!! tip "After first time start SeaSearch Server"
     You can remove the initial admin account informations in `.env` (e.g., `INIT_SS_ADMIN_USER`, `INIT_SS_ADMIN_PASSWORD`), which are only used in the SeaSearch initialization progress (i.e., the **first time** to start services). But make sure **you have recorded it somewhere else in case you forget the password**.
-
-## Other configurations
-
-### Set tokenization language
-
-By default, SeaSearch use word based tokenizer designed for English/German/French language. You can add following configuration to use tokenizer designed for Chinese language.
-
-```
-[SEASEARCH]
-enabled = true
-...
-lang = chinese
-```

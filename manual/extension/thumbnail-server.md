@@ -56,7 +56,7 @@ Then modify the `.env` file according to your environment. The following fields 
 | `TIME_ZONE`            | Time zone                                                                                                     |  
 | `JWT_PRIVATE_KEY`      | JWT key, the same as the config in Seafile `.env` file                                                         |  
 | `INNER_SEAHUB_SERVICE_URL`| Intranet URL for accessing Seahub component, like `http://<your Seahub component intranet IP>`.  |   
-| `SEAF_SERVER_STORAGE_TYPE`   | What kind of the Seafile data for storage. Available options are `disk` (i.e., local disk), `s3` and `multiple` (see the details of [multiple storage backends](../setup/setup_with_multiple_storage_backends.md)) |
+| `SEAF_SERVER_STORAGE_TYPE`   | What kind of the Seafile data for storage (must be same as in the Seafile server deployment configuration). Available options are `disk` (i.e., local disk), `s3` and `multiple` (see the details of [multiple storage backends](../setup/setup_with_multiple_storage_backends.md)) |
 | `S3_COMMIT_BUCKET`   | S3 storage backend commit objects bucket |
 | `S3_FS_BUCKET`   | S3 storage backend fs objects bucket |
 | `S3_BLOCK_BUCKET`   | S3 storage backend block objects bucket |
@@ -86,38 +86,68 @@ You can run thumbnail server with the following command:
 docker compose up -d
 ```
 
-You need to configure load balancer according to the following forwarding rules:
+You need to configure load balancer according to the forward `/thumbnail` requests to thumbnail server via http protocol. Here are some configurations that uses proxy to support thumbnail server
 
-1. Forward `/thumbnail` requests to thumbnail server via http protocol.
+=== "Nginx"
+    ```conf
+    # ... other blocks
 
-Here is a configuration that uses haproxy to support thumbnail server. Haproxy version needs to be >= 2.0.
-You should use similar configurations for other load balancers.
+    upstream thumbnail_backend {
+        server <your_thumbnail_backend_node1_ip>:80;
+        server <your_thumbnail_backend_node2_ip>:80;
+    }
 
-```
-#/etc/haproxy/haproxy.cfg
+    server {
+        # ... other URL proxy
 
-# Other existing haproxy configurations
-......
+        location ~ ^/thumbnail/ {
+            proxy_pass http://thumbnail_backend;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
 
-frontend seafile
-    bind 0.0.0.0:80
-    mode http
-    option httplog
-    option dontlognull
-    option forwardfor
-    acl thumbnail_request url_sub -i /thumbnail/
-    use_backend thumbnail_backend if thumbnail_request
-    default_backend backup_nodes
+            proxy_buffering on;
+            proxy_buffer_size 4k;
+            proxy_buffers 8 4k;
+            proxy_busy_buffers_size 8k;
+            
+            proxy_connect_timeout 30s;
+            proxy_send_timeout 300s;
+            proxy_read_timeout 300s;
+        }
+    }
+    ```
 
-backend backup_nodes
-    cookie SERVERID insert indirect nocache
-    server seafileserver01 192.168.0.2:80
+=== "Haproxy"
 
-backend thumbnail_backend
-    option forwardfor
-    server thumbnail 192.168.0.9:80
+    !!! note "Haproxy version needs to be >= 2.0"
 
-```
+    ```cfg
+    # /etc/haproxy/haproxy.cfg
+
+    # Other existing haproxy configurations
+    ......
+
+    frontend seafile
+        bind 0.0.0.0:80
+        mode http
+        option httplog
+        option dontlognull
+        option forwardfor
+        acl thumbnail_request url_sub -i /thumbnail/
+        use_backend thumbnail_backend if thumbnail_request
+        default_backend backup_nodes
+
+    backend backup_nodes
+        cookie SERVERID insert indirect nocache
+        server seafileserver01 192.168.0.2:80
+
+    backend thumbnail_backend
+        option forwardfor
+        server thumbnail 192.168.0.9:80
+
+    ```
 
 !!! warning "Thumbnail server has to access Seafile' storage"
     The thumbnail server needs to access Seafile storage.
