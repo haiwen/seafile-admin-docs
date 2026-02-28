@@ -190,7 +190,7 @@ Please refer [here](./system_requirements.md#seafile-cluster) for the details ab
 
 2. Pull Seafile image
 
-3. Copy `seafile-server.yml`, `.env `and configuration files from the first frontend node
+3. Copy `seafile-server.yml`, `.env` and configuration files from the first frontend node (make sure the path is the same). If you are using shared directory for ***SEAFILE_VOLUME*** (e.g., *NFS*, always used with `SEAF_SERVER_STORAGE_TYPE=disk`), please ensure that each node has **full read and write permissions** to the shared directory and that the shared directory has **the same path on each node**
 
 4. Start the service
 
@@ -209,10 +209,7 @@ Please refer [here](./system_requirements.md#seafile-cluster) for the details ab
 
 2. Pull Seafile image
 
-3. Copy `seafile-server.yml`, `.env` and configuration files from frontend node
-
-    !!! note
-        The configuration files from frontend node have to be put in the same path as the frontend node, i.e., `/opt/seafile/shared/seafile/conf/*`
+3. Copy `seafile-server.yml`, `.env` and configuration files from the first frontend node (make sure the path is the same). If you are using shared directory for ***SEAFILE_VOLUME*** (e.g., *NFS*, always used with `SEAF_SERVER_STORAGE_TYPE=disk`), please ensure that each node has **full read and write permissions** to the shared directory and that the shared directory has **the same path on each node**
 
 4. Modify `.env`, set `CLUSTER_MODE` to `backend`
 
