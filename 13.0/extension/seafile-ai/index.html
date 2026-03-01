@@ -5804,6 +5804,11 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 </code></pre></div>
 </li>
 <li>
+<p>Modify the <code>.env</code> of where deployed Seafile server:</p>
+<div class="highlight"><pre><span></span><code>ENABLE_FACE_RECOGNITION=true
+</code></pre></div>
+</li>
+<li>
 <p>Modify the <code>.env</code> of where deployed Seafile AI:</p>
 <div class="highlight"><pre><span></span><code>FACE_EMBEDDING_SERVICE_URL=http://&lt;your face embedding service host&gt;:8886
 </code></pre></div>
@@ -5812,7 +5817,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 <p>Make sure <code>JWT_PRIVATE_KEY</code> has set in the <code>.env</code> for face embedding and is same as the Seafile server</p>
 </li>
 <li>
-<p>Restart Seafile server</p>
+<p>Restart Seafile server and Seafile-AI server</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
 docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>

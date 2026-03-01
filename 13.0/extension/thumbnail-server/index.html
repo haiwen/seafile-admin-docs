@@ -5488,7 +5488,7 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 </tr>
 <tr>
 <td><code>SEAF_SERVER_STORAGE_TYPE</code></td>
-<td>What kind of the Seafile data for storage. Available options are <code>disk</code> (i.e., local disk), <code>s3</code> and <code>multiple</code> (see the details of <a href="../../setup/setup_with_multiple_storage_backends/">multiple storage backends</a>)</td>
+<td>What kind of the Seafile data for storage (must be same as in the Seafile server deployment configuration). Available options are <code>disk</code> (i.e., local disk), <code>s3</code> and <code>multiple</code> (see the details of <a href="../../setup/setup_with_multiple_storage_backends/">multiple storage backends</a>)</td>
 </tr>
 <tr>
 <td><code>S3_COMMIT_BUCKET</code></td>
@@ -5549,35 +5549,69 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 <p>You can run thumbnail server with the following command:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
-<p>You need to configure load balancer according to the following forwarding rules:</p>
-<ol>
-<li>Forward <code>/thumbnail</code> requests to thumbnail server via http protocol.</li>
-</ol>
-<p>Here is a configuration that uses haproxy to support thumbnail server. Haproxy version needs to be &gt;= 2.0.
-You should use similar configurations for other load balancers.</p>
-<div class="highlight"><pre><span></span><code>#/etc/haproxy/haproxy.cfg
+<p>You need to configure load balancer according to the forward <code>/thumbnail</code> requests to thumbnail server via http protocol. Here are some configurations that uses proxy to support thumbnail server</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Nginx</label><label for="__tabbed_1_2">Haproxy</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code># ... other blocks
 
-# Other existing haproxy configurations
-......
+upstream thumbnail_backend {
+    server &lt;your_thumbnail_backend_node1_ip&gt;:80;
+    server &lt;your_thumbnail_backend_node2_ip&gt;:80;
+}
 
-frontend seafile
-    bind 0.0.0.0:80
-    mode http
-    option httplog
-    option dontlognull
-    option forwardfor
-    acl thumbnail_request url_sub -i /thumbnail/
-    use_backend thumbnail_backend if thumbnail_request
-    default_backend backup_nodes
+server {
+    # ... other URL proxy
 
-backend backup_nodes
-    cookie SERVERID insert indirect nocache
-    server seafileserver01 192.168.0.2:80
+    location ~ ^/thumbnail/ {
+        proxy_pass http://thumbnail_backend;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
 
-backend thumbnail_backend
-    option forwardfor
-    server thumbnail 192.168.0.9:80
+        proxy_buffering on;
+        proxy_buffer_size 4k;
+        proxy_buffers 8 4k;
+        proxy_busy_buffers_size 8k;
+
+        proxy_connect_timeout 30s;
+        proxy_send_timeout 300s;
+        proxy_read_timeout 300s;
+    }
+}
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="admonition note">
+<p class="admonition-title">Haproxy version needs to be &gt;= 2.0</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="c1"># /etc/haproxy/haproxy.cfg</span>
+
+<span class="c1"># Other existing haproxy configurations</span>
+<span class="na">......</span>
+
+<span class="na">frontend seafile</span>
+<span class="w">    </span><span class="na">bind 0.0.0.0</span><span class="o">:</span><span class="s">80</span>
+<span class="w">    </span><span class="na">mode http</span>
+<span class="w">    </span><span class="na">option httplog</span>
+<span class="w">    </span><span class="na">option dontlognull</span>
+<span class="w">    </span><span class="na">option forwardfor</span>
+<span class="w">    </span><span class="na">acl thumbnail_request url_sub -i /thumbnail/</span>
+<span class="w">    </span><span class="na">use_backend thumbnail_backend if thumbnail_request</span>
+<span class="w">    </span><span class="na">default_backend backup_nodes</span>
+
+<span class="na">backend backup_nodes</span>
+<span class="w">    </span><span class="na">cookie SERVERID insert indirect nocache</span>
+<span class="w">    </span><span class="na">server seafileserver01 192.168.0.2</span><span class="o">:</span><span class="s">80</span>
+
+<span class="na">backend thumbnail_backend</span>
+<span class="w">    </span><span class="na">option forwardfor</span>
+<span class="w">    </span><span class="na">server thumbnail 192.168.0.9</span><span class="o">:</span><span class="s">80</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 <div class="admonition warning">
 <p class="admonition-title">Thumbnail server has to access Seafile' storage</p>
 <p>The thumbnail server needs to access Seafile storage.</p>

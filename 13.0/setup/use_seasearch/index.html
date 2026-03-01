@@ -1350,34 +1350,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#other-configurations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Other configurations
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Other configurations">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#set-tokenization-language" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Set tokenization language
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -5418,34 +5390,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#other-configurations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Other configurations
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Other configurations">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#set-tokenization-language" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Set tokenization language
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -5482,7 +5426,7 @@
 <div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/pro/seasearch.yml
 </code></pre></div>
 <h2 id="modify-env">Modify <code>.env</code><a class="headerlink" href="#modify-env" title="Permanent link">&para;</a></h2>
-<p>We have configured the relevant variables in .env. Here you must pay special attention to the following variable information, which will affect the SeaSearch initialization process. For variables in <code>.env</code> of SeaSearch service, please refer <a href="https://seasearch-manual.seafile.com/config/">here</a> for the details. We use <code>/opt/seasearch-data</code> as the persistent directory of SeaSearch (the information of administrator are same as Seafile's admin by default from Seafile 13):</p>
+<p>We have configured the relevant variables in .env. Here you must pay special attention to the following variable information, which will affect the SeaSearch initialization process. For variables in <code>.env</code> of SeaSearch service, please refer <a href="https://seasearch-manual.seafile.com/latest/config/">here</a> for the details. We use <code>/opt/seasearch-data</code> as the persistent directory of SeaSearch (the information of administrator are same as Seafile's admin by default from Seafile 13):</p>
 <div class="admonition warning">
 <p class="admonition-title">For Apple's Chips</p>
 <p>Since Apple's chips (such as M2) do not support <a href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html">MKL</a>, you need to set the relevant image to <code>xxx-nomkl:latest</code>, e.g.:</p>
@@ -5514,6 +5458,10 @@
 <h2 id="modify-seafile-serveryml-to-disable-elasticsearch-service">Modify <code>seafile-server.yml</code> to disable <code>elasticSearch</code> service<a class="headerlink" href="#modify-seafile-serveryml-to-disable-elasticsearch-service" title="Permanent link">&para;</a></h2>
 <p>If you would like to use <em>SeaSearch</em> as the search engine, the <code>elasticSearch</code> service can be removed, which is no longer used: remove <code>elasticsearch.yml</code> in the list variable <code>COMPOSE_FILE</code> on the file <code>.env</code>.</p>
 <h2 id="modify-seafeventsconf">Modify <code>seafevents.conf</code><a class="headerlink" href="#modify-seafeventsconf" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">For the Seafile cluster</p>
+<p>If you are using a Seafile cluster server, you need to ensure that the <code>seafevents.conf</code> configuration file on your <strong>backend node</strong> machine has made the following changes, but we still suggest you to make the same configurations in <strong>all node</strong> to make sure the consistency and synchronization in the cluster</p>
+</div>
 <ol>
 <li>
 <p>Get your authorization token by base64 code consist of <code>INIT_SS_ADMIN_USER</code> and <code>INIT_SS_ADMIN_PASSWORD</code> defined in <code>.env</code> firsly, which is used to authorize when calling the SeaSearch API:</p>
@@ -5527,7 +5475,7 @@
 <p>Add the following section in seafevents to enable seafile backend service to access SeaSearch APIs</p>
 <div class="admonition note">
 <p class="admonition-title">SeaSearch server deploy on a different machine with Seafile</p>
-<p>If your SeaSearch server deploy on a <strong>different</strong> machine with Seafile, please replace <code>http://seasearch:4080</code> to the url <code>&lt;scheme&gt;://&lt;address&gt;:&lt;prot&gt;</code> of your SeaSearch server </p>
+<p>If your SeaSearch server deploy on a <strong>different</strong> machine with Seafile, please replace <code>http://seasearch:4080</code> to the url <code>&lt;scheme&gt;://&lt;address&gt;:&lt;port&gt;</code> of your SeaSearch server </p>
 </div>
 <div class="highlight"><pre><span></span><code>[SEASEARCH]
 enabled = true
@@ -5560,14 +5508,6 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 <p class="admonition-title">After first time start SeaSearch Server</p>
 <p>You can remove the initial admin account informations in <code>.env</code> (e.g., <code>INIT_SS_ADMIN_USER</code>, <code>INIT_SS_ADMIN_PASSWORD</code>), which are only used in the SeaSearch initialization progress (i.e., the <strong>first time</strong> to start services). But make sure <strong>you have recorded it somewhere else in case you forget the password</strong>.</p>
 </div>
-<h2 id="other-configurations">Other configurations<a class="headerlink" href="#other-configurations" title="Permanent link">&para;</a></h2>
-<h3 id="set-tokenization-language">Set tokenization language<a class="headerlink" href="#set-tokenization-language" title="Permanent link">&para;</a></h3>
-<p>By default, SeaSearch use word based tokenizer designed for English/German/French language. You can add following configuration to use tokenizer designed for Chinese language.</p>
-<div class="highlight"><pre><span></span><code>[SEASEARCH]
-enabled = true
-...
-lang = chinese
-</code></pre></div>
 
 
 

@@ -5746,7 +5746,7 @@ Done.
 <p>Pull Seafile image</p>
 </li>
 <li>
-<p>Copy <code>seafile-server.yml</code>, <code>.env</code>and configuration files from the first frontend node</p>
+<p>Copy <code>seafile-server.yml</code>, <code>.env</code> and configuration files from the first frontend node (make sure the path is the same). If you are using shared directory for <strong><em>SEAFILE_VOLUME</em></strong> (e.g., <em>NFS</em>, always used with <code>SEAF_SERVER_STORAGE_TYPE=disk</code>), please ensure that each node has <strong>full read and write permissions</strong> to the shared directory and that the shared directory has <strong>the same path on each node</strong></p>
 </li>
 <li>
 <p>Start the service</p>
@@ -5765,11 +5765,7 @@ Done.
 <p>Pull Seafile image</p>
 </li>
 <li>
-<p>Copy <code>seafile-server.yml</code>, <code>.env</code> and configuration files from frontend node</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The configuration files from frontend node have to be put in the same path as the frontend node, i.e., <code>/opt/seafile/shared/seafile/conf/*</code></p>
-</div>
+<p>Copy <code>seafile-server.yml</code>, <code>.env</code> and configuration files from the first frontend node (make sure the path is the same). If you are using shared directory for <strong><em>SEAFILE_VOLUME</em></strong> (e.g., <em>NFS</em>, always used with <code>SEAF_SERVER_STORAGE_TYPE=disk</code>), please ensure that each node has <strong>full read and write permissions</strong> to the shared directory and that the shared directory has <strong>the same path on each node</strong></p>
 </li>
 <li>
 <p>Modify <code>.env</code>, set <code>CLUSTER_MODE</code> to <code>backend</code></p>
@@ -5842,8 +5838,9 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 </code></pre></div>
 <p>and, add the following contents into this file:</p>
 <div class="highlight"><pre><span></span><code><span class="k">upstream</span><span class="w"> </span><span class="s">seafile_cluster</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kn">server</span><span class="w"> </span><span class="s">&lt;IP:</span><span class="w"> </span><span class="s">your</span><span class="w"> </span><span class="s">frontend</span><span class="w"> </span><span class="s">node</span><span class="w"> </span><span class="mi">1</span><span class="s">&gt;:80</span><span class="p">;</span>
-<span class="w">    </span><span class="kn">server</span><span class="w"> </span><span class="s">&lt;IP:</span><span class="w"> </span><span class="s">your</span><span class="w"> </span><span class="s">frontend</span><span class="w"> </span><span class="s">node</span><span class="w"> </span><span class="mi">2</span><span class="s">&gt;:80</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">hash</span><span class="w"> </span><span class="nv">$cookie_sessionid</span><span class="w"> </span><span class="s">consistent</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">server</span><span class="w"> </span><span class="s">&lt;IP:</span><span class="w"> </span><span class="s">your</span><span class="w"> </span><span class="s">frontend</span><span class="w"> </span><span class="s">node</span><span class="w"> </span><span class="mi">1</span><span class="s">&gt;:80</span><span class="w"> </span><span class="s">max_fails=3</span><span class="w"> </span><span class="s">fail_timeout=30s</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">server</span><span class="w"> </span><span class="s">&lt;IP:</span><span class="w"> </span><span class="s">your</span><span class="w"> </span><span class="s">frontend</span><span class="w"> </span><span class="s">node</span><span class="w"> </span><span class="mi">2</span><span class="s">&gt;:80</span><span class="w"> </span><span class="s">max_fails=3</span><span class="w"> </span><span class="s">fail_timeout=30s</span><span class="p">;</span>
 <span class="w">    </span><span class="kn">...</span>
 <span class="err">}</span>
 
@@ -5857,8 +5854,24 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Real-IP</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="p">;</span>
 <span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-For</span><span class="w"> </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
 <span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-Proto</span><span class="w"> </span><span class="nv">$scheme</span><span class="p">;</span>
-<span class="w">        </span><span class="kn">http_502</span><span class="w"> </span><span class="s">http_503</span><span class="w"> </span><span class="s">http_504</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kn">proxy_cookie_path</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="s">&quot;/</span><span class="p">;</span><span class="w"> </span><span class="kn">Secure</span><span class="p">;</span><span class="w"> </span><span class="kn">HttpOnly&quot;</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kn">proxy_connect_timeout</span><span class="w"> </span><span class="s">30s</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_send_timeout</span><span class="w"> </span><span class="s">300s</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_read_timeout</span><span class="w"> </span><span class="s">300s</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="p">~</span><span class="w"> </span><span class="sr">^/seafhttp</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://seafile_cluster</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Host</span><span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Real-IP</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-For</span><span class="w"> </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_request_buffering</span><span class="w"> </span><span class="no">off</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_buffering</span><span class="w"> </span><span class="no">off</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kn">client_max_body_size</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 </li>
