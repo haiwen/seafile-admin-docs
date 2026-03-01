@@ -83,6 +83,7 @@ The following table is all the related environment variables with Metadata serve
 | `REDIS_HOST`        | Your *Redis* service host.                                                                                                 | Optional, default `redis`          |
 | `REDIS_PORT`        | Your *Redis* service port.                                                                                                 | Optional, default `6379`           |
 | `REDIS_PASSWORD`    | Your *Redis* access password.                                                                                              | Optional                |
+| `SEAF_SERVER_STORAGE_TYPE` | What kind of the Seafile data for storage (must be same as in the Seafile server deployment configuration). Available options are `disk` (i.e., local disk), `s3` and `multiple` (see the details of [multiple storage backends](../setup/setup_with_multiple_storage_backends.md)) | `disk` |
 | `MD_STORAGE_TYPE`    | Where the metadata storage in. Available options are `disk` (local storage) and `s3` | `disk` |
 | `S3_MD_BUCKET`    | Your S3 bucket name for the bucket storing metadata | Required when using S3 (`MD_STORAGE_TYPE=s3`) |
 | `MD_CHECK_UPDATE_INTERVAL`    | The interval for updating metadata of the repository | `30m` |

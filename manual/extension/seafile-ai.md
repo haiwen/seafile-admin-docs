@@ -233,15 +233,22 @@ Since the face embedding service may need to be deployed on some hosts with GPU(
             - 8886:8886
     ```
 
-2. Modify the `.env` of where deployed Seafile AI:
+2. Modify the `.env` of where deployed Seafile server:
 
+    ```env
+    ENABLE_FACE_RECOGNITION=true
     ```
+
+
+3. Modify the `.env` of where deployed Seafile AI:
+
+    ```env
     FACE_EMBEDDING_SERVICE_URL=http://<your face embedding service host>:8886
     ```
 
-3. Make sure `JWT_PRIVATE_KEY` has set in the `.env` for face embedding and is same as the Seafile server
+4. Make sure `JWT_PRIVATE_KEY` has set in the `.env` for face embedding and is same as the Seafile server
 
-4. Restart Seafile server
+5. Restart Seafile server and Seafile-AI server
 
     ```sh
     docker compose down

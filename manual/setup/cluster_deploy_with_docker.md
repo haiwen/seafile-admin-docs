@@ -174,7 +174,7 @@ Please refer [here](./system_requirements.md#seafile-cluster) for the details ab
 
 2. Pull Seafile image
 
-3. Copy `seafile-server.yml`, `.env `and configuration files from the first frontend node
+3. Copy `seafile-server.yml`, `.env` and configuration files from the first frontend node (make sure the path is the same). If you are using shared directory for ***SEAFILE_VOLUME*** (e.g., *NFS*, always used with `SEAF_SERVER_STORAGE_TYPE=disk`), please ensure that each node has **full read and write permissions** to the shared directory and that the shared directory has **the same path on each node**
 
 4. Start the service
 
@@ -193,10 +193,7 @@ Please refer [here](./system_requirements.md#seafile-cluster) for the details ab
 
 2. Pull Seafile image
 
-3. Copy `seafile-server.yml`, `.env` and configuration files from frontend node
-
-    !!! note
-        The configuration files from frontend node have to be put in the same path as the frontend node, i.e., `/opt/seafile/shared/seafile/conf/*`
+3. Copy `seafile-server.yml`, `.env` and configuration files from the first frontend node (make sure the path is the same). If you are using shared directory for ***SEAFILE_VOLUME*** (e.g., *NFS*, always used with `SEAF_SERVER_STORAGE_TYPE=disk`), please ensure that each node has **full read and write permissions** to the shared directory and that the shared directory has **the same path on each node**
 
 4. Modify `.env`, set `CLUSTER_MODE` to `backend`
 
@@ -279,8 +276,9 @@ Refer to [AWS documentation](http://docs.aws.amazon.com/elasticloadbalancing/lat
 
     ```nginx
     upstream seafile_cluster {
-        server <IP: your frontend node 1>:80;
-        server <IP: your frontend node 2>:80;
+        hash $cookie_sessionid consistent;
+        server <IP: your frontend node 1>:80 max_fails=3 fail_timeout=30s;
+        server <IP: your frontend node 2>:80 max_fails=3 fail_timeout=30s;
         ...
     }
 
@@ -294,8 +292,24 @@ Refer to [AWS documentation](http://docs.aws.amazon.com/elasticloadbalancing/lat
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_set_header X-Forwarded-Proto $scheme;
-            http_502 http_503 http_504;
+
+            proxy_cookie_path / "/; Secure; HttpOnly";
+
+            proxy_connect_timeout 30s;
+            proxy_send_timeout 300s;
+            proxy_read_timeout 300s;
         }
+
+        location ~ ^/seafhttp {
+            proxy_pass http://seafile_cluster;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_request_buffering off;
+            proxy_buffering off;
+        }
+    
+        client_max_body_size 0;
     }
     ```
 
