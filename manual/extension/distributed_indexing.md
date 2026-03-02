@@ -4,29 +4,11 @@ If you use a cluster to deploy Seafile, you can use distributed indexing to real
 
 ![](../images/distributed-indexing.png)
 
-## Install redis and modify configuration files
+## Modify configuration files
 
-### 1. Distributed indexing requires Redis as the cache server for the Seafile cluster.
+### 1. Distributed indexing requires using Redis as cache server instead of Memcached.
 
-!!! tip 
-    If you have used redis cloud service, skip this step and modify the configuration files directly
-
-=== "Ubuntu"
-    ```
-    $ apt install redis-server
-    ```
-=== "CentOS"
-    ```
-    $ yum install redis
-    ```
-
-### 2. Install python redis third-party package on all frontend nodes
-
-```
-$ pip install redis
-```
-
-### 3. Modify the `.env` on all frontend nodes and the backend node
+### 2. Modify the `.env` on all frontend nodes and the backend node
 
 ```
 ## Cache
@@ -38,7 +20,7 @@ REDIS_PORT=6379
 REDIS_PASSWORD=
 ```
 
-### 4. Modify the `seafevents.conf` on the backend node
+### 3. Modify the `seafevents.conf` on the backend node
 
 Disable the scheduled indexing task, because the scheduled indexing task and the distributed indexing task conflict.
 
@@ -50,7 +32,7 @@ enabled=true
 enabled=false   
 ```
 
-### 5. Restart Seafile
+### 4. Restart Seafile
 
 === "Deploy in Docker"
     ```sh
@@ -103,7 +85,7 @@ Next, create a configuration file `index-master.conf` in the `conf` directory of
 
 ```conf
 [DEFAULT]
-mq_type=redis
+interval=600
 ```
 
 Start master node.
@@ -116,7 +98,6 @@ Next, create a configuration file `index-worker.conf` in the `conf` directory of
 
 ```conf
 [DEFAULT]
-mq_type=redis
 index_workers=2
 ```
 
