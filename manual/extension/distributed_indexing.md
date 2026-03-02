@@ -4,44 +4,23 @@ If you use a cluster to deploy Seafile, you can use distributed indexing to real
 
 ![](../images/distributed-indexing.png)
 
-## Install redis and modify configuration files
+## Modify configuration files
 
-### 1. Install redis on all frontend nodes
+### 1. Distributed indexing requires using Redis as cache server instead of Memcached.
 
-!!! tip 
-    If you use redis cloud service, skip this step and modify the configuration files directly
-
-=== "Ubuntu"
-    ```
-    $ apt install redis-server
-    ```
-=== "CentOS"
-    ```
-    $ yum install redis
-    ```
-
-### 2. Install python redis third-party package on all frontend nodes
+### 2. Modify the `.env` on all frontend nodes and the backend node
 
 ```
-$ pip install redis
+## Cache
+CACHE_PROVIDER=redis
+
+### Redis
+REDIS_HOST=<your redis host>
+REDIS_PORT=6379
+REDIS_PASSWORD=
 ```
 
-### 3. Modify the `seafevents.conf` on all frontend nodes
-
-Add the following config items
-
-```
-[EVENTS PUBLISH]
-mq_type=redis   # must be redis
-enabled=true
-
-[REDIS]
-server=127.0.0.1   # your redis server host
-port=6379          # your redis server port
-password=xxx       # your redis server password, if not password, do not set this item
-```
-
-### 4. Modify the `seafevents.conf` on the backend node
+### 3. Modify the `seafevents.conf` on the backend node
 
 Disable the scheduled indexing task, because the scheduled indexing task and the distributed indexing task conflict.
 
@@ -53,7 +32,7 @@ enabled=true
 enabled=false   
 ```
 
-### 5. Restart Seafile
+### 4. Restart Seafile
 
 === "Deploy in Docker"
     ```sh
@@ -80,17 +59,21 @@ Then download `.env` and `index-server.yml` to `/opt/seafile` in all index-serve
 
 ```bash
 cd /opt/seafile
-wget https://manual.seafile.com/12.0/repo/docker/index-server/index-server.yml
-wget -O .env https://manual.seafile.com/12.0/repo/docker/index-server/env
+wget https://manual.seafile.com/13.0/repo/docker/index-server/index-server.yml
+wget -O .env https://manual.seafile.com/13.0/repo/docker/index-server/env
 ```
 
 Modify mysql configurations in `.env`.
 
 ```env
-SEAFILE_MYSQL_DB_HOST=127.0.0.1
+SEAFILE_MYSQL_DB_HOST=<your mysql host>
 SEAFILE_MYSQL_DB_PORT=3306
 SEAFILE_MYSQL_DB_USER=seafile
 SEAFILE_MYSQL_DB_PASSWORD=PASSWORD
+
+REDIS_HOST=<your redis host>
+REDIS_PORT=6379
+REDIS_PASSWORD=
 
 CLUSTER_MODE=master
 ```
@@ -102,12 +85,7 @@ Next, create a configuration file `index-master.conf` in the `conf` directory of
 
 ```conf
 [DEFAULT]
-mq_type=redis      # must be redis
-
-[REDIS]
-server=127.0.0.1   # your redis server host
-port=6379          # your redis server port
-password=xxx       # your redis server password, if not password, do not set this item
+interval=600
 ```
 
 Start master node.
@@ -120,13 +98,7 @@ Next, create a configuration file `index-worker.conf` in the `conf` directory of
 
 ```conf
 [DEFAULT]
-mq_type=redis      # must be redis
-index_workers=2    # number of threads to create/update indexes, you can increase this value according to your needs
-
-[REDIS]
-server=127.0.0.1   # your redis server host
-port=6379          # your redis server port
-password=xxx       # your redis server password, if not password, do not set this item
+index_workers=2
 ```
 
 Start all slave nodes.
