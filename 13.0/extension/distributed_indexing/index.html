@@ -2711,22 +2711,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#modify-configuration-files" class="md-nav__link">
+  <a href="#prepare-for-distributed-indexing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Modify configuration files
+        Prepare for distributed indexing
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Modify configuration files">
+    <nav class="md-nav" aria-label="Prepare for distributed indexing">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-distributed-indexing-requires-using-redis-as-cache-server-instead-of-memcached" class="md-nav__link">
+  <a href="#disable-existing-indexing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Distributed indexing requires using Redis as cache server instead of Memcached.
+        Disable existing indexing
       
     </span>
   </a>
@@ -2734,32 +2734,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-modify-the-env-on-all-frontend-nodes-and-the-backend-node" class="md-nav__link">
+  <a href="#restart-seafile" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Modify the .env on all frontend nodes and the backend node
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-modify-the-seafeventsconf-on-the-backend-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Modify the seafevents.conf on the backend node
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-restart-seafile" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Restart Seafile
+        Restart Seafile
       
     </span>
   </a>
@@ -5366,22 +5344,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#modify-configuration-files" class="md-nav__link">
+  <a href="#prepare-for-distributed-indexing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Modify configuration files
+        Prepare for distributed indexing
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Modify configuration files">
+    <nav class="md-nav" aria-label="Prepare for distributed indexing">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-distributed-indexing-requires-using-redis-as-cache-server-instead-of-memcached" class="md-nav__link">
+  <a href="#disable-existing-indexing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Distributed indexing requires using Redis as cache server instead of Memcached.
+        Disable existing indexing
       
     </span>
   </a>
@@ -5389,32 +5367,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-modify-the-env-on-all-frontend-nodes-and-the-backend-node" class="md-nav__link">
+  <a href="#restart-seafile" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Modify the .env on all frontend nodes and the backend node
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-modify-the-seafeventsconf-on-the-backend-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Modify the seafevents.conf on the backend node
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-restart-seafile" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Restart Seafile
+        Restart Seafile
       
     </span>
   </a>
@@ -5471,26 +5427,18 @@
 <h1 id="distributed-indexing">Distributed indexing<a class="headerlink" href="#distributed-indexing" title="Permanent link">&para;</a></h1>
 <p>If you use a cluster to deploy Seafile, you can use distributed indexing to realize real-time indexing and improve indexing efficiency. The indexing process is as follows:</p>
 <p><img alt="" src="../../images/distributed-indexing.png" /></p>
-<h2 id="modify-configuration-files">Modify configuration files<a class="headerlink" href="#modify-configuration-files" title="Permanent link">&para;</a></h2>
-<h3 id="1-distributed-indexing-requires-using-redis-as-cache-server-instead-of-memcached">1. Distributed indexing requires using Redis as cache server instead of Memcached.<a class="headerlink" href="#1-distributed-indexing-requires-using-redis-as-cache-server-instead-of-memcached" title="Permanent link">&para;</a></h3>
-<h3 id="2-modify-the-env-on-all-frontend-nodes-and-the-backend-node">2. Modify the <code>.env</code> on all frontend nodes and the backend node<a class="headerlink" href="#2-modify-the-env-on-all-frontend-nodes-and-the-backend-node" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>## Cache
-CACHE_PROVIDER=redis
-
-### Redis
-REDIS_HOST=&lt;your redis host&gt;
-REDIS_PORT=6379
-REDIS_PASSWORD=
-</code></pre></div>
-<h3 id="3-modify-the-seafeventsconf-on-the-backend-node">3. Modify the <code>seafevents.conf</code> on the backend node<a class="headerlink" href="#3-modify-the-seafeventsconf-on-the-backend-node" title="Permanent link">&para;</a></h3>
-<p>Disable the scheduled indexing task, because the scheduled indexing task and the distributed indexing task conflict.</p>
+<h2 id="prepare-for-distributed-indexing">Prepare for distributed indexing<a class="headerlink" href="#prepare-for-distributed-indexing" title="Permanent link">&para;</a></h2>
+<p>Distributed indexing requires using Redis as cache server instead of Memcached.</p>
+<h3 id="disable-existing-indexing">Disable existing indexing<a class="headerlink" href="#disable-existing-indexing" title="Permanent link">&para;</a></h3>
+<p>To use distributed indexing, you have to first disable existing single node indexing.</p>
+<p>Modify the <code>seafevents.conf</code> on the backend node</p>
 <div class="highlight"><pre><span></span><code>[INDEX FILES]
 enabled=true
      |
      V
 enabled=false   
 </code></pre></div>
-<h3 id="4-restart-seafile">4. Restart Seafile<a class="headerlink" href="#4-restart-seafile" title="Permanent link">&para;</a></h3>
+<h3 id="restart-seafile">Restart Seafile<a class="headerlink" href="#restart-seafile" title="Permanent link">&para;</a></h3>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Deploy in Docker</label><label for="__tabbed_1_2">Deploy from binary packages</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
