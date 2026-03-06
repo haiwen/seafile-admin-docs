@@ -22,25 +22,8 @@ services:
       - SS_LOG_TO_STDOUT=${SS_LOG_TO_STDOUT:-false}
       - SS_LOG_DIR=${SS_LOG_DIR:-/opt/seasearch/data/log}
       - SS_LOG_LEVEL=${SS_LOG_LEVEL:-info}
-      # SeaSeasrch Proxy
-      - SEAFILE_LOG_TO_STDOUT=${SEAFILE_LOG_TO_STDOUT:-false}
-      - SEATABLE_LOG_TO_STDOUT=${SEATABLE_LOG_TO_STDOUT:-false}
-      # for cluster
-      - SS_SERVER_MODE=${SS_SERVER_MODE:-}
-      - SS_CLUSTER_ID=${SS_CLUSTER_ID:-}
-      - SS_CLUSTER_PROXY_HOST=${SS_CLUSTER_PROXY_HOST:-0.0.0.0}
-      - SS_CLUSTER_PROXY_PORT=${SS_CLUSTER_PROXY_PORT:-4082}
-      - SS_CLUSTER_MANAGER_ADDR=${SS_CLUSTER_MANAGER_ADDR:-127.0.0.1:4081}
-      - SS_ETCD_USERNAME=${SS_ETCD_USERNAME:-}
-      - SS_ETCD_PASSWORD=${SS_ETCD_PASSWORD:-}
-      - SS_ETCD_ENDPOINTS=${SS_ETCD_ENDPOINTS:-127.0.0.1:2379}
-      - SS_ETCD_PREFIX=${SS_ETCD_PREFIX:-/zinc}
-      - SS_CLUSTER_PROXY_LOG_DIR=${SS_CLUSTER_PROXY_LOG_DIR:--/opt/seasearch/data/log}
-      - SS_CLUSTER_MANAGER_HOST=${SS_CLUSTER_MANAGER_HOST:-0.0.0.0}
-      - SS_CLUSTER_MANAGER_PORT=${SS_CLUSTER_MANAGER_PORT:-4081}
     networks:
       - seafile-net
-
 
 networks:
   seafile-net:
