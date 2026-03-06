@@ -20,7 +20,7 @@ services:
       - S3_AWS_REGION=${S3_AWS_REGION:-us-east-1}
       - S3_SSE_C_KEY=${S3_SSE_C_KEY:-}
       - SS_LOG_TO_STDOUT=${SS_LOG_TO_STDOUT:-false}
-      - SS_LOG_DIR=${SS_LOG_DIR:-/opt/seasearch/data/log}
+      - SS_LOG_DIR=/opt/seasearch/data/log
       - SS_LOG_LEVEL=${SS_LOG_LEVEL:-info}
     networks:
       - seafile-net
