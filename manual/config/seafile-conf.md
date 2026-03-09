@@ -72,7 +72,7 @@ max_download_dir_size=200
 
 ```
 
-After a file is uploaded via the web interface, or the cloud file browser in the client, it needs to be divided into fixed size blocks and stored into storage backend. We call this procedure "indexing". By default, the file server uses 1 thread to sequentially index the file and store the blocks one by one. This is suitable for most cases. But if you're using S3/Ceph/Swift backends, you may have more bandwidth in the storage backend for storing multiple blocks in parallel. We provide an option to define the number of concurrent threads in indexing:
+After a file is uploaded via the web interface, or the cloud file browser in the client, it needs to be divided into fixed size blocks and stored into storage backend. We call this procedure "indexing". By default, the file server uses 1 thread to sequentially index the file and store the blocks one by one. This is suitable for most cases. But if you're using S3/Ceph/Swift backends, you may have more bandwidth in the storage backend for storing multiple blocks in parallel. We provide an option to define the number of concurrent threads in indexing. Note that this option controls how many threads are used to index **one file**, but not the number of concurrently uploading files. If you have N files being uploaded concurrently, there may be at most `max_indexing_threads x N` threads indexing the files.
 
 ```
 [fileserver]
@@ -156,15 +156,6 @@ If you want to limit the type of files when uploading files, since Seafile Pro 1
 ```
 [fileserver]
 file_ext_white_list = md;mp4;mov
-```
-
-Since seafile 10.0.1, when you use go fileserver, you can set `upload_limit` and `download_limit` option in the `[fileserver]` group to limit the speed of file upload and download. It's not enabled by default. 
-
-```
-[fileserver]
-# The unit is in KB/s.
-upload_limit = 100
-download_limit = 100
 ```
 
 Since Seafile 11.0.7 Pro, you can ask file server to check virus for every file uploaded with web APIs. Find more options about virus scanning at [virus scan](../extension/virus_scan.md).
@@ -331,6 +322,32 @@ Since Pro 12.0.10 version, you can set the max threads of fs-id-list requests. W
 ```
 [fileserver]
 fs_id_list_max_threads = 20
+```
+
+Since Seafile Pro 10.0.1, when you use go fileserver, you can set `upload_limit` and `download_limit` option in the `[fileserver]` group to limit the speed of file upload and download. The limit is applied per connection. When uploading or downloading with multiple connections, the total bandwidth consumption can exceed this limit. It's not enabled by default.
+
+```
+[fileserver]
+# The unit is in KB/s.
+upload_limit = 100
+download_limit = 100
+```
+
+Starting with Seafile Pro 13.0.19, the Go Fileserver allows you to set an aggregate upload/download rate limit per user. This feature prevents individual users from monopolizing server bandwidth, serving as a fundamental Quality of Service (QoS) measure. We recommend setting this to a value that reflects your server’s total capacity.
+
+How the limit works:
+
+* **Comprehensive Coverage**: Applies to all traffic, including the web interface, API calls, desktop syncing, and share links.
+* **Symmetric Limits**: The limit applies to both uploading and downloading; however, they are measured independently. Note that you cannot set different rates for each direction.
+* **User-Based, Not Connection-Based**: Unlike upload_limit or download_limit, this restriction is bound to the user account. Bandwidth from all concurrent connections for a single user is combined for enforcement.
+* **Manual Configuration**: Unlike connection-specific limits, this setting cannot be configured via API.
+
+```
+[fileserver]
+# The default unit is in KB/s
+user_rate_limit=2000
+# You can also use human-friendly units, like MB, KB
+# user_rate_limit = 2MB
 ```
 
 ## Profiling Go Fileserver Performance
