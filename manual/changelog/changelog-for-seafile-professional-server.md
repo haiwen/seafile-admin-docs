@@ -9,6 +9,20 @@
 
 Please check our document for how to upgrade to [13.0](../upgrade/upgrade_notes_for_13.0.x.md)
 
+### 13.0.19 (2026-03-09)
+
+* [fix] Fix user page pagination not work in system admin
+* [fix] Fix search user via user ID in system admin
+* Improvement in reading configuration and document for distributed index 
+* Add option to restrict bandwidth usage for a single user across all connections
+* [fix] Fix handling of SEAF_SERVER_STORAGE_TYPE environment variable in migrate.sh
+* Add timestamps to uvicorn access log
+* [fix] seaf-gc needs to delete records in the cache when deleting objects
+* [fix] go fileserver checks if the close call is successful when writing to local storage
+* Optimization of LDAP synchronization error handling
+* [fix] Remove language configuration in seasearch which is not necessary
+
+
 ### 13.0.18 (2026-02-05)
 
 * [fix] Fix a bug in sdoc
