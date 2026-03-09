@@ -324,7 +324,7 @@ Since Pro 12.0.10 version, you can set the max threads of fs-id-list requests. W
 fs_id_list_max_threads = 20
 ```
 
-Since Seafile Pro 10.0.1, when you use go fileserver, you can set `upload_limit` and `download_limit` option in the `[fileserver]` group to limit the speed of file upload and download. The limit is applied per connection. When uploading or downloading with multiple connections, the bandwidth consumption can be added up. It's not enabled by default. 
+Since Seafile Pro 10.0.1, when you use go fileserver, you can set `upload_limit` and `download_limit` option in the `[fileserver]` group to limit the speed of file upload and download. The limit is applied per connection. When uploading or downloading with multiple connections, the total bandwidth consumption can exceed this limit. It's not enabled by default.
 
 ```
 [fileserver]
@@ -333,12 +333,14 @@ upload_limit = 100
 download_limit = 100
 ```
 
-Since Seafile Pro 13.0.19, when you use go fileserver, you can set an overall upload/download rate limit for a user. This option prevents a single user from consuming too much bandwidth for the Seafile server. It can be used as a basic QoS gurantee measure. You should set it to a reasonable value based on the available bandwidth of your server. Here is how this option works:
+Starting with Seafile Pro 13.0.19, the Go Fileserver allows you to set an aggregate upload/download rate limit per user. This feature prevents individual users from monopolizing server bandwidth, serving as a fundamental Quality of Service (QoS) measure. We recommend setting this to a value that reflects your server’s total capacity.
 
-* All upload/download activities are taken into account, including web interface/API, syncing, and share links.
-* The option controls both upload and download. However, the rate for upload and download are measured separately. That means, you cannot set different rates for upload and download.
-* Unlike `upload_limit` or `download_limit`, the limit is bound to a user, but not a single connection. Bandwidth consumptions from all connections related to a user will be added into the measure.
-* Unlike `upload_limit` or `download_limit`, the limit can not be set via API.
+How the limit works:
+
+* **Comprehensive Coverage**: Applies to all traffic, including the web interface, API calls, desktop syncing, and share links.
+* **Symmetric Limits**: The limit applies to both uploading and downloading; however, they are measured independently. Note that you cannot set different rates for each direction.
+* **User-Based, Not Connection-Based**: Unlike upload_limit or download_limit, this restriction is bound to the user account. Bandwidth from all concurrent connections for a single user is combined for enforcement.
+* **Manual Configuration**: Unlike connection-specific limits, this setting cannot be configured via API.
 
 ```
 [fileserver]
