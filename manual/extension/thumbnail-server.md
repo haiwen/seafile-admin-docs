@@ -1,6 +1,12 @@
 # Thumbnail Server Overview
 
-Since Seafile 13.0, a new component thumbnail server is added. Thumbnail server can create thumbnails for images, videos, PDFs and other file types. Thumbnail server uses a task queue based architecture, it can better handle workloads than thumbnail generating inside Seahub component.
+Since Seafile 13.0, a new component thumbnail server is added. Thumbnail server can create thumbnails for images, videos, PDFs and other file types. Thumbnail server uses a task queue based architecture, Currently, there are 3 dedicated queues for different file types:
+
+* Image queue: For fast-processing image files
+* PDF queue: For medium-speed PDF file processing
+* Video queue: For slower-processing video files
+
+This queue-based design allows it to better handle workloads than thumbnail generating inside Seahub component, as it can prioritize and process different file types concurrently with appropriate resource allocation.
 
 Use this feature by forwarding thumbnail requests directly to thumbnail server via caddy or a reverse proxy.
 
@@ -174,3 +180,8 @@ Placeholder spot for shared volumes. You may elect to store certain persistent i
 
 ### Thumbnails cannot be generated for high-resolution images
 This is because generating thumbnails for high-resolution images can impact system performance. You can raise the threshold by setting the `THUMBNAIL_IMAGE_ORIGINAL_SIZE_LIMIT` environment variable in the env file; the default is 256 (MB).
+
+### Limitations for PDF thumbnails
+The thumbnail server has built-in safeguards to prevent performance issues when processing large PDF files. The logic for handling large PDFs is as follows:
+If the PDF file size exceeds THUMBNAIL_PDF_SIZE_THRESHOLD (defaulting to 50 (MB), which can be configured in the env file) and the area of the first page exceeds 8,000,000 square points, no thumbnail will be generated.
+
