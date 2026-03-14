@@ -15,7 +15,7 @@ The [`.env`](../repo/docker/pro/env) file will be used to specify the components
 - `SEAFILE_DB_IMAGE`: Database server image, default is `mariadb:10.11`.
 - `SEAFILE_MEMCACHED_IMAGE`: Cached server image, default is `memcached:1.6.29`
 - `SEAFILE_ELASTICSEARCH_IMAGE`: Only valid in pro edition. The elasticsearch image, default is `elasticsearch:8.15.0`.
-- `SEAFILE_CADDY_IMAGE`: Caddy server image, default is `lucaslorentz/caddy-docker-proxy:2.9-alpine`.
+- `SEAFILE_CADDY_IMAGE`: Caddy server image, default is `lucaslorentz/caddy-docker-proxy:2.12-alpine`.
 - `SEADOC_IMAGE`: Only valid after integrating [SeaDoc](../extension/setup_seadoc.md). SeaDoc server image, default is `seafileltd/sdoc-server:2.0-latest`.
 - `NON_ROOT`: Run Seafile container without a root user, default is `false`
 
