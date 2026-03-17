@@ -56,7 +56,7 @@ Enable IAM Role authentication by setting the following environment variables:
 | `S3_IAM_ROLE_NAME`     | The name of the IAM Role attached to the EC2 instance.                                  | (required)    |
 | `S3_IAM_ROLE_ENDPOINT` | The endpoint of the IAM metadata service. Normally this does not need to be configured. | (none)        |
 
-After enabling IAM Role authentication:
+Before enabling IAM Role authentication, you have to make sure:
 
 * Seafile Server is running on an AWS EC2 instance
 
