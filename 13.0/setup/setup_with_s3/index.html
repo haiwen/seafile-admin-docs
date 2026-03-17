@@ -1162,6 +1162,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#using-iam-role-to-access-s3-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using IAM Role to Access S3 Storage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#example-configurations" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5362,6 +5373,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#using-iam-role-to-access-s3-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using IAM Role to Access S3 Storage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#example-configurations" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5531,6 +5553,48 @@
 </tr>
 </tbody>
 </table>
+<h3 id="using-iam-role-to-access-s3-storage">Using IAM Role to Access S3 Storage<a class="headerlink" href="#using-iam-role-to-access-s3-storage" title="Permanent link">&para;</a></h3>
+<p>Since pro 13.0.6, seafile server supports accessing S3 storage using an <strong>IAM Role</strong> when running on an <strong>AWS EC2 instance</strong>. In this mode, Seafile obtains temporary credentials from the EC2 instance metadata service, so it is <strong>not necessary to configure access_key and secret_key</strong>.</p>
+<p>In this case, Seafile will automatically retrieve temporary credentials from the EC2 metadata service to access S3.</p>
+<p>Enable IAM Role authentication by setting the following environment variables:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>S3_USE_IAM_ROLE</code></td>
+<td>Use IAM Role authentication if enabled.</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>S3_IAM_ROLE_NAME</code></td>
+<td>The name of the IAM Role attached to the EC2 instance.</td>
+<td>(required)</td>
+</tr>
+<tr>
+<td><code>S3_IAM_ROLE_ENDPOINT</code></td>
+<td>The endpoint of the IAM metadata service. Normally this does not need to be configured.</td>
+<td>(none)</td>
+</tr>
+</tbody>
+</table>
+<p>Before enabling IAM Role authentication, you have to make sure:</p>
+<ul>
+<li>
+<p>Seafile Server is running on an AWS EC2 instance</p>
+</li>
+<li>
+<p>The EC2 instance has an IAM Role attached</p>
+</li>
+<li>
+<p>The IAM Role has permission to access the target S3 bucket</p>
+</li>
+</ul>
 <div class="admonition warning">
 <p class="admonition-title">Bucket naming conventions</p>
 <p>No matter if you using AWS or any other S3 compatible object storage, we recommend that you follow <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/BucketRestrictions.html#bucketnamingrules">S3 naming rules</a>. When you create buckets on S3, please read the <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html">S3 rules for naming</a> first. Note, especially do not use capital letters in the name of the bucket (do not use camel-style naming, such as MyCommitObjects).</p>
