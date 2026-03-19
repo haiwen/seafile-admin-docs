@@ -1,5 +1,14 @@
 # SeaDrive Client Changelog
 
+### 3.0.20 (2026/03/20)
+
+* \[win] Improving freeing large amount of cached files
+* Support deleting file sync error records
+* Fix some memory leaks
+* \[linux] Support executable permission
+* \[linux] Improve unmounting command when restart
+* \[linux] Fetch library list every 30 seconds instead of 1 second
+
 ### 3.0.19 (2025/12/17)
 
 * \[win] Fix file deletion bug when renaming a placeholder file into new name with only case difference
