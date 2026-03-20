@@ -2,6 +2,10 @@
 
 ## 9.0
 
+### 9.0.17 (2026/03/20)
+
+* \[win] Update app signature certificate
+
 ### 9.0.16 (2026/01/09)
 
 * Fix bug of auto unsyncing library when switching to an account with the same user name
