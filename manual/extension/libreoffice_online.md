@@ -127,8 +127,14 @@ docker compose down
 docker compose up -d
 ```
 
-### CollaboraOnline server on a separate host
-For independent deployment of CollaboraOnline on a single server, please refer to the [official documentation](https://sdk.collaboraonline.com/docs/installation/CODE_Docker_image.html#code-docker-image). After a successful deployment, you only need to specify the values of the following fields in `seahub_settings.py` and then restart the service.
+### CollaboraOnline server on a standalone node
+
+!!! note
+    To deploy the CollaboraOnline on a standalone node, you need to refer to the [official Collabora documentation](https://sdk.collaboraonline.com/docs/installation/CODE_Docker_image.html#code-docker-image) instead of using the `collabora.yml` provided by Seafile. 
+    
+    The CollaboraOnline must be configured to use HTTPS on the standard port (443), and requests should be reverse-proxied to Collabora’s port 9980.
+
+After a successful deployment, you only need to specify the values of the following fields in `seahub_settings.py` and then restart the service.
 ```py
 OFFICE_SERVER_TYPE = 'CollaboraOffice'
 ENABLE_OFFICE_WEB_APP = True
