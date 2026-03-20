@@ -2620,10 +2620,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#collaboraonline-server-on-a-separate-host" class="md-nav__link">
+  <a href="#collaboraonline-server-on-a-standalone-node" class="md-nav__link">
     <span class="md-ellipsis">
       
-        CollaboraOnline server on a separate host
+        CollaboraOnline server on a standalone node
       
     </span>
   </a>
@@ -5411,10 +5411,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#collaboraonline-server-on-a-separate-host" class="md-nav__link">
+  <a href="#collaboraonline-server-on-a-standalone-node" class="md-nav__link">
     <span class="md-ellipsis">
       
-        CollaboraOnline server on a separate host
+        CollaboraOnline server on a standalone node
       
     </span>
   </a>
@@ -5543,8 +5543,13 @@ chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/
 docker<span class="w"> </span>compose<span class="w"> </span>down
 docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
-<h3 id="collaboraonline-server-on-a-separate-host">CollaboraOnline server on a separate host<a class="headerlink" href="#collaboraonline-server-on-a-separate-host" title="Permanent link">&para;</a></h3>
-<p>For independent deployment of CollaboraOnline on a single server, please refer to the <a href="https://sdk.collaboraonline.com/docs/installation/CODE_Docker_image.html#code-docker-image">official documentation</a>. After a successful deployment, you only need to specify the values of the following fields in <code>seahub_settings.py</code> and then restart the service.
+<h3 id="collaboraonline-server-on-a-standalone-node">CollaboraOnline server on a standalone node<a class="headerlink" href="#collaboraonline-server-on-a-standalone-node" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To deploy the CollaboraOnline on a standalone node, you need to refer to the <a href="https://sdk.collaboraonline.com/docs/installation/CODE_Docker_image.html#code-docker-image">official Collabora documentation</a> instead of using the <code>collabora.yml</code> provided by Seafile. </p>
+<p>The CollaboraOnline must be configured to use HTTPS on the standard port (443), and requests should be reverse-proxied to Collabora’s port 9980.</p>
+</div>
+<p>After a successful deployment, you only need to specify the values of the following fields in <code>seahub_settings.py</code> and then restart the service.
 <div class="highlight"><pre><span></span><code><span class="n">OFFICE_SERVER_TYPE</span> <span class="o">=</span> <span class="s1">&#39;CollaboraOffice&#39;</span>
 <span class="n">ENABLE_OFFICE_WEB_APP</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">OFFICE_WEB_APP_BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://&lt;Your CollaboraOnline host url&gt;/hosting/discovery&#39;</span>
