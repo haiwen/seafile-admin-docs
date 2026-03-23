@@ -2444,6 +2444,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#limitations-for-pdf-thumbnails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limitations for PDF thumbnails
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5399,6 +5410,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#limitations-for-pdf-thumbnails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limitations for PDF thumbnails
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5425,7 +5447,13 @@
 
 
 <h1 id="thumbnail-server-overview">Thumbnail Server Overview<a class="headerlink" href="#thumbnail-server-overview" title="Permanent link">&para;</a></h1>
-<p>Since Seafile 13.0, a new component thumbnail server is added. Thumbnail server can create thumbnails for images, videos, PDFs and other file types. Thumbnail server uses a task queue based architecture, it can better handle workloads than thumbnail generating inside Seahub component.</p>
+<p>Since Seafile 13.0, a new component thumbnail server is added. Thumbnail server can create thumbnails for images, videos, PDFs and other file types. Thumbnail server uses a task queue based architecture, Currently, there are 3 dedicated queues for different file types:</p>
+<ul>
+<li>Image queue: For fast-processing image files</li>
+<li>PDF queue: For medium-speed PDF file processing</li>
+<li>Video queue: For slower-processing video files</li>
+</ul>
+<p>This queue-based design allows it to better handle workloads than thumbnail generating inside Seahub component, as it can prioritize and process different file types concurrently with appropriate resource allocation.</p>
 <p>Use this feature by forwarding thumbnail requests directly to thumbnail server via caddy or a reverse proxy.</p>
 <h2 id="how-to-configure-and-run">How to configure and run<a class="headerlink" href="#how-to-configure-and-run" title="Permanent link">&para;</a></h2>
 <p>First download <code>thumbnail-server.yml</code> to Seafile directory:</p>
@@ -5639,6 +5667,9 @@ server {
 <h2 id="common-issues-when-settings-up-thumbnail-server">Common issues when settings up thumbnail server<a class="headerlink" href="#common-issues-when-settings-up-thumbnail-server" title="Permanent link">&para;</a></h2>
 <h3 id="thumbnails-cannot-be-generated-for-high-resolution-images">Thumbnails cannot be generated for high-resolution images<a class="headerlink" href="#thumbnails-cannot-be-generated-for-high-resolution-images" title="Permanent link">&para;</a></h3>
 <p>This is because generating thumbnails for high-resolution images can impact system performance. You can raise the threshold by setting the <code>THUMBNAIL_IMAGE_ORIGINAL_SIZE_LIMIT</code> environment variable in the env file; the default is 256 (MB).</p>
+<h3 id="limitations-for-pdf-thumbnails">Limitations for PDF thumbnails<a class="headerlink" href="#limitations-for-pdf-thumbnails" title="Permanent link">&para;</a></h3>
+<p>The thumbnail server has built-in safeguards to prevent performance issues when processing large PDF files. The logic for handling large PDFs is as follows:
+If the PDF file size exceeds THUMBNAIL_PDF_SIZE_THRESHOLD (defaulting to 50 (MB), which can be configured in the env file) and the area of the first page exceeds 8,000,000 square points, no thumbnail will be generated.</p>
 
 
 
