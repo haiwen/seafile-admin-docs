@@ -111,7 +111,8 @@ SEAFILE_MYSQL_DB_SEAFILE_DB_NAME=seafile_db
 SEAFILE_MYSQL_DB_SEAHUB_DB_NAME=seahub_db
 
 ## Cache
-CACHE_PROVIDER=redis # options: redis (recommend), memcached
+### options: redis (recommend), memcached
+CACHE_PROVIDER=redis
 
 ### Redis
 REDIS_HOST='<your redis host>'

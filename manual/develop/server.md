@@ -192,7 +192,7 @@ seaf-server -F /root/dev/conf -d /root/dev/seafile-data -l /root/dev/logs/seafil
 
 ```
 export CCNET_CONF_DIR=/root/dev/conf
-export SEAFILE_CONF_DIR=/root/dev/seafile-data
+export SEAFILE_DATA_DIR=/root/dev/seafile-data
 export SEAFILE_CENTRAL_CONF_DIR=/root/dev/conf
 export SEAHUB_DIR=/root/dev/source-code/seahub
 export SEAHUB_LOG_DIR=/root/dev/logs
