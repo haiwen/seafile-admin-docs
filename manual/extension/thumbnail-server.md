@@ -84,6 +84,18 @@ Then modify the `.env` file according to your environment. The following fields 
 
     Alternatively, you can use an external URL for the thumbnail server to access Seahub, like https://seafile.example.com . In this scenario, it is essential to ensure that the CA is trusted on the thumbnail server node.
 
+!!! tip "About SEAF_SERVER_STORAGE_TYPE"
+
+    For storage backends such as ceph and swift, you may remove the `SEAF_SERVER_STORAGE_TYPE` configuration item at present, and complete the relevant storage configuration through the seafile.conf file.
+    
+    For standalone deployment of the thumbnail-server on a separate machine (apart from the Seafile server):
+    
+    1. The value of `SEAF_SERVER_STORAGE_TYPE` cannot be set to disk, because the standalone thumbnail-server cannot read the data stored on the local disk of the Seafile server.  
+
+    2. If you use multiple storage backends, you can set `SEAF_SERVER_STORAGE_TYPE` to multiple. And the config file should be added
+
+    3. You can copy the seafile.conf file from the Seafile server node to the config directory of the thumbnail-server node. 
+
 
 
 You can run thumbnail server with the following command:
