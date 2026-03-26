@@ -1,5 +1,9 @@
 # SeaDrive Client Changelog
 
+### 3.0.21 (2026/03/26)
+
+* Fix crash when handling file locking
+
 ### 3.0.20 (2026/03/20)
 
 * \[win] Improving freeing large amount of cached files
