@@ -188,7 +188,6 @@ $ tree -L 2 /opt/seafile
 │   ├── migrate-repo.sh
 │   ├── migrate.py
 │   ├── migrate.sh
-│   ├── migrate_ldapusers.py
 │   ├── parse_seahub_db.py
 │   ├── pro
 │   ├── remove-objs.py
@@ -197,13 +196,9 @@ $ tree -L 2 /opt/seafile
 │   ├── run_index_master.sh
 │   ├── run_index_worker.sh
 │   ├── runtime
-│   ├── seaf-backup-cmd.py
-│   ├── seaf-backup-cmd.sh
-│   ├── seaf-encrypt.sh
 │   ├── seaf-fsck.sh
 │   ├── seaf-fuse.sh
 │   ├── seaf-gc.sh
-│   ├── seaf-import.sh
 │   ├── seafile
 │   ├── seafile-background-tasks.sh
 │   ├── seafile-monitor.sh
@@ -339,7 +334,6 @@ The directory layout then looks as follows:
 │   ├── migrate-repo.sh
 │   ├── migrate.py
 │   ├── migrate.sh
-│   ├── migrate_ldapusers.py
 │   ├── parse_seahub_db.py
 │   ├── pro
 │   ├── remove-objs.py
@@ -348,13 +342,9 @@ The directory layout then looks as follows:
 │   ├── run_index_master.sh
 │   ├── run_index_worker.sh
 │   ├── runtime
-│   ├── seaf-backup-cmd.py
-│   ├── seaf-backup-cmd.sh
-│   ├── seaf-encrypt.sh
 │   ├── seaf-fsck.sh
 │   ├── seaf-fuse.sh
 │   ├── seaf-gc.sh
-│   ├── seaf-import.sh
 │   ├── seafile
 │   ├── seafile-background-tasks.sh
 │   ├── seafile-monitor.sh
