@@ -188,6 +188,7 @@ $ tree -L 2 /opt/seafile
 │   ├── migrate-repo.sh
 │   ├── migrate.py
 │   ├── migrate.sh
+│   ├── migrate_ldapusers.py
 │   ├── parse_seahub_db.py
 │   ├── pro
 │   ├── remove-objs.py
@@ -334,6 +335,7 @@ The directory layout then looks as follows:
 │   ├── migrate-repo.sh
 │   ├── migrate.py
 │   ├── migrate.sh
+│   ├── migrate_ldapusers.py
 │   ├── parse_seahub_db.py
 │   ├── pro
 │   ├── remove-objs.py
