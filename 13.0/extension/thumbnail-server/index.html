@@ -5574,6 +5574,22 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 <p>The INNER_SEAHUB_SERVICE_URL should point to the Seahub URL located at one of the front-end nodes, such as http://192.168.0.10 .</p>
 <p>Alternatively, you can use an external URL for the thumbnail server to access Seahub, like https://seafile.example.com . In this scenario, it is essential to ensure that the CA is trusted on the thumbnail server node.</p>
 </div>
+<div class="admonition tip">
+<p class="admonition-title">About SEAF_SERVER_STORAGE_TYPE</p>
+<p>For storage backends such as ceph and swift, you may remove the <code>SEAF_SERVER_STORAGE_TYPE</code> configuration item at present, and complete the relevant storage configuration through the seafile.conf file.</p>
+<p>For standalone deployment of the thumbnail-server on a separate machine (apart from the Seafile server):</p>
+<ol>
+<li>
+<p>The value of <code>SEAF_SERVER_STORAGE_TYPE</code> cannot be set to disk, because the standalone thumbnail-server cannot read the data stored on the local disk of the Seafile server.  </p>
+</li>
+<li>
+<p>If you use multiple storage backends, you can set <code>SEAF_SERVER_STORAGE_TYPE</code> to multiple. And the config file should be added</p>
+</li>
+<li>
+<p>You can copy the seafile.conf file from the Seafile server node to the config directory of the thumbnail-server node. </p>
+</li>
+</ol>
+</div>
 <p>You can run thumbnail server with the following command:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
