@@ -9,6 +9,14 @@
 
 Please check our document for how to upgrade to [13.0](../upgrade/upgrade_notes_for_13.0.x.md)
 
+
+### 13.0.20 (2026-03-31)
+
+* [fix] Fix multiple selection by shift key in sharing links
+* [fix] Support reading MySQL port via environment variables
+* [fix] Fix visiting system admin panel devices/desktop page
+
+
 ### 13.0.19 (2026-03-09)
 
 * [fix] Fix user page pagination not work in system admin
