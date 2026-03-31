@@ -5646,18 +5646,28 @@ MD_MAX_CACHE_SIZE=1GB
 </tr>
 <tr>
 <td><code>SEAF_SERVER_STORAGE_TYPE</code></td>
-<td>What kind of the Seafile data for storage (must be same as in the Seafile server deployment configuration). Available options are <code>disk</code> (i.e., local disk), <code>s3</code> and <code>multiple</code> (see the details of <a href="../../setup/setup_with_multiple_storage_backends/">multiple storage backends</a>)</td>
+<td>What kind of the Seafile data for storage (must be same as in the Seafile server deployment configuration). Available options are <code>disk</code> (i.e., local disk), <code>s3</code>, <code>multiple</code> or empty (see the details of <a href="../../setup/setup_with_multiple_storage_backends/">multiple storage backends</a>)</td>
 <td><code>disk</code></td>
 </tr>
 <tr>
 <td><code>MD_STORAGE_TYPE</code></td>
-<td>Where the metadata storage in. Available options are <code>disk</code> (local storage) and <code>s3</code></td>
+<td>Where the metadata storage in. Available options are <code>disk</code>, <code>s3</code> and <code>ceph</code></td>
 <td><code>disk</code></td>
 </tr>
 <tr>
 <td><code>S3_MD_BUCKET</code></td>
 <td>Your S3 bucket name for the bucket storing metadata</td>
 <td>Required when using S3 (<code>MD_STORAGE_TYPE=s3</code>)</td>
+</tr>
+<tr>
+<td><code>MD_CEPH_CONFIG</code></td>
+<td>Your Ceph storage configuration file, like <code>/etc/ceph/ceph.conf</code></td>
+<td>Required when using ceph (<code>MD_STORAGE_TYPE=ceph</code>)</td>
+</tr>
+<tr>
+<td><code>MD_CEPH_POOL</code></td>
+<td>Your Ceph storage pool for md-server, like <code>seafile-md-bucket</code></td>
+<td>Required when using ceph (<code>MD_STORAGE_TYPE=ceph</code>)</td>
 </tr>
 <tr>
 <td><code>MD_CHECK_UPDATE_INTERVAL</code></td>
