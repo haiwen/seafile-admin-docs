@@ -93,7 +93,7 @@ This part of configurations is only valid in `CACHE_PROVIDER=memcached`:
     Since Seafile Pro 13.0, in order to facilitate users to deploy Seafile's related extension components and other services in the future, a section will be provided in `.env` to store the **S3 Configurations** for Seafile and some extension components (such as *SeaSearch*, *Metadata server*). You can locate it with the title bar **Storage configurations for S3**.
 
 !!! warning "S3 configurations in `.env` only support single S3 storage backend mode"
-    The Seafile server only support configuring S3 in `.env` for **single S3 storage backend mode** (i.e., when `SEAF_SERVER_STORAGE_TYPE=s3`). If you would like to use other storage backend (e.g., [Ceph](./setup_with_ceph.md), [Swift](./setup_with_swift.md)) or other settings that can only be set in `seafile.conf` (like [multiple storage backends](./setup_with_multiple_storage_backends.md)), please set `SEAF_SERVER_STORAGE_TYPE` to `multiple`, and set `MD_STORAGE_TYPE` and `SS_STORAGE_TYPE` according to your configurations.
+    The Seafile server only support configuring S3 in `.env` for **single S3 storage backend mode** (i.e., when `SEAF_SERVER_STORAGE_TYPE=s3`). If you would like to use other storage backend (e.g., [Ceph](./setup_with_ceph.md), [Swift](./setup_with_swift.md)) or other settings that can only be set in `seafile.conf`, please set `SEAF_SERVER_STORAGE_TYPE` to empty or delete it, and set `MD_STORAGE_TYPE` and `SS_STORAGE_TYPE` according to your configurations.
 
 !!! note "The S3 configurations only valid with at least one `STORAGE_TYPE` has specified to `s3`"
     Now there are three (pro) and one (cluster) ***STORAGE_TYPE*** we provided in `.env`:
