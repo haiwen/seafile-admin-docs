@@ -13,7 +13,7 @@ seafile-machine# sudo scp user@ceph-admin-node:/etc/ceph/ /etc
 
 ## Install and enable memcached
 
-For best performance, Seafile requires install memcached or redis and enable cache for objects. 
+For best performance, Seafile requires install redis or memecached and enable cache for objects. 
 
 We recommend to allocate at least 128MB memory for object cache.
 
@@ -26,6 +26,10 @@ File search and WebDAV functions rely on Python Ceph library installed in the sy
 sudo apt-get install python3-rados
 
 ```
+
+## Set SEAF_SERVER_STORAGE_TYPE in .env
+
+SEAF_SERVER_STORAGE_TYPE should be left as empty or removed in .env file. So that Seafile will read storage configuration from seafile.conf
 
 ## Edit seafile configuration
 
