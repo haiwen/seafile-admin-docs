@@ -74,7 +74,7 @@ This part of configurations is only valid in `CACHE_PROVIDER=memcached`:
 
 ## S3 storage backend configurations (pro)
 
-- `SEAF_SERVER_STORAGE_TYPE`: What kind of the Seafile data for storage. Available options are `disk` (i.e., local disk), `s3` and `multiple` (see the details of [multiple storage backends](../setup/setup_with_multiple_storage_backends.md))
+- `SEAF_SERVER_STORAGE_TYPE`: What kind of the Seafile data for storage. Available options are `disk` (i.e., local disk), `s3`, `multiple` or left as empty (Seafile will read seafile.conf). (see the details of [multiple storage backends](../setup/setup_with_multiple_storage_backends.md))
 - `S3_COMMIT_BUCKET`: S3 storage backend fs objects bucket
 - `S3_FS_BUCKET`: S3 storage backend block objects bucket
 - `S3_BLOCK_BUCKET`: S3 storage backend block objects bucket
