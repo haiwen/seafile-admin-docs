@@ -1211,6 +1211,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#set-seaf_server_storage_type-in-env" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set SEAF_SERVER_STORAGE_TYPE in .env
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#edit-seafile-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5371,6 +5382,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#set-seaf_server_storage_type-in-env" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set SEAF_SERVER_STORAGE_TYPE in .env
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#edit-seafile-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5419,12 +5441,14 @@
 <div class="highlight"><pre><span></span><code>seafile-machine# sudo scp user@ceph-admin-node:/etc/ceph/ /etc
 </code></pre></div>
 <h2 id="install-and-enable-memcached">Install and enable memcached<a class="headerlink" href="#install-and-enable-memcached" title="Permanent link">&para;</a></h2>
-<p>For best performance, Seafile requires install memcached or redis and enable cache for objects. </p>
+<p>For best performance, Seafile requires install redis or memecached and enable cache for objects. </p>
 <p>We recommend to allocate at least 128MB memory for object cache.</p>
 <h2 id="install-python-ceph-library">Install Python Ceph Library<a class="headerlink" href="#install-python-ceph-library" title="Permanent link">&para;</a></h2>
 <p>File search and WebDAV functions rely on Python Ceph library installed in the system.</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>python3-rados
 </code></pre></div>
+<h2 id="set-seaf_server_storage_type-in-env">Set SEAF_SERVER_STORAGE_TYPE in .env<a class="headerlink" href="#set-seaf_server_storage_type-in-env" title="Permanent link">&para;</a></h2>
+<p>SEAF_SERVER_STORAGE_TYPE should be left as empty or removed in .env file. So that Seafile will read storage configuration from seafile.conf</p>
 <h2 id="edit-seafile-configuration">Edit seafile configuration<a class="headerlink" href="#edit-seafile-configuration" title="Permanent link">&para;</a></h2>
 <p>Edit <code>seafile.conf</code>, add the following lines:</p>
 <div class="highlight"><pre><span></span><code>[block_backend]
