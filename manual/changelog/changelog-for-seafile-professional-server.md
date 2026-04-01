@@ -95,6 +95,12 @@ Please check our document for how to upgrade to [13.0](../upgrade/upgrade_notes_
 
 Please check our document for how to upgrade to [12.0](../upgrade/upgrade_notes_for_12.0.x.md)
 
+
+### 12.0.22 (2026-04-01)
+
+* Updated included Django version
+* [fix] Fix LDAP group syncing bug when Seafile connect LDAP server timeout
+
 ### 12.0.21 (2026-02-12)
 
 * [fix] [security] Fix read-only permission check for sdoc. Thanks to [Paolo Gabriele Schiraldi](https://github.com/gabdevele) for reporting the issue.
