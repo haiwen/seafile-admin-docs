@@ -2360,22 +2360,34 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#common-issues-when-settings-up-seadoc" class="md-nav__link">
+  <a href="#how-to-debug-seadoc-loading-issue" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Common issues when settings up SeaDoc
+        How to debug SeaDoc loading issue
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Common issues when settings up SeaDoc">
+    <nav class="md-nav" aria-label="How to debug SeaDoc loading issue">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#server-is-disconnected-reconnecting-error-when-open-a-sdoc" class="md-nav__link">
+  <a href="#how-does-seadoc-sdoc-file-online-view-work-in-seafile" class="md-nav__link">
     <span class="md-ellipsis">
       
-        "Server is disconnected. Reconnecting…" error when open a sdoc
+        How does SeaDoc (sdoc) file online view work in Seafile
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How does SeaDoc (sdoc) file online view work in Seafile">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#debug-the-first-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debug the first step
       
     </span>
   </a>
@@ -2383,13 +2395,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#load-doc-content-error-when-open-a-sdoc" class="md-nav__link">
+  <a href="#debug-the-second-step" class="md-nav__link">
     <span class="md-ellipsis">
       
-        "Load doc content error" when open a sdoc
+        Debug the second step
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -5432,22 +5449,34 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#common-issues-when-settings-up-seadoc" class="md-nav__link">
+  <a href="#how-to-debug-seadoc-loading-issue" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Common issues when settings up SeaDoc
+        How to debug SeaDoc loading issue
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Common issues when settings up SeaDoc">
+    <nav class="md-nav" aria-label="How to debug SeaDoc loading issue">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#server-is-disconnected-reconnecting-error-when-open-a-sdoc" class="md-nav__link">
+  <a href="#how-does-seadoc-sdoc-file-online-view-work-in-seafile" class="md-nav__link">
     <span class="md-ellipsis">
       
-        "Server is disconnected. Reconnecting…" error when open a sdoc
+        How does SeaDoc (sdoc) file online view work in Seafile
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How does SeaDoc (sdoc) file online view work in Seafile">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#debug-the-first-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debug the first step
       
     </span>
   </a>
@@ -5455,13 +5484,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#load-doc-content-error-when-open-a-sdoc" class="md-nav__link">
+  <a href="#debug-the-second-step" class="md-nav__link">
     <span class="md-ellipsis">
       
-        "Load doc content error" when open a sdoc
+        Debug the second step
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -5710,17 +5744,20 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 </ul>
 <h2 id="database-used-by-seadoc">Database used by SeaDoc<a class="headerlink" href="#database-used-by-seadoc" title="Permanent link">&para;</a></h2>
 <p>SeaDoc uses one database table <code>seahub_db.sdoc_operation_log</code> to store operation logs. The database table is cleaned automatically.</p>
-<h2 id="common-issues-when-settings-up-seadoc">Common issues when settings up SeaDoc<a class="headerlink" href="#common-issues-when-settings-up-seadoc" title="Permanent link">&para;</a></h2>
-<h3 id="server-is-disconnected-reconnecting-error-when-open-a-sdoc">"Server is disconnected. Reconnecting…" error when open a sdoc<a class="headerlink" href="#server-is-disconnected-reconnecting-error-when-open-a-sdoc" title="Permanent link">&para;</a></h3>
-<p>This is because websocket for sdoc-server has not been properly configured. If you use the default Caddy proxy, it should be setup correctly.</p>
-<p>But if you use your own proxy, you need to make sure it properly proxy <code>your-sdoc-server-domain/socket.io</code> to <code>sdoc-server-docker-image-address/socket.io</code></p>
-<h3 id="load-doc-content-error-when-open-a-sdoc">"Load doc content error" when open a sdoc<a class="headerlink" href="#load-doc-content-error-when-open-a-sdoc" title="Permanent link">&para;</a></h3>
-<p>This is because the browser cannot correctly load content from sdoc-server. Make sure</p>
-<ul>
-<li>SEADOC_SERVER_URL is correctly set in <code>.env</code></li>
-<li>sdoc-server is accessible through the browser. You can check this by visiting https://your-sdoc-server-domain/sdoc-server/ in your browser. If you see "Welcome to sdoc-server," then sdoc-server is successfully accessible via the browser.</li>
-</ul>
-<p>You can open developer console of the browser to further debug the issue.</p>
+<h2 id="how-to-debug-seadoc-loading-issue">How to debug SeaDoc loading issue<a class="headerlink" href="#how-to-debug-seadoc-loading-issue" title="Permanent link">&para;</a></h2>
+<h3 id="how-does-seadoc-sdoc-file-online-view-work-in-seafile">How does SeaDoc (sdoc) file online view work in Seafile<a class="headerlink" href="#how-does-seadoc-sdoc-file-online-view-work-in-seafile" title="Permanent link">&para;</a></h3>
+<p>Here is the workflow when a user opens an sdoc file in a browser:</p>
+<ol>
+<li>When a user opens an sdoc file in the browser, a document loading request is sent to the sdoc-server.</li>
+<li>The sdoc-server retrieves the file contents from the Seafile server.</li>
+<li>The sdoc-server then sends the document content back to the browser.</li>
+</ol>
+<h4 id="debug-the-first-step">Debug the first step<a class="headerlink" href="#debug-the-first-step" title="Permanent link">&para;</a></h4>
+<p>In the first step, the browser will utilize the SEADOC_SERVER_URL to connect to the sdoc-server. If you have deployed SeaDoc alongside the Seafile server on a single server, the SEADOC_SERVER_URL is automatically set to <span SEAFILE_SERVER_HOSTNAME="SEAFILE_SERVER_HOSTNAME" class="arithmatex">\({SEAFILE_SERVER_PROTOCOL}://\)</span>/sdoc-server. Conversely, if you have deployed SeaDoc as a standalone application, you will need to manually set the SEADOC_SERVER_URL in the .env file of the Seafile server.</p>
+<p>To verify that the sdoc-server is accessible through the browser, visit  https://your-sdoc-server-domain/sdoc-server/ . If you see the message "Welcome to sdoc-server," it indicates that the sdoc-server is successfully accessible via the browser. If not, you can open the developer console in your browser to further investigate the issue.</p>
+<h4 id="debug-the-second-step">Debug the second step<a class="headerlink" href="#debug-the-second-step" title="Permanent link">&para;</a></h4>
+<p>In the second step, if you have deployed SeaDoc with the Seafile server, the sdoc-server will connect to the Seafile server using "http://seafile" (as written in the seadoc.yml file), where "seafile" is the Docker service name for the Seafile server. If you have deployed SeaDoc as a standalone application, you will need to set the SEAFILE_SERVER_PROTOCOL and SEAFILE_SERVER_HOSTNAME in the environment file for the sdoc-server.</p>
+<p>If you encounter any issues during this step, you can check the logs of the sdoc-server for more information.</p>
 
 
 
