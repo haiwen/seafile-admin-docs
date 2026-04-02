@@ -204,21 +204,19 @@ SeaDoc uses one database table `seahub_db.sdoc_operation_log` to store operation
 
 ## How to debug SeaDoc loading issue
 
-### How does SeaDoc (sdoc) file online view work in Seafile
-
 Here is the workflow when a user opens an sdoc file in a browser:
 
 1. When a user opens an sdoc file in the browser, a document loading request is sent to the sdoc-server.
 2. The sdoc-server retrieves the file contents from the Seafile server.
 3. The sdoc-server then sends the document content back to the browser.
 
-#### Debug the first step
+### Debug the first step
 
 In the first step, the browser will utilize the SEADOC_SERVER_URL to connect to the sdoc-server. If you have deployed SeaDoc alongside the Seafile server on a single server, the SEADOC_SERVER_URL is automatically set to ${SEAFILE_SERVER_PROTOCOL}://${SEAFILE_SERVER_HOSTNAME}/sdoc-server. Conversely, if you have deployed SeaDoc as a standalone application, you will need to manually set the SEADOC_SERVER_URL in the .env file of the Seafile server.
 
 To verify that the sdoc-server is accessible through the browser, visit  https://your-sdoc-server-domain/sdoc-server/ . If you see the message "Welcome to sdoc-server," it indicates that the sdoc-server is successfully accessible via the browser. If not, you can open the developer console in your browser to further investigate the issue.
 
-#### Debug the second step
+### Debug the second step
 
 In the second step, if you have deployed SeaDoc with the Seafile server, the sdoc-server will connect to the Seafile server using "http://seafile" (as written in the seadoc.yml file), where "seafile" is the Docker service name for the Seafile server. If you have deployed SeaDoc as a standalone application, you will need to set the SEAFILE_SERVER_PROTOCOL and SEAFILE_SERVER_HOSTNAME in the environment file for the sdoc-server.
 
