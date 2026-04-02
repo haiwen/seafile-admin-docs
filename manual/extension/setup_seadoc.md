@@ -202,19 +202,26 @@ Placeholder spot for shared volumes. You may elect to store certain persistent i
 
 SeaDoc uses one database table `seahub_db.sdoc_operation_log` to store operation logs. The database table is cleaned automatically.
 
-## Common issues when settings up SeaDoc
+## How to debug SeaDoc loading issue
 
-### "Server is disconnected. Reconnecting…" error when open a sdoc
+### How does SeaDoc (sdoc) file online view work in Seafile
 
-This is because websocket for sdoc-server has not been properly configured. If you use the default Caddy proxy, it should be setup correctly.
+Here is the workflow when a user opens an sdoc file in a browser:
 
-But if you use your own proxy, you need to make sure it properly proxy `your-sdoc-server-domain/socket.io` to `sdoc-server-docker-image-address/socket.io`
+1. When a user opens an sdoc file in the browser, a document loading request is sent to the sdoc-server.
+2. The sdoc-server retrieves the file contents from the Seafile server.
+3. The sdoc-server then sends the document content back to the browser.
 
-### "Load doc content error" when open a sdoc
+#### Debug the first step
 
-This is because the browser cannot correctly load content from sdoc-server. Make sure
+In the first step, the browser will utilize the SEADOC_SERVER_URL to connect to the sdoc-server. If you have deployed SeaDoc alongside the Seafile server on a single server, the SEADOC_SERVER_URL is automatically set to ${SEAFILE_SERVER_PROTOCOL}://${SEAFILE_SERVER_HOSTNAME}/sdoc-server. Conversely, if you have deployed SeaDoc as a standalone application, you will need to manually set the SEADOC_SERVER_URL in the .env file of the Seafile server.
 
-* SEADOC_SERVER_URL is correctly set in `.env`
-* sdoc-server is accessible through the browser. You can check this by visiting https://your-sdoc-server-domain/sdoc-server/ in your browser. If you see "Welcome to sdoc-server," then sdoc-server is successfully accessible via the browser.
+To verify that the sdoc-server is accessible through the browser, visit  https://your-sdoc-server-domain/sdoc-server/ . If you see the message "Welcome to sdoc-server," it indicates that the sdoc-server is successfully accessible via the browser. If not, you can open the developer console in your browser to further investigate the issue.
 
-You can open developer console of the browser to further debug the issue.
+#### Debug the second step
+
+In the second step, if you have deployed SeaDoc with the Seafile server, the sdoc-server will connect to the Seafile server using "http://seafile" (as written in the seadoc.yml file), where "seafile" is the Docker service name for the Seafile server. If you have deployed SeaDoc as a standalone application, you will need to set the SEAFILE_SERVER_PROTOCOL and SEAFILE_SERVER_HOSTNAME in the environment file for the sdoc-server.
+
+If you encounter any issues during this step, you can check the logs of the sdoc-server for more information.
+
+
