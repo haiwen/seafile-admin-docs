@@ -212,7 +212,7 @@ Here is the workflow when a user opens an sdoc file in a browser:
 
 ### Debug the first step
 
-In the first step, the browser will utilize the SEADOC_SERVER_URL to connect to the sdoc-server. If you have deployed SeaDoc alongside the Seafile server on a single server, the SEADOC_SERVER_URL is automatically set to ${SEAFILE_SERVER_PROTOCOL}://${SEAFILE_SERVER_HOSTNAME}/sdoc-server. Conversely, if you have deployed SeaDoc as a standalone application, you will need to manually set the SEADOC_SERVER_URL in the .env file of the Seafile server.
+In the first step, the browser will utilize the SEADOC_SERVER_URL to connect to the sdoc-server. If you have deployed SeaDoc alongside the Seafile server on a single server, the SEADOC_SERVER_URL is automatically set to `${SEAFILE_SERVER_PROTOCOL}://${SEAFILE_SERVER_HOSTNAME}/sdoc-server`. Conversely, if you have deployed SeaDoc as a standalone application, you will need to manually set the SEADOC_SERVER_URL in the .env file of the Seafile server.
 
 To verify that the sdoc-server is accessible through the browser, visit  https://your-sdoc-server-domain/sdoc-server/ . If you see the message "Welcome to sdoc-server," it indicates that the sdoc-server is successfully accessible via the browser. If not, you can open the developer console in your browser to further investigate the issue.
 
