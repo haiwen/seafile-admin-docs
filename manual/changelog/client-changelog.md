@@ -2,6 +2,19 @@
 
 ## 9.0
 
+### 9.0.18 (2026/04/10)
+
+* Resume file download from the last offset when it's interrupted
+* \[mac] Fix a potential crash for Finder sync extension
+* \[CLI] Unmount appimage mount point after seaf-cli stop
+* \[CLI] Do not print "no such table: Certs" errors in log
+* Update timestamp for file sync errors
+* \[win] Don't record indexing error when a file is updated during indexing
+* UI improvements to search results in cloud file browser
+* \[win] Handle special characters in filename correctly when opening a file from web browser
+* Don't permanently display 502/503/504 server errors in file sync errors
+* Fix a crash when handling file locks
+
 ### 9.0.17 (2026/03/20)
 
 * \[win] Update app signature certificate
