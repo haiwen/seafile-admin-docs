@@ -162,28 +162,24 @@ SEAFILE_MYSQL_DB_PASSWORD=<your MySQL password>
 SEAFILE_MYSQL_DB_CCNET_DB_NAME=ccnet_db
 SEAFILE_MYSQL_DB_SEAFILE_DB_NAME=seafile_db
 SEAFILE_MYSQL_DB_SEAHUB_DB_NAME=seahub_db
+
+## Cache
+### options: redis (recommend), memcached
+CACHE_PROVIDER=redis
+
+### Redis
+REDIS_HOST='<your redis host>'
+REDIS_PORT=6379
+REDIS_PASSWORD=
+
+### Memcached
+MEMCACHED_HOST='<your memcached host>'
+MEMCACHED_PORT=11211
 ```
 
 #### seafile.conf
 
-1. Add or modify the following configuration to `seafile.conf`:
-
-    === "Memcached"
-
-        ```
-        [memcached]
-        memcached_options = --SERVER=<your memcached ip>[:<your memcached port>] --POOL-MIN=10 --POOL-MAX=100
-        ```
-
-    === "Redis"
-        ```conf
-        [redis]
-        redis_host = <your redis ip>
-        redis_port = <your redis port, default 6379>
-        max_connections = 100
-        ```
-
-2. Enable cluster mode
+1. Enable cluster mode
 
     ```conf
     [cluster]
@@ -198,7 +194,7 @@ SEAFILE_MYSQL_DB_SEAHUB_DB_NAME=seahub_db
         health_check_port = 12345
         ```
 
-3. Enable backend storage:
+2. Enable backend storage:
 
     - [S3](../setup/setup_with_s3.md)
     - [OpenStack Swift](../setup/setup_with_swift.md)
@@ -206,23 +202,7 @@ SEAFILE_MYSQL_DB_SEAHUB_DB_NAME=seahub_db
 
 #### seahub_settings.py
 
-1. You must setup and use memory cache when deploying Seafile cluster, please add or modify the following configuration to `seahub_settings.py`:
-
-    === "Memcached"
-
-        ```py
-        CACHES = {
-            'default': {
-                'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
-                'LOCATION': '<your Memcached host>:<your Memcached port, default 11211>',
-            },
-        }
-        ```
-    === "Redis"
-
-        please Refer to [Django's documentation about using Redis cache](https://docs.djangoproject.com/en/4.2/topics/cache/#redis) to add Redis configurations to `seahub_settings.py`.
-
-2. Add following options to seahub_setting.py, which will tell Seahub to store avatar in database and cache avatar in memcached, and store css CACHE to local memory.
+Add following options to seahub_setting.py, which will tell Seahub to store avatar in database and cache avatar in memcached.
 
     ```
     AVATAR_FILE_STORAGE = 'seahub.base.database_storage.DatabaseStorage'
