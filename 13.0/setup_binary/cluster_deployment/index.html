@@ -6064,28 +6064,22 @@ sudo<span class="w"> </span>nginx<span class="w"> </span>-s<span class="w"> </sp
 <span class="nv">SEAFILE_MYSQL_DB_CCNET_DB_NAME</span><span class="o">=</span>ccnet_db
 <span class="nv">SEAFILE_MYSQL_DB_SEAFILE_DB_NAME</span><span class="o">=</span>seafile_db
 <span class="nv">SEAFILE_MYSQL_DB_SEAHUB_DB_NAME</span><span class="o">=</span>seahub_db
+
+<span class="c1">## Cache</span>
+<span class="c1">### options: redis (recommend), memcached</span>
+<span class="nv">CACHE_PROVIDER</span><span class="o">=</span>redis
+
+<span class="c1">### Redis</span>
+<span class="nv">REDIS_HOST</span><span class="o">=</span><span class="s1">&#39;&lt;your redis host&gt;&#39;</span>
+<span class="nv">REDIS_PORT</span><span class="o">=</span><span class="m">6379</span>
+<span class="nv">REDIS_PASSWORD</span><span class="o">=</span>
+
+<span class="c1">### Memcached</span>
+<span class="nv">MEMCACHED_HOST</span><span class="o">=</span><span class="s1">&#39;&lt;your memcached host&gt;&#39;</span>
+<span class="nv">MEMCACHED_PORT</span><span class="o">=</span><span class="m">11211</span>
 </code></pre></div>
 <h4 id="seafileconf">seafile.conf<a class="headerlink" href="#seafileconf" title="Permanent link">&para;</a></h4>
 <ol>
-<li>
-<p>Add or modify the following configuration to <code>seafile.conf</code>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Memcached</label><label for="__tabbed_1_2">Redis</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>[memcached]
-memcached_options = --SERVER=&lt;your memcached ip&gt;[:&lt;your memcached port&gt;] --POOL-MIN=10 --POOL-MAX=100
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>[redis]
-redis_host = &lt;your redis ip&gt;
-redis_port = &lt;your redis port, default 6379&gt;
-max_connections = 100
-</code></pre></div>
-</div>
-</div>
-</div>
-</li>
 <li>
 <p>Enable cluster mode</p>
 <div class="highlight"><pre><span></span><code>[cluster]
@@ -6109,32 +6103,12 @@ health_check_port = 12345
 </li>
 </ol>
 <h4 id="seahub_settingspy">seahub_settings.py<a class="headerlink" href="#seahub_settingspy" title="Permanent link">&para;</a></h4>
-<ol>
-<li>
-<p>You must setup and use memory cache when deploying Seafile cluster, please add or modify the following configuration to <code>seahub_settings.py</code>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Memcached</label><label for="__tabbed_2_2">Redis</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="n">CACHES</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;BACKEND&#39;</span><span class="p">:</span> <span class="s1">&#39;django_pylibmc.memcached.PyLibMCCache&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;LOCATION&#39;</span><span class="p">:</span> <span class="s1">&#39;&lt;your Memcached host&gt;:&lt;your Memcached port, default 11211&gt;&#39;</span><span class="p">,</span>
-    <span class="p">},</span>
-<span class="p">}</span>
+<p>Add following options to seahub_setting.py, which will tell Seahub to store avatar in database and cache avatar in memcached.</p>
+<div class="codehilite"><pre><span></span><code><span class="s">```</span>
+AVATAR_FILE_STORAGE = &#39;seahub.base.database_storage.DatabaseStorage&#39;
+<span class="s">```</span>
 </code></pre></div>
-</div>
-<div class="tabbed-block">
-<p>please Refer to <a href="https://docs.djangoproject.com/en/4.2/topics/cache/#redis">Django's documentation about using Redis cache</a> to add Redis configurations to <code>seahub_settings.py</code>.</p>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Add following options to seahub_setting.py, which will tell Seahub to store avatar in database and cache avatar in memcached, and store css CACHE to local memory.</p>
-<div class="highlight"><pre><span></span><code>AVATAR_FILE_STORAGE = &#39;seahub.base.database_storage.DatabaseStorage&#39;
-</code></pre></div>
-</li>
-</ol>
+
 <h4 id="seafeventsconf">seafevents.conf<a class="headerlink" href="#seafeventsconf" title="Permanent link">&para;</a></h4>
 <p>Modify the <code>[INDEX FILES]</code> section to enable full test search, we take <em>ElasticSearch</em> for example:</p>
 <div class="highlight"><pre><span></span><code>[INDEX FILES]
