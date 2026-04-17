@@ -9,6 +9,13 @@
 
 Please check our document for how to upgrade to [13.0](../upgrade/upgrade_notes_for_13.0.x.md)
 
+### 13.0.21 (2026-04-20)
+
+* [fix] Fix multiple selection by shift key in sharing links
+* [fix] Fix a redis re-connection bug in metadata handling
+* [fix] Fix seahub_auth cookie does not set for shibboleth authentication via desktop/mobile client
+* [fix] Fix some docker startup warnings
+* [fix] Clean temporary uploading files that failed to finish uploading in go fileserver
 
 ### 13.0.20 (2026-03-31)
 
