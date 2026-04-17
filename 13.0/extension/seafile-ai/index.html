@@ -5574,7 +5574,7 @@
 </li>
 <li>
 <p>Modify <code>.env</code>, insert or modify the following fields:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:7"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><input id="__tabbed_1_6" name="__tabbed_1" type="radio" /><input id="__tabbed_1_7" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">OpenAI</label><label for="__tabbed_1_2">Deepseek</label><label for="__tabbed_1_3">Azure OpenAI</label><label for="__tabbed_1_4">Ollama</label><label for="__tabbed_1_5">HuggingFace</label><label for="__tabbed_1_6">Self-proxy Server</label><label for="__tabbed_1_7">Other</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:7"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><input id="__tabbed_1_6" name="__tabbed_1" type="radio" /><input id="__tabbed_1_7" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">OpenAI</label><label for="__tabbed_1_2">Google AI studio</label><label for="__tabbed_1_3">Deepseek</label><label for="__tabbed_1_4">Azure OpenAI</label><label for="__tabbed_1_5">Ollama</label><label for="__tabbed_1_6">HuggingFace</label><label for="__tabbed_1_7">Other</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;...,seafile-ai.yml&#39; # add seafile-ai.yml
@@ -5583,6 +5583,15 @@ ENABLE_SEAFILE_AI=true
 SEAFILE_AI_LLM_TYPE=openai
 SEAFILE_AI_LLM_KEY=&lt;your openai LLM access key&gt;
 SEAFILE_AI_LLM_MODEL=gpt-4o-mini # recommend
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;...,seafile-ai.yml&#39; # add seafile-ai.yml
+
+ENABLE_SEAFILE_AI=true
+SEAFILE_AI_LLM_TYPE=gemini
+SEAFILE_AI_LLM_KEY=&lt;your openai LLM access key&gt;
+SEAFILE_AI_LLM_MODEL=gemini-3-flash-preview # recommend
 </code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -5625,16 +5634,6 @@ SEAFILE_AI_LLM_MODEL=&lt;model provider&gt;/&lt;model-id&gt;
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;...,seafile-ai.yml&#39; # add seafile-ai.yml
-
-ENABLE_SEAFILE_AI=true
-SEAFILE_AI_LLM_TYPE=proxy
-SEAFILE_AI_LLM_URL=&lt;your proxy url&gt;
-SEAFILE_AI_LLM_KEY=&lt;your proxy virtual key&gt; # optional
-SEAFILE_AI_LLM_MODEL=&lt;model-id&gt;
-</code></pre></div>
-</div>
-<div class="tabbed-block">
 <p>Seafile AI utilizes <a href="https://docs.litellm.ai/docs/">LiteLLM</a> to interact with LLM services. For a complete list of supported LLM providers, please refer to <a href="https://docs.litellm.ai/docs/providers">this documentation</a>. Then fill the following fields in your <code>.env</code>:</p>
 <div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;...,seafile-ai.yml&#39; # add seafile-ai.yml
 ENABLE_SEAFILE_AI=true
@@ -5645,7 +5644,7 @@ SEAFILE_AI_LLM_URL=...
 SEAFILE_AI_LLM_KEY=...
 SEAFILE_AI_LLM_MODEL=...
 </code></pre></div>
-<p>For example, if you are using a LLM service with <strong><em>OpenAI-compatible endpoints</em></strong>, you should set <code>SEAFILE_AI_LLM_TYPE</code> to <code>other</code> or <code>openai</code>, and set other LLM configuration items accurately.</p>
+<p>For example, if you are using a LLM service with <strong><em>OpenAI-compatible endpoints</em></strong>, you should set <code>SEAFILE_AI_LLM_TYPE</code> to <code>other</code>, and set other LLM configuration items accurately.</p>
 </div>
 </div>
 </div>
