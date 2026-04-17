@@ -48,6 +48,16 @@ The Seafile AI basic service will use API calls to external large language model
         SEAFILE_AI_LLM_KEY=<your openai LLM access key>
         SEAFILE_AI_LLM_MODEL=gpt-4o-mini # recommend
         ```
+    === "Google AI studio"
+
+        ```
+        COMPOSE_FILE='...,seafile-ai.yml' # add seafile-ai.yml
+
+        ENABLE_SEAFILE_AI=true
+        SEAFILE_AI_LLM_TYPE=gemini
+        SEAFILE_AI_LLM_KEY=<your openai LLM access key>
+        SEAFILE_AI_LLM_MODEL=gemini-3-flash-preview # recommend
+        ```
     === "Deepseek"
         ```
         COMPOSE_FILE='...,seafile-ai.yml' # add seafile-ai.yml
@@ -87,16 +97,6 @@ The Seafile AI basic service will use API calls to external large language model
         SEAFILE_AI_LLM_KEY=<your huggingface API key>
         SEAFILE_AI_LLM_MODEL=<model provider>/<model-id>
         ```
-    === "Self-proxy Server"
-        ```
-        COMPOSE_FILE='...,seafile-ai.yml' # add seafile-ai.yml
-
-        ENABLE_SEAFILE_AI=true
-        SEAFILE_AI_LLM_TYPE=proxy
-        SEAFILE_AI_LLM_URL=<your proxy url>
-        SEAFILE_AI_LLM_KEY=<your proxy virtual key> # optional
-        SEAFILE_AI_LLM_MODEL=<model-id>
-        ```
     === "Other"
         Seafile AI utilizes [LiteLLM](https://docs.litellm.ai/docs/) to interact with LLM services. For a complete list of supported LLM providers, please refer to [this documentation](https://docs.litellm.ai/docs/providers). Then fill the following fields in your `.env`:
 
@@ -111,7 +111,7 @@ The Seafile AI basic service will use API calls to external large language model
         SEAFILE_AI_LLM_MODEL=...
         ```
 
-        For example, if you are using a LLM service with ***OpenAI-compatible endpoints***, you should set `SEAFILE_AI_LLM_TYPE` to `other` or `openai`, and set other LLM configuration items accurately.
+        For example, if you are using a LLM service with ***OpenAI-compatible endpoints***, you should set `SEAFILE_AI_LLM_TYPE` to `other`, and set other LLM configuration items accurately.
 
             
     !!! note "About model selection"
