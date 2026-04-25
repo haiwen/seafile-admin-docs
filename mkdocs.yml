@@ -166,8 +166,10 @@ nav:
         - Roles and Permissions: config/roles_permissions.md
         - Administrator Roles and Permissions: config/admin_roles_permissions.md
         - Multi-Tenancy Support: config/multi_tenancy.md
-    - Advanced File Search configuration (Pro): config/details_about_file_search.md
-    - Open Cloud Mesh: config/ocm.md
+    - Misc / Others:
+      - CSP Configuration: config/csp_configuration.md
+      - Advanced File Search configuration (Pro): config/details_about_file_search.md
+      - Open Cloud Mesh: config/ocm.md
     - Available configuration options:
       - Outline: config/README.md
       - Environment variables: config/env.md
