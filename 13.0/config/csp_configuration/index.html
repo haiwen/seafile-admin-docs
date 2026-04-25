@@ -10,13 +10,13 @@
         <meta name="author" content="seafile">
       
       
-        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/13.0/administration/logs/">
+        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/13.0/config/csp_configuration/">
       
       
-        <link rel="prev" href="../export_report/">
+        <link rel="prev" href="../multi_tenancy/">
       
       
-        <link rel="next" href="../backup_recovery/">
+        <link rel="next" href="../details_about_file_search/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Seafile server logs - Seafile Admin Manual</title>
+        <title>CSP Configuration - Seafile Admin Manual</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#seafile-server-logs" class="md-skip">
+        <a href="#configure-csp-for-seafile" class="md-skip">
           Skip to content
         </a>
       
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Seafile server logs
+              CSP Configuration
             
           </span>
         </div>
@@ -323,6 +323,8 @@
   
   
   
+    
+  
   
     
     
@@ -330,6 +332,8 @@
   
   
   
+    
+  
   
     
     
@@ -337,11 +341,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../config/ldap_in_ce/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../ldap_in_ce/" class="md-tabs__link">
           
   
   
@@ -363,13 +369,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../administration/" class="md-tabs__link">
           
   
   
@@ -2825,26 +2829,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
             
   
   
@@ -2862,7 +2871,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2886,17 +2895,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
         
           
-          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="">
             
   
   
@@ -2984,7 +2996,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/ldap_in_ce/" class="md-nav__link">
+      <a href="../ldap_in_ce/" class="md-nav__link">
         
   
   
@@ -3012,7 +3024,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/ldap_in_pro/" class="md-nav__link">
+      <a href="../ldap_in_pro/" class="md-nav__link">
         
   
   
@@ -3100,7 +3112,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/single_sign_on/" class="md-nav__link">
+      <a href="../single_sign_on/" class="md-nav__link">
         
   
   
@@ -3128,7 +3140,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/oauth/" class="md-nav__link">
+      <a href="../oauth/" class="md-nav__link">
         
   
   
@@ -3156,7 +3168,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/remote_user/" class="md-nav__link">
+      <a href="../remote_user/" class="md-nav__link">
         
   
   
@@ -3184,7 +3196,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/shibboleth_authentication/" class="md-nav__link">
+      <a href="../shibboleth_authentication/" class="md-nav__link">
         
   
   
@@ -3212,7 +3224,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/auto_login_seadrive/" class="md-nav__link">
+      <a href="../auto_login_seadrive/" class="md-nav__link">
         
   
   
@@ -3240,7 +3252,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/saml2/" class="md-nav__link">
+      <a href="../saml2/" class="md-nav__link">
         
   
   
@@ -3268,7 +3280,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/auth_switch/" class="md-nav__link">
+      <a href="../auth_switch/" class="md-nav__link">
         
   
   
@@ -3356,7 +3368,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/multi_institutions/" class="md-nav__link">
+      <a href="../multi_institutions/" class="md-nav__link">
         
   
   
@@ -3384,7 +3396,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/roles_permissions/" class="md-nav__link">
+      <a href="../roles_permissions/" class="md-nav__link">
         
   
   
@@ -3412,7 +3424,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/admin_roles_permissions/" class="md-nav__link">
+      <a href="../admin_roles_permissions/" class="md-nav__link">
         
   
   
@@ -3440,7 +3452,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/multi_tenancy/" class="md-nav__link">
+      <a href="../multi_tenancy/" class="md-nav__link">
         
   
   
@@ -3481,26 +3493,31 @@
                 
   
   
+    
   
   
+  
     
     
     
     
       
       
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
         
           
-          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="">
             
   
   
@@ -3518,7 +3535,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -3533,10 +3550,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../config/csp_configuration/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSP Configuration
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -3552,6 +3596,92 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-csp-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended CSP policy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#csp-directive-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CSP directive reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-csp-with-caddy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure CSP with Caddy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-csp-with-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configure CSP with Nginx
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-with-report-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test with Report-Only
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functional-test-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Functional test checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -3564,7 +3694,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/details_about_file_search/" class="md-nav__link">
+      <a href="../details_about_file_search/" class="md-nav__link">
         
   
   
@@ -3592,7 +3722,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/ocm/" class="md-nav__link">
+      <a href="../ocm/" class="md-nav__link">
         
   
   
@@ -3634,17 +3764,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
         
           
-          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="">
             
   
   
@@ -3668,274 +3801,6 @@
             
   
     Available configuration options
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../config/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Outline
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../config/env/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Environment variables
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../config/seafile-conf/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    seafile.conf
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../config/seahub_settings_py/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    seahub_settings.py
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../config/seafevents-conf/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    seafevents.conf
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../config/seahub_customization/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Seahub customization
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../config/sending_email/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Email Sending
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-    
-  
-  
-  
-    
-    
-    
-    
-      
-        
-        
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Administration
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_6">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Administration
   
 
           </label>
@@ -3976,7 +3841,270 @@
   
   
     <li class="md-nav__item">
-      <a href="../account/" class="md-nav__link">
+      <a href="../env/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../seafile-conf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    seafile.conf
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../seahub_settings_py/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    seahub_settings.py
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../seafevents-conf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    seafevents.conf
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../seahub_customization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Seahub customization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sending_email/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Email Sending
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Administration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Administration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../administration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Outline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../administration/account/" class="md-nav__link">
         
   
   
@@ -4004,7 +4132,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../two_factor_authentication/" class="md-nav__link">
+      <a href="../../administration/two_factor_authentication/" class="md-nav__link">
         
   
   
@@ -4032,7 +4160,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../security_features/" class="md-nav__link">
+      <a href="../../administration/security_features/" class="md-nav__link">
         
   
   
@@ -4060,7 +4188,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../auditing/" class="md-nav__link">
+      <a href="../../administration/auditing/" class="md-nav__link">
         
   
   
@@ -4088,7 +4216,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../export_report/" class="md-nav__link">
+      <a href="../../administration/export_report/" class="md-nav__link">
         
   
   
@@ -4113,37 +4241,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Seafile server logs
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../administration/logs/" class="md-nav__link">
         
   
   
@@ -4159,81 +4260,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#log-files-of-seafile-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Log files of seafile server
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#log-files-for-seafile-background-node-in-cluster-mode" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Log files for seafile background node in cluster mode
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#log-files-for-seadoc-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Log files for seadoc server
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#log-files-for-seasearch-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Log files for SeaSearch server
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#log-files-for-nginx" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Log files for Nginx
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -4246,7 +4272,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../backup_recovery/" class="md-nav__link">
+      <a href="../../administration/backup_recovery/" class="md-nav__link">
         
   
   
@@ -4274,7 +4300,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../seafile_fsck/" class="md-nav__link">
+      <a href="../../administration/seafile_fsck/" class="md-nav__link">
         
   
   
@@ -4302,7 +4328,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../seafile_gc/" class="md-nav__link">
+      <a href="../../administration/seafile_gc/" class="md-nav__link">
         
   
   
@@ -4330,7 +4356,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../clean_database/" class="md-nav__link">
+      <a href="../../administration/clean_database/" class="md-nav__link">
         
   
   
@@ -4358,7 +4384,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../seafile_metrics/" class="md-nav__link">
+      <a href="../../administration/seafile_metrics/" class="md-nav__link">
         
   
   
@@ -5410,10 +5436,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#log-files-of-seafile-server" class="md-nav__link">
+  <a href="#recommended-csp-policy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Log files of seafile server
+        Recommended CSP policy
       
     </span>
   </a>
@@ -5421,10 +5447,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#log-files-for-seafile-background-node-in-cluster-mode" class="md-nav__link">
+  <a href="#csp-directive-reference" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Log files for seafile background node in cluster mode
+        CSP directive reference
       
     </span>
   </a>
@@ -5432,10 +5458,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#log-files-for-seadoc-server" class="md-nav__link">
+  <a href="#configure-csp-with-caddy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Log files for seadoc server
+        Configure CSP with Caddy
       
     </span>
   </a>
@@ -5443,10 +5469,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#log-files-for-seasearch-server" class="md-nav__link">
+  <a href="#configure-csp-with-nginx" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Log files for SeaSearch server
+        Configure CSP with Nginx
       
     </span>
   </a>
@@ -5454,10 +5480,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#log-files-for-nginx" class="md-nav__link">
+  <a href="#test-with-report-only" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Log files for Nginx
+        Test with Report-Only
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functional-test-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Functional test checklist
       
     </span>
   </a>
@@ -5484,49 +5521,169 @@
   
 
 
-<h1 id="seafile-server-logs">Seafile server logs<a class="headerlink" href="#seafile-server-logs" title="Permanent link">&para;</a></h1>
-<h3 id="log-files-of-seafile-server">Log files of seafile server<a class="headerlink" href="#log-files-of-seafile-server" title="Permanent link">&para;</a></h3>
-<ul>
-<li>seafile.log: logs of seaf-server</li>
-<li>seahub.log: logs from Django framework</li>
-<li>fileserver.log: logs of the golang file server component</li>
-<li>seafevents.log: logs for background tasks and office file conversion</li>
-<li>seahub_email_sender.log: logs for periodically email sending of background tasks</li>
-</ul>
-<h3 id="log-files-for-seafile-background-node-in-cluster-mode">Log files for seafile background node in cluster mode<a class="headerlink" href="#log-files-for-seafile-background-node-in-cluster-mode" title="Permanent link">&para;</a></h3>
-<ul>
-<li>seafile.log: logs of seaf-server</li>
-<li>seafevents.log: Empty</li>
-<li>seafile-background-tasks.log: logs for background tasks and office file convertion</li>
-<li>seahub_email_sender.log: logs for periodically email sending of background tasks</li>
-</ul>
-<h3 id="log-files-for-seadoc-server">Log files for seadoc server<a class="headerlink" href="#log-files-for-seadoc-server" title="Permanent link">&para;</a></h3>
-<p>The logs for seadoc server are located in the <code>/opt/seadoc-data/logs</code> directory.</p>
-<ul>
-<li>sdoc-access.log: logs for recording each API request’s method, URL, response status, and processing time to support access auditing and performance monitoring.</li>
-<li>sdoc-access-slow.log: logs for sdoc-server's slow requests.</li>
-<li>sdoc-server.log: logs for tracking the sdoc-server’s periodic background save tasks to verify autosave behavior and service health.</li>
-<li>sdoc-socket.log: logs for tracking real-time collaborative editing operations over the document WebSocket connection to monitor realtime sync performance and diagnose lag.</li>
-<li>sdoc-socket-slow.log: logs for capturing collaborative editing socket operations that exceed the latency threshold to detect realtime performance bottlenecks and diagnose editing lag.</li>
-<li>sdoc_operation_log_clean.log: logs for recording the periodic cleanup task that purges old operation_log records from the database to control log growth and maintain storage health.</li>
-<li>seadoc-converter.log: logs for recording the scheduler activity of the seadoc-converter service’s operation log cleanup job to verify the maintenance task is running on schedule.</li>
-</ul>
-<h3 id="log-files-for-seasearch-server">Log files for SeaSearch server<a class="headerlink" href="#log-files-for-seasearch-server" title="Permanent link">&para;</a></h3>
-<p>The logs for seasearch server are located in the <code>/opt/seasearch-data/log</code> directory.</p>
-<ul>
-<li>seasearch.log: logs for recording the SeaSearch service startup and runtime status to confirm the search engine is initialized and ready to serve requests.</li>
-<li>seasearch-access.log: logs for recording incoming HTTP requests to the SeaSearch service to audit search/index queries and detect auth or access issues.</li>
-</ul>
-<h3 id="log-files-for-nginx">Log files for Nginx<a class="headerlink" href="#log-files-for-nginx" title="Permanent link">&para;</a></h3>
-<p>The logs for Nginx are located in the <code>/opt/seafile-data/seafile/logs</code> directory.</p>
-<ul>
-<li>seahub.access.log: logs for recording HTTP/API access to the Seafile web interface for troubleshooting, auditing, and usage analysis.</li>
-<li>seahub.error.log: logs for recording seahub errors.</li>
-<li>seafhttp.access.log: logs for recording HTTP access to the seafhttp file server for troubleshooting, auditing, and usage analysis.</li>
-<li>seafhttp.error.log: logs for recording seafhttp errors.</li>
-<li>seafdav.access.log: logs for recording HTTP/WebDAV access and authentication attempts to the seafdav endpoint for troubleshooting, auditing, and usage analysis.</li>
-<li>seafdav.error.log: logs for recording seafdav errors.</li>
-</ul>
+<h1 id="configure-csp-for-seafile">Configure CSP for Seafile<a class="headerlink" href="#configure-csp-for-seafile" title="Permanent link">&para;</a></h1>
+<p>This document describes how to add <code>Content-Security-Policy</code> response header for a Seafile site to increase security.</p>
+<h2 id="recommended-csp-policy">Recommended CSP policy<a class="headerlink" href="#recommended-csp-policy" title="Permanent link">&para;</a></h2>
+<p>The following policy can be used as a baseline for Seafile sites integrated with SeaDoc and OnlyOffice:</p>
+<div class="highlight"><pre><span></span><code><span class="err">Content-Security-Policy: default-src &#39;self&#39;; base-uri &#39;self&#39;; object-src &#39;none&#39;; form-action &#39;self&#39;; frame-ancestors &#39;self&#39;; img-src &#39;self&#39; data: blob:; style-src &#39;self&#39; &#39;unsafe-inline&#39;; script-src &#39;self&#39; &#39;unsafe-inline&#39; &#39;unsafe-eval&#39; blob: https://ONLYOFFICE_ORIGIN; connect-src &#39;self&#39; https://ONLYOFFICE_ORIGIN wss://SEAFILE_DOMAIN; frame-src &#39;self&#39; blob: https://ONLYOFFICE_ORIGIN; worker-src &#39;self&#39; blob:</span>
+</code></pre></div>
+<p>Replace the following values:</p>
+<div class="highlight"><pre><span></span><code>SEAFILE_DOMAIN       The Seafile site domain, for example seafile.example.com
+ONLYOFFICE_ORIGIN    The real OnlyOffice origin, for example seafile.example.com:6233 or office.example.com
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Use the real OnlyOffice origin configured in <code>ONLYOFFICE_APIJS_URL</code>. Do not copy <code>:6233</code> if your OnlyOffice service uses standard 80 or 443 port.</p>
+</div>
+<h2 id="csp-directive-reference">CSP directive reference<a class="headerlink" href="#csp-directive-reference" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Directive</th>
+<th>Value</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>default-src</code></td>
+<td><code>'self'</code></td>
+<td>Allows same-origin resources by default and blocks unknown external resources.</td>
+</tr>
+<tr>
+<td><code>base-uri</code></td>
+<td><code>'self'</code></td>
+<td>Restricts the <code>&lt;base&gt;</code> tag to the same origin and prevents malicious rewriting of relative links.</td>
+</tr>
+<tr>
+<td><code>object-src</code></td>
+<td><code>'none'</code></td>
+<td>Blocks high-risk plugin objects such as <code>object</code>, <code>embed</code> and <code>applet</code>.</td>
+</tr>
+<tr>
+<td><code>form-action</code></td>
+<td><code>'self'</code></td>
+<td>Allows forms to be submitted only to the Seafile site.</td>
+</tr>
+<tr>
+<td><code>frame-ancestors</code></td>
+<td><code>'self'</code></td>
+<td>Prevents other sites from embedding Seafile pages in iframes and reduces clickjacking risk.</td>
+</tr>
+<tr>
+<td><code>img-src</code></td>
+<td><code>'self' data: blob:</code></td>
+<td>Allows same-origin images, base64 images and browser temporary images. This keeps avatars, thumbnails and image/PDF previews working.</td>
+</tr>
+<tr>
+<td><code>style-src</code></td>
+<td><code>'self' 'unsafe-inline'</code></td>
+<td>Allows same-origin CSS and inline styles required by Seafile, SeaDoc and OnlyOffice frontend components.</td>
+</tr>
+<tr>
+<td><code>script-src</code></td>
+<td><code>'self' 'unsafe-inline' 'unsafe-eval' blob: https://ONLYOFFICE_ORIGIN</code></td>
+<td>Allows Seafile scripts, required inline/dynamic scripts, blob scripts and the OnlyOffice <code>api.js</code>.</td>
+</tr>
+<tr>
+<td><code>connect-src</code></td>
+<td><code>'self' https://ONLYOFFICE_ORIGIN wss://SEAFILE_DOMAIN</code></td>
+<td>Allows Seafile API requests, OnlyOffice requests and SeaDoc/WebSocket connections.</td>
+</tr>
+<tr>
+<td><code>frame-src</code></td>
+<td><code>'self' blob: https://ONLYOFFICE_ORIGIN</code></td>
+<td>Allows Seafile pages to embed same-origin pages, blob pages and the OnlyOffice editor iframe.</td>
+</tr>
+<tr>
+<td><code>worker-src</code></td>
+<td><code>'self' blob:</code></td>
+<td>Allows Web Workers used by PDF preview, document editors and frontend async processing.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="configure-csp-with-caddy">Configure CSP with Caddy<a class="headerlink" href="#configure-csp-with-caddy" title="Permanent link">&para;</a></h2>
+<p>This method applies to the official Seafile Docker deployment when Caddy is used as the reverse proxy.</p>
+<p>Add the following label under <code>services.seafile.labels</code> in <code>seafile-server.yml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">seafile</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">caddy.header.Content-Security-Policy</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;\&quot;default-src</span><span class="nv"> </span><span class="s">&#39;self&#39;;</span><span class="nv"> </span><span class="s">base-uri</span><span class="nv"> </span><span class="s">&#39;self&#39;;</span><span class="nv"> </span><span class="s">object-src</span><span class="nv"> </span><span class="s">&#39;none&#39;;</span><span class="nv"> </span><span class="s">form-action</span><span class="nv"> </span><span class="s">&#39;self&#39;;</span><span class="nv"> </span><span class="s">frame-ancestors</span><span class="nv"> </span><span class="s">&#39;self&#39;;</span><span class="nv"> </span><span class="s">img-src</span><span class="nv"> </span><span class="s">&#39;self&#39;</span><span class="nv"> </span><span class="s">data:</span><span class="nv"> </span><span class="s">blob:;</span><span class="nv"> </span><span class="s">style-src</span><span class="nv"> </span><span class="s">&#39;self&#39;</span><span class="nv"> </span><span class="s">&#39;unsafe-inline&#39;;</span><span class="nv"> </span><span class="s">script-src</span><span class="nv"> </span><span class="s">&#39;self&#39;</span><span class="nv"> </span><span class="s">&#39;unsafe-inline&#39;</span><span class="nv"> </span><span class="s">&#39;unsafe-eval&#39;</span><span class="nv"> </span><span class="s">blob:</span><span class="nv"> </span><span class="s">https://seafile.example.com:6233;</span><span class="nv"> </span><span class="s">connect-src</span><span class="nv"> </span><span class="s">&#39;self&#39;</span><span class="nv"> </span><span class="s">https://seafile.example.com:6233</span><span class="nv"> </span><span class="s">wss://seafile.example.com;</span><span class="nv"> </span><span class="s">frame-src</span><span class="nv"> </span><span class="s">&#39;self&#39;</span><span class="nv"> </span><span class="s">blob:</span><span class="nv"> </span><span class="s">https://seafile.example.com:6233;</span><span class="nv"> </span><span class="s">worker-src</span><span class="nv"> </span><span class="s">&#39;self&#39;</span><span class="nv"> </span><span class="s">blob:\&quot;&quot;</span>
+</code></pre></div>
+<p>Replace the example values with your real URL.</p>
+<p>Restart the containers:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+<p>Verify the response header:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">DOMAIN</span><span class="o">=</span>seafile.example.com
+
+curl<span class="w"> </span>-sIk<span class="w"> </span>https://<span class="nv">$DOMAIN</span>/<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>content-security-policy
+curl<span class="w"> </span>-sIk<span class="w"> </span>https://<span class="nv">$DOMAIN</span>/accounts/login/<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>content-security-policy
+curl<span class="w"> </span>-sIk<span class="w"> </span>https://<span class="nv">$DOMAIN</span>/sdoc-server/<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>content-security-policy
+curl<span class="w"> </span>-sIk<span class="w"> </span>https://<span class="nv">$DOMAIN</span>/seafhttp/<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>content-security-policy
+
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>seafile-caddy<span class="w"> </span>sh<span class="w"> </span>-lc<span class="w"> </span><span class="s2">&quot;grep -in &#39;Content-Security-Policy&#39; /config/caddy/Caddyfile.autosave&quot;</span>
+</code></pre></div>
+<p>The expected output should contain:</p>
+<div class="highlight"><pre><span></span><code><span class="err">content-security-policy: default-src &#39;self&#39;; ...</span>
+</code></pre></div>
+<h2 id="configure-csp-with-nginx">Configure CSP with Nginx<a class="headerlink" href="#configure-csp-with-nginx" title="Permanent link">&para;</a></h2>
+<p>This method applies when Nginx is used as the reverse proxy in front of Seafile.</p>
+<p>Add the following header in the corresponding <code>server</code> block:</p>
+<div class="highlight"><pre><span></span><code><span class="k">server</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="mi">443</span><span class="w"> </span><span class="s">ssl</span><span class="w"> </span><span class="s">http2</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">server_name</span><span class="w"> </span><span class="s">seafile.example.com</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kn">add_header</span><span class="w"> </span><span class="s">Content-Security-Policy</span><span class="w"> </span><span class="s">&quot;default-src</span><span class="w"> </span><span class="s">&#39;self&#39;</span><span class="p">;</span><span class="w"> </span><span class="kn">base-uri</span><span class="w"> </span><span class="s">&#39;self&#39;</span><span class="p">;</span><span class="w"> </span><span class="kn">object-src</span><span class="w"> </span><span class="s">&#39;none&#39;</span><span class="p">;</span><span class="w"> </span><span class="kn">form-action</span><span class="w"> </span><span class="s">&#39;self&#39;</span><span class="p">;</span><span class="w"> </span><span class="kn">frame-ancestors</span><span class="w"> </span><span class="s">&#39;self&#39;</span><span class="p">;</span><span class="w"> </span><span class="kn">img-src</span><span class="w"> </span><span class="s">&#39;self&#39;</span><span class="w"> </span><span class="s">data:</span><span class="w"> </span><span class="s">blob:</span><span class="p">;</span><span class="w"> </span><span class="kn">style-src</span><span class="w"> </span><span class="s">&#39;self&#39;</span><span class="w"> </span><span class="s">&#39;unsafe-inline&#39;</span><span class="p">;</span><span class="w"> </span><span class="kn">script-src</span><span class="w"> </span><span class="s">&#39;self&#39;</span><span class="w"> </span><span class="s">&#39;unsafe-inline&#39;</span><span class="w"> </span><span class="s">&#39;unsafe-eval&#39;</span><span class="w"> </span><span class="s">blob:</span><span class="w"> </span><span class="s">https://seafile.example.com:6233</span><span class="p">;</span><span class="w"> </span><span class="kn">connect-src</span><span class="w"> </span><span class="s">&#39;self&#39;</span><span class="w"> </span><span class="s">https://seafile.example.com:6233</span><span class="w"> </span><span class="s">wss://seafile.example.com</span><span class="p">;</span><span class="w"> </span><span class="kn">frame-src</span><span class="w"> </span><span class="s">&#39;self&#39;</span><span class="w"> </span><span class="s">blob:</span><span class="w"> </span><span class="s">https://seafile.example.com:6233</span><span class="p">;</span><span class="w"> </span><span class="kn">worker-src</span><span class="w"> </span><span class="s">&#39;self&#39;</span><span class="w"> </span><span class="s">blob:&quot;</span><span class="w"> </span><span class="s">always</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1"># Other Seafile reverse proxy settings.</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Check and reload Nginx:</p>
+<div class="highlight"><pre><span></span><code>nginx<span class="w"> </span>-t
+systemctl<span class="w"> </span>reload<span class="w"> </span>nginx
+</code></pre></div>
+<p>Verify the response header:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sIk<span class="w"> </span>https://seafile.example.com/<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>content-security-policy
+</code></pre></div>
+<p>The expected output should contain:</p>
+<div class="highlight"><pre><span></span><code><span class="err">content-security-policy: default-src &#39;self&#39;; ...</span>
+</code></pre></div>
+<h2 id="test-with-report-only">Test with Report-Only<a class="headerlink" href="#test-with-report-only" title="Permanent link">&para;</a></h2>
+<p>Before enabling the enforcing policy, you can test with Report-Only mode:</p>
+<div class="highlight"><pre><span></span><code><span class="err">Content-Security-Policy-Report-Only: ...</span>
+</code></pre></div>
+<p>For Caddy, temporarily change:</p>
+<div class="highlight"><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">caddy.header.Content-Security-Policy</span>
+</code></pre></div>
+<p>to:</p>
+<div class="highlight"><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">caddy.header.Content-Security-Policy-Report-Only</span>
+</code></pre></div>
+<p>For Nginx, temporarily change:</p>
+<div class="highlight"><pre><span></span><code><span class="k">add_header</span><span class="w"> </span><span class="s">Content-Security-Policy</span><span class="w"> </span><span class="s">&quot;...&quot;</span><span class="w"> </span><span class="s">always</span><span class="p">;</span>
+</code></pre></div>
+<p>to:</p>
+<div class="highlight"><pre><span></span><code><span class="k">add_header</span><span class="w"> </span><span class="s">Content-Security-Policy-Report-Only</span><span class="w"> </span><span class="s">&quot;...&quot;</span><span class="w"> </span><span class="s">always</span><span class="p">;</span>
+</code></pre></div>
+<p>After testing that Seafile works normally, switch back to the enforcing <code>Content-Security-Policy</code> header.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Report-Only mode does not enforce the policy. It is useful for testing, but it may not satisfy security scan requirements.</p>
+</div>
+<h2 id="functional-test-checklist">Functional test checklist<a class="headerlink" href="#functional-test-checklist" title="Permanent link">&para;</a></h2>
+<p>After configuring CSP, test the following features:</p>
+<div class="highlight"><pre><span></span><code>Login and logout
+File upload and download
+PDF and image preview
+Creating, opening, editing and saving SeaDoc files
+Opening, editing and saving docx / xlsx / pptx files with OnlyOffice
+Share link access
+</code></pre></div>
+<p>Also check the browser console for CSP violations:</p>
+<div class="highlight"><pre><span></span><code>Refused to load ... because it violates the following Content Security Policy directive ...
+</code></pre></div>
+<p>If a CSP violation appears, check <code>violated-directive</code> and <code>blocked-uri</code> in the browser developer tools, then add the required source to the corresponding CSP directive.</p>
 
 
 
@@ -5562,7 +5719,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../export_report/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Export report">
+          <a href="../multi_tenancy/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Multi-Tenancy Support">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -5572,20 +5729,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Export report
+                Multi-Tenancy Support
               </div>
             </div>
           </a>
         
         
           
-          <a href="../backup_recovery/" class="md-footer__link md-footer__link--next" aria-label="Next: Backup and Recovery">
+          <a href="../details_about_file_search/" class="md-footer__link md-footer__link--next" aria-label="Next: Advanced File Search configuration (Pro)">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Backup and Recovery
+                Advanced File Search configuration (Pro)
               </div>
             </div>
             <div class="md-footer__button md-icon">
