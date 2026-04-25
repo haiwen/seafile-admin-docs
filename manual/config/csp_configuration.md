@@ -1,14 +1,7 @@
 # Configure CSP for Seafile
 
-This document describes how to add the formal `Content-Security-Policy` response header for a Seafile site. This is often required to fix security scan findings such as:
+This document describes how to add `Content-Security-Policy` response header for a Seafile site to increase security.
 
-```text
-CSP is not implemented
-Headers > content-security-policy: [not set]
-```
-
-!!! note
-    Security scanners usually require the enforcing `Content-Security-Policy` header. If you only configure `Content-Security-Policy-Report-Only`, the scanner may still report that CSP is not implemented.
 
 ## Recommended CSP policy
 
@@ -25,22 +18,9 @@ SEAFILE_DOMAIN       The Seafile site domain, for example seafile.example.com
 ONLYOFFICE_ORIGIN    The real OnlyOffice origin, for example seafile.example.com:6233 or office.example.com
 ```
 
-For example:
-
-```text
-Seafile site: https://seafile.example.com
-OnlyOffice:   https://seafile.example.com:6233
-```
-
-Then the CSP should contain:
-
-```text
-https://seafile.example.com:6233
-wss://seafile.example.com
-```
 
 !!! warning
-    Use the real OnlyOffice origin configured in `ONLYOFFICE_APIJS_URL`. Do not copy `:6233` if your OnlyOffice service uses another port or another domain.
+    Use the real OnlyOffice origin configured in `ONLYOFFICE_APIJS_URL`. Do not copy `:6233` if your OnlyOffice service uses standard 80 or 443 port.
 
 ## CSP directive reference
 
@@ -60,7 +40,7 @@ wss://seafile.example.com
 
 ## Configure CSP with Caddy
 
-This method applies to the official Seafile Docker deployment when Caddy / caddy-docker-proxy is used as the reverse proxy.
+This method applies to the official Seafile Docker deployment when Caddy is used as the reverse proxy.
 
 Add the following label under `services.seafile.labels` in `seafile-server.yml`:
 
@@ -71,12 +51,7 @@ services:
       caddy.header.Content-Security-Policy: "\"default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; frame-ancestors 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://seafile.example.com:6233; connect-src 'self' https://seafile.example.com:6233 wss://seafile.example.com; frame-src 'self' blob: https://seafile.example.com:6233; worker-src 'self' blob:\""
 ```
 
-Replace the example values:
-
-```text
-seafile.example.com       Replace with your real Seafile domain
-seafile.example.com:6233  Replace with your real OnlyOffice origin
-```
+Replace the example values with your real URL.
 
 Restart the containers:
 
@@ -119,13 +94,6 @@ server {
 
     # Other Seafile reverse proxy settings.
 }
-```
-
-Replace the example values:
-
-```text
-seafile.example.com       Replace with your real Seafile domain
-seafile.example.com:6233  Replace with your real OnlyOffice origin
 ```
 
 Check and reload Nginx:
