@@ -5497,12 +5497,6 @@ repo_files_index_name = your-repo-files-index-name    # default is `repofiles`
 ## Since version 11.0.4
 loglevel = info
 
-[EVENTS PUBLISH]
-## must be &quot;true&quot; to enable publish events messages
-enabled = false
-## message format: repo-update\t{{repo_id}}}\t{{commit_id}}
-## Currently only support redis message queue
-mq_type = redis
 
 [AUTO DELETION]
 enabled = true     # Default is false, when enabled, users can use file auto deletion feature
