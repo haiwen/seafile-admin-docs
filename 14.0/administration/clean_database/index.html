@@ -5630,8 +5630,14 @@
 <p>Enter into the docker image, then go to <code>/opt/seafile/seafile-server-latest</code></p>
 </div>
 <h2 id="use-clean_db_records-command-to-clean-seahub_db">Use clean_db_records command to clean seahub_db<a class="headerlink" href="#use-clean_db_records-command-to-clean-seahub_db" title="Permanent link">&para;</a></h2>
-<p>Use the following command to simultaneously clean up table records of Activity, sysadmin_extra_userloginlog, FileAudit, FileUpdate, FileHistory, PermAudit, FileTrash 90 days ago:</p>
+<p>Use the clean_db_records command to clean up records older than a specified number of days in the following tables of seahub_db: Activity, sysadmin_extra_userloginlog, FileAudit, FileUpdate, FileHistory, PermAudit, FileTrash.</p>
+<p><strong>Default usage (clean up records older than 90 days)</strong></p>
+<p>By default, the command cleans up records older than 90 days. Use the following command:</p>
 <div class="highlight"><pre><span></span><code>./seahub.sh python-env python3 seahub/manage.py clean_db_records
+</code></pre></div>
+<p><strong>Customize the number of days with --ndays parameter</strong></p>
+<p>You can specify the number of days using the --ndays parameter. For example, to clean up records older than 50 days:</p>
+<div class="highlight"><pre><span></span><code>./seahub.sh python-env python3 seahub/manage.py clean_db_records --ndays=50
 </code></pre></div>
 <p>You can also clean these tables manually if you like as following.</p>
 <h3 id="activity">Activity<a class="headerlink" href="#activity" title="Permanent link">&para;</a></h3>
