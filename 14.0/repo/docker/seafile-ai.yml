@@ -1,0 +1,32 @@
+services:
+  seafile-ai:
+    image: ${SEAFILE_AI_IMAGE:-seafileltd/seafile-ai:13.0-latest}
+    container_name: seafile-ai
+    restart: unless-stopped
+    volumes:
+      - ${SEAFILE_VOLUME:-/opt/seafile-data}:/shared
+    # ports:
+    #   - 8888:8888
+    environment:
+      - SEAFILE_AI_LLM_TYPE=${SEAFILE_AI_LLM_TYPE:-openai}
+      - SEAFILE_AI_LLM_URL=${SEAFILE_AI_LLM_URL:-}
+      - SEAFILE_AI_LLM_KEY=${SEAFILE_AI_LLM_KEY:-}
+      - SEAFILE_AI_LLM_MODEL=${SEAFILE_AI_LLM_MODEL:-gpt-4o-mini}
+      - FACE_EMBEDDING_SERVICE_URL=${FACE_EMBEDDING_SERVICE_URL:-http://face-embedding:8886}
+      - FACE_EMBEDDING_SERVICE_KEY=${FACE_EMBEDDING_SERVICE_KEY:-${JWT_PRIVATE_KEY:?Variable is not set or empty}}
+      - SEAFILE_SERVER_URL=${INNER_SEAHUB_SERVICE_URL:-http://seafile}
+      - JWT_PRIVATE_KEY=${JWT_PRIVATE_KEY:?Variable is not set or empty}
+      - SEAFILE_AI_LOG_LEVEL=${SEAFILE_AI_LOG_LEVEL:-info}
+      - CACHE_PROVIDER=${CACHE_PROVIDER:-redis}
+      - REDIS_HOST=${REDIS_HOST:-redis}
+      - REDIS_PORT=${REDIS_PORT:-6379}
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-}
+    depends_on:
+      seafile:
+        condition: service_healthy
+    networks:
+      - seafile-net
+
+networks:
+  seafile-net:
+    name: seafile-net

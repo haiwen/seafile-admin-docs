@@ -1,0 +1,85 @@
+#################################
+# Docker compose configurations #
+#################################
+COMPOSE_FILE='seafile-server.yml'
+COMPOSE_PATH_SEPARATOR=','
+SEAFILE_IMAGE=seafileltd/seafile-pro-mc:13.0-latest
+SEAFILE_VOLUME=/opt/seafile/shared
+
+#################################
+#      Startup parameters       #
+#################################
+SEAFILE_SERVER_HOSTNAME=seafile.example.com
+SEAFILE_SERVER_PROTOCOL=http
+TIME_ZONE=UTC
+JWT_PRIVATE_KEY=<your jwt private key>
+CLUSTER_MODE=frontend # backend for backend node
+
+#####################################
+# Third-party service configuration #
+#####################################
+
+## Database
+SEAFILE_MYSQL_DB_HOST=db
+SEAFILE_MYSQL_DB_USER=seafile
+SEAFILE_MYSQL_DB_PASSWORD=PASSWORD
+SEAFILE_MYSQL_DB_CCNET_DB_NAME=ccnet_db
+SEAFILE_MYSQL_DB_SEAFILE_DB_NAME=seafile_db
+SEAFILE_MYSQL_DB_SEAHUB_DB_NAME=seahub_db
+
+## Cache
+### options: redis (recommend), memcached
+CACHE_PROVIDER=redis
+
+### Redis
+REDIS_HOST=redis
+REDIS_PORT=6379
+REDIS_PASSWORD=
+
+## Memcached
+MEMCACHED_HOST=<your memcached host>
+MEMCACHED_PORT=11211
+
+## S3
+SEAF_SERVER_STORAGE_TYPE=disk
+S3_COMMIT_BUCKET=<your commit bucket name>
+S3_FS_BUCKET=<your fs bucket name>
+S3_BLOCK_BUCKET=<your block bucket name>
+S3_KEY_ID=<your-key-id>
+S3_SECRET_KEY=<your-secret-key>
+S3_USE_V4_SIGNATURE=true
+S3_PATH_STYLE_REQUEST=false
+S3_AWS_REGION=us-east-1
+S3_HOST=
+S3_USE_HTTPS=true
+S3_SSE_C_KEY=
+
+## Notification
+ENABLE_NOTIFICATION_SERVER=false
+NOTIFICATION_SERVER_URL=
+INNER_NOTIFICATION_SERVER_URL=$NOTIFICATION_SERVER_URL
+
+## Seafile AI
+ENABLE_SEAFILE_AI=false
+ENABLE_FACE_RECOGNITION=false
+SEAFILE_AI_SERVER_URL=
+
+## Metadata server
+MD_FILE_COUNT_LIMIT=100000
+
+######################################
+#        Initial variables           #
+# (Only valid in first-time startup) #
+######################################
+
+## Cluster init
+CLUSTER_INIT_MODE=true # set to false after finishing initial progress
+CLUSTER_INIT_ES_HOST=<your elasticsearch server HOST>
+CLUSTER_INIT_ES_PORT=9200
+
+## Database root password, Used to create Seafile users
+INIT_SEAFILE_MYSQL_ROOT_PASSWORD=ROOT_PASSWORD
+
+## Seafile admin user
+INIT_SEAFILE_ADMIN_EMAIL=me@example.com
+INIT_SEAFILE_ADMIN_PASSWORD=asecret

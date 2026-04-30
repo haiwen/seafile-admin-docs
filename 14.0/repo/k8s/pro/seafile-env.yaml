@@ -1,0 +1,64 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: seafile-env
+  namespace: seafile
+data:
+  # for Seafile server
+  TIME_ZONE: "UTC"
+  SEAFILE_LOG_TO_STDOUT: "true"
+  SITE_ROOT: "/"
+  SEAFILE_SERVER_HOSTNAME: "seafile.example.com"
+  SEAFILE_SERVER_PROTOCOL: "http"
+
+
+  # for database
+  SEAFILE_MYSQL_DB_HOST: "<your MySQL host>"
+  SEAFILE_MYSQL_DB_PORT: "3306"
+  SEAFILE_MYSQL_DB_USER: "seafile"
+  SEAFILE_MYSQL_DB_CCNET_DB_NAME: "ccnet_db"
+  SEAFILE_MYSQL_DB_SEAFILE_DB_NAME: "seafile_db"
+  SEAFILE_MYSQL_DB_SEAHUB_DB_NAME: "seahub_db"
+
+  # for cached
+  CACHE_PROVIDER: "redis" # or "memcached"
+
+  ## for redis
+  REDIS_HOST: "<your redis host>"
+  REDIS_PORT: "6379"
+
+  ## for memcached
+  MEMCACHED_HOST: "<your memcached host>"
+  MEMCACHED_PORT: "11211"
+
+  # for S3
+  SEAF_SERVER_STORAGE_TYPE: "disk"
+  S3_COMMIT_BUCKET: ""
+  S3_FS_BUCKET: ""
+  S3_BLOCK_BUCKET: ""
+  S3_KEY_ID: ""
+  S3_USE_V4_SIGNATURE: "true"
+  S3_AWS_REGION: "us-east-1"
+  S3_HOST: ""
+  S3_USE_HTTPS: "true"
+  S3_PATH_STYLE_REQUEST: "false"
+
+  # for notification
+  ENABLE_NOTIFICATION_SERVER: "false"
+  NOTIFICATION_SERVER_URL: ""
+
+  # for seadoc
+  ENABLE_SEADOC: "false"
+  SEADOC_SERVER_URL: "" # only valid in ENABLE_SEADOC = true
+  
+  # Seafile AI
+  ENABLE_SEAFILE_AI: "false"
+  ENABLE_FACE_RECOGNITION: "false"
+  SEAFILE_AI_SERVER_URL: "<required when ENABLE_SEAFILE_AI=true>"
+
+  # Matedata server
+  MD_FILE_COUNT_LIMIT: "100000"
+
+  # Init
+  ## for Seafile admin
+  INIT_SEAFILE_ADMIN_EMAIL: "<Seafile admin's email>"

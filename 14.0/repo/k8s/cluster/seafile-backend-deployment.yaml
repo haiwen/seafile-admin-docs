@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: seafile-backend
+  namespace: seafile
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: seafile-backend
+  template:
+    metadata:
+      labels:
+        app: seafile-backend
+    spec:
+      enableServiceLinks: false
+      initContainers:  
+        - name: set-ownership  
+          image: busybox  
+          command: ['sh', '-c', 'chown -R root:root /shared']  
+          volumeMounts:  
+          - name: seafile-data  
+            mountPath: /shared
+      containers:
+        - name: seafile-backend
+          image: seafileltd/seafile-pro-mc:13.0-latest
+          env:
+            - name: CLUSTER_SERVER
+              value: "true"
+            - name: CLUSTER_MODE
+              value: "backend"
+          envFrom:
+            - configMapRef:
+                name: seafile-env 
+            - secretRef:
+                name: seafile-secret
+          volumeMounts:
+            - name: seafile-data
+              mountPath: /shared
+      volumes:
+        - name: seafile-data
+          persistentVolumeClaim:
+            claimName: seafile-data
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: regcred
