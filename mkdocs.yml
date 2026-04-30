@@ -11,6 +11,7 @@ copyright: Copyright &copy; 2024 Seafile Ltd.
 
 theme:
   name: material
+  custom_dir: overrides
   logo: media/seafile-transparent-1024.png
   favicon: media/favicon.ico
   features:

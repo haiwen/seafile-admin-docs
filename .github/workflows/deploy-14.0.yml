@@ -1,9 +1,9 @@
-name: Deploy CI - 13.0
+name: Deploy CI - 14.0
 
 on:
   push:
     branches:
-      - "master"
+      - "14.0"
 
 jobs:
   deploy:
@@ -19,4 +19,4 @@ jobs:
       - run: cd $GITHUB_WORKSPACE
       - run: git config user.name ci-bot
       - run: git config user.email ci-bot@seafile.com
-      - run: mike deploy --push -u 13.0 latest
+      - run: mike deploy --push -u 14.0

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block announce %}
+  {% set stable_docs_url = config.site_url | replace('/14.0/', '/13.0/') | replace('/14.0', '/13.0/') %}
+  {% if stable_docs_url == config.site_url %}
+    {% set stable_docs_url = config.site_url ~ '13.0/' %}
+  {% endif %}
+  14.0 documentation is still under development.
+  Please check <a href="{{ stable_docs_url }}">13.0 version documents</a> instead.
+{% endblock %}
