@@ -1,11 +1,12 @@
 site_name: Seafile Admin Manual
-site_author: seafile
+site_author: Seafile Ltd.
+site_description: Official documentation for Seafile administration, deployment, and upgrades.
 docs_dir: ./manual
 site_url: https://haiwen.github.io/seafile-admin-docs/
 
 repo_name: haiwen/seafile-admin-docs
-repo_url: https://github.com/haiwen/seafile-admin-docs/
-edit_uri: blob/master/manual
+repo_url: https://github.com/haiwen/seafile-admin-docs
+edit_uri: edit/master/manual
 
 copyright: Copyright &copy; 2024 Seafile Ltd.
 
@@ -86,7 +87,7 @@ nav:
   - Introduction:
     - Introduction: README.md
     - File permission management: introduction/file_permission_management.md
-    - Seafile Pro edition license: introduction/seafile_professional_sdition_software_license_agreement.md
+    - Seafile Professional Edition license: introduction/seafile_professional_edition_software_license_agreement.md
     - Roadmap: introduction/roadmap.md
     - Contribution: introduction/contribution.md
   - Setup:
@@ -216,7 +217,7 @@ nav:
     - Web API V2.1: develop/web_api_v2.1.md
     - PHP API: https://github.com/rene-s/Seafile-PHP-SDK
     - Data Model: develop/data_model.md
-  - ChangeLog:
+  - Changelog:
     - Seafile Community Edition: changelog/server-changelog.md
     - Seafile Professional Edition: changelog/changelog-for-seafile-professional-server.md
     - Seafile Client: changelog/client-changelog.md
