@@ -4623,6 +4623,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../upgrade/upgrade_notes_for_14.0.x/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade notes for 14.0.x
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../upgrade/upgrade_notes_for_13.0.x/" class="md-nav__link">
         
   
@@ -5592,13 +5620,13 @@
 <h1 id="migrate-ce-to-pro-with-docker">Migrate CE to Pro with Docker<a class="headerlink" href="#migrate-ce-to-pro-with-docker" title="Permanent link">&para;</a></h1>
 <h2 id="preparation">Preparation<a class="headerlink" href="#preparation" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Make sure you are running a Seafile Community edition that match the latest version of pro edition. For example, if the latest pro edition is version 13.0, you should first upgrade the community edition to version 13.0.</li>
+<li>Make sure you are running a Seafile Community edition that match the latest version of pro edition. For example, if the latest pro edition is version 14.0, you should first upgrade the community edition to version 14.0.</li>
 <li>Purchase Seafile Professional license file.</li>
 <li>Download the <code>.env</code> and <code>seafile-server.yml</code> of Seafile Pro.</li>
 </ol>
-<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/pro/env
-wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/pro/seafile-server.yml
-wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/pro/elasticsearch.yml
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/14.0/repo/docker/pro/env
+wget<span class="w"> </span>https://manual.seafile.com/14.0/repo/docker/pro/seafile-server.yml
+wget<span class="w"> </span>https://manual.seafile.com/14.0/repo/docker/pro/elasticsearch.yml
 </code></pre></div>
 <h2 id="migrate">Migrate<a class="headerlink" href="#migrate" title="Permanent link">&para;</a></h2>
 <h3 id="stop-the-seafile-ce">Stop the Seafile CE<a class="headerlink" href="#stop-the-seafile-ce" title="Permanent link">&para;</a></h3>
@@ -5624,7 +5652,7 @@ wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/pro/elas
 <tr>
 <td><code>SEAFILE_IMAGE</code></td>
 <td>The Seafile pro docker image, which the tag must be <strong>equal to or newer than</strong> the old Seafile CE docker tag</td>
-<td><code>seafileltd/seafile-pro-mc:13.0-latest</code></td>
+<td><code>seafileltd/seafile-pro-mc:14.0-latest</code></td>
 </tr>
 <tr>
 <td><code>SEAFILE_ELASTICSEARCH_VOLUME</code></td>

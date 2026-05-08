@@ -4584,6 +4584,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../upgrade/upgrade_notes_for_14.0.x/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade notes for 14.0.x
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../upgrade/upgrade_notes_for_13.0.x/" class="md-nav__link">
         
   
@@ -5524,7 +5552,7 @@
 </div>
 <h2 id="deploy-seasearch-service">Deploy SeaSearch service<a class="headerlink" href="#deploy-seasearch-service" title="Permanent link">&para;</a></h2>
 <p>SeaSearch service is currently mainly deployed via docker. We have integrated it into the relevant docker-compose file. You only need to download it to the same directory as <code>seafile-server.yml</code>:</p>
-<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/pro/seasearch.yml
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/14.0/repo/docker/pro/seasearch.yml
 </code></pre></div>
 <h2 id="modify-env">Modify <code>.env</code><a class="headerlink" href="#modify-env" title="Permanent link">&para;</a></h2>
 <p>We have configured the relevant variables in .env. Here you must pay special attention to the following variable information, which will affect the SeaSearch initialization process. For variables in <code>.env</code> of SeaSearch service, please refer <a href="https://seasearch-manual.seafile.com/latest/config/">here</a> for the details. We use <code>/opt/seasearch-data</code> as the persistent directory of SeaSearch (the information of administrator are same as Seafile's admin by default from Seafile 13):</p>

@@ -2430,6 +2430,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#modify-env" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modify .env
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#config-webdav-extension" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4625,6 +4636,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../upgrade/upgrade_notes_for_14.0.x/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade notes for 14.0.x
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../upgrade/upgrade_notes_for_13.0.x/" class="md-nav__link">
         
   
@@ -5478,6 +5517,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#modify-env" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modify .env
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#config-webdav-extension" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5593,6 +5643,11 @@
 
 <h1 id="webdav-extension">WebDAV extension<a class="headerlink" href="#webdav-extension" title="Permanent link">&para;</a></h1>
 <p>In the document below, we assume your seafile installation folder is <code>/opt/seafile</code>.</p>
+<h2 id="modify-env">Modify <code>.env</code><a class="headerlink" href="#modify-env" title="Permanent link">&para;</a></h2>
+<p>Enable the WebDAV extension in the <code>.env</code> file.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">ENABLE_SEAFDAV</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
+<span class="nv">SEAFDAV_WORKERS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="o">(</span>The<span class="w"> </span>default<span class="w"> </span>is<span class="w"> </span><span class="m">5</span>.<span class="o">)</span>
+</code></pre></div>
 <h2 id="config-webdav-extension">Config WebDAV extension<a class="headerlink" href="#config-webdav-extension" title="Permanent link">&para;</a></h2>
 <p>The configuration file is <code>/opt/seafile-data/seafile/conf/seafdav.conf</code> (for deploying from binary packages, it should be <code>/opt/seafile/conf/seafdav.conf</code>). If it is not created already, you can just create the file.</p>
 <div class="highlight"><pre><span></span><code>[WEBDAV]
@@ -5603,7 +5658,6 @@ enabled = true
 port = 8080
 debug = true
 
-# If you deploy seafdav behind nginx/apache, you need to modify &quot;share_name&quot;.
 share_name = /seafdav
 
 # SeafDAV uses Gunicorn as web server.

@@ -4662,6 +4662,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../upgrade/upgrade_notes_for_14.0.x/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade notes for 14.0.x
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../upgrade/upgrade_notes_for_13.0.x/" class="md-nav__link">
         
   
@@ -5918,6 +5946,9 @@ ENABLE_REPO_SNAPSHOT_LABEL = False
 <span class="c1"># Seafile only generates thumbnails for images smaller than the following size.</span>
 <span class="c1"># Since version 6.3.8 pro, suport the psd online preview.</span>
 <span class="n">THUMBNAIL_IMAGE_SIZE_LIMIT</span> <span class="o">=</span> <span class="mi">30</span> <span class="c1"># MB</span>
+
+<span class="c1"># Since seafile 14, enable thumbnail for videos (disabled by default).</span>
+<span class="n">ENABLE_THUMBNAIL_SERVER</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div>
 <h2 id="map-service">Map service<a class="headerlink" href="#map-service" title="Permanent link">&para;</a></h2>
 <p>Options for map service:</p>
@@ -6055,7 +6086,7 @@ REST_FRAMEWORK = {
 
 # Throtting whitelist used to disable throttle for certain IPs.
 # e.g. REST_FRAMEWORK_THROTTING_WHITELIST = [&#39;127.0.0.1&#39;, &#39;192.168.1.1&#39;]
-# Please make sure `REMOTE_ADDR` header is configured in Nginx conf according to https://manual.seafile.com/13.0/setup_binary/ce/deploy_with_nginx.html.
+# Please make sure `REMOTE_ADDR` header is configured in Nginx conf according to https://manual.seafile.com/14.0/setup_binary/ce/deploy_with_nginx.html.
 REST_FRAMEWORK_THROTTING_WHITELIST = []
 </code></pre></div>
 <h2 id="seahub-custom-functions">Seahub Custom Functions<a class="headerlink" href="#seahub-custom-functions" title="Permanent link">&para;</a></h2>

@@ -16,7 +16,7 @@ spec:
       enableServiceLinks: false
       containers:
         - name: seafile
-          image: seafileltd/seafile-pro-mc:13.0-latest
+          image: seafileltd/seafile-pro-mc:14.0-latest
           envFrom:
             - configMapRef:
                 name: seafile-env 

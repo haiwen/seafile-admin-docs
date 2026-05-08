@@ -5,13 +5,13 @@ COMPOSE_FILE='seafile-server.yml,caddy.yml,seadoc.yml'
 COMPOSE_PATH_SEPARATOR=','
 
 ## Images
-SEAFILE_IMAGE=seafileltd/seafile-mc:13.0-latest
+SEAFILE_IMAGE=seafileltd/seafile-mc:14.0-latest
 SEAFILE_DB_IMAGE=mariadb:10.11
 SEAFILE_REDIS_IMAGE=redis
 SEAFILE_CADDY_IMAGE=lucaslorentz/caddy-docker-proxy:2.12-alpine
 SEADOC_IMAGE=seafileltd/sdoc-server:2.0-latest
-NOTIFICATION_SERVER_IMAGE=seafileltd/notification-server:13.0-latest
-MD_IMAGE=seafileltd/seafile-md-server:13.0-latest
+NOTIFICATION_SERVER_IMAGE=seafileltd/notification-server:14.0-latest
+MD_IMAGE=seafileltd/seafile-md-server:14.0-latest
 
 ## Persistent Storage
 BASIC_STORAGE_PATH=/opt

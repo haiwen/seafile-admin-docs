@@ -4706,6 +4706,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../upgrade/upgrade_notes_for_14.0.x/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade notes for 14.0.x
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../upgrade/upgrade_notes_for_13.0.x/" class="md-nav__link">
         
   
@@ -5897,21 +5925,21 @@ pip3 install --timeout=3600 boto3 oss2 twilio configparser pytz \
 </div>
 <h3 id="downloading-the-install-package">Downloading the install package<a class="headerlink" href="#downloading-the-install-package" title="Permanent link">&para;</a></h3>
 <p>The install packages for Seafile PE are available for download in the the <a href="https://customer.seafile.com">Seafile Customer Center</a>. To access the Customer Center, a  user account is necessary. The registration is free.</p>
-<p>Beginning with Seafile PE 7.0.17, the Seafile Customer Center provides two install packages for every version (using Seafile PE 13.0.10 as an example):</p>
+<p>Beginning with Seafile PE 7.0.17, the Seafile Customer Center provides two install packages for every version (using Seafile PE 14.0.10 as an example):</p>
 <ul>
-<li><em>seafile-pro-server_13.0.10_x86-64_Ubuntu.tar.gz</em>, compiled in Ubuntu environment</li>
+<li><em>seafile-pro-server_14.0.10_x86-64_Ubuntu.tar.gz</em>, compiled in Ubuntu environment</li>
 </ul>
 <p>The former is suitable for installation on Ubuntu/Debian servers.</p>
 <p>Download the install package using wget (replace the x.x.x with the version you wish to download):</p>
 <div class="highlight"><pre><span></span><code># Debian/Ubuntu
 wget -O &#39;seafile-pro-server_x.x.x_x86-64_Ubuntu.tar.gz&#39; &#39;VERSION_SPECIFIC_LINK_FROM_SEAFILE_CUSTOMER_CENTER&#39;
 </code></pre></div>
-<p>We use Seafile version 13.0.10 as an example in the remainder of these instructions.</p>
+<p>We use Seafile version 14.0.10 as an example in the remainder of these instructions.</p>
 <h3 id="uncompressing-the-package">Uncompressing the package<a class="headerlink" href="#uncompressing-the-package" title="Permanent link">&para;</a></h3>
 <p>The install package is downloaded as a compressed tarball which needs to be uncompressed.</p>
 <p>Uncompress the package using tar:</p>
 <div class="highlight"><pre><span></span><code># Debian/Ubuntu
-tar xf seafile-pro-server_13.0.10_x86-64_Ubuntu.tar.gz
+tar xf seafile-pro-server_14.0.10_x86-64_Ubuntu.tar.gz
 </code></pre></div>
 <p>Now you have:</p>
 <div class="highlight"><pre><span></span><code>$ tree -L 2 /opt/seafile
@@ -5923,7 +5951,7 @@ tar xf seafile-pro-server_13.0.10_x86-64_Ubuntu.tar.gz
 │   ├── lib
 │   ├── lib64 -&gt; lib
 │   └── pyvenv.cfg
-├── seafile-pro-server-13.0.10
+├── seafile-pro-server-14.0.10
 │   ├── check_init_admin.py
 │   ├── index_op.py
 │   ├── migrate-repo.py
@@ -5953,14 +5981,14 @@ tar xf seafile-pro-server_13.0.10_x86-64_Ubuntu.tar.gz
 │   ├── setup-seafile.sh
 │   ├── sql
 │   └── upgrade
-└── seafile-pro-server_13.0.10_x86-64_Ubuntu.tar.gz
+└── seafile-pro-server_14.0.10_x86-64_Ubuntu.tar.gz
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>The names of the install packages differ for Seafile CE and Seafile PE. Using Seafile CE and Seafile PE 13.0.10 as an example, the names are as follows:</p>
+<p>The names of the install packages differ for Seafile CE and Seafile PE. Using Seafile CE and Seafile PE 14.0.10 as an example, the names are as follows:</p>
 <ul>
-<li>Seafile CE: <code>seafile-server_13.0.10_x86-86.tar.gz</code>; uncompressing into folder <code>seafile-server-13.0.10</code></li>
-<li>Seafile PE: <code>seafile-pro-server_13.0.10_x86-86.tar.gz</code>; uncompressing into folder <code>seafile-pro-server-13.0.10</code></li>
+<li>Seafile CE: <code>seafile-server_14.0.10_x86-86.tar.gz</code>; uncompressing into folder <code>seafile-server-14.0.10</code></li>
+<li>Seafile PE: <code>seafile-pro-server_14.0.10_x86-86.tar.gz</code>; uncompressing into folder <code>seafile-pro-server-14.0.10</code></li>
 </ul>
 </div>
 <h3 id="setting-up-seafile-pro-databases">Setting up Seafile Pro databases<a class="headerlink" href="#setting-up-seafile-pro-databases" title="Permanent link">&para;</a></h3>
@@ -5980,7 +6008,7 @@ tar xf seafile-pro-server_13.0.10_x86-64_Ubuntu.tar.gz
 <div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>python-venv/bin/activate
 </code></pre></div>
 </div>
-<div class="highlight"><pre><span></span><code>cd seafile-pro-server-13.0.10
+<div class="highlight"><pre><span></span><code>cd seafile-pro-server-14.0.10
 ./setup-seafile-mysql.sh
 </code></pre></div>
 <p>Configure your Seafile Server by specifying the following three parameters:</p>
@@ -6154,7 +6182,7 @@ GRANT ALL PRIVILEGES ON `seahub_db`.* to `seafile`@localhost;
 │   └── pyvenv.cfg
 ├── seafile-data
 │   └── library-template
-├── seafile-pro-server-13.0.10
+├── seafile-pro-server-14.0.10
 │   ├── check_init_admin.py
 │   ├── index_op.py
 │   ├── migrate-repo.py
@@ -6184,8 +6212,8 @@ GRANT ALL PRIVILEGES ON `seahub_db`.* to `seafile`@localhost;
 │   ├── setup-seafile.sh
 │   ├── sql
 │   └── upgrade
-├── seafile-pro-server_13.0.10_x86-64_Ubuntu.tar.gz
-├── seafile-server-latest -&gt; seafile-pro-server-13.0.10
+├── seafile-pro-server_14.0.10_x86-64_Ubuntu.tar.gz
+├── seafile-server-latest -&gt; seafile-pro-server-14.0.10
 └── seahub-data
     └── avatars
 </code></pre></div>
@@ -6305,7 +6333,7 @@ Enter the password again:
 <p>Seafile uses the indexing server ElasticSearch to enable full text search.</p>
 <h3 id="deploying-elasticsearch">Deploying ElasticSearch<a class="headerlink" href="#deploying-elasticsearch" title="Permanent link">&para;</a></h3>
 <p>Our recommendation for deploying ElasticSearch is using Docker. Detailed information about installing Docker on various Linux distributions is available at <a href="https://docs.docker.com/engine/install/">Docker Docs</a>.</p>
-<p>Seafile PE 9.0 only supports ElasticSearch 7.x. Seafile PE 10.0, 11.0, 12.0, 13.0 only supports ElasticSearch 8.x.</p>
+<p>Seafile PE 9.0 only supports ElasticSearch 7.x. Seafile PE 10.0 and later only supports ElasticSearch 8.x.</p>
 <p>We use ElasticSearch version 8.15.0 as an example in this section. Version 8.15.0 and newer version have been successfully tested with Seafile.</p>
 <p>Pull the Docker image:
 <div class="highlight"><pre><span></span><code>sudo docker pull elasticsearch:8.15.0
