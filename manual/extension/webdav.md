@@ -6,8 +6,13 @@ In the document below, we assume your seafile installation folder is `/opt/seafi
 Enable the WebDAV extension in the `.env` file.
 
 ```shell
+# Default is false. Change it to true to enable SeafDAV server.
 ENABLE_SEAFDAV = true
-SEAFDAV_WORKERS = 5 (The default is 5.)
+
+# SeafDAV uses Gunicorn as web server.
+# This option maps to Gunicorn's 'workers' setting. https://docs.gunicorn.org/en/stable/settings.html?#workers
+# By default it's set to 5 processes.
+SEAFDAV_WORKERS = 5
 ```
 
 ## Config WebDAV extension
@@ -16,19 +21,10 @@ The configuration file is `/opt/seafile-data/seafile/conf/seafdav.conf` (for dep
 
 ```
 [WEBDAV]
-
-# Default is false. Change it to true to enable SeafDAV server.
-enabled = true
-
 port = 8080
 debug = true
 
 share_name = /seafdav
-
-# SeafDAV uses Gunicorn as web server.
-# This option maps to Gunicorn's 'workers' setting. https://docs.gunicorn.org/en/stable/settings.html?#workers
-# By default it's set to 5 processes.
-workers = 5
 
 # This option maps to Gunicorn's 'timeout' setting. https://docs.gunicorn.org/en/stable/settings.html?#timeout
 # By default it's set to 1200 seconds, to support large file uploads.
