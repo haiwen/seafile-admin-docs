@@ -39,7 +39,7 @@ services:
       - seafile-net
 
   seafile:
-    image: ${SEAFILE_IMAGE:-seafileltd/seafile-mc:13.0-latest}
+    image: ${SEAFILE_IMAGE:-seafileltd/seafile-mc:14.0-latest}
     container_name: seafile
     restart: unless-stopped
     # ports:
@@ -65,6 +65,8 @@ services:
       - JWT_PRIVATE_KEY=${JWT_PRIVATE_KEY:?Variable is not set or empty}
       - SEAFILE_LOG_TO_STDOUT=${SEAFILE_LOG_TO_STDOUT:-false}
       - ENABLE_GO_FILESERVER=${ENABLE_GO_FILESERVER:-true}
+      - ENABLE_SEAFDAV=${ENABLE_SEAFDAV:-false}
+      - SEAFDAV_WORKERS=${SEAFDAV_WORKERS:-5}
       - ENABLE_SEADOC=${ENABLE_SEADOC:-true}
       - SEADOC_SERVER_URL=${SEAFILE_SERVER_PROTOCOL:-http}://${SEAFILE_SERVER_HOSTNAME:?Variable is not set or empty}/sdoc-server
       - CACHE_PROVIDER=${CACHE_PROVIDER:-redis}

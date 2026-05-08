@@ -47,7 +47,7 @@ services:
     # ... other services
 
     seafile:
-    image: ${SEAFILE_IMAGE:-seafileltd/seafile-pro-mc:13.0-latest}
+    image: ${SEAFILE_IMAGE:-seafileltd/seafile-pro-mc:14.0-latest}
     container_name: seafile
     ports:
        - "80:80"

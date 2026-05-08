@@ -40,11 +40,11 @@ kubectl create secret generic seafile-secret --namespace seafile \
 ```sh
 mkdir -p /opt/seafile-k8s-yaml
 
-wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/13.0/repo/k8s/cluster/seafile-backend-deployment.yaml
-wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/13.0/repo/k8s/cluster/seafile-persistentvolume.yaml
-wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/13.0/repo/k8s/cluster/seafile-persistentvolumeclaim.yaml
-wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/13.0/repo/k8s/cluster/seafile-service.yaml
-wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/13.0/repo/k8s/cluster/seafile-env.yaml
+wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/14.0/repo/k8s/cluster/seafile-backend-deployment.yaml
+wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/14.0/repo/k8s/cluster/seafile-persistentvolume.yaml
+wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/14.0/repo/k8s/cluster/seafile-persistentvolumeclaim.yaml
+wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/14.0/repo/k8s/cluster/seafile-service.yaml
+wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/14.0/repo/k8s/cluster/seafile-env.yaml
 ```
 
 
@@ -140,7 +140,7 @@ Finally you can use the `tar -zcvf` and `tar -zxvf` commands to package the enti
 1. Download frontend service's YAML by:
 
     ```sh
-    wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/13.0/repo/k8s/cluster/seafile-frontend-deployment.yaml
+    wget -P /opt/seafile-k8s-yaml https://manual.seafile.com/14.0/repo/k8s/cluster/seafile-frontend-deployment.yaml
     ```
 
 2. Modify `seafile-env.yaml`, and set `CLUSTER_INIT_MODE` to `false` (i.e., disable initialization mode), then re-apply `seafile-env.yaml` again:

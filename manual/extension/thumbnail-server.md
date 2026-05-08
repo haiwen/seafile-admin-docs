@@ -15,7 +15,7 @@ Use this feature by forwarding thumbnail requests directly to thumbnail server v
 First download `thumbnail-server.yml` to Seafile directory:
 
 ```sh
-wget https://manual.seafile.com/13.0/repo/docker/thumbnail-server.yml
+wget https://manual.seafile.com/14.0/repo/docker/thumbnail-server.yml
 ```
 
 Modify `.env`, and insert `thumbnail-server.yml` into `COMPOSE_FILE`:
@@ -28,7 +28,7 @@ Add following configuration in `seahub_settings.py` to enable thumbnail for vide
 
 ```py
 # video thumbnails (disabled by default)
-ENABLE_VIDEO_THUMBNAIL = True
+ENABLE_THUMBNAIL_SERVER = True
 ```
 
 Finally, You can run thumbnail server with the following command:
@@ -47,8 +47,8 @@ If you enable [clustering](../setup_binary/cluster_deployment.md), You need to d
 Download `.env` and `thumbnail-server.yml` to thumbnail server directory:
 
 ```sh
-wget https://manual.seafile.com/13.0/repo/docker/thumbnail-server/thumbnail-server.yml
-wget -O .env https://manual.seafile.com/13.0/repo/docker/thumbnail-server/env
+wget https://manual.seafile.com/14.0/repo/docker/thumbnail-server/thumbnail-server.yml
+wget -O .env https://manual.seafile.com/14.0/repo/docker/thumbnail-server/env
 ```
 
 Then modify the `.env` file according to your environment. The following fields are needed to be modified:

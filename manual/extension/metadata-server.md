@@ -20,7 +20,7 @@ Please download the file by following command:
         You have to download this file to the directory same as `seafile-server.yml`
 
     ```sh
-    wget https://manual.seafile.com/13.0/repo/docker/md-server.yml
+    wget https://manual.seafile.com/14.0/repo/docker/md-server.yml
     ```
 
 === "Standalone"
@@ -29,8 +29,8 @@ Please download the file by following command:
         For standalone deployment (usually used in cluster deployment), the metadata server only supports Seafile using the storage backend such as **S3**. 
 
     ```sh
-    wget https://manual.seafile.com/13.0/repo/docker/metadata-server/md-server.yml
-    wget -O .env https://manual.seafile.com/13.0/repo/docker/metadata-server/env
+    wget https://manual.seafile.com/14.0/repo/docker/metadata-server/md-server.yml
+    wget -O .env https://manual.seafile.com/14.0/repo/docker/metadata-server/env
     ```
 
 ### Modify `.env`
@@ -48,7 +48,7 @@ To facilitate your deployment, we still provide two different configuration solu
 In this case you don't need to add any additional configuration to your `.env`. You can also specify image version, maximum local cache size, etc.
 
 ```
-MD_IMAGE=seafileltd/seafile-md-server:13.0-latest
+MD_IMAGE=seafileltd/seafile-md-server:14.0-latest
 MD_MAX_CACHE_SIZE=1GB
 ```
 
@@ -57,7 +57,7 @@ MD_MAX_CACHE_SIZE=1GB
 First you need to create a bucket for metadata on your S3 storage backend provider. Then add or modify the following information to `.env`:
 
 ```sh
-MD_IMAGE=seafileltd/seafile-md-server:13.0-latest
+MD_IMAGE=seafileltd/seafile-md-server:14.0-latest
 MD_STORAGE_TYPE=s3
 S3_MD_BUCKET=...
 S3_KEY_ID=<your-key-id>

@@ -3,7 +3,7 @@
 #################################
 COMPOSE_FILE='seafile-server.yml'
 COMPOSE_PATH_SEPARATOR=','
-SEAFILE_IMAGE=seafileltd/seafile-pro-mc:13.0-latest
+SEAFILE_IMAGE=seafileltd/seafile-pro-mc:14.0-latest
 SEAFILE_VOLUME=/opt/seafile/shared
 
 #################################

@@ -26,5 +26,5 @@ Note, for SeaSearch, you should use seaseach-nomkl version to work on ARM archit
 You can use the X.0-latest tag to pull the ARM image without specifying the arm tag.
 
 ```bash
-docker pull seafileltd/seafile-mc:13.0-latest
+docker pull seafileltd/seafile-mc:14.0-latest
 ```

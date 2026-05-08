@@ -275,6 +275,8 @@ groovy, rst, patch, go"""
 # Since version 6.3.8 pro, suport the psd online preview.
 THUMBNAIL_IMAGE_SIZE_LIMIT = 30 # MB
 
+# Since seafile 14, enable thumbnail for videos (disabled by default).
+ENABLE_THUMBNAIL_SERVER = True
 ```
 
 ## Map service
@@ -416,7 +418,7 @@ REST_FRAMEWORK = {
 
 # Throtting whitelist used to disable throttle for certain IPs.
 # e.g. REST_FRAMEWORK_THROTTING_WHITELIST = ['127.0.0.1', '192.168.1.1']
-# Please make sure `REMOTE_ADDR` header is configured in Nginx conf according to https://manual.seafile.com/13.0/setup_binary/ce/deploy_with_nginx.html.
+# Please make sure `REMOTE_ADDR` header is configured in Nginx conf according to https://manual.seafile.com/14.0/setup_binary/ce/deploy_with_nginx.html.
 REST_FRAMEWORK_THROTTING_WHITELIST = []
 
 ```
