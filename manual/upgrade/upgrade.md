@@ -11,6 +11,7 @@ There are three types of upgrade, i.e., major version upgrade, minor version upg
 
 Please check the **upgrade notes** for any special configuration or changes before/while upgrading.
 
+* [Upgrade notes for 14.0.x](./upgrade_notes_for_14.0.x.md)
 * [Upgrade notes for 13.0.x](./upgrade_notes_for_13.0.x.md)
 * [Upgrade notes for 12.0.x](./upgrade_notes_for_12.0.x.md)
 * [Upgrade notes for 11.0.x](./upgrade_notes_for_11.0.x.md)

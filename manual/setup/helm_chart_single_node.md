@@ -54,7 +54,7 @@ Please refer [here](./system_requirements.md) for the details of system requirem
     === "Seafile Pro"
 
         ```sh
-        wget -O my-values.yaml https://haiwen.github.io/seafile-helm-chart/values/13.0/pro.yaml
+        wget -O my-values.yaml https://haiwen.github.io/seafile-helm-chart/values/14.0/pro.yaml
 
         nano my-values.yaml
         ```
@@ -62,7 +62,7 @@ Please refer [here](./system_requirements.md) for the details of system requirem
     === "Seafile CE"
 
         ```sh
-        wget -O my-values.yaml https://haiwen.github.io/seafile-helm-chart/values/13.0/ce.yaml
+        wget -O my-values.yaml https://haiwen.github.io/seafile-helm-chart/values/14.0/ce.yaml
 
         nano my-values.yaml
         ```
@@ -85,17 +85,17 @@ Please refer [here](./system_requirements.md) for the details of system requirem
 
         ```sh
         helm repo add seafile https://haiwen.github.io/seafile-helm-chart/repo
-        helm upgrade --install seafile seafile/pro --version 13.0 --namespace seafile --create-namespace --values my-values.yaml
+        helm upgrade --install seafile seafile/pro --version 14.0 --namespace seafile --create-namespace --values my-values.yaml
         ```
 
     === "Seafile CE"
 
         ```sh
         helm repo add seafile https://haiwen.github.io/seafile-helm-chart/repo
-        helm upgrade --install seafile seafile/ce --version 13.0 --namespace seafile --create-namespace --values my-values.yaml
+        helm upgrade --install seafile seafile/ce --version 14.0 --namespace seafile --create-namespace --values my-values.yaml
         ```
 
-    !!! tip "Seafile helm chart 13.0 support variable validity checking"
+    !!! tip "Seafile helm chart 14.0 support variable validity checking"
 
         Starting from Seafile helm chart 13.0, the validity of variables in `my-values.yaml` will be checked at deployment time. When there is a variable validity check that fails, you may encounter the following error message:
 
@@ -168,13 +168,13 @@ kubectl delete pods -n seafile $(kubectl get pods -n seafile -o jsonpath='{.item
     === "Seafile Pro"
 
         ```sh
-        helm upgrade --install seafile seafile/pro --version 13.0 --namespace seafile --create-namespace --values my-values.yaml
+        helm upgrade --install seafile seafile/pro --version 14.0 --namespace seafile --create-namespace --values my-values.yaml
         ```
 
     === "Seafile CE"
 
         ```sh
-        helm upgrade --install seafile seafile/ce --version 13.0 --namespace seafile --create-namespace --values my-values.yaml
+        helm upgrade --install seafile seafile/ce --version 14.0 --namespace seafile --create-namespace --values my-values.yaml
         ```
 
 ## Version control

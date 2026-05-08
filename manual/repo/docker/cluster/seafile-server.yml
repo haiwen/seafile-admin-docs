@@ -1,6 +1,6 @@
 services:
   seafile:
-    image: ${SEAFILE_IMAGE:-seafileltd/seafile-pro-mc:13.0-latest}
+    image: ${SEAFILE_IMAGE:-seafileltd/seafile-pro-mc:14.0-latest}
     container_name: seafile
     restart: unless-stopped
     ports:
@@ -49,6 +49,8 @@ services:
       - SITE_ROOT=${SITE_ROOT:-/}
       - NON_ROOT=${NON_ROOT:-false}
       - ENABLE_GO_FILESERVER=${ENABLE_GO_FILESERVER:-true}
+      - ENABLE_SEAFDAV=${ENABLE_SEAFDAV:-false}
+      - SEAFDAV_WORKERS=${SEAFDAV_WORKERS:-5}
       - ENABLE_SEADOC=${ENABLE_SEADOC:-false}
       - SEADOC_SERVER_URL=${SEADOC_SERVER_URL:-http://seafile.example.com/sdoc-server}
       - ENABLE_NOTIFICATION_SERVER=${ENABLE_NOTIFICATION_SERVER:-false}

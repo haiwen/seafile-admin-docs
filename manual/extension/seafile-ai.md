@@ -33,7 +33,7 @@ The Seafile AI basic service will use API calls to external large language model
 1. Download `seafile-ai.yml`
 
     ```sh
-    wget https://manual.seafile.com/13.0/repo/docker/seafile-ai.yml
+    wget https://manual.seafile.com/14.0/repo/docker/seafile-ai.yml
     ```
 
 2. Modify `.env`, insert or modify the following fields:
@@ -131,8 +131,8 @@ The Seafile AI basic service will use API calls to external large language model
 1. Download `seafile-ai.yml` and `.env`:
 
     ```sh
-    wget https://manual.seafile.com/13.0/repo/docker/seafile-ai/seafile-ai.yml
-    wget -O .env https://manual.seafile.com/13.0/repo/docker/seafile-ai/env
+    wget https://manual.seafile.com/14.0/repo/docker/seafile-ai/seafile-ai.yml
+    wget -O .env https://manual.seafile.com/14.0/repo/docker/seafile-ai/env
     ```
 
 2. Modify `.env` in the host will deploy Seafile AI according to following table
@@ -184,19 +184,19 @@ If you plan to deploy these face embeddings in an environment using a GPU, you n
     === "CUDA"
 
         ```sh
-        wget -O face-embedding.yml https://manual.seafile.com/13.0/repo/docker/face-embedding/cuda.yml
+        wget -O face-embedding.yml https://manual.seafile.com/14.0/repo/docker/face-embedding/cuda.yml
         ```
     === "CPU"
 
         ```sh
-        wget -O face-embedding.yml https://manual.seafile.com/13.0/repo/docker/face-embedding/cpu.yml
+        wget -O face-embedding.yml https://manual.seafile.com/14.0/repo/docker/face-embedding/cpu.yml
         ```
     
 <!--
     === "ROCM"
 
         ```sh
-        wget -O face-embedding.yml https://manual.seafile.com/13.0/repo/docker/face-embedding/rocm.yml
+        wget -O face-embedding.yml https://manual.seafile.com/14.0/repo/docker/face-embedding/rocm.yml
         ```
 -->
 

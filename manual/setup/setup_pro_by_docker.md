@@ -27,7 +27,7 @@ Use the [official installation guide for your OS to install Docker](https://docs
     Since v12.0, Seafile PE versions are hosted on DockerHub and does not require username and password to download. For ***older Seafile PE*** versions are available private docker repository (back to Seafile 7.0). You can get the username and password on the download page in the [Customer Center](https://customer.seafile.com/downloads).
 
 ```bash
-docker pull seafileltd/seafile-pro-mc:13.0-latest
+docker pull seafileltd/seafile-pro-mc:14.0-latest
 ```
     
 ### Downloading and Modifying `.env`
@@ -38,11 +38,11 @@ Seafile uses `.env`, `seafile-server.yml`  and `caddy.yml` files for configurati
 mkdir /opt/seafile
 cd /opt/seafile
 
-wget -O .env https://manual.seafile.com/13.0/repo/docker/pro/env
-wget https://manual.seafile.com/13.0/repo/docker/pro/seafile-server.yml
-wget https://manual.seafile.com/13.0/repo/docker/pro/elasticsearch.yml
-wget https://manual.seafile.com/13.0/repo/docker/seadoc.yml
-wget https://manual.seafile.com/13.0/repo/docker/caddy.yml
+wget -O .env https://manual.seafile.com/14.0/repo/docker/pro/env
+wget https://manual.seafile.com/14.0/repo/docker/pro/seafile-server.yml
+wget https://manual.seafile.com/14.0/repo/docker/pro/elasticsearch.yml
+wget https://manual.seafile.com/14.0/repo/docker/seadoc.yml
+wget https://manual.seafile.com/14.0/repo/docker/caddy.yml
 
 nano .env
 ```

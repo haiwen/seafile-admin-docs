@@ -2,6 +2,14 @@
 
 In the document below, we assume your seafile installation folder is `/opt/seafile`.
 
+## Modify `.env`
+Enable the WebDAV extension in the `.env` file.
+
+```shell
+ENABLE_SEAFDAV = true
+SEAFDAV_WORKERS = 5 (The default is 5.)
+```
+
 ## Config WebDAV extension
 
 The configuration file is `/opt/seafile-data/seafile/conf/seafdav.conf` (for deploying from binary packages, it should be `/opt/seafile/conf/seafdav.conf`). If it is not created already, you can just create the file.
@@ -15,7 +23,6 @@ enabled = true
 port = 8080
 debug = true
 
-# If you deploy seafdav behind nginx/apache, you need to modify "share_name".
 share_name = /seafdav
 
 # SeafDAV uses Gunicorn as web server.

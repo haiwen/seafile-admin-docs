@@ -50,8 +50,8 @@ Then download `.env` and `index-server.yml` to `/opt/seafile` in all index-serve
 
 ```bash
 cd /opt/seafile
-wget https://manual.seafile.com/13.0/repo/docker/index-server/index-server.yml
-wget -O .env https://manual.seafile.com/13.0/repo/docker/index-server/env
+wget https://manual.seafile.com/14.0/repo/docker/index-server/index-server.yml
+wget -O .env https://manual.seafile.com/14.0/repo/docker/index-server/env
 ```
 
 Modify mysql configurations in `.env`.

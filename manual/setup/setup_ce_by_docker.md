@@ -24,10 +24,10 @@ To deploy Seafile with Docker, you have to `.env`, `seafile-server.yml`  and `ca
 mkdir /opt/seafile
 cd /opt/seafile
 
-wget -O .env https://manual.seafile.com/13.0/repo/docker/ce/env
-wget https://manual.seafile.com/13.0/repo/docker/ce/seafile-server.yml
-wget https://manual.seafile.com/13.0/repo/docker/seadoc.yml
-wget https://manual.seafile.com/13.0/repo/docker/caddy.yml
+wget -O .env https://manual.seafile.com/14.0/repo/docker/ce/env
+wget https://manual.seafile.com/14.0/repo/docker/ce/seafile-server.yml
+wget https://manual.seafile.com/14.0/repo/docker/seadoc.yml
+wget https://manual.seafile.com/14.0/repo/docker/caddy.yml
 
 nano .env
 ```

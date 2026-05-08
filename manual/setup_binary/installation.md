@@ -142,9 +142,9 @@ Save the license file in Seafile's programm directory `/opt/seafile`. Make sure 
 
 The install packages for Seafile PE are available for download in the the [Seafile Customer Center](https://customer.seafile.com). To access the Customer Center, a  user account is necessary. The registration is free.
 
-Beginning with Seafile PE 7.0.17, the Seafile Customer Center provides two install packages for every version (using Seafile PE 13.0.10 as an example):
+Beginning with Seafile PE 7.0.17, the Seafile Customer Center provides two install packages for every version (using Seafile PE 14.0.10 as an example):
 
-* _seafile-pro-server_13.0.10_x86-64_Ubuntu.tar.gz_, compiled in Ubuntu environment
+* _seafile-pro-server_14.0.10_x86-64_Ubuntu.tar.gz_, compiled in Ubuntu environment
 
 The former is suitable for installation on Ubuntu/Debian servers.
 
@@ -156,7 +156,7 @@ Download the install package using wget (replace the x.x.x with the version you 
 wget -O 'seafile-pro-server_x.x.x_x86-64_Ubuntu.tar.gz' 'VERSION_SPECIFIC_LINK_FROM_SEAFILE_CUSTOMER_CENTER'
 ```
 
-We use Seafile version 13.0.10 as an example in the remainder of these instructions.
+We use Seafile version 14.0.10 as an example in the remainder of these instructions.
 
 ### Uncompressing the package
 
@@ -166,7 +166,7 @@ Uncompress the package using tar:
 
 ```
 # Debian/Ubuntu
-tar xf seafile-pro-server_13.0.10_x86-64_Ubuntu.tar.gz
+tar xf seafile-pro-server_14.0.10_x86-64_Ubuntu.tar.gz
 ```
 
 Now you have:
@@ -181,7 +181,7 @@ $ tree -L 2 /opt/seafile
 │   ├── lib
 │   ├── lib64 -> lib
 │   └── pyvenv.cfg
-├── seafile-pro-server-13.0.10
+├── seafile-pro-server-14.0.10
 │   ├── check_init_admin.py
 │   ├── index_op.py
 │   ├── migrate-repo.py
@@ -211,15 +211,15 @@ $ tree -L 2 /opt/seafile
 │   ├── setup-seafile.sh
 │   ├── sql
 │   └── upgrade
-└── seafile-pro-server_13.0.10_x86-64_Ubuntu.tar.gz
+└── seafile-pro-server_14.0.10_x86-64_Ubuntu.tar.gz
 
 ```
 
 !!! tip
-    The names of the install packages differ for Seafile CE and Seafile PE. Using Seafile CE and Seafile PE 13.0.10 as an example, the names are as follows:
+    The names of the install packages differ for Seafile CE and Seafile PE. Using Seafile CE and Seafile PE 14.0.10 as an example, the names are as follows:
 
-    * Seafile CE: `seafile-server_13.0.10_x86-86.tar.gz`; uncompressing into folder `seafile-server-13.0.10`
-    * Seafile PE: `seafile-pro-server_13.0.10_x86-86.tar.gz`; uncompressing into folder `seafile-pro-server-13.0.10`
+    * Seafile CE: `seafile-server_14.0.10_x86-86.tar.gz`; uncompressing into folder `seafile-server-14.0.10`
+    * Seafile PE: `seafile-pro-server_14.0.10_x86-86.tar.gz`; uncompressing into folder `seafile-pro-server-14.0.10`
 
 ### Setting up Seafile Pro databases
 
@@ -241,7 +241,7 @@ Run the script as user seafile:
     ```
 
 ```
-cd seafile-pro-server-13.0.10
+cd seafile-pro-server-14.0.10
 ./setup-seafile-mysql.sh
 
 ```
@@ -328,7 +328,7 @@ The directory layout then looks as follows:
 │   └── pyvenv.cfg
 ├── seafile-data
 │   └── library-template
-├── seafile-pro-server-13.0.10
+├── seafile-pro-server-14.0.10
 │   ├── check_init_admin.py
 │   ├── index_op.py
 │   ├── migrate-repo.py
@@ -358,8 +358,8 @@ The directory layout then looks as follows:
 │   ├── setup-seafile.sh
 │   ├── sql
 │   └── upgrade
-├── seafile-pro-server_13.0.10_x86-64_Ubuntu.tar.gz
-├── seafile-server-latest -> seafile-pro-server-13.0.10
+├── seafile-pro-server_14.0.10_x86-64_Ubuntu.tar.gz
+├── seafile-server-latest -> seafile-pro-server-14.0.10
 └── seahub-data
     └── avatars
 ```
@@ -517,7 +517,7 @@ Seafile uses the indexing server ElasticSearch to enable full text search.
 
 Our recommendation for deploying ElasticSearch is using Docker. Detailed information about installing Docker on various Linux distributions is available at [Docker Docs](https://docs.docker.com/engine/install/).
 
-Seafile PE 9.0 only supports ElasticSearch 7.x. Seafile PE 10.0, 11.0, 12.0, 13.0 only supports ElasticSearch 8.x.
+Seafile PE 9.0 only supports ElasticSearch 7.x. Seafile PE 10.0 and later only supports ElasticSearch 8.x.
 
 We use ElasticSearch version 8.15.0 as an example in this section. Version 8.15.0 and newer version have been successfully tested with Seafile.
 

@@ -49,14 +49,14 @@ Please refer [here](./system_requirements.md#seafile-cluster) for the details ab
 2. Pulling Seafile image
 
     ```bash
-    docker pull seafileltd/seafile-pro-mc:13.0-latest
+    docker pull seafileltd/seafile-pro-mc:14.0-latest
     ```
 
 3. Download the `seafile-server.yml` and `.env`
 
     ```sh
-    wget -O .env https://manual.seafile.com/13.0/repo/docker/cluster/env
-    wget https://manual.seafile.com/13.0/repo/docker/cluster/seafile-server.yml
+    wget -O .env https://manual.seafile.com/14.0/repo/docker/cluster/env
+    wget https://manual.seafile.com/14.0/repo/docker/cluster/seafile-server.yml
     ```
 
 4. Modify the [variables](../config/env.md) in `.env` (especially the terms like `<...>`). 
