@@ -5645,25 +5645,21 @@
 <p>In the document below, we assume your seafile installation folder is <code>/opt/seafile</code>.</p>
 <h2 id="modify-env">Modify <code>.env</code><a class="headerlink" href="#modify-env" title="Permanent link">&para;</a></h2>
 <p>Enable the WebDAV extension in the <code>.env</code> file.</p>
-<div class="highlight"><pre><span></span><code><span class="nv">ENABLE_SEAFDAV</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
-<span class="nv">SEAFDAV_WORKERS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="o">(</span>The<span class="w"> </span>default<span class="w"> </span>is<span class="w"> </span><span class="m">5</span>.<span class="o">)</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Default is false. Change it to true to enable SeafDAV server.</span>
+<span class="nv">ENABLE_SEAFDAV</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
+
+<span class="c1"># SeafDAV uses Gunicorn as web server.</span>
+<span class="c1"># This option maps to Gunicorn&#39;s &#39;workers&#39; setting. https://docs.gunicorn.org/en/stable/settings.html?#workers</span>
+<span class="c1"># By default it&#39;s set to 5 processes.</span>
+<span class="nv">SEAFDAV_WORKERS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>
 </code></pre></div>
 <h2 id="config-webdav-extension">Config WebDAV extension<a class="headerlink" href="#config-webdav-extension" title="Permanent link">&para;</a></h2>
 <p>The configuration file is <code>/opt/seafile-data/seafile/conf/seafdav.conf</code> (for deploying from binary packages, it should be <code>/opt/seafile/conf/seafdav.conf</code>). If it is not created already, you can just create the file.</p>
 <div class="highlight"><pre><span></span><code>[WEBDAV]
-
-# Default is false. Change it to true to enable SeafDAV server.
-enabled = true
-
 port = 8080
 debug = true
 
 share_name = /seafdav
-
-# SeafDAV uses Gunicorn as web server.
-# This option maps to Gunicorn&#39;s &#39;workers&#39; setting. https://docs.gunicorn.org/en/stable/settings.html?#workers
-# By default it&#39;s set to 5 processes.
-workers = 5
 
 # This option maps to Gunicorn&#39;s &#39;timeout&#39; setting. https://docs.gunicorn.org/en/stable/settings.html?#timeout
 # By default it&#39;s set to 1200 seconds, to support large file uploads.

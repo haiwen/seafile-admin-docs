@@ -4477,6 +4477,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade notes for 14.0.x
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -4493,6 +4511,36 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#important-release-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Important release changes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -5352,6 +5400,25 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#important-release-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Important release changes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -5371,6 +5438,20 @@
 
 
 <h1 id="upgrade-notes-for-140">Upgrade notes for 14.0<a class="headerlink" href="#upgrade-notes-for-140" title="Permanent link">&para;</a></h1>
+<ul>
+<li>
+<p>These notes give additional information about changes.
+Please always follow the main <a href="../upgrade/">upgrade guide</a>.</p>
+</li>
+<li>
+<p>For docker based version, please check <a href="../upgrade_docker/">upgrade Seafile Docker image</a></p>
+</li>
+</ul>
+<h2 id="important-release-changes">Important release changes<a class="headerlink" href="#important-release-changes" title="Permanent link">&para;</a></h2>
+<p>Seafile version 14.0 has the following configuration changes:</p>
+<ul>
+<li>WebDAV is configured via environment variables in <code>.env</code>. Please refer to <a href="../../extension/webdav/">WebDAV extension</a> for details.</li>
+</ul>
 
 
 
