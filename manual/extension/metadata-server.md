@@ -103,16 +103,16 @@ To enable metadata management in Seafile, modify the `.env` file used by the Sea
 === "Deploy in the same machine with Seafile"
     ```env
     ENABLE_METADATA_MANAGEMENT=True
-    METADATA_SERVER_URL=http://seafile-md-server:8084
+    INNER_METADATA_SERVER_URL=http://seafile-md-server:8084
     ```
 
 === "Standalone"
     ```env
     ENABLE_METADATA_MANAGEMENT=True
-    METADATA_SERVER_URL=http://<your metadata-server host>:8084
+    INNER_METADATA_SERVER_URL=http://<your metadata-server host>:8084
     ```
 
-    In a cluster deployment, add the same settings to the `.env` of each Seafile server node that needs to use the Metadata server. `METADATA_SERVER_URL` must be reachable from the Seafile server container.
+    In a cluster deployment, add the same settings to the `.env` of each Seafile server node that needs to use the Metadata server. `INNER_METADATA_SERVER_URL` must be reachable from the Seafile server container.
 
 ## Start service
 
