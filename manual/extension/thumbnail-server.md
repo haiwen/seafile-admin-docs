@@ -24,10 +24,10 @@ Modify `.env`, and insert `thumbnail-server.yml` into `COMPOSE_FILE`:
 COMPOSE_FILE='seafile-server.yml,caddy.yml,thumbnail-server.yml'
 ```
 
-Add following configuration in `seahub_settings.py` to enable thumbnail for videos:
+Add following configuration in `seahub_settings.py` to enable thumbnail server:
 
 ```py
-# video thumbnails (disabled by default)
+# enable thumbnail-server (disabled by default)
 ENABLE_THUMBNAIL_SERVER = True
 ```
 

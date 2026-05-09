@@ -65,6 +65,8 @@ ENABLE_FACE_RECOGNITION=false
 SEAFILE_AI_SERVER_URL=
 
 ## Metadata server
+ENABLE_METADATA_MANAGEMENT=False
+METADATA_SERVER_URL=
 MD_FILE_COUNT_LIMIT=100000
 
 ######################################
