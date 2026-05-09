@@ -5821,14 +5821,14 @@ MD_MAX_CACHE_SIZE=1GB
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>ENABLE_METADATA_MANAGEMENT=True
-METADATA_SERVER_URL=http://seafile-md-server:8084
+INNER_METADATA_SERVER_URL=http://seafile-md-server:8084
 </code></pre></div>
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>ENABLE_METADATA_MANAGEMENT=True
-METADATA_SERVER_URL=http://&lt;your metadata-server host&gt;:8084
+INNER_METADATA_SERVER_URL=http://&lt;your metadata-server host&gt;:8084
 </code></pre></div>
-<p>In a cluster deployment, add the same settings to the <code>.env</code> of each Seafile server node that needs to use the Metadata server. <code>METADATA_SERVER_URL</code> must be reachable from the Seafile server container.</p>
+<p>In a cluster deployment, add the same settings to the <code>.env</code> of each Seafile server node that needs to use the Metadata server. <code>INNER_METADATA_SERVER_URL</code> must be reachable from the Seafile server container.</p>
 </div>
 </div>
 </div>
