@@ -2447,10 +2447,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#modify-seahub_settingspy" class="md-nav__link">
+  <a href="#enable-metadata-server-in-seafile" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Modify seahub_settings.py
+        Enable Metadata server in Seafile
       
     </span>
   </a>
@@ -5607,10 +5607,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#modify-seahub_settingspy" class="md-nav__link">
+  <a href="#enable-metadata-server-in-seafile" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Modify seahub_settings.py
+        Enable Metadata server in Seafile
       
     </span>
   </a>
@@ -5710,7 +5710,7 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 </div>
 </div>
 <h3 id="modify-env">Modify <code>.env</code><a class="headerlink" href="#modify-env" title="Permanent link">&para;</a></h3>
-<p>Metadata server read all configurations from environtment and <strong>does not need a dedicated configuration file</strong>, and you don't need to add additional variables to your <code>.env</code> (except for standalone deployment) to get the metadata server started, because it will read the exact same configuration as the Seafile server (including <code>JWT_PRIVATE_KEY</code> ) and keep the repository metadata locally (default <code>/opt/seafile-data/seafile/md-data</code>). But you still need to modify the <code>COMPOSE_FILE</code> list in <code>.env</code>, and add <code>md-server.yml</code> to enable the metadata server:</p>
+<p>Metadata server reads all configurations from environment and <strong>does not need a dedicated configuration file</strong>, and you don't need to add additional variables to the Metadata server <code>.env</code> (except for standalone deployment) to get the metadata server started, because it will read the exact same configuration as the Seafile server (including <code>JWT_PRIVATE_KEY</code>) and keep the repository metadata locally (default <code>/opt/seafile-data/seafile/md-data</code>). But you still need to modify the <code>COMPOSE_FILE</code> list in <code>.env</code>, and add <code>md-server.yml</code> to enable the metadata server:</p>
 <div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;...,md-server.yml&#39;
 </code></pre></div>
 <p>To facilitate your deployment, we still provide two different configuration solutions for your reference:</p>
@@ -5815,24 +5815,25 @@ MD_MAX_CACHE_SIZE=1GB
 <p class="admonition-title">Metadata server supports <em>Redis</em> only</p>
 <p>To enable metadata feature, you have to use <em>Redis</em> for cache, as the <code>CACHE_PROVIDER</code> must be set to <code>redis</code> in your <code>.env</code></p>
 </div>
-<h3 id="modify-seahub_settingspy">Modify <code>seahub_settings.py</code><a class="headerlink" href="#modify-seahub_settingspy" title="Permanent link">&para;</a></h3>
-<p>To enable metadata server in Seafile, please add the following field in your <code>seahub_settings.py</code>:</p>
+<h3 id="enable-metadata-server-in-seafile">Enable Metadata server in Seafile<a class="headerlink" href="#enable-metadata-server-in-seafile" title="Permanent link">&para;</a></h3>
+<p>To enable metadata management in Seafile, modify the <code>.env</code> file used by the Seafile server. Do not add these two variables to the standalone Metadata server <code>.env</code>; they are consumed by the Seafile server.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Deploy in the same machine with Seafile</label><label for="__tabbed_2_2">Standalone</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="n">ENABLE_METADATA_MANAGEMENT</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">METADATA_SERVER_URL</span> <span class="o">=</span> <span class="s1">&#39;http://seafile-md-server:8084&#39;</span>
+<div class="highlight"><pre><span></span><code>ENABLE_METADATA_MANAGEMENT=True
+METADATA_SERVER_URL=http://seafile-md-server:8084
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="n">ENABLE_METADATA_MANAGEMENT</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">METADATA_SERVER_URL</span> <span class="o">=</span> <span class="s1">&#39;http://&lt;your metadata-server host&gt;:8084&#39;</span>
+<div class="highlight"><pre><span></span><code>ENABLE_METADATA_MANAGEMENT=True
+METADATA_SERVER_URL=http://&lt;your metadata-server host&gt;:8084
 </code></pre></div>
+<p>In a cluster deployment, add the same settings to the <code>.env</code> of each Seafile server node that needs to use the Metadata server. <code>METADATA_SERVER_URL</code> must be reachable from the Seafile server container.</p>
 </div>
 </div>
 </div>
 <h2 id="start-service">Start service<a class="headerlink" href="#start-service" title="Permanent link">&para;</a></h2>
-<p>You can use following command to start metadata server (and the Seafile service also have to restart):</p>
+<p>You can use following command to start metadata server and restart Seafile:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
 docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
