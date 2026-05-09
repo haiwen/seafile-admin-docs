@@ -35,7 +35,7 @@ Please download the file by following command:
 
 ### Modify `.env`
 
-Metadata server read all configurations from environtment and **does not need a dedicated configuration file**, and you don't need to add additional variables to your `.env` (except for standalone deployment) to get the metadata server started, because it will read the exact same configuration as the Seafile server (including `JWT_PRIVATE_KEY` ) and keep the repository metadata locally (default `/opt/seafile-data/seafile/md-data`). But you still need to modify the `COMPOSE_FILE` list in `.env`, and add `md-server.yml` to enable the metadata server:
+Metadata server reads all configurations from environment and **does not need a dedicated configuration file**, and you don't need to add additional variables to the Metadata server `.env` (except for standalone deployment) to get the metadata server started, because it will read the exact same configuration as the Seafile server (including `JWT_PRIVATE_KEY`) and keep the repository metadata locally (default `/opt/seafile-data/seafile/md-data`). But you still need to modify the `COMPOSE_FILE` list in `.env`, and add `md-server.yml` to enable the metadata server:
 
 ```
 COMPOSE_FILE='...,md-server.yml'
@@ -96,24 +96,27 @@ In addition, there are some environment variables **related to S3 authorization*
 !!! warning "Metadata server supports *Redis* only"
     To enable metadata feature, you have to use *Redis* for cache, as the `CACHE_PROVIDER` must be set to `redis` in your `.env`
 
-### Modify `seahub_settings.py`
+### Enable Metadata server in Seafile
 
-To enable metadata server in Seafile, please add the following field in your `seahub_settings.py`:
+To enable metadata management in Seafile, modify the `.env` file used by the Seafile server. Do not add these two variables to the standalone Metadata server `.env`; they are consumed by the Seafile server.
 
 === "Deploy in the same machine with Seafile"
-    ```py
-    ENABLE_METADATA_MANAGEMENT = True
-    METADATA_SERVER_URL = 'http://seafile-md-server:8084'
+    ```env
+    ENABLE_METADATA_MANAGEMENT=True
+    METADATA_SERVER_URL=http://seafile-md-server:8084
     ```
+
 === "Standalone"
-    ```py
-    ENABLE_METADATA_MANAGEMENT = True
-    METADATA_SERVER_URL = 'http://<your metadata-server host>:8084'
+    ```env
+    ENABLE_METADATA_MANAGEMENT=True
+    METADATA_SERVER_URL=http://<your metadata-server host>:8084
     ```
+
+    In a cluster deployment, add the same settings to the `.env` of each Seafile server node that needs to use the Metadata server. `METADATA_SERVER_URL` must be reachable from the Seafile server container.
 
 ## Start service
 
-You can use following command to start metadata server (and the Seafile service also have to restart):
+You can use following command to start metadata server and restart Seafile:
 
 ```sh
 docker compose down
