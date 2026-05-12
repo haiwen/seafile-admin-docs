@@ -66,6 +66,7 @@ This part of configurations is only valid in `CACHE_PROVIDER=memcached`:
 - `INIT_SEAFILE_ADMIN_EMAIL`: Admin username
 - `INIT_SEAFILE_ADMIN_PASSWORD`: Admin password
 - `ENABLE_GO_FILESERVER`: Use Go fileserver
+- `CSRF_TRUSTED_ORIGINS`: A list of trusted origins for CSRF protection, JSON string, example: `["https://seafile.example.com", "https://seafile.com"]`.
 
 ## SeaDoc configurations (only valid after integrating SeaDoc)
 
