@@ -7,6 +7,160 @@ For major version upgrade, like from 10.0 to 11.0, see instructions below.
 Please check the **upgrade notes** for any special configuration or changes before/while upgrading.
 
 
+## Upgrade from 13.0 to 14.0
+
+### Step 1) Stop the services:
+
+Before upgrading, please shutdown your Seafile server:
+
+```sh
+docker compose down
+```
+
+### Step 2) Download the newest `.yml` files
+
+#### Step 2.1) Download `seafile-server.yml`
+
+Before downloading the newest `seafile-server.yml`, please backup your original one:
+
+```sh
+mv seafile-server.yml seafile-server.yml.bak
+```
+
+Then download the new `seafile-server.yml` according to the following commands:
+
+=== "Seafile community edition"
+    ```sh
+    wget https://manual.seafile.com/14.0/repo/docker/ce/seafile-server.yml
+    ```
+=== "Seafile Pro edition"
+    ```sh
+    wget https://manual.seafile.com/14.0/repo/docker/pro/seafile-server.yml
+    ```
+
+#### Step 2.2) Download `.yml` file for notification server (optional)
+
+If you are using notification server, please backup the old file and download the 14.0 file:
+
+=== "Deployment with Seafile"
+    ```sh
+    mv notification-server.yml notification-server.yml.bak
+    wget https://manual.seafile.com/14.0/repo/docker/notification-server.yml
+    ```
+=== "Standalone deployment"
+    ```sh
+    mv notification-server.yml notification-server.yml.bak
+    wget https://manual.seafile.com/14.0/repo/docker/notification-server/notification-server.yml
+    ```
+
+#### Step 2.3) Download `.yml` file for metadata server (optional)
+
+If you are using Metadata server, please backup the old file and download the 14.0 file:
+
+=== "Deployment with Seafile"
+    ```sh
+    mv md-server.yml md-server.yml.bak
+    wget https://manual.seafile.com/14.0/repo/docker/md-server.yml
+    ```
+=== "Standalone deployment"
+    ```sh
+    mv md-server.yml md-server.yml.bak
+    wget https://manual.seafile.com/14.0/repo/docker/metadata-server/md-server.yml
+    ```
+
+#### Step 2.4) Download `.yml` file for thumbnail server (optional)
+
+If you are using Thumbnail server, please backup the old file and download the 14.0 file:
+
+=== "Deployment with Seafile"
+    ```sh
+    mv thumbnail-server.yml thumbnail-server.yml.bak
+    wget https://manual.seafile.com/14.0/repo/docker/thumbnail-server.yml
+    ```
+=== "Standalone deployment"
+    ```sh
+    mv thumbnail-server.yml thumbnail-server.yml.bak
+    wget https://manual.seafile.com/14.0/repo/docker/thumbnail-server/thumbnail-server.yml
+    ```
+
+### Step 3) Modify `.env`
+
+#### Step 3.1) Update image versions
+
+=== "Seafile CE"
+
+    ```sh
+    SEAFILE_IMAGE=seafileltd/seafile-mc:14.0-latest
+
+    # If you are using notification server
+    NOTIFICATION_SERVER_IMAGE=seafileltd/notification-server:14.0-latest
+
+    # If you are using Metadata server
+    MD_IMAGE=seafileltd/seafile-md-server:14.0-latest
+
+    # If you are using Thumbnail server
+    THUMBNAIL_SERVER_IMAGE=seafileltd/thumbnail-server:14.0-latest
+    ```
+
+=== "Seafile Pro"
+
+    ```sh
+    SEAFILE_IMAGE=seafileltd/seafile-pro-mc:14.0-latest
+
+    # If you are using notification server
+    NOTIFICATION_SERVER_IMAGE=seafileltd/notification-server:14.0-latest
+
+    # If you are using Metadata server
+    MD_IMAGE=seafileltd/seafile-md-server:14.0-latest
+
+    # If you are using Thumbnail server
+    THUMBNAIL_SERVER_IMAGE=seafileltd/thumbnail-server:14.0-latest
+    ```
+
+#### Step 3.2) Update configurations for Metadata server
+
+If you are not using Metadata server, skip this step.
+
+In Seafile 14.0, the following two Metadata server configurations are moved from `seahub_settings.py` to the `.env` file used by the Seafile server. Remove them from `seahub_settings.py` if they exist there, and add them to the Seafile server `.env`. The old `METADATA_SERVER_URL` configuration is renamed to `INNER_METADATA_SERVER_URL`.
+
+=== "Deploy in the same machine with Seafile"
+    ```env
+    ENABLE_METADATA_MANAGEMENT=True
+    INNER_METADATA_SERVER_URL=http://seafile-md-server:8084
+    ```
+=== "Standalone"
+    ```env
+    ENABLE_METADATA_MANAGEMENT=True
+    INNER_METADATA_SERVER_URL=http://<your metadata-server host>:8084
+    ```
+
+    In a cluster deployment, add the same settings to the `.env` of each Seafile server node that needs to use the Metadata server. `INNER_METADATA_SERVER_URL` must be reachable from the Seafile server container.
+
+### Step 4) Modify `seahub_settings.py` for Thumbnail server
+
+If you are not using Thumbnail server, skip this step.
+
+Open `/opt/seafile-data/seafile/conf/seahub_settings.py` and remove the following configuration if it exists. In Seafile 14.0, video thumbnail is enabled by default.
+
+```py
+# video thumbnails (disabled by default)
+ENABLE_VIDEO_THUMBNAIL = True
+```
+
+Then add the following configuration to enable Thumbnail server:
+
+```py
+# enable thumbnail-server (disabled by default)
+ENABLE_THUMBNAIL_SERVER = True
+```
+
+### Step 5) Start Seafile
+
+```sh
+docker compose up -d
+```
+
+
 ## Upgrade from 12.0 to 13.0
 
 From Seafile Docker 13.0, the `elasticsearch.yml` has separated from `seafile-server.yml`, and Seafile will support getting cache configuration from environment variables
