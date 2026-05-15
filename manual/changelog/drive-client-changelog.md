@@ -1,5 +1,17 @@
 # SeaDrive Client Changelog
 
+### 3.0.22 (2026/05/15)
+
+* \[win] Fix filename encoding handling when open file from web browser
+* Record network errors when server is offline, instead of server error. Such errors can now auto-recover when server is online.
+* \[win] Avoid misleading index error when writing to a large file
+* \[mac] Support moving downloaded files to system trash
+* \[win] Improve download speed for 10Gb networks
+* \[linux] Disallow updating file attributes in read-only folder
+* \[win] Avoid unintended file deletions when syncing fast "remove then create" operation sequence from the server
+* \[mac] Don't display files in the root folder if root folder is set to invisible
+* \[win/mac] Don't upload new folders when they're created in read-only folders
+
 ### 3.0.21 (2026/03/26)
 
 * Fix crash when handling file locking
