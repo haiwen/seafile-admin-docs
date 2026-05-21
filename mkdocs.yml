@@ -140,7 +140,7 @@ nav:
       - FUSE extension: extension/fuse.md
       - Seafile AI extension: extension/seafile-ai.md
     - Online Office:
-      - Collabora Online Integration: extension/libreoffice_online.md
+      - Collabora Online Integration: extension/collabora_online.md
       - OnlyOffice Integration: extension/only_office.md
       - Office Online Server Integration (Pro): extension/office_web_app.md
     - Cluster (Pro):
