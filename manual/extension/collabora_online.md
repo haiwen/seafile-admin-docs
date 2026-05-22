@@ -1,4 +1,4 @@
-# Integrate Seafile with Collabora Online (LibreOffice Online)
+# Integrate Seafile with Collabora Online
 
 ## Setup CollaboraOnline
 
@@ -6,10 +6,9 @@
 
     The steps from this guide only cover installing collabora as another container on the same docker host that your seafile docker container is on. **Please make sure your host have sufficient cores and RAM**. 
     
-    If you want to install on another host please refer the collabora documentation for [instructions](https://sdk.collaboraonline.com/docs/installation/CODE_Docker_image.html#code-docker-image). Then you should follow [here](#Libreoffice-server-on-a-separate-host) to configure `seahub_settings.py` to enable online office.
-
+    If you want to install on another host please refer the collabora documentation for [instructions](https://sdk.collaboraonline.com/docs/installation/CODE_Docker_image.html#code-docker-image).
 !!! note
-    To integrate *LibreOffice* with Seafile, you have to enable **HTTPS** in your Seafile server:
+    To integrate *Collabora Online* with Seafile, you have to enable **HTTPS** in your Seafile server:
 
     === "Deploy in Docker"
         
@@ -27,20 +26,20 @@
 Download the `collabora.yml`
 
 ```sh
-wget https://manual.seafile.com/13.0/repo/docker/collabora.yml
+wget https://manual.seafile.com/14.0/repo/docker/collabora.yml
 ```
 
 Insert `collabora.yml` to field `COMPOSE_FILE` lists (i.e., `COMPOSE_FILE='...,collabora.yml'`) and add the relative options in `.env`
 
 ```sh
 
-COLLABORA_IMAGE=collabora/code:24.04.5.1.1 # image of LibreOffice
+COLLABORA_IMAGE=collabora/code
 COLLABORA_PORT=6232 # expose port
-COLLABORA_USERNAME=<your LibreOffice admin username>
-COLLABORA_PASSWORD=<your LibreOffice admin password>
+COLLABORA_USERNAME=<your Collabora Online admin username>
+COLLABORA_PASSWORD=<your Collabora Online admin password>
 COLLABORA_ENABLE_ADMIN_CONSOLE=true # enable admin console or not
-COLLABORA_REMOTE_FONT= # remote font url
-COLLABORA_ENABLE_FILE_LOGGING=false # use file logs or not, see FQA
+COLLABORA_REMOTE_FONT= # remote font url, see https://sdk.collaboraonline.com/docs/installation/Configuration.html#configuration-remote
+COLLABORA_ENABLE_FILE_LOGGING=false # use file logs or not, see FAQ
 ```
 
 ## Config Seafile
@@ -55,28 +54,26 @@ OFFICE_WEB_APP_BASE_URL = 'http://collabora:9980/hosting/discovery'
 
 # Expiration of WOPI access token
 # WOPI access token is a string used by Seafile to determine the file's
-# identity and permissions when use LibreOffice Online view it online
+# identity and permissions when use Collabora Online view it online
 # And for security reason, this token should expire after a set time period
 WOPI_ACCESS_TOKEN_EXPIRATION = 30 * 60   # seconds
 
-# List of file formats that you want to view through LibreOffice Online
+# List of file formats that you want to view through Collabora Online
 # You can change this value according to your preferences
-# And of course you should make sure your LibreOffice Online supports to preview
+# And of course you should make sure your Collabora Online supports to preview
 # the files with the specified extensions
 OFFICE_WEB_APP_FILE_EXTENSION = ('odp', 'ods', 'odt', 'xls', 'xlsb', 'xlsm', 'xlsx','ppsx', 'ppt', 'pptm', 'pptx', 'doc', 'docm', 'docx')
 
-# Enable edit files through LibreOffice Online
+# Enable edit files through Collabora Online
 ENABLE_OFFICE_WEB_APP_EDIT = True
 
-# types of files should be editable through LibreOffice Online
+# types of files should be editable through Collabora Online
 OFFICE_WEB_APP_EDIT_FILE_EXTENSION = ('odp', 'ods', 'odt', 'xls', 'xlsb', 'xlsm', 'xlsx','ppsx', 'ppt', 'pptm', 'pptx', 'doc', 'docm', 'docx')
 ```
 
 Then restart Seafile.
 
-Click an office file in Seafile web interface, you will see the online preview rendered by CollaboraOnline. Here is an example:
-
-![LibreOffice-online](../images/libreoffice-online.png)
+Click an office file in Seafile web interface, you will see the online preview rendered by CollaboraOnline.
 
 ## Trouble shooting
 
@@ -86,6 +83,8 @@ Understanding how the integration work will help you debug the problem. When a u
 2. (browser->CollaboraOnline) With the iframe, the browser will try to load the file preview page from the CollaboraOnline
 3. (CollaboraOnline->seahub) CollaboraOnline receives the request and sends a request to Seahub to get the file content
 4. (CollaboraOnline->browser) CollaboraOnline sends the file preview page to the browser.
+
+You can find a troubleshooting guide for CollaboraOnline on the official documentation: https://sdk.collaboraonline.com/docs/installation/Collabora_Online_Troubleshooting_Guide.html
 
 ## FAQ
 
