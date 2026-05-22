@@ -12,7 +12,7 @@
         <meta name="author" content="Seafile Ltd.">
       
       
-        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/13.0/extension/libreoffice_online/">
+        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/13.0/extension/collabora_online/">
       
       
         <link rel="prev" href="../seafile-ai/">
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#integrate-seafile-with-collabora-online-libreoffice-online" class="md-skip">
+        <a href="#integrate-seafile-with-collabora-online" class="md-skip">
           Skip to content
         </a>
       
@@ -5536,16 +5536,16 @@
   
 
 
-<h1 id="integrate-seafile-with-collabora-online-libreoffice-online">Integrate Seafile with Collabora Online (LibreOffice Online)<a class="headerlink" href="#integrate-seafile-with-collabora-online-libreoffice-online" title="Permanent link">&para;</a></h1>
+<h1 id="integrate-seafile-with-collabora-online">Integrate Seafile with Collabora Online<a class="headerlink" href="#integrate-seafile-with-collabora-online" title="Permanent link">&para;</a></h1>
 <h2 id="setup-collaboraonline">Setup CollaboraOnline<a class="headerlink" href="#setup-collaboraonline" title="Permanent link">&para;</a></h2>
 <div class="admonition tip">
 <p class="admonition-title">Deployment Tips</p>
 <p>The steps from this guide only cover installing collabora as another container on the same docker host that your seafile docker container is on. <strong>Please make sure your host have sufficient cores and RAM</strong>. </p>
-<p>If you want to install on another host please refer the collabora documentation for <a href="https://sdk.collaboraonline.com/docs/installation/CODE_Docker_image.html#code-docker-image">instructions</a>. Then you should follow <a href="#Libreoffice-server-on-a-separate-host">here</a> to configure <code>seahub_settings.py</code> to enable online office.</p>
+<p>If you want to install on another host please refer the collabora documentation for <a href="https://sdk.collaboraonline.com/docs/installation/CODE_Docker_image.html#code-docker-image">instructions</a>.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>To integrate <em>LibreOffice</em> with Seafile, you have to enable <strong>HTTPS</strong> in your Seafile server:</p>
+<p>To integrate <em>Collabora Online</em> with Seafile, you have to enable <strong>HTTPS</strong> in your Seafile server:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Deploy in Docker</label><label for="__tabbed_1_2">Deploy from binary packages</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -5560,16 +5560,16 @@
 </div>
 </div>
 <p>Download the <code>collabora.yml</code></p>
-<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/collabora.yml
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/14.0/repo/docker/collabora.yml
 </code></pre></div>
 <p>Insert <code>collabora.yml</code> to field <code>COMPOSE_FILE</code> lists (i.e., <code>COMPOSE_FILE='...,collabora.yml'</code>) and add the relative options in <code>.env</code></p>
-<div class="highlight"><pre><span></span><code><span class="nv">COLLABORA_IMAGE</span><span class="o">=</span>collabora/code:24.04.5.1.1<span class="w"> </span><span class="c1"># image of LibreOffice</span>
+<div class="highlight"><pre><span></span><code><span class="nv">COLLABORA_IMAGE</span><span class="o">=</span>collabora/code
 <span class="nv">COLLABORA_PORT</span><span class="o">=</span><span class="m">6232</span><span class="w"> </span><span class="c1"># expose port</span>
-<span class="nv">COLLABORA_USERNAME</span><span class="o">=</span>&lt;your<span class="w"> </span>LibreOffice<span class="w"> </span>admin<span class="w"> </span>username&gt;
-<span class="nv">COLLABORA_PASSWORD</span><span class="o">=</span>&lt;your<span class="w"> </span>LibreOffice<span class="w"> </span>admin<span class="w"> </span>password&gt;
+<span class="nv">COLLABORA_USERNAME</span><span class="o">=</span>&lt;your<span class="w"> </span>Collabora<span class="w"> </span>Online<span class="w"> </span>admin<span class="w"> </span>username&gt;
+<span class="nv">COLLABORA_PASSWORD</span><span class="o">=</span>&lt;your<span class="w"> </span>Collabora<span class="w"> </span>Online<span class="w"> </span>admin<span class="w"> </span>password&gt;
 <span class="nv">COLLABORA_ENABLE_ADMIN_CONSOLE</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="c1"># enable admin console or not</span>
-<span class="nv">COLLABORA_REMOTE_FONT</span><span class="o">=</span><span class="w"> </span><span class="c1"># remote font url</span>
-<span class="nv">COLLABORA_ENABLE_FILE_LOGGING</span><span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="c1"># use file logs or not, see FQA</span>
+<span class="nv">COLLABORA_REMOTE_FONT</span><span class="o">=</span><span class="w"> </span><span class="c1"># remote font url, see https://sdk.collaboraonline.com/docs/installation/Configuration.html#configuration-remote</span>
+<span class="nv">COLLABORA_ENABLE_FILE_LOGGING</span><span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="c1"># use file logs or not, see FAQ</span>
 </code></pre></div>
 <h2 id="config-seafile">Config Seafile<a class="headerlink" href="#config-seafile" title="Permanent link">&para;</a></h2>
 <p>Add following config option to seahub_settings.py:</p>
@@ -5579,25 +5579,24 @@
 
 <span class="c1"># Expiration of WOPI access token</span>
 <span class="c1"># WOPI access token is a string used by Seafile to determine the file&#39;s</span>
-<span class="c1"># identity and permissions when use LibreOffice Online view it online</span>
+<span class="c1"># identity and permissions when use Collabora Online view it online</span>
 <span class="c1"># And for security reason, this token should expire after a set time period</span>
 <span class="n">WOPI_ACCESS_TOKEN_EXPIRATION</span> <span class="o">=</span> <span class="mi">30</span> <span class="o">*</span> <span class="mi">60</span>   <span class="c1"># seconds</span>
 
-<span class="c1"># List of file formats that you want to view through LibreOffice Online</span>
+<span class="c1"># List of file formats that you want to view through Collabora Online</span>
 <span class="c1"># You can change this value according to your preferences</span>
-<span class="c1"># And of course you should make sure your LibreOffice Online supports to preview</span>
+<span class="c1"># And of course you should make sure your Collabora Online supports to preview</span>
 <span class="c1"># the files with the specified extensions</span>
 <span class="n">OFFICE_WEB_APP_FILE_EXTENSION</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;odp&#39;</span><span class="p">,</span> <span class="s1">&#39;ods&#39;</span><span class="p">,</span> <span class="s1">&#39;odt&#39;</span><span class="p">,</span> <span class="s1">&#39;xls&#39;</span><span class="p">,</span> <span class="s1">&#39;xlsb&#39;</span><span class="p">,</span> <span class="s1">&#39;xlsm&#39;</span><span class="p">,</span> <span class="s1">&#39;xlsx&#39;</span><span class="p">,</span><span class="s1">&#39;ppsx&#39;</span><span class="p">,</span> <span class="s1">&#39;ppt&#39;</span><span class="p">,</span> <span class="s1">&#39;pptm&#39;</span><span class="p">,</span> <span class="s1">&#39;pptx&#39;</span><span class="p">,</span> <span class="s1">&#39;doc&#39;</span><span class="p">,</span> <span class="s1">&#39;docm&#39;</span><span class="p">,</span> <span class="s1">&#39;docx&#39;</span><span class="p">)</span>
 
-<span class="c1"># Enable edit files through LibreOffice Online</span>
+<span class="c1"># Enable edit files through Collabora Online</span>
 <span class="n">ENABLE_OFFICE_WEB_APP_EDIT</span> <span class="o">=</span> <span class="kc">True</span>
 
-<span class="c1"># types of files should be editable through LibreOffice Online</span>
+<span class="c1"># types of files should be editable through Collabora Online</span>
 <span class="n">OFFICE_WEB_APP_EDIT_FILE_EXTENSION</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;odp&#39;</span><span class="p">,</span> <span class="s1">&#39;ods&#39;</span><span class="p">,</span> <span class="s1">&#39;odt&#39;</span><span class="p">,</span> <span class="s1">&#39;xls&#39;</span><span class="p">,</span> <span class="s1">&#39;xlsb&#39;</span><span class="p">,</span> <span class="s1">&#39;xlsm&#39;</span><span class="p">,</span> <span class="s1">&#39;xlsx&#39;</span><span class="p">,</span><span class="s1">&#39;ppsx&#39;</span><span class="p">,</span> <span class="s1">&#39;ppt&#39;</span><span class="p">,</span> <span class="s1">&#39;pptm&#39;</span><span class="p">,</span> <span class="s1">&#39;pptx&#39;</span><span class="p">,</span> <span class="s1">&#39;doc&#39;</span><span class="p">,</span> <span class="s1">&#39;docm&#39;</span><span class="p">,</span> <span class="s1">&#39;docx&#39;</span><span class="p">)</span>
 </code></pre></div>
 <p>Then restart Seafile.</p>
-<p>Click an office file in Seafile web interface, you will see the online preview rendered by CollaboraOnline. Here is an example:</p>
-<p><img alt="LibreOffice-online" src="../../images/libreoffice-online.png" /></p>
+<p>Click an office file in Seafile web interface, you will see the online preview rendered by CollaboraOnline.</p>
 <h2 id="trouble-shooting">Trouble shooting<a class="headerlink" href="#trouble-shooting" title="Permanent link">&para;</a></h2>
 <p>Understanding how the integration work will help you debug the problem. When a user visits a file page:</p>
 <ol>
@@ -5606,6 +5605,7 @@
 <li>(CollaboraOnline-&gt;seahub) CollaboraOnline receives the request and sends a request to Seahub to get the file content</li>
 <li>(CollaboraOnline-&gt;browser) CollaboraOnline sends the file preview page to the browser.</li>
 </ol>
+<p>You can find a troubleshooting guide for CollaboraOnline on the official documentation: https://sdk.collaboraonline.com/docs/installation/Collabora_Online_Troubleshooting_Guide.html</p>
 <h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
 <h3 id="about-logs">About logs<a class="headerlink" href="#about-logs" title="Permanent link">&para;</a></h3>
 <p>CollaboraOnline container will output the logs in the stdout, you can use following command to access it</p>
