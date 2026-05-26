@@ -102,6 +102,9 @@ Please check our document for how to upgrade to [13.0](../upgrade/upgrade_notes_
 
 Please check our document for how to upgrade to [12.0](../upgrade/upgrade_notes_for_12.0.x.md)
 
+### 12.0.23 (2026-05-26)
+
+* [fix] Fix redis connection pool in seaf-server
 
 ### 12.0.22 (2026-04-01)
 
