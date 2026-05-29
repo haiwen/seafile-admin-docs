@@ -34,6 +34,8 @@ services:
       - S3_SECRET_KEY=${S3_SECRET_KEY:-}
       - S3_USE_V4_SIGNATURE=${S3_USE_V4_SIGNATURE:-true}
       - S3_SSE_C_KEY=${S3_SSE_C_KEY:-}
+      - MD_CEPH_CONFIG=${MD_CEPH_CONFI:-} 
+      - MD_CEPH_POOL=${MD_CEPH_POOL:-}
       - CACHE_PROVIDER=${CACHE_PROVIDER:-redis}
       - REDIS_HOST=${REDIS_HOST:-redis}
       - REDIS_PORT=${REDIS_PORT:-6379}
