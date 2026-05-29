@@ -9,6 +9,13 @@
 
 Please check our document for how to upgrade to [13.0](../upgrade/upgrade_notes_for_13.0.x.md)
 
+### 13.0.22 (2026-05-29)
+
+* [fix] Fix import error in Wiki
+* [fix] Fix a read-only permission check error for exdraw JWT token
+* [fix] Fix unfold invisible button in top bar
+* Improve GC progress log during long run
+
 
 ### 13.0.21 (2026-04-20)
 

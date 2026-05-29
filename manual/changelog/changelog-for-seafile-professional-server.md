@@ -9,6 +9,21 @@
 
 Please check our document for how to upgrade to [13.0](../upgrade/upgrade_notes_for_13.0.x.md)
 
+### 13.0.22 (2026-05-29)
+
+* Don't show "specific user in the team" sharing option if not applicable
+* Add social_auth field in list users API
+* [fix] Fix a read-only permission check error for exdraw JWT token
+* [fix] Fix unfold invisible button in top bar
+* [fix] Fix metadata information display error for folders in search dialog
+* [fix] Fix a permission check issue in invisible permission
+* [fix] Fix multiple storage backend does not use cache correctly
+* Improve GC progress log during long run
+* [fix] Fix go fileserver read of redis configuration
+* ldap sync need to check license limit
+* [md server] Update record mtime when the file is renamed
+* Increase mysql connection timeout
+
 ### 13.0.21 (2026-04-20)
 
 * [fix] Fix multiple selection by shift key in sharing links
