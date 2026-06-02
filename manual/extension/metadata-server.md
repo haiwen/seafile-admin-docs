@@ -88,6 +88,7 @@ The following table is all the related environment variables with Metadata serve
 | `S3_MD_BUCKET`    | Your S3 bucket name for the bucket storing metadata | Required when using S3 (`MD_STORAGE_TYPE=s3`) |
 | `MD_CEPH_CONFIG`  | Your Ceph storage configuration file, like `/etc/ceph/ceph.conf` | Required when using ceph (`MD_STORAGE_TYPE=ceph`) |
 | `MD_CEPH_POOL`    | Your Ceph storage pool for md-server, like `seafile-md-bucket` |  Required when using ceph (`MD_STORAGE_TYPE=ceph`)  |
+| `MD_CEPH_CLIENT_ID`    | Your Ceph storage client ID for md-server, like `seafile`. Default is `admin` |  Optional when using ceph (`MD_STORAGE_TYPE=ceph`)  |
 | `MD_CHECK_UPDATE_INTERVAL`    | The interval for updating metadata of the repository | `30m` |
 | `MD_FILE_COUNT_LIMIT` | The maximum number of files in a repository that the metadata feature allows. If the number of files in a repository exceeds this value, the metadata management function will not be enabled for the repository. For a repository with metadata management enabled, if the number of records in it reaches this value but there are still some files that are not recorded in metadata server, the metadata management of the unrecorded files will be skipped. | `100000` |
 
