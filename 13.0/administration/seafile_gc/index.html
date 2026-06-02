@@ -4285,6 +4285,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#verbose-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verbose Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#removing-garbage" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5452,6 +5463,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#verbose-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verbose Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#removing-garbage" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5587,6 +5609,26 @@ repo-id3
 <p class="admonition-title">repos have blocks to be removed</p>
 <p>Notice that at the end of the output there is a "repos have blocks to be removed" section. It contains the list of libraries that have garbage blocks. Later when you run GC without --dry-run option, you can use these libraris ids as input arguments to GC program.</p>
 </div>
+<h3 id="verbose-mode">Verbose Mode<a class="headerlink" href="#verbose-mode" title="Permanent link">&para;</a></h3>
+<p>To see more detailed progress information during the garbage collection process, use the <code>--verbose</code> (or <code>-V</code>) option:</p>
+<div class="highlight"><pre><span></span><code>./seaf-gc.sh --verbose [repo-id1] [repo-id2] ...
+</code></pre></div>
+<p>In addition to the standard output, the verbose mode prints extra information about the specific commits and the number of file system objects being traversed for each library. Also, for libraries with a large number of objects (over 1000), you will see progress logs like <code>Collected ... blocks</code> before GC starts, and <code>Removed ... blocks</code> during the deletion phase. The output will include extra lines like these:</p>
+<div class="highlight"><pre><span></span><code>[03/19/15 19:41:48] seafserv-gc.c(115): GC version 1 repo My Library(ffa57d93)
+[03/19/15 19:41:48] gc-core.c(583): Collected 1000 blocks for repo ffa57d93.
+[03/19/15 19:41:48] gc-core.c(583): Collected 2000 blocks for repo ffa57d93.
+[03/19/15 19:41:49] gc-core.c(394): GC started. Total block number is 2500.
+[03/19/15 19:41:49] gc-core.c(75): GC index size is 1024 Byte.
+[03/19/15 19:41:49] gc-core.c(408): Populating index.
+[03/19/15 19:41:49] gc-core.c(262): Populating index for repo ffa57d93.
+[03/19/15 19:41:49] gc-core.c(224): Traversing commit 51d5c414 for repo ffa57d93.
+[03/19/15 19:41:49] gc-core.c(249): Traversed 15 fs objects for repo ffa57d93.
+[03/19/15 19:41:49] gc-core.c(308): Traversed 5 commits, 2500 blocks.
+[03/19/15 19:41:49] gc-core.c(440): Scanning unused blocks.
+[03/19/15 19:41:49] gc-core.c(507): Removed 1000 blocks for repo ffa57d93.
+[03/19/15 19:41:49] gc-core.c(472): GC finished. 2500 blocks total, about 1000 reachable blocks, 1500 blocks are removed.
+</code></pre></div>
+<p>You can use the <code>--verbose</code> option together with <code>--dry-run</code> or when actually removing garbage.</p>
 <h3 id="removing-garbage">Removing Garbage<a class="headerlink" href="#removing-garbage" title="Permanent link">&para;</a></h3>
 <p>To actually remove garbage blocks, run without the --dry-run option:</p>
 <div class="highlight"><pre><span></span><code>./seaf-gc.sh [repo-id1] [repo-id2] ...
