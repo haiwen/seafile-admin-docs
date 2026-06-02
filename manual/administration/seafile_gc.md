@@ -85,6 +85,35 @@ If you give specific library ids, only those libraries will be checked; otherwis
 
     Notice that at the end of the output there is a "repos have blocks to be removed" section. It contains the list of libraries that have garbage blocks. Later when you run GC without --dry-run option, you can use these libraris ids as input arguments to GC program.
 
+### Verbose Mode
+
+To see more detailed progress information during the garbage collection process, use the `--verbose` (or `-V`) option:
+
+```
+./seaf-gc.sh --verbose [repo-id1] [repo-id2] ...
+
+```
+
+In addition to the standard output, the verbose mode prints extra information about the specific commits and the number of file system objects being traversed for each library. Also, for libraries with a large number of objects (over 1000), you will see progress logs like `Collected ... blocks` before GC starts, and `Removed ... blocks` during the deletion phase. The output will include extra lines like these:
+
+```
+[03/19/15 19:41:48] seafserv-gc.c(115): GC version 1 repo My Library(ffa57d93)
+[03/19/15 19:41:48] gc-core.c(583): Collected 1000 blocks for repo ffa57d93.
+[03/19/15 19:41:48] gc-core.c(583): Collected 2000 blocks for repo ffa57d93.
+[03/19/15 19:41:49] gc-core.c(394): GC started. Total block number is 2500.
+[03/19/15 19:41:49] gc-core.c(75): GC index size is 1024 Byte.
+[03/19/15 19:41:49] gc-core.c(408): Populating index.
+[03/19/15 19:41:49] gc-core.c(262): Populating index for repo ffa57d93.
+[03/19/15 19:41:49] gc-core.c(224): Traversing commit 51d5c414 for repo ffa57d93.
+[03/19/15 19:41:49] gc-core.c(249): Traversed 15 fs objects for repo ffa57d93.
+[03/19/15 19:41:49] gc-core.c(308): Traversed 5 commits, 2500 blocks.
+[03/19/15 19:41:49] gc-core.c(440): Scanning unused blocks.
+[03/19/15 19:41:49] gc-core.c(507): Removed 1000 blocks for repo ffa57d93.
+[03/19/15 19:41:49] gc-core.c(472): GC finished. 2500 blocks total, about 1000 reachable blocks, 1500 blocks are removed.
+```
+
+You can use the `--verbose` option together with `--dry-run` or when actually removing garbage.
+
 ### Removing Garbage
 
 To actually remove garbage blocks, run without the --dry-run option:
