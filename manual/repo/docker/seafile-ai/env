@@ -23,3 +23,4 @@ SEAFILE_AI_LLM_KEY=... # your llm key
 SEAFILE_AI_LLM_MODEL=gpt-4o-mini
 
 INNER_SEAHUB_SERVICE_URL=    # https://seafile.example.com
+INNER_METADATA_SERVER_URL=
