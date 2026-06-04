@@ -21,6 +21,7 @@ services:
       - REDIS_HOST=${REDIS_HOST:-redis}
       - REDIS_PORT=${REDIS_PORT:-6379}
       - REDIS_PASSWORD=${REDIS_PASSWORD:-}
+      - INNER_METADATA_SERVER_URL=${INNER_METADATA_SERVER_URL:-}
     networks:
       - seafile-net
 
