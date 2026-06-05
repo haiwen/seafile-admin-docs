@@ -2,6 +2,7 @@
 
 ### 3.0.23 (2026/06/05)
 
+* \[mac] Only support macOS 13 or newer
 * \[mac] Support "Always keep downloaded" for file and folders
 * \[mac] Display special icons for read-only files and folders
 * Only display network errors once for each server
