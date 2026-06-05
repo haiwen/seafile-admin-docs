@@ -115,8 +115,8 @@ Please refer [here](./system_requirements.md#seafile-cluster) for the details ab
 
 8. After initailizing the cluster, the following fields can be removed in `.env`
     - `CLUSTER_INIT_MODE`, must be removed from .env file
-    - `CLUSTER_INIT_ES_HOST`
-    - `CLUSTER_INIT_ES_PORT`
+    - `CLUSTER_INIT_ES_HOST`, only if you continue to use Elasticsearch
+    - `CLUSTER_INIT_ES_PORT`, only if you continue to use Elasticsearch
     
     !!! tip
         We recommend that you check that the relevant configuration files are correct and copy the `SEAFILE_VOLUME` directory before the service is officially started, because only the configuration files are generated after initialization. You can directly migrate the entire copied `SEAFILE_VOLUME` to other nodes later:

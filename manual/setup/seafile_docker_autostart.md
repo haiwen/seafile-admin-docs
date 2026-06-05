@@ -64,7 +64,7 @@ services:
     restart: unless-stopped
 
   seafile:
-    image: seafileltd/seafile-pro-mc:12.0-latest
+    image: seafileltd/seafile-pro-mc:14.0-latest
     container_name: seafile
     restart: unless-stopped
 ```

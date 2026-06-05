@@ -40,7 +40,7 @@ cd /opt/seafile
 
 wget -O .env https://manual.seafile.com/14.0/repo/docker/pro/env
 wget https://manual.seafile.com/14.0/repo/docker/pro/seafile-server.yml
-wget https://manual.seafile.com/14.0/repo/docker/pro/elasticsearch.yml
+wget https://manual.seafile.com/14.0/repo/docker/pro/seasearch.yml
 wget https://manual.seafile.com/14.0/repo/docker/seadoc.yml
 wget https://manual.seafile.com/14.0/repo/docker/caddy.yml
 
@@ -54,7 +54,7 @@ The following fields merit particular attention:
 | `SEAFILE_VOLUME`                | The volume directory of Seafile data                                                                          | `/opt/seafile-data`             |  
 | `SEAFILE_MYSQL_VOLUME`          | The volume directory of MySQL data                                                                            | `/opt/seafile-mysql/db`         |  
 | `SEAFILE_CADDY_VOLUME`          | The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's                    | `/opt/seafile-caddy`            |  
-| `SEAFILE_ELASTICSEARCH_VOLUME`  | The volume directory of Elasticsearch data | `/opt/seafile-elasticsearch/data` |  
+| `SS_DATA_PATH`  | The volume directory of SeaSearch data | `/opt/seasearch-data` |
 | `INIT_SEAFILE_MYSQL_ROOT_PASSWORD` | The `root` password of MySQL                                                                                  | (Only required on first deployment) |  
 | `SEAFILE_MYSQL_DB_HOST`         | The host of MySQL | `db`  | 
 | `SEAFILE_MYSQL_DB_PORT`         | The port of MySQL | `3306`  | 
@@ -75,6 +75,8 @@ The following fields merit particular attention:
 | `TIME_ZONE`                     | Time zone                                                                                                     | `UTC`                           |  
 | `INIT_SEAFILE_ADMIN_EMAIL`      | Synchronously set admin username during initialization | me@example.com |  
 | `INIT_SEAFILE_ADMIN_PASSWORD`   | Synchronously set admin password during initialization | asecret |
+| `INIT_SS_ADMIN_USER`   | The SeaSearch admin username. By default, it is the same as `INIT_SEAFILE_ADMIN_EMAIL` | (Only required on first deployment) |
+| `INIT_SS_ADMIN_PASSWORD`   | The SeaSearch admin password. By default, it is the same as `INIT_SEAFILE_ADMIN_PASSWORD` | (Only required on first deployment) |
 | `SEAF_SERVER_STORAGE_TYPE`   | What kind of the Seafile data for storage. Available options are `disk` (i.e., local disk), `s3` and `multiple` (see the details of [multiple storage backends](./setup_with_multiple_storage_backends.md)) | `disk` |
 | `S3_COMMIT_BUCKET`   | S3 storage backend commit objects bucket | (required when `SEAF_SERVER_STORAGE_TYPE=s3`) |
 | `S3_FS_BUCKET`   | S3 storage backend fs objects bucket | (required when `SEAF_SERVER_STORAGE_TYPE=s3`) |
@@ -98,12 +100,9 @@ The following fields merit particular attention:
 !!! warning "S3 configurations in `.env` only support single S3 storage backend mode"
     The Seafile server only support configuring S3 in `.env` for **single S3 storage backend mode** (i.e., when `SEAF_SERVER_STORAGE_TYPE=s3`). If you would like to use other storage backend (e.g., [Ceph](./setup_with_ceph.md), [Swift](./setup_with_swift.md)) or other settings that can only be set in `seafile.conf` (like [multiple storage backends](./setup_with_multiple_storage_backends.md)), please set `SEAF_SERVER_STORAGE_TYPE` to `multiple`, and set `MD_STORAGE_TYPE` and `SS_STORAGE_TYPE` according to your configurations.
 
-To conclude, set the directory permissions of the Elasticsearch volumne:
+### About SeaSearch
 
-```bash
-mkdir -p /opt/seafile-elasticsearch/data
-chmod 777 -R /opt/seafile-elasticsearch/data
-```
+Since Seafile Pro 14.0, SeaSearch is the default search engine. For SeaSearch deployment and configuration details, refer to [SeaSearch configuration](./use_seasearch.md).
 
 ### Starting the Docker Containers
 

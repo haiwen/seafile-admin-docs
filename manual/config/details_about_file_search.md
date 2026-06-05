@@ -1,5 +1,10 @@
 # Details about File Search
 
+!!! note
+    Since Seafile Pro 14.0, new Docker deployments use SeaSearch as the default search engine. For SeaSearch deployment and configuration details, refer to [SeaSearch configuration](../setup/use_seasearch.md).
+
+    The Elasticsearch-specific options below are retained for existing deployments that continue to use Elasticsearch.
+
 ## Search Options
 
 The following options can be set in **seafevents.conf** to control the behaviors of file search. You need to restart seafile and seahub to make them take effect.
@@ -156,4 +161,3 @@ The search index is updated every 10 minutes by default. So before the first ind
 ### Encrypted files cannot be searched
 
 This is because the server cannot index encrypted files, since they are encrypted.
-

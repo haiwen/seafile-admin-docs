@@ -12,3 +12,4 @@ Seafile version 14.0 has the following configuration changes:
 * WebDAV is configured via environment variables in the Seafile server `.env`. Please refer to [WebDAV extension](../extension/webdav.md) for details.
 * Metadata server is configured via environment variables in the Seafile server `.env`. Please refer to [Metadata server](../extension/metadata-server.md) for details.
 * Thumbnail server configurations in `seahub_settings.py` have changed. Please refer to [Thumbnail server](../extension/thumbnail-server.md) for details.
+* SeaSearch is the default search engine for new Seafile Pro Docker deployments.
