@@ -1247,7 +1247,7 @@
   <span class="md-ellipsis">
     
   
-    Use SeaSearch as search engine (Pro)
+    SeaSearch configuration (Pro)
   
 
     
@@ -5653,6 +5653,11 @@
 
 
 <h1 id="details-about-file-search">Details about File Search<a class="headerlink" href="#details-about-file-search" title="Permanent link">&para;</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since Seafile Pro 14.0, new Docker deployments use SeaSearch as the default search engine. For SeaSearch deployment and configuration details, refer to <a href="../../setup/use_seasearch/">SeaSearch configuration</a>.</p>
+<p>The Elasticsearch-specific options below are retained for existing deployments that continue to use Elasticsearch.</p>
+</div>
 <h2 id="search-options">Search Options<a class="headerlink" href="#search-options" title="Permanent link">&para;</a></h2>
 <p>The following options can be set in <strong>seafevents.conf</strong> to control the behaviors of file search. You need to restart seafile and seahub to make them take effect.</p>
 <div class="highlight"><pre><span></span><code>[INDEX FILES]

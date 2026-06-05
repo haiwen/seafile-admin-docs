@@ -1074,6 +1074,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#about-seasearch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About SeaSearch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#starting-the-docker-containers" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1497,7 +1508,7 @@
   <span class="md-ellipsis">
     
   
-    Use SeaSearch as search engine (Pro)
+    SeaSearch configuration (Pro)
   
 
     
@@ -5660,6 +5671,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#about-seasearch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About SeaSearch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#starting-the-docker-containers" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5848,7 +5870,7 @@
 
 wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/14.0/repo/docker/pro/env
 wget<span class="w"> </span>https://manual.seafile.com/14.0/repo/docker/pro/seafile-server.yml
-wget<span class="w"> </span>https://manual.seafile.com/14.0/repo/docker/pro/elasticsearch.yml
+wget<span class="w"> </span>https://manual.seafile.com/14.0/repo/docker/pro/seasearch.yml
 wget<span class="w"> </span>https://manual.seafile.com/14.0/repo/docker/seadoc.yml
 wget<span class="w"> </span>https://manual.seafile.com/14.0/repo/docker/caddy.yml
 
@@ -5880,9 +5902,9 @@ nano<span class="w"> </span>.env
 <td><code>/opt/seafile-caddy</code></td>
 </tr>
 <tr>
-<td><code>SEAFILE_ELASTICSEARCH_VOLUME</code></td>
-<td>The volume directory of Elasticsearch data</td>
-<td><code>/opt/seafile-elasticsearch/data</code></td>
+<td><code>SS_DATA_PATH</code></td>
+<td>The volume directory of SeaSearch data</td>
+<td><code>/opt/seasearch-data</code></td>
 </tr>
 <tr>
 <td><code>INIT_SEAFILE_MYSQL_ROOT_PASSWORD</code></td>
@@ -5985,6 +6007,16 @@ nano<span class="w"> </span>.env
 <td>asecret</td>
 </tr>
 <tr>
+<td><code>INIT_SS_ADMIN_USER</code></td>
+<td>The SeaSearch admin username. By default, it is the same as <code>INIT_SEAFILE_ADMIN_EMAIL</code></td>
+<td>(Only required on first deployment)</td>
+</tr>
+<tr>
+<td><code>INIT_SS_ADMIN_PASSWORD</code></td>
+<td>The SeaSearch admin password. By default, it is the same as <code>INIT_SEAFILE_ADMIN_PASSWORD</code></td>
+<td>(Only required on first deployment)</td>
+</tr>
+<tr>
 <td><code>SEAF_SERVER_STORAGE_TYPE</code></td>
 <td>What kind of the Seafile data for storage. Available options are <code>disk</code> (i.e., local disk), <code>s3</code> and <code>multiple</code> (see the details of <a href="../setup_with_multiple_storage_backends/">multiple storage backends</a>)</td>
 <td><code>disk</code></td>
@@ -6074,10 +6106,8 @@ nano<span class="w"> </span>.env
 <p class="admonition-title">S3 configurations in <code>.env</code> only support single S3 storage backend mode</p>
 <p>The Seafile server only support configuring S3 in <code>.env</code> for <strong>single S3 storage backend mode</strong> (i.e., when <code>SEAF_SERVER_STORAGE_TYPE=s3</code>). If you would like to use other storage backend (e.g., <a href="../setup_with_ceph/">Ceph</a>, <a href="../setup_with_swift/">Swift</a>) or other settings that can only be set in <code>seafile.conf</code> (like <a href="../setup_with_multiple_storage_backends/">multiple storage backends</a>), please set <code>SEAF_SERVER_STORAGE_TYPE</code> to <code>multiple</code>, and set <code>MD_STORAGE_TYPE</code> and <code>SS_STORAGE_TYPE</code> according to your configurations.</p>
 </div>
-<p>To conclude, set the directory permissions of the Elasticsearch volumne:</p>
-<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/opt/seafile-elasticsearch/data
-chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>-R<span class="w"> </span>/opt/seafile-elasticsearch/data
-</code></pre></div>
+<h3 id="about-seasearch">About SeaSearch<a class="headerlink" href="#about-seasearch" title="Permanent link">&para;</a></h3>
+<p>Since Seafile Pro 14.0, SeaSearch is the default search engine. For SeaSearch deployment and configuration details, refer to <a href="../use_seasearch/">SeaSearch configuration</a>.</p>
 <h3 id="starting-the-docker-containers">Starting the Docker Containers<a class="headerlink" href="#starting-the-docker-containers" title="Permanent link">&para;</a></h3>
 <p>Run docker compose in detached mode:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d

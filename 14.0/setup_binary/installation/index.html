@@ -1243,7 +1243,7 @@
   <span class="md-ellipsis">
     
   
-    Use SeaSearch as search engine (Pro)
+    SeaSearch configuration (Pro)
   
 
     
@@ -5897,7 +5897,7 @@ pip3 install --timeout=3600 boto3 oss2 twilio configparser pytz \
 </li>
 </ol>
 <h3 id="creating-user-seafile">Creating user seafile<a class="headerlink" href="#creating-user-seafile" title="Permanent link">&para;</a></h3>
-<p>Elasticsearch, the indexing server, cannot be run as root. More generally, it is good practice not to run applications as root. </p>
+<p>It is good practice not to run applications as root.</p>
 <p>Create a new user and follow the instructions on the screen:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Ubuntu 24.04</label><label for="__tabbed_2_2">Debian 13/12</label></div>
 <div class="tabbed-content">
@@ -6330,7 +6330,7 @@ Enter the password again:
 </div>
 <p>Now you can access Seafile via the web interface at the host address (e.g., https://seafile.example.com).</p>
 <h2 id="enabling-full-text-search">Enabling full text search<a class="headerlink" href="#enabling-full-text-search" title="Permanent link">&para;</a></h2>
-<p>Seafile uses the indexing server ElasticSearch to enable full text search.</p>
+<p>Since Seafile 14.0, SeaSearch is the default search engine. For SeaSearch deployment and configuration details, refer to <a href="../../setup/use_seasearch/">SeaSearch configuration</a>. If you continue to use Elasticsearch, refer to the Elasticsearch deployment steps below.</p>
 <h3 id="deploying-elasticsearch">Deploying ElasticSearch<a class="headerlink" href="#deploying-elasticsearch" title="Permanent link">&para;</a></h3>
 <p>Our recommendation for deploying ElasticSearch is using Docker. Detailed information about installing Docker on various Linux distributions is available at <a href="https://docs.docker.com/engine/install/">Docker Docs</a>.</p>
 <p>Seafile PE 9.0 only supports ElasticSearch 7.x. Seafile PE 10.0 and later only supports ElasticSearch 8.x.</p>

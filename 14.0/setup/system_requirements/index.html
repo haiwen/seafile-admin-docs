@@ -1334,7 +1334,7 @@
   <span class="md-ellipsis">
     
   
-    Use SeaSearch as search engine (Pro)
+    SeaSearch configuration (Pro)
   
 
     
@@ -5549,9 +5549,9 @@
 <tbody>
 <tr>
 <td style="text-align: center;">Docker deployment</td>
-<td style="text-align: center;">4 Cores</td>
-<td style="text-align: center;">4G</td>
-<td style="text-align: center;">Default</td>
+<td style="text-align: center;">2 Cores</td>
+<td style="text-align: center;">2G</td>
+<td style="text-align: center;">Default, with <em>SeaSearch</em></td>
 </tr>
 <tr>
 <td style="text-align: center;">All</td>
@@ -5565,12 +5565,6 @@
 <td style="text-align: center;">2G</td>
 <td style="text-align: center;">With existing <strong><em>ElasticSearch</em></strong> service, and on another machine / node</td>
 </tr>
-<tr>
-<td style="text-align: center;">All</td>
-<td style="text-align: center;">2 Cores</td>
-<td style="text-align: center;">2G</td>
-<td style="text-align: center;">Use <em>SeaSearch</em> as the search engine, instead of <em>ElasticSearch</em></td>
-</tr>
 </tbody>
 </table>
 </li>
@@ -5581,7 +5575,7 @@
 <li><em>Seafile</em></li>
 <li><em>Redis</em></li>
 <li><em>Mariadb</em></li>
-<li><em>ElasticSearch</em></li>
+<li><em>SeaSearch</em></li>
 <li><em>Seadoc</em></li>
 <li><em>Caddy</em></li>
 </ul>
@@ -5591,8 +5585,10 @@
 <p class="admonition-title">More details of files indexer used in Seafile PE</p>
 <ul>
 <li>
-<p><strong>By default</strong>, Seafile Pro will use <strong><em>Elasticsearch</em></strong> as the files indexer</p>
-<p>Please make sure the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules-store.html#mmapfs">mmapfs counts</a> do not cause excptions like out of memory, which can be increased by following command (see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html</a> for futher details):</p>
+<p><strong>Since seafile 14.0</strong>, Seafile Pro will use <a href="../use_seasearch/"><em>SeaSearch</em></a>, a lightweight search engine built on open source search engine <a href="https://zincsearch-docs.zinc.dev/"><em>ZincSearch</em></a>, as the files indexer.</p>
+</li>
+<li>
+<p>If you use <em>Elasticsearch</em> instead of <em>SeaSearch</em> on the same machine, please make sure the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules-store.html#mmapfs">mmapfs counts</a> do not cause excptions like out of memory, which can be increased by following command (see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html</a> for futher details):</p>
 <div class="highlight"><pre><span></span><code>sysctl<span class="w"> </span>-w<span class="w"> </span>vm.max_map_count<span class="o">=</span><span class="m">262144</span><span class="w"> </span><span class="c1">#run as root</span>
 </code></pre></div>
 <p>or modify <strong>/etc/sysctl.conf</strong> and reboot to set this value permanently:</p>
@@ -5603,15 +5599,7 @@ vm.max_map_count<span class="o">=</span><span class="m">262144</span>
 </code></pre></div>
 </li>
 <li>
-<p>If your machine <strong>dose not</strong> have enough requirements, 2 Cores and 2GB RAM are minimum by chosing one of following two ways <strong>after first-time deployment</strong>:</p>
-<ul>
-<li>
-<p>Use <a href="../use_seasearch/"><em>SeaSearch</em></a>, a lightweight search engine built on open source search engine <a href="https://zincsearch-docs.zinc.dev/"><em>ZincSearch</em></a>, as the indexer</p>
-</li>
-<li>
-<p>Deploy <em>Elasticsearch</em> in another machine, and modify <code>es_host</code> and <code>es_port</code> in <a href="../../config/seafevents-conf/">seafevents.conf</a></p>
-</li>
-</ul>
+<p>You can also deploy <em>Elasticsearch</em> on another machine, and modify <code>es_host</code> and <code>es_port</code> in <a href="../../config/seafevents-conf/">seafevents.conf</a>.</p>
 </li>
 </ul>
 </div>
@@ -5642,10 +5630,10 @@ vm.max_map_count<span class="o">=</span><span class="m">262144</span>
 <p class="admonition-title">More suggestions in Seafile cluster</p>
 <ul>
 <li>
-<p>We assume you have already deployed <strong><em>Redis</em></strong> (Memcached alternatively, but still recommend Redis), <strong><em>MariaDB</em></strong>, file indexer (e.g., <strong><em>ElasticSearch</em></strong>) in separate machines and use <strong><em>S3</em></strong> like object storage. </p>
+<p>We assume you have already deployed <strong><em>Redis</em></strong> (Memcached alternatively, but still recommend Redis), <strong><em>MariaDB</em></strong>, file indexer (e.g., <strong><em>SeaSearch</em></strong>) in separate machines and use <strong><em>S3</em></strong> like object storage.</p>
 </li>
 <li>
-<p>Generally, when deploying Seafile in a cluster, we recommend that you use a <strong>storage backend</strong> (such as AWS S3) to store Seafile data. However, according to the Seafile image startup rules and K8S persistent storage strategy, you still need to <strong>prepare a persistent directory</strong> for configuring the startup of the Seafile container. </p>
+<p>Generally, when deploying Seafile in a cluster, we recommend that you use a <strong>storage backend</strong> (such as AWS S3) to store Seafile data. However, according to the Seafile image startup rules and K8S persistent storage strategy, you still need to <strong>prepare a persistent directory</strong> for configuring the startup of the Seafile container.</p>
 </li>
 </ul>
 </div>

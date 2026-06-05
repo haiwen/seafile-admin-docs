@@ -1247,7 +1247,7 @@
   <span class="md-ellipsis">
     
   
-    Use SeaSearch as search engine (Pro)
+    SeaSearch configuration (Pro)
   
 
     
@@ -5819,7 +5819,8 @@
 <li><code>SEAFILE_IMAGE</code>: The image of Seafile-server, default is <code>seafileltd/seafile-pro-mc:12.0-latest</code>.</li>
 <li><code>SEAFILE_DB_IMAGE</code>: Database server image, default is <code>mariadb:10.11</code>.</li>
 <li><code>SEAFILE_MEMCACHED_IMAGE</code>: Cached server image, default is <code>memcached:1.6.29</code></li>
-<li><code>SEAFILE_ELASTICSEARCH_IMAGE</code>: Only valid in pro edition. The elasticsearch image, default is <code>elasticsearch:8.15.0</code>.</li>
+<li><code>SEAFILE_ELASTICSEARCH_IMAGE</code>: Only valid in pro edition when using Elasticsearch instead of SeaSearch. The Elasticsearch image, default is <code>elasticsearch:8.15.0</code>.</li>
+<li><code>SEASEARCH_IMAGE</code>: Only valid in pro edition. The SeaSearch image, default is <code>seafileltd/seasearch:1.0-latest</code>.</li>
 <li><code>SEAFILE_CADDY_IMAGE</code>: Caddy server image, default is <code>lucaslorentz/caddy-docker-proxy:2.12-alpine</code>.</li>
 <li><code>SEADOC_IMAGE</code>: Only valid after integrating <a href="../../extension/setup_seadoc/">SeaDoc</a>. SeaDoc server image, default is <code>seafileltd/sdoc-server:2.0-latest</code>.</li>
 <li><code>NON_ROOT</code>: Run Seafile container without a root user, default is <code>false</code></li>
@@ -5829,7 +5830,8 @@
 <li><code>SEAFILE_VOLUME</code>: The volume directory of Seafile data, default is <code>/opt/seafile-data</code>.</li>
 <li><code>SEAFILE_MYSQL_VOLUME</code>: The volume directory of MySQL data, default is <code>/opt/seafile-mysql/db</code>.</li>
 <li><code>SEAFILE_CADDY_VOLUME</code>: The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's, default is <code>/opt/seafile-caddy</code>.</li>
-<li><code>SEAFILE_ELASTICSEARCH_VOLUME</code>: Only valid in pro edition. The volume directory of Elasticsearch data, default is <code>/opt/seafile-elasticsearch/data</code>.</li>
+<li><code>SEAFILE_ELASTICSEARCH_VOLUME</code>: Only valid in pro edition when using Elasticsearch instead of SeaSearch. The volume directory of Elasticsearch data, default is <code>/opt/seafile-elasticsearch/data</code>.</li>
+<li><code>SS_DATA_PATH</code>: Only valid in pro edition. The volume directory of SeaSearch data, default is <code>/opt/seasearch-data</code>.</li>
 <li><code>SEADOC_VOLUME</code>: Only valid after integrating <a href="../../extension/setup_seadoc/">SeaDoc</a>. The volume directory of <a href="../../extension/setup_seadoc/#seadoc-directory-structure">SeaDoc server data</a>, default is <code>/opt/seadoc-data</code>.</li>
 </ul>
 <h2 id="mysql-configurations">MySQL configurations<a class="headerlink" href="#mysql-configurations" title="Permanent link">&para;</a></h2>
@@ -5926,8 +5928,8 @@
 <h2 id="cluster-configurations">Cluster configurations<a class="headerlink" href="#cluster-configurations" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>CLUSTER_INIT_MODE</code>: (only valid in pro edition at deploying first time). Cluster initialization mode, in which the necessary configuration files for the service to run will be generated (but <strong>the service will not be started</strong>). If the configuration file already exists, no operation will be performed. The default value is <code>true</code>. When the configuration file is generated, <strong><em>be sure to set this item to <code>false</code></em></strong>.</li>
-<li><code>CLUSTER_INIT_ES_HOST</code>: (only valid in pro edition at deploying first time). Your cluster Elasticsearch server host.</li>
-<li><code>CLUSTER_INIT_ES_PORT</code>: (only valid in pro edition at deploying first time). Your cluster Elasticsearch server port. Default is <code>9200</code>.</li>
+<li><code>CLUSTER_INIT_ES_HOST</code>: (only valid in pro edition at deploying first time when using Elasticsearch). Your cluster Elasticsearch server host.</li>
+<li><code>CLUSTER_INIT_ES_PORT</code>: (only valid in pro edition at deploying first time when using Elasticsearch). Your cluster Elasticsearch server port. Default is <code>9200</code>.</li>
 <li><code>CLUSTER_SERVER</code>: Defined in <code>cluster/seafile-server.yml</code>, telling Seafile docker whether it is running in cluster mode. (It is used to replace cluster configuration in seafile.conf)</li>
 <li><code>CLUSTER_MODE</code>: Seafile service node type, i.e., <code>frontend</code> (default) or <code>backend</code>.</li>
 </ul>

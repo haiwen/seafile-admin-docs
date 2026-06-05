@@ -1243,7 +1243,7 @@
   <span class="md-ellipsis">
     
   
-    Use SeaSearch as search engine (Pro)
+    SeaSearch configuration (Pro)
   
 
     
@@ -6165,7 +6165,7 @@ sudo<span class="w"> </span>nginx<span class="w"> </span>-s<span class="w"> </sp
 <p>There are 2 firewall rule changes for Seafile cluster:</p>
 <ul>
 <li>On each nodes, you should open the health check port (default 11001);</li>
-<li>On the Cache and ElasticSearch server, please only allow Seafile servers to access this port for security resons.</li>
+<li>On the cache and search engine server, please only allow Seafile servers to access the related service ports for security resons.</li>
 </ul>
 <h2 id="setup-the-first-frontend-node">Setup the first frontend Node<a class="headerlink" href="#setup-the-first-frontend-node" title="Permanent link">&para;</a></h2>
 <h3 id="setup-seafile-server-pro">Setup Seafile server Pro<a class="headerlink" href="#setup-seafile-server-pro" title="Permanent link">&para;</a></h3>
@@ -6239,14 +6239,13 @@ AVATAR_FILE_STORAGE = &#39;seahub.base.database_storage.DatabaseStorage&#39;
 </code></pre></div>
 
 <h4 id="seafeventsconf">seafevents.conf<a class="headerlink" href="#seafeventsconf" title="Permanent link">&para;</a></h4>
-<p>Modify the <code>[INDEX FILES]</code> section to enable full test search, we take <em>ElasticSearch</em> for example:</p>
-<div class="highlight"><pre><span></span><code>[INDEX FILES]
+<p>Since Seafile 14.0, SeaSearch is the default search engine. For SeaSearch deployment details, refer to <a href="../../setup/use_seasearch/">SeaSearch configuration</a>. Modify <code>seafevents.conf</code> to enable SeaSearch:</p>
+<div class="highlight"><pre><span></span><code>[SEASEARCH]
 enabled = true
+seasearch_url = http://&lt;your SeaSearch server&gt;:4080
+seasearch_token = &lt;your auth token&gt;
 interval = 10m
-highlight = fvh
 index_office_pdf = true
-es_host = &lt;your ElasticSearch host&gt;
-es_port = &lt;your ElasticSearch port, default 9200&gt;
 </code></pre></div>
 <h3 id="update-seahub-database">Update Seahub Database<a class="headerlink" href="#update-seahub-database" title="Permanent link">&para;</a></h3>
 <p>In cluster environment, we have to store avatars in the database instead of in a local disk.</p>
@@ -6423,14 +6422,14 @@ enabled = true
 <div class="highlight"><pre><span></span><code>AVATAR_FILE_STORAGE = &#39;seahub.base.database_storage.DatabaseStorage&#39;
 </code></pre></div>
 <p>For <strong>seafevents.conf</strong>:</p>
-<div class="highlight"><pre><span></span><code>[INDEX FILES]
+<div class="highlight"><pre><span></span><code>[SEASEARCH]
 enabled = true
+seasearch_url = http://&lt;your SeaSearch server&gt;:4080
+seasearch_token = &lt;your auth token&gt;
 interval = 10m
-highlight = fvh     # This configuration is for improving searching speed
-es_host = &lt;IP of background node&gt;
-es_port = 9200
+index_office_pdf = true
 </code></pre></div>
-<p>The <code>[INDEX FILES]</code> section is needed to let the front-end node know the file search feature is enabled.</p>
+<p>The <code>[SEASEARCH]</code> section is needed to let the front-end node know the SeaSearch-based file search feature is enabled.</p>
 <h2 id="https">HTTPS<a class="headerlink" href="#https" title="Permanent link">&para;</a></h2>
 <p>You can engaged HTTPS in your load balance service, as you can use certificates manager (e.g., <a href="https://certbot.eff.org">Certbot</a>) to acquire and enable HTTPS to your Seafile cluster. You have to modify the relative URLs from the prefix <code>http://</code> to <code>https://</code> in <code>seahub_settings.py</code> and <code>.env</code>, after enabling HTTPS.</p>
 <h2 id="optional-deploy-seadoc-server">(Optional) Deploy SeaDoc server<a class="headerlink" href="#optional-deploy-seadoc-server" title="Permanent link">&para;</a></h2>

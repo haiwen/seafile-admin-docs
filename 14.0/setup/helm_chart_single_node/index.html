@@ -1254,7 +1254,7 @@
   <span class="md-ellipsis">
     
   
-    Use SeaSearch as search engine (Pro)
+    SeaSearch configuration (Pro)
   
 
     
@@ -5602,7 +5602,7 @@
 <p>For specific environment and configuration requirements, please refer to the description of the <a href="../setup_pro_by_docker/#requirements">Docker-based Seafile single-node deployment</a>. Please also refer to the description of the <strong><em>K8S tool</em></strong> section in <a href="../cluster_deploy_with_k8s/#k8s-tools">here</a>.</p>
 <h2 id="preparation">Preparation<a class="headerlink" href="#preparation" title="Permanent link">&para;</a></h2>
 <p>For persisting data using in the docker-base deployment, <code>/opt/seafile-data</code>, is still adopted in this manual. What's more, all K8S YAML files will be placed in <code>/opt/seafile-k8s-yaml</code> (replace it when following these instructions if you would like to use another path).</p>
-<p>By the way, we don't provide the deployment methods of basic services (e.g., <strong>Redis</strong>, <strong>MySQL</strong> and <strong>Elasticsearch</strong>) and seafile-compatibility components (e.g., <strong>SeaDoc</strong>) for K8S in our document. If you need to install these services in K8S format, <strong><em>you can refer to the rewrite method in <a href="../k8s_single_node/">this document</a>.</em></strong></p>
+<p>By the way, we don't provide the deployment methods of basic services (e.g., <strong>Redis</strong>, <strong>MySQL</strong> and the search engine service) and seafile-compatibility components (e.g., <strong>SeaDoc</strong>) for K8S in our document. If you need to install these services in K8S format, <strong><em>you can refer to the rewrite method in <a href="../k8s_single_node/">this document</a>.</em></strong></p>
 <h3 id="system-requirements">System requirements<a class="headerlink" href="#system-requirements" title="Permanent link">&para;</a></h3>
 <p>Please refer <a href="../system_requirements/">here</a> for the details of system requirements about Seafile service. By the way, this will apply to all nodes where Seafile pods may appear in your K8S cluster. In general, we recommend that each node should have at least 2G RAM and a 2-core CPU (&gt; 2GHz).</p>
 <h2 id="install-seafile-helm-chart">Install Seafile helm chart<a class="headerlink" href="#install-seafile-helm-chart" title="Permanent link">&para;</a></h2>
@@ -5706,15 +5706,15 @@ helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class=
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Important for deployment</p>
-<p>By default, Seafile will access the <strong><em>Elasticsearch</em></strong> (Pro only) with the specific service name:
-- <strong><em>Elasticsearch</em></strong>: <code>elasticsearch</code> with port 9200</p>
+<p>Since Seafile 14.0, SeaSearch is the default search engine. This Helm chart guide does not provide SeaSearch deployment resources. Deploy SeaSearch separately and modify <code>/opt/seafile-data/seafile/conf/seafevents.conf</code> according to <a href="../use_seasearch/">SeaSearch configuration</a>.</p>
+<p>If you continue to use Elasticsearch, modify the <code>[INDEX FILES]</code> section in <code>/opt/seafile-data/seafile/conf/seafevents.conf</code> according to your Elasticsearch service address.</p>
 <p>If the above services are:</p>
 <ul>
 <li>Not in your K8S pods (including using an external service)</li>
 <li>With different service name</li>
 <li>With different server port</li>
 </ul>
-<p>Please modfiy the files in <code>/opt/seafile-data/seafile/conf</code> to make correct the configurations for above services, otherwise the Seafile server cannot start normally. Then restart Seafile server:</p>
+<p>After modifying <code>seafevents.conf</code>, restart Seafile server:</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.items[*].metadata.name}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>seafile<span class="k">)</span>
 </code></pre></div>
 </div>
