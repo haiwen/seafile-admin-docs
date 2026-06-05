@@ -1,5 +1,12 @@
 # SeaDrive Client Changelog
 
+### 3.0.23 (2026/06/05)
+
+* \[mac] Support "Always keep downloaded" for file and folders
+* \[mac] Display special icons for read-only files and folders
+* Only display network errors once for each server
+* \[linux] Fix mtime issue for new folders
+
 ### 3.0.22 (2026/05/15)
 
 * \[win] Fix filename encoding handling when open file from web browser
