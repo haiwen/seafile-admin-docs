@@ -9,7 +9,7 @@
 ```sh
 wget -O .env https://manual.seafile.com/14.0/repo/docker/pro/env
 wget https://manual.seafile.com/14.0/repo/docker/pro/seafile-server.yml
-wget https://manual.seafile.com/14.0/repo/docker/pro/elasticsearch.yml
+wget https://manual.seafile.com/14.0/repo/docker/pro/seasearch.yml
 ```
 
 ## Migrate
@@ -35,12 +35,12 @@ Modify `.env` based on the old configurations from the old `.env` file. The foll
 | Variable                        | Description                                                                                                   | Default Value                   | 
 | ------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------- |  
 | `SEAFILE_IMAGE`                | The Seafile pro docker image, which the tag must be **equal to or newer than** the old Seafile CE docker tag                                                                       | `seafileltd/seafile-pro-mc:14.0-latest`             |
-| `SEAFILE_ELASTICSEARCH_VOLUME`  | The volume directory of Elasticsearch data | `/opt/seafile-elasticsearch/data` |
+| `SS_DATA_PATH`                  | The volume directory of SeaSearch data | `/opt/seasearch-data` |
 
 For other fileds (e.g., `SEAFILE_VOLUME`, `SEAFILE_MYSQL_VOLUME`, `SEAFILE_MYSQL_DB_USER`, `SEAFILE_MYSQL_DB_PASSWORD`), **must be consistent** with the old configurations.
 
 !!! tip
-    For the configurations using to do the initializations (e.g, `INIT_SEAFILE_ADMIN_EMAIL`, `INIT_SEAFILE_MYSQL_ROOT_PASSWORD`), you can remove it from `.env` as well
+    For initialization configurations that are not required by SeaSearch (e.g., `INIT_SEAFILE_MYSQL_ROOT_PASSWORD`), you can remove them from `.env` as well. Keep `INIT_SS_ADMIN_USER` and `INIT_SS_ADMIN_PASSWORD` for the first SeaSearch startup.
 
 ### Replace `seafile-server.yml` and `.env`
 
@@ -51,20 +51,9 @@ mv -b seafile-server.yml /opt/seafile-server.yml
 mv -b .env /opt/.env
 ```
 
-### Modify `seafevents.conf`
+### Configure SeaSearch
 
-Add `[INDEX FILES]` section in `/opt/seafile-data/seafile/conf/seafevents.conf` manually:
-
-!!! tip "Additional system resource requirements"
-    Seafile PE docker requires a minimum of 4 cores and 4GB RAM because of ***Elasticsearch*** deployed simultaneously. If you do not have enough system resources, you can use an alternative search engine, [*SeaSearch*](./use_seasearch.md), a more lightweight search engine built on open source search engine [*ZincSearch*](https://zincsearch-docs.zinc.dev/), as the indexer.
-
-```conf
-[INDEX FILES]
-es_host = elasticsearch
-es_port = 9200
-enabled = true
-interval = 10m
-```
+Since Seafile Pro 14.0, SeaSearch is the default search engine. For SeaSearch deployment and configuration details, refer to [SeaSearch configuration](./use_seasearch.md).
 
 ### Start Seafile Pro
 

@@ -33,13 +33,14 @@ su seafile
 ./seahub.sh stop
 ```
 
-### Stop Nginx, cache server (e.g., *Redis*), ElasticSearch
+### Stop Nginx, cache server (e.g., *Redis*), and search engine
 
 You have to stop the above services to avoid losing data before migrating.
 
 ```sh
 systemctl stop nginx &&  systemctl disable nginx
 systemctl stop redis &&  systemctl disable redis
+# If you are using Elasticsearch
 docker stop es && docker remove es
 ```
 
@@ -54,6 +55,8 @@ Please follow [here](../administration/backup_recovery.md#backup-and-restore-for
 ## Deploy the Seafile Docker
 
 You can follow [here](./overview.md#single-node-deployment) to deploy Seafile with Docker, please use your old configurations when modifying `.env`, and make sure the Seafile server is running normally after deployment.
+
+For Seafile Pro 14.0, SeaSearch is the default search engine. Refer to [SeaSearch configuration](./use_seasearch.md) to configure SeaSearch after migration.
 
 !!! note "Use *external MySQL service* or the *old MySQL service*"
     This document is written to migrate from non-Docker version to Docker version Seafile between two different machines. We suggest using the Docker-compose *Mariadb* service (version 10.11 by default) as the database service in after-migration Seafile. If you would like to use an existed MySQL service, always in which situation you try to do migrate operation on the same host or the old MySQL service is the dependency of other services, you have to follow [here](./setup_with_an_existing_mysql_server.md) to deploy Seafile.

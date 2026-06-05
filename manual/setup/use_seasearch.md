@@ -1,6 +1,6 @@
-# Use SeaSearch as search engine (Pro)
+# SeaSearch configuration (Pro)
 
-[SeaSearch](https://seasearch-manual.seafile.com/), a file indexer with more lightweight and efficiency than *Elasticsearch*, is supported from Seafile 12.
+[SeaSearch](https://seasearch-manual.seafile.com/), a lightweight and efficient file indexer, is supported from Seafile 12 and is the default search engine from Seafile Pro 14.0.
 
 !!! note "For Seafile deploy from binary package"
     We currently **only support Docker-based** deployment for SeaSearch Server, so this document describes the configuration with the situation of using Docker to deploy Seafile server. 
@@ -20,7 +20,7 @@ wget https://manual.seafile.com/14.0/repo/docker/pro/seasearch.yml
 
 ## Modify `.env`
 
-We have configured the relevant variables in .env. Here you must pay special attention to the following variable information, which will affect the SeaSearch initialization process. For variables in `.env` of SeaSearch service, please refer [here](https://seasearch-manual.seafile.com/latest/config/) for the details. We use `/opt/seasearch-data` as the persistent directory of SeaSearch (the information of administrator are same as Seafile's admin by default from Seafile 13):
+The default `.env` file already contains the relevant SeaSearch variables. Pay special attention to the following variables, which affect the SeaSearch initialization process. For details about the SeaSearch variables in `.env`, please refer [here](https://seasearch-manual.seafile.com/latest/config/). We use `/opt/seasearch-data` as the persistent directory of SeaSearch. By default, the SeaSearch administrator account is the same as the Seafile administrator account:
 
 !!! warning "For Apple's Chips"
     Since Apple's chips (such as M2) do not support [MKL](https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html), you need to set the relevant image to `xxx-nomkl:latest`, e.g.:
@@ -53,9 +53,11 @@ S3_USE_HTTPS=true
 S3_SSE_C_KEY=
 ```
 
-## Modify `seafile-server.yml` to disable `elasticSearch` service
+## Disable Elasticsearch service
 
-If you would like to use *SeaSearch* as the search engine, the `elasticSearch` service can be removed, which is no longer used: remove `elasticsearch.yml` in the list variable `COMPOSE_FILE` on the file `.env`.
+For a new Seafile Pro 14.0 deployment, no change is needed.
+
+If you are switching an existing deployment from *Elasticsearch* to *SeaSearch*, remove `elasticsearch.yml` from the `COMPOSE_FILE` variable in `.env`. Elasticsearch is no longer needed after the switch.
 
 ## Modify `seafevents.conf`
 

@@ -1,7 +1,7 @@
 #################################
 # Docker compose configurations #
 #################################
-COMPOSE_FILE='seafile-server.yml,caddy.yml,seadoc.yml,elasticsearch.yml'
+COMPOSE_FILE='seafile-server.yml,caddy.yml,seadoc.yml,seasearch.yml'
 COMPOSE_PATH_SEPARATOR=','
 
 ## Images

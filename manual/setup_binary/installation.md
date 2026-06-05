@@ -105,7 +105,7 @@ Seafile uses the `mysql_native_password` plugin for authentication. The versions
 
 ### Creating user seafile
 
-Elasticsearch, the indexing server, cannot be run as root. More generally, it is good practice not to run applications as root. 
+It is good practice not to run applications as root.
 
 Create a new user and follow the instructions on the screen:
 
@@ -510,7 +510,7 @@ Now you can access Seafile via the web interface at the host address (e.g., http
 
 ## Enabling full text search
 
-Seafile uses the indexing server ElasticSearch to enable full text search.
+Since Seafile 14.0, SeaSearch is the default search engine. For SeaSearch deployment and configuration details, refer to [SeaSearch configuration](../setup/use_seasearch.md). If you continue to use Elasticsearch, refer to the Elasticsearch deployment steps below.
 
 
 ### Deploying ElasticSearch

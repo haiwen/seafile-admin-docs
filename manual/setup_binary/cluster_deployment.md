@@ -129,7 +129,7 @@ It would be convenient to setup Seafile service to start on system boot. Follow 
 There are 2 firewall rule changes for Seafile cluster:
 
 * On each nodes, you should open the health check port (default 11001);
-* On the Cache and ElasticSearch server, please only allow Seafile servers to access this port for security resons.
+* On the cache and search engine server, please only allow Seafile servers to access the related service ports for security resons.
 
 ## Setup the first frontend Node
 
@@ -210,16 +210,15 @@ Add following options to seahub_setting.py, which will tell Seahub to store avat
 
 #### seafevents.conf
 
-Modify the `[INDEX FILES]` section to enable full test search, we take *ElasticSearch* for example:
+Since Seafile 14.0, SeaSearch is the default search engine. For SeaSearch deployment details, refer to [SeaSearch configuration](../setup/use_seasearch.md). Modify `seafevents.conf` to enable SeaSearch:
 
 ```
-[INDEX FILES]
+[SEASEARCH]
 enabled = true
+seasearch_url = http://<your SeaSearch server>:4080
+seasearch_token = <your auth token>
 interval = 10m
-highlight = fvh
 index_office_pdf = true
-es_host = <your ElasticSearch host>
-es_port = <your ElasticSearch port, default 9200>
 ```
 
 ### Update Seahub Database
@@ -450,15 +449,15 @@ AVATAR_FILE_STORAGE = 'seahub.base.database_storage.DatabaseStorage'
 For **seafevents.conf**:
 
 ```
-[INDEX FILES]
+[SEASEARCH]
 enabled = true
+seasearch_url = http://<your SeaSearch server>:4080
+seasearch_token = <your auth token>
 interval = 10m
-highlight = fvh     # This configuration is for improving searching speed
-es_host = <IP of background node>
-es_port = 9200
+index_office_pdf = true
 ```
 
-The `[INDEX FILES]` section is needed to let the front-end node know the file search feature is enabled.
+The `[SEASEARCH]` section is needed to let the front-end node know the SeaSearch-based file search feature is enabled.
 
 ## HTTPS
 

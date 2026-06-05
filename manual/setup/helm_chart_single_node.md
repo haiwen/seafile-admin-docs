@@ -8,7 +8,7 @@ For specific environment and configuration requirements, please refer to the des
 
 For persisting data using in the docker-base deployment, `/opt/seafile-data`, is still adopted in this manual. What's more, all K8S YAML files will be placed in `/opt/seafile-k8s-yaml` (replace it when following these instructions if you would like to use another path).
 
-By the way, we don't provide the deployment methods of basic services (e.g., **Redis**, **MySQL** and **Elasticsearch**) and seafile-compatibility components (e.g., **SeaDoc**) for K8S in our document. If you need to install these services in K8S format, ***you can refer to the rewrite method in [this document](./k8s_single_node.md).***
+By the way, we don't provide the deployment methods of basic services (e.g., **Redis**, **MySQL** and the search engine service) and seafile-compatibility components (e.g., **SeaDoc**) for K8S in our document. If you need to install these services in K8S format, ***you can refer to the rewrite method in [this document](./k8s_single_node.md).***
 
 ### System requirements
 
@@ -111,8 +111,9 @@ After installing the chart, the Seafile pod should startup automaticlly.
     The default service type of Seafile is ***LoadBalancer***. You should specify K8S load balancer for Seafile or specify at least one external ip, that can be accessed from external networks.
 
 !!! warning "Important for deployment"
-    By default, Seafile will access the ***Elasticsearch*** (Pro only) with the specific service name:
-    - ***Elasticsearch***: `elasticsearch` with port 9200
+    Since Seafile 14.0, SeaSearch is the default search engine. This Helm chart guide does not provide SeaSearch deployment resources. Deploy SeaSearch separately and modify `/opt/seafile-data/seafile/conf/seafevents.conf` according to [SeaSearch configuration](./use_seasearch.md).
+
+    If you continue to use Elasticsearch, modify the `[INDEX FILES]` section in `/opt/seafile-data/seafile/conf/seafevents.conf` according to your Elasticsearch service address.
 
     If the above services are:
 
@@ -120,7 +121,7 @@ After installing the chart, the Seafile pod should startup automaticlly.
     - With different service name
     - With different server port
 
-    Please modfiy the files in `/opt/seafile-data/seafile/conf` to make correct the configurations for above services, otherwise the Seafile server cannot start normally. Then restart Seafile server:
+    After modifying `seafevents.conf`, restart Seafile server:
 
     ```sh
     kubectl delete pods -n seafile $(kubectl get pods -n seafile -o jsonpath='{.items[*].metadata.name}' | grep seafile)

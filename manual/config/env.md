@@ -14,7 +14,8 @@ The [`.env`](../repo/docker/pro/env) file will be used to specify the components
 - `SEAFILE_IMAGE`: The image of Seafile-server, default is `seafileltd/seafile-pro-mc:12.0-latest`.
 - `SEAFILE_DB_IMAGE`: Database server image, default is `mariadb:10.11`.
 - `SEAFILE_MEMCACHED_IMAGE`: Cached server image, default is `memcached:1.6.29`
-- `SEAFILE_ELASTICSEARCH_IMAGE`: Only valid in pro edition. The elasticsearch image, default is `elasticsearch:8.15.0`.
+- `SEAFILE_ELASTICSEARCH_IMAGE`: Only valid in pro edition when using Elasticsearch instead of SeaSearch. The Elasticsearch image, default is `elasticsearch:8.15.0`.
+- `SEASEARCH_IMAGE`: Only valid in pro edition. The SeaSearch image, default is `seafileltd/seasearch:1.0-latest`.
 - `SEAFILE_CADDY_IMAGE`: Caddy server image, default is `lucaslorentz/caddy-docker-proxy:2.12-alpine`.
 - `SEADOC_IMAGE`: Only valid after integrating [SeaDoc](../extension/setup_seadoc.md). SeaDoc server image, default is `seafileltd/sdoc-server:2.0-latest`.
 - `NON_ROOT`: Run Seafile container without a root user, default is `false`
@@ -24,7 +25,8 @@ The [`.env`](../repo/docker/pro/env) file will be used to specify the components
 - `SEAFILE_VOLUME`: The volume directory of Seafile data, default is `/opt/seafile-data`.
 - `SEAFILE_MYSQL_VOLUME`: The volume directory of MySQL data, default is `/opt/seafile-mysql/db`.
 - `SEAFILE_CADDY_VOLUME`: The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's, default is `/opt/seafile-caddy`.
-- `SEAFILE_ELASTICSEARCH_VOLUME`: Only valid in pro edition. The volume directory of Elasticsearch data, default is `/opt/seafile-elasticsearch/data`.
+- `SEAFILE_ELASTICSEARCH_VOLUME`: Only valid in pro edition when using Elasticsearch instead of SeaSearch. The volume directory of Elasticsearch data, default is `/opt/seafile-elasticsearch/data`.
+- `SS_DATA_PATH`: Only valid in pro edition. The volume directory of SeaSearch data, default is `/opt/seasearch-data`.
 - `SEADOC_VOLUME`: Only valid after integrating [SeaDoc](../extension/setup_seadoc.md). The volume directory of [SeaDoc server data](../extension/setup_seadoc.md#seadoc-directory-structure), default is `/opt/seadoc-data`.
 
 ## MySQL configurations
@@ -125,7 +127,7 @@ For configurations about Metadata server in `.env`, please refer [here](../exten
 ## Cluster configurations
 
 - `CLUSTER_INIT_MODE`: (only valid in pro edition at deploying first time). Cluster initialization mode, in which the necessary configuration files for the service to run will be generated (but **the service will not be started**). If the configuration file already exists, no operation will be performed. The default value is `true`. When the configuration file is generated, ***be sure to set this item to `false`***.
-- `CLUSTER_INIT_ES_HOST`: (only valid in pro edition at deploying first time). Your cluster Elasticsearch server host.
-- `CLUSTER_INIT_ES_PORT`: (only valid in pro edition at deploying first time). Your cluster Elasticsearch server port. Default is `9200`.
+- `CLUSTER_INIT_ES_HOST`: (only valid in pro edition at deploying first time when using Elasticsearch). Your cluster Elasticsearch server host.
+- `CLUSTER_INIT_ES_PORT`: (only valid in pro edition at deploying first time when using Elasticsearch). Your cluster Elasticsearch server port. Default is `9200`.
 - `CLUSTER_SERVER`: Defined in `cluster/seafile-server.yml`, telling Seafile docker whether it is running in cluster mode. (It is used to replace cluster configuration in seafile.conf)
 - `CLUSTER_MODE`: Seafile service node type, i.e., `frontend` (default) or `backend`.

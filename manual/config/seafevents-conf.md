@@ -42,6 +42,8 @@ suffix = md,txt,...
 ## Leads to additional SQL tables being filled up, make sure your SQL server is able to handle it.
 enabled = true
 
+## The following `[INDEX FILES]` section is for deployments that continue to use Elasticsearch.
+## Since Seafile Pro 14.0, new Docker deployments use SeaSearch by default.
 [INDEX FILES]
 ## must be "true" to enable search
 enabled = true
@@ -84,10 +86,10 @@ enabled = true     # Default is false, when enabled, users can use file auto del
 interval = 86400   # The unit is second(s), the default frequency is one day, that is, it runs once a day
 
 [SEASEARCH]
-enabled = true # Default is false, when enabled, seafile can use SeaSearch as the search engine
+## Since Seafile Pro 14.0, new Docker deployments use SeaSearch as the default search engine.
+enabled = true # When enabled, Seafile uses SeaSearch as the search engine
 seasearch_url = http://seasearch:4080 # If your SeaSearch server deploy on another machine, replace it to the truth address
 seasearch_token = <your auth token> # base64 code consist of `username:password`
 interval = 10m # The interval the search index is updated. Can be s(seconds), m(minutes), h(hours), d(days)
 
 ```
-

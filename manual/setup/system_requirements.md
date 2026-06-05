@@ -36,24 +36,23 @@ This page shows the minimal requirements of Seafile.
 
     | Deployment Scenarios | CPU Requirements | Memory Requirements | Indexer / Search Engine |
     | :--: | :--: | :--: | :--: |
-    | Docker deployment | 4 Cores | 4G | Default |
+    | Docker deployment | 2 Cores | 2G | Default, with *SeaSearch* |
     | All | 4 Cores | 4G | With existing ***ElasticSearch*** service, but on the same machine / node |
     | All | 2 Cores | 2G | With existing ***ElasticSearch*** service, and on another machine / node |
-    | All | 2 Cores | 2G | Use *SeaSearch* as the search engine, instead of *ElasticSearch* |
 
 - **Hard disk requirements**: More than 50G are recommended
 - **Docker-base deployment integration services**:
     - *Seafile*
     - *Redis*
     - *Mariadb*
-    - *ElasticSearch*
+    - *SeaSearch*
     - *Seadoc*
     - *Caddy*
 
 !!! tip "More details of files indexer used in Seafile PE"
-    - **By default**, Seafile Pro will use ***Elasticsearch*** as the files indexer
+    - **Since seafile 14.0**, Seafile Pro will use [*SeaSearch*](./use_seasearch.md), a lightweight search engine built on open source search engine [*ZincSearch*](https://zincsearch-docs.zinc.dev/), as the files indexer.
 
-        Please make sure the [mmapfs counts](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules-store.html#mmapfs) do not cause excptions like out of memory, which can be increased by following command (see <https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html> for futher details):
+    - If you use *Elasticsearch* instead of *SeaSearch* on the same machine, please make sure the [mmapfs counts](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules-store.html#mmapfs) do not cause excptions like out of memory, which can be increased by following command (see <https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html> for futher details):
 
         ```shell
         sysctl -w vm.max_map_count=262144 #run as root
@@ -67,11 +66,7 @@ This page shows the minimal requirements of Seafile.
         # modify vm.max_map_count
         vm.max_map_count=262144
         ```
-    - If your machine **dose not** have enough requirements, 2 Cores and 2GB RAM are minimum by chosing one of following two ways **after first-time deployment**:
-
-        - Use [*SeaSearch*](./use_seasearch.md), a lightweight search engine built on open source search engine [*ZincSearch*](https://zincsearch-docs.zinc.dev/), as the indexer
-    
-        - Deploy *Elasticsearch* in another machine, and modify `es_host` and `es_port` in [seafevents.conf](../config/seafevents-conf.md)
+    - You can also deploy *Elasticsearch* on another machine, and modify `es_host` and `es_port` in [seafevents.conf](../config/seafevents-conf.md).
 
 ## Seafile Cluster
 
@@ -91,6 +86,6 @@ This page shows the minimal requirements of Seafile.
 - **Docker-base deployment integration services**: *Seafile* only
 
 !!! note "More suggestions in Seafile cluster"
-    - We assume you have already deployed ***Redis*** (Memcached alternatively, but still recommend Redis), ***MariaDB***, file indexer (e.g., ***ElasticSearch***) in separate machines and use ***S3*** like object storage. 
+    - We assume you have already deployed ***Redis*** (Memcached alternatively, but still recommend Redis), ***MariaDB***, file indexer (e.g., ***SeaSearch***) in separate machines and use ***S3*** like object storage.
 
-    - Generally, when deploying Seafile in a cluster, we recommend that you use a **storage backend** (such as AWS S3) to store Seafile data. However, according to the Seafile image startup rules and K8S persistent storage strategy, you still need to **prepare a persistent directory** for configuring the startup of the Seafile container. 
+    - Generally, when deploying Seafile in a cluster, we recommend that you use a **storage backend** (such as AWS S3) to store Seafile data. However, according to the Seafile image startup rules and K8S persistent storage strategy, you still need to **prepare a persistent directory** for configuring the startup of the Seafile container.
