@@ -13,7 +13,7 @@ Please check our document for how to upgrade to [13.0](../upgrade/upgrade_notes_
 
 * Don't show "specific user in the team" sharing option if not applicable
 * Add social_auth field in list users API
-* [fix] Fix a read-only permission check error for exdraw JWT token
+* [fix] Fix a read-only permission check error for exdraw JWT token. Thanks to [Florian Eichelberger](https://github.com/flo-vienna) for reporting the issue.
 * [fix] Fix unfold invisible button in top bar
 * [fix] Fix metadata information display error for folders in search dialog
 * [fix] Fix a permission check issue in invisible permission

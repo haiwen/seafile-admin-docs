@@ -12,7 +12,7 @@ Please check our document for how to upgrade to [13.0](../upgrade/upgrade_notes_
 ### 13.0.22 (2026-05-29)
 
 * [fix] Fix import error in Wiki
-* [fix] Fix a read-only permission check error for exdraw JWT token
+* [fix] Fix a read-only permission check error for exdraw JWT token. Thanks to [Florian Eichelberger](https://github.com/flo-vienna) for reporting the issue.
 * [fix] Fix unfold invisible button in top bar
 * Improve GC progress log during long run
 
