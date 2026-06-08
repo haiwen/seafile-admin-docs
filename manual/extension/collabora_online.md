@@ -62,7 +62,9 @@ WOPI_ACCESS_TOKEN_EXPIRATION = 30 * 60   # seconds
 # You can change this value according to your preferences
 # And of course you should make sure your Collabora Online supports to preview
 # the files with the specified extensions
-OFFICE_WEB_APP_FILE_EXTENSION = ('odp', 'ods', 'odt', 'xls', 'xlsb', 'xlsm', 'xlsx','ppsx', 'ppt', 'pptm', 'pptx', 'doc', 'docm', 'docx')
+OFFICE_WEB_APP_FILE_EXTENSION = ('odp', 'ods', 'odt', 'xls', 'xlsb', 'xlsm', 'xlsx','ppsx', 'ppt', 'pptm', 'pptx', 'doc', 'docm', 'docx') 
+
+OFFICE_PREVIEW_MAX_SIZE = 30 * 1024 * 1024 # preview size, 30 MB
 
 # Enable edit files through Collabora Online
 ENABLE_OFFICE_WEB_APP_EDIT = True
@@ -140,4 +142,5 @@ ENABLE_OFFICE_WEB_APP = True
 OFFICE_WEB_APP_BASE_URL = 'https://<Your CollaboraOnline host url>/hosting/discovery'
 WOPI_ACCESS_TOKEN_EXPIRATION = 30 * 60   
 ENABLE_OFFICE_WEB_APP_EDIT = True
+OFFICE_PREVIEW_MAX_SIZE = 30 * 1024 * 1024
 ```
