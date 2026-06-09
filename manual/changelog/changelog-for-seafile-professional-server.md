@@ -9,12 +9,16 @@
 
 Please check our document for how to upgrade to [13.0](../upgrade/upgrade_notes_for_13.0.x.md)
 
+### 13.0.24 (2026-06-09)
+* [fix] Fix a file download issue of the Android client
+
+
 ### 13.0.23 (2026-06-08)
 * [fix] Fix shared link download vulnerability. Thanks to [George Chen](https://github.com/geo-chen) for reporting the issue.
 * [fix] Fix FileRevision API vulnerability. Thanks to [Rachel Fragile](https://github.com/Rabbit0w0) for reporting the issue.
 * [fix] Fix search vulnerability. Thanks to [Rachel Fragile](https://github.com/Rabbit0w0) for reporting the issue.
 * [fix] Fix view-media-via-share-link link vulnerability. Thanks to [Rachel Fragile](https://github.com/Rabbit0w0) for reporting the issue.
-* [fix] Fix security issues in Go fileserver
+* [fix] Fix security issues in Go fileserver. Thanks to [Francisco Garcia](http://github.com/PAX507) for reporting the issue.
 * [fix] Fix incorrect file deletion time in the trash page
 * [fix] Fix inconsistency between directory permission timestamp cache and database
 * [md server] Added option to enable or disable the profile feature
