@@ -4551,10 +4551,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-32-update-configurations-for-metadata-server" class="md-nav__link">
+  <a href="#step-32-update-configurations-for-webdav" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 3.2) Update configurations for Metadata server
+        Step 3.2) Update configurations for WebDAV
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-33-update-configurations-for-metadata-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3.3) Update configurations for Metadata server
       
     </span>
   </a>
@@ -6014,10 +6025,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-32-update-configurations-for-metadata-server" class="md-nav__link">
+  <a href="#step-32-update-configurations-for-webdav" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 3.2) Update configurations for Metadata server
+        Step 3.2) Update configurations for WebDAV
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-33-update-configurations-for-metadata-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3.3) Update configurations for Metadata server
       
     </span>
   </a>
@@ -6544,7 +6566,18 @@ wget<span class="w"> </span>https://manual.seafile.com/14.0/repo/docker/thumbnai
 </div>
 </div>
 </div>
-<h4 id="step-32-update-configurations-for-metadata-server">Step 3.2) Update configurations for Metadata server<a class="headerlink" href="#step-32-update-configurations-for-metadata-server" title="Permanent link">&para;</a></h4>
+<h4 id="step-32-update-configurations-for-webdav">Step 3.2) Update configurations for WebDAV<a class="headerlink" href="#step-32-update-configurations-for-webdav" title="Permanent link">&para;</a></h4>
+<p>If you are not using WebDAV, skip this step.</p>
+<p>In Seafile 14.0, the WebDAV enable switch and worker count are configured through environment variables in the Seafile server <code>.env</code>. If WebDAV was enabled in <code>seafdav.conf</code> before the upgrade, add the following settings to <code>.env</code>:</p>
+<div class="highlight"><pre><span></span><code>ENABLE_SEAFDAV=true
+SEAFDAV_WORKERS=5
+</code></pre></div>
+<p><code>SEAFDAV_WORKERS</code> replaces the old <code>workers</code> option in <code>seafdav.conf</code>. Keep the other WebDAV settings, such as <code>port</code>, <code>share_name</code>, <code>timeout</code>, <code>debug</code>, and <code>show_repo_id</code>, in <code>/opt/seafile-data/seafile/conf/seafdav.conf</code>.</p>
+<p>If the following old options exist in <code>/opt/seafile-data/seafile/conf/seafdav.conf</code>, remove them to avoid ambiguity:</p>
+<div class="highlight"><pre><span></span><code><span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+<span class="na">workers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">5</span>
+</code></pre></div>
+<h4 id="step-33-update-configurations-for-metadata-server">Step 3.3) Update configurations for Metadata server<a class="headerlink" href="#step-33-update-configurations-for-metadata-server" title="Permanent link">&para;</a></h4>
 <p>If you are not using Metadata server, skip this step.</p>
 <p>In Seafile 14.0, the following two Metadata server configurations are moved from <code>seahub_settings.py</code> to the <code>.env</code> file used by the Seafile server. Remove them from <code>seahub_settings.py</code> if they exist there, and add them to the Seafile server <code>.env</code>. The old <code>METADATA_SERVER_URL</code> configuration is renamed to <code>INNER_METADATA_SERVER_URL</code>.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Deploy in the same machine with Seafile</label><label for="__tabbed_6_2">Standalone</label></div>
