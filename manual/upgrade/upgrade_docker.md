@@ -117,7 +117,27 @@ If you are using Thumbnail server, please backup the old file and download the 1
     THUMBNAIL_SERVER_IMAGE=seafileltd/thumbnail-server:14.0-latest
     ```
 
-#### Step 3.2) Update configurations for Metadata server
+#### Step 3.2) Update configurations for WebDAV
+
+If you are not using WebDAV, skip this step.
+
+In Seafile 14.0, the WebDAV enable switch and worker count are configured through environment variables in the Seafile server `.env`. If WebDAV was enabled in `seafdav.conf` before the upgrade, add the following settings to `.env`:
+
+```env
+ENABLE_SEAFDAV=true
+SEAFDAV_WORKERS=5
+```
+
+`SEAFDAV_WORKERS` replaces the old `workers` option in `seafdav.conf`. Keep the other WebDAV settings, such as `port`, `share_name`, `timeout`, `debug`, and `show_repo_id`, in `/opt/seafile-data/seafile/conf/seafdav.conf`.
+
+If the following old options exist in `/opt/seafile-data/seafile/conf/seafdav.conf`, remove them to avoid ambiguity:
+
+```ini
+enabled = true
+workers = 5
+```
+
+#### Step 3.3) Update configurations for Metadata server
 
 If you are not using Metadata server, skip this step.
 
