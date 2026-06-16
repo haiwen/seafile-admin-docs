@@ -83,6 +83,21 @@ If you are using Thumbnail server, please backup the old file and download the 1
     wget https://manual.seafile.com/14.0/repo/docker/thumbnail-server/thumbnail-server.yml
     ```
 
+#### Step 2.5) Download `.yml` file for Seafile AI (optional)
+
+If you are using Seafile AI, please backup the old file and download the 14.0 file:
+
+=== "Deployment with Seafile"
+    ```sh
+    mv seafile-ai.yml seafile-ai.yml.bak
+    wget https://manual.seafile.com/14.0/repo/docker/seafile-ai.yml
+    ```
+=== "Standalone deployment"
+    ```sh
+    mv seafile-ai.yml seafile-ai.yml.bak
+    wget https://manual.seafile.com/14.0/repo/docker/seafile-ai/seafile-ai.yml
+    ```
+
 ### Step 3) Modify `.env`
 
 #### Step 3.1) Update image versions
@@ -100,6 +115,9 @@ If you are using Thumbnail server, please backup the old file and download the 1
 
     # If you are using Thumbnail server
     THUMBNAIL_SERVER_IMAGE=seafileltd/thumbnail-server:14.0-latest
+
+    # If you are using Seafile AI
+    SEAFILE_AI_IMAGE=seafileltd/seafile-ai:14.0-latest
     ```
 
 === "Seafile Pro"
@@ -115,6 +133,9 @@ If you are using Thumbnail server, please backup the old file and download the 1
 
     # If you are using Thumbnail server
     THUMBNAIL_SERVER_IMAGE=seafileltd/thumbnail-server:14.0-latest
+
+    # If you are using Seafile AI
+    SEAFILE_AI_IMAGE=seafileltd/seafile-ai:14.0-latest
     ```
 
 #### Step 3.2) Update configurations for WebDAV
