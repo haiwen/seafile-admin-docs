@@ -4522,6 +4522,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#step-25-download-yml-file-for-seafile-ai-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2.5) Download .yml file for Seafile AI (optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5996,6 +6007,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#step-25-download-yml-file-for-seafile-ai-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2.5) Download .yml file for Seafile AI (optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -6534,9 +6556,25 @@ wget<span class="w"> </span>https://manual.seafile.com/14.0/repo/docker/thumbnai
 </div>
 </div>
 </div>
+<h4 id="step-25-download-yml-file-for-seafile-ai-optional">Step 2.5) Download <code>.yml</code> file for Seafile AI (optional)<a class="headerlink" href="#step-25-download-yml-file-for-seafile-ai-optional" title="Permanent link">&para;</a></h4>
+<p>If you are using Seafile AI, please backup the old file and download the 14.0 file:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Deployment with Seafile</label><label for="__tabbed_5_2">Standalone deployment</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>mv<span class="w"> </span>seafile-ai.yml<span class="w"> </span>seafile-ai.yml.bak
+wget<span class="w"> </span>https://manual.seafile.com/14.0/repo/docker/seafile-ai.yml
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>mv<span class="w"> </span>seafile-ai.yml<span class="w"> </span>seafile-ai.yml.bak
+wget<span class="w"> </span>https://manual.seafile.com/14.0/repo/docker/seafile-ai/seafile-ai.yml
+</code></pre></div>
+</div>
+</div>
+</div>
 <h3 id="step-3-modify-env">Step 3) Modify <code>.env</code><a class="headerlink" href="#step-3-modify-env" title="Permanent link">&para;</a></h3>
 <h4 id="step-31-update-image-versions">Step 3.1) Update image versions<a class="headerlink" href="#step-31-update-image-versions" title="Permanent link">&para;</a></h4>
-<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Seafile CE</label><label for="__tabbed_5_2">Seafile Pro</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Seafile CE</label><label for="__tabbed_6_2">Seafile Pro</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="nv">SEAFILE_IMAGE</span><span class="o">=</span>seafileltd/seafile-mc:14.0-latest
@@ -6549,6 +6587,9 @@ wget<span class="w"> </span>https://manual.seafile.com/14.0/repo/docker/thumbnai
 
 <span class="c1"># If you are using Thumbnail server</span>
 <span class="nv">THUMBNAIL_SERVER_IMAGE</span><span class="o">=</span>seafileltd/thumbnail-server:14.0-latest
+
+<span class="c1"># If you are using Seafile AI</span>
+<span class="nv">SEAFILE_AI_IMAGE</span><span class="o">=</span>seafileltd/seafile-ai:14.0-latest
 </code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -6562,6 +6603,9 @@ wget<span class="w"> </span>https://manual.seafile.com/14.0/repo/docker/thumbnai
 
 <span class="c1"># If you are using Thumbnail server</span>
 <span class="nv">THUMBNAIL_SERVER_IMAGE</span><span class="o">=</span>seafileltd/thumbnail-server:14.0-latest
+
+<span class="c1"># If you are using Seafile AI</span>
+<span class="nv">SEAFILE_AI_IMAGE</span><span class="o">=</span>seafileltd/seafile-ai:14.0-latest
 </code></pre></div>
 </div>
 </div>
@@ -6580,7 +6624,7 @@ SEAFDAV_WORKERS=5
 <h4 id="step-33-update-configurations-for-metadata-server">Step 3.3) Update configurations for Metadata server<a class="headerlink" href="#step-33-update-configurations-for-metadata-server" title="Permanent link">&para;</a></h4>
 <p>If you are not using Metadata server, skip this step.</p>
 <p>In Seafile 14.0, the following two Metadata server configurations are moved from <code>seahub_settings.py</code> to the <code>.env</code> file used by the Seafile server. Remove them from <code>seahub_settings.py</code> if they exist there, and add them to the Seafile server <code>.env</code>. The old <code>METADATA_SERVER_URL</code> configuration is renamed to <code>INNER_METADATA_SERVER_URL</code>.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Deploy in the same machine with Seafile</label><label for="__tabbed_6_2">Standalone</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Deploy in the same machine with Seafile</label><label for="__tabbed_7_2">Standalone</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>ENABLE_METADATA_MANAGEMENT=True
@@ -6620,7 +6664,7 @@ INNER_METADATA_SERVER_URL=http://&lt;your metadata-server host&gt;:8084
 <div class="highlight"><pre><span></span><code>mv<span class="w"> </span>seafile-server.yml<span class="w"> </span>seafile-server.yml.bak
 </code></pre></div>
 <p>Then download the new <code>seafile-server.yml</code> according to the following commands:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Seafile community edition</label><label for="__tabbed_7_2">Seafile Pro edition</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">Seafile community edition</label><label for="__tabbed_8_2">Seafile Pro edition</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/ce/seafile-server.yml
@@ -6633,7 +6677,7 @@ INNER_METADATA_SERVER_URL=http://&lt;your metadata-server host&gt;:8084
 </div>
 </div>
 <h4 id="step-22-download-yml-file-for-notification-server">Step 2.2) Download <code>.yml</code> file for notification server<a class="headerlink" href="#step-22-download-yml-file-for-notification-server" title="Permanent link">&para;</a></h4>
-<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">Deployment with Seafile</label><label for="__tabbed_8_2">Standalone deployment</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">Deployment with Seafile</label><label for="__tabbed_9_2">Standalone deployment</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/notification-server.yml
@@ -6646,7 +6690,7 @@ INNER_METADATA_SERVER_URL=http://&lt;your metadata-server host&gt;:8084
 </div>
 </div>
 <h4 id="step-23-download-yml-file-for-search-engine-pro-edition">Step 2.3) Download <code>.yml</code> file for search engine (Pro edition)<a class="headerlink" href="#step-23-download-yml-file-for-search-engine-pro-edition" title="Permanent link">&para;</a></h4>
-<div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">ElasticSearch</label><label for="__tabbed_9_2">SeaSearch</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">ElasticSearch</label><label for="__tabbed_10_2">SeaSearch</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>From Seafile Docker 13.0 (<strong>Pro</strong>), the <em>ElasticSearch</em> service will be controlled by a separate resource file (i.e., <code>elasticsearch.yml</code>). If you are using Seafile Pro and still plan to use <em>ElasticSearch</em>, please download the <code>elasticsearch.yml</code>:</p>
@@ -6667,7 +6711,7 @@ wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/pro/seas
 </code></pre></div>
 <h3 id="step-3-modify-env-update-image-version-and-add-cache-configurations">Step 3) Modify <code>.env</code>, update image version and add cache configurations<a class="headerlink" href="#step-3-modify-env-update-image-version-and-add-cache-configurations" title="Permanent link">&para;</a></h3>
 <h4 id="step-31-update-image-version-to-seafile-13">Step 3.1) Update image version to Seafile 13<a class="headerlink" href="#step-31-update-image-version-to-seafile-13" title="Permanent link">&para;</a></h4>
-<div class="tabbed-set tabbed-alternate" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">Seafile CE</label><label for="__tabbed_10_2">Seafile Pro</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="11:2"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><input id="__tabbed_11_2" name="__tabbed_11" type="radio" /><div class="tabbed-labels"><label for="__tabbed_11_1">Seafile CE</label><label for="__tabbed_11_2">Seafile Pro</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="nv">SEAFILE_IMAGE</span><span class="o">=</span>seafileltd/seafile-mc:13.0-latest
@@ -6691,7 +6735,7 @@ wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/pro/seas
 </div>
 <h4 id="step-32-add-configurations-for-cache">Step 3.2) Add configurations for cache<a class="headerlink" href="#step-32-add-configurations-for-cache" title="Permanent link">&para;</a></h4>
 <p>From Seafile 13, the configurations of database and cache can be set via environment variables directly (you can define it in the <code>.env</code>). What's more, the Redis will be recommended as the primary cache server for supporting some new features (please refer the <strong><em>upgradte notes</em></strong>, you can also refer to more details about Redis in Seafile Docker <a href="../../setup/setup_pro_by_docker/#about-redis">here</a>).</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="11:2"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><input id="__tabbed_11_2" name="__tabbed_11" type="radio" /><div class="tabbed-labels"><label for="__tabbed_11_1">Redis</label><label for="__tabbed_11_2">Memcached</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="12:2"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio" /><input id="__tabbed_12_2" name="__tabbed_12" type="radio" /><div class="tabbed-labels"><label for="__tabbed_12_1">Redis</label><label for="__tabbed_12_2">Memcached</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1">## Cache</span>
@@ -6716,7 +6760,7 @@ wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/pro/seas
 </div>
 <h4 id="step-33-add-configuration-for-notification-server">Step 3.3)  Add configuration for notification server<a class="headerlink" href="#step-33-add-configuration-for-notification-server" title="Permanent link">&para;</a></h4>
 <p>If you are using notification server in Seafile 12, please specify the notification server url in <code>.env</code>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="12:2"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio" /><input id="__tabbed_12_2" name="__tabbed_12" type="radio" /><div class="tabbed-labels"><label for="__tabbed_12_1">Deploy in the same host with Seafile</label><label for="__tabbed_12_2">Standalone deployment</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="13:2"><input checked="checked" id="__tabbed_13_1" name="__tabbed_13" type="radio" /><input id="__tabbed_13_2" name="__tabbed_13" type="radio" /><div class="tabbed-labels"><label for="__tabbed_13_1">Deploy in the same host with Seafile</label><label for="__tabbed_13_2">Standalone deployment</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="nv">ENABLE_NOTIFICATION_SERVER</span><span class="o">=</span><span class="nb">true</span>
@@ -6732,7 +6776,7 @@ wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/pro/seas
 </div>
 <h4 id="step-34-add-configurations-for-storage-backend-pro">Step 3.4) Add configurations for storage backend (Pro)<a class="headerlink" href="#step-34-add-configurations-for-storage-backend-pro" title="Permanent link">&para;</a></h4>
 <p>Seafile 13.0 add a new environment <code>SEAF_SERVER_STORAGE_TYPE</code> to determine the storage backend of seaf-server component. You can delete the variable or set it to empty (<code>SEAF_SERVER_STORAGE_TYPE=</code>) to use the old way, i.e., determining the storage backend from seafile.conf.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="13:4"><input checked="checked" id="__tabbed_13_1" name="__tabbed_13" type="radio" /><input id="__tabbed_13_2" name="__tabbed_13" type="radio" /><input id="__tabbed_13_3" name="__tabbed_13" type="radio" /><input id="__tabbed_13_4" name="__tabbed_13" type="radio" /><div class="tabbed-labels"><label for="__tabbed_13_1">Local disk (default)</label><label for="__tabbed_13_2">S3 backend</label><label for="__tabbed_13_3">Multiple storage backends</label><label for="__tabbed_13_4">Use the configuration in <code>seafile.conf</code></label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="14:4"><input checked="checked" id="__tabbed_14_1" name="__tabbed_14" type="radio" /><input id="__tabbed_14_2" name="__tabbed_14" type="radio" /><input id="__tabbed_14_3" name="__tabbed_14" type="radio" /><input id="__tabbed_14_4" name="__tabbed_14" type="radio" /><div class="tabbed-labels"><label for="__tabbed_14_1">Local disk (default)</label><label for="__tabbed_14_2">S3 backend</label><label for="__tabbed_14_3">Multiple storage backends</label><label for="__tabbed_14_4">Use the configuration in <code>seafile.conf</code></label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>Set <code>SEAF_SERVER_STORAGE_TYPE</code> to <code>disk</code> (default value):</p>
@@ -6801,7 +6845,7 @@ cp<span class="w"> </span>/opt/seafile-data/seafile/conf/seahub_settings.py<span
 </code></pre></div>
 <h3 id="download-seafile-120-docker-files">Download Seafile 12.0 Docker files<a class="headerlink" href="#download-seafile-120-docker-files" title="Permanent link">&para;</a></h3>
 <p>Download <code>.env</code>, <code>seafile-server.yml</code> and <code>caddy.yml</code>, and modify <code>.env</code> file according to the old configuration in <code>docker-compose.yml.bak</code></p>
-<div class="tabbed-set tabbed-alternate" data-tabs="14:2"><input checked="checked" id="__tabbed_14_1" name="__tabbed_14" type="radio" /><input id="__tabbed_14_2" name="__tabbed_14" type="radio" /><div class="tabbed-labels"><label for="__tabbed_14_1">Seafile community edition</label><label for="__tabbed_14_2">Seafile pro edition</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="15:2"><input checked="checked" id="__tabbed_15_1" name="__tabbed_15" type="radio" /><input id="__tabbed_15_2" name="__tabbed_15" type="radio" /><div class="tabbed-labels"><label for="__tabbed_15_1">Seafile community edition</label><label for="__tabbed_15_2">Seafile pro edition</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p><div class="highlight"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </span>https://manual.seafile.com/12.0/repo/docker/ce/env
