@@ -9,6 +9,9 @@ Please check the **upgrade notes** for any special configuration or changes befo
 
 ## Upgrade from 13.0 to 14.0
 
+!!! tip "Clean Database"
+    The database upgrade may take a long time. You can clean the database before upgrading. Please refer to [Clean Database](../administration/clean_database.md).
+
 ### Step 1) Stop the services:
 
 Before upgrading, please shutdown your Seafile server:
