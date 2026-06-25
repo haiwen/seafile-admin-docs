@@ -2,6 +2,16 @@
 
 ## 9.0
 
+### 9.0.19 (2026/06.25)
+
+* Update Qt to 6.8
+* Update libcurl to 3.5.4 and OpenSSL to 8.20.0
+* Avoid SQL injection in local database
+* \[linux] Improve cli and mounting options
+* Fix bug in updating server URL
+* Add tip for impossible to recover password when creating encrypted libraries
+* Fix bug for syncing deleted folder permissions
+
 ### 9.0.18 (2026/04/10)
 
 * Resume file download from the last offset when it's interrupted
