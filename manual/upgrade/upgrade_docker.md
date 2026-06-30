@@ -141,7 +141,26 @@ If you are using Seafile AI, please backup the old file and download the 14.0 fi
     SEAFILE_AI_IMAGE=seafileltd/seafile-ai:14.0-latest
     ```
 
-#### Step 3.2) Update configurations for WebDAV
+#### Step 3.2) Add SeaSearch configurations for Seafile AI (optional)
+
+If you are not using Seafile AI, skip this step.
+
+Add the following settings to the `.env` used by Seafile AI:
+
+=== "SeaSearch deployed with Seafile"
+    ```env
+    SEASEARCH_URL=http://seasearch:4080
+    SEASEARCH_TOKEN=<your SeaSearch authorization token>
+    ```
+=== "Standalone SeaSearch deployment"
+    ```env
+    SEASEARCH_URL=http://<your SeaSearch server host>:4080
+    SEASEARCH_TOKEN=<your SeaSearch authorization token>
+    ```
+
+Leave both variables empty if SeaSearch is not used. For details, refer to [SeaSearch configuration](../setup/use_seasearch.md).
+
+#### Step 3.3) Update configurations for WebDAV
 
 If you are not using WebDAV, skip this step.
 
@@ -161,7 +180,7 @@ enabled = true
 workers = 5
 ```
 
-#### Step 3.3) Update configurations for Metadata server
+#### Step 3.4) Update configurations for Metadata server
 
 If you are not using Metadata server, skip this step.
 
