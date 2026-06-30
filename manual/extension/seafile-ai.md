@@ -135,22 +135,64 @@ The Seafile AI basic service will use API calls to external large language model
     wget -O .env https://manual.seafile.com/14.0/repo/docker/seafile-ai/env
     ```
 
-2. Modify `.env` in the host will deploy Seafile AI according to following table
+2. Modify `.env` on the host where Seafile AI will be deployed. The environment variables used by `seafile-ai.yml` are described below. Variables with a default value can be omitted unless you need to override the default.
 
-    | variable               | description                                                                                                   |  
-    |------------------------|---------------------------------------------------------------------------------------------------------------|  
-    | `SEAFILE_VOLUME`        | The volume directory of thumbnail server data                                                                            | 
-    | `JWT_PRIVATE_KEY`      | JWT key, the same as the config in Seafile `.env` file                                                         |
-    | `INNER_SEAHUB_SERVICE_URL`| Intranet URL for accessing Seahub component, like `http://<your Seafile server intranet IP>`.  |  
-    | `INNER_METADATA_SERVER_URL`| Intranet URL for accessing metadata server component, like `http://<your metadata server intranet IP>`.  |  
-    | `REDIS_HOST`       | Redis server host | 
-    | `REDIS_PORT`       | Redis server port | 
-    | `REDIS_PASSWORD`       | Redis server password | 
-    | `SEAFILE_AI_LLM_TYPE`       | Large Language Model (LLM) Type. Default is `openai`. | 
-    | `SEAFILE_AI_LLM_URL`       | LLM API endpoint.  | 
-    | `SEAFILE_AI_LLM_KEY`       | LLM API key. | 
-    | `SEAFILE_AI_LLM_MODEL`       | LLM model id (or name). Default is ***gpt-4o-mini*** |
-    | `FACE_EMBEDDING_SERVICE_URL`       | Face embedding service url |
+    Service and connection settings:
+
+    | Variable | Description |
+    |----------|-------------|
+    | `SEAFILE_AI_IMAGE` | Seafile AI image. Default is `seafileltd/seafile-ai:14.0-latest`. |
+    | `SEAFILE_VOLUME` | Seafile data directory mounted at `/shared` in the container. Default is `/opt/seafile-data`. |
+    | `INNER_SEAHUB_SERVICE_URL` | URL used by Seafile AI to access Seahub, for example `http://<your Seafile server intranet IP>`. This variable is required for a standalone deployment. |
+    | `INNER_METADATA_SERVER_URL` | URL used by Seafile AI to access the metadata server, for example `http://<your metadata server intranet IP>:8084`. |
+    | `SEASEARCH_URL` | URL used by Seafile AI to access SeaSearch, for example `http://<your SeaSearch server intranet IP>:4080`. Leave it empty if SeaSearch is not used. |
+    | `SEASEARCH_TOKEN` | SeaSearch API authorization token. It is the Base64 encoding of the SeaSearch administrator's `username:password`. |
+    | `JWT_PRIVATE_KEY` | JWT key shared with the Seafile server and related extension services. This variable is required. |
+    | `SEAFILE_AI_LOG_LEVEL` | Seafile AI log level. Default is `info`. |
+
+    LLM and face recognition settings:
+
+    | Variable | Description |
+    |----------|-------------|
+    | `SEAFILE_AI_LLM_TYPE` | LLM provider type. Default is `openai`. |
+    | `SEAFILE_AI_LLM_URL` | LLM API endpoint. Leave it empty to use the provider's default endpoint. |
+    | `SEAFILE_AI_LLM_KEY` | LLM API key. |
+    | `SEAFILE_AI_LLM_MODEL` | LLM model ID or name. Default is `gpt-4o-mini`. |
+    | `FACE_EMBEDDING_SERVICE_URL` | URL used to access the face embedding service. Leave it empty if face recognition is not used. |
+    | `FACE_EMBEDDING_SERVICE_KEY` | Authentication key for the face embedding service. By default, it uses `JWT_PRIVATE_KEY`. |
+
+    Database and cache settings:
+
+    | Variable | Description |
+    |----------|-------------|
+    | `SEAFILE_MYSQL_DB_HOST` | Seafile database host. Default is `db`. |
+    | `SEAFILE_MYSQL_DB_PORT` | Seafile database port. Default is `3306`. |
+    | `SEAFILE_MYSQL_DB_USER` | Seafile database user. Default is `seafile`. |
+    | `SEAFILE_MYSQL_DB_PASSWORD` | Seafile database password. This variable is required. |
+    | `SEAFILE_MYSQL_DB_CCNET_DB_NAME` | CCNet database name. Default is `ccnet_db`. |
+    | `SEAFILE_MYSQL_DB_SEAFILE_DB_NAME` | Seafile database name. Default is `seafile_db`. |
+    | `SEAFILE_MYSQL_DB_SEAHUB_DB_NAME` | Seahub database name. Default is `seahub_db`. |
+    | `CACHE_PROVIDER` | Cache provider. Seafile AI requires Redis, so this must be `redis`. |
+    | `REDIS_HOST` | Redis server host. Default is `redis`. |
+    | `REDIS_PORT` | Redis server port. Default is `6379`. |
+    | `REDIS_PASSWORD` | Redis server password. Leave it empty if authentication is disabled. |
+
+    Storage settings:
+
+    | Variable | Description |
+    |----------|-------------|
+    | `SEAF_SERVER_STORAGE_TYPE` | Storage type used by the Seafile server. Use the same value as in the Seafile server configuration. |
+    | `S3_COMMIT_BUCKET` | S3 bucket that stores commit objects. |
+    | `S3_FS_BUCKET` | S3 bucket that stores file-system objects. |
+    | `S3_BLOCK_BUCKET` | S3 bucket that stores block objects. |
+    | `S3_KEY_ID` | S3 access key ID. |
+    | `S3_SECRET_KEY` | S3 secret access key. |
+    | `S3_USE_V4_SIGNATURE` | Whether to use AWS Signature Version 4. Default is `true`. |
+    | `S3_AWS_REGION` | S3 region. Default is `us-east-1`. |
+    | `S3_HOST` | S3-compatible service endpoint. Leave it empty when using the default AWS endpoint. |
+    | `S3_USE_HTTPS` | Whether to use HTTPS to access S3. Default is `true`. |
+    | `S3_PATH_STYLE_REQUEST` | Whether to use path-style S3 requests. Default is `false`. |
+    | `S3_SSE_C_KEY` | Optional customer-provided key for S3 server-side encryption (SSE-C). |
 
     then start your Seafile AI server:
 
