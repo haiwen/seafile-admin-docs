@@ -5798,50 +5798,66 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 </code></pre></div>
 </li>
 <li>
-<p>Modify <code>.env</code> in the host will deploy Seafile AI according to following table</p>
+<p>Modify <code>.env</code> on the host where Seafile AI will be deployed. The environment variables used by <code>seafile-ai.yml</code> are described below. Variables with a default value can be omitted unless you need to override the default.</p>
+<p>Service and connection settings:</p>
 <table>
 <thead>
 <tr>
-<th>variable</th>
-<th>description</th>
+<th>Variable</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>SEAFILE_VOLUME</code></td>
-<td>The volume directory of thumbnail server data</td>
+<td><code>SEAFILE_AI_IMAGE</code></td>
+<td>Seafile AI image. Default is <code>seafileltd/seafile-ai:14.0-latest</code>.</td>
 </tr>
 <tr>
-<td><code>JWT_PRIVATE_KEY</code></td>
-<td>JWT key, the same as the config in Seafile <code>.env</code> file</td>
+<td><code>SEAFILE_VOLUME</code></td>
+<td>Seafile data directory mounted at <code>/shared</code> in the container. Default is <code>/opt/seafile-data</code>.</td>
 </tr>
 <tr>
 <td><code>INNER_SEAHUB_SERVICE_URL</code></td>
-<td>Intranet URL for accessing Seahub component, like <code>http://&lt;your Seafile server intranet IP&gt;</code>.</td>
+<td>URL used by Seafile AI to access Seahub, for example <code>http://&lt;your Seafile server intranet IP&gt;</code>. This variable is required for a standalone deployment.</td>
 </tr>
 <tr>
 <td><code>INNER_METADATA_SERVER_URL</code></td>
-<td>Intranet URL for accessing metadata server component, like <code>http://&lt;your metadata server intranet IP&gt;</code>.</td>
+<td>URL used by Seafile AI to access the metadata server, for example <code>http://&lt;your metadata server intranet IP&gt;:8084</code>.</td>
 </tr>
 <tr>
-<td><code>REDIS_HOST</code></td>
-<td>Redis server host</td>
+<td><code>SEASEARCH_URL</code></td>
+<td>URL used by Seafile AI to access SeaSearch, for example <code>http://&lt;your SeaSearch server intranet IP&gt;:4080</code>. Leave it empty if SeaSearch is not used.</td>
 </tr>
 <tr>
-<td><code>REDIS_PORT</code></td>
-<td>Redis server port</td>
+<td><code>SEASEARCH_TOKEN</code></td>
+<td>SeaSearch API authorization token. It is the Base64 encoding of the SeaSearch administrator's <code>username:password</code>.</td>
 </tr>
 <tr>
-<td><code>REDIS_PASSWORD</code></td>
-<td>Redis server password</td>
+<td><code>JWT_PRIVATE_KEY</code></td>
+<td>JWT key shared with the Seafile server and related extension services. This variable is required.</td>
 </tr>
+<tr>
+<td><code>SEAFILE_AI_LOG_LEVEL</code></td>
+<td>Seafile AI log level. Default is <code>info</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>LLM and face recognition settings:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td><code>SEAFILE_AI_LLM_TYPE</code></td>
-<td>Large Language Model (LLM) Type. Default is <code>openai</code>.</td>
+<td>LLM provider type. Default is <code>openai</code>.</td>
 </tr>
 <tr>
 <td><code>SEAFILE_AI_LLM_URL</code></td>
-<td>LLM API endpoint.</td>
+<td>LLM API endpoint. Leave it empty to use the provider's default endpoint.</td>
 </tr>
 <tr>
 <td><code>SEAFILE_AI_LLM_KEY</code></td>
@@ -5849,11 +5865,129 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 </tr>
 <tr>
 <td><code>SEAFILE_AI_LLM_MODEL</code></td>
-<td>LLM model id (or name). Default is <strong><em>gpt-4o-mini</em></strong></td>
+<td>LLM model ID or name. Default is <code>gpt-4o-mini</code>.</td>
 </tr>
 <tr>
 <td><code>FACE_EMBEDDING_SERVICE_URL</code></td>
-<td>Face embedding service url</td>
+<td>URL used to access the face embedding service. Leave it empty if face recognition is not used.</td>
+</tr>
+<tr>
+<td><code>FACE_EMBEDDING_SERVICE_KEY</code></td>
+<td>Authentication key for the face embedding service. By default, it uses <code>JWT_PRIVATE_KEY</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>Database and cache settings:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SEAFILE_MYSQL_DB_HOST</code></td>
+<td>Seafile database host. Default is <code>db</code>.</td>
+</tr>
+<tr>
+<td><code>SEAFILE_MYSQL_DB_PORT</code></td>
+<td>Seafile database port. Default is <code>3306</code>.</td>
+</tr>
+<tr>
+<td><code>SEAFILE_MYSQL_DB_USER</code></td>
+<td>Seafile database user. Default is <code>seafile</code>.</td>
+</tr>
+<tr>
+<td><code>SEAFILE_MYSQL_DB_PASSWORD</code></td>
+<td>Seafile database password. This variable is required.</td>
+</tr>
+<tr>
+<td><code>SEAFILE_MYSQL_DB_CCNET_DB_NAME</code></td>
+<td>CCNet database name. Default is <code>ccnet_db</code>.</td>
+</tr>
+<tr>
+<td><code>SEAFILE_MYSQL_DB_SEAFILE_DB_NAME</code></td>
+<td>Seafile database name. Default is <code>seafile_db</code>.</td>
+</tr>
+<tr>
+<td><code>SEAFILE_MYSQL_DB_SEAHUB_DB_NAME</code></td>
+<td>Seahub database name. Default is <code>seahub_db</code>.</td>
+</tr>
+<tr>
+<td><code>CACHE_PROVIDER</code></td>
+<td>Cache provider. Seafile AI requires Redis, so this must be <code>redis</code>.</td>
+</tr>
+<tr>
+<td><code>REDIS_HOST</code></td>
+<td>Redis server host. Default is <code>redis</code>.</td>
+</tr>
+<tr>
+<td><code>REDIS_PORT</code></td>
+<td>Redis server port. Default is <code>6379</code>.</td>
+</tr>
+<tr>
+<td><code>REDIS_PASSWORD</code></td>
+<td>Redis server password. Leave it empty if authentication is disabled.</td>
+</tr>
+</tbody>
+</table>
+<p>Storage settings:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SEAF_SERVER_STORAGE_TYPE</code></td>
+<td>Storage type used by the Seafile server. Use the same value as in the Seafile server configuration.</td>
+</tr>
+<tr>
+<td><code>S3_COMMIT_BUCKET</code></td>
+<td>S3 bucket that stores commit objects.</td>
+</tr>
+<tr>
+<td><code>S3_FS_BUCKET</code></td>
+<td>S3 bucket that stores file-system objects.</td>
+</tr>
+<tr>
+<td><code>S3_BLOCK_BUCKET</code></td>
+<td>S3 bucket that stores block objects.</td>
+</tr>
+<tr>
+<td><code>S3_KEY_ID</code></td>
+<td>S3 access key ID.</td>
+</tr>
+<tr>
+<td><code>S3_SECRET_KEY</code></td>
+<td>S3 secret access key.</td>
+</tr>
+<tr>
+<td><code>S3_USE_V4_SIGNATURE</code></td>
+<td>Whether to use AWS Signature Version 4. Default is <code>true</code>.</td>
+</tr>
+<tr>
+<td><code>S3_AWS_REGION</code></td>
+<td>S3 region. Default is <code>us-east-1</code>.</td>
+</tr>
+<tr>
+<td><code>S3_HOST</code></td>
+<td>S3-compatible service endpoint. Leave it empty when using the default AWS endpoint.</td>
+</tr>
+<tr>
+<td><code>S3_USE_HTTPS</code></td>
+<td>Whether to use HTTPS to access S3. Default is <code>true</code>.</td>
+</tr>
+<tr>
+<td><code>S3_PATH_STYLE_REQUEST</code></td>
+<td>Whether to use path-style S3 requests. Default is <code>false</code>.</td>
+</tr>
+<tr>
+<td><code>S3_SSE_C_KEY</code></td>
+<td>Optional customer-provided key for S3 server-side encryption (SSE-C).</td>
 </tr>
 </tbody>
 </table>

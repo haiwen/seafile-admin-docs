@@ -24,3 +24,5 @@ SEAFILE_AI_LLM_MODEL=gpt-4o-mini
 
 INNER_SEAHUB_SERVICE_URL=    # https://seafile.example.com
 INNER_METADATA_SERVER_URL=
+SEASEARCH_URL=               # http://seasearch.example.com:4080
+SEASEARCH_TOKEN=
