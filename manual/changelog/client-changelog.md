@@ -2,7 +2,11 @@
 
 ## 9.0
 
-### 9.0.19 (2026/06.25)
+### 9.0.20 (Windows only) (2026/07/01)
+
+* \[win] Use OpenSSL with Qt
+
+### 9.0.19 (2026/06/25)
 
 * Update Qt to 6.8
 * Update libcurl to 3.5.4 and OpenSSL to 8.20.0
