@@ -138,5 +138,8 @@ To check whether the file size matches, add the `--check-file-size` or `-S` opti
 
 You can specify the thread number in with "-t" option. "-t" option can be used together with all other options. Each thread will do FSCK on one library. For example, the following command will use 20 threads to FSCK all libraries:
 
+```
 ./seaf-fsck.sh -t 20
+```
+
 Since the threads are concurrent, the output of each thread may mix with each others. Library ID is printed in each line of output.
