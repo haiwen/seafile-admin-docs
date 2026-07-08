@@ -133,3 +133,13 @@ The argument `top_export_path` is a directory to place the exported files. Each 
 Starting from version 13.0.9, fsck has added an option to check whether the file size matches the actual file content. Some problematic clients may upload incorrect blocks, causing the actual file size to not match the file content. With this option, you can detect files with size mismatches, along with the method and time of their upload.
 
 To check whether the file size matches, add the `--check-file-size` or `-S` option to seaf-fsck.
+
+## Using Multiple Threads in FSCK
+
+You can specify the thread number in with "-t" option. "-t" option can be used together with all other options. Each thread will do FSCK on one library. For example, the following command will use 20 threads to FSCK all libraries:
+
+```
+./seaf-fsck.sh -t 20
+```
+
+Since the threads are concurrent, the output of each thread may mix with each others. Library ID is printed in each line of output.
