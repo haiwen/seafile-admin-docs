@@ -4305,6 +4305,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#using-multiple-threads-in-fsck" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Multiple Threads in FSCK
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -5500,6 +5511,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#using-multiple-threads-in-fsck" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Multiple Threads in FSCK
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -5609,6 +5631,11 @@
 <h2 id="checking-file-size">Checking file size<a class="headerlink" href="#checking-file-size" title="Permanent link">&para;</a></h2>
 <p>Starting from version 13.0.9, fsck has added an option to check whether the file size matches the actual file content. Some problematic clients may upload incorrect blocks, causing the actual file size to not match the file content. With this option, you can detect files with size mismatches, along with the method and time of their upload.</p>
 <p>To check whether the file size matches, add the <code>--check-file-size</code> or <code>-S</code> option to seaf-fsck.</p>
+<h2 id="using-multiple-threads-in-fsck">Using Multiple Threads in FSCK<a class="headerlink" href="#using-multiple-threads-in-fsck" title="Permanent link">&para;</a></h2>
+<p>You can specify the thread number in with "-t" option. "-t" option can be used together with all other options. Each thread will do FSCK on one library. For example, the following command will use 20 threads to FSCK all libraries:</p>
+<div class="highlight"><pre><span></span><code>./seaf-fsck.sh -t 20
+</code></pre></div>
+<p>Since the threads are concurrent, the output of each thread may mix with each others. Library ID is printed in each line of output.</p>
 
 
 
