@@ -343,3 +343,85 @@ Seafile supports counting users' AI usage (how many tokens are used) and setting
 
     !!! note "`monthly_ai_credit_per_user` for organization user"
         For organizational team users, `monthly_ai_credit_per_user` will apply to the entire team. For example, when `monthly_ai_credit_per_user` is set to `2` (unit of doller for example) and there are 10 members in the team, all members in the team will share the quota of $2\times10=20\$$.
+
+### Enable AI chat and configure multiple models
+
+Seafile AI chat is disabled by default. To enable it, you need to configure Seahub. Configuring multiple models in `seafile_ai_config.yaml` is optional and is only needed when you want to provide selectable models in the chat dialog.
+
+1. Open `$SEAFILE_VOLUME/seafile/conf/seahub_settings.py` and enable AI chat:
+
+    ```py
+    ENABLE_AI_CHAT = True
+    ```
+
+    After this option is enabled, Seahub will display the AI chat entry for users.
+
+2. Optional: open `$SEAFILE_VOLUME/seafile/conf/seafile_ai_config.yaml` and configure one or more chat models under `global.LLM_MODELS`:
+
+    ```yaml
+    global:
+      LLM_MODELS:
+        - type: other
+          url: http://<your-llm-endpoint>
+          key: <your-api-key>
+          model: gpt-5.4-nano
+          label: gpt-5.4-nano
+          default: false
+          tier: high
+          hidden: false
+          disable: false
+        - type: other
+          url: http://<your-llm-endpoint>
+          key: <your-api-key>
+          model: gemini-3-flash-preview
+          label: gemini-3-flash-preview
+          default: true
+          tier: high
+          hidden: false
+          disable: false
+        - type: other
+          url: http://<your-llm-endpoint>
+          key: <your-api-key>
+          model: deepseek-v4-pro
+          label: deepseek-v4-pro
+          default: false
+          tier: high
+          hidden: false
+          disable: false
+    ```
+
+    The fields are described below:
+
+    | Field | Description |
+    |----------|-------------|
+    | `type` | LLM provider type. For OpenAI-compatible endpoints, use `other`. |
+    | `url` | The provider API endpoint. |
+    | `key` | The API key used to access the model service. |
+    | `model` | Model ID used in API calls. |
+    | `label` | Model name shown in the AI chat model selector. |
+    | `default` | Whether this model is the default selected model. Usually only one model should be set to `true`. |
+    | `tier` | Model tier metadata used by Seafile AI. |
+    | `hidden` | If `true`, the model will not be shown in Seahub's model selector. |
+    | `disable` | If `true`, the model is disabled and should not be used for chat requests. |
+
+    
+    !!! note
+
+        Configuring `seafile_ai_config.yaml` is optional. If it is not confitured, AI chat will use the model configured by the environment variables such as `SEAFILE_AI_LLM_TYPE`, `SEAFILE_AI_LLM_URL`, `SEAFILE_AI_LLM_KEY`, and `SEAFILE_AI_LLM_MODEL`.  In this case, Seahub will not show a model selector in the AI chat dialog.
+
+    !!! note
+
+        If Seafile and Seafile AI are deployed on separate machines, you need to configure `seafile_ai_config.yaml` on both machines. Seahub reads this file to display available models in the AI chat model selector, and the Seafile AI service reads the same file to route actual model requests.
+
+    !!! note
+
+        The model with `default: true` is not only the default model in AI chat, but is also used by general AI features such as file summary generation, writing assistant, and other non-chat AI functions.
+
+3. Restart Seafile services to apply the changes:
+
+    ```sh
+    docker compose down
+    docker compose up -d
+    ```
+
+    If Seafile AI is deployed on a separate host, restart both the Seafile server and the Seafile AI service.
