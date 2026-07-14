@@ -2525,56 +2525,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#deploy-face-embedding-service-optional" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Deploy face embedding service (Optional)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Deploy face embedding service (Optional)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#deploy-the-face-embedding-service-on-a-different-machine-than-the-seafile-ai-basic-service" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Deploy the face embedding service on a different machine than the Seafile AI basic service
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#persistent-volume-and-model-management" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Persistent volume and model management
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#customizing-model-serving-access-keys" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Customizing model serving access keys
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#advanced-operations" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2598,10 +2548,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#enable-ai-chat-and-configure-multiple-models" class="md-nav__link">
+  <a href="#enable-ai-chat" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Enable AI chat and configure multiple models
+        Enable AI chat
       
     </span>
   </a>
@@ -5579,56 +5529,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#deploy-face-embedding-service-optional" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Deploy face embedding service (Optional)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Deploy face embedding service (Optional)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#deploy-the-face-embedding-service-on-a-different-machine-than-the-seafile-ai-basic-service" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Deploy the face embedding service on a different machine than the Seafile AI basic service
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#persistent-volume-and-model-management" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Persistent volume and model management
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#customizing-model-serving-access-keys" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Customizing model serving access keys
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#advanced-operations" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5652,10 +5552,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#enable-ai-chat-and-configure-multiple-models" class="md-nav__link">
+  <a href="#enable-ai-chat" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Enable AI chat and configure multiple models
+        Enable AI chat
       
     </span>
   </a>
@@ -5696,13 +5596,12 @@
 <ul>
 <li>File tags, file and image summaries, text translation, sdoc writing assistance</li>
 <li>Given an image, generate its corresponding tags (including objects, weather, color, etc.)</li>
-<li>Detect faces in images and encode them</li>
 <li>Detect text in images (OCR)</li>
 </ul>
 <div class="admonition danger">
 <p class="admonition-title">AIGC statement in Seafile</p>
-<p>With the help of large language models and face recognition models and algorithm development, Seafile AI supports image recognition and text generation. The generated content is <strong>diverse</strong> and <strong>random</strong>, and users need to identify the generated content. <strong>Seafile will not be responsible for AI-generated content (AIGC)</strong>.</p>
-<p>At the same time, Seafile AI supports the use of custom LLM and face recognition models. Different large language models will have different impacts on AIGC (including functions and performance), so <strong>Seafile will not be responsible for the corresponding rate (i.e., tokens/s), token consumption, and generated content</strong>. Including but not limited to</p>
+<p>With the help of large language models and algorithm development, Seafile AI supports image recognition and text generation. The generated content is <strong>diverse</strong> and <strong>random</strong>, and users need to identify the generated content. <strong>Seafile will not be responsible for AI-generated content (AIGC)</strong>.</p>
+<p>At the same time, Seafile AI supports the use of custom LLM. Different large language models will have different impacts on AIGC (including functions and performance), so <strong>Seafile will not be responsible for the corresponding rate (i.e., tokens/s), token consumption, and generated content</strong>. Including but not limited to</p>
 <ul>
 <li>Basic model (including model basic algorithm)</li>
 <li>Parameter quantity</li>
@@ -5724,84 +5623,100 @@
 </code></pre></div>
 </li>
 <li>
-<p>Modify <code>.env</code>, insert or modify the following fields:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:7"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><input id="__tabbed_1_6" name="__tabbed_1" type="radio" /><input id="__tabbed_1_7" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">OpenAI</label><label for="__tabbed_1_2">Google AI studio</label><label for="__tabbed_1_3">Deepseek</label><label for="__tabbed_1_4">Azure OpenAI</label><label for="__tabbed_1_5">Ollama</label><label for="__tabbed_1_6">HuggingFace</label><label for="__tabbed_1_7">Other</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
+<p>Modify <code>.env</code> and add the basic Seafile AI switch:</p>
 <div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;...,seafile-ai.yml&#39; # add seafile-ai.yml
 
 ENABLE_SEAFILE_AI=true
-SEAFILE_AI_LLM_TYPE=openai
-SEAFILE_AI_LLM_KEY=&lt;your openai LLM access key&gt;
-SEAFILE_AI_LLM_MODEL=gpt-4o-mini # recommend
 </code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;...,seafile-ai.yml&#39; # add seafile-ai.yml
-
-ENABLE_SEAFILE_AI=true
-SEAFILE_AI_LLM_TYPE=gemini
-SEAFILE_AI_LLM_KEY=&lt;your openai LLM access key&gt;
-SEAFILE_AI_LLM_MODEL=gemini-3-flash-preview # recommend
+</li>
+<li>
+<p>Open <code>$SEAFILE_VOLUME/seafile/conf/seafile_ai_config.yaml</code> and configure the model used by Seafile AI:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">global</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">LLM_MODELS</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">other</span>
+<span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://&lt;your-llm-endpoint&gt;</span>
+<span class="w">      </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;your-api-key&gt;</span>
+<span class="w">      </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-5.4-nano</span>
+<span class="w">      </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-5.4-nano</span>
+<span class="w">      </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="nt">tier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">high</span>
+<span class="w">      </span><span class="nt">hidden</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="nt">disable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">other</span>
+<span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://&lt;your-llm-endpoint&gt;</span>
+<span class="w">      </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;your-api-key&gt;</span>
+<span class="w">      </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gemini-3-flash-preview</span>
+<span class="w">      </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gemini-3-flash-preview</span>
+<span class="w">      </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">tier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">high</span>
+<span class="w">      </span><span class="nt">hidden</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="nt">disable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">other</span>
+<span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://&lt;your-llm-endpoint&gt;</span>
+<span class="w">      </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;your-api-key&gt;</span>
+<span class="w">      </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deepseek-v4-pro</span>
+<span class="w">      </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deepseek-v4-pro</span>
+<span class="w">      </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="nt">tier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">high</span>
+<span class="w">      </span><span class="nt">hidden</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="nt">disable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 </code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;...,seafile-ai.yml&#39; # add seafile-ai.yml
-
-ENABLE_SEAFILE_AI=true
-SEAFILE_AI_LLM_TYPE=deepseek
-SEAFILE_AI_LLM_KEY=&lt;your LLM access key&gt;
-SEAFILE_AI_LLM_MODEL=deepseek-chat # recommend
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;...,seafile-ai.yml&#39; # add seafile-ai.yml
-
-ENABLE_SEAFILE_AI=true
-SEAFILE_AI_LLM_TYPE=azure
-SEAFILE_AI_LLM_URL= # your deployment url, leave blank to use default endpoint
-SEAFILE_AI_LLM_KEY=&lt;your API key&gt;
-SEAFILE_AI_LLM_MODEL=&lt;your deployment name&gt;
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;...,seafile-ai.yml&#39; # add seafile-ai.yml
-
-ENABLE_SEAFILE_AI=true
-SEAFILE_AI_LLM_TYPE=ollama
-SEAFILE_AI_LLM_URL=&lt;your LLM endpoint&gt;
-SEAFILE_AI_LLM_KEY=&lt;your LLM access key&gt;
-SEAFILE_AI_LLM_MODEL=&lt;your model-id&gt;
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;...,seafile-ai.yml&#39; # add seafile-ai.yml
-
-ENABLE_SEAFILE_AI=true
-SEAFILE_AI_LLM_TYPE=huggingface
-SEAFILE_AI_LLM_URL=&lt;your huggingface API endpoint&gt;
-SEAFILE_AI_LLM_KEY=&lt;your huggingface API key&gt;
-SEAFILE_AI_LLM_MODEL=&lt;model provider&gt;/&lt;model-id&gt;
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<p>Seafile AI utilizes <a href="https://docs.litellm.ai/docs/">LiteLLM</a> to interact with LLM services. For a complete list of supported LLM providers, please refer to <a href="https://docs.litellm.ai/docs/providers">this documentation</a>. Then fill the following fields in your <code>.env</code>:</p>
-<div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;...,seafile-ai.yml&#39; # add seafile-ai.yml
-ENABLE_SEAFILE_AI=true
-
-# according to your situation
-SEAFILE_AI_LLM_TYPE=...
-SEAFILE_AI_LLM_URL=...
-SEAFILE_AI_LLM_KEY=...
-SEAFILE_AI_LLM_MODEL=...
-</code></pre></div>
-<p>For example, if you are using a LLM service with <strong><em>OpenAI-compatible endpoints</em></strong>, you should set <code>SEAFILE_AI_LLM_TYPE</code> to <code>other</code>, and set other LLM configuration items accurately.</p>
-</div>
-</div>
-</div>
+<p>If you are using a LLM service with <strong><em>OpenAI-compatible endpoints</em></strong>, you can set <code>type</code> to <code>other</code> and configure <code>url</code> accurately.</p>
+<p>If you only need one model, keep a single item in <code>LLM_MODELS</code> and set its <code>default</code> field to <code>true</code>.</p>
+<p>The fields are described below:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>type</code></td>
+<td>LLM provider type. For OpenAI-compatible endpoints, use <code>other</code>.</td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td>The provider API endpoint.</td>
+</tr>
+<tr>
+<td><code>key</code></td>
+<td>The API key used to access the model service.</td>
+</tr>
+<tr>
+<td><code>model</code></td>
+<td>Model ID used in API calls.</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td>Model name shown in the model selector in Seahub.</td>
+</tr>
+<tr>
+<td><code>default</code></td>
+<td>Whether this model is the default selected model. Usually only one model should be set to <code>true</code>.</td>
+</tr>
+<tr>
+<td><code>tier</code></td>
+<td>Model tier metadata used by Seafile AI.</td>
+</tr>
+<tr>
+<td><code>hidden</code></td>
+<td>If <code>true</code>, the model will not be shown in Seahub's model selector.</td>
+</tr>
+<tr>
+<td><code>disable</code></td>
+<td>If <code>true</code>, the model is disabled and should not be used for AI requests.</td>
+</tr>
+</tbody>
+</table>
 <div class="admonition note">
 <p class="admonition-title">About model selection</p>
 <p>Seafile AI supports using large model providers from <a href="https://docs.litellm.ai/docs/providers">LiteLLM</a> or large model services with OpenAI-compatible endpoints. Therefore, Seafile AI is compatible with most custom large model services except the default model (<em>gpt-4o-mini</em>), but in order to ensure the normal use of Seafile AI features, you need to select a <strong>multimodal large model</strong> (such as supporting image input and recognition)</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The model with <code>default: true</code> is alsoe used by general AI features such as file summary generation, writing assistant, translation, and other non-chat AI functions.</p>
 </div>
 </li>
 <li>
@@ -5864,7 +5779,7 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 </tr>
 </tbody>
 </table>
-<p>LLM and face recognition settings:</p>
+<p>AI model settings:</p>
 <table>
 <thead>
 <tr>
@@ -5874,28 +5789,8 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 </thead>
 <tbody>
 <tr>
-<td><code>SEAFILE_AI_LLM_TYPE</code></td>
-<td>LLM provider type. Default is <code>openai</code>.</td>
-</tr>
-<tr>
-<td><code>SEAFILE_AI_LLM_URL</code></td>
-<td>LLM API endpoint. Leave it empty to use the provider's default endpoint.</td>
-</tr>
-<tr>
-<td><code>SEAFILE_AI_LLM_KEY</code></td>
-<td>LLM API key.</td>
-</tr>
-<tr>
-<td><code>SEAFILE_AI_LLM_MODEL</code></td>
-<td>LLM model ID or name. Default is <code>gpt-4o-mini</code>.</td>
-</tr>
-<tr>
-<td><code>FACE_EMBEDDING_SERVICE_URL</code></td>
-<td>URL used to access the face embedding service. Leave it empty if face recognition is not used.</td>
-</tr>
-<tr>
-<td><code>FACE_EMBEDDING_SERVICE_KEY</code></td>
-<td>Authentication key for the face embedding service. By default, it uses <code>JWT_PRIVATE_KEY</code>.</td>
+<td>None</td>
+<td>Seafile AI models are configured in <code>seafile_ai_config.yaml</code>.</td>
 </tr>
 </tbody>
 </table>
@@ -6013,122 +5908,46 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 </tr>
 </tbody>
 </table>
-<p>then start your Seafile AI server:</p>
+</li>
+<li>
+<p>Create or modify <code>seafile_ai_config.yaml</code> on both the Seafile AI host and the Seafile host with the same <code>LLM_MODELS</code> configuration. For example:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">global</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">LLM_MODELS</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">other</span>
+<span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://&lt;your-llm-endpoint&gt;</span>
+<span class="w">      </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;your-api-key&gt;</span>
+<span class="w">      </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-5.4-nano</span>
+<span class="w">      </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-5.4-nano</span>
+<span class="w">      </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">tier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">high</span>
+<span class="w">      </span><span class="nt">hidden</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="nt">disable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">other</span>
+<span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://&lt;your-llm-endpoint&gt;</span>
+<span class="w">      </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;your-api-key&gt;</span>
+<span class="w">      </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deepseek-v4-pro</span>
+<span class="w">      </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deepseek-v4-pro</span>
+<span class="w">      </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="nt">tier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">high</span>
+<span class="w">      </span><span class="nt">hidden</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="nt">disable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</code></pre></div>
+<p>Seahub reads this file on the Seafile host to display the available model list, while the Seafile AI service reads its local copy on the Seafile AI host to process actual AI requests. When Seafile and Seafile AI are deployed on separate machines, the two files should stay consistent.</p>
+<p>The fields in <code>LLM_MODELS</code> have the same meanings as described in the deployment steps above.</p>
+<p>If you only need one model, keep a single item in <code>LLM_MODELS</code> and set its <code>default</code> field to <code>true</code>.</p>
+<p>The model with <code>default: true</code> is also used by general AI features such as file summary generation, writing assistant, translation, and other non-chat AI functions.</p>
+<p>Then start your Seafile AI server:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
 </li>
 <li>
-<p>Modify <code>.env</code> in the host deployed Seafile</p>
+<p>Modify <code>.env</code> on the Seafile host:</p>
 <div class="highlight"><pre><span></span><code>SEAFILE_AI_SERVER_URL=http://&lt;your seafile ai host&gt;:8888
 </code></pre></div>
-<p>then restart your Seafile server</p>
+</li>
+<li>
+<p>Restart your Seafile server:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
-</li>
-</ol>
-<h2 id="deploy-face-embedding-service-optional">Deploy face embedding service (Optional)<a class="headerlink" href="#deploy-face-embedding-service-optional" title="Permanent link">&para;</a></h2>
-<p>The face embedding service is used to detect and encode faces in images and is an extension component of Seafile AI. Generally, we <strong>recommend</strong> that you deploy the service on a machine with a <strong>GPU</strong> and a graphics card driver that supports <a href="https://onnxruntime.ai/docs/">OnnxRuntime</a> (so it can also be deployed on a different machine from the Seafile AI base service). Currently, the Seafile AI face embedding service only supports the following modes:</p>
-<ul>
-<li><em>Nvidia</em> GPU, which will use the <strong><em>CUDA 12.4</em></strong> acceleration environment (at least the minimum Nvidia Geforce 531.18 driver) and requires the installation of the <a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html">Nvidia container toolkit</a>.</li>
-</ul>
-<!-- - *AMD* GPU, which will use the ***ROCm 6.4.1*** acceleration environment.-->
-<ul>
-<li>Pure <em>CPU</em> mode</li>
-</ul>
-<p>If you plan to deploy these face embeddings in an environment using a GPU, you need to make sure your graphics card is <strong>in the range supported by the acceleration environment</strong> (e.g., CUDA 12.4 is supported) and <strong>correctly mapped in <code>/dev/dri</code> directory</strong>. So in some case, the cloud servers and <a href="https://learn.microsoft.com/en-us/windows/wsl/install">WSL</a> under some driver versions may not be supported.</p>
-<ol>
-<li>
-<p>Download Docker compose files</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">CUDA</label><label for="__tabbed_2_2">CPU</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>face-embedding.yml<span class="w"> </span>https://manual.seafile.com/14.0/repo/docker/face-embedding/cuda.yml
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>face-embedding.yml<span class="w"> </span>https://manual.seafile.com/14.0/repo/docker/face-embedding/cpu.yml
-</code></pre></div>
-</div>
-</div>
-</div>
-</li>
-</ol>
-<!--
-    === "ROCM"
-
-        <div class="highlight"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>face-embedding.yml<span class="w"> </span>https://manual.seafile.com/14.0/repo/docker/face-embedding/rocm.yml
-</code></pre></div>
--->
-
-<ol>
-<li>
-<p>Modify <code>.env</code>, insert or modify the following fields:</p>
-<div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;...,face-embedding.yml&#39; # add face-embedding.yml
-
-FACE_EMBEDDING_VOLUME=/opt/face_embedding
-</code></pre></div>
-</li>
-<li>
-<p>Restart Seafile server</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
-docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
-</li>
-<li>
-<p>Enable face recognition in the repo's settings:</p>
-<p><img alt="Enable face recognition" src="../../images/face-embedding.png" /></p>
-</li>
-</ol>
-<h3 id="deploy-the-face-embedding-service-on-a-different-machine-than-the-seafile-ai-basic-service">Deploy the face embedding service on a different machine than the Seafile AI basic service<a class="headerlink" href="#deploy-the-face-embedding-service-on-a-different-machine-than-the-seafile-ai-basic-service" title="Permanent link">&para;</a></h3>
-<p>Since the face embedding service may need to be deployed on some hosts with GPU(s), it may not be deployed together with the Seafile AI basic service. At this time, you should make some changes to the Docker compose file so that the service can be accessed normally.</p>
-<ol>
-<li>
-<p>Modify <code>.yml</code> file, delete the commented out lines to expose the service port:</p>
-<div class="highlight"><pre><span></span><code>services:
-    face-embedding:
-    ...
-    ports:
-        - 8886:8886
-</code></pre></div>
-</li>
-<li>
-<p>Modify the <code>.env</code> of where deployed Seafile server:</p>
-<div class="highlight"><pre><span></span><code>ENABLE_FACE_RECOGNITION=true
-</code></pre></div>
-</li>
-<li>
-<p>Modify the <code>.env</code> of where deployed Seafile AI:</p>
-<div class="highlight"><pre><span></span><code>FACE_EMBEDDING_SERVICE_URL=http://&lt;your face embedding service host&gt;:8886
-</code></pre></div>
-</li>
-<li>
-<p>Make sure <code>JWT_PRIVATE_KEY</code> has set in the <code>.env</code> for face embedding and is same as the Seafile server</p>
-</li>
-<li>
-<p>Restart Seafile server and Seafile-AI server</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
-docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
-</li>
-</ol>
-<h3 id="persistent-volume-and-model-management">Persistent volume and model management<a class="headerlink" href="#persistent-volume-and-model-management" title="Permanent link">&para;</a></h3>
-<p>By default, the persistent volume is <code>/opt/face_embedding</code>. It will consist of two subdirectories:</p>
-<ul>
-<li><code>/opt/face_embedding/logs</code>: Contains the startup log and access log of the face embedding</li>
-<li><code>/opt/face_embedding/models</code>: Contains the model files of the face embedding. It will automatically obtain the latest applicable models at each startup. These models are hosted by <a href="https://huggingface.co/Seafile/face-embedding">our Hugging Face repository</a>. Of course, you can also manually download your own models on this directory (<strong>If you fail to automatically pull the model, you can also manually download it</strong>).</li>
-</ul>
-<h3 id="customizing-model-serving-access-keys">Customizing model serving access keys<a class="headerlink" href="#customizing-model-serving-access-keys" title="Permanent link">&para;</a></h3>
-<p>By default, the access key used by the face embedding is the same as that used by the Seafile server, which is <code>JWT_PRIVATE_KEY</code>. At some point, this will have to be modified for security reasons. If you need to customize the access key for the face embedding, you can do the following steps:</p>
-<ol>
-<li>
-<p>Modify <code>.env</code> file for both face embedding and Seafile AI:</p>
-<div class="highlight"><pre><span></span><code>FACE_EMBEDDING_SERVICE_KEY=&lt;your customizing access keys&gt;
-</code></pre></div>
-</li>
-<li>
-<p>Restart Seafile server</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
-docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
 </li>
 </ol>
@@ -6154,115 +5973,15 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 </div>
 </li>
 </ol>
-<h3 id="enable-ai-chat-and-configure-multiple-models">Enable AI chat and configure multiple models<a class="headerlink" href="#enable-ai-chat-and-configure-multiple-models" title="Permanent link">&para;</a></h3>
-<p>Seafile AI chat is disabled by default. To enable it, you need to configure Seahub. Configuring multiple models in <code>seafile_ai_config.yaml</code> is optional and is only needed when you want to provide selectable models in the chat dialog.</p>
-<ol>
-<li>
+<h3 id="enable-ai-chat">Enable AI chat<a class="headerlink" href="#enable-ai-chat" title="Permanent link">&para;</a></h3>
 <p>Open <code>$SEAFILE_VOLUME/seafile/conf/seahub_settings.py</code> and enable AI chat:</p>
-<div class="highlight"><pre><span></span><code><span class="n">ENABLE_AI_CHAT</span> <span class="o">=</span> <span class="kc">True</span>
+<div class="codehilite"><pre><span></span><code>```py
+ENABLE_AI_CHAT = True
+```
 </code></pre></div>
+
 <p>After this option is enabled, Seahub will display the AI chat entry for users.</p>
-</li>
-<li>
-<p>Optional: open <code>$SEAFILE_VOLUME/seafile/conf/seafile_ai_config.yaml</code> and configure one or more chat models under <code>global.LLM_MODELS</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">global</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">LLM_MODELS</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">other</span>
-<span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://&lt;your-llm-endpoint&gt;</span>
-<span class="w">      </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;your-api-key&gt;</span>
-<span class="w">      </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-5.4-nano</span>
-<span class="w">      </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-5.4-nano</span>
-<span class="w">      </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">      </span><span class="nt">tier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">high</span>
-<span class="w">      </span><span class="nt">hidden</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">      </span><span class="nt">disable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">other</span>
-<span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://&lt;your-llm-endpoint&gt;</span>
-<span class="w">      </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;your-api-key&gt;</span>
-<span class="w">      </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gemini-3-flash-preview</span>
-<span class="w">      </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gemini-3-flash-preview</span>
-<span class="w">      </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">      </span><span class="nt">tier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">high</span>
-<span class="w">      </span><span class="nt">hidden</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">      </span><span class="nt">disable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">other</span>
-<span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://&lt;your-llm-endpoint&gt;</span>
-<span class="w">      </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;your-api-key&gt;</span>
-<span class="w">      </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deepseek-v4-pro</span>
-<span class="w">      </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deepseek-v4-pro</span>
-<span class="w">      </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">      </span><span class="nt">tier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">high</span>
-<span class="w">      </span><span class="nt">hidden</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">      </span><span class="nt">disable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-</code></pre></div>
-<p>The fields are described below:</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>type</code></td>
-<td>LLM provider type. For OpenAI-compatible endpoints, use <code>other</code>.</td>
-</tr>
-<tr>
-<td><code>url</code></td>
-<td>The provider API endpoint.</td>
-</tr>
-<tr>
-<td><code>key</code></td>
-<td>The API key used to access the model service.</td>
-</tr>
-<tr>
-<td><code>model</code></td>
-<td>Model ID used in API calls.</td>
-</tr>
-<tr>
-<td><code>label</code></td>
-<td>Model name shown in the AI chat model selector.</td>
-</tr>
-<tr>
-<td><code>default</code></td>
-<td>Whether this model is the default selected model. Usually only one model should be set to <code>true</code>.</td>
-</tr>
-<tr>
-<td><code>tier</code></td>
-<td>Model tier metadata used by Seafile AI.</td>
-</tr>
-<tr>
-<td><code>hidden</code></td>
-<td>If <code>true</code>, the model will not be shown in Seahub's model selector.</td>
-</tr>
-<tr>
-<td><code>disable</code></td>
-<td>If <code>true</code>, the model is disabled and should not be used for chat requests.</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Configuring <code>seafile_ai_config.yaml</code> is optional. If it is not confitured, AI chat will use the model configured by the environment variables such as <code>SEAFILE_AI_LLM_TYPE</code>, <code>SEAFILE_AI_LLM_URL</code>, <code>SEAFILE_AI_LLM_KEY</code>, and <code>SEAFILE_AI_LLM_MODEL</code>.  In this case, Seahub will not show a model selector in the AI chat dialog.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If Seafile and Seafile AI are deployed on separate machines, you need to configure <code>seafile_ai_config.yaml</code> on both machines. Seahub reads this file to display available models in the AI chat model selector, and the Seafile AI service reads the same file to route actual model requests.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The model with <code>default: true</code> is not only the default model in AI chat, but is also used by general AI features such as file summary generation, writing assistant, and other non-chat AI functions.</p>
-</div>
-</li>
-<li>
-<p>Restart Seafile services to apply the changes:</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
-docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
-<p>If Seafile AI is deployed on a separate host, restart both the Seafile server and the Seafile AI service.</p>
-</li>
-</ol>
+<p>Users can use the chat feature in libraries to search for files in the current library, ask questions about specific files, and generate summaries for specific files.</p>
 
 
 
