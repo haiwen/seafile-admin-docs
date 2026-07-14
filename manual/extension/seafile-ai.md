@@ -251,9 +251,9 @@ Seafile supports counting users' AI usage (how many tokens are used) and setting
 
 Open `$SEAFILE_VOLUME/seafile/conf/seahub_settings.py` and enable AI chat:
 
-    ```py
-    ENABLE_AI_CHAT = True
-    ```
+```py
+ENABLE_AI_CHAT = True
+```
 
 After this option is enabled, Seahub will display the AI chat entry for users.
 
