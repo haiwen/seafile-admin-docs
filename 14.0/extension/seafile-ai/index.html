@@ -2597,6 +2597,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#enable-ai-chat-and-configure-multiple-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable AI chat and configure multiple models
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5640,6 +5651,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#enable-ai-chat-and-configure-multiple-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable AI chat and configure multiple models
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -6130,6 +6152,115 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 <p class="admonition-title"><code>monthly_ai_credit_per_user</code> for organization user</p>
 <p>For organizational team users, <code>monthly_ai_credit_per_user</code> will apply to the entire team. For example, when <code>monthly_ai_credit_per_user</code> is set to <code>2</code> (unit of doller for example) and there are 10 members in the team, all members in the team will share the quota of <span class="arithmatex">\(2\times10=20\$\)</span>.</p>
 </div>
+</li>
+</ol>
+<h3 id="enable-ai-chat-and-configure-multiple-models">Enable AI chat and configure multiple models<a class="headerlink" href="#enable-ai-chat-and-configure-multiple-models" title="Permanent link">&para;</a></h3>
+<p>Seafile AI chat is disabled by default. To enable it, you need to configure Seahub. Configuring multiple models in <code>seafile_ai_config.yaml</code> is optional and is only needed when you want to provide selectable models in the chat dialog.</p>
+<ol>
+<li>
+<p>Open <code>$SEAFILE_VOLUME/seafile/conf/seahub_settings.py</code> and enable AI chat:</p>
+<div class="highlight"><pre><span></span><code><span class="n">ENABLE_AI_CHAT</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+<p>After this option is enabled, Seahub will display the AI chat entry for users.</p>
+</li>
+<li>
+<p>Optional: open <code>$SEAFILE_VOLUME/seafile/conf/seafile_ai_config.yaml</code> and configure one or more chat models under <code>global.LLM_MODELS</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">global</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">LLM_MODELS</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">other</span>
+<span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://&lt;your-llm-endpoint&gt;</span>
+<span class="w">      </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;your-api-key&gt;</span>
+<span class="w">      </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-5.4-nano</span>
+<span class="w">      </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-5.4-nano</span>
+<span class="w">      </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="nt">tier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">high</span>
+<span class="w">      </span><span class="nt">hidden</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="nt">disable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">other</span>
+<span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://&lt;your-llm-endpoint&gt;</span>
+<span class="w">      </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;your-api-key&gt;</span>
+<span class="w">      </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gemini-3-flash-preview</span>
+<span class="w">      </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gemini-3-flash-preview</span>
+<span class="w">      </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="nt">tier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">high</span>
+<span class="w">      </span><span class="nt">hidden</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="nt">disable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">other</span>
+<span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://&lt;your-llm-endpoint&gt;</span>
+<span class="w">      </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;your-api-key&gt;</span>
+<span class="w">      </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deepseek-v4-pro</span>
+<span class="w">      </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deepseek-v4-pro</span>
+<span class="w">      </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="nt">tier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">high</span>
+<span class="w">      </span><span class="nt">hidden</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="nt">disable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</code></pre></div>
+<p>The fields are described below:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>type</code></td>
+<td>LLM provider type. For OpenAI-compatible endpoints, use <code>other</code>.</td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td>The provider API endpoint.</td>
+</tr>
+<tr>
+<td><code>key</code></td>
+<td>The API key used to access the model service.</td>
+</tr>
+<tr>
+<td><code>model</code></td>
+<td>Model ID used in API calls.</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td>Model name shown in the AI chat model selector.</td>
+</tr>
+<tr>
+<td><code>default</code></td>
+<td>Whether this model is the default selected model. Usually only one model should be set to <code>true</code>.</td>
+</tr>
+<tr>
+<td><code>tier</code></td>
+<td>Model tier metadata used by Seafile AI.</td>
+</tr>
+<tr>
+<td><code>hidden</code></td>
+<td>If <code>true</code>, the model will not be shown in Seahub's model selector.</td>
+</tr>
+<tr>
+<td><code>disable</code></td>
+<td>If <code>true</code>, the model is disabled and should not be used for chat requests.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Configuring <code>seafile_ai_config.yaml</code> is optional. If it is not confitured, AI chat will use the model configured by the environment variables such as <code>SEAFILE_AI_LLM_TYPE</code>, <code>SEAFILE_AI_LLM_URL</code>, <code>SEAFILE_AI_LLM_KEY</code>, and <code>SEAFILE_AI_LLM_MODEL</code>.  In this case, Seahub will not show a model selector in the AI chat dialog.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If Seafile and Seafile AI are deployed on separate machines, you need to configure <code>seafile_ai_config.yaml</code> on both machines. Seahub reads this file to display available models in the AI chat model selector, and the Seafile AI service reads the same file to route actual model requests.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The model with <code>default: true</code> is not only the default model in AI chat, but is also used by general AI features such as file summary generation, writing assistant, and other non-chat AI functions.</p>
+</div>
+</li>
+<li>
+<p>Restart Seafile services to apply the changes:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+<p>If Seafile AI is deployed on a separate host, restart both the Seafile server and the Seafile AI service.</p>
 </li>
 </ol>
 
