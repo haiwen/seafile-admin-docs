@@ -7,13 +7,12 @@ From Seafile 13, users can enable ***Seafile AI*** to support the following feat
 
 - File tags, file and image summaries, text translation, sdoc writing assistance
 - Given an image, generate its corresponding tags (including objects, weather, color, etc.)
-- Detect faces in images and encode them
 - Detect text in images (OCR)
 
 !!! danger "AIGC statement in Seafile"
-    With the help of large language models and face recognition models and algorithm development, Seafile AI supports image recognition and text generation. The generated content is **diverse** and **random**, and users need to identify the generated content. **Seafile will not be responsible for AI-generated content (AIGC)**.
+    With the help of large language models and algorithm development, Seafile AI supports image recognition and text generation. The generated content is **diverse** and **random**, and users need to identify the generated content. **Seafile will not be responsible for AI-generated content (AIGC)**.
 
-    At the same time, Seafile AI supports the use of custom LLM and face recognition models. Different large language models will have different impacts on AIGC (including functions and performance), so **Seafile will not be responsible for the corresponding rate (i.e., tokens/s), token consumption, and generated content**. Including but not limited to
+    At the same time, Seafile AI supports the use of custom LLM. Different large language models will have different impacts on AIGC (including functions and performance), so **Seafile will not be responsible for the corresponding rate (i.e., tokens/s), token consumption, and generated content**. Including but not limited to
 
     - Basic model (including model basic algorithm)
     - Parameter quantity
@@ -36,90 +35,75 @@ The Seafile AI basic service will use API calls to external large language model
     wget https://manual.seafile.com/14.0/repo/docker/seafile-ai.yml
     ```
 
-2. Modify `.env`, insert or modify the following fields:
+2. Modify `.env` and add the basic Seafile AI switch:
 
-    === "OpenAI"
+    ```env
+    COMPOSE_FILE='...,seafile-ai.yml' # add seafile-ai.yml
 
-        ```
-        COMPOSE_FILE='...,seafile-ai.yml' # add seafile-ai.yml
+    ENABLE_SEAFILE_AI=true
+    ```
 
-        ENABLE_SEAFILE_AI=true
-        SEAFILE_AI_LLM_TYPE=openai
-        SEAFILE_AI_LLM_KEY=<your openai LLM access key>
-        SEAFILE_AI_LLM_MODEL=gpt-4o-mini # recommend
-        ```
-    === "Google AI studio"
+3. Open `$SEAFILE_VOLUME/seafile/conf/seafile_ai_config.yaml` and configure the model used by Seafile AI:
 
-        ```
-        COMPOSE_FILE='...,seafile-ai.yml' # add seafile-ai.yml
+    ```yaml
+    global:
+      LLM_MODELS:
+        - type: other
+          url: http://<your-llm-endpoint>
+          key: <your-api-key>
+          model: gpt-5.4-nano
+          label: gpt-5.4-nano
+          default: false
+          tier: high
+          hidden: false
+          disable: false
+        - type: other
+          url: http://<your-llm-endpoint>
+          key: <your-api-key>
+          model: gemini-3-flash-preview
+          label: gemini-3-flash-preview
+          default: true
+          tier: high
+          hidden: false
+          disable: false
+        - type: other
+          url: http://<your-llm-endpoint>
+          key: <your-api-key>
+          model: deepseek-v4-pro
+          label: deepseek-v4-pro
+          default: false
+          tier: high
+          hidden: false
+          disable: false
+    ```
 
-        ENABLE_SEAFILE_AI=true
-        SEAFILE_AI_LLM_TYPE=gemini
-        SEAFILE_AI_LLM_KEY=<your openai LLM access key>
-        SEAFILE_AI_LLM_MODEL=gemini-3-flash-preview # recommend
-        ```
-    === "Deepseek"
-        ```
-        COMPOSE_FILE='...,seafile-ai.yml' # add seafile-ai.yml
+    If you are using a LLM service with ***OpenAI-compatible endpoints***, you can set `type` to `other` and configure `url` accurately.
 
-        ENABLE_SEAFILE_AI=true
-        SEAFILE_AI_LLM_TYPE=deepseek
-        SEAFILE_AI_LLM_KEY=<your LLM access key>
-        SEAFILE_AI_LLM_MODEL=deepseek-chat # recommend
-        ```
-    === "Azure OpenAI"
-        ```
-        COMPOSE_FILE='...,seafile-ai.yml' # add seafile-ai.yml
+    If you only need one model, keep a single item in `LLM_MODELS` and set its `default` field to `true`.
 
-        ENABLE_SEAFILE_AI=true
-        SEAFILE_AI_LLM_TYPE=azure
-        SEAFILE_AI_LLM_URL= # your deployment url, leave blank to use default endpoint
-        SEAFILE_AI_LLM_KEY=<your API key>
-        SEAFILE_AI_LLM_MODEL=<your deployment name>
-        ```
-    === "Ollama"
-        ```
-        COMPOSE_FILE='...,seafile-ai.yml' # add seafile-ai.yml
+    The fields are described below:
 
-        ENABLE_SEAFILE_AI=true
-        SEAFILE_AI_LLM_TYPE=ollama
-        SEAFILE_AI_LLM_URL=<your LLM endpoint>
-        SEAFILE_AI_LLM_KEY=<your LLM access key>
-        SEAFILE_AI_LLM_MODEL=<your model-id>
-        ```
-    === "HuggingFace"
-        ```
-        COMPOSE_FILE='...,seafile-ai.yml' # add seafile-ai.yml
+    | Field | Description |
+    |----------|-------------|
+    | `type` | LLM provider type. For OpenAI-compatible endpoints, use `other`. |
+    | `url` | The provider API endpoint. |
+    | `key` | The API key used to access the model service. |
+    | `model` | Model ID used in API calls. |
+    | `label` | Model name shown in the model selector in Seahub. |
+    | `default` | Whether this model is the default selected model. Usually only one model should be set to `true`. |
+    | `tier` | Model tier metadata used by Seafile AI. |
+    | `hidden` | If `true`, the model will not be shown in Seahub's model selector. |
+    | `disable` | If `true`, the model is disabled and should not be used for AI requests. |
 
-        ENABLE_SEAFILE_AI=true
-        SEAFILE_AI_LLM_TYPE=huggingface
-        SEAFILE_AI_LLM_URL=<your huggingface API endpoint>
-        SEAFILE_AI_LLM_KEY=<your huggingface API key>
-        SEAFILE_AI_LLM_MODEL=<model provider>/<model-id>
-        ```
-    === "Other"
-        Seafile AI utilizes [LiteLLM](https://docs.litellm.ai/docs/) to interact with LLM services. For a complete list of supported LLM providers, please refer to [this documentation](https://docs.litellm.ai/docs/providers). Then fill the following fields in your `.env`:
-
-        ```
-        COMPOSE_FILE='...,seafile-ai.yml' # add seafile-ai.yml
-        ENABLE_SEAFILE_AI=true
-
-        # according to your situation
-        SEAFILE_AI_LLM_TYPE=...
-        SEAFILE_AI_LLM_URL=...
-        SEAFILE_AI_LLM_KEY=...
-        SEAFILE_AI_LLM_MODEL=...
-        ```
-
-        For example, if you are using a LLM service with ***OpenAI-compatible endpoints***, you should set `SEAFILE_AI_LLM_TYPE` to `other`, and set other LLM configuration items accurately.
-
-            
     !!! note "About model selection"
 
         Seafile AI supports using large model providers from [LiteLLM](https://docs.litellm.ai/docs/providers) or large model services with OpenAI-compatible endpoints. Therefore, Seafile AI is compatible with most custom large model services except the default model (*gpt-4o-mini*), but in order to ensure the normal use of Seafile AI features, you need to select a **multimodal large model** (such as supporting image input and recognition)
 
+    !!! note
 
-3. Restart Seafile server:
+        The model with `default: true` is alsoe used by general AI features such as file summary generation, writing assistant, translation, and other non-chat AI functions.
+
+4. Restart Seafile server:
 
     ```sh
     docker compose down
@@ -150,16 +134,11 @@ The Seafile AI basic service will use API calls to external large language model
     | `JWT_PRIVATE_KEY` | JWT key shared with the Seafile server and related extension services. This variable is required. |
     | `SEAFILE_AI_LOG_LEVEL` | Seafile AI log level. Default is `info`. |
 
-    LLM and face recognition settings:
+    AI model settings:
 
     | Variable | Description |
     |----------|-------------|
-    | `SEAFILE_AI_LLM_TYPE` | LLM provider type. Default is `openai`. |
-    | `SEAFILE_AI_LLM_URL` | LLM API endpoint. Leave it empty to use the provider's default endpoint. |
-    | `SEAFILE_AI_LLM_KEY` | LLM API key. |
-    | `SEAFILE_AI_LLM_MODEL` | LLM model ID or name. Default is `gpt-4o-mini`. |
-    | `FACE_EMBEDDING_SERVICE_URL` | URL used to access the face embedding service. Leave it empty if face recognition is not used. |
-    | `FACE_EMBEDDING_SERVICE_KEY` | Authentication key for the face embedding service. By default, it uses `JWT_PRIVATE_KEY`. |
+    | None | Seafile AI models are configured in `seafile_ai_config.yaml`. |
 
     Database and cache settings:
 
@@ -194,132 +173,55 @@ The Seafile AI basic service will use API calls to external large language model
     | `S3_PATH_STYLE_REQUEST` | Whether to use path-style S3 requests. Default is `false`. |
     | `S3_SSE_C_KEY` | Optional customer-provided key for S3 server-side encryption (SSE-C). |
 
-    then start your Seafile AI server:
+3. Create or modify `seafile_ai_config.yaml` on both the Seafile AI host and the Seafile host with the same `LLM_MODELS` configuration. For example:
+
+    ```yaml
+    global:
+      LLM_MODELS:
+        - type: other
+          url: http://<your-llm-endpoint>
+          key: <your-api-key>
+          model: gpt-5.4-nano
+          label: gpt-5.4-nano
+          default: true
+          tier: high
+          hidden: false
+          disable: false
+        - type: other
+          url: http://<your-llm-endpoint>
+          key: <your-api-key>
+          model: deepseek-v4-pro
+          label: deepseek-v4-pro
+          default: false
+          tier: high
+          hidden: false
+          disable: false
+    ```
+
+    Seahub reads this file on the Seafile host to display the available model list, while the Seafile AI service reads its local copy on the Seafile AI host to process actual AI requests. When Seafile and Seafile AI are deployed on separate machines, the two files should stay consistent.
+
+    The fields in `LLM_MODELS` have the same meanings as described in the deployment steps above.
+
+    If you only need one model, keep a single item in `LLM_MODELS` and set its `default` field to `true`.
+
+    The model with `default: true` is also used by general AI features such as file summary generation, writing assistant, translation, and other non-chat AI functions.
+
+    Then start your Seafile AI server:
 
     ```sh
     docker compose up -d
     ```
 
-3. Modify `.env` in the host deployed Seafile
+4. Modify `.env` on the Seafile host:
 
     ```env
     SEAFILE_AI_SERVER_URL=http://<your seafile ai host>:8888
     ```
 
-    then restart your Seafile server
+5. Restart your Seafile server:
 
     ```sh
     docker compose down && docker compose up -d
-    ```
-
-## Deploy face embedding service (Optional)
-
-The face embedding service is used to detect and encode faces in images and is an extension component of Seafile AI. Generally, we **recommend** that you deploy the service on a machine with a **GPU** and a graphics card driver that supports [OnnxRuntime](https://onnxruntime.ai/docs/) (so it can also be deployed on a different machine from the Seafile AI base service). Currently, the Seafile AI face embedding service only supports the following modes:
-
-- *Nvidia* GPU, which will use the ***CUDA 12.4*** acceleration environment (at least the minimum Nvidia Geforce 531.18 driver) and requires the installation of the [Nvidia container toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html).
-<!-- - *AMD* GPU, which will use the ***ROCm 6.4.1*** acceleration environment.-->
-- Pure *CPU* mode
-
-If you plan to deploy these face embeddings in an environment using a GPU, you need to make sure your graphics card is **in the range supported by the acceleration environment** (e.g., CUDA 12.4 is supported) and **correctly mapped in `/dev/dri` directory**. So in some case, the cloud servers and [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) under some driver versions may not be supported.
-
-1. Download Docker compose files
-
-    === "CUDA"
-
-        ```sh
-        wget -O face-embedding.yml https://manual.seafile.com/14.0/repo/docker/face-embedding/cuda.yml
-        ```
-    === "CPU"
-
-        ```sh
-        wget -O face-embedding.yml https://manual.seafile.com/14.0/repo/docker/face-embedding/cpu.yml
-        ```
-    
-<!--
-    === "ROCM"
-
-        ```sh
-        wget -O face-embedding.yml https://manual.seafile.com/14.0/repo/docker/face-embedding/rocm.yml
-        ```
--->
-
-2. Modify `.env`, insert or modify the following fields:
-
-    ```
-    COMPOSE_FILE='...,face-embedding.yml' # add face-embedding.yml
-
-    FACE_EMBEDDING_VOLUME=/opt/face_embedding
-    ```
-
-3. Restart Seafile server
-
-    ```sh
-    docker compose down
-    docker compose up -d
-    ```
-
-4. Enable face recognition in the repo's settings:
-
-    ![Enable face recognition](../images/face-embedding.png)
-
-### Deploy the face embedding service on a different machine than the Seafile AI basic service
-
-Since the face embedding service may need to be deployed on some hosts with GPU(s), it may not be deployed together with the Seafile AI basic service. At this time, you should make some changes to the Docker compose file so that the service can be accessed normally.
-
-1. Modify `.yml` file, delete the commented out lines to expose the service port:
-
-    ```yml
-    services:
-        face-embedding:
-        ...
-        ports:
-            - 8886:8886
-    ```
-
-2. Modify the `.env` of where deployed Seafile server:
-
-    ```env
-    ENABLE_FACE_RECOGNITION=true
-    ```
-
-
-3. Modify the `.env` of where deployed Seafile AI:
-
-    ```env
-    FACE_EMBEDDING_SERVICE_URL=http://<your face embedding service host>:8886
-    ```
-
-4. Make sure `JWT_PRIVATE_KEY` has set in the `.env` for face embedding and is same as the Seafile server
-
-5. Restart Seafile server and Seafile-AI server
-
-    ```sh
-    docker compose down
-    docker compose up -d
-    ```
-
-### Persistent volume and model management
-
-By default, the persistent volume is `/opt/face_embedding`. It will consist of two subdirectories:
-
-- `/opt/face_embedding/logs`: Contains the startup log and access log of the face embedding
-- `/opt/face_embedding/models`: Contains the model files of the face embedding. It will automatically obtain the latest applicable models at each startup. These models are hosted by [our Hugging Face repository](https://huggingface.co/Seafile/face-embedding). Of course, you can also manually download your own models on this directory (**If you fail to automatically pull the model, you can also manually download it**).
-
-### Customizing model serving access keys
-
-By default, the access key used by the face embedding is the same as that used by the Seafile server, which is `JWT_PRIVATE_KEY`. At some point, this will have to be modified for security reasons. If you need to customize the access key for the face embedding, you can do the following steps:
-
-1. Modify `.env` file for both face embedding and Seafile AI:
-
-    ```
-    FACE_EMBEDDING_SERVICE_KEY=<your customizing access keys>
-    ```
-    
-2. Restart Seafile server
-
-    ```sh
-    docker compose down
-    docker compose up -d
     ```
 
 ## Advanced operations
@@ -344,84 +246,15 @@ Seafile supports counting users' AI usage (how many tokens are used) and setting
     !!! note "`monthly_ai_credit_per_user` for organization user"
         For organizational team users, `monthly_ai_credit_per_user` will apply to the entire team. For example, when `monthly_ai_credit_per_user` is set to `2` (unit of doller for example) and there are 10 members in the team, all members in the team will share the quota of $2\times10=20\$$.
 
-### Enable AI chat and configure multiple models
+### Enable AI chat
 
-Seafile AI chat is disabled by default. To enable it, you need to configure Seahub. Configuring multiple models in `seafile_ai_config.yaml` is optional and is only needed when you want to provide selectable models in the chat dialog.
 
-1. Open `$SEAFILE_VOLUME/seafile/conf/seahub_settings.py` and enable AI chat:
+Open `$SEAFILE_VOLUME/seafile/conf/seahub_settings.py` and enable AI chat:
 
     ```py
     ENABLE_AI_CHAT = True
     ```
 
-    After this option is enabled, Seahub will display the AI chat entry for users.
+After this option is enabled, Seahub will display the AI chat entry for users.
 
-2. Optional: open `$SEAFILE_VOLUME/seafile/conf/seafile_ai_config.yaml` and configure one or more chat models under `global.LLM_MODELS`:
-
-    ```yaml
-    global:
-      LLM_MODELS:
-        - type: other
-          url: http://<your-llm-endpoint>
-          key: <your-api-key>
-          model: gpt-5.4-nano
-          label: gpt-5.4-nano
-          default: false
-          tier: high
-          hidden: false
-          disable: false
-        - type: other
-          url: http://<your-llm-endpoint>
-          key: <your-api-key>
-          model: gemini-3-flash-preview
-          label: gemini-3-flash-preview
-          default: true
-          tier: high
-          hidden: false
-          disable: false
-        - type: other
-          url: http://<your-llm-endpoint>
-          key: <your-api-key>
-          model: deepseek-v4-pro
-          label: deepseek-v4-pro
-          default: false
-          tier: high
-          hidden: false
-          disable: false
-    ```
-
-    The fields are described below:
-
-    | Field | Description |
-    |----------|-------------|
-    | `type` | LLM provider type. For OpenAI-compatible endpoints, use `other`. |
-    | `url` | The provider API endpoint. |
-    | `key` | The API key used to access the model service. |
-    | `model` | Model ID used in API calls. |
-    | `label` | Model name shown in the AI chat model selector. |
-    | `default` | Whether this model is the default selected model. Usually only one model should be set to `true`. |
-    | `tier` | Model tier metadata used by Seafile AI. |
-    | `hidden` | If `true`, the model will not be shown in Seahub's model selector. |
-    | `disable` | If `true`, the model is disabled and should not be used for chat requests. |
-
-    
-    !!! note
-
-        Configuring `seafile_ai_config.yaml` is optional. If it is not confitured, AI chat will use the model configured by the environment variables such as `SEAFILE_AI_LLM_TYPE`, `SEAFILE_AI_LLM_URL`, `SEAFILE_AI_LLM_KEY`, and `SEAFILE_AI_LLM_MODEL`.  In this case, Seahub will not show a model selector in the AI chat dialog.
-
-    !!! note
-
-        If Seafile and Seafile AI are deployed on separate machines, you need to configure `seafile_ai_config.yaml` on both machines. Seahub reads this file to display available models in the AI chat model selector, and the Seafile AI service reads the same file to route actual model requests.
-
-    !!! note
-
-        The model with `default: true` is not only the default model in AI chat, but is also used by general AI features such as file summary generation, writing assistant, and other non-chat AI functions.
-
-3. Restart Seafile services to apply the changes:
-
-    ```sh
-    docker compose down
-    docker compose up -d
-    ```
-
-    If Seafile AI is deployed on a separate host, restart both the Seafile server and the Seafile AI service.
+Users can use the chat feature in libraries to search for files in the current library, ask questions about specific files, and generate summaries for specific files.
