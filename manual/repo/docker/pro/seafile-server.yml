@@ -32,7 +32,7 @@ services:
     command:
       - /bin/sh
       - -c
-      - redis-server --requirepass "$$REDIS_PASSWORD"
+      - exec redis-server --requirepass "$$REDIS_PASSWORD" --save "" --appendonly no
     environment:
       - REDIS_PASSWORD=${REDIS_PASSWORD:-}
     networks:
