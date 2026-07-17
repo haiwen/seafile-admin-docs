@@ -2,6 +2,44 @@
 
 Metadata server aims to provide metadata management for your libraries, so as to better understand the relevant information of your libraries.
 
+## How it works
+
+Metadata server maintains file metadata for Seafile libraries through a pipeline of event collection, incremental update, and attribute extraction.
+
+### Event collection
+
+When files in a library are modified, the Seafile server generates `repo_update` events and sends them to the fileserver. The `seafevents` component then forwards these events to a Redis queue named `metadata_task`, where they wait to be processed by the metadata server.
+
+### Incremental metadata update
+
+The metadata server (md-server) listens to the Redis `metadata_task` queue and processes events through the following steps:
+
+1. **Commit tracking**: For each library (repository), md-server records the commit ID of the last successfully processed update (`from_commit`) and the commit ID currently being processed (`to_commit`) in the MySQL table `md_server_head_commit`.
+
+2. **History traversal**: When a new event arrives, md-server walks backward through the commit history from the current commit until it reaches `from_commit`. It compares each commit with its parent to detect changes.
+
+3. **Ordered application**: All detected differences are applied to the metadata records in chronological order (oldest to newest). This approach captures fine-grained changes — for example, distinguishing a file move from a delete-and-create — which would be lost if only the latest and previous commits were compared directly.
+
+### Metadata base states
+
+The metadata base for a library can be in one of the following states:
+
+| State | Condition | Behavior |
+|-------|-----------|----------|
+| Not yet initialized | No record in `md_server_head_commit` | Only responds to `init-metadata` messages; ignores all other events |
+| Initialization interrupted | `from_commit` is `NULL` and `initializing` is `1` | Automatically re-schedules initialization after restart, clears the base, and re-imports |
+| Normal incremental sync | Both `from_commit` and `to_commit` are non-null, `initializing` is `0` | Accepts `update-metadata` events for incremental updates |
+
+### Concurrency control
+
+Md-server uses a **worker pool** to process events. Each library is tracked while being processed; if a new event arrives for a library that is already being handled, the event is placed in an in-memory `pending_tasks` queue. This ensures that the same library is never processed by multiple workers simultaneously, preventing race conditions and data inconsistencies.
+
+### File information extraction
+
+When new files are added, md-server records predefined attributes in the metadata and publishes events to the Redis `metadata_slow_task` queue (with the operation type `file_info_extract`). Application-layer handlers then consume these events to enrich the metadata with additional properties, such as image dimensions or other file-specific information.
+
+Additionally, the `RepoMetadataUpdateHandler` in `seafevents` publishes messages to the Redis `metadata_update` channel, allowing third-party extensions to react to metadata changes.
+
 ## Deployment
 
 !!! note "Prerequisites"
@@ -45,7 +83,7 @@ To facilitate your deployment, we still provide two different configuration solu
 
 #### Example `.env` for Seafile data is stored locally
 
-In this case you don't need to add any additional configuration to your `.env`. You can also specify image version, maximum local cache size, etc.
+In this case you don't need to add any additional configuration to your `.env`. You can also specify image version, maximum in-memory cache size, etc.
 
 ```
 MD_IMAGE=seafileltd/seafile-md-server:13.0-latest
@@ -79,7 +117,7 @@ The following table is all the related environment variables with Metadata serve
 | Variables           | Description                                                                                                                | Required |
 | --- | --- | --- |
 | `JWT_PRIVATE_KEY`   | The JWT key used to connect with Seafile server | **Required** |
-| `MD_MAX_CACHE_SIZE` | The maximum cache size.                                                                                                    | Optional, default `1GB`            |
+| `MD_MAX_CACHE_SIZE` | The maximum in-memory cache size used by Metadata server. It limits memory usage only and does not affect disk usage.     | Optional, default `1GB`            |
 | `REDIS_HOST`        | Your *Redis* service host.                                                                                                 | Optional, default `redis`          |
 | `REDIS_PORT`        | Your *Redis* service port.                                                                                                 | Optional, default `6379`           |
 | `REDIS_PASSWORD`    | Your *Redis* access password.                                                                                              | Optional                |
@@ -89,13 +127,16 @@ The following table is all the related environment variables with Metadata serve
 | `MD_CEPH_CONFIG`  | Your Ceph storage configuration file, like `/etc/ceph/ceph.conf` | Required when using ceph (`MD_STORAGE_TYPE=ceph`) |
 | `MD_CEPH_POOL`    | Your Ceph storage pool for md-server, like `seafile-md-bucket` |  Required when using ceph (`MD_STORAGE_TYPE=ceph`)  |
 | `MD_CEPH_CLIENT_ID`    | Your Ceph storage client ID for md-server, like `seafile`. Default is `admin` |  Optional when using ceph (`MD_STORAGE_TYPE=ceph`)  |
-| `MD_CHECK_UPDATE_INTERVAL`    | The interval for updating metadata of the repository | `30m` |
+| `MD_CHECK_UPDATE_INTERVAL`    | The interval for periodic consistency checks. It is used to reconcile metadata inconsistencies caused by missed update events, not as the normal metadata synchronization interval. | `30m` |
 | `MD_FILE_COUNT_LIMIT` | The maximum number of files in a repository that the metadata feature allows. If the number of files in a repository exceeds this value, the metadata management function will not be enabled for the repository. For a repository with metadata management enabled, if the number of records in it reaches this value but there are still some files that are not recorded in metadata server, the metadata management of the unrecorded files will be skipped. | `100000` |
 
 In addition, there are some environment variables **related to S3 authorization**, please refer to the part with `S3_` prefix in this [table](../setup/setup_pro_by_docker.md#downloading-and-modifying-env) (**the buckets name for Seafile are also needed**).
 
 !!! warning "Metadata server supports *Redis* only"
     To enable metadata feature, you have to use *Redis* for cache, as the `CACHE_PROVIDER` must be set to `redis` in your `.env`
+
+!!! note "Synchronization and `MD_CHECK_UPDATE_INTERVAL`"
+    Metadata server normally synchronizes metadata changes from Seafile in real time. `MD_CHECK_UPDATE_INTERVAL` is only used for periodic consistency checks in case update events are missed.
 
 ### Modify `seahub_settings.py`
 
