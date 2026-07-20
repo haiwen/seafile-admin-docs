@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -31,7 +31,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -2372,6 +2372,78 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it works
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How it works">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#event-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event collection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incremental-metadata-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Incremental metadata update
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadata-base-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metadata base states
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#concurrency-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concurrency control
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-information-extraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File information extraction
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#deployment" class="md-nav__link">
@@ -5534,6 +5606,78 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it works
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How it works">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#event-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event collection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incremental-metadata-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Incremental metadata update
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadata-base-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metadata base states
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#concurrency-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concurrency control
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-information-extraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File information extraction
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#deployment" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5677,6 +5821,56 @@
 
 <h1 id="metadata-server">Metadata server<a class="headerlink" href="#metadata-server" title="Permanent link">&para;</a></h1>
 <p>Metadata server aims to provide metadata management for your libraries, so as to better understand the relevant information of your libraries.</p>
+<h2 id="how-it-works">How it works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h2>
+<p>Metadata server maintains file metadata for Seafile libraries through a pipeline of event collection, incremental update, and attribute extraction.</p>
+<h3 id="event-collection">Event collection<a class="headerlink" href="#event-collection" title="Permanent link">&para;</a></h3>
+<p>When files in a library are modified, the Seafile server generates <code>repo_update</code> events and sends them to the fileserver. The <code>seafevents</code> component then forwards these events to a Redis queue named <code>metadata_task</code>, where they wait to be processed by the metadata server.</p>
+<h3 id="incremental-metadata-update">Incremental metadata update<a class="headerlink" href="#incremental-metadata-update" title="Permanent link">&para;</a></h3>
+<p>The metadata server (md-server) listens to the Redis <code>metadata_task</code> queue and processes events through the following steps:</p>
+<ol>
+<li>
+<p><strong>Commit tracking</strong>: For each library (repository), md-server records the commit ID of the last successfully processed update (<code>from_commit</code>) and the commit ID currently being processed (<code>to_commit</code>) in the MySQL table <code>md_server_head_commit</code>.</p>
+</li>
+<li>
+<p><strong>History traversal</strong>: When a new event arrives, md-server walks backward through the commit history from the current commit until it reaches <code>from_commit</code>. It compares each commit with its parent to detect changes.</p>
+</li>
+<li>
+<p><strong>Ordered application</strong>: All detected differences are applied to the metadata records in chronological order (oldest to newest). This approach captures fine-grained changes, for example, distinguishing a file move from a delete-and-create, which would be lost if only the latest and previous commits were compared directly.</p>
+</li>
+</ol>
+<h3 id="metadata-base-states">Metadata base states<a class="headerlink" href="#metadata-base-states" title="Permanent link">&para;</a></h3>
+<p>The metadata base for a library can be in one of the following states:</p>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Condition</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Not yet initialized</td>
+<td>No record in <code>md_server_head_commit</code></td>
+<td>Only responds to <code>init-metadata</code> messages; ignores all other events</td>
+</tr>
+<tr>
+<td>Initialization interrupted</td>
+<td><code>from_commit</code> is <code>NULL</code> and <code>initializing</code> is <code>1</code></td>
+<td>Automatically re-schedules initialization after restart, clears the base, and re-imports</td>
+</tr>
+<tr>
+<td>Normal incremental sync</td>
+<td>Both <code>from_commit</code> and <code>to_commit</code> are non-null, <code>initializing</code> is <code>0</code></td>
+<td>Accepts <code>update-metadata</code> events for incremental updates</td>
+</tr>
+</tbody>
+</table>
+<h3 id="concurrency-control">Concurrency control<a class="headerlink" href="#concurrency-control" title="Permanent link">&para;</a></h3>
+<p>Md-server uses a <strong>worker pool</strong> to process events. Each library is tracked while being processed; if a new event arrives for a library that is already being handled, the event is placed in an in-memory <code>pending_tasks</code> queue. This ensures that the same library is never processed by multiple workers simultaneously, preventing race conditions and data inconsistencies.</p>
+<h3 id="file-information-extraction">File information extraction<a class="headerlink" href="#file-information-extraction" title="Permanent link">&para;</a></h3>
+<p>When new files are added, md-server records predefined attributes in the metadata and publishes events to the Redis <code>metadata_slow_task</code> queue (with the operation type <code>file_info_extract</code>). Application-layer handlers then consume these events to enrich the metadata with additional properties, such as image dimensions or other file-specific information.</p>
+<p>Additionally, the <code>RepoMetadataUpdateHandler</code> in <code>seafevents</code> publishes messages to the Redis <code>metadata_update</code> channel, allowing third-party extensions to react to metadata changes.</p>
 <h2 id="deployment">Deployment<a class="headerlink" href="#deployment" title="Permanent link">&para;</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Prerequisites</p>
@@ -5715,7 +5909,7 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 </code></pre></div>
 <p>To facilitate your deployment, we still provide two different configuration solutions for your reference:</p>
 <h4 id="example-env-for-seafile-data-is-stored-locally">Example <code>.env</code> for Seafile data is stored locally<a class="headerlink" href="#example-env-for-seafile-data-is-stored-locally" title="Permanent link">&para;</a></h4>
-<p>In this case you don't need to add any additional configuration to your <code>.env</code>. You can also specify image version, maximum local cache size, etc.</p>
+<p>In this case you don't need to add any additional configuration to your <code>.env</code>. You can also specify image version, maximum in-memory cache size, etc.</p>
 <div class="highlight"><pre><span></span><code>MD_IMAGE=seafileltd/seafile-md-server:14.0-latest
 MD_MAX_CACHE_SIZE=1GB
 </code></pre></div>
@@ -5755,7 +5949,7 @@ MD_MAX_CACHE_SIZE=1GB
 </tr>
 <tr>
 <td><code>MD_MAX_CACHE_SIZE</code></td>
-<td>The maximum cache size.</td>
+<td>The maximum in-memory cache size used by Metadata server. It limits memory usage only and does not affect disk usage.</td>
 <td>Optional, default <code>1GB</code></td>
 </tr>
 <tr>
@@ -5799,8 +5993,13 @@ MD_MAX_CACHE_SIZE=1GB
 <td>Required when using ceph (<code>MD_STORAGE_TYPE=ceph</code>)</td>
 </tr>
 <tr>
+<td><code>MD_CEPH_CLIENT_ID</code></td>
+<td>Your Ceph storage client ID for md-server, like <code>seafile</code>. Default is <code>admin</code></td>
+<td>Optional when using ceph (<code>MD_STORAGE_TYPE=ceph</code>)</td>
+</tr>
+<tr>
 <td><code>MD_CHECK_UPDATE_INTERVAL</code></td>
-<td>The interval for updating metadata of the repository</td>
+<td>The interval for periodic consistency checks. It is used to reconcile metadata inconsistencies caused by missed update events, not as the normal metadata synchronization interval.</td>
 <td><code>30m</code></td>
 </tr>
 <tr>
@@ -5814,6 +6013,10 @@ MD_MAX_CACHE_SIZE=1GB
 <div class="admonition warning">
 <p class="admonition-title">Metadata server supports <em>Redis</em> only</p>
 <p>To enable metadata feature, you have to use <em>Redis</em> for cache, as the <code>CACHE_PROVIDER</code> must be set to <code>redis</code> in your <code>.env</code></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Synchronization and <code>MD_CHECK_UPDATE_INTERVAL</code></p>
+<p>Metadata server normally synchronizes metadata changes from Seafile in real time. <code>MD_CHECK_UPDATE_INTERVAL</code> is only used for periodic consistency checks in case update events are missed.</p>
 </div>
 <h3 id="enable-metadata-server-in-seafile">Enable Metadata server in Seafile<a class="headerlink" href="#enable-metadata-server-in-seafile" title="Permanent link">&para;</a></h3>
 <p>To enable metadata management in Seafile, modify the <code>.env</code> file used by the Seafile server. Do not add these two variables to the standalone Metadata server <code>.env</code>; they are consumed by the Seafile server.</p>
@@ -5987,7 +6190,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share", "math", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
       
