@@ -4573,10 +4573,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-33-update-configurations-for-webdav" class="md-nav__link">
+  <a href="#step-33-update-model-configurations-for-seafile-ai-optional" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 3.3) Update configurations for WebDAV
+        Step 3.3) Update model configurations for Seafile AI (optional)
       
     </span>
   </a>
@@ -4584,10 +4584,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-34-update-configurations-for-metadata-server" class="md-nav__link">
+  <a href="#step-34-update-configurations-for-webdav" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 3.4) Update configurations for Metadata server
+        Step 3.4) Update configurations for WebDAV
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-35-update-configurations-for-metadata-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3.5) Update configurations for Metadata server
       
     </span>
   </a>
@@ -6069,10 +6080,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-33-update-configurations-for-webdav" class="md-nav__link">
+  <a href="#step-33-update-model-configurations-for-seafile-ai-optional" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 3.3) Update configurations for WebDAV
+        Step 3.3) Update model configurations for Seafile AI (optional)
       
     </span>
   </a>
@@ -6080,10 +6091,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-34-update-configurations-for-metadata-server" class="md-nav__link">
+  <a href="#step-34-update-configurations-for-webdav" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 3.4) Update configurations for Metadata server
+        Step 3.4) Update configurations for WebDAV
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-35-update-configurations-for-metadata-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3.5) Update configurations for Metadata server
       
     </span>
   </a>
@@ -6654,7 +6676,10 @@ SEASEARCH_TOKEN=&lt;your SeaSearch authorization token&gt;
 </div>
 </div>
 <p>Leave both variables empty if SeaSearch is not used. For details, refer to <a href="../../setup/use_seasearch/">SeaSearch configuration</a>.</p>
-<h4 id="step-33-update-configurations-for-webdav">Step 3.3) Update configurations for WebDAV<a class="headerlink" href="#step-33-update-configurations-for-webdav" title="Permanent link">&para;</a></h4>
+<h4 id="step-33-update-model-configurations-for-seafile-ai-optional">Step 3.3) Update model configurations for Seafile AI (optional)<a class="headerlink" href="#step-33-update-model-configurations-for-seafile-ai-optional" title="Permanent link">&para;</a></h4>
+<p>If you are not using Seafile AI, skip this step.</p>
+<p>In Seafile 14.0, Seafile AI models are configured in <code>seafile_ai_config.yaml</code> instead of through environment variables. Update the model configuration according to <a href="../../extension/seafile-ai/">Seafile AI extension</a>.</p>
+<h4 id="step-34-update-configurations-for-webdav">Step 3.4) Update configurations for WebDAV<a class="headerlink" href="#step-34-update-configurations-for-webdav" title="Permanent link">&para;</a></h4>
 <p>If you are not using WebDAV, skip this step.</p>
 <p>In Seafile 14.0, the WebDAV enable switch and worker count are configured through environment variables in the Seafile server <code>.env</code>. If WebDAV was enabled in <code>seafdav.conf</code> before the upgrade, add the following settings to <code>.env</code>:</p>
 <div class="highlight"><pre><span></span><code>ENABLE_SEAFDAV=true
@@ -6665,7 +6690,7 @@ SEAFDAV_WORKERS=5
 <div class="highlight"><pre><span></span><code><span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
 <span class="na">workers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">5</span>
 </code></pre></div>
-<h4 id="step-34-update-configurations-for-metadata-server">Step 3.4) Update configurations for Metadata server<a class="headerlink" href="#step-34-update-configurations-for-metadata-server" title="Permanent link">&para;</a></h4>
+<h4 id="step-35-update-configurations-for-metadata-server">Step 3.5) Update configurations for Metadata server<a class="headerlink" href="#step-35-update-configurations-for-metadata-server" title="Permanent link">&para;</a></h4>
 <p>If you are not using Metadata server, skip this step.</p>
 <p>In Seafile 14.0, the following two Metadata server configurations are moved from <code>seahub_settings.py</code> to the <code>.env</code> file used by the Seafile server. Remove them from <code>seahub_settings.py</code> if they exist there, and add them to the Seafile server <code>.env</code>. The old <code>METADATA_SERVER_URL</code> configuration is renamed to <code>INNER_METADATA_SERVER_URL</code>.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">Deploy in the same machine with Seafile</label><label for="__tabbed_8_2">Standalone</label></div>
