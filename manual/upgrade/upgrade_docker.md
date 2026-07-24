@@ -160,7 +160,13 @@ Add the following settings to the `.env` used by Seafile AI:
 
 Leave both variables empty if SeaSearch is not used. For details, refer to [SeaSearch configuration](../setup/use_seasearch.md).
 
-#### Step 3.3) Update configurations for WebDAV
+#### Step 3.3) Update model configurations for Seafile AI (optional)
+
+If you are not using Seafile AI, skip this step.
+
+In Seafile 14.0, Seafile AI models are configured in `seafile_ai_config.yaml` instead of through environment variables. Update the model configuration according to [Seafile AI extension](../extension/seafile-ai.md).
+
+#### Step 3.4) Update configurations for WebDAV
 
 If you are not using WebDAV, skip this step.
 
@@ -180,7 +186,7 @@ enabled = true
 workers = 5
 ```
 
-#### Step 3.4) Update configurations for Metadata server
+#### Step 3.5) Update configurations for Metadata server
 
 If you are not using Metadata server, skip this step.
 
