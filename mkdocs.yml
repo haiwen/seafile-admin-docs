@@ -110,6 +110,7 @@ nav:
       - Deploy with an existing MySQL server: setup/setup_with_an_existing_mysql_server.md
       - Use other reverse proxy: setup/use_other_reverse_proxy.md
       - Run Seafile as non root user inside docker: setup/run_seafile_as_non_root_user_inside_docker.md
+      - Use Docker compose secrets: setup/use_docker_compose_secrets.md
     - Cluster installation (Pro): setup/cluster_deploy_with_docker.md
     - Setup with Kubernetes (K8S):
       - With Helm:

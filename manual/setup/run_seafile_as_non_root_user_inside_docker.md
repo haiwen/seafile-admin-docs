@@ -31,4 +31,4 @@ docker compose up -d
 Now you can run Seafile as `seafile` user.
 
 !!! tip
-    When doing maintenance, other scripts in docker are also required to be run as `seafile` user, e.g. `su seafile -c ./seaf-gc.sh`
+    When doing maintenance, other scripts in docker are also required to be run as `seafile` user, e.g. `su -p seafile -c ./seaf-gc.sh`
