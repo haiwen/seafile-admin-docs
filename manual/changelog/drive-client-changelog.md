@@ -1,5 +1,15 @@
 # SeaDrive Client Changelog
 
+### 3.0.24 (2026/08/04)
+
+* Upgrade to Qt 6.8, OpenSSL 3.5.4 and Libcurl 8.20.0
+* \[linux] Fix compatibility with .git directories
+* \[linux] Correctly return st_blocks field for stat() syscall
+* \[win] Add search dialog in tray icon menu
+* Support use proxy to connect notification server
+* Use user-preferred language for category folders
+* Improve table format for file sync errors
+
 ### 3.0.23 (2026/06/05)
 
 * \[mac] Only support macOS 13 or newer
