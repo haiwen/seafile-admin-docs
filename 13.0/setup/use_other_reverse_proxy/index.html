@@ -5625,6 +5625,11 @@
     proxy_set_header Connection &quot;&quot;;
     proxy_http_version 1.1;
 
+    proxy_read_timeout  36000s;
+
+    proxy_buffering off;
+    proxy_request_buffering off; 
+
     client_max_body_size 0;
 }
 </code></pre></div>
@@ -5639,6 +5644,7 @@
     proxy_set_header   X-Forwarded-Host  $server_name;
 
     client_max_body_size 100m;
+
 }
 
 location /socket.io {
