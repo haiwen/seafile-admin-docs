@@ -98,7 +98,13 @@ Modify `nginx.conf` and add reverse proxy for services ***seafile*** and ***sead
         proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
         proxy_set_header   X-Forwarded-Host  $server_name;
 
+        proxy_read_timeout  36000s;
+
+        proxy_buffering off;
+        proxy_request_buffering off; 
+
         client_max_body_size 100m;
+        
     }
 
     location /socket.io {
