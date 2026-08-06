@@ -84,6 +84,11 @@ Modify `nginx.conf` and add reverse proxy for services ***seafile*** and ***sead
         proxy_set_header Connection "";
         proxy_http_version 1.1;
 
+        proxy_read_timeout  36000s;
+
+        proxy_buffering off;
+        proxy_request_buffering off; 
+
         client_max_body_size 0;
     }
     ```
