@@ -1,4 +1,4 @@
-COMPOSE_FILE='notification-server.yml'
+COMPOSE_FILE='md-server.yml'
 COMPOSE_PATH_SEPARATOR=','
 
 # metadata server basic variables
