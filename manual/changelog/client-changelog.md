@@ -2,6 +2,15 @@
 
 ## 9.0
 
+### 9.0.21 (2026/08/14)
+
+* \[linux] Report errors when fail to monitor file change events
+* Fix download performance bug for encrypted libraries
+* Support proxy when connecting to notification server
+* \[win] Improve UI readability with dark mode
+* Improve UI for file sync errors dialog
+* Disallow checkout file with invalid names on macOS and Linux, to avoid security issues (like checking out filenames with ".."). This issue only affects users when the server is compromised. Thanks to meifukun (mfk25@mails.tsinghua.edu.cn).
+
 ### 9.0.20 (Windows only) (2026/07/01)
 
 * \[win] Use OpenSSL with Qt
