@@ -239,8 +239,8 @@ docker compose up -d
 2. Download the docker-compose files for *Seafile 12*
 
     ```sh
-    wget -O .env https://manual.seafile.com/13.0/repo/docker/cluster/env
-    wget https://manual.seafile.com/13.0/repo/docker/cluster/seafile-server.yml
+    wget -O .env https://manual.seafile.com/12.0/repo/docker/cluster/env
+    wget https://manual.seafile.com/12.0/repo/docker/cluster/seafile-server.yml
     ```
 
 3. Modify `.env`:
