@@ -13,7 +13,9 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ${SEAFILE_CADDY_VOLUME:-/opt/seafile-caddy}:/data/caddy
     networks:
-      - seafile-net
+      seafile-net:
+        aliases:
+          - ${SEAFILE_SERVER_HOSTNAME:?Variable is not set or empty}
     healthcheck:
       test: ["CMD-SHELL", "curl --fail http://localhost:2019/metrics || exit 1"]
       start_period: 20s
