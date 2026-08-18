@@ -5651,13 +5651,13 @@
 <li>
 <p>Create a secret for sensitive data</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>generic<span class="w"> </span>seafile-secret<span class="w"> </span>--namespace<span class="w"> </span>seafile<span class="w"> </span><span class="se">\</span>
---from-literal<span class="o">=</span><span class="nv">JWT_PRIVATE_KEY</span><span class="o">=</span><span class="s1">&#39;&lt;required&gt;&#39;</span><span class="w"> </span><span class="se">\</span>
---from-literal<span class="o">=</span><span class="nv">SEAFILE_MYSQL_DB_PASSWORD</span><span class="o">=</span><span class="s1">&#39;&lt;required&gt;&#39;</span><span class="w"> </span><span class="se">\</span>
---from-literal<span class="o">=</span><span class="nv">INIT_SEAFILE_ADMIN_PASSWORD</span><span class="o">=</span><span class="s1">&#39;&lt;required&gt;&#39;</span><span class="w"> </span><span class="se">\</span>
---from-literal<span class="o">=</span><span class="nv">INIT_SEAFILE_MYSQL_ROOT_PASSWORD</span><span class="o">=</span><span class="s1">&#39;&lt;required&gt;&#39;</span><span class="w"> </span><span class="se">\</span>
---from-literal<span class="o">=</span><span class="nv">REDIS_PASSWORD</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="se">\</span>
---from-literal<span class="o">=</span><span class="nv">S3_SECRET_KEY</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="se">\</span>
---from-literal<span class="o">=</span><span class="nv">S3_SSE_C_KEY</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+--from-literal<span class="o">=</span><span class="nv">JWT_PRIVATE_KEY</span><span class="o">=</span><span class="s1">'&lt;required&gt;'</span><span class="w"> </span><span class="se">\</span>
+--from-literal<span class="o">=</span><span class="nv">SEAFILE_MYSQL_DB_PASSWORD</span><span class="o">=</span><span class="s1">'&lt;required&gt;'</span><span class="w"> </span><span class="se">\</span>
+--from-literal<span class="o">=</span><span class="nv">INIT_SEAFILE_ADMIN_PASSWORD</span><span class="o">=</span><span class="s1">'&lt;required&gt;'</span><span class="w"> </span><span class="se">\</span>
+--from-literal<span class="o">=</span><span class="nv">INIT_SEAFILE_MYSQL_ROOT_PASSWORD</span><span class="o">=</span><span class="s1">'&lt;required&gt;'</span><span class="w"> </span><span class="se">\</span>
+--from-literal<span class="o">=</span><span class="nv">REDIS_PASSWORD</span><span class="o">=</span><span class="s1">''</span><span class="w"> </span><span class="se">\</span>
+--from-literal<span class="o">=</span><span class="nv">S3_SECRET_KEY</span><span class="o">=</span><span class="s1">''</span><span class="w"> </span><span class="se">\</span>
+--from-literal<span class="o">=</span><span class="nv">S3_SSE_C_KEY</span><span class="o">=</span><span class="s1">''</span>
 </code></pre></div>
 <p>where the <code>JWT_PRIVATE_KEY</code> can be generate by <code>pwgen -s 40 1</code></p>
 </li>
@@ -5698,7 +5698,7 @@ helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class=
 <div class="admonition success">
 <p class="admonition-title">Success</p>
 <p>After installing the chart, the cluster is going to initial progress, you can see the following message by <code>kubectl logs seafile-&lt;string&gt; -n seafile</code>:</p>
-<div class="highlight"><pre><span></span><code>Defaulted container &quot;seafile-backend&quot; out of: seafile-backend, set-ownership (init)
+<div class="highlight"><pre><span></span><code>Defaulted container "seafile-backend" out of: seafile-backend, set-ownership (init)
 *** Running /etc/my_init.d/01_create_data_links.sh...
 *** Booting runit daemon...
 *** Runit started as PID 15
@@ -5777,7 +5777,7 @@ Init success
 <div class="admonition success">
 <p class="admonition-title">Success</p>
 <p>You can check any front-end node in Seafile cluster. If the following information is output, Seafile cluster will run normally in your cluster:</p>
-<div class="highlight"><pre><span></span><code>Defaulted container &quot;seafile-frontend&quot; out of: seafile-frontend, set-ownership (init)
+<div class="highlight"><pre><span></span><code>Defaulted container "seafile-frontend" out of: seafile-frontend, set-ownership (init)
 *** Running /etc/my_init.d/01_create_data_links.sh...
 *** Booting runit daemon...
 *** Runit started as PID 21
@@ -5814,10 +5814,10 @@ License file /opt/seafile/seafile-license.txt does not exist, allow at most 3 tr
 [seaf-server] [2025-02-13 09:23:50] [INFO] filelock-mgr.c(1397): Cleaning expired file locks.
 [2025-02-13 09:23:52] Start Monitor 
 [2025-02-13 09:23:52] Start seafevents.main 
-/opt/seafile/seafile-pro-server-12.0.9/seahub/seahub/settings.py:1101: SyntaxWarning: invalid escape sequence &#39;\w&#39;
-match = re.search(&#39;^EXTRA_(\w+)&#39;, attr)
-/opt/seafile/seafile-pro-server-12.0.9/seahub/thirdpart/seafobj/mc.py:13: SyntaxWarning: invalid escape sequence &#39;\S&#39;
-match = re.match(&#39;--SERVER\\s*=\\s*(\S+)&#39;, mc_options)
+/opt/seafile/seafile-pro-server-12.0.9/seahub/seahub/settings.py:1101: SyntaxWarning: invalid escape sequence '\w'
+match = re.search('^EXTRA_(\w+)', attr)
+/opt/seafile/seafile-pro-server-12.0.9/seahub/thirdpart/seafobj/mc.py:13: SyntaxWarning: invalid escape sequence '\S'
+match = re.match('--SERVER\\s*=\\s*(\S+)', mc_options)
 Seafile server started
 
 Done.
@@ -5832,7 +5832,7 @@ Successfully created seafile admin
 
 [seafevents] [2025-02-13 09:23:55] [INFO] root:82 LDAP is not set, disable ldap sync.
 [seafevents] [2025-02-13 09:23:55] [INFO] virus_scan:51 [virus_scan] scan_command option is not found in seafile.conf, disable virus scan.
-[seafevents] [2025-02-13 09:23:55] [INFO] seafevents.app.mq_handler:127 Subscribe to channels: {&#39;seaf_server.stats&#39;, &#39;seahub.stats&#39;, &#39;seaf_server.event&#39;, &#39;seahub.audit&#39;}
+[seafevents] [2025-02-13 09:23:55] [INFO] seafevents.app.mq_handler:127 Subscribe to channels: {'seaf_server.stats', 'seahub.stats', 'seaf_server.event', 'seahub.audit'}
 [seafevents] [2025-02-13 09:23:55] [INFO] root:534 Start counting user activity info..
 [seafevents] [2025-02-13 09:23:55] [INFO] root:547 [UserActivityCounter] update 0 items.
 [seafevents] [2025-02-13 09:23:55] [INFO] root:240 Start counting traffic info..
@@ -5867,7 +5867,7 @@ Done.
 <p class="admonition-title">If the license file has a different name or cannot be read, Seafile server will start with in trailer mode with most THREE users</p>
 </div>
 <p>Then restart Seafile:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.items[*].metadata.name}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>seafile<span class="k">)</span>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.items[*].metadata.name}'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>seafile<span class="k">)</span>
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">A safer way to use your Seafile license file</p>

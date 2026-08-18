@@ -5617,7 +5617,7 @@
 <div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/14.0/repo/docker/thumbnail-server.yml
 </code></pre></div>
 <p>Modify <code>.env</code>, and insert <code>thumbnail-server.yml</code> into <code>COMPOSE_FILE</code>:</p>
-<div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;seafile-server.yml,caddy.yml,thumbnail-server.yml&#39;
+<div class="highlight"><pre><span></span><code>COMPOSE_FILE='seafile-server.yml,caddy.yml,thumbnail-server.yml'
 </code></pre></div>
 <p>Add following configuration in <code>seahub_settings.py</code> to enable thumbnail server:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># enable thumbnail-server (disabled by default)</span>

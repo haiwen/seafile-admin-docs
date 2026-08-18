@@ -5434,31 +5434,31 @@
 <p>All administrators will have <code>default_admin</code> role with all permissions by default. If you set an administrator to some other admin role, the administrator will <strong>only have the permissions you configured to <code>True</code></strong>.</p>
 <p>Seafile supports eight permissions for now,  its configuration is very like common user role, you can custom it by adding the following settings to <code>seahub_settings.py</code>.</p>
 <div class="highlight"><pre><span></span><code>ENABLED_ADMIN_ROLE_PERMISSIONS = {
-    &#39;system_admin&#39;: {
-        &#39;can_view_system_info&#39;: True,
-        &#39;can_config_system&#39;: True,
+    'system_admin': {
+        'can_view_system_info': True,
+        'can_config_system': True,
     },
-    &#39;daily_admin&#39;: {
-        &#39;can_view_system_info&#39;: True,
-        &#39;can_view_statistic&#39;: True,
-        &#39;can_manage_library&#39;: True,
-        &#39;can_manage_user&#39;: True,
-        &#39;can_manage_group&#39;: True,
-        &#39;can_view_user_log&#39;: True,
+    'daily_admin': {
+        'can_view_system_info': True,
+        'can_view_statistic': True,
+        'can_manage_library': True,
+        'can_manage_user': True,
+        'can_manage_group': True,
+        'can_view_user_log': True,
     },
-    &#39;audit_admin&#39;: {
-        &#39;can_view_system_info&#39;: True,
-        &#39;can_view_admin_log&#39;: True,
+    'audit_admin': {
+        'can_view_system_info': True,
+        'can_view_admin_log': True,
     },
-    &#39;custom_admin&#39;: {
-        &#39;can_view_system_info&#39;: True,
-        &#39;can_config_system&#39;: True,
-        &#39;can_view_statistic&#39;: True,
-        &#39;can_manage_library&#39;: True,
-        &#39;can_manage_user&#39;: True,
-        &#39;can_manage_group&#39;: True,
-        &#39;can_view_user_log&#39;: True,
-        &#39;can_view_admin_log&#39;: True,
+    'custom_admin': {
+        'can_view_system_info': True,
+        'can_config_system': True,
+        'can_view_statistic': True,
+        'can_manage_library': True,
+        'can_manage_user': True,
+        'can_manage_group': True,
+        'can_view_user_log': True,
+        'can_view_admin_log': True,
     },
 }
 </code></pre></div>

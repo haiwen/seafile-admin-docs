@@ -5651,8 +5651,8 @@ multi_tenancy = true
 
 <span class="n">ENABLE_MULTI_ADFS</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># Default is False, if set to True, support per organization custom ADFS/SAML2 login</span>
 <span class="n">SAML_ATTRIBUTE_MAPPING</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;display_name&#39;</span><span class="p">,</span> <span class="p">),</span>
-    <span class="s1">&#39;mail&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;contact_email&#39;</span><span class="p">,</span> <span class="p">),</span>
+    <span class="s1">'name'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'display_name'</span><span class="p">,</span> <span class="p">),</span>
+    <span class="s1">'mail'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'contact_email'</span><span class="p">,</span> <span class="p">),</span>
     <span class="o">...</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -5676,14 +5676,14 @@ $ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout sp.key -out sp.crt
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If certificates are <strong>not placed in</strong> <code>/opt/seafile-data/seafile/seahub-data/certs</code>, you need to add the following configuration in seahub_settings.py:</p>
-<div class="highlight"><pre><span></span><code><span class="n">SAML_CERTS_DIR</span> <span class="o">=</span> <span class="s1">&#39;/path/to/certs&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">SAML_CERTS_DIR</span> <span class="o">=</span> <span class="s1">'/path/to/certs'</span>
 </code></pre></div>
 </div>
 <p>2) Add the following configuration to seahub_settings.py and then restart Seafile:</p>
 <div class="highlight"><pre><span></span><code><span class="n">ENABLE_MULTI_ADFS</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">SAML_ATTRIBUTE_MAPPING</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;display_name&#39;</span><span class="p">,</span> <span class="p">),</span>
-    <span class="s1">&#39;mail&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;contact_email&#39;</span><span class="p">,</span> <span class="p">),</span>
+    <span class="s1">'name'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'display_name'</span><span class="p">,</span> <span class="p">),</span>
+    <span class="s1">'mail'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'contact_email'</span><span class="p">,</span> <span class="p">),</span>
     <span class="o">...</span>
 <span class="p">}</span>
 </code></pre></div>

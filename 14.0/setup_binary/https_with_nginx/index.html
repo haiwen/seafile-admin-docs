@@ -5890,7 +5890,7 @@ rm<span class="w"> </span>/etc/nginx/sites-available/default
 </code></pre></div>
 <h3 id="configuring-nginx">Configuring Nginx<a class="headerlink" href="#configuring-nginx" title="Permanent link">&para;</a></h3>
 <p>Copy the following sample Nginx config file into the just created <code>seafile.conf</code> (i.e., <code>nano /etc/nginx/sites-available/seafile.conf</code>) and modify the content to fit your needs:</p>
-<div class="highlight"><pre><span></span><code><span class="k">log_format</span><span class="w"> </span><span class="s">seafileformat</span><span class="w"> </span><span class="s">&#39;</span><span class="nv">$http_x_forwarded_for</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="w"> </span><span class="s">[</span><span class="nv">$time_local]</span><span class="w"> </span><span class="s">&quot;</span><span class="nv">$request&quot;</span><span class="w"> </span><span class="nv">$status</span><span class="w"> </span><span class="nv">$body_bytes_sent</span><span class="w"> </span><span class="s">&quot;</span><span class="nv">$http_referer&quot;</span><span class="w"> </span><span class="s">&quot;</span><span class="nv">$http_user_agent&quot;</span><span class="w"> </span><span class="nv">$upstream_response_time&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">log_format</span><span class="w"> </span><span class="s">seafileformat</span><span class="w"> </span><span class="s">'</span><span class="nv">$http_x_forwarded_for</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="w"> </span><span class="s">[</span><span class="nv">$time_local]</span><span class="w"> </span><span class="s">"</span><span class="nv">$request"</span><span class="w"> </span><span class="nv">$status</span><span class="w"> </span><span class="nv">$body_bytes_sent</span><span class="w"> </span><span class="s">"</span><span class="nv">$http_referer"</span><span class="w"> </span><span class="s">"</span><span class="nv">$http_user_agent"</span><span class="w"> </span><span class="nv">$upstream_response_time'</span><span class="p">;</span>
 
 <span class="k">server</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="mi">80</span><span class="p">;</span>
@@ -5966,7 +5966,7 @@ nginx<span class="w"> </span>-s<span class="w"> </span>reload
 </div>
 <p>Add an  server block for port 443 and a http-to-https redirect to the <code>seafile.conf</code> configuration file in <code>/etc/nginx</code>.  </p>
 <p>This is a (shortened) sample configuration for the host name seafile.example.com:</p>
-<div class="highlight"><pre><span></span><code><span class="k">log_format</span><span class="w"> </span><span class="s">seafileformat</span><span class="w"> </span><span class="s">&#39;</span><span class="nv">$http_x_forwarded_for</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="w"> </span><span class="s">[</span><span class="nv">$time_local]</span><span class="w"> </span><span class="s">&quot;</span><span class="nv">$request&quot;</span><span class="w"> </span><span class="nv">$status</span><span class="w"> </span><span class="nv">$body_bytes_sent</span><span class="w"> </span><span class="s">&quot;</span><span class="nv">$http_referer&quot;</span><span class="w"> </span><span class="s">&quot;</span><span class="nv">$http_user_agent&quot;</span><span class="w"> </span><span class="nv">$upstream_response_time&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">log_format</span><span class="w"> </span><span class="s">seafileformat</span><span class="w"> </span><span class="s">'</span><span class="nv">$http_x_forwarded_for</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="w"> </span><span class="s">[</span><span class="nv">$time_local]</span><span class="w"> </span><span class="s">"</span><span class="nv">$request"</span><span class="w"> </span><span class="nv">$status</span><span class="w"> </span><span class="nv">$body_bytes_sent</span><span class="w"> </span><span class="s">"</span><span class="nv">$http_referer"</span><span class="w"> </span><span class="s">"</span><span class="nv">$http_user_agent"</span><span class="w"> </span><span class="nv">$upstream_response_time'</span><span class="p">;</span>
 
 <span class="k">server</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kn">listen</span><span class="w">       </span><span class="mi">80</span><span class="p">;</span>
@@ -6027,7 +6027,7 @@ nginx -s reload
 <div class="highlight"><pre><span></span><code>su<span class="w"> </span>seafile
 <span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest
 ./seafile.sh<span class="w"> </span>restart
-./seahub.sh<span class="w"> </span>restart<span class="w"> </span><span class="c1"># or &quot;./seahub.sh start-fastcgi&quot; if you&#39;re using fastcgi</span>
+./seahub.sh<span class="w"> </span>restart<span class="w"> </span><span class="c1"># or "./seahub.sh start-fastcgi" if you're using fastcgi</span>
 </code></pre></div>
 <h2 id="additional-modern-settings-for-nginx-optional">Additional modern settings for Nginx (optional)<a class="headerlink" href="#additional-modern-settings-for-nginx-optional" title="Permanent link">&para;</a></h2>
 <h3 id="activating-ipv6">Activating IPv6<a class="headerlink" href="#activating-ipv6" title="Permanent link">&para;</a></h3>
@@ -6057,7 +6057,7 @@ nginx -s reload
 <span class="w">        </span><span class="kn">server_tokens</span><span class="w"> </span><span class="no">off</span><span class="p">;</span>
 
 <span class="w">        </span><span class="c1"># HSTS for protection against man-in-the-middle-attacks</span>
-<span class="w">        </span><span class="kn">add_header</span><span class="w"> </span><span class="s">Strict-Transport-Security</span><span class="w"> </span><span class="s">&quot;max-age=31536000</span><span class="p">;</span><span class="w"> </span><span class="kn">includeSubDomains&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">add_header</span><span class="w"> </span><span class="s">Strict-Transport-Security</span><span class="w"> </span><span class="s">"max-age=31536000</span><span class="p">;</span><span class="w"> </span><span class="kn">includeSubDomains"</span><span class="p">;</span>
 
 <span class="w">        </span><span class="c1"># DH parameters for Diffie-Hellman key exchange</span>
 <span class="w">        </span><span class="kn">ssl_dhparam</span><span class="w"> </span><span class="s">/etc/nginx/dhparam.pem</span><span class="p">;</span>
@@ -6109,7 +6109,7 @@ nginx -s reload
 </code></pre></div>
 <h3 id="enabling-http-strict-transport-security">Enabling HTTP Strict Transport Security<a class="headerlink" href="#enabling-http-strict-transport-security" title="Permanent link">&para;</a></h3>
 <p>Enable HTTP Strict Transport Security (HSTS) to prevent man-in-the-middle-attacks by adding this directive:</p>
-<div class="highlight"><pre><span></span><code><span class="k">add_header</span><span class="w"> </span><span class="s">Strict-Transport-Security</span><span class="w"> </span><span class="s">&quot;max-age=31536000</span><span class="p">;</span><span class="w"> </span><span class="k">includeSubDomains&quot;</span><span class="w"> </span><span class="s">always</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">add_header</span><span class="w"> </span><span class="s">Strict-Transport-Security</span><span class="w"> </span><span class="s">"max-age=31536000</span><span class="p">;</span><span class="w"> </span><span class="k">includeSubDomains"</span><span class="w"> </span><span class="s">always</span><span class="p">;</span>
 </code></pre></div>
 <p>HSTS instructs web browsers to automatically use HTTPS. That means, after the first visit of the HTTPS version of Seahub, the browser will only use https to access the site.</p>
 <h3 id="using-perfect-forward-secrecy">Using Perfect Forward Secrecy<a class="headerlink" href="#using-perfect-forward-secrecy" title="Permanent link">&para;</a></h3>

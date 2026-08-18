@@ -5526,57 +5526,57 @@ LOGIN_REDIRECT_URL = '/saml2/complete/'
 SAML_CONFIG = {
     # full path to the xmlsec1 binary programm
     'xmlsec_binary': XMLSEC_BINARY,</p>
-<div class="codehilite"><pre><span></span><code><span class="n">&#39;allow_unknown_attributes&#39;: True,</span>
+<div class="codehilite"><pre><span></span><code><span class="n">'allow_unknown_attributes': True,</span>
 
 <span class="c"># your entity id, usually your subdomain plus the url to the metadata view</span>
-<span class="n">&#39;entityid&#39;: SP_SERVICE_URL + &#39;/saml2/metadata/&#39;,</span>
+<span class="n">'entityid': SP_SERVICE_URL + '/saml2/metadata/',</span>
 
 <span class="c"># directory with attribute mapping</span>
-<span class="n">&#39;attribute_map_dir&#39;: ATTRIBUTE_MAP_DIR,</span>
+<span class="n">'attribute_map_dir': ATTRIBUTE_MAP_DIR,</span>
 
 <span class="c"># this block states what services we provide</span>
-<span class="n">&#39;service&#39;: {</span>
+<span class="n">'service': {</span>
 <span class="n">    # we are just a lonely SP</span>
-<span class="n">    &#39;sp&#39; : {</span>
-<span class="n">        &quot;allow_unsolicited&quot;: True,</span>
-<span class="n">        &#39;name&#39;: &#39;Federated Seafile Service&#39;,</span>
-<span class="n">        &#39;name_id_format&#39;: saml2.saml.NAMEID_FORMAT_EMAILADDRESS,</span>
-<span class="n">        &#39;endpoints&#39;: {</span>
+<span class="n">    'sp' : {</span>
+<span class="n">        "allow_unsolicited": True,</span>
+<span class="n">        'name': 'Federated Seafile Service',</span>
+<span class="n">        'name_id_format': saml2.saml.NAMEID_FORMAT_EMAILADDRESS,</span>
+<span class="n">        'endpoints': {</span>
 <span class="n">            # url and binding to the assetion consumer service view</span>
 <span class="n">            # do not change the binding or service name</span>
-<span class="n">            &#39;assertion_consumer_service&#39;: [</span>
-<span class="n">                (SP_SERVICE_URL + &#39;/saml2/acs/&#39;,</span>
+<span class="n">            'assertion_consumer_service': [</span>
+<span class="n">                (SP_SERVICE_URL + '/saml2/acs/',</span>
 <span class="n">                 saml2.BINDING_HTTP_POST),</span>
 <span class="n">            ],</span>
 <span class="n">            # url and binding to the single logout service view</span>
 <span class="n">            # do not change the binding or service name</span>
-<span class="n">            &#39;single_logout_service&#39;: [</span>
-<span class="n">                (SP_SERVICE_URL + &#39;/saml2/ls/&#39;,</span>
+<span class="n">            'single_logout_service': [</span>
+<span class="n">                (SP_SERVICE_URL + '/saml2/ls/',</span>
 <span class="n">                 saml2.BINDING_HTTP_REDIRECT),</span>
-<span class="n">                (SP_SERVICE_URL + &#39;/saml2/ls/post&#39;,</span>
+<span class="n">                (SP_SERVICE_URL + '/saml2/ls/post',</span>
 <span class="n">                 saml2.BINDING_HTTP_POST),</span>
 <span class="n">            ],</span>
 <span class="n">        },</span>
 
 <span class="n">        # attributes that this project need to identify a user</span>
-<span class="n">        &#39;required_attributes&#39;: [&quot;uid&quot;],</span>
+<span class="n">        'required_attributes': ["uid"],</span>
 
 <span class="n">        # attributes that may be useful to have but not required</span>
-<span class="n">        &#39;optional_attributes&#39;: [&#39;eduPersonAffiliation&#39;, ],</span>
+<span class="n">        'optional_attributes': ['eduPersonAffiliation', ],</span>
 
 <span class="n">        # in this section the list of IdPs we talk to are defined</span>
-<span class="n">        &#39;idp&#39;: {</span>
+<span class="n">        'idp': {</span>
 <span class="n">            # we do not need a WAYF service since there is</span>
 <span class="n">            # only an IdP defined here. This IdP should be</span>
 <span class="n">            # present in our metadata</span>
 
 <span class="n">            # the keys of this dictionary are entity ids</span>
-<span class="n">            &#39;https://adfs-server.adfs.com/federationmetadata/2007-06/federationmetadata.xml&#39;: {</span>
-<span class="n">                &#39;single_sign_on_service&#39;: {</span>
-<span class="n">                    saml2.BINDING_HTTP_REDIRECT: &#39;https://adfs-server.adfs.com/adfs/ls/idpinitiatedsignon.aspx&#39;,</span>
+<span class="n">            'https://adfs-server.adfs.com/federationmetadata/2007-06/federationmetadata.xml': {</span>
+<span class="n">                'single_sign_on_service': {</span>
+<span class="n">                    saml2.BINDING_HTTP_REDIRECT: 'https://adfs-server.adfs.com/adfs/ls/idpinitiatedsignon.aspx',</span>
 <span class="n">                },</span>
-<span class="n">              &#39;single_logout_service&#39;: {</span>
-<span class="n">                  saml2.BINDING_HTTP_REDIRECT: &#39;https://adfs-server.adfs.com/adfs/ls/?wa=wsignout1.0&#39;,</span>
+<span class="n">              'single_logout_service': {</span>
+<span class="n">                  saml2.BINDING_HTTP_REDIRECT: 'https://adfs-server.adfs.com/adfs/ls/?wa=wsignout1.0',</span>
 <span class="n">              },</span>
 <span class="n">            },</span>
 <span class="n">        },</span>
@@ -5584,24 +5584,24 @@ SAML_CONFIG = {
 <span class="n">},</span>
 
 <span class="c"># where the remote metadata is stored</span>
-<span class="n">&#39;metadata&#39;: {</span>
-<span class="n">    &#39;local&#39;: [path.join(CERTS_DIR, &#39;idp_federation_metadata.xml&#39;)],</span>
+<span class="n">'metadata': {</span>
+<span class="n">    'local': [path.join(CERTS_DIR, 'idp_federation_metadata.xml')],</span>
 <span class="n">},</span>
 
 <span class="c"># set to 1 to output debugging information</span>
-<span class="n">&#39;debug&#39;: 1,</span>
+<span class="n">'debug': 1,</span>
 
 <span class="c"># Signing</span>
-<span class="n">&#39;key_file&#39;: &#39;&#39;, </span>
-<span class="n">&#39;cert_file&#39;: path.join(CERTS_DIR, &#39;idp.crt&#39;),  # from IdP</span>
+<span class="n">'key_file': '', </span>
+<span class="n">'cert_file': path.join(CERTS_DIR, 'idp.crt'),  # from IdP</span>
 
 <span class="c"># Encryption</span>
-<span class="n">&#39;encryption_keypairs&#39;: [{</span>
-<span class="n">    &#39;key_file&#39;: path.join(CERTS_DIR, &#39;sp.key&#39;),  # private part</span>
-<span class="n">    &#39;cert_file&#39;: path.join(CERTS_DIR, &#39;sp.crt&#39;),  # public part</span>
+<span class="n">'encryption_keypairs': [{</span>
+<span class="n">    'key_file': path.join(CERTS_DIR, 'sp.key'),  # private part</span>
+<span class="n">    'cert_file': path.join(CERTS_DIR, 'sp.crt'),  # public part</span>
 <span class="n">}],</span>
 
-<span class="n">&#39;valid_for&#39;: 24,  # how long is our metadata valid</span>
+<span class="n">'valid_for': 24,  # how long is our metadata valid</span>
 </code></pre></div>
 
 <p>}</p>

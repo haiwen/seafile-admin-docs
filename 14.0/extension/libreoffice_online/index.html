@@ -5640,12 +5640,12 @@
 </code></pre></div>
 <h2 id="config-seafile">Config Seafile<a class="headerlink" href="#config-seafile" title="Permanent link">&para;</a></h2>
 <p>Add following config option to seahub_settings.py:</p>
-<div class="highlight"><pre><span></span><code><span class="n">OFFICE_SERVER_TYPE</span> <span class="o">=</span> <span class="s1">&#39;CollaboraOffice&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">OFFICE_SERVER_TYPE</span> <span class="o">=</span> <span class="s1">'CollaboraOffice'</span>
 <span class="n">ENABLE_OFFICE_WEB_APP</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">OFFICE_WEB_APP_BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;http://collabora:9980/hosting/discovery&#39;</span>
+<span class="n">OFFICE_WEB_APP_BASE_URL</span> <span class="o">=</span> <span class="s1">'http://collabora:9980/hosting/discovery'</span>
 
 <span class="c1"># Expiration of WOPI access token</span>
-<span class="c1"># WOPI access token is a string used by Seafile to determine the file&#39;s</span>
+<span class="c1"># WOPI access token is a string used by Seafile to determine the file's</span>
 <span class="c1"># identity and permissions when use LibreOffice Online view it online</span>
 <span class="c1"># And for security reason, this token should expire after a set time period</span>
 <span class="n">WOPI_ACCESS_TOKEN_EXPIRATION</span> <span class="o">=</span> <span class="mi">30</span> <span class="o">*</span> <span class="mi">60</span>   <span class="c1"># seconds</span>
@@ -5654,13 +5654,13 @@
 <span class="c1"># You can change this value according to your preferences</span>
 <span class="c1"># And of course you should make sure your LibreOffice Online supports to preview</span>
 <span class="c1"># the files with the specified extensions</span>
-<span class="n">OFFICE_WEB_APP_FILE_EXTENSION</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;odp&#39;</span><span class="p">,</span> <span class="s1">&#39;ods&#39;</span><span class="p">,</span> <span class="s1">&#39;odt&#39;</span><span class="p">,</span> <span class="s1">&#39;xls&#39;</span><span class="p">,</span> <span class="s1">&#39;xlsb&#39;</span><span class="p">,</span> <span class="s1">&#39;xlsm&#39;</span><span class="p">,</span> <span class="s1">&#39;xlsx&#39;</span><span class="p">,</span><span class="s1">&#39;ppsx&#39;</span><span class="p">,</span> <span class="s1">&#39;ppt&#39;</span><span class="p">,</span> <span class="s1">&#39;pptm&#39;</span><span class="p">,</span> <span class="s1">&#39;pptx&#39;</span><span class="p">,</span> <span class="s1">&#39;doc&#39;</span><span class="p">,</span> <span class="s1">&#39;docm&#39;</span><span class="p">,</span> <span class="s1">&#39;docx&#39;</span><span class="p">)</span>
+<span class="n">OFFICE_WEB_APP_FILE_EXTENSION</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'odp'</span><span class="p">,</span> <span class="s1">'ods'</span><span class="p">,</span> <span class="s1">'odt'</span><span class="p">,</span> <span class="s1">'xls'</span><span class="p">,</span> <span class="s1">'xlsb'</span><span class="p">,</span> <span class="s1">'xlsm'</span><span class="p">,</span> <span class="s1">'xlsx'</span><span class="p">,</span><span class="s1">'ppsx'</span><span class="p">,</span> <span class="s1">'ppt'</span><span class="p">,</span> <span class="s1">'pptm'</span><span class="p">,</span> <span class="s1">'pptx'</span><span class="p">,</span> <span class="s1">'doc'</span><span class="p">,</span> <span class="s1">'docm'</span><span class="p">,</span> <span class="s1">'docx'</span><span class="p">)</span>
 
 <span class="c1"># Enable edit files through LibreOffice Online</span>
 <span class="n">ENABLE_OFFICE_WEB_APP_EDIT</span> <span class="o">=</span> <span class="kc">True</span>
 
 <span class="c1"># types of files should be editable through LibreOffice Online</span>
-<span class="n">OFFICE_WEB_APP_EDIT_FILE_EXTENSION</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;odp&#39;</span><span class="p">,</span> <span class="s1">&#39;ods&#39;</span><span class="p">,</span> <span class="s1">&#39;odt&#39;</span><span class="p">,</span> <span class="s1">&#39;xls&#39;</span><span class="p">,</span> <span class="s1">&#39;xlsb&#39;</span><span class="p">,</span> <span class="s1">&#39;xlsm&#39;</span><span class="p">,</span> <span class="s1">&#39;xlsx&#39;</span><span class="p">,</span><span class="s1">&#39;ppsx&#39;</span><span class="p">,</span> <span class="s1">&#39;ppt&#39;</span><span class="p">,</span> <span class="s1">&#39;pptm&#39;</span><span class="p">,</span> <span class="s1">&#39;pptx&#39;</span><span class="p">,</span> <span class="s1">&#39;doc&#39;</span><span class="p">,</span> <span class="s1">&#39;docm&#39;</span><span class="p">,</span> <span class="s1">&#39;docx&#39;</span><span class="p">)</span>
+<span class="n">OFFICE_WEB_APP_EDIT_FILE_EXTENSION</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'odp'</span><span class="p">,</span> <span class="s1">'ods'</span><span class="p">,</span> <span class="s1">'odt'</span><span class="p">,</span> <span class="s1">'xls'</span><span class="p">,</span> <span class="s1">'xlsb'</span><span class="p">,</span> <span class="s1">'xlsm'</span><span class="p">,</span> <span class="s1">'xlsx'</span><span class="p">,</span><span class="s1">'ppsx'</span><span class="p">,</span> <span class="s1">'ppt'</span><span class="p">,</span> <span class="s1">'pptm'</span><span class="p">,</span> <span class="s1">'pptx'</span><span class="p">,</span> <span class="s1">'doc'</span><span class="p">,</span> <span class="s1">'docm'</span><span class="p">,</span> <span class="s1">'docx'</span><span class="p">)</span>
 </code></pre></div>
 <p>Then restart Seafile.</p>
 <p>Click an office file in Seafile web interface, you will see the online preview rendered by CollaboraOnline. Here is an example:</p>
@@ -5683,16 +5683,16 @@
 <span class="nv">COLLABORA_ENABLE_FILE_LOGGING</span><span class="o">=</span>True
 <span class="nv">COLLABORA_PATH</span><span class="o">=</span>/opt/collabora<span class="w"> </span><span class="c1"># path of the collabora logs</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code># collabora.yml
-# remove the following notes
-...
-services:
-    collabora:
-        ...
-        volumes:
-            - &quot;${COLLABORA_PATH:-/opt/collabora}/logs:/opt/cool/logs/&quot; # chmod 777 needed
-        ...
-...
+<div class="highlight"><pre><span></span><code><span class="c1"># collabora.yml</span>
+<span class="c1"># remove the following notes</span>
+<span class="nn">...</span>
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">collabora</span><span class="p">:</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"${COLLABORA_PATH:-/opt/collabora}/logs:/opt/cool/logs/"</span><span class="w"> </span><span class="c1"># chmod 777 needed</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="nn">...</span>
 </code></pre></div>
 <p>Create the logs directory, and restart Seafile server</p>
 <div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/opt/collabora
@@ -5707,9 +5707,9 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 <p>The CollaboraOnline must be configured to use HTTPS on the standard port (443), and requests should be reverse-proxied to Collabora’s port 9980.</p>
 </div>
 <p>After a successful deployment, you only need to specify the values of the following fields in <code>seahub_settings.py</code> and then restart the service.
-<div class="highlight"><pre><span></span><code><span class="n">OFFICE_SERVER_TYPE</span> <span class="o">=</span> <span class="s1">&#39;CollaboraOffice&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">OFFICE_SERVER_TYPE</span> <span class="o">=</span> <span class="s1">'CollaboraOffice'</span>
 <span class="n">ENABLE_OFFICE_WEB_APP</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">OFFICE_WEB_APP_BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://&lt;Your CollaboraOnline host url&gt;/hosting/discovery&#39;</span>
+<span class="n">OFFICE_WEB_APP_BASE_URL</span> <span class="o">=</span> <span class="s1">'https://&lt;Your CollaboraOnline host url&gt;/hosting/discovery'</span>
 <span class="n">WOPI_ACCESS_TOKEN_EXPIRATION</span> <span class="o">=</span> <span class="mi">30</span> <span class="o">*</span> <span class="mi">60</span>   
 <span class="n">ENABLE_OFFICE_WEB_APP_EDIT</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div></p>

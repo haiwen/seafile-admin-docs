@@ -6290,19 +6290,19 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 <p>A: Seafile uses cache to improve performance in many situations. The content includes but is not limited to user session information, avatars, profiles, records from database, etc. From Seafile Docker 13, the <strong><em>Redis</em></strong> takes the default cache server for supporting the new features (please refer the <strong><em>upgradte notes</em></strong>), which has integrated in Seafile Docker 13 and can be configured directly in environment variables in <code>.env</code> (<strong>no additional settings are required by default</strong>)</p>
 <p>Q: Is the Redis integrated in Seafile Docker safe? Does it have an access password?</p>
 <p>A: Although the Redis integrated by Seafile Docker does not have a password set by default, it can only be accessed through the Docker private network and will not expose the service port externally. Of course, you can also set a password for it if necessary. You can set <code>REDIS_PASSWORD</code> in <code>.env</code> and remove the following comment markers in <code>seafile-server.yml</code> to set the integrated Redis' password:</p>
-<div class="highlight"><pre><span></span><code>services:
-    ...
-    redis:
-    image: ${SEAFILE_REDIS_IMAGE:-redis}
-    container_name: seafile-redis
-    # remove the following comment markers
-    command:
-        - /bin/sh
-        - -c
-        - redis-server --requirepass &quot;$${REDIS_PASSWORD:?Variable is not set or empty}&quot;
-    networks:
-    - seafile-net
-    ...
+<div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">redis</span><span class="p p-Indicator">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${SEAFILE_REDIS_IMAGE:-redis}</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-redis</span>
+<span class="w">    </span><span class="c1"># remove the following comment markers</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/bin/sh</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-c</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redis-server --requirepass "$${REDIS_PASSWORD:?Variable is not set or empty}"</span>
+<span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-net</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </code></pre></div>
 <p>Q: For some reason, I still have to use Memcached as my cache server. How can I do this?</p>
 <p>A: If you still want to use the <strong><em>Memcached</em></strong> (is not provided from Seafile Docker 13), just follow the steps below:</p>

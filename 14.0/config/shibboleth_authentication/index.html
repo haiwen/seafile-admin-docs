@@ -5877,7 +5877,7 @@
         RewriteRule ^/seafhttp - [QSA,L]
 
         # seahub
-        SetEnvIf Authorization &quot;(.*)&quot; HTTP_AUTHORIZATION=$1
+        SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
         ProxyPass / http://127.0.0.1:8000/
         ProxyPassReverse / http://127.0.0.1:8000/
 
@@ -5895,10 +5895,10 @@
 <p>Open <code>/etc/shibboleth/shibboleth2.xml</code> and change some property. After you have done all the followings, don't forget to restart Shibboleth(SP)</p>
 <h5 id="applicationdefaults-element"><code>ApplicationDefaults</code> element<a class="headerlink" href="#applicationdefaults-element" title="Permanent link">&para;</a></h5>
 <p>Change <code>entityID</code> and <a href="https://shibboleth.atlassian.net/wiki/spaces/SP3/pages/2063695997/ApplicationDefaults"><code>REMOTE_USER</code></a> property:</p>
-<div class="highlight"><pre><span></span><code>&lt;!-- The ApplicationDefaults element is where most of Shibboleth&#39;s SAML bits are defined. --&gt;
-&lt;ApplicationDefaults entityID=&quot;https://your-seafile-domain/sso&quot;
-    REMOTE_USER=&quot;mail&quot;
-    cipherSuites=&quot;DEFAULT:!EXP:!LOW:!aNULL:!eNULL:!DES:!IDEA:!SEED:!RC4:!3DES:!kRSA:!SSLv2:!SSLv3:!TLSv1:!TLSv1.1&quot;&gt;
+<div class="highlight"><pre><span></span><code>&lt;!-- The ApplicationDefaults element is where most of Shibboleth's SAML bits are defined. --&gt;
+&lt;ApplicationDefaults entityID="https://your-seafile-domain/sso"
+    REMOTE_USER="mail"
+    cipherSuites="DEFAULT:!EXP:!LOW:!aNULL:!eNULL:!DES:!IDEA:!SEED:!RC4:!3DES:!kRSA:!SSLv2:!SSLv3:!TLSv1:!TLSv1.1"&gt;
 </code></pre></div>
 <p>Seahub extracts the username from the <code>REMOTE_USER</code> environment variable. So you should modify your SP's shibboleth2.xml config file, so that Shibboleth translates your desired attribute into <code>REMOTE_USER</code> environment variable.</p>
 <p>In Seafile, only one of the following two attributes can be used for username: <code>eppn</code>, and <code>mail</code>. <code>eppn</code> stands for "Edu Person Principal Name". It is usually the UserPrincipalName attribute in Active Directory. It's not necessarily a valid email address. <code>mail</code> is the user's email address. You should set <code>REMOTE_USER</code> to either one of these attributes.</p>
@@ -5909,47 +5909,47 @@ Configures SSO for a default IdP. To properly allow for &gt;1 IdP, remove
 entityID property and adjust discoveryURL to point to discovery service.
 You can also override entityID on /Login query string, or in RequestMap/htaccess.
 --&gt;
-&lt;SSO entityID=&quot;https://your-IdP-domain&quot;&gt;
-     &lt;!--discoveryProtocol=&quot;SAMLDS&quot; discoveryURL=&quot;https://wayf.ukfederation.org.uk/DS&quot;--&gt;
+&lt;SSO entityID="https://your-IdP-domain"&gt;
+     &lt;!--discoveryProtocol="SAMLDS" discoveryURL="https://wayf.ukfederation.org.uk/DS"--&gt;
   SAML2
 &lt;/SSO&gt;
 </code></pre></div>
 <h5 id="metadataprovider-element"><code>MetadataProvider</code> element<a class="headerlink" href="#metadataprovider-element" title="Permanent link">&para;</a></h5>
 <p>Change <code>url</code> and <code>backingFilePath</code> property:</p>
 <div class="highlight"><pre><span></span><code>&lt;!-- Example of remotely supplied batch of signed metadata. --&gt;
-&lt;MetadataProvider type=&quot;XML&quot; validate=&quot;true&quot;
-            url=&quot;http://your-IdP-metadata-url&quot;
-      backingFilePath=&quot;your-IdP-metadata.xml&quot; maxRefreshDelay=&quot;7200&quot;&gt;
-    &lt;MetadataFilter type=&quot;RequireValidUntil&quot; maxValidityInterval=&quot;2419200&quot;/&gt;
-    &lt;MetadataFilter type=&quot;Signature&quot; certificate=&quot;fedsigner.pem&quot; verifyBackup=&quot;false&quot;/&gt;
+&lt;MetadataProvider type="XML" validate="true"
+            url="http://your-IdP-metadata-url"
+      backingFilePath="your-IdP-metadata.xml" maxRefreshDelay="7200"&gt;
+    &lt;MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/&gt;
+    &lt;MetadataFilter type="Signature" certificate="fedsigner.pem" verifyBackup="false"/&gt;
 </code></pre></div>
 <h4 id="attribute-mapxml">attribute-map.xml<a class="headerlink" href="#attribute-mapxml" title="Permanent link">&para;</a></h4>
 <p>Open <code>/etc/shibboleth/attribute-map.xml</code> and change some property. After you have done all the followings, don't forget to restart Shibboleth(SP)</p>
 <h5 id="attribute-element"><code>Attribute</code> element<a class="headerlink" href="#attribute-element" title="Permanent link">&para;</a></h5>
 <p>Uncomment attribute elements for getting more user info:</p>
 <div class="highlight"><pre><span></span><code>&lt;!-- Older LDAP-defined attributes (SAML 2.0 names followed by SAML 1 names)... --&gt;
-&lt;Attribute name=&quot;urn:oid:2.16.840.1.113730.3.1.241&quot; id=&quot;displayName&quot;/&gt;
-&lt;Attribute name=&quot;urn:oid:0.9.2342.19200300.100.1.3&quot; id=&quot;mail&quot;/&gt;
+&lt;Attribute name="urn:oid:2.16.840.1.113730.3.1.241" id="displayName"/&gt;
+&lt;Attribute name="urn:oid:0.9.2342.19200300.100.1.3" id="mail"/&gt;
 
-&lt;Attribute name=&quot;urn:mace:dir:attribute-def:displayName&quot; id=&quot;displayName&quot;/&gt;
-&lt;Attribute name=&quot;urn:mace:dir:attribute-def:mail&quot; id=&quot;mail&quot;/&gt;
+&lt;Attribute name="urn:mace:dir:attribute-def:displayName" id="displayName"/&gt;
+&lt;Attribute name="urn:mace:dir:attribute-def:mail" id="mail"/&gt;
 </code></pre></div>
 <h4 id="upload-shibbolethsps-metadata">Upload Shibboleth(SP)'s metadata<a class="headerlink" href="#upload-shibbolethsps-metadata" title="Permanent link">&para;</a></h4>
 <p>After restarting Apache, you should be able to get the Service Provider metadata by accessing <a href="https://your-seafile-domain/Shibboleth.sso/Metadata">https://your-seafile-domain/Shibboleth.sso/Metadata</a>. This metadata should be uploaded to the Identity Provider (IdP) server.</p>
 <h2 id="configure-seahub">Configure Seahub<a class="headerlink" href="#configure-seahub" title="Permanent link">&para;</a></h2>
 <p>Add the following configuration to seahub_settings.py.</p>
 <div class="highlight"><pre><span></span><code>ENABLE_SHIB_LOGIN = True
-SHIBBOLETH_USER_HEADER = &#39;HTTP_REMOTE_USER&#39;
+SHIBBOLETH_USER_HEADER = 'HTTP_REMOTE_USER'
 # basic user attributes
 SHIBBOLETH_ATTRIBUTE_MAP = {
-    &quot;HTTP_DISPLAYNAME&quot;: (False, &quot;display_name&quot;),
-    &quot;HTTP_MAIL&quot;: (False, &quot;contact_email&quot;),
+    "HTTP_DISPLAYNAME": (False, "display_name"),
+    "HTTP_MAIL": (False, "contact_email"),
 }
 EXTRA_MIDDLEWARE = (
-    &#39;shibboleth.middleware.ShibbolethRemoteUserMiddleware&#39;,
+    'shibboleth.middleware.ShibbolethRemoteUserMiddleware',
 )
 EXTRA_AUTHENTICATION_BACKENDS = (
-    &#39;shibboleth.backends.ShibbolethRemoteUserBackend&#39;,
+    'shibboleth.backends.ShibbolethRemoteUserBackend',
 )
 </code></pre></div>
 <p>Seahub can process additional user attributes from Shibboleth. These attributes are saved into Seahub's database, as user's properties. They're all not mandatory. The internal user properties Seahub now supports are:</p>
@@ -5961,10 +5961,10 @@ EXTRA_AUTHENTICATION_BACKENDS = (
 </ul>
 <p>You can specify the mapping between Shibboleth attributes and Seahub's user properties in seahub_settings.py:</p>
 <div class="highlight"><pre><span></span><code>SHIBBOLETH_ATTRIBUTE_MAP  = {
-    &quot;HTTP_GIVENNAME&quot;: (False, &quot;givenname&quot;),
-    &quot;HTTP_SN&quot;: (False, &quot;surname&quot;),
-    &quot;HTTP_MAIL&quot;: (False, &quot;contact_email&quot;),
-    &quot;HTTP_ORGANIZATION&quot;: (False, &quot;institution&quot;),
+    "HTTP_GIVENNAME": (False, "givenname"),
+    "HTTP_SN": (False, "surname"),
+    "HTTP_MAIL": (False, "contact_email"),
+    "HTTP_ORGANIZATION": (False, "institution"),
 }
 </code></pre></div>
 <ol>
@@ -5985,23 +5985,23 @@ EXTRA_AUTHENTICATION_BACKENDS = (
 <p>We are able to set user role from Shibboleth. Details about user role, please refer to <a href="../roles_permissions/"><em>Roles and Permissions</em></a></p>
 <p>To enable this, modify <code>SHIBBOLETH_ATTRIBUTE_MAP</code> above and add <code>Shibboleth-affiliation</code> field, you may need to change <code>Shibboleth-affiliation</code> according to your Shibboleth SP attributes.</p>
 <div class="highlight"><pre><span></span><code>SHIBBOLETH_ATTRIBUTE_MAP  = {
-    &quot;HTTP_GIVENNAME&quot;: (False, &quot;givenname&quot;),
-    &quot;HTTP_SN&quot;: (False, &quot;surname&quot;),
-    &quot;HTTP_MAIL&quot;: (False, &quot;contact_email&quot;),
-    &quot;HTTP_ORGANIZATION&quot;: (False, &quot;institution&quot;),
-    &quot;HTTP_SHIBBOLETH_AFFILIATION&quot;: (False, &quot;affiliation&quot;),
+    "HTTP_GIVENNAME": (False, "givenname"),
+    "HTTP_SN": (False, "surname"),
+    "HTTP_MAIL": (False, "contact_email"),
+    "HTTP_ORGANIZATION": (False, "institution"),
+    "HTTP_SHIBBOLETH_AFFILIATION": (False, "affiliation"),
 }
 </code></pre></div>
 <p>Then add new config to define affiliation role map,</p>
 <div class="highlight"><pre><span></span><code>SHIBBOLETH_AFFILIATION_ROLE_MAP = {
-    &#39;employee@uni-mainz.de&#39;: &#39;staff&#39;,
-    &#39;member@uni-mainz.de&#39;: &#39;staff&#39;,
-    &#39;student@uni-mainz.de&#39;: &#39;student&#39;,
-    &#39;employee@hu-berlin.de&#39;: &#39;guest&#39;,
-    &#39;patterns&#39;: (
-        (&#39;*@hu-berlin.de&#39;, &#39;guest1&#39;),
-        (&#39;*@*.de&#39;, &#39;guest2&#39;),
-        (&#39;*&#39;, &#39;guest&#39;),
+    'employee@uni-mainz.de': 'staff',
+    'member@uni-mainz.de': 'staff',
+    'student@uni-mainz.de': 'student',
+    'employee@hu-berlin.de': 'guest',
+    'patterns': (
+        ('*@hu-berlin.de', 'guest1'),
+        ('*@*.de', 'guest2'),
+        ('*', 'guest'),
     ),
 }
 </code></pre></div>
@@ -6012,7 +6012,7 @@ EXTRA_AUTHENTICATION_BACKENDS = (
 <p>First, update the <code>SHIBBOLETH_ATTRIBUTE_MAP</code> configuration in seahub_settings.py, and add <code>HTTP_REMOTE_USER</code>.</p>
 <div class="highlight"><pre><span></span><code>SHIBBOLETH_ATTRIBUTE_MAP = {
     ....
-    &quot;HTTP_REMOTE_USER&quot;: (False, &quot;remote_user&quot;),
+    "HTTP_REMOTE_USER": (False, "remote_user"),
     ....
 }
 </code></pre></div>
@@ -6020,15 +6020,15 @@ EXTRA_AUTHENTICATION_BACKENDS = (
 <div class="highlight"><pre><span></span><code># function name `custom_shibboleth_get_user_role` should NOT be changed
 def custom_shibboleth_get_user_role(shib_meta):
 
-    remote_user = shib_meta.get(&#39;remote_user&#39;, &#39;&#39;)
+    remote_user = shib_meta.get('remote_user', '')
     if not remote_user:
-        return &#39;&#39;
+        return ''
 
     remote_user = remote_user.lower()
-    if remote_user.endswith(&#39;@seafile.com&#39;):
-        return &#39;default&#39;
+    if remote_user.endswith('@seafile.com'):
+        return 'default'
     else:
-        return &#39;guest&#39;
+        return 'guest'
 </code></pre></div></p>
 <h2 id="verify">Verify<a class="headerlink" href="#verify" title="Permanent link">&para;</a></h2>
 <p>After restarting Apache and Seahub service (<code>./seahub.sh restart</code>), you can then test the shibboleth login workflow.</p>
@@ -6053,7 +6053,7 @@ try:
     username = request.META[SHIB_USER_HEADER]
 except KeyError:
     assert False
-    # If specified header doesn&#39;t exist then return (leaving
+    # If specified header doesn't exist then return (leaving
     # request.user set to AnonymousUser by the
     # AuthenticationMiddleware).
     return

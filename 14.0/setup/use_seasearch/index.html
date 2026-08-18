@@ -5590,9 +5590,9 @@
 <div class="highlight"><pre><span></span><code><span class="nv">SEASEARCH_IMAGE</span><span class="o">=</span>seafileltd/seasearch-nomkl:latest
 </code></pre></div>
 </div>
-<div class="highlight"><pre><span></span><code><span class="nv">COMPOSE_FILE</span><span class="o">=</span><span class="s1">&#39;...,seasearch.yml&#39;</span><span class="w"> </span><span class="c1"># ... means other docker-compose files</span>
+<div class="highlight"><pre><span></span><code><span class="nv">COMPOSE_FILE</span><span class="o">=</span><span class="s1">'...,seasearch.yml'</span><span class="w"> </span><span class="c1"># ... means other docker-compose files</span>
 
-<span class="c1">#SEASEARCH_IMAGE=seafileltd/seasearch-nomkl:1.0-latest  # for Apple&#39;s Chip</span>
+<span class="c1">#SEASEARCH_IMAGE=seafileltd/seasearch-nomkl:1.0-latest  # for Apple's Chip</span>
 <span class="nv">SEASEARCH_IMAGE</span><span class="o">=</span>seafileltd/seasearch:1.0-latest
 
 <span class="nv">SS_DATA_PATH</span><span class="o">=</span>/opt/seasearch-data
@@ -5623,7 +5623,7 @@
 <ol>
 <li>
 <p>Get your authorization token by base64 code consist of <code>INIT_SS_ADMIN_USER</code> and <code>INIT_SS_ADMIN_PASSWORD</code> defined in <code>.env</code> firsly, which is used to authorize when calling the SeaSearch API:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;username:password&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s1">'username:password'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64
 
 <span class="c1"># example output</span>
 <span class="nv">YWRtaW46YWRtaW5fcGFzc3dvcmQ</span><span class="o">=</span>

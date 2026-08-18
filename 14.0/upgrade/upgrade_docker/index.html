@@ -6818,7 +6818,7 @@ wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/pro/seas
 </div>
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="c1"># -- add `elasticsearch.yml` if you are still using ElasticSearch</span>
-<span class="c1"># COMPOSE_FILE=&#39;...,elasticsearch.yml&#39;</span>
+<span class="c1"># COMPOSE_FILE='...,elasticsearch.yml'</span>
 
 <span class="c1"># -- if you are using SeaSearch, please also update the SeaSearch image</span>
 <span class="c1"># SEASEARCH_IMAGE=seafileltd/seasearch:1.0-latest # or seafileltd/seasearch-nomkl:1.0-latest for Apple chips</span>
@@ -7149,11 +7149,11 @@ listen 80;
 <div class="highlight"><pre><span></span><code>#    location /sdoc-server/ {
 #        add_header Access-Control-Allow-Origin *;
 #        add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
-#        add_header Access-Control-Allow-Headers &quot;deviceType,token, authorization, content-type&quot;;
-#        if ($request_method = &#39;OPTIONS&#39;) {
+#        add_header Access-Control-Allow-Headers "deviceType,token, authorization, content-type";
+#        if ($request_method = 'OPTIONS') {
 #            add_header Access-Control-Allow-Origin *;
 #            add_header Access-Control-Allow-Methods GET,POST,PUT,DELETE,OPTIONS;
-#            add_header Access-Control-Allow-Headers &quot;deviceType,token, authorization, content-type&quot;;
+#            add_header Access-Control-Allow-Headers "deviceType,token, authorization, content-type";
 #            return 204;
 #        }
 #        proxy_pass         http://sdoc-server:7070/;
@@ -7169,7 +7169,7 @@ listen 80;
 #        proxy_pass http://sdoc-server:7070;
 #        proxy_http_version 1.1;
 #        proxy_set_header Upgrade $http_upgrade;
-#        proxy_set_header Connection &#39;upgrade&#39;;
+#        proxy_set_header Connection 'upgrade';
 #        proxy_redirect off;
 #        proxy_buffers 8 32k;
 #        proxy_buffer_size 64k;
@@ -7184,31 +7184,31 @@ listen 80;
 <h3 id="other-configuration-changes">Other configuration changes<a class="headerlink" href="#other-configuration-changes" title="Permanent link">&para;</a></h3>
 <h4 id="enable-passing-of-remote_user">Enable passing of REMOTE_USER<a class="headerlink" href="#enable-passing-of-remote_user" title="Permanent link">&para;</a></h4>
 <p>REMOTE_USER header is not passed to Seafile by default, you need to change <code>gunicorn.conf.py</code> if you need REMOTE_USER header for SSO.</p>
-<div class="highlight"><pre><span></span><code><span class="n">forwarder_headers</span> <span class="o">=</span> <span class="s1">&#39;SCRIPT_NAME,PATH_INFO,REMOTE_USER&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">forwarder_headers</span> <span class="o">=</span> <span class="s1">'SCRIPT_NAME,PATH_INFO,REMOTE_USER'</span>
 </code></pre></div>
 <h4 id="supplement-or-remove-allowed_hosts-in-seahub_settingspy">Supplement or remove ALLOWED_HOSTS in seahub_settings.py<a class="headerlink" href="#supplement-or-remove-allowed_hosts-in-seahub_settingspy" title="Permanent link">&para;</a></h4>
 <p>Since version 12.0, the seaf-server component need to send internal requests to seahub component to check permissions, as reporting <strong><em>400 Error</em></strong> when downloading files if the <code>ALLOWED_HOSTS</code> set incorrect. In this case, you can either <strong>remove</strong> <code>ALLOWED_HOSTS</code> in <code>seahub_settings.py</code> or <strong>supplement</strong> <code>127.0.0.1</code> in <code>ALLOWED_HOSTS</code> list:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># seahub_settings.py</span>
 
-<span class="n">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;...(your domain)&#39;</span><span class="p">,</span> <span class="s1">&#39;127.0.0.1&#39;</span><span class="p">]</span>
+<span class="n">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'...(your domain)'</span><span class="p">,</span> <span class="s1">'127.0.0.1'</span><span class="p">]</span>
 </code></pre></div>
 <h2 id="upgrade-from-100-to-110">Upgrade from 10.0 to 11.0<a class="headerlink" href="#upgrade-from-100-to-110" title="Permanent link">&para;</a></h2>
 <p>Download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version. Taking the <a href="../../setup/setup_ce_by_docker/">community edition</a> as an example, you have to modify</p>
-<div class="highlight"><pre><span></span><code>...
-service:
-    ...
-    seafile:
-        image: seafileltd/seafile-mc:10.0-latest
-        ...
-    ...
+<div class="highlight"><pre><span></span><code><span class="nn">...</span>
+<span class="nt">service</span><span class="p">:</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">seafile</span><span class="p p-Indicator">:</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafileltd/seafile-mc:10.0-latest</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </code></pre></div>
 <p>to</p>
-<div class="highlight"><pre><span></span><code>service:
-    ...
-    seafile:
-        image: seafileltd/seafile-mc:11.0-latest
-        ...
-    ...
+<div class="highlight"><pre><span></span><code><span class="nt">service</span><span class="p">:</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">seafile</span><span class="p p-Indicator">:</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafileltd/seafile-mc:11.0-latest</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </code></pre></div>
 <p>It is also recommended that you upgrade <strong>mariadb</strong> and <strong>memcached</strong> to newer versions as in the v11.0 docker-compose.yml file. Specifically, in version 11.0, we use the following versions:</p>
 <ul>

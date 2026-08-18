@@ -5677,8 +5677,8 @@
 <span class="nv">ENABLE_SEAFDAV</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
 
 <span class="c1"># SeafDAV uses Gunicorn as web server.</span>
-<span class="c1"># This option maps to Gunicorn&#39;s &#39;workers&#39; setting. https://docs.gunicorn.org/en/stable/settings.html?#workers</span>
-<span class="c1"># By default it&#39;s set to 5 processes.</span>
+<span class="c1"># This option maps to Gunicorn's 'workers' setting. https://docs.gunicorn.org/en/stable/settings.html?#workers</span>
+<span class="c1"># By default it's set to 5 processes.</span>
 <span class="nv">SEAFDAV_WORKERS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>
 </code></pre></div>
 <h2 id="config-webdav-extension">Config WebDAV extension<a class="headerlink" href="#config-webdav-extension" title="Permanent link">&para;</a></h2>
@@ -5689,8 +5689,8 @@ debug = true
 
 share_name = /seafdav
 
-# This option maps to Gunicorn&#39;s &#39;timeout&#39; setting. https://docs.gunicorn.org/en/stable/settings.html?#timeout
-# By default it&#39;s set to 1200 seconds, to support large file uploads.
+# This option maps to Gunicorn's 'timeout' setting. https://docs.gunicorn.org/en/stable/settings.html?#timeout
+# By default it's set to 1200 seconds, to support large file uploads.
 timeout = 1200
 </code></pre></div>
 <p>Every time the configuration is modified, you need to restart seafile server to make it take effect.</p>
@@ -5749,7 +5749,7 @@ timeout = 1200
 <p>For Seafdav, the configuration of Apache is as follows:</p>
 <div class="highlight"><pre><span></span><code>......
     &lt;Location /seafdav&gt;
-        ProxyPass &quot;http://127.0.0.1:8080/seafdav&quot;
+        ProxyPass "http://127.0.0.1:8080/seafdav"
     &lt;/Location&gt;
 </code></pre></div>
 </div>
@@ -5791,14 +5791,14 @@ If not, modify it and restart seafile server.</p>
 <p>If you deploy SeafDAV behind Nginx/Apache, make sure to change the value of <code>share_name</code> as the sample configuration above. Restart your seafile server and try again.</p>
 <h3 id="cant-renamemove-filefolder">Can't rename/move file/folder<a class="headerlink" href="#cant-renamemove-filefolder" title="Permanent link">&para;</a></h3>
 <p>First, check the <code>seafdav.log</code> to see if there is log like the following.
-<div class="highlight"><pre><span></span><code>&quot;MOVE ... -&gt; 502 Bad Gateway
+<div class="highlight"><pre><span></span><code>"MOVE ... -&gt; 502 Bad Gateway
 </code></pre></div></p>
 <p>If you have enabled <strong>debug</strong>, there will also be the following log.
 <div class="highlight"><pre><span></span><code>09:47:06.533 - DEBUG   : Raising DAVError 502 Bad Gateway: Source and destination must have the same scheme.
-If you are running behind a reverse proxy, you may have to rewrite the &#39;Destination&#39; header.
+If you are running behind a reverse proxy, you may have to rewrite the 'Destination' header.
 (See https://github.com/mar10/wsgidav/issues/183)
 
-09:47:06.533 - DEBUG   : Caught (502, &quot;Source and destination must have the same scheme.\nIf you are running behind a reverse proxy, you may have to rewrite the &#39;Destination&#39; header.\n(See https://github.com/mar10/wsgidav/issues/183)&quot;)
+09:47:06.533 - DEBUG   : Caught (502, "Source and destination must have the same scheme.\nIf you are running behind a reverse proxy, you may have to rewrite the 'Destination' header.\n(See https://github.com/mar10/wsgidav/issues/183)")
 </code></pre></div></p>
 <p>This issue usually occurs when you have configured HTTPS, but the request was forwarded, resulting in the <code>HTTP_X_FORWARDED_PROTO</code> value in the request received by Seafile not being HTTPS.</p>
 <p>You can solve this by manually changing the value of <code>HTTP_X_FORWARDED_PROTO</code>. For example, in nginx, change

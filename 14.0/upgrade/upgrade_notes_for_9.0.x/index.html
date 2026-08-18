@@ -5678,7 +5678,7 @@ use_go_fileserver = true
 </code></pre></div>
 <p><em>Note</em>: You must properly grant permission to access the es data directory, and run the Elasticsearch container as the root user, refer to <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.16/docker.html#_configuration_files_must_be_readable_by_the_elasticsearch_user">here</a>.</p>
 <p>Start ES docker image</p>
-<div class="highlight"><pre><span></span><code>sudo docker run -d --name es -p 9200:9200 -e &quot;discovery.type=single-node&quot; -e &quot;bootstrap.memory_lock=true&quot; -e &quot;ES_JAVA_OPTS=-Xms2g -Xmx2g&quot; -e &quot;xpack.security.enabled=false&quot; --restart=always -v /opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data -d elasticsearch:7.16.2
+<div class="highlight"><pre><span></span><code>sudo docker run -d --name es -p 9200:9200 -e "discovery.type=single-node" -e "bootstrap.memory_lock=true" -e "ES_JAVA_OPTS=-Xms2g -Xmx2g" -e "xpack.security.enabled=false" --restart=always -v /opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data -d elasticsearch:7.16.2
 </code></pre></div>
 <p>Delete old index data</p>
 <div class="highlight"><pre><span></span><code>rm -rf /opt/seafile/pro-data/search/data/*
@@ -5686,7 +5686,7 @@ use_go_fileserver = true
 <p>Modify seafevents.conf</p>
 <div class="highlight"><pre><span></span><code>[INDEX FILES]
 external_es_server = true
-es_host = your server&#39;s IP (use 127.0.0.1 if deployed locally)
+es_host = your server's IP (use 127.0.0.1 if deployed locally)
 es_port = 9200
 </code></pre></div>
 <p>Restart seafile</p>
@@ -5714,171 +5714,171 @@ chmod -R 777 /opt/seafile-elasticsearch/data/
 </code></pre></div>
 <p><em>Note</em>: You must properly grant permission to access the es data directory, and run the Elasticsearch container as the root user, refer to <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.16/docker.html#_configuration_files_must_be_readable_by_the_elasticsearch_user">here</a>.</p>
 <p>Start ES docker image</p>
-<div class="highlight"><pre><span></span><code>sudo docker run -d --name es -p 9200:9200 -e &quot;discovery.type=single-node&quot; -e &quot;bootstrap.memory_lock=true&quot; -e &quot;ES_JAVA_OPTS=-Xms1g -Xmx1g&quot; -e &quot;xpack.security.enabled=false&quot; --restart=always -v /opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data -d elasticsearch:7.16.2
+<div class="highlight"><pre><span></span><code>sudo docker run -d --name es -p 9200:9200 -e "discovery.type=single-node" -e "bootstrap.memory_lock=true" -e "ES_JAVA_OPTS=-Xms1g -Xmx1g" -e "xpack.security.enabled=false" --restart=always -v /opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data -d elasticsearch:7.16.2
 </code></pre></div>
 <p>Note:<code>ES_JAVA_OPTS</code> can be adjusted according to your need.</p>
 <p>Create an index with 7.x compatible mappings.</p>
-<div class="highlight"><pre><span></span><code>curl -X PUT -H &#39;Content-Type: application/json&#39; &#39;http{s}://{es server IP}:9200/new_repo_head?include_type_name=false&amp;pretty=true&#39; -d &#39;
+<div class="highlight"><pre><span></span><code>curl -X PUT -H 'Content-Type: application/json' 'http{s}://{es server IP}:9200/new_repo_head?include_type_name=false&amp;pretty=true' -d '
 {
-  &quot;mappings&quot; : {
-    &quot;properties&quot; : {
-      &quot;commit&quot; : {
-        &quot;type&quot; : &quot;text&quot;,
-        &quot;index&quot; : false
+  "mappings" : {
+    "properties" : {
+      "commit" : {
+        "type" : "text",
+        "index" : false
       },
-      &quot;repo&quot; : {
-        &quot;type&quot; : &quot;text&quot;,
-        &quot;index&quot; : false
+      "repo" : {
+        "type" : "text",
+        "index" : false
       },
-      &quot;updatingto&quot; : {
-        &quot;type&quot; : &quot;text&quot;,
-        &quot;index&quot; : false
+      "updatingto" : {
+        "type" : "text",
+        "index" : false
       }
     }
   }
-}&#39;
+}'
 
-curl -X PUT -H &#39;Content-Type: application/json&#39; &#39;http{s}://{es server IP}:9200/new_repofiles/?include_type_name=false&amp;pretty=true&#39; -d &#39;
+curl -X PUT -H 'Content-Type: application/json' 'http{s}://{es server IP}:9200/new_repofiles/?include_type_name=false&amp;pretty=true' -d '
 {
-  &quot;settings&quot; : {
-    &quot;index&quot; : {
-      &quot;number_of_shards&quot; : 5,
-      &quot;number_of_replicas&quot; : 1,
-      &quot;analysis&quot; : {
-        &quot;analyzer&quot; : {
-          &quot;seafile_file_name_ngram_analyzer&quot; : {
-            &quot;filter&quot; : [
-              &quot;lowercase&quot;
+  "settings" : {
+    "index" : {
+      "number_of_shards" : 5,
+      "number_of_replicas" : 1,
+      "analysis" : {
+        "analyzer" : {
+          "seafile_file_name_ngram_analyzer" : {
+            "filter" : [
+              "lowercase"
             ],
-            &quot;type&quot; : &quot;custom&quot;,
-            &quot;tokenizer&quot; : &quot;seafile_file_name_ngram_tokenizer&quot;
+            "type" : "custom",
+            "tokenizer" : "seafile_file_name_ngram_tokenizer"
           }
         },
-        &quot;tokenizer&quot; : {
-          &quot;seafile_file_name_ngram_tokenizer&quot; : {
-            &quot;type&quot; : &quot;ngram&quot;,
-            &quot;min_gram&quot; : &quot;3&quot;,
-            &quot;max_gram&quot; : &quot;4&quot;
+        "tokenizer" : {
+          "seafile_file_name_ngram_tokenizer" : {
+            "type" : "ngram",
+            "min_gram" : "3",
+            "max_gram" : "4"
           }
         }
       }
     }
   },
-  &quot;mappings&quot; : {
-    &quot;properties&quot; : {
-      &quot;content&quot; : {
-        &quot;type&quot; : &quot;text&quot;,
-        &quot;term_vector&quot; : &quot;with_positions_offsets&quot;
+  "mappings" : {
+    "properties" : {
+      "content" : {
+        "type" : "text",
+        "term_vector" : "with_positions_offsets"
       },
-      &quot;filename&quot; : {
-        &quot;type&quot; : &quot;text&quot;,
-        &quot;fields&quot; : {
-          &quot;ngram&quot; : {
-            &quot;type&quot; : &quot;text&quot;,
-            &quot;analyzer&quot; : &quot;seafile_file_name_ngram_analyzer&quot;
+      "filename" : {
+        "type" : "text",
+        "fields" : {
+          "ngram" : {
+            "type" : "text",
+            "analyzer" : "seafile_file_name_ngram_analyzer"
           }
         }
       },
-      &quot;is_dir&quot; : {
-        &quot;type&quot; : &quot;boolean&quot;
+      "is_dir" : {
+        "type" : "boolean"
       },
-      &quot;mtime&quot; : {
-        &quot;type&quot; : &quot;date&quot;
+      "mtime" : {
+        "type" : "date"
       },
-      &quot;path&quot; : {
-        &quot;type&quot; : &quot;keyword&quot;
+      "path" : {
+        "type" : "keyword"
       },
-      &quot;repo&quot; : {
-        &quot;type&quot; : &quot;keyword&quot;
+      "repo" : {
+        "type" : "keyword"
       },
-      &quot;size&quot; : {
-        &quot;type&quot; : &quot;long&quot;
+      "size" : {
+        "type" : "long"
       },
-      &quot;suffix&quot; : {
-        &quot;type&quot; : &quot;keyword&quot;
+      "suffix" : {
+        "type" : "keyword"
       }
     }
   }
-}&#39;
+}'
 </code></pre></div>
 <p>Set the <code>refresh_interval</code> to <code>-1</code> and the <code>number_of_replicas</code> to <code>0</code> for efficient reindexing:</p>
-<div class="highlight"><pre><span></span><code>curl -X PUT -H &#39;Content-Type: application/json&#39; &#39;http{s}://{es server IP}:9200/new_repo_head/_settings?pretty&#39; -d &#39;
+<div class="highlight"><pre><span></span><code>curl -X PUT -H 'Content-Type: application/json' 'http{s}://{es server IP}:9200/new_repo_head/_settings?pretty' -d '
 {
-  &quot;index&quot; : {
-    &quot;refresh_interval&quot; : &quot;-1&quot;,
-    &quot;number_of_replicas&quot; : 0
+  "index" : {
+    "refresh_interval" : "-1",
+    "number_of_replicas" : 0
   }
-}&#39;
+}'
 
-curl -X PUT -H &#39;Content-Type: application/json&#39; &#39;http{s}://{es server IP}:9200/new_repofiles/_settings?pretty&#39; -d &#39;
+curl -X PUT -H 'Content-Type: application/json' 'http{s}://{es server IP}:9200/new_repofiles/_settings?pretty' -d '
 {
-  &quot;index&quot; : {
-    &quot;refresh_interval&quot; : &quot;-1&quot;,
-    &quot;number_of_replicas&quot; : 0
+  "index" : {
+    "refresh_interval" : "-1",
+    "number_of_replicas" : 0
   }
-}&#39;
+}'
 </code></pre></div>
 <p>Use the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.16/docs-reindex.html">reindex API</a> to copy documents from the 5.x index into the new index.</p>
-<div class="highlight"><pre><span></span><code>curl -X POST -H &#39;Content-Type: application/json&#39; &#39;http{s}://{es server IP}:9200/_reindex/?pretty&#39; -d &#39;
+<div class="highlight"><pre><span></span><code>curl -X POST -H 'Content-Type: application/json' 'http{s}://{es server IP}:9200/_reindex/?pretty' -d '
 {
-  &quot;source&quot;: {
-    &quot;index&quot;: &quot;repo_head&quot;,
-    &quot;type&quot;: &quot;repo_commit&quot;
+  "source": {
+    "index": "repo_head",
+    "type": "repo_commit"
   },
-  &quot;dest&quot;: {
-    &quot;index&quot;: &quot;new_repo_head&quot;,
-    &quot;type&quot;: &quot;_doc&quot;
+  "dest": {
+    "index": "new_repo_head",
+    "type": "_doc"
   }
-}&#39;
+}'
 
-curl -X POST -H &#39;Content-Type: application/json&#39; &#39;http{s}://{es server IP}:9200/_reindex/?pretty&#39; -d &#39;
+curl -X POST -H 'Content-Type: application/json' 'http{s}://{es server IP}:9200/_reindex/?pretty' -d '
 {
-  &quot;source&quot;: {
-    &quot;index&quot;: &quot;repofiles&quot;,
-    &quot;type&quot;: &quot;file&quot;
+  "source": {
+    "index": "repofiles",
+    "type": "file"
   },
-  &quot;dest&quot;: {
-    &quot;index&quot;: &quot;new_repofiles&quot;,
-    &quot;type&quot;: &quot;_doc&quot;
+  "dest": {
+    "index": "new_repofiles",
+    "type": "_doc"
   }
-}&#39;
+}'
 </code></pre></div>
 <p>Reset the <code>refresh_interval</code> and <code>number_of_replicas</code> to the values used in the old index.</p>
-<div class="highlight"><pre><span></span><code>curl -X PUT -H &#39;Content-Type: application/json&#39; &#39;http{s}://{es server IP}:9200/new_repo_head/_settings?pretty&#39; -d &#39;
+<div class="highlight"><pre><span></span><code>curl -X PUT -H 'Content-Type: application/json' 'http{s}://{es server IP}:9200/new_repo_head/_settings?pretty' -d '
 {
-  &quot;index&quot; : {
-    &quot;refresh_interval&quot; : null,
-    &quot;number_of_replicas&quot; : 1
+  "index" : {
+    "refresh_interval" : null,
+    "number_of_replicas" : 1
   }
-}&#39;
+}'
 
-curl -X PUT -H &#39;Content-Type: application/json&#39; &#39;http{s}://{es server IP}:9200/new_repofiles/_settings?pretty&#39; -d &#39;
+curl -X PUT -H 'Content-Type: application/json' 'http{s}://{es server IP}:9200/new_repofiles/_settings?pretty' -d '
 {
-  &quot;index&quot; : {
-    &quot;refresh_interval&quot; : null,
-    &quot;number_of_replicas&quot; : 1
+  "index" : {
+    "refresh_interval" : null,
+    "number_of_replicas" : 1
   }
-}&#39;
+}'
 </code></pre></div>
 <p>Wait for the index status to change to <code>green</code>.</p>
 <div class="highlight"><pre><span></span><code>curl http{s}://{es server IP}:9200/_cluster/health?pretty
 </code></pre></div>
 <p>Use the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.16/indices-aliases.html">aliases API</a> delete the old index and add an alias with the old index name to the new index.</p>
-<div class="highlight"><pre><span></span><code>curl -X POST -H &#39;Content-Type: application/json&#39; &#39;http{s}://{es server IP}:9200/_aliases?pretty&#39; -d &#39;
+<div class="highlight"><pre><span></span><code>curl -X POST -H 'Content-Type: application/json' 'http{s}://{es server IP}:9200/_aliases?pretty' -d '
 {
-  &quot;actions&quot;: [
-    {&quot;remove_index&quot;: {&quot;index&quot;: &quot;repo_head&quot;}},
-    {&quot;remove_index&quot;: {&quot;index&quot;: &quot;repofiles&quot;}},
-    {&quot;add&quot;: {&quot;index&quot;: &quot;new_repo_head&quot;, &quot;alias&quot;: &quot;repo_head&quot;}},
-    {&quot;add&quot;: {&quot;index&quot;: &quot;new_repofiles&quot;, &quot;alias&quot;: &quot;repofiles&quot;}}
+  "actions": [
+    {"remove_index": {"index": "repo_head"}},
+    {"remove_index": {"index": "repofiles"}},
+    {"add": {"index": "new_repo_head", "alias": "repo_head"}},
+    {"add": {"index": "new_repofiles", "alias": "repofiles"}}
   ]
-}&#39;
+}'
 </code></pre></div>
 <p>After reindex, modify the configuration in Seafile.</p>
 <p>Modify seafevents.conf</p>
 <div class="highlight"><pre><span></span><code>[INDEX FILES]
 external_es_server = true
-es_host = your server&#39;s IP
+es_host = your server's IP
 es_port = 9200
 </code></pre></div>
 <p>Restart seafile</p>

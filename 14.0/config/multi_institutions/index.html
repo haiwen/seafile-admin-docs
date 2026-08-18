@@ -5531,7 +5531,7 @@
 <h2 id="turn-on-the-feature">Turn on the feature<a class="headerlink" href="#turn-on-the-feature" title="Permanent link">&para;</a></h2>
 <p>In <code>seahub_settings.py</code>, add <code>MULTI_INSTITUTION = True</code> to enable multi-institution feature, and add</p>
 <div class="highlight"><pre><span></span><code>    <span class="n">EXTRA_MIDDLEWARE</span> <span class="o">+=</span> <span class="p">(</span>
-        <span class="s1">&#39;seahub.institutions.middleware.InstitutionMiddleware&#39;</span><span class="p">,</span>
+        <span class="s1">'seahub.institutions.middleware.InstitutionMiddleware'</span><span class="p">,</span>
     <span class="p">)</span>
 </code></pre></div>
 <div class="admonition tip">
@@ -5542,10 +5542,10 @@
 <h2 id="assign-users-to-institutions">Assign users to institutions<a class="headerlink" href="#assign-users-to-institutions" title="Permanent link">&para;</a></h2>
 <p>If you are using Shibboleth, you can map a Shibboleth attribute into institution. For example, the following configuration maps organization attribute to institution.</p>
 <div class="highlight"><pre><span></span><code>SHIBBOLETH_ATTRIBUTE_MAP = {
-    &quot;givenname&quot;: (False, &quot;givenname&quot;),
-    &quot;sn&quot;: (False, &quot;surname&quot;),
-    &quot;mail&quot;: (False, &quot;contact_email&quot;),
-    &quot;organization&quot;: (False, &quot;institution&quot;),
+    "givenname": (False, "givenname"),
+    "sn": (False, "surname"),
+    "mail": (False, "contact_email"),
+    "organization": (False, "institution"),
 }
 </code></pre></div>
 

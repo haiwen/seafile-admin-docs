@@ -5572,18 +5572,18 @@ openssl<span class="w"> </span>req<span class="w"> </span>-x509<span class="w"> 
 nano<span class="w"> </span>seafile-server.yml
 </code></pre></div>
 <p>and</p>
-<div class="highlight"><pre><span></span><code>services:
-  ...
-  seafile:
-    ...
-    volumes:
-      ...
-      # If you use a self-generated certificate, please add it to the Seafile server trusted directory (i.e. remove the comment symbol below)
-      # - &quot;/opt/seafile-caddy/certs/cert.pem:/usr/local/share/ca-certificates/cert.crt&quot;
-    labels:
-      caddy: ${SEAFILE_SERVER_HOSTNAME:?Variable is not set or empty} # leave this variables only
-      caddy.tls: &quot;/data/caddy/certs/cert.pem /data/caddy/certs/key.pem&quot;
-      ...
+<div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">seafile</span><span class="p p-Indicator">:</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain"># If you use a self-generated certificate, please add it to the Seafile server trusted directory (i.e. remove the comment symbol below)</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain"># - "/opt/seafile-caddy/certs/cert.pem:/usr/local/share/ca-certificates/cert.crt"</span>
+<span class="w">    </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">caddy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${SEAFILE_SERVER_HOSTNAME:?Variable is not set or empty}</span><span class="w"> </span><span class="c1"># leave this variables only</span>
+<span class="w">      </span><span class="nt">caddy.tls</span><span class="p">:</span><span class="w"> </span><span class="s">"/data/caddy/certs/cert.pem</span><span class="nv"> </span><span class="s">/data/caddy/certs/key.pem"</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">DNS resolution must work inside the container</p>

@@ -5669,13 +5669,13 @@ pool = seafile-fs
 </code></pre></div>
 <p>You can create a ceph user for seafile on your ceph cluster like this:</p>
 <div class="highlight"><pre><span></span><code>ceph auth add client.seafile \
-  mds &#39;allow&#39; \
-  mon &#39;allow r&#39; \
-  osd &#39;allow rwx pool=seafile-blocks, allow rwx pool=seafile-commits, allow rwx pool=seafile-fs&#39;
+  mds 'allow' \
+  mon 'allow r' \
+  osd 'allow rwx pool=seafile-blocks, allow rwx pool=seafile-commits, allow rwx pool=seafile-fs'
 </code></pre></div>
 <p>You also have to add this user's keyring path to /etc/ceph/ceph.conf:</p>
 <div class="highlight"><pre><span></span><code>[client.seafile]
-keyring = &lt;path to user&#39;s keyring file&gt;
+keyring = &lt;path to user's keyring file&gt;
 </code></pre></div>
 
 

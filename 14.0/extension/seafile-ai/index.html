@@ -5652,7 +5652,7 @@
 </li>
 <li>
 <p>Modify <code>.env</code> and add the basic Seafile AI switch:</p>
-<div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;...,seafile-ai.yml&#39; # add seafile-ai.yml
+<div class="highlight"><pre><span></span><code>COMPOSE_FILE='...,seafile-ai.yml' # add seafile-ai.yml
 
 ENABLE_SEAFILE_AI=true
 </code></pre></div>
@@ -5688,6 +5688,12 @@ ENABLE_SEAFILE_AI=true
 <span class="w">      </span><span class="nt">tier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">high</span>
 <span class="w">      </span><span class="nt">hidden</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 <span class="w">      </span><span class="nt">disable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">  </span><span class="nt">EMBEDDING_MODEL</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openai</span>
+<span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://&lt;your-llm-endpoint&gt;</span>
+<span class="w">    </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;your-api-key&gt;</span>
+<span class="w">    </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">text-embedding-3-small</span>
+<span class="w">    </span><span class="nt">dimensions</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1024</span>
 </code></pre></div>
 <p>If you are using a LLM service with <strong><em>OpenAI-compatible endpoints</em></strong>, you can set <code>type</code> to <code>other</code> and configure <code>url</code> accurately.</p>
 <p>If you only need one model, keep a single item in <code>LLM_MODELS</code> and set its <code>default</code> field to <code>true</code>.</p>
@@ -5726,7 +5732,7 @@ ENABLE_SEAFILE_AI=true
 </tr>
 <tr>
 <td><code>tier</code></td>
-<td>Model tier metadata used by Seafile AI.</td>
+<td>Reserved for future use. Currently parsed but not used for model routing.</td>
 </tr>
 <tr>
 <td><code>hidden</code></td>
@@ -5735,6 +5741,14 @@ ENABLE_SEAFILE_AI=true
 <tr>
 <td><code>disable</code></td>
 <td>If <code>true</code>, the model is disabled and should not be used for AI requests.</td>
+</tr>
+<tr>
+<td><code>dimensions</code></td>
+<td><em>(For <code>EMBEDDING_MODEL</code> only)</em> Output dimension size. Default is <code>1024</code>.</td>
+</tr>
+<tr>
+<td><code>price</code></td>
+<td>Used for calculating AI service usage cost. Contains <code>input_tokens</code> and <code>output_tokens</code> keys representing price per 1M (1,000,000) tokens.</td>
 </tr>
 </tbody>
 </table>
@@ -5959,6 +5973,12 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 <span class="w">      </span><span class="nt">tier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">high</span>
 <span class="w">      </span><span class="nt">hidden</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 <span class="w">      </span><span class="nt">disable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">  </span><span class="nt">EMBEDDING_MODEL</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openai</span>
+<span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://&lt;your-llm-endpoint&gt;</span>
+<span class="w">    </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;your-api-key&gt;</span>
+<span class="w">    </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">text-embedding-3-small</span>
+<span class="w">    </span><span class="nt">dimensions</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1024</span>
 </code></pre></div>
 <p>Seahub reads this file on the Seafile host to display the available model list, while the Seafile AI service reads its local copy on the Seafile AI host to process actual AI requests. When Seafile and Seafile AI are deployed on separate machines, the two files should stay consistent.</p>
 <p>The fields in <code>LLM_MODELS</code> have the same meanings as described in the deployment steps above.</p>
@@ -5984,13 +6004,15 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 <p>Seafile supports counting users' AI usage (how many tokens are used) and setting monthly AI quotas for users.</p>
 <ol>
 <li>
-<p>Open <code>$SEAFILE_VOLUME/seafile/conf/seahub_settings.py</code> and add AI prices (i.e., how much per token) informations:</p>
-<div class="highlight"><pre><span></span><code><span class="n">AI_PRICES</span> <span class="o">=</span> <span class="p">{</span>
-<span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="c1"># replace gpt-4o-mini to your model name</span>
-    <span class="s2">&quot;input_tokens_1k&quot;</span><span class="p">:</span> <span class="mf">0.0011</span><span class="p">,</span> <span class="c1"># input price per token</span>
-    <span class="s2">&quot;output_tokens_1k&quot;</span><span class="p">:</span> <span class="mf">0.0044</span> <span class="c1"># output price per token</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<p>Seafile AI model prices are configured via <code>price</code> field in <code>seafile_ai_config.yaml</code>. For example:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">global</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">LLM_MODELS</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openai</span>
+<span class="w">      </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-4o-mini</span>
+<span class="w">      </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;your-api-key&gt;</span>
+<span class="w">      </span><span class="nt">price</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">input_tokens</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.15</span><span class="w">   </span><span class="c1"># input price per 1M (1,000,000) tokens</span>
+<span class="w">        </span><span class="nt">output_tokens</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.60</span><span class="w">  </span><span class="c1"># output price per 1M tokens</span>
 </code></pre></div>
 </li>
 <li>

@@ -5619,30 +5619,30 @@
 <h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
 <p>This example shows how to migrate the user with the username <code>12ae56789f1e4c8d8e1c31415867317c@auth.local</code> from local database authentication to OAuth. The OAuth authentication is configured in <code>seahub_settings.py</code> with the provider name <code>authentik-oauth</code>. The <code>uid</code> of the user inside the Identity Provider is <code>HR12345</code>.</p>
 <p>This is what the database looks like before these commands must be executed:</p>
-<div class="highlight"><pre><span></span><code>mysql&gt; select email,left(passwd,25) from EmailUser where email = &#39;12ae56789f1e4c8d8e1c31415867317c@auth.local&#39;;
+<div class="highlight"><pre><span></span><code>mysql&gt; select email,left(passwd,25) from EmailUser where email = '12ae56789f1e4c8d8e1c31415867317c@auth.local';
 +---------------------------------------------+------------------------------+
 | email                                       | left(passwd,25)              |
 +---------------------------------------------+------------------------------+
 | 12ae56789f1e4c8d8e1c31415867317c@auth.local | PBKDF2SHA256$10000$4cdda6... |
 +---------------------------------------------+------------------------------+
 
-mysql&gt; update EmailUser set passwd = &#39;!&#39; where email = &#39;12ae56789f1e4c8d8e1c31415867317c@auth.local&#39;;
+mysql&gt; update EmailUser set passwd = '!' where email = '12ae56789f1e4c8d8e1c31415867317c@auth.local';
 
-mysql&gt; insert into `social_auth_usersocialauth` (`username`, `provider`, `uid`, `extra_data`) values (&#39;12ae56789f1e4c8d8e1c31415867317c@auth.local&#39;, &#39;authentik-oauth&#39;, &#39;HR12345&#39;, &#39;&#39;);
+mysql&gt; insert into `social_auth_usersocialauth` (`username`, `provider`, `uid`, `extra_data`) values ('12ae56789f1e4c8d8e1c31415867317c@auth.local', 'authentik-oauth', 'HR12345', '');
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The <code>extra_data</code> field store user's information returned from the provider. For most providers, the <code>extra_data</code> field is usually an empty character. Since version 11.0.3-Pro, the default value of the <code>extra_data</code> field is <code>NULL</code>.</p>
 </div>
 <p>Afterwards the databases should look like this:</p>
-<div class="highlight"><pre><span></span><code>mysql&gt; select email,passwd from EmailUser where email = &#39;12ae56789f1e4c8d8e1c31415867317c@auth.local&#39;;
+<div class="highlight"><pre><span></span><code>mysql&gt; select email,passwd from EmailUser where email = '12ae56789f1e4c8d8e1c31415867317c@auth.local';
 +---------------------------------------------+------- +
 | email                                       | passwd |
 +---------------------------------------------+--------+
 | 12ae56789f1e4c8d8e1c31415867317c@auth.local | !      |
 +---------------------------------------------+--------+
 
-mysql&gt; select username,provider,uid from social_auth_usersocialauth where username = &#39;12ae56789f1e4c8d8e1c31415867317c@auth.local&#39;;
+mysql&gt; select username,provider,uid from social_auth_usersocialauth where username = '12ae56789f1e4c8d8e1c31415867317c@auth.local';
 +---------------------------------------------+-----------------+---------+
 | username                                    | provider        | uid     |
 +---------------------------------------------+-----------------+---------+

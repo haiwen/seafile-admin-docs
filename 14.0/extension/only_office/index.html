@@ -5690,15 +5690,15 @@
 </div>
 <p>Also modify <code>seahub_settings.py</code></p>
 <div class="highlight"><pre><span></span><code><span class="n">ENABLE_ONLYOFFICE</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">ONLYOFFICE_APIJS_URL</span> <span class="o">=</span> <span class="s1">&#39;https://seafile.example.com:6233/web-apps/apps/api/documents/api.js&#39;</span>
-<span class="n">ONLYOFFICE_JWT_SECRET</span> <span class="o">=</span> <span class="s1">&#39;&lt;your jwt secret&gt;&#39;</span>
+<span class="n">ONLYOFFICE_APIJS_URL</span> <span class="o">=</span> <span class="s1">'https://seafile.example.com:6233/web-apps/apps/api/documents/api.js'</span>
+<span class="n">ONLYOFFICE_JWT_SECRET</span> <span class="o">=</span> <span class="s1">'&lt;your jwt secret&gt;'</span>
 
 <span class="c1"># NOTE</span>
 <span class="c1"># The following two configurations, do NOT need to configure them explicitly.</span>
 <span class="c1"># The default values are as follows.</span>
 <span class="c1"># If you have custom needs, you can also configure them, which will override the default values.</span>
-<span class="n">ONLYOFFICE_FILE_EXTENSION</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;doc&#39;</span><span class="p">,</span> <span class="s1">&#39;docx&#39;</span><span class="p">,</span> <span class="s1">&#39;ppt&#39;</span><span class="p">,</span> <span class="s1">&#39;pptx&#39;</span><span class="p">,</span> <span class="s1">&#39;xls&#39;</span><span class="p">,</span> <span class="s1">&#39;xlsx&#39;</span><span class="p">,</span> <span class="s1">&#39;odt&#39;</span><span class="p">,</span> <span class="s1">&#39;fodt&#39;</span><span class="p">,</span> <span class="s1">&#39;odp&#39;</span><span class="p">,</span> <span class="s1">&#39;fodp&#39;</span><span class="p">,</span> <span class="s1">&#39;ods&#39;</span><span class="p">,</span> <span class="s1">&#39;fods&#39;</span><span class="p">,</span> <span class="s1">&#39;ppsx&#39;</span><span class="p">,</span> <span class="s1">&#39;pps&#39;</span><span class="p">,</span> <span class="s1">&#39;csv&#39;</span><span class="p">)</span>
-<span class="n">ONLYOFFICE_EDIT_FILE_EXTENSION</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;docx&#39;</span><span class="p">,</span> <span class="s1">&#39;pptx&#39;</span><span class="p">,</span> <span class="s1">&#39;xlsx&#39;</span><span class="p">,</span> <span class="s1">&#39;csv&#39;</span><span class="p">)</span>
+<span class="n">ONLYOFFICE_FILE_EXTENSION</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'doc'</span><span class="p">,</span> <span class="s1">'docx'</span><span class="p">,</span> <span class="s1">'ppt'</span><span class="p">,</span> <span class="s1">'pptx'</span><span class="p">,</span> <span class="s1">'xls'</span><span class="p">,</span> <span class="s1">'xlsx'</span><span class="p">,</span> <span class="s1">'odt'</span><span class="p">,</span> <span class="s1">'fodt'</span><span class="p">,</span> <span class="s1">'odp'</span><span class="p">,</span> <span class="s1">'fodp'</span><span class="p">,</span> <span class="s1">'ods'</span><span class="p">,</span> <span class="s1">'fods'</span><span class="p">,</span> <span class="s1">'ppsx'</span><span class="p">,</span> <span class="s1">'pps'</span><span class="p">,</span> <span class="s1">'csv'</span><span class="p">)</span>
+<span class="n">ONLYOFFICE_EDIT_FILE_EXTENSION</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'docx'</span><span class="p">,</span> <span class="s1">'pptx'</span><span class="p">,</span> <span class="s1">'xlsx'</span><span class="p">,</span> <span class="s1">'csv'</span><span class="p">)</span>
 <span class="n">OFFICE_PREVIEW_MAX_SIZE</span> <span class="o">=</span> <span class="mi">30</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span> <span class="c1"># preview size, 30 MB</span>
 </code></pre></div>
 <div class="admonition tip">
@@ -5711,30 +5711,30 @@
 </code></pre></div>
 <p>For example, you can configure OnlyOffice to automatically save by copying the following code block in this file:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;services&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;CoAuthoring&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;autoAssembly&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;enable&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;5m&quot;</span>
+<span class="w">  </span><span class="nt">"services"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"CoAuthoring"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"autoAssembly"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5m"</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">&quot;FileConverter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;converter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;downloadAttemptMaxCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
+<span class="w">  </span><span class="nt">"FileConverter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"converter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"downloadAttemptMaxCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>Mount this config file into your onlyoffice block in <code>onlyoffice.yml</code>:</p>
-<div class="highlight"><pre><span></span><code>service:
-  ...
-  onlyoffice:
-    ...
-    volumes:
-      ...
-      - &lt;Your path to local-production-linux.json&gt;:/etc/onlyoffice/documentserver/local-production-linux.json
-...
+<div class="highlight"><pre><span></span><code><span class="nt">service</span><span class="p">:</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">onlyoffice</span><span class="p p-Indicator">:</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">- &lt;Your path to local-production-linux.json&gt;:/etc/onlyoffice/documentserver/local-production-linux.json</span>
+<span class="nn">...</span>
 </code></pre></div>
 <p>For more information you can check the official documentation: <a href="https://api.onlyoffice.com/editors/signature/">https://api.onlyoffice.com/editors/signature/</a> and <a href="https://github.com/ONLYOFFICE/Docker-DocumentServer#available-configuration-parameters">https://github.com/ONLYOFFICE/Docker-DocumentServer#available-configuration-parameters</a></p>
 <h3 id="restart-seafile-docker-instance-and-test-that-onlyoffice-is-running">Restart Seafile-docker instance and test that OnlyOffice is running<a class="headerlink" href="#restart-seafile-docker-instance-and-test-that-onlyoffice-is-running" title="Permanent link">&para;</a></h3>
@@ -5761,8 +5761,8 @@ Error: DNS lookup {local IP} (family:undefined, host:undefined) is not allowed. 
 <h3 id="onlyoffice-on-a-separate-host-and-url">OnlyOffice on a separate host and URL<a class="headerlink" href="#onlyoffice-on-a-separate-host-and-url" title="Permanent link">&para;</a></h3>
 <p>For independent deployment of OnlyOffice on a single server, please refer to the <a href="https://api.onlyoffice.com/docs/docs-api/get-started/installation/self-hosted/">official documentation</a>. After a successful deployment, you only need to specify the values of the following fields in <code>seahub_settings.py</code> and then restart the service.</p>
 <div class="highlight"><pre><span></span><code><span class="n">ENABLE_ONLYOFFICE</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">ONLYOFFICE_APIJS_URL</span> <span class="o">=</span> <span class="s1">&#39;http</span><span class="si">{s}</span><span class="s1">://&lt;Your OnlyOffice host url&gt;/web-apps/apps/api/documents/api.js&#39;</span>
-<span class="n">ONLYOFFICE_JWT_SECRET</span> <span class="o">=</span> <span class="s1">&#39;&lt;your jwt secret&gt;&#39;</span>
+<span class="n">ONLYOFFICE_APIJS_URL</span> <span class="o">=</span> <span class="s1">'http</span><span class="si">{s}</span><span class="s1">://&lt;Your OnlyOffice host url&gt;/web-apps/apps/api/documents/api.js'</span>
+<span class="n">ONLYOFFICE_JWT_SECRET</span> <span class="o">=</span> <span class="s1">'&lt;your jwt secret&gt;'</span>
 <span class="n">OFFICE_PREVIEW_MAX_SIZE</span> <span class="o">=</span> <span class="mi">30</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span>
 </code></pre></div>
 <h3 id="about-ssl">About SSL<a class="headerlink" href="#about-ssl" title="Permanent link">&para;</a></h3>

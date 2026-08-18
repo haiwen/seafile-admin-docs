@@ -5483,11 +5483,11 @@
 <h1 id="configurable-options">Configurable Options<a class="headerlink" href="#configurable-options" title="Permanent link">&para;</a></h1>
 <p>In the file <code>seafevents.conf</code>:</p>
 <div class="highlight"><pre><span></span><code>[STATISTICS]
-## must be &quot;true&quot; to enable statistics
+## must be "true" to enable statistics
 enabled = true
 
 [SEAHUB EMAIL]
-## must be &quot;true&quot; to enable user email notifications when there are new unread notifications
+## must be "true" to enable user email notifications when there are new unread notifications
 enabled = true
 
 ## interval of sending Seahub email. Can be s(seconds), m(minutes), h(hours), d(days)
@@ -5499,17 +5499,17 @@ threshold = 5
 suffix = md,txt,...
 
 ## From seafile 7.0.0
-## Recording file history to database for fast access is enabled by default for &#39;Markdown, .txt, ppt, pptx, doc, docx, xls, xlsx&#39;. 
+## Recording file history to database for fast access is enabled by default for 'Markdown, .txt, ppt, pptx, doc, docx, xls, xlsx'. 
 ## After enable the feature, the old histories version for markdown, doc, docx files will not be list in the history page.
 ## (Only new histories that stored in database will be listed) But the users can still access the old versions in the library snapshots.
 ## For file types not listed in the suffix , histories version will be scanned from the library history as before.
-## The feature default is enable. You can set the &#39;enabled = false&#39; to disable the feature.
+## The feature default is enable. You can set the 'enabled = false' to disable the feature.
 
-## The &#39;threshold&#39; is the time threshold for recording the historical version of a file, in minutes, the default is 5 minutes. 
+## The 'threshold' is the time threshold for recording the historical version of a file, in minutes, the default is 5 minutes. 
 ## This means that if the interval between two adjacent file saves is less than 5 minutes, the two file changes will be merged and recorded as a historical version. 
 ## When set to 0, there is no time limit, which means that each save will generate a separate historical version.
 
-## If you need to modify the file list format, you can add &#39;suffix = md, txt, ...&#39; configuration items to achieve.
+## If you need to modify the file list format, you can add 'suffix = md, txt, ...' configuration items to achieve.
 </code></pre></div>
 <h2 id="the-following-configurations-for-pro-edition-only">The following configurations for Pro Edition only<a class="headerlink" href="#the-following-configurations-for-pro-edition-only" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>[AUDIT]
@@ -5520,7 +5520,7 @@ enabled = true
 ## The following `[INDEX FILES]` section is for deployments that continue to use Elasticsearch.
 ## Since Seafile Pro 14.0, new Docker deployments use SeaSearch by default.
 [INDEX FILES]
-## must be &quot;true&quot; to enable search
+## must be "true" to enable search
 enabled = true
 
 ## The interval the search index is updated. Can be s(seconds), m(minutes), h(hours), d(days)
@@ -5530,7 +5530,7 @@ interval=10m
 highlight = fvh
 
 ## If true, indexes the contents of office/pdf files while updating search index
-## Note: If you change this option from &quot;false&quot; to &quot;true&quot;, then you need to clear the search index and update the index again.
+## Note: If you change this option from "false" to "true", then you need to clear the search index and update the index again.
 ## Refer to file search manual for details.
 index_office_pdf=false
 

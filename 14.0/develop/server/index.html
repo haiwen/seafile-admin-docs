@@ -5921,9 +5921,9 @@ service mariadb start
 mysqladmin -u root password your_password
 </code></pre></div>
 <p>sql for create databases</p>
-<div class="highlight"><pre><span></span><code>mysql -uroot -pyour_password -e &quot;CREATE DATABASE ccnet CHARACTER SET utf8;&quot;
-mysql -uroot -pyour_password -e &quot;CREATE DATABASE seafile CHARACTER SET utf8;&quot;
-mysql -uroot -pyour_password -e &quot;CREATE DATABASE seahub CHARACTER SET utf8;&quot;
+<div class="highlight"><pre><span></span><code>mysql -uroot -pyour_password -e "CREATE DATABASE ccnet CHARACTER SET utf8;"
+mysql -uroot -pyour_password -e "CREATE DATABASE seafile CHARACTER SET utf8;"
+mysql -uroot -pyour_password -e "CREATE DATABASE seahub CHARACTER SET utf8;"
 </code></pre></div>
 <h2 id="download-source-code">Download Source Code<a class="headerlink" href="#download-source-code" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>cd ~/
@@ -6013,17 +6013,17 @@ EOF
 
 cat &gt; seahub_settings.py  &lt;&lt;EOF
 DATABASES = {
-    &#39;default&#39;: {
-        &#39;ENGINE&#39;: &#39;django.db.backends.mysql&#39;,
-        &#39;NAME&#39;: &#39;seahub&#39;,
-        &#39;USER&#39;: &#39;root&#39;,
-        &#39;PASSWORD&#39;: &#39;123456&#39;,
-        &#39;HOST&#39;: &#39;localhost&#39;,
-        &#39;PORT&#39;: &#39;3306&#39;,
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'seahub',
+        'USER': 'root',
+        'PASSWORD': '123456',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
-FILE_SERVER_ROOT = &#39;http://127.0.0.1:8082&#39;
-SERVICE_URL = &#39;http://127.0.0.1:8000&#39;
+FILE_SERVER_ROOT = 'http://127.0.0.1:8082'
+SERVICE_URL = 'http://127.0.0.1:8000'
 EOF
 </code></pre></div>
 <h2 id="start-seaf-server">Start seaf-server<a class="headerlink" href="#start-seaf-server" title="Permanent link">&para;</a></h2>
@@ -6067,12 +6067,12 @@ git checkout master
 </code></pre></div>
 <p>2, add the following configration to /root/dev/conf/seahub_settings.py</p>
 <div class="highlight"><pre><span></span><code>import os
-PROJECT_ROOT = &#39;/root/dev/source-code/seahub&#39;
+PROJECT_ROOT = '/root/dev/source-code/seahub'
 WEBPACK_LOADER = {
-    &#39;DEFAULT&#39;: {
-        &#39;BUNDLE_DIR_NAME&#39;: &#39;frontend/&#39;,
-        &#39;STATS_FILE&#39;: os.path.join(PROJECT_ROOT,
-                                   &#39;frontend/webpack-stats.dev.json&#39;),
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'frontend/',
+        'STATS_FILE': os.path.join(PROJECT_ROOT,
+                                   'frontend/webpack-stats.dev.json'),
     }
 }
 DEBUG = True

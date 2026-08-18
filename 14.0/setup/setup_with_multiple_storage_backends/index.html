@@ -5794,94 +5794,94 @@ storage_classes_file = /shared/conf/seafile_storage_classes.json
 <p>Here is an example, which uses local file system, S3 (default), Swift and Ceph at the same time.</p>
 <div class="highlight"><pre><span></span><code><span class="p">[</span>
 <span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;storage_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hot_storage&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hot Storage&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;is_default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;commits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;s3&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;bucket&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;seafile-commits&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;your key&gt;&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;key_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;your key id&gt;&quot;</span>
+<span class="w">    </span><span class="nt">"storage_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hot_storage"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hot Storage"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"is_default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"commits"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"backend"</span><span class="p">:</span><span class="w"> </span><span class="s2">"s3"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"bucket"</span><span class="p">:</span><span class="w"> </span><span class="s2">"seafile-commits"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;your key&gt;"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"key_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;your key id&gt;"</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;fs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;s3&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;bucket&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;seafile-fs&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;your key&gt;&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;key_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;your key id&gt;&quot;</span>
+<span class="w">    </span><span class="nt">"fs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"backend"</span><span class="p">:</span><span class="w"> </span><span class="s2">"s3"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"bucket"</span><span class="p">:</span><span class="w"> </span><span class="s2">"seafile-fs"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;your key&gt;"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"key_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;your key id&gt;"</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;blocks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;s3&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;bucket&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;seafile-blocks&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;your key&gt;&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;key_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;your key id&gt;&quot;</span>
+<span class="w">    </span><span class="nt">"blocks"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"backend"</span><span class="p">:</span><span class="w"> </span><span class="s2">"s3"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"bucket"</span><span class="p">:</span><span class="w"> </span><span class="s2">"seafile-blocks"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;your key&gt;"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"key_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;your key id&gt;"</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">},</span>
 <span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;storage_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cold_storage&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Cold Storage&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;is_default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;fs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fs&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/share/seafile/seafile-data&quot;</span><span class="w"> </span><span class="c1">// /opt/seafile/seafile-data for binary-install Seafile</span>
+<span class="w">    </span><span class="nt">"storage_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cold_storage"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cold Storage"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"is_default"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"fs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"backend"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fs"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"dir"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/share/seafile/seafile-data"</span><span class="w"> </span><span class="c1">// /opt/seafile/seafile-data for binary-install Seafile</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;commits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fs&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/share/seafile/seafile-data&quot;</span>
+<span class="w">    </span><span class="nt">"commits"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"backend"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fs"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"dir"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/share/seafile/seafile-data"</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;blocks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fs&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/share/seafile/seafile-data&quot;</span>
+<span class="w">    </span><span class="nt">"blocks"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"backend"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fs"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"dir"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/share/seafile/seafile-data"</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">},</span>
 <span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;storage_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;swift_storage&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Swift Storage&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;fs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;swift&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;tenant&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;your tenant&gt;&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;user_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;your username&gt;&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;your password&gt;&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;container&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;seafile-commits&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;auth_host&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;Swift auth host&gt;:&lt;port, default 5000&gt;&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;auth_ver&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;v2.0&quot;</span>
+<span class="w">    </span><span class="nt">"storage_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"swift_storage"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Swift Storage"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"fs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"backend"</span><span class="p">:</span><span class="w"> </span><span class="s2">"swift"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"tenant"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;your tenant&gt;"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"user_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;your username&gt;"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;your password&gt;"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"container"</span><span class="p">:</span><span class="w"> </span><span class="s2">"seafile-commits"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"auth_host"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;Swift auth host&gt;:&lt;port, default 5000&gt;"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"auth_ver"</span><span class="p">:</span><span class="w"> </span><span class="s2">"v2.0"</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;commits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;swift&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;tenant&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;your tenant&gt;&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;user_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;your username&gt;&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;your password&gt;&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;container&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;seafile-commits&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;auth_host&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;Swift auth host&gt;:&lt;port, default 5000&gt;&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;auth_ver&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;v2.0&quot;</span>
+<span class="w">    </span><span class="nt">"commits"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"backend"</span><span class="p">:</span><span class="w"> </span><span class="s2">"swift"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"tenant"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;your tenant&gt;"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"user_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;your username&gt;"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;your password&gt;"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"container"</span><span class="p">:</span><span class="w"> </span><span class="s2">"seafile-commits"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"auth_host"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;Swift auth host&gt;:&lt;port, default 5000&gt;"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"auth_ver"</span><span class="p">:</span><span class="w"> </span><span class="s2">"v2.0"</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;blocks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;swift&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;tenant&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;your tenant&gt;&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;user_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;your username&gt;&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;your password&gt;&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;container&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;seafile-commits&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;auth_host&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;Swift auth host&gt;:&lt;port, default 5000&gt;&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;auth_ver&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;v2.0&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;region&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;RegionTwo&quot;</span>
+<span class="w">    </span><span class="nt">"blocks"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"backend"</span><span class="p">:</span><span class="w"> </span><span class="s2">"swift"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"tenant"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;your tenant&gt;"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"user_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;your username&gt;"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;your password&gt;"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"container"</span><span class="p">:</span><span class="w"> </span><span class="s2">"seafile-commits"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"auth_host"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;Swift auth host&gt;:&lt;port, default 5000&gt;"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"auth_ver"</span><span class="p">:</span><span class="w"> </span><span class="s2">"v2.0"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RegionTwo"</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">},</span>
 <span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;storage_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ceph_storage&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ceph Storage&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;fs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ceph&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;ceph_config&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/etc/ceph/ceph.conf&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;pool&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;seafile-fs&quot;</span>
+<span class="w">    </span><span class="nt">"storage_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ceph_storage"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ceph Storage"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"fs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"backend"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ceph"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"ceph_config"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/etc/ceph/ceph.conf"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"pool"</span><span class="p">:</span><span class="w"> </span><span class="s2">"seafile-fs"</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;commits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ceph&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;ceph_config&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/etc/ceph/ceph.conf&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;pool&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;seafile-commits&quot;</span>
+<span class="w">    </span><span class="nt">"commits"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"backend"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ceph"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"ceph_config"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/etc/ceph/ceph.conf"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"pool"</span><span class="p">:</span><span class="w"> </span><span class="s2">"seafile-commits"</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;blocks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ceph&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;ceph_config&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/etc/ceph/ceph.conf&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;pool&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;seafile-blocks&quot;</span>
+<span class="w">    </span><span class="nt">"blocks"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"backend"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ceph"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"ceph_config"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/etc/ceph/ceph.conf"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"pool"</span><span class="p">:</span><span class="w"> </span><span class="s2">"seafile-blocks"</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">]</span>
@@ -5911,7 +5911,7 @@ storage_classes_file = /shared/conf/seafile_storage_classes.json
 <h3 id="user-chosen">User Chosen<a class="headerlink" href="#user-chosen" title="Permanent link">&para;</a></h3>
 <p>This policy lets the users choose which storage class to use when creating a new library. The users can select any storage class that's been defined in the JSON file.</p>
 <p>To use this policy, add following options in seahub_settings.py:</p>
-<div class="highlight"><pre><span></span><code><span class="n">STORAGE_CLASS_MAPPING_POLICY</span> <span class="o">=</span> <span class="s1">&#39;USER_SELECT&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">STORAGE_CLASS_MAPPING_POLICY</span> <span class="o">=</span> <span class="s1">'USER_SELECT'</span>
 </code></pre></div>
 <p>If you enable storage class support but don't explicitly set <code>STORAGE_CLASS_MAPPING_POLIICY</code> in seahub_settings.py, this policy is used by default.</p>
 <h3 id="role-based-mapping">Role-based Mapping<a class="headerlink" href="#role-based-mapping" title="Permanent link">&para;</a></h3>
@@ -5919,34 +5919,34 @@ storage_classes_file = /shared/conf/seafile_storage_classes.json
 <p>A new option <code>storage_ids</code> is added to the role configuration in <code>seahub_settings.py</code> to assign storage classes to each role. If only one storage class is assigned to a role, the users with this role cannot choose storage class for libraries; otherwise, the users can choose a storage class if more than one class are assigned. If no storage class is assigned to a role, the default class specified in the JSON file will be used. </p>
 <p>Here are the sample options in seahub_settings.py to use this policy:</p>
 <div class="highlight"><pre><span></span><code><span class="n">ENABLE_STORAGE_CLASSES</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">STORAGE_CLASS_MAPPING_POLICY</span> <span class="o">=</span> <span class="s1">&#39;ROLE_BASED&#39;</span>
+<span class="n">STORAGE_CLASS_MAPPING_POLICY</span> <span class="o">=</span> <span class="s1">'ROLE_BASED'</span>
 
 <span class="n">ENABLED_ROLE_PERMISSIONS</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;can_add_repo&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_add_group&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_view_org&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_use_global_address_book&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_generate_share_link&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_generate_upload_link&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_invite_guest&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_connect_with_android_clients&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_connect_with_ios_clients&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_connect_with_desktop_clients&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;storage_ids&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;old_version_id&#39;</span><span class="p">,</span> <span class="s1">&#39;hot_storage&#39;</span><span class="p">,</span> <span class="s1">&#39;cold_storage&#39;</span><span class="p">,</span> <span class="s1">&#39;a_storage&#39;</span><span class="p">],</span>
+    <span class="s1">'default'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'can_add_repo'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_add_group'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_view_org'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_use_global_address_book'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_generate_share_link'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_generate_upload_link'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_invite_guest'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_connect_with_android_clients'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_connect_with_ios_clients'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_connect_with_desktop_clients'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'storage_ids'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'old_version_id'</span><span class="p">,</span> <span class="s1">'hot_storage'</span><span class="p">,</span> <span class="s1">'cold_storage'</span><span class="p">,</span> <span class="s1">'a_storage'</span><span class="p">],</span>
     <span class="p">},</span>
-    <span class="s1">&#39;guest&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;can_add_repo&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_add_group&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_view_org&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_use_global_address_book&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_generate_share_link&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_generate_upload_link&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_invite_guest&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_connect_with_android_clients&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_connect_with_ios_clients&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_connect_with_desktop_clients&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;storage_ids&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;hot_storage&#39;</span><span class="p">,</span> <span class="s1">&#39;cold_storage&#39;</span><span class="p">],</span>
+    <span class="s1">'guest'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'can_add_repo'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_add_group'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_view_org'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_use_global_address_book'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_generate_share_link'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_generate_upload_link'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_invite_guest'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_connect_with_android_clients'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_connect_with_ios_clients'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_connect_with_desktop_clients'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'storage_ids'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'hot_storage'</span><span class="p">,</span> <span class="s1">'cold_storage'</span><span class="p">],</span>
     <span class="p">},</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -5957,26 +5957,26 @@ storage_classes_file = /shared/conf/seafile_storage_classes.json
 <p>This policy is not a designed to be a complete distributed storage solution. It doesn't handle automatic migration of library data between storage classes. If you need to add more storage classes to the configuration, existing libraries will stay in their original storage classes. New libraries can be distributed among the new storage classes (backends). You still have to plan about the total storage capacity of your system at the beginning.</p>
 </div>
 <p>To use this policy, you first add following options in seahub_settings.py:</p>
-<div class="highlight"><pre><span></span><code><span class="n">STORAGE_CLASS_MAPPING_POLICY</span> <span class="o">=</span> <span class="s1">&#39;REPO_ID_MAPPING&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">STORAGE_CLASS_MAPPING_POLICY</span> <span class="o">=</span> <span class="s1">'REPO_ID_MAPPING'</span>
 </code></pre></div>
 <p>Then you can add option <code>for_new_library</code> to the backends which are expected to store new libraries in json file:</p>
 <div class="highlight"><pre><span></span><code><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;storage_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;new_backend&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;New store&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;for_new_library&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;is_default&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;fs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fs&quot;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">            </span><span class="nt">&quot;dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/storage/seafile/new-data&quot;</span>
+<span class="w">        </span><span class="nt">"storage_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new_backend"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New store"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"for_new_library"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"is_default"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"fs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"backend"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fs"</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="nt">"dir"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/storage/seafile/new-data"</span>
 <span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;commits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fs&quot;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">            </span><span class="nt">&quot;dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/storage/seafile/new-data&quot;</span>
+<span class="w">        </span><span class="nt">"commits"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"backend"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fs"</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="nt">"dir"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/storage/seafile/new-data"</span>
 <span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;blocks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;backend&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fs&quot;</span><span class="p">,</span><span class="w"> </span>
-<span class="w">            </span><span class="nt">&quot;dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/storage/seafile/new-data&quot;</span>
+<span class="w">        </span><span class="nt">"blocks"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"backend"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fs"</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="nt">"dir"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/storage/seafile/new-data"</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">]</span>
