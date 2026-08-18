@@ -75,6 +75,12 @@ The Seafile AI basic service will use API calls to external large language model
           tier: high
           hidden: false
           disable: false
+      EMBEDDING_MODEL:
+        type: openai
+        url: http://<your-llm-endpoint>
+        key: <your-api-key>
+        model: text-embedding-3-small
+        dimensions: 1024
     ```
 
     If you are using a LLM service with ***OpenAI-compatible endpoints***, you can set `type` to `other` and configure `url` accurately.
@@ -91,9 +97,11 @@ The Seafile AI basic service will use API calls to external large language model
     | `model` | Model ID used in API calls. |
     | `label` | Model name shown in the model selector in Seahub. |
     | `default` | Whether this model is the default selected model. Usually only one model should be set to `true`. |
-    | `tier` | Model tier metadata used by Seafile AI. |
+    | `tier` | Reserved for future use. Currently parsed but not used for model routing. |
     | `hidden` | If `true`, the model will not be shown in Seahub's model selector. |
     | `disable` | If `true`, the model is disabled and should not be used for AI requests. |
+    | `dimensions` | *(For `EMBEDDING_MODEL` only)* Output dimension size. Default is `1024`. |
+    | `price` | Used for calculating AI service usage cost. Contains `input_tokens` and `output_tokens` keys representing price per 1M (1,000,000) tokens. |
 
     !!! note "About model selection"
 
@@ -193,9 +201,14 @@ The Seafile AI basic service will use API calls to external large language model
           model: deepseek-v4-pro
           label: deepseek-v4-pro
           default: false
-          tier: high
           hidden: false
           disable: false
+      EMBEDDING_MODEL:
+        type: openai
+        url: http://<your-llm-endpoint>
+        key: <your-api-key>
+        model: text-embedding-3-small
+        dimensions: 1024
     ```
 
     Seahub reads this file on the Seafile host to display the available model list, while the Seafile AI service reads its local copy on the Seafile AI host to process actual AI requests. When Seafile and Seafile AI are deployed on separate machines, the two files should stay consistent.
@@ -230,15 +243,17 @@ The Seafile AI basic service will use API calls to external large language model
 
 Seafile supports counting users' AI usage (how many tokens are used) and setting monthly AI quotas for users.
 
-1. Open `$SEAFILE_VOLUME/seafile/conf/seahub_settings.py` and add AI prices (i.e., how much per token) informations:
+1. Seafile AI model prices are configured via `price` field in `seafile_ai_config.yaml`. For example:
 
-    ```py
-    AI_PRICES = {
-    "gpt-4o-mini": { # replace gpt-4o-mini to your model name
-        "input_tokens_1k": 0.0011, # input price per token
-        "output_tokens_1k": 0.0044 # output price per token
-        }
-    }
+    ```yaml
+    global:
+      LLM_MODELS:
+        - type: openai
+          model: gpt-4o-mini
+          key: <your-api-key>
+          price:
+            input_tokens: 0.15   # input price per 1M (1,000,000) tokens
+            output_tokens: 0.60  # output price per 1M tokens
     ```
 
 2. Refer management of [roles and permission](../config/roles_permissions.md) to specify `monthly_ai_credit_per_user` (`-1` is unlimited), and the unit should be the same as in `AI_PRICES`.
