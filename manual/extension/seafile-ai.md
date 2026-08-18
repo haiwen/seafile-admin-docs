@@ -201,6 +201,7 @@ The Seafile AI basic service will use API calls to external large language model
           model: deepseek-v4-pro
           label: deepseek-v4-pro
           default: false
+          tier: high
           hidden: false
           disable: false
       EMBEDDING_MODEL:
