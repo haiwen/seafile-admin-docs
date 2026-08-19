@@ -5536,7 +5536,7 @@
 <p>4. (Only necessary when you created a new language code folder) Add a new entry for your language to the language block in the <code>/seafile-server-latest/seahub/seahub/settings.py</code> file and save it. </p>
 <div class="highlight"><pre><span></span><code>LANGUAGES = (
     ...
-    (&#39;ru&#39;, &#39;Русский&#39;),
+    ('ru', 'Русский'),
     ...
 )
 </code></pre></div>
@@ -5563,18 +5563,18 @@
 <h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
 <h3 id="filenotfounderror">FileNotFoundError<a class="headerlink" href="#filenotfounderror" title="Permanent link">&para;</a></h3>
 <p><code>FileNotFoundError</code> occurred when executing the command <code>manage.py collectstatic</code>.</p>
-<div class="highlight"><pre><span></span><code>FileNotFoundError: [Errno 2] No such file or directory: &#39;/opt/seafile/seafile-server-latest/seahub/frontend/build&#39;
+<div class="highlight"><pre><span></span><code>FileNotFoundError: [Errno 2] No such file or directory: '/opt/seafile/seafile-server-latest/seahub/frontend/build'
 </code></pre></div>
 <p>Steps:</p>
 <ol>
 <li>
 <p>Modify <code>STATICFILES_DIRS</code> in <code>/opt/seafile/seafile-server-latest/seahub/seahub/settings.py</code> manually</p>
 <div class="highlight"><pre><span></span><code><span class="n">STATICFILES_DIRS</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="c1"># Put strings here, like &quot;/home/html/static&quot; or &quot;C:/www/django/static&quot;.</span>
+    <span class="c1"># Put strings here, like "/home/html/static" or "C:/www/django/static".</span>
     <span class="c1"># Always use forward slashes, even on Windows.</span>
-    <span class="c1"># Don&#39;t forget to use absolute paths, not relative paths.</span>
-    <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">/static&#39;</span> <span class="o">%</span> <span class="n">PROJECT_ROOT</span><span class="p">,</span>
-<span class="c1">#    &#39;%s/frontend/build&#39; % PROJECT_ROOT,</span>
+    <span class="c1"># Don't forget to use absolute paths, not relative paths.</span>
+    <span class="s1">'</span><span class="si">%s</span><span class="s1">/static'</span> <span class="o">%</span> <span class="n">PROJECT_ROOT</span><span class="p">,</span>
+<span class="c1">#    '%s/frontend/build' % PROJECT_ROOT,</span>
 <span class="p">)</span>
 </code></pre></div>
 </li>

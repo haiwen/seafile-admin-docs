@@ -5798,7 +5798,7 @@ python3 -m venv python-venv
 source python-venv/bin/activate
 # Notice that this will usually change your prompt so you know the venv is active
 
-# install packages into the active venv with pip (sudo isn&#39;t needed because this is installing in the venv, not system-wide).
+# install packages into the active venv with pip (sudo isn't needed because this is installing in the venv, not system-wide).
 pip3 install --timeout=3600 boto3 oss2 twilio configparser pytz \
     sqlalchemy==2.0.* pymysql==1.1.* jinja2 django-pylibmc pylibmc psd-tools lxml \
     django==5.2.* cffi==1.17.1 future==1.0.* mysqlclient==2.2.* captcha==0.7.* django_simple_captcha==0.6.* \
@@ -5822,7 +5822,7 @@ python3 -m venv python-venv
 source python-venv/bin/activate
 # Notice that this will usually change your prompt so you know the venv is active
 
-# install packages into the active venv with pip (sudo isn&#39;t needed because this is installing in the venv, not system-wide).
+# install packages into the active venv with pip (sudo isn't needed because this is installing in the venv, not system-wide).
 pip3 install --timeout=3600 boto3 oss2 twilio configparser pytz \
     sqlalchemy==2.0.* pymysql==1.1.* jinja2 django-pylibmc pylibmc psd-tools lxml \
     django==5.2.* cffi==1.17.1 future==1.0.* mysqlclient==2.2.* captcha==0.7.* django_simple_captcha==0.6.* \
@@ -5846,7 +5846,7 @@ python3 -m venv python-venv
 source python-venv/bin/activate
 # Notice that this will usually change your prompt so you know the venv is active
 
-# install packages into the active venv with pip (sudo isn&#39;t needed because this is installing in the venv, not system-wide).
+# install packages into the active venv with pip (sudo isn't needed because this is installing in the venv, not system-wide).
 pip3 install --timeout=3600 boto3 oss2 twilio configparser pytz \
     sqlalchemy==2.0.* pymysql==1.1.* jinja2 django-pylibmc pylibmc psd-tools lxml \
     django==5.2.* cffi==1.17.1 future==1.0.* mysqlclient==2.2.* captcha==0.7.* django_simple_captcha==0.6.* \
@@ -5893,7 +5893,7 @@ pip3 install --timeout=3600 boto3 oss2 twilio configparser pytz \
 <p>The former is suitable for installation on Ubuntu/Debian servers.</p>
 <p>Download the install package using wget (replace the x.x.x with the version you wish to download):</p>
 <div class="highlight"><pre><span></span><code># Debian/Ubuntu
-wget -O &#39;seafile-pro-server_x.x.x_x86-64_Ubuntu.tar.gz&#39; &#39;VERSION_SPECIFIC_LINK_FROM_SEAFILE_CUSTOMER_CENTER&#39;
+wget -O 'seafile-pro-server_x.x.x_x86-64_Ubuntu.tar.gz' 'VERSION_SPECIFIC_LINK_FROM_SEAFILE_CUSTOMER_CENTER'
 </code></pre></div>
 <p>We use Seafile version 13.0.10 as an example in the remainder of these instructions.</p>
 <h3 id="uncompressing-the-package">Uncompressing the package<a class="headerlink" href="#uncompressing-the-package" title="Permanent link">&para;</a></h3>
@@ -6004,11 +6004,11 @@ tar xf seafile-pro-server_13.0.10_x86-64_Ubuntu.tar.gz
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If you don't have the root password, you need someone who has the privileges, e.g., the database admin, to create the three databases required by Seafile, as well as a MySQL user who can access the databases. For example, to create three databases <code>ccnet_db</code> / <code>seafile_db</code> / <code>seahub_db</code> for ccnet/seafile/seahub respectively, and a MySQL user "seafile" to access these databases run the following SQL queries:</p>
-<div class="highlight"><pre><span></span><code>create database `ccnet_db` character set = &#39;utf8&#39;;
-create database `seafile_db` character set = &#39;utf8&#39;;
-create database `seahub_db` character set = &#39;utf8&#39;;
+<div class="highlight"><pre><span></span><code>create database `ccnet_db` character set = 'utf8';
+create database `seafile_db` character set = 'utf8';
+create database `seahub_db` character set = 'utf8';
 
-create user &#39;seafile&#39;@&#39;localhost&#39; identified by &#39;seafile&#39;;
+create user 'seafile'@'localhost' identified by 'seafile';
 
 GRANT ALL PRIVILEGES ON `ccnet_db`.* to `seafile`@localhost;
 GRANT ALL PRIVILEGES ON `seafile_db`.* to `seafile`@localhost;
@@ -6204,12 +6204,12 @@ GRANT ALL PRIVILEGES ON `seahub_db`.* to `seafile`@localhost;
 <span class="nv">CACHE_PROVIDER</span><span class="o">=</span>redis
 
 <span class="c1">### Redis</span>
-<span class="nv">REDIS_HOST</span><span class="o">=</span><span class="s1">&#39;&lt;your redis host&gt;&#39;</span>
+<span class="nv">REDIS_HOST</span><span class="o">=</span><span class="s1">'&lt;your redis host&gt;'</span>
 <span class="nv">REDIS_PORT</span><span class="o">=</span><span class="m">6379</span>
 <span class="nv">REDIS_PASSWORD</span><span class="o">=</span>
 
 <span class="c1">### Memcached</span>
-<span class="nv">MEMCACHED_HOST</span><span class="o">=</span><span class="s1">&#39;&lt;your memcached host&gt;&#39;</span>
+<span class="nv">MEMCACHED_HOST</span><span class="o">=</span><span class="s1">'&lt;your memcached host&gt;'</span>
 <span class="nv">MEMCACHED_PORT</span><span class="o">=</span><span class="m">11211</span>
 </code></pre></div>
 <h3 id="setup-memory-cache">Setup Memory Cache<a class="headerlink" href="#setup-memory-cache" title="Permanent link">&para;</a></h3>
@@ -6232,7 +6232,7 @@ systemctl enable --now memcached
 <span class="n">CACHE_PROVIDER</span><span class="o">=</span><span class="n">memcached</span>
 
 <span class="c1">### Memcached</span>
-<span class="n">MEMCACHED_HOST</span><span class="o">=</span><span class="s1">&#39;&lt;your memcached host&gt;&#39;</span>
+<span class="n">MEMCACHED_HOST</span><span class="o">=</span><span class="s1">'&lt;your memcached host&gt;'</span>
 <span class="n">MEMCACHED_PORT</span><span class="o">=</span><span class="mi">11211</span>
 </code></pre></div>
 </div>
@@ -6255,7 +6255,7 @@ systemctl enable --now redis-server
 <span class="n">CACHE_PROVIDER</span><span class="o">=</span><span class="n">redis</span>
 
 <span class="c1">### Redis</span>
-<span class="n">REDIS_HOST</span><span class="o">=</span><span class="s1">&#39;&lt;your redis host&gt;&#39;</span>
+<span class="n">REDIS_HOST</span><span class="o">=</span><span class="s1">'&lt;your redis host&gt;'</span>
 <span class="n">REDIS_PORT</span><span class="o">=</span><span class="mi">6379</span>
 <span class="n">REDIS_PASSWORD</span><span class="o">=</span>
 </code></pre></div>
@@ -6280,13 +6280,13 @@ systemctl enable --now redis-server
 <p class="admonition-title">Success</p>
 <p>The first time you start Seahub, the script prompts you to create an admin account for your Seafile Server. Enter the email address of the admin user followed by the password, i.e.:</p>
 <div class="highlight"><pre><span></span><code>What is the email for the admin account?
-[ admin email ]  &lt;please input your admin&#39;s email&gt;
+[ admin email ]  &lt;please input your admin's email&gt;
 
 What is the password for the admin account?
-[ admin password ] &lt;please input your admin&#39;s password&gt;
+[ admin password ] &lt;please input your admin's password&gt;
 
 Enter the password again:
-[ admin password again ] &lt;please input your admin&#39;s password again&gt;
+[ admin password again ] &lt;please input your admin's password again&gt;
 </code></pre></div>
 </div>
 <p>Now you can access Seafile via the web interface at the host address (e.g., https://seafile.example.com).</p>
@@ -6306,8 +6306,8 @@ Enter the password again:
 <div class="highlight"><pre><span></span><code>sudo docker run -d \
 --name es \
 -p 9200:9200 \
--e &quot;discovery.type=single-node&quot; -e &quot;bootstrap.memory_lock=true&quot; \
--e &quot;ES_JAVA_OPTS=-Xms2g -Xmx2g&quot; -e &quot;xpack.security.enabled=false&quot; \
+-e "discovery.type=single-node" -e "bootstrap.memory_lock=true" \
+-e "ES_JAVA_OPTS=-Xms2g -Xmx2g" -e "xpack.security.enabled=false" \
 --restart=always \
 -v /opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data \
 -d elasticsearch:8.15.0
@@ -6326,7 +6326,7 @@ sudo<span class="w"> </span>iptables<span class="w"> </span>-A<span class="w"> <
 <h3 id="modifying-seafevents">Modifying seafevents<a class="headerlink" href="#modifying-seafevents" title="Permanent link">&para;</a></h3>
 <p>Add the following configuration to <code>seafevents.conf</code>:</p>
 <div class="highlight"><pre><span></span><code>[INDEX FILES]
-es_host = &lt;your elasticsearch server&#39;s IP, e.g., 127.0.0.1&gt;    # IP address of ElasticSearch host
+es_host = &lt;your elasticsearch server's IP, e.g., 127.0.0.1&gt;    # IP address of ElasticSearch host
 es_port = 9200   # port of ElasticSearch host
 </code></pre></div>
 <p>Finally, restart Seafile:</p>

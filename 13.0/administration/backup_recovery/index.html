@@ -5840,26 +5840,26 @@ However, if your storage backup mechanism can finish quickly enough, using the f
 <h3 id="backing-up-databases">Backing up Databases<a class="headerlink" href="#backing-up-databases" title="Permanent link">&para;</a></h3>
 <p>It's recommended to backup the database to a separate file each time. Don't overwrite older database backups for at least a week.</p>
 <p>Assume your database names are <code>ccnet_db</code>, <code>seafile_db</code> and <code>seahub_db</code>. mysqldump automatically locks the tables so you don't need to stop Seafile server when backing up MySQL databases. Since the database tables are usually very small, it won't take long to dump.</p>
-<div class="highlight"><pre><span></span><code>mysqldump -h [mysqlhost] -u[username] -p[password] --opt ccnet_db &gt; /backup/databases/ccnet_db.sql.`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`
+<div class="highlight"><pre><span></span><code>mysqldump -h [mysqlhost] -u[username] -p[password] --opt ccnet_db &gt; /backup/databases/ccnet_db.sql.`date +"%Y-%m-%d-%H-%M-%S"`
 
-mysqldump -h [mysqlhost] -u[username] -p[password] --opt seafile_db &gt; /backup/databases/seafile_db.sql.`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`
+mysqldump -h [mysqlhost] -u[username] -p[password] --opt seafile_db &gt; /backup/databases/seafile_db.sql.`date +"%Y-%m-%d-%H-%M-%S"`
 
-mysqldump -h [mysqlhost] -u[username] -p[password] --opt seahub_db &gt; /backup/databases/seahub_db.sql.`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`
+mysqldump -h [mysqlhost] -u[username] -p[password] --opt seahub_db &gt; /backup/databases/seahub_db.sql.`date +"%Y-%m-%d-%H-%M-%S"`
 </code></pre></div>
 <div class="admonition danger">
 <p class="admonition-title"><code>mysqldump</code>: command not found</p>
 <p>You may encounter this problem on some machines with a minimal (from 10.5) or a newer (from 11.0) Mariadb server installed, of which the <code>mysql*</code> series of commands <a href="https://jira.mariadb.org/browse/MDEV-30203">have been gradually deprecated</a>. If you encounter this error, use the <code>mariadb-dump</code> command, such as:</p>
-<div class="highlight"><pre><span></span><code>mariadb-dump<span class="w"> </span>-h<span class="w"> </span><span class="o">[</span>mysqlhost<span class="o">]</span><span class="w"> </span>-u<span class="o">[</span>username<span class="o">]</span><span class="w"> </span>-p<span class="o">[</span>password<span class="o">]</span><span class="w"> </span>--opt<span class="w"> </span>ccnet_db<span class="w"> </span>&gt;<span class="w"> </span>/backup/databases/ccnet_db.sql.<span class="sb">`</span>date<span class="w"> </span>+<span class="s2">&quot;%Y-%m-%d-%H-%M-%S&quot;</span><span class="sb">`</span>
+<div class="highlight"><pre><span></span><code>mariadb-dump<span class="w"> </span>-h<span class="w"> </span><span class="o">[</span>mysqlhost<span class="o">]</span><span class="w"> </span>-u<span class="o">[</span>username<span class="o">]</span><span class="w"> </span>-p<span class="o">[</span>password<span class="o">]</span><span class="w"> </span>--opt<span class="w"> </span>ccnet_db<span class="w"> </span>&gt;<span class="w"> </span>/backup/databases/ccnet_db.sql.<span class="sb">`</span>date<span class="w"> </span>+<span class="s2">"%Y-%m-%d-%H-%M-%S"</span><span class="sb">`</span>
 
-mariadb-dump<span class="w"> </span>-h<span class="w"> </span><span class="o">[</span>mysqlhost<span class="o">]</span><span class="w"> </span>-u<span class="o">[</span>username<span class="o">]</span><span class="w"> </span>-p<span class="o">[</span>password<span class="o">]</span><span class="w"> </span>--opt<span class="w"> </span>seafile_db<span class="w"> </span>&gt;<span class="w"> </span>/backup/databases/seafile_db.sql.<span class="sb">`</span>date<span class="w"> </span>+<span class="s2">&quot;%Y-%m-%d-%H-%M-%S&quot;</span><span class="sb">`</span>
+mariadb-dump<span class="w"> </span>-h<span class="w"> </span><span class="o">[</span>mysqlhost<span class="o">]</span><span class="w"> </span>-u<span class="o">[</span>username<span class="o">]</span><span class="w"> </span>-p<span class="o">[</span>password<span class="o">]</span><span class="w"> </span>--opt<span class="w"> </span>seafile_db<span class="w"> </span>&gt;<span class="w"> </span>/backup/databases/seafile_db.sql.<span class="sb">`</span>date<span class="w"> </span>+<span class="s2">"%Y-%m-%d-%H-%M-%S"</span><span class="sb">`</span>
 
-mariadb-dump<span class="w"> </span>-h<span class="w"> </span><span class="o">[</span>mysqlhost<span class="o">]</span><span class="w"> </span>-u<span class="o">[</span>username<span class="o">]</span><span class="w"> </span>-p<span class="o">[</span>password<span class="o">]</span><span class="w"> </span>--opt<span class="w"> </span>seahub_db<span class="w"> </span>&gt;<span class="w"> </span>/backup/databases/seahub_db.sql.<span class="sb">`</span>date<span class="w"> </span>+<span class="s2">&quot;%Y-%m-%d-%H-%M-%S&quot;</span><span class="sb">`</span>
+mariadb-dump<span class="w"> </span>-h<span class="w"> </span><span class="o">[</span>mysqlhost<span class="o">]</span><span class="w"> </span>-u<span class="o">[</span>username<span class="o">]</span><span class="w"> </span>-p<span class="o">[</span>password<span class="o">]</span><span class="w"> </span>--opt<span class="w"> </span>seahub_db<span class="w"> </span>&gt;<span class="w"> </span>/backup/databases/seahub_db.sql.<span class="sb">`</span>date<span class="w"> </span>+<span class="s2">"%Y-%m-%d-%H-%M-%S"</span><span class="sb">`</span>
 </code></pre></div>
 </div>
 <h3 id="backing-up-seafile-library-data">Backing up Seafile library data<a class="headerlink" href="#backing-up-seafile-library-data" title="Permanent link">&para;</a></h3>
 <p>The data files are all stored in the <code>/opt/seafile</code> directory, so just back up the whole directory. You can directly copy the whole directory to the backup destination, or you can use rsync to do incremental backup. </p>
 <p>To directly copy the whole data directory,</p>
-<div class="highlight"><pre><span></span><code>cp -R /opt/seafile /backup/data/seafile-`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`
+<div class="highlight"><pre><span></span><code>cp -R /opt/seafile /backup/data/seafile-`date +"%Y-%m-%d-%H-%M-%S"`
 </code></pre></div>
 <p>This produces a separate copy of the data directory each time. You can delete older backup copies after a new one is completed.</p>
 <p>If you have a lot of data, copying the whole data directory would take long. You can use rsync to do incremental backup.</p>
@@ -5896,7 +5896,7 @@ mariadb<span class="w"> </span>-u<span class="o">[</span>username<span class="o"
 /opt/seafile-data/seafile/seahub-data # data of seahub
 </code></pre></div>
 <h3 id="backing-up-database">Backing up Database<a class="headerlink" href="#backing-up-database" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># It&#39;s recommended to backup the database to a separate file each time. Don&#39;t overwrite older database backups for at least a week.</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># It's recommended to backup the database to a separate file each time. Don't overwrite older database backups for at least a week.</span>
 <span class="nb">cd</span><span class="w"> </span>/backup/databases
 docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-mysql<span class="w"> </span>mariadb-dump<span class="w">  </span>-u<span class="o">[</span>username<span class="o">]</span><span class="w"> </span>-p<span class="o">[</span>password<span class="o">]</span><span class="w"> </span>--opt<span class="w"> </span>ccnet_db<span class="w"> </span>&gt;<span class="w"> </span>ccnet_db.sql
 docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-mysql<span class="w"> </span>mariadb-dump<span class="w">  </span>-u<span class="o">[</span>username<span class="o">]</span><span class="w"> </span>-p<span class="o">[</span>password<span class="o">]</span><span class="w"> </span>--opt<span class="w"> </span>seafile_db<span class="w"> </span>&gt;<span class="w"> </span>seafile_db.sql
@@ -5924,17 +5924,17 @@ docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </spa
 docker<span class="w"> </span>cp<span class="w"> </span>/backup/databases/seafile_db.sql<span class="w"> </span>seafile-mysql:/tmp/seafile_db.sql
 docker<span class="w"> </span>cp<span class="w"> </span>/backup/databases/seahub_db.sql<span class="w"> </span>seafile-mysql:/tmp/seahub_db.sql
 
-docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-mysql<span class="w"> </span>/bin/sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;mariadb -u[username] -p[password] ccnet_db &lt; /tmp/ccnet_db.sql&quot;</span>
-docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-mysql<span class="w"> </span>/bin/sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;mariadb -u[username] -p[password] seafile_db &lt; /tmp/seafile_db.sql&quot;</span>
-docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-mysql<span class="w"> </span>/bin/sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;mariadb -u[username] -p[password] seahub_db &lt; /tmp/seahub_db.sql&quot;</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-mysql<span class="w"> </span>/bin/sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">"mariadb -u[username] -p[password] ccnet_db &lt; /tmp/ccnet_db.sql"</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-mysql<span class="w"> </span>/bin/sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">"mariadb -u[username] -p[password] seafile_db &lt; /tmp/seafile_db.sql"</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-mysql<span class="w"> </span>/bin/sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">"mariadb -u[username] -p[password] seahub_db &lt; /tmp/seahub_db.sql"</span>
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>The default image of database is <strong><em>Mariadb 10.11</em></strong> from Seafile 12, you may not be able to find these commands in the container (such as <code>mysql: command not found</code>), since commands of <code>mysql*</code> series <a href="https://jira.mariadb.org/browse/MDEV-30203">have been gradually deprecated</a>. So we recommend that you use the <code>mariadb*</code> series of commands. </p>
 <p>However, <strong>if you still use the <em>MySQL</em> docker image</strong>, you should continue to use <code>mysql</code> here:</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-mysql<span class="w"> </span>/bin/sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;mysql -u[username] -p[password] ccnet_db &lt; /tmp/ccnet_db.sql&quot;</span>
-docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-mysql<span class="w"> </span>/bin/sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;mysql -u[username] -p[password] seafile_db &lt; /tmp/seafile_db.sql&quot;</span>
-docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-mysql<span class="w"> </span>/bin/sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;mysql -u[username] -p[password] seahub_db &lt; /tmp/seahub_db.sql&quot;</span>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-mysql<span class="w"> </span>/bin/sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">"mysql -u[username] -p[password] ccnet_db &lt; /tmp/ccnet_db.sql"</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-mysql<span class="w"> </span>/bin/sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">"mysql -u[username] -p[password] seafile_db &lt; /tmp/seafile_db.sql"</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-mysql<span class="w"> </span>/bin/sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">"mysql -u[username] -p[password] seahub_db &lt; /tmp/seahub_db.sql"</span>
 </code></pre></div>
 </div>
 <h3 id="restore-the-seafile-data">Restore the seafile data<a class="headerlink" href="#restore-the-seafile-data" title="Permanent link">&para;</a></h3>

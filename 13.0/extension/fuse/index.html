@@ -5496,18 +5496,18 @@
 <p>Assume we want to mount to <code>/opt/seafile-fuse</code> in host.</p>
 <h5 id="modify-seafile-serveryml">Modify seafile-server.yml<a class="headerlink" href="#modify-seafile-serveryml" title="Permanent link">&para;</a></h5>
 <p>Add the following content</p>
-<div class="highlight"><pre><span></span><code>  seafile:
-    ...
-    volumes:
-      ...
-      - type: bind
-        source: /opt/seafile-fuse
-        target: /seafile-fuse
-        bind:
-          propagation: rshared
-    privileged: true
-    cap_add:
-      - SYS_ADMIN
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="nt">seafile</span><span class="p">:</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">- type</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bind</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">source</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/seafile-fuse</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/seafile-fuse</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">bind</span><span class="p p-Indicator">:</span>
+<span class="w">          </span><span class="nt">propagation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rshared</span>
+<span class="w">    </span><span class="nt">privileged</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">cap_add</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SYS_ADMIN</span>
 </code></pre></div>
 <h5 id="start-seaf-fuse-with-the-script-in-docker">Start seaf-fuse with the script in docker<a class="headerlink" href="#start-seaf-fuse-with-the-script-in-docker" title="Permanent link">&para;</a></h5>
 <p>Start Seafile server and enter the container</p>

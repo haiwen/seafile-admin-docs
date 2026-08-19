@@ -5945,7 +5945,7 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-For</span><span class="w"> </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
 <span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-Proto</span><span class="w"> </span><span class="nv">$scheme</span><span class="p">;</span>
 
-<span class="w">        </span><span class="kn">proxy_cookie_path</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="s">&quot;/</span><span class="p">;</span><span class="w"> </span><span class="kn">Secure</span><span class="p">;</span><span class="w"> </span><span class="kn">HttpOnly&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_cookie_path</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="s">"/</span><span class="p">;</span><span class="w"> </span><span class="kn">Secure</span><span class="p">;</span><span class="w"> </span><span class="kn">HttpOnly"</span><span class="p">;</span>
 
 <span class="w">        </span><span class="kn">proxy_connect_timeout</span><span class="w"> </span><span class="s">30s</span><span class="p">;</span>
 <span class="w">        </span><span class="kn">proxy_send_timeout</span><span class="w"> </span><span class="s">300s</span><span class="p">;</span>
@@ -5983,7 +5983,7 @@ sudo<span class="w"> </span>nginx<span class="w"> </span>-s<span class="w"> </sp
 
 $ mv /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.bak
 
-$ cat &gt; /etc/haproxy/haproxy.cfg &lt;&lt; &#39;EOF&#39;
+$ cat &gt; /etc/haproxy/haproxy.cfg &lt;&lt; 'EOF'
 global
     log 127.0.0.1 local1 notice
     maxconn 4096
@@ -6014,7 +6014,7 @@ EOF
 </div>
 <p><strong>Choose one of the above two servers as the master node, and the other as the slave node.</strong></p>
 <p>Perform the following operations on the master node:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>&gt;<span class="w"> </span>/etc/keepalived/keepalived.conf<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>&gt;<span class="w"> </span>/etc/keepalived/keepalived.conf<span class="w"> </span><span class="s">&lt;&lt; 'EOF'</span>
 <span class="s">! Configuration File for keepalived</span>
 
 <span class="s">global_defs {</span>
@@ -6049,7 +6049,7 @@ EOF
 <p>Please <strong>correctly</strong> configure the virtual IP address and network interface device name in the above file. Other wise it cannot work properly.</p>
 </div>
 <p>Perform the following operations on the standby node:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>&gt;<span class="w"> </span>/etc/keepalived/keepalived.conf<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>&gt;<span class="w"> </span>/etc/keepalived/keepalived.conf<span class="w"> </span><span class="s">&lt;&lt; 'EOF'</span>
 <span class="s">! Configuration File for keepalived</span>
 
 <span class="s">global_defs {</span>

@@ -7152,7 +7152,7 @@
 </code></pre></div>
 <p>The configuration of Apache is as following:</p>
 <div class="highlight"><pre><span></span><code>    # seahub
-    SetEnvIf Authorization &quot;(.*)&quot; HTTP_AUTHORIZATION=$1
+    SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
     ProxyPass / http://127.0.0.1:8000/
     ProxyPassReverse / http://127.0.0.1:8000/
 </code></pre></div>
@@ -7714,7 +7714,7 @@ sudo yum install python-urllib3
 <p>Note when upgrade to 4.2 from 4.1:</p>
 <p>If you deploy Seafile in a non-root domain, you need to add the following extra settings in seahub_settings.py:</p>
 <div class="highlight"><pre><span></span><code>COMPRESS_URL = MEDIA_URL
-STATIC_URL = MEDIA_URL + &#39;/assets/&#39;
+STATIC_URL = MEDIA_URL + '/assets/'
 </code></pre></div>
 <h3 id="423-20150618">4.2.3 (2015.06.18)<a class="headerlink" href="#423-20150618" title="Permanent link">&para;</a></h3>
 <ul>

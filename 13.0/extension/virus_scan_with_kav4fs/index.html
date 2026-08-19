@@ -5482,26 +5482,26 @@ TEMP_LOG_FILE=`mktemp /tmp/XXXXXXXXXX`
 VIRUS_FOUND=1
 CLEAN=0
 UNDEFINED=2
-KAV4FS=&#39;/opt/kaspersky/kav4fs/bin/kav4fs-control&#39;
+KAV4FS='/opt/kaspersky/kav4fs/bin/kav4fs-control'
 if [ ! -x $KAV4FS ]
 then
-    echo &quot;Binary not executable&quot;
+    echo "Binary not executable"
     exit $UNDEFINED
 fi
 
-sudo $KAV4FS --scan-file &quot;$1&quot; &gt; $TEMP_LOG_FILE
-if [ &quot;$?&quot; -ne 0 ]
+sudo $KAV4FS --scan-file "$1" &gt; $TEMP_LOG_FILE
+if [ "$?" -ne 0 ]
 then
-    echo &quot;Error due to check file &#39;$1&#39;&quot;
+    echo "Error due to check file '$1'"
     exit 3
 fi
-THREATS_C=`grep &#39;Threats found:&#39; $TEMP_LOG_FILE|cut -d&#39;:&#39; -f 2|sed &#39;s/ //g&#39;`
-RISKWARE_C=`grep &#39;Riskware found:&#39; $TEMP_LOG_FILE|cut -d&#39;:&#39; -f 2|sed &#39;s/ //g&#39;`
-INFECTED=`grep &#39;Infected:&#39; $TEMP_LOG_FILE|cut -d&#39;:&#39; -f 2|sed &#39;s/ //g&#39;`
-SUSPICIOUS=`grep &#39;Suspicious:&#39; $TEMP_LOG_FILE|cut -d&#39;:&#39; -f 2|sed &#39;s/ //g&#39;`
-SCAN_ERRORS_C=`grep &#39;Scan errors:&#39; $TEMP_LOG_FILE|cut -d&#39;:&#39; -f 2|sed &#39;s/ //g&#39;`
-PASSWORD_PROTECTED=`grep &#39;Password protected:&#39; $TEMP_LOG_FILE|cut -d&#39;:&#39; -f 2|sed &#39;s/ //g&#39;`
-CORRUPTED=`grep &#39;Corrupted:&#39; $TEMP_LOG_FILE|cut -d&#39;:&#39; -f 2|sed &#39;s/ //g&#39;`
+THREATS_C=`grep 'Threats found:' $TEMP_LOG_FILE|cut -d':' -f 2|sed 's/ //g'`
+RISKWARE_C=`grep 'Riskware found:' $TEMP_LOG_FILE|cut -d':' -f 2|sed 's/ //g'`
+INFECTED=`grep 'Infected:' $TEMP_LOG_FILE|cut -d':' -f 2|sed 's/ //g'`
+SUSPICIOUS=`grep 'Suspicious:' $TEMP_LOG_FILE|cut -d':' -f 2|sed 's/ //g'`
+SCAN_ERRORS_C=`grep 'Scan errors:' $TEMP_LOG_FILE|cut -d':' -f 2|sed 's/ //g'`
+PASSWORD_PROTECTED=`grep 'Password protected:' $TEMP_LOG_FILE|cut -d':' -f 2|sed 's/ //g'`
+CORRUPTED=`grep 'Corrupted:' $TEMP_LOG_FILE|cut -d':' -f 2|sed 's/ //g'`
 
 rm -f $TEMP_LOG_FILE
 

@@ -5620,18 +5620,18 @@
 <h3 id="basic-configuration-items">Basic configuration items<a class="headerlink" href="#basic-configuration-items" title="Permanent link">&para;</a></h3>
 <p>Add the following options to <code>seahub_settings.py</code>. Examples are as follows:</p>
 <div class="highlight"><pre><span></span><code><span class="n">ENABLE_LDAP</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">LDAP_SERVER_URL</span> <span class="o">=</span> <span class="s1">&#39;ldap://192.168.0.1&#39;</span>       
-<span class="n">LDAP_BASE_DN</span> <span class="o">=</span> <span class="s1">&#39;ou=test,dc=seafile,dc=ren&#39;</span>                     
-<span class="n">LDAP_ADMIN_DN</span> <span class="o">=</span> <span class="s1">&#39;administrator@example.com&#39;</span>  
-<span class="n">LDAP_ADMIN_PASSWORD</span> <span class="o">=</span> <span class="s1">&#39;yourpassword&#39;</span>         
-<span class="n">LDAP_PROVIDER</span> <span class="o">=</span> <span class="s1">&#39;ldap&#39;</span>                                     
-<span class="n">LDAP_LOGIN_ATTR</span> <span class="o">=</span> <span class="s1">&#39;email&#39;</span>                                                            
-<span class="n">LDAP_CONTACT_EMAIL_ATTR</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>                
-<span class="n">LDAP_USER_ROLE_ATTR</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>                     
-<span class="n">LDAP_USER_FIRST_NAME_ATTR</span> <span class="o">=</span> <span class="s1">&#39;givenName&#39;</span>     
-<span class="n">LDAP_USER_LAST_NAME_ATTR</span> <span class="o">=</span> <span class="s1">&#39;sn&#39;</span>              
+<span class="n">LDAP_SERVER_URL</span> <span class="o">=</span> <span class="s1">'ldap://192.168.0.1'</span>       
+<span class="n">LDAP_BASE_DN</span> <span class="o">=</span> <span class="s1">'ou=test,dc=seafile,dc=ren'</span>                     
+<span class="n">LDAP_ADMIN_DN</span> <span class="o">=</span> <span class="s1">'administrator@example.com'</span>  
+<span class="n">LDAP_ADMIN_PASSWORD</span> <span class="o">=</span> <span class="s1">'yourpassword'</span>         
+<span class="n">LDAP_PROVIDER</span> <span class="o">=</span> <span class="s1">'ldap'</span>                                     
+<span class="n">LDAP_LOGIN_ATTR</span> <span class="o">=</span> <span class="s1">'email'</span>                                                            
+<span class="n">LDAP_CONTACT_EMAIL_ATTR</span> <span class="o">=</span> <span class="s1">''</span>                
+<span class="n">LDAP_USER_ROLE_ATTR</span> <span class="o">=</span> <span class="s1">''</span>                     
+<span class="n">LDAP_USER_FIRST_NAME_ATTR</span> <span class="o">=</span> <span class="s1">'givenName'</span>     
+<span class="n">LDAP_USER_LAST_NAME_ATTR</span> <span class="o">=</span> <span class="s1">'sn'</span>              
 <span class="n">LDAP_USER_NAME_REVERSE</span> <span class="o">=</span> <span class="kc">False</span>               
-<span class="n">LDAP_FILTER</span> <span class="o">=</span> <span class="s1">&#39;memberOf=CN=testgroup,OU=test,DC=seafile,DC=ren&#39;</span> 
+<span class="n">LDAP_FILTER</span> <span class="o">=</span> <span class="s1">'memberOf=CN=testgroup,OU=test,DC=seafile,DC=ren'</span> 
 </code></pre></div>
 <p>Meaning of some options:</p>
 <table>
@@ -5712,13 +5712,13 @@
 <h2 id="advanced-ldap-integration-options">Advanced LDAP Integration Options<a class="headerlink" href="#advanced-ldap-integration-options" title="Permanent link">&para;</a></h2>
 <h3 id="multiple-base">Multiple BASE<a class="headerlink" href="#multiple-base" title="Permanent link">&para;</a></h3>
 <p>Multiple base DN is useful when your company has more than one OUs to use Seafile. You can specify a list of base DN in the <code>LDAP_BASE_DN</code> option. The DNs are separated by ";", e.g.</p>
-<div class="highlight"><pre><span></span><code><span class="n">LDAP_BASE_DN</span> <span class="o">=</span> <span class="s1">&#39;ou=developers,dc=example,dc=com;ou=marketing,dc=example,dc=com&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">LDAP_BASE_DN</span> <span class="o">=</span> <span class="s1">'ou=developers,dc=example,dc=com;ou=marketing,dc=example,dc=com'</span>
 </code></pre></div>
 <h3 id="additional-search-filter">Additional Search Filter<a class="headerlink" href="#additional-search-filter" title="Permanent link">&para;</a></h3>
 <p>Search filter is very useful when you have a large organization but only a portion of people want to use Seafile. The filter can be given by setting <code>LDAP_FILTER</code> option. The value of this option follows standard LDAP search filter syntax (https://msdn.microsoft.com/en-us/library/aa746475(v=vs.85).aspx).</p>
 <p>The final filter used for searching for users is <code>(&amp;($LOGIN_ATTR=*)($LDAP_FILTER))</code>. <code>$LOGIN_ATTR</code> and <code>$LDAP_FILTER</code> will be replaced by your option values.</p>
 <p>For example, add below option to <code>seahub_settings.py</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="n">LDAP_FILTER</span> <span class="o">=</span> <span class="s1">&#39;memberOf=CN=group,CN=developers,DC=example,DC=com&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">LDAP_FILTER</span> <span class="o">=</span> <span class="s1">'memberOf=CN=group,CN=developers,DC=example,DC=com'</span>
 </code></pre></div>
 <p>The final search filter would be <code>(&amp;(mail=*)(memberOf=CN=group,CN=developers,DC=example,DC=com))</code></p>
 <p>Note that the case of attribute names in the above example is significant. The <code>memberOf</code> attribute is only available in Active Directory.</p>
@@ -5732,11 +5732,11 @@
 <p>Add below option to <code>seahub_settings.py</code>:</p>
 </li>
 </ol>
-<div class="highlight"><pre><span></span><code><span class="n">LDAP_FILTER</span> <span class="o">=</span> <span class="s1">&#39;memberOf={output of dsquery command}&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">LDAP_FILTER</span> <span class="o">=</span> <span class="s1">'memberOf={output of dsquery command}'</span>
 </code></pre></div>
 <h3 id="using-tls-connection-to-ldap-server">Using TLS connection to LDAP server<a class="headerlink" href="#using-tls-connection-to-ldap-server" title="Permanent link">&para;</a></h3>
 <p>If your LDAP service supports TLS connections, you can configure <code>LDAP_SERVER_URL</code> as the access address of the ldaps protocol to use TLS to connect to the LDAP service, for example:</p>
-<div class="highlight"><pre><span></span><code><span class="n">LDAP_SERVER_URL</span> <span class="o">=</span> <span class="s1">&#39;ldaps://192.168.0.1:636&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">LDAP_SERVER_URL</span> <span class="o">=</span> <span class="s1">'ldaps://192.168.0.1:636'</span>
 </code></pre></div>
 
 

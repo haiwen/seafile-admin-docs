@@ -5512,121 +5512,121 @@
 </li>
 </ul>
 <p>Seafile comes with two build-in roles <code>default</code> and <code>guest</code>, a default user is a normal user with permissions as followings:</p>
-<div class="highlight"><pre><span></span><code>    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;can_add_repo&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_share_repo&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_add_group&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_view_org&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_add_public_repo&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_use_global_address_book&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_generate_share_link&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_generate_upload_link&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_send_share_link_mail&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_invite_guest&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_drag_drop_folder_to_sync&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_connect_with_android_clients&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_connect_with_ios_clients&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_connect_with_desktop_clients&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_export_files_via_mobile_client&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;storage_ids&#39;</span><span class="p">:</span> <span class="p">[],</span>
-        <span class="s1">&#39;role_quota&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;can_create_wiki&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_publish_wiki&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;upload_rate_limit&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1"># unit: kb/s</span>
-        <span class="s1">&#39;download_rate_limit&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="s1">&#39;monthly_rate_limit&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;monthly_rate_limit_per_user&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;can_choose_office_suite&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;monthly_ai_credit_per_user&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
-        <span class="s1">&#39;can_use_sso_in_multi_tenancy&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code>    <span class="s1">'default'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'can_add_repo'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_share_repo'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_add_group'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_view_org'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_add_public_repo'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_use_global_address_book'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_generate_share_link'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_generate_upload_link'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_send_share_link_mail'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_invite_guest'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_drag_drop_folder_to_sync'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_connect_with_android_clients'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_connect_with_ios_clients'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_connect_with_desktop_clients'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_export_files_via_mobile_client'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'storage_ids'</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">'role_quota'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'can_create_wiki'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_publish_wiki'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'upload_rate_limit'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1"># unit: kb/s</span>
+        <span class="s1">'download_rate_limit'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s1">'monthly_rate_limit'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'monthly_rate_limit_per_user'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'can_choose_office_suite'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'monthly_ai_credit_per_user'</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+        <span class="s1">'can_use_sso_in_multi_tenancy'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
     <span class="p">},</span>
 </code></pre></div>
 <p>While a guest user can only read files/folders in the system, here are the permissions for a guest user:</p>
-<div class="highlight"><pre><span></span><code>    <span class="s1">&#39;guest&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;can_add_repo&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_share_repo&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_add_group&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_view_org&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_add_public_repo&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_use_global_address_book&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_generate_share_link&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_generate_upload_link&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_send_share_link_mail&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_invite_guest&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_drag_drop_folder_to_sync&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_connect_with_android_clients&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_connect_with_ios_clients&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_connect_with_desktop_clients&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_export_files_via_mobile_client&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;storage_ids&#39;</span><span class="p">:</span> <span class="p">[],</span>
-        <span class="s1">&#39;role_quota&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;can_create_wiki&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_publish_wiki&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;upload_rate_limit&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="s1">&#39;download_rate_limit&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="s1">&#39;monthly_rate_limit&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;monthly_rate_limit_per_user&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;can_choose_office_suite&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_use_sso_in_multi_tenancy&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code>    <span class="s1">'guest'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'can_add_repo'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_share_repo'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_add_group'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_view_org'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_add_public_repo'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_use_global_address_book'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_generate_share_link'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_generate_upload_link'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_send_share_link_mail'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_invite_guest'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_drag_drop_folder_to_sync'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_connect_with_android_clients'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_connect_with_ios_clients'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_connect_with_desktop_clients'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_export_files_via_mobile_client'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'storage_ids'</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">'role_quota'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'can_create_wiki'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_publish_wiki'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'upload_rate_limit'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s1">'download_rate_limit'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s1">'monthly_rate_limit'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'monthly_rate_limit_per_user'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'can_choose_office_suite'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_use_sso_in_multi_tenancy'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">},</span>
 </code></pre></div>
 <h2 id="edit-build-in-roles">Edit build-in roles<a class="headerlink" href="#edit-build-in-roles" title="Permanent link">&para;</a></h2>
 <p>If you want to edit the permissions of build-in roles, e.g. default users can invite guest, guest users can view repos in organization, you can add following lines to <code>seahub_settings.py</code> with corresponding permissions set to <code>True</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="n">ENABLED_ROLE_PERMISSIONS</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;can_add_repo&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_share_repo&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_add_group&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_view_org&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_add_public_repo&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_use_global_address_book&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_generate_share_link&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_generate_upload_link&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_send_share_link_mail&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_invite_guest&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_drag_drop_folder_to_sync&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_connect_with_android_clients&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_connect_with_ios_clients&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_connect_with_desktop_clients&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_export_files_via_mobile_client&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;storage_ids&#39;</span><span class="p">:</span> <span class="p">[],</span>
-        <span class="s1">&#39;role_quota&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;can_create_wiki&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_publish_wiki&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;upload_rate_limit&#39;</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span>  <span class="c1"># unit: kb/s</span>
-        <span class="s1">&#39;download_rate_limit&#39;</span><span class="p">:</span> <span class="mi">4000</span><span class="p">,</span>
-        <span class="s1">&#39;monthly_rate_limit&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;monthly_rate_limit_per_user&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;can_choose_office_suite&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;monthly_ai_credit_per_user&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
-        <span class="s1">&#39;can_use_sso_in_multi_tenancy&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">'default'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'can_add_repo'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_share_repo'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_add_group'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_view_org'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_add_public_repo'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_use_global_address_book'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_generate_share_link'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_generate_upload_link'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_send_share_link_mail'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_invite_guest'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_drag_drop_folder_to_sync'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_connect_with_android_clients'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_connect_with_ios_clients'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_connect_with_desktop_clients'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_export_files_via_mobile_client'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'storage_ids'</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">'role_quota'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'can_create_wiki'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_publish_wiki'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'upload_rate_limit'</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span>  <span class="c1"># unit: kb/s</span>
+        <span class="s1">'download_rate_limit'</span><span class="p">:</span> <span class="mi">4000</span><span class="p">,</span>
+        <span class="s1">'monthly_rate_limit'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'monthly_rate_limit_per_user'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'can_choose_office_suite'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'monthly_ai_credit_per_user'</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+        <span class="s1">'can_use_sso_in_multi_tenancy'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
     <span class="p">},</span>
-    <span class="s1">&#39;guest&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;can_add_repo&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_share_repo&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_add_group&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_view_org&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_add_public_repo&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_use_global_address_book&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_generate_share_link&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_generate_upload_link&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_send_share_link_mail&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_invite_guest&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_drag_drop_folder_to_sync&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_connect_with_android_clients&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_connect_with_ios_clients&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_connect_with_desktop_clients&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_export_files_via_mobile_client&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;storage_ids&#39;</span><span class="p">:</span> <span class="p">[],</span>
-        <span class="s1">&#39;role_quota&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;can_create_wiki&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_publish_wiki&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;upload_rate_limit&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
-        <span class="s1">&#39;download_rate_limit&#39;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
-        <span class="s1">&#39;monthly_rate_limit&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;monthly_rate_limit_per_user&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;can_choose_office_suite&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_use_sso_in_multi_tenancy&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s1">'guest'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'can_add_repo'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_share_repo'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_add_group'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_view_org'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_add_public_repo'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_use_global_address_book'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_generate_share_link'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_generate_upload_link'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_send_share_link_mail'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_invite_guest'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_drag_drop_folder_to_sync'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_connect_with_android_clients'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_connect_with_ios_clients'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_connect_with_desktop_clients'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_export_files_via_mobile_client'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'storage_ids'</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">'role_quota'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'can_create_wiki'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_publish_wiki'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'upload_rate_limit'</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="s1">'download_rate_limit'</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+        <span class="s1">'monthly_rate_limit'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'monthly_rate_limit_per_user'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'can_choose_office_suite'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_use_sso_in_multi_tenancy'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -5643,95 +5643,95 @@ INVITATIONS_TOKEN_AGE = 72 # hours
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>If you want to block certain email addresses for the invitation, you can define a blacklist, e.g.</p>
-<div class="highlight"><pre><span></span><code>INVITATION_ACCEPTER_BLACKLIST = [&quot;a@a.com&quot;, &quot;*@a-a-a.com&quot;, r&quot;.*@(foo|bar).com&quot;, ]
+<div class="highlight"><pre><span></span><code>INVITATION_ACCEPTER_BLACKLIST = ["a@a.com", "*@a-a-a.com", r".*@(foo|bar).com", ]
 </code></pre></div>
 <p>After that, email address "a@a.com", any email address ends with "@a-a-a.com" and any email address ends with "@foo.com" or "@bar.com" will not be allowed.</p>
 </div>
 <h2 id="add-custom-roles">Add custom roles<a class="headerlink" href="#add-custom-roles" title="Permanent link">&para;</a></h2>
 <p>If you want to add a new role and assign some users with this role, e.g. new role <code>employee</code> can invite guest and can create public library and have all other permissions a default user has, you can add following lines to <code>seahub_settings.py</code></p>
 <div class="highlight"><pre><span></span><code><span class="n">ENABLED_ROLE_PERMISSIONS</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;can_add_repo&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_share_repo&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_add_group&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_view_org&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_add_public_repo&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_use_global_address_book&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_generate_share_link&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_generate_upload_link&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_send_share_link_mail&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_invite_guest&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_drag_drop_folder_to_sync&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_connect_with_android_clients&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_connect_with_ios_clients&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_connect_with_desktop_clients&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_export_files_via_mobile_client&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;storage_ids&#39;</span><span class="p">:</span> <span class="p">[],</span>
-        <span class="s1">&#39;role_quota&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;can_create_wiki&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_publish_wiki&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;upload_rate_limit&#39;</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span>  <span class="c1"># unit: kb/s</span>
-        <span class="s1">&#39;download_rate_limit&#39;</span><span class="p">:</span> <span class="mi">4000</span><span class="p">,</span>
-        <span class="s1">&#39;monthly_rate_limit&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;monthly_rate_limit_per_user&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;can_choose_office_suite&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;monthly_ai_credit_per_user&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
-        <span class="s1">&#39;can_use_sso_in_multi_tenancy&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">'default'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'can_add_repo'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_share_repo'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_add_group'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_view_org'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_add_public_repo'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_use_global_address_book'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_generate_share_link'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_generate_upload_link'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_send_share_link_mail'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_invite_guest'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_drag_drop_folder_to_sync'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_connect_with_android_clients'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_connect_with_ios_clients'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_connect_with_desktop_clients'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_export_files_via_mobile_client'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'storage_ids'</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">'role_quota'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'can_create_wiki'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_publish_wiki'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'upload_rate_limit'</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span>  <span class="c1"># unit: kb/s</span>
+        <span class="s1">'download_rate_limit'</span><span class="p">:</span> <span class="mi">4000</span><span class="p">,</span>
+        <span class="s1">'monthly_rate_limit'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'monthly_rate_limit_per_user'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'can_choose_office_suite'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'monthly_ai_credit_per_user'</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+        <span class="s1">'can_use_sso_in_multi_tenancy'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
     <span class="p">},</span>
-    <span class="s1">&#39;guest&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;can_add_repo&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_share_repo&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_add_group&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_view_org&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_add_public_repo&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_use_global_address_book&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_generate_share_link&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_generate_upload_link&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_send_share_link_mail&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_invite_guest&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_drag_drop_folder_to_sync&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_connect_with_android_clients&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_connect_with_ios_clients&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_connect_with_desktop_clients&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_export_files_via_mobile_client&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;storage_ids&#39;</span><span class="p">:</span> <span class="p">[],</span>
-        <span class="s1">&#39;role_quota&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;can_create_wiki&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_publish_wiki&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;upload_rate_limit&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
-        <span class="s1">&#39;download_rate_limit&#39;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
-        <span class="s1">&#39;monthly_rate_limit&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;monthly_rate_limit_per_user&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;can_choose_office_suite&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s1">&#39;can_use_sso_in_multi_tenancy&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s1">'guest'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'can_add_repo'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_share_repo'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_add_group'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_view_org'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_add_public_repo'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_use_global_address_book'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_generate_share_link'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_generate_upload_link'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_send_share_link_mail'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_invite_guest'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_drag_drop_folder_to_sync'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_connect_with_android_clients'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_connect_with_ios_clients'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_connect_with_desktop_clients'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_export_files_via_mobile_client'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'storage_ids'</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">'role_quota'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'can_create_wiki'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_publish_wiki'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'upload_rate_limit'</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="s1">'download_rate_limit'</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+        <span class="s1">'monthly_rate_limit'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'monthly_rate_limit_per_user'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'can_choose_office_suite'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">'can_use_sso_in_multi_tenancy'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">},</span>
-    <span class="s1">&#39;employee&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;can_add_repo&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_share_repo&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_add_group&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_view_org&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_add_public_repo&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_use_global_address_book&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_generate_share_link&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_generate_upload_link&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_send_share_link_mail&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_invite_guest&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_drag_drop_folder_to_sync&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_connect_with_android_clients&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_connect_with_ios_clients&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_connect_with_desktop_clients&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_export_files_via_mobile_client&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;storage_ids&#39;</span><span class="p">:</span> <span class="p">[],</span>
-        <span class="s1">&#39;role_quota&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;can_create_wiki&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;can_publish_wiki&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;upload_rate_limit&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
-        <span class="s1">&#39;download_rate_limit&#39;</span><span class="p">:</span> <span class="mi">800</span><span class="p">,</span>
-        <span class="s1">&#39;monthly_rate_limit&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;monthly_rate_limit_per_user&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;can_choose_office_suite&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="s1">&#39;monthly_ai_credit_per_user&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> 
-        <span class="s1">&#39;can_use_sso_in_multi_tenancy&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">'employee'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'can_add_repo'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_share_repo'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_add_group'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_view_org'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_add_public_repo'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_use_global_address_book'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_generate_share_link'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_generate_upload_link'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_send_share_link_mail'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_invite_guest'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_drag_drop_folder_to_sync'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_connect_with_android_clients'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_connect_with_ios_clients'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_connect_with_desktop_clients'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_export_files_via_mobile_client'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'storage_ids'</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">'role_quota'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'can_create_wiki'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'can_publish_wiki'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'upload_rate_limit'</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+        <span class="s1">'download_rate_limit'</span><span class="p">:</span> <span class="mi">800</span><span class="p">,</span>
+        <span class="s1">'monthly_rate_limit'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'monthly_rate_limit_per_user'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'can_choose_office_suite'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">'monthly_ai_credit_per_user'</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> 
+        <span class="s1">'can_use_sso_in_multi_tenancy'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
     <span class="p">},</span>
 <span class="p">}</span>
 </code></pre></div>

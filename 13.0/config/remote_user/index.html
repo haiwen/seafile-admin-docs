@@ -5358,16 +5358,16 @@
 <div class="highlight"><pre><span></span><code>ENABLE_REMOTE_USER_AUTHENTICATION = True
 
 # Optional, HTTP header, which is configured in your web server conf file,
-# used for Seafile to get user&#39;s unique id, default value is &#39;HTTP_REMOTE_USER&#39;.
-REMOTE_USER_HEADER = &#39;HTTP_REMOTE_USER&#39;
+# used for Seafile to get user's unique id, default value is 'HTTP_REMOTE_USER'.
+REMOTE_USER_HEADER = 'HTTP_REMOTE_USER'
 
 # Optional, when the value of HTTP_REMOTE_USER is not a valid email address，
-# Seafile will build a email-like unique id from the value of &#39;REMOTE_USER_HEADER&#39;
+# Seafile will build a email-like unique id from the value of 'REMOTE_USER_HEADER'
 # and this domain, e.g. user1@example.com.
-REMOTE_USER_DOMAIN = &#39;example.com&#39;
+REMOTE_USER_DOMAIN = 'example.com'
 
 # Optional, whether to create new user in Seafile system, default value is True.
-# If this setting is disabled, users doesn&#39;t preexist in the Seafile DB cannot login.
+# If this setting is disabled, users doesn't preexist in the Seafile DB cannot login.
 # The admin has to first import the users from external systems like LDAP.
 REMOTE_USER_CREATE_UNKNOWN_USER = True
 
@@ -5376,31 +5376,31 @@ REMOTE_USER_CREATE_UNKNOWN_USER = True
 # the administrator needs to manually activate this user.
 REMOTE_USER_ACTIVATE_USER_AFTER_CREATION = True
 
-# Optional, map user attribute in HTTP header and Seafile&#39;s user attribute.
+# Optional, map user attribute in HTTP header and Seafile's user attribute.
 REMOTE_USER_ATTRIBUTE_MAP = {
-    &#39;HTTP_DISPLAYNAME&#39;: &#39;name&#39;,
-    &#39;HTTP_MAIL&#39;: &#39;contact_email&#39;,
+    'HTTP_DISPLAYNAME': 'name',
+    'HTTP_MAIL': 'contact_email',
 
     # for user info
-    &quot;HTTP_GIVENNAME&quot;: &#39;givenname&#39;,
-    &quot;HTTP_SN&quot;: &#39;surname&#39;,
-    &quot;HTTP_ORGANIZATION&quot;: &#39;institution&#39;,
+    "HTTP_GIVENNAME": 'givenname',
+    "HTTP_SN": 'surname',
+    "HTTP_ORGANIZATION": 'institution',
 
     # for user role
-    &#39;HTTP_SHIBBOLETH_AFFILIATION&#39;: &#39;affiliation&#39;,
+    'HTTP_SHIBBOLETH_AFFILIATION': 'affiliation',
 }
 
 # Map affiliation to user role. Though the config name is SHIBBOLETH_AFFILIATION_ROLE_MAP,
 # it is not restricted to Shibboleth
 SHIBBOLETH_AFFILIATION_ROLE_MAP = {
-    &#39;employee@uni-mainz.de&#39;: &#39;staff&#39;,
-    &#39;member@uni-mainz.de&#39;: &#39;staff&#39;,
-    &#39;student@uni-mainz.de&#39;: &#39;student&#39;,
-    &#39;employee@hu-berlin.de&#39;: &#39;guest&#39;,
-    &#39;patterns&#39;: (
-        (&#39;*@hu-berlin.de&#39;, &#39;guest1&#39;),
-        (&#39;*@*.de&#39;, &#39;guest2&#39;),
-        (&#39;*&#39;, &#39;guest&#39;),
+    'employee@uni-mainz.de': 'staff',
+    'member@uni-mainz.de': 'staff',
+    'student@uni-mainz.de': 'student',
+    'employee@hu-berlin.de': 'guest',
+    'patterns': (
+        ('*@hu-berlin.de', 'guest1'),
+        ('*@*.de', 'guest2'),
+        ('*', 'guest'),
     ),
 }
 </code></pre></div>

@@ -5849,7 +5849,7 @@ sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w
 <p>Django 4.* has introduced a new check for the origin http header in CSRF verification. It now compares the values of the origin field in HTTP header and the host field in HTTP header. If they are different, an error is triggered.</p>
 <p>If you deploy Seafile behind a proxy, or if you use a non-standard port, or if you deploy Seafile in cluster, it is likely the <strong>origin</strong> field in HTTP header received by Django and the <strong>host</strong> field in HTTP header received by Django are different. Because the <strong>host</strong> field in HTTP header is likely to be modified by proxy. This mismatch results in a CSRF error.</p>
 <p>You can add CSRF_TRUSTED_ORIGINS to seahub_settings.py to solve the problem:</p>
-<div class="highlight"><pre><span></span><code>CSRF_TRUSTED_ORIGINS = [&quot;https://&lt;your-domain&gt;&quot;]
+<div class="highlight"><pre><span></span><code>CSRF_TRUSTED_ORIGINS = ["https://&lt;your-domain&gt;"]
 </code></pre></div>
 <h2 id="new-python-libraries">New Python libraries<a class="headerlink" href="#new-python-libraries" title="Permanent link">&para;</a></h2>
 <p>Note, you should install Python libraries system wide using root user or sudo mode.</p>
@@ -5869,24 +5869,24 @@ sudo<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> 
 <p>The configuration items of LDAP login and LDAP sync tasks are migrated from ccnet.conf to seahub_settings.py. The name of the configuration item is based on the 10.0 version, and the characters 'LDAP_' or 'MULTI_LDAP_1' are added. Examples are as follows:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Basic configuration items for LDAP login</span>
 <span class="n">ENABLE_LDAP</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">LDAP_SERVER_URL</span> <span class="o">=</span> <span class="s1">&#39;ldap://192.168.0.125&#39;</span>     <span class="c1"># The URL of LDAP server</span>
-<span class="n">LDAP_BASE_DN</span> <span class="o">=</span> <span class="s1">&#39;ou=test,dc=seafile,dc=ren&#39;</span>   <span class="c1"># The root node of users who can </span>
+<span class="n">LDAP_SERVER_URL</span> <span class="o">=</span> <span class="s1">'ldap://192.168.0.125'</span>     <span class="c1"># The URL of LDAP server</span>
+<span class="n">LDAP_BASE_DN</span> <span class="o">=</span> <span class="s1">'ou=test,dc=seafile,dc=ren'</span>   <span class="c1"># The root node of users who can </span>
                                              <span class="c1"># log in to Seafile in the LDAP server</span>
-<span class="n">LDAP_ADMIN_DN</span> <span class="o">=</span> <span class="s1">&#39;administrator@seafile.ren&#39;</span>  <span class="c1"># DN of the administrator used </span>
+<span class="n">LDAP_ADMIN_DN</span> <span class="o">=</span> <span class="s1">'administrator@seafile.ren'</span>  <span class="c1"># DN of the administrator used </span>
                                              <span class="c1"># to query the LDAP server for information</span>
-<span class="n">LDAP_ADMIN_PASSWORD</span> <span class="o">=</span> <span class="s1">&#39;Hello@123&#39;</span>            <span class="c1"># Password of LDAP_ADMIN_DN</span>
-<span class="n">LDAP_PROVIDER</span> <span class="o">=</span> <span class="s1">&#39;ldap&#39;</span>                       <span class="c1"># Identify the source of the user, used in </span>
-                                             <span class="c1"># the table social_auth_usersocialauth, defaults to &#39;ldap&#39;</span>
-<span class="n">LDAP_LOGIN_ATTR</span> <span class="o">=</span> <span class="s1">&#39;userPrincipalName&#39;</span>        <span class="c1"># User&#39;s attribute used to log in to Seafile, </span>
+<span class="n">LDAP_ADMIN_PASSWORD</span> <span class="o">=</span> <span class="s1">'Hello@123'</span>            <span class="c1"># Password of LDAP_ADMIN_DN</span>
+<span class="n">LDAP_PROVIDER</span> <span class="o">=</span> <span class="s1">'ldap'</span>                       <span class="c1"># Identify the source of the user, used in </span>
+                                             <span class="c1"># the table social_auth_usersocialauth, defaults to 'ldap'</span>
+<span class="n">LDAP_LOGIN_ATTR</span> <span class="o">=</span> <span class="s1">'userPrincipalName'</span>        <span class="c1"># User's attribute used to log in to Seafile, </span>
                                              <span class="c1"># can be mail or userPrincipalName, cannot be changed</span>
-<span class="n">LDAP_FILTER</span> <span class="o">=</span> <span class="s1">&#39;memberOf=CN=testgroup,OU=test,DC=seafile,DC=ren&#39;</span>  <span class="c1"># Additional filter conditions,</span>
+<span class="n">LDAP_FILTER</span> <span class="o">=</span> <span class="s1">'memberOf=CN=testgroup,OU=test,DC=seafile,DC=ren'</span>  <span class="c1"># Additional filter conditions,</span>
                                                                  <span class="c1"># users who meet the filter conditions can log in, otherwise they cannot log in</span>
 <span class="c1"># For update user info when login</span>
-<span class="n">LDAP_CONTACT_EMAIL_ATTR</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>             <span class="c1"># For update user&#39;s contact_email</span>
-<span class="n">LDAP_USER_ROLE_ATTR</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>                 <span class="c1"># For update user&#39;s role</span>
-<span class="n">LDAP_USER_FIRST_NAME_ATTR</span> <span class="o">=</span> <span class="s1">&#39;givenName&#39;</span>  <span class="c1"># For update user&#39;s first name</span>
-<span class="n">LDAP_USER_LAST_NAME_ATTR</span> <span class="o">=</span> <span class="s1">&#39;sn&#39;</span>          <span class="c1"># For update user&#39;s last name</span>
-<span class="n">LDAP_USER_NAME_REVERSE</span> <span class="o">=</span> <span class="kc">False</span>           <span class="c1"># Whether to reverse the user&#39;s first and last name</span>
+<span class="n">LDAP_CONTACT_EMAIL_ATTR</span> <span class="o">=</span> <span class="s1">''</span>             <span class="c1"># For update user's contact_email</span>
+<span class="n">LDAP_USER_ROLE_ATTR</span> <span class="o">=</span> <span class="s1">''</span>                 <span class="c1"># For update user's role</span>
+<span class="n">LDAP_USER_FIRST_NAME_ATTR</span> <span class="o">=</span> <span class="s1">'givenName'</span>  <span class="c1"># For update user's first name</span>
+<span class="n">LDAP_USER_LAST_NAME_ATTR</span> <span class="o">=</span> <span class="s1">'sn'</span>          <span class="c1"># For update user's last name</span>
+<span class="n">LDAP_USER_NAME_REVERSE</span> <span class="o">=</span> <span class="kc">False</span>           <span class="c1"># Whether to reverse the user's first and last name</span>
 </code></pre></div>
 <p>The following configuration items are only for Pro Edition:
 <div class="highlight"><pre><span></span><code><span class="c1"># Configuration items for LDAP sync tasks.</span>
@@ -5894,47 +5894,47 @@ sudo<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> 
 
 <span class="c1"># LDAP user sync configuration items.</span>
 <span class="n">ENABLE_LDAP_USER_SYNC</span> <span class="o">=</span> <span class="kc">True</span>             <span class="c1"># Whether to enable user sync</span>
-<span class="n">LDAP_USER_OBJECT_CLASS</span> <span class="o">=</span> <span class="s1">&#39;person&#39;</span>        <span class="c1"># This is the name of the class used to search for user objects. </span>
-                                         <span class="c1"># In Active Directory, it&#39;s usually &quot;person&quot;. The default value is &quot;person&quot;.</span>
-<span class="n">LDAP_DEPT_ATTR</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>                      <span class="c1"># LDAP user&#39;s department info</span>
-<span class="n">LDAP_UID_ATTR</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>                       <span class="c1"># LDAP user&#39;s login_id attribute</span>
+<span class="n">LDAP_USER_OBJECT_CLASS</span> <span class="o">=</span> <span class="s1">'person'</span>        <span class="c1"># This is the name of the class used to search for user objects. </span>
+                                         <span class="c1"># In Active Directory, it's usually "person". The default value is "person".</span>
+<span class="n">LDAP_DEPT_ATTR</span> <span class="o">=</span> <span class="s1">''</span>                      <span class="c1"># LDAP user's department info</span>
+<span class="n">LDAP_UID_ATTR</span> <span class="o">=</span> <span class="s1">''</span>                       <span class="c1"># LDAP user's login_id attribute</span>
 <span class="n">LDAP_AUTO_REACTIVATE_USERS</span> <span class="o">=</span> <span class="kc">True</span>        <span class="c1"># Whether to auto activate deactivated user</span>
 <span class="n">LDAP_USE_PAGED_RESULT</span> <span class="o">=</span> <span class="kc">False</span>            <span class="c1"># Whether to use pagination extension</span>
 <span class="n">IMPORT_NEW_USER</span> <span class="o">=</span> <span class="kc">True</span>                   <span class="c1"># Whether to import new users when sync user</span>
 <span class="n">ACTIVATE_USER_WHEN_IMPORT</span> <span class="o">=</span> <span class="kc">True</span>         <span class="c1"># Whether to activate the user when importing new user</span>
 <span class="n">ENABLE_EXTRA_USER_INFO_SYNC</span> <span class="o">=</span> <span class="kc">True</span>       <span class="c1"># Whether to enable sync of additional user information,</span>
-                                         <span class="c1"># including user&#39;s full name, contact_email, department, and Windows login name, etc.</span>
-<span class="n">DEACTIVE_USER_IF_NOTFOUND</span> <span class="o">=</span> <span class="kc">False</span>        <span class="c1"># Set to &quot;true&quot; if you want to deactivate a user </span>
+                                         <span class="c1"># including user's full name, contact_email, department, and Windows login name, etc.</span>
+<span class="n">DEACTIVE_USER_IF_NOTFOUND</span> <span class="o">=</span> <span class="kc">False</span>        <span class="c1"># Set to "true" if you want to deactivate a user </span>
                                          <span class="c1"># when he/she was deleted in AD server.</span>
 
 <span class="c1"># LDAP group sync configuration items.</span>
 <span class="n">ENABLE_LDAP_GROUP_SYNC</span> <span class="o">=</span> <span class="kc">True</span>            <span class="c1"># Whether to enable group sync</span>
-<span class="n">LDAP_GROUP_FILTER</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>                   <span class="c1"># Group sync filter</span>
+<span class="n">LDAP_GROUP_FILTER</span> <span class="o">=</span> <span class="s1">''</span>                   <span class="c1"># Group sync filter</span>
 <span class="n">LDAP_SYNC_DEPARTMENT_FROM_OU</span> <span class="o">=</span> <span class="kc">True</span>      <span class="c1"># Whether to enable sync departments from OU.</span>
-<span class="n">LDAP_GROUP_OBJECT_CLASS</span> <span class="o">=</span> <span class="s1">&#39;group&#39;</span>        <span class="c1"># This is the name of the class used to search for group objects.</span>
-<span class="n">LDAP_GROUP_MEMBER_ATTR</span> <span class="o">=</span> <span class="s1">&#39;member&#39;</span>        <span class="c1"># The attribute field to use when loading the group&#39;s members. </span>
-                                         <span class="c1"># For most directory servers, the attributes is &quot;member&quot; </span>
-                                         <span class="c1"># which is the default value.For &quot;posixGroup&quot;, it should be set to &quot;memberUid&quot;.</span>
-<span class="n">LDAP_USER_ATTR_IN_MEMBERUID</span> <span class="o">=</span> <span class="s1">&#39;uid&#39;</span>      <span class="c1"># The user attribute set in &#39;memberUid&#39; option, </span>
-                                         <span class="c1"># which is used in &quot;posixGroup&quot;.The default value is &quot;uid&quot;.</span>
-<span class="n">LDAP_GROUP_UUID_ATTR</span> <span class="o">=</span> <span class="s1">&#39;objectGUID&#39;</span>      <span class="c1"># Used to uniquely identify groups in LDAP</span>
+<span class="n">LDAP_GROUP_OBJECT_CLASS</span> <span class="o">=</span> <span class="s1">'group'</span>        <span class="c1"># This is the name of the class used to search for group objects.</span>
+<span class="n">LDAP_GROUP_MEMBER_ATTR</span> <span class="o">=</span> <span class="s1">'member'</span>        <span class="c1"># The attribute field to use when loading the group's members. </span>
+                                         <span class="c1"># For most directory servers, the attributes is "member" </span>
+                                         <span class="c1"># which is the default value.For "posixGroup", it should be set to "memberUid".</span>
+<span class="n">LDAP_USER_ATTR_IN_MEMBERUID</span> <span class="o">=</span> <span class="s1">'uid'</span>      <span class="c1"># The user attribute set in 'memberUid' option, </span>
+                                         <span class="c1"># which is used in "posixGroup".The default value is "uid".</span>
+<span class="n">LDAP_GROUP_UUID_ATTR</span> <span class="o">=</span> <span class="s1">'objectGUID'</span>      <span class="c1"># Used to uniquely identify groups in LDAP</span>
 <span class="n">LDAP_USE_GROUP_MEMBER_RANGE_QUERY</span> <span class="o">=</span> <span class="kc">False</span>   <span class="c1"># When a group contains too many members, </span>
                                             <span class="c1"># AD will only return part of them. Set this option to TRUE</span>
                                             <span class="c1"># to make LDAP sync work with large groups.</span>
 <span class="n">LDAP_SYNC_GROUP_AS_DEPARTMENT</span> <span class="o">=</span> <span class="kc">False</span>    <span class="c1"># Whether to sync groups as top-level departments in Seafile</span>
-<span class="n">LDAP_DEPT_NAME_ATTR</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>                 <span class="c1"># Used to get the department name.</span>
+<span class="n">LDAP_DEPT_NAME_ATTR</span> <span class="o">=</span> <span class="s1">''</span>                 <span class="c1"># Used to get the department name.</span>
 <span class="n">LDAP_CREATE_DEPARTMENT_LIBRARY</span> <span class="o">=</span> <span class="kc">False</span>   <span class="c1"># If you decide to sync the group as a department,</span>
-                                         <span class="c1"># you can set this option to &quot;true&quot;. In this way, when </span>
+                                         <span class="c1"># you can set this option to "true". In this way, when </span>
                                          <span class="c1"># the group is synchronized for the first time, a library</span>
                                          <span class="c1"># is automatically created for the department, and the </span>
-                                         <span class="c1"># library&#39;s name is the department&#39;s name.</span>
-<span class="n">LDAP_DEPT_REPO_PERM</span> <span class="o">=</span> <span class="s1">&#39;rw&#39;</span>               <span class="c1"># Set the permissions of the department repo, default permission is &#39;rw&#39;.</span>
+                                         <span class="c1"># library's name is the department's name.</span>
+<span class="n">LDAP_DEPT_REPO_PERM</span> <span class="o">=</span> <span class="s1">'rw'</span>               <span class="c1"># Set the permissions of the department repo, default permission is 'rw'.</span>
 <span class="n">LDAP_DEFAULT_DEPARTMENT_QUOTA</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>       <span class="c1"># You can set a default space quota for each department</span>
                                          <span class="c1"># when you synchronize a group for the first time. The </span>
                                          <span class="c1"># quota is set to unlimited if this option is not set.</span>
                                          <span class="c1"># Unit is MB.</span>
-<span class="n">DEL_GROUP_IF_NOT_FOUND</span> <span class="o">=</span> <span class="kc">False</span>           <span class="c1"># Set to &quot;true&quot;, sync process will delete the group if not found it in LDAP server.</span>
-<span class="n">DEL_DEPARTMENT_IF_NOT_FOUND</span> <span class="o">=</span> <span class="kc">False</span>      <span class="c1"># Set to &quot;true&quot;, sync process will deleted the department if not found it in LDAP server.</span>
+<span class="n">DEL_GROUP_IF_NOT_FOUND</span> <span class="o">=</span> <span class="kc">False</span>           <span class="c1"># Set to "true", sync process will delete the group if not found it in LDAP server.</span>
+<span class="n">DEL_DEPARTMENT_IF_NOT_FOUND</span> <span class="o">=</span> <span class="kc">False</span>      <span class="c1"># Set to "true", sync process will deleted the department if not found it in LDAP server.</span>
 </code></pre></div></p>
 <p>If you sync users from LDAP to Seafile, when the user login via SSO (ADFS or OAuth or Shibboleth), you want Seafile to find the existing account for this user instead of creating a new one, you can set <code>SSO_LDAP_USE_SAME_UID = True</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="n">SSO_LDAP_USE_SAME_UID</span> <span class="o">=</span> <span class="kc">True</span>
@@ -5952,17 +5952,17 @@ python3<span class="w"> </span>migrate_ldapusers.py
 <p>In the new version, the OAuth login configuration should keep the email attribute unchanged to be compatible with new and old user logins. In version 11.0, a new uid attribute is added to be used as a user's external unique ID. The uid will be stored in social_auth_usersocialauth to map to internal virtual ID. For old users, the original  email is used the internal virtual ID. The example is as follows:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Version 10.0 or earlier</span>
 <span class="n">OAUTH_ATTRIBUTE_MAP</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;contact_email&quot;</span><span class="p">),</span>
+    <span class="s2">"id"</span><span class="p">:</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s2">"email"</span><span class="p">),</span>
+    <span class="s2">"name"</span><span class="p">:</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">"name"</span><span class="p">),</span>
+    <span class="s2">"email"</span><span class="p">:</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">"contact_email"</span><span class="p">),</span>
 <span class="p">}</span>
 
-<span class="c1"># Since 11.0 version, added &#39;uid&#39; attribute.</span>
+<span class="c1"># Since 11.0 version, added 'uid' attribute.</span>
 <span class="n">OAUTH_ATTRIBUTE_MAP</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">),</span>  <span class="c1"># In the new version, the email attribute configuration should be kept unchanged to be compatible with old and new user logins</span>
-    <span class="s2">&quot;uid&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;uid&quot;</span><span class="p">),</span>   <span class="c1"># Seafile use &#39;uid&#39; as the external unique identifier of the user. Different OAuth systems have different attributes, which may be: &#39;uid&#39; or &#39;username&#39;, etc.</span>
-    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;contact_email&quot;</span><span class="p">),</span>
+    <span class="s2">"id"</span><span class="p">:</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s2">"email"</span><span class="p">),</span>  <span class="c1"># In the new version, the email attribute configuration should be kept unchanged to be compatible with old and new user logins</span>
+    <span class="s2">"uid"</span><span class="p">:</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s2">"uid"</span><span class="p">),</span>   <span class="c1"># Seafile use 'uid' as the external unique identifier of the user. Different OAuth systems have different attributes, which may be: 'uid' or 'username', etc.</span>
+    <span class="s2">"name"</span><span class="p">:</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">"name"</span><span class="p">),</span>
+    <span class="s2">"email"</span><span class="p">:</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">"contact_email"</span><span class="p">),</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>When a user login, Seafile will first use "id -&gt; email" map to find the old user and then create "uid -&gt; uid" map for this old user. After all users login once, you can delete the configuration  <code>"id": (True, "email")</code>. You can also manully add records in social_auth_usersocialauth to map extenral uid to old users.</p>

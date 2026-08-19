@@ -5520,8 +5520,8 @@ git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w">
 <p>To build Seafile client, you need first build <strong>libsearpc</strong> and <strong>seafile</strong>.</p>
 <h5 id="set-paths">set paths<a class="headerlink" href="#set-paths" title="Permanent link">&para;</a></h5>
 <div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">PREFIX</span><span class="o">=</span>/usr
-<span class="nb">export</span><span class="w"> </span><span class="nv">PKG_CONFIG_PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$PREFIX</span><span class="s2">/lib/pkgconfig:</span><span class="nv">$PKG_CONFIG_PATH</span><span class="s2">&quot;</span>
-<span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$PREFIX</span><span class="s2">/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PKG_CONFIG_PATH</span><span class="o">=</span><span class="s2">"</span><span class="nv">$PREFIX</span><span class="s2">/lib/pkgconfig:</span><span class="nv">$PKG_CONFIG_PATH</span><span class="s2">"</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"</span><span class="nv">$PREFIX</span><span class="s2">/bin:</span><span class="nv">$PATH</span><span class="s2">"</span>
 </code></pre></div>
 <h5 id="libsearpc">libsearpc<a class="headerlink" href="#libsearpc" title="Permanent link">&para;</a></h5>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>libsearpc
@@ -5551,15 +5551,15 @@ sudo<span class="w"> </span>make<span class="w"> </span>install
 <p>when installing to a custom <code>$PREFIX</code>, i.e. <code>/opt</code>, you may need a script to set the path variables correctly</p>
 <div class="highlight"><pre><span></span><code>cat<span class="w"> </span>&gt;<span class="nv">$PREFIX</span>/bin/seafile-applet.sh<span class="w"> </span><span class="s">&lt;&lt;END</span>
 <span class="s">#!/bin/bash</span>
-<span class="s">export LD_LIBRARY_PATH=&quot;$PREFIX/lib:$LD_LIBRARY_PATH&quot;</span>
-<span class="s">export PATH=&quot;$PREFIX/bin:$PATH&quot;</span>
+<span class="s">export LD_LIBRARY_PATH="$PREFIX/lib:$LD_LIBRARY_PATH"</span>
+<span class="s">export PATH="$PREFIX/bin:$PATH"</span>
 <span class="s">exec seafile-applet $@</span>
 <span class="s">END</span>
-cat<span class="w"> </span>&gt;<span class="nv">$PREFIX</span>/bin/seaf-cli.sh<span class="w"> </span><span class="s">&lt;&lt;&#39;END&#39;</span>
-<span class="s">export LD_LIBRARY_PATH=&quot;$PREFIX/lib:$LD_LIBRARY_PATH&quot;</span>
-<span class="s">export PATH=&quot;$PREFIX/bin:$PATH&quot;</span>
+cat<span class="w"> </span>&gt;<span class="nv">$PREFIX</span>/bin/seaf-cli.sh<span class="w"> </span><span class="s">&lt;&lt;'END'</span>
+<span class="s">export LD_LIBRARY_PATH="$PREFIX/lib:$LD_LIBRARY_PATH"</span>
+<span class="s">export PATH="$PREFIX/bin:$PATH"</span>
 <span class="s">export PYTHONPATH=$PREFIX/lib/python3.12/site-packages</span>
-<span class="s">exec seaf-cli &quot;$@&quot;</span>
+<span class="s">exec seaf-cli "$@"</span>
 <span class="s">END</span>
 chmod<span class="w"> </span>+x<span class="w"> </span><span class="nv">$PREFIX</span>/bin/seafile-applet.sh<span class="w"> </span><span class="nv">$PREFIX</span>/bin/seaf-cli.sh
 </code></pre></div>

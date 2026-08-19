@@ -5663,9 +5663,9 @@
 <h2 id="sending-email-notifications-on-seahub">Sending Email Notifications on Seahub<a class="headerlink" href="#sending-email-notifications-on-seahub" title="Permanent link">&para;</a></h2>
 <p>Refer to <a href="../sending_email/">email sending documentation</a>.</p>
 <h2 id="security-settings">Security settings<a class="headerlink" href="#security-settings" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="c1"># For security consideration, please set to match the host/domain of your site, e.g., ALLOWED_HOSTS = [&#39;.example.com&#39;].</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># For security consideration, please set to match the host/domain of your site, e.g., ALLOWED_HOSTS = ['.example.com'].</span>
 <span class="c1"># Please refer https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts for details.</span>
-<span class="n">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;.myseafile.com&#39;</span><span class="p">]</span>
+<span class="n">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'.myseafile.com'</span><span class="p">]</span>
 
 
 <span class="c1"># Whether to use a secure cookie for the CSRF cookie</span>
@@ -5674,10 +5674,10 @@
 
 <span class="c1"># The value of the SameSite flag on the CSRF cookie</span>
 <span class="c1"># https://docs.djangoproject.com/en/3.2/ref/settings/#csrf-cookie-samesite</span>
-<span class="n">CSRF_COOKIE_SAMESITE</span> <span class="o">=</span> <span class="s1">&#39;Strict&#39;</span>
+<span class="n">CSRF_COOKIE_SAMESITE</span> <span class="o">=</span> <span class="s1">'Strict'</span>
 
 <span class="c1"># https://docs.djangoproject.com/en/3.2/ref/settings/#csrf-trusted-origins</span>
-<span class="n">CSRF_TRUSTED_ORIGINS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://www.myseafile.com&#39;</span><span class="p">]</span>
+<span class="n">CSRF_TRUSTED_ORIGINS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'https://www.myseafile.com'</span><span class="p">]</span>
 
 <span class="c1"># SECRET_KEY is used by the Django framework to generate sessions and CSRF tokens. If it is changed, all users need to re-login again.</span>
 <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">SECRET_KEY</span><span class="o">&gt;</span>
@@ -5694,7 +5694,7 @@
 <span class="c1"># Whether to send email when a system admin adding a new member. Default is `True`.</span>
 <span class="n">SEND_EMAIL_ON_ADDING_SYSTEM_MEMBER</span> <span class="o">=</span> <span class="kc">True</span>
 
-<span class="c1"># Whether to send email when a system admin resetting a user&#39;s password. Default is `True`.</span>
+<span class="c1"># Whether to send email when a system admin resetting a user's password. Default is `True`.</span>
 <span class="n">SEND_EMAIL_ON_RESETTING_USER_PASSWD</span> <span class="o">=</span> <span class="kc">True</span>
 
 <span class="c1"># Send system admin notify email when user registration is complete. Default is `False`.</span>
@@ -5721,15 +5721,15 @@
 <span class="c1"># Age of cookie, in seconds (default: 2 weeks).</span>
 <span class="n">SESSION_COOKIE_AGE</span> <span class="o">=</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">7</span> <span class="o">*</span> <span class="mi">2</span>
 
-<span class="c1"># Whether a user&#39;s session cookie expires when the Web browser is closed.</span>
+<span class="c1"># Whether a user's session cookie expires when the Web browser is closed.</span>
 <span class="n">SESSION_EXPIRE_AT_BROWSER_CLOSE</span> <span class="o">=</span> <span class="kc">False</span>
 
 <span class="c1"># Whether to save the session data on every request. Default is `False`</span>
 <span class="n">SESSION_SAVE_EVERY_REQUEST</span> <span class="o">=</span> <span class="kc">False</span>
 
 <span class="c1"># In old version, if you use Single Sign On, the password is not saved in Seafile.</span>
-<span class="c1"># Users can&#39;t use WebDAV because Seafile can&#39;t check whether the password is correct.</span>
-<span class="c1"># Since version 6.3.8, you can enable this option to let user&#39;s to specific a password for WebDAV login.</span>
+<span class="c1"># Users can't use WebDAV because Seafile can't check whether the password is correct.</span>
+<span class="c1"># Since version 6.3.8, you can enable this option to let user's to specific a password for WebDAV login.</span>
 <span class="c1"># Users login via SSO can use this password to login in WebDAV.</span>
 <span class="c1"># Enable the feature. pycryptodome should be installed first.</span>
 <span class="c1"># sudo pip install pycryptodome==3.12.0</span>
@@ -5738,12 +5738,12 @@
 
 <span class="c1"># LEVEL for the password, based on four types of input:</span>
 <span class="c1"># num, upper letter, lower letter, other symbols</span>
-<span class="c1"># &#39;3&#39; means password must have at least 3 types of the above.</span>
+<span class="c1"># '3' means password must have at least 3 types of the above.</span>
 <span class="n">WEBDAV_SECRET_STRENGTH_LEVEL</span> <span class="o">=</span> <span class="mi">1</span>
 
 
 <span class="c1"># Since version 7.0.9, you can force a full user to log in with a two factor authentication.</span>
-<span class="c1"># The prerequisite is that the administrator should &#39;enable two factor authentication&#39; in the &#39;System Admin -&gt; Settings&#39; page.</span>
+<span class="c1"># The prerequisite is that the administrator should 'enable two factor authentication' in the 'System Admin -&gt; Settings' page.</span>
 <span class="c1"># Then you can add the following configuration information to the configuration file.</span>
 <span class="n">ENABLE_FORCE_2FA_TO_ALL_USERS</span> <span class="o">=</span> <span class="kc">True</span>
 
@@ -5751,7 +5751,7 @@
 <span class="c1"># Since version 6.0</span>
 <span class="n">ENABLE_TWO_FACTOR_AUTH</span> <span class="o">=</span> <span class="kc">True</span>
 
-<span class="c1"># Enable a user to change password in &#39;settings&#39; page. Default to `True`</span>
+<span class="c1"># Enable a user to change password in 'settings' page. Default to `True`</span>
 <span class="c1"># Since version 6.2.11</span>
 <span class="n">ENABLE_CHANGE_PASSWORD</span> <span class="o">=</span> <span class="kc">True</span>
 
@@ -5777,7 +5777,7 @@
 <span class="c1"># Default is False</span>
 <span class="n">ENABLE_SHIBBOLETH_LOGIN</span> <span class="o">=</span> <span class="kc">True</span>
 
-<span class="c1"># Enable a user associated with SSO account to change/reset local password in &#39;settings&#39; page. Default to `True`.</span>
+<span class="c1"># Enable a user associated with SSO account to change/reset local password in 'settings' page. Default to `True`.</span>
 <span class="c1"># Change it to false to disable SSO account to change local password</span>
 <span class="n">ENABLE_SSO_USER_CHANGE_PASSWORD</span> <span class="o">=</span> <span class="kc">True</span>
 
@@ -5800,7 +5800,7 @@ ENABLE_REPO_SNAPSHOT_LABEL = False
 
 <span class="c1"># version for encrypted library</span>
 <span class="c1"># should only be `2` or `4`.</span>
-<span class="c1"># version 3 is insecure (using AES128 encryption) so it&#39;s not supported any more.</span>
+<span class="c1"># version 3 is insecure (using AES128 encryption) so it's not supported any more.</span>
 <span class="c1"># refer to https://manual.seafile.com/latest/administration/security_features/#how-does-an-encrypted-library-work</span>
 <span class="c1"># for the difference between version 2 and 4.</span>
 <span class="n">ENCRYPTED_LIBRARY_VERSION</span> <span class="o">=</span> <span class="mi">2</span>
@@ -5816,14 +5816,14 @@ ENABLE_REPO_SNAPSHOT_LABEL = False
 <span class="c1">#    The default number of iterations is 1000. As of 2023, the recommended iterations is 600,000.</span>
 <span class="c1">#  - Argon2id: Secure hash algorithm that has high cost even for GPUs. There are 3 parameters that</span>
 <span class="c1">#    can be set: time cost, memory cost, and parallelism degree. The parameters are seperated by commas,</span>
-<span class="c1">#    e.g. &quot;2,102400,8&quot;, which the default parameters used in Seafile. Learn more about this algorithm</span>
+<span class="c1">#    e.g. "2,102400,8", which the default parameters used in Seafile. Learn more about this algorithm</span>
 <span class="c1">#    on https://github.com/P-H-C/phc-winner-argon2 .</span>
 <span class="c1">#</span>
 <span class="c1"># Note that only sync client &gt;= 9.0.9 and SeaDrive &gt;= 3.0.12 supports syncing libraries created with these algorithms.</span>
-<span class="n">ENCRYPTED_LIBRARY_PWD_HASH_ALGO</span> <span class="o">=</span> <span class="s2">&quot;argon2id&quot;</span>
-<span class="n">ENCRYPTED_LIBRARY_PWD_HASH_PARAMS</span> <span class="o">=</span> <span class="s2">&quot;2,102400,8&quot;</span>
-<span class="c1"># ENCRYPTED_LIBRARY_PWD_HASH_ALGO = &quot;pbkdf2_sha256&quot;</span>
-<span class="c1"># ENCRYPTED_LIBRARY_PWD_HASH_PARAMS = &quot;600000&quot;</span>
+<span class="n">ENCRYPTED_LIBRARY_PWD_HASH_ALGO</span> <span class="o">=</span> <span class="s2">"argon2id"</span>
+<span class="n">ENCRYPTED_LIBRARY_PWD_HASH_PARAMS</span> <span class="o">=</span> <span class="s2">"2,102400,8"</span>
+<span class="c1"># ENCRYPTED_LIBRARY_PWD_HASH_ALGO = "pbkdf2_sha256"</span>
+<span class="c1"># ENCRYPTED_LIBRARY_PWD_HASH_PARAMS = "600000"</span>
 
 <span class="c1"># mininum length for password of encrypted library</span>
 <span class="n">REPO_PASSWORD_MIN_LENGTH</span> <span class="o">=</span> <span class="mi">8</span>
@@ -5837,7 +5837,7 @@ ENABLE_REPO_SNAPSHOT_LABEL = False
 <span class="c1"># LEVEL for the password of a share/upload link</span>
 <span class="c1"># based on four types of input:</span>
 <span class="c1"># num, upper letter, lower letter, other symbols</span>
-<span class="c1"># &#39;3&#39; means password must have at least 3 types of the above. (since version 8.0.9)</span>
+<span class="c1"># '3' means password must have at least 3 types of the above. (since version 8.0.9)</span>
 <span class="n">SHARE_LINK_PASSWORD_STRENGTH_LEVEL</span> <span class="o">=</span> <span class="mi">3</span>
 
 <span class="c1"># Default expire days for share link (since version 6.3.8)</span>
@@ -5898,10 +5898,10 @@ ENABLE_REPO_SNAPSHOT_LABEL = False
 
 <span class="c1"># Extensions of previewed text files.</span>
 <span class="c1"># NOTE: since version 6.1.1</span>
-<span class="n">TEXT_PREVIEW_EXT</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;ac, am, bat, c, cc, cmake, cpp, cs, css, diff, el, h, html,</span>
+<span class="n">TEXT_PREVIEW_EXT</span> <span class="o">=</span> <span class="s2">"""ac, am, bat, c, cc, cmake, cpp, cs, css, diff, el, h, html,</span>
 <span class="s2">htm, java, js, json, less, make, org, php, pl, properties, py, rb,</span>
 <span class="s2">scala, script, sh, sql, txt, text, tex, vi, vim, xhtml, xml, log, csv,</span>
-<span class="s2">groovy, rst, patch, go&quot;&quot;&quot;</span>
+<span class="s2">groovy, rst, patch, go"""</span>
 
 
 <span class="c1"># Seafile only generates thumbnails for images smaller than the following size.</span>
@@ -5911,8 +5911,8 @@ ENABLE_REPO_SNAPSHOT_LABEL = False
 <h2 id="map-service">Map service<a class="headerlink" href="#map-service" title="Permanent link">&para;</a></h2>
 <p>Options for map service:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># The map service currently relies on the Google Maps API and requires two API keys.</span>
-<span class="n">GOOGLE_MAP_KEY</span> <span class="o">=</span> <span class="s1">&#39;&lt;replace with your Google Maps API Key&gt;&#39;</span>
-<span class="n">SERVER_GOOGLE_MAP_KEY</span> <span class="o">=</span> <span class="s1">&#39;&lt;replace with your Google Maps API Key&gt;&#39;</span>
+<span class="n">GOOGLE_MAP_KEY</span> <span class="o">=</span> <span class="s1">'&lt;replace with your Google Maps API Key&gt;'</span>
+<span class="n">SERVER_GOOGLE_MAP_KEY</span> <span class="o">=</span> <span class="s1">'&lt;replace with your Google Maps API Key&gt;'</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Required scope of the API keys</p>
@@ -5958,25 +5958,25 @@ ENABLE_REPO_SNAPSHOT_LABEL = False
 <span class="c1"># although not all choices may be available on all operating systems.</span>
 <span class="c1"># If running in a Windows environment this must be set to the same as your</span>
 <span class="c1"># system time zone.</span>
-<span class="n">TIME_ZONE</span> <span class="o">=</span> <span class="s1">&#39;UTC&#39;</span>
+<span class="n">TIME_ZONE</span> <span class="o">=</span> <span class="s1">'UTC'</span>
 
 <span class="c1"># Language code for this installation. All choices can be found here:</span>
 <span class="c1"># http://www.i18nguy.com/unicode/language-identifiers.html</span>
 <span class="c1"># Default language for sending emails.</span>
-<span class="n">LANGUAGE_CODE</span> <span class="o">=</span> <span class="s1">&#39;en&#39;</span>
+<span class="n">LANGUAGE_CODE</span> <span class="o">=</span> <span class="s1">'en'</span>
 
 <span class="c1"># Custom language code choice.</span>
 <span class="n">LANGUAGES</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="p">(</span><span class="s1">&#39;en&#39;</span><span class="p">,</span> <span class="s1">&#39;English&#39;</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;zh-cn&#39;</span><span class="p">,</span> <span class="s1">&#39;简体中文&#39;</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;zh-tw&#39;</span><span class="p">,</span> <span class="s1">&#39;繁體中文&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'en'</span><span class="p">,</span> <span class="s1">'English'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'zh-cn'</span><span class="p">,</span> <span class="s1">'简体中文'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'zh-tw'</span><span class="p">,</span> <span class="s1">'繁體中文'</span><span class="p">),</span>
 <span class="p">)</span>
 
-<span class="c1"># Set this to your website/company&#39;s name. This is contained in email notifications and welcome message when user login for the first time.</span>
-<span class="n">SITE_NAME</span> <span class="o">=</span> <span class="s1">&#39;Seafile&#39;</span>
+<span class="c1"># Set this to your website/company's name. This is contained in email notifications and welcome message when user login for the first time.</span>
+<span class="n">SITE_NAME</span> <span class="o">=</span> <span class="s1">'Seafile'</span>
 
-<span class="c1"># Browser tab&#39;s title</span>
-<span class="n">SITE_TITLE</span> <span class="o">=</span> <span class="s1">&#39;Private Seafile&#39;</span>
+<span class="c1"># Browser tab's title</span>
+<span class="n">SITE_TITLE</span> <span class="o">=</span> <span class="s1">'Private Seafile'</span>
 
 <span class="c1"># Whether enable the feature Wiki (requires sdoc integration). Default is `True`</span>
 <span class="n">ENABLE_WIKI</span> <span class="o">=</span> <span class="kc">True</span>
@@ -5985,9 +5985,9 @@ ENABLE_REPO_SNAPSHOT_LABEL = False
 <span class="c1"># Since version 6.0.4</span>
 <span class="n">MAX_NUMBER_OF_FILES_FOR_FILEUPLOAD</span> <span class="o">=</span> <span class="mi">500</span>
 
-<span class="c1"># Control the language that send email. Default to user&#39;s current language.</span>
+<span class="c1"># Control the language that send email. Default to user's current language.</span>
 <span class="c1"># Since version 6.1.1</span>
-<span class="n">SHARE_LINK_EMAIL_LANGUAGE</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">SHARE_LINK_EMAIL_LANGUAGE</span> <span class="o">=</span> <span class="s1">''</span>
 
 <span class="c1"># Interval for browser requests unread notifications</span>
 <span class="c1"># Since PRO 6.1.4 or CE 6.1.2</span>
@@ -6006,7 +6006,7 @@ ENABLE_REPO_SNAPSHOT_LABEL = False
 <span class="c1"># Since 8.0.6 CE/PRO version.</span>
 <span class="c1"># Url redirected to after user logout Seafile.</span>
 <span class="c1"># Usually configured as Single Logout url.</span>
-<span class="n">LOGOUT_REDIRECT_URL</span> <span class="o">=</span> <span class="s1">&#39;https://www.example-url.com&#39;</span>
+<span class="n">LOGOUT_REDIRECT_URL</span> <span class="o">=</span> <span class="s1">'https://www.example-url.com'</span>
 
 
 <span class="c1"># Enable system admin add T&amp;C, all users need to accept terms before using. Defaults to `False`.</span>
@@ -6014,7 +6014,7 @@ ENABLE_REPO_SNAPSHOT_LABEL = False
 <span class="n">ENABLE_TERMS_AND_CONDITIONS</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div>
 <h2 id="pro-edition-only-options">Pro edition only options<a class="headerlink" href="#pro-edition-only-options" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><span class="c1"># Allow administrator to view user&#39;s file in UNENCRYPTED libraries</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Allow administrator to view user's file in UNENCRYPTED libraries</span>
 <span class="c1"># through Libraries page in System Admin. Default is False.</span>
 <span class="n">ENABLE_SYS_ADMIN_VIEW_REPO</span> <span class="o">=</span> <span class="kc">True</span>
 
@@ -6029,21 +6029,21 @@ ENABLE_REPO_SNAPSHOT_LABEL = False
 <span class="c1"># Send email to these email addresses when a virus is detected.</span>
 <span class="c1"># This list can be any valid email address, not necessarily the emails of Seafile user.</span>
 <span class="c1"># Since version 6.0.8</span>
-<span class="n">VIRUS_SCAN_NOTIFY_LIST</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;user_a@seafile.com&#39;</span><span class="p">,</span> <span class="s1">&#39;user_b@seafile.com&#39;</span><span class="p">]</span>
+<span class="n">VIRUS_SCAN_NOTIFY_LIST</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'user_a@seafile.com'</span><span class="p">,</span> <span class="s1">'user_b@seafile.com'</span><span class="p">]</span>
 </code></pre></div>
 <h2 id="restful-api">RESTful API<a class="headerlink" href="#restful-api" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code># API throttling related settings. Enlarger the rates if you got 429 response code during API calls.
 REST_FRAMEWORK = {
-    &#39;DEFAULT_THROTTLE_RATES&#39;: {
-        &#39;ping&#39;: &#39;600/minute&#39;,
-        &#39;anon&#39;: &#39;5/minute&#39;,
-        &#39;user&#39;: &#39;300/minute&#39;,
+    'DEFAULT_THROTTLE_RATES': {
+        'ping': '600/minute',
+        'anon': '5/minute',
+        'user': '300/minute',
     },
-    &#39;UNICODE_JSON&#39;: False,
+    'UNICODE_JSON': False,
 }
 
 # Throtting whitelist used to disable throttle for certain IPs.
-# e.g. REST_FRAMEWORK_THROTTING_WHITELIST = [&#39;127.0.0.1&#39;, &#39;192.168.1.1&#39;]
+# e.g. REST_FRAMEWORK_THROTTING_WHITELIST = ['127.0.0.1', '192.168.1.1']
 # Please make sure `REMOTE_ADDR` header is configured in Nginx conf according to https://manual.seafile.com/13.0/setup_binary/ce/deploy_with_nginx.html.
 REST_FRAMEWORK_THROTTING_WHITELIST = []
 </code></pre></div>
@@ -6056,13 +6056,13 @@ import sys
 
 current_path = os.path.dirname(os.path.abspath(__file__))
 seahub_dir = os.path.join(current_path, \
-        &#39;../../seafile-server-latest/seahub/seahub&#39;)
+        '../../seafile-server-latest/seahub/seahub')
 sys.path.append(seahub_dir)
 
 from seahub.profile.models import Profile
 def custom_search_user(request, emails):
 
-    institution_name = &#39;&#39;
+    institution_name = ''
 
     username = request.user.username
     profile = Profile.objects.get_profile_by_user(username)
@@ -6090,7 +6090,7 @@ import sys
 
 current_path = os.path.dirname(os.path.abspath(__file__))
 seaserv_dir = os.path.join(current_path, \
-        &#39;../../seafile-server-latest/seafile/lib64/python2.7/site-packages&#39;)
+        '../../seafile-server-latest/seafile/lib64/python2.7/site-packages')
 sys.path.append(seaserv_dir)
 
 def custom_get_groups(request):
@@ -6103,8 +6103,8 @@ def custom_get_groups(request):
     # for current user
     groups += ccnet_api.get_groups(username)
 
-    # for &#39;test@test.com&#39; user
-    groups += ccnet_api.get_groups(&#39;test@test.com&#39;)
+    # for 'test@test.com' user
+    groups += ccnet_api.get_groups('test@test.com')
 
     return groups
 </code></pre></div>

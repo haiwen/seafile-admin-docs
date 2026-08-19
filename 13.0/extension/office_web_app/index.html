@@ -5423,13 +5423,13 @@
 <div class="highlight"><pre><span></span><code><span class="c1"># Enable Office Online Server</span>
 <span class="n">ENABLE_OFFICE_WEB_APP</span> <span class="o">=</span> <span class="kc">True</span>
 
-<span class="c1"># Url of Office Online Server&#39;s discovery page</span>
+<span class="c1"># Url of Office Online Server's discovery page</span>
 <span class="c1"># The discovery page tells Seafile how to interact with Office Online Server when view file online</span>
 <span class="c1"># You should change `http://example.office-web-app.com` to your actual Office Online Server server address</span>
-<span class="n">OFFICE_WEB_APP_BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;http://example.office-web-app.com/hosting/discovery&#39;</span>
+<span class="n">OFFICE_WEB_APP_BASE_URL</span> <span class="o">=</span> <span class="s1">'http://example.office-web-app.com/hosting/discovery'</span>
 
 <span class="c1"># Expiration of WOPI access token</span>
-<span class="c1"># WOPI access token is a string used by Seafile to determine the file&#39;s</span>
+<span class="c1"># WOPI access token is a string used by Seafile to determine the file's</span>
 <span class="c1"># identity and permissions when use Office Online Server view it online</span>
 <span class="c1"># And for security reason, this token should expire after a set time period</span>
 <span class="n">WOPI_ACCESS_TOKEN_EXPIRATION</span> <span class="o">=</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">24</span> <span class="c1"># seconds</span>
@@ -5438,15 +5438,15 @@
 <span class="c1"># You can change this value according to your preferences</span>
 <span class="c1"># And of course you should make sure your Office Online Server supports to preview</span>
 <span class="c1"># the files with the specified extensions</span>
-<span class="n">OFFICE_WEB_APP_FILE_EXTENSION</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;ods&#39;</span><span class="p">,</span> <span class="s1">&#39;xls&#39;</span><span class="p">,</span> <span class="s1">&#39;xlsb&#39;</span><span class="p">,</span> <span class="s1">&#39;xlsm&#39;</span><span class="p">,</span> <span class="s1">&#39;xlsx&#39;</span><span class="p">,</span><span class="s1">&#39;ppsx&#39;</span><span class="p">,</span> <span class="s1">&#39;ppt&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;pptm&#39;</span><span class="p">,</span> <span class="s1">&#39;pptx&#39;</span><span class="p">,</span> <span class="s1">&#39;doc&#39;</span><span class="p">,</span> <span class="s1">&#39;docm&#39;</span><span class="p">,</span> <span class="s1">&#39;docx&#39;</span><span class="p">)</span>
+<span class="n">OFFICE_WEB_APP_FILE_EXTENSION</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'ods'</span><span class="p">,</span> <span class="s1">'xls'</span><span class="p">,</span> <span class="s1">'xlsb'</span><span class="p">,</span> <span class="s1">'xlsm'</span><span class="p">,</span> <span class="s1">'xlsx'</span><span class="p">,</span><span class="s1">'ppsx'</span><span class="p">,</span> <span class="s1">'ppt'</span><span class="p">,</span>
+    <span class="s1">'pptm'</span><span class="p">,</span> <span class="s1">'pptx'</span><span class="p">,</span> <span class="s1">'doc'</span><span class="p">,</span> <span class="s1">'docm'</span><span class="p">,</span> <span class="s1">'docx'</span><span class="p">)</span>
 
 <span class="c1"># Enable edit files through Office Online Server</span>
 <span class="n">ENABLE_OFFICE_WEB_APP_EDIT</span> <span class="o">=</span> <span class="kc">True</span>
 
 <span class="c1"># types of files should be editable through Office Online Server</span>
 <span class="c1"># Note, Office Online Server 2016 is needed for editing docx</span>
-<span class="n">OFFICE_WEB_APP_EDIT_FILE_EXTENSION</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;xlsx&#39;</span><span class="p">,</span> <span class="s1">&#39;pptx&#39;</span><span class="p">,</span> <span class="s1">&#39;docx&#39;</span><span class="p">)</span>
+<span class="n">OFFICE_WEB_APP_EDIT_FILE_EXTENSION</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'xlsx'</span><span class="p">,</span> <span class="s1">'pptx'</span><span class="p">,</span> <span class="s1">'docx'</span><span class="p">)</span>
 
 
 <span class="c1"># HTTPS authentication related (optional)</span>
@@ -5454,16 +5454,16 @@
 <span class="c1"># Server certificates</span>
 <span class="c1"># Path to a CA_BUNDLE file or directory with certificates of trusted CAs</span>
 <span class="c1"># NOTE: If set this setting to a directory, the directory must have been processed using the c_rehash utility supplied with OpenSSL.</span>
-<span class="n">OFFICE_WEB_APP_SERVER_CA</span> <span class="o">=</span> <span class="s1">&#39;/path/to/certfile&#39;</span>
+<span class="n">OFFICE_WEB_APP_SERVER_CA</span> <span class="o">=</span> <span class="s1">'/path/to/certfile'</span>
 
 
 <span class="c1"># Client certificates</span>
 <span class="c1"># You can specify a single file (containing the private key and the certificate) to use as client side certificate</span>
-<span class="n">OFFICE_WEB_APP_CLIENT_PEM</span> <span class="o">=</span> <span class="s1">&#39;path/to/client.pem&#39;</span>
+<span class="n">OFFICE_WEB_APP_CLIENT_PEM</span> <span class="o">=</span> <span class="s1">'path/to/client.pem'</span>
 
 <span class="c1"># or you can specify these two file path to use as client side certificate</span>
-<span class="n">OFFICE_WEB_APP_CLIENT_CERT</span> <span class="o">=</span> <span class="s1">&#39;path/to/client.cert&#39;</span>
-<span class="n">OFFICE_WEB_APP_CLIENT_KEY</span> <span class="o">=</span> <span class="s1">&#39;path/to/client.key&#39;</span>
+<span class="n">OFFICE_WEB_APP_CLIENT_CERT</span> <span class="o">=</span> <span class="s1">'path/to/client.cert'</span>
+<span class="n">OFFICE_WEB_APP_CLIENT_KEY</span> <span class="o">=</span> <span class="s1">'path/to/client.key'</span>
 </code></pre></div>
 <p>Then restart</p>
 <div class="highlight"><pre><span></span><code>./seafile.sh restart

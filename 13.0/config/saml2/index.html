@@ -5678,26 +5678,26 @@ openssl<span class="w"> </span>req<span class="w"> </span>-x509<span class="w"> 
 <p><strong>Next</strong>, copy the metadata URL of the SAML app:</p>
 <p><img alt="" src="../../images/auto-upload/1426318f-0a61-462d-a514-13768ca0b18c.png" /></p>
 <p>and paste it into the <code>SAML_REMOTE_METADATA_URL</code> option in seahub_settings.py, e.g.:</p>
-<div class="highlight"><pre><span></span><code><span class="n">SAML_REMOTE_METADATA_URL</span> <span class="o">=</span> <span class="s1">&#39;https://login.microsoftonline.com/xxx/federationmetadata/2007-06/federationmetadata.xml?appid=xxx&#39;</span>   <span class="c1"># copy from SAML app</span>
+<div class="highlight"><pre><span></span><code><span class="n">SAML_REMOTE_METADATA_URL</span> <span class="o">=</span> <span class="s1">'https://login.microsoftonline.com/xxx/federationmetadata/2007-06/federationmetadata.xml?appid=xxx'</span>   <span class="c1"># copy from SAML app</span>
 </code></pre></div>
 <p><strong>Next</strong>, add <code>ENABLE_ADFS_LOGIN</code>, <code>LOGIN_REDIRECT_URL</code> and <code>SAML_ATTRIBUTE_MAPPING</code> options to seahub_settings.py, and then restart Seafile, e.g:</p>
 <div class="highlight"><pre><span></span><code><span class="n">ENABLE_ADFS_LOGIN</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">LOGIN_REDIRECT_URL</span> <span class="o">=</span> <span class="s1">&#39;/saml2/complete/&#39;</span>
+<span class="n">LOGIN_REDIRECT_URL</span> <span class="o">=</span> <span class="s1">'/saml2/complete/'</span>
 <span class="n">SAML_ATTRIBUTE_MAPPING</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;display_name&#39;</span><span class="p">,</span> <span class="p">),</span>
-    <span class="s1">&#39;mail&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;contact_email&#39;</span><span class="p">,</span> <span class="p">),</span>
-    <span class="s1">&#39;seafile_groups&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">),</span> <span class="c1"># Optional, set this attribute if you need to synchronize groups/departments.</span>
+    <span class="s1">'name'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'display_name'</span><span class="p">,</span> <span class="p">),</span>
+    <span class="s1">'mail'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'contact_email'</span><span class="p">,</span> <span class="p">),</span>
+    <span class="s1">'seafile_groups'</span><span class="p">:</span> <span class="p">(</span><span class="s1">''</span><span class="p">,</span> <span class="p">),</span> <span class="c1"># Optional, set this attribute if you need to synchronize groups/departments.</span>
     <span class="o">...</span>
 
 <span class="p">}</span>
-<span class="n">SAML_REMOTE_METADATA_URL</span> <span class="o">=</span> <span class="s1">&#39;https://login.microsoftonline.com/xxx/federationmetadata/2007-06/federationmetadata.xml?appid=xxx&#39;</span>   <span class="c1"># copy from SAML app</span>
+<span class="n">SAML_REMOTE_METADATA_URL</span> <span class="o">=</span> <span class="s1">'https://login.microsoftonline.com/xxx/federationmetadata/2007-06/federationmetadata.xml?appid=xxx'</span>   <span class="c1"># copy from SAML app</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <ul>
 <li>If the xmlsec1 binary is <strong>not located in</strong> <code>/usr/bin/xmlsec1</code>, you need to add the following configuration in seahub_settings.py:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">SAML_XMLSEC_BINARY_PATH</span> <span class="o">=</span> <span class="s1">&#39;/path/to/xmlsec1&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">SAML_XMLSEC_BINARY_PATH</span> <span class="o">=</span> <span class="s1">'/path/to/xmlsec1'</span>
 </code></pre></div>
 <p>View where the xmlsec1 binary is located:</p>
 <div class="highlight"><pre><span></span><code>$ which xmlsec1
@@ -5753,14 +5753,14 @@ openssl<span class="w"> </span>req<span class="w"> </span>-x509<span class="w"> 
 </ul>
 <p><strong>Next</strong>, add the following configurations to seahub_settings.py and then restart Seafile:</p>
 <div class="highlight"><pre><span></span><code><span class="n">ENABLE_ADFS_LOGIN</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">LOGIN_REDIRECT_URL</span> <span class="o">=</span> <span class="s1">&#39;/saml2/complete/&#39;</span>
+<span class="n">LOGIN_REDIRECT_URL</span> <span class="o">=</span> <span class="s1">'/saml2/complete/'</span>
 <span class="n">SAML_ATTRIBUTE_MAPPING</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;display_name&#39;</span><span class="p">,</span> <span class="p">),</span>
-    <span class="s1">&#39;mail&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;contact_email&#39;</span><span class="p">,</span> <span class="p">),</span>
-    <span class="s1">&#39;seafile_groups&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">),</span> <span class="c1"># Optional, set this attribute if you need to synchronize groups/departments.</span>
+    <span class="s1">'name'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'display_name'</span><span class="p">,</span> <span class="p">),</span>
+    <span class="s1">'mail'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'contact_email'</span><span class="p">,</span> <span class="p">),</span>
+    <span class="s1">'seafile_groups'</span><span class="p">:</span> <span class="p">(</span><span class="s1">''</span><span class="p">,</span> <span class="p">),</span> <span class="c1"># Optional, set this attribute if you need to synchronize groups/departments.</span>
     <span class="o">...</span>
 <span class="p">}</span>
-<span class="n">SAML_REMOTE_METADATA_URL</span> <span class="o">=</span> <span class="s1">&#39;https://temp.adfs.com/federationmetadata/2007-06/federationmetadata.xml&#39;</span>   <span class="c1"># The format of the ADFS federation metadata URL is: `https://{your ADFS domain name}/federationmetadata/2007-06/federationmetadata.xml`</span>
+<span class="n">SAML_REMOTE_METADATA_URL</span> <span class="o">=</span> <span class="s1">'https://temp.adfs.com/federationmetadata/2007-06/federationmetadata.xml'</span>   <span class="c1"># The format of the ADFS federation metadata URL is: `https://{your ADFS domain name}/federationmetadata/2007-06/federationmetadata.xml`</span>
 </code></pre></div>
 <p><strong>Next</strong>, add <a href="https://learn.microsoft.com/en-us/windows-server/identity/ad-fs/operations/create-a-relying-party-trust#to-create-a-claims-aware-relying-party-trust-using-federation-metadata">relying party trust</a>:</p>
 <ul>
@@ -5903,14 +5903,14 @@ vim<span class="w"> </span>seahub_settings.py<span class="w"> </span>
 
 <span class="nv">ENABLE_ADFS_LOGIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>True
 <span class="c1">#SAML_CERTS_DIR is a path inside the container and does not need to be changed.</span>
-<span class="nv">SAML_CERTS_DIR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/opt/seafile/seahub-data/certs&#39;</span>
-<span class="c1">#The configuration format of SAML_REMOTE_METADATA_URL is &#39;{idp_server_url}/realms/{realm}/protocol/saml/descriptor&#39; </span>
+<span class="nv">SAML_CERTS_DIR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'/opt/seafile/seahub-data/certs'</span>
+<span class="c1">#The configuration format of SAML_REMOTE_METADATA_URL is '{idp_server_url}/realms/{realm}/protocol/saml/descriptor' </span>
 <span class="c1">#idp_server_url: The URL of the Keycloak service</span>
 <span class="c1">#realm: Realm name</span>
-<span class="nv">SAML_REMOTE_METADATA_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://keycloak.seafile.com/realms/haiwen/protocol/saml/descriptor&#39;</span>
+<span class="nv">SAML_REMOTE_METADATA_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'https://keycloak.seafile.com/realms/haiwen/protocol/saml/descriptor'</span>
 <span class="nv">SAML_ATTRIBUTE_MAPPING</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span>
-<span class="w">    </span><span class="s1">&#39;name&#39;</span>:<span class="w"> </span><span class="o">(</span><span class="s1">&#39;display_name&#39;</span>,<span class="w"> </span><span class="o">)</span>,
-<span class="w">    </span><span class="s1">&#39;mail&#39;</span>:<span class="w"> </span><span class="o">(</span><span class="s1">&#39;contact_email&#39;</span>,<span class="w"> </span><span class="o">)</span>,
+<span class="w">    </span><span class="s1">'name'</span>:<span class="w"> </span><span class="o">(</span><span class="s1">'display_name'</span>,<span class="w"> </span><span class="o">)</span>,
+<span class="w">    </span><span class="s1">'mail'</span>:<span class="w"> </span><span class="o">(</span><span class="s1">'contact_email'</span>,<span class="w"> </span><span class="o">)</span>,
 <span class="o">}</span>
 </code></pre></div>
 <p><strong>Finally</strong>, open the browser and enter the Seafile login page, click Single Sign-On, and use the user assigned to SAML app to perform a SAML login test.

@@ -5569,11 +5569,11 @@
 <ol>
 <li>
 <p>Refer to <strong><em>Table 1</em></strong> for the related service exposed ports. Add section <code>ports</code> for corresponding services</p>
-<div class="highlight"><pre><span></span><code>services:
-    &lt;the service need to be modified&gt;:
-        ...
-        ports:
-            - &quot;&lt;Suggest exposed port&gt;:&lt;Service listen port&gt;&quot;
+<div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">&lt;the service need to be modified&gt;</span><span class="p">:</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">ports</span><span class="p p-Indicator">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"&lt;Suggest</span><span class="nv"> </span><span class="s">exposed</span><span class="nv"> </span><span class="s">port&gt;:&lt;Service</span><span class="nv"> </span><span class="s">listen</span><span class="nv"> </span><span class="s">port&gt;"</span>
 </code></pre></div>
 </li>
 <li>
@@ -5585,27 +5585,27 @@
 </li>
 </ol>
 <p>We take <code>seafile-server.yml</code> for example (Pro edition):</p>
-<div class="highlight"><pre><span></span><code>services:
-    # ... other services
+<div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
+<span class="w">    </span><span class="c1"># ... other services</span>
 
-    seafile:
-    image: ${SEAFILE_IMAGE:-seafileltd/seafile-pro-mc:13.0-latest}
-    container_name: seafile
-    ports:
-       - &quot;80:80&quot;
-    volumes:
-      - ${SEAFILE_VOLUME:-/opt/seafile-data}:/shared
-    environment:
-      ... # enviroment variables map, donnot make change
+<span class="w">    </span><span class="nt">seafile</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${SEAFILE_IMAGE:-seafileltd/seafile-pro-mc:13.0-latest}</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">       </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"80:80"</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${SEAFILE_VOLUME:-/opt/seafile-data}:/shared</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w"> </span><span class="c1"># enviroment variables map, donnot make change</span>
 
-    # please remove the `label` section
-    #label: ...  &lt;- remove this section
+<span class="w">    </span><span class="c1"># please remove the `label` section</span>
+<span class="w">    </span><span class="c1">#label: ...  &lt;- remove this section</span>
 
-    depends_on:
-      ... # dependencies, donnot make change
-    ...
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">...</span><span class="w"> </span><span class="c1"># dependencies, donnot make change</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 
-# ... other options
+<span class="c1"># ... other options</span>
 </code></pre></div>
 <h2 id="add-reverse-proxy-for-related-services">Add reverse proxy for related services<a class="headerlink" href="#add-reverse-proxy-for-related-services" title="Permanent link">&para;</a></h2>
 <p>Modify <code>nginx.conf</code> and add reverse proxy for services <strong><em>seafile</em></strong> and <strong><em>seadoc</em></strong>:</p>
@@ -5622,7 +5622,7 @@
     proxy_set_header Host $host;
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header Connection &quot;&quot;;
+    proxy_set_header Connection "";
     proxy_http_version 1.1;
 
     proxy_read_timeout  36000s;
@@ -5651,7 +5651,7 @@ location /socket.io {
     proxy_pass http://127.0.0.1:8888;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection &#39;upgrade&#39;;
+    proxy_set_header Connection 'upgrade';
     proxy_redirect off;
 
     proxy_buffers 8 32k;
@@ -5669,7 +5669,7 @@ location /socket.io {
     proxy_pass http://127.0.0.1:8083;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection &quot;upgrade&quot;;
+    proxy_set_header Connection "upgrade";
     access_log      /var/log/nginx/notification.access.log seafileformat;
     error_log       /var/log/nginx/notification.error.log;
 }
@@ -5678,15 +5678,15 @@ location /socket.io {
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>map $http_x_forwarded_proto $the_scheme {
     default $http_x_forwarded_proto;
-    &quot;&quot; $scheme;
+    "" $scheme;
 }
 map $http_x_forwarded_host $the_host {
     default $http_x_forwarded_host;
-    &quot;&quot; $host;
+    "" $host;
 }
 map $http_upgrade $proxy_connection {
     default upgrade;
-    &quot;&quot; close;
+    "" close;
 }
 location /onlyofficeds/ {
     proxy_pass http://127.0.0.1:6233/;
@@ -5720,7 +5720,7 @@ location /onlyofficeds/ {
 </div>
 <h2 id="modify-env">Modify .env<a class="headerlink" href="#modify-env" title="Permanent link">&para;</a></h2>
 <p>Remove <code>caddy.yml</code> from field <code>COMPOSE_FILE</code> in <code>.env</code>, e.g.</p>
-<div class="highlight"><pre><span></span><code><span class="nv">COMPOSE_FILE</span><span class="o">=</span><span class="s1">&#39;seafile-server.yml&#39;</span><span class="w"> </span><span class="c1"># remove caddy.yml</span>
+<div class="highlight"><pre><span></span><code><span class="nv">COMPOSE_FILE</span><span class="o">=</span><span class="s1">'seafile-server.yml'</span><span class="w"> </span><span class="c1"># remove caddy.yml</span>
 </code></pre></div>
 <h2 id="restart-services-and-nginx">Restart services and nginx<a class="headerlink" href="#restart-services-and-nginx" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down

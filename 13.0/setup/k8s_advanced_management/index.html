@@ -5674,7 +5674,7 @@
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-748b695648-d6l4g<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span>--<span class="w">  </span>bash
 </code></pre></div>
 <p>Also, you can restart the services by the following commands:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.items[*].metadata.name}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>seafile<span class="k">)</span>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.items[*].metadata.name}'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>seafile<span class="k">)</span>
 </code></pre></div>
 <h2 id="k8s-gateway-and-https">K8S Gateway and HTTPS<a class="headerlink" href="#k8s-gateway-and-https" title="Permanent link">&para;</a></h2>
 <p>Since the support of Ingress feature <a href="https://kubernetes.io/docs/concepts/services-networking/ingress/">is frozen</a> in the new version of K8S, this article will introduce how to use the new version of K8S feature <a href="https://kubernetes.io/docs/concepts/services-networking/gateway/"><em>K8S Gateway</em></a> to implement Seafile service exposure and load balancing.</p>
@@ -5740,7 +5740,7 @@ kubectl<span class="w"> </span>get<span class="w"> </span>gc<span class="w"> </s
 <span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gateway</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-gateway</span>
 <span class="w">  </span><span class="nt">hostnames</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;&lt;your</span><span class="nv"> </span><span class="s">domain&gt;&quot;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"&lt;your</span><span class="nv"> </span><span class="s">domain&gt;"</span>
 <span class="w">  </span><span class="nt">rules</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">matches</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span>
@@ -5774,14 +5774,14 @@ kubectl<span class="w"> </span>get<span class="w"> </span>gc<span class="w"> </s
 <span class="w">      </span><span class="nt">tls</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">certificateRefs</span><span class="p">:</span>
 <span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Secret</span>
-<span class="w">            </span><span class="l l-Scalar l-Scalar-Plain">group</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">            </span><span class="l l-Scalar l-Scalar-Plain">group</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">""</span>
 <span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-tls-cert</span>
 <span class="nn">...</span>
 </code></pre></div>
 </li>
 <li>
 <p>Modify <code>seahub_settings.py</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="n">SERVICE_URL</span> <span class="o">=</span> <span class="s2">&quot;https://&lt;your domain&gt;/&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="n">SERVICE_URL</span> <span class="o">=</span> <span class="s2">"https://&lt;your domain&gt;/"</span>
 </code></pre></div>
 </li>
 <li>
@@ -5800,11 +5800,11 @@ kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> <
 <div class="highlight"><pre><span></span><code><span class="nn">...</span>
 <span class="nt">data</span><span class="p">:</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">SEAFILE_LOG_TO_STDOUT</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">SEAFILE_LOG_TO_STDOUT</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"true"</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </code></pre></div>
 <p>Then restart the Seafile server:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.items[*].metadata.name}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>seafile<span class="k">)</span>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.items[*].metadata.name}'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>seafile<span class="k">)</span>
 </code></pre></div>
 </li>
 <li>
@@ -5923,13 +5923,13 @@ kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> <
 <div class="admonition tip">
 <p class="admonition-title">Log records after parsing</p>
 <p>The logs of the Docker container are saved in /var/log/containers in <strong>Json</strong> format (see the sample below), which is why we use the <code>Json</code> format in the above parser.</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;log&quot;</span><span class="p">:</span><span class="s2">&quot;[seaf-server] [2025-01-17 07:43:48] [INFO] seafile-session.c(86): fileserver: web_token_expire_time = 3600\n&quot;</span><span class="p">,</span><span class="nt">&quot;stream&quot;</span><span class="p">:</span><span class="s2">&quot;stdout&quot;</span><span class="p">,</span><span class="nt">&quot;time&quot;</span><span class="p">:</span><span class="s2">&quot;2025-01-17T07:43:48.294638442Z&quot;</span><span class="p">}</span>
-<span class="p">{</span><span class="nt">&quot;log&quot;</span><span class="p">:</span><span class="s2">&quot;[seaf-server] [2025-01-17 07:43:48] [INFO] seafile-session.c(98): fileserver: max_index_processing_threads= 3\n&quot;</span><span class="p">,</span><span class="nt">&quot;stream&quot;</span><span class="p">:</span><span class="s2">&quot;stdout&quot;</span><span class="p">,</span><span class="nt">&quot;time&quot;</span><span class="p">:</span><span class="s2">&quot;2025-01-17T07:43:48.294810145Z&quot;</span><span class="p">}</span>
-<span class="p">{</span><span class="nt">&quot;log&quot;</span><span class="p">:</span><span class="s2">&quot;[seaf-server] [2025-01-17 07:43:48] [INFO] seafile-session.c(111): fileserver: fixed_block_size = 8388608\n&quot;</span><span class="p">,</span><span class="nt">&quot;stream&quot;</span><span class="p">:</span><span class="s2">&quot;stdout&quot;</span><span class="p">,</span><span class="nt">&quot;time&quot;</span><span class="p">:</span><span class="s2">&quot;2025-01-17T07:43:48.294879777Z&quot;</span><span class="p">}</span>
-<span class="p">{</span><span class="nt">&quot;log&quot;</span><span class="p">:</span><span class="s2">&quot;[seaf-server] [2025-01-17 07:43:48] [INFO] seafile-session.c(123): fileserver: max_indexing_threads = 1\n&quot;</span><span class="p">,</span><span class="nt">&quot;stream&quot;</span><span class="p">:</span><span class="s2">&quot;stdout&quot;</span><span class="p">,</span><span class="nt">&quot;time&quot;</span><span class="p">:</span><span class="s2">&quot;2025-01-17T07:43:48.295002479Z&quot;</span><span class="p">}</span>
-<span class="p">{</span><span class="nt">&quot;log&quot;</span><span class="p">:</span><span class="s2">&quot;[seaf-server] [2025-01-17 07:43:48] [INFO] seafile-session.c(138): fileserver: put_head_commit_request_timeout = 10\n&quot;</span><span class="p">,</span><span class="nt">&quot;stream&quot;</span><span class="p">:</span><span class="s2">&quot;stdout&quot;</span><span class="p">,</span><span class="nt">&quot;time&quot;</span><span class="p">:</span><span class="s2">&quot;2025-01-17T07:43:48.295082733Z&quot;</span><span class="p">}</span>
-<span class="p">{</span><span class="nt">&quot;log&quot;</span><span class="p">:</span><span class="s2">&quot;[seaf-server] [2025-01-17 07:43:48] [INFO] seafile-session.c(150): fileserver: skip_block_hash = 0\n&quot;</span><span class="p">,</span><span class="nt">&quot;stream&quot;</span><span class="p">:</span><span class="s2">&quot;stdout&quot;</span><span class="p">,</span><span class="nt">&quot;time&quot;</span><span class="p">:</span><span class="s2">&quot;2025-01-17T07:43:48.295195843Z&quot;</span><span class="p">}</span>
-<span class="p">{</span><span class="nt">&quot;log&quot;</span><span class="p">:</span><span class="s2">&quot;[seaf-server] [2025-01-17 07:43:48] [INFO] ../common/seaf-utils.c(553): Use database Mysql\n&quot;</span><span class="p">,</span><span class="nt">&quot;stream&quot;</span><span class="p">:</span><span class="s2">&quot;stdout&quot;</span><span class="p">,</span><span class="nt">&quot;time&quot;</span><span class="p">:</span><span class="s2">&quot;2025-01-17T07:43:48.29704895Z&quot;</span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">"log"</span><span class="p">:</span><span class="s2">"[seaf-server] [2025-01-17 07:43:48] [INFO] seafile-session.c(86): fileserver: web_token_expire_time = 3600\n"</span><span class="p">,</span><span class="nt">"stream"</span><span class="p">:</span><span class="s2">"stdout"</span><span class="p">,</span><span class="nt">"time"</span><span class="p">:</span><span class="s2">"2025-01-17T07:43:48.294638442Z"</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">"log"</span><span class="p">:</span><span class="s2">"[seaf-server] [2025-01-17 07:43:48] [INFO] seafile-session.c(98): fileserver: max_index_processing_threads= 3\n"</span><span class="p">,</span><span class="nt">"stream"</span><span class="p">:</span><span class="s2">"stdout"</span><span class="p">,</span><span class="nt">"time"</span><span class="p">:</span><span class="s2">"2025-01-17T07:43:48.294810145Z"</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">"log"</span><span class="p">:</span><span class="s2">"[seaf-server] [2025-01-17 07:43:48] [INFO] seafile-session.c(111): fileserver: fixed_block_size = 8388608\n"</span><span class="p">,</span><span class="nt">"stream"</span><span class="p">:</span><span class="s2">"stdout"</span><span class="p">,</span><span class="nt">"time"</span><span class="p">:</span><span class="s2">"2025-01-17T07:43:48.294879777Z"</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">"log"</span><span class="p">:</span><span class="s2">"[seaf-server] [2025-01-17 07:43:48] [INFO] seafile-session.c(123): fileserver: max_indexing_threads = 1\n"</span><span class="p">,</span><span class="nt">"stream"</span><span class="p">:</span><span class="s2">"stdout"</span><span class="p">,</span><span class="nt">"time"</span><span class="p">:</span><span class="s2">"2025-01-17T07:43:48.295002479Z"</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">"log"</span><span class="p">:</span><span class="s2">"[seaf-server] [2025-01-17 07:43:48] [INFO] seafile-session.c(138): fileserver: put_head_commit_request_timeout = 10\n"</span><span class="p">,</span><span class="nt">"stream"</span><span class="p">:</span><span class="s2">"stdout"</span><span class="p">,</span><span class="nt">"time"</span><span class="p">:</span><span class="s2">"2025-01-17T07:43:48.295082733Z"</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">"log"</span><span class="p">:</span><span class="s2">"[seaf-server] [2025-01-17 07:43:48] [INFO] seafile-session.c(150): fileserver: skip_block_hash = 0\n"</span><span class="p">,</span><span class="nt">"stream"</span><span class="p">:</span><span class="s2">"stdout"</span><span class="p">,</span><span class="nt">"time"</span><span class="p">:</span><span class="s2">"2025-01-17T07:43:48.295195843Z"</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">"log"</span><span class="p">:</span><span class="s2">"[seaf-server] [2025-01-17 07:43:48] [INFO] ../common/seaf-utils.c(553): Use database Mysql\n"</span><span class="p">,</span><span class="nt">"stream"</span><span class="p">:</span><span class="s2">"stdout"</span><span class="p">,</span><span class="nt">"time"</span><span class="p">:</span><span class="s2">"2025-01-17T07:43:48.29704895Z"</span><span class="p">}</span>
 </code></pre></div>
 <p>When these logs are obtained by the importer and parsed by the parser, they will become independent log records with the following fields:</p>
 <ul>
@@ -5949,10 +5949,10 @@ kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> <
 [FILTER]
     Name        rewrite_tag
     Match       seafile.*
-    Rule        $log ^.*\[seaf-server\].*$ seaf-server false # for seafile&#39;s logs
-    Rule        $log ^.*\[seahub\].*$ seahub false # for seahub&#39;s logs
-    Rule        $log ^.*\[seafevents\].*$ seafevents false # for seafevents&#39; lgos
-    Rule        $log ^.*\[seafile-slow-rpc\].*$ seafile-slow-rpc false # for slow-rpc&#39;s logs
+    Rule        $log ^.*\[seaf-server\].*$ seaf-server false # for seafile's logs
+    Rule        $log ^.*\[seahub\].*$ seahub false # for seahub's logs
+    Rule        $log ^.*\[seafevents\].*$ seafevents false # for seafevents' lgos
+    Rule        $log ^.*\[seafile-slow-rpc\].*$ seafile-slow-rpc false # for slow-rpc's logs
 </code></pre></div>
 <h3 id="output-logs-to-loki">Output log's to <em>Loki</em><a class="headerlink" href="#output-logs-to-loki" title="Permanent link">&para;</a></h3>
 <p>Loki is multi-tenant log aggregation system inspired by <em>Prometheus</em>. It is designed to be very cost effective and easy to operate. The Fluent-Bit <em>loki</em> built-in output plugin allows you to send your log or events to a <em>Loki service</em>. It supports data enrichment with Kubernetes labels, custom label keys and Tenant ID within others.</p>
@@ -5971,8 +5971,8 @@ kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> <
 <div class="highlight"><pre><span></span><code>[OUTPUT]
     Name        loki
     Match       seaf-server
-    Host        &lt;your Loki&#39;s host&gt;
-    port        &lt;your Loki&#39;s port&gt;
+    Host        &lt;your Loki's host&gt;
+    port        &lt;your Loki's port&gt;
     labels      job=fluentbit, node_name=&lt;your-node-name&gt;, node_id=&lt;your-node-id&gt; # node_name and node_id is optional, but recommended for identifying the source node
 </code></pre></div>
 </li>
@@ -5981,8 +5981,8 @@ kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> <
 <div class="highlight"><pre><span></span><code>[OUTPUT]
     Name        loki
     Match       seahub
-    Host        &lt;your Loki&#39;s host&gt;
-    port        &lt;your Loki&#39;s port&gt;
+    Host        &lt;your Loki's host&gt;
+    port        &lt;your Loki's port&gt;
     labels      job=fluentbit, node_name=&lt;your-node-name&gt;, node_id=&lt;your-node-id&gt; # node_name and node_id is optional, but recommended for identifying the source node
 </code></pre></div>
 </li>
@@ -5991,8 +5991,8 @@ kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> <
 <div class="highlight"><pre><span></span><code>[OUTPUT]
     Name        loki
     Match       seafevents
-    Host        &lt;your Loki&#39;s host&gt;
-    port        &lt;your Loki&#39;s port&gt;
+    Host        &lt;your Loki's host&gt;
+    port        &lt;your Loki's port&gt;
     labels      job=fluentbit, node_name=&lt;your-node-name&gt;, node_id=&lt;your-node-id&gt; # node_name and node_id is optional, but recommended for identifying the source node
 </code></pre></div>
 </li>
@@ -6001,8 +6001,8 @@ kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> <
 <div class="highlight"><pre><span></span><code>[OUTPUT]
     Name        loki
     Match       seafile-slow-rpc
-    Host        &lt;your Loki&#39;s host&gt;
-    port        &lt;your Loki&#39;s port&gt;
+    Host        &lt;your Loki's host&gt;
+    port        &lt;your Loki's port&gt;
     labels      job=fluentbit, node_name=&lt;your-node-name&gt;, node_id=&lt;your-node-id&gt; # node_name and node_id is optional, but recommended for identifying the source node
 </code></pre></div>
 </li>

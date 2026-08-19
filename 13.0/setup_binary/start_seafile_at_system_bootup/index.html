@@ -5597,13 +5597,13 @@
 <p><div class="highlight"><pre><span></span><code>#!/bin/bash
 # Activate the python virtual environment (venv) before starting one of the seafile scripts
 
-dir_name=&quot;$(dirname $0)&quot;
-source &quot;${dir_name}/python-venv/bin/activate&quot;
-script=&quot;$1&quot;
+dir_name="$(dirname $0)"
+source "${dir_name}/python-venv/bin/activate"
+script="$1"
 shift 1
 
-echo &quot;${dir_name}/seafile-server-latest/${script}&quot; &quot;$@&quot;
-&quot;${dir_name}/seafile-server-latest/${script}&quot; &quot;$@&quot;
+echo "${dir_name}/seafile-server-latest/${script}" "$@"
+"${dir_name}/seafile-server-latest/${script}" "$@"
 </code></pre></div>
 make this script executable
 <div class="highlight"><pre><span></span><code>sudo chmod 755 /opt/seafile/run_with_venv.sh

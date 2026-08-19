@@ -7931,7 +7931,7 @@ highlight = fvh
 </code></pre></div>
 <p>The configuration of Apache is as following:</p>
 <div class="highlight"><pre><span></span><code>    # seahub
-    SetEnvIf Authorization &quot;(.*)&quot; HTTP_AUTHORIZATION=$1
+    SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
     ProxyPass / http://127.0.0.1:8000/
     ProxyPassReverse / http://127.0.0.1:8000/
 </code></pre></div>

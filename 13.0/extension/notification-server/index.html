@@ -5517,7 +5517,7 @@
 <div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/notification-server.yml
 </code></pre></div>
 <p>Modify <code>.env</code>, and insert <code>notification-server.yml</code> into <code>COMPOSE_FILE</code>:</p>
-<div class="highlight"><pre><span></span><code>COMPOSE_FILE=&#39;seafile-server.yml,caddy.yml,notification-server.yml&#39;
+<div class="highlight"><pre><span></span><code>COMPOSE_FILE='seafile-server.yml,caddy.yml,notification-server.yml'
 </code></pre></div>
 <p>then add or modify <code>ENABLE_NOTIFICATION_SERVER</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="nv">ENABLE_NOTIFICATION_SERVER</span><span class="o">=</span><span class="nb">true</span>

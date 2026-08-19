@@ -6065,11 +6065,11 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/nginx/sites-available/seafile.conf
 </code></pre></div>
 <p>and, add the following contents into this file:</p>
-<div class="highlight"><pre><span></span><code><span class="k">log_format</span><span class="w"> </span><span class="s">seafileformat</span><span class="w"> </span><span class="s">&#39;</span><span class="nv">$http_x_forwarded_for</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="w"> </span><span class="s">[</span><span class="nv">$time_local]</span><span class="w"> </span><span class="s">&quot;</span><span class="nv">$request&quot;</span><span class="w"> </span><span class="nv">$status</span><span class="w"> </span><span class="nv">$body_bytes_sent</span><span class="w"> </span><span class="s">&quot;</span><span class="nv">$http_referer&quot;</span><span class="w"> </span><span class="s">&quot;</span><span class="nv">$http_user_agent&quot;</span><span class="w"> </span><span class="nv">$upstream_response_time&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="k">log_format</span><span class="w"> </span><span class="s">seafileformat</span><span class="w"> </span><span class="s">'</span><span class="nv">$http_x_forwarded_for</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="w"> </span><span class="s">[</span><span class="nv">$time_local]</span><span class="w"> </span><span class="s">"</span><span class="nv">$request"</span><span class="w"> </span><span class="nv">$status</span><span class="w"> </span><span class="nv">$body_bytes_sent</span><span class="w"> </span><span class="s">"</span><span class="nv">$http_referer"</span><span class="w"> </span><span class="s">"</span><span class="nv">$http_user_agent"</span><span class="w"> </span><span class="nv">$upstream_response_time'</span><span class="p">;</span>
 
 <span class="k">server</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="mi">80</span><span class="p">;</span>
-<span class="w">    </span><span class="kn">server_name</span><span class="w"> </span><span class="s">&lt;current</span><span class="w"> </span><span class="s">node&#39;s</span><span class="w"> </span><span class="s">IP&gt;</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">server_name</span><span class="w"> </span><span class="s">&lt;current</span><span class="w"> </span><span class="s">node's</span><span class="w"> </span><span class="s">IP&gt;</span><span class="p">;</span>
 
 <span class="w">    </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-For</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="p">;</span>
 
@@ -6160,12 +6160,12 @@ sudo<span class="w"> </span>nginx<span class="w"> </span>-s<span class="w"> </sp
 <span class="nv">CACHE_PROVIDER</span><span class="o">=</span>redis
 
 <span class="c1">### Redis</span>
-<span class="nv">REDIS_HOST</span><span class="o">=</span><span class="s1">&#39;&lt;your redis host&gt;&#39;</span>
+<span class="nv">REDIS_HOST</span><span class="o">=</span><span class="s1">'&lt;your redis host&gt;'</span>
 <span class="nv">REDIS_PORT</span><span class="o">=</span><span class="m">6379</span>
 <span class="nv">REDIS_PASSWORD</span><span class="o">=</span>
 
 <span class="c1">### Memcached</span>
-<span class="nv">MEMCACHED_HOST</span><span class="o">=</span><span class="s1">&#39;&lt;your memcached host&gt;&#39;</span>
+<span class="nv">MEMCACHED_HOST</span><span class="o">=</span><span class="s1">'&lt;your memcached host&gt;'</span>
 <span class="nv">MEMCACHED_PORT</span><span class="o">=</span><span class="m">11211</span>
 </code></pre></div>
 <h4 id="seafileconf">seafile.conf<a class="headerlink" href="#seafileconf" title="Permanent link">&para;</a></h4>
@@ -6195,7 +6195,7 @@ health_check_port = 12345
 <h4 id="seahub_settingspy">seahub_settings.py<a class="headerlink" href="#seahub_settingspy" title="Permanent link">&para;</a></h4>
 <p>Add following options to seahub_setting.py, which will tell Seahub to store avatar in database and cache avatar in memcached.</p>
 <div class="codehilite"><pre><span></span><code><span class="s">```</span>
-AVATAR_FILE_STORAGE = &#39;seahub.base.database_storage.DatabaseStorage&#39;
+AVATAR_FILE_STORAGE = 'seahub.base.database_storage.DatabaseStorage'
 <span class="s">```</span>
 </code></pre></div>
 
@@ -6211,7 +6211,7 @@ es_port = &lt;your ElasticSearch port, default 9200&gt;
 </code></pre></div>
 <h3 id="update-seahub-database">Update Seahub Database<a class="headerlink" href="#update-seahub-database" title="Permanent link">&para;</a></h3>
 <p>In cluster environment, we have to store avatars in the database instead of in a local disk.</p>
-<div class="highlight"><pre><span></span><code>mysql -h&lt;your MySQL host&gt; -P&lt;your MySQL port&gt; -useafile -p&lt;user seafile&#39;s password&gt;
+<div class="highlight"><pre><span></span><code>mysql -h&lt;your MySQL host&gt; -P&lt;your MySQL port&gt; -useafile -p&lt;user seafile's password&gt;
 
 # enter MySQL environment
 USE seahub_db;
@@ -6381,7 +6381,7 @@ enabled = true
 </code></pre></div>
 <p>The <code>enabled</code> option will prevent the start of background tasks by <code>./seafile.sh start</code> in the front-end node. The tasks should be explicitly started by <code>./seafile-background-tasks.sh start</code> at the back-end node.</p>
 <p>For <strong>seahub_settings.py</strong>:</p>
-<div class="highlight"><pre><span></span><code>AVATAR_FILE_STORAGE = &#39;seahub.base.database_storage.DatabaseStorage&#39;
+<div class="highlight"><pre><span></span><code>AVATAR_FILE_STORAGE = 'seahub.base.database_storage.DatabaseStorage'
 </code></pre></div>
 <p>For <strong>seafevents.conf</strong>:</p>
 <div class="highlight"><pre><span></span><code>[INDEX FILES]
