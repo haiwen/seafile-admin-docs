@@ -54,6 +54,10 @@ S3_HOST=
 S3_USE_HTTPS=true
 S3_SSE_C_KEY=
 
+## SeaDoc server
+ENABLE_SEADOC=false
+SEADOC_SERVER_URL=https://seafile.example.com/sdoc-server
+
 ## Notification
 ENABLE_NOTIFICATION_SERVER=false
 NOTIFICATION_SERVER_URL=
