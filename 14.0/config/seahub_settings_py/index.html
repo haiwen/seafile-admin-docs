@@ -5818,10 +5818,6 @@
 <span class="c1"># Since version 6.0</span>
 <span class="n">ENABLE_TWO_FACTOR_AUTH</span> <span class="o">=</span> <span class="kc">True</span>
 
-<span class="c1"># Enable a user to change password in 'settings' page. Default to `True`</span>
-<span class="c1"># Since version 6.2.11</span>
-<span class="n">ENABLE_CHANGE_PASSWORD</span> <span class="o">=</span> <span class="kc">True</span>
-
 <span class="c1"># If show contact email when search user.</span>
 <span class="n">ENABLE_SHOW_CONTACT_EMAIL_WHEN_SEARCH_USER</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div>
@@ -5831,10 +5827,11 @@
 <span class="c1"># Since 6.0.9</span>
 <span class="n">ENABLE_ADFS_LOGIN</span> <span class="o">=</span> <span class="kc">True</span>
 
-<span class="c1"># Force user login through ADFS/OAuth instead of email and password</span>
-<span class="c1"># Default is False</span>
-<span class="c1"># Since 11.0.7, in version 12.0, it also controls users via OAuth</span>
-<span class="n">DISABLE_ADFS_USER_PWD_LOGIN</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="c1"># Disable use of a password stored in Seafile by users authenticated through</span>
+<span class="c1"># external providers, including SAML/ADFS, OAuth, LDAP, and so on...</span>
+<span class="c1"># This disables local-password login and local password change/reset operations.</span>
+<span class="c1"># Default is False. Since version 14.0.</span>
+<span class="n">DISABLE_SSO_USER_LOCAL_PWD_LOGIN</span> <span class="o">=</span> <span class="kc">True</span>
 
 <span class="c1"># Enable authentication wit Kerberos</span>
 <span class="c1"># Default is False</span>
@@ -5843,10 +5840,6 @@
 <span class="c1"># Enable authentication with Shibboleth</span>
 <span class="c1"># Default is False</span>
 <span class="n">ENABLE_SHIBBOLETH_LOGIN</span> <span class="o">=</span> <span class="kc">True</span>
-
-<span class="c1"># Enable a user associated with SSO account to change/reset local password in 'settings' page. Default to `True`.</span>
-<span class="c1"># Change it to false to disable SSO account to change local password</span>
-<span class="n">ENABLE_SSO_USER_CHANGE_PASSWORD</span> <span class="o">=</span> <span class="kc">True</span>
 
 <span class="c1"># Enable client to open an external browser for single sign on</span>
 <span class="c1"># When it is false, the old buitin browser is opened for single sign on</span>
@@ -6063,12 +6056,11 @@ ENABLE_REPO_SNAPSHOT_LABEL = False
 <span class="c1"># Since PRO 6.1.4 or CE 6.1.2</span>
 <span class="n">UNREAD_NOTIFICATIONS_REQUEST_INTERVAL</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">60</span> <span class="c1"># seconds</span>
 
-<span class="c1"># Whether to allow user to delete account, change login password or update basic user</span>
-<span class="c1"># info on profile page.</span>
+<span class="c1"># Whether to allow user to delete account or update basic user information on the</span>
+<span class="c1"># profile page.</span>
 <span class="c1"># Since PRO 6.3.10</span>
 <span class="n">ENABLE_DELETE_ACCOUNT</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="n">ENABLE_UPDATE_USER_INFO</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="n">ENABLE_CHANGE_PASSWORD</span> <span class="o">=</span> <span class="kc">False</span>
 
 <span class="c1"># Get web api auth token on profile page.</span>
 <span class="n">ENABLE_GET_AUTH_TOKEN_BY_SESSION</span> <span class="o">=</span> <span class="kc">True</span>

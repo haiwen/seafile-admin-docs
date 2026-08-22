@@ -4564,6 +4564,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Important release changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#local-password-configuration-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local password configuration changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -5443,6 +5460,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Important release changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#local-password-configuration-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local password configuration changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -5483,7 +5517,18 @@ Please always follow the main <a href="../upgrade/">upgrade guide</a>.</p>
 <li>Seafile AI models are configured via <code>seafile_ai_config.yaml</code>. If you are upgrading an existing Seafile AI deployment, please update the Seafile AI model configuration accordingly. Please refer to <a href="../../extension/seafile-ai/">Seafile AI extension</a> for details.</li>
 <li>Thumbnail server configurations in <code>seahub_settings.py</code> have changed. Please refer to <a href="../../extension/thumbnail-server/">Thumbnail server</a> for details.</li>
 <li>SeaSearch is the default search engine for new Seafile Pro Docker deployments.</li>
+<li>Local-password policy for externally authenticated users is now controlled by <code>DISABLE_SSO_USER_LOCAL_PWD_LOGIN</code> in <code>seahub_settings.py</code>.</li>
 </ul>
+<h3 id="local-password-configuration-changes">Local password configuration changes<a class="headerlink" href="#local-password-configuration-changes" title="Permanent link">&para;</a></h3>
+<p>The following <code>seahub_settings.py</code> options have been removed in Seafile 14.0:</p>
+<div class="highlight"><pre><span></span><code><span class="n">DISABLE_ADFS_USER_PWD_LOGIN</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">ENABLE_CHANGE_PASSWORD</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">ENABLE_SSO_USER_CHANGE_PASSWORD</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+<p>Remove these options from <code>seahub_settings.py</code>. To prevent users authenticated through external providers from using passwords stored in Seafile, add the following option instead:</p>
+<div class="highlight"><pre><span></span><code><span class="n">DISABLE_SSO_USER_LOCAL_PWD_LOGIN</span> <span class="o">=</span> <span class="kc">True</span> <span class="c1"># default: False</span>
+</code></pre></div>
+<p>When enabled, this option disables local-password login and local password change/reset operations for users authenticated through SAML/ADFS, OAuth, LDAP, and so on. </p>
 
 
 
