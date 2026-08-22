@@ -2,6 +2,18 @@
 
 The Seafile configuration files are located in the `/opt/seafile-data/seafile/conf/` directory.
 
+## Seafile 13 to 14 Obsolete Configurations
+
+### seahub_settings.py
+
+Remove the following options. They are replaced by `DISABLE_SSO_USER_LOCAL_PWD_LOGIN`, which controls use of locally stored passwords by externally authenticated users.
+
+```python
+DISABLE_ADFS_USER_PWD_LOGIN = True
+ENABLE_CHANGE_PASSWORD = True
+ENABLE_SSO_USER_CHANGE_PASSWORD = True
+```
+
 ## Seafile 12 to 13 Obsolete Configurations
 
 ### seafevents.conf
