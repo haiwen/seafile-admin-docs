@@ -103,10 +103,6 @@ ENABLE_FORCE_2FA_TO_ALL_USERS = True
 # Since version 6.0
 ENABLE_TWO_FACTOR_AUTH = True
 
-# Enable a user to change password in 'settings' page. Default to `True`
-# Since version 6.2.11
-ENABLE_CHANGE_PASSWORD = True
-
 # If show contact email when search user.
 ENABLE_SHOW_CONTACT_EMAIL_WHEN_SEARCH_USER = True
 ```
@@ -119,10 +115,11 @@ ENABLE_SHOW_CONTACT_EMAIL_WHEN_SEARCH_USER = True
 # Since 6.0.9
 ENABLE_ADFS_LOGIN = True
 
-# Force user login through ADFS/OAuth instead of email and password
-# Default is False
-# Since 11.0.7, in version 12.0, it also controls users via OAuth
-DISABLE_ADFS_USER_PWD_LOGIN = True
+# Disable use of a password stored in Seafile by users authenticated through
+# external providers, including SAML/ADFS, OAuth, LDAP, and so on...
+# This disables local-password login and local password change/reset operations.
+# Default is False. Since version 14.0.
+DISABLE_SSO_USER_LOCAL_PWD_LOGIN = True
 
 # Enable authentication wit Kerberos
 # Default is False
@@ -131,10 +128,6 @@ ENABLE_KRB5_LOGIN = True
 # Enable authentication with Shibboleth
 # Default is False
 ENABLE_SHIBBOLETH_LOGIN = True
-
-# Enable a user associated with SSO account to change/reset local password in 'settings' page. Default to `True`.
-# Change it to false to disable SSO account to change local password
-ENABLE_SSO_USER_CHANGE_PASSWORD = True
 
 # Enable client to open an external browser for single sign on
 # When it is false, the old buitin browser is opened for single sign on
@@ -360,12 +353,11 @@ SHARE_LINK_EMAIL_LANGUAGE = ''
 # Since PRO 6.1.4 or CE 6.1.2
 UNREAD_NOTIFICATIONS_REQUEST_INTERVAL = 3 * 60 # seconds
 
-# Whether to allow user to delete account, change login password or update basic user
-# info on profile page.
+# Whether to allow user to delete account or update basic user information on the
+# profile page.
 # Since PRO 6.3.10
 ENABLE_DELETE_ACCOUNT = False
 ENABLE_UPDATE_USER_INFO = False
-ENABLE_CHANGE_PASSWORD = False
 
 # Get web api auth token on profile page.
 ENABLE_GET_AUTH_TOKEN_BY_SESSION = True
