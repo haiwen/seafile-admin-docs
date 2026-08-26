@@ -85,6 +85,8 @@ The Seafile AI basic service will use API calls to external large language model
 
     If you are using a LLM service with ***OpenAI-compatible endpoints***, you can set `type` to `other` and configure `url` accurately.
 
+    `EMBEDDING_MODEL` is required. It is used to create embeddings for vector search. Its `dimensions` value must match the embedding model output. The default dimension is `1024` when `dimensions` is not a positive integer.
+
     If you only need one model, keep a single item in `LLM_MODELS` and set its `default` field to `true`.
 
     The fields are described below:
@@ -137,8 +139,8 @@ The Seafile AI basic service will use API calls to external large language model
     | `SEAFILE_VOLUME` | Seafile data directory mounted at `/shared` in the container. Default is `/opt/seafile-data`. |
     | `INNER_SEAHUB_SERVICE_URL` | URL used by Seafile AI to access Seahub, for example `http://<your Seafile server intranet IP>`. This variable is required for a standalone deployment. |
     | `INNER_METADATA_SERVER_URL` | URL used by Seafile AI to access the metadata server, for example `http://<your metadata server intranet IP>:8084`. |
-    | `SEASEARCH_URL` | URL used by Seafile AI to access SeaSearch, for example `http://<your SeaSearch server intranet IP>:4080`. Leave it empty if SeaSearch is not used. |
-    | `SEASEARCH_TOKEN` | SeaSearch API authorization token. It is the Base64 encoding of the SeaSearch administrator's `username:password`. |
+    | `SEASEARCH_URL` | URL used by Seafile AI to access SeaSearch, for example `http://<your SeaSearch server intranet IP>:4080`. Required for AI Chat document search and vector search when Seafile AI is deployed separately. |
+    | `SEASEARCH_TOKEN` | SeaSearch API authorization token. It is the Base64 encoding of the SeaSearch administrator's `username:password`. Required together with `SEASEARCH_URL`. |
     | `JWT_PRIVATE_KEY` | JWT key shared with the Seafile server and related extension services. This variable is required. |
     | `SEAFILE_AI_LOG_LEVEL` | Seafile AI log level. Default is `info`. |
 
@@ -244,6 +246,8 @@ The Seafile AI basic service will use API calls to external large language model
 
 Seafile supports counting users' AI usage (how many tokens are used) and setting monthly AI quotas for users.
 
+Seafile AI uses Redis to publish model token-usage events. Seafevents consumes these events and stores the aggregated usage statistics in the Seafile database. Therefore, Redis must be configured for AI usage statistics.
+
 1. Seafile AI model prices are configured via `price` field in `seafile_ai_config.yaml`. For example:
 
     ```yaml
@@ -274,3 +278,37 @@ ENABLE_AI_CHAT = True
 After this option is enabled, Seahub will display the AI chat entry for users.
 
 Users can use the chat feature in libraries to search for files in the current library, ask questions about specific files, and generate summaries for specific files.
+
+### Enable vector search
+
+Vector search lets AI Chat find documents by the meaning of their AI-generated summaries. AI Chat combines vector search results with normal SeaSearch keyword search results.
+
+Before enabling vector search, make sure that all of the following are available:
+
+- Metadata server is deployed and metadata management is enabled for the library.
+- Seafile AI is enabled and has a valid `EMBEDDING_MODEL` in `seafile_ai_config.yaml`. The embedding model must return vectors with the configured `dimensions` value.
+- SeaSearch is enabled in `seafevents.conf` and its deployment supports vector indexes.
+- Seafile AI can access the same SeaSearch service by using `SEASEARCH_URL` and `SEASEARCH_TOKEN`.
+
+Configure SeaSearch in `$SEAFILE_VOLUME/seafile/conf/seafevents.conf` if it is not already configured. For deployment and configuration details, refer to [SeaSearch configuration (Pro)](../setup/use_seasearch.md).
+
+```ini
+[SEASEARCH]
+enabled = true
+seasearch_url = http://seasearch:4080
+seasearch_token = <your SeaSearch authorization token>
+```
+
+For a standalone Seafile AI deployment, add the same SeaSearch URL and token to its `.env` file:
+
+```env
+SEASEARCH_URL=http://<your SeaSearch server host>:4080
+SEASEARCH_TOKEN=<your SeaSearch authorization token>
+```
+
+Then, in the library's **Settings**, enable **Extended properties** and enable **AI Summary**. Seafile generates summaries and creates a vector index asynchronously for supported files: sdoc, markdown, docx, pdf, and pptx. Initial indexing may take time depending on the number and size of files.
+
+When files are added or changed, their summaries and vector index entries are updated asynchronously. Disabling AI Summary deletes the library's vector index. Check `ai_summary.log` and `seasearch_index.log` if summaries or search results are unavailable.
+
+!!! note
+    Vector search enhances AI Chat document retrieval; it does not replace normal SeaSearch keyword search. If vector search is unavailable, AI Chat continues to use keyword search.
