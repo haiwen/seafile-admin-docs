@@ -306,7 +306,7 @@ SEASEARCH_URL=http://<your SeaSearch server host>:4080
 SEASEARCH_TOKEN=<your SeaSearch authorization token>
 ```
 
-Then, in the library's **Settings**, enable **Extended properties** and enable **AI Summary**. Seafile generates summaries and creates a vector index asynchronously for supported files: SDoc, Markdown, DOCX, PDF, and PPTX. Initial indexing may take time depending on the number and size of files.
+Then, in the library's **Settings**, enable **Extended properties** and enable **AI Summary**. Seafile generates summaries and creates a vector index asynchronously for supported files: sdoc, markdown, docx, pdf, and pptx. Initial indexing may take time depending on the number and size of files.
 
 When files are added or changed, their summaries and vector index entries are updated asynchronously. Disabling AI Summary deletes the library's vector index. Check `ai_summary.log` and `seasearch_index.log` if summaries or search results are unavailable.
 
