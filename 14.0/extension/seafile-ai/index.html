@@ -13,10 +13,10 @@
         <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/14.0/extension/seafile-ai/">
       
       
-        <link rel="prev" href="../fuse/">
+        <link rel="prev" href="../metadata-server/">
       
       
-        <link rel="next" href="../libreoffice_online/">
+        <link rel="next" href="../thumbnail-server/">
       
       
         
@@ -2339,6 +2339,60 @@
                 
   
   
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_1_3" id="__nav_4_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metadata and AI
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Metadata and AI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
   
   
     <li class="md-nav__item">
@@ -2350,90 +2404,6 @@
     
   
     Metadata Server
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../thumbnail-server/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Thumbnail Server
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../webdav/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    WebDAV extension
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../fuse/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    FUSE extension
   
 
     
@@ -2586,6 +2556,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#enable-vector-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable vector search
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2595,6 +2576,98 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../thumbnail-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thumbnail Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../webdav/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WebDAV extension
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fuse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FUSE extension
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -5590,6 +5663,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#enable-vector-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable vector search
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5696,6 +5780,7 @@ ENABLE_SEAFILE_AI=true
 <span class="w">    </span><span class="nt">dimensions</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1024</span>
 </code></pre></div>
 <p>If you are using a LLM service with <strong><em>OpenAI-compatible endpoints</em></strong>, you can set <code>type</code> to <code>other</code> and configure <code>url</code> accurately.</p>
+<p><code>EMBEDDING_MODEL</code> is required. It is used to create embeddings for vector search. Its <code>dimensions</code> value must match the embedding model output. The default dimension is <code>1024</code> when <code>dimensions</code> is not a positive integer.</p>
 <p>If you only need one model, keep a single item in <code>LLM_MODELS</code> and set its <code>default</code> field to <code>true</code>.</p>
 <p>The fields are described below:</p>
 <table>
@@ -5805,11 +5890,11 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 </tr>
 <tr>
 <td><code>SEASEARCH_URL</code></td>
-<td>URL used by Seafile AI to access SeaSearch, for example <code>http://&lt;your SeaSearch server intranet IP&gt;:4080</code>. Leave it empty if SeaSearch is not used.</td>
+<td>URL used by Seafile AI to access SeaSearch, for example <code>http://&lt;your SeaSearch server intranet IP&gt;:4080</code>. Required for AI Chat document search and vector search when Seafile AI is deployed separately.</td>
 </tr>
 <tr>
 <td><code>SEASEARCH_TOKEN</code></td>
-<td>SeaSearch API authorization token. It is the Base64 encoding of the SeaSearch administrator's <code>username:password</code>.</td>
+<td>SeaSearch API authorization token. It is the Base64 encoding of the SeaSearch administrator's <code>username:password</code>. Required together with <code>SEASEARCH_URL</code>.</td>
 </tr>
 <tr>
 <td><code>JWT_PRIVATE_KEY</code></td>
@@ -6002,6 +6087,7 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 <h2 id="advanced-operations">Advanced operations<a class="headerlink" href="#advanced-operations" title="Permanent link">&para;</a></h2>
 <h3 id="enable-ai-usage-statistics">Enable AI usage statistics<a class="headerlink" href="#enable-ai-usage-statistics" title="Permanent link">&para;</a></h3>
 <p>Seafile supports counting users' AI usage (how many tokens are used) and setting monthly AI quotas for users.</p>
+<p>Seafile AI uses Redis to publish model token-usage events. Seafevents consumes these events and stores the aggregated usage statistics in the Seafile database. Therefore, Redis must be configured for AI usage statistics.</p>
 <ol>
 <li>
 <p>Seafile AI model prices are configured via <code>price</code> field in <code>seafile_ai_config.yaml</code>. For example:</p>
@@ -6029,6 +6115,31 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 </code></pre></div>
 <p>After this option is enabled, Seahub will display the AI chat entry for users.</p>
 <p>Users can use the chat feature in libraries to search for files in the current library, ask questions about specific files, and generate summaries for specific files.</p>
+<h3 id="enable-vector-search">Enable vector search<a class="headerlink" href="#enable-vector-search" title="Permanent link">&para;</a></h3>
+<p>Vector search lets AI Chat find documents by the meaning of their AI-generated summaries. AI Chat combines vector search results with normal SeaSearch keyword search results.</p>
+<p>Before enabling vector search, make sure that all of the following are available:</p>
+<ul>
+<li>Metadata server is deployed and metadata management is enabled for the library.</li>
+<li>Seafile AI is enabled and has a valid <code>EMBEDDING_MODEL</code> in <code>seafile_ai_config.yaml</code>. The embedding model must return vectors with the configured <code>dimensions</code> value.</li>
+<li>SeaSearch is enabled in <code>seafevents.conf</code> and its deployment supports vector indexes.</li>
+<li>Seafile AI can access the same SeaSearch service by using <code>SEASEARCH_URL</code> and <code>SEASEARCH_TOKEN</code>.</li>
+</ul>
+<p>Configure SeaSearch in <code>$SEAFILE_VOLUME/seafile/conf/seafevents.conf</code> if it is not already configured. For deployment and configuration details, refer to <a href="../../setup/use_seasearch/">SeaSearch configuration (Pro)</a>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">[SEASEARCH]</span>
+<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+<span class="na">seasearch_url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">http://seasearch:4080</span>
+<span class="na">seasearch_token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;your SeaSearch authorization token&gt;</span>
+</code></pre></div>
+<p>For a standalone Seafile AI deployment, add the same SeaSearch URL and token to its <code>.env</code> file:</p>
+<div class="highlight"><pre><span></span><code>SEASEARCH_URL=http://&lt;your SeaSearch server host&gt;:4080
+SEASEARCH_TOKEN=&lt;your SeaSearch authorization token&gt;
+</code></pre></div>
+<p>Then, in the library's <strong>Settings</strong>, enable <strong>Extended properties</strong> and enable <strong>AI Summary</strong>. Seafile generates summaries and creates a vector index asynchronously for supported files: sdoc, markdown, docx, pdf, and pptx. Initial indexing may take time depending on the number and size of files.</p>
+<p>When files are added or changed, their summaries and vector index entries are updated asynchronously. Disabling AI Summary deletes the library's vector index. Check <code>ai_summary.log</code> and <code>seasearch_index.log</code> if summaries or search results are unavailable.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Vector search enhances AI Chat document retrieval; it does not replace normal SeaSearch keyword search. If vector search is unavailable, AI Chat continues to use keyword search.</p>
+</div>
 
 
 
@@ -6064,7 +6175,7 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../fuse/" class="md-footer__link md-footer__link--prev" aria-label="Previous: FUSE extension">
+          <a href="../metadata-server/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Metadata Server">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -6074,20 +6185,20 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
                 Previous
               </span>
               <div class="md-ellipsis">
-                FUSE extension
+                Metadata Server
               </div>
             </div>
           </a>
         
         
           
-          <a href="../libreoffice_online/" class="md-footer__link md-footer__link--next" aria-label="Next: Collabora Online Integration">
+          <a href="../thumbnail-server/" class="md-footer__link md-footer__link--next" aria-label="Next: Thumbnail Server">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Collabora Online Integration
+                Thumbnail Server
               </div>
             </div>
             <div class="md-footer__button md-icon">
