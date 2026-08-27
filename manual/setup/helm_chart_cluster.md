@@ -28,7 +28,7 @@ After installation, you need to start the k8s control plane service on each node
     kubectl create namespace seafile
     ```
 
-2. Create a secret for sensitive data
+2. Create a secret for sensitive data. The default Secret name is `seafile-secret`:
 
     ```sh
     kubectl create secret generic seafile-secret --namespace seafile \
@@ -41,7 +41,18 @@ After installation, you need to start the k8s control plane service on each node
     --from-literal=S3_SSE_C_KEY=''
     ```
 
-    where the `JWT_PRIVATE_KEY` can be generate by `pwgen -s 40 1`
+    where the `JWT_PRIVATE_KEY` can be generate by `pwgen -s 40 1`.
+
+    !!! tip "Use an existing Secret or a custom Secret name"
+        The chart does not create this Secret. To use an existing Secret with another name, create it in the `seafile` namespace with the required keys above, then set its name in `my-values.yaml`:
+
+        ```yaml
+        seafile:
+          existingSecret:
+            name: my-seafile-secret
+        ```
+
+        This Secret is used by both the frontend and backend workloads. This setting changes only the Secret resource name; the required key names remain unchanged.
 
 3. Download and modify the `my-values.yaml` according to your configurations. By the way, you can follow [here](./setup_pro_by_docker.md#downloading-and-modifying-env) for the details:
 
@@ -63,11 +74,54 @@ After installation, you need to start the k8s control plane service on each node
               ...
             ```
 
+    ### Expose Seafile service
+
+    The chart creates a `ClusterIP` Service named `seafile` on port `80`, which routes to the frontend workloads. It is not accessible from outside the cluster by itself. You can enable either an Ingress or a Gateway API HTTPRoute in `my-values.yaml`. Do not enable both unless you intentionally need two external routes.
+
+    === "Ingress"
+
+        Use this option when your cluster has an Ingress controller. Replace the values below with those for your environment:
+
+        ```yaml
+        ingress:
+          enabled: true
+          className: nginx
+          annotations: {}
+          hosts:
+            - host: seafile.example.com
+              paths:
+                - path: /
+                  pathType: Prefix
+          tls:
+            - secretName: seafile-tls-cert
+              hosts:
+                - seafile.example.com
+        ```
+
+        The chart creates an Ingress named `seafile` and forwards each configured path to the `seafile` Service on port `80`. TLS is optional; its Secret must be managed separately.
+
+    === "Gateway API HTTPRoute"
+
+        Use this option when your cluster has Gateway API v1 CRDs and a Gateway controller. The referenced Gateway must already exist and allow routes from the release namespace:
+
+        ```yaml
+        httpRoute:
+          enabled: true
+          annotations: {}
+          parentRefs:
+            - name: seafile-gateway
+              # namespace: gateway-namespace  # Required when the Gateway is in another namespace.
+          hostnames:
+            - seafile.example.com
+        ```
+
+        The chart creates an HTTPRoute named `seafile`. It always matches the `/` path prefix and forwards requests to the frontend `seafile` Service on port `80`. Gateway listeners, TLS certificates, and advanced routing rules are managed separately.
+
 4. Then install the chart use the following command:
 
     ```sh
     helm repo add seafile https://haiwen.github.io/seafile-helm-chart/repo
-    helm upgrade --install seafile seafile/cluster --version 13.0 --namespace seafile --create-namespace --values my-values.yaml
+    helm upgrade --install seafile seafile/cluster --version 13.0.4 --namespace seafile --create-namespace --values my-values.yaml
     ```
 
     !!! tip "Seafile helm chart 13.0 support variable validity checking"
@@ -159,7 +213,7 @@ After installation, you need to start the k8s control plane service on each node
 5. After the first-time startup, you have to turn off (i.e., set `initMode` to `false`) in your `my-values.yaml`, then upgrade the chart:
 
     ```sh
-    helm upgrade --install seafile seafile/cluster --version 13.0 --namespace seafile --create-namespace --values my-values.yaml
+    helm upgrade --install seafile seafile/cluster --version 13.0.4 --namespace seafile --create-namespace --values my-values.yaml
     ```
 
     !!! success
@@ -299,7 +353,7 @@ After installation, you need to start the k8s control plane service on each node
         Finally you can upgrade your chart by:
 
         ```sh
-        helm upgrade --install seafile seafile/cluster --version 13.0 --namespace seafile --create-namespace --values my-values.yaml
+        helm upgrade --install seafile seafile/cluster --version 13.0.4 --namespace seafile --create-namespace --values my-values.yaml
         ```
 
 ## Version control
@@ -326,10 +380,10 @@ Seafile Helm Chart is designed to provide fast deployment and version control. Y
     !!! tip "About version of *Seafile Helm Chart* and *Seafile*"
         The version of Seafile Helm Chart is same as the major version of Seafile, i.e.:
 
-        - latest Seafile: 12.0.9
-        - latest Seafile Helm Chart release: 12.0
+        - Seafile version: 13.0
+        - Helm Chart release: 13.0.4
 
-        By default, it will follow the latest Chart and the latest Seafile
+        Use an explicit chart version, such as `13.0.4`, for reproducible deployments. The unversioned `13.0` package may be updated with a newer chart revision.
 
 3. Upgrade release to a new version
 
@@ -353,4 +407,4 @@ helm delete seafile --namespace seafile
 
 ## Advanced operations
 
-Please refer from [here](./k8s_advanced_management.md) for futher advanced operations.
+For standard external access, use the chart's `ingress` or `httpRoute` configuration above. Refer to [advanced K8S management](./k8s_advanced_management.md) when you need to manage Gateway resources or custom routing rules manually.
