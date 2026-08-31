@@ -1823,6 +1823,29 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#helm-chart-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Helm Chart routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-gateway-api-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual Gateway API configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Manual Gateway API configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#gatewayclass" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1863,6 +1886,11 @@
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -5654,6 +5682,29 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#helm-chart-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Helm Chart routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-gateway-api-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual Gateway API configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Manual Gateway API configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#gatewayclass" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5694,6 +5745,11 @@
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -5789,6 +5845,7 @@
 <p class="admonition-title">Namespaces for Seafile K8S deployment</p>
 <p>Our documentation provides two deployment solutions for both single-node and cluster deployment (via Seafile Helm Chart and K8S resource files), both of which can be highly customized.</p>
 <p>Regardless of which deployment method you use, in our newer manuals (usually in versions after Seafile 12.0.9), Seafile-related K8S resources (including related Pods, services, and persistent volumes, etc.) are defined in the <code>seafile</code> namespace. In previous versions, you may deploy Seafile in the <code>default</code> namespace, so in this case, when referring to this document for Seafile K8S resource management, be sure to remove <code>-n seafile</code> in the command.</p>
+<p>Helm Chart users can configure a standard Ingress or Gateway API HTTPRoute in <code>my-values.yaml</code>. See the <a href="../helm_chart_single_node/#expose-seafile-service">single-node Helm guide</a> or <a href="../helm_chart_cluster/#expose-seafile-service">cluster Helm guide</a>. The manual Gateway and HTTPRoute resources below are intended for K8S resource-file deployments or advanced Helm routing requirements.</p>
 </div>
 <h2 id="seafile-k8s-container-management">Seafile K8S Container management<a class="headerlink" href="#seafile-k8s-container-management" title="Permanent link">&para;</a></h2>
 <p>Similar to docker installation, you can also manage containers through <a href="https://kubernetes.io/docs/reference/kubectl/#operations">some kubectl commands</a>. For example, you can use the following command to check whether the relevant resources are started successfully and whether the relevant services can be accessed normally. First, execute the following command and remember the pod name with <code>seafile-</code> as the prefix (such as <code>seafile-748b695648-d6l4g</code>)</p>
@@ -5804,11 +5861,47 @@
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.items[*].metadata.name}'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>seafile<span class="k">)</span>
 </code></pre></div>
 <h2 id="k8s-gateway-and-https">K8S Gateway and HTTPS<a class="headerlink" href="#k8s-gateway-and-https" title="Permanent link">&para;</a></h2>
-<p>Since the support of Ingress feature <a href="https://kubernetes.io/docs/concepts/services-networking/ingress/">is frozen</a> in the new version of K8S, this article will introduce how to use the new version of K8S feature <a href="https://kubernetes.io/docs/concepts/services-networking/gateway/"><em>K8S Gateway</em></a> to implement Seafile service exposure and load balancing.</p>
-<div class="admonition tip">
-<p class="admonition-title">Still use <em>Nginx-Ingress</em></p>
-<p>If your K8S is still using <em>Nginx-Ingress</em>, you can follow <a href="https://artifacthub.io/packages/helm/datamate/seafile#deploy-an-ingress-controller-ingress-nginx">here</a> to setup ingress controller and HTTPS. We sincerely thanks <em>Datamate</em> to give an example to this configuration.</p>
+<p>The Kubernetes <a href="https://kubernetes.io/docs/concepts/services-networking/ingress/">Ingress API is frozen</a> and Gateway API is its modern successor. Both can expose Seafile, depending on the networking controller available in your cluster.</p>
+<h3 id="helm-chart-routing">Helm Chart routing<a class="headerlink" href="#helm-chart-routing" title="Permanent link">&para;</a></h3>
+<p>For Helm Chart 14.0 and later, configure one of the following options in <code>my-values.yaml</code> and run <code>helm upgrade</code>. Select one method unless you intentionally need two routes.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Ingress</label><label for="__tabbed_1_2">Gateway API HTTPRoute</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Use this option when an Ingress controller is installed:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">ingress</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">className</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<span class="w">  </span><span class="nt">annotations</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+<span class="w">  </span><span class="nt">hosts</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile.example.com</span>
+<span class="w">      </span><span class="nt">paths</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/</span>
+<span class="w">          </span><span class="nt">pathType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Prefix</span>
+<span class="w">  </span><span class="nt">tls</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-tls-cert</span>
+<span class="w">      </span><span class="nt">hosts</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile.example.com</span>
+</code></pre></div>
+<p>The chart creates an Ingress named <code>seafile</code>, forwarding the configured paths to the <code>seafile</code> Service on port <code>80</code>. The TLS Secret must be created separately.</p>
 </div>
+<div class="tabbed-block">
+<p>Use this option when Gateway API v1 CRDs and a Gateway controller are installed. The Gateway must already exist and permit routes from the Seafile namespace:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">httpRoute</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">annotations</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+<span class="w">  </span><span class="nt">parentRefs</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-gateway</span>
+<span class="w">      </span><span class="c1"># namespace: gateway-namespace  # Required when the Gateway is in another namespace.</span>
+<span class="w">  </span><span class="nt">hostnames</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile.example.com</span>
+</code></pre></div>
+<p>The chart creates an HTTPRoute named <code>seafile</code>, with a fixed <code>/</code> path-prefix match forwarding to <code>seafile:80</code>. Gateway listeners, TLS certificates, and custom routing rules remain the responsibility of the Gateway administrator.</p>
+</div>
+</div>
+</div>
+<p>For commands and edition-specific deployment details, see the <a href="../helm_chart_single_node/">single-node Helm guide</a> or <a href="../helm_chart_cluster/">cluster Helm guide</a>.</p>
+<h3 id="manual-gateway-api-configuration">Manual Gateway API configuration<a class="headerlink" href="#manual-gateway-api-configuration" title="Permanent link">&para;</a></h3>
+<p>Use the following instructions when deploying with K8S resource files or when the chart-managed route does not meet your routing requirements.</p>
 <p>For the details and features about <strong><em>K8S Gateway</em></strong>, please refer to the K8S <a href="https://kubernetes.io/docs/concepts/services-networking/gateway/#design-principles">official document</a>, you can simpily install it by</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.1.0/standard-install.yaml
 </code></pre></div>
@@ -5816,7 +5909,7 @@
 - <code>GatewayClass</code>: Defines a group of gateways with the same configuration, managed by the controller that implements the class.
 - <code>Gateway</code>: Defines an instance of traffic handling infrastructure, which can be thought of as a load balancer.
 - <code>HTTPRoute</code>: Defines HTTP-specific rules for mapping traffic from gateway listeners to representations of backend network endpoints. These endpoints are typically represented as Services.</p>
-<h3 id="gatewayclass">GatewayClass<a class="headerlink" href="#gatewayclass" title="Permanent link">&para;</a></h3>
+<h4 id="gatewayclass">GatewayClass<a class="headerlink" href="#gatewayclass" title="Permanent link">&para;</a></h4>
 <p>The <strong><em>GatewayClass</em></strong> resource serves the same purpose as the <code>IngressClass</code> in the old-ingress API, similar to the <em>StorageClass</em> in the <em>Storage API.</em> It defines the categories of Gateways that can be created. Typically, this resource is provided by your infrastructure platform, such as EKS or GKE. It can also be provided by a third-party Ingress Controller, such as <a href="https://docs.nginx.com/nginx-gateway-fabric/overview/gateway-architecture/">Nginx-gateway</a> or <a href="https://istio.io/latest/docs/tasks/traffic-management/ingress/gateway-api/">Istio-gateway</a>.</p>
 <p>Here, we take the <em>Nginx-gateway</em> for the example, and you can install it with the <a href="https://docs.nginx.com/nginx-gateway-fabric/installation/installing-ngf/manifests/">official document</a>. After installation, you can view the installation status with the following command:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># `gc` means the `gatewayclass`, and its same as `kubectl get gatewayclass`</span>
@@ -5838,7 +5931,7 @@ kubectl<span class="w"> </span>get<span class="w"> </span>gc<span class="w"> </s
 <span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 <span class="nn">...</span>
 </code></pre></div>
-<h3 id="gateway">Gateway<a class="headerlink" href="#gateway" title="Permanent link">&para;</a></h3>
+<h4 id="gateway">Gateway<a class="headerlink" href="#gateway" title="Permanent link">&para;</a></h4>
 <p><strong><em>Gateway</em></strong> is used to describe an instance of traffic processing infrastructure. Usually, <em>Gateway</em> defines a network endpoint that can be used to process traffic, that is, to filter, balance, split, etc. Service and other backends. For example, it can represent a cloud load balancer, or a cluster proxy server configured to accept HTTP traffic. As above, please refer to the official documentation for a detailed description of <a href="https://kubernetes.io/docs/concepts/services-networking/gateway/#api-kind-gateway">Gateway</a>. Here is only a simple reference configuration for Seafile:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># nano seafile-gateway/gateway.yaml</span>
 
@@ -5853,8 +5946,8 @@ kubectl<span class="w"> </span>get<span class="w"> </span>gc<span class="w"> </s
 <span class="w">    </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTP</span>
 <span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
 </code></pre></div>
-<h3 id="httproute">HTTPRoute<a class="headerlink" href="#httproute" title="Permanent link">&para;</a></h3>
-<p>The <strong><em>HTTPRoute</em></strong> category specifies the routing behavior of HTTP requests from the <em>Gateway</em> listener to the backend network endpoints. For service backends, the implementation can represent the backend network endpoint as a service IP or a supporting endpoint of the service. it represents the configuration that will be applied to the underlying <em>Gateway</em> implementation. For example, defining a new <em>HTTPRoute</em> may result in configuring additional traffic routes in a cloud load balancer or in-cluster proxy server. As above, please refer to the official documentation for a detailed description of the <a href="https://kubernetes.io/docs/concepts/services-networking/gateway/#api-kind-httproute">HTTPRoute</a> resource. Here is only a reference configuration solution that is only applicable to this document.</p>
+<h4 id="httproute">HTTPRoute<a class="headerlink" href="#httproute" title="Permanent link">&para;</a></h4>
+<p>The <strong><em>HTTPRoute</em></strong> category specifies the routing behavior of HTTP requests from the <em>Gateway</em> listener to the backend network endpoints. For service backends, the implementation can represent the backend network endpoint as a service IP or a supporting endpoint of the service. It represents the configuration applied to the underlying <em>Gateway</em> implementation. For example, defining a new <em>HTTPRoute</em> may result in configuring additional traffic routes in a cloud load balancer or in-cluster proxy server. As above, please refer to the official documentation for a detailed description of the <a href="https://kubernetes.io/docs/concepts/services-networking/gateway/#api-kind-httproute">HTTPRoute</a> resource. This manual example is for independently managed routing only; do not apply it together with the chart-managed <code>httpRoute</code>, because both use the <code>seafile</code> backend and may create duplicate routes.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># nano seafile-gateway/httproute.yaml</span>
 
 <span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io/v1</span>
@@ -5880,7 +5973,7 @@ kubectl<span class="w"> </span>get<span class="w"> </span>gc<span class="w"> </s
 <p>After installing or defining <strong><em>GatewayClass</em></strong>, <strong><em>Gateway</em></strong> and <strong><em>HTTPRoute</em></strong>, you can now enable this feature by following command and view your Seafile server by the URL <code>http://seafile.example.com/</code>:</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>seafile-gateway<span class="w"> </span>-n<span class="w"> </span>seafile
 </code></pre></div>
-<h3 id="enable-https-optional">Enable HTTPS (Optional)<a class="headerlink" href="#enable-https-optional" title="Permanent link">&para;</a></h3>
+<h4 id="enable-https-optional">Enable HTTPS (Optional)<a class="headerlink" href="#enable-https-optional" title="Permanent link">&para;</a></h4>
 <p>When using <em>K8S Gateway</em>, a common way to enable HTTPS is to add relevant information about the TLS listener in <em>Gateway</em> resource. You can <a href="https://gateway-api.sigs.k8s.io/guides/tls/#examples">refer here</a> for futher details. We will provide a simple way here so that you can quickly enable HTTPS for your Seafile K8S.</p>
 <ol>
 <li>
@@ -5923,13 +6016,14 @@ kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> <
 <p>Similar to single-node deployment, you can browse the log files of Seafile running directly in the persistent volume directory (i.e., <code>&lt;path&gt;/seafile/logs</code>). The difference is that when using K8S to deploy a Seafile cluster (especially in a cloud environment), the persistent volume created is usually shared and synchronized for all nodes. However, <strong><em>the logs generated by the Seafile service do not record the specific node information where these logs are located</em></strong>, so browsing the files in the above folder may make it difficult to identify which node these logs are generated from. Therefore, one solution proposed here is:</p>
 <ol>
 <li>
-<p>Record the generated logs to the standard output. In this way, the logs can be distinguished under each node by <code>kubectl logs</code> (but all types of logs will be output together now). You can enable this feature (<strong>it should be enabled by default in K8S Seafile cluster but not in K8S single-pod Seafile</strong>) by modifing <code>SEAFILE_LOG_TO_STDOUT</code> to <code>true</code> in <code>seafile-env.yaml</code>:</p>
+<p>Record the generated logs to the standard output. In this way, the logs can be distinguished under each node by <code>kubectl logs</code> (but all types of logs will be output together now). For K8S resource-file deployments, enable this feature by modifying <code>SEAFILE_LOG_TO_STDOUT</code> to <code>true</code> in <code>seafile-env.yaml</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="nn">...</span>
 <span class="nt">data</span><span class="p">:</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">SEAFILE_LOG_TO_STDOUT</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">"true"</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </code></pre></div>
+<p>Current Helm Chart 14.0 values enable <code>SEAFILE_LOG_TO_STDOUT: "true"</code> by default for single-node and cluster deployments. Helm users should change <code>seafile.env.SEAFILE_LOG_TO_STDOUT</code> in <code>my-values.yaml</code> and run <code>helm upgrade</code> rather than edit <code>seafile-env.yaml</code>.</p>
 <p>Then restart the Seafile server:</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.items[*].metadata.name}'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>seafile<span class="k">)</span>
 </code></pre></div>

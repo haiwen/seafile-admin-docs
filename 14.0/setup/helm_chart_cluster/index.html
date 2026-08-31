@@ -1694,6 +1694,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#expose-seafile-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expose Seafile service
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5627,6 +5638,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#expose-seafile-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expose Seafile service
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5709,7 +5731,7 @@
 </code></pre></div>
 </li>
 <li>
-<p>Create a secret for sensitive data</p>
+<p>Create a secret for sensitive data. The default Secret name is <code>seafile-secret</code>:</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>generic<span class="w"> </span>seafile-secret<span class="w"> </span>--namespace<span class="w"> </span>seafile<span class="w"> </span><span class="se">\</span>
 --from-literal<span class="o">=</span><span class="nv">JWT_PRIVATE_KEY</span><span class="o">=</span><span class="s1">'&lt;required&gt;'</span><span class="w"> </span><span class="se">\</span>
 --from-literal<span class="o">=</span><span class="nv">SEAFILE_MYSQL_DB_PASSWORD</span><span class="o">=</span><span class="s1">'&lt;required&gt;'</span><span class="w"> </span><span class="se">\</span>
@@ -5719,7 +5741,16 @@
 --from-literal<span class="o">=</span><span class="nv">S3_SECRET_KEY</span><span class="o">=</span><span class="s1">''</span><span class="w"> </span><span class="se">\</span>
 --from-literal<span class="o">=</span><span class="nv">S3_SSE_C_KEY</span><span class="o">=</span><span class="s1">''</span>
 </code></pre></div>
-<p>where the <code>JWT_PRIVATE_KEY</code> can be generate by <code>pwgen -s 40 1</code></p>
+<p>where the <code>JWT_PRIVATE_KEY</code> can be generate by <code>pwgen -s 40 1</code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Use an existing Secret or a custom Secret name</p>
+<p>The chart does not create this Secret. To use an existing Secret with another name, create it in the <code>seafile</code> namespace with the required keys above, then set its name in <code>my-values.yaml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">seafile</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">existingSecret</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-seafile-secret</span>
+</code></pre></div>
+<p>This Secret is used by both the frontend and backend workloads. This setting changes only the Secret resource name; the required key names remain unchanged.</p>
+</div>
 </li>
 <li>
 <p>Download and modify the <code>my-values.yaml</code> according to your configurations. By the way, you can follow <a href="../setup_pro_by_docker/#downloading-and-modifying-env">here</a> for the details:</p>
@@ -5741,6 +5772,43 @@ nano<span class="w"> </span>my-values.yaml
 </code></pre></div>
 </li>
 </ul>
+</div>
+<h3 id="expose-seafile-service">Expose Seafile service<a class="headerlink" href="#expose-seafile-service" title="Permanent link">&para;</a></h3>
+<p>The chart creates a <code>ClusterIP</code> Service named <code>seafile</code> on port <code>80</code>, which routes to the frontend workloads. It is not accessible from outside the cluster by itself. You can enable either an Ingress or a Gateway API HTTPRoute in <code>my-values.yaml</code>. Do not enable both unless you intentionally need two external routes.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Ingress</label><label for="__tabbed_1_2">Gateway API HTTPRoute</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Use this option when your cluster has an Ingress controller. Replace the values below with those for your environment:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">ingress</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">className</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<span class="w">  </span><span class="nt">annotations</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+<span class="w">  </span><span class="nt">hosts</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile.example.com</span>
+<span class="w">      </span><span class="nt">paths</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/</span>
+<span class="w">          </span><span class="nt">pathType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Prefix</span>
+<span class="w">  </span><span class="nt">tls</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-tls-cert</span>
+<span class="w">      </span><span class="nt">hosts</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile.example.com</span>
+</code></pre></div>
+<p>The chart creates an Ingress named <code>seafile</code> and forwards each configured path to the <code>seafile</code> Service on port <code>80</code>. TLS is optional; its Secret must be managed separately.</p>
+</div>
+<div class="tabbed-block">
+<p>Use this option when your cluster has Gateway API v1 CRDs and a Gateway controller. The referenced Gateway must already exist and allow routes from the release namespace:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">httpRoute</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">annotations</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+<span class="w">  </span><span class="nt">parentRefs</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-gateway</span>
+<span class="w">      </span><span class="c1"># namespace: gateway-namespace  # Required when the Gateway is in another namespace.</span>
+<span class="w">  </span><span class="nt">hostnames</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile.example.com</span>
+</code></pre></div>
+<p>The chart creates an HTTPRoute named <code>seafile</code>. It always matches the <code>/</code> path prefix and forwards requests to the frontend <code>seafile</code> Service on port <code>80</code>. Gateway listeners, TLS certificates, and advanced routing rules are managed separately.</p>
+</div>
+</div>
 </div>
 </li>
 <li>
@@ -5989,10 +6057,10 @@ nano<span class="w"> </span>my-values.yaml
 <p class="admonition-title">About version of <em>Seafile Helm Chart</em> and <em>Seafile</em></p>
 <p>The version of Seafile Helm Chart is same as the major version of Seafile, i.e.:</p>
 <ul>
-<li>latest Seafile: 12.0.9</li>
-<li>latest Seafile Helm Chart release: 12.0</li>
+<li>Seafile version: 14.0</li>
+<li>Helm Chart release: 14.0</li>
 </ul>
-<p>By default, it will follow the latest Chart and the latest Seafile</p>
+<p>Use an explicit chart version, such as <code>14.0</code>, for reproducible deployments. The unversioned package may be updated with a newer chart revision.</p>
 </div>
 </li>
 <li>
@@ -6011,7 +6079,7 @@ nano<span class="w"> </span>my-values.yaml
 <div class="highlight"><pre><span></span><code>helm<span class="w"> </span>delete<span class="w"> </span>seafile<span class="w"> </span>--namespace<span class="w"> </span>seafile
 </code></pre></div>
 <h2 id="advanced-operations">Advanced operations<a class="headerlink" href="#advanced-operations" title="Permanent link">&para;</a></h2>
-<p>Please refer from <a href="../k8s_advanced_management/">here</a> for futher advanced operations.</p>
+<p>For standard external access, use the chart's <code>ingress</code> or <code>httpRoute</code> configuration above. Refer to <a href="../k8s_advanced_management/">advanced K8S management</a> when you need to manage Gateway resources or custom routing rules manually.</p>
 
 
 
