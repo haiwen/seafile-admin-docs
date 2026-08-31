@@ -7,6 +7,8 @@ This document mainly describes how to manage and maintain Seafile deployed throu
 
     Regardless of which deployment method you use, in our newer manuals (usually in versions after Seafile 12.0.9), Seafile-related K8S resources (including related Pods, services, and persistent volumes, etc.) are defined in the `seafile` namespace. In previous versions, you may deploy Seafile in the `default` namespace, so in this case, when referring to this document for Seafile K8S resource management, be sure to remove `-n seafile` in the command.
 
+    Helm Chart users can configure a standard Ingress or Gateway API HTTPRoute in `my-values.yaml`. See the [single-node Helm guide](./helm_chart_single_node.md#expose-seafile-service) or [cluster Helm guide](./helm_chart_cluster.md#expose-seafile-service). The manual Gateway and HTTPRoute resources below are intended for K8S resource-file deployments or advanced Helm routing requirements.
+
 ## Seafile K8S Container management
 
 Similar to docker installation, you can also manage containers through [some kubectl commands](https://kubernetes.io/docs/reference/kubectl/#operations). For example, you can use the following command to check whether the relevant resources are started successfully and whether the relevant services can be accessed normally. First, execute the following command and remember the pod name with `seafile-` as the prefix (such as `seafile-748b695648-d6l4g`)
@@ -35,10 +37,56 @@ kubectl delete pods -n seafile $(kubectl get pods -n seafile -o jsonpath='{.item
 
 ## K8S Gateway and HTTPS
 
-Since the support of Ingress feature [is frozen](https://kubernetes.io/docs/concepts/services-networking/ingress/) in the new version of K8S, this article will introduce how to use the new version of K8S feature [*K8S Gateway*](https://kubernetes.io/docs/concepts/services-networking/gateway/) to implement Seafile service exposure and load balancing.
+The Kubernetes [Ingress API is frozen](https://kubernetes.io/docs/concepts/services-networking/ingress/) and Gateway API is its modern successor. Both can expose Seafile, depending on the networking controller available in your cluster.
 
-!!! tip "Still use *Nginx-Ingress*"
-    If your K8S is still using *Nginx-Ingress*, you can follow [here](https://artifacthub.io/packages/helm/datamate/seafile#deploy-an-ingress-controller-ingress-nginx) to setup ingress controller and HTTPS. We sincerely thanks *Datamate* to give an example to this configuration.
+### Helm Chart routing
+
+For Helm Chart 14.0 and later, configure one of the following options in `my-values.yaml` and run `helm upgrade`. Select one method unless you intentionally need two routes.
+
+=== "Ingress"
+
+    Use this option when an Ingress controller is installed:
+
+    ```yaml
+    ingress:
+      enabled: true
+      className: nginx
+      annotations: {}
+      hosts:
+        - host: seafile.example.com
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - secretName: seafile-tls-cert
+          hosts:
+            - seafile.example.com
+    ```
+
+    The chart creates an Ingress named `seafile`, forwarding the configured paths to the `seafile` Service on port `80`. The TLS Secret must be created separately.
+
+=== "Gateway API HTTPRoute"
+
+    Use this option when Gateway API v1 CRDs and a Gateway controller are installed. The Gateway must already exist and permit routes from the Seafile namespace:
+
+    ```yaml
+    httpRoute:
+      enabled: true
+      annotations: {}
+      parentRefs:
+        - name: seafile-gateway
+          # namespace: gateway-namespace  # Required when the Gateway is in another namespace.
+      hostnames:
+        - seafile.example.com
+    ```
+
+    The chart creates an HTTPRoute named `seafile`, with a fixed `/` path-prefix match forwarding to `seafile:80`. Gateway listeners, TLS certificates, and custom routing rules remain the responsibility of the Gateway administrator.
+
+For commands and edition-specific deployment details, see the [single-node Helm guide](./helm_chart_single_node.md) or [cluster Helm guide](./helm_chart_cluster.md).
+
+### Manual Gateway API configuration
+
+Use the following instructions when deploying with K8S resource files or when the chart-managed route does not meet your routing requirements.
 
 For the details and features about ***K8S Gateway***, please refer to the K8S [official document](https://kubernetes.io/docs/concepts/services-networking/gateway/#design-principles), you can simpily install it by
 
@@ -51,7 +99,7 @@ The *Gateway API* requires configuration of three API categories in its [resourc
 - `Gateway`: Defines an instance of traffic handling infrastructure, which can be thought of as a load balancer.
 - `HTTPRoute`: Defines HTTP-specific rules for mapping traffic from gateway listeners to representations of backend network endpoints. These endpoints are typically represented as Services.
 
-### GatewayClass
+#### GatewayClass
 
 The ***GatewayClass*** resource serves the same purpose as the `IngressClass` in the old-ingress API, similar to the *StorageClass* in the *Storage API.* It defines the categories of Gateways that can be created. Typically, this resource is provided by your infrastructure platform, such as EKS or GKE. It can also be provided by a third-party Ingress Controller, such as [Nginx-gateway](https://docs.nginx.com/nginx-gateway-fabric/overview/gateway-architecture/) or [Istio-gateway](https://istio.io/latest/docs/tasks/traffic-management/ingress/gateway-api/).
 
@@ -84,7 +132,7 @@ spec:
 ...
 ```
 
-### Gateway
+#### Gateway
 
 ***Gateway*** is used to describe an instance of traffic processing infrastructure. Usually, *Gateway* defines a network endpoint that can be used to process traffic, that is, to filter, balance, split, etc. Service and other backends. For example, it can represent a cloud load balancer, or a cluster proxy server configured to accept HTTP traffic. As above, please refer to the official documentation for a detailed description of [Gateway](https://kubernetes.io/docs/concepts/services-networking/gateway/#api-kind-gateway). Here is only a simple reference configuration for Seafile:
 
@@ -103,9 +151,9 @@ spec:
     port: 80
 ```
 
-### HTTPRoute
+#### HTTPRoute
 
-The ***HTTPRoute*** category specifies the routing behavior of HTTP requests from the *Gateway* listener to the backend network endpoints. For service backends, the implementation can represent the backend network endpoint as a service IP or a supporting endpoint of the service. it represents the configuration that will be applied to the underlying *Gateway* implementation. For example, defining a new *HTTPRoute* may result in configuring additional traffic routes in a cloud load balancer or in-cluster proxy server. As above, please refer to the official documentation for a detailed description of the [HTTPRoute](https://kubernetes.io/docs/concepts/services-networking/gateway/#api-kind-httproute) resource. Here is only a reference configuration solution that is only applicable to this document.
+The ***HTTPRoute*** category specifies the routing behavior of HTTP requests from the *Gateway* listener to the backend network endpoints. For service backends, the implementation can represent the backend network endpoint as a service IP or a supporting endpoint of the service. It represents the configuration applied to the underlying *Gateway* implementation. For example, defining a new *HTTPRoute* may result in configuring additional traffic routes in a cloud load balancer or in-cluster proxy server. As above, please refer to the official documentation for a detailed description of the [HTTPRoute](https://kubernetes.io/docs/concepts/services-networking/gateway/#api-kind-httproute) resource. This manual example is for independently managed routing only; do not apply it together with the chart-managed `httpRoute`, because both use the `seafile` backend and may create duplicate routes.
 
 ```yaml
 # nano seafile-gateway/httproute.yaml
@@ -138,7 +186,7 @@ After installing or defining ***GatewayClass***, ***Gateway*** and ***HTTPRoute*
 kubectl apply -f seafile-gateway -n seafile
 ```
 
-### Enable HTTPS (Optional)
+#### Enable HTTPS (Optional)
 
 When using *K8S Gateway*, a common way to enable HTTPS is to add relevant information about the TLS listener in *Gateway* resource. You can [refer here](https://gateway-api.sigs.k8s.io/guides/tls/#examples) for futher details. We will provide a simple way here so that you can quickly enable HTTPS for your Seafile K8S.
 
@@ -187,7 +235,7 @@ When using *K8S Gateway*, a common way to enable HTTPS is to add relevant inform
 
 Similar to single-node deployment, you can browse the log files of Seafile running directly in the persistent volume directory (i.e., `<path>/seafile/logs`). The difference is that when using K8S to deploy a Seafile cluster (especially in a cloud environment), the persistent volume created is usually shared and synchronized for all nodes. However, ***the logs generated by the Seafile service do not record the specific node information where these logs are located***, so browsing the files in the above folder may make it difficult to identify which node these logs are generated from. Therefore, one solution proposed here is:
 
-1. Record the generated logs to the standard output. In this way, the logs can be distinguished under each node by `kubectl logs` (but all types of logs will be output together now). You can enable this feature (**it should be enabled by default in K8S Seafile cluster but not in K8S single-pod Seafile**) by modifing `SEAFILE_LOG_TO_STDOUT` to `true` in `seafile-env.yaml`:
+1. Record the generated logs to the standard output. In this way, the logs can be distinguished under each node by `kubectl logs` (but all types of logs will be output together now). For K8S resource-file deployments, enable this feature by modifying `SEAFILE_LOG_TO_STDOUT` to `true` in `seafile-env.yaml`:
 
     ```yaml
     ...
@@ -196,6 +244,8 @@ Similar to single-node deployment, you can browse the log files of Seafile runni
       SEAFILE_LOG_TO_STDOUT: "true"
       ...
     ```
+
+    Current Helm Chart 14.0 values enable `SEAFILE_LOG_TO_STDOUT: "true"` by default for single-node and cluster deployments. Helm users should change `seafile.env.SEAFILE_LOG_TO_STDOUT` in `my-values.yaml` and run `helm upgrade` rather than edit `seafile-env.yaml`.
 
     Then restart the Seafile server:
 
