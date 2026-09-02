@@ -5724,9 +5724,9 @@
 <h2 id="deploy-seafile-ai-basic-service">Deploy Seafile AI basic service<a class="headerlink" href="#deploy-seafile-ai-basic-service" title="Permanent link">&para;</a></h2>
 <h3 id="deploy-seafile-ai-on-the-host-with-seafile">Deploy Seafile AI on the host with Seafile<a class="headerlink" href="#deploy-seafile-ai-on-the-host-with-seafile" title="Permanent link">&para;</a></h3>
 <p>The Seafile AI basic service will use API calls to external large language model service to implement file labeling, file and image summaries, text translation, and sdoc writing assistance.</p>
-<div class="admonition warning">
-<p class="admonition-title">Seafile AI requires Redis cache</p>
-<p>In order to deploy Seafile AI correctly, you have to use <strong><em>Redis</em></strong> as the cache. Please set <code>CACHE_PROVIDER=redis</code> in <code>.env</code> and set Redis related configuration information correctly.</p>
+<div class="admonition note">
+<p class="admonition-title">Redis for AI usage statistics</p>
+<p>Seafile AI uses Redis to publish model token-usage events. Redis is required when <a href="#enable-ai-usage-statistics">AI usage statistics</a> are enabled.</p>
 </div>
 <ol>
 <li>
@@ -5749,38 +5749,54 @@ ENABLE_SEAFILE_AI=true
 <span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://&lt;your-llm-endpoint&gt;</span>
 <span class="w">      </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;your-api-key&gt;</span>
 <span class="w">      </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-5.4-nano</span>
-<span class="w">      </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-5.4-nano</span>
+<span class="w">      </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GPT-5.4 Nano</span>
 <span class="w">      </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">      </span><span class="nt">tier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">high</span>
+<span class="w">      </span><span class="nt">tier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">low</span>
 <span class="w">      </span><span class="nt">hidden</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 <span class="w">      </span><span class="nt">disable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">other</span>
 <span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://&lt;your-llm-endpoint&gt;</span>
 <span class="w">      </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;your-api-key&gt;</span>
 <span class="w">      </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gemini-3-flash-preview</span>
-<span class="w">      </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gemini-3-flash-preview</span>
+<span class="w">      </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gemini 3 Flash</span>
 <span class="w">      </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">      </span><span class="nt">tier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">high</span>
+<span class="w">      </span><span class="nt">tier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">medium</span>
 <span class="w">      </span><span class="nt">hidden</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 <span class="w">      </span><span class="nt">disable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="c1"># Optional: price per 1M tokens, used for AI usage statistics.</span>
+<span class="w">      </span><span class="nt">price</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">input_tokens</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.15</span>
+<span class="w">        </span><span class="nt">output_tokens</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.60</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">other</span>
 <span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://&lt;your-llm-endpoint&gt;</span>
 <span class="w">      </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;your-api-key&gt;</span>
 <span class="w">      </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deepseek-v4-pro</span>
-<span class="w">      </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deepseek-v4-pro</span>
+<span class="w">      </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DeepSeek V4 Pro</span>
 <span class="w">      </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 <span class="w">      </span><span class="nt">tier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">high</span>
 <span class="w">      </span><span class="nt">hidden</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 <span class="w">      </span><span class="nt">disable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">  </span><span class="c1"># Optional: override the model tier used by individual AI features.</span>
+<span class="w">  </span><span class="nt">AI_UTILS_TIER</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">generate_summary</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">low</span>
+<span class="w">    </span><span class="nt">doc_tags</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">low</span>
+<span class="w">    </span><span class="nt">translate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">low</span>
+<span class="w">    </span><span class="nt">writing_assistant</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">medium</span>
+<span class="w">    </span><span class="nt">ocr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">low</span>
+<span class="w">    </span><span class="nt">image_caption</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">medium</span>
+<span class="w">    </span><span class="nt">image_tags</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">low</span>
+<span class="w">    </span><span class="nt">search_icons</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">low</span>
+<span class="w">    </span><span class="nt">rerank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">low</span>
+<span class="w">  </span><span class="c1"># Optional: required only when vector search is enabled.</span>
 <span class="w">  </span><span class="nt">EMBEDDING_MODEL</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openai</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">other</span>
 <span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://&lt;your-llm-endpoint&gt;</span>
 <span class="w">    </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;your-api-key&gt;</span>
 <span class="w">    </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">text-embedding-3-small</span>
 <span class="w">    </span><span class="nt">dimensions</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1024</span>
 </code></pre></div>
 <p>If you are using a LLM service with <strong><em>OpenAI-compatible endpoints</em></strong>, you can set <code>type</code> to <code>other</code> and configure <code>url</code> accurately.</p>
-<p><code>EMBEDDING_MODEL</code> is required. It is used to create embeddings for vector search. Its <code>dimensions</code> value must match the embedding model output. The default dimension is <code>1024</code> when <code>dimensions</code> is not a positive integer.</p>
+<p><code>EMBEDDING_MODEL</code> is optional and is used to create embeddings for <a href="#enable-vector-search">vector search</a>. Its <code>dimensions</code> value must match the embedding model output. The default dimension is <code>1024</code> when <code>dimensions</code> is not a positive integer.</p>
 <p>If you only need one model, keep a single item in <code>LLM_MODELS</code> and set its <code>default</code> field to <code>true</code>.</p>
 <p>The fields are described below:</p>
 <table>
@@ -5817,7 +5833,7 @@ ENABLE_SEAFILE_AI=true
 </tr>
 <tr>
 <td><code>tier</code></td>
-<td>Reserved for future use. Currently parsed but not used for model routing.</td>
+<td>Model capability tier: <code>low</code>, <code>medium</code>, or <code>high</code>. Seafile AI selects the first valid model configured for a tier when processing an AI feature assigned to that tier.</td>
 </tr>
 <tr>
 <td><code>hidden</code></td>
@@ -5845,6 +5861,8 @@ ENABLE_SEAFILE_AI=true
 <p class="admonition-title">Note</p>
 <p>The model with <code>default: true</code> is alsoe used by general AI features such as file summary generation, writing assistant, translation, and other non-chat AI functions.</p>
 </div>
+<p>You can use <code>AI_UTILS_TIER</code>, as shown in the preceding example, to assign a model tier to individual AI features. Each feature uses the first valid model with its configured <code>tier</code>; if no model is configured for that tier, Seafile AI uses the default model.</p>
+<p>The default tiers are <code>low</code> for summary generation, document tags, translation, OCR, image tags, icon search, and search-result reranking; and <code>medium</code> for writing assistance and image captions.</p>
 </li>
 <li>
 <p>Restart Seafile server:</p>
@@ -5959,12 +5977,8 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 <td>Seahub database name. Default is <code>seahub_db</code>.</td>
 </tr>
 <tr>
-<td><code>CACHE_PROVIDER</code></td>
-<td>Cache provider. Seafile AI requires Redis, so this must be <code>redis</code>.</td>
-</tr>
-<tr>
 <td><code>REDIS_HOST</code></td>
-<td>Redis server host. Default is <code>redis</code>.</td>
+<td>Redis server host used to publish AI usage events. Default is <code>redis</code>.</td>
 </tr>
 <tr>
 <td><code>REDIS_PORT</code></td>
@@ -6037,34 +6051,7 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 </table>
 </li>
 <li>
-<p>Create or modify <code>seafile_ai_config.yaml</code> on both the Seafile AI host and the Seafile host with the same <code>LLM_MODELS</code> configuration. For example:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">global</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">LLM_MODELS</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">other</span>
-<span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://&lt;your-llm-endpoint&gt;</span>
-<span class="w">      </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;your-api-key&gt;</span>
-<span class="w">      </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-5.4-nano</span>
-<span class="w">      </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpt-5.4-nano</span>
-<span class="w">      </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">      </span><span class="nt">tier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">high</span>
-<span class="w">      </span><span class="nt">hidden</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">      </span><span class="nt">disable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">other</span>
-<span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://&lt;your-llm-endpoint&gt;</span>
-<span class="w">      </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;your-api-key&gt;</span>
-<span class="w">      </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deepseek-v4-pro</span>
-<span class="w">      </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deepseek-v4-pro</span>
-<span class="w">      </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">      </span><span class="nt">tier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">high</span>
-<span class="w">      </span><span class="nt">hidden</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">      </span><span class="nt">disable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">  </span><span class="nt">EMBEDDING_MODEL</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openai</span>
-<span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://&lt;your-llm-endpoint&gt;</span>
-<span class="w">    </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;your-api-key&gt;</span>
-<span class="w">    </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">text-embedding-3-small</span>
-<span class="w">    </span><span class="nt">dimensions</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1024</span>
-</code></pre></div>
+<p>Create or modify <code>seafile_ai_config.yaml</code> on both the Seafile AI host and the Seafile host with the same configuration as above. This includes <code>LLM_MODELS</code>, <code>AI_UTILS_TIER</code>, and <code>EMBEDDING_MODEL</code> when vector search is enabled.</p>
 <p>Seahub reads this file on the Seafile host to display the available model list, while the Seafile AI service reads its local copy on the Seafile AI host to process actual AI requests. When Seafile and Seafile AI are deployed on separate machines, the two files should stay consistent.</p>
 <p>The fields in <code>LLM_MODELS</code> have the same meanings as described in the deployment steps above.</p>
 <p>If you only need one model, keep a single item in <code>LLM_MODELS</code> and set its <code>default</code> field to <code>true</code>.</p>
@@ -6134,7 +6121,7 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 <div class="highlight"><pre><span></span><code>SEASEARCH_URL=http://&lt;your SeaSearch server host&gt;:4080
 SEASEARCH_TOKEN=&lt;your SeaSearch authorization token&gt;
 </code></pre></div>
-<p>Then, in the library's <strong>Settings</strong>, enable <strong>Extended properties</strong> and enable <strong>AI Summary</strong>. Seafile generates summaries and creates a vector index asynchronously for supported files: sdoc, markdown, docx, pdf, and pptx. Initial indexing may take time depending on the number and size of files.</p>
+<p>Then, in the library's <strong>Settings</strong>, enable <strong>Extended properties</strong> and enable <strong>AI chat and search</strong>. Seafile generates summaries and creates a vector index asynchronously for supported files: sdoc, markdown, docx, pdf, and pptx. Initial indexing may take time depending on the number and size of files.</p>
 <p>When files are added or changed, their summaries and vector index entries are updated asynchronously. Disabling AI Summary deletes the library's vector index. Check <code>ai_summary.log</code> and <code>seasearch_index.log</code> if summaries or search results are unavailable.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
