@@ -12,6 +12,7 @@ Seafile version 14.0 has the following configuration changes:
 * WebDAV is configured via environment variables in the Seafile server `.env`. Please refer to [WebDAV extension](../extension/webdav.md) for details.
 * Metadata server is configured via environment variables in the Seafile server `.env`. Please refer to [Metadata server](../extension/metadata-server.md) for details.
 * Seafile AI models are configured via `seafile_ai_config.yaml`. If you are upgrading an existing Seafile AI deployment, please update the Seafile AI model configuration accordingly. Please refer to [Seafile AI extension](../extension/seafile-ai.md) for details.
+* Face recognition has been removed. Remove `ENABLE_FACE_RECOGNITION` and any face-embedding service configuration from your deployment configuration.
 * Thumbnail server configurations in `seahub_settings.py` have changed. Please refer to [Thumbnail server](../extension/thumbnail-server.md) for details.
 * SeaSearch is the default search engine for new Seafile Pro Docker deployments.
 * Local-password policy for externally authenticated users is now controlled by `DISABLE_SSO_USER_LOCAL_PWD_LOGIN` in `seahub_settings.py`.

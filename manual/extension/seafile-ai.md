@@ -26,8 +26,8 @@ From Seafile 13, users can enable ***Seafile AI*** to support the following feat
 
 The Seafile AI basic service will use API calls to external large language model service to implement file labeling, file and image summaries, text translation, and sdoc writing assistance.
 
-!!! warning "Seafile AI requires Redis cache"
-    In order to deploy Seafile AI correctly, you have to use ***Redis*** as the cache. Please set `CACHE_PROVIDER=redis` in `.env` and set Redis related configuration information correctly.
+!!! note "Redis for AI usage statistics"
+    Seafile AI uses Redis to publish model token-usage events. Redis is required when [AI usage statistics](#enable-ai-usage-statistics) are enabled.
 
 1. Download `seafile-ai.yml`
 
@@ -52,31 +52,47 @@ The Seafile AI basic service will use API calls to external large language model
           url: http://<your-llm-endpoint>
           key: <your-api-key>
           model: gpt-5.4-nano
-          label: gpt-5.4-nano
+          label: GPT-5.4 Nano
           default: false
-          tier: high
+          tier: low
           hidden: false
           disable: false
         - type: other
           url: http://<your-llm-endpoint>
           key: <your-api-key>
           model: gemini-3-flash-preview
-          label: gemini-3-flash-preview
+          label: Gemini 3 Flash
           default: true
-          tier: high
+          tier: medium
           hidden: false
           disable: false
+          # Optional: price per 1M tokens, used for AI usage statistics.
+          price:
+            input_tokens: 0.15
+            output_tokens: 0.60
         - type: other
           url: http://<your-llm-endpoint>
           key: <your-api-key>
           model: deepseek-v4-pro
-          label: deepseek-v4-pro
+          label: DeepSeek V4 Pro
           default: false
           tier: high
           hidden: false
           disable: false
+      # Optional: override the model tier used by individual AI features.
+      AI_UTILS_TIER:
+        generate_summary: low
+        doc_tags: low
+        translate: low
+        writing_assistant: medium
+        ocr: low
+        image_caption: medium
+        image_tags: low
+        search_icons: low
+        rerank: low
+      # Optional: required only when vector search is enabled.
       EMBEDDING_MODEL:
-        type: openai
+        type: other
         url: http://<your-llm-endpoint>
         key: <your-api-key>
         model: text-embedding-3-small
@@ -85,7 +101,7 @@ The Seafile AI basic service will use API calls to external large language model
 
     If you are using a LLM service with ***OpenAI-compatible endpoints***, you can set `type` to `other` and configure `url` accurately.
 
-    `EMBEDDING_MODEL` is required. It is used to create embeddings for vector search. Its `dimensions` value must match the embedding model output. The default dimension is `1024` when `dimensions` is not a positive integer.
+    `EMBEDDING_MODEL` is optional and is used to create embeddings for [vector search](#enable-vector-search). Its `dimensions` value must match the embedding model output. The default dimension is `1024` when `dimensions` is not a positive integer.
 
     If you only need one model, keep a single item in `LLM_MODELS` and set its `default` field to `true`.
 
@@ -99,7 +115,7 @@ The Seafile AI basic service will use API calls to external large language model
     | `model` | Model ID used in API calls. |
     | `label` | Model name shown in the model selector in Seahub. |
     | `default` | Whether this model is the default selected model. Usually only one model should be set to `true`. |
-    | `tier` | Reserved for future use. Currently parsed but not used for model routing. |
+    | `tier` | Model capability tier: `low`, `medium`, or `high`. Seafile AI selects the first valid model configured for a tier when processing an AI feature assigned to that tier. |
     | `hidden` | If `true`, the model will not be shown in Seahub's model selector. |
     | `disable` | If `true`, the model is disabled and should not be used for AI requests. |
     | `dimensions` | *(For `EMBEDDING_MODEL` only)* Output dimension size. Default is `1024`. |
@@ -112,6 +128,10 @@ The Seafile AI basic service will use API calls to external large language model
     !!! note
 
         The model with `default: true` is alsoe used by general AI features such as file summary generation, writing assistant, translation, and other non-chat AI functions.
+
+    You can use `AI_UTILS_TIER`, as shown in the preceding example, to assign a model tier to individual AI features. Each feature uses the first valid model with its configured `tier`; if no model is configured for that tier, Seafile AI uses the default model.
+
+    The default tiers are `low` for summary generation, document tags, translation, OCR, image tags, icon search, and search-result reranking; and `medium` for writing assistance and image captions.
 
 4. Restart Seafile server:
 
@@ -161,8 +181,7 @@ The Seafile AI basic service will use API calls to external large language model
     | `SEAFILE_MYSQL_DB_CCNET_DB_NAME` | CCNet database name. Default is `ccnet_db`. |
     | `SEAFILE_MYSQL_DB_SEAFILE_DB_NAME` | Seafile database name. Default is `seafile_db`. |
     | `SEAFILE_MYSQL_DB_SEAHUB_DB_NAME` | Seahub database name. Default is `seahub_db`. |
-    | `CACHE_PROVIDER` | Cache provider. Seafile AI requires Redis, so this must be `redis`. |
-    | `REDIS_HOST` | Redis server host. Default is `redis`. |
+    | `REDIS_HOST` | Redis server host used to publish AI usage events. Default is `redis`. |
     | `REDIS_PORT` | Redis server port. Default is `6379`. |
     | `REDIS_PASSWORD` | Redis server password. Leave it empty if authentication is disabled. |
 
@@ -183,36 +202,7 @@ The Seafile AI basic service will use API calls to external large language model
     | `S3_PATH_STYLE_REQUEST` | Whether to use path-style S3 requests. Default is `false`. |
     | `S3_SSE_C_KEY` | Optional customer-provided key for S3 server-side encryption (SSE-C). |
 
-3. Create or modify `seafile_ai_config.yaml` on both the Seafile AI host and the Seafile host with the same `LLM_MODELS` configuration. For example:
-
-    ```yaml
-    global:
-      LLM_MODELS:
-        - type: other
-          url: http://<your-llm-endpoint>
-          key: <your-api-key>
-          model: gpt-5.4-nano
-          label: gpt-5.4-nano
-          default: true
-          tier: high
-          hidden: false
-          disable: false
-        - type: other
-          url: http://<your-llm-endpoint>
-          key: <your-api-key>
-          model: deepseek-v4-pro
-          label: deepseek-v4-pro
-          default: false
-          tier: high
-          hidden: false
-          disable: false
-      EMBEDDING_MODEL:
-        type: openai
-        url: http://<your-llm-endpoint>
-        key: <your-api-key>
-        model: text-embedding-3-small
-        dimensions: 1024
-    ```
+3. Create or modify `seafile_ai_config.yaml` on both the Seafile AI host and the Seafile host with the same configuration as above. This includes `LLM_MODELS`, `AI_UTILS_TIER`, and `EMBEDDING_MODEL` when vector search is enabled.
 
     Seahub reads this file on the Seafile host to display the available model list, while the Seafile AI service reads its local copy on the Seafile AI host to process actual AI requests. When Seafile and Seafile AI are deployed on separate machines, the two files should stay consistent.
 
@@ -306,7 +296,7 @@ SEASEARCH_URL=http://<your SeaSearch server host>:4080
 SEASEARCH_TOKEN=<your SeaSearch authorization token>
 ```
 
-Then, in the library's **Settings**, enable **Extended properties** and enable **AI Summary**. Seafile generates summaries and creates a vector index asynchronously for supported files: sdoc, markdown, docx, pdf, and pptx. Initial indexing may take time depending on the number and size of files.
+Then, in the library's **Settings**, enable **Extended properties** and enable **AI chat and search**. Seafile generates summaries and creates a vector index asynchronously for supported files: sdoc, markdown, docx, pdf, and pptx. Initial indexing may take time depending on the number and size of files.
 
 When files are added or changed, their summaries and vector index entries are updated asynchronously. Disabling AI Summary deletes the library's vector index. Check `ai_summary.log` and `seasearch_index.log` if summaries or search results are unavailable.
 
