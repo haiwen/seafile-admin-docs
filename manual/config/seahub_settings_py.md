@@ -395,6 +395,22 @@ VIRUS_SCAN_NOTIFY_LIST = ['user_a@seafile.com', 'user_b@seafile.com']
 
 ```
 
+### Traffic limit exceeded throttle rate
+
+When a user or an organization exceeds its monthly upload/download traffic limit (configured in [roles and permissions](roles_permissions.md)), Seafile reduces the corresponding upload or download speed to the following rate. These options set the reduced rate after a traffic allowance is exceeded. Both default to `1k` (1 KB/s) and are not enabled unless a monthly traffic limit is configured.
+
+```python
+# The reduced download speed (rate limit) applied after the monthly
+# download traffic limit is exceeded. Default is '1k' (1 KB/s).
+DOWNLOAD_LIMIT_WHEN_THROTTLE = '1k'
+
+# The reduced upload speed (rate limit) applied after the monthly
+# upload traffic limit is exceeded. Default is '1k' (1 KB/s).
+UPLOAD_LIMIT_WHEN_THROTTLE = '1k'
+```
+
+The value uses the same quota syntax as other quota settings, for example `100k` or `2m`.
+
 ## RESTful API
 
 ```

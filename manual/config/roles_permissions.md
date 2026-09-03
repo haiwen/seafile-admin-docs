@@ -25,7 +25,7 @@ You can add/edit roles and permission for users. A role is just a group of users
         ./seahub.sh python-env python3 seahub/manage.py set_user_role_upload_download_rate_limit
         ```
 
-- Monthly traffic limits measure transferred bytes in a calendar month. They are different from `upload_rate_limit` and `download_rate_limit`, which limit transfer speed. When a monthly allowance is exceeded, Seafile reduces the relevant upload or download speed to about 1kb/s.
+- Monthly traffic limits measure transferred bytes in a calendar month. They are different from `upload_rate_limit` and `download_rate_limit`, which limit transfer speed. When a monthly allowance is exceeded, Seafile reduces the relevant upload or download speed to the rate set by `UPLOAD_LIMIT_WHEN_THROTTLE` or `DOWNLOAD_LIMIT_WHEN_THROTTLE` (both default to `1k`, i.e. 1 KB/s).
 
     - `monthly_download_traffic_limit` and `monthly_upload_traffic_limit` set the monthly download and upload allowance for a non-organization user with the role.
     - `monthly_download_traffic_limit_per_user` and `monthly_upload_traffic_limit_per_user` set the corresponding organization allowance per member-quota unit. The organization allowance is the configured value multiplied by its member quota.
