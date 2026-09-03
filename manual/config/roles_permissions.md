@@ -25,6 +25,13 @@ You can add/edit roles and permission for users. A role is just a group of users
         ./seahub.sh python-env python3 seahub/manage.py set_user_role_upload_download_rate_limit
         ```
 
+- Monthly traffic limits measure transferred bytes in a calendar month. They are different from `upload_rate_limit` and `download_rate_limit`, which limit transfer speed. When a monthly allowance is exceeded, Seafile reduces the relevant upload or download speed to about 1kb/s.
+
+    - `monthly_download_traffic_limit` and `monthly_upload_traffic_limit` set the monthly download and upload allowance for a non-organization user with the role.
+    - `monthly_download_traffic_limit_per_user` and `monthly_upload_traffic_limit_per_user` set the corresponding organization allowance per member-quota unit. The organization allowance is the configured value multiplied by its member quota.
+    - Values use quota units such as `500M` and `100G`. An empty value means no monthly allowance.
+    - Upload and download are measured and throttled independently. The counters include web, share-link, and synchronization transfers.
+
 - `can_drag_drop_folder_to_sync`: allow or deny user to sync folder by draging and droping
 
 - `can_export_files_via_mobile_client`: allow or deny user to export files in using mobile client
@@ -54,8 +61,10 @@ Seafile comes with two build-in roles `default` and `guest`, a default user is a
         'can_publish_wiki': True,
         'upload_rate_limit': 0,  # unit: kb/s
         'download_rate_limit': 0,
-        'monthly_rate_limit': '',
-        'monthly_rate_limit_per_user': '',
+        'monthly_download_traffic_limit': '100G',
+        'monthly_download_traffic_limit_per_user': '100G',
+        'monthly_upload_traffic_limit': '50G',
+        'monthly_upload_traffic_limit_per_user': '50G',
         'can_choose_office_suite': True,
         'monthly_ai_credit_per_user': -1,
         'can_use_sso_in_multi_tenancy': True,
@@ -87,8 +96,10 @@ While a guest user can only read files/folders in the system, here are the permi
         'can_publish_wiki': False,
         'upload_rate_limit': 0,
         'download_rate_limit': 0,
-        'monthly_rate_limit': '',
-        'monthly_rate_limit_per_user': '',
+        'monthly_download_traffic_limit': '10G',
+        'monthly_download_traffic_limit_per_user': '10G',
+        'monthly_upload_traffic_limit': '5G',
+        'monthly_upload_traffic_limit_per_user': '5G',
         'can_choose_office_suite': False,
         'can_use_sso_in_multi_tenancy': False,
     },
@@ -122,8 +133,10 @@ ENABLED_ROLE_PERMISSIONS = {
         'can_publish_wiki': True,
         'upload_rate_limit': 2000,  # unit: kb/s
         'download_rate_limit': 4000,
-        'monthly_rate_limit': '',
-        'monthly_rate_limit_per_user': '',
+        'monthly_download_traffic_limit': '100G',
+        'monthly_download_traffic_limit_per_user': '100G',
+        'monthly_upload_traffic_limit': '50G',
+        'monthly_upload_traffic_limit_per_user': '50G',
         'can_choose_office_suite': True,
         'monthly_ai_credit_per_user': -1,
         'can_use_sso_in_multi_tenancy': True,
@@ -150,8 +163,10 @@ ENABLED_ROLE_PERMISSIONS = {
         'can_publish_wiki': False,
         'upload_rate_limit': 100,
         'download_rate_limit': 200,
-        'monthly_rate_limit': '',
-        'monthly_rate_limit_per_user': '',
+        'monthly_download_traffic_limit': '10G',
+        'monthly_download_traffic_limit_per_user': '10G',
+        'monthly_upload_traffic_limit': '5G',
+        'monthly_upload_traffic_limit_per_user': '5G',
         'can_choose_office_suite': False,
         'can_use_sso_in_multi_tenancy': False,
     }
@@ -214,8 +229,10 @@ ENABLED_ROLE_PERMISSIONS = {
         'can_publish_wiki': True,
         'upload_rate_limit': 2000,  # unit: kb/s
         'download_rate_limit': 4000,
-        'monthly_rate_limit': '',
-        'monthly_rate_limit_per_user': '',
+        'monthly_download_traffic_limit': '100G',
+        'monthly_download_traffic_limit_per_user': '100G',
+        'monthly_upload_traffic_limit': '50G',
+        'monthly_upload_traffic_limit_per_user': '50G',
         'can_choose_office_suite': True,
         'monthly_ai_credit_per_user': -1,
         'can_use_sso_in_multi_tenancy': True,
@@ -242,8 +259,10 @@ ENABLED_ROLE_PERMISSIONS = {
         'can_publish_wiki': False,
         'upload_rate_limit': 100,
         'download_rate_limit': 200,
-        'monthly_rate_limit': '',
-        'monthly_rate_limit_per_user': '',
+        'monthly_download_traffic_limit': '',
+        'monthly_download_traffic_limit_per_user': '',
+        'monthly_upload_traffic_limit': '',
+        'monthly_upload_traffic_limit_per_user': '',
         'can_choose_office_suite': False,
         'can_use_sso_in_multi_tenancy': False,
     },
@@ -269,8 +288,10 @@ ENABLED_ROLE_PERMISSIONS = {
         'can_publish_wiki': True,
         'upload_rate_limit': 500,
         'download_rate_limit': 800,
-        'monthly_rate_limit': '',
-        'monthly_rate_limit_per_user': '',
+        'monthly_download_traffic_limit': '',
+        'monthly_download_traffic_limit_per_user': '',
+        'monthly_upload_traffic_limit': '',
+        'monthly_upload_traffic_limit_per_user': '',
         'can_choose_office_suite': True,
         'monthly_ai_credit_per_user': -1, 
         'can_use_sso_in_multi_tenancy': True,
