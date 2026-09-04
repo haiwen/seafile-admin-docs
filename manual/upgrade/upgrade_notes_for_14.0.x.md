@@ -16,6 +16,7 @@ Seafile version 14.0 has the following configuration changes:
 * Thumbnail server configurations in `seahub_settings.py` have changed. Please refer to [Thumbnail server](../extension/thumbnail-server.md) for details.
 * SeaSearch is the default search engine for new Seafile Pro Docker deployments.
 * Local-password policy for externally authenticated users is now controlled by `DISABLE_SSO_USER_LOCAL_PWD_LOGIN` in `seahub_settings.py`.
+* Monthly download traffic-limit role settings have been renamed to distinguish them from monthly upload traffic limits. Update `ENABLED_ROLE_PERMISSIONS` before restarting the upgraded service. Replace `monthly_rate_limit` with `monthly_download_traffic_limit`, and replace `monthly_rate_limit_per_user` with `monthly_download_traffic_limit_per_user`. The legacy keys are not read after upgrade.
 
 ## Seafile AI configuration changes
 
