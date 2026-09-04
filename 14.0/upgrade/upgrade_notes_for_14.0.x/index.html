@@ -4624,10 +4624,20 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Important release changes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seafile-ai-configuration-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seafile AI configuration changes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#local-password-configuration-changes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4635,11 +4645,6 @@
       
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -5520,10 +5525,20 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Important release changes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seafile-ai-configuration-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seafile AI configuration changes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#local-password-configuration-changes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5531,11 +5546,6 @@
       
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -5572,15 +5582,65 @@ Please always follow the main <a href="../upgrade/">upgrade guide</a>.</p>
 <h2 id="important-release-changes">Important release changes<a class="headerlink" href="#important-release-changes" title="Permanent link">&para;</a></h2>
 <p>Seafile version 14.0 has the following configuration changes:</p>
 <ul>
-<li>WebDAV is configured via environment variables in the Seafile server <code>.env</code>. Please refer to <a href="../../extension/webdav/">WebDAV extension</a> for details.</li>
-<li>Metadata server is configured via environment variables in the Seafile server <code>.env</code>. Please refer to <a href="../../extension/metadata-server/">Metadata server</a> for details.</li>
-<li>Seafile AI models are configured via <code>seafile_ai_config.yaml</code>. If you are upgrading an existing Seafile AI deployment, please update the Seafile AI model configuration accordingly. Please refer to <a href="../../extension/seafile-ai/">Seafile AI extension</a> for details.</li>
-<li>Face recognition has been removed. Remove <code>ENABLE_FACE_RECOGNITION</code> and any face-embedding service configuration from your deployment configuration.</li>
+<li>WebDAV is configured via environment variables in the Seafile server <code>.env</code>. </li>
+<li>Metadata server is configured via environment variables in the Seafile server <code>.env</code>. </li>
+<li>Seafile AI models are configured via <code>seafile_ai_config.yaml</code>.</li>
+<li>Face recognition has been removed. </li>
 <li>Thumbnail server configurations in <code>seahub_settings.py</code> have changed. Please refer to <a href="../../extension/thumbnail-server/">Thumbnail server</a> for details.</li>
 <li>SeaSearch is the default search engine for new Seafile Pro Docker deployments.</li>
 <li>Local-password policy for externally authenticated users is now controlled by <code>DISABLE_SSO_USER_LOCAL_PWD_LOGIN</code> in <code>seahub_settings.py</code>.</li>
 </ul>
-<h3 id="local-password-configuration-changes">Local password configuration changes<a class="headerlink" href="#local-password-configuration-changes" title="Permanent link">&para;</a></h3>
+<h2 id="seafile-ai-configuration-changes">Seafile AI configuration changes<a class="headerlink" href="#seafile-ai-configuration-changes" title="Permanent link">&para;</a></h2>
+<p>Seafile AI configuration has changed in Seafile 14.0.</p>
+<ol>
+<li>
+<p>LLM configuration is moved from the Seafile <code>.env</code> file to <code>$SEAFILE_VOLUME/seafile/conf/seafile_ai_config.yaml</code>. After <code>LLM_MODELS</code> is configured, remove the following legacy model environment variables:</p>
+<div class="highlight"><pre><span></span><code>SEAFILE_AI_LLM_TYPE=
+SEAFILE_AI_LLM_URL=
+SEAFILE_AI_LLM_KEY=
+SEAFILE_AI_LLM_MODEL=
+</code></pre></div>
+<p>Configure one or more models in <code>LLM_MODELS</code> instead. Set one model as the default and assign model tiers as needed.</p>
+</li>
+<li>
+<p>The following environment variables are added for Seafile AI:</p>
+<div class="highlight"><pre><span></span><code>INNER_METADATA_SERVER_URL=
+SEASEARCH_URL=
+SEASEARCH_TOKEN=
+
+SEAFILE_MYSQL_DB_HOST=
+SEAFILE_MYSQL_DB_PORT=
+SEAFILE_MYSQL_DB_USER=
+SEAFILE_MYSQL_DB_PASSWORD=
+SEAFILE_MYSQL_DB_CCNET_DB_NAME=
+SEAFILE_MYSQL_DB_SEAFILE_DB_NAME=
+SEAFILE_MYSQL_DB_SEAHUB_DB_NAME=
+
+SEAF_SERVER_STORAGE_TYPE=
+S3_COMMIT_BUCKET=
+S3_FS_BUCKET=
+S3_BLOCK_BUCKET=
+S3_KEY_ID=
+S3_SECRET_KEY=
+S3_USE_V4_SIGNATURE=
+S3_AWS_REGION=
+S3_HOST=
+S3_USE_HTTPS=
+S3_PATH_STYLE_REQUEST=
+S3_SSE_C_KEY=
+</code></pre></div>
+</li>
+<li>
+<p>Face recognition and the face-embedding service have been removed. Remove the following configuration and any <code>face-embedding.yml</code> file from your <code>COMPOSE_FILE</code> setting:</p>
+<div class="highlight"><pre><span></span><code>ENABLE_FACE_RECOGNITION=
+FACE_EMBEDDING_SERVICE_URL=
+FACE_EMBEDDING_SERVICE_KEY=
+FACE_EMBEDDING_VOLUME=
+</code></pre></div>
+</li>
+</ol>
+<p>For configuration details, refer to <a href="../../extension/seafile-ai/">Seafile AI extension</a>.</p>
+<h2 id="local-password-configuration-changes">Local password configuration changes<a class="headerlink" href="#local-password-configuration-changes" title="Permanent link">&para;</a></h2>
 <p>The following <code>seahub_settings.py</code> options have been removed in Seafile 14.0:</p>
 <div class="highlight"><pre><span></span><code><span class="n">DISABLE_ADFS_USER_PWD_LOGIN</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">ENABLE_CHANGE_PASSWORD</span> <span class="o">=</span> <span class="kc">True</span>
