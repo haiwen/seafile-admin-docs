@@ -269,16 +269,11 @@ After this option is enabled, Seahub will display the AI chat entry for users.
 
 Users can use the chat feature in libraries to search for files in the current library, ask questions about specific files, and generate summaries for specific files.
 
-### Enable vector search
+### Enable keyword search
 
-Vector search lets AI Chat find documents by the meaning of their AI-generated summaries. AI Chat combines vector search results with normal SeaSearch keyword search results.
+Keyword search lets AI Chat search documents in the current library through SeaSearch.
 
-Before enabling vector search, make sure that all of the following are available:
-
-- Metadata server is deployed and metadata management is enabled for the library.
-- Seafile AI is enabled and has a valid `EMBEDDING_MODEL` in `seafile_ai_config.yaml`. The embedding model must return vectors with the configured `dimensions` value.
-- SeaSearch is enabled in `seafevents.conf` and its deployment supports vector indexes.
-- Seafile AI can access the same SeaSearch service by using `SEASEARCH_URL` and `SEASEARCH_TOKEN`.
+Before enabling keyword search, make sure that SeaSearch is deployed and enabled in `seafevents.conf`. Seafile AI must also be able to access the same SeaSearch service by using `SEASEARCH_URL` and `SEASEARCH_TOKEN`.
 
 Configure SeaSearch in `$SEAFILE_VOLUME/seafile/conf/seafevents.conf` if it is not already configured. For deployment and configuration details, refer to [SeaSearch configuration (Pro)](../setup/use_seasearch.md).
 
@@ -295,6 +290,16 @@ For a standalone Seafile AI deployment, add the same SeaSearch URL and token to 
 SEASEARCH_URL=http://<your SeaSearch server host>:4080
 SEASEARCH_TOKEN=<your SeaSearch authorization token>
 ```
+
+### Enable vector search
+
+Vector search lets AI Chat find documents by the meaning of their AI-generated summaries. It is built on keyword search and requires the SeaSearch configuration above.
+
+Before enabling vector search, make sure that all of the following are available:
+
+- Metadata server is deployed and metadata management is enabled for the library.
+- Seafile AI has a valid `EMBEDDING_MODEL` in `seafile_ai_config.yaml`. The embedding model must return vectors with the configured `dimensions` value.
+- The SeaSearch deployment supports vector indexes.
 
 Then, in the library's **Settings**, enable **Extended properties** and enable **AI chat and search**. Seafile generates summaries and creates a vector index asynchronously for supported files: sdoc, markdown, docx, pdf, and pptx. Initial indexing may take time depending on the number and size of files.
 
