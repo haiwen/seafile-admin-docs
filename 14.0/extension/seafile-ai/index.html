@@ -2557,6 +2557,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#enable-keyword-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable keyword search
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#enable-vector-search" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5664,6 +5675,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#enable-keyword-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable keyword search
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#enable-vector-search" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -6102,15 +6124,9 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 </code></pre></div>
 <p>After this option is enabled, Seahub will display the AI chat entry for users.</p>
 <p>Users can use the chat feature in libraries to search for files in the current library, ask questions about specific files, and generate summaries for specific files.</p>
-<h3 id="enable-vector-search">Enable vector search<a class="headerlink" href="#enable-vector-search" title="Permanent link">&para;</a></h3>
-<p>Vector search lets AI Chat find documents by the meaning of their AI-generated summaries. AI Chat combines vector search results with normal SeaSearch keyword search results.</p>
-<p>Before enabling vector search, make sure that all of the following are available:</p>
-<ul>
-<li>Metadata server is deployed and metadata management is enabled for the library.</li>
-<li>Seafile AI is enabled and has a valid <code>EMBEDDING_MODEL</code> in <code>seafile_ai_config.yaml</code>. The embedding model must return vectors with the configured <code>dimensions</code> value.</li>
-<li>SeaSearch is enabled in <code>seafevents.conf</code> and its deployment supports vector indexes.</li>
-<li>Seafile AI can access the same SeaSearch service by using <code>SEASEARCH_URL</code> and <code>SEASEARCH_TOKEN</code>.</li>
-</ul>
+<h3 id="enable-keyword-search">Enable keyword search<a class="headerlink" href="#enable-keyword-search" title="Permanent link">&para;</a></h3>
+<p>Keyword search lets AI Chat search documents in the current library through SeaSearch.</p>
+<p>Before enabling keyword search, make sure that SeaSearch is deployed and enabled in <code>seafevents.conf</code>. Seafile AI must also be able to access the same SeaSearch service by using <code>SEASEARCH_URL</code> and <code>SEASEARCH_TOKEN</code>.</p>
 <p>Configure SeaSearch in <code>$SEAFILE_VOLUME/seafile/conf/seafevents.conf</code> if it is not already configured. For deployment and configuration details, refer to <a href="../../setup/use_seasearch/">SeaSearch configuration (Pro)</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="k">[SEASEARCH]</span>
 <span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
@@ -6121,6 +6137,14 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 <div class="highlight"><pre><span></span><code>SEASEARCH_URL=http://&lt;your SeaSearch server host&gt;:4080
 SEASEARCH_TOKEN=&lt;your SeaSearch authorization token&gt;
 </code></pre></div>
+<h3 id="enable-vector-search">Enable vector search<a class="headerlink" href="#enable-vector-search" title="Permanent link">&para;</a></h3>
+<p>Vector search lets AI Chat find documents by the meaning of their AI-generated summaries. It is built on keyword search and requires the SeaSearch configuration above.</p>
+<p>Before enabling vector search, make sure that all of the following are available:</p>
+<ul>
+<li>Metadata server is deployed and metadata management is enabled for the library.</li>
+<li>Seafile AI has a valid <code>EMBEDDING_MODEL</code> in <code>seafile_ai_config.yaml</code>. The embedding model must return vectors with the configured <code>dimensions</code> value.</li>
+<li>The SeaSearch deployment supports vector indexes.</li>
+</ul>
 <p>Then, in the library's <strong>Settings</strong>, enable <strong>Extended properties</strong> and enable <strong>AI chat and search</strong>. Seafile generates summaries and creates a vector index asynchronously for supported files: sdoc, markdown, docx, pdf, and pptx. Initial indexing may take time depending on the number and size of files.</p>
 <p>When files are added or changed, their summaries and vector index entries are updated asynchronously. Disabling AI Summary deletes the library's vector index. Check <code>ai_summary.log</code> and <code>seasearch_index.log</code> if summaries or search results are unavailable.</p>
 <div class="admonition note">
