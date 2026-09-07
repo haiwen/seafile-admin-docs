@@ -16,7 +16,7 @@ Seafile version 14.0 has the following configuration changes:
 * Thumbnail server configurations in `seahub_settings.py` have changed. Please refer to [Thumbnail server](../extension/thumbnail-server.md) for details.
 * SeaSearch is the default search engine for new Seafile Pro Docker deployments, and authorization configurations of search can also be set in environment variables.
 * Local-password policy for externally authenticated users is now controlled by `DISABLE_SSO_USER_LOCAL_PWD_LOGIN` in `seahub_settings.py`.
-* Monthly download traffic-limit role settings have been renamed to distinguish them from monthly upload traffic limits. Update `ENABLED_ROLE_PERMISSIONS` before restarting the upgraded service. Replace `monthly_rate_limit` with `monthly_download_traffic_limit`, and replace `monthly_rate_limit_per_user` with `monthly_download_traffic_limit_per_user`. The legacy keys are not read after upgrade.
+* Monthly traffic-limit role settings have been changed.
 
 ### Seafile AI configuration changes
 
@@ -72,6 +72,37 @@ Seafile AI configuration has been significantly changed in Seafile 14.0.
     ```
 
 For configuration details, refer to [Seafile AI extension](../extension/seafile-ai.md).
+
+### Monthly traffic limit configuration changes
+
+The monthly traffic-limit settings in `ENABLED_ROLE_PERMISSIONS` have been changed to support independent upload and download allowances. The legacy keys are not read after the upgrade.
+
+Replace the following existing settings:
+
+```python
+'monthly_rate_limit': '',
+'monthly_rate_limit_per_user': '',
+```
+
+With the corresponding download settings:
+
+```python
+'monthly_download_traffic_limit': '',
+'monthly_download_traffic_limit_per_user': '',
+```
+
+You can also configure independent upload allowances:
+
+```python
+'monthly_upload_traffic_limit': '',
+'monthly_upload_traffic_limit_per_user': '',
+```
+
+`monthly_download_traffic_limit` and `monthly_upload_traffic_limit` apply to non-organization users. The corresponding `_per_user` settings apply to organization users and are multiplied by the organization's member quota. Use quota units such as `500M` or `100G`; an empty value means no monthly allowance.
+
+When a user exceeds a monthly allowance, Seafile reduces the corresponding transfer speed. You can configure the throttled download and upload rates with `DOWNLOAD_LIMIT_WHEN_THROTTLE` and `UPLOAD_LIMIT_WHEN_THROTTLE` in `seahub_settings.py`; both default to `1k` (1 KB/s).
+
+For details, refer to [Roles and Permissions](../config/roles_permissions.md) and [Traffic limit exceeded throttle rate](../config/seahub_settings_py.md#traffic-limit-exceeded-throttle-rate).
 
 ### Local password configuration changes
 
