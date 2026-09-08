@@ -1,6 +1,6 @@
 # SeaSearch configuration (Pro)
 
-[SeaSearch](https://seasearch-manual.seafile.com/), a lightweight and efficient file indexer, is supported from Seafile 12 and is the default search engine from Seafile Pro 14.0.
+[SeaSearch](https://seasearch-manual.seacloud-labs.ai/), a lightweight and efficient file indexer, is supported from Seafile 12 and is the default search engine from Seafile Pro 14.0.
 
 !!! note "For Seafile deploy from binary package"
     We currently **only support Docker-based** deployment for SeaSearch Server, so this document describes the configuration with the situation of using Docker to deploy Seafile server. 
@@ -20,7 +20,7 @@ wget https://manual.seafile.com/14.0/repo/docker/pro/seasearch.yml
 
 ## Modify `.env`
 
-The default `.env` file already contains the relevant SeaSearch variables. Pay special attention to the following variables, which affect the SeaSearch initialization process. For details about the SeaSearch variables in `.env`, please refer [here](https://seasearch-manual.seafile.com/latest/config/). We use `/opt/seasearch-data` as the persistent directory of SeaSearch. By default, the SeaSearch administrator account is the same as the Seafile administrator account:
+The default `.env` file already contains the relevant SeaSearch variables. Pay special attention to the following variables, which affect the SeaSearch initialization process. For details about the SeaSearch variables in `.env`, please refer [here](https://seasearch-manual.seacloud-labs.ai/latest/config/). We use `/opt/seasearch-data` as the persistent directory of SeaSearch. By default, the SeaSearch administrator account is the same as the Seafile administrator account:
 
 !!! warning "For Apple's Chips"
     Since Apple's chips (such as M2) do not support [MKL](https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html), you need to set the relevant image to `xxx-nomkl:latest`, e.g.:
