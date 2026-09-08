@@ -5628,7 +5628,7 @@
 
 
 <h1 id="seasearch-configuration-pro">SeaSearch configuration (Pro)<a class="headerlink" href="#seasearch-configuration-pro" title="Permanent link">&para;</a></h1>
-<p><a href="https://seasearch-manual.seafile.com/">SeaSearch</a>, a lightweight and efficient file indexer, is supported from Seafile 12 and is the default search engine from Seafile Pro 14.0.</p>
+<p><a href="https://seasearch-manual.seacloud-labs.ai/">SeaSearch</a>, a lightweight and efficient file indexer, is supported from Seafile 12 and is the default search engine from Seafile Pro 14.0.</p>
 <div class="admonition note">
 <p class="admonition-title">For Seafile deploy from binary package</p>
 <p>We currently <strong>only support Docker-based</strong> deployment for SeaSearch Server, so this document describes the configuration with the situation of using Docker to deploy Seafile server. </p>
@@ -5643,7 +5643,7 @@
 <div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/14.0/repo/docker/pro/seasearch.yml
 </code></pre></div>
 <h2 id="modify-env">Modify <code>.env</code><a class="headerlink" href="#modify-env" title="Permanent link">&para;</a></h2>
-<p>The default <code>.env</code> file already contains the relevant SeaSearch variables. Pay special attention to the following variables, which affect the SeaSearch initialization process. For details about the SeaSearch variables in <code>.env</code>, please refer <a href="https://seasearch-manual.seafile.com/latest/config/">here</a>. We use <code>/opt/seasearch-data</code> as the persistent directory of SeaSearch. By default, the SeaSearch administrator account is the same as the Seafile administrator account:</p>
+<p>The default <code>.env</code> file already contains the relevant SeaSearch variables. Pay special attention to the following variables, which affect the SeaSearch initialization process. For details about the SeaSearch variables in <code>.env</code>, please refer <a href="https://seasearch-manual.seacloud-labs.ai/latest/config/">here</a>. We use <code>/opt/seasearch-data</code> as the persistent directory of SeaSearch. By default, the SeaSearch administrator account is the same as the Seafile administrator account:</p>
 <div class="admonition warning">
 <p class="admonition-title">For Apple's Chips</p>
 <p>Since Apple's chips (such as M2) do not support <a href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl.html">MKL</a>, you need to set the relevant image to <code>xxx-nomkl:latest</code>, e.g.:</p>
