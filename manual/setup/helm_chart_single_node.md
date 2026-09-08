@@ -164,23 +164,6 @@ After installing the chart, the Seafile pod should startup automaticlly.
 !!! note "About Seafile service"
     The chart creates a `ClusterIP` Service named `seafile` on port `80`. Enable the chart's `ingress` or `httpRoute` configuration, or expose this Service with an operator-managed Ingress, Gateway, or load balancer.
 
-!!! warning "Important for deployment"
-    Since Seafile 14.0, SeaSearch is the default search engine. This Helm chart guide does not provide SeaSearch deployment resources. Deploy SeaSearch separately and modify `/opt/seafile-data/seafile/conf/seafevents.conf` according to [SeaSearch configuration](./use_seasearch.md).
-
-    If you continue to use Elasticsearch, modify the `[INDEX FILES]` section in `/opt/seafile-data/seafile/conf/seafevents.conf` according to your Elasticsearch service address.
-
-    If the above services are:
-
-    - Not in your K8S pods (including using an external service)
-    - With different service name
-    - With different server port
-
-    After modifying `seafevents.conf`, restart Seafile server:
-
-    ```sh
-    kubectl delete pods -n seafile $(kubectl get pods -n seafile -o jsonpath='{.items[*].metadata.name}' | grep seafile)
-    ```
-
 ## Activating the Seafile License (Pro)
 
 If you have a `seafile-license.txt` license file, simply put it in the volume of the Seafile container. The volumne's default path in the Compose file is `/opt/seafile-data`. If you have modified the path, save the license file under your custom path.
@@ -299,3 +282,5 @@ helm delete seafile --namespace seafile
 ## Advanced operations
 
 For standard external access, use the chart's `ingress` or `httpRoute` configuration above. Refer to [advanced K8S management](./k8s_advanced_management.md) when you need to manage Gateway resources or custom routing rules manually.
+
+On the other hand, you can also click ***Extensions*** tab to explore the futher functions in Seafile.

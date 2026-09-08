@@ -87,14 +87,14 @@ For futher configuration details, you can refer [the official documents](https:/
 
 ## Modify `seafile-env.yaml`
 
-Similar to Docker-base deployment, Seafile cluster in K8S deployment also supports use files to configure startup progress, you can modify common [environment variables](./setup_pro_by_docker.md#downloading-and-modifying-env) by
+Edit `seafile-env.yaml` to configure non-sensitive server settings. This ConfigMap includes the common server, database, cache, storage, extension, and search settings, as well as Kubernetes-specific `SEAFILE_LOG_TO_STDOUT`, `SITE_ROOT`, and `SEAFILE_MYSQL_DB_PORT`. Keep passwords and keys in the `seafile-secret` Secret created above.
 
 ```sh
 nano /opt/seafile-k8s-yaml/seafile-env.yaml
 ```
 
 !!! warning
-    For the fields marked with `<...>` are **required**, please make sure these items are filled in, otherwise Seafile server may not run properly. 
+    Fields marked with `<...>` are **required**. Fill them in before deployment, otherwise Seafile server may not run properly.
 
 ## Start Seafile server
 
@@ -103,23 +103,6 @@ You can start Seafile server and specify the resources into the namespace `seafi
 ```sh
 kubectl apply -f /opt/seafile-k8s-yaml/ -n seafile
 ```
-
-!!! warning "Important for Pro edition"
-    Since Seafile 14.0, SeaSearch is the default search engine. This K8S guide does not provide SeaSearch deployment resources. Deploy SeaSearch separately and modify `/opt/seafile-data/seafile/conf/seafevents.conf` according to [SeaSearch configuration](./use_seasearch.md).
-
-    If you continue to use Elasticsearch, modify the `[INDEX FILES]` section in `/opt/seafile-data/seafile/conf/seafevents.conf` according to your Elasticsearch service address.
-
-    If the above services are:
-
-    - Not in your K8S pods (including using an external service)
-    - With different service name
-    - With different server port
-
-    After modifying `seafevents.conf`, restart Seafile server:
-
-    ```sh
-    kubectl delete pods -n seafile $(kubectl get pods -n seafile -o jsonpath='{.items[*].metadata.name}' | grep seafile)
-    ```
 
 ## Activating the Seafile License (Pro)
 
@@ -143,4 +126,4 @@ kubectl delete -f /opt/seafile-k8s-yaml/ -n seafile
 
 ## Advanced operations
 
-Please refer from [here](./k8s_advanced_management.md) for futher advanced operations.
+Please refer from [here](./k8s_advanced_management.md) or click ***Extensions*** tab for futher Seafile functions

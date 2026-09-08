@@ -210,7 +210,7 @@ Add following options to seahub_setting.py, which will tell Seahub to store avat
 
 #### seafevents.conf
 
-Since Seafile 14.0, SeaSearch is the default search engine. For SeaSearch deployment details, refer to [SeaSearch configuration](../setup/use_seasearch.md). Modify `seafevents.conf` to enable SeaSearch:
+Since Seafile 14.0, SeaSearch is the default search engine. For SeaSearch deployment details, refer to [Search with SeaSearch](../setup/use_seasearch.md). Modify `seafevents.conf` to enable SeaSearch:
 
 ```
 [SEASEARCH]

@@ -21,6 +21,7 @@ CLUSTER_MODE=frontend # backend for backend node
 
 ## Database
 SEAFILE_MYSQL_DB_HOST=db
+SEAFILE_MYSQL_DB_PORT=3306
 SEAFILE_MYSQL_DB_USER=seafile
 SEAFILE_MYSQL_DB_PASSWORD=PASSWORD
 SEAFILE_MYSQL_DB_CCNET_DB_NAME=ccnet_db
@@ -73,6 +74,21 @@ ENABLE_METADATA_MANAGEMENT=False
 INNER_METADATA_SERVER_URL=
 MD_FILE_COUNT_LIMIT=100000
 
+# for searching
+ENABLE_SEARCH=true
+SEARCH_ENGINE=seasearch
+
+## for seasearch
+SEASEARCH_URL=http://seasearch:4080
+SEASEARCH_TOKEN=<Your seasearch token>
+
+## for elasticsearch
+ELASTICSEARCH_SCHEME=http
+ELASTICSEARCH_HOST=<Your ES host>
+ELASTICSEARCH_PORT=9200
+ELASTICSEARCH_USER=
+ELASTICSEARCH_PASSWORD=
+
 ######################################
 #        Initial variables           #
 # (Only valid in first-time startup) #
@@ -80,8 +96,6 @@ MD_FILE_COUNT_LIMIT=100000
 
 ## Cluster init
 CLUSTER_INIT_MODE=true # set to false after finishing initial progress
-CLUSTER_INIT_ES_HOST=<your elasticsearch server HOST>
-CLUSTER_INIT_ES_PORT=9200
 
 ## Database root password, Used to create Seafile users
 INIT_SEAFILE_MYSQL_ROOT_PASSWORD=ROOT_PASSWORD

@@ -89,3 +89,9 @@ DISABLE_SSO_USER_LOCAL_PWD_LOGIN = True # default: False
 ```
 
 When enabled, this option disables local-password login and local password change/reset operations for users authenticated through SAML/ADFS, OAuth, LDAP, and so on. 
+
+## Search configuration changes
+
+From Seafile 14.0 Pro, the [SeaSearch](https://seasearch-manual.seacloud-labs.ai/) becomes the default-enabled search engine.
+
+On the other hand, the configurations of SeaSearch and ElasticSearch can be specified in `.env`, see [Search with SeaSearch](../setup/use_seasearch.md) and [Search with ElasticSearch](../setup/use_elasticsearch.md) for the details.

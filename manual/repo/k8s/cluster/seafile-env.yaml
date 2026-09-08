@@ -56,14 +56,27 @@ data:
   ## for Seafile admin
   INIT_SEAFILE_ADMIN_EMAIL: "<Seafile admin's email>"
   
-  ## for cluster basic service
-  CLUSTER_INIT_ES_HOST: "<your ElasticSearch server host>"
-  CLUSTER_INIT_ES_PORT: "9200"
+  # for searching
+  ENABLE_SEARCH: "false"
+  SEARCH_ENGINE: "seasearch" # `seasearch` or `elasticsearch`
+
+  ## for seasearch
+  SEASEARCH_URL: "<Your seasearch host>"
+  SEASEARCH_TOKEN: "<Your seasearch token>"
+
+  ## for elasticsearch
+  ELASTICSEARCH_SCHEME: "http"
+  ELASTICSEARCH_HOST: "<Your ES host>"
+  ELASTICSEARCH_PORT: "9200"
+  ELASTICSEARCH_USER: ""
+  ELASTICSEARCH_PASSWORD: ""
 
   # Seafile AI
   ENABLE_SEAFILE_AI: "false"
   ENABLE_FACE_RECOGNITION: "false"
   SEAFILE_AI_SERVER_URL: "<required when ENABLE_SEAFILE_AI=true>"
 
-  # Matedata server
+  # Metadata server
+  ENABLE_METADATA_MANAGEMENT: "false"
+  INNER_METADATA_SERVER_URL: ""
   MD_FILE_COUNT_LIMIT: "100000"

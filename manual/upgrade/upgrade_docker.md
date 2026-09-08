@@ -139,6 +139,22 @@ If you are using Seafile AI, please backup the old file and download the 14.0 fi
 
     # If you are using Seafile AI
     SEAFILE_AI_IMAGE=seafileltd/seafile-ai:14.0-latest
+
+    # If you have enabled the search function
+    ENABLE_SEARCH=true
+    
+    ## If you are using SeaSearch
+    SEARCH_ENGINE=seasearch
+    SEASEARCH_URL=http://seasearch:4080
+    SEASEARCH_TOKEN=<Your seasearch token>
+
+    ## If you are using ElasticSearch
+    SEARCH_ENGINE=elasticsearch
+    ELASTICSEARCH_SCHEME=http
+    ELASTICSEARCH_HOST=<Your ES host>
+    ELASTICSEARCH_PORT=9200
+    ELASTICSEARCH_USER=
+    ELASTICSEARCH_PASSWORD=
     ```
 
 #### Step 3.2) Add SeaSearch configurations for Seafile AI (optional)
@@ -158,7 +174,7 @@ Add the following settings to the `.env` used by Seafile AI:
     SEASEARCH_TOKEN=<your SeaSearch authorization token>
     ```
 
-Leave both variables empty if SeaSearch is not used. For details, refer to [SeaSearch configuration](../setup/use_seasearch.md).
+Leave both variables empty if SeaSearch is not used. For details, refer to [Search with SeaSearch](../setup/use_seasearch.md).
 
 #### Step 3.3) Update model configurations for Seafile AI (optional)
 
@@ -223,7 +239,13 @@ Then add the following configuration to enable Thumbnail server:
 ENABLE_THUMBNAIL_SERVER = True
 ```
 
-### Step 5) Start Seafile
+### Step 5) Remove SeaSearch (or ElasticSearch) authorization information in `seafevents.conf`
+
+1. `enabled` in both `[INDEX FILES]` and `[SEASEARCH]` sections are useless, you can remove it now (which is specified by two options in `.env`: `ENABLE_SEARCH` and `SEARCH_ENGINE`).
+2. If you are using SeaSearch and have specified the authorization information (`SEASEARCH_URL` and `SEASEARCH_TOKEN`) in `.env` you can safely remove the `seasearch_url` and `seasearch_token` in `[SEASEARCH]`.
+3. If you are using ElasticSearch and have specified the authorization information (`ELASTICSEARCH_SCHEME`, `ELASTICSEARCH_HOST`, `ELASTICSEARCH_PORT`, `ELASTICSEARCH_USER` and `ELASTICSEARCH_PASSWORD`) in `.env` you can safely remove the `scheme`, `es_host`, `es_port`, `username` and `password` in `[INDEX FILES]`.
+
+### Step 6) Start Seafile
 
 ```sh
 docker compose up -d

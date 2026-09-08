@@ -25,7 +25,7 @@ From Seafile 13, there are two ways to configure S3 storage (**single S3 storage
 From Seafile 13, configuring S3 from environment variables will be supported and will provide a more convenient way. You can refer to the detailed description of this part in the introduction of `.env` file. Generally, 
 
 1. Prepare at least **3** buckets for Seafile (`S3_COMMIT_BUCKET`, `S3_FS_BUCKET` and `S3_BLOCK_BUCKET`). 
-2. Set `SEAF_SERVER_STORAGE_TYPE` to `true`
+2. Set `SEAF_SERVER_STORAGE_TYPE` to `s3`
 3. Fill in the corresponding variable values in `.env` ​​according to the following table:
 
 | Variable                        | Description                                                                                                   | Default Value                   |  
