@@ -142,6 +142,8 @@ If you are using Seafile AI, please backup the old file and download the 14.0 fi
 
     # If you have enabled the search function
     ENABLE_SEARCH=true
+    # Index document contents for full-text search
+    ENABLE_FULL_TEXT_SEARCH=true
     
     ## If you are using SeaSearch
     SEARCH_ENGINE=seasearch
@@ -244,6 +246,7 @@ ENABLE_THUMBNAIL_SERVER = True
 1. `enabled` in both `[INDEX FILES]` and `[SEASEARCH]` sections are useless, you can remove it now (which is specified by two options in `.env`: `ENABLE_SEARCH` and `SEARCH_ENGINE`).
 2. If you are using SeaSearch and have specified the authorization information (`SEASEARCH_URL` and `SEASEARCH_TOKEN`) in `.env` you can safely remove the `seasearch_url` and `seasearch_token` in `[SEASEARCH]`.
 3. If you are using ElasticSearch and have specified the authorization information (`ELASTICSEARCH_SCHEME`, `ELASTICSEARCH_HOST`, `ELASTICSEARCH_PORT`, `ELASTICSEARCH_USER` and `ELASTICSEARCH_PASSWORD`) in `.env` you can safely remove the `scheme`, `es_host`, `es_port`, `username` and `password` in `[INDEX FILES]`.
+4. `ENABLE_FULL_TEXT_SEARCH` controls document-content indexing for both search engines and defaults to `true`. If you set it in `.env`, remove `enable_full_text_search` from `[INDEX FILES]` or `[SEASEARCH]` to avoid ambiguity. Set it to `false` to retain file-name-only search.
 
 ### Step 6) Start Seafile
 

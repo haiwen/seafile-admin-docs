@@ -73,6 +73,19 @@ This part of configurations is only valid in `CACHE_PROVIDER=memcached`:
 - `ENABLE_GO_FILESERVER`: Use Go fileserver
 - `CSRF_TRUSTED_ORIGINS`: A list of trusted origins for CSRF protection, JSON string, example: `["https://seafile.example.com", "https://seafile.com"]`.
 
+## Search configurations (Pro)
+
+- `ENABLE_SEARCH`: Enable (`true`) or disable (`false`) the search service. Default is `true`.
+- `SEARCH_ENGINE`: Search engine to use: `seasearch` or `elasticsearch`. Default is `seasearch`.
+- `ENABLE_FULL_TEXT_SEARCH`: Index document contents for full-text search. Applies to SeaSearch and Elasticsearch. Default is `true`. Since Seafile Pro 13.0, this setting takes precedence over `enable_full_text_search` in `seafevents.conf`.
+- `SEASEARCH_URL`: SeaSearch URL reachable from the Seafile server. Required when using SeaSearch.
+- `SEASEARCH_TOKEN`: Authorization token for the SeaSearch API. Required when using SeaSearch.
+- `ELASTICSEARCH_SCHEME`: Elasticsearch connection scheme. Default is `http`.
+- `ELASTICSEARCH_HOST`: Elasticsearch host. Required when using Elasticsearch.
+- `ELASTICSEARCH_PORT`: Elasticsearch port. Default is `9200`.
+- `ELASTICSEARCH_USER`: Elasticsearch username.
+- `ELASTICSEARCH_PASSWORD`: Elasticsearch password.
+
 ## SeaDoc configurations (only valid after integrating SeaDoc)
 
 - `ENABLE_SEADOC`: Enable the SeaDoc server or not, default is `false`.
@@ -111,9 +124,9 @@ This part of configurations is only valid in `CACHE_PROVIDER=memcached`:
         
     You have to specify at least one of them as s3 for the above configuration to take effect.
 
-## SeaSearch
+## SeaSearch service configurations
 
-For configurations about SeaSearch in `.env`, please refer [here](https://seasearch-manual.seacloud-labs.ai/latest/config/) for the details.
+For other SeaSearch service configurations in `.env`, such as `SS_STORAGE_TYPE`, `SS_MAX_OBJ_CACHE_SIZE`, and `SS_LOG_LEVEL`, refer to the [SeaSearch configuration reference](https://seasearch-manual.seacloud-labs.ai/latest/config/).
 
 ## Metadata server
 

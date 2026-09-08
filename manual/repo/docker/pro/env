@@ -134,6 +134,7 @@ MD_FILE_COUNT_LIMIT=100000
 ## for searching
 ENABLE_SEARCH=true
 SEARCH_ENGINE=seasearch
+ENABLE_FULL_TEXT_SEARCH=true # Index document contents for full-text search
 
 ### for seasearch
 SEASEARCH_URL=http://seasearch:4080

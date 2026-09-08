@@ -98,6 +98,7 @@ The following fields merit particular attention:
 | `MD_FILE_COUNT_LIMIT` | (only valid when deployed [metadata server](../extension/metadata-server.md)). The maximum number of files in a repository that the metadata feature allows. If the number of files in a repository exceeds this value, the metadata management function will not be enabled for the repository. For a repository with metadata management enabled, if the number of records in it reaches this value but there are still some files that are not recorded in metadata server, the metadata management of the unrecorded files will be skipped. | `100000` | 
 | `ENABLE_SEARCH` | Enable or disable the search service | `true` |
 | `SEARCH_ENGINE` | Search engine to use: `seasearch` or `elasticsearch` | `seasearch` |
+| `ENABLE_FULL_TEXT_SEARCH` | Index document contents for full-text search | `true` |
 | `SEASEARCH_URL` | SeaSearch URL reachable from the Seafile container | `http://seasearch:4080` |
 | `SEASEARCH_TOKEN` | Authorization token for the SeaSearch API | (required when using SeaSearch) |
 | `INIT_SS_ADMIN_USER` | SeaSearch administrator username, used only on first deployment | Same as `INIT_SEAFILE_ADMIN_EMAIL` |

@@ -14,7 +14,7 @@ Seafile version 14.0 has the following configuration changes:
 * Seafile AI models are configured via `seafile_ai_config.yaml`.
 * Face recognition has been removed. 
 * Thumbnail server configurations in `seahub_settings.py` have changed. Please refer to [Thumbnail server](../extension/thumbnail-server.md) for details.
-* SeaSearch is the default search engine for new Seafile Pro Docker deployments.
+* SeaSearch is the default search engine for new Seafile Pro Docker deployments, and authorization configurations of search can also be set in environment variables.
 * Local-password policy for externally authenticated users is now controlled by `DISABLE_SSO_USER_LOCAL_PWD_LOGIN` in `seahub_settings.py`.
 
 ## Seafile AI configuration changes
@@ -94,4 +94,6 @@ When enabled, this option disables local-password login and local password chang
 
 From Seafile 14.0 Pro, the [SeaSearch](https://seasearch-manual.seacloud-labs.ai/) becomes the default-enabled search engine.
 
-On the other hand, the configurations of SeaSearch and ElasticSearch can be specified in `.env`, see [Search with SeaSearch](../setup/use_seasearch.md) and [Search with ElasticSearch](../setup/use_elasticsearch.md) for the details.
+SeaSearch and Elasticsearch configurations can be specified in `.env`. `ENABLE_FULL_TEXT_SEARCH` controls document-content indexing for both engines and defaults to `true`. Set it to `false` if you need file-name-only search. This environment variable takes precedence over `enable_full_text_search` in the `[SEASEARCH]` and `[INDEX FILES]` sections of `seafevents.conf`; remove the old option after adding the environment variable to avoid ambiguity.
+
+See [Search with SeaSearch](../setup/use_seasearch.md) and [Search with ElasticSearch](../setup/use_elasticsearch.md) for configuration details.

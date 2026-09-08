@@ -1,0 +1,30 @@
+services:
+  seasearch:  
+    image: ${SEASEARCH_IMAGE:-seafileltd/seasearch:1.0-latest}
+    container_name: seafile-seasearch
+    restart: unless-stopped
+    volumes:  
+      - ${SS_DATA_PATH:-/opt/seasearch-data}:/opt/seasearch/data  
+    environment: 
+      - SS_FIRST_ADMIN_USER=${INIT_SS_ADMIN_USER:-}
+      - SS_FIRST_ADMIN_PASSWORD=${INIT_SS_ADMIN_PASSWORD:-}
+      - SS_MAX_OBJ_CACHE_SIZE=${SS_MAX_OBJ_CACHE_SIZE:-10GB}
+      - SS_STORAGE_TYPE=${SS_STORAGE_TYPE:-disk}
+      - S3_SS_BUCKET=${S3_SS_BUCKET:-}
+      - S3_KEY_ID=${S3_KEY_ID:-}
+      - S3_SECRET_KEY=${S3_SECRET_KEY:-}
+      - S3_AWS_REGION=${S3_AWS_REGION:-us-east-1}
+      - S3_HOST=${S3_HOST:-}
+      - S3_USE_HTTPS=${S3_USE_HTTPS:-true}
+      - S3_USE_V4_SIGNATURE=${S3_USE_V4_SIGNATURE:-true}
+      - S3_PATH_STYLE_REQUEST=${S3_PATH_STYLE_REQUEST:-true}
+      - S3_SSE_C_KEY=${S3_SSE_C_KEY:-}
+      - SS_LOG_TO_STDOUT=${SS_LOG_TO_STDOUT:-false}
+      - SS_LOG_DIR=/opt/seasearch/data/log
+      - SS_LOG_LEVEL=${SS_LOG_LEVEL:-info}
+    networks:
+      - seafile-net
+
+networks:
+  seafile-net:
+    name: seafile-net

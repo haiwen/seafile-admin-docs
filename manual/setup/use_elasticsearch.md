@@ -35,6 +35,8 @@ Modify `.env` to use ES as the search engine:
 ## for searching
 ENABLE_SEARCH=true
 SEARCH_ENGINE=elasticsearch
+# Index document contents for full-text search. Set to false to disable it (supported since 13.0 Pro).
+ENABLE_FULL_TEXT_SEARCH=true
 
 ### for elasticsearch
 ELASTICSEARCH_SCHEME=http
@@ -58,7 +60,8 @@ highlight = fvh
 
 ## If true, indexes the contents of office/pdf files while updating search index
 ## Note: If you change this option from "false" to "true", then you need to clear the search index and update the index again.
-index_office_pdf=false
+## Since 14.0 Pro, ENABLE_FULL_TEXT_SEARCH in .env takes precedence over this setting.
+enable_full_text_search=true
 
 ## From 9.0.7 pro, Seafile supports connecting to Elasticsearch through username and password, you need to configure username and password for the Elasticsearch server
 ## From 14.0 pro, the username and password can be set from `.env` with the higher priority
@@ -75,9 +78,9 @@ repo_status_index_name = your-repo-status-index-name  # default is `repo_head`
 repo_files_index_name = your-repo-files-index-name    # default is `repofiles`
 ```
 
-## Enable full text search for Office/PDF files
+## Full-text search for document contents
 
-Full text search is not enabled by default to save system resources. If you want to enable it, you need to follow the instructions below.
+Full-text search is enabled by default with `ENABLE_FULL_TEXT_SEARCH=true`. Set it to `false` to index file names only. If you change this setting, clear and rebuild the search index for the change to take effect.
 
 ## Start ElasticSearch and restart Seafile
 
@@ -90,19 +93,28 @@ docker compose up -d
 
 1. Create an elasticsearch service on AWS according to the [documentation](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/gsgcreate-domain.html).
 
+2. Modify `.env`:
+
+    ```env
+    ## for searching
+    ENABLE_SEARCH=true
+    SEARCH_ENGINE=elasticsearch
+    ENABLE_FULL_TEXT_SEARCH=true
+
+    ### for elasticsearch
+    ELASTICSEARCH_SCHEME=http
+    ELASTICSEARCH_HOST=https://search-my-domain.us-east-1.es.amazonaws.com
+    ELASTICSEARCH_PORT=9200
+    ELASTICSEARCH_USER=master_user
+    ELASTICSEARCH_PASSWORD=password
+    ```
+
 2. Configure the seafevents.conf:
 
-```
-[INDEX FILES]
-enabled = true
-interval = 10m
-index_office_pdf=true
-es_host = your domain endpoint(for example, https://search-my-domain.us-east-1.es.amazonaws.com)
-es_port = 443
-scheme = https
-username = master user
-password = password
-highlight = fvh
-repo_status_index_name = your-repo-status-index-name  # default is `repo_head`
-repo_files_index_name = your-repo-files-index-name    # default is `repofiles`
-```
+    ```
+    [INDEX FILES]
+    interval = 10m
+    highlight = fvh
+    repo_status_index_name = your-repo-status-index-name  # default is `repo_head`
+    repo_files_index_name = your-repo-files-index-name    # default is `repofiles`
+    ```

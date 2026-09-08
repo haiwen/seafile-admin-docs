@@ -80,6 +80,9 @@ S3_SSE_C_KEY=
     ENABLE_SEARCH=true
     SEARCH_ENGINE=seasearch
 
+    # Index document contents for full-text search. Set to false to disable it (supported since 13.0 Pro).
+    ENABLE_FULL_TEXT_SEARCH=true
+
     ### for seasearch
     SEASEARCH_URL=http://seasearch:4080
     SEASEARCH_TOKEN=<Your seasearch token>
@@ -92,8 +95,8 @@ S3_SSE_C_KEY=
     # Index sync interval
     interval = 10m
 
-    # if you would like to enable full-text indexing (i.e., search for document content), also set the option below to true (support from 13.0 Pro)
-    index_office_pdf = true
+    # This setting is overridden by ENABLE_FULL_TEXT_SEARCH when it is set in .env.
+    enable_full_text_search=true
     ```
 
 ## Restart Seafile Server
