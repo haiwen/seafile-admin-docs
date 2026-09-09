@@ -278,3 +278,15 @@ When files are added or changed, their summaries and vector index entries are up
 
 !!! note
     Vector search enhances AI Chat document retrieval; it does not replace normal SeaSearch keyword search. If vector search is unavailable, AI Chat continues to use keyword search.
+
+### Disable AI chat
+
+Users can use the chat feature in libraries to search for files in the current library, ask questions about specific files, and generate summaries for specific files.
+
+You can modify `$SEAFILE_VOLUME/seafile/conf/seahub_settings.py` and disable AI chat:
+
+```py
+ENABLE_AI_CHAT = False
+```
+
+After this option is set to `False`, Seahub will hidden the AI chat entry for users. 
