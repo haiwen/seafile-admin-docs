@@ -77,6 +77,10 @@
          <lastmod>2026-09-09</lastmod>
     </url>
     <url>
+         <loc>https://haiwen.github.io/seafile-admin-docs/14.0/changelog/sdoc-server-changelog/</loc>
+         <lastmod>2026-09-09</lastmod>
+    </url>
+    <url>
          <loc>https://haiwen.github.io/seafile-admin-docs/14.0/changelog/server-changelog-old/</loc>
          <lastmod>2026-09-09</lastmod>
     </url>
@@ -437,31 +441,47 @@
          <lastmod>2026-09-09</lastmod>
     </url>
     <url>
-         <loc>https://haiwen.github.io/seafile-admin-docs/14.0/upgrade/upgrade_docker/</loc>
+         <loc>https://haiwen.github.io/seafile-admin-docs/14.0/upgrade/upgrade_binary_10.0/</loc>
          <lastmod>2026-09-09</lastmod>
     </url>
     <url>
-         <loc>https://haiwen.github.io/seafile-admin-docs/14.0/upgrade/upgrade_notes_for_10.0.x/</loc>
+         <loc>https://haiwen.github.io/seafile-admin-docs/14.0/upgrade/upgrade_binary_11.0/</loc>
          <lastmod>2026-09-09</lastmod>
     </url>
     <url>
-         <loc>https://haiwen.github.io/seafile-admin-docs/14.0/upgrade/upgrade_notes_for_11.0.x/</loc>
+         <loc>https://haiwen.github.io/seafile-admin-docs/14.0/upgrade/upgrade_binary_12.0/</loc>
          <lastmod>2026-09-09</lastmod>
     </url>
     <url>
-         <loc>https://haiwen.github.io/seafile-admin-docs/14.0/upgrade/upgrade_notes_for_12.0.x/</loc>
+         <loc>https://haiwen.github.io/seafile-admin-docs/14.0/upgrade/upgrade_binary_13.0/</loc>
          <lastmod>2026-09-09</lastmod>
     </url>
     <url>
-         <loc>https://haiwen.github.io/seafile-admin-docs/14.0/upgrade/upgrade_notes_for_13.0.x/</loc>
+         <loc>https://haiwen.github.io/seafile-admin-docs/14.0/upgrade/upgrade_binary_14.0/</loc>
          <lastmod>2026-09-09</lastmod>
     </url>
     <url>
-         <loc>https://haiwen.github.io/seafile-admin-docs/14.0/upgrade/upgrade_notes_for_14.0.x/</loc>
+         <loc>https://haiwen.github.io/seafile-admin-docs/14.0/upgrade/upgrade_docker_10.0/</loc>
          <lastmod>2026-09-09</lastmod>
     </url>
     <url>
-         <loc>https://haiwen.github.io/seafile-admin-docs/14.0/upgrade/upgrade_notes_for_9.0.x/</loc>
+         <loc>https://haiwen.github.io/seafile-admin-docs/14.0/upgrade/upgrade_docker_11.0/</loc>
+         <lastmod>2026-09-09</lastmod>
+    </url>
+    <url>
+         <loc>https://haiwen.github.io/seafile-admin-docs/14.0/upgrade/upgrade_docker_12.0/</loc>
+         <lastmod>2026-09-09</lastmod>
+    </url>
+    <url>
+         <loc>https://haiwen.github.io/seafile-admin-docs/14.0/upgrade/upgrade_docker_13.0/</loc>
+         <lastmod>2026-09-09</lastmod>
+    </url>
+    <url>
+         <loc>https://haiwen.github.io/seafile-admin-docs/14.0/upgrade/upgrade_docker_14.0/</loc>
+         <lastmod>2026-09-09</lastmod>
+    </url>
+    <url>
+         <loc>https://haiwen.github.io/seafile-admin-docs/14.0/upgrade/upgrade_notes/</loc>
          <lastmod>2026-09-09</lastmod>
     </url>
 </urlset>

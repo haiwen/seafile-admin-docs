@@ -10,13 +10,13 @@
         <meta name="author" content="seafile">
       
       
-        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/14.0/upgrade/upgrade_notes_for_12.0.x/">
+        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/14.0/upgrade/upgrade_docker_13.0/">
       
       
-        <link rel="prev" href="../upgrade_notes_for_13.0.x/">
+        <link rel="prev" href="../upgrade_docker_14.0/">
       
       
-        <link rel="next" href="../upgrade_notes_for_11.0.x/">
+        <link rel="next" href="../upgrade_docker_12.0/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Upgrade notes for 12.0.x - Seafile Admin Manual</title>
+        <title>Upgrade Seafile Docker 13.0 - Seafile Admin Manual</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#upgrade-notes-for-120" class="md-skip">
+        <a href="#upgrade-seafile-docker-from-120-to-130" class="md-skip">
           Skip to content
         </a>
       
@@ -130,7 +130,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Upgrade notes for 12.0.x
+              Upgrade Seafile Docker 13.0
             
           </span>
         </div>
@@ -4560,8 +4560,57 @@
   
   
     <li class="md-nav__item">
-      <a href="../upgrade_docker/" class="md-nav__link">
+      <a href="../upgrade_notes/" class="md-nav__link">
         
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="">
+            
   
   
   <span class="md-ellipsis">
@@ -4575,7 +4624,568 @@
   
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Upgrade Seafile Docker
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upgrade_docker_14.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Seafile Docker 14.0
+  
+
+    
+  </span>
+  
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Seafile Docker 13.0
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Seafile Docker 13.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-stop-the-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1) Stop the services:
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-download-the-newest-yml-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2) Download the newest .yml files
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2) Download the newest .yml files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-21-download-seafile-serveryml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2.1) Download seafile-server.yml
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-22-download-yml-file-for-notification-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2.2) Download .yml file for notification server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-23-download-yml-file-for-search-engine-pro-edition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2.3) Download .yml file for search engine (Pro edition)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-24-download-yml-file-for-seadoc-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2.4) Download .yml file for SeaDoc (optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-modify-env-update-image-version-and-add-cache-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3) Modify .env, update image version and add cache configurations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 3) Modify .env, update image version and add cache configurations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-31-update-image-version-to-seafile-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3.1) Update image version to Seafile 13
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-32-add-configurations-for-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3.2) Add configurations for cache
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-33-add-configuration-for-notification-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3.3) Add configuration for notification server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-34-add-configurations-for-storage-backend-pro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3.4) Add configurations for storage backend (Pro)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-remove-obsolete-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4) Remove obsolete configurations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-start-seafile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5) Start Seafile
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upgrade_docker_12.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Seafile Docker 12.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upgrade_docker_11.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Seafile Docker 11.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upgrade_docker_10.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Seafile Docker 10.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Seafile Server (binary)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Upgrade Seafile Server (binary)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upgrade_binary_14.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Seafile 14.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upgrade_binary_13.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Seafile 13.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upgrade_binary_12.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Seafile 12.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upgrade_binary_11.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Seafile 11.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upgrade_binary_10.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Seafile 10.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -4624,465 +5234,6 @@
     
   
     Upgrade Seafile Cluster (binary)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../upgrade_notes_for_14.0.x/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Upgrade notes for 14.0.x
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../upgrade_notes_for_13.0.x/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Upgrade notes for 13.0.x
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Upgrade notes for 12.0.x
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Upgrade notes for 12.0.x
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#important-release-changes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Important release changes
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Important release changes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#elasticsearch-change-pro-edition-only" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ElasticSearch change (pro edition only)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#new-system-libraries" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        New system libraries
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#new-python-libraries" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        New Python libraries
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#upgrade-to-120-for-binary-installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Upgrade to 12.0 (for binary installation)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Upgrade to 12.0 (for binary installation)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-clean-database-tables-before-upgrade" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1) Clean database tables before upgrade
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-install-new-system-libraries-and-python-libraries" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2) Install new system libraries and Python libraries
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-stop-seafile-110x-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3) Stop Seafile-11.0.x server
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-run-seafile-120x-upgrade-script" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4) Run Seafile 12.0.x upgrade script
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-create-the-env-file-in-conf-directory" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5) Create the .env file in conf/ directory
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6-start-seafile-120x-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6) Start Seafile-12.0.x server
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#7-optional-upgrade-notification-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        7) (Optional) Upgrade notification server
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#8-optional-upgrade-seadoc-from-08-to-10" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        8) (Optional) Upgrade SeaDoc from 0.8 to 1.0
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="8) (Optional) Upgrade SeaDoc from 0.8 to 1.0">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#81-delete-sdoc_db" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        8.1) Delete sdoc_db
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#82-deploy-a-new-seadoc-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        8.2) Deploy a new SeaDoc server
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#9-optional-update-gunicornconfpy-file-in-conf-directory" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        9) (Optional) Update gunicorn.conf.py file in conf/ directory
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#10-optional-other-configuration-changes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        10) (Optional) Other configuration changes
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="10) (Optional) Other configuration changes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#enable-passing-of-remote_user" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Enable passing of REMOTE_USER
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#supplement-or-remove-allowed_hosts-in-seahub_settingspy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Supplement or remove ALLOWED_HOSTS in seahub_settings.py
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#faq" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        FAQ
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../upgrade_notes_for_11.0.x/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Upgrade notes for 11.0.x
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../upgrade_notes_for_10.0.x/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Upgrade notes for 10.0.x
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../upgrade_notes_for_9.0.x/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Upgrade notes for 9.0.x
   
 
     
@@ -5816,22 +5967,66 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#important-release-changes" class="md-nav__link">
+  <a href="#step-1-stop-the-services" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Important release changes
+        Step 1) Stop the services:
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Important release changes">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-download-the-newest-yml-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2) Download the newest .yml files
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2) Download the newest .yml files">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#elasticsearch-change-pro-edition-only" class="md-nav__link">
+  <a href="#step-21-download-seafile-serveryml" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ElasticSearch change (pro edition only)
+        Step 2.1) Download seafile-server.yml
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-22-download-yml-file-for-notification-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2.2) Download .yml file for notification server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-23-download-yml-file-for-search-engine-pro-edition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2.3) Download .yml file for search engine (Pro edition)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-24-download-yml-file-for-seadoc-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2.4) Download .yml file for SeaDoc (optional)
       
     </span>
   </a>
@@ -5844,44 +6039,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#new-system-libraries" class="md-nav__link">
+  <a href="#step-3-modify-env-update-image-version-and-add-cache-configurations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        New system libraries
+        Step 3) Modify .env, update image version and add cache configurations
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#new-python-libraries" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        New Python libraries
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#upgrade-to-120-for-binary-installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Upgrade to 12.0 (for binary installation)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Upgrade to 12.0 (for binary installation)">
+    <nav class="md-nav" aria-label="Step 3) Modify .env, update image version and add cache configurations">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-clean-database-tables-before-upgrade" class="md-nav__link">
+  <a href="#step-31-update-image-version-to-seafile-13" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1) Clean database tables before upgrade
+        Step 3.1) Update image version to Seafile 13
       
     </span>
   </a>
@@ -5889,10 +6062,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-install-new-system-libraries-and-python-libraries" class="md-nav__link">
+  <a href="#step-32-add-configurations-for-cache" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2) Install new system libraries and Python libraries
+        Step 3.2) Add configurations for cache
       
     </span>
   </a>
@@ -5900,10 +6073,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-stop-seafile-110x-server" class="md-nav__link">
+  <a href="#step-33-add-configuration-for-notification-server" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3) Stop Seafile-11.0.x server
+        Step 3.3) Add configuration for notification server
       
     </span>
   </a>
@@ -5911,77 +6084,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-run-seafile-120x-upgrade-script" class="md-nav__link">
+  <a href="#step-34-add-configurations-for-storage-backend-pro" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4) Run Seafile 12.0.x upgrade script
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-create-the-env-file-in-conf-directory" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5) Create the .env file in conf/ directory
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6-start-seafile-120x-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6) Start Seafile-12.0.x server
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#7-optional-upgrade-notification-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        7) (Optional) Upgrade notification server
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#8-optional-upgrade-seadoc-from-08-to-10" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        8) (Optional) Upgrade SeaDoc from 0.8 to 1.0
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="8) (Optional) Upgrade SeaDoc from 0.8 to 1.0">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#81-delete-sdoc_db" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        8.1) Delete sdoc_db
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#82-deploy-a-new-seadoc-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        8.2) Deploy a new SeaDoc server
+        Step 3.4) Add configurations for storage backend (Pro)
       
     </span>
   </a>
@@ -5992,67 +6098,23 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#9-optional-update-gunicornconfpy-file-in-conf-directory" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#step-4-remove-obsolete-configurations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        9) (Optional) Update gunicorn.conf.py file in conf/ directory
+        Step 4) Remove obsolete configurations
       
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#10-optional-other-configuration-changes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        10) (Optional) Other configuration changes
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="10) (Optional) Other configuration changes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#enable-passing-of-remote_user" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Enable passing of REMOTE_USER
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#supplement-or-remove-allowed_hosts-in-seahub_settingspy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Supplement or remove ALLOWED_HOSTS in seahub_settings.py
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#faq" class="md-nav__link">
+  <a href="#step-5-start-seafile" class="md-nav__link">
     <span class="md-ellipsis">
       
-        FAQ
+        Step 5) Start Seafile
       
     </span>
   </a>
@@ -6079,160 +6141,195 @@
   
 
 
-<h1 id="upgrade-notes-for-120">Upgrade notes for 12.0<a class="headerlink" href="#upgrade-notes-for-120" title="Permanent link">&para;</a></h1>
-<ul>
-<li>
-<p>These notes give additional information about changes.
-Please always follow the main <a href="../upgrade/">upgrade guide</a>.</p>
-</li>
-<li>
-<p>For docker based version, please check <a href="../upgrade_docker/">upgrade Seafile Docker image</a></p>
-</li>
-</ul>
-<h2 id="important-release-changes">Important release changes<a class="headerlink" href="#important-release-changes" title="Permanent link">&para;</a></h2>
-<p>Seafile version 12.0 has following major changes:</p>
-<ul>
-<li>A redesigned Web UI</li>
-<li>SeaDoc is now stable, providing online notes and documents feature</li>
-<li>A new wiki module</li>
-<li>A new trash mechanism, that deleted files will be recorded in database for fast listing. In the old version, deleted files are scanned from library history, which is slow.</li>
-<li>Community edition now also support online GC (because SQLite support is dropped)</li>
-</ul>
-<p>Configuration changes:</p>
-<ul>
-<li>Notification server is now packaged into its own docker image.</li>
-<li>For binary package based installation, a new <code>.env</code> file is needed to contain some configuration items. These configuration items need to be shared by different components in Seafile. We name it <code>.env</code> to be consistant with docker based installation.</li>
-<li>The password strength level is now calculated by algorithm. The old USER_PASSWORD_MIN_LENGTH, USER_PASSWORD_STRENGTH_LEVEL is removed. Only USER_STRONG_PASSWORD_REQUIRED is still used.</li>
-<li>ADDITIONAL_APP_BOTTOM_LINKS is removed. Because there is no buttom bar in the navigation side bar now.</li>
-<li>SERVICE_URL and FILE_SERVER_ROOT are removed. SERVICE_URL will be calculated from SEAFILE_SERVER_PROTOCOL and SEAFILE_SERVER_HOSTNAME in <code>.env</code> file.</li>
-<li><code>ccnet.conf</code> is removed. Some of its configuration items are moved from <code>.env</code> file, others are read from items in <code>seafile.conf</code> with same name.</li>
-<li>Two role permissions are added, <code>can_create_wiki</code> and <code>can_publish_wiki</code> are used to control whether a role can create a Wiki and publish a Wiki. The old role permission <code>can_publish_repo</code> is removed.</li>
-<li>REMOTE_USER header is not passed to Seafile by default, you need to change <code>gunicorn.conf.py</code> if you need REMOTE_USER header for SSO.</li>
-</ul>
-<p>Other changes:</p>
-<ul>
-<li>A new lightweight and fast search engine, SeaSearch. SeaSearch is optional, you can still use ElasticSearch.</li>
-</ul>
-<p>Breaking changes</p>
-<ul>
-<li>For security reason, WebDAV no longer support login with LDAP account, the user with LDAP account must generate a WebDAV token at the profile page</li>
-<li>[File tags] The current file tags feature is deprecated. We will re-implement a new one in version 13.0 with a new general metadata management module.</li>
-<li>For ElasticSearch based search, full text search of doc/xls/ppt file types are no longer supported. This enable us to remove Java dependency in Seafile side.</li>
-<li>The search dialog now support loading more items when scroll down and the original separate detailed file search page is no longer used</li>
-<li>The right side panel is redesigned and the seldom used file comments feature in the panel is removed</li>
-</ul>
-<p>Deploying Seafile with binary package is now deprecated and probably no longer be supported in version 13.0. We recommend you to migrate your existing Seafile deployment to docker based.</p>
-<h3 id="elasticsearch-change-pro-edition-only">ElasticSearch change (pro edition only)<a class="headerlink" href="#elasticsearch-change-pro-edition-only" title="Permanent link">&para;</a></h3>
-<p>Elasticsearch version is not changed in Seafile version 12.0</p>
-<h2 id="new-system-libraries">New system libraries<a class="headerlink" href="#new-system-libraries" title="Permanent link">&para;</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Ubuntu 24.04/22.04</label><label for="__tabbed_1_2">Debian 11</label></div>
+<h1 id="upgrade-seafile-docker-from-120-to-130">Upgrade Seafile Docker from 12.0 to 13.0<a class="headerlink" href="#upgrade-seafile-docker-from-120-to-130" title="Permanent link">&para;</a></h1>
+<p>For maintenance upgrade, like from version 10.0.1 to version 10.0.4, just download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version, then start with docker compose up.</p>
+<p>For major version upgrade, like from 12.0 to 13.0, see instructions below.</p>
+<p>Please check the <strong>upgrade notes</strong> for any special configuration or changes before/while upgrading.</p>
+<hr />
+<p>From Seafile Docker 13.0, the <code>elasticsearch.yml</code> has separated from <code>seafile-server.yml</code>, and Seafile will support getting cache configuration from environment variables</p>
+<h3 id="step-1-stop-the-services">Step 1) Stop the services:<a class="headerlink" href="#step-1-stop-the-services" title="Permanent link">&para;</a></h3>
+<p>Before upgrading, please shutdown you Seafile server</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
+</code></pre></div>
+<h3 id="step-2-download-the-newest-yml-files">Step 2) Download the newest <code>.yml</code> files<a class="headerlink" href="#step-2-download-the-newest-yml-files" title="Permanent link">&para;</a></h3>
+<h4 id="step-21-download-seafile-serveryml">Step 2.1) Download <code>seafile-server.yml</code><a class="headerlink" href="#step-21-download-seafile-serveryml" title="Permanent link">&para;</a></h4>
+<p>Before downloading the newest <code>seafile-server.yml</code>, please backup your original one:</p>
+<div class="highlight"><pre><span></span><code>mv<span class="w"> </span>seafile-server.yml<span class="w"> </span>seafile-server.yml.bak
+</code></pre></div>
+<p>Then download the new <code>seafile-server.yml</code> according to the following commands:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Seafile community edition</label><label for="__tabbed_1_2">Seafile Pro edition</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>default-libmysqlclient-dev<span class="w"> </span>build-essential<span class="w"> </span>pkg-config<span class="w"> </span>libmemcached-dev
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/ce/seafile-server.yml
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>libsasl2-dev
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/pro/seafile-server.yml
 </code></pre></div>
 </div>
 </div>
 </div>
-<h2 id="new-python-libraries">New Python libraries<a class="headerlink" href="#new-python-libraries" title="Permanent link">&para;</a></h2>
-<p>Note, you should install Python libraries system wide using root user or sudo mode.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Ubuntu 24.04 / Debian 12</label><label for="__tabbed_2_2">Ubuntu 22.04 / Debian 11</label></div>
+<h4 id="step-22-download-yml-file-for-notification-server">Step 2.2) Download <code>.yml</code> file for notification server<a class="headerlink" href="#step-22-download-yml-file-for-notification-server" title="Permanent link">&para;</a></h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Deployment with Seafile</label><label for="__tabbed_2_2">Standalone deployment</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> </span><span class="nv">future</span><span class="o">==</span><span class="m">1</span>.0.*<span class="w"> </span><span class="nv">mysqlclient</span><span class="o">==</span><span class="m">2</span>.2.*<span class="w"> </span><span class="nv">pillow</span><span class="o">==</span><span class="m">10</span>.4.*<span class="w"> </span><span class="nv">sqlalchemy</span><span class="o">==</span><span class="m">2</span>.0.*<span class="w"> </span><span class="nv">pillow_heif</span><span class="o">==</span><span class="m">0</span>.18.0<span class="w"> </span><span class="se">\</span>
-<span class="nv">gevent</span><span class="o">==</span><span class="m">24</span>.2.*<span class="w"> </span><span class="nv">captcha</span><span class="o">==</span><span class="m">0</span>.6.*<span class="w"> </span><span class="nv">django_simple_captcha</span><span class="o">==</span><span class="m">0</span>.6.*<span class="w"> </span><span class="nv">djangosaml2</span><span class="o">==</span><span class="m">1</span>.9.*<span class="w"> </span><span class="se">\</span>
-<span class="nv">pysaml2</span><span class="o">==</span><span class="m">7</span>.3.*<span class="w"> </span><span class="nv">pycryptodome</span><span class="o">==</span><span class="m">3</span>.20.*<span class="w"> </span><span class="nv">cffi</span><span class="o">==</span><span class="m">1</span>.17.0<span class="w"> </span>python-ldap<span class="o">==</span><span class="m">3</span>.4.*
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/notification-server.yml
 </code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> </span><span class="nv">future</span><span class="o">==</span><span class="m">1</span>.0.*<span class="w"> </span><span class="nv">mysqlclient</span><span class="o">==</span><span class="m">2</span>.1.*<span class="w"> </span><span class="nv">pillow</span><span class="o">==</span><span class="m">10</span>.4.*<span class="w"> </span><span class="nv">sqlalchemy</span><span class="o">==</span><span class="m">2</span>.0.*<span class="w"> </span><span class="nv">pillow_heif</span><span class="o">==</span><span class="m">0</span>.18.0<span class="w"> </span><span class="se">\</span>
-<span class="nv">gevent</span><span class="o">==</span><span class="m">24</span>.2.*<span class="w"> </span><span class="nv">captcha</span><span class="o">==</span><span class="m">0</span>.6.*<span class="w"> </span><span class="nv">django_simple_captcha</span><span class="o">==</span><span class="m">0</span>.6.*<span class="w"> </span><span class="nv">djangosaml2</span><span class="o">==</span><span class="m">1</span>.9.*<span class="w"> </span><span class="se">\</span>
-<span class="nv">pysaml2</span><span class="o">==</span><span class="m">7</span>.2.*<span class="w"> </span><span class="nv">pycryptodome</span><span class="o">==</span><span class="m">3</span>.16.*<span class="w"> </span><span class="nv">cffi</span><span class="o">==</span><span class="m">1</span>.15.1<span class="w"> </span>python-ldap<span class="o">==</span><span class="m">3</span>.2.0
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/notification-server/notification-server.yml
 </code></pre></div>
 </div>
 </div>
 </div>
-<h2 id="upgrade-to-120-for-binary-installation">Upgrade to 12.0 (for binary installation)<a class="headerlink" href="#upgrade-to-120-for-binary-installation" title="Permanent link">&para;</a></h2>
-<p>The following instruction is for binary package based installation. If you use Docker based installation, please see <a href="../upgrade_docker/"><em>Upgrade Docker</em></a></p>
-<h3 id="1-clean-database-tables-before-upgrade">1) Clean database tables before upgrade<a class="headerlink" href="#1-clean-database-tables-before-upgrade" title="Permanent link">&para;</a></h3>
-<p>If you have a large number of <code>Activity</code> in MySQL, clear this table first <a href="../../administration/clean_database">Clean Database</a>. Otherwise, the database upgrade will take a long time.</p>
-<h3 id="2-install-new-system-libraries-and-python-libraries">2) Install new system libraries and Python libraries<a class="headerlink" href="#2-install-new-system-libraries-and-python-libraries" title="Permanent link">&para;</a></h3>
-<p>Install new system libraries and Python libraries for your operation system as documented above.</p>
-<h3 id="3-stop-seafile-110x-server">3) Stop Seafile-11.0.x server<a class="headerlink" href="#3-stop-seafile-110x-server" title="Permanent link">&para;</a></h3>
-<p>In the folder of Seafile 11.0.x, run the commands:</p>
-<div class="highlight"><pre><span></span><code>./seahub.sh<span class="w"> </span>stop
-./seafile.sh<span class="w"> </span>stop
-</code></pre></div>
-<h3 id="4-run-seafile-120x-upgrade-script">4) Run Seafile 12.0.x upgrade script<a class="headerlink" href="#4-run-seafile-120x-upgrade-script" title="Permanent link">&para;</a></h3>
-<p>In the folder of Seafile 12.0.x, run the upgrade script</p>
-<div class="highlight"><pre><span></span><code>upgrade/upgrade_11.0_12.0.sh
-</code></pre></div>
-<h3 id="5-create-the-env-file-in-conf-directory">5) Create the <code>.env</code> file in <code>conf/</code> directory<a class="headerlink" href="#5-create-the-env-file-in-conf-directory" title="Permanent link">&para;</a></h3>
-<p>conf/.env</p>
-<div class="highlight"><pre><span></span><code>TIME_ZONE=UTC
-JWT_PRIVATE_KEY=xxx
-SEAFILE_SERVER_PROTOCOL=https
-SEAFILE_SERVER_HOSTNAME=seafile.example.com
-SEAFILE_MYSQL_DB_HOST=db # your MySQL host
-SEAFILE_MYSQL_DB_PORT=3306
-SEAFILE_MYSQL_DB_USER=seafile
-SEAFILE_MYSQL_DB_PASSWORD=&lt;your MySQL password&gt;
-SEAFILE_MYSQL_DB_CCNET_DB_NAME=ccnet_db
-SEAFILE_MYSQL_DB_SEAFILE_DB_NAME=seafile_db
-SEAFILE_MYSQL_DB_SEAHUB_DB_NAME=seahub_db
-</code></pre></div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters, can be generated by</p>
-<div class="highlight"><pre><span></span><code>pwgen<span class="w"> </span>-s<span class="w"> </span><span class="m">40</span><span class="w"> </span><span class="m">1</span>
+<h4 id="step-23-download-yml-file-for-search-engine-pro-edition">Step 2.3) Download <code>.yml</code> file for search engine (Pro edition)<a class="headerlink" href="#step-23-download-yml-file-for-search-engine-pro-edition" title="Permanent link">&para;</a></h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">ElasticSearch</label><label for="__tabbed_3_2">SeaSearch</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>From Seafile Docker 13.0 (<strong>Pro</strong>), the <em>ElasticSearch</em> service will be controlled by a separate resource file (i.e., <code>elasticsearch.yml</code>). If you are using Seafile Pro and still plan to use <em>ElasticSearch</em>, please download the <code>elasticsearch.yml</code>:</p>
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/pro/elasticsearch.yml
 </code></pre></div>
 </div>
-<h3 id="6-start-seafile-120x-server">6) Start Seafile-12.0.x server<a class="headerlink" href="#6-start-seafile-120x-server" title="Permanent link">&para;</a></h3>
-<p>In the folder of Seafile 12.0.x, run the command:</p>
-<div class="highlight"><pre><span></span><code>./seafile.sh start # starts seaf-server
-./seahub.sh start  # starts seahub
+<div class="tabbed-block">
+<p>If you are using SeaSearch as the search engine, please download the newest <code>seasearch.yml</code> file:</p>
+<div class="highlight"><pre><span></span><code>mv<span class="w"> </span>seasearch.yml<span class="w"> </span>seasearch.yml.bak
+wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/pro/seasearch.yml
 </code></pre></div>
-<h3 id="7-optional-upgrade-notification-server">7) (Optional) Upgrade notification server<a class="headerlink" href="#7-optional-upgrade-notification-server" title="Permanent link">&para;</a></h3>
-<p>Since seafile 12.0, we use docker to deploy the notification server. Please follow the document of <a href="../../extension/notification-server/">notification server</a> to re-deploy notification server.</p>
-<div class="admonition note notification server and seafile binary package">
-<p class="admonition-title">Note</p>
-<p>Notification server is designed to be work with Docker based deployment. To make it work with <strong>Seafile binary package</strong> on the same server, you will need to add Nginx rules for notification server properly.</p>
 </div>
-<h3 id="8-optional-upgrade-seadoc-from-08-to-10">8) (Optional) Upgrade SeaDoc from 0.8 to 1.0<a class="headerlink" href="#8-optional-upgrade-seadoc-from-08-to-10" title="Permanent link">&para;</a></h3>
-<p>If you have deployed SeaDoc v0.8 with Seafile v11.0, you can upgrade it to 1.0 use the following two steps:</p>
-<ol>
-<li>Delete sdoc_db.</li>
-<li>Re-deploy SeaDoc server. In other words, delete the old SeaDoc deployment and re-deploy a new SeaDoc server.</li>
-</ol>
-<div class="admonition note">
-<p class="admonition-title">SeaDoc and Seafile binary package</p>
-<p>Deploying SeaDoc and <strong>Seafile binary package</strong> on the same server is no longer officially supported. You will need to add Nginx rules for SeaDoc server properly.</p>
 </div>
-<h4 id="81-delete-sdoc_db">8.1) Delete sdoc_db<a class="headerlink" href="#81-delete-sdoc_db" title="Permanent link">&para;</a></h4>
-<p>From version 1.0, SeaDoc is using seahub_db database to store its operation logs and no longer need an extra database sdoc_db. The database tables in seahub_db are created automatically when you upgrade Seafile server from v11.0 to v12.0. You can simply delete sdoc_db.</p>
-<h4 id="82-deploy-a-new-seadoc-server">8.2) Deploy a new SeaDoc server<a class="headerlink" href="#82-deploy-a-new-seadoc-server" title="Permanent link">&para;</a></h4>
-<p>Please see the document <a href="../../extension/setup_seadoc/">Setup SeaDoc</a> to install SeaDoc on a separate machine and integrate with your binary packaged based Seafile server v12.0.</p>
-<h3 id="9-optional-update-gunicornconfpy-file-in-conf-directory">9) (Optional) Update <code>gunicorn.conf.py</code> file in <code>conf/</code> directory<a class="headerlink" href="#9-optional-update-gunicornconfpy-file-in-conf-directory" title="Permanent link">&para;</a></h3>
-<p>If you deployed single sign on (SSO) by Shibboleth protocol, the following line should be added to the gunicorn config file.</p>
-<div class="highlight"><pre><span></span><code><span class="n">forwarder_headers</span> <span class="o">=</span> <span class="s1">'SCRIPT_NAME,PATH_INFO,REMOTE_USER'</span>
+</div>
+<h4 id="step-24-download-yml-file-for-seadoc-optional">Step 2.4) Download <code>.yml</code> file for SeaDoc (optional)<a class="headerlink" href="#step-24-download-yml-file-for-seadoc-optional" title="Permanent link">&para;</a></h4>
+<p>If you use SeaDoc extension, the seadoc.yml file need to be updated too: </p>
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/13.0/repo/docker/seadoc.yml
 </code></pre></div>
-<h3 id="10-optional-other-configuration-changes">10) (Optional) Other configuration changes<a class="headerlink" href="#10-optional-other-configuration-changes" title="Permanent link">&para;</a></h3>
-<h4 id="enable-passing-of-remote_user">Enable passing of REMOTE_USER<a class="headerlink" href="#enable-passing-of-remote_user" title="Permanent link">&para;</a></h4>
-<p>REMOTE_USER header is not passed to Seafile by default, you need to change <code>gunicorn.conf.py</code> if you need REMOTE_USER header for SSO.</p>
-<div class="highlight"><pre><span></span><code><span class="n">forwarder_headers</span> <span class="o">=</span> <span class="s1">'SCRIPT_NAME,PATH_INFO,REMOTE_USER'</span>
+<h3 id="step-3-modify-env-update-image-version-and-add-cache-configurations">Step 3) Modify <code>.env</code>, update image version and add cache configurations<a class="headerlink" href="#step-3-modify-env-update-image-version-and-add-cache-configurations" title="Permanent link">&para;</a></h3>
+<h4 id="step-31-update-image-version-to-seafile-13">Step 3.1) Update image version to Seafile 13<a class="headerlink" href="#step-31-update-image-version-to-seafile-13" title="Permanent link">&para;</a></h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Seafile CE</label><label for="__tabbed_4_2">Seafile Pro</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nv">SEAFILE_IMAGE</span><span class="o">=</span>seafileltd/seafile-mc:13.0-latest
+<span class="nv">SEADOC_IMAGE</span><span class="o">=</span>seafileltd/sdoc-server:2.0-latest
+<span class="nv">NOTIFICATION_SERVER_IMAGE</span><span class="o">=</span>seafileltd/notification-server:13.0-latest
 </code></pre></div>
-<h4 id="supplement-or-remove-allowed_hosts-in-seahub_settingspy">Supplement or remove ALLOWED_HOSTS in seahub_settings.py<a class="headerlink" href="#supplement-or-remove-allowed_hosts-in-seahub_settingspy" title="Permanent link">&para;</a></h4>
-<p>Since version 12.0, the seaf-server component need to send internal requests to seahub component to check permissions, as reporting <strong><em>400 Error</em></strong> when downloading files if the <code>ALLOWED_HOSTS</code> set incorrect. In this case, you can either <strong>remove</strong> <code>ALLOWED_HOSTS</code> in <code>seahub_settings.py</code> or <strong>supplement</strong> <code>127.0.0.1</code> in <code>ALLOWED_HOSTS</code> list:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># seahub_settings.py</span>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># -- add `elasticsearch.yml` if you are still using ElasticSearch</span>
+<span class="c1"># COMPOSE_FILE='...,elasticsearch.yml'</span>
 
-<span class="n">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'...(your domain)'</span><span class="p">,</span> <span class="s1">'127.0.0.1'</span><span class="p">]</span>
+<span class="c1"># -- if you are using SeaSearch, please also update the SeaSearch image</span>
+<span class="c1"># SEASEARCH_IMAGE=seafileltd/seasearch:1.0-latest # or seafileltd/seasearch-nomkl:1.0-latest for Apple chips</span>
+
+<span class="nv">SEAFILE_IMAGE</span><span class="o">=</span>seafileltd/seafile-pro-mc:13.0-latest
+<span class="nv">SEADOC_IMAGE</span><span class="o">=</span>seafileltd/sdoc-server:2.0-latest
+<span class="nv">NOTIFICATION_SERVER_IMAGE</span><span class="o">=</span>seafileltd/notification-server:13.0-latest
 </code></pre></div>
-<h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
-<p>We have documented common issues encountered by users when upgrading to version 12.0 in our FAQ <a href="https://cloud.seatable.io/dtable/external-links/7b976c85f504491cbe8e/?tid=0000&amp;vid=0000">https://cloud.seatable.io/dtable/external-links/7b976c85f504491cbe8e/?tid=0000&amp;vid=0000</a>.</p>
-<p>If you encounter any issue, please give it a check.</p>
+</div>
+</div>
+</div>
+<h4 id="step-32-add-configurations-for-cache">Step 3.2) Add configurations for cache<a class="headerlink" href="#step-32-add-configurations-for-cache" title="Permanent link">&para;</a></h4>
+<p>From Seafile 13, the configurations of database and cache can be set via environment variables directly (you can define it in the <code>.env</code>). What's more, the Redis will be recommended as the primary cache server for supporting some new features (please refer the <strong><em>upgradte notes</em></strong>, you can also refer to more details about Redis in Seafile Docker <a href="../../setup/setup_pro_by_docker/#about-redis">here</a>).</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Redis</label><label for="__tabbed_5_2">Memcached</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1">## Cache</span>
+<span class="nv">CACHE_PROVIDER</span><span class="o">=</span>redis
+
+<span class="c1">### Redis</span>
+<span class="nv">REDIS_HOST</span><span class="o">=</span>redis
+<span class="nv">REDIS_PORT</span><span class="o">=</span><span class="m">6379</span>
+<span class="nv">REDIS_PASSWORD</span><span class="o">=</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1">## Cache</span>
+<span class="nv">CACHE_PROVIDER</span><span class="o">=</span>memcached
+
+<span class="c1">### Memcached</span>
+<span class="nv">MEMCACHED_HOST</span><span class="o">=</span>memcached
+<span class="nv">MEMCACHED_PORT</span><span class="o">=</span><span class="m">11211</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h4 id="step-33-add-configuration-for-notification-server">Step 3.3)  Add configuration for notification server<a class="headerlink" href="#step-33-add-configuration-for-notification-server" title="Permanent link">&para;</a></h4>
+<p>If you are using notification server in Seafile 12, please specify the notification server url in <code>.env</code>:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Deploy in the same host with Seafile</label><label for="__tabbed_6_2">Standalone deployment</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nv">ENABLE_NOTIFICATION_SERVER</span><span class="o">=</span><span class="nb">true</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nv">ENABLE_NOTIFICATION_SERVER</span><span class="o">=</span><span class="nb">true</span>
+<span class="nv">NOTIFICATION_SERVER_URL</span><span class="o">=</span>http://&lt;your<span class="w"> </span>notification<span class="w"> </span>server<span class="w"> </span>host&gt;:8083
+<span class="nv">INNER_NOTIFICATION_SERVER_URL</span><span class="o">=</span><span class="nv">$NOTIFICATION_SERVER_URL</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h4 id="step-34-add-configurations-for-storage-backend-pro">Step 3.4) Add configurations for storage backend (Pro)<a class="headerlink" href="#step-34-add-configurations-for-storage-backend-pro" title="Permanent link">&para;</a></h4>
+<p>Seafile 13.0 add a new environment <code>SEAF_SERVER_STORAGE_TYPE</code> to determine the storage backend of seaf-server component. You can delete the variable or set it to empty (<code>SEAF_SERVER_STORAGE_TYPE=</code>) to use the old way, i.e., determining the storage backend from seafile.conf.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:4"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><input id="__tabbed_7_3" name="__tabbed_7" type="radio" /><input id="__tabbed_7_4" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Local disk (default)</label><label for="__tabbed_7_2">S3 backend</label><label for="__tabbed_7_3">Multiple storage backends</label><label for="__tabbed_7_4">Use the configuration in <code>seafile.conf</code></label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Set <code>SEAF_SERVER_STORAGE_TYPE</code> to <code>disk</code> (default value):</p>
+<div class="highlight"><pre><span></span><code><span class="nv">SEAF_SERVER_STORAGE_TYPE</span><span class="o">=</span>disk
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Set <code>SEAF_SERVER_STORAGE_TYPE</code> to <code>s3</code>, and add your s3 configurations:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">SEAF_SERVER_STORAGE_TYPE</span><span class="o">=</span>s3
+
+<span class="nv">S3_COMMIT_BUCKET</span><span class="o">=</span>&lt;your<span class="w"> </span>commit<span class="w"> </span>bucket<span class="w"> </span>name&gt;
+<span class="nv">S3_FS_BUCKET</span><span class="o">=</span>&lt;your<span class="w"> </span>fs<span class="w"> </span>bucket<span class="w"> </span>name&gt;
+<span class="nv">S3_BLOCK_BUCKET</span><span class="o">=</span>&lt;your<span class="w"> </span>block<span class="w"> </span>bucket<span class="w"> </span>name&gt;
+<span class="nv">S3_SS_BUCKET</span><span class="o">=</span>&lt;your<span class="w"> </span>seasearch<span class="w"> </span>bucket<span class="w"> </span>name&gt;<span class="w"> </span><span class="c1"># for seasearch</span>
+<span class="nv">S3_MD_BUCKET</span><span class="o">=</span>&lt;your<span class="w"> </span>metadata<span class="w"> </span>bucket<span class="w"> </span>name&gt;<span class="w"> </span><span class="c1"># for metadata-server</span>
+<span class="nv">S3_KEY_ID</span><span class="o">=</span>&lt;your-key-id&gt;
+<span class="nv">S3_SECRET_KEY</span><span class="o">=</span>&lt;your-secret-key&gt;
+<span class="nv">S3_USE_V4_SIGNATURE</span><span class="o">=</span><span class="nb">true</span>
+<span class="nv">S3_PATH_STYLE_REQUEST</span><span class="o">=</span><span class="nb">false</span>
+<span class="nv">S3_AWS_REGION</span><span class="o">=</span>us-east-1
+<span class="nv">S3_HOST</span><span class="o">=</span>
+<span class="nv">S3_USE_HTTPS</span><span class="o">=</span><span class="nb">true</span>
+<span class="nv">S3_SSE_C_KEY</span><span class="o">=</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Set <code>SEAF_SERVER_STORAGE_TYPE</code> to <code>multiple</code>. In this case, you don't need to change the storage configuration in <code>seafile.conf</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">SEAF_SERVER_STORAGE_TYPE</span><span class="o">=</span>multiple
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>If you would like to use the storage configuration in <code>seafile.conf</code>, please remove default value of <code>SEAF_SERVER_STORAGE_TYPE</code> in <code>.env</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">SEAF_SERVER_STORAGE_TYPE</span><span class="o">=</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="step-4-remove-obsolete-configurations">Step 4) Remove obsolete configurations<a class="headerlink" href="#step-4-remove-obsolete-configurations" title="Permanent link">&para;</a></h3>
+<p>Although the configurations in environment (i.e., <code>.env</code>) have higher priority than the configurations in config files, we recommend that you remove or modify the cache configuration in the following files to avoid ambiguity:</p>
+<ol>
+<li>
+<p>Backup the old configuration files:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># please replace /opt/seafile-data to your $SEAFILE_VOLUME</span>
+
+cp<span class="w"> </span>/opt/seafile-data/seafile/conf/seafile.conf<span class="w"> </span>/opt/seafile-data/seafile/conf/seafile.conf.bak
+cp<span class="w"> </span>/opt/seafile-data/seafile/conf/seahub_settings.py<span class="w"> </span>/opt/seafile-data/seafile/conf/seahub_settings.py.bak
+</code></pre></div>
+</li>
+<li>
+<p>Clean up redundant configuration items in the configuration files:</p>
+<ul>
+<li>Open <code>/opt/seafile-data/seafile/conf/seafile.conf</code> and remove the entire <code>[memcached]</code>, <code>[database]</code>, <code>[commit_object_backend]</code>, <code>[fs_object_backend]</code>, <code>[notification]</code> and <code>[block_backend]</code> if above sections have correctly specified in <code>.env</code>.</li>
+<li>Open <code>/opt/seafile-data/seafile/conf/seahub_settings.py</code> and remove the entire blocks for <code>DATABASES = {...}</code> and <code>CAHCES = {...}</code></li>
+</ul>
+<p>In the most cases, the <code>seafile.conf</code> only include the listen port <code>8082</code> of Seafile file server.</p>
+</li>
+</ol>
+<h3 id="step-5-start-seafile">Step 5) Start Seafile<a class="headerlink" href="#step-5-start-seafile" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
 
 
 
@@ -6268,7 +6365,7 @@ SEAFILE_MYSQL_DB_SEAHUB_DB_NAME=seahub_db
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../upgrade_notes_for_13.0.x/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Upgrade notes for 13.0.x">
+          <a href="../upgrade_docker_14.0/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Upgrade Seafile Docker 14.0">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -6278,20 +6375,20 @@ SEAFILE_MYSQL_DB_SEAHUB_DB_NAME=seahub_db
                 Previous
               </span>
               <div class="md-ellipsis">
-                Upgrade notes for 13.0.x
+                Upgrade Seafile Docker 14.0
               </div>
             </div>
           </a>
         
         
           
-          <a href="../upgrade_notes_for_11.0.x/" class="md-footer__link md-footer__link--next" aria-label="Next: Upgrade notes for 11.0.x">
+          <a href="../upgrade_docker_12.0/" class="md-footer__link md-footer__link--next" aria-label="Next: Upgrade Seafile Docker 12.0">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Upgrade notes for 11.0.x
+                Upgrade Seafile Docker 12.0
               </div>
             </div>
             <div class="md-footer__button md-icon">
