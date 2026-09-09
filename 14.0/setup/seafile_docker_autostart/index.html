@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/14.0/setup/seafile_docker_autostart/">
       
       
-        <link rel="prev" href="../use_seasearch/">
+        <link rel="prev" href="../use_elasticsearch/">
       
       
         <link rel="next" href="../setup_with_an_existing_mysql_server/">
@@ -1248,6 +1248,58 @@
   
   
   
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6_2" id="__nav_2_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search function (Pro)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Search function (Pro)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../use_seasearch/" class="md-nav__link">
         
@@ -1256,7 +1308,7 @@
   <span class="md-ellipsis">
     
   
-    SeaSearch configuration (Pro)
+    SeaSearch
   
 
     
@@ -1265,6 +1317,42 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use_elasticsearch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ElasticSearch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -3753,34 +3841,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/details_about_file_search/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Advanced File Search configuration (Pro)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../config/ocm/" class="md-nav__link">
         
   
@@ -4168,6 +4228,34 @@
     
   
     Account management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../administration/file_search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File search (Pro)
   
 
     
@@ -5614,9 +5702,9 @@ systemctl enable docker-compose.service
     container_name: seafile-redis
     restart: unless-stopped
 
-  elasticsearch:
-    image: elasticsearch:8.6.2
-    container_name: seafile-elasticsearch
+  seasearch:
+    image: seafileltd/seasearch:1.0-latest
+    container_name: seasearch
     restart: unless-stopped
 
   seafile:
@@ -5663,7 +5751,7 @@ systemctl enable docker-compose.service
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../use_seasearch/" class="md-footer__link md-footer__link--prev" aria-label="Previous: SeaSearch configuration (Pro)">
+          <a href="../use_elasticsearch/" class="md-footer__link md-footer__link--prev" aria-label="Previous: ElasticSearch">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -5673,7 +5761,7 @@ systemctl enable docker-compose.service
                 Previous
               </span>
               <div class="md-ellipsis">
-                SeaSearch configuration (Pro)
+                ElasticSearch
               </div>
             </div>
           </a>

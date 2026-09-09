@@ -1235,6 +1235,58 @@
   
   
   
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6_2" id="__nav_2_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search function (Pro)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Search function (Pro)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../setup/use_seasearch/" class="md-nav__link">
         
@@ -1243,7 +1295,7 @@
   <span class="md-ellipsis">
     
   
-    SeaSearch configuration (Pro)
+    SeaSearch
   
 
     
@@ -1252,6 +1304,42 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/use_elasticsearch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ElasticSearch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -3665,34 +3753,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/details_about_file_search/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Advanced File Search configuration (Pro)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../config/ocm/" class="md-nav__link">
         
   
@@ -4080,6 +4140,34 @@
     
   
     Account management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../administration/file_search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File search (Pro)
   
 
     
@@ -4710,10 +4798,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-5-start-seafile" class="md-nav__link">
+  <a href="#step-5-remove-seasearch-or-elasticsearch-authorization-information-in-seafeventsconf" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 5) Start Seafile
+        Step 5) Remove SeaSearch (or ElasticSearch) authorization information in seafevents.conf
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-start-seafile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6) Start Seafile
       
     </span>
   </a>
@@ -4882,7 +4981,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-5-start-seafile_1" class="md-nav__link">
+  <a href="#step-5-start-seafile" class="md-nav__link">
     <span class="md-ellipsis">
       
         Step 5) Start Seafile
@@ -6217,10 +6316,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-5-start-seafile" class="md-nav__link">
+  <a href="#step-5-remove-seasearch-or-elasticsearch-authorization-information-in-seafeventsconf" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 5) Start Seafile
+        Step 5) Remove SeaSearch (or ElasticSearch) authorization information in seafevents.conf
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-start-seafile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6) Start Seafile
       
     </span>
   </a>
@@ -6389,7 +6499,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-5-start-seafile_1" class="md-nav__link">
+  <a href="#step-5-start-seafile" class="md-nav__link">
     <span class="md-ellipsis">
       
         Step 5) Start Seafile
@@ -6742,6 +6852,24 @@ wget<span class="w"> </span>https://manual.seafile.com/14.0/repo/docker/seafile-
 
 <span class="c1"># If you are using Seafile AI</span>
 <span class="nv">SEAFILE_AI_IMAGE</span><span class="o">=</span>seafileltd/seafile-ai:14.0-latest
+
+<span class="c1"># If you have enabled the search function</span>
+<span class="nv">ENABLE_SEARCH</span><span class="o">=</span><span class="nb">true</span>
+<span class="c1"># Index document contents for full-text search</span>
+<span class="nv">ENABLE_FULL_TEXT_SEARCH</span><span class="o">=</span><span class="nb">true</span>
+
+<span class="c1">## If you are using SeaSearch</span>
+<span class="nv">SEARCH_ENGINE</span><span class="o">=</span>seasearch
+<span class="nv">SEASEARCH_URL</span><span class="o">=</span>http://seasearch:4080
+<span class="nv">SEASEARCH_TOKEN</span><span class="o">=</span>&lt;Your<span class="w"> </span>seasearch<span class="w"> </span>token&gt;
+
+<span class="c1">## If you are using ElasticSearch</span>
+<span class="nv">SEARCH_ENGINE</span><span class="o">=</span>elasticsearch
+<span class="nv">ELASTICSEARCH_SCHEME</span><span class="o">=</span>http
+<span class="nv">ELASTICSEARCH_HOST</span><span class="o">=</span>&lt;Your<span class="w"> </span>ES<span class="w"> </span>host&gt;
+<span class="nv">ELASTICSEARCH_PORT</span><span class="o">=</span><span class="m">9200</span>
+<span class="nv">ELASTICSEARCH_USER</span><span class="o">=</span>
+<span class="nv">ELASTICSEARCH_PASSWORD</span><span class="o">=</span>
 </code></pre></div>
 </div>
 </div>
@@ -6763,7 +6891,7 @@ SEASEARCH_TOKEN=&lt;your SeaSearch authorization token&gt;
 </div>
 </div>
 </div>
-<p>Leave both variables empty if SeaSearch is not used. For details, refer to <a href="../../setup/use_seasearch/">SeaSearch configuration</a>.</p>
+<p>Leave both variables empty if SeaSearch is not used. For details, refer to <a href="../../setup/use_seasearch/">Search with SeaSearch</a>.</p>
 <h4 id="step-33-update-model-configurations-for-seafile-ai-optional">Step 3.3) Update model configurations for Seafile AI (optional)<a class="headerlink" href="#step-33-update-model-configurations-for-seafile-ai-optional" title="Permanent link">&para;</a></h4>
 <p>If you are not using Seafile AI, skip this step.</p>
 <p>In Seafile 14.0, Seafile AI models are configured in <code>seafile_ai_config.yaml</code> instead of through environment variables. Update the model configuration according to <a href="../../extension/seafile-ai/">Seafile AI extension</a>.</p>
@@ -6806,7 +6934,14 @@ INNER_METADATA_SERVER_URL=http://&lt;your metadata-server host&gt;:8084
 <div class="highlight"><pre><span></span><code><span class="c1"># enable thumbnail-server (disabled by default)</span>
 <span class="n">ENABLE_THUMBNAIL_SERVER</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div>
-<h3 id="step-5-start-seafile">Step 5) Start Seafile<a class="headerlink" href="#step-5-start-seafile" title="Permanent link">&para;</a></h3>
+<h3 id="step-5-remove-seasearch-or-elasticsearch-authorization-information-in-seafeventsconf">Step 5) Remove SeaSearch (or ElasticSearch) authorization information in <code>seafevents.conf</code><a class="headerlink" href="#step-5-remove-seasearch-or-elasticsearch-authorization-information-in-seafeventsconf" title="Permanent link">&para;</a></h3>
+<ol>
+<li><code>enabled</code> in both <code>[INDEX FILES]</code> and <code>[SEASEARCH]</code> sections are useless, you can remove it now (which is specified by two options in <code>.env</code>: <code>ENABLE_SEARCH</code> and <code>SEARCH_ENGINE</code>).</li>
+<li>If you are using SeaSearch and have specified the authorization information (<code>SEASEARCH_URL</code> and <code>SEASEARCH_TOKEN</code>) in <code>.env</code> you can safely remove the <code>seasearch_url</code> and <code>seasearch_token</code> in <code>[SEASEARCH]</code>.</li>
+<li>If you are using ElasticSearch and have specified the authorization information (<code>ELASTICSEARCH_SCHEME</code>, <code>ELASTICSEARCH_HOST</code>, <code>ELASTICSEARCH_PORT</code>, <code>ELASTICSEARCH_USER</code> and <code>ELASTICSEARCH_PASSWORD</code>) in <code>.env</code> you can safely remove the <code>scheme</code>, <code>es_host</code>, <code>es_port</code>, <code>username</code> and <code>password</code> in <code>[INDEX FILES]</code>.</li>
+<li><code>ENABLE_FULL_TEXT_SEARCH</code> controls document-content indexing for both search engines and defaults to <code>true</code>. If you set it in <code>.env</code>, remove <code>enable_full_text_search</code> from <code>[INDEX FILES]</code> or <code>[SEASEARCH]</code> to avoid ambiguity. Set it to <code>false</code> to retain file-name-only search.</li>
+</ol>
+<h3 id="step-6-start-seafile">Step 6) Start Seafile<a class="headerlink" href="#step-6-start-seafile" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
 <h2 id="upgrade-from-120-to-130">Upgrade from 12.0 to 13.0<a class="headerlink" href="#upgrade-from-120-to-130" title="Permanent link">&para;</a></h2>
@@ -6991,7 +7126,7 @@ cp<span class="w"> </span>/opt/seafile-data/seafile/conf/seahub_settings.py<span
 <p>In the most cases, the <code>seafile.conf</code> only include the listen port <code>8082</code> of Seafile file server.</p>
 </li>
 </ol>
-<h3 id="step-5-start-seafile_1">Step 5) Start Seafile<a class="headerlink" href="#step-5-start-seafile_1" title="Permanent link">&para;</a></h3>
+<h3 id="step-5-start-seafile">Step 5) Start Seafile<a class="headerlink" href="#step-5-start-seafile" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
 <h2 id="upgrade-from-110-to-120">Upgrade from 11.0 to 12.0<a class="headerlink" href="#upgrade-from-110-to-120" title="Permanent link">&para;</a></h2>

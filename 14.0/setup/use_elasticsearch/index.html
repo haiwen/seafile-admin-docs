@@ -10,13 +10,13 @@
         <meta name="author" content="seafile">
       
       
-        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/14.0/config/details_about_file_search/">
+        <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/14.0/setup/use_elasticsearch/">
       
       
-        <link rel="prev" href="../csp_configuration/">
+        <link rel="prev" href="../use_seasearch/">
       
       
-        <link rel="next" href="../ocm/">
+        <link rel="next" href="../seafile_docker_autostart/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Advanced File Search configuration (Pro) - Seafile Admin Manual</title>
+        <title>ElasticSearch - Seafile Admin Manual</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#details-about-file-search" class="md-skip">
+        <a href="#search-with-elasticsearch-pro" class="md-skip">
           Skip to content
         </a>
       
@@ -130,7 +130,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Advanced File Search configuration (Pro)
+              ElasticSearch
             
           </span>
         </div>
@@ -266,11 +266,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../setup/overview/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../overview/" class="md-tabs__link">
           
   
   
@@ -336,7 +338,12 @@
   
   
   
+  
     
+    
+      
+  
+  
   
   
     
@@ -345,22 +352,11 @@
   
   
   
-    
-  
   
     
     
-      
-  
-  
-  
-    
-  
-  
-    
-    
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../ldap_in_ce/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../config/ldap_in_ce/" class="md-tabs__link">
           
   
   
@@ -705,26 +701,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -742,7 +743,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -760,7 +761,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/overview/" class="md-nav__link">
+      <a href="../overview/" class="md-nav__link">
         
   
   
@@ -788,7 +789,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/system_requirements/" class="md-nav__link">
+      <a href="../system_requirements/" class="md-nav__link">
         
   
   
@@ -816,7 +817,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/architecture/" class="md-nav__link">
+      <a href="../architecture/" class="md-nav__link">
         
   
   
@@ -844,7 +845,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/caddy/" class="md-nav__link">
+      <a href="../caddy/" class="md-nav__link">
         
   
   
@@ -878,17 +879,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
         
           
-          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="">
             
   
   
@@ -924,7 +928,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_ce_by_docker/" class="md-nav__link">
+      <a href="../setup_ce_by_docker/" class="md-nav__link">
         
   
   
@@ -952,7 +956,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_pro_by_docker/" class="md-nav__link">
+      <a href="../setup_pro_by_docker/" class="md-nav__link">
         
   
   
@@ -985,26 +989,31 @@
                 
   
   
+    
   
   
+  
     
     
     
     
       
       
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
         
           
-          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="">
             
   
   
@@ -1022,7 +1031,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1092,7 +1101,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_with_s3/" class="md-nav__link">
+      <a href="../setup_with_s3/" class="md-nav__link">
         
   
   
@@ -1120,7 +1129,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_with_ceph/" class="md-nav__link">
+      <a href="../setup_with_ceph/" class="md-nav__link">
         
   
   
@@ -1148,7 +1157,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_with_swift/" class="md-nav__link">
+      <a href="../setup_with_swift/" class="md-nav__link">
         
   
   
@@ -1176,7 +1185,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_with_multiple_storage_backends/" class="md-nav__link">
+      <a href="../setup_with_multiple_storage_backends/" class="md-nav__link">
         
   
   
@@ -1204,7 +1213,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/migrate_backends_data/" class="md-nav__link">
+      <a href="../migrate_backends_data/" class="md-nav__link">
         
   
   
@@ -1237,17 +1246,71 @@
                 
   
   
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_6_2" id="__nav_2_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search function (Pro)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_6_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Search function (Pro)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
   
   
     <li class="md-nav__item">
-      <a href="../../setup/use_seasearch/" class="md-nav__link">
+      <a href="../use_seasearch/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    SeaSearch configuration (Pro)
+    SeaSearch
   
 
     
@@ -1265,10 +1328,165 @@
                 
   
   
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ElasticSearch
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ElasticSearch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#deploying-elasticsearch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deploying ElasticSearch
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enable-elasticsearch-in-seafile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable ElasticSearch in Seafile
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-search-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Search Options
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#full-text-search-for-document-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Full-text search for document contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start-elasticsearch-and-restart-seafile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Start ElasticSearch and restart Seafile
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Start ElasticSearch and restart Seafile">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optional-access-the-aws-elasticsearch-service-using-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (Optional) Access the AWS elasticsearch service using HTTPS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
   
   
     <li class="md-nav__item">
-      <a href="../../setup/seafile_docker_autostart/" class="md-nav__link">
+      <a href="../seafile_docker_autostart/" class="md-nav__link">
         
   
   
@@ -1296,7 +1514,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/setup_with_an_existing_mysql_server/" class="md-nav__link">
+      <a href="../setup_with_an_existing_mysql_server/" class="md-nav__link">
         
   
   
@@ -1324,7 +1542,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/use_other_reverse_proxy/" class="md-nav__link">
+      <a href="../use_other_reverse_proxy/" class="md-nav__link">
         
   
   
@@ -1352,7 +1570,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/run_seafile_as_non_root_user_inside_docker/" class="md-nav__link">
+      <a href="../run_seafile_as_non_root_user_inside_docker/" class="md-nav__link">
         
   
   
@@ -1380,7 +1598,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/use_docker_compose_secrets/" class="md-nav__link">
+      <a href="../use_docker_compose_secrets/" class="md-nav__link">
         
   
   
@@ -1416,7 +1634,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/cluster_deploy_with_docker/" class="md-nav__link">
+      <a href="../cluster_deploy_with_docker/" class="md-nav__link">
         
   
   
@@ -1450,17 +1668,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
         
           
-          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="">
             
   
   
@@ -1548,7 +1769,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/helm_chart_single_node/" class="md-nav__link">
+      <a href="../helm_chart_single_node/" class="md-nav__link">
         
   
   
@@ -1576,7 +1797,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/helm_chart_cluster/" class="md-nav__link">
+      <a href="../helm_chart_cluster/" class="md-nav__link">
         
   
   
@@ -1664,7 +1885,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/k8s_single_node/" class="md-nav__link">
+      <a href="../k8s_single_node/" class="md-nav__link">
         
   
   
@@ -1692,7 +1913,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/cluster_deploy_with_k8s/" class="md-nav__link">
+      <a href="../cluster_deploy_with_k8s/" class="md-nav__link">
         
   
   
@@ -1728,7 +1949,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/k8s_advanced_management/" class="md-nav__link">
+      <a href="../k8s_advanced_management/" class="md-nav__link">
         
   
   
@@ -1770,17 +1991,20 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9" >
         
           
-          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="">
             
   
   
@@ -1816,7 +2040,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/migrate_ce_to_pro_with_docker/" class="md-nav__link">
+      <a href="../migrate_ce_to_pro_with_docker/" class="md-nav__link">
         
   
   
@@ -1844,7 +2068,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup/migrate_non_docker_to_docker/" class="md-nav__link">
+      <a href="../migrate_non_docker_to_docker/" class="md-nav__link">
         
   
   
@@ -2930,31 +3154,26 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
   
@@ -2972,7 +3191,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2996,20 +3215,17 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
         
           
-          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
             
   
   
@@ -3097,7 +3313,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ldap_in_ce/" class="md-nav__link">
+      <a href="../../config/ldap_in_ce/" class="md-nav__link">
         
   
   
@@ -3125,7 +3341,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ldap_in_pro/" class="md-nav__link">
+      <a href="../../config/ldap_in_pro/" class="md-nav__link">
         
   
   
@@ -3213,7 +3429,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../single_sign_on/" class="md-nav__link">
+      <a href="../../config/single_sign_on/" class="md-nav__link">
         
   
   
@@ -3241,7 +3457,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../oauth/" class="md-nav__link">
+      <a href="../../config/oauth/" class="md-nav__link">
         
   
   
@@ -3269,7 +3485,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../remote_user/" class="md-nav__link">
+      <a href="../../config/remote_user/" class="md-nav__link">
         
   
   
@@ -3297,7 +3513,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../shibboleth_authentication/" class="md-nav__link">
+      <a href="../../config/shibboleth_authentication/" class="md-nav__link">
         
   
   
@@ -3325,7 +3541,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../auto_login_seadrive/" class="md-nav__link">
+      <a href="../../config/auto_login_seadrive/" class="md-nav__link">
         
   
   
@@ -3353,7 +3569,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../saml2/" class="md-nav__link">
+      <a href="../../config/saml2/" class="md-nav__link">
         
   
   
@@ -3381,7 +3597,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../auth_switch/" class="md-nav__link">
+      <a href="../../config/auth_switch/" class="md-nav__link">
         
   
   
@@ -3469,7 +3685,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../multi_institutions/" class="md-nav__link">
+      <a href="../../config/multi_institutions/" class="md-nav__link">
         
   
   
@@ -3497,7 +3713,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../roles_permissions/" class="md-nav__link">
+      <a href="../../config/roles_permissions/" class="md-nav__link">
         
   
   
@@ -3525,7 +3741,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../admin_roles_permissions/" class="md-nav__link">
+      <a href="../../config/admin_roles_permissions/" class="md-nav__link">
         
   
   
@@ -3553,7 +3769,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../multi_tenancy/" class="md-nav__link">
+      <a href="../../config/multi_tenancy/" class="md-nav__link">
         
   
   
@@ -3594,31 +3810,26 @@
                 
   
   
-    
   
   
-  
     
     
     
     
       
       
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
         
           
-          
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
             
   
   
@@ -3636,7 +3847,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -3654,7 +3865,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../csp_configuration/" class="md-nav__link">
+      <a href="../../config/csp_configuration/" class="md-nav__link">
         
   
   
@@ -3679,196 +3890,10 @@
                 
   
   
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Advanced File Search configuration (Pro)
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Advanced File Search configuration (Pro)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#search-options" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Search Options
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#enable-full-text-search-for-officepdf-files" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Enable full text search for Office/PDF files
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Enable full text search for Office/PDF files">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#modify-seafeventsconf" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Modify seafevents.conf
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#restart-seafile-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Restart Seafile server
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-problems" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Common problems
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Common problems">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#how-to-rebuild-the-index-if-something-went-wrong" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How to rebuild the index if something went wrong
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#access-the-aws-elasticsearch-service-using-https" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Access the AWS elasticsearch service using HTTPS
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#i-get-no-result-when-i-search-a-keyword" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        I get no result when I search a keyword
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#encrypted-files-cannot-be-searched" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Encrypted files cannot be searched
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
   
   
     <li class="md-nav__item">
-      <a href="../ocm/" class="md-nav__link">
+      <a href="../../config/ocm/" class="md-nav__link">
         
   
   
@@ -3910,20 +3935,17 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
         
           
-          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
             
   
   
@@ -3959,7 +3981,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../config/" class="md-nav__link">
         
   
   
@@ -3987,7 +4009,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../env/" class="md-nav__link">
+      <a href="../../config/env/" class="md-nav__link">
         
   
   
@@ -4015,7 +4037,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../seafile-conf/" class="md-nav__link">
+      <a href="../../config/seafile-conf/" class="md-nav__link">
         
   
   
@@ -4043,7 +4065,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../seahub_settings_py/" class="md-nav__link">
+      <a href="../../config/seahub_settings_py/" class="md-nav__link">
         
   
   
@@ -4071,7 +4093,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../seafevents-conf/" class="md-nav__link">
+      <a href="../../config/seafevents-conf/" class="md-nav__link">
         
   
   
@@ -4099,7 +4121,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../seahub_customization/" class="md-nav__link">
+      <a href="../../config/seahub_customization/" class="md-nav__link">
         
   
   
@@ -4127,7 +4149,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sending_email/" class="md-nav__link">
+      <a href="../../config/sending_email/" class="md-nav__link">
         
   
   
@@ -4258,6 +4280,34 @@
     
   
     Account management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../administration/file_search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File search (Pro)
   
 
     
@@ -5610,10 +5660,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#search-options" class="md-nav__link">
+  <a href="#deploying-elasticsearch" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Search Options
+        Deploying ElasticSearch
       
     </span>
   </a>
@@ -5621,94 +5671,55 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#enable-full-text-search-for-officepdf-files" class="md-nav__link">
+  <a href="#enable-elasticsearch-in-seafile" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Enable full text search for Office/PDF files
+        Enable ElasticSearch in Seafile
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Enable full text search for Office/PDF files">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#modify-seafeventsconf" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Modify seafevents.conf
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#restart-seafile-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Restart Seafile server
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#common-problems" class="md-nav__link">
+  <a href="#advanced-search-options" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Common problems
+        Advanced Search Options
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Common problems">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#full-text-search-for-document-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Full-text search for document contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start-elasticsearch-and-restart-seafile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Start ElasticSearch and restart Seafile
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Start ElasticSearch and restart Seafile">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#how-to-rebuild-the-index-if-something-went-wrong" class="md-nav__link">
+  <a href="#optional-access-the-aws-elasticsearch-service-using-https" class="md-nav__link">
     <span class="md-ellipsis">
       
-        How to rebuild the index if something went wrong
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#access-the-aws-elasticsearch-service-using-https" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Access the AWS elasticsearch service using HTTPS
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#i-get-no-result-when-i-search-a-keyword" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        I get no result when I search a keyword
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#encrypted-files-cannot-be-searched" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Encrypted files cannot be searched
+        (Optional) Access the AWS elasticsearch service using HTTPS
       
     </span>
   </a>
@@ -5740,18 +5751,47 @@
   
 
 
-<h1 id="details-about-file-search">Details about File Search<a class="headerlink" href="#details-about-file-search" title="Permanent link">&para;</a></h1>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Since Seafile Pro 14.0, new Docker deployments use SeaSearch as the default search engine. For SeaSearch deployment and configuration details, refer to <a href="../../setup/use_seasearch/">SeaSearch configuration</a>.</p>
-<p>The Elasticsearch-specific options below are retained for existing deployments that continue to use Elasticsearch.</p>
-</div>
-<h2 id="search-options">Search Options<a class="headerlink" href="#search-options" title="Permanent link">&para;</a></h2>
-<p>The following options can be set in <strong>seafevents.conf</strong> to control the behaviors of file search. You need to restart seafile and seahub to make them take effect.</p>
-<div class="highlight"><pre><span></span><code>[INDEX FILES]
-## must be "true" to enable search
-enabled = true
+<h1 id="search-with-elasticsearch-pro">Search with ElasticSearch (Pro)<a class="headerlink" href="#search-with-elasticsearch-pro" title="Permanent link">&para;</a></h1>
+<p>Our recommendation for deploying ElasticSearch is using Docker. Detailed information about installing Docker on various Linux distributions is available at <a href="https://docs.docker.com/engine/install/">Docker Docs</a>.</p>
+<p>Seafile PE 9.0 only supports ElasticSearch 7.x. Seafile PE 10.0 and later only supports ElasticSearch 8.x.</p>
+<p>We use ElasticSearch version 8.15.0 as an example in this section. Version 8.15.0 and newer version have been successfully tested with Seafile.</p>
+<h3 id="deploying-elasticsearch">Deploying ElasticSearch<a class="headerlink" href="#deploying-elasticsearch" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Download the <code>elasticsearch.yml</code>:</p>
+<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://manual.seafile.com/14.0/repo/docker/pro/elasticsearch.yaml
+</code></pre></div>
+</li>
+<li>
+<p>Modify <code>.env</code> to add <code>elasticsearch.yml</code> in list <code>COMPOSE_FILE</code>, and add relavent configurations</p>
+<div class="highlight"><pre><span></span><code>COMPOSE_FILE="...,elasticsearch.yml"
+SEAFILE_ELASTICSEARCH_VOLUME=/opt/seafile-elasticsearch/data
+</code></pre></div>
+</li>
+<li>
+<p>Provide read and write permissions for <code>/opt/seafile-elasticsearch/data</code> (you can modify this path as you want):</p>
+<div class="highlight"><pre><span></span><code>chmod<span class="w"> </span><span class="m">744</span><span class="w"> </span>/opt/seafile-elasticsearch/data
+</code></pre></div>
+</li>
+</ol>
+<h3 id="enable-elasticsearch-in-seafile">Enable ElasticSearch in Seafile<a class="headerlink" href="#enable-elasticsearch-in-seafile" title="Permanent link">&para;</a></h3>
+<p>Modify <code>.env</code> to use ES as the search engine:</p>
+<div class="highlight"><pre><span></span><code>## for searching
+ENABLE_SEARCH=true
+SEARCH_ENGINE=elasticsearch
+# Index document contents for full-text search. Set to false to disable it (supported since 13.0 Pro).
+ENABLE_FULL_TEXT_SEARCH=true
 
+### for elasticsearch
+ELASTICSEARCH_SCHEME=http
+ELASTICSEARCH_HOST=&lt;Your ES host&gt;
+ELASTICSEARCH_PORT=9200
+ELASTICSEARCH_USER=
+ELASTICSEARCH_PASSWORD=
+</code></pre></div>
+<h2 id="advanced-search-options">Advanced Search Options<a class="headerlink" href="#advanced-search-options" title="Permanent link">&para;</a></h2>
+<p>The following options can be set in <strong>seafevents.conf</strong> to control the behaviors of file search. </p>
+<div class="highlight"><pre><span></span><code>[INDEX FILES]
 ## The interval the search index is updated. Can be s(seconds), m(minutes), h(hours), d(days)
 interval=10m
 
@@ -5760,13 +5800,16 @@ highlight = fvh
 
 ## If true, indexes the contents of office/pdf files while updating search index
 ## Note: If you change this option from "false" to "true", then you need to clear the search index and update the index again.
-index_office_pdf=false
+## Since 14.0 Pro, ENABLE_FULL_TEXT_SEARCH in .env takes precedence over this setting.
+enable_full_text_search=true
 
 ## From 9.0.7 pro, Seafile supports connecting to Elasticsearch through username and password, you need to configure username and password for the Elasticsearch server
+## From 14.0 pro, the username and password can be set from `.env` with the higher priority
 username = elastic           # username to connect to Elasticsearch
 password = elastic_password  # password to connect to Elasticsearch
 
 ## From 9.0.7 pro, Seafile supports connecting to elasticsearch via HTTPS, you need to configure HTTPS for the Elasticsearch server
+## From 14.0 pro, the scheme, es_host, es_port can be set from `.env` with the higher priority
 scheme = https               # The default is http. If the Elasticsearch server is not configured with HTTPS, the scheme and cafile do not need to be configured
 cafile = path/to/cert.pem    # The certificate path for user authentication. If the Elasticsearch server does not enable certificate authentication, do not need to be configured
 
@@ -5774,130 +5817,42 @@ cafile = path/to/cert.pem    # The certificate path for user authentication. If 
 repo_status_index_name = your-repo-status-index-name  # default is `repo_head`
 repo_files_index_name = your-repo-files-index-name    # default is `repofiles`
 </code></pre></div>
-<h2 id="enable-full-text-search-for-officepdf-files">Enable full text search for Office/PDF files<a class="headerlink" href="#enable-full-text-search-for-officepdf-files" title="Permanent link">&para;</a></h2>
-<p>Full text search is not enabled by default to save system resources. If you want to enable it, you need to follow the instructions below.</p>
-<h3 id="modify-seafeventsconf">Modify <code>seafevents.conf</code><a class="headerlink" href="#modify-seafeventsconf" title="Permanent link">&para;</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Deploy in Docker</label><label for="__tabbed_1_2">Deploy from binary packages</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/seafile-data/seafile/conf
-nano<span class="w"> </span>seafevents.conf
+<h2 id="full-text-search-for-document-contents">Full-text search for document contents<a class="headerlink" href="#full-text-search-for-document-contents" title="Permanent link">&para;</a></h2>
+<p>Full-text search is enabled by default with <code>ENABLE_FULL_TEXT_SEARCH=true</code>. Set it to <code>false</code> to index file names only. If you change this setting, clear and rebuild the search index for the change to take effect.</p>
+<h2 id="start-elasticsearch-and-restart-seafile">Start ElasticSearch and restart Seafile<a class="headerlink" href="#start-elasticsearch-and-restart-seafile" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/seafile/conf
-nano<span class="w"> </span>seafevents.conf
-</code></pre></div>
-</div>
-</div>
-</div>
-<p>set <code>index_office_pdf</code> to <code>true</code></p>
-<div class="highlight"><pre><span></span><code>...
-[INDEX FILES]
-...
-index_office_pdf=true
-...
-</code></pre></div>
-<h3 id="restart-seafile-server">Restart Seafile server<a class="headerlink" href="#restart-seafile-server" title="Permanent link">&para;</a></h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Deploy in Docker</label><label for="__tabbed_2_2">Deploy from binary packages</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>bash
-<span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest
-./seafile.sh<span class="w"> </span>restart
-
-<span class="c1"># delete the existing search index and recreate it</span>
-./pro/pro.py<span class="w"> </span>search<span class="w"> </span>--clear
-./pro/pro.py<span class="w"> </span>search<span class="w"> </span>--update
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest
-./seafile.sh<span class="w"> </span>restart
-
-<span class="c1"># delete the existing search index and recreate it</span>
-./pro/pro.py<span class="w"> </span>search<span class="w"> </span>--clear
-./pro/pro.py<span class="w"> </span>search<span class="w"> </span>--update
-</code></pre></div>
-</div>
-</div>
-</div>
-<h2 id="common-problems">Common problems<a class="headerlink" href="#common-problems" title="Permanent link">&para;</a></h2>
-<h3 id="how-to-rebuild-the-index-if-something-went-wrong">How to rebuild the index if something went wrong<a class="headerlink" href="#how-to-rebuild-the-index-if-something-went-wrong" title="Permanent link">&para;</a></h3>
-<p>You can rebuild search index by running:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Deploy in Docker</label><label for="__tabbed_3_2">Deploy from binary packages</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>bash
-<span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest
-./pro/pro.py<span class="w"> </span>search<span class="w"> </span>--clear
-./pro/pro.py<span class="w"> </span>search<span class="w"> </span>--update
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest
-./pro/pro.py<span class="w"> </span>search<span class="w"> </span>--clear
-./pro/pro.py<span class="w"> </span>search<span class="w"> </span>--update
-</code></pre></div>
-</div>
-</div>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>If this does not work, you can try the following steps:</p>
-<ol>
-<li>Stop Seafile</li>
-<li>Remove the old search index <code>rm -rf pro-data/search</code></li>
-<li>Restart Seafile</li>
-<li>Wait one minute then run <code>./pro/pro.py search --update</code></li>
-</ol>
-</div>
-<h3 id="access-the-aws-elasticsearch-service-using-https">Access the AWS elasticsearch service using HTTPS<a class="headerlink" href="#access-the-aws-elasticsearch-service-using-https" title="Permanent link">&para;</a></h3>
+<h3 id="optional-access-the-aws-elasticsearch-service-using-https">(Optional) Access the AWS elasticsearch service using HTTPS<a class="headerlink" href="#optional-access-the-aws-elasticsearch-service-using-https" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
 <p>Create an elasticsearch service on AWS according to the <a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/gsgcreate-domain.html">documentation</a>.</p>
 </li>
 <li>
-<p>Configure the seafevents.conf:</p>
+<p>Modify <code>.env</code>:</p>
+<div class="highlight"><pre><span></span><code>## for searching
+ENABLE_SEARCH=true
+SEARCH_ENGINE=elasticsearch
+ENABLE_FULL_TEXT_SEARCH=true
+
+### for elasticsearch
+ELASTICSEARCH_SCHEME=http
+ELASTICSEARCH_HOST=https://search-my-domain.us-east-1.es.amazonaws.com
+ELASTICSEARCH_PORT=9200
+ELASTICSEARCH_USER=master_user
+ELASTICSEARCH_PASSWORD=password
+</code></pre></div>
 </li>
-</ol>
+<li>
+<p>Configure the seafevents.conf:</p>
 <div class="highlight"><pre><span></span><code>[INDEX FILES]
-enabled = true
 interval = 10m
-index_office_pdf=true
-es_host = your domain endpoint(for example, https://search-my-domain.us-east-1.es.amazonaws.com)
-es_port = 443
-scheme = https
-username = master user
-password = password
 highlight = fvh
 repo_status_index_name = your-repo-status-index-name  # default is `repo_head`
 repo_files_index_name = your-repo-files-index-name    # default is `repofiles`
 </code></pre></div>
-<h3 id="i-get-no-result-when-i-search-a-keyword">I get no result when I search a keyword<a class="headerlink" href="#i-get-no-result-when-i-search-a-keyword" title="Permanent link">&para;</a></h3>
-<p>The search index is updated every 10 minutes by default. So before the first index update is performed, you get nothing no matter what you search.</p>
-<p>To be able to search immediately,</p>
-<ul>
-<li>Make sure you have started Seafile Server</li>
-<li>Update the search index manually:</li>
-</ul>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Deploy in Docker</label><label for="__tabbed_4_2">Deploy from binary packages</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile<span class="w"> </span>bash
-<span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest
-./pro/pro.py<span class="w"> </span>search<span class="w"> </span>--update
-</code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/opt/seafile/seafile-server-latest
-./pro/pro.py<span class="w"> </span>search<span class="w"> </span>--update
-</code></pre></div>
-</div>
-</div>
-</div>
-<h3 id="encrypted-files-cannot-be-searched">Encrypted files cannot be searched<a class="headerlink" href="#encrypted-files-cannot-be-searched" title="Permanent link">&para;</a></h3>
-<p>This is because the server cannot index encrypted files, since they are encrypted.</p>
+</li>
+</ol>
 
 
 
@@ -5933,7 +5888,7 @@ repo_files_index_name = your-repo-files-index-name    # default is `repofiles`
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../csp_configuration/" class="md-footer__link md-footer__link--prev" aria-label="Previous: CSP Configuration">
+          <a href="../use_seasearch/" class="md-footer__link md-footer__link--prev" aria-label="Previous: SeaSearch">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -5943,20 +5898,20 @@ repo_files_index_name = your-repo-files-index-name    # default is `repofiles`
                 Previous
               </span>
               <div class="md-ellipsis">
-                CSP Configuration
+                SeaSearch
               </div>
             </div>
           </a>
         
         
           
-          <a href="../ocm/" class="md-footer__link md-footer__link--next" aria-label="Next: Open Cloud Mesh">
+          <a href="../seafile_docker_autostart/" class="md-footer__link md-footer__link--next" aria-label="Next: Seafile Docker autostart">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Open Cloud Mesh
+                Seafile Docker autostart
               </div>
             </div>
             <div class="md-footer__button md-icon">

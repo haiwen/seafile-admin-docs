@@ -1235,6 +1235,58 @@
   
   
   
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6_2" id="__nav_2_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search function (Pro)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Search function (Pro)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../setup/use_seasearch/" class="md-nav__link">
         
@@ -1243,7 +1295,7 @@
   <span class="md-ellipsis">
     
   
-    SeaSearch configuration (Pro)
+    SeaSearch
   
 
     
@@ -1252,6 +1304,42 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/use_elasticsearch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ElasticSearch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -2239,17 +2327,6 @@
     <span class="md-ellipsis">
       
         seahub_settings.py
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#seafeventsconf" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        seafevents.conf
       
     </span>
   </a>
@@ -4041,34 +4118,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/details_about_file_search/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Advanced File Search configuration (Pro)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../config/ocm/" class="md-nav__link">
         
   
@@ -4456,6 +4505,34 @@
     
   
     Account management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../administration/file_search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File search (Pro)
   
 
     
@@ -5969,17 +6046,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#seafeventsconf" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        seafevents.conf
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -6326,15 +6392,6 @@ AVATAR_FILE_STORAGE = 'seahub.base.database_storage.DatabaseStorage'
 <span class="s">```</span>
 </code></pre></div>
 
-<h4 id="seafeventsconf">seafevents.conf<a class="headerlink" href="#seafeventsconf" title="Permanent link">&para;</a></h4>
-<p>Since Seafile 14.0, SeaSearch is the default search engine. For SeaSearch deployment details, refer to <a href="../../setup/use_seasearch/">SeaSearch configuration</a>. Modify <code>seafevents.conf</code> to enable SeaSearch:</p>
-<div class="highlight"><pre><span></span><code>[SEASEARCH]
-enabled = true
-seasearch_url = http://&lt;your SeaSearch server&gt;:4080
-seasearch_token = &lt;your auth token&gt;
-interval = 10m
-index_office_pdf = true
-</code></pre></div>
 <h3 id="update-seahub-database">Update Seahub Database<a class="headerlink" href="#update-seahub-database" title="Permanent link">&para;</a></h3>
 <p>In cluster environment, we have to store avatars in the database instead of in a local disk.</p>
 <div class="highlight"><pre><span></span><code>mysql -h&lt;your MySQL host&gt; -P&lt;your MySQL port&gt; -useafile -p&lt;user seafile's password&gt;
@@ -6511,11 +6568,7 @@ enabled = true
 </code></pre></div>
 <p>For <strong>seafevents.conf</strong>:</p>
 <div class="highlight"><pre><span></span><code>[SEASEARCH]
-enabled = true
-seasearch_url = http://&lt;your SeaSearch server&gt;:4080
-seasearch_token = &lt;your auth token&gt;
 interval = 10m
-index_office_pdf = true
 </code></pre></div>
 <p>The <code>[SEASEARCH]</code> section is needed to let the front-end node know the SeaSearch-based file search feature is enabled.</p>
 <h2 id="https">HTTPS<a class="headerlink" href="#https" title="Permanent link">&para;</a></h2>

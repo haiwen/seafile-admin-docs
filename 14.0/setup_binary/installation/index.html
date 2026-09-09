@@ -1235,6 +1235,58 @@
   
   
   
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6_2" id="__nav_2_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search function (Pro)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Search function (Pro)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../setup/use_seasearch/" class="md-nav__link">
         
@@ -1243,7 +1295,7 @@
   <span class="md-ellipsis">
     
   
-    SeaSearch configuration (Pro)
+    SeaSearch
   
 
     
@@ -1252,6 +1304,42 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/use_elasticsearch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ElasticSearch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -2184,34 +2272,6 @@
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Enabling full text search">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#deploying-elasticsearch" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Deploying ElasticSearch
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#modifying-seafevents" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Modifying seafevents
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -3908,34 +3968,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/details_about_file_search/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Advanced File Search configuration (Pro)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../config/ocm/" class="md-nav__link">
         
   
@@ -4323,6 +4355,34 @@
     
   
     Account management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../administration/file_search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File search (Pro)
   
 
     
@@ -5832,34 +5892,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Enabling full text search">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#deploying-elasticsearch" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Deploying ElasticSearch
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#modifying-seafevents" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Modifying seafevents
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
     </ul>
@@ -6418,48 +6450,7 @@ Enter the password again:
 </div>
 <p>Now you can access Seafile via the web interface at the host address (e.g., https://seafile.example.com).</p>
 <h2 id="enabling-full-text-search">Enabling full text search<a class="headerlink" href="#enabling-full-text-search" title="Permanent link">&para;</a></h2>
-<p>Since Seafile 14.0, SeaSearch is the default search engine. For SeaSearch deployment and configuration details, refer to <a href="../../setup/use_seasearch/">SeaSearch configuration</a>. If you continue to use Elasticsearch, refer to the Elasticsearch deployment steps below.</p>
-<h3 id="deploying-elasticsearch">Deploying ElasticSearch<a class="headerlink" href="#deploying-elasticsearch" title="Permanent link">&para;</a></h3>
-<p>Our recommendation for deploying ElasticSearch is using Docker. Detailed information about installing Docker on various Linux distributions is available at <a href="https://docs.docker.com/engine/install/">Docker Docs</a>.</p>
-<p>Seafile PE 9.0 only supports ElasticSearch 7.x. Seafile PE 10.0 and later only supports ElasticSearch 8.x.</p>
-<p>We use ElasticSearch version 8.15.0 as an example in this section. Version 8.15.0 and newer version have been successfully tested with Seafile.</p>
-<p>Pull the Docker image:
-<div class="highlight"><pre><span></span><code>sudo docker pull elasticsearch:8.15.0
-</code></pre></div></p>
-<p>Create a folder for persistent data created by ElasticSearch and change its permission:
-<div class="highlight"><pre><span></span><code>sudo mkdir -p /opt/seafile-elasticsearch/data  &amp;&amp; chmod -R 777 /opt/seafile-elasticsearch/data/
-</code></pre></div></p>
-<p>Now start the ElasticSearch container using the docker run command:
-<div class="highlight"><pre><span></span><code>sudo docker run -d \
---name es \
--p 9200:9200 \
--e "discovery.type=single-node" -e "bootstrap.memory_lock=true" \
--e "ES_JAVA_OPTS=-Xms2g -Xmx2g" -e "xpack.security.enabled=false" \
---restart=always \
--v /opt/seafile-elasticsearch/data:/usr/share/elasticsearch/data \
--d elasticsearch:8.15.0
-</code></pre></div></p>
-<div class="admonition danger">
-<p class="admonition-title">Security notice</p>
-<blockquote>
-<p>We sincerely thank <strong><em>Mohammed Adel</em></strong> of <a href="https://www.safedecision.com.sa/">Safe Decision Co.</a>, for the suggestion of this notice.</p>
-</blockquote>
-<p>By default, Elasticsearch will only listen on <code>127.0.0.1</code>, but this rule may <strong>become invalid</strong> after Docker exposes the service port,  <strong><em>which will make your Elasticsearch service vulnerable to attackers accessing and extracting sensitive data due to exposure to the external network</em></strong>. We recommend that you manually configure the Docker firewall, such as</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>-s<span class="w"> </span>&lt;your<span class="w"> </span>seafile<span class="w"> </span>server<span class="w"> </span>ip&gt;<span class="w"> </span>--dport<span class="w"> </span><span class="m">9200</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
-sudo<span class="w"> </span>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>--dport<span class="w"> </span><span class="m">9200</span><span class="w"> </span>-j<span class="w"> </span>DROP
-</code></pre></div>
-<p>The above command will only allow the host where your Seafile service is located to connect to Elasticsearch, and other addresses will be blocked. If you deploy Elasticsearch based on binary packages, you need to refer to the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.17/important-settings.html#network.host">official document</a> to set the address that Elasticsearch binds to.</p>
-</div>
-<h3 id="modifying-seafevents">Modifying seafevents<a class="headerlink" href="#modifying-seafevents" title="Permanent link">&para;</a></h3>
-<p>Add the following configuration to <code>seafevents.conf</code>:</p>
-<div class="highlight"><pre><span></span><code>[INDEX FILES]
-es_host = &lt;your elasticsearch server's IP, e.g., 127.0.0.1&gt;    # IP address of ElasticSearch host
-es_port = 9200   # port of ElasticSearch host
-</code></pre></div>
-<p>Finally, restart Seafile:</p>
-<div class="highlight"><pre><span></span><code>su seafile
-./seafile.sh restart  &amp;&amp; ./seahub.sh restart 
-</code></pre></div>
+<p>Since Seafile 14.0, SeaSearch is the default search engine. For SeaSearch deployment and configuration details, refer to <a href="../../setup/use_seasearch/">Search with SeaSearch</a>. If you continue to use Elasticsearch, refer <a href="../../setup/use_elasticsearch/">Search with ElasticSearch</a> for the details.</p>
 
 
 

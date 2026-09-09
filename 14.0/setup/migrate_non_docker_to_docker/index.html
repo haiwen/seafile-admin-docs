@@ -1246,6 +1246,58 @@
   
   
   
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6_2" id="__nav_2_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search function (Pro)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Search function (Pro)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../use_seasearch/" class="md-nav__link">
         
@@ -1254,7 +1306,7 @@
   <span class="md-ellipsis">
     
   
-    SeaSearch configuration (Pro)
+    SeaSearch
   
 
     
@@ -1263,6 +1315,42 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use_elasticsearch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ElasticSearch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1942,10 +2030,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#stop-nginx-cache-server-eg-redis-and-search-engine" class="md-nav__link">
+  <a href="#stop-nginx-cache-server-eg-redis" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Stop Nginx, cache server (e.g., Redis), and search engine
+        Stop Nginx, cache server (e.g., Redis)
       
     </span>
   </a>
@@ -3825,34 +3913,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/details_about_file_search/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Advanced File Search configuration (Pro)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../config/ocm/" class="md-nav__link">
         
   
@@ -4240,6 +4300,34 @@
     
   
     Account management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../administration/file_search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File search (Pro)
   
 
     
@@ -5615,10 +5703,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#stop-nginx-cache-server-eg-redis-and-search-engine" class="md-nav__link">
+  <a href="#stop-nginx-cache-server-eg-redis" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Stop Nginx, cache server (e.g., Redis), and search engine
+        Stop Nginx, cache server (e.g., Redis)
       
     </span>
   </a>
@@ -5738,12 +5826,10 @@
 ./seafile.sh<span class="w"> </span>stop
 ./seahub.sh<span class="w"> </span>stop
 </code></pre></div>
-<h3 id="stop-nginx-cache-server-eg-redis-and-search-engine">Stop Nginx, cache server (e.g., <em>Redis</em>), and search engine<a class="headerlink" href="#stop-nginx-cache-server-eg-redis-and-search-engine" title="Permanent link">&para;</a></h3>
+<h3 id="stop-nginx-cache-server-eg-redis">Stop Nginx, cache server (e.g., <em>Redis</em>)<a class="headerlink" href="#stop-nginx-cache-server-eg-redis" title="Permanent link">&para;</a></h3>
 <p>You have to stop the above services to avoid losing data before migrating.</p>
 <div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>stop<span class="w"> </span>nginx<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w">  </span>systemctl<span class="w"> </span>disable<span class="w"> </span>nginx
 systemctl<span class="w"> </span>stop<span class="w"> </span>redis<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w">  </span>systemctl<span class="w"> </span>disable<span class="w"> </span>redis
-<span class="c1"># If you are using Elasticsearch</span>
-docker<span class="w"> </span>stop<span class="w"> </span>es<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>docker<span class="w"> </span>remove<span class="w"> </span>es
 </code></pre></div>
 <h2 id="backup-mysql-database-and-seafile-server">Backup MySQL database and Seafile server<a class="headerlink" href="#backup-mysql-database-and-seafile-server" title="Permanent link">&para;</a></h2>
 <p>Please follow <a href="../../administration/backup_recovery/#backup-and-restore-for-binary-package-based-deployment">here</a> to backup:</p>
@@ -5753,7 +5839,10 @@ docker<span class="w"> </span>stop<span class="w"> </span>es<span class="w"> </s
 </ul>
 <h2 id="deploy-the-seafile-docker">Deploy the Seafile Docker<a class="headerlink" href="#deploy-the-seafile-docker" title="Permanent link">&para;</a></h2>
 <p>You can follow <a href="../overview/#single-node-deployment">here</a> to deploy Seafile with Docker, please use your old configurations when modifying <code>.env</code>, and make sure the Seafile server is running normally after deployment.</p>
-<p>For Seafile Pro 14.0, SeaSearch is the default search engine. Refer to <a href="../use_seasearch/">SeaSearch configuration</a> to configure SeaSearch after migration.</p>
+<div class="admonition tip">
+<p class="admonition-title">Search configs can be set in the <code>.env</code></p>
+<p>Since Seafile 14.0, you can modify the search configurations in your <code>.env</code>, please refer <a href="../use_seasearch/">Search with SeaSearch</a> and <a href="../use_elasticsearch/">Search with ElasticSearch</a> for the details</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Use <em>external MySQL service</em> or the <em>old MySQL service</em></p>
 <p>This document is written to migrate from non-Docker version to Docker version Seafile between two different machines. We suggest using the Docker-compose <em>Mariadb</em> service (version 10.11 by default) as the database service in after-migration Seafile. If you would like to use an existed MySQL service, always in which situation you try to do migrate operation on the same host or the old MySQL service is the dependency of other services, you have to follow <a href="../setup_with_an_existing_mysql_server/">here</a> to deploy Seafile.</p>

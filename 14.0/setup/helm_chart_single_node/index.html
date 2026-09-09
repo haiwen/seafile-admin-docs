@@ -1246,6 +1246,58 @@
   
   
   
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6_2" id="__nav_2_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search function (Pro)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Search function (Pro)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../use_seasearch/" class="md-nav__link">
         
@@ -1254,7 +1306,7 @@
   <span class="md-ellipsis">
     
   
-    SeaSearch configuration (Pro)
+    SeaSearch
   
 
     
@@ -1263,6 +1315,42 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use_elasticsearch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ElasticSearch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -3833,34 +3921,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/details_about_file_search/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Advanced File Search configuration (Pro)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../config/ocm/" class="md-nav__link">
         
   
@@ -4248,6 +4308,34 @@
     
   
     Account management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../administration/file_search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File search (Pro)
   
 
     
@@ -5872,20 +5960,6 @@ helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class=
 <p class="admonition-title">About Seafile service</p>
 <p>The chart creates a <code>ClusterIP</code> Service named <code>seafile</code> on port <code>80</code>. Enable the chart's <code>ingress</code> or <code>httpRoute</code> configuration, or expose this Service with an operator-managed Ingress, Gateway, or load balancer.</p>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">Important for deployment</p>
-<p>Since Seafile 14.0, SeaSearch is the default search engine. This Helm chart guide does not provide SeaSearch deployment resources. Deploy SeaSearch separately and modify <code>/opt/seafile-data/seafile/conf/seafevents.conf</code> according to <a href="../use_seasearch/">SeaSearch configuration</a>.</p>
-<p>If you continue to use Elasticsearch, modify the <code>[INDEX FILES]</code> section in <code>/opt/seafile-data/seafile/conf/seafevents.conf</code> according to your Elasticsearch service address.</p>
-<p>If the above services are:</p>
-<ul>
-<li>Not in your K8S pods (including using an external service)</li>
-<li>With different service name</li>
-<li>With different server port</li>
-</ul>
-<p>After modifying <code>seafevents.conf</code>, restart Seafile server:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.items[*].metadata.name}'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>seafile<span class="k">)</span>
-</code></pre></div>
-</div>
 <h2 id="activating-the-seafile-license-pro">Activating the Seafile License (Pro)<a class="headerlink" href="#activating-the-seafile-license-pro" title="Permanent link">&para;</a></h2>
 <p>If you have a <code>seafile-license.txt</code> license file, simply put it in the volume of the Seafile container. The volumne's default path in the Compose file is <code>/opt/seafile-data</code>. If you have modified the path, save the license file under your custom path.</p>
 <div class="admonition danger">
@@ -5995,6 +6069,7 @@ nano<span class="w"> </span>my-values.yaml
 </code></pre></div>
 <h2 id="advanced-operations">Advanced operations<a class="headerlink" href="#advanced-operations" title="Permanent link">&para;</a></h2>
 <p>For standard external access, use the chart's <code>ingress</code> or <code>httpRoute</code> configuration above. Refer to <a href="../k8s_advanced_management/">advanced K8S management</a> when you need to manage Gateway resources or custom routing rules manually.</p>
+<p>On the other hand, you can also click <strong><em>Extensions</em></strong> tab to explore the futher functions in Seafile.</p>
 
 
 

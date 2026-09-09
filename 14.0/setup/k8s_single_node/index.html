@@ -1246,6 +1246,58 @@
   
   
   
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6_2" id="__nav_2_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search function (Pro)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Search function (Pro)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../use_seasearch/" class="md-nav__link">
         
@@ -1254,7 +1306,7 @@
   <span class="md-ellipsis">
     
   
-    SeaSearch configuration (Pro)
+    SeaSearch
   
 
     
@@ -1263,6 +1315,42 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use_elasticsearch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ElasticSearch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -3832,34 +3920,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/details_about_file_search/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Advanced File Search configuration (Pro)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../config/ocm/" class="md-nav__link">
         
   
@@ -4247,6 +4307,34 @@
     
   
     Account management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../administration/file_search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File search (Pro)
   
 
     
@@ -5794,31 +5882,17 @@ wget<span class="w"> </span>-P<span class="w"> </span>/opt/seafile-k8s-yaml<span
 </div>
 <p>For futher configuration details, you can refer <a href="https://kubernetes.io/docs/tasks/configure-pod-container/">the official documents</a>.</p>
 <h2 id="modify-seafile-envyaml">Modify <code>seafile-env.yaml</code><a class="headerlink" href="#modify-seafile-envyaml" title="Permanent link">&para;</a></h2>
-<p>Similar to Docker-base deployment, Seafile cluster in K8S deployment also supports use files to configure startup progress, you can modify common <a href="../setup_pro_by_docker/#downloading-and-modifying-env">environment variables</a> by</p>
+<p>Edit <code>seafile-env.yaml</code> to configure non-sensitive server settings. This ConfigMap includes the common server, database, cache, storage, extension, and search settings, as well as Kubernetes-specific <code>SEAFILE_LOG_TO_STDOUT</code>, <code>SITE_ROOT</code>, and <code>SEAFILE_MYSQL_DB_PORT</code>. Keep passwords and keys in the <code>seafile-secret</code> Secret created above.</p>
 <div class="highlight"><pre><span></span><code>nano<span class="w"> </span>/opt/seafile-k8s-yaml/seafile-env.yaml
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>For the fields marked with <code>&lt;...&gt;</code> are <strong>required</strong>, please make sure these items are filled in, otherwise Seafile server may not run properly. </p>
+<p>Fields marked with <code>&lt;...&gt;</code> are <strong>required</strong>. Fill them in before deployment, otherwise Seafile server may not run properly.</p>
 </div>
 <h2 id="start-seafile-server">Start Seafile server<a class="headerlink" href="#start-seafile-server" title="Permanent link">&para;</a></h2>
 <p>You can start Seafile server and specify the resources into the namespace <code>seafile</code> for easier management by</p>
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>/opt/seafile-k8s-yaml/<span class="w"> </span>-n<span class="w"> </span>seafile
 </code></pre></div>
-<div class="admonition warning">
-<p class="admonition-title">Important for Pro edition</p>
-<p>Since Seafile 14.0, SeaSearch is the default search engine. This K8S guide does not provide SeaSearch deployment resources. Deploy SeaSearch separately and modify <code>/opt/seafile-data/seafile/conf/seafevents.conf</code> according to <a href="../use_seasearch/">SeaSearch configuration</a>.</p>
-<p>If you continue to use Elasticsearch, modify the <code>[INDEX FILES]</code> section in <code>/opt/seafile-data/seafile/conf/seafevents.conf</code> according to your Elasticsearch service address.</p>
-<p>If the above services are:</p>
-<ul>
-<li>Not in your K8S pods (including using an external service)</li>
-<li>With different service name</li>
-<li>With different server port</li>
-</ul>
-<p>After modifying <code>seafevents.conf</code>, restart Seafile server:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span><span class="k">$(</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>seafile<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.items[*].metadata.name}'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>seafile<span class="k">)</span>
-</code></pre></div>
-</div>
 <h2 id="activating-the-seafile-license-pro">Activating the Seafile License (Pro)<a class="headerlink" href="#activating-the-seafile-license-pro" title="Permanent link">&para;</a></h2>
 <p>If you have a <code>seafile-license.txt</code> license file, simply put it in the volume of the Seafile container. The volumne's default path in the Compose file is <code>/opt/seafile-data</code>. If you have modified the path, save the license file under your custom path.</p>
 <div class="admonition danger">
@@ -5832,7 +5906,7 @@ wget<span class="w"> </span>-P<span class="w"> </span>/opt/seafile-k8s-yaml<span
 <div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>-f<span class="w"> </span>/opt/seafile-k8s-yaml/<span class="w"> </span>-n<span class="w"> </span>seafile
 </code></pre></div>
 <h2 id="advanced-operations">Advanced operations<a class="headerlink" href="#advanced-operations" title="Permanent link">&para;</a></h2>
-<p>Please refer from <a href="../k8s_advanced_management/">here</a> for futher advanced operations.</p>
+<p>Please refer from <a href="../k8s_advanced_management/">here</a> or click <strong><em>Extensions</em></strong> tab for futher Seafile functions</p>
 
 
 

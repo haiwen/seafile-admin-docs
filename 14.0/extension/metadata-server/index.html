@@ -1237,6 +1237,58 @@
   
   
   
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6_2" id="__nav_2_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search function (Pro)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Search function (Pro)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../setup/use_seasearch/" class="md-nav__link">
         
@@ -1245,7 +1297,7 @@
   <span class="md-ellipsis">
     
   
-    SeaSearch configuration (Pro)
+    SeaSearch
   
 
     
@@ -1254,6 +1306,42 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/use_elasticsearch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ElasticSearch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -2611,6 +2699,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#kubernetes-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kubernetes configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3929,34 +4028,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../config/details_about_file_search/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Advanced File Search configuration (Pro)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../config/ocm/" class="md-nav__link">
         
   
@@ -4344,6 +4415,34 @@
     
   
     Account management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../administration/file_search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File search (Pro)
   
 
     
@@ -5851,6 +5950,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#kubernetes-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kubernetes configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -6125,6 +6235,12 @@ INNER_METADATA_SERVER_URL=http://&lt;your metadata-server host&gt;:8084
 </div>
 </div>
 </div>
+<h3 id="kubernetes-configuration">Kubernetes configuration<a class="headerlink" href="#kubernetes-configuration" title="Permanent link">&para;</a></h3>
+<p>For Kubernetes deployments, add the following non-sensitive settings to the <code>data</code> section of <code>seafile-env.yaml</code>, rather than to a Docker <code>.env</code> file. The metadata server URL must be reachable from each Seafile pod.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">ENABLE_METADATA_MANAGEMENT</span><span class="p">:</span><span class="w"> </span><span class="s">"true"</span>
+<span class="nt">INNER_METADATA_SERVER_URL</span><span class="p">:</span><span class="w"> </span><span class="s">"http://&lt;your</span><span class="nv"> </span><span class="s">metadata-server</span><span class="nv"> </span><span class="s">host&gt;:8084"</span>
+</code></pre></div>
+<p><code>MD_FILE_COUNT_LIMIT</code> is configured in the same ConfigMap. Keep credentials, such as <code>JWT_PRIVATE_KEY</code>, Redis passwords, and S3 secrets, in <code>seafile-secret</code>.</p>
 <h2 id="start-service">Start service<a class="headerlink" href="#start-service" title="Permanent link">&para;</a></h2>
 <p>You can use following command to start metadata server and restart Seafile:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
