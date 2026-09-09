@@ -4736,7 +4736,7 @@
   <a href="#step-1-stop-the-services" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 1) Stop the services:
+        Step 1) Stop the services
       
     </span>
   </a>
@@ -4899,10 +4899,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-5-remove-seasearch-or-elasticsearch-authorization-information-in-seafeventsconf" class="md-nav__link">
+  <a href="#step-5-remove-obsolete-seasearch-or-elasticsearch-configurations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 5) Remove SeaSearch (or ElasticSearch) authorization information in seafevents.conf
+        Step 5) Remove obsolete SeaSearch (or ElasticSearch) configurations
       
     </span>
   </a>
@@ -6014,7 +6014,7 @@
   <a href="#step-1-stop-the-services" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 1) Stop the services:
+        Step 1) Stop the services
       
     </span>
   </a>
@@ -6177,10 +6177,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-5-remove-seasearch-or-elasticsearch-authorization-information-in-seafeventsconf" class="md-nav__link">
+  <a href="#step-5-remove-obsolete-seasearch-or-elasticsearch-configurations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 5) Remove SeaSearch (or ElasticSearch) authorization information in seafevents.conf
+        Step 5) Remove obsolete SeaSearch (or ElasticSearch) configurations
       
     </span>
   </a>
@@ -6238,12 +6238,12 @@
 <p class="admonition-title">Clean Database</p>
 <p>The database upgrade may take a long time. You can clean the database before upgrading. Please refer to <a href="../../administration/clean_database/">Clean Database</a>.</p>
 </div>
-<h3 id="step-1-stop-the-services">Step 1) Stop the services:<a class="headerlink" href="#step-1-stop-the-services" title="Permanent link">&para;</a></h3>
+<h2 id="step-1-stop-the-services">Step 1) Stop the services<a class="headerlink" href="#step-1-stop-the-services" title="Permanent link">&para;</a></h2>
 <p>Before upgrading, please shutdown your Seafile server:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down
 </code></pre></div>
-<h3 id="step-2-download-the-newest-yml-files">Step 2) Download the newest <code>.yml</code> files<a class="headerlink" href="#step-2-download-the-newest-yml-files" title="Permanent link">&para;</a></h3>
-<h4 id="step-21-download-seafile-serveryml">Step 2.1) Download <code>seafile-server.yml</code><a class="headerlink" href="#step-21-download-seafile-serveryml" title="Permanent link">&para;</a></h4>
+<h2 id="step-2-download-the-newest-yml-files">Step 2) Download the newest <code>.yml</code> files<a class="headerlink" href="#step-2-download-the-newest-yml-files" title="Permanent link">&para;</a></h2>
+<h3 id="step-21-download-seafile-serveryml">Step 2.1) Download <code>seafile-server.yml</code><a class="headerlink" href="#step-21-download-seafile-serveryml" title="Permanent link">&para;</a></h3>
 <p>Before downloading the newest <code>seafile-server.yml</code>, please backup your original one:</p>
 <div class="highlight"><pre><span></span><code>mv<span class="w"> </span>seafile-server.yml<span class="w"> </span>seafile-server.yml.bak
 </code></pre></div>
@@ -6260,7 +6260,7 @@
 </div>
 </div>
 </div>
-<h4 id="step-22-download-yml-file-for-notification-server-optional">Step 2.2) Download <code>.yml</code> file for notification server (optional)<a class="headerlink" href="#step-22-download-yml-file-for-notification-server-optional" title="Permanent link">&para;</a></h4>
+<h3 id="step-22-download-yml-file-for-notification-server-optional">Step 2.2) Download <code>.yml</code> file for notification server (optional)<a class="headerlink" href="#step-22-download-yml-file-for-notification-server-optional" title="Permanent link">&para;</a></h3>
 <p>If you are using notification server, please backup the old file and download the 14.0 file:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Deployment with Seafile</label><label for="__tabbed_2_2">Standalone deployment</label></div>
 <div class="tabbed-content">
@@ -6276,7 +6276,7 @@ wget<span class="w"> </span>https://manual.seafile.com/14.0/repo/docker/notifica
 </div>
 </div>
 </div>
-<h4 id="step-23-download-yml-file-for-metadata-server-optional">Step 2.3) Download <code>.yml</code> file for metadata server (optional)<a class="headerlink" href="#step-23-download-yml-file-for-metadata-server-optional" title="Permanent link">&para;</a></h4>
+<h3 id="step-23-download-yml-file-for-metadata-server-optional">Step 2.3) Download <code>.yml</code> file for metadata server (optional)<a class="headerlink" href="#step-23-download-yml-file-for-metadata-server-optional" title="Permanent link">&para;</a></h3>
 <p>If you are using Metadata server, please backup the old file and download the 14.0 file:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Deployment with Seafile</label><label for="__tabbed_3_2">Standalone deployment</label></div>
 <div class="tabbed-content">
@@ -6292,7 +6292,7 @@ wget<span class="w"> </span>https://manual.seafile.com/14.0/repo/docker/metadata
 </div>
 </div>
 </div>
-<h4 id="step-24-download-yml-file-for-thumbnail-server-optional">Step 2.4) Download <code>.yml</code> file for thumbnail server (optional)<a class="headerlink" href="#step-24-download-yml-file-for-thumbnail-server-optional" title="Permanent link">&para;</a></h4>
+<h3 id="step-24-download-yml-file-for-thumbnail-server-optional">Step 2.4) Download <code>.yml</code> file for thumbnail server (optional)<a class="headerlink" href="#step-24-download-yml-file-for-thumbnail-server-optional" title="Permanent link">&para;</a></h3>
 <p>If you are using Thumbnail server, please backup the old file and download the 14.0 file:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Deployment with Seafile</label><label for="__tabbed_4_2">Standalone deployment</label></div>
 <div class="tabbed-content">
@@ -6308,7 +6308,7 @@ wget<span class="w"> </span>https://manual.seafile.com/14.0/repo/docker/thumbnai
 </div>
 </div>
 </div>
-<h4 id="step-25-download-yml-file-for-seafile-ai-optional">Step 2.5) Download <code>.yml</code> file for Seafile AI (optional)<a class="headerlink" href="#step-25-download-yml-file-for-seafile-ai-optional" title="Permanent link">&para;</a></h4>
+<h3 id="step-25-download-yml-file-for-seafile-ai-optional">Step 2.5) Download <code>.yml</code> file for Seafile AI (optional)<a class="headerlink" href="#step-25-download-yml-file-for-seafile-ai-optional" title="Permanent link">&para;</a></h3>
 <p>If you are using Seafile AI, please backup the old file and download the 14.0 file:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Deployment with Seafile</label><label for="__tabbed_5_2">Standalone deployment</label></div>
 <div class="tabbed-content">
@@ -6324,8 +6324,8 @@ wget<span class="w"> </span>https://manual.seafile.com/14.0/repo/docker/seafile-
 </div>
 </div>
 </div>
-<h3 id="step-3-modify-env">Step 3) Modify <code>.env</code><a class="headerlink" href="#step-3-modify-env" title="Permanent link">&para;</a></h3>
-<h4 id="step-31-update-image-versions">Step 3.1) Update image versions<a class="headerlink" href="#step-31-update-image-versions" title="Permanent link">&para;</a></h4>
+<h2 id="step-3-modify-env">Step 3) Modify <code>.env</code><a class="headerlink" href="#step-3-modify-env" title="Permanent link">&para;</a></h2>
+<h3 id="step-31-update-image-versions">Step 3.1) Update image versions<a class="headerlink" href="#step-31-update-image-versions" title="Permanent link">&para;</a></h3>
 <div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Seafile CE</label><label for="__tabbed_6_2">Seafile Pro</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -6380,7 +6380,7 @@ wget<span class="w"> </span>https://manual.seafile.com/14.0/repo/docker/seafile-
 </div>
 </div>
 </div>
-<h4 id="step-32-add-seasearch-configurations-for-seafile-ai-optional">Step 3.2) Add SeaSearch configurations for Seafile AI (optional)<a class="headerlink" href="#step-32-add-seasearch-configurations-for-seafile-ai-optional" title="Permanent link">&para;</a></h4>
+<h3 id="step-32-add-seasearch-configurations-for-seafile-ai-optional">Step 3.2) Add SeaSearch configurations for Seafile AI (optional)<a class="headerlink" href="#step-32-add-seasearch-configurations-for-seafile-ai-optional" title="Permanent link">&para;</a></h3>
 <p>If you are not using Seafile AI, skip this step.</p>
 <p>Add the following settings to the <code>.env</code> used by Seafile AI:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">SeaSearch deployed with Seafile</label><label for="__tabbed_7_2">Standalone SeaSearch deployment</label></div>
@@ -6398,10 +6398,10 @@ SEASEARCH_TOKEN=&lt;your SeaSearch authorization token&gt;
 </div>
 </div>
 <p>Leave both variables empty if SeaSearch is not used. For details, refer to <a href="../../setup/use_seasearch/">Search with SeaSearch</a>.</p>
-<h4 id="step-33-update-model-configurations-for-seafile-ai-optional">Step 3.3) Update model configurations for Seafile AI (optional)<a class="headerlink" href="#step-33-update-model-configurations-for-seafile-ai-optional" title="Permanent link">&para;</a></h4>
+<h3 id="step-33-update-model-configurations-for-seafile-ai-optional">Step 3.3) Update model configurations for Seafile AI (optional)<a class="headerlink" href="#step-33-update-model-configurations-for-seafile-ai-optional" title="Permanent link">&para;</a></h3>
 <p>If you are not using Seafile AI, skip this step.</p>
 <p>In Seafile 14.0, Seafile AI models are configured in <code>seafile_ai_config.yaml</code> instead of through environment variables. Update the model configuration according to <a href="../../extension/seafile-ai/">Seafile AI extension</a>.</p>
-<h4 id="step-34-update-configurations-for-webdav">Step 3.4) Update configurations for WebDAV<a class="headerlink" href="#step-34-update-configurations-for-webdav" title="Permanent link">&para;</a></h4>
+<h3 id="step-34-update-configurations-for-webdav">Step 3.4) Update configurations for WebDAV<a class="headerlink" href="#step-34-update-configurations-for-webdav" title="Permanent link">&para;</a></h3>
 <p>If you are not using WebDAV, skip this step.</p>
 <p>In Seafile 14.0, the WebDAV enable switch and worker count are configured through environment variables in the Seafile server <code>.env</code>. If WebDAV was enabled in <code>seafdav.conf</code> before the upgrade, add the following settings to <code>.env</code>:</p>
 <div class="highlight"><pre><span></span><code>ENABLE_SEAFDAV=true
@@ -6412,7 +6412,7 @@ SEAFDAV_WORKERS=5
 <div class="highlight"><pre><span></span><code><span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
 <span class="na">workers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">5</span>
 </code></pre></div>
-<h4 id="step-35-update-configurations-for-metadata-server">Step 3.5) Update configurations for Metadata server<a class="headerlink" href="#step-35-update-configurations-for-metadata-server" title="Permanent link">&para;</a></h4>
+<h3 id="step-35-update-configurations-for-metadata-server">Step 3.5) Update configurations for Metadata server<a class="headerlink" href="#step-35-update-configurations-for-metadata-server" title="Permanent link">&para;</a></h3>
 <p>If you are not using Metadata server, skip this step.</p>
 <p>In Seafile 14.0, the following two Metadata server configurations are moved from <code>seahub_settings.py</code> to the <code>.env</code> file used by the Seafile server. Remove them from <code>seahub_settings.py</code> if they exist there, and add them to the Seafile server <code>.env</code>. The old <code>METADATA_SERVER_URL</code> configuration is renamed to <code>INNER_METADATA_SERVER_URL</code>.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">Deploy in the same machine with Seafile</label><label for="__tabbed_8_2">Standalone</label></div>
@@ -6430,7 +6430,7 @@ INNER_METADATA_SERVER_URL=http://&lt;your metadata-server host&gt;:8084
 </div>
 </div>
 </div>
-<h3 id="step-4-modify-seahub_settingspy-for-thumbnail-server">Step 4) Modify <code>seahub_settings.py</code> for Thumbnail server<a class="headerlink" href="#step-4-modify-seahub_settingspy-for-thumbnail-server" title="Permanent link">&para;</a></h3>
+<h2 id="step-4-modify-seahub_settingspy-for-thumbnail-server">Step 4) Modify <code>seahub_settings.py</code> for Thumbnail server<a class="headerlink" href="#step-4-modify-seahub_settingspy-for-thumbnail-server" title="Permanent link">&para;</a></h2>
 <p>If you are not using Thumbnail server, skip this step.</p>
 <p>Open <code>/opt/seafile-data/seafile/conf/seahub_settings.py</code> and remove the following configuration if it exists. In Seafile 14.0, video thumbnail is enabled by default.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># video thumbnails (disabled by default)</span>
@@ -6440,14 +6440,15 @@ INNER_METADATA_SERVER_URL=http://&lt;your metadata-server host&gt;:8084
 <div class="highlight"><pre><span></span><code><span class="c1"># enable thumbnail-server (disabled by default)</span>
 <span class="n">ENABLE_THUMBNAIL_SERVER</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div>
-<h3 id="step-5-remove-seasearch-or-elasticsearch-authorization-information-in-seafeventsconf">Step 5) Remove SeaSearch (or ElasticSearch) authorization information in <code>seafevents.conf</code><a class="headerlink" href="#step-5-remove-seasearch-or-elasticsearch-authorization-information-in-seafeventsconf" title="Permanent link">&para;</a></h3>
+<h2 id="step-5-remove-obsolete-seasearch-or-elasticsearch-configurations">Step 5) Remove obsolete SeaSearch (or ElasticSearch) configurations<a class="headerlink" href="#step-5-remove-obsolete-seasearch-or-elasticsearch-configurations" title="Permanent link">&para;</a></h2>
+<p>Remove obsolete SeaSearch (or ElasticSearch) configurations in <code>seafevents.conf</code>:</p>
 <ol>
 <li><code>enabled</code> in both <code>[INDEX FILES]</code> and <code>[SEASEARCH]</code> sections are useless, you can remove it now (which is specified by two options in <code>.env</code>: <code>ENABLE_SEARCH</code> and <code>SEARCH_ENGINE</code>).</li>
 <li>If you are using SeaSearch and have specified the authorization information (<code>SEASEARCH_URL</code> and <code>SEASEARCH_TOKEN</code>) in <code>.env</code> you can safely remove the <code>seasearch_url</code> and <code>seasearch_token</code> in <code>[SEASEARCH]</code>.</li>
 <li>If you are using ElasticSearch and have specified the authorization information (<code>ELASTICSEARCH_SCHEME</code>, <code>ELASTICSEARCH_HOST</code>, <code>ELASTICSEARCH_PORT</code>, <code>ELASTICSEARCH_USER</code> and <code>ELASTICSEARCH_PASSWORD</code>) in <code>.env</code> you can safely remove the <code>scheme</code>, <code>es_host</code>, <code>es_port</code>, <code>username</code> and <code>password</code> in <code>[INDEX FILES]</code>.</li>
 <li><code>ENABLE_FULL_TEXT_SEARCH</code> controls document-content indexing for both search engines and defaults to <code>true</code>. If you set it in <code>.env</code>, remove <code>enable_full_text_search</code> from <code>[INDEX FILES]</code> or <code>[SEASEARCH]</code> to avoid ambiguity. Set it to <code>false</code> to retain file-name-only search.</li>
 </ol>
-<h3 id="step-6-switch-the-cache-server-to-redis">Step 6) Switch the cache server to Redis<a class="headerlink" href="#step-6-switch-the-cache-server-to-redis" title="Permanent link">&para;</a></h3>
+<h2 id="step-6-switch-the-cache-server-to-redis">Step 6) Switch the cache server to Redis<a class="headerlink" href="#step-6-switch-the-cache-server-to-redis" title="Permanent link">&para;</a></h2>
 <p>If you are already using Redis as the cache server, skip this step. Starting with Seafile 14.0, many new features rely on Redis as the cache server. We strongly recommend switching to Redis if you are currently using Memcached.</p>
 <ol>
 <li>
@@ -6469,7 +6470,7 @@ REDIS_PASSWORD=
 <p class="admonition-title">External Redis server</p>
 <p>If you use an external Redis server, replace <code>REDIS_HOST</code>, <code>REDIS_PORT</code>, and <code>REDIS_PASSWORD</code> with that server's connection settings.</p>
 </div>
-<h3 id="step-7-start-seafile">Step 7) Start Seafile<a class="headerlink" href="#step-7-start-seafile" title="Permanent link">&para;</a></h3>
+<h2 id="step-7-start-seafile">Step 7) Start Seafile<a class="headerlink" href="#step-7-start-seafile" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
 
