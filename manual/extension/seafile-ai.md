@@ -256,19 +256,6 @@ Seafile AI uses Redis to publish model token-usage events. Seafevents consumes t
     !!! note "`monthly_ai_credit_per_user` for organization user"
         For organizational team users, `monthly_ai_credit_per_user` will apply to the entire team. For example, when `monthly_ai_credit_per_user` is set to `2` (unit of doller for example) and there are 10 members in the team, all members in the team will share the quota of $2\times10=20\$$.
 
-### Enable AI chat
-
-
-Open `$SEAFILE_VOLUME/seafile/conf/seahub_settings.py` and enable AI chat:
-
-```py
-ENABLE_AI_CHAT = True
-```
-
-After this option is enabled, Seahub will display the AI chat entry for users.
-
-Users can use the chat feature in libraries to search for files in the current library, ask questions about specific files, and generate summaries for specific files.
-
 ### Enable keyword search
 
 Keyword search lets AI Chat search documents in the current library through SeaSearch.
