@@ -251,10 +251,12 @@ Seafile AI uses Redis to publish model token-usage events. Seafevents consumes t
             output_tokens: 0.60  # output price per 1M tokens
     ```
 
-2. Refer management of [roles and permission](../config/roles_permissions.md) to specify `monthly_ai_credit_per_user` (`-1` is unlimited), and the unit should be the same as in `AI_PRICES`.
+2. Refer to [roles and permissions](../config/roles_permissions.md) to set `monthly_ai_credit_per_user`. This setting limits the monthly AI credit per user; `-1` means unlimited. Seafile converts the calculated AI cost to credits at 100 credits per currency unit. For example, when prices are in USD, a value of `200` sets a monthly credit equivalent to USD 2 per user.
+
+    Only models with a configured `price` are included in AI usage statistics and monthly credit calculations.
 
     !!! note "`monthly_ai_credit_per_user` for organization user"
-        For organizational team users, `monthly_ai_credit_per_user` will apply to the entire team. For example, when `monthly_ai_credit_per_user` is set to `2` (unit of doller for example) and there are 10 members in the team, all members in the team will share the quota of $2\times10=20\$$.
+        For organizational team users, `monthly_ai_credit_per_user` applies to the entire team. For example, when it is set to `200` and the organization has a member quota of 10, the team shares 2,000 credits, equivalent to USD 20 when model prices are in USD.
 
 ### Enable AI chat
 
