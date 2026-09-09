@@ -4,7 +4,7 @@ For maintenance upgrade, like from version 10.0.1 to version 10.0.4, just downlo
 
 For major version upgrade, like from 11.0 to 12.0, see instructions below.
 
-Please check the **upgrade notes** for any special configuration or changes before/while upgrading.
+Please check the **upgrade notes** for an overview about changes in this major version before upgrading.
 
 ----
 
