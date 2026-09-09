@@ -248,7 +248,28 @@ ENABLE_THUMBNAIL_SERVER = True
 3. If you are using ElasticSearch and have specified the authorization information (`ELASTICSEARCH_SCHEME`, `ELASTICSEARCH_HOST`, `ELASTICSEARCH_PORT`, `ELASTICSEARCH_USER` and `ELASTICSEARCH_PASSWORD`) in `.env` you can safely remove the `scheme`, `es_host`, `es_port`, `username` and `password` in `[INDEX FILES]`.
 4. `ENABLE_FULL_TEXT_SEARCH` controls document-content indexing for both search engines and defaults to `true`. If you set it in `.env`, remove `enable_full_text_search` from `[INDEX FILES]` or `[SEASEARCH]` to avoid ambiguity. Set it to `false` to retain file-name-only search.
 
-### Step 6) Start Seafile
+### Step 6) Switch the cache server to Redis
+
+If you are already using Redis as the cache server, skip this step. Starting with Seafile 14.0, many new features rely on Redis as the cache server. We strongly recommend switching to Redis if you are currently using Memcached.
+
+1. Do not remove or comment out the `redis` service, or the `redis` dependency in the `seafile` service, in the newly downloaded `seafile-server.yml`.
+
+2. Update the cache settings in `.env` as follows:
+
+    ```env
+    ## Cache
+    CACHE_PROVIDER=redis
+
+    ### Redis
+    REDIS_HOST=redis
+    REDIS_PORT=6379
+    REDIS_PASSWORD=
+    ```
+
+!!! tip "External Redis server"
+    If you use an external Redis server, replace `REDIS_HOST`, `REDIS_PORT`, and `REDIS_PASSWORD` with that server's connection settings.
+
+### Step 7) Start Seafile
 
 ```sh
 docker compose up -d

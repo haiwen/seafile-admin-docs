@@ -258,40 +258,11 @@ Seafile AI uses Redis to publish model token-usage events. Seafevents consumes t
     !!! note "`monthly_ai_credit_per_user` for organization user"
         For organizational team users, `monthly_ai_credit_per_user` applies to the entire team. For example, when it is set to `200` and the organization has a member quota of 10, the team shares 2,000 credits, equivalent to USD 20 when model prices are in USD.
 
-### Enable AI chat
-
-
-Open `$SEAFILE_VOLUME/seafile/conf/seahub_settings.py` and enable AI chat:
-
-```py
-ENABLE_AI_CHAT = True
-```
-
-After this option is enabled, Seahub will display the AI chat entry for users.
-
-Users can use the chat feature in libraries to search for files in the current library, ask questions about specific files, and generate summaries for specific files.
-
 ### Enable keyword search
 
 Keyword search lets AI Chat search documents in the current library through SeaSearch.
 
-Before enabling keyword search, make sure that SeaSearch is deployed and enabled in `seafevents.conf`. Seafile AI must also be able to access the same SeaSearch service by using `SEASEARCH_URL` and `SEASEARCH_TOKEN`.
-
-Configure SeaSearch in `$SEAFILE_VOLUME/seafile/conf/seafevents.conf` if it is not already configured. For deployment and configuration details, refer to [SeaSearch configuration (Pro)](../setup/use_seasearch.md).
-
-```ini
-[SEASEARCH]
-enabled = true
-seasearch_url = http://seasearch:4080
-seasearch_token = <your SeaSearch authorization token>
-```
-
-For a standalone Seafile AI deployment, add the same SeaSearch URL and token to its `.env` file:
-
-```env
-SEASEARCH_URL=http://<your SeaSearch server host>:4080
-SEASEARCH_TOKEN=<your SeaSearch authorization token>
-```
+Before enabling keyword search, make sure that SeaSearch is deployed and enabled (see [Search with SeaSearch](../setup/use_seasearch.md)). Seafile AI must also be able to access the same SeaSearch service by using `SEASEARCH_URL` and `SEASEARCH_TOKEN`.
 
 ### Enable vector search
 
@@ -309,3 +280,15 @@ When files are added or changed, their summaries and vector index entries are up
 
 !!! note
     Vector search enhances AI Chat document retrieval; it does not replace normal SeaSearch keyword search. If vector search is unavailable, AI Chat continues to use keyword search.
+
+### Disable AI chat
+
+Users can use the chat feature in libraries to search for files in the current library, ask questions about specific files, and generate summaries for specific files.
+
+You can modify `$SEAFILE_VOLUME/seafile/conf/seahub_settings.py` and disable AI chat:
+
+```py
+ENABLE_AI_CHAT = False
+```
+
+After this option is set to `False`, Seahub will hidden the AI chat entry for users. 
