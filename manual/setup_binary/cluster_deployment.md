@@ -208,19 +208,6 @@ Add following options to seahub_setting.py, which will tell Seahub to store avat
     AVATAR_FILE_STORAGE = 'seahub.base.database_storage.DatabaseStorage'
     ```
 
-#### seafevents.conf
-
-Since Seafile 14.0, SeaSearch is the default search engine. For SeaSearch deployment details, refer to [SeaSearch configuration](../setup/use_seasearch.md). Modify `seafevents.conf` to enable SeaSearch:
-
-```
-[SEASEARCH]
-enabled = true
-seasearch_url = http://<your SeaSearch server>:4080
-seasearch_token = <your auth token>
-interval = 10m
-index_office_pdf = true
-```
-
 ### Update Seahub Database
 
 In cluster environment, we have to store avatars in the database instead of in a local disk.
@@ -450,11 +437,7 @@ For **seafevents.conf**:
 
 ```
 [SEASEARCH]
-enabled = true
-seasearch_url = http://<your SeaSearch server>:4080
-seasearch_token = <your auth token>
 interval = 10m
-index_office_pdf = true
 ```
 
 The `[SEASEARCH]` section is needed to let the front-end node know the SeaSearch-based file search feature is enabled.

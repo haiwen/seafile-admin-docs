@@ -408,3 +408,5 @@ helm delete seafile --namespace seafile
 ## Advanced operations
 
 For standard external access, use the chart's `ingress` or `httpRoute` configuration above. Refer to [advanced K8S management](./k8s_advanced_management.md) when you need to manage Gateway resources or custom routing rules manually.
+
+On the other hand, you can also click ***Extensions*** tab to explore the futher functions in Seafile.

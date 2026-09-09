@@ -32,6 +32,8 @@ then add or modify `ENABLE_NOTIFICATION_SERVER`:
 ENABLE_NOTIFICATION_SERVER=true
 ```
 
+When the notification server is deployed by `notification-server.yml` in the same Docker Compose project, leave `INNER_NOTIFICATION_SERVER_URL` at its default value, `http://notification-server:8083`. Set `NOTIFICATION_SERVER_URL` to the browser-accessible notification URL when it differs from the default reverse-proxy address.
+
 Finally, You can run notification server with the following command:
 
 ```sh

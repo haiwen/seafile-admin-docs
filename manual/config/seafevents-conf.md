@@ -45,9 +45,6 @@ enabled = true
 ## The following `[INDEX FILES]` section is for deployments that continue to use Elasticsearch.
 ## Since Seafile Pro 14.0, new Docker deployments use SeaSearch by default.
 [INDEX FILES]
-## must be "true" to enable search
-enabled = true
-
 ## The interval the search index is updated. Can be s(seconds), m(minutes), h(hours), d(days)
 interval=10m
 
@@ -56,8 +53,9 @@ highlight = fvh
 
 ## If true, indexes the contents of office/pdf files while updating search index
 ## Note: If you change this option from "false" to "true", then you need to clear the search index and update the index again.
+## Since Seafile Pro 14.0, `ENABLE_FULL_TEXT_SEARCH` in .env takes precedence over this setting.
 ## Refer to file search manual for details.
-index_office_pdf=false
+enable_full_text_search=true
 
 ## The default size limit for doc, docx, ppt, pptx, xls, xlsx and pdf files. Files larger than this will not be indexed.
 ## Since version 6.2.0
@@ -86,10 +84,10 @@ enabled = true     # Default is false, when enabled, users can use file auto del
 interval = 86400   # The unit is second(s), the default frequency is one day, that is, it runs once a day
 
 [SEASEARCH]
-## Since Seafile Pro 14.0, new Docker deployments use SeaSearch as the default search engine.
-enabled = true # When enabled, Seafile uses SeaSearch as the search engine
+## Since Seafile Pro 14.0, new Docker deployments use SeaSearch as the default-enabled search engine.
 seasearch_url = http://seasearch:4080 # If your SeaSearch server deploy on another machine, replace it to the truth address
 seasearch_token = <your auth token> # base64 code consist of `username:password`
 interval = 10m # The interval the search index is updated. Can be s(seconds), m(minutes), h(hours), d(days)
-
+## Since Seafile Pro 13.0, ENABLE_FULL_TEXT_SEARCH in .env takes precedence over this setting.
+enable_full_text_search=true
 ```

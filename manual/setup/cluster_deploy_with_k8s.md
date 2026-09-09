@@ -66,11 +66,13 @@ For futher configuration details, you can refer [the official documents](https:/
 
 ## Modify `seafile-env.yaml`
 
-Similar to Docker-base deployment, Seafile cluster in K8S deployment also supports use files to configure startup progress, you can modify common [environment variables](./setup_pro_by_docker.md#downloading-and-modifying-env) by
+Edit `seafile-env.yaml` to configure non-sensitive server settings. Put passwords and keys in the `seafile-secret` Secret created above. `CLUSTER_INIT_MODE` is configured in this ConfigMap; `CLUSTER_SERVER` and `CLUSTER_MODE` are injected by the backend and frontend Deployment resources.
 
 ```sh
 nano /opt/seafile-k8s-yaml/seafile-env.yaml
 ```
+
+The ConfigMap also contains Kubernetes-specific `SEAFILE_LOG_TO_STDOUT`, `SITE_ROOT`, and `SEAFILE_MYSQL_DB_PORT`. Fields marked with `<...>` must be filled in before deployment.
 
 ## Initialize Seafile cluster
 You can use following command to initialize Seafile cluster now (the Seafile's K8S resources will be specified in namespace `seafile` for easier management):
@@ -198,4 +200,4 @@ kubectl delete -f /opt/seafile-k8s-yaml/ -n seafile
 
 ## Advanced operations
 
-Please refer from [here](./k8s_advanced_management.md) for futher advanced operations.
+Please refer from [here](./k8s_advanced_management.md) or click ***Extensions*** tab for futher Seafile functions

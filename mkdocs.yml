@@ -105,7 +105,9 @@ nav:
         - OpenStack Swift Backend: setup/setup_with_swift.md
         - Multiple Storage Backends: setup/setup_with_multiple_storage_backends.md
         - Data migration: setup/migrate_backends_data.md
-      - SeaSearch configuration (Pro): setup/use_seasearch.md
+      - Search function (Pro):
+        - SeaSearch: setup/use_seasearch.md
+        - ElasticSearch: setup/use_elasticsearch.md
       - Seafile Docker autostart: setup/seafile_docker_autostart.md
       - Deploy with an existing MySQL server: setup/setup_with_an_existing_mysql_server.md
       - Use other reverse proxy: setup/use_other_reverse_proxy.md
@@ -171,7 +173,6 @@ nav:
         - Multi-Tenancy Support: config/multi_tenancy.md
     - Misc / Others:
       - CSP Configuration: config/csp_configuration.md
-      - Advanced File Search configuration (Pro): config/details_about_file_search.md
       - Open Cloud Mesh: config/ocm.md
     - Available configuration options:
       - Outline: config/README.md
@@ -184,6 +185,7 @@ nav:
   - Administration:
     - Outline: administration/README.md
     - Account management: administration/account.md
+    - File search (Pro): administration/file_search.md
     - Two-factor Authentication: administration/two_factor_authentication.md
     - Security features: administration/security_features.md
     - Access logs and auditing: administration/auditing.md

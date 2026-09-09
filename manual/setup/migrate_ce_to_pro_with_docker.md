@@ -53,7 +53,7 @@ mv -b .env /opt/.env
 
 ### Configure SeaSearch
 
-Since Seafile Pro 14.0, SeaSearch is the default search engine. For SeaSearch deployment and configuration details, refer to [SeaSearch configuration](./use_seasearch.md).
+Since Seafile Pro 14.0, SeaSearch is the default search engine. For SeaSearch deployment and configuration details, refer to [Search with SeaSearch](./use_seasearch.md).
 
 ### Start Seafile Pro
 

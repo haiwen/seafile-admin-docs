@@ -1,11 +1,14 @@
-# SeaSearch configuration (Pro)
+# Search with SeaSearch (Pro)
 
-[SeaSearch](https://seasearch-manual.seacloud-labs.ai/), a lightweight and efficient file indexer, is supported from Seafile 12 and is the default search engine from Seafile Pro 14.0.
+[SeaSearch](https://seasearch-manual.seacloud-labs.ai/), a lightweight and efficient file indexer, is supported from Seafile 12 and is the default-enabled search engine from Seafile Pro 14.0.
 
 !!! note "For Seafile deploy from binary package"
     We currently **only support Docker-based** deployment for SeaSearch Server, so this document describes the configuration with the situation of using Docker to deploy Seafile server. 
     
     If your Seafile Server deploy from binary package, please refer [here](../setup_binary/installation.md#starting-seafile-server) to start or stop Seafile Server.
+
+!!! success "Default enabled in Docker-based deployment"
+    If your Seafile server [deployed from Docker](./setup_pro_by_docker.md), you don't need to do the following change, due to the SeaSearch has been enabled by default.
 
 !!! tip "For Seafile cluster"
     Theoretically, **at least** the backend node has to restart, if your Seafile server deploy in cluster mode, but we still suggest you configure and restart **all node** to make sure the consistency and synchronization in the cluster
@@ -18,7 +21,7 @@ SeaSearch service is currently mainly deployed via docker. We have integrated it
 wget https://manual.seafile.com/14.0/repo/docker/pro/seasearch.yml
 ```
 
-## Modify `.env`
+### Modify `.env`
 
 The default `.env` file already contains the relevant SeaSearch variables. Pay special attention to the following variables, which affect the SeaSearch initialization process. For details about the SeaSearch variables in `.env`, please refer [here](https://seasearch-manual.seacloud-labs.ai/latest/config/). We use `/opt/seasearch-data` as the persistent directory of SeaSearch. By default, the SeaSearch administrator account is the same as the Seafile administrator account:
 
@@ -53,18 +56,12 @@ S3_USE_HTTPS=true
 S3_SSE_C_KEY=
 ```
 
-## Disable Elasticsearch service
-
-For a new Seafile Pro 14.0 deployment, no change is needed.
-
-If you are switching an existing deployment from *Elasticsearch* to *SeaSearch*, remove `elasticsearch.yml` from the `COMPOSE_FILE` variable in `.env`. Elasticsearch is no longer needed after the switch.
-
-## Modify `seafevents.conf`
+## Enable SeaSearch in Seafile
 
 !!! note "For the Seafile cluster"
     If you are using a Seafile cluster server, you need to ensure that the `seafevents.conf` configuration file on your **backend node** machine has made the following changes, but we still suggest you to make the same configurations in **all node** to make sure the consistency and synchronization in the cluster
 
-1. Get your authorization token by base64 code consist of `INIT_SS_ADMIN_USER` and `INIT_SS_ADMIN_PASSWORD` defined in `.env` firsly, which is used to authorize when calling the SeaSearch API:
+1. Get your authorization token by base64 code consist of `INIT_SS_ADMIN_USER` and `INIT_SS_ADMIN_PASSWORD` defined in the `.env` for deploying SeaSearch firsly, which is used to authorize when calling the SeaSearch API:
 
     ```sh
     echo -n 'username:password' | base64
@@ -73,28 +70,33 @@ If you are switching an existing deployment from *Elasticsearch* to *SeaSearch*,
     YWRtaW46YWRtaW5fcGFzc3dvcmQ=
     ```
 
-2. Add the following section in seafevents to enable seafile backend service to access SeaSearch APIs
+2. Modify the following section in the `.env` for deploying Seafile (`seafile-env.yaml` for K8S and `my-value.yaml` for Helm)
 
     !!! note "SeaSearch server deploy on a different machine with Seafile"
         If your SeaSearch server deploy on a **different** machine with Seafile, please replace `http://seasearch:4080` to the url `<scheme>://<address>:<port>` of your SeaSearch server 
 
-    ```conf
-    [SEASEARCH]
-    enabled = true
-    seasearch_url = http://seasearch:4080
-    seasearch_token = <your auth token>
-    interval = 10m
+    ```env
+    ## for searching
+    ENABLE_SEARCH=true
+    SEARCH_ENGINE=seasearch
 
-    # if you would like to enable full-text indexing (i.e., search for document content), also set the option below to true (support from 13.0 Pro)
-    index_office_pdf = true
+    # Index document contents for full-text search. Set to false to disable it (supported since 13.0 Pro).
+    ENABLE_FULL_TEXT_SEARCH=true
+
+    ### for seasearch
+    SEASEARCH_URL=http://seasearch:4080
+    SEASEARCH_TOKEN=<Your seasearch token>
     ```
 
-3. Disable the ElasticSearch, as you can set `enabled = false` in `INDEX FILES` section:
+3. (Optional) Advanced options in `seafevents.conf` for SeaSearch calling in Seafile:
 
     ```conf
-    [INDEX FILES]
-    enabled = false
-    ...
+    [SEASEARCH]
+    # Index sync interval
+    interval = 10m
+
+    # This setting is overridden by ENABLE_FULL_TEXT_SEARCH when it is set in .env.
+    enable_full_text_search=true
     ```
 
 ## Restart Seafile Server

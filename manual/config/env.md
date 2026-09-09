@@ -1,6 +1,6 @@
 # .env
 
-The [`.env`](../repo/docker/pro/env) file will be used to specify the components used by the Seafile-docker instance and the environment variables required by each component.
+The [`.env`](../repo/docker/pro/env) file specifies the components used by a Docker-based Seafile deployment and the environment variables required by each component. Kubernetes deployments use `seafile-env.yaml` for non-sensitive values and the `seafile-secret` Secret for passwords and keys; see the [Kubernetes single-node guide](../setup/k8s_single_node.md).
 
 ## Seafile-docker configurations
 
@@ -11,17 +11,20 @@ The [`.env`](../repo/docker/pro/env) file will be used to specify the components
 
 ### Docker images configurations
 
-- `SEAFILE_IMAGE`: The image of Seafile-server, default is `seafileltd/seafile-pro-mc:12.0-latest`.
+- `SEAFILE_IMAGE`: The image of Seafile-server, default is `seafileltd/seafile-pro-mc:14.0-latest`.
 - `SEAFILE_DB_IMAGE`: Database server image, default is `mariadb:10.11`.
-- `SEAFILE_MEMCACHED_IMAGE`: Cached server image, default is `memcached:1.6.29`
+- `SEAFILE_REDIS_IMAGE`: Redis server image, default is `redis`.
 - `SEAFILE_ELASTICSEARCH_IMAGE`: Only valid in pro edition when using Elasticsearch instead of SeaSearch. The Elasticsearch image, default is `elasticsearch:8.15.0`.
 - `SEASEARCH_IMAGE`: Only valid in pro edition. The SeaSearch image, default is `seafileltd/seasearch:1.0-latest`.
 - `SEAFILE_CADDY_IMAGE`: Caddy server image, default is `lucaslorentz/caddy-docker-proxy:2.12-alpine`.
 - `SEADOC_IMAGE`: Only valid after integrating [SeaDoc](../extension/setup_seadoc.md). SeaDoc server image, default is `seafileltd/sdoc-server:2.0-latest`.
+- `NOTIFICATION_SERVER_IMAGE`: Notification server image, default is `seafileltd/notification-server:14.0-latest`.
+- `MD_IMAGE`: Metadata server image, default is `seafileltd/seafile-md-server:14.0-latest`.
 - `NON_ROOT`: Run Seafile container without a root user, default is `false`
 
 ### Persistent Volume Configurations
 
+- `BASIC_STORAGE_PATH`: Base path for Docker persistent data, default is `/opt`.
 - `SEAFILE_VOLUME`: The volume directory of Seafile data, default is `/opt/seafile-data`.
 - `SEAFILE_MYSQL_VOLUME`: The volume directory of MySQL data, default is `/opt/seafile-mysql/db`.
 - `SEAFILE_CADDY_VOLUME`: The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's, default is `/opt/seafile-caddy`.
@@ -70,6 +73,19 @@ This part of configurations is only valid in `CACHE_PROVIDER=memcached`:
 - `ENABLE_GO_FILESERVER`: Use Go fileserver
 - `CSRF_TRUSTED_ORIGINS`: A list of trusted origins for CSRF protection, JSON string, example: `["https://seafile.example.com", "https://seafile.com"]`.
 
+## Search configurations (Pro)
+
+- `ENABLE_SEARCH`: Enable (`true`) or disable (`false`) the search service. Default is `true`.
+- `SEARCH_ENGINE`: Search engine to use: `seasearch` or `elasticsearch`. Default is `seasearch`.
+- `ENABLE_FULL_TEXT_SEARCH`: Index document contents for full-text search. Applies to SeaSearch and Elasticsearch. Default is `true`. Since Seafile Pro 13.0, this setting takes precedence over `enable_full_text_search` in `seafevents.conf`.
+- `SEASEARCH_URL`: SeaSearch URL reachable from the Seafile server. Required when using SeaSearch.
+- `SEASEARCH_TOKEN`: Authorization token for the SeaSearch API. Required when using SeaSearch.
+- `ELASTICSEARCH_SCHEME`: Elasticsearch connection scheme. Default is `http`.
+- `ELASTICSEARCH_HOST`: Elasticsearch host. Required when using Elasticsearch.
+- `ELASTICSEARCH_PORT`: Elasticsearch port. Default is `9200`.
+- `ELASTICSEARCH_USER`: Elasticsearch username.
+- `ELASTICSEARCH_PASSWORD`: Elasticsearch password.
+
 ## SeaDoc configurations (only valid after integrating SeaDoc)
 
 - `ENABLE_SEADOC`: Enable the SeaDoc server or not, default is `false`.
@@ -78,8 +94,8 @@ This part of configurations is only valid in `CACHE_PROVIDER=memcached`:
 ## S3 storage backend configurations (pro)
 
 - `SEAF_SERVER_STORAGE_TYPE`: What kind of the Seafile data for storage. Available options are `disk` (i.e., local disk), `s3`, `multiple` or left as empty (Seafile will read seafile.conf). (see the details of [multiple storage backends](../setup/setup_with_multiple_storage_backends.md))
-- `S3_COMMIT_BUCKET`: S3 storage backend fs objects bucket
-- `S3_FS_BUCKET`: S3 storage backend block objects bucket
+- `S3_COMMIT_BUCKET`: S3 storage backend commit objects bucket
+- `S3_FS_BUCKET`: S3 storage backend fs objects bucket
 - `S3_BLOCK_BUCKET`: S3 storage backend block objects bucket
 - `S3_SS_BUCKET`: S3 storage bucket for SeaSearch data (valid when service enabled)
 - `S3_MD_BUCKET`: S3 storage bucket for metadata-sever data (valid when service available)
@@ -99,16 +115,18 @@ This part of configurations is only valid in `CACHE_PROVIDER=memcached`:
     The Seafile server only support configuring S3 in `.env` for **single S3 storage backend mode** (i.e., when `SEAF_SERVER_STORAGE_TYPE=s3`). If you would like to use other storage backend (e.g., [Ceph](./setup_with_ceph.md), [Swift](./setup_with_swift.md)) or other settings that can only be set in `seafile.conf`, please set `SEAF_SERVER_STORAGE_TYPE` to empty or delete it, and set `MD_STORAGE_TYPE` and `SS_STORAGE_TYPE` according to your configurations.
 
 !!! note "The S3 configurations only valid with at least one `STORAGE_TYPE` has specified to `s3`"
-    Now there are three (pro) and one (cluster) ***STORAGE_TYPE*** we provided in `.env`:
-        - SEAF_SERVER_STORAGE_TYPE (pro & cluster)
-        - MD_STORAGE_TYPE (pro, see the [Metadata server](#metadata-server) section for the details)
-        - SS_STORAGE_TYPE (pro, see the [SeaSearch](#seasearch) section for the details)
+    The Docker Pro template provides three ***STORAGE_TYPE*** variables:
+        - `SEAF_SERVER_STORAGE_TYPE`
+        - `MD_STORAGE_TYPE` (see [Metadata server](#metadata-server))
+        - `SS_STORAGE_TYPE` (see [SeaSearch](#seasearch))
+
+    The Docker cluster template provides `SEAF_SERVER_STORAGE_TYPE` only. Configure standalone extension services with their own environment files.
         
     You have to specify at least one of them as s3 for the above configuration to take effect.
 
-## SeaSearch
+## SeaSearch service configurations
 
-For configurations about SeaSearch in `.env`, please refer [here](https://seasearch-manual.seacloud-labs.ai/latest/config/) for the details.
+For other SeaSearch service configurations in `.env`, such as `SS_STORAGE_TYPE`, `SS_MAX_OBJ_CACHE_SIZE`, and `SS_LOG_LEVEL`, refer to the [SeaSearch configuration reference](https://seasearch-manual.seacloud-labs.ai/latest/config/).
 
 ## Metadata server
 
@@ -122,12 +140,18 @@ For configurations about Metadata server in `.env`, please refer [here](../exten
 
 ## Metadata server
 
+- `ENABLE_METADATA_MANAGEMENT`: Enable (`true`) or disable (`false`) metadata management. Default is `false`.
+- `INNER_METADATA_SERVER_URL`: Metadata server URL reachable from the Seafile server container. Required when metadata management is enabled.
 - `MD_FILE_COUNT_LIMIT`: The maximum number of files in a repository that the metadata feature allows. If the number of files in a repository exceeds this value, the metadata management function will not be enabled for the repository. For a repository with metadata management enabled, if the number of records in it reaches this value but there are still some files that are not recorded in metadata server, the metadata management of the unrecorded files will be skipped. Default is `100000`.
+
+## Kubernetes environment configuration
+
+The Kubernetes `seafile-env.yaml` ConfigMap contains non-sensitive server configuration. In addition to the common server settings above, it defines `SEAFILE_LOG_TO_STDOUT`, `SITE_ROOT`, and `SEAFILE_MYSQL_DB_PORT`. Passwords and keys, including `JWT_PRIVATE_KEY`, `SEAFILE_MYSQL_DB_PASSWORD`, `INIT_SEAFILE_ADMIN_PASSWORD`, `INIT_SEAFILE_MYSQL_ROOT_PASSWORD`, `REDIS_PASSWORD`, `S3_SECRET_KEY`, and `S3_SSE_C_KEY`, belong in the `seafile-secret` Secret.
+
+For Kubernetes cluster deployments, `CLUSTER_INIT_MODE` is configured in `seafile-env.yaml`; `CLUSTER_SERVER` and `CLUSTER_MODE` are set by the backend and frontend Deployment resources.
 
 ## Cluster configurations
 
 - `CLUSTER_INIT_MODE`: (only valid in pro edition at deploying first time). Cluster initialization mode, in which the necessary configuration files for the service to run will be generated (but **the service will not be started**). If the configuration file already exists, no operation will be performed. The default value is `true`. When the configuration file is generated, ***be sure to set this item to `false`***.
-- `CLUSTER_INIT_ES_HOST`: (only valid in pro edition at deploying first time when using Elasticsearch). Your cluster Elasticsearch server host.
-- `CLUSTER_INIT_ES_PORT`: (only valid in pro edition at deploying first time when using Elasticsearch). Your cluster Elasticsearch server port. Default is `9200`.
 - `CLUSTER_SERVER`: Defined in `cluster/seafile-server.yml`, telling Seafile docker whether it is running in cluster mode. (It is used to replace cluster configuration in seafile.conf)
 - `CLUSTER_MODE`: Seafile service node type, i.e., `frontend` (default) or `backend`.

@@ -58,9 +58,9 @@ services:
     container_name: seafile-redis
     restart: unless-stopped
 
-  elasticsearch:
-    image: elasticsearch:8.6.2
-    container_name: seafile-elasticsearch
+  seasearch:
+    image: seafileltd/seasearch:1.0-latest
+    container_name: seasearch
     restart: unless-stopped
 
   seafile:
