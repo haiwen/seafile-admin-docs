@@ -206,11 +206,11 @@ nav:
       - Upgrade Seafile Docker 11.0: upgrade/upgrade_docker_11.0.md
       - Upgrade Seafile Docker 10.0: upgrade/upgrade_docker_10.0.md
     - Upgrade Seafile Server (binary):
-      - Upgrade Seafile 14.0: upgrade/upgrade_notes_for_14.0.md
-      - Upgrade Seafile 13.0: upgrade/upgrade_notes_for_13.0.md
-      - Upgrade Seafile 12.0: upgrade/upgrade_notes_for_12.0.md
-      - Upgrade Seafile 11.0: upgrade/upgrade_notes_for_11.0.md
-      - Upgrade Seafile 10.0: upgrade/upgrade_notes_for_10.0.md
+      - Upgrade Seafile 14.0: upgrade/upgrade_binary_14.0.md
+      - Upgrade Seafile 13.0: upgrade/upgrade_binary_13.0.md
+      - Upgrade Seafile 12.0: upgrade/upgrade_binary_12.0.md
+      - Upgrade Seafile 11.0: upgrade/upgrade_binary_11.0.md
+      - Upgrade Seafile 10.0: upgrade/upgrade_binary_10.0.md
     - Upgrade Seafile Cluster: upgrade/upgrade_a_cluster.md
     - Upgrade Seafile Cluster (binary): upgrade/upgrade_a_cluster_binary.md
     - Summary of obsolete configurations: upgrade/seafile_obsolete_configurations.md
