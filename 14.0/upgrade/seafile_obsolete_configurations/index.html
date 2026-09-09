@@ -13,10 +13,10 @@
         <link rel="canonical" href="https://haiwen.github.io/seafile-admin-docs/14.0/upgrade/seafile_obsolete_configurations/">
       
       
-        <link rel="prev" href="../upgrade_a_cluster_binary/">
+        <link rel="prev" href="../upgrade_notes/">
       
       
-        <link rel="next" href="../../develop/">
+        <link rel="next" href="../upgrade_docker_14.0/">
       
       
         
@@ -4585,6 +4585,209 @@
                 
   
   
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Summary of obsolete configurations
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Summary of obsolete configurations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#seafile-13-to-14-obsolete-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seafile 13 to 14 Obsolete Configurations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Seafile 13 to 14 Obsolete Configurations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#seahub_settingspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        seahub_settings.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seafile-12-to-13-obsolete-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seafile 12 to 13 Obsolete Configurations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Seafile 12 to 13 Obsolete Configurations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#seafeventsconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        seafevents.conf
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seafileconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        seafile.conf
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seahub_settingspy_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        seahub_settings.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#env" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        env
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seafile-11-to-12-obsolete-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seafile 11 to 12 Obsolete Configurations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Seafile 11 to 12 Obsolete Configurations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ccnetconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ccnet.conf
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seafileconf_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        seafile.conf
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
   
   
     
@@ -4604,10 +4807,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
         
           
-          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="">
             
   
   
@@ -4625,8 +4828,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7_3">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -4807,10 +5010,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" >
         
           
-          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="">
+          <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="">
             
   
   
@@ -4828,8 +5031,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7_4">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -5038,209 +5241,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Summary of obsolete configurations
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Summary of obsolete configurations
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#seafile-13-to-14-obsolete-configurations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Seafile 13 to 14 Obsolete Configurations
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Seafile 13 to 14 Obsolete Configurations">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#seahub_settingspy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        seahub_settings.py
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#seafile-12-to-13-obsolete-configurations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Seafile 12 to 13 Obsolete Configurations
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Seafile 12 to 13 Obsolete Configurations">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#seafeventsconf" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        seafevents.conf
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#seafileconf" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        seafile.conf
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#seahub_settingspy_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        seahub_settings.py
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#env" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        env
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#seafile-11-to-12-obsolete-configurations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Seafile 11 to 12 Obsolete Configurations
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Seafile 11 to 12 Obsolete Configurations">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#ccnetconf" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ccnet.conf
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#seafileconf_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        seafile.conf
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -6168,7 +6168,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../upgrade_a_cluster_binary/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Upgrade Seafile Cluster (binary)">
+          <a href="../upgrade_notes/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Upgrade notes">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -6178,20 +6178,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Upgrade Seafile Cluster (binary)
+                Upgrade notes
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../develop/" class="md-footer__link md-footer__link--next" aria-label="Next: Outline">
+          <a href="../upgrade_docker_14.0/" class="md-footer__link md-footer__link--next" aria-label="Next: Upgrade Seafile Docker 14.0">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Outline
+                Upgrade Seafile Docker 14.0
               </div>
             </div>
             <div class="md-footer__button md-icon">
