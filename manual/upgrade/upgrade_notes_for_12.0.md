@@ -7,45 +7,6 @@ Please always follow the main [upgrade guide](./upgrade.md).
 
 ## Important release changes
 
-Seafile version 12.0 has following major changes:
-
-* A redesigned Web UI
-* SeaDoc is now stable, providing online notes and documents feature
-* A new wiki module
-* A new trash mechanism, that deleted files will be recorded in database for fast listing. In the old version, deleted files are scanned from library history, which is slow.
-* Community edition now also support online GC (because SQLite support is dropped)
-
-
-Configuration changes:
-
-* Notification server is now packaged into its own docker image.
-* For binary package based installation, a new `.env` file is needed to contain some configuration items. These configuration items need to be shared by different components in Seafile. We name it `.env` to be consistant with docker based installation.
-* The password strength level is now calculated by algorithm. The old USER_PASSWORD_MIN_LENGTH, USER_PASSWORD_STRENGTH_LEVEL is removed. Only USER_STRONG_PASSWORD_REQUIRED is still used.
-* ADDITIONAL_APP_BOTTOM_LINKS is removed. Because there is no buttom bar in the navigation side bar now.
-* SERVICE_URL and FILE_SERVER_ROOT are removed. SERVICE_URL will be calculated from SEAFILE_SERVER_PROTOCOL and SEAFILE_SERVER_HOSTNAME in `.env` file.
-* `ccnet.conf` is removed. Some of its configuration items are moved from `.env` file, others are read from items in `seafile.conf` with same name.
-* Two role permissions are added, `can_create_wiki` and `can_publish_wiki` are used to control whether a role can create a Wiki and publish a Wiki. The old role permission `can_publish_repo` is removed.
-* REMOTE_USER header is not passed to Seafile by default, you need to change `gunicorn.conf.py` if you need REMOTE_USER header for SSO.
-
-Other changes:
-
-* A new lightweight and fast search engine, SeaSearch. SeaSearch is optional, you can still use ElasticSearch.
-
-
-Breaking changes
-
-* For security reason, WebDAV no longer support login with LDAP account, the user with LDAP account must generate a WebDAV token at the profile page
-* [File tags] The current file tags feature is deprecated. We will re-implement a new one in version 13.0 with a new general metadata management module.
-* For ElasticSearch based search, full text search of doc/xls/ppt file types are no longer supported. This enable us to remove Java dependency in Seafile side.
-* The search dialog now support loading more items when scroll down and the original separate detailed file search page is no longer used
-* The right side panel is redesigned and the seldom used file comments feature in the panel is removed
-
-Deploying Seafile with binary package is now deprecated and probably no longer be supported in version 13.0. We recommend you to migrate your existing Seafile deployment to docker based.
-
-
-### ElasticSearch change (pro edition only)
-
-Elasticsearch version is not changed in Seafile version 12.0
 
 ## New system libraries
 
