@@ -6199,10 +6199,11 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 </code></pre></div>
 </li>
 <li>
-<p>Refer management of <a href="../../config/roles_permissions/">roles and permission</a> to specify <code>monthly_ai_credit_per_user</code> (<code>-1</code> is unlimited), and the unit should be the same as in <code>AI_PRICES</code>.</p>
+<p>Refer to <a href="../../config/roles_permissions/">roles and permissions</a> to set <code>monthly_ai_credit_per_user</code>. This setting limits the monthly AI credit per user; <code>-1</code> means unlimited. Seafile converts the calculated AI cost to credits at 100 credits per currency unit. For example, when prices are in USD, a value of <code>200</code> sets a monthly credit equivalent to USD 2 per user.</p>
+<p>Only models with a configured <code>price</code> are included in AI usage statistics and monthly credit calculations.</p>
 <div class="admonition note">
 <p class="admonition-title"><code>monthly_ai_credit_per_user</code> for organization user</p>
-<p>For organizational team users, <code>monthly_ai_credit_per_user</code> will apply to the entire team. For example, when <code>monthly_ai_credit_per_user</code> is set to <code>2</code> (unit of doller for example) and there are 10 members in the team, all members in the team will share the quota of <span class="arithmatex">\(2\times10=20\$\)</span>.</p>
+<p>For organizational team users, <code>monthly_ai_credit_per_user</code> applies to the entire team. For example, when it is set to <code>200</code> and the organization has a member quota of 10, the team shares 2,000 credits, equivalent to USD 20 when model prices are in USD.</p>
 </div>
 </li>
 </ol>
