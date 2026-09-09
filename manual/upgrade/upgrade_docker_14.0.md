@@ -11,7 +11,7 @@ Please check the **upgrade notes** for an overview about changes in this major v
 !!! tip "Clean Database"
     The database upgrade may take a long time. You can clean the database before upgrading. Please refer to [Clean Database](../administration/clean_database.md).
 
-### Step 1) Stop the services:
+## Step 1) Stop the services
 
 Before upgrading, please shutdown your Seafile server:
 
@@ -19,9 +19,9 @@ Before upgrading, please shutdown your Seafile server:
 docker compose down
 ```
 
-### Step 2) Download the newest `.yml` files
+## Step 2) Download the newest `.yml` files
 
-#### Step 2.1) Download `seafile-server.yml`
+### Step 2.1) Download `seafile-server.yml`
 
 Before downloading the newest `seafile-server.yml`, please backup your original one:
 
@@ -40,7 +40,7 @@ Then download the new `seafile-server.yml` according to the following commands:
     wget https://manual.seafile.com/14.0/repo/docker/pro/seafile-server.yml
     ```
 
-#### Step 2.2) Download `.yml` file for notification server (optional)
+### Step 2.2) Download `.yml` file for notification server (optional)
 
 If you are using notification server, please backup the old file and download the 14.0 file:
 
@@ -55,7 +55,7 @@ If you are using notification server, please backup the old file and download th
     wget https://manual.seafile.com/14.0/repo/docker/notification-server/notification-server.yml
     ```
 
-#### Step 2.3) Download `.yml` file for metadata server (optional)
+### Step 2.3) Download `.yml` file for metadata server (optional)
 
 If you are using Metadata server, please backup the old file and download the 14.0 file:
 
@@ -70,7 +70,7 @@ If you are using Metadata server, please backup the old file and download the 14
     wget https://manual.seafile.com/14.0/repo/docker/metadata-server/md-server.yml
     ```
 
-#### Step 2.4) Download `.yml` file for thumbnail server (optional)
+### Step 2.4) Download `.yml` file for thumbnail server (optional)
 
 If you are using Thumbnail server, please backup the old file and download the 14.0 file:
 
@@ -85,7 +85,7 @@ If you are using Thumbnail server, please backup the old file and download the 1
     wget https://manual.seafile.com/14.0/repo/docker/thumbnail-server/thumbnail-server.yml
     ```
 
-#### Step 2.5) Download `.yml` file for Seafile AI (optional)
+### Step 2.5) Download `.yml` file for Seafile AI (optional)
 
 If you are using Seafile AI, please backup the old file and download the 14.0 file:
 
@@ -100,9 +100,9 @@ If you are using Seafile AI, please backup the old file and download the 14.0 fi
     wget https://manual.seafile.com/14.0/repo/docker/seafile-ai/seafile-ai.yml
     ```
 
-### Step 3) Modify `.env`
+## Step 3) Modify `.env`
 
-#### Step 3.1) Update image versions
+### Step 3.1) Update image versions
 
 === "Seafile CE"
 
@@ -158,7 +158,7 @@ If you are using Seafile AI, please backup the old file and download the 14.0 fi
     ELASTICSEARCH_PASSWORD=
     ```
 
-#### Step 3.2) Add SeaSearch configurations for Seafile AI (optional)
+### Step 3.2) Add SeaSearch configurations for Seafile AI (optional)
 
 If you are not using Seafile AI, skip this step.
 
@@ -177,13 +177,13 @@ Add the following settings to the `.env` used by Seafile AI:
 
 Leave both variables empty if SeaSearch is not used. For details, refer to [Search with SeaSearch](../setup/use_seasearch.md).
 
-#### Step 3.3) Update model configurations for Seafile AI (optional)
+### Step 3.3) Update model configurations for Seafile AI (optional)
 
 If you are not using Seafile AI, skip this step.
 
 In Seafile 14.0, Seafile AI models are configured in `seafile_ai_config.yaml` instead of through environment variables. Update the model configuration according to [Seafile AI extension](../extension/seafile-ai.md).
 
-#### Step 3.4) Update configurations for WebDAV
+### Step 3.4) Update configurations for WebDAV
 
 If you are not using WebDAV, skip this step.
 
@@ -203,7 +203,7 @@ enabled = true
 workers = 5
 ```
 
-#### Step 3.5) Update configurations for Metadata server
+### Step 3.5) Update configurations for Metadata server
 
 If you are not using Metadata server, skip this step.
 
@@ -222,7 +222,7 @@ In Seafile 14.0, the following two Metadata server configurations are moved from
 
     In a cluster deployment, add the same settings to the `.env` of each Seafile server node that needs to use the Metadata server. `INNER_METADATA_SERVER_URL` must be reachable from the Seafile server container.
 
-### Step 4) Modify `seahub_settings.py` for Thumbnail server
+## Step 4) Modify `seahub_settings.py` for Thumbnail server
 
 If you are not using Thumbnail server, skip this step.
 
@@ -240,14 +240,17 @@ Then add the following configuration to enable Thumbnail server:
 ENABLE_THUMBNAIL_SERVER = True
 ```
 
-### Step 5) Remove SeaSearch (or ElasticSearch) authorization information in `seafevents.conf`
+## Step 5) Remove obsolete SeaSearch (or ElasticSearch) configurations
+
+Remove obsolete SeaSearch (or ElasticSearch) configurations in `seafevents.conf`:
 
 1. `enabled` in both `[INDEX FILES]` and `[SEASEARCH]` sections are useless, you can remove it now (which is specified by two options in `.env`: `ENABLE_SEARCH` and `SEARCH_ENGINE`).
 2. If you are using SeaSearch and have specified the authorization information (`SEASEARCH_URL` and `SEASEARCH_TOKEN`) in `.env` you can safely remove the `seasearch_url` and `seasearch_token` in `[SEASEARCH]`.
 3. If you are using ElasticSearch and have specified the authorization information (`ELASTICSEARCH_SCHEME`, `ELASTICSEARCH_HOST`, `ELASTICSEARCH_PORT`, `ELASTICSEARCH_USER` and `ELASTICSEARCH_PASSWORD`) in `.env` you can safely remove the `scheme`, `es_host`, `es_port`, `username` and `password` in `[INDEX FILES]`.
 4. `ENABLE_FULL_TEXT_SEARCH` controls document-content indexing for both search engines and defaults to `true`. If you set it in `.env`, remove `enable_full_text_search` from `[INDEX FILES]` or `[SEASEARCH]` to avoid ambiguity. Set it to `false` to retain file-name-only search.
 
-### Step 6) Switch the cache server to Redis
+
+## Step 6) Switch the cache server to Redis
 
 If you are already using Redis as the cache server, skip this step. Starting with Seafile 14.0, many new features rely on Redis as the cache server. We strongly recommend switching to Redis if you are currently using Memcached.
 
@@ -268,7 +271,8 @@ If you are already using Redis as the cache server, skip this step. Starting wit
 !!! tip "External Redis server"
     If you use an external Redis server, replace `REDIS_HOST`, `REDIS_PORT`, and `REDIS_PASSWORD` with that server's connection settings.
 
-### Step 7) Start Seafile
+
+## Step 7) Start Seafile
 
 ```sh
 docker compose up -d
