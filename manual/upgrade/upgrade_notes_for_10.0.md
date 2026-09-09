@@ -1,12 +1,4 @@
-# Upgrade notes for 10.0
-
-These notes give additional information about changes.
-Please always follow the main [upgrade guide](./upgrade.md).
-
-For docker based version, please check [upgrade Seafile Docker image](./upgrade_docker.md)
-
-## Important release changes
-
+# Upgrade Seafile binary from 9.0 to 10.0
 
 
 ## New Python libraries

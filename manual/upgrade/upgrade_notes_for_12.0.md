@@ -1,12 +1,4 @@
-# Upgrade notes for 12.0
-
-- These notes give additional information about changes.
-Please always follow the main [upgrade guide](./upgrade.md).
-
-- For docker based version, please check [upgrade Seafile Docker image](./upgrade_docker.md)
-
-## Important release changes
-
+# Upgrade Seafile binary from 11.0 to 12.0
 
 ## New system libraries
 

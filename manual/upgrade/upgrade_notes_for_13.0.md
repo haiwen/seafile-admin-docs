@@ -1,41 +1,4 @@
-# Upgrade notes for 13.0
-
-- These notes give additional information about changes.
-Please always follow the main [upgrade guide](./upgrade.md).
-
-- For docker based version, please check [upgrade Seafile Docker image](./upgrade_docker.md)
-
-## Important release changes
-
-Seafile version 13.0 has following major changes:
-
-* SeaDoc: SeaDoc is now version 2.0, beside support sdoc, it support whiteboard too
-* Thumbnail server: A new thumbnail server component is added to improve performance for thumbnail generating and support thumbnail for videos
-* Metadata server: A new metadata server component is avaible to manage extended file properties
-* Notification server: The web interface now support real-time update when other people add or remove files if notification-server is enabled
-* SeaSearch: SeaSearch is now version 1.0 and support full-text search
-
-
-Configuration changes:
-
-* Database and memcache configurations are added to `.env`, it is recommended to use environment variables to config database and memcache
-* Redis is recommended to be used as memcache server
-* (Optional) S3 configuration can be done via environment variables and is much simplified
-* Elastic search is now have its own yml file
-* The Nginx bundled in seafile docker image no longer generates and reads configurations from mapped volume. The Nginx is used for servering static files in Seahub, and map the ports of different components in seafile docker image to a single 80 port.
-
-Breaking changes
-
-* For security reason, WebDAV no longer support login with LDAP account, the user with LDAP account must generate a WebDAV token at the profile page
-* [File tags] The old file tags feature can no longer be used, the interface provide an upgrade notice for migrate the data to the new file tags feature
-
-
-Deploying Seafile with binary package is no longer supported for community edition. We recommend you to migrate your existing Seafile deployment to docker based.
-
-
-### ElasticSearch change (pro edition only)
-
-Elasticsearch version is not changed in Seafile version 13.0
+# Upgrade Seafile binary from 12.0 to 13.0
 
 ## New system libraries
 
