@@ -2634,17 +2634,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#enable-ai-chat" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Enable AI chat
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#enable-keyword-search" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2660,6 +2649,17 @@
     <span class="md-ellipsis">
       
         Enable vector search
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disable-ai-chat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disable AI chat
       
     </span>
   </a>
@@ -5752,17 +5752,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#enable-ai-chat" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Enable AI chat
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#enable-keyword-search" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5778,6 +5767,17 @@
     <span class="md-ellipsis">
       
         Enable vector search
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disable-ai-chat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disable AI chat
       
     </span>
   </a>
@@ -6207,25 +6207,9 @@ wget<span class="w"> </span>-O<span class="w"> </span>.env<span class="w"> </spa
 </div>
 </li>
 </ol>
-<h3 id="enable-ai-chat">Enable AI chat<a class="headerlink" href="#enable-ai-chat" title="Permanent link">&para;</a></h3>
-<p>Open <code>$SEAFILE_VOLUME/seafile/conf/seahub_settings.py</code> and enable AI chat:</p>
-<div class="highlight"><pre><span></span><code><span class="n">ENABLE_AI_CHAT</span> <span class="o">=</span> <span class="kc">True</span>
-</code></pre></div>
-<p>After this option is enabled, Seahub will display the AI chat entry for users.</p>
-<p>Users can use the chat feature in libraries to search for files in the current library, ask questions about specific files, and generate summaries for specific files.</p>
 <h3 id="enable-keyword-search">Enable keyword search<a class="headerlink" href="#enable-keyword-search" title="Permanent link">&para;</a></h3>
 <p>Keyword search lets AI Chat search documents in the current library through SeaSearch.</p>
-<p>Before enabling keyword search, make sure that SeaSearch is deployed and enabled in <code>seafevents.conf</code>. Seafile AI must also be able to access the same SeaSearch service by using <code>SEASEARCH_URL</code> and <code>SEASEARCH_TOKEN</code>.</p>
-<p>Configure SeaSearch in <code>$SEAFILE_VOLUME/seafile/conf/seafevents.conf</code> if it is not already configured. For deployment and configuration details, refer to <a href="../../setup/use_seasearch/">SeaSearch configuration (Pro)</a>.</p>
-<div class="highlight"><pre><span></span><code><span class="k">[SEASEARCH]</span>
-<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">seasearch_url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">http://seasearch:4080</span>
-<span class="na">seasearch_token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;your SeaSearch authorization token&gt;</span>
-</code></pre></div>
-<p>For a standalone Seafile AI deployment, add the same SeaSearch URL and token to its <code>.env</code> file:</p>
-<div class="highlight"><pre><span></span><code>SEASEARCH_URL=http://&lt;your SeaSearch server host&gt;:4080
-SEASEARCH_TOKEN=&lt;your SeaSearch authorization token&gt;
-</code></pre></div>
+<p>Before enabling keyword search, make sure that SeaSearch is deployed and enabled (see <a href="../../setup/use_seasearch/">Search with SeaSearch</a>). Seafile AI must also be able to access the same SeaSearch service by using <code>SEASEARCH_URL</code> and <code>SEASEARCH_TOKEN</code>.</p>
 <h3 id="enable-vector-search">Enable vector search<a class="headerlink" href="#enable-vector-search" title="Permanent link">&para;</a></h3>
 <p>Vector search lets AI Chat find documents by the meaning of their AI-generated summaries. It is built on keyword search and requires the SeaSearch configuration above.</p>
 <p>Before enabling vector search, make sure that all of the following are available:</p>
@@ -6240,6 +6224,12 @@ SEASEARCH_TOKEN=&lt;your SeaSearch authorization token&gt;
 <p class="admonition-title">Note</p>
 <p>Vector search enhances AI Chat document retrieval; it does not replace normal SeaSearch keyword search. If vector search is unavailable, AI Chat continues to use keyword search.</p>
 </div>
+<h3 id="disable-ai-chat">Disable AI chat<a class="headerlink" href="#disable-ai-chat" title="Permanent link">&para;</a></h3>
+<p>Users can use the chat feature in libraries to search for files in the current library, ask questions about specific files, and generate summaries for specific files.</p>
+<p>You can modify <code>$SEAFILE_VOLUME/seafile/conf/seahub_settings.py</code> and disable AI chat:</p>
+<div class="highlight"><pre><span></span><code><span class="n">ENABLE_AI_CHAT</span> <span class="o">=</span> <span class="kc">False</span>
+</code></pre></div>
+<p>After this option is set to <code>False</code>, Seahub will hidden the AI chat entry for users. </p>
 
 
 

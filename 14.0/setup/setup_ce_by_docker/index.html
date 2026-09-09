@@ -1032,6 +1032,67 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Download and modify .env">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-optional-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common optional settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache-service-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cache service settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-extension-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional extension settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -5811,6 +5872,67 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Download and modify .env">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-optional-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common optional settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache-service-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cache service settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-extension-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional extension settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -5995,7 +6117,81 @@ wget<span class="w"> </span>https://manual.seafile.com/14.0/repo/docker/caddy.ym
 
 nano<span class="w"> </span>.env
 </code></pre></div>
-<p>The following fields merit particular attention:</p>
+<p>Only change the required settings below for a standard deployment. Keep all other values in the template at their defaults unless you need one of the optional configurations described later.</p>
+<h4 id="required-settings">Required settings<a class="headerlink" href="#required-settings" title="Permanent link">&para;</a></h4>
+<div class="admonition success">
+<p class="admonition-title">Easier deployment</p>
+<p>For a standard deployment, updating only the settings in this section is sufficient to deploy Seafile.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SEAFILE_SERVER_HOSTNAME</code></td>
+<td>Public hostname or domain of the Seafile server.</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><code>JWT_PRIVATE_KEY</code></td>
+<td>Random string of at least 32 characters. Generate one with <code>pwgen -s 40 1</code>.</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><code>SEAFILE_MYSQL_DB_PASSWORD</code></td>
+<td>Password for the Seafile MySQL user.</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><code>INIT_SEAFILE_MYSQL_ROOT_PASSWORD</code></td>
+<td>MySQL <code>root</code> password.</td>
+<td>Required on first deployment only</td>
+</tr>
+<tr>
+<td><code>INIT_SEAFILE_ADMIN_EMAIL</code></td>
+<td>Initial Seafile administrator username.</td>
+<td>Required on first deployment only</td>
+</tr>
+<tr>
+<td><code>INIT_SEAFILE_ADMIN_PASSWORD</code></td>
+<td>Initial Seafile administrator password.</td>
+<td>Required on first deployment only</td>
+</tr>
+</tbody>
+</table>
+<h4 id="common-optional-settings">Common optional settings<a class="headerlink" href="#common-optional-settings" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BASIC_STORAGE_PATH</code></td>
+<td>Base directory for Docker persistent data. The derived data, database, and Caddy paths normally do not need to be changed individually.</td>
+<td><code>/opt</code></td>
+</tr>
+<tr>
+<td><code>SEAFILE_SERVER_PROTOCOL</code></td>
+<td>Public server protocol: <code>http</code> or <code>https</code>.</td>
+<td><code>http</code></td>
+</tr>
+<tr>
+<td><code>TIME_ZONE</code></td>
+<td>Time zone used by the containers.</td>
+<td><code>Etc/UTC</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="database-settings">Database settings<a class="headerlink" href="#database-settings" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -6006,142 +6202,62 @@ nano<span class="w"> </span>.env
 </thead>
 <tbody>
 <tr>
-<td><code>SEAFILE_VOLUME</code></td>
-<td>The volume directory of Seafile data</td>
-<td><code>/opt/seafile-data</code></td>
-</tr>
-<tr>
-<td><code>SEAFILE_MYSQL_VOLUME</code></td>
-<td>The volume directory of MySQL data</td>
-<td><code>/opt/seafile-mysql/db</code></td>
-</tr>
-<tr>
-<td><code>SEAFILE_CADDY_VOLUME</code></td>
-<td>The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's</td>
-<td><code>/opt/seafile-caddy</code></td>
-</tr>
-<tr>
-<td><code>INIT_SEAFILE_MYSQL_ROOT_PASSWORD</code></td>
-<td>The <code>root</code> password of MySQL</td>
-<td>(Only required on first deployment)</td>
-</tr>
-<tr>
 <td><code>SEAFILE_MYSQL_DB_HOST</code></td>
-<td>The host of MySQL</td>
+<td>The host of MySQL.</td>
 <td><code>db</code></td>
 </tr>
 <tr>
 <td><code>SEAFILE_MYSQL_DB_PORT</code></td>
-<td>The port of MySQL</td>
+<td>The port of MySQL.</td>
 <td><code>3306</code></td>
 </tr>
 <tr>
 <td><code>SEAFILE_MYSQL_DB_USER</code></td>
-<td>The user of MySQL (<code>database</code> - <code>user</code> can be found in <code>conf/seafile.conf</code>)</td>
+<td>The user of MySQL (<code>database</code> - <code>user</code> can be found in <code>conf/seafile.conf</code>).</td>
 <td><code>seafile</code></td>
 </tr>
+</tbody>
+</table>
+<p><code>SEAFILE_MYSQL_DB_PASSWORD</code> is required and listed above. For database names and other database settings, see <a href="../../config/env/#mysql-configurations">environment variables</a>.</p>
+<h4 id="cache-service-settings">Cache service settings<a class="headerlink" href="#cache-service-settings" title="Permanent link">&para;</a></h4>
+<p>Seafile Docker uses its integrated Redis service by default, so no cache settings need to be changed for a standard deployment.</p>
+<table>
+<thead>
 <tr>
-<td><code>SEAFILE_MYSQL_DB_PASSWORD</code></td>
-<td>The user <code>seafile</code> password of MySQL</td>
-<td>(required)</td>
+<th>Variable</th>
+<th>Description</th>
+<th>Default Value</th>
 </tr>
-<tr>
-<td><code>SEAFILE_MYSQL_DB_CCNET_DB_NAME</code></td>
-<td>The database name of ccnet</td>
-<td><code>ccnet_db</code></td>
-</tr>
-<tr>
-<td><code>SEAFILE_MYSQL_DB_SEAFILE_DB_NAME</code></td>
-<td>The database name of seafile</td>
-<td><code>seafile_db</code></td>
-</tr>
-<tr>
-<td><code>SEAFILE_MYSQL_DB_SEAHUB_DB_NAME</code></td>
-<td>The database name of seahub</td>
-<td><code>seahub_db</code></td>
-</tr>
-<tr>
-<td><code>JWT_PRIVATE_KEY</code></td>
-<td>JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters is required for Seafile, which can be generated by using <code>pwgen -s 40 1</code></td>
-<td>(required)</td>
-</tr>
-<tr>
-<td><code>SEAFILE_SERVER_HOSTNAME</code></td>
-<td>Seafile server hostname or domain</td>
-<td>(required)</td>
-</tr>
-<tr>
-<td><code>SEAFILE_SERVER_PROTOCOL</code></td>
-<td>Seafile server protocol (http or https)</td>
-<td><code>http</code></td>
-</tr>
+</thead>
+<tbody>
 <tr>
 <td><code>CACHE_PROVIDER</code></td>
-<td>The type of cache server used for Seafile. The available options are <code>redis</code> and <code>memcached</code>. Since Seafile 13, it is recommended to use <code>redis</code> as the cache service to support new features, and <code>memcached</code> will no longer be integrated into Seafile Docker by default.</td>
+<td>The type of cache server used by Seafile. Available options are <code>redis</code> and <code>memcached</code>.</td>
 <td><code>redis</code></td>
 </tr>
 <tr>
 <td><code>REDIS_HOST</code></td>
-<td>Redis server host</td>
+<td>The host of Redis.</td>
 <td><code>redis</code></td>
 </tr>
 <tr>
 <td><code>REDIS_PORT</code></td>
-<td>Redis server port</td>
+<td>The port of Redis.</td>
 <td><code>6379</code></td>
 </tr>
 <tr>
 <td><code>REDIS_PASSWORD</code></td>
-<td>Redis server password</td>
+<td>The password of Redis.</td>
 <td>(none)</td>
-</tr>
-<tr>
-<td><code>MEMCACHED_HOST</code></td>
-<td>Memcached server host</td>
-<td><code>memcached</code></td>
-</tr>
-<tr>
-<td><code>MEMCACHED_PORT</code></td>
-<td>Memcached server port</td>
-<td><code>11211</code></td>
-</tr>
-<tr>
-<td><code>TIME_ZONE</code></td>
-<td>Time zone</td>
-<td><code>UTC</code></td>
-</tr>
-<tr>
-<td><code>ENABLE_NOTIFICATION_SERVER</code></td>
-<td>Enable (<code>true</code>) or disable (<code>false</code>) notification feature for Seafile</td>
-<td><code>false</code></td>
-</tr>
-<tr>
-<td><code>NOTIFICATION_SERVER_URL</code></td>
-<td>The <a href="../../extension/notification-server/">notification server</a> url</td>
-<td>(none)</td>
-</tr>
-<tr>
-<td><code>MD_FILE_COUNT_LIMIT</code></td>
-<td>(only valid when deployed <a href="../../extension/metadata-server/">metadata server</a>). The maximum number of files in a repository that the metadata feature allows. If the number of files in a repository exceeds this value, the metadata management function will not be enabled for the repository. For a repository with metadata management enabled, if the number of records in it reaches this value but there are still some files that are not recorded in metadata server, the metadata management of the unrecorded files will be skipped.</td>
-<td><code>100000</code></td>
-</tr>
-<tr>
-<td><code>INIT_SEAFILE_ADMIN_EMAIL</code></td>
-<td>Admin username</td>
-<td><code>me@example.com</code> (Recommend modifications)</td>
-</tr>
-<tr>
-<td><code>INIT_SEAFILE_ADMIN_PASSWORD</code></td>
-<td>Admin password</td>
-<td><code>asecret</code> (Recommend modifications)</td>
-</tr>
-<tr>
-<td><code>NON_ROOT</code></td>
-<td>Run Seafile container without a root user</td>
-<td><code>false</code></td>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="admonition-title">Recommended Redis since Seafile 13.0</p>
+<p>Since Seafile 13.0, many new features depend on Redis as the cache server. Starting with Seafile 14.0, we do not recommend using Memcached as the cache server. If you need to use Memcached, see <a href="../../config/env/#cache-configurations">environment variables</a> for its configuration.</p>
+</div>
+<h4 id="optional-extension-settings">Optional extension settings<a class="headerlink" href="#optional-extension-settings" title="Permanent link">&para;</a></h4>
+<p>The template includes settings for optional services such as SeaDoc, the <a href="../../extension/notification-server/">notification server</a>, and <a href="../../extension/metadata-server/">metadata server</a>. Leave these disabled unless you are deploying the corresponding service. For a complete list of environment variables, see <a href="../../config/env/">environment variables</a>.</p>
 <h3 id="start-seafile-server">Start Seafile server<a class="headerlink" href="#start-seafile-server" title="Permanent link">&para;</a></h3>
 <p>Start Seafile server with the following command</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
@@ -6297,13 +6413,6 @@ docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span cla
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-net</span>
 <span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </code></pre></div>
-<p>Q: For some reason, I still have to use Memcached as my cache server. How can I do this?</p>
-<p>A: If you still want to use the <strong><em>Memcached</em></strong> (is not provided from Seafile Docker 13), just follow the steps below:</p>
-<ul>
-<li>Set <code>CACHE_PROVIDER</code> to <code>memcached</code> and modify <code>MEMCACHED_xxx</code> in <code>.env</code></li>
-<li>Remove the <code>redis</code> part and and the <code>redis</code> dependency in <code>seafile</code> service section in <code>seafile-server.yml</code>. </li>
-</ul>
-<p>By the way, you can make changes to the cache server after the service is started (by setting environment variables in <code>.env</code>), but the corresponding configuration files will not be updated directly (e.g., <code>seahub_settings.py</code>, <code>seafile.conf</code> and <code>seafevents.conf</code>). To avoid ambiguity, we recommend that you also update these configuration files.</p>
 
 
 

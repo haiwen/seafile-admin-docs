@@ -1071,6 +1071,89 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Downloading and Modifying .env">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-optional-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common optional settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache-service-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cache service settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-backend-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage backend settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-extension-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional extension settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -5833,6 +5916,89 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Downloading and Modifying .env">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-optional-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common optional settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache-service-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cache service settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-backend-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage backend settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-extension-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional extension settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -6012,7 +6178,7 @@
 <p>Use the <a href="https://docs.docker.com/engine/install/">official installation guide for your OS to install Docker</a>.</p>
 <h3 id="downloading-the-seafile-image">Downloading the Seafile Image<a class="headerlink" href="#downloading-the-seafile-image" title="Permanent link">&para;</a></h3>
 <div class="admonition success">
-<p class="admonition-title">Success</p>
+<p class="admonition-title">Standard deployment</p>
 <p>Since v12.0, Seafile PE versions are hosted on DockerHub and does not require username and password to download. For <strong><em>older Seafile PE</em></strong> versions are available private docker repository (back to Seafile 7.0). You can get the username and password on the download page in the <a href="https://customer.seafile.com/downloads">Customer Center</a>.</p>
 </div>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>seafileltd/seafile-pro-mc:14.0-latest
@@ -6030,7 +6196,96 @@ wget<span class="w"> </span>https://manual.seafile.com/14.0/repo/docker/caddy.ym
 
 nano<span class="w"> </span>.env
 </code></pre></div>
-<p>The following fields merit particular attention:</p>
+<p>Only change the required settings below for a standard deployment. Keep all other values in the template at their defaults unless you need one of the optional configurations described later.</p>
+<h4 id="required-settings">Required settings<a class="headerlink" href="#required-settings" title="Permanent link">&para;</a></h4>
+<div class="admonition success">
+<p class="admonition-title">Easier deployment</p>
+<p>For a standard deployment, updating only the settings in this section is sufficient to deploy Seafile.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SEAFILE_SERVER_HOSTNAME</code></td>
+<td>Public hostname or domain of the Seafile server.</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><code>JWT_PRIVATE_KEY</code></td>
+<td>Random string of at least 32 characters. Generate one with <code>pwgen -s 40 1</code>.</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><code>SEAFILE_MYSQL_DB_PASSWORD</code></td>
+<td>Password for the Seafile MySQL user.</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><code>INIT_SEAFILE_MYSQL_ROOT_PASSWORD</code></td>
+<td>MySQL <code>root</code> password.</td>
+<td>Required on first deployment only</td>
+</tr>
+<tr>
+<td><code>INIT_SEAFILE_ADMIN_EMAIL</code></td>
+<td>Initial Seafile administrator username.</td>
+<td>Required on first deployment only</td>
+</tr>
+<tr>
+<td><code>INIT_SEAFILE_ADMIN_PASSWORD</code></td>
+<td>Initial Seafile administrator password.</td>
+<td>Required on first deployment only</td>
+</tr>
+<tr>
+<td><code>INIT_SS_ADMIN_USER</code></td>
+<td>SeaSearch administrator username.</td>
+<td>Same as <code>INIT_SEAFILE_ADMIN_EMAIL</code></td>
+</tr>
+<tr>
+<td><code>INIT_SS_ADMIN_PASSWORD</code></td>
+<td>SeaSearch administrator password.</td>
+<td>Same as <code>INIT_SEAFILE_ADMIN_PASSWORD</code></td>
+</tr>
+<tr>
+<td><code>SEASEARCH_TOKEN</code></td>
+<td>Authorization token for the SeaSearch API. Generate from <code>echo -n 'INIT_SEAFILE_ADMIN_EMAIL:INIT_SEAFILE_ADMIN_PASSWORD' | base64</code></td>
+<td>Required</td>
+</tr>
+</tbody>
+</table>
+<h4 id="common-optional-settings">Common optional settings<a class="headerlink" href="#common-optional-settings" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BASIC_STORAGE_PATH</code></td>
+<td>Base directory for Docker persistent data. The derived data, database, Caddy, and SeaSearch paths normally do not need to be changed individually.</td>
+<td><code>/opt</code></td>
+</tr>
+<tr>
+<td><code>SEAFILE_SERVER_PROTOCOL</code></td>
+<td>Public server protocol: <code>http</code> or <code>https</code>.</td>
+<td><code>http</code></td>
+</tr>
+<tr>
+<td><code>TIME_ZONE</code></td>
+<td>Time zone used by the containers.</td>
+<td><code>Etc/UTC</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="database-settings">Database settings<a class="headerlink" href="#database-settings" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -6041,319 +6296,61 @@ nano<span class="w"> </span>.env
 </thead>
 <tbody>
 <tr>
-<td><code>BASIC_STORAGE_PATH</code></td>
-<td>Base path for Docker persistent data</td>
-<td><code>/opt</code></td>
-</tr>
-<tr>
-<td><code>SEAFILE_VOLUME</code></td>
-<td>The volume directory of Seafile data</td>
-<td><code>/opt/seafile-data</code></td>
-</tr>
-<tr>
-<td><code>SEAFILE_MYSQL_VOLUME</code></td>
-<td>The volume directory of MySQL data</td>
-<td><code>/opt/seafile-mysql/db</code></td>
-</tr>
-<tr>
-<td><code>SEAFILE_CADDY_VOLUME</code></td>
-<td>The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's</td>
-<td><code>/opt/seafile-caddy</code></td>
-</tr>
-<tr>
-<td><code>SS_DATA_PATH</code></td>
-<td>The volume directory of SeaSearch data</td>
-<td><code>/opt/seasearch-data</code></td>
-</tr>
-<tr>
-<td><code>INIT_SEAFILE_MYSQL_ROOT_PASSWORD</code></td>
-<td>The <code>root</code> password of MySQL</td>
-<td>(Only required on first deployment)</td>
-</tr>
-<tr>
 <td><code>SEAFILE_MYSQL_DB_HOST</code></td>
-<td>The host of MySQL</td>
+<td>The host of MySQL.</td>
 <td><code>db</code></td>
 </tr>
 <tr>
 <td><code>SEAFILE_MYSQL_DB_PORT</code></td>
-<td>The port of MySQL</td>
+<td>The port of MySQL.</td>
 <td><code>3306</code></td>
 </tr>
 <tr>
 <td><code>SEAFILE_MYSQL_DB_USER</code></td>
-<td>The user of MySQL (<code>database</code> - <code>user</code> can be found in <code>conf/seafile.conf</code>)</td>
+<td>The user of MySQL (<code>database</code> - <code>user</code> can be found in <code>conf/seafile.conf</code>).</td>
 <td><code>seafile</code></td>
 </tr>
+</tbody>
+</table>
+<p><code>SEAFILE_MYSQL_DB_PASSWORD</code> is required and listed above. For database names and other database settings, see <a href="../../config/env/#mysql-configurations">environment variables</a>.</p>
+<h4 id="cache-service-settings">Cache service settings<a class="headerlink" href="#cache-service-settings" title="Permanent link">&para;</a></h4>
+<p>Seafile Docker uses its integrated Redis service by default, so no cache settings need to be changed for a standard deployment.</p>
+<table>
+<thead>
 <tr>
-<td><code>SEAFILE_MYSQL_DB_PASSWORD</code></td>
-<td>The user <code>seafile</code> password of MySQL</td>
-<td>(required)</td>
+<th>Variable</th>
+<th>Description</th>
+<th>Default Value</th>
 </tr>
-<tr>
-<td><code>SEAFILE_MYSQL_DB_CCNET_DB_NAME</code></td>
-<td>The database name of ccnet</td>
-<td><code>ccnet_db</code></td>
-</tr>
-<tr>
-<td><code>SEAFILE_MYSQL_DB_SEAFILE_DB_NAME</code></td>
-<td>The database name of seafile</td>
-<td><code>seafile_db</code></td>
-</tr>
-<tr>
-<td><code>SEAFILE_MYSQL_DB_SEAHUB_DB_NAME</code></td>
-<td>The database name of seahub</td>
-<td><code>seahub_db</code></td>
-</tr>
-<tr>
-<td><code>JWT_PRIVATE_KEY</code></td>
-<td>JWT_PRIVATE_KEY, A random string with a length of no less than 32 characters is required for Seafile, which can be generated by using <code>pwgen -s 40 1</code></td>
-<td>(required)</td>
-</tr>
-<tr>
-<td><code>SEAFILE_SERVER_HOSTNAME</code></td>
-<td>Seafile server hostname or domain</td>
-<td>(required)</td>
-</tr>
-<tr>
-<td><code>SEAFILE_SERVER_PROTOCOL</code></td>
-<td>Seafile server protocol (http or https)</td>
-<td><code>http</code></td>
-</tr>
+</thead>
+<tbody>
 <tr>
 <td><code>CACHE_PROVIDER</code></td>
-<td>The type of cache server used for Seafile. The available options are <code>redis</code> and <code>memcached</code>. Since Seafile 13, it is recommended to use <code>redis</code> as the cache service to support new features, and <code>memcached</code> will no longer be integrated into Seafile Docker by default.</td>
+<td>The type of cache server used by Seafile. Available options are <code>redis</code> and <code>memcached</code>.</td>
 <td><code>redis</code></td>
 </tr>
 <tr>
 <td><code>REDIS_HOST</code></td>
-<td>Redis server host</td>
+<td>The host of Redis.</td>
 <td><code>redis</code></td>
 </tr>
 <tr>
 <td><code>REDIS_PORT</code></td>
-<td>Redis server port</td>
+<td>The port of Redis.</td>
 <td><code>6379</code></td>
 </tr>
 <tr>
 <td><code>REDIS_PASSWORD</code></td>
-<td>Redis server password</td>
+<td>The password of Redis.</td>
 <td>(none)</td>
-</tr>
-<tr>
-<td><code>MEMCACHED_HOST</code></td>
-<td>Memcached server host</td>
-<td><code>memcached</code></td>
-</tr>
-<tr>
-<td><code>MEMCACHED_PORT</code></td>
-<td>Memcached server port</td>
-<td><code>11211</code></td>
-</tr>
-<tr>
-<td><code>TIME_ZONE</code></td>
-<td>Time zone</td>
-<td><code>UTC</code></td>
-</tr>
-<tr>
-<td><code>INIT_SEAFILE_ADMIN_EMAIL</code></td>
-<td>Synchronously set admin username during initialization</td>
-<td>me@example.com</td>
-</tr>
-<tr>
-<td><code>INIT_SEAFILE_ADMIN_PASSWORD</code></td>
-<td>Synchronously set admin password during initialization</td>
-<td>asecret</td>
-</tr>
-<tr>
-<td><code>INIT_SS_ADMIN_USER</code></td>
-<td>The SeaSearch admin username. By default, it is the same as <code>INIT_SEAFILE_ADMIN_EMAIL</code></td>
-<td>(Only required on first deployment)</td>
-</tr>
-<tr>
-<td><code>INIT_SS_ADMIN_PASSWORD</code></td>
-<td>The SeaSearch admin password. By default, it is the same as <code>INIT_SEAFILE_ADMIN_PASSWORD</code></td>
-<td>(Only required on first deployment)</td>
-</tr>
-<tr>
-<td><code>SEAF_SERVER_STORAGE_TYPE</code></td>
-<td>What kind of the Seafile data for storage. Available options are <code>disk</code> (i.e., local disk), <code>s3</code> and <code>multiple</code> (see the details of <a href="../setup_with_multiple_storage_backends/">multiple storage backends</a>)</td>
-<td><code>disk</code></td>
-</tr>
-<tr>
-<td><code>S3_COMMIT_BUCKET</code></td>
-<td>S3 storage backend commit objects bucket</td>
-<td>(required when <code>SEAF_SERVER_STORAGE_TYPE=s3</code>)</td>
-</tr>
-<tr>
-<td><code>S3_FS_BUCKET</code></td>
-<td>S3 storage backend fs objects bucket</td>
-<td>(required when <code>SEAF_SERVER_STORAGE_TYPE=s3</code>)</td>
-</tr>
-<tr>
-<td><code>S3_BLOCK_BUCKET</code></td>
-<td>S3 storage backend block objects bucket</td>
-<td>(required when <code>SEAF_SERVER_STORAGE_TYPE=s3</code>)</td>
-</tr>
-<tr>
-<td><code>S3_KEY_ID</code></td>
-<td>S3 storage backend key ID</td>
-<td>(required when <code>SEAF_SERVER_STORAGE_TYPE=s3</code>)</td>
-</tr>
-<tr>
-<td><code>S3_SECRET_KEY</code></td>
-<td>S3 storage backend secret key</td>
-<td>(required when <code>SEAF_SERVER_STORAGE_TYPE=s3</code>)</td>
-</tr>
-<tr>
-<td><code>S3_AWS_REGION</code></td>
-<td>Region of your buckets</td>
-<td><code>us-east-1</code></td>
-</tr>
-<tr>
-<td><code>S3_HOST</code></td>
-<td>Host of your buckets</td>
-<td>(required when not use AWS)</td>
-</tr>
-<tr>
-<td><code>S3_USE_HTTPS</code></td>
-<td>Use HTTPS connections to S3 if enabled</td>
-<td><code>true</code></td>
-</tr>
-<tr>
-<td><code>S3_USE_V4_SIGNATURE</code></td>
-<td>Use the v4 protocol of S3 if enabled</td>
-<td><code>true</code></td>
-</tr>
-<tr>
-<td><code>S3_PATH_STYLE_REQUEST</code></td>
-<td>This option asks Seafile to use URLs like <code>https://192.168.1.123:8080/bucketname/object</code> to access objects. In <em>Amazon S3</em>, the default URL format is in virtual host style, such as <code>https://bucketname.s3.amazonaws.com/object</code>. But this style relies on advanced DNS server setup. So most self-hosted storage systems only implement the path style format.</td>
-<td><code>false</code></td>
-</tr>
-<tr>
-<td><code>S3_SSE_C_KEY</code></td>
-<td>A string of 32 characters can be generated by openssl rand -base64 24. It can be any 32-character long random string. It's required to use V4 authentication protocol and https if you enable SSE-C.</td>
-<td>(none)</td>
-</tr>
-<tr>
-<td><code>ENABLE_NOTIFICATION_SERVER</code></td>
-<td>Enable (<code>true</code>) or disable (<code>false</code>) notification feature for Seafile</td>
-<td><code>false</code></td>
-</tr>
-<tr>
-<td><code>NOTIFICATION_SERVER_URL</code></td>
-<td>The <a href="../../extension/notification-server/">notification server</a> url</td>
-<td>(none)</td>
-</tr>
-<tr>
-<td><code>INNER_NOTIFICATION_SERVER_URL</code></td>
-<td>Notification server URL reachable from the Seafile container</td>
-<td><code>http://notification-server:8083</code></td>
-</tr>
-<tr>
-<td><code>ENABLE_METADATA_MANAGEMENT</code></td>
-<td>Enable metadata management</td>
-<td><code>false</code></td>
-</tr>
-<tr>
-<td><code>INNER_METADATA_SERVER_URL</code></td>
-<td>Metadata server URL reachable from the Seafile container</td>
-<td>(required when metadata management is enabled)</td>
-</tr>
-<tr>
-<td><code>MD_FILE_COUNT_LIMIT</code></td>
-<td>(only valid when deployed <a href="../../extension/metadata-server/">metadata server</a>). The maximum number of files in a repository that the metadata feature allows. If the number of files in a repository exceeds this value, the metadata management function will not be enabled for the repository. For a repository with metadata management enabled, if the number of records in it reaches this value but there are still some files that are not recorded in metadata server, the metadata management of the unrecorded files will be skipped.</td>
-<td><code>100000</code></td>
-</tr>
-<tr>
-<td><code>ENABLE_SEARCH</code></td>
-<td>Enable or disable the search service</td>
-<td><code>true</code></td>
-</tr>
-<tr>
-<td><code>SEARCH_ENGINE</code></td>
-<td>Search engine to use: <code>seasearch</code> or <code>elasticsearch</code></td>
-<td><code>seasearch</code></td>
-</tr>
-<tr>
-<td><code>ENABLE_FULL_TEXT_SEARCH</code></td>
-<td>Index document contents for full-text search</td>
-<td><code>true</code></td>
-</tr>
-<tr>
-<td><code>SEASEARCH_URL</code></td>
-<td>SeaSearch URL reachable from the Seafile container</td>
-<td><code>http://seasearch:4080</code></td>
-</tr>
-<tr>
-<td><code>SEASEARCH_TOKEN</code></td>
-<td>Authorization token for the SeaSearch API</td>
-<td>(required when using SeaSearch)</td>
-</tr>
-<tr>
-<td><code>INIT_SS_ADMIN_USER</code></td>
-<td>SeaSearch administrator username, used only on first deployment</td>
-<td>Same as <code>INIT_SEAFILE_ADMIN_EMAIL</code></td>
-</tr>
-<tr>
-<td><code>INIT_SS_ADMIN_PASSWORD</code></td>
-<td>SeaSearch administrator password, used only on first deployment</td>
-<td>Same as <code>INIT_SEAFILE_ADMIN_PASSWORD</code></td>
-</tr>
-<tr>
-<td><code>SS_MAX_OBJ_CACHE_SIZE</code></td>
-<td>Maximum SeaSearch object-cache size</td>
-<td><code>10GB</code></td>
-</tr>
-<tr>
-<td><code>SS_LOG_TO_STDOUT</code></td>
-<td>Write SeaSearch logs to standard output</td>
-<td><code>false</code></td>
-</tr>
-<tr>
-<td><code>SS_LOG_OUTPUT</code></td>
-<td>Enable SeaSearch log output</td>
-<td><code>true</code></td>
-</tr>
-<tr>
-<td><code>SS_LOG_LEVEL</code></td>
-<td>SeaSearch log level</td>
-<td><code>info</code></td>
-</tr>
-<tr>
-<td><code>ELASTICSEARCH_SCHEME</code></td>
-<td>Elasticsearch connection scheme</td>
-<td><code>http</code></td>
-</tr>
-<tr>
-<td><code>ELASTICSEARCH_HOST</code></td>
-<td>Elasticsearch host</td>
-<td>(required when using Elasticsearch)</td>
-</tr>
-<tr>
-<td><code>ELASTICSEARCH_PORT</code></td>
-<td>Elasticsearch port</td>
-<td><code>9200</code></td>
-</tr>
-<tr>
-<td><code>ELASTICSEARCH_USER</code></td>
-<td>Elasticsearch username</td>
-<td>(none)</td>
-</tr>
-<tr>
-<td><code>ELASTICSEARCH_PASSWORD</code></td>
-<td>Elasticsearch password</td>
-<td>(none)</td>
-</tr>
-<tr>
-<td><code>NON_ROOT</code></td>
-<td>Run Seafile container without a root user</td>
-<td><code>false</code></td>
 </tr>
 </tbody>
 </table>
-<p>The template also defines component image variables, derived storage paths, and SeaSearch settings. For their full descriptions, see <a href="../../config/env/">environment variables</a>, <a href="../use_seasearch/">Search with SeaSearch</a>, and <a href="../../extension/metadata-server/">Metadata server</a>.</p>
-<p>For component storage, use <code>MD_STORAGE_TYPE</code> and <code>S3_MD_BUCKET</code> for the metadata server, or <code>SS_STORAGE_TYPE</code> and <code>S3_SS_BUCKET</code> for SeaSearch. These settings use the shared <code>S3_*</code> credentials and connection options in the same <code>.env</code> file.</p>
+<div class="admonition note">
+<p class="admonition-title">Recommended Redis since Seafile 13.0</p>
+<p>Since Seafile 13.0, many new features depend on Redis as the cache server. Starting with Seafile 14.0, we do not recommend using Memcached as the cache server. If you need to use Memcached, see <a href="../../config/env/#cache-configurations">environment variables</a> for its configuration.</p>
+</div>
+<h4 id="storage-backend-settings">Storage backend settings<a class="headerlink" href="#storage-backend-settings" title="Permanent link">&para;</a></h4>
 <div class="admonition success">
 <p class="admonition-title">Easier to configure S3 for Seafile and its components</p>
 <p>Since Seafile Pro 13.0, in order to facilitate users to deploy Seafile's related extension components and other services in the future, a section will be provided in <code>.env</code> to store the <strong>S3 Configurations</strong> for Seafile and some extension components (such as <em>SeaSearch</em>, <em>Metadata server</em>). You can locate it with the title bar <strong>Storage configurations for S3</strong>.</p>
@@ -6362,6 +6359,103 @@ nano<span class="w"> </span>.env
 <p class="admonition-title">S3 configurations in <code>.env</code> only support single S3 storage backend mode</p>
 <p>The Seafile server only support configuring S3 in <code>.env</code> for <strong>single S3 storage backend mode</strong> (i.e., when <code>SEAF_SERVER_STORAGE_TYPE=s3</code>). If you would like to use other storage backend (e.g., <a href="../setup_with_ceph/">Ceph</a>, <a href="../setup_with_swift/">Swift</a>) or other settings that can only be set in <code>seafile.conf</code> (like <a href="../setup_with_multiple_storage_backends/">multiple storage backends</a>), please set <code>SEAF_SERVER_STORAGE_TYPE</code> to <code>multiple</code>, and set <code>MD_STORAGE_TYPE</code> and <code>SS_STORAGE_TYPE</code> according to your configurations.</p>
 </div>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SEAF_SERVER_STORAGE_TYPE</code></td>
+<td>Type of storage used for Seafile data. Available options are <code>disk</code> (local disk), <code>s3</code>, and <code>multiple</code>.</td>
+<td><code>disk</code></td>
+</tr>
+<tr>
+<td><code>S3_COMMIT_BUCKET</code></td>
+<td>S3 storage backend bucket for commit objects.</td>
+<td>Required when <code>SEAF_SERVER_STORAGE_TYPE=s3</code></td>
+</tr>
+<tr>
+<td><code>S3_FS_BUCKET</code></td>
+<td>S3 storage backend bucket for fs objects.</td>
+<td>Required when <code>SEAF_SERVER_STORAGE_TYPE=s3</code></td>
+</tr>
+<tr>
+<td><code>S3_BLOCK_BUCKET</code></td>
+<td>S3 storage backend bucket for block objects.</td>
+<td>Required when <code>SEAF_SERVER_STORAGE_TYPE=s3</code></td>
+</tr>
+<tr>
+<td><code>S3_KEY_ID</code></td>
+<td>S3 storage backend access key ID.</td>
+<td>Required when <code>SEAF_SERVER_STORAGE_TYPE=s3</code></td>
+</tr>
+<tr>
+<td><code>S3_SECRET_KEY</code></td>
+<td>S3 storage backend secret access key.</td>
+<td>Required when <code>SEAF_SERVER_STORAGE_TYPE=s3</code></td>
+</tr>
+<tr>
+<td><code>S3_HOST</code></td>
+<td>Host of the S3-compatible storage service.</td>
+<td>Required when using S3 other than AWS</td>
+</tr>
+</tbody>
+</table>
+<p>For all S3 connection options, see <a href="../../config/env/#s3-storage-backend-configurations-pro">environment variables</a>. For multiple storage backends, set <code>SEAF_SERVER_STORAGE_TYPE=multiple</code> and follow <a href="../setup_with_multiple_storage_backends/">multiple storage backends</a>.</p>
+<h4 id="search-settings">Search settings<a class="headerlink" href="#search-settings" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ENABLE_SEARCH</code></td>
+<td>Enable or disable the search service.</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>SEARCH_ENGINE</code></td>
+<td>Search engine to use. Available options are <code>seasearch</code> and <code>elasticsearch</code>.</td>
+<td><code>seasearch</code></td>
+</tr>
+<tr>
+<td><code>INIT_SS_ADMIN_USER</code></td>
+<td>SeaSearch administrator username, used only on first deployment.</td>
+<td>Same as <code>INIT_SEAFILE_ADMIN_EMAIL</code></td>
+</tr>
+<tr>
+<td><code>INIT_SS_ADMIN_PASSWORD</code></td>
+<td>SeaSearch administrator password, used only on first deployment.</td>
+<td>Same as <code>INIT_SEAFILE_ADMIN_PASSWORD</code></td>
+</tr>
+<tr>
+<td><code>SEASEARCH_URL</code></td>
+<td>SeaSearch URL reachable from the Seafile container.</td>
+<td><code>http://seasearch:4080</code></td>
+</tr>
+<tr>
+<td><code>SEASEARCH_TOKEN</code></td>
+<td>Authorization token for the SeaSearch API.</td>
+<td>See <a href="../use_seasearch/#enable-seasearch-in-seafile">Search with SeaSearch</a></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Recommended SeaSearch since Seafile 13.0</p>
+<p>Starting with Seafile 14.0, we recommend using <a href="https://seasearch-manual.seacloud-labs.ai/">SeaSearch</a> as the search engine. If you need to use Elasticsearch, set <code>SEARCH_ENGINE=elasticsearch</code> and refer to <a href="../use_elasticsearch/">Search with Elasticsearch</a> for its configuration.</p>
+</div>
+<p>SeaSearch cache and log settings should retain their defaults. For SeaSearch configuration details, see <a href="../use_seasearch/">Search with SeaSearch</a>.</p>
+<h4 id="optional-extension-settings">Optional extension settings<a class="headerlink" href="#optional-extension-settings" title="Permanent link">&para;</a></h4>
+<p>The template includes settings for optional services such as SeaDoc, the <a href="../../extension/notification-server/">notification server</a>, and <a href="../../extension/metadata-server/">metadata server</a>. Leave these disabled unless you are deploying the corresponding service. For a complete list of environment variables, see <a href="../../config/env/">environment variables</a>.</p>
+<p>For component storage, use <code>MD_STORAGE_TYPE</code> and <code>S3_MD_BUCKET</code> for the metadata server, or <code>SS_STORAGE_TYPE</code> and <code>S3_SS_BUCKET</code> for SeaSearch. These settings use the shared <code>S3_*</code> credentials and connection options in the same <code>.env</code> file.</p>
 <h3 id="starting-the-docker-containers">Starting the Docker Containers<a class="headerlink" href="#starting-the-docker-containers" title="Permanent link">&para;</a></h3>
 <p>Run docker compose in detached mode:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
@@ -6530,13 +6624,6 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-net</span>
 <span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </code></pre></div>
-<p>Q: For some reason, I still have to use Memcached as my cache server. How can I do this?</p>
-<p>A: If you still want to use the <strong><em>Memcached</em></strong> (is not provided from Seafile Docker 13), just follow the steps below:</p>
-<ul>
-<li>Set <code>CACHE_PROVIDER</code> to <code>memcached</code> and modify <code>MEMCACHED_xxx</code> in <code>.env</code></li>
-<li>Remove the <code>redis</code> part and and the <code>redis</code> dependency in <code>seafile</code> service section in <code>seafile-server.yml</code>. </li>
-</ul>
-<p>By the way, you can make changes to the cache server after the service is started (by setting environment variables in <code>.env</code>), but the corresponding configuration files will not be updated directly (e.g., <code>seahub_settings.py</code>, <code>seafile.conf</code> and <code>seafevents.conf</code>). To avoid ambiguity, we recommend that you also update these configuration files.</p>
 
 
 
