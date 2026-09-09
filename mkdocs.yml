@@ -199,6 +199,7 @@ nav:
   - Upgrade:
     - Outline: upgrade/upgrade.md
     - Upgrade notes: upgrade/upgrade_notes.md
+    - Summary of obsolete configurations: upgrade/seafile_obsolete_configurations.md
     - Upgrade Seafile Docker:
       - Upgrade Seafile Docker 14.0: upgrade/upgrade_docker_14.0.md
       - Upgrade Seafile Docker 13.0: upgrade/upgrade_docker_13.0.md
@@ -213,7 +214,6 @@ nav:
       - Upgrade Seafile 10.0: upgrade/upgrade_binary_10.0.md
     - Upgrade Seafile Cluster: upgrade/upgrade_a_cluster.md
     - Upgrade Seafile Cluster (binary): upgrade/upgrade_a_cluster_binary.md
-    - Summary of obsolete configurations: upgrade/seafile_obsolete_configurations.md
   - Developing:
     - Outline: develop/README.md
     - Seafile client:
