@@ -4654,6 +4654,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#monthly-traffic-limit-configuration-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monthly traffic limit configuration changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#local-password-configuration-changes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -6138,6 +6149,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#monthly-traffic-limit-configuration-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monthly traffic limit configuration changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#local-password-configuration-changes" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -6430,6 +6452,7 @@
 <li>Thumbnail server configurations in <code>seahub_settings.py</code> have changed. Please refer to <a href="../../extension/thumbnail-server/">Thumbnail server</a> for details.</li>
 <li>SeaSearch is the default search engine for new Seafile Pro Docker deployments, and authorization configurations of search can also be set in environment variables.</li>
 <li>Local-password policy for externally authenticated users is now controlled by <code>DISABLE_SSO_USER_LOCAL_PWD_LOGIN</code> in <code>seahub_settings.py</code>.</li>
+<li>Monthly traffic-limit role settings have been changed.</li>
 </ul>
 <h3 id="seafile-ai-configuration-changes">Seafile AI configuration changes<a class="headerlink" href="#seafile-ai-configuration-changes" title="Permanent link">&para;</a></h3>
 <p>Seafile AI configuration has been significantly changed in Seafile 14.0.</p>
@@ -6481,6 +6504,23 @@ FACE_EMBEDDING_VOLUME=
 </li>
 </ol>
 <p>For configuration details, refer to <a href="../../extension/seafile-ai/">Seafile AI extension</a>.</p>
+<h3 id="monthly-traffic-limit-configuration-changes">Monthly traffic limit configuration changes<a class="headerlink" href="#monthly-traffic-limit-configuration-changes" title="Permanent link">&para;</a></h3>
+<p>The monthly traffic-limit settings in <code>ENABLED_ROLE_PERMISSIONS</code> have been changed to support independent upload and download allowances. The legacy keys are not read after the upgrade.</p>
+<p>Replace the following existing settings:</p>
+<div class="highlight"><pre><span></span><code><span class="s1">'monthly_rate_limit'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+<span class="s1">'monthly_rate_limit_per_user'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+</code></pre></div>
+<p>With the corresponding download settings:</p>
+<div class="highlight"><pre><span></span><code><span class="s1">'monthly_download_traffic_limit'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+<span class="s1">'monthly_download_traffic_limit_per_user'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+</code></pre></div>
+<p>You can also configure independent upload allowances:</p>
+<div class="highlight"><pre><span></span><code><span class="s1">'monthly_upload_traffic_limit'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+<span class="s1">'monthly_upload_traffic_limit_per_user'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+</code></pre></div>
+<p><code>monthly_download_traffic_limit</code> and <code>monthly_upload_traffic_limit</code> apply to non-organization users. The corresponding <code>_per_user</code> settings apply to organization users and are multiplied by the organization's member quota. Use quota units such as <code>500M</code> or <code>100G</code>; an empty value means no monthly allowance.</p>
+<p>When a user exceeds a monthly allowance, Seafile reduces the corresponding transfer speed. You can configure the throttled download and upload rates with <code>DOWNLOAD_LIMIT_WHEN_THROTTLE</code> and <code>UPLOAD_LIMIT_WHEN_THROTTLE</code> in <code>seahub_settings.py</code>; both default to <code>1k</code> (1 KB/s).</p>
+<p>For details, refer to <a href="../../config/roles_permissions/">Roles and Permissions</a> and <a href="../../config/seahub_settings_py/#traffic-limit-exceeded-throttle-rate">Traffic limit exceeded throttle rate</a>.</p>
 <h3 id="local-password-configuration-changes">Local password configuration changes<a class="headerlink" href="#local-password-configuration-changes" title="Permanent link">&para;</a></h3>
 <p>The following <code>seahub_settings.py</code> options have been removed in Seafile 14.0:</p>
 <div class="highlight"><pre><span></span><code><span class="n">DISABLE_ADFS_USER_PWD_LOGIN</span> <span class="o">=</span> <span class="kc">True</span>

@@ -5952,6 +5952,15 @@
 </div>
 </li>
 <li>
+<p>Monthly traffic limits measure transferred bytes in a calendar month. They are different from <code>upload_rate_limit</code> and <code>download_rate_limit</code>, which limit transfer speed. When a monthly allowance is exceeded, Seafile reduces the relevant upload or download speed to the rate set by <code>UPLOAD_LIMIT_WHEN_THROTTLE</code> or <code>DOWNLOAD_LIMIT_WHEN_THROTTLE</code> (both default to <code>1k</code>, i.e. 1 KB/s).</p>
+<ul>
+<li><code>monthly_download_traffic_limit</code> and <code>monthly_upload_traffic_limit</code> set the monthly download and upload allowance for a non-organization user with the role.</li>
+<li><code>monthly_download_traffic_limit_per_user</code> and <code>monthly_upload_traffic_limit_per_user</code> set the corresponding organization allowance per member-quota unit. The organization allowance is the configured value multiplied by its member quota.</li>
+<li>Values use quota units such as <code>500M</code> and <code>100G</code>. An empty value means no monthly allowance.</li>
+<li>Upload and download are measured and throttled independently. The counters include web, share-link, and synchronization transfers.</li>
+</ul>
+</li>
+<li>
 <p><code>can_drag_drop_folder_to_sync</code>: allow or deny user to sync folder by draging and droping</p>
 </li>
 <li>
@@ -5981,8 +5990,10 @@
         <span class="s1">'can_publish_wiki'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
         <span class="s1">'upload_rate_limit'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1"># unit: kb/s</span>
         <span class="s1">'download_rate_limit'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="s1">'monthly_rate_limit'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
-        <span class="s1">'monthly_rate_limit_per_user'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'monthly_download_traffic_limit'</span><span class="p">:</span> <span class="s1">'100G'</span><span class="p">,</span>
+        <span class="s1">'monthly_download_traffic_limit_per_user'</span><span class="p">:</span> <span class="s1">'100G'</span><span class="p">,</span>
+        <span class="s1">'monthly_upload_traffic_limit'</span><span class="p">:</span> <span class="s1">'50G'</span><span class="p">,</span>
+        <span class="s1">'monthly_upload_traffic_limit_per_user'</span><span class="p">:</span> <span class="s1">'50G'</span><span class="p">,</span>
         <span class="s1">'can_choose_office_suite'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
         <span class="s1">'monthly_ai_credit_per_user'</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
         <span class="s1">'can_use_sso_in_multi_tenancy'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
@@ -6011,8 +6022,10 @@
         <span class="s1">'can_publish_wiki'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
         <span class="s1">'upload_rate_limit'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
         <span class="s1">'download_rate_limit'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="s1">'monthly_rate_limit'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
-        <span class="s1">'monthly_rate_limit_per_user'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'monthly_download_traffic_limit'</span><span class="p">:</span> <span class="s1">'10G'</span><span class="p">,</span>
+        <span class="s1">'monthly_download_traffic_limit_per_user'</span><span class="p">:</span> <span class="s1">'10G'</span><span class="p">,</span>
+        <span class="s1">'monthly_upload_traffic_limit'</span><span class="p">:</span> <span class="s1">'5G'</span><span class="p">,</span>
+        <span class="s1">'monthly_upload_traffic_limit_per_user'</span><span class="p">:</span> <span class="s1">'5G'</span><span class="p">,</span>
         <span class="s1">'can_choose_office_suite'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
         <span class="s1">'can_use_sso_in_multi_tenancy'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">},</span>
@@ -6042,8 +6055,10 @@
         <span class="s1">'can_publish_wiki'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
         <span class="s1">'upload_rate_limit'</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span>  <span class="c1"># unit: kb/s</span>
         <span class="s1">'download_rate_limit'</span><span class="p">:</span> <span class="mi">4000</span><span class="p">,</span>
-        <span class="s1">'monthly_rate_limit'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
-        <span class="s1">'monthly_rate_limit_per_user'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'monthly_download_traffic_limit'</span><span class="p">:</span> <span class="s1">'100G'</span><span class="p">,</span>
+        <span class="s1">'monthly_download_traffic_limit_per_user'</span><span class="p">:</span> <span class="s1">'100G'</span><span class="p">,</span>
+        <span class="s1">'monthly_upload_traffic_limit'</span><span class="p">:</span> <span class="s1">'50G'</span><span class="p">,</span>
+        <span class="s1">'monthly_upload_traffic_limit_per_user'</span><span class="p">:</span> <span class="s1">'50G'</span><span class="p">,</span>
         <span class="s1">'can_choose_office_suite'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
         <span class="s1">'monthly_ai_credit_per_user'</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
         <span class="s1">'can_use_sso_in_multi_tenancy'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
@@ -6070,8 +6085,10 @@
         <span class="s1">'can_publish_wiki'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
         <span class="s1">'upload_rate_limit'</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
         <span class="s1">'download_rate_limit'</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
-        <span class="s1">'monthly_rate_limit'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
-        <span class="s1">'monthly_rate_limit_per_user'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'monthly_download_traffic_limit'</span><span class="p">:</span> <span class="s1">'10G'</span><span class="p">,</span>
+        <span class="s1">'monthly_download_traffic_limit_per_user'</span><span class="p">:</span> <span class="s1">'10G'</span><span class="p">,</span>
+        <span class="s1">'monthly_upload_traffic_limit'</span><span class="p">:</span> <span class="s1">'5G'</span><span class="p">,</span>
+        <span class="s1">'monthly_upload_traffic_limit_per_user'</span><span class="p">:</span> <span class="s1">'5G'</span><span class="p">,</span>
         <span class="s1">'can_choose_office_suite'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
         <span class="s1">'can_use_sso_in_multi_tenancy'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">}</span>
@@ -6119,8 +6136,10 @@ INVITATIONS_TOKEN_AGE = 72 # hours
         <span class="s1">'can_publish_wiki'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
         <span class="s1">'upload_rate_limit'</span><span class="p">:</span> <span class="mi">2000</span><span class="p">,</span>  <span class="c1"># unit: kb/s</span>
         <span class="s1">'download_rate_limit'</span><span class="p">:</span> <span class="mi">4000</span><span class="p">,</span>
-        <span class="s1">'monthly_rate_limit'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
-        <span class="s1">'monthly_rate_limit_per_user'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'monthly_download_traffic_limit'</span><span class="p">:</span> <span class="s1">'100G'</span><span class="p">,</span>
+        <span class="s1">'monthly_download_traffic_limit_per_user'</span><span class="p">:</span> <span class="s1">'100G'</span><span class="p">,</span>
+        <span class="s1">'monthly_upload_traffic_limit'</span><span class="p">:</span> <span class="s1">'50G'</span><span class="p">,</span>
+        <span class="s1">'monthly_upload_traffic_limit_per_user'</span><span class="p">:</span> <span class="s1">'50G'</span><span class="p">,</span>
         <span class="s1">'can_choose_office_suite'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
         <span class="s1">'monthly_ai_credit_per_user'</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
         <span class="s1">'can_use_sso_in_multi_tenancy'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
@@ -6147,8 +6166,10 @@ INVITATIONS_TOKEN_AGE = 72 # hours
         <span class="s1">'can_publish_wiki'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
         <span class="s1">'upload_rate_limit'</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
         <span class="s1">'download_rate_limit'</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
-        <span class="s1">'monthly_rate_limit'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
-        <span class="s1">'monthly_rate_limit_per_user'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'monthly_download_traffic_limit'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'monthly_download_traffic_limit_per_user'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'monthly_upload_traffic_limit'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'monthly_upload_traffic_limit_per_user'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
         <span class="s1">'can_choose_office_suite'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
         <span class="s1">'can_use_sso_in_multi_tenancy'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">},</span>
@@ -6174,8 +6195,10 @@ INVITATIONS_TOKEN_AGE = 72 # hours
         <span class="s1">'can_publish_wiki'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
         <span class="s1">'upload_rate_limit'</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
         <span class="s1">'download_rate_limit'</span><span class="p">:</span> <span class="mi">800</span><span class="p">,</span>
-        <span class="s1">'monthly_rate_limit'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
-        <span class="s1">'monthly_rate_limit_per_user'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'monthly_download_traffic_limit'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'monthly_download_traffic_limit_per_user'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'monthly_upload_traffic_limit'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+        <span class="s1">'monthly_upload_traffic_limit_per_user'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
         <span class="s1">'can_choose_office_suite'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
         <span class="s1">'monthly_ai_credit_per_user'</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> 
         <span class="s1">'can_use_sso_in_multi_tenancy'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>

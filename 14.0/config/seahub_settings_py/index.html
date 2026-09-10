@@ -4112,6 +4112,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Pro edition only options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#traffic-limit-exceeded-throttle-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traffic limit exceeded throttle rate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -6058,6 +6075,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Pro edition only options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#traffic-limit-exceeded-throttle-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traffic limit exceeded throttle rate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -6473,6 +6507,17 @@ ENABLE_REPO_SNAPSHOT_LABEL = False
 <span class="c1"># Since version 6.0.8</span>
 <span class="n">VIRUS_SCAN_NOTIFY_LIST</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'user_a@seafile.com'</span><span class="p">,</span> <span class="s1">'user_b@seafile.com'</span><span class="p">]</span>
 </code></pre></div>
+<h3 id="traffic-limit-exceeded-throttle-rate">Traffic limit exceeded throttle rate<a class="headerlink" href="#traffic-limit-exceeded-throttle-rate" title="Permanent link">&para;</a></h3>
+<p>When a user or an organization exceeds its monthly upload/download traffic limit (configured in <a href="../roles_permissions/">roles and permissions</a>), Seafile reduces the corresponding upload or download speed to the following rate. These options set the reduced rate after a traffic allowance is exceeded. Both default to <code>1k</code> (1 KB/s) and are not enabled unless a monthly traffic limit is configured.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># The reduced download speed (rate limit) applied after the monthly</span>
+<span class="c1"># download traffic limit is exceeded. Default is '1k' (1 KB/s).</span>
+<span class="n">DOWNLOAD_LIMIT_WHEN_THROTTLE</span> <span class="o">=</span> <span class="s1">'1k'</span>
+
+<span class="c1"># The reduced upload speed (rate limit) applied after the monthly</span>
+<span class="c1"># upload traffic limit is exceeded. Default is '1k' (1 KB/s).</span>
+<span class="n">UPLOAD_LIMIT_WHEN_THROTTLE</span> <span class="o">=</span> <span class="s1">'1k'</span>
+</code></pre></div>
+<p>The value uses the same quota syntax as other quota settings, for example <code>100k</code> or <code>2m</code>.</p>
 <h2 id="restful-api">RESTful API<a class="headerlink" href="#restful-api" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code># API throttling related settings. Enlarger the rates if you got 429 response code during API calls.
 REST_FRAMEWORK = {
