@@ -62,9 +62,18 @@ Only change the required settings below for a standard deployment. Keep all othe
 | `INIT_SEAFILE_MYSQL_ROOT_PASSWORD` | MySQL `root` password. | Required on first deployment only |
 | `INIT_SEAFILE_ADMIN_EMAIL` | Initial Seafile administrator username. | Required on first deployment only |
 | `INIT_SEAFILE_ADMIN_PASSWORD` | Initial Seafile administrator password. | Required on first deployment only |
-| `INIT_SS_ADMIN_USER` | SeaSearch administrator username. | Same as `INIT_SEAFILE_ADMIN_EMAIL` |
-| `INIT_SS_ADMIN_PASSWORD` | SeaSearch administrator password. | Same as `INIT_SEAFILE_ADMIN_PASSWORD` |
 | `SEASEARCH_TOKEN` | Authorization token for the SeaSearch API. Generate from `echo -n 'INIT_SEAFILE_ADMIN_EMAIL:INIT_SEAFILE_ADMIN_PASSWORD' | base64` | Required |
+
+!!! note "Custom SeaSearch user"
+    In default, the SeaSearch first user will take:
+    - `INIT_SS_ADMIN_USER` = `INIT_SEAFILE_ADMIN_EMAIL`
+    - `INIT_SS_ADMIN_PASSWORD` = `INIT_SEAFILE_ADMIN_PASSWORD`
+
+    You can use custom user by modifying the `INIT_SS_ADMIN_USER` and `INIT_SS_ADMIN_PASSWORD`, then set the `SEASEARCH_TOKEN` from:
+
+    ```sh
+    echo -n 'INIT_SS_ADMIN_USER:INIT_SS_ADMIN_PASSWORD'
+    ```
 
 #### Common optional settings
 
