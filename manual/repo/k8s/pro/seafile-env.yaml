@@ -69,7 +69,6 @@ data:
   
   # Seafile AI
   ENABLE_SEAFILE_AI: "false"
-  ENABLE_FACE_RECOGNITION: "false"
   SEAFILE_AI_SERVER_URL: "<required when ENABLE_SEAFILE_AI=true>"
 
   # Metadata server
