@@ -6474,22 +6474,21 @@ nano<span class="w"> </span>.env
 <td>Required on first deployment only</td>
 </tr>
 <tr>
-<td><code>INIT_SS_ADMIN_USER</code></td>
-<td>SeaSearch administrator username.</td>
-<td>Same as <code>INIT_SEAFILE_ADMIN_EMAIL</code></td>
-</tr>
-<tr>
-<td><code>INIT_SS_ADMIN_PASSWORD</code></td>
-<td>SeaSearch administrator password.</td>
-<td>Same as <code>INIT_SEAFILE_ADMIN_PASSWORD</code></td>
-</tr>
-<tr>
 <td><code>SEASEARCH_TOKEN</code></td>
 <td>Authorization token for the SeaSearch API. Generate from <code>echo -n 'INIT_SEAFILE_ADMIN_EMAIL:INIT_SEAFILE_ADMIN_PASSWORD' | base64</code></td>
 <td>Required</td>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="admonition-title">Custom SeaSearch user</p>
+<p>In default, the SeaSearch first user will take:
+- <code>INIT_SS_ADMIN_USER</code> = <code>INIT_SEAFILE_ADMIN_EMAIL</code>
+- <code>INIT_SS_ADMIN_PASSWORD</code> = <code>INIT_SEAFILE_ADMIN_PASSWORD</code></p>
+<p>You can use custom user by modifying the <code>INIT_SS_ADMIN_USER</code> and <code>INIT_SS_ADMIN_PASSWORD</code>, then set the <code>SEASEARCH_TOKEN</code> from:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s1">'INIT_SS_ADMIN_USER:INIT_SS_ADMIN_PASSWORD'</span>
+</code></pre></div>
+</div>
 <h4 id="common-optional-settings">Common optional settings<a class="headerlink" href="#common-optional-settings" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
