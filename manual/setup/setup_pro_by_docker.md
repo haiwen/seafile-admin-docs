@@ -133,8 +133,6 @@ For all S3 connection options, see [environment variables](../config/env.md#s3-s
 | --- | --- | --- |
 | `ENABLE_SEARCH` | Enable or disable the search service. | `true` |
 | `SEARCH_ENGINE` | Search engine to use. Available options are `seasearch` and `elasticsearch`. | `seasearch` |
-| `INIT_SS_ADMIN_USER` | SeaSearch administrator username, used only on first deployment. | Same as `INIT_SEAFILE_ADMIN_EMAIL` |
-| `INIT_SS_ADMIN_PASSWORD` | SeaSearch administrator password, used only on first deployment. | Same as `INIT_SEAFILE_ADMIN_PASSWORD` |
 | `SEASEARCH_URL` | SeaSearch URL reachable from the Seafile container. | `http://seasearch:4080` |
 | `SEASEARCH_TOKEN` | Authorization token for the SeaSearch API. | See [Search with SeaSearch](./use_seasearch.md#enable-seasearch-in-seafile) |
 
