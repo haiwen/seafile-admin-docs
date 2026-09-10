@@ -4850,10 +4850,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-33-update-model-configurations-for-seafile-ai-optional" class="md-nav__link">
+  <a href="#step-33-update-configurations-for-seafile-ai-optional" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 3.3) Update model configurations for Seafile AI (optional)
+        Step 3.3) Update configurations for Seafile AI (optional)
       
     </span>
   </a>
@@ -4888,21 +4888,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-4-modify-seahub_settingspy-for-thumbnail-server" class="md-nav__link">
+  <a href="#step-4-modify-seahub_settingspy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 4) Modify seahub_settings.py for Thumbnail server
+        Step 4) Modify seahub_settings.py
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 4) Modify seahub_settings.py">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-41-update-configurations-for-thumbnail-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4.1) Update configurations for Thumbnail server
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#step-5-remove-obsolete-seasearch-or-elasticsearch-configurations" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#step-42-update-local-password-configurations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 5) Remove obsolete SeaSearch (or ElasticSearch) configurations
+        Step 4.2) Update local password configurations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-update-search-configurations-pro-edition-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5) Update search configurations (Pro edition only)
       
     </span>
   </a>
@@ -6128,10 +6156,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-33-update-model-configurations-for-seafile-ai-optional" class="md-nav__link">
+  <a href="#step-33-update-configurations-for-seafile-ai-optional" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 3.3) Update model configurations for Seafile AI (optional)
+        Step 3.3) Update configurations for Seafile AI (optional)
       
     </span>
   </a>
@@ -6166,21 +6194,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-4-modify-seahub_settingspy-for-thumbnail-server" class="md-nav__link">
+  <a href="#step-4-modify-seahub_settingspy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 4) Modify seahub_settings.py for Thumbnail server
+        Step 4) Modify seahub_settings.py
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 4) Modify seahub_settings.py">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-41-update-configurations-for-thumbnail-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4.1) Update configurations for Thumbnail server
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#step-5-remove-obsolete-seasearch-or-elasticsearch-configurations" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#step-42-update-local-password-configurations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 5) Remove obsolete SeaSearch (or ElasticSearch) configurations
+        Step 4.2) Update local password configurations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-update-search-configurations-pro-edition-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5) Update search configurations (Pro edition only)
       
     </span>
   </a>
@@ -6358,24 +6414,6 @@ wget<span class="w"> </span>https://manual.seafile.com/14.0/repo/docker/seafile-
 
 <span class="c1"># If you are using Seafile AI</span>
 <span class="nv">SEAFILE_AI_IMAGE</span><span class="o">=</span>seafileltd/seafile-ai:14.0-latest
-
-<span class="c1"># If you have enabled the search function</span>
-<span class="nv">ENABLE_SEARCH</span><span class="o">=</span><span class="nb">true</span>
-<span class="c1"># Index document contents for full-text search</span>
-<span class="nv">ENABLE_FULL_TEXT_SEARCH</span><span class="o">=</span><span class="nb">true</span>
-
-<span class="c1">## If you are using SeaSearch</span>
-<span class="nv">SEARCH_ENGINE</span><span class="o">=</span>seasearch
-<span class="nv">SEASEARCH_URL</span><span class="o">=</span>http://seasearch:4080
-<span class="nv">SEASEARCH_TOKEN</span><span class="o">=</span>&lt;Your<span class="w"> </span>seasearch<span class="w"> </span>token&gt;
-
-<span class="c1">## If you are using ElasticSearch</span>
-<span class="nv">SEARCH_ENGINE</span><span class="o">=</span>elasticsearch
-<span class="nv">ELASTICSEARCH_SCHEME</span><span class="o">=</span>http
-<span class="nv">ELASTICSEARCH_HOST</span><span class="o">=</span>&lt;Your<span class="w"> </span>ES<span class="w"> </span>host&gt;
-<span class="nv">ELASTICSEARCH_PORT</span><span class="o">=</span><span class="m">9200</span>
-<span class="nv">ELASTICSEARCH_USER</span><span class="o">=</span>
-<span class="nv">ELASTICSEARCH_PASSWORD</span><span class="o">=</span>
 </code></pre></div>
 </div>
 </div>
@@ -6398,20 +6436,29 @@ SEASEARCH_TOKEN=&lt;your SeaSearch authorization token&gt;
 </div>
 </div>
 <p>Leave both variables empty if SeaSearch is not used. For details, refer to <a href="../../setup/use_seasearch/">Search with SeaSearch</a>.</p>
-<h3 id="step-33-update-model-configurations-for-seafile-ai-optional">Step 3.3) Update model configurations for Seafile AI (optional)<a class="headerlink" href="#step-33-update-model-configurations-for-seafile-ai-optional" title="Permanent link">&para;</a></h3>
+<h3 id="step-33-update-configurations-for-seafile-ai-optional">Step 3.3) Update configurations for Seafile AI (optional)<a class="headerlink" href="#step-33-update-configurations-for-seafile-ai-optional" title="Permanent link">&para;</a></h3>
 <p>If you are not using Seafile AI, skip this step.</p>
 <p>In Seafile 14.0, Seafile AI models are configured in <code>seafile_ai_config.yaml</code> instead of through environment variables. Update the model configuration according to <a href="../../extension/seafile-ai/">Seafile AI extension</a>.</p>
+<p>After configuring <code>LLM_MODELS</code>, remove the following legacy model environment variables from the Seafile <code>.env</code> file:</p>
+<div class="highlight"><pre><span></span><code>SEAFILE_AI_LLM_TYPE=
+SEAFILE_AI_LLM_URL=
+SEAFILE_AI_LLM_KEY=
+SEAFILE_AI_LLM_MODEL=
+</code></pre></div>
+<p>Face recognition and the face-embedding service have been removed in Seafile 14.0. Remove the following environment variables from <code>.env</code>:</p>
+<div class="highlight"><pre><span></span><code>ENABLE_FACE_RECOGNITION=
+FACE_EMBEDDING_SERVICE_URL=
+FACE_EMBEDDING_SERVICE_KEY=
+FACE_EMBEDDING_VOLUME=
+</code></pre></div>
+<p>If a <code>face-embedding.yml</code> file is included in the <code>COMPOSE_FILE</code> setting, remove it from that setting.</p>
 <h3 id="step-34-update-configurations-for-webdav">Step 3.4) Update configurations for WebDAV<a class="headerlink" href="#step-34-update-configurations-for-webdav" title="Permanent link">&para;</a></h3>
 <p>If you are not using WebDAV, skip this step.</p>
 <p>In Seafile 14.0, the WebDAV enable switch and worker count are configured through environment variables in the Seafile server <code>.env</code>. If WebDAV was enabled in <code>seafdav.conf</code> before the upgrade, add the following settings to <code>.env</code>:</p>
 <div class="highlight"><pre><span></span><code>ENABLE_SEAFDAV=true
 SEAFDAV_WORKERS=5
 </code></pre></div>
-<p><code>SEAFDAV_WORKERS</code> replaces the old <code>workers</code> option in <code>seafdav.conf</code>. Keep the other WebDAV settings, such as <code>port</code>, <code>share_name</code>, <code>timeout</code>, <code>debug</code>, and <code>show_repo_id</code>, in <code>/opt/seafile-data/seafile/conf/seafdav.conf</code>.</p>
-<p>If the following old options exist in <code>/opt/seafile-data/seafile/conf/seafdav.conf</code>, remove them to avoid ambiguity:</p>
-<div class="highlight"><pre><span></span><code><span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
-<span class="na">workers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">5</span>
-</code></pre></div>
+<p>Remove the <code>enabled</code> and <code>workers</code> options from <code>/opt/seafile-data/seafile/conf/seafdav.conf</code> and keep the other settings unchanged.</p>
 <h3 id="step-35-update-configurations-for-metadata-server">Step 3.5) Update configurations for Metadata server<a class="headerlink" href="#step-35-update-configurations-for-metadata-server" title="Permanent link">&para;</a></h3>
 <p>If you are not using Metadata server, skip this step.</p>
 <p>In Seafile 14.0, the following two Metadata server configurations are moved from <code>seahub_settings.py</code> to the <code>.env</code> file used by the Seafile server. Remove them from <code>seahub_settings.py</code> if they exist there, and add them to the Seafile server <code>.env</code>. The old <code>METADATA_SERVER_URL</code> configuration is renamed to <code>INNER_METADATA_SERVER_URL</code>.</p>
@@ -6430,8 +6477,9 @@ INNER_METADATA_SERVER_URL=http://&lt;your metadata-server host&gt;:8084
 </div>
 </div>
 </div>
-<h2 id="step-4-modify-seahub_settingspy-for-thumbnail-server">Step 4) Modify <code>seahub_settings.py</code> for Thumbnail server<a class="headerlink" href="#step-4-modify-seahub_settingspy-for-thumbnail-server" title="Permanent link">&para;</a></h2>
-<p>If you are not using Thumbnail server, skip this step.</p>
+<h2 id="step-4-modify-seahub_settingspy">Step 4) Modify <code>seahub_settings.py</code><a class="headerlink" href="#step-4-modify-seahub_settingspy" title="Permanent link">&para;</a></h2>
+<h3 id="step-41-update-configurations-for-thumbnail-server">Step 4.1) Update configurations for Thumbnail server<a class="headerlink" href="#step-41-update-configurations-for-thumbnail-server" title="Permanent link">&para;</a></h3>
+<p>If you are not using Thumbnail server, skip to Step 4.2.</p>
 <p>Open <code>/opt/seafile-data/seafile/conf/seahub_settings.py</code> and remove the following configuration if it exists. In Seafile 14.0, video thumbnail is enabled by default.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># video thumbnails (disabled by default)</span>
 <span class="n">ENABLE_VIDEO_THUMBNAIL</span> <span class="o">=</span> <span class="kc">True</span>
@@ -6440,14 +6488,55 @@ INNER_METADATA_SERVER_URL=http://&lt;your metadata-server host&gt;:8084
 <div class="highlight"><pre><span></span><code><span class="c1"># enable thumbnail-server (disabled by default)</span>
 <span class="n">ENABLE_THUMBNAIL_SERVER</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div>
-<h2 id="step-5-remove-obsolete-seasearch-or-elasticsearch-configurations">Step 5) Remove obsolete SeaSearch (or ElasticSearch) configurations<a class="headerlink" href="#step-5-remove-obsolete-seasearch-or-elasticsearch-configurations" title="Permanent link">&para;</a></h2>
-<p>Remove obsolete SeaSearch (or ElasticSearch) configurations in <code>seafevents.conf</code>:</p>
+<h3 id="step-42-update-local-password-configurations">Step 4.2) Update local password configurations<a class="headerlink" href="#step-42-update-local-password-configurations" title="Permanent link">&para;</a></h3>
+<p>The following options have been removed in Seafile 14.0. Remove them from <code>/opt/seafile-data/seafile/conf/seahub_settings.py</code> if they exist:</p>
+<div class="highlight"><pre><span></span><code><span class="n">DISABLE_ADFS_USER_PWD_LOGIN</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">ENABLE_CHANGE_PASSWORD</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">ENABLE_SSO_USER_CHANGE_PASSWORD</span> <span class="o">=</span> <span class="kc">True</span>
+</code></pre></div>
+<p>To prevent users authenticated through external providers from using passwords stored in Seafile, add the following option to <code>/opt/seafile-data/seafile/conf/seahub_settings.py</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">DISABLE_SSO_USER_LOCAL_PWD_LOGIN</span> <span class="o">=</span> <span class="kc">True</span> <span class="c1"># default: False</span>
+</code></pre></div>
+<p>When enabled, this option disables local-password login and local password change/reset operations for users authenticated through SAML/ADFS, OAuth, LDAP, and so on.</p>
+<h2 id="step-5-update-search-configurations-pro-edition-only">Step 5) Update search configurations (Pro edition only)<a class="headerlink" href="#step-5-update-search-configurations-pro-edition-only" title="Permanent link">&para;</a></h2>
+<p>In Seafile 14.0, the search switch, search engine selection, document-content indexing, and search engine connection settings are configured in the Seafile server <code>.env</code> file. The new Pro Compose file enables search and uses SeaSearch by default. If you do not use search, add the following setting to <code>.env</code> and skip the rest of this step:</p>
+<div class="highlight"><pre><span></span><code>ENABLE_SEARCH=false
+</code></pre></div>
+<p>If you use search, add the settings for your search engine to <code>.env</code>:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">SeaSearch</label><label for="__tabbed_9_2">ElasticSearch</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>ENABLE_SEARCH=true
+SEARCH_ENGINE=seasearch
+ENABLE_FULL_TEXT_SEARCH=true
+
+SEASEARCH_URL=http://seasearch:4080
+SEASEARCH_TOKEN=&lt;your SeaSearch authorization token&gt;
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>ENABLE_SEARCH=true
+SEARCH_ENGINE=elasticsearch
+ENABLE_FULL_TEXT_SEARCH=true
+
+ELASTICSEARCH_SCHEME=http
+ELASTICSEARCH_HOST=&lt;your Elasticsearch host&gt;
+ELASTICSEARCH_PORT=9200
+ELASTICSEARCH_USER=
+ELASTICSEARCH_PASSWORD=
+</code></pre></div>
+</div>
+</div>
+</div>
+<p><code>ENABLE_FULL_TEXT_SEARCH</code> controls document-content indexing for both search engines and defaults to <code>true</code>. Set it to <code>false</code> to retain file-name-only search. If SeaSearch is deployed on a different machine, replace <code>SEASEARCH_URL</code> with the URL that is reachable from the Seafile server container.</p>
+<p>After adding these settings to <code>.env</code>, remove their old equivalents from <code>/opt/seafile-data/seafile/conf/seafevents.conf</code>:</p>
 <ol>
-<li><code>enabled</code> in both <code>[INDEX FILES]</code> and <code>[SEASEARCH]</code> sections are useless, you can remove it now (which is specified by two options in <code>.env</code>: <code>ENABLE_SEARCH</code> and <code>SEARCH_ENGINE</code>).</li>
-<li>If you are using SeaSearch and have specified the authorization information (<code>SEASEARCH_URL</code> and <code>SEASEARCH_TOKEN</code>) in <code>.env</code> you can safely remove the <code>seasearch_url</code> and <code>seasearch_token</code> in <code>[SEASEARCH]</code>.</li>
-<li>If you are using ElasticSearch and have specified the authorization information (<code>ELASTICSEARCH_SCHEME</code>, <code>ELASTICSEARCH_HOST</code>, <code>ELASTICSEARCH_PORT</code>, <code>ELASTICSEARCH_USER</code> and <code>ELASTICSEARCH_PASSWORD</code>) in <code>.env</code> you can safely remove the <code>scheme</code>, <code>es_host</code>, <code>es_port</code>, <code>username</code> and <code>password</code> in <code>[INDEX FILES]</code>.</li>
-<li><code>ENABLE_FULL_TEXT_SEARCH</code> controls document-content indexing for both search engines and defaults to <code>true</code>. If you set it in <code>.env</code>, remove <code>enable_full_text_search</code> from <code>[INDEX FILES]</code> or <code>[SEASEARCH]</code> to avoid ambiguity. Set it to <code>false</code> to retain file-name-only search.</li>
+<li>Remove <code>enabled</code> from the <code>[INDEX FILES]</code> and <code>[SEASEARCH]</code> sections. Search is now controlled by <code>ENABLE_SEARCH</code> and <code>SEARCH_ENGINE</code> in <code>.env</code>.</li>
+<li>If you use SeaSearch, remove <code>seasearch_url</code> and <code>seasearch_token</code> from <code>[SEASEARCH]</code>.</li>
+<li>If you use ElasticSearch, remove <code>scheme</code>, <code>es_host</code>, <code>es_port</code>, <code>username</code>, and <code>password</code> from <code>[INDEX FILES]</code>.</li>
+<li>Remove <code>enable_full_text_search</code> from <code>[INDEX FILES]</code> or <code>[SEASEARCH]</code>. It is now controlled by <code>ENABLE_FULL_TEXT_SEARCH</code> in <code>.env</code>.</li>
 </ol>
+<p>Keep any other advanced search options in <code>seafevents.conf</code>. For more information, refer to <a href="../../setup/use_seasearch/">Search with SeaSearch</a> or <a href="../../setup/use_elasticsearch/">Search with ElasticSearch</a>.</p>
 <h2 id="step-6-switch-the-cache-server-to-redis">Step 6) Switch the cache server to Redis<a class="headerlink" href="#step-6-switch-the-cache-server-to-redis" title="Permanent link">&para;</a></h2>
 <p>If you are already using Redis as the cache server, skip this step. Starting with Seafile 14.0, many new features rely on Redis as the cache server. We strongly recommend switching to Redis if you are currently using Memcached.</p>
 <ol>

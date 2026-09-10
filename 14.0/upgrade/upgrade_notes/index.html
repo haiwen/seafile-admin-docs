@@ -4643,43 +4643,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#seafile-ai-configuration-changes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Seafile AI configuration changes
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#monthly-traffic-limit-configuration-changes" class="md-nav__link">
     <span class="md-ellipsis">
       
         Monthly traffic limit configuration changes
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#local-password-configuration-changes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Local password configuration changes
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#search-configuration-changes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Search configuration changes
       
     </span>
   </a>
@@ -6138,43 +6105,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#seafile-ai-configuration-changes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Seafile AI configuration changes
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#monthly-traffic-limit-configuration-changes" class="md-nav__link">
     <span class="md-ellipsis">
       
         Monthly traffic limit configuration changes
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#local-password-configuration-changes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Local password configuration changes
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#search-configuration-changes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Search configuration changes
       
     </span>
   </a>
@@ -6445,65 +6379,15 @@
 <h3 id="important-release-changes">Important release changes<a class="headerlink" href="#important-release-changes" title="Permanent link">&para;</a></h3>
 <p>Seafile version 14.0 has the following configuration changes:</p>
 <ul>
-<li>WebDAV is configured via environment variables in the Seafile server <code>.env</code>. </li>
-<li>Metadata server is configured via environment variables in the Seafile server <code>.env</code>. </li>
-<li>Seafile AI models are configured via <code>seafile_ai_config.yaml</code>.</li>
-<li>Face recognition has been removed. </li>
+<li>WebDAV is configured via environment variables in the Seafile server <code>.env</code>. For details, refer to <a href="../../extension/webdav/">WebDAV extension</a>.</li>
+<li>Metadata server is configured via environment variables in the Seafile server <code>.env</code>. For details, refer to <a href="../../extension/metadata-server/">Metadata server</a>.</li>
+<li>Seafile AI models are configured via <code>seafile_ai_config.yaml</code>. For details, refer to <a href="../../extension/seafile-ai/">Seafile AI extension</a>.</li>
+<li>Face recognition has been removed. For cleanup instructions, refer to <a href="../upgrade_docker_14.0/#step-33-update-configurations-for-seafile-ai-optional">Upgrade Seafile Docker from 13.0 to 14.0</a>.</li>
 <li>Thumbnail server configurations in <code>seahub_settings.py</code> have changed. Please refer to <a href="../../extension/thumbnail-server/">Thumbnail server</a> for details.</li>
-<li>SeaSearch is the default search engine for new Seafile Pro Docker deployments, and authorization configurations of search can also be set in environment variables.</li>
-<li>Local-password policy for externally authenticated users is now controlled by <code>DISABLE_SSO_USER_LOCAL_PWD_LOGIN</code> in <code>seahub_settings.py</code>.</li>
+<li>Search configurations have changed. For details, refer to <a href="../../setup/use_seasearch/">Search with SeaSearch</a> or <a href="../../setup/use_elasticsearch/">Search with ElasticSearch</a>.</li>
+<li>Local password configurations have changed. For details, refer to <a href="../../config/seahub_settings_py/#single-sign-on">Seahub Settings</a>.</li>
 <li>Monthly traffic-limit role settings have been changed.</li>
 </ul>
-<h3 id="seafile-ai-configuration-changes">Seafile AI configuration changes<a class="headerlink" href="#seafile-ai-configuration-changes" title="Permanent link">&para;</a></h3>
-<p>Seafile AI configuration has been significantly changed in Seafile 14.0.</p>
-<ol>
-<li>
-<p>LLM configuration is moved from the Seafile <code>.env</code> file to <code>$SEAFILE_VOLUME/seafile/conf/seafile_ai_config.yaml</code>. After <code>LLM_MODELS</code> is configured, remove the following legacy model environment variables:</p>
-<div class="highlight"><pre><span></span><code>SEAFILE_AI_LLM_TYPE=
-SEAFILE_AI_LLM_URL=
-SEAFILE_AI_LLM_KEY=
-SEAFILE_AI_LLM_MODEL=
-</code></pre></div>
-<p>Configure one or more models in <code>LLM_MODELS</code> instead. Set one model as the default and assign model tiers as needed.</p>
-</li>
-<li>
-<p>The following environment variables are added for Seafile AI:</p>
-<div class="highlight"><pre><span></span><code>INNER_METADATA_SERVER_URL=
-SEASEARCH_URL=
-SEASEARCH_TOKEN=
-
-SEAFILE_MYSQL_DB_HOST=
-SEAFILE_MYSQL_DB_PORT=
-SEAFILE_MYSQL_DB_USER=
-SEAFILE_MYSQL_DB_PASSWORD=
-SEAFILE_MYSQL_DB_CCNET_DB_NAME=
-SEAFILE_MYSQL_DB_SEAFILE_DB_NAME=
-SEAFILE_MYSQL_DB_SEAHUB_DB_NAME=
-
-SEAF_SERVER_STORAGE_TYPE=
-S3_COMMIT_BUCKET=
-S3_FS_BUCKET=
-S3_BLOCK_BUCKET=
-S3_KEY_ID=
-S3_SECRET_KEY=
-S3_USE_V4_SIGNATURE=
-S3_AWS_REGION=
-S3_HOST=
-S3_USE_HTTPS=
-S3_PATH_STYLE_REQUEST=
-S3_SSE_C_KEY=
-</code></pre></div>
-</li>
-<li>
-<p>Face recognition and the face-embedding service have been removed. Remove the following configuration and any <code>face-embedding.yml</code> file from your <code>COMPOSE_FILE</code> setting:</p>
-<div class="highlight"><pre><span></span><code>ENABLE_FACE_RECOGNITION=
-FACE_EMBEDDING_SERVICE_URL=
-FACE_EMBEDDING_SERVICE_KEY=
-FACE_EMBEDDING_VOLUME=
-</code></pre></div>
-</li>
-</ol>
-<p>For configuration details, refer to <a href="../../extension/seafile-ai/">Seafile AI extension</a>.</p>
 <h3 id="monthly-traffic-limit-configuration-changes">Monthly traffic limit configuration changes<a class="headerlink" href="#monthly-traffic-limit-configuration-changes" title="Permanent link">&para;</a></h3>
 <p>The monthly traffic-limit settings in <code>ENABLED_ROLE_PERMISSIONS</code> have been changed to support independent upload and download allowances. The legacy keys are not read after the upgrade.</p>
 <p>Replace the following existing settings:</p>
@@ -6521,21 +6405,6 @@ FACE_EMBEDDING_VOLUME=
 <p><code>monthly_download_traffic_limit</code> and <code>monthly_upload_traffic_limit</code> apply to non-organization users. The corresponding <code>_per_user</code> settings apply to organization users and are multiplied by the organization's member quota. Use quota units such as <code>500M</code> or <code>100G</code>; an empty value means no monthly allowance.</p>
 <p>When a user exceeds a monthly allowance, Seafile reduces the corresponding transfer speed. You can configure the throttled download and upload rates with <code>DOWNLOAD_LIMIT_WHEN_THROTTLE</code> and <code>UPLOAD_LIMIT_WHEN_THROTTLE</code> in <code>seahub_settings.py</code>; both default to <code>1k</code> (1 KB/s).</p>
 <p>For details, refer to <a href="../../config/roles_permissions/">Roles and Permissions</a> and <a href="../../config/seahub_settings_py/#traffic-limit-exceeded-throttle-rate">Traffic limit exceeded throttle rate</a>.</p>
-<h3 id="local-password-configuration-changes">Local password configuration changes<a class="headerlink" href="#local-password-configuration-changes" title="Permanent link">&para;</a></h3>
-<p>The following <code>seahub_settings.py</code> options have been removed in Seafile 14.0:</p>
-<div class="highlight"><pre><span></span><code><span class="n">DISABLE_ADFS_USER_PWD_LOGIN</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">ENABLE_CHANGE_PASSWORD</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">ENABLE_SSO_USER_CHANGE_PASSWORD</span> <span class="o">=</span> <span class="kc">True</span>
-</code></pre></div>
-<p>Remove these options from <code>seahub_settings.py</code>. To prevent users authenticated through external providers from using passwords stored in Seafile, add the following option instead:</p>
-<div class="highlight"><pre><span></span><code><span class="n">DISABLE_SSO_USER_LOCAL_PWD_LOGIN</span> <span class="o">=</span> <span class="kc">True</span> <span class="c1"># default: False</span>
-</code></pre></div>
-<p>When enabled, this option disables local-password login and local password change/reset operations for users authenticated through SAML/ADFS, OAuth, LDAP, and so on. </p>
-<h3 id="search-configuration-changes">Search configuration changes<a class="headerlink" href="#search-configuration-changes" title="Permanent link">&para;</a></h3>
-<p>From Seafile 14.0 Pro, the <a href="https://seasearch-manual.seacloud-labs.ai/">SeaSearch</a> becomes the default-enabled search engine.</p>
-<p>SeaSearch and Elasticsearch configurations are moved from seafevents.conf to <code>.env</code> file.</p>
-<p><code>ENABLE_FULL_TEXT_SEARCH</code> controls document-content indexing for both engines and defaults to <code>true</code>. Set it to <code>false</code> if you need file-name-only search.</p>
-<p>See <a href="../../setup/use_seasearch/">Search with SeaSearch</a> and <a href="../../setup/use_elasticsearch/">Search with ElasticSearch</a> for configuration details.</p>
 <h2 id="upgrade-notes-for-130">Upgrade notes for 13.0<a class="headerlink" href="#upgrade-notes-for-130" title="Permanent link">&para;</a></h2>
 <h3 id="important-release-changes_1">Important release changes<a class="headerlink" href="#important-release-changes_1" title="Permanent link">&para;</a></h3>
 <p>Seafile version 13.0 has following major changes:</p>
