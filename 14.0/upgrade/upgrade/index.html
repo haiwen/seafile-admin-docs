@@ -4592,10 +4592,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#special-upgrade-notes" class="md-nav__link">
+  <a href="#major-upgrade" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Special upgrade notes
+        Major upgrade
       
     </span>
   </a>
@@ -4603,52 +4603,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#upgrade-a-binary-package-based-deployment" class="md-nav__link">
+  <a href="#maintenance-version-upgrade" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Upgrade a binary package based deployment
+        Maintenance version upgrade
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Upgrade a binary package based deployment">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#major-version-upgrade-eg-from-5xx-to-6yy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Major version upgrade (e.g. from 5.x.x to 6.y.y)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#minor-version-upgrade-eg-from-61x-to-62y" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Minor version upgrade (e.g. from 6.1.x to 6.2.y)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#maintenance-version-upgrade-eg-from-622-to-623" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Maintenance version upgrade (e.g. from 6.2.2 to 6.2.3)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -5871,10 +5832,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#special-upgrade-notes" class="md-nav__link">
+  <a href="#major-upgrade" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Special upgrade notes
+        Major upgrade
       
     </span>
   </a>
@@ -5882,52 +5843,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#upgrade-a-binary-package-based-deployment" class="md-nav__link">
+  <a href="#maintenance-version-upgrade" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Upgrade a binary package based deployment
+        Maintenance version upgrade
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Upgrade a binary package based deployment">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#major-version-upgrade-eg-from-5xx-to-6yy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Major version upgrade (e.g. from 5.x.x to 6.y.y)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#minor-version-upgrade-eg-from-61x-to-62y" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Minor version upgrade (e.g. from 6.1.x to 6.2.y)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#maintenance-version-upgrade-eg-from-622-to-623" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Maintenance version upgrade (e.g. from 6.2.2 to 6.2.3)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -5952,112 +5874,19 @@
 
 
 <h1 id="upgrade-manual">Upgrade manual<a class="headerlink" href="#upgrade-manual" title="Permanent link">&para;</a></h1>
-<p>There are three types of upgrade, i.e., major version upgrade, minor version upgrade and maintenance version upgrade. This page contains general instructions for the three types of upgrade.</p>
-<ul>
-<li>After upgrading, you may need to clean <strong><em>seahub cache</em></strong> if it doesn't behave as expect.</li>
-<li>If you are using a Docker based deployment, please read <a href="upgrade_docker.md">upgrade a Seafile docker instance</a></li>
-<li>If you are running a <strong>cluster</strong>, please read <a href="../upgrade_a_cluster/">upgrade a Seafile cluster</a>.</li>
-<li>If you are using a binary package based deployment, please read instructions below.</li>
-</ul>
-<h2 id="special-upgrade-notes">Special upgrade notes<a class="headerlink" href="#special-upgrade-notes" title="Permanent link">&para;</a></h2>
-<p>Please check the <strong>upgrade notes</strong> for any special configuration or changes before/while upgrading.</p>
-<ul>
-<li><a href="./upgrade_notes_for_14.0.x.md">Upgrade notes for 14.0.x</a></li>
-<li><a href="./upgrade_notes_for_13.0.x.md">Upgrade notes for 13.0.x</a></li>
-<li><a href="./upgrade_notes_for_12.0.x.md">Upgrade notes for 12.0.x</a></li>
-<li><a href="./upgrade_notes_for_11.0.x.md">Upgrade notes for 11.0.x</a></li>
-<li><a href="./upgrade_notes_for_10.0.x.md">Upgrade notes for 10.0.x</a></li>
-<li><a href="./upgrade_notes_for_9.0.x.md">Upgrade notes for 9.0.x</a></li>
-</ul>
-<h2 id="upgrade-a-binary-package-based-deployment">Upgrade a binary package based deployment<a class="headerlink" href="#upgrade-a-binary-package-based-deployment" title="Permanent link">&para;</a></h2>
-<h3 id="major-version-upgrade-eg-from-5xx-to-6yy">Major version upgrade (e.g. from 5.x.x to 6.y.y)<a class="headerlink" href="#major-version-upgrade-eg-from-5xx-to-6yy" title="Permanent link">&para;</a></h3>
-<p>Suppose you are using version 5.1.0 and like to upgrade to version 6.1.0. First download and extract the new version. You should have a directory layout similar to this:</p>
-<div class="highlight"><pre><span></span><code>seafile
-   -- seafile-server-5.1.0
-   -- seafile-server-6.1.0
-   -- ccnet
-   -- seafile-data
-</code></pre></div>
-<p>Now upgrade to version 6.1.0.</p>
-<p>Shutdown Seafile server if it's running</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>seafile/seafile-server-latest
-./seahub.sh<span class="w"> </span>stop
-./seafile.sh<span class="w"> </span>stop
-<span class="c1"># or via service</span>
-/etc/init.d/seafile-server<span class="w"> </span>stop
-</code></pre></div>
-<p>Check the upgrade scripts in seafile-server-6.1.0 directory.</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>seafile/seafile-server-6.1.0
-ls<span class="w"> </span>upgrade/upgrade_*
-</code></pre></div>
-<p>You will get a list of upgrade files:</p>
-<div class="highlight"><pre><span></span><code>...
-upgrade_5.0_5.1.sh
-upgrade_5.1_6.0.sh
-upgrade_6.0_6.1.sh
-</code></pre></div>
-<p>Start from your current version, run the script(s one by one)</p>
-<div class="highlight"><pre><span></span><code>upgrade/upgrade_5.1_6.0.sh
-upgrade/upgrade_6.0_6.1.sh
-</code></pre></div>
-<p>Start Seafile server</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>seafile/seafile-server-latest/
-./seafile.sh<span class="w"> </span>start
-./seahub.sh<span class="w"> </span>start<span class="w"> </span><span class="c1"># or "./seahub.sh start-fastcgi" if you're using fastcgi</span>
-<span class="c1"># or via service</span>
-/etc/init.d/seafile-server<span class="w"> </span>start
-</code></pre></div>
-<p>If the new version works fine, the old version can be removed</p>
-<div class="highlight"><pre><span></span><code>rm<span class="w"> </span>-rf<span class="w"> </span>seafile-server-5.1.0/
-</code></pre></div>
-<h3 id="minor-version-upgrade-eg-from-61x-to-62y">Minor version upgrade (e.g. from 6.1.x to 6.2.y)<a class="headerlink" href="#minor-version-upgrade-eg-from-61x-to-62y" title="Permanent link">&para;</a></h3>
-<p>Suppose you are using version 6.1.0 and like to upgrade to version 6.2.0. First download and extract the new version. You should have a directory layout similar to this:</p>
-<div class="highlight"><pre><span></span><code>seafile
-   -- seafile-server-6.1.0
-   -- seafile-server-6.2.0
-   -- ccnet
-   -- seafile-data
-</code></pre></div>
-<p>Now upgrade to version 6.2.0.</p>
-<ol>
-<li>Shutdown Seafile server if it's running</li>
-</ol>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>seafile/seafile-server-latest
-./seahub.sh<span class="w"> </span>stop
-./seafile.sh<span class="w"> </span>stop
-<span class="c1"># or via service</span>
-/etc/init.d/seafile-server<span class="w"> </span>stop
-</code></pre></div>
-<p>Check the upgrade scripts in seafile-server-6.2.0 directory.</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>seafile/seafile-server-6.2.0
-ls<span class="w"> </span>upgrade/upgrade_*
-</code></pre></div>
-<p>You will get a list of upgrade files:</p>
-<div class="highlight"><pre><span></span><code>...
-upgrade/upgrade_5.1_6.0.sh
-upgrade/upgrade_6.0_6.1.sh
-upgrade/upgrade_6.1_6.2.sh
-</code></pre></div>
-<p>Start from your current version, run the script(s one by one)</p>
-<div class="highlight"><pre><span></span><code>upgrade/upgrade_6.1_6.2.sh
-</code></pre></div>
-<p>Start Seafile server</p>
-<div class="highlight"><pre><span></span><code>./seafile.sh<span class="w"> </span>start
-./seahub.sh<span class="w"> </span>start
-<span class="c1"># or via service</span>
-/etc/init.d/seafile-server<span class="w"> </span>start
-</code></pre></div>
-<p>If the new version works, the old version can be removed</p>
-<div class="highlight"><pre><span></span><code>rm<span class="w"> </span>-rf<span class="w"> </span>seafile-server-6.1.0/
-</code></pre></div>
-<h3 id="maintenance-version-upgrade-eg-from-622-to-623">Maintenance version upgrade (e.g. from 6.2.2 to 6.2.3)<a class="headerlink" href="#maintenance-version-upgrade-eg-from-622-to-623" title="Permanent link">&para;</a></h3>
-<p>A maintenance upgrade is for example an upgrade from 6.2.2 to 6.2.3.</p>
+<p>There are two types of upgrade, i.e., major version upgrade and maintenance version upgrade.</p>
+<h2 id="major-upgrade">Major upgrade<a class="headerlink" href="#major-upgrade" title="Permanent link">&para;</a></h2>
+<p>For major upgrade, if you are using a Docker based deployment, please read the upgrade documents for docker based deployment. If you are using a binary package based deployment, please read the upgrade documents for binary based deployment.</p>
+<p>Please check the <a href="../upgrade_notes/">upgrade notes</a> for any special configuration or changes before upgrading.</p>
+<h2 id="maintenance-version-upgrade">Maintenance version upgrade<a class="headerlink" href="#maintenance-version-upgrade" title="Permanent link">&para;</a></h2>
+<p>For maintenance version upgrade, like from version 14.0.1 to version 14.0.4, if you are using a Docker based deployment, just download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version, then start with docker compose up.</p>
+<p>For binary based maintenance version upgrade, for example from 14.0.1 to 14.0.4, you can use the following steps:</p>
 <ol>
 <li>Shutdown Seafile server if it's running</li>
 <li>
 <p>For this type of upgrade, you only need to update the symbolic links (for avatar and a few other folders). 
    A script to perform a minor upgrade is provided with Seafile server (for history reasons, the script is called <code>minor-upgrade.sh</code>):</p>
-<div class="highlight"><pre><span></span><code>cd seafile-server-6.2.3/upgrade/ &amp;&amp; ./minor-upgrade.sh
+<div class="highlight"><pre><span></span><code>cd seafile-server-14.0.4/upgrade/ &amp;&amp; ./minor-upgrade.sh
 </code></pre></div>
 </li>
 <li>
@@ -6065,7 +5894,7 @@ upgrade/upgrade_6.1_6.2.sh
 </li>
 <li>
 <p>If the new version works, the old version can be removed</p>
-<div class="highlight"><pre><span></span><code>rm -rf seafile-server-6.2.2/
+<div class="highlight"><pre><span></span><code>rm -rf seafile-server-14.0.1/
 </code></pre></div>
 </li>
 </ol>
