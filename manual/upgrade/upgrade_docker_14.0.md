@@ -1,10 +1,6 @@
 # Upgrade Seafile Docker from 13.0 to 14.0
 
-For maintenance upgrade, like from version 10.0.1 to version 10.0.4, just download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version, then start with docker compose up.
-
-For major version upgrade, like from 13.0 to 14.0, see instructions below.
-
-Please check the **upgrade notes** for an overview about changes in this major version before upgrading.
+Please check the [upgrade notes](./upgrade_notes.md) for an overview about changes in this major version before upgrading.
 
 ----
 
