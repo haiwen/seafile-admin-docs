@@ -64,25 +64,25 @@ ENABLE_NOTIFICATION_SERVER=false
 NOTIFICATION_SERVER_URL=
 INNER_NOTIFICATION_SERVER_URL=$NOTIFICATION_SERVER_URL
 
-## Seafile AI
-ENABLE_SEAFILE_AI=false
-SEAFILE_AI_SERVER_URL=
-
 ## Metadata server
 ENABLE_METADATA_MANAGEMENT=False
 INNER_METADATA_SERVER_URL=
 MD_FILE_COUNT_LIMIT=100000
 
-# for searching
+### Seafile AI (Only can be enabled when ENABLE_METADATA_MANAGEMENT)
+ENABLE_SEAFILE_AI=false
+SEAFILE_AI_SERVER_URL=
+
+## Search
 ENABLE_SEARCH=true
 SEARCH_ENGINE=seasearch
 ENABLE_FULL_TEXT_SEARCH=true # Index document contents for full-text search
 
-## for seasearch
+### Seasearch
 SEASEARCH_URL=http://seasearch:4080
 SEASEARCH_TOKEN=<Your seasearch token>
 
-## for elasticsearch
+### Elasticsearch
 ELASTICSEARCH_SCHEME=http
 ELASTICSEARCH_HOST=<Your ES host>
 ELASTICSEARCH_PORT=9200
