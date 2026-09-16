@@ -5,9 +5,6 @@ SEAFILE_AI_IMAGE=seafileltd/seafile-ai:14.0-latest
 
 SEAFILE_VOLUME=/opt/seafile-data
 
-SEAFILE_SERVER_PROTOCOL=http
-SEAFILE_SERVER_HOSTNAME=
-
 CACHE_PROVIDER=redis
 REDIS_HOST=... # your redis host
 REDIS_PORT=6379
@@ -15,12 +12,25 @@ REDIS_PASSWORD=
 
 JWT_PRIVATE_KEY=
 
-SEAFILE_AI_LLM_TYPE=openai
-SEAFILE_AI_LLM_URL=
-SEAFILE_AI_LLM_KEY=... # your llm key
-SEAFILE_AI_LLM_MODEL=gpt-4o-mini
-
 INNER_SEAHUB_SERVICE_URL=    # https://seafile.example.com
 INNER_METADATA_SERVER_URL=
 SEASEARCH_URL=               # http://seasearch.example.com:4080
 SEASEARCH_TOKEN=
+
+# Storage
+SEAF_SERVER_STORAGE_TYPE=disk
+
+## S3 configurations (only valid in XXX_STORAGE_TYPE=s3)
+S3_COMMIT_BUCKET=<your commit bucket name>
+S3_FS_BUCKET=<your fs bucket name>
+S3_BLOCK_BUCKET=<your block bucket name>
+S3_SS_BUCKET=<your seasearch bucket name> # for seasearch
+S3_MD_BUCKET=<your metadata bucket name> # for metadata-server
+S3_KEY_ID=<your-key-id>
+S3_SECRET_KEY=<your-secret-key>
+S3_USE_V4_SIGNATURE=true
+S3_PATH_STYLE_REQUEST=false
+S3_AWS_REGION=us-east-1
+S3_HOST=
+S3_USE_HTTPS=true
+S3_SSE_C_KEY=
