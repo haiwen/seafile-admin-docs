@@ -164,12 +164,6 @@ The Seafile AI basic service will use API calls to external large language model
     | `JWT_PRIVATE_KEY` | JWT key shared with the Seafile server and related extension services. This variable is required. |
     | `SEAFILE_AI_LOG_LEVEL` | Seafile AI log level. Default is `info`. |
 
-    AI model settings:
-
-    | Variable | Description |
-    |----------|-------------|
-    | None | Seafile AI models are configured in `seafile_ai_config.yaml`. |
-
     Database and cache settings:
 
     | Variable | Description |
