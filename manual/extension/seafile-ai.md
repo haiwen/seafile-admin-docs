@@ -1,24 +1,16 @@
 # Seafile AI extension
 
-From Seafile 13, users can enable ***Seafile AI*** to support the following features:
 
 !!! note "Prerequisites of Seafile AI deployment"
     To deploy Seafile AI, you have to deploy [metadata server](./metadata-server.md) extension firstly. Then you can follow this manual to deploy Seafile AI.
 
-- File tags, file and image summaries, text translation, sdoc writing assistance
-- Given an image, generate its corresponding tags (including objects, weather, color, etc.)
-- Detect text in images (OCR)
 
-!!! danger "AIGC statement in Seafile"
-    With the help of large language models and algorithm development, Seafile AI supports image recognition and text generation. The generated content is **diverse** and **random**, and users need to identify the generated content. **Seafile will not be responsible for AI-generated content (AIGC)**.
+You can enable ***Seafile AI*** to support the following features:
 
-    At the same time, Seafile AI supports the use of custom LLM. Different large language models will have different impacts on AIGC (including functions and performance), so **Seafile will not be responsible for the corresponding rate (i.e., tokens/s), token consumption, and generated content**. Including but not limited to
+- AI chat and search within a library
+- File tags selection
+- Sdoc writing assistance
 
-    - Basic model (including model basic algorithm)
-    - Parameter quantity
-    - Quantization level
-
-    When users use their own OpenAI-compatibility-API LLM service (e.g., *LM studio*, *Ollama*) and use self-ablated or abliterated models, **Seafile will not be responsible for possible bugs** (such as infinite loops outputting the same meaningless content). At the same time, Seafile does not recommend using documents such as SeaDoc to evaluate the performance of ablated models.
 
 ## Deploy Seafile AI basic service
 
@@ -26,8 +18,6 @@ From Seafile 13, users can enable ***Seafile AI*** to support the following feat
 
 The Seafile AI basic service will use API calls to external large language model service to implement file labeling, file and image summaries, text translation, and sdoc writing assistance.
 
-!!! note "Redis for AI usage statistics"
-    Seafile AI uses Redis to publish model token-usage events. Redis is required when [AI usage statistics](#enable-ai-usage-statistics) are enabled.
 
 1. Download `seafile-ai.yml`
 
