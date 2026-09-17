@@ -14,6 +14,35 @@ ENABLE_CHANGE_PASSWORD = True
 ENABLE_SSO_USER_CHANGE_PASSWORD = True
 ```
 
+The following legacy keys in `ENABLED_ROLE_PERMISSIONS` are no longer read. After migrating their existing values to `monthly_download_traffic_limit` and `monthly_download_traffic_limit_per_user`, remove them from every role where they are configured:
+
+```python
+'monthly_rate_limit': '',
+'monthly_rate_limit_per_user': '',
+```
+
+### .env
+
+Seafile AI models are configured in `seafile_ai_config.yaml` in Seafile 14.0. Remove the following legacy model environment variables:
+
+```env
+SEAFILE_AI_LLM_TYPE=
+SEAFILE_AI_LLM_URL=
+SEAFILE_AI_LLM_KEY=
+SEAFILE_AI_LLM_MODEL=
+```
+
+Face recognition and the face-embedding service have been removed in Seafile 14.0. Remove the following environment variables:
+
+```env
+ENABLE_FACE_RECOGNITION=
+FACE_EMBEDDING_SERVICE_URL=
+FACE_EMBEDDING_SERVICE_KEY=
+FACE_EMBEDDING_VOLUME=
+```
+
+If `face-embedding.yml` is included in the `COMPOSE_FILE` setting, remove it from that setting.
+
 ## Seafile 12 to 13 Obsolete Configurations
 
 ### seafevents.conf

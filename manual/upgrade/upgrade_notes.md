@@ -12,42 +12,11 @@ Seafile version 14.0 has the following configuration changes:
 * WebDAV is configured via environment variables in the Seafile server `.env`. For details, refer to [WebDAV extension](../extension/webdav.md).
 * Metadata server is configured via environment variables in the Seafile server `.env`. For details, refer to [Metadata server](../extension/metadata-server.md).
 * Seafile AI models are configured via `seafile_ai_config.yaml`. For details, refer to [Seafile AI extension](../extension/seafile-ai.md).
-* Face recognition has been removed. For cleanup instructions, refer to [Upgrade Seafile Docker from 13.0 to 14.0](upgrade_docker_14.0.md#step-33-update-configurations-for-seafile-ai-optional).
+* Face recognition has been removed. For cleanup instructions, refer to [Seafile obsolete configurations](./seafile_obsolete_configurations.md#env).
 * Thumbnail server configurations in `seahub_settings.py` have changed. Please refer to [Thumbnail server](../extension/thumbnail-server.md) for details.
 * Search configurations have changed. For details, refer to [Search with SeaSearch](../setup/use_seasearch.md) or [Search with ElasticSearch](../setup/use_elasticsearch.md).
 * Local password configurations have changed. For details, refer to [Seahub Settings](../config/seahub_settings_py.md#single-sign-on).
-* Monthly traffic-limit role settings have been changed.
-
-### Monthly traffic limit configuration changes
-
-The monthly traffic-limit settings in `ENABLED_ROLE_PERMISSIONS` have been changed to support independent upload and download allowances. The legacy keys are not read after the upgrade.
-
-Replace the following existing settings:
-
-```python
-'monthly_rate_limit': '',
-'monthly_rate_limit_per_user': '',
-```
-
-With the corresponding download settings:
-
-```python
-'monthly_download_traffic_limit': '',
-'monthly_download_traffic_limit_per_user': '',
-```
-
-You can also configure independent upload allowances:
-
-```python
-'monthly_upload_traffic_limit': '',
-'monthly_upload_traffic_limit_per_user': '',
-```
-
-`monthly_download_traffic_limit` and `monthly_upload_traffic_limit` apply to non-organization users. The corresponding `_per_user` settings apply to organization users and are multiplied by the organization's member quota. Use quota units such as `500M` or `100G`; an empty value means no monthly allowance.
-
-When a user exceeds a monthly allowance, Seafile reduces the corresponding transfer speed. You can configure the throttled download and upload rates with `DOWNLOAD_LIMIT_WHEN_THROTTLE` and `UPLOAD_LIMIT_WHEN_THROTTLE` in `seahub_settings.py`; both default to `1k` (1 KB/s).
-
-For details, refer to [Roles and Permissions](../config/roles_permissions.md) and [Traffic limit exceeded throttle rate](../config/seahub_settings_py.md#traffic-limit-exceeded-throttle-rate).
+* Monthly traffic limits in `ENABLED_ROLE_PERMISSIONS` now use separate download and upload settings. The legacy `monthly_rate_limit` and `monthly_rate_limit_per_user` settings are no longer read and must be migrated. For instructions, refer to [Upgrade Seafile Docker from 13.0 to 14.0](./upgrade_docker_14.0.md#step-43-update-monthly-traffic-limit-configurations).
 
 
 ## Upgrade notes for 13.0

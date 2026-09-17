@@ -4,6 +4,9 @@ Please check the [upgrade notes](./upgrade_notes.md) for an overview about chang
 
 ----
 
+!!! important "Redeploy Seafile AI"
+    Seafile AI has undergone significant changes in Seafile 14.0. If you are using Seafile AI, follow [Seafile AI extension](../extension/seafile-ai.md) to redeploy it. Before redeploying, remove the old settings listed in [Seafile obsolete configurations](./seafile_obsolete_configurations.md#seafile-13-to-14-obsolete-configurations).
+
 !!! tip "Clean Database"
     The database upgrade may take a long time. You can clean the database before upgrading. Please refer to [Clean Database](../administration/clean_database.md).
 
@@ -81,21 +84,6 @@ If you are using Thumbnail server, please backup the old file and download the 1
     wget https://manual.seafile.com/14.0/repo/docker/thumbnail-server/thumbnail-server.yml
     ```
 
-### Step 2.5) Download `.yml` file for Seafile AI (optional)
-
-If you are using Seafile AI, please backup the old file and download the 14.0 file:
-
-=== "Deployment with Seafile"
-    ```sh
-    mv seafile-ai.yml seafile-ai.yml.bak
-    wget https://manual.seafile.com/14.0/repo/docker/seafile-ai.yml
-    ```
-=== "Standalone deployment"
-    ```sh
-    mv seafile-ai.yml seafile-ai.yml.bak
-    wget https://manual.seafile.com/14.0/repo/docker/seafile-ai/seafile-ai.yml
-    ```
-
 ## Step 3) Modify `.env`
 
 ### Step 3.1) Update image versions
@@ -113,9 +101,6 @@ If you are using Seafile AI, please backup the old file and download the 14.0 fi
 
     # If you are using Thumbnail server
     THUMBNAIL_SERVER_IMAGE=seafileltd/thumbnail-server:14.0-latest
-
-    # If you are using Seafile AI
-    SEAFILE_AI_IMAGE=seafileltd/seafile-ai:14.0-latest
     ```
 
 === "Seafile Pro"
@@ -131,57 +116,9 @@ If you are using Seafile AI, please backup the old file and download the 14.0 fi
 
     # If you are using Thumbnail server
     THUMBNAIL_SERVER_IMAGE=seafileltd/thumbnail-server:14.0-latest
-
-    # If you are using Seafile AI
-    SEAFILE_AI_IMAGE=seafileltd/seafile-ai:14.0-latest
     ```
 
-### Step 3.2) Add SeaSearch configurations for Seafile AI (optional)
-
-If you are not using Seafile AI, skip this step.
-
-Add the following settings to the `.env` used by Seafile AI:
-
-=== "SeaSearch deployed with Seafile"
-    ```env
-    SEASEARCH_URL=http://seasearch:4080
-    SEASEARCH_TOKEN=<your SeaSearch authorization token>
-    ```
-=== "Standalone SeaSearch deployment"
-    ```env
-    SEASEARCH_URL=http://<your SeaSearch server host>:4080
-    SEASEARCH_TOKEN=<your SeaSearch authorization token>
-    ```
-
-Leave both variables empty if SeaSearch is not used. For details, refer to [Search with SeaSearch](../setup/use_seasearch.md).
-
-### Step 3.3) Update configurations for Seafile AI (optional)
-
-If you are not using Seafile AI, skip this step.
-
-In Seafile 14.0, Seafile AI models are configured in `seafile_ai_config.yaml` instead of through environment variables. Update the model configuration according to [Seafile AI extension](../extension/seafile-ai.md).
-
-After configuring `LLM_MODELS`, remove the following legacy model environment variables from the Seafile `.env` file:
-
-```env
-SEAFILE_AI_LLM_TYPE=
-SEAFILE_AI_LLM_URL=
-SEAFILE_AI_LLM_KEY=
-SEAFILE_AI_LLM_MODEL=
-```
-
-Face recognition and the face-embedding service have been removed in Seafile 14.0. Remove the following environment variables from `.env`:
-
-```env
-ENABLE_FACE_RECOGNITION=
-FACE_EMBEDDING_SERVICE_URL=
-FACE_EMBEDDING_SERVICE_KEY=
-FACE_EMBEDDING_VOLUME=
-```
-
-If a `face-embedding.yml` file is included in the `COMPOSE_FILE` setting, remove it from that setting.
-
-### Step 3.4) Update configurations for WebDAV
+### Step 3.2) Update configurations for WebDAV
 
 If you are not using WebDAV, skip this step.
 
@@ -194,7 +131,7 @@ SEAFDAV_WORKERS=5
 
 Remove the `enabled` and `workers` options from `/opt/seafile-data/seafile/conf/seafdav.conf` and keep the other settings unchanged.
 
-### Step 3.5) Update configurations for Metadata server
+### Step 3.3) Update configurations for Metadata server
 
 If you are not using Metadata server, skip this step.
 
@@ -250,6 +187,48 @@ DISABLE_SSO_USER_LOCAL_PWD_LOGIN = True # default: False
 ```
 
 When enabled, this option disables local-password login and local password change/reset operations for users authenticated through SAML/ADFS, OAuth, LDAP, and so on.
+
+### Step 4.3) Update monthly traffic-limit configurations
+
+If `ENABLED_ROLE_PERMISSIONS` in `/opt/seafile-data/seafile/conf/seahub_settings.py` does not contain `monthly_rate_limit` or `monthly_rate_limit_per_user`, skip this step.
+
+In Seafile 14.0, monthly download and upload allowances are configured independently. The legacy settings are no longer read. For each role in `ENABLED_ROLE_PERMISSIONS`, preserve the existing values while making the following replacements:
+
+```python
+# Replace this legacy setting:
+'monthly_rate_limit': '<existing value>',
+
+# With the download allowance setting:
+'monthly_download_traffic_limit': '<existing value>',
+```
+
+For organization users, replace the corresponding per-user setting in the same way:
+
+```python
+# Replace this legacy setting:
+'monthly_rate_limit_per_user': '<existing value>',
+
+# With the download allowance setting:
+'monthly_download_traffic_limit_per_user': '<existing value>',
+```
+
+To configure independent monthly upload allowances, add the following settings to each applicable role:
+
+```python
+'monthly_upload_traffic_limit': '',
+'monthly_upload_traffic_limit_per_user': '',
+```
+
+The settings without the `_per_user` suffix apply to non-organization users. The `_per_user` settings apply to organization users, and the configured value is multiplied by the organization's member quota. Use quota units such as `500M` or `100G`; an empty value means no monthly allowance.
+
+When a user exceeds an allowance, Seafile reduces the corresponding transfer speed. To override the default throttled rate of `1k` (1 KB/s), add either or both of the following options to `seahub_settings.py`:
+
+```python
+DOWNLOAD_LIMIT_WHEN_THROTTLE = '1k'
+UPLOAD_LIMIT_WHEN_THROTTLE = '1k'
+```
+
+For more information, refer to [Roles and Permissions](../config/roles_permissions.md) and [Traffic limit exceeded throttle rate](../config/seahub_settings_py.md#traffic-limit-exceeded-throttle-rate).
 
 ## Step 5) Update search configurations (Pro edition only)
 
