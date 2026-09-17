@@ -6043,34 +6043,19 @@
 
 
 <h1 id="seafile-ai-extension">Seafile AI extension<a class="headerlink" href="#seafile-ai-extension" title="Permanent link">&para;</a></h1>
-<p>From Seafile 13, users can enable <strong><em>Seafile AI</em></strong> to support the following features:</p>
 <div class="admonition note">
 <p class="admonition-title">Prerequisites of Seafile AI deployment</p>
 <p>To deploy Seafile AI, you have to deploy <a href="../metadata-server/">metadata server</a> extension firstly. Then you can follow this manual to deploy Seafile AI.</p>
 </div>
+<p>You can enable <strong><em>Seafile AI</em></strong> to support the following features:</p>
 <ul>
-<li>File tags, file and image summaries, text translation, sdoc writing assistance</li>
-<li>Given an image, generate its corresponding tags (including objects, weather, color, etc.)</li>
-<li>Detect text in images (OCR)</li>
+<li>AI chat and search within a library</li>
+<li>File tags selection</li>
+<li>Sdoc writing assistance</li>
 </ul>
-<div class="admonition danger">
-<p class="admonition-title">AIGC statement in Seafile</p>
-<p>With the help of large language models and algorithm development, Seafile AI supports image recognition and text generation. The generated content is <strong>diverse</strong> and <strong>random</strong>, and users need to identify the generated content. <strong>Seafile will not be responsible for AI-generated content (AIGC)</strong>.</p>
-<p>At the same time, Seafile AI supports the use of custom LLM. Different large language models will have different impacts on AIGC (including functions and performance), so <strong>Seafile will not be responsible for the corresponding rate (i.e., tokens/s), token consumption, and generated content</strong>. Including but not limited to</p>
-<ul>
-<li>Basic model (including model basic algorithm)</li>
-<li>Parameter quantity</li>
-<li>Quantization level</li>
-</ul>
-<p>When users use their own OpenAI-compatibility-API LLM service (e.g., <em>LM studio</em>, <em>Ollama</em>) and use self-ablated or abliterated models, <strong>Seafile will not be responsible for possible bugs</strong> (such as infinite loops outputting the same meaningless content). At the same time, Seafile does not recommend using documents such as SeaDoc to evaluate the performance of ablated models.</p>
-</div>
 <h2 id="deploy-seafile-ai-basic-service">Deploy Seafile AI basic service<a class="headerlink" href="#deploy-seafile-ai-basic-service" title="Permanent link">&para;</a></h2>
 <h3 id="deploy-seafile-ai-on-the-host-with-seafile">Deploy Seafile AI on the host with Seafile<a class="headerlink" href="#deploy-seafile-ai-on-the-host-with-seafile" title="Permanent link">&para;</a></h3>
 <p>The Seafile AI basic service will use API calls to external large language model service to implement file labeling, file and image summaries, text translation, and sdoc writing assistance.</p>
-<div class="admonition note">
-<p class="admonition-title">Redis for AI usage statistics</p>
-<p>Seafile AI uses Redis to publish model token-usage events. Redis is required when <a href="#enable-ai-usage-statistics">AI usage statistics</a> are enabled.</p>
-</div>
 <ol>
 <li>
 <p>Download <code>seafile-ai.yml</code></p>
