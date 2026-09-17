@@ -134,12 +134,12 @@ nav:
       - Start Seafile at System Bootup: setup_binary/start_seafile_at_system_bootup.md
       - Logrotate: setup_binary/using_logrotate.md
   - Extensions:
+    - Metadata and AI:
+      - Metadata Server: extension/metadata-server.md
+      - Seafile AI extension: extension/seafile-ai.md
     - Extra Seafile components:
       - SeaDoc Integration: extension/setup_seadoc.md
       - Notification Server: extension/notification-server.md
-      - Metadata and AI:
-        - Metadata Server: extension/metadata-server.md
-        - Seafile AI extension: extension/seafile-ai.md
       - Thumbnail Server: extension/thumbnail-server.md
       - WebDAV extension: extension/webdav.md
       - FUSE extension: extension/fuse.md
