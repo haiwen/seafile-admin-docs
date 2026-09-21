@@ -62,10 +62,6 @@ enable_full_text_search=true
 ## Unit: MB
 office_file_size_limit = 10
 
-## From 9.0.7 pro, Seafile supports connecting to Elasticsearch through username and password, you need to configure username and password for the Elasticsearch server
-username = elastic           # username to connect to Elasticsearch
-password = elastic_password  # password to connect to Elasticsearch
-
 ## From 9.0.7 pro, Seafile supports connecting to elasticsearch via HTTPS, you need to configure HTTPS for the Elasticsearch server
 scheme = https               # The default is http. If the Elasticsearch server is not configured with HTTPS, the scheme and cafile do not need to be configured
 cafile = path/to/cert.pem    # The certificate path for user authentication. If the Elasticsearch server does not enable certificate authentication, do not need to be configured
@@ -82,12 +78,3 @@ loglevel = info
 [AUTO DELETION]
 enabled = true     # Default is false, when enabled, users can use file auto deletion feature
 interval = 86400   # The unit is second(s), the default frequency is one day, that is, it runs once a day
-
-[SEASEARCH]
-## Since Seafile Pro 14.0, new Docker deployments use SeaSearch as the default-enabled search engine.
-seasearch_url = http://seasearch:4080 # If your SeaSearch server deploy on another machine, replace it to the truth address
-seasearch_token = <your auth token> # base64 code consist of `username:password`
-interval = 10m # The interval the search index is updated. Can be s(seconds), m(minutes), h(hours), d(days)
-## Since Seafile Pro 13.0, ENABLE_FULL_TEXT_SEARCH in .env takes precedence over this setting.
-enable_full_text_search=true
-```

@@ -80,6 +80,7 @@ This part of configurations is only valid in `CACHE_PROVIDER=memcached`:
 - `ENABLE_FULL_TEXT_SEARCH`: Index document contents for full-text search. Applies to SeaSearch and Elasticsearch. Default is `true`. Since Seafile Pro 13.0, this setting takes precedence over `enable_full_text_search` in `seafevents.conf`.
 - `SEASEARCH_URL`: SeaSearch URL reachable from the Seafile server. Required when using SeaSearch.
 - `SEASEARCH_TOKEN`: Authorization token for the SeaSearch API. Required when using SeaSearch.
+- For additional SeaSearch service configuration in `.env`, including `SS_STORAGE_TYPE`, `SS_MAX_OBJ_CACHE_SIZE`, and `SS_LOG_LEVEL`, see the [SeaSearch configuration reference](https://seasearch-manual.seacloud-labs.ai/latest/config/).
 - `ELASTICSEARCH_SCHEME`: Elasticsearch connection scheme. Default is `http`.
 - `ELASTICSEARCH_HOST`: Elasticsearch host. Required when using Elasticsearch.
 - `ELASTICSEARCH_PORT`: Elasticsearch port. Default is `9200`.
@@ -124,14 +125,6 @@ This part of configurations is only valid in `CACHE_PROVIDER=memcached`:
         
     You have to specify at least one of them as s3 for the above configuration to take effect.
 
-## SeaSearch service configurations
-
-For other SeaSearch service configurations in `.env`, such as `SS_STORAGE_TYPE`, `SS_MAX_OBJ_CACHE_SIZE`, and `SS_LOG_LEVEL`, refer to the [SeaSearch configuration reference](https://seasearch-manual.seacloud-labs.ai/latest/config/).
-
-## Metadata server
-
-For configurations about Metadata server in `.env`, please refer [here](../extension/metadata-server.md#list-of-environment-variables-of-metadata-server) for the details.
-
 ## Notification server
 
 - `ENABLE_NOTIFICATION_SERVER`: Enable (`true`) or disable (`false`) notification feature for Seafile. Default is `false`.
@@ -140,6 +133,7 @@ For configurations about Metadata server in `.env`, please refer [here](../exten
 
 ## Metadata server
 
+- For Metadata server service configuration in `.env`, see the [list of environment variables](../extension/metadata-server.md#list-of-environment-variables-of-metadata-server).
 - `ENABLE_METADATA_MANAGEMENT`: Enable (`true`) or disable (`false`) metadata management. Default is `false`.
 - `INNER_METADATA_SERVER_URL`: Metadata server URL reachable from the Seafile server container. Required when metadata management is enabled.
 - `MD_FILE_COUNT_LIMIT`: The maximum number of files in a repository that the metadata feature allows. If the number of files in a repository exceeds this value, the metadata management function will not be enabled for the repository. For a repository with metadata management enabled, if the number of records in it reaches this value but there are still some files that are not recorded in metadata server, the metadata management of the unrecorded files will be skipped. Default is `100000`.
