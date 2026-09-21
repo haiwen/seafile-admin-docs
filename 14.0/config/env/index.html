@@ -4093,28 +4093,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#seasearch-service-configurations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        SeaSearch service configurations
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#metadata-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Metadata server
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#notification-server" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4126,7 +4104,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#metadata-server_1" class="md-nav__link">
+  <a href="#metadata-server" class="md-nav__link">
     <span class="md-ellipsis">
       
         Metadata server
@@ -6289,28 +6267,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#seasearch-service-configurations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        SeaSearch service configurations
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#metadata-server" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Metadata server
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#notification-server" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -6322,7 +6278,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#metadata-server_1" class="md-nav__link">
+  <a href="#metadata-server" class="md-nav__link">
     <span class="md-ellipsis">
       
         Metadata server
@@ -6451,6 +6407,7 @@
 <li><code>ENABLE_FULL_TEXT_SEARCH</code>: Index document contents for full-text search. Applies to SeaSearch and Elasticsearch. Default is <code>true</code>. Since Seafile Pro 13.0, this setting takes precedence over <code>enable_full_text_search</code> in <code>seafevents.conf</code>.</li>
 <li><code>SEASEARCH_URL</code>: SeaSearch URL reachable from the Seafile server. Required when using SeaSearch.</li>
 <li><code>SEASEARCH_TOKEN</code>: Authorization token for the SeaSearch API. Required when using SeaSearch.</li>
+<li>For additional SeaSearch service configuration in <code>.env</code>, including <code>SS_STORAGE_TYPE</code>, <code>SS_MAX_OBJ_CACHE_SIZE</code>, and <code>SS_LOG_LEVEL</code>, see the <a href="https://seasearch-manual.seacloud-labs.ai/latest/config/">SeaSearch configuration reference</a>.</li>
 <li><code>ELASTICSEARCH_SCHEME</code>: Elasticsearch connection scheme. Default is <code>http</code>.</li>
 <li><code>ELASTICSEARCH_HOST</code>: Elasticsearch host. Required when using Elasticsearch.</li>
 <li><code>ELASTICSEARCH_PORT</code>: Elasticsearch port. Default is <code>9200</code>.</li>
@@ -6496,18 +6453,15 @@
 <p>The Docker cluster template provides <code>SEAF_SERVER_STORAGE_TYPE</code> only. Configure standalone extension services with their own environment files.</p>
 <p>You have to specify at least one of them as s3 for the above configuration to take effect.</p>
 </div>
-<h2 id="seasearch-service-configurations">SeaSearch service configurations<a class="headerlink" href="#seasearch-service-configurations" title="Permanent link">&para;</a></h2>
-<p>For other SeaSearch service configurations in <code>.env</code>, such as <code>SS_STORAGE_TYPE</code>, <code>SS_MAX_OBJ_CACHE_SIZE</code>, and <code>SS_LOG_LEVEL</code>, refer to the <a href="https://seasearch-manual.seacloud-labs.ai/latest/config/">SeaSearch configuration reference</a>.</p>
-<h2 id="metadata-server">Metadata server<a class="headerlink" href="#metadata-server" title="Permanent link">&para;</a></h2>
-<p>For configurations about Metadata server in <code>.env</code>, please refer <a href="../../extension/metadata-server/#list-of-environment-variables-of-metadata-server">here</a> for the details.</p>
 <h2 id="notification-server">Notification server<a class="headerlink" href="#notification-server" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>ENABLE_NOTIFICATION_SERVER</code>: Enable (<code>true</code>) or disable (<code>false</code>) notification feature for Seafile. Default is <code>false</code>.</li>
 <li><code>NOTIFICATION_SERVER_URL</code>: Used to do the connection between client (i.e., user's browser) and notification server. Default is <code>https://seafile.example.com/notification</code>. </li>
 <li><code>INNER_NOTIFICATION_SERVER_URL</code>: Used to do the connection between Seafile server and notification server. Default is <code>http://notification-server:8083</code>.</li>
 </ul>
-<h2 id="metadata-server_1">Metadata server<a class="headerlink" href="#metadata-server_1" title="Permanent link">&para;</a></h2>
+<h2 id="metadata-server">Metadata server<a class="headerlink" href="#metadata-server" title="Permanent link">&para;</a></h2>
 <ul>
+<li>For Metadata server service configuration in <code>.env</code>, see the <a href="../../extension/metadata-server/#list-of-environment-variables-of-metadata-server">list of environment variables</a>.</li>
 <li><code>ENABLE_METADATA_MANAGEMENT</code>: Enable (<code>true</code>) or disable (<code>false</code>) metadata management. Default is <code>false</code>.</li>
 <li><code>INNER_METADATA_SERVER_URL</code>: Metadata server URL reachable from the Seafile server container. Required when metadata management is enabled.</li>
 <li><code>MD_FILE_COUNT_LIMIT</code>: The maximum number of files in a repository that the metadata feature allows. If the number of files in a repository exceeds this value, the metadata management function will not be enabled for the repository. For a repository with metadata management enabled, if the number of records in it reaches this value but there are still some files that are not recorded in metadata server, the metadata management of the unrecorded files will be skipped. Default is <code>100000</code>.</li>
