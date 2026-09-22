@@ -44,7 +44,7 @@ The [`.env`](../repo/docker/pro/env) file specifies the components used by a Doc
 - `SEAFILE_MYSQL_DB_SEAHUB_DB_NAME`: The name of seahub database name, default is `seahub_db`
 
 !!! note "Database character set"
-    Since Seafile 14.0, the Docker deployment creates the Seafile databases with the `utf8mb4` character set, and configures `connection_charset = utf8mb4` in `seafile.conf`. This ensures proper storage of non-ASCII characters such as Chinese.
+    Since Seafile 14.0, the Docker deployment creates the Seafile databases with the `utf8mb4` character set, and configures `connection_charset = utf8mb4` in `seafile.conf`. This ensures proper storage of special characters such as Emoji.
 
 ## Cache configurations
 
