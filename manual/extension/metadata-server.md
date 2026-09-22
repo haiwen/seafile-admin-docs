@@ -2,44 +2,6 @@
 
 Metadata server aims to provide metadata management for your libraries, so as to better understand the relevant information of your libraries.
 
-## How it works
-
-Metadata server maintains file metadata for Seafile libraries through a pipeline of event collection, incremental update, and attribute extraction.
-
-### Event collection
-
-When files in a library are modified, the Seafile server generates `repo_update` events and sends them to the fileserver. The `seafevents` component then forwards these events to a Redis queue named `metadata_task`, where they wait to be processed by the metadata server.
-
-### Incremental metadata update
-
-The metadata server (md-server) listens to the Redis `metadata_task` queue and processes events through the following steps:
-
-1. **Commit tracking**: For each library (repository), md-server records the commit ID of the last successfully processed update (`from_commit`) and the commit ID currently being processed (`to_commit`) in the MySQL table `md_server_head_commit`.
-
-2. **History traversal**: When a new event arrives, md-server walks backward through the commit history from the current commit until it reaches `from_commit`. It compares each commit with its parent to detect changes.
-
-3. **Ordered application**: All detected differences are applied to the metadata records in chronological order (oldest to newest). This approach captures fine-grained changes, for example, distinguishing a file move from a delete-and-create, which would be lost if only the latest and previous commits were compared directly.
-
-### Metadata base states
-
-The metadata base for a library can be in one of the following states:
-
-| State | Condition | Behavior |
-|-------|-----------|----------|
-| Not yet initialized | No record in `md_server_head_commit` | Only responds to `init-metadata` messages; ignores all other events |
-| Initialization interrupted | `from_commit` is `NULL` and `initializing` is `1` | Automatically re-schedules initialization after restart, clears the base, and re-imports |
-| Normal incremental sync | Both `from_commit` and `to_commit` are non-null, `initializing` is `0` | Accepts `update-metadata` events for incremental updates |
-
-### Concurrency control
-
-Md-server uses a **worker pool** to process events. Each library is tracked while being processed; if a new event arrives for a library that is already being handled, the event is placed in an in-memory `pending_tasks` queue. This ensures that the same library is never processed by multiple workers simultaneously, preventing race conditions and data inconsistencies.
-
-### File information extraction
-
-When new files are added, md-server records predefined attributes in the metadata and publishes events to the Redis `metadata_slow_task` queue (with the operation type `file_info_extract`). Application-layer handlers then consume these events to enrich the metadata with additional properties, such as image dimensions or other file-specific information.
-
-Additionally, the `RepoMetadataUpdateHandler` in `seafevents` publishes messages to the Redis `metadata_update` channel, allowing third-party extensions to react to metadata changes.
-
 ## Deployment
 
 !!! note "Prerequisites"
@@ -210,3 +172,41 @@ When you deploy Seafile server and Metadata server to the **same machine**, Meta
 
 - `/opt/seafile-data/seafile/md-data`: Metadata server data and cache
 - `/opt/seafile-data/seafile/logs/seaf-md-server`: The logs directory of Metadata server, consist of a running log and an access log.
+
+## How it works
+
+Metadata server maintains file metadata for Seafile libraries through a pipeline of event collection, incremental update, and attribute extraction.
+
+### Event collection
+
+When files in a library are modified, the Seafile server generates `repo_update` events and sends them to the fileserver. The `seafevents` component then forwards these events to a Redis queue named `metadata_task`, where they wait to be processed by the metadata server.
+
+### Incremental metadata update
+
+The metadata server (md-server) listens to the Redis `metadata_task` queue and processes events through the following steps:
+
+1. **Commit tracking**: For each library (repository), md-server records the commit ID of the last successfully processed update (`from_commit`) and the commit ID currently being processed (`to_commit`) in the MySQL table `md_server_head_commit`.
+
+2. **History traversal**: When a new event arrives, md-server walks backward through the commit history from the current commit until it reaches `from_commit`. It compares each commit with its parent to detect changes.
+
+3. **Ordered application**: All detected differences are applied to the metadata records in chronological order (oldest to newest). This approach captures fine-grained changes, for example, distinguishing a file move from a delete-and-create, which would be lost if only the latest and previous commits were compared directly.
+
+### Metadata base states
+
+The metadata base for a library can be in one of the following states:
+
+| State | Condition | Behavior |
+|-------|-----------|----------|
+| Not yet initialized | No record in `md_server_head_commit` | Only responds to `init-metadata` messages; ignores all other events |
+| Initialization interrupted | `from_commit` is `NULL` and `initializing` is `1` | Automatically re-schedules initialization after restart, clears the base, and re-imports |
+| Normal incremental sync | Both `from_commit` and `to_commit` are non-null, `initializing` is `0` | Accepts `update-metadata` events for incremental updates |
+
+### Concurrency control
+
+Md-server uses a **worker pool** to process events. Each library is tracked while being processed; if a new event arrives for a library that is already being handled, the event is placed in an in-memory `pending_tasks` queue. This ensures that the same library is never processed by multiple workers simultaneously, preventing race conditions and data inconsistencies.
+
+### File information extraction
+
+When new files are added, md-server records predefined attributes in the metadata and publishes events to the Redis `metadata_slow_task` queue (with the operation type `file_info_extract`). Application-layer handlers then consume these events to enrich the metadata with additional properties, such as image dimensions or other file-specific information.
+
+Additionally, the `RepoMetadataUpdateHandler` in `seafevents` publishes messages to the Redis `metadata_update` channel, allowing third-party extensions to react to metadata changes.

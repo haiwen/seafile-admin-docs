@@ -82,7 +82,11 @@ Seafile Docker uses its integrated Redis service by default, so no cache setting
 
 #### Optional extension settings
 
-The template includes settings for optional services such as SeaDoc, the [notification server](../extension/notification-server.md), and [metadata server](../extension/metadata-server.md). Leave these disabled unless you are deploying the corresponding service. For a complete list of environment variables, see [environment variables](../config/env.md).
+The template includes settings for optional services such as SeaDoc, the [notification server](../extension/notification-server.md), and [metadata server](../extension/metadata-server.md). Leave these disabled unless you are deploying the corresponding service.
+
+WebDAV is built into the Seafile container and can be enabled by setting `ENABLE_SEAFDAV=true` (and optionally adjusting `SEAFDAV_WORKERS`); see [WebDAV extension](../extension/webdav.md). 
+
+For a complete list of environment variables, see [environment variables](../config/env.md).
 
 ### Start Seafile server
 
