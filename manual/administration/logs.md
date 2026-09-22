@@ -6,6 +6,8 @@
 * seahub.log: logs from Django framework
 * fileserver.log: logs of the golang file server component
 * seafevents.log: logs for background tasks and office file conversion
+* ai_summary.log: logs for AI summary generation and summary vector indexing tasks
+* seasearch_index.log: logs for SeaSearch file and Wiki indexing tasks
 * seahub_email_sender.log: logs for periodically email sending of background tasks
 
 
