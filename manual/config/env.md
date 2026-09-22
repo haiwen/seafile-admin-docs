@@ -11,7 +11,7 @@ The [`.env`](../repo/docker/pro/env) file specifies the components used by a Doc
 
 ### Docker images configurations
 
-- `SEAFILE_IMAGE`: The image of Seafile-server, default is `seafileltd/seafile-pro-mc:14.0-latest`.
+- `SEAFILE_IMAGE`: The image of Seafile server. Default is `seafileltd/seafile-mc:14.0-latest` for the Community Edition and `seafileltd/seafile-pro-mc:14.0-latest` for the Pro Edition.
 - `SEAFILE_DB_IMAGE`: Database server image, default is `mariadb:10.11`.
 - `SEAFILE_REDIS_IMAGE`: Redis server image, default is `redis`.
 - `SEAFILE_ELASTICSEARCH_IMAGE`: Only valid in pro edition when using Elasticsearch instead of SeaSearch. The Elasticsearch image, default is `elasticsearch:8.15.0`.
@@ -43,6 +43,9 @@ The [`.env`](../repo/docker/pro/env) file specifies the components used by a Doc
 - `SEAFILE_MYSQL_DB_CCNET_DB_NAME`: The name of ccnet database name, default is `ccnet_db`
 - `SEAFILE_MYSQL_DB_SEAHUB_DB_NAME`: The name of seahub database name, default is `seahub_db`
 
+!!! note "Database character set"
+    Since Seafile 14.0, the Docker deployment creates the Seafile databases with the `utf8mb4` character set, and configures `connection_charset = utf8mb4` in `seafile.conf`. This ensures proper storage of non-ASCII characters such as Chinese.
+
 ## Cache configurations
 
 - `CACHE_PROVIDER`: The type of cache server used for Seafile. The available options are `redis` and `memcached`. Since Seafile 13, it is recommended to use `redis` as the cache service to support new features, and `memcached` will no longer be integrated into Seafile Docker by default. Default is `redis`
@@ -70,8 +73,17 @@ This part of configurations is only valid in `CACHE_PROVIDER=memcached`:
 - `TIME_ZONE`: Time zone (default `UTC`)
 - `INIT_SEAFILE_ADMIN_EMAIL`: Admin username
 - `INIT_SEAFILE_ADMIN_PASSWORD`: Admin password
-- `ENABLE_GO_FILESERVER`: Use Go fileserver
+- `ENABLE_GO_FILESERVER`: Use the Go fileserver (`true` or `false`), default is `true`.
+- `ENABLE_SEAFDAV`: Enable the WebDAV server (`true` or `false`), default is `false`. See [WebDAV extension](../extension/webdav.md).
+- `SEAFDAV_WORKERS`: The number of WebDAV worker processes, default is `5`.
+- `SITE_ROOT`: The root path of the Seafile web UI when it is deployed under a sub-path, default is `/`.
+- `SEAFILE_LOG_TO_STDOUT`: Log to stdout instead of log files (`true` or `false`), default is `false`.
+- `SEAFILE_DOCKER_VERBOSE`: Enable verbose (debug) logging for the Seafile Docker entrypoint (`true` or `false`), default is `false`.
+- `SEAFILE_SKIP_DB_UPGRADE`: Skip the automatic database upgrade on startup (`true` or `false`), default is `false`.
 - `CSRF_TRUSTED_ORIGINS`: A list of trusted origins for CSRF protection, JSON string, example: `["https://seafile.example.com", "https://seafile.com"]`.
+
+!!! note "Docker secrets"
+    Instead of storing passwords in `.env`, you can load them from files with `SEAFILE_SECRETS_FILE`, `MYSQL_PASSWORD_FILE`, and `REDIS_PASSWORD_FILE`. See [Use Docker compose secrets](../setup/use_docker_compose_secrets.md).
 
 ## Search configurations (Pro)
 
