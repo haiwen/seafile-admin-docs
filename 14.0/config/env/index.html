@@ -6340,7 +6340,7 @@
 </ul>
 <h3 id="docker-images-configurations">Docker images configurations<a class="headerlink" href="#docker-images-configurations" title="Permanent link">&para;</a></h3>
 <ul>
-<li><code>SEAFILE_IMAGE</code>: The image of Seafile-server, default is <code>seafileltd/seafile-pro-mc:14.0-latest</code>.</li>
+<li><code>SEAFILE_IMAGE</code>: The image of Seafile server. Default is <code>seafileltd/seafile-mc:14.0-latest</code> for the Community Edition and <code>seafileltd/seafile-pro-mc:14.0-latest</code> for the Pro Edition.</li>
 <li><code>SEAFILE_DB_IMAGE</code>: Database server image, default is <code>mariadb:10.11</code>.</li>
 <li><code>SEAFILE_REDIS_IMAGE</code>: Redis server image, default is <code>redis</code>.</li>
 <li><code>SEAFILE_ELASTICSEARCH_IMAGE</code>: Only valid in pro edition when using Elasticsearch instead of SeaSearch. The Elasticsearch image, default is <code>elasticsearch:8.15.0</code>.</li>
@@ -6372,6 +6372,10 @@
 <li><code>SEAFILE_MYSQL_DB_CCNET_DB_NAME</code>: The name of ccnet database name, default is <code>ccnet_db</code></li>
 <li><code>SEAFILE_MYSQL_DB_SEAHUB_DB_NAME</code>: The name of seahub database name, default is <code>seahub_db</code></li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Database character set</p>
+<p>Since Seafile 14.0, the Docker deployment creates the Seafile databases with the <code>utf8mb4</code> character set, and configures <code>connection_charset = utf8mb4</code> in <code>seafile.conf</code>. This ensures proper storage of special characters such as Emoji.</p>
+</div>
 <h2 id="cache-configurations">Cache configurations<a class="headerlink" href="#cache-configurations" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>CACHE_PROVIDER</code>: The type of cache server used for Seafile. The available options are <code>redis</code> and <code>memcached</code>. Since Seafile 13, it is recommended to use <code>redis</code> as the cache service to support new features, and <code>memcached</code> will no longer be integrated into Seafile Docker by default. Default is <code>redis</code></li>
@@ -6397,9 +6401,18 @@
 <li><code>TIME_ZONE</code>: Time zone (default <code>UTC</code>)</li>
 <li><code>INIT_SEAFILE_ADMIN_EMAIL</code>: Admin username</li>
 <li><code>INIT_SEAFILE_ADMIN_PASSWORD</code>: Admin password</li>
-<li><code>ENABLE_GO_FILESERVER</code>: Use Go fileserver</li>
+<li><code>ENABLE_GO_FILESERVER</code>: Use the Go fileserver (<code>true</code> or <code>false</code>), default is <code>true</code>.</li>
+<li><code>ENABLE_SEAFDAV</code>: Enable the WebDAV server (<code>true</code> or <code>false</code>), default is <code>false</code>. See <a href="../../extension/webdav/">WebDAV extension</a>.</li>
+<li><code>SEAFDAV_WORKERS</code>: The number of WebDAV worker processes, default is <code>5</code>.</li>
+<li><code>SEAFILE_LOG_TO_STDOUT</code>: Log to stdout instead of log files (<code>true</code> or <code>false</code>), default is <code>false</code>.</li>
+<li><code>SEAFILE_DOCKER_VERBOSE</code>: Enable verbose (debug) logging for the Seafile Docker entrypoint (<code>true</code> or <code>false</code>), default is <code>false</code>.</li>
+<li><code>SEAFILE_SKIP_DB_UPGRADE</code>: Skip the automatic database upgrade on startup (<code>true</code> or <code>false</code>), default is <code>false</code>.</li>
 <li><code>CSRF_TRUSTED_ORIGINS</code>: A list of trusted origins for CSRF protection, JSON string, example: <code>["https://seafile.example.com", "https://seafile.com"]</code>.</li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Docker secrets</p>
+<p>Instead of storing passwords in <code>.env</code>, you can load them from files with <code>SEAFILE_SECRETS_FILE</code>, <code>MYSQL_PASSWORD_FILE</code>, and <code>REDIS_PASSWORD_FILE</code>. See <a href="../../setup/use_docker_compose_secrets/">Use Docker compose secrets</a>.</p>
+</div>
 <h2 id="search-configurations-pro">Search configurations (Pro)<a class="headerlink" href="#search-configurations-pro" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>ENABLE_SEARCH</code>: Enable (<code>true</code>) or disable (<code>false</code>) the search service. Default is <code>true</code>.</li>

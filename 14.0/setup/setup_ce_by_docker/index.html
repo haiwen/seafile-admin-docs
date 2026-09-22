@@ -6605,7 +6605,9 @@ nano<span class="w"> </span>.env
 <p>Since Seafile 13.0, many new features depend on Redis as the cache server. Starting with Seafile 14.0, we do not recommend using Memcached as the cache server. If you need to use Memcached, see <a href="../../config/env/#cache-configurations">environment variables</a> for its configuration.</p>
 </div>
 <h4 id="optional-extension-settings">Optional extension settings<a class="headerlink" href="#optional-extension-settings" title="Permanent link">&para;</a></h4>
-<p>The template includes settings for optional services such as SeaDoc, the <a href="../../extension/notification-server/">notification server</a>, and <a href="../../extension/metadata-server/">metadata server</a>. Leave these disabled unless you are deploying the corresponding service. For a complete list of environment variables, see <a href="../../config/env/">environment variables</a>.</p>
+<p>The template includes settings for optional services such as SeaDoc, the <a href="../../extension/notification-server/">notification server</a>, and <a href="../../extension/metadata-server/">metadata server</a>. Leave these disabled unless you are deploying the corresponding service.</p>
+<p>WebDAV is built into the Seafile container and can be enabled by setting <code>ENABLE_SEAFDAV=true</code> (and optionally adjusting <code>SEAFDAV_WORKERS</code>); see <a href="../../extension/webdav/">WebDAV extension</a>. </p>
+<p>For a complete list of environment variables, see <a href="../../config/env/">environment variables</a>.</p>
 <h3 id="start-seafile-server">Start Seafile server<a class="headerlink" href="#start-seafile-server" title="Permanent link">&para;</a></h3>
 <p>Start Seafile server with the following command</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
