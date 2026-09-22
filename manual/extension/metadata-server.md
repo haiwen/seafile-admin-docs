@@ -149,6 +149,7 @@ docker compose up -d
     [md-server] [2025-03-27 02:30:55] [INFO] Database initialization completed
     [md-server] [2025-03-27 02:30:55] [INFO] Starting Metadata server
     ```
+   
 2. Check the `seafevents.log` and `seahub.log`, as you can see the following information in `seafevents.log` and **no error log** is reported in `seahub.log`:
 
     ```log
@@ -162,7 +163,7 @@ docker compose up -d
 
     ![md-server-des-1](../images/md-server-des-1.png)
 
-3. Finally, you can see the metadata of your library in ***views*** tab
+4. Finally, you can see the metadata of your library in ***views*** tab
 
     ![md-server-des-2](../images/md-server-des-2.png)
 

@@ -8,8 +8,6 @@ Please check the **upgrade notes** for an overview about changes in this major v
 
 ----
 
-Note: If you have a large number of `Activity` in MySQL, clear this table first [Clean Database](../../administration/clean_database). Otherwise, the database upgrade will take a long time.
-
 From Seafile Docker 12.0, we recommend that you use `.env` and `seafile-server.yml` files for configuration.
 
 ### Backup the original docker-compose.yml file:
@@ -199,4 +197,3 @@ Since version 12.0, the seaf-server component need to send internal requests to 
 
 ALLOWED_HOSTS = ['...(your domain)', '127.0.0.1']
 ```
-

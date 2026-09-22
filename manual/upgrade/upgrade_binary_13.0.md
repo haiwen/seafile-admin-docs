@@ -31,16 +31,12 @@ Note, you should install Python libraries system wide using root user or sudo mo
 
 The following instruction is for binary package based installation. If you use Docker based installation, please see [*Updgrade Docker*](./upgrade_docker.md)
 
-### 1) Clean database tables before upgrade
-
-If you have a large number of `Activity` in MySQL, clear this table first [Clean Database](../../administration/clean_database). Otherwise, the database upgrade will take a long time.
-
-### 2) Install new system libraries and Python libraries
+### 1) Install new system libraries and Python libraries
 
 Install new system libraries and Python libraries for your operation system as documented above.
 
 
-### 3) Stop Seafile-12.0.x server
+### 2) Stop Seafile-12.0.x server
 
 In the folder of Seafile 12.0.x, run the commands:
 
@@ -49,7 +45,7 @@ In the folder of Seafile 12.0.x, run the commands:
 ./seafile.sh stop
 ```
 
-### 4) Run Seafile 13.0.x upgrade script
+### 3) Run Seafile 13.0.x upgrade script
 
 In the folder of Seafile 13.0.x, run the upgrade script
 
@@ -57,7 +53,7 @@ In the folder of Seafile 13.0.x, run the upgrade script
 upgrade/upgrade_12.0_13.0.sh
 ```
 
-### 5) Modify the `.env` file in `conf/` directory
+### 4) Modify the `.env` file in `conf/` directory
 
 conf/.env
 
@@ -120,7 +116,7 @@ MEMCACHED_PORT=11211
     pwgen -s 40 1
     ```
 
-### 6) Remove obsolete configurations
+### 5) Remove obsolete configurations
 
 Although the configurations in environment (i.e., `.env`) have higher priority than the configurations in config files, we recommend that you remove or modify the cache configuration in the following files to avoid ambiguity:
 
@@ -140,7 +136,7 @@ Although the configurations in environment (i.e., `.env`) have higher priority t
 
     In the most cases, the `seafile.conf` only include the listen port `8082` of Seafile file server.
 
-### 7) Start Seafile-13.0.x server
+### 6) Start Seafile-13.0.x server
 
 In the folder of Seafile 13.0.x, run the command:
 
@@ -149,7 +145,7 @@ In the folder of Seafile 13.0.x, run the command:
 ./seahub.sh start  # starts seahub
 ```
 
-### 8) (Optional) Upgrade notification server
+### 7) (Optional) Upgrade notification server
 
 Since seafile 12.0, we use docker to deploy the notification server. Please follow the document of [notification server](../extension/notification-server.md) to re-deploy notification server.
 
@@ -157,7 +153,7 @@ Since seafile 12.0, we use docker to deploy the notification server. Please foll
 
     Notification server is designed to be work with Docker based deployment. To make it work with **Seafile binary package** on the same server, you will need to add Nginx rules for notification server properly.
 
-### 9) (Optional) Upgrade SeaDoc from 1.0 to 2.0
+### 8) (Optional) Upgrade SeaDoc from 1.0 to 2.0
 
 Since seafile 12.0, we use docker to deploy the seadoc server. Please see the document [Setup SeaDoc](../extension/setup_seadoc.md) to install SeaDoc on a separate machine and integrate with your binary packaged based Seafile server v13.0.
 

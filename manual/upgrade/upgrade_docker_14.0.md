@@ -7,9 +7,6 @@ Please check the [upgrade notes](./upgrade_notes.md) for an overview about chang
 !!! important "Redeploy Seafile AI"
     Seafile AI has undergone significant changes in Seafile 14.0. If you are using Seafile AI, follow [Seafile AI extension](../extension/seafile-ai.md) to redeploy it. Before redeploying, remove the old settings listed in [Seafile obsolete configurations](./seafile_obsolete_configurations.md#seafile-13-to-14-obsolete-configurations).
 
-!!! tip "Clean Database"
-    The database upgrade may take a long time. You can clean the database before upgrading. Please refer to [Clean Database](../administration/clean_database.md).
-
 ## Step 1) Stop the services
 
 Before upgrading, please shutdown your Seafile server:

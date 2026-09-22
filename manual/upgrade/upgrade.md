@@ -4,6 +4,10 @@ There are two types of upgrade, i.e., major version upgrade and maintenance vers
 
 ## Major upgrade
 
+!!! note "Clean database tables before upgrade"
+
+    If you have a large number of `Activity` records in MySQL, clean the table before upgrading by following [Clean Database](../administration/clean_database.md). Otherwise, the database upgrade may take a long time.
+
 For major upgrade, if you are using a Docker based deployment, please read the upgrade documents for docker based deployment. If you are using a binary package based deployment, please read the upgrade documents for binary based deployment.
 
 Please check the [upgrade notes](./upgrade_notes.md) for any special configuration or changes before upgrading.
