@@ -1,5 +1,13 @@
 # SeaDrive Client Changelog
 
+### 3.0.26 (2026/09/22)
+
+* \[win] Set read-only local permissions for files in read-only folders
+* \[mac] Fix a bug when renaming a file in a kept-offline folder
+* \[win] Don't display username and server name in virtual drive entry point when there is only one account
+* Fix handling of URLs ending with multiple slashes
+* Properly handles libraries with names only differ in cases
+
 ### 3.0.24 (2026/08/04)
 
 * Upgrade to Qt 6.8, OpenSSL 3.5.4 and Libcurl 8.20.0
