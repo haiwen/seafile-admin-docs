@@ -76,7 +76,6 @@ This part of configurations is only valid in `CACHE_PROVIDER=memcached`:
 - `ENABLE_GO_FILESERVER`: Use the Go fileserver (`true` or `false`), default is `true`.
 - `ENABLE_SEAFDAV`: Enable the WebDAV server (`true` or `false`), default is `false`. See [WebDAV extension](../extension/webdav.md).
 - `SEAFDAV_WORKERS`: The number of WebDAV worker processes, default is `5`.
-- `SITE_ROOT`: The root path of the Seafile web UI when it is deployed under a sub-path, default is `/`.
 - `SEAFILE_LOG_TO_STDOUT`: Log to stdout instead of log files (`true` or `false`), default is `false`.
 - `SEAFILE_DOCKER_VERBOSE`: Enable verbose (debug) logging for the Seafile Docker entrypoint (`true` or `false`), default is `false`.
 - `SEAFILE_SKIP_DB_UPGRADE`: Skip the automatic database upgrade on startup (`true` or `false`), default is `false`.
