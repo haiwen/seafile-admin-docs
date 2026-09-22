@@ -5995,6 +5995,10 @@
 <h1 id="upgrade-manual">Upgrade manual<a class="headerlink" href="#upgrade-manual" title="Permanent link">&para;</a></h1>
 <p>There are two types of upgrade, i.e., major version upgrade and maintenance version upgrade.</p>
 <h2 id="major-upgrade">Major upgrade<a class="headerlink" href="#major-upgrade" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Clean database tables before upgrade</p>
+<p>If you have a large number of <code>Activity</code> records in MySQL, clean the table before upgrading by following <a href="../../administration/clean_database/">Clean Database</a>. Otherwise, the database upgrade may take a long time.</p>
+</div>
 <p>For major upgrade, if you are using a Docker based deployment, please read the upgrade documents for docker based deployment. If you are using a binary package based deployment, please read the upgrade documents for binary based deployment.</p>
 <p>Please check the <a href="../upgrade_notes/">upgrade notes</a> for any special configuration or changes before upgrading.</p>
 <h2 id="maintenance-version-upgrade">Maintenance version upgrade<a class="headerlink" href="#maintenance-version-upgrade" title="Permanent link">&para;</a></h2>

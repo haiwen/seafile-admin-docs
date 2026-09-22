@@ -6549,13 +6549,15 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 <ol>
 <li>
 <p>Check container log for <code>seafile-md-server</code>, you can see the following message if it runs fine:</p>
-<p><div class="highlight"><pre><span></span><code>$docker logs -f seafile-md-server
+<div class="highlight"><pre><span></span><code>$docker logs -f seafile-md-server
 
 [md-server] [2025-03-27 02:30:55] [INFO] Created data links
 [md-server] [2025-03-27 02:30:55] [INFO] Database initialization completed
 [md-server] [2025-03-27 02:30:55] [INFO] Starting Metadata server
 </code></pre></div>
-2. Check the <code>seafevents.log</code> and <code>seahub.log</code>, as you can see the following information in <code>seafevents.log</code> and <strong>no error log</strong> is reported in <code>seahub.log</code>:</p>
+</li>
+<li>
+<p>Check the <code>seafevents.log</code> and <code>seahub.log</code>, as you can see the following information in <code>seafevents.log</code> and <strong>no error log</strong> is reported in <code>seahub.log</code>:</p>
 <div class="highlight"><pre><span></span><code>[2025-02-23 06:08:05] [INFO] seafevents.repo_metadata.index_worker:134 refresh_lock refresh_thread Starting refresh locks
 [2025-02-23 06:08:05] [INFO] seafevents.repo_metadata.slow_task_handler:61 worker_handler slow_task_handler_thread_0 starting update metadata work
 [2025-02-23 06:08:05] [INFO] seafevents.repo_metadata.slow_task_handler:61 worker_handler slow_task_handler_thread_1 starting update metadata work
