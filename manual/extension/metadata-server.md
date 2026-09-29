@@ -102,32 +102,30 @@ In addition, there are some environment variables **related to S3 authorization*
 
 ### Enable Metadata server in Seafile
 
-To enable metadata management in Seafile, modify the `.env` file used by the Seafile server. Do not add these two variables to the standalone Metadata server `.env`; they are consumed by the Seafile server.
+To enable metadata management, add the following to the `.env` file used by the Seafile server, regardless of where Metadata server is deployed. Do not add it to the standalone Metadata server `.env`; it is consumed by the Seafile server.
 
-=== "Deploy in the same machine with Seafile"
-    ```env
-    ENABLE_METADATA_MANAGEMENT=True
-    INNER_METADATA_SERVER_URL=http://seafile-md-server:8084
-    ```
+```env
+ENABLE_METADATA_MANAGEMENT=True
+```
 
-=== "Standalone"
+!!! tip "Metadata server URL"
+    The provided CE and Pro `seafile-server.yml` files default `INNER_METADATA_SERVER_URL` to `http://seafile-md-server:8084`, so no URL setting is needed when Metadata server is deployed with Seafile. For a standalone Metadata server, add its URL to the Seafile server `.env`:
+
     ```env
-    ENABLE_METADATA_MANAGEMENT=True
     INNER_METADATA_SERVER_URL=http://<your metadata-server host>:8084
     ```
 
-    In a cluster deployment, add the same settings to the `.env` of each Seafile server node that needs to use the Metadata server. `INNER_METADATA_SERVER_URL` must be reachable from the Seafile server container.
+    In a cluster deployment, set `ENABLE_METADATA_MANAGEMENT=True` and `INNER_METADATA_SERVER_URL` in the `.env` of each Seafile server node that uses Metadata server. The cluster `seafile-server.yml` does not provide a default URL. The URL must be reachable from the Seafile server container.
 
-### Kubernetes configuration
+!!! note "Kubernetes configuration"
+    For Kubernetes deployments, add the following non-sensitive settings to the `data` section of `seafile-env.yaml`, rather than to a Docker `.env` file. The metadata server URL must be reachable from each Seafile pod.
 
-For Kubernetes deployments, add the following non-sensitive settings to the `data` section of `seafile-env.yaml`, rather than to a Docker `.env` file. The metadata server URL must be reachable from each Seafile pod.
+    ```yaml
+    ENABLE_METADATA_MANAGEMENT: "true"
+    INNER_METADATA_SERVER_URL: "http://<your metadata-server host>:8084"
+    ```
 
-```yaml
-ENABLE_METADATA_MANAGEMENT: "true"
-INNER_METADATA_SERVER_URL: "http://<your metadata-server host>:8084"
-```
-
-`MD_FILE_COUNT_LIMIT` is configured in the same ConfigMap. Keep credentials, such as `JWT_PRIVATE_KEY`, Redis passwords, and S3 secrets, in `seafile-secret`.
+    `MD_FILE_COUNT_LIMIT` is configured in the same ConfigMap. Keep credentials, such as `JWT_PRIVATE_KEY`, Redis passwords, and S3 secrets, in `seafile-secret`.
 
 ## Start service
 
