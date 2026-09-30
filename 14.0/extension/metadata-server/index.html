@@ -2517,17 +2517,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#kubernetes-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Kubernetes configuration
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -6227,17 +6216,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#kubernetes-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Kubernetes configuration
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -6518,28 +6496,24 @@ MD_MAX_CACHE_SIZE=1GB
 <p>Metadata server normally synchronizes metadata changes from Seafile in real time. <code>MD_CHECK_UPDATE_INTERVAL</code> is only used for periodic consistency checks in case update events are missed.</p>
 </div>
 <h3 id="enable-metadata-server-in-seafile">Enable Metadata server in Seafile<a class="headerlink" href="#enable-metadata-server-in-seafile" title="Permanent link">&para;</a></h3>
-<p>To enable metadata management in Seafile, modify the <code>.env</code> file used by the Seafile server. Do not add these two variables to the standalone Metadata server <code>.env</code>; they are consumed by the Seafile server.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Deploy in the same machine with Seafile</label><label for="__tabbed_2_2">Standalone</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
+<p>To enable metadata management, add the following to the <code>.env</code> file used by the Seafile server, regardless of where Metadata server is deployed. Do not add it to the standalone Metadata server <code>.env</code>; it is consumed by the Seafile server.</p>
 <div class="highlight"><pre><span></span><code>ENABLE_METADATA_MANAGEMENT=True
-INNER_METADATA_SERVER_URL=http://seafile-md-server:8084
 </code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>ENABLE_METADATA_MANAGEMENT=True
-INNER_METADATA_SERVER_URL=http://&lt;your metadata-server host&gt;:8084
+<div class="admonition tip">
+<p class="admonition-title">Metadata server URL</p>
+<p>The provided CE and Pro <code>seafile-server.yml</code> files default <code>INNER_METADATA_SERVER_URL</code> to <code>http://seafile-md-server:8084</code>, so no URL setting is needed when Metadata server is deployed with Seafile. For a standalone Metadata server, add its URL to the Seafile server <code>.env</code>:</p>
+<div class="highlight"><pre><span></span><code>INNER_METADATA_SERVER_URL=http://&lt;your metadata-server host&gt;:8084
 </code></pre></div>
-<p>In a cluster deployment, add the same settings to the <code>.env</code> of each Seafile server node that needs to use the Metadata server. <code>INNER_METADATA_SERVER_URL</code> must be reachable from the Seafile server container.</p>
+<p>In a cluster deployment, set <code>ENABLE_METADATA_MANAGEMENT=True</code> and <code>INNER_METADATA_SERVER_URL</code> in the <code>.env</code> of each Seafile server node that uses Metadata server. The cluster <code>seafile-server.yml</code> does not provide a default URL. The URL must be reachable from the Seafile server container.</p>
 </div>
-</div>
-</div>
-<h3 id="kubernetes-configuration">Kubernetes configuration<a class="headerlink" href="#kubernetes-configuration" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Kubernetes configuration</p>
 <p>For Kubernetes deployments, add the following non-sensitive settings to the <code>data</code> section of <code>seafile-env.yaml</code>, rather than to a Docker <code>.env</code> file. The metadata server URL must be reachable from each Seafile pod.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">ENABLE_METADATA_MANAGEMENT</span><span class="p">:</span><span class="w"> </span><span class="s">"true"</span>
 <span class="nt">INNER_METADATA_SERVER_URL</span><span class="p">:</span><span class="w"> </span><span class="s">"http://&lt;your</span><span class="nv"> </span><span class="s">metadata-server</span><span class="nv"> </span><span class="s">host&gt;:8084"</span>
 </code></pre></div>
 <p><code>MD_FILE_COUNT_LIMIT</code> is configured in the same ConfigMap. Keep credentials, such as <code>JWT_PRIVATE_KEY</code>, Redis passwords, and S3 secrets, in <code>seafile-secret</code>.</p>
+</div>
 <h2 id="start-service">Start service<a class="headerlink" href="#start-service" title="Permanent link">&para;</a></h2>
 <p>You can use following command to start metadata server and restart Seafile:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>down

@@ -6478,22 +6478,12 @@ SEAFDAV_WORKERS=5
 <p>Remove the <code>enabled</code> and <code>workers</code> options from <code>/opt/seafile-data/seafile/conf/seafdav.conf</code> and keep the other settings unchanged.</p>
 <h3 id="step-33-update-configurations-for-metadata-server">Step 3.3) Update configurations for Metadata server<a class="headerlink" href="#step-33-update-configurations-for-metadata-server" title="Permanent link">&para;</a></h3>
 <p>If you are not using Metadata server, skip this step.</p>
-<p>In Seafile 14.0, the following two Metadata server configurations are moved from <code>seahub_settings.py</code> to the <code>.env</code> file used by the Seafile server. Remove them from <code>seahub_settings.py</code> if they exist there, and add them to the Seafile server <code>.env</code>. The old <code>METADATA_SERVER_URL</code> configuration is renamed to <code>INNER_METADATA_SERVER_URL</code>.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Deploy in the same machine with Seafile</label><label for="__tabbed_6_2">Standalone</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code>ENABLE_METADATA_MANAGEMENT=True
-INNER_METADATA_SERVER_URL=http://seafile-md-server:8084
-</code></pre></div>
-</div>
-<div class="tabbed-block">
+<p>In Seafile 14.0, Metadata server configurations move from <code>seahub_settings.py</code> to the <code>.env</code> file used by the Seafile server. Remove <code>ENABLE_METADATA_MANAGEMENT</code> and <code>METADATA_SERVER_URL</code> from <code>seahub_settings.py</code> if they exist there. The old <code>METADATA_SERVER_URL</code> configuration is renamed to <code>INNER_METADATA_SERVER_URL</code>.</p>
+<p>The new <code>seafile-server.yml</code> already defaults <code>INNER_METADATA_SERVER_URL</code> to <code>http://seafile-md-server:8084</code>. To enable Metadata server, add <code>ENABLE_METADATA_MANAGEMENT=True</code> to the Seafile server <code>.env</code>. If Metadata server is deployed standalone, also set its URL:</p>
 <div class="highlight"><pre><span></span><code>ENABLE_METADATA_MANAGEMENT=True
 INNER_METADATA_SERVER_URL=http://&lt;your metadata-server host&gt;:8084
 </code></pre></div>
 <p>In a cluster deployment, add the same settings to the <code>.env</code> of each Seafile server node that needs to use the Metadata server. <code>INNER_METADATA_SERVER_URL</code> must be reachable from the Seafile server container.</p>
-</div>
-</div>
-</div>
 <h2 id="step-4-modify-seahub_settingspy">Step 4) Modify <code>seahub_settings.py</code><a class="headerlink" href="#step-4-modify-seahub_settingspy" title="Permanent link">&para;</a></h2>
 <h3 id="step-41-update-configurations-for-thumbnail-server">Step 4.1) Update configurations for Thumbnail server<a class="headerlink" href="#step-41-update-configurations-for-thumbnail-server" title="Permanent link">&para;</a></h3>
 <p>If you are not using Thumbnail server, skip to Step 4.2.</p>
@@ -6546,7 +6536,7 @@ INNER_METADATA_SERVER_URL=http://&lt;your metadata-server host&gt;:8084
 <div class="highlight"><pre><span></span><code>ENABLE_SEARCH=false
 </code></pre></div>
 <p>If you use search, add the settings for your search engine to <code>.env</code>:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">SeaSearch</label><label for="__tabbed_7_2">ElasticSearch</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">SeaSearch</label><label for="__tabbed_6_2">ElasticSearch</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>ENABLE_SEARCH=true
