@@ -132,20 +132,16 @@ Remove the `enabled` and `workers` options from `/opt/seafile-data/seafile/conf/
 
 If you are not using Metadata server, skip this step.
 
-In Seafile 14.0, the following two Metadata server configurations are moved from `seahub_settings.py` to the `.env` file used by the Seafile server. Remove them from `seahub_settings.py` if they exist there, and add them to the Seafile server `.env`. The old `METADATA_SERVER_URL` configuration is renamed to `INNER_METADATA_SERVER_URL`.
+In Seafile 14.0, Metadata server configurations move from `seahub_settings.py` to the `.env` file used by the Seafile server. Remove `ENABLE_METADATA_MANAGEMENT` and `METADATA_SERVER_URL` from `seahub_settings.py` if they exist there. The old `METADATA_SERVER_URL` configuration is renamed to `INNER_METADATA_SERVER_URL`.
 
-=== "Deploy in the same machine with Seafile"
-    ```env
-    ENABLE_METADATA_MANAGEMENT=True
-    INNER_METADATA_SERVER_URL=http://seafile-md-server:8084
-    ```
-=== "Standalone"
-    ```env
-    ENABLE_METADATA_MANAGEMENT=True
-    INNER_METADATA_SERVER_URL=http://<your metadata-server host>:8084
-    ```
+The new `seafile-server.yml` already defaults `INNER_METADATA_SERVER_URL` to `http://seafile-md-server:8084`. To enable Metadata server, add `ENABLE_METADATA_MANAGEMENT=True` to the Seafile server `.env`. If Metadata server is deployed standalone, also set its URL:
 
-    In a cluster deployment, add the same settings to the `.env` of each Seafile server node that needs to use the Metadata server. `INNER_METADATA_SERVER_URL` must be reachable from the Seafile server container.
+```env
+ENABLE_METADATA_MANAGEMENT=True
+INNER_METADATA_SERVER_URL=http://<your metadata-server host>:8084
+```
+
+In a cluster deployment, add the same settings to the `.env` of each Seafile server node that needs to use the Metadata server. `INNER_METADATA_SERVER_URL` must be reachable from the Seafile server container.
 
 ## Step 4) Modify `seahub_settings.py`
 
