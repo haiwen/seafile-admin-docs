@@ -32,6 +32,10 @@ LOGO_WIDTH = 149
 LOGO_HEIGHT = 32
 ```
 
+### Customize Login Background Image
+
+Add your login background image as `login-bg.jpg` to the `custom/` directory. Seafile uses `custom/login-bg.jpg` as the login page background image when the file exists. It overrides the default seasonal background images. Only one custom login background image is supported; configuring separate images for different seasons is not supported.
+
 ### Customize Favicon
 
 Add your favicon file to `custom/`
