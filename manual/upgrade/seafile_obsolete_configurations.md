@@ -4,44 +4,121 @@ The Seafile configuration files are located in the `/opt/seafile-data/seafile/co
 
 ## Seafile 13 to 14 Obsolete Configurations
 
+Back up your configuration files and migrate values before removing old settings. For the upgrade procedure, see [Upgrade Seafile Docker from 13.0 to 14.0](./upgrade_docker_14.0.md).
+
+### seafdav.conf
+
+Move these `[WEBDAV]` options to the Seafile server `.env`, then remove them from `seafdav.conf`:
+
+| Old option | Replacement in `.env` |
+| --- | --- |
+| `enabled` | `ENABLE_SEAFDAV` (default: `false`) |
+| `workers` | `SEAFDAV_WORKERS` (default: `5`) |
+
+Keep the other WebDAV options. See [WebDAV extension](../extension/webdav.md).
+
 ### seahub_settings.py
 
-Remove the following options. They are replaced by `DISABLE_SSO_USER_LOCAL_PWD_LOGIN`, which controls use of locally stored passwords by externally authenticated users.
+Remove or migrate the following settings:
 
-```python
-DISABLE_ADFS_USER_PWD_LOGIN = True
-ENABLE_CHANGE_PASSWORD = True
-ENABLE_SSO_USER_CHANGE_PASSWORD = True
-```
+| Old setting | Action |
+| --- | --- |
+| `DISABLE_ADFS_USER_PWD_LOGIN`, `ENABLE_CHANGE_PASSWORD`, `ENABLE_SSO_USER_CHANGE_PASSWORD` | Remove. Use `DISABLE_SSO_USER_LOCAL_PWD_LOGIN=True` to disable local-password login and change/reset operations for externally authenticated users. |
+| `ENABLE_METADATA_MANAGEMENT` | Move to the Seafile server `.env`; set to `True` to enable metadata management. |
+| `METADATA_SERVER_URL` | Move to `.env` as `INNER_METADATA_SERVER_URL`. The default for same-host deployment is `http://seafile-md-server:8084`; set a reachable URL for a standalone server. |
+| `ENABLE_VIDEO_THUMBNAIL` | Remove. Video thumbnails are enabled by default in 14.0. Set `ENABLE_THUMBNAIL_SERVER=True` to use the optional Thumbnail server. |
+| `AI_PRICES` | Move model prices to `global.LLM_MODELS[].price` in `seafile_ai_config.yaml`. |
 
-The following legacy keys in `ENABLED_ROLE_PERMISSIONS` are no longer read. After migrating their existing values to `monthly_download_traffic_limit` and `monthly_download_traffic_limit_per_user`, remove them from every role where they are configured:
+`DISABLE_SSO_USER_LOCAL_PWD_LOGIN` defaults to `False` and applies only to externally authenticated users. It does not replace the old global password-change switch.
 
-```python
-'monthly_rate_limit': '',
-'monthly_rate_limit_per_user': '',
-```
+AI prices now use `input_tokens` and `output_tokens` per **1,000,000 tokens**. Multiply old `input_tokens_1k` and `output_tokens_1k` prices by 1,000, checking any custom units. Review `monthly_ai_credit_per_user`: 14.0 uses **100 credits per currency unit**. See [AI usage statistics](../extension/seafile-ai.md#enable-ai-usage-statistics).
+
+#### Monthly traffic limits
+
+Replace these keys in every role in `ENABLED_ROLE_PERMISSIONS`, preserving their values:
+
+| Old role permission | Replacement |
+| --- | --- |
+| `monthly_rate_limit` | `monthly_download_traffic_limit` |
+| `monthly_rate_limit_per_user` | `monthly_download_traffic_limit_per_user` |
+
+Upload allowances use `monthly_upload_traffic_limit` and `monthly_upload_traffic_limit_per_user`. See [Monthly traffic-limit migration](./upgrade_docker_14.0.md#step-43-update-monthly-traffic-limit-configurations).
+
+### seafevents.conf (Pro edition only)
+
+Move these settings to the Seafile server `.env`, then remove the old options:
+
+| Section | Old option | Replacement in `.env` |
+| --- | --- | --- |
+| `[INDEX FILES]` | `enabled` | `ENABLE_SEARCH` and `SEARCH_ENGINE=elasticsearch` |
+| `[SEASEARCH]` | `enabled` | `ENABLE_SEARCH` and `SEARCH_ENGINE=seasearch` |
+| Either section | `index_office_pdf`, `enable_full_text_search` | `ENABLE_FULL_TEXT_SEARCH` |
+| `[SEASEARCH]` | `seasearch_url` | `SEASEARCH_URL` |
+| `[SEASEARCH]` | `seasearch_token` | `SEASEARCH_TOKEN` |
+| `[INDEX FILES]` | `scheme` | `ELASTICSEARCH_SCHEME` |
+| `[INDEX FILES]` | `es_host` | `ELASTICSEARCH_HOST` |
+| `[INDEX FILES]` | `es_port` | `ELASTICSEARCH_PORT` |
+| `[INDEX FILES]` | `username` | `ELASTICSEARCH_USER` |
+| `[INDEX FILES]` | `password` | `ELASTICSEARCH_PASSWORD` |
+
+The 14.0 Pro Compose file enables SeaSearch and full-text indexing by default. Set `ENABLE_SEARCH=false` to keep search disabled, or `ENABLE_FULL_TEXT_SEARCH=false` for file-name-only search. Keep `SEARCH_ENGINE=elasticsearch` if using Elasticsearch. Changing full-text indexing requires clearing and rebuilding the index.
+
+Environment variables take precedence over the corresponding file-based full-text and Elasticsearch connection settings. Keep advanced options such as `interval`, `highlight`, `office_file_size_limit`, `cafile`, and custom index names. See [SeaSearch](../setup/use_seasearch.md) or [ElasticSearch](../setup/use_elasticsearch.md).
 
 ### .env
 
-Seafile AI models are configured in `seafile_ai_config.yaml` in Seafile 14.0. Remove the following legacy model environment variables:
+#### Seafile AI models
 
-```env
-SEAFILE_AI_LLM_TYPE=
-SEAFILE_AI_LLM_URL=
-SEAFILE_AI_LLM_KEY=
-SEAFILE_AI_LLM_MODEL=
-```
+Replace these variables with fields in `global.LLM_MODELS` in `$SEAFILE_VOLUME/seafile/conf/seafile_ai_config.yaml`:
 
-Face recognition and the face-embedding service have been removed in Seafile 14.0. Remove the following environment variables:
+| Old variable | Model field |
+| --- | --- |
+| `SEAFILE_AI_LLM_TYPE` | `type` |
+| `SEAFILE_AI_LLM_URL` | `url` |
+| `SEAFILE_AI_LLM_KEY` | `key` |
+| `SEAFILE_AI_LLM_MODEL` | `model` |
+
+Keep `ENABLE_SEAFILE_AI` and `SEAFILE_AI_SERVER_URL`. Redeploy using the [14.0 Seafile AI guide](../extension/seafile-ai.md); for standalone deployment, keep the model files on both hosts consistent.
+
+#### Face recognition
+
+Face recognition has been removed. Remove these variables from Seafile, Seafile AI, and face-embedding deployments:
 
 ```env
 ENABLE_FACE_RECOGNITION=
+FACE_EMBEDDING_IMAGE=
 FACE_EMBEDDING_SERVICE_URL=
 FACE_EMBEDDING_SERVICE_KEY=
 FACE_EMBEDDING_VOLUME=
 ```
 
-If `face-embedding.yml` is included in the `COMPOSE_FILE` setting, remove it from that setting.
+Remove `face-embedding.yml` from `COMPOSE_FILE`. After stopping the old service, remove its Compose definition and associated port, GPU/device, and volume mappings. The CPU, CUDA, and ROCm templates are no longer provided. Keep `JWT_PRIVATE_KEY`, which other services still require.
+
+#### SeaDoc service URL
+
+The SeaDoc Compose files no longer read `SEAFILE_SERVICE_URL`. Remove it after configuring its replacement:
+
+* Same-host deployment: rename it to `SEAHUB_SERVICE_URL` (default: `http://seafile`).
+* Standalone deployment: configure `SEAFILE_SERVER_PROTOCOL` and `SEAFILE_SERVER_HOSTNAME`, which generate the Seahub URL. Preserve any custom address when updating Compose.
+
+See [SeaDoc integration](../extension/setup_seadoc.md).
+
+#### Standalone Metadata server
+
+Remove `MD_DATA`; the Compose volume uses `SEAFILE_VOLUME`. Rename `S3_KEY` to `S3_SECRET_KEY`, preserving its value. These correct unused entries in the 13.0 `.env` template: its Compose file already used the replacement variables. Verify the existing volume mapping; this cleanup does not move data. See [Metadata server](../extension/metadata-server.md).
+
+#### Standalone Seafile AI
+
+Remove `SEAFILE_SERVER_PROTOCOL` and `SEAFILE_SERVER_HOSTNAME` from the standalone AI `.env`; configure `INNER_SEAHUB_SERVICE_URL` instead. Keep the protocol and hostname variables in the Seafile server `.env` and other deployments that use them.
+
+### Docker Compose files and services
+
+Use the [14.0 Compose files](./upgrade_docker_14.0.md#step-2-download-the-newest-yml-files). Remove old AI model and face-recognition entries from custom overrides too.
+
+The Pro default changes from `elasticsearch.yml` to `seasearch.yml`. Elasticsearch remains supported; remove its Compose entry and dedicated image/volume variables only when no longer using it.
+
+Memcached settings remain supported. Redis is strongly recommended and required for Metadata server and Seafile AI features. After [switching to Redis](./upgrade_docker_14.0.md#step-6-switch-the-cache-server-to-redis), remove any unused custom Memcached service and settings.
+
 
 ## Seafile 12 to 13 Obsolete Configurations
 
