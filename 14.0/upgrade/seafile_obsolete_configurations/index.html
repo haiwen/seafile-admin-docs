@@ -4660,10 +4660,49 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#seafdavconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        seafdav.conf
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#seahub_settingspy" class="md-nav__link">
     <span class="md-ellipsis">
       
         seahub_settings.py
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="seahub_settings.py">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#monthly-traffic-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monthly traffic limits
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seafeventsconf-pro-edition-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        seafevents.conf (Pro edition only)
       
     </span>
   </a>
@@ -4678,6 +4717,56 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label=".env">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#seafile-ai-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seafile AI models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#face-recognition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Face recognition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standalone-metadata-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standalone Metadata server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standalone-seafile-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standalone Seafile AI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -6080,10 +6169,49 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#seafdavconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        seafdav.conf
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#seahub_settingspy" class="md-nav__link">
     <span class="md-ellipsis">
       
         seahub_settings.py
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="seahub_settings.py">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#monthly-traffic-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monthly traffic limits
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seafeventsconf-pro-edition-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        seafevents.conf (Pro edition only)
       
     </span>
   </a>
@@ -6098,6 +6226,56 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label=".env">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#seafile-ai-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seafile AI models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#face-recognition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Face recognition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standalone-metadata-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standalone Metadata server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standalone-seafile-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standalone Seafile AI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -6227,32 +6405,192 @@
 
 
 <h1 id="seafile-obsolete-configurations">Seafile Obsolete Configurations<a class="headerlink" href="#seafile-obsolete-configurations" title="Permanent link">&para;</a></h1>
-<p>The Seafile configuration files are located in the <code>/opt/seafile-data/seafile/conf/</code> directory.</p>
 <h2 id="seafile-13-to-14-obsolete-configurations">Seafile 13 to 14 Obsolete Configurations<a class="headerlink" href="#seafile-13-to-14-obsolete-configurations" title="Permanent link">&para;</a></h2>
+<p>Back up <code>.env</code> and the files in <code>conf/</code>, and migrate values before removing old settings. Download the <a href="../upgrade_docker_14.0/#step-2-download-the-newest-yml-files">latest <code>.yml</code> files</a> to replace the existing deployment files. For the upgrade procedure, see <a href="../upgrade_docker_14.0/">Upgrade Seafile Docker from 13.0 to 14.0</a>.</p>
+<h3 id="seafdavconf">seafdav.conf<a class="headerlink" href="#seafdavconf" title="Permanent link">&para;</a></h3>
+<p>Move these <code>[WEBDAV]</code> options to the Seafile server <code>.env</code>, then remove them from <code>seafdav.conf</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Old option</th>
+<th>Replacement in <code>.env</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enabled</code></td>
+<td><code>ENABLE_SEAFDAV</code> (default: <code>false</code>)</td>
+</tr>
+<tr>
+<td><code>workers</code></td>
+<td><code>SEAFDAV_WORKERS</code> (default: <code>5</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>Keep the other WebDAV options. See <a href="../../extension/webdav/">WebDAV extension</a>.</p>
 <h3 id="seahub_settingspy">seahub_settings.py<a class="headerlink" href="#seahub_settingspy" title="Permanent link">&para;</a></h3>
-<p>Remove the following options. They are replaced by <code>DISABLE_SSO_USER_LOCAL_PWD_LOGIN</code>, which controls use of locally stored passwords by externally authenticated users.</p>
-<div class="highlight"><pre><span></span><code><span class="n">DISABLE_ADFS_USER_PWD_LOGIN</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">ENABLE_CHANGE_PASSWORD</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">ENABLE_SSO_USER_CHANGE_PASSWORD</span> <span class="o">=</span> <span class="kc">True</span>
-</code></pre></div>
-<p>The following legacy keys in <code>ENABLED_ROLE_PERMISSIONS</code> are no longer read. After migrating their existing values to <code>monthly_download_traffic_limit</code> and <code>monthly_download_traffic_limit_per_user</code>, remove them from every role where they are configured:</p>
-<div class="highlight"><pre><span></span><code><span class="s1">'monthly_rate_limit'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
-<span class="s1">'monthly_rate_limit_per_user'</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
-</code></pre></div>
+<p>Remove or migrate the following settings:</p>
+<table>
+<thead>
+<tr>
+<th>Old setting</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DISABLE_ADFS_USER_PWD_LOGIN</code>, <code>ENABLE_CHANGE_PASSWORD</code>, <code>ENABLE_SSO_USER_CHANGE_PASSWORD</code></td>
+<td>Remove. Use <code>DISABLE_SSO_USER_LOCAL_PWD_LOGIN=True</code> to disable local-password login and change/reset operations for externally authenticated users.</td>
+</tr>
+<tr>
+<td><code>ENABLE_METADATA_MANAGEMENT</code></td>
+<td>Move to the Seafile server <code>.env</code>; set to <code>True</code> to enable metadata management.</td>
+</tr>
+<tr>
+<td><code>METADATA_SERVER_URL</code></td>
+<td>Move to <code>.env</code> as <code>INNER_METADATA_SERVER_URL</code>. The default for same-host deployment is <code>http://seafile-md-server:8084</code>; set a reachable URL for a standalone server.</td>
+</tr>
+<tr>
+<td><code>ENABLE_VIDEO_THUMBNAIL</code></td>
+<td>Remove. Video thumbnails are enabled by default in 14.0. Set <code>ENABLE_THUMBNAIL_SERVER=True</code> to use the optional Thumbnail server.</td>
+</tr>
+<tr>
+<td><code>AI_PRICES</code></td>
+<td>Move model prices to <code>global.LLM_MODELS[].price</code> in <code>seafile_ai_config.yaml</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><code>DISABLE_SSO_USER_LOCAL_PWD_LOGIN</code> defaults to <code>False</code> and applies only to externally authenticated users. It does not replace the old global password-change switch.</p>
+<p>AI prices now use <code>input_tokens</code> and <code>output_tokens</code> per <strong>1,000,000 tokens</strong>. Multiply old <code>input_tokens_1k</code> and <code>output_tokens_1k</code> prices by 1,000, checking any custom units. Review <code>monthly_ai_credit_per_user</code>: 14.0 uses <strong>100 credits per currency unit</strong>. See <a href="../../extension/seafile-ai/#enable-ai-usage-statistics">AI usage statistics</a>.</p>
+<h4 id="monthly-traffic-limits">Monthly traffic limits<a class="headerlink" href="#monthly-traffic-limits" title="Permanent link">&para;</a></h4>
+<p>Replace these keys in every role in <code>ENABLED_ROLE_PERMISSIONS</code>, preserving their values:</p>
+<table>
+<thead>
+<tr>
+<th>Old role permission</th>
+<th>Replacement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>monthly_rate_limit</code></td>
+<td><code>monthly_download_traffic_limit</code></td>
+</tr>
+<tr>
+<td><code>monthly_rate_limit_per_user</code></td>
+<td><code>monthly_download_traffic_limit_per_user</code></td>
+</tr>
+</tbody>
+</table>
+<p>Upload allowances use <code>monthly_upload_traffic_limit</code> and <code>monthly_upload_traffic_limit_per_user</code>. See <a href="../upgrade_docker_14.0/#step-43-update-monthly-traffic-limit-configurations">Monthly traffic-limit migration</a>.</p>
+<h3 id="seafeventsconf-pro-edition-only">seafevents.conf (Pro edition only)<a class="headerlink" href="#seafeventsconf-pro-edition-only" title="Permanent link">&para;</a></h3>
+<p>Move these settings to the Seafile server <code>.env</code>, then remove the old options:</p>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Old option</th>
+<th>Replacement in <code>.env</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[INDEX FILES]</code></td>
+<td><code>enabled</code></td>
+<td><code>ENABLE_SEARCH</code> and <code>SEARCH_ENGINE=elasticsearch</code></td>
+</tr>
+<tr>
+<td><code>[SEASEARCH]</code></td>
+<td><code>enabled</code></td>
+<td><code>ENABLE_SEARCH</code> and <code>SEARCH_ENGINE=seasearch</code></td>
+</tr>
+<tr>
+<td>Either section</td>
+<td><code>index_office_pdf</code>, <code>enable_full_text_search</code></td>
+<td><code>ENABLE_FULL_TEXT_SEARCH</code></td>
+</tr>
+<tr>
+<td><code>[SEASEARCH]</code></td>
+<td><code>seasearch_url</code></td>
+<td><code>SEASEARCH_URL</code></td>
+</tr>
+<tr>
+<td><code>[SEASEARCH]</code></td>
+<td><code>seasearch_token</code></td>
+<td><code>SEASEARCH_TOKEN</code></td>
+</tr>
+<tr>
+<td><code>[INDEX FILES]</code></td>
+<td><code>scheme</code></td>
+<td><code>ELASTICSEARCH_SCHEME</code></td>
+</tr>
+<tr>
+<td><code>[INDEX FILES]</code></td>
+<td><code>es_host</code></td>
+<td><code>ELASTICSEARCH_HOST</code></td>
+</tr>
+<tr>
+<td><code>[INDEX FILES]</code></td>
+<td><code>es_port</code></td>
+<td><code>ELASTICSEARCH_PORT</code></td>
+</tr>
+<tr>
+<td><code>[INDEX FILES]</code></td>
+<td><code>username</code></td>
+<td><code>ELASTICSEARCH_USER</code></td>
+</tr>
+<tr>
+<td><code>[INDEX FILES]</code></td>
+<td><code>password</code></td>
+<td><code>ELASTICSEARCH_PASSWORD</code></td>
+</tr>
+</tbody>
+</table>
+<p>In 14.0 Pro, <code>ENABLE_SEARCH</code> and <code>ENABLE_FULL_TEXT_SEARCH</code> default to <code>true</code>, and <code>SEARCH_ENGINE</code> defaults to <code>seasearch</code>. Set <code>ENABLE_SEARCH=false</code> to keep search disabled, or <code>ENABLE_FULL_TEXT_SEARCH=false</code> for file-name-only search. Keep <code>SEARCH_ENGINE=elasticsearch</code> if using Elasticsearch. Changing full-text indexing requires clearing and rebuilding the index.</p>
+<p>Environment variables take precedence over the corresponding file-based full-text and Elasticsearch connection settings. Keep advanced options such as <code>interval</code>, <code>highlight</code>, <code>office_file_size_limit</code>, <code>cafile</code>, and custom index names. See <a href="../../setup/use_seasearch/">SeaSearch</a> or <a href="../../setup/use_elasticsearch/">ElasticSearch</a>.</p>
 <h3 id="env">.env<a class="headerlink" href="#env" title="Permanent link">&para;</a></h3>
-<p>Seafile AI models are configured in <code>seafile_ai_config.yaml</code> in Seafile 14.0. Remove the following legacy model environment variables:</p>
-<div class="highlight"><pre><span></span><code>SEAFILE_AI_LLM_TYPE=
-SEAFILE_AI_LLM_URL=
-SEAFILE_AI_LLM_KEY=
-SEAFILE_AI_LLM_MODEL=
-</code></pre></div>
-<p>Face recognition and the face-embedding service have been removed in Seafile 14.0. Remove the following environment variables:</p>
+<h4 id="seafile-ai-models">Seafile AI models<a class="headerlink" href="#seafile-ai-models" title="Permanent link">&para;</a></h4>
+<p>Replace these variables with fields in <code>global.LLM_MODELS</code> in <code>$SEAFILE_VOLUME/seafile/conf/seafile_ai_config.yaml</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Old variable</th>
+<th>Model field</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SEAFILE_AI_LLM_TYPE</code></td>
+<td><code>type</code></td>
+</tr>
+<tr>
+<td><code>SEAFILE_AI_LLM_URL</code></td>
+<td><code>url</code></td>
+</tr>
+<tr>
+<td><code>SEAFILE_AI_LLM_KEY</code></td>
+<td><code>key</code></td>
+</tr>
+<tr>
+<td><code>SEAFILE_AI_LLM_MODEL</code></td>
+<td><code>model</code></td>
+</tr>
+</tbody>
+</table>
+<p>Keep <code>ENABLE_SEAFILE_AI</code> and <code>SEAFILE_AI_SERVER_URL</code>. Redeploy using the <a href="../../extension/seafile-ai/">14.0 Seafile AI guide</a>; for standalone deployment, keep the model files on both hosts consistent.</p>
+<h4 id="face-recognition">Face recognition<a class="headerlink" href="#face-recognition" title="Permanent link">&para;</a></h4>
+<p>Face recognition has been removed. Remove these variables from Seafile, Seafile AI, and face-embedding deployments:</p>
 <div class="highlight"><pre><span></span><code>ENABLE_FACE_RECOGNITION=
+FACE_EMBEDDING_IMAGE=
 FACE_EMBEDDING_SERVICE_URL=
 FACE_EMBEDDING_SERVICE_KEY=
 FACE_EMBEDDING_VOLUME=
 </code></pre></div>
-<p>If <code>face-embedding.yml</code> is included in the <code>COMPOSE_FILE</code> setting, remove it from that setting.</p>
+<p>Remove <code>face-embedding.yml</code> from the <code>.env</code> setting <code>COMPOSE_FILE</code>. Keep <code>JWT_PRIVATE_KEY</code>, which other services still require.</p>
+<h4 id="standalone-metadata-server">Standalone Metadata server<a class="headerlink" href="#standalone-metadata-server" title="Permanent link">&para;</a></h4>
+<p>Remove <code>MD_DATA</code>; use <code>SEAFILE_VOLUME</code> for the host data directory, keeping the existing data path. Rename <code>S3_KEY</code> to <code>S3_SECRET_KEY</code>, preserving its value. These correct unused entries in the 13.0 <code>.env</code> template. See <a href="../../extension/metadata-server/">Metadata server</a>.</p>
+<h4 id="standalone-seafile-ai">Standalone Seafile AI<a class="headerlink" href="#standalone-seafile-ai" title="Permanent link">&para;</a></h4>
+<p>Remove <code>SEAFILE_SERVER_PROTOCOL</code> and <code>SEAFILE_SERVER_HOSTNAME</code> from the standalone AI <code>.env</code>; configure <code>INNER_SEAHUB_SERVICE_URL</code> instead. Keep the protocol and hostname variables in the Seafile server <code>.env</code> and other deployments that use them.</p>
 <h2 id="seafile-12-to-13-obsolete-configurations">Seafile 12 to 13 Obsolete Configurations<a class="headerlink" href="#seafile-12-to-13-obsolete-configurations" title="Permanent link">&para;</a></h2>
 <h3 id="seafeventsconf">seafevents.conf<a class="headerlink" href="#seafeventsconf" title="Permanent link">&para;</a></h3>
 <p>You should remove the <code>[DATABASE]</code> configuration block.</p>
