@@ -1,10 +1,8 @@
 # Seafile Obsolete Configurations
 
-The Seafile configuration files are located in the `/opt/seafile-data/seafile/conf/` directory.
-
 ## Seafile 13 to 14 Obsolete Configurations
 
-Back up your configuration files and migrate values before removing old settings. For the upgrade procedure, see [Upgrade Seafile Docker from 13.0 to 14.0](./upgrade_docker_14.0.md).
+Back up `.env` and the files in `conf/`, and migrate values before removing old settings. Download the [latest `.yml` files](./upgrade_docker_14.0.md#step-2-download-the-newest-yml-files) to replace the existing deployment files. For the upgrade procedure, see [Upgrade Seafile Docker from 13.0 to 14.0](./upgrade_docker_14.0.md).
 
 ### seafdav.conf
 
@@ -61,7 +59,7 @@ Move these settings to the Seafile server `.env`, then remove the old options:
 | `[INDEX FILES]` | `username` | `ELASTICSEARCH_USER` |
 | `[INDEX FILES]` | `password` | `ELASTICSEARCH_PASSWORD` |
 
-The 14.0 Pro Compose file enables SeaSearch and full-text indexing by default. Set `ENABLE_SEARCH=false` to keep search disabled, or `ENABLE_FULL_TEXT_SEARCH=false` for file-name-only search. Keep `SEARCH_ENGINE=elasticsearch` if using Elasticsearch. Changing full-text indexing requires clearing and rebuilding the index.
+In 14.0 Pro, `ENABLE_SEARCH` and `ENABLE_FULL_TEXT_SEARCH` default to `true`, and `SEARCH_ENGINE` defaults to `seasearch`. Set `ENABLE_SEARCH=false` to keep search disabled, or `ENABLE_FULL_TEXT_SEARCH=false` for file-name-only search. Keep `SEARCH_ENGINE=elasticsearch` if using Elasticsearch. Changing full-text indexing requires clearing and rebuilding the index.
 
 Environment variables take precedence over the corresponding file-based full-text and Elasticsearch connection settings. Keep advanced options such as `interval`, `highlight`, `office_file_size_limit`, `cafile`, and custom index names. See [SeaSearch](../setup/use_seasearch.md) or [ElasticSearch](../setup/use_elasticsearch.md).
 
@@ -92,33 +90,15 @@ FACE_EMBEDDING_SERVICE_KEY=
 FACE_EMBEDDING_VOLUME=
 ```
 
-Remove `face-embedding.yml` from `COMPOSE_FILE`. After stopping the old service, remove its Compose definition and associated port, GPU/device, and volume mappings. The CPU, CUDA, and ROCm templates are no longer provided. Keep `JWT_PRIVATE_KEY`, which other services still require.
-
-#### SeaDoc service URL
-
-The SeaDoc Compose files no longer read `SEAFILE_SERVICE_URL`. Remove it after configuring its replacement:
-
-* Same-host deployment: rename it to `SEAHUB_SERVICE_URL` (default: `http://seafile`).
-* Standalone deployment: configure `SEAFILE_SERVER_PROTOCOL` and `SEAFILE_SERVER_HOSTNAME`, which generate the Seahub URL. Preserve any custom address when updating Compose.
-
-See [SeaDoc integration](../extension/setup_seadoc.md).
+Remove `face-embedding.yml` from the `.env` setting `COMPOSE_FILE`. Keep `JWT_PRIVATE_KEY`, which other services still require.
 
 #### Standalone Metadata server
 
-Remove `MD_DATA`; the Compose volume uses `SEAFILE_VOLUME`. Rename `S3_KEY` to `S3_SECRET_KEY`, preserving its value. These correct unused entries in the 13.0 `.env` template: its Compose file already used the replacement variables. Verify the existing volume mapping; this cleanup does not move data. See [Metadata server](../extension/metadata-server.md).
+Remove `MD_DATA`; use `SEAFILE_VOLUME` for the host data directory, keeping the existing data path. Rename `S3_KEY` to `S3_SECRET_KEY`, preserving its value. These correct unused entries in the 13.0 `.env` template. See [Metadata server](../extension/metadata-server.md).
 
 #### Standalone Seafile AI
 
 Remove `SEAFILE_SERVER_PROTOCOL` and `SEAFILE_SERVER_HOSTNAME` from the standalone AI `.env`; configure `INNER_SEAHUB_SERVICE_URL` instead. Keep the protocol and hostname variables in the Seafile server `.env` and other deployments that use them.
-
-### Docker Compose files and services
-
-Use the [14.0 Compose files](./upgrade_docker_14.0.md#step-2-download-the-newest-yml-files). Remove old AI model and face-recognition entries from custom overrides too.
-
-The Pro default changes from `elasticsearch.yml` to `seasearch.yml`. Elasticsearch remains supported; remove its Compose entry and dedicated image/volume variables only when no longer using it.
-
-Memcached settings remain supported. Redis is strongly recommended and required for Metadata server and Seafile AI features. After [switching to Redis](./upgrade_docker_14.0.md#step-6-switch-the-cache-server-to-redis), remove any unused custom Memcached service and settings.
-
 
 ## Seafile 12 to 13 Obsolete Configurations
 
