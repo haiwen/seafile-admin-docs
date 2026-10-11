@@ -14,10 +14,22 @@ cd seafile-server-latest
 
 ## Use clean_db_records command to clean seahub_db
 
-Use the following command to simultaneously clean up table records of Activity, sysadmin_extra_userloginlog, FileAudit, FileUpdate, FileHistory, PermAudit, FileTrash 90 days ago:
+Use the clean_db_records command to clean up records older than a specified number of days in the following tables of seahub_db: Activity, sysadmin_extra_userloginlog, FileAudit, FileUpdate, FileHistory, PermAudit, FileTrash.
+
+**Default usage (clean up records older than 90 days)**
+
+By default, the command cleans up records older than 90 days. Use the following command:
 
 ```
 ./seahub.sh python-env python3 seahub/manage.py clean_db_records
+```
+
+**Customize the number of days with --ndays parameter**
+
+You can specify the number of days using the --ndays parameter. For example, to clean up records older than 50 days:
+
+```
+./seahub.sh python-env python3 seahub/manage.py clean_db_records --ndays=50
 ```
 
 You can also clean these tables manually if you like as following.
