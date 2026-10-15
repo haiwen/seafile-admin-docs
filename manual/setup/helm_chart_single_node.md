@@ -34,7 +34,9 @@ Please refer [here](./system_requirements.md) for the details of system requirem
         --from-literal=INIT_SEAFILE_MYSQL_ROOT_PASSWORD='<required>' \
         --from-literal=REDIS_PASSWORD='' \
         --from-literal=S3_SECRET_KEY='' \
-        --from-literal=S3_SSE_C_KEY=''
+        --from-literal=S3_SSE_C_KEY='' \
+        --from-literal=SEASEARCH_TOKEN='' \
+        --from-literal=ELASTICSEARCH_PASSWORD=''
         ```
     === "Seafile CE"
 

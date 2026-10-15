@@ -38,10 +38,16 @@ After installation, you need to start the k8s control plane service on each node
     --from-literal=INIT_SEAFILE_MYSQL_ROOT_PASSWORD='<required>' \
     --from-literal=REDIS_PASSWORD='' \
     --from-literal=S3_SECRET_KEY='' \
-    --from-literal=S3_SSE_C_KEY=''
+    --from-literal=S3_SSE_C_KEY='' \
+    --from-literal=SEASEARCH_TOKEN='' \
+    --from-literal=ELASTICSEARCH_PASSWORD=''
     ```
 
     where the `JWT_PRIVATE_KEY` can be generate by `pwgen -s 40 1`.
+
+!!! note "Migrating from Chart 13.0"
+    Chart 14.0 removed `CLUSTER_INIT_ES_HOST` / `CLUSTER_INIT_ES_PORT`. Configure search with `ENABLE_SEARCH`, `SEARCH_ENGINE`, and `SEASEARCH_*` / `ELASTICSEARCH_*` instead. Put `SEASEARCH_TOKEN` / `ELASTICSEARCH_PASSWORD` in `seafile-secret`.
+
 
     !!! tip "Use an existing Secret or a custom Secret name"
         The chart does not create this Secret. To use an existing Secret with another name, create it in the `seafile` namespace with the required keys above, then set its name in `my-values.yaml`:
