@@ -32,7 +32,7 @@ services:
     command:
       - /bin/sh
       - -c
-      - exec redis-server --requirepass "$$REDIS_PASSWORD" --save "" --appendonly no
+      - exec redis-server --requirepass "$$REDIS_PASSWORD" --save "" --appendonly no --maxmemory 36gb --maxmemory-policy allkeys-lru
     environment:
       - REDIS_PASSWORD=${REDIS_PASSWORD:-}
     networks:
