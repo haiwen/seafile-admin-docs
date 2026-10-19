@@ -214,6 +214,7 @@ nav:
       - Upgrade Seafile 10.0: upgrade/upgrade_binary_10.0.md
     - Upgrade Seafile Cluster:
       - Outline: upgrade/upgrade_a_cluster.md
+      - Upgrade Seafile Cluster 14.0: upgrade/upgrade_a_cluster_14.0.md
       - Upgrade Seafile Cluster 13.0: upgrade/upgrade_a_cluster_13.0.md
       - Upgrade Seafile Cluster 12.0: upgrade/upgrade_a_cluster_12.0.md
     - Upgrade Seafile Cluster (binary): upgrade/upgrade_a_cluster_binary.md

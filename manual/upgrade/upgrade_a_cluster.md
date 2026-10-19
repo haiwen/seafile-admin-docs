@@ -18,6 +18,10 @@ In general, to upgrade a cluster, you need:
 
 ## Version-specific upgrade guides
 
+### Upgrade a cluster from Seafile 13 to 14
+
+Refer to [Upgrade a Seafile cluster from 13.0 to 14.0](./upgrade_a_cluster_14.0.md).
+
 ### Upgrade a cluster from Seafile 12 to 13
 
 Refer to [Upgrade a Seafile cluster from 12.0 to 13.0](./upgrade_a_cluster_13.0.md).
