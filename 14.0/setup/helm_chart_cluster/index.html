@@ -6190,9 +6190,16 @@
 --from-literal<span class="o">=</span><span class="nv">INIT_SEAFILE_MYSQL_ROOT_PASSWORD</span><span class="o">=</span><span class="s1">'&lt;required&gt;'</span><span class="w"> </span><span class="se">\</span>
 --from-literal<span class="o">=</span><span class="nv">REDIS_PASSWORD</span><span class="o">=</span><span class="s1">''</span><span class="w"> </span><span class="se">\</span>
 --from-literal<span class="o">=</span><span class="nv">S3_SECRET_KEY</span><span class="o">=</span><span class="s1">''</span><span class="w"> </span><span class="se">\</span>
---from-literal<span class="o">=</span><span class="nv">S3_SSE_C_KEY</span><span class="o">=</span><span class="s1">''</span>
+--from-literal<span class="o">=</span><span class="nv">S3_SSE_C_KEY</span><span class="o">=</span><span class="s1">''</span><span class="w"> </span><span class="se">\</span>
+--from-literal<span class="o">=</span><span class="nv">SEASEARCH_TOKEN</span><span class="o">=</span><span class="s1">''</span><span class="w"> </span><span class="se">\</span>
+--from-literal<span class="o">=</span><span class="nv">ELASTICSEARCH_PASSWORD</span><span class="o">=</span><span class="s1">''</span>
 </code></pre></div>
 <p>where the <code>JWT_PRIVATE_KEY</code> can be generate by <code>pwgen -s 40 1</code>.</p>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Migrating from Chart 13.0</p>
+<p>Chart 14.0 removed <code>CLUSTER_INIT_ES_HOST</code> / <code>CLUSTER_INIT_ES_PORT</code>. Configure search with <code>ENABLE_SEARCH</code>, <code>SEARCH_ENGINE</code>, and <code>SEASEARCH_*</code> / <code>ELASTICSEARCH_*</code> instead. Put <code>SEASEARCH_TOKEN</code> / <code>ELASTICSEARCH_PASSWORD</code> in <code>seafile-secret</code>.</p>
 <div class="admonition tip">
 <p class="admonition-title">Use an existing Secret or a custom Secret name</p>
 <p>The chart does not create this Secret. To use an existing Secret with another name, create it in the <code>seafile</code> namespace with the required keys above, then set its name in <code>my-values.yaml</code>:</p>
@@ -6202,7 +6209,8 @@
 </code></pre></div>
 <p>This Secret is used by both the frontend and backend workloads. This setting changes only the Secret resource name; the required key names remain unchanged.</p>
 </div>
-</li>
+</div>
+<ol>
 <li>
 <p>Download and modify the <code>my-values.yaml</code> according to your configurations. By the way, you can follow <a href="../setup_pro_by_docker/#downloading-and-modifying-env">here</a> for the details:</p>
 <div class="highlight"><pre><span></span><code>wget<span class="w"> </span>-O<span class="w"> </span>my-values.yaml<span class="w"> </span>https://haiwen.github.io/seafile-helm-chart/values/14.0/cluster.yaml
