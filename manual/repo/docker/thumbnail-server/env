@@ -13,4 +13,8 @@ TIME_ZONE=Etc/UTC
 
 JWT_PRIVATE_KEY=... # your jwt private key
 
+REDIS_HOST=... # your redis host
+REDIS_PORT=6379
+REDIS_PASSWORD= # your redis password, if set
+
 INNER_SEAHUB_SERVICE_URL=    # https://seafile.example.com
