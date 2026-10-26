@@ -42,7 +42,7 @@ By default, Seafile dose not enable multiple storage classes. So, you have to cr
     ```conf
     [storage]
     enable_storage_classes = true
-    storage_classes_file = /shared/conf/seafile_storage_classes.json
+    storage_classes_file = /shared/seafile/conf/seafile_storage_classes.json
     ```
 
     * `enable_storage_classes` ：If this is set to true, the storage class feature is enabled. You must define the storage classes in a **JSON** file provided in the next configuration option.
