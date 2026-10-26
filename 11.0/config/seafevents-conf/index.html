@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -31,10 +31,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -4528,11 +4528,11 @@
 <span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">seahub_db</span>
 
 <span class="k">[STATISTICS]</span>
-<span class="c1">## must be &quot;true&quot; to enable statistics</span>
+<span class="c1">## must be "true" to enable statistics</span>
 <span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">false</span>
 
 <span class="k">[SEAHUB EMAIL]</span>
-<span class="c1">## must be &quot;true&quot; to enable user email notifications when there are new unread notifications</span>
+<span class="c1">## must be "true" to enable user email notifications when there are new unread notifications</span>
 <span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
 
 <span class="c1">## interval of sending Seahub email. Can be s(seconds), m(minutes), h(hours), d(days)</span>
@@ -4544,17 +4544,17 @@
 <span class="na">suffix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">md,txt,...</span>
 
 <span class="c1">## From seafile 7.0.0</span>
-<span class="c1">## Recording file history to database for fast access is enabled by default for &#39;Markdown, .txt, ppt, pptx, doc, docx, xls, xlsx&#39;. </span>
+<span class="c1">## Recording file history to database for fast access is enabled by default for 'Markdown, .txt, ppt, pptx, doc, docx, xls, xlsx'. </span>
 <span class="c1">## After enable the feature, the old histories version for markdown, doc, docx files will not be list in the history page.</span>
 <span class="c1">## (Only new histories that stored in database will be listed) But the users can still access the old versions in the library snapshots.</span>
 <span class="c1">## For file types not listed in the suffix , histories version will be scanned from the library history as before.</span>
-<span class="c1">## The feature default is enable. You can set the &#39;enabled = false&#39; to disable the feature.</span>
+<span class="c1">## The feature default is enable. You can set the 'enabled = false' to disable the feature.</span>
 
-<span class="c1">## The &#39;threshold&#39; is the time threshold for recording the historical version of a file, in minutes, the default is 5 minutes. </span>
+<span class="c1">## The 'threshold' is the time threshold for recording the historical version of a file, in minutes, the default is 5 minutes. </span>
 <span class="c1">## This means that if the interval between two adjacent file saves is less than 5 minutes, the two file changes will be merged and recorded as a historical version. </span>
 <span class="c1">## When set to 0, there is no time limit, which means that each save will generate a separate historical version.</span>
 
-<span class="c1">## If you need to modify the file list format, you can add &#39;suffix = md, txt, ...&#39; configuration items to achieve.</span>
+<span class="c1">## If you need to modify the file list format, you can add 'suffix = md, txt, ...' configuration items to achieve.</span>
 </code></pre></div>
 
 <h2 id="the-following-configurations-for-pro-edition-only">The following configurations for Pro Edition only<a class="headerlink" href="#the-following-configurations-for-pro-edition-only" title="Permanent link">&para;</a></h2>
@@ -4564,7 +4564,7 @@
 <span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
 
 <span class="k">[INDEX FILES]</span>
-<span class="c1">## must be &quot;true&quot; to enable search</span>
+<span class="c1">## must be "true" to enable search</span>
 <span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
 
 <span class="c1">## The interval the search index is updated. Can be s(seconds), m(minutes), h(hours), d(days)</span>
@@ -4574,7 +4574,7 @@
 <span class="na">highlight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">fvh</span>
 
 <span class="c1">## If true, indexes the contents of office/pdf files while updating search index</span>
-<span class="c1">## Note: If you change this option from &quot;false&quot; to &quot;true&quot;, then you need to clear the search index and update the index again.</span>
+<span class="c1">## Note: If you change this option from "false" to "true", then you need to clear the search index and update the index again.</span>
 <span class="c1">## Refer to file search manual for details.</span>
 <span class="na">index_office_pdf</span><span class="o">=</span><span class="s">false</span>
 
@@ -4600,14 +4600,14 @@
 <span class="na">loglevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">info</span>
 
 <span class="k">[EVENTS PUBLISH]</span>
-<span class="c1">## must be &quot;true&quot; to enable publish events messages</span>
+<span class="c1">## must be "true" to enable publish events messages</span>
 <span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">false</span>
 <span class="c1">## message format: repo-update\t{{repo_id}}}\t{{commit_id}}</span>
 <span class="c1">## Currently only support redis message queue</span>
 <span class="na">mq_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">redis</span>
 
 <span class="k">[REDIS]</span>
-<span class="c1">## redis use the 0 database and &quot;repo_update&quot; channel</span>
+<span class="c1">## redis use the 0 database and "repo_update" channel</span>
 <span class="na">server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">192.168.1.1</span>
 <span class="na">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">6379</span>
 <span class="na">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">q!1w@</span><span class="c1">#123</span>
@@ -4687,10 +4687,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

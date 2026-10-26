@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -31,10 +31,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -4551,7 +4551,7 @@
 <div class="codehilite"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="nx">Under</span><span class="w"> </span><span class="nx">Ubuntu</span>
 <span class="nx">vi</span><span class="w"> </span><span class="o">/</span><span class="nx">etc</span><span class="o">/</span><span class="nx">memcached</span><span class="p">.</span><span class="nx">conf</span>
 
-<span class="err">#</span><span class="w"> </span><span class="nx">Start</span><span class="w"> </span><span class="nx">with</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="nx">cap</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="mi">64</span><span class="w"> </span><span class="nx">megs</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">memory</span><span class="p">.</span><span class="w"> </span><span class="nx">It</span><span class="err">&#39;</span><span class="nx">s</span><span class="w"> </span><span class="nx">reasonable</span><span class="p">,</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">daemon</span><span class="w"> </span><span class="k">default</span>
+<span class="err">#</span><span class="w"> </span><span class="nx">Start</span><span class="w"> </span><span class="nx">with</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="nx">cap</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="mi">64</span><span class="w"> </span><span class="nx">megs</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">memory</span><span class="p">.</span><span class="w"> </span><span class="nx">It</span><span class="err">'</span><span class="nx">s</span><span class="w"> </span><span class="nx">reasonable</span><span class="p">,</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">daemon</span><span class="w"> </span><span class="k">default</span>
 <span class="err">#</span><span class="w"> </span><span class="nx">Note</span><span class="w"> </span><span class="nx">that</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">daemon</span><span class="w"> </span><span class="nx">will</span><span class="w"> </span><span class="nx">grow</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">this</span><span class="w"> </span><span class="nx">size</span><span class="p">,</span><span class="w"> </span><span class="nx">but</span><span class="w"> </span><span class="nx">does</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="nx">start</span><span class="w"> </span><span class="nx">out</span><span class="w"> </span><span class="nx">holding</span><span class="w"> </span><span class="nx">this</span><span class="w"> </span><span class="nx">much</span>
 <span class="err">#</span><span class="w"> </span><span class="nx">memory</span>
 <span class="err">#</span><span class="w"> </span><span class="o">-</span><span class="nx">m</span><span class="w"> </span><span class="mi">64</span>
@@ -4559,7 +4559,7 @@
 
 <span class="err">#</span><span class="w"> </span><span class="nx">Specify</span><span class="w"> </span><span class="nx">which</span><span class="w"> </span><span class="nx">IP</span><span class="w"> </span><span class="nx">address</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">listen</span><span class="w"> </span><span class="nx">on</span><span class="p">.</span><span class="w"> </span><span class="nx">The</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">listen</span><span class="w"> </span><span class="nx">on</span><span class="w"> </span><span class="nx">all</span><span class="w"> </span><span class="nx">IP</span><span class="w"> </span><span class="nx">addresses</span>
 <span class="err">#</span><span class="w"> </span><span class="nx">This</span><span class="w"> </span><span class="nx">parameter</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="nx">one</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="nx">only</span><span class="w"> </span><span class="nx">security</span><span class="w"> </span><span class="nx">measures</span><span class="w"> </span><span class="nx">that</span><span class="w"> </span><span class="nx">memcached</span><span class="w"> </span><span class="nx">has</span><span class="p">,</span><span class="w"> </span><span class="nx">so</span><span class="w"> </span><span class="nx">make</span><span class="w"> </span><span class="nx">sure</span>
-<span class="err">#</span><span class="w"> </span><span class="nx">it</span><span class="err">&#39;</span><span class="nx">s</span><span class="w"> </span><span class="nx">listening</span><span class="w"> </span><span class="nx">on</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="nx">firewalled</span><span class="w"> </span><span class="kd">interface</span><span class="p">.</span>
+<span class="err">#</span><span class="w"> </span><span class="nx">it</span><span class="err">'</span><span class="nx">s</span><span class="w"> </span><span class="nx">listening</span><span class="w"> </span><span class="nx">on</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="nx">firewalled</span><span class="w"> </span><span class="kd">interface</span><span class="p">.</span>
 <span class="o">-</span><span class="nx">l</span><span class="w"> </span><span class="m m-Double">0.0.0.0</span>
 
 <span class="nx">service</span><span class="w"> </span><span class="nx">memcached</span><span class="w"> </span><span class="nx">restart</span>
@@ -4588,7 +4588,7 @@
 <span class="w">    </span><span class="nx">vrrp_mcast_group4</span><span class="w"> </span><span class="m m-Double">224.0.100.19</span>
 <span class="p">}</span>
 <span class="nx">vrrp_script</span><span class="w"> </span><span class="nx">chk_memcached</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">script</span><span class="w"> </span><span class="s">&quot;killall -0 memcached &amp;&amp; exit 0 || exit 1&quot;</span>
+<span class="w">    </span><span class="nx">script</span><span class="w"> </span><span class="s">"killall -0 memcached &amp;&amp; exit 0 || exit 1"</span>
 <span class="w">    </span><span class="nx">interval</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">    </span><span class="nx">weight</span><span class="w"> </span><span class="o">-</span><span class="mi">5</span>
 <span class="p">}</span>
@@ -4628,7 +4628,7 @@
 <span class="w">    </span><span class="nx">vrrp_mcast_group4</span><span class="w"> </span><span class="m m-Double">224.0.100.19</span>
 <span class="p">}</span>
 <span class="nx">vrrp_script</span><span class="w"> </span><span class="nx">chk_memcached</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">script</span><span class="w"> </span><span class="s">&quot;killall -0 memcached &amp;&amp; exit 0 || exit 1&quot;</span>
+<span class="w">    </span><span class="nx">script</span><span class="w"> </span><span class="s">"killall -0 memcached &amp;&amp; exit 0 || exit 1"</span>
 <span class="w">    </span><span class="nx">interval</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">    </span><span class="nx">weight</span><span class="w"> </span><span class="o">-</span><span class="mi">5</span>
 <span class="p">}</span>
@@ -4734,10 +4734,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

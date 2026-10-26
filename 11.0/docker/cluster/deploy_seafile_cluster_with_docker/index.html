@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -31,10 +31,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -4763,15 +4763,15 @@
 <div class="codehilite"><pre><span></span><code><span class="n">$</span><span class="w"> </span><span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">h</span><span class="err">{</span><span class="n">your</span><span class="w"> </span><span class="n">mysql</span><span class="w"> </span><span class="k">host</span><span class="err">}</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="err">[</span><span class="n">username</span><span class="err">]</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="err">[</span><span class="k">password</span><span class="err">]</span>
 
 <span class="n">mysql</span><span class="o">&gt;</span>
-<span class="k">create</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="s1">&#39;seafile&#39;</span><span class="nv">@&#39;%&#39;</span><span class="w"> </span><span class="k">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">&#39;PASSWORD&#39;</span><span class="p">;</span>
+<span class="k">create</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="s1">'seafile'</span><span class="nv">@'%'</span><span class="w"> </span><span class="k">identified</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="s1">'PASSWORD'</span><span class="p">;</span>
 
-<span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n n-Quoted">`ccnet_db`</span><span class="w"> </span><span class="k">character</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;utf8&#39;</span><span class="p">;</span>
-<span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n n-Quoted">`seafile_db`</span><span class="w"> </span><span class="k">character</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;utf8&#39;</span><span class="p">;</span>
-<span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n n-Quoted">`seahub_db`</span><span class="w"> </span><span class="k">character</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;utf8&#39;</span><span class="p">;</span>
+<span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n n-Quoted">`ccnet_db`</span><span class="w"> </span><span class="k">character</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'utf8'</span><span class="p">;</span>
+<span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n n-Quoted">`seafile_db`</span><span class="w"> </span><span class="k">character</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'utf8'</span><span class="p">;</span>
+<span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n n-Quoted">`seahub_db`</span><span class="w"> </span><span class="k">character</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'utf8'</span><span class="p">;</span>
 
-<span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n n-Quoted">`ccnet_db`</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="s1">&#39;seafile&#39;</span><span class="nv">@&#39;%&#39;</span><span class="p">;</span>
-<span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n n-Quoted">`seafile_db`</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="s1">&#39;seafile&#39;</span><span class="nv">@&#39;%&#39;</span><span class="p">;</span>
-<span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n n-Quoted">`seahub_db`</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="s1">&#39;seafile&#39;</span><span class="nv">@&#39;%&#39;</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n n-Quoted">`ccnet_db`</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="s1">'seafile'</span><span class="nv">@'%'</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n n-Quoted">`seafile_db`</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="s1">'seafile'</span><span class="nv">@'%'</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n n-Quoted">`seahub_db`</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="s1">'seafile'</span><span class="nv">@'%'</span><span class="p">;</span>
 </code></pre></div>
 
 <p>You also need to create a table in `seahub_db`</p>
@@ -4798,18 +4798,18 @@
 $<span class="w"> </span>vim<span class="w"> </span>docker-compose.yml
 </code></pre></div>
 
-<div class="codehilite"><pre><span></span><code><span class="n">services</span><span class="o">:</span>
-<span class="w">  </span><span class="n">seafile</span><span class="o">:</span>
-<span class="w">    </span><span class="n">image</span><span class="o">:</span><span class="w"> </span><span class="n">docker</span><span class="o">.</span><span class="na">seadrive</span><span class="o">.</span><span class="na">org</span><span class="sr">/seafileltd/s</span><span class="n">eafile</span><span class="o">-</span><span class="n">pro</span><span class="o">-</span><span class="n">mc</span><span class="o">:</span><span class="n">latest</span>
-<span class="w">    </span><span class="n">container_name</span><span class="o">:</span><span class="w"> </span><span class="n">seafile</span>
-<span class="w">    </span><span class="n">ports</span><span class="o">:</span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="mi">80</span><span class="o">:</span><span class="mi">80</span>
-<span class="w">    </span><span class="n">volumes</span><span class="o">:</span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="sr">/opt/seafile/shared:/s</span><span class="n">hared</span>
-<span class="w">    </span><span class="n">environment</span><span class="o">:</span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="n">CLUSTER_SERVER</span><span class="o">=</span><span class="kc">true</span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="n">CLUSTER_MODE</span><span class="o">=</span><span class="n">frontend</span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="n">TIME_ZONE</span><span class="o">=</span><span class="n">UTC</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">Optional</span><span class="o">,</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">UTC</span><span class="o">.</span><span class="w"> </span><span class="n">Should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">uncomment</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="kd">set</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">local</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="n">zone</span><span class="o">.</span>
+<div class="codehilite"><pre><span></span><code>services:
+  seafile:
+    image: docker.seadrive.org/seafileltd/seafile-pro-mc:latest
+    container_name: seafile
+    ports:
+      <span class="k">-</span> 80:80
+    volumes:
+      <span class="k">-</span> /opt/seafile/shared:/shared
+    environment:
+      <span class="k">-</span> CLUSTER_SERVER=true
+      <span class="k">-</span> CLUSTER_MODE=frontend
+      <span class="k">-</span> TIME_ZONE=UTC  # Optional, default is UTC. Should be uncomment and set to your local time zone.
 </code></pre></div>
 
 <p><strong>Note</strong>: <strong>CLUSTER_SERVER=true</strong> means seafile cluster mode, <strong>CLUSTER_MODE=frontend</strong> means this node is seafile frontend server.</p>
@@ -4829,9 +4829,9 @@ $<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> <
 <p>2. Modify the mysql configuration options (user, host, password) in configuration files such as ccnet.conf, seafevents.conf, seafile.conf and seahub_settings.py.</p>
 <p>3. Modify the memcached configuration option in seahub_settings.py</p>
 <div class="codehilite"><pre><span></span><code><span class="ss">CACHES</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="err">&#39;</span>default&#39;<span class="p">:</span> <span class="p">{</span>
-        <span class="err">&#39;</span>BACKEND&#39;<span class="p">:</span> <span class="err">&#39;</span>django_pylibmc<span class="o">.</span>memcached<span class="o">.</span>PyLibMCCache&#39;<span class="p">,</span>
-        <span class="err">&#39;</span>LOCATION&#39;<span class="p">:</span> <span class="err">&#39;</span><span class="l">memcached:11211&#39;,</span>
+    <span class="err">'</span>default'<span class="p">:</span> <span class="p">{</span>
+        <span class="err">'</span>BACKEND'<span class="p">:</span> <span class="err">'</span>django_pylibmc<span class="o">.</span>memcached<span class="o">.</span>PyLibMCCache'<span class="p">,</span>
+        <span class="err">'</span>LOCATION'<span class="p">:</span> <span class="err">'</span><span class="l">memcached:11211',</span>
     <span class="p">},</span>
 <span class="o">...</span>
 <span class="p">}</span>
@@ -4839,9 +4839,9 @@ $<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> <
                          v
 
 <span class="ss">CACHES</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="err">&#39;</span>default&#39;<span class="p">:</span> <span class="p">{</span>
-        <span class="err">&#39;</span>BACKEND&#39;<span class="p">:</span> <span class="err">&#39;</span>django_pylibmc<span class="o">.</span>memcached<span class="o">.</span>PyLibMCCache&#39;<span class="p">,</span>
-        <span class="err">&#39;</span>LOCATION&#39;<span class="p">:</span> <span class="err">&#39;</span><span class="p">{</span>you memcached server host<span class="p">}:</span><span class="mi">11211</span><span class="err">&#39;</span><span class="p">,</span>
+    <span class="err">'</span>default'<span class="p">:</span> <span class="p">{</span>
+        <span class="err">'</span>BACKEND'<span class="p">:</span> <span class="err">'</span>django_pylibmc<span class="o">.</span>memcached<span class="o">.</span>PyLibMCCache'<span class="p">,</span>
+        <span class="err">'</span>LOCATION'<span class="p">:</span> <span class="err">'</span><span class="p">{</span>you memcached server host<span class="p">}:</span><span class="mi">11211</span><span class="err">'</span><span class="p">,</span>
     <span class="p">},</span>
 <span class="o">...</span>
 <span class="p">}</span>
@@ -4859,9 +4859,9 @@ $<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> <
 </code></pre></div>
 
 <p>5. Add some configurations in seahub_settings.py</p>
-<div class="codehilite"><pre><span></span><code><span class="n">SERVICE_URL</span> <span class="o">=</span> <span class="s1">&#39;http</span><span class="si">{s}</span><span class="s1">://{your server IP or sitename}/&#39;</span>
-<span class="n">FILE_SERVER_ROOT</span> <span class="o">=</span> <span class="s1">&#39;http</span><span class="si">{s}</span><span class="s1">://{your server IP or sitename}/seafhttp&#39;</span>
-<span class="n">AVATAR_FILE_STORAGE</span> <span class="o">=</span> <span class="s1">&#39;seahub.base.database_storage.DatabaseStorage&#39;</span>
+<div class="codehilite"><pre><span></span><code><span class="n">SERVICE_URL</span> <span class="o">=</span> <span class="s1">'http</span><span class="si">{s}</span><span class="s1">://{your server IP or sitename}/'</span>
+<span class="n">FILE_SERVER_ROOT</span> <span class="o">=</span> <span class="s1">'http</span><span class="si">{s}</span><span class="s1">://{your server IP or sitename}/seafhttp'</span>
+<span class="n">AVATAR_FILE_STORAGE</span> <span class="o">=</span> <span class="s1">'seahub.base.database_storage.DatabaseStorage'</span>
 </code></pre></div>
 
 <p>6. Add cluster special configuration in seafile.conf</p>
@@ -4904,18 +4904,18 @@ $<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> <
 $<span class="w"> </span>vim<span class="w"> </span>docker-compose.yml
 </code></pre></div>
 
-<div class="codehilite"><pre><span></span><code><span class="n">services</span><span class="o">:</span>
-<span class="w">  </span><span class="n">seafile</span><span class="o">:</span>
-<span class="w">    </span><span class="n">image</span><span class="o">:</span><span class="w"> </span><span class="n">docker</span><span class="o">.</span><span class="na">seadrive</span><span class="o">.</span><span class="na">org</span><span class="sr">/seafileltd/s</span><span class="n">eafile</span><span class="o">-</span><span class="n">pro</span><span class="o">-</span><span class="n">mc</span><span class="o">:</span><span class="n">latest</span>
-<span class="w">    </span><span class="n">container_name</span><span class="o">:</span><span class="w"> </span><span class="n">seafile</span>
-<span class="w">    </span><span class="n">ports</span><span class="o">:</span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="mi">80</span><span class="o">:</span><span class="mi">80</span>
-<span class="w">    </span><span class="n">volumes</span><span class="o">:</span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="sr">/opt/seafile/shared:/s</span><span class="n">hared</span><span class="w">      </span>
-<span class="w">    </span><span class="n">environment</span><span class="o">:</span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="n">CLUSTER_SERVER</span><span class="o">=</span><span class="kc">true</span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="n">CLUSTER_MODE</span><span class="o">=</span><span class="n">backend</span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="n">TIME_ZONE</span><span class="o">=</span><span class="n">UTC</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">Optional</span><span class="o">,</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">UTC</span><span class="o">.</span><span class="w"> </span><span class="n">Should</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">uncomment</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="kd">set</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">local</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="n">zone</span><span class="o">.</span>
+<div class="codehilite"><pre><span></span><code>services:
+  seafile:
+    image: docker.seadrive.org/seafileltd/seafile-pro-mc:latest
+    container_name: seafile
+    ports:
+      <span class="k">-</span> 80:80
+    volumes:
+      <span class="k">-</span> /opt/seafile/shared:/shared      
+    environment:
+      <span class="k">-</span> CLUSTER_SERVER=true
+      <span class="k">-</span> CLUSTER_MODE=backend
+      <span class="k">-</span> TIME_ZONE=UTC  # Optional, default is UTC. Should be uncomment and set to your local time zone.
 </code></pre></div>
 
 <p><strong>Note</strong>: <strong>CLUSTER_SERVER=true</strong> means seafile cluster mode, <strong>CLUSTER_MODE=backend</strong> means this node is seafile backend server.</p>
@@ -4966,7 +4966,7 @@ $<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> <
 
 $<span class="w"> </span>mv<span class="w"> </span>/etc/haproxy/haproxy.cfg<span class="w"> </span>/etc/haproxy/haproxy.cfg.bak
 
-$<span class="w"> </span>cat<span class="w"> </span>&gt;<span class="w"> </span>/etc/haproxy/haproxy.cfg<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+$<span class="w"> </span>cat<span class="w"> </span>&gt;<span class="w"> </span>/etc/haproxy/haproxy.cfg<span class="w"> </span><span class="s">&lt;&lt; 'EOF'</span>
 <span class="s">global</span>
 <span class="s">    log 127.0.0.1 local1 notice</span>
 <span class="s">    maxconn 4096</span>
@@ -4995,7 +4995,7 @@ $<span class="w"> </span>cat<span class="w"> </span>&gt;<span class="w"> </span>
 <p><strong>Note</strong>: Correctly modify the IP address (Front-End01-IP and Front-End02-IP) of the frontend server in the above configuration file.</p>
 <p><strong>Choose one of the above two servers as the master node, and the other as the slave node.</strong></p>
 <p>Perform the following operations on the master node:</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>&gt;<span class="w"> </span>/etc/keepalived/keepalived.conf<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>&gt;<span class="w"> </span>/etc/keepalived/keepalived.conf<span class="w"> </span><span class="s">&lt;&lt; 'EOF'</span>
 <span class="s">! Configuration File for keepalived</span>
 
 <span class="s">global_defs {</span>
@@ -5026,9 +5026,9 @@ $<span class="w"> </span>cat<span class="w"> </span>&gt;<span class="w"> </span>
 <span class="s">EOF</span>
 </code></pre></div>
 
-<p><strong>Note: </strong>Correctly configure the virtual IP address and network interface device name in the above file.</p>
+<p>**Note: **Correctly configure the virtual IP address and network interface device name in the above file.</p>
 <p>Perform the following operations on the standby node:</p>
-<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>&gt;<span class="w"> </span>/etc/keepalived/keepalived.conf<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>cat<span class="w"> </span>&gt;<span class="w"> </span>/etc/keepalived/keepalived.conf<span class="w"> </span><span class="s">&lt;&lt; 'EOF'</span>
 <span class="s">! Configuration File for keepalived</span>
 
 <span class="s">global_defs {</span>
@@ -5134,10 +5134,10 @@ $<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enabl
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

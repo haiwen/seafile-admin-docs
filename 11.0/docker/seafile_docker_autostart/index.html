@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -31,10 +31,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -4579,26 +4579,26 @@
 
 <h2 id="method-2">Method 2<a class="headerlink" href="#method-2" title="Permanent link">&para;</a></h2>
 <p>Add configuration <code>restart: unless-stopped</code> for each container in docker-compose.yml.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">services</span><span class="o">:</span>
-<span class="w">  </span><span class="n">db</span><span class="o">:</span>
-<span class="w">    </span><span class="n">image</span><span class="o">:</span><span class="w"> </span><span class="n">mariadb</span><span class="o">:</span><span class="mf">10.11</span>
-<span class="w">    </span><span class="n">container_name</span><span class="o">:</span><span class="w"> </span><span class="n">seafile</span><span class="o">-</span><span class="n">mysql</span><span class="o">-</span><span class="mi">1</span>
-<span class="w">    </span><span class="n">restart</span><span class="o">:</span><span class="w"> </span><span class="n">unless</span><span class="o">-</span><span class="n">stopped</span>
+<div class="codehilite"><pre><span></span><code>services:
+  db:
+    image: mariadb:10.11
+    container_name: seafile-mysql-1
+    restart: unless-stopped
 
-<span class="w">  </span><span class="n">memcached</span><span class="o">:</span>
-<span class="w">    </span><span class="n">image</span><span class="o">:</span><span class="w"> </span><span class="n">memcached</span><span class="o">:</span><span class="mf">1.6</span><span class="o">.</span><span class="mi">18</span>
-<span class="w">    </span><span class="n">container_name</span><span class="o">:</span><span class="w"> </span><span class="n">seafile</span><span class="o">-</span><span class="n">memcached</span>
-<span class="w">    </span><span class="n">restart</span><span class="o">:</span><span class="w"> </span><span class="n">unless</span><span class="o">-</span><span class="n">stopped</span>
+  memcached:
+    image: memcached:1.6.18
+    container_name: seafile-memcached
+    restart: unless-stopped
 
-<span class="w">  </span><span class="n">elasticsearch</span><span class="o">:</span>
-<span class="w">    </span><span class="n">image</span><span class="o">:</span><span class="w"> </span><span class="n">elasticsearch</span><span class="o">:</span><span class="mf">8.6</span><span class="o">.</span><span class="mi">2</span>
-<span class="w">    </span><span class="n">container_name</span><span class="o">:</span><span class="w"> </span><span class="n">seafile</span><span class="o">-</span><span class="n">elasticsearch</span>
-<span class="w">    </span><span class="n">restart</span><span class="o">:</span><span class="w"> </span><span class="n">unless</span><span class="o">-</span><span class="n">stopped</span>
+  elasticsearch:
+    image: elasticsearch:8.6.2
+    container_name: seafile-elasticsearch
+    restart: unless-stopped
 
-<span class="w">  </span><span class="n">seafile</span><span class="o">:</span>
-<span class="w">    </span><span class="n">image</span><span class="o">:</span><span class="w"> </span><span class="n">docker</span><span class="o">.</span><span class="na">seadrive</span><span class="o">.</span><span class="na">org</span><span class="sr">/seafileltd/s</span><span class="n">eafile</span><span class="o">-</span><span class="n">pro</span><span class="o">-</span><span class="n">mc</span><span class="o">:</span><span class="mf">11.0</span><span class="o">-</span><span class="n">latest</span>
-<span class="w">    </span><span class="n">container_name</span><span class="o">:</span><span class="w"> </span><span class="n">seafile</span>
-<span class="w">    </span><span class="n">restart</span><span class="o">:</span><span class="w"> </span><span class="n">unless</span><span class="o">-</span><span class="n">stopped</span>
+  seafile:
+    image: docker.seadrive.org/seafileltd/seafile-pro-mc:11.0-latest
+    container_name: seafile
+    restart: unless-stopped
 </code></pre></div>
 
 <p>Note: Add <code>restart: unless-stopped</code>, and the Seafile container will automatically start when Docker starts. If the Seafile container does not exist (execute docker compose down), the container will not start automatically.</p>
@@ -4671,10 +4671,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

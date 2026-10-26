@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -27,10 +27,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -4500,17 +4500,17 @@
 <h1 id="deploy-onlyoffice-with-docker">Deploy OnlyOffice with Docker<a class="headerlink" href="#deploy-onlyoffice-with-docker" title="Permanent link">&para;</a></h1>
 <h2 id="add-onlyoffice-to-docker-composeyml">Add OnlyOffice to docker-compose.yml<a class="headerlink" href="#add-onlyoffice-to-docker-composeyml" title="Permanent link">&para;</a></h2>
 <p>The following section needs to be added to docker-compose.yml in the services section</p>
-<div class="codehilite"><pre><span></span><code>services:
-  ...
+<div class="codehilite"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 
-  oods:
-    image: onlyoffice/documentserver:latest
-    container_name: seafile-oods
-    networks:
-      <span class="k">-</span> seafile-net
-    environment:
-      <span class="k">-</span> JWT_ENABLED=true
-      <span class="k">-</span> JWT_SECRET=your-secret-string
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">oods</span><span class="p p-Indicator">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">onlyoffice/documentserver:latest</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-oods</span>
+<span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-net</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">JWT_ENABLED=true</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">JWT_SECRET=your-secret-string</span>
 </code></pre></div>
 
 <h2 id="initialize-onlyoffice-local-configuration-file">Initialize OnlyOffice local configuration file<a class="headerlink" href="#initialize-onlyoffice-local-configuration-file" title="Permanent link">&para;</a></h2>
@@ -4519,17 +4519,17 @@ vim<span class="w"> </span>/opt/seafile-oods/DocumentServer/local-production-lin
 </code></pre></div>
 
 <div class="codehilite"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;services&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;CoAuthoring&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;autoAssembly&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;enable&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;5m&quot;</span>
+<span class="w">  </span><span class="nt">"services"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"CoAuthoring"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"autoAssembly"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"interval"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5m"</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">&quot;FileConverter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;converter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;downloadAttemptMaxCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">  </span><span class="nt">"FileConverter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"converter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"downloadAttemptMaxCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
@@ -4540,15 +4540,15 @@ vim<span class="w"> </span>/opt/seafile-oods/DocumentServer/local-production-lin
 <div class="codehilite"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="nt">Required</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nt">only</span><span class="w"> </span><span class="nt">office</span><span class="w"> </span><span class="nt">document</span><span class="w"> </span><span class="nt">server</span>
 <span class="nt">map</span><span class="w"> </span><span class="o">$</span><span class="nt">http_x_forwarded_proto</span><span class="w"> </span><span class="o">$</span><span class="nt">the_scheme</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="err">default</span><span class="w"> </span><span class="err">$http_x_forwarded_proto</span><span class="p">;</span>
-<span class="w">    </span><span class="err">&quot;&quot;</span><span class="w"> </span><span class="err">$scheme</span><span class="p">;</span>
+<span class="w">    </span><span class="err">""</span><span class="w"> </span><span class="err">$scheme</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="nt">map</span><span class="w"> </span><span class="o">$</span><span class="nt">http_x_forwarded_host</span><span class="w"> </span><span class="o">$</span><span class="nt">the_host</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="err">default</span><span class="w"> </span><span class="err">$http_x_forwarded_host</span><span class="p">;</span>
-<span class="w">    </span><span class="err">&quot;&quot;</span><span class="w"> </span><span class="err">$host</span><span class="p">;</span>
+<span class="w">    </span><span class="err">""</span><span class="w"> </span><span class="err">$host</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="nt">map</span><span class="w"> </span><span class="o">$</span><span class="nt">http_upgrade</span><span class="w"> </span><span class="o">$</span><span class="nt">proxy_connection</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="err">default</span><span class="w"> </span><span class="err">upgrade</span><span class="p">;</span>
-<span class="w">    </span><span class="err">&quot;&quot;</span><span class="w"> </span><span class="err">close</span><span class="p">;</span>
+<span class="w">    </span><span class="err">""</span><span class="w"> </span><span class="err">close</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="nt">server</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="err">listen</span><span class="w"> </span><span class="err">80</span><span class="p">;</span>
@@ -4579,10 +4579,10 @@ vim<span class="w"> </span>/opt/seafile-oods/DocumentServer/local-production-lin
 <div class="codehilite"><pre><span></span><code><span class="c1"># OnlyOffice</span>
 <span class="n">ENABLE_ONLYOFFICE</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">VERIFY_ONLYOFFICE_CERTIFICATE</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">ONLYOFFICE_APIJS_URL</span> <span class="o">=</span> <span class="s1">&#39;http://&lt;your-seafile-doamin&gt;/onlyofficeds/web-apps/apps/api/documents/api.js&#39;</span>
-<span class="n">ONLYOFFICE_FILE_EXTENSION</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;doc&#39;</span><span class="p">,</span> <span class="s1">&#39;docx&#39;</span><span class="p">,</span> <span class="s1">&#39;ppt&#39;</span><span class="p">,</span> <span class="s1">&#39;pptx&#39;</span><span class="p">,</span> <span class="s1">&#39;xls&#39;</span><span class="p">,</span> <span class="s1">&#39;xlsx&#39;</span><span class="p">,</span> <span class="s1">&#39;odt&#39;</span><span class="p">,</span> <span class="s1">&#39;fodt&#39;</span><span class="p">,</span> <span class="s1">&#39;odp&#39;</span><span class="p">,</span> <span class="s1">&#39;fodp&#39;</span><span class="p">,</span> <span class="s1">&#39;ods&#39;</span><span class="p">,</span> <span class="s1">&#39;fods&#39;</span><span class="p">)</span>
-<span class="n">ONLYOFFICE_EDIT_FILE_EXTENSION</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;docx&#39;</span><span class="p">,</span> <span class="s1">&#39;pptx&#39;</span><span class="p">,</span> <span class="s1">&#39;xlsx&#39;</span><span class="p">)</span>
-<span class="n">ONLYOFFICE_JWT_SECRET</span> <span class="o">=</span> <span class="s1">&#39;your-secret-string&#39;</span>
+<span class="n">ONLYOFFICE_APIJS_URL</span> <span class="o">=</span> <span class="s1">'http://&lt;your-seafile-doamin&gt;/onlyofficeds/web-apps/apps/api/documents/api.js'</span>
+<span class="n">ONLYOFFICE_FILE_EXTENSION</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'doc'</span><span class="p">,</span> <span class="s1">'docx'</span><span class="p">,</span> <span class="s1">'ppt'</span><span class="p">,</span> <span class="s1">'pptx'</span><span class="p">,</span> <span class="s1">'xls'</span><span class="p">,</span> <span class="s1">'xlsx'</span><span class="p">,</span> <span class="s1">'odt'</span><span class="p">,</span> <span class="s1">'fodt'</span><span class="p">,</span> <span class="s1">'odp'</span><span class="p">,</span> <span class="s1">'fodp'</span><span class="p">,</span> <span class="s1">'ods'</span><span class="p">,</span> <span class="s1">'fods'</span><span class="p">)</span>
+<span class="n">ONLYOFFICE_EDIT_FILE_EXTENSION</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'docx'</span><span class="p">,</span> <span class="s1">'pptx'</span><span class="p">,</span> <span class="s1">'xlsx'</span><span class="p">)</span>
+<span class="n">ONLYOFFICE_JWT_SECRET</span> <span class="o">=</span> <span class="s1">'your-secret-string'</span>
 </code></pre></div>
 
 <h2 id="restart-docker-container">Restart docker container<a class="headerlink" href="#restart-docker-container" title="Permanent link">&para;</a></h2>
@@ -4661,10 +4661,10 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

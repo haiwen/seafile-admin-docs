@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -31,10 +31,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -4892,7 +4892,7 @@
 <span class="w">        </span>RewriteRule<span class="w"> </span>^/seafhttp<span class="w"> </span>-<span class="w"> </span>[QSA,L]
 
 <span class="w">        </span>#<span class="w"> </span>seahub
-<span class="w">        </span>SetEnvIf<span class="w"> </span>Authorization<span class="w"> </span>&quot;(.*)&quot;<span class="w"> </span>HTTP_AUTHORIZATION=$1
+<span class="w">        </span>SetEnvIf<span class="w"> </span>Authorization<span class="w"> </span>"(.*)"<span class="w"> </span>HTTP_AUTHORIZATION=$1
 <span class="w">        </span>ProxyPass<span class="w"> </span>/<span class="w"> </span>http://127.0.0.1:8000/
 <span class="w">        </span>ProxyPassReverse<span class="w"> </span>/<span class="w"> </span>http://127.0.0.1:8000/
 
@@ -4911,10 +4911,10 @@
 <p>Open <code>/etc/shibboleth/shibboleth2.xml</code> and change some property. After you have done all the followings, don't forget to restart Shibboleth(SP)</p>
 <h5 id="applicationdefaults-element"><code>ApplicationDefaults</code> element<a class="headerlink" href="#applicationdefaults-element" title="Permanent link">&para;</a></h5>
 <p>Change <code>entityID</code> and <a href="https://shibboleth.atlassian.net/wiki/spaces/SP3/pages/2063695997/ApplicationDefaults"><code>REMOTE_USER</code></a> property:</p>
-<div class="codehilite"><pre><span></span><code><span class="o">&lt;!--</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">ApplicationDefaults</span><span class="w"> </span><span class="n">element</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">where</span><span class="w"> </span><span class="n">most</span><span class="w"> </span><span class="kr">of</span><span class="w"> </span><span class="n">Shibboleth</span><span class="s">&#39;s SAML bits are defined. --&gt;</span>
-<span class="s">&lt;ApplicationDefaults entityID=&quot;</span><span class="n">https</span><span class="o">://</span><span class="n">your</span><span class="o">-</span><span class="n">seafile</span><span class="o">-</span><span class="n">domain</span><span class="o">/</span><span class="n">sso</span><span class="s">&quot;</span>
-<span class="s">    REMOTE_USER=&quot;</span><span class="n">mail</span><span class="s">&quot;</span>
-<span class="s">    cipherSuites=&quot;</span><span class="n">DEFAULT</span><span class="o">:!</span><span class="nf">EXP</span><span class="o">:!</span><span class="n">LOW</span><span class="o">:!</span><span class="n">aNULL</span><span class="o">:!</span><span class="n">eNULL</span><span class="o">:!</span><span class="n">DES</span><span class="o">:!</span><span class="n">IDEA</span><span class="o">:!</span><span class="n">SEED</span><span class="o">:!</span><span class="n">RC4</span><span class="o">:!</span><span class="mi">3</span><span class="n">DES</span><span class="o">:!</span><span class="n">kRSA</span><span class="o">:!</span><span class="n">SSLv2</span><span class="o">:!</span><span class="n">SSLv3</span><span class="o">:!</span><span class="n">TLSv1</span><span class="o">:!</span><span class="n">TLSv1</span><span class="mf">.1</span><span class="s">&quot;&gt;</span>
+<div class="codehilite"><pre><span></span><code><span class="o">&lt;!--</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">ApplicationDefaults</span><span class="w"> </span><span class="n">element</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">where</span><span class="w"> </span><span class="n">most</span><span class="w"> </span><span class="kr">of</span><span class="w"> </span><span class="n">Shibboleth</span><span class="s">'s SAML bits are defined. --&gt;</span>
+<span class="s">&lt;ApplicationDefaults entityID="</span><span class="n">https</span><span class="o">://</span><span class="n">your</span><span class="o">-</span><span class="n">seafile</span><span class="o">-</span><span class="n">domain</span><span class="o">/</span><span class="n">sso</span><span class="s">"</span>
+<span class="s">    REMOTE_USER="</span><span class="n">mail</span><span class="s">"</span>
+<span class="s">    cipherSuites="</span><span class="n">DEFAULT</span><span class="o">:!</span><span class="nf">EXP</span><span class="o">:!</span><span class="n">LOW</span><span class="o">:!</span><span class="n">aNULL</span><span class="o">:!</span><span class="n">eNULL</span><span class="o">:!</span><span class="n">DES</span><span class="o">:!</span><span class="n">IDEA</span><span class="o">:!</span><span class="n">SEED</span><span class="o">:!</span><span class="n">RC4</span><span class="o">:!</span><span class="mi">3</span><span class="n">DES</span><span class="o">:!</span><span class="n">kRSA</span><span class="o">:!</span><span class="n">SSLv2</span><span class="o">:!</span><span class="n">SSLv3</span><span class="o">:!</span><span class="n">TLSv1</span><span class="o">:!</span><span class="n">TLSv1</span><span class="mf">.1</span><span class="s">"&gt;</span>
 </code></pre></div>
 
 <p>Seahub extracts the username from the <code>REMOTE_USER</code> environment variable. So you should modify your SP's shibboleth2.xml config file, so that Shibboleth translates your desired attribute into <code>REMOTE_USER</code> environment variable.</p>
@@ -4926,8 +4926,8 @@
 <span class="cm">entityID property and adjust discoveryURL to point to discovery service.</span>
 <span class="cm">You can also override entityID on /Login query string, or in RequestMap/htaccess.</span>
 <span class="cm">--&gt;</span>
-<span class="nt">&lt;SSO</span><span class="w"> </span><span class="na">entityID=</span><span class="s">&quot;https://your-IdP-domain&quot;</span><span class="nt">&gt;</span>
-<span class="w">     </span><span class="cm">&lt;!--discoveryProtocol=&quot;SAMLDS&quot; discoveryURL=&quot;https://wayf.ukfederation.org.uk/DS&quot;--&gt;</span>
+<span class="nt">&lt;SSO</span><span class="w"> </span><span class="na">entityID=</span><span class="s">"https://your-IdP-domain"</span><span class="nt">&gt;</span>
+<span class="w">     </span><span class="cm">&lt;!--discoveryProtocol="SAMLDS" discoveryURL="https://wayf.ukfederation.org.uk/DS"--&gt;</span>
 <span class="w">  </span>SAML2
 <span class="nt">&lt;/SSO&gt;</span>
 </code></pre></div>
@@ -4935,11 +4935,11 @@
 <h5 id="metadataprovider-element"><code>MetadataProvider</code> element<a class="headerlink" href="#metadataprovider-element" title="Permanent link">&para;</a></h5>
 <p>Change <code>url</code> and <code>backingFilePath</code> property:</p>
 <div class="codehilite"><pre><span></span><code><span class="p">&lt;!</span><span class="o">--</span><span class="w"> </span><span class="nx">Example</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">remotely</span><span class="w"> </span><span class="nx">supplied</span><span class="w"> </span><span class="nx">batch</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">signed</span><span class="w"> </span><span class="nx">metadata</span><span class="p">.</span><span class="w"> </span><span class="o">--</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nx">MetadataProvider</span><span class="w"> </span><span class="k">type</span><span class="p">=</span><span class="s">&quot;XML&quot;</span><span class="w"> </span><span class="nx">validate</span><span class="p">=</span><span class="s">&quot;true&quot;</span>
-<span class="w">            </span><span class="nx">url</span><span class="p">=</span><span class="s">&quot;http://your-IdP-metadata-url&quot;</span>
-<span class="w">      </span><span class="nx">backingFilePath</span><span class="p">=</span><span class="s">&quot;your-IdP-metadata.xml&quot;</span><span class="w"> </span><span class="nx">maxRefreshDelay</span><span class="p">=</span><span class="s">&quot;7200&quot;</span><span class="p">&gt;</span>
-<span class="w">    </span><span class="p">&lt;</span><span class="nx">MetadataFilter</span><span class="w"> </span><span class="k">type</span><span class="p">=</span><span class="s">&quot;RequireValidUntil&quot;</span><span class="w"> </span><span class="nx">maxValidityInterval</span><span class="p">=</span><span class="s">&quot;2419200&quot;</span><span class="o">/</span><span class="p">&gt;</span>
-<span class="w">    </span><span class="p">&lt;</span><span class="nx">MetadataFilter</span><span class="w"> </span><span class="k">type</span><span class="p">=</span><span class="s">&quot;Signature&quot;</span><span class="w"> </span><span class="nx">certificate</span><span class="p">=</span><span class="s">&quot;fedsigner.pem&quot;</span><span class="w"> </span><span class="nx">verifyBackup</span><span class="p">=</span><span class="s">&quot;false&quot;</span><span class="o">/</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nx">MetadataProvider</span><span class="w"> </span><span class="k">type</span><span class="p">=</span><span class="s">"XML"</span><span class="w"> </span><span class="nx">validate</span><span class="p">=</span><span class="s">"true"</span>
+<span class="w">            </span><span class="nx">url</span><span class="p">=</span><span class="s">"http://your-IdP-metadata-url"</span>
+<span class="w">      </span><span class="nx">backingFilePath</span><span class="p">=</span><span class="s">"your-IdP-metadata.xml"</span><span class="w"> </span><span class="nx">maxRefreshDelay</span><span class="p">=</span><span class="s">"7200"</span><span class="p">&gt;</span>
+<span class="w">    </span><span class="p">&lt;</span><span class="nx">MetadataFilter</span><span class="w"> </span><span class="k">type</span><span class="p">=</span><span class="s">"RequireValidUntil"</span><span class="w"> </span><span class="nx">maxValidityInterval</span><span class="p">=</span><span class="s">"2419200"</span><span class="o">/</span><span class="p">&gt;</span>
+<span class="w">    </span><span class="p">&lt;</span><span class="nx">MetadataFilter</span><span class="w"> </span><span class="k">type</span><span class="p">=</span><span class="s">"Signature"</span><span class="w"> </span><span class="nx">certificate</span><span class="p">=</span><span class="s">"fedsigner.pem"</span><span class="w"> </span><span class="nx">verifyBackup</span><span class="p">=</span><span class="s">"false"</span><span class="o">/</span><span class="p">&gt;</span>
 </code></pre></div>
 
 <h4 id="attribute-mapxml">attribute-map.xml<a class="headerlink" href="#attribute-mapxml" title="Permanent link">&para;</a></h4>
@@ -4947,11 +4947,11 @@
 <h5 id="attribute-element"><code>Attribute</code> element<a class="headerlink" href="#attribute-element" title="Permanent link">&para;</a></h5>
 <p>Uncomment attribute elements for getting more user info:</p>
 <div class="codehilite"><pre><span></span><code><span class="o">&lt;!--</span><span class="w"> </span><span class="n">Older</span><span class="w"> </span><span class="n">LDAP</span><span class="o">-</span><span class="n">defined</span><span class="w"> </span><span class="n">attributes</span><span class="w"> </span><span class="p">(</span><span class="n">SAML</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="n">names</span><span class="w"> </span><span class="n">followed</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">SAML</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">names</span><span class="p">)...</span><span class="w"> </span><span class="o">--&gt;</span>
-<span class="o">&lt;</span><span class="n">Attribute</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;urn:oid:2.16.840.1.113730.3.1.241&quot;</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="s">&quot;displayName&quot;</span><span class="o">/&gt;</span>
-<span class="o">&lt;</span><span class="n">Attribute</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;urn:oid:0.9.2342.19200300.100.1.3&quot;</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="s">&quot;mail&quot;</span><span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="n">Attribute</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">"urn:oid:2.16.840.1.113730.3.1.241"</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="s">"displayName"</span><span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="n">Attribute</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">"urn:oid:0.9.2342.19200300.100.1.3"</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="s">"mail"</span><span class="o">/&gt;</span>
 
-<span class="o">&lt;</span><span class="n">Attribute</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;urn:mace:dir:attribute-def:displayName&quot;</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="s">&quot;displayName&quot;</span><span class="o">/&gt;</span>
-<span class="o">&lt;</span><span class="n">Attribute</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">&quot;urn:mace:dir:attribute-def:mail&quot;</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="s">&quot;mail&quot;</span><span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="n">Attribute</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">"urn:mace:dir:attribute-def:displayName"</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="s">"displayName"</span><span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="n">Attribute</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s">"urn:mace:dir:attribute-def:mail"</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="s">"mail"</span><span class="o">/&gt;</span>
 </code></pre></div>
 
 <h4 id="upload-shibbolethsps-metadata">Upload Shibboleth(SP)'s metadata<a class="headerlink" href="#upload-shibbolethsps-metadata" title="Permanent link">&para;</a></h4>
@@ -4959,17 +4959,17 @@
 <h2 id="configure-seahub">Configure Seahub<a class="headerlink" href="#configure-seahub" title="Permanent link">&para;</a></h2>
 <p>Add the following configuration to seahub_settings.py.</p>
 <div class="codehilite"><pre><span></span><code><span class="n">ENABLE_SHIB_LOGIN</span> <span class="o">=</span> <span class="n">True</span>
-<span class="n">SHIBBOLETH_USER_HEADER</span> <span class="o">=</span> <span class="s">&#39;HTTP_REMOTE_USER&#39;</span>
+<span class="n">SHIBBOLETH_USER_HEADER</span> <span class="o">=</span> <span class="s">'HTTP_REMOTE_USER'</span>
 <span class="o">#</span> <span class="n">basic</span> <span class="n">user</span> <span class="n">attributes</span>
 <span class="n">SHIBBOLETH_ATTRIBUTE_MAP</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">&quot;HTTP_DISPLAYNAME&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">False</span><span class="p">,</span> <span class="s">&quot;display_name&quot;</span><span class="p">),</span>
-    <span class="s">&quot;HTTP_MAIL&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">False</span><span class="p">,</span> <span class="s">&quot;contact_email&quot;</span><span class="p">),</span>
+    <span class="s">"HTTP_DISPLAYNAME"</span><span class="p">:</span> <span class="p">(</span><span class="n">False</span><span class="p">,</span> <span class="s">"display_name"</span><span class="p">),</span>
+    <span class="s">"HTTP_MAIL"</span><span class="p">:</span> <span class="p">(</span><span class="n">False</span><span class="p">,</span> <span class="s">"contact_email"</span><span class="p">),</span>
 <span class="p">}</span>
 <span class="n">EXTRA_MIDDLEWARE</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="s">&#39;shibboleth.middleware.ShibbolethRemoteUserMiddleware&#39;</span><span class="p">,</span>
+    <span class="s">'shibboleth.middleware.ShibbolethRemoteUserMiddleware'</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">EXTRA_AUTHENTICATION_BACKENDS</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="s">&#39;shibboleth.backends.ShibbolethRemoteUserBackend&#39;</span><span class="p">,</span>
+    <span class="s">'shibboleth.backends.ShibbolethRemoteUserBackend'</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
 
@@ -4982,10 +4982,10 @@
 </ul>
 <p>You can specify the mapping between Shibboleth attributes and Seahub's user properties in seahub_settings.py:</p>
 <div class="codehilite"><pre><span></span><code>SHIBBOLETH_ATTRIBUTE_MAP  = {
-    &quot;HTTP_GIVENNAME&quot;: (False, &quot;givenname&quot;),
-    &quot;HTTP_SN&quot;: (False, &quot;surname&quot;),
-    &quot;HTTP_MAIL&quot;: (False, &quot;contact_email&quot;),
-    &quot;HTTP_ORGANIZATION&quot;: (False, &quot;institution&quot;),
+    "HTTP_GIVENNAME": (False, "givenname"),
+    "HTTP_SN": (False, "surname"),
+    "HTTP_MAIL": (False, "contact_email"),
+    "HTTP_ORGANIZATION": (False, "institution"),
 }
 </code></pre></div>
 
@@ -4996,24 +4996,24 @@
 <p>We are able to set user role from Shibboleth. Details about user role, please refer to <a href="https://download.seafile.com/published/seafile-manual/deploy_pro/roles_permissions.md">https://download.seafile.com/published/seafile-manual/deploy_pro/roles_permissions.md</a></p>
 <p>To enable this, modify <code>SHIBBOLETH_ATTRIBUTE_MAP</code> above and add <code>Shibboleth-affiliation</code> field, you may need to change <code>Shibboleth-affiliation</code> according to your Shibboleth SP attributes.</p>
 <div class="codehilite"><pre><span></span><code>SHIBBOLETH_ATTRIBUTE_MAP  = {
-    &quot;HTTP_GIVENNAME&quot;: (False, &quot;givenname&quot;),
-    &quot;HTTP_SN&quot;: (False, &quot;surname&quot;),
-    &quot;HTTP_MAIL&quot;: (False, &quot;contact_email&quot;),
-    &quot;HTTP_ORGANIZATION&quot;: (False, &quot;institution&quot;),
-    &quot;HTTP_SHIBBOLETH_AFFILIATION&quot;: (False, &quot;affiliation&quot;),
+    "HTTP_GIVENNAME": (False, "givenname"),
+    "HTTP_SN": (False, "surname"),
+    "HTTP_MAIL": (False, "contact_email"),
+    "HTTP_ORGANIZATION": (False, "institution"),
+    "HTTP_SHIBBOLETH_AFFILIATION": (False, "affiliation"),
 }
 </code></pre></div>
 
 <p>Then add new config to define affiliation role map,</p>
 <div class="codehilite"><pre><span></span><code><span class="n">SHIBBOLETH_AFFILIATION_ROLE_MAP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{</span>
-<span class="w">    </span><span class="s1">&#39;employee@uni-mainz.de&#39;</span><span class="err">:</span><span class="w"> </span><span class="s1">&#39;staff&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;member@uni-mainz.de&#39;</span><span class="err">:</span><span class="w"> </span><span class="s1">&#39;staff&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;student@uni-mainz.de&#39;</span><span class="err">:</span><span class="w"> </span><span class="s1">&#39;student&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;employee@hu-berlin.de&#39;</span><span class="err">:</span><span class="w"> </span><span class="s1">&#39;guest&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;patterns&#39;</span><span class="err">:</span><span class="w"> </span><span class="p">(</span>
-<span class="w">        </span><span class="p">(</span><span class="s1">&#39;*@hu-berlin.de&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;guest1&#39;</span><span class="p">),</span>
-<span class="w">        </span><span class="p">(</span><span class="s1">&#39;*@*.de&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;guest2&#39;</span><span class="p">),</span>
-<span class="w">        </span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;guest&#39;</span><span class="p">),</span>
+<span class="w">    </span><span class="s1">'employee@uni-mainz.de'</span><span class="err">:</span><span class="w"> </span><span class="s1">'staff'</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">'member@uni-mainz.de'</span><span class="err">:</span><span class="w"> </span><span class="s1">'staff'</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">'student@uni-mainz.de'</span><span class="err">:</span><span class="w"> </span><span class="s1">'student'</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">'employee@hu-berlin.de'</span><span class="err">:</span><span class="w"> </span><span class="s1">'guest'</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">'patterns'</span><span class="err">:</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="p">(</span><span class="s1">'*@hu-berlin.de'</span><span class="p">,</span><span class="w"> </span><span class="s1">'guest1'</span><span class="p">),</span>
+<span class="w">        </span><span class="p">(</span><span class="s1">'*@*.de'</span><span class="p">,</span><span class="w"> </span><span class="s1">'guest2'</span><span class="p">),</span>
+<span class="w">        </span><span class="p">(</span><span class="s1">'*'</span><span class="p">,</span><span class="w"> </span><span class="s1">'guest'</span><span class="p">),</span>
 <span class="w">    </span><span class="p">),</span>
 <span class="err">}</span>
 </code></pre></div>
@@ -5045,7 +5045,7 @@
     <span class="n">username</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">META</span><span class="p">[</span><span class="n">SHIB_USER_HEADER</span><span class="p">]</span>
 <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
     <span class="k">assert</span> <span class="kc">False</span>
-    <span class="c1"># If specified header doesn&#39;t exist then return (leaving</span>
+    <span class="c1"># If specified header doesn't exist then return (leaving</span>
     <span class="c1"># request.user set to AnonymousUser by the</span>
     <span class="c1"># AuthenticationMiddleware).</span>
     <span class="k">return</span>
@@ -5128,10 +5128,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

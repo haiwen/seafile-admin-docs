@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -27,10 +27,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -4533,7 +4533,7 @@ $<span class="w"> </span>composer<span class="w"> </span>require<span class="w">
 <h2 id="configuring-seahub">Configuring Seahub<a class="headerlink" href="#configuring-seahub" title="Permanent link">&para;</a></h2>
 <p>Add this block to the config file <code>seahub_settings.py</code> using a text editor:</p>
 <div class="codehilite"><pre><span></span><code>ENABLE_JWT_SSO = True
-JWT_SSO_SECRET_KEY = &#39;SHARED_SECRET&#39;
+JWT_SSO_SECRET_KEY = 'SHARED_SECRET'
 ENABLE_SYS_ADMIN_GENERATE_USER_AUTH_TOKEN = True
 </code></pre></div>
 
@@ -4571,17 +4571,17 @@ $<span class="w"> </span>nano<span class="w"> </span>config.php
 <div class="codehilite"><pre><span></span><code><span class="cp">&lt;?php</span>
 
 <span class="c1"># general settings</span>
-<span class="nv">$seafile_url</span> <span class="o">=</span> <span class="s1">&#39;SEAFILE_SERVER_URL&#39;</span><span class="p">;</span>
-<span class="nv">$jwt_shared_secret</span> <span class="o">=</span> <span class="s1">&#39;SHARED_SECRET&#39;</span><span class="p">;</span>
+<span class="nv">$seafile_url</span> <span class="o">=</span> <span class="s1">'SEAFILE_SERVER_URL'</span><span class="p">;</span>
+<span class="nv">$jwt_shared_secret</span> <span class="o">=</span> <span class="s1">'SHARED_SECRET'</span><span class="p">;</span>
 
 <span class="c1"># Option 1: provide credentials of a seafile admin user</span>
 <span class="nv">$seafile_admin_account</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="s1">'username'</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span>
+    <span class="s1">'password'</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span>
 <span class="p">];</span>
 
 <span class="c1"># Option 2: provide the api-token of a seafile admin user</span>
-<span class="nv">$seafile_admin_token</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="nv">$seafile_admin_token</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
 
 <span class="cp">?&gt;</span>
 </code></pre></div>
@@ -4598,49 +4598,49 @@ $<span class="w"> </span>nano<span class="w"> </span>config.php
 <div class="codehilite"><pre><span></span><code><span class="o">&lt;</span><span class="err">?</span><span class="n">php</span>
 <span class="o">/**</span><span class="w"> </span><span class="n">IMPORTANT</span><span class="p">:</span><span class="w"> </span><span class="n">there</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">no</span><span class="w"> </span><span class="n">need</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">change</span><span class="w"> </span><span class="n">anything</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">!</span><span class="w"> </span><span class="o">**/</span>
 
-<span class="n">require_once</span><span class="w"> </span><span class="n">__DIR__</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="s1">&#39;/../vendor/autoload.php&#39;</span><span class="p">;</span>
-<span class="n">require_once</span><span class="w"> </span><span class="n">__DIR__</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="s1">&#39;/../config.php&#39;</span><span class="p">;</span>
+<span class="n">require_once</span><span class="w"> </span><span class="n">__DIR__</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="s1">'/../vendor/autoload.php'</span><span class="p">;</span>
+<span class="n">require_once</span><span class="w"> </span><span class="n">__DIR__</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="s1">'/../config.php'</span><span class="p">;</span>
 
-<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">empty</span><span class="p">(</span><span class="o">$</span><span class="n">_GET</span><span class="p">[</span><span class="s1">&#39;jwt-token&#39;</span><span class="p">])){</span>
+<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">empty</span><span class="p">(</span><span class="o">$</span><span class="n">_GET</span><span class="p">[</span><span class="s1">'jwt-token'</span><span class="p">])){</span>
 <span class="w">    </span><span class="n">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="o">$</span><span class="n">decoded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Firebase</span>\<span class="n">JWT</span>\<span class="n">JWT</span><span class="p">::</span><span class="n">decode</span><span class="p">(</span><span class="o">$</span><span class="n">_GET</span><span class="p">[</span><span class="s1">&#39;jwt-token&#39;</span><span class="p">],</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">Firebase</span>\<span class="n">JWT</span>\<span class="n">Key</span><span class="p">(</span><span class="o">$</span><span class="n">jwt_shared_secret</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;HS256&#39;</span><span class="p">));</span>
+<span class="w">        </span><span class="o">$</span><span class="n">decoded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Firebase</span>\<span class="n">JWT</span>\<span class="n">JWT</span><span class="p">::</span><span class="n">decode</span><span class="p">(</span><span class="o">$</span><span class="n">_GET</span><span class="p">[</span><span class="s1">'jwt-token'</span><span class="p">],</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">Firebase</span>\<span class="n">JWT</span>\<span class="n">Key</span><span class="p">(</span><span class="o">$</span><span class="n">jwt_shared_secret</span><span class="p">,</span><span class="w"> </span><span class="s1">'HS256'</span><span class="p">));</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="n">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="o">$</span><span class="n">e</span><span class="p">){</span>
-<span class="w">        </span><span class="n">echo</span><span class="w"> </span><span class="n">json_encode</span><span class="p">([</span><span class="s2">&quot;error&quot;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">&quot;wrong JWT-Token&quot;</span><span class="p">]);</span>
+<span class="w">        </span><span class="n">echo</span><span class="w"> </span><span class="n">json_encode</span><span class="p">([</span><span class="s2">"error"</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">"wrong JWT-Token"</span><span class="p">]);</span>
 <span class="w">        </span><span class="n">die</span><span class="p">();</span>
 <span class="w">    </span><span class="p">}</span>
 
 <span class="w">    </span><span class="n">try</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="n">init</span><span class="w"> </span><span class="n">connetion</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">seafile</span><span class="w"> </span><span class="n">api</span>
-<span class="w">        </span><span class="o">$</span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">GuzzleHttp</span>\<span class="n">Client</span><span class="p">([</span><span class="s1">&#39;base_uri&#39;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">$</span><span class="n">seafile_url</span><span class="p">]);</span>
+<span class="w">        </span><span class="o">$</span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="n">GuzzleHttp</span>\<span class="n">Client</span><span class="p">([</span><span class="s1">'base_uri'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">$</span><span class="n">seafile_url</span><span class="p">]);</span>
 
 <span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="n">get</span><span class="w"> </span><span class="n">admin</span><span class="w"> </span><span class="n">api</span><span class="o">-</span><span class="n">token</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">his</span><span class="w"> </span><span class="n">credentials</span><span class="w"> </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">set</span><span class="p">)</span>
 <span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">empty</span><span class="p">(</span><span class="o">$</span><span class="n">seafile_admin_token</span><span class="p">)){</span>
-<span class="w">            </span><span class="o">$</span><span class="n">request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">client</span><span class="o">-&gt;</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;/api2/auth-token/&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;form_params&#39;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">$</span><span class="n">seafile_admin_account</span><span class="p">]);</span>
+<span class="w">            </span><span class="o">$</span><span class="n">request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">client</span><span class="o">-&gt;</span><span class="n">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span><span class="w"> </span><span class="s1">'/api2/auth-token/'</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s1">'form_params'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">$</span><span class="n">seafile_admin_account</span><span class="p">]);</span>
 <span class="w">            </span><span class="o">$</span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">json_decode</span><span class="p">(</span><span class="o">$</span><span class="n">request</span><span class="o">-&gt;</span><span class="n">getBody</span><span class="p">());</span>
 <span class="w">            </span><span class="o">$</span><span class="n">seafile_admin_token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">response</span><span class="o">-&gt;</span><span class="n">token</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 
 <span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="n">get</span><span class="w"> </span><span class="n">api</span><span class="o">-</span><span class="n">token</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">user</span>
-<span class="w">        </span><span class="o">$</span><span class="n">request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">client</span><span class="o">-&gt;</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;/api/v2.1/admin/generate-user-auth-token/&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span>
-<span class="w">            </span><span class="s1">&#39;json&#39;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">$</span><span class="n">decoded</span><span class="o">-&gt;</span><span class="n">email</span><span class="p">],</span>
-<span class="w">            </span><span class="s1">&#39;headers&#39;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;Authorization&#39;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;Token &#39;</span><span class="o">.</span><span class="w"> </span><span class="o">$</span><span class="n">seafile_admin_token</span><span class="p">]</span>
+<span class="w">        </span><span class="o">$</span><span class="n">request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">$</span><span class="n">client</span><span class="o">-&gt;</span><span class="n">request</span><span class="p">(</span><span class="s1">'POST'</span><span class="p">,</span><span class="w"> </span><span class="s1">'/api/v2.1/admin/generate-user-auth-token/'</span><span class="p">,</span><span class="w"> </span><span class="p">[</span>
+<span class="w">            </span><span class="s1">'json'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="s1">'email'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">$</span><span class="n">decoded</span><span class="o">-&gt;</span><span class="n">email</span><span class="p">],</span>
+<span class="w">            </span><span class="s1">'headers'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="s1">'Authorization'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Token '</span><span class="o">.</span><span class="w"> </span><span class="o">$</span><span class="n">seafile_admin_token</span><span class="p">]</span>
 <span class="w">        </span><span class="p">]);</span>
 <span class="w">        </span><span class="o">$</span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">json_decode</span><span class="p">(</span><span class="o">$</span><span class="n">request</span><span class="o">-&gt;</span><span class="n">getBody</span><span class="p">());</span>
 
 <span class="w">        </span><span class="o">//</span><span class="w"> </span><span class="n">create</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">output</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">outlook</span><span class="w"> </span><span class="n">plugin</span><span class="w"> </span><span class="p">(</span><span class="n">json</span><span class="w"> </span><span class="n">like</span><span class="w"> </span><span class="n">response</span><span class="p">)</span>
 <span class="w">        </span><span class="n">echo</span><span class="w"> </span><span class="n">json_encode</span><span class="p">([</span>
-<span class="w">            </span><span class="s1">&#39;exp&#39;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">$</span><span class="n">decoded</span><span class="o">-&gt;</span><span class="nb">exp</span><span class="p">,</span>
-<span class="w">            </span><span class="s1">&#39;email&#39;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">$</span><span class="n">decoded</span><span class="o">-&gt;</span><span class="n">email</span><span class="p">,</span>
-<span class="w">            </span><span class="s1">&#39;name&#39;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">$</span><span class="n">decoded</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span>
-<span class="w">            </span><span class="s1">&#39;token&#39;</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">$</span><span class="n">response</span><span class="o">-&gt;</span><span class="n">token</span><span class="p">,</span>
+<span class="w">            </span><span class="s1">'exp'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">$</span><span class="n">decoded</span><span class="o">-&gt;</span><span class="nb">exp</span><span class="p">,</span>
+<span class="w">            </span><span class="s1">'email'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">$</span><span class="n">decoded</span><span class="o">-&gt;</span><span class="n">email</span><span class="p">,</span>
+<span class="w">            </span><span class="s1">'name'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">$</span><span class="n">decoded</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span>
+<span class="w">            </span><span class="s1">'token'</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">$</span><span class="n">response</span><span class="o">-&gt;</span><span class="n">token</span><span class="p">,</span>
 <span class="w">        </span><span class="p">]);</span>
 <span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="n">catch</span><span class="w"> </span><span class="p">(</span><span class="n">GuzzleHttp</span>\<span class="n">Exception</span>\<span class="n">ClientException</span><span class="w"> </span><span class="o">$</span><span class="n">e</span><span class="p">){</span>
 <span class="w">        </span><span class="n">echo</span><span class="w"> </span><span class="o">$</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">getResponse</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getBody</span><span class="p">();</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 <span class="k">else</span><span class="p">{</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">no</span><span class="w"> </span><span class="n">jwt</span><span class="o">-</span><span class="n">token</span><span class="o">.</span><span class="w"> </span><span class="n">therefore</span><span class="w"> </span><span class="n">redirect</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">login</span><span class="w"> </span><span class="n">page</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">seafile</span>
-<span class="w">    </span><span class="n">header</span><span class="p">(</span><span class="s2">&quot;Location: &quot;</span><span class="o">.</span><span class="w"> </span><span class="o">$</span><span class="n">seafile_url</span><span class="w"> </span><span class="o">.</span><span class="s2">&quot;/accounts/login/?next=/jwt-sso/?page=/outlook&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">header</span><span class="p">(</span><span class="s2">"Location: "</span><span class="o">.</span><span class="w"> </span><span class="o">$</span><span class="n">seafile_url</span><span class="w"> </span><span class="o">.</span><span class="s2">"/accounts/login/?next=/jwt-sso/?page=/outlook"</span><span class="p">);</span>
 <span class="p">}</span><span class="w"> </span><span class="err">?</span><span class="o">&gt;</span>
 </code></pre></div>
 
@@ -4731,10 +4731,10 @@ $<span class="w"> </span>nano<span class="w"> </span>config.php
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

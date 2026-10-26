@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -31,10 +31,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -4679,14 +4679,14 @@
 <h2 id="use-clamav-with-docker-based-deployment">Use Clamav with Docker based deployment<a class="headerlink" href="#use-clamav-with-docker-based-deployment" title="Permanent link">&para;</a></h2>
 <h3 id="add-clamav-to-docker-composeyml">Add Clamav to docker-compose.yml<a class="headerlink" href="#add-clamav-to-docker-composeyml" title="Permanent link">&para;</a></h3>
 <p>The following section needs to be added to docker-compose.yml in the services section</p>
-<div class="codehilite"><pre><span></span><code>services:
-  ...
+<div class="codehilite"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 
-  av:
-    image: clamav/clamav:latest
-    container_name: seafile-clamav
-    networks:
-      <span class="k">-</span> seafile-net
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">av</span><span class="p p-Indicator">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">clamav/clamav:latest</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-clamav</span>
+<span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-net</span>
 </code></pre></div>
 
 <h3 id="modify-seafileconf">Modify seafile.conf<a class="headerlink" href="#modify-seafileconf" title="Permanent link">&para;</a></h3>
@@ -4729,7 +4729,7 @@ User root
 </code></pre></div>
 
 <p>The output must include:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">stream</span><span class="o">:</span><span class="w"> </span><span class="n">Eicar</span><span class="o">-</span><span class="n">Test</span><span class="o">-</span><span class="n">Signature</span><span class="w"> </span><span class="n">FOUND</span>
+<div class="codehilite"><pre><span></span><code>stream: Eicar-Test-Signature FOUND
 </code></pre></div>
 
 
@@ -4800,10 +4800,10 @@ User root
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

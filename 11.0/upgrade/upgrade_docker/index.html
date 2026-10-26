@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -31,10 +31,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -4645,22 +4645,22 @@
 <p>Please check the <strong>upgrade notes</strong> for any special configuration or changes before/while upgrading.</p>
 <h2 id="upgrade-from-100-to-110">Upgrade from 10.0 to 11.0<a class="headerlink" href="#upgrade-from-100-to-110" title="Permanent link">&para;</a></h2>
 <p>Download the new image, stop the old docker container, modify the Seafile image version in docker-compose.yml to the new version. Taking the <a href="../../docker/deploy_seafile_with_docker/">community edition</a> as an example, you have to modify</p>
-<div class="codehilite"><pre><span></span><code>...
-service:
-    ...
-    seafile:
-        image: seafileltd/seafile-mc:10.0-latest
-        ...
-    ...
+<div class="codehilite"><pre><span></span><code><span class="nn">...</span>
+<span class="nt">service</span><span class="p">:</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">seafile</span><span class="p p-Indicator">:</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafileltd/seafile-mc:10.0-latest</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </code></pre></div>
 
 <p>to</p>
-<div class="codehilite"><pre><span></span><code>service:
-    ...
-    seafile:
-        image: seafileltd/seafile-mc:11.0-latest
-        ...
-    ...
+<div class="codehilite"><pre><span></span><code><span class="nt">service</span><span class="p">:</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">seafile</span><span class="p p-Indicator">:</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafileltd/seafile-mc:11.0-latest</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </code></pre></div>
 
 <p>It is also recommended that you upgrade <strong>mariadb</strong> and <strong>memcached</strong> to newer versions as in the v11.0 docker-compose.yml file. Specifically, in version 11.0, we use the following versions:</p>
@@ -4767,10 +4767,10 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

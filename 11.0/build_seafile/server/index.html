@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -31,10 +31,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -4955,7 +4955,7 @@
 
 <p>Install Node 16 from nodesource:</p>
 <div class="codehilite"><pre><span></span><code>curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
-echo &quot;deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_16.x nodistro main&quot; | sudo tee /etc/apt/sources.list.d/nodesource.list
+echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_16.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
 apt-get install -y nodejs
 </code></pre></div>
 
@@ -4974,9 +4974,9 @@ mysqladmin -u root password your_password
 </code></pre></div>
 
 <p>sql for create databases</p>
-<div class="codehilite"><pre><span></span><code>mysql -uroot -pyour_password -e &quot;CREATE DATABASE ccnet CHARACTER SET utf8;&quot;
-mysql -uroot -pyour_password -e &quot;CREATE DATABASE seafile CHARACTER SET utf8;&quot;
-mysql -uroot -pyour_password -e &quot;CREATE DATABASE seahub CHARACTER SET utf8;&quot;
+<div class="codehilite"><pre><span></span><code>mysql -uroot -pyour_password -e "CREATE DATABASE ccnet CHARACTER SET utf8;"
+mysql -uroot -pyour_password -e "CREATE DATABASE seafile CHARACTER SET utf8;"
+mysql -uroot -pyour_password -e "CREATE DATABASE seahub CHARACTER SET utf8;"
 </code></pre></div>
 
 <h2 id="download-source-code">Download Source Code<a class="headerlink" href="#download-source-code" title="Permanent link">&para;</a></h2>
@@ -5069,17 +5069,17 @@ ldconfig
 
 <span class="n">cat</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">seahub_settings</span><span class="p">.</span><span class="n">py</span><span class="w">  </span><span class="o">&lt;&lt;</span><span class="n">EOF</span>
 <span class="n">DATABASES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{</span>
-<span class="w">    </span><span class="s1">&#39;default&#39;</span><span class="err">:</span><span class="w"> </span><span class="err">{</span>
-<span class="w">        </span><span class="s1">&#39;ENGINE&#39;</span><span class="err">:</span><span class="w"> </span><span class="s1">&#39;django.db.backends.mysql&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;NAME&#39;</span><span class="err">:</span><span class="w"> </span><span class="s1">&#39;seahub&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;USER&#39;</span><span class="err">:</span><span class="w"> </span><span class="s1">&#39;root&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;PASSWORD&#39;</span><span class="err">:</span><span class="w"> </span><span class="s1">&#39;123456&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;HOST&#39;</span><span class="err">:</span><span class="w"> </span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;PORT&#39;</span><span class="err">:</span><span class="w"> </span><span class="s1">&#39;3306&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">'default'</span><span class="err">:</span><span class="w"> </span><span class="err">{</span>
+<span class="w">        </span><span class="s1">'ENGINE'</span><span class="err">:</span><span class="w"> </span><span class="s1">'django.db.backends.mysql'</span><span class="p">,</span>
+<span class="w">        </span><span class="s1">'NAME'</span><span class="err">:</span><span class="w"> </span><span class="s1">'seahub'</span><span class="p">,</span>
+<span class="w">        </span><span class="s1">'USER'</span><span class="err">:</span><span class="w"> </span><span class="s1">'root'</span><span class="p">,</span>
+<span class="w">        </span><span class="s1">'PASSWORD'</span><span class="err">:</span><span class="w"> </span><span class="s1">'123456'</span><span class="p">,</span>
+<span class="w">        </span><span class="s1">'HOST'</span><span class="err">:</span><span class="w"> </span><span class="s1">'localhost'</span><span class="p">,</span>
+<span class="w">        </span><span class="s1">'PORT'</span><span class="err">:</span><span class="w"> </span><span class="s1">'3306'</span><span class="p">,</span>
 <span class="w">    </span><span class="err">}</span>
 <span class="err">}</span>
-<span class="n">FILE_SERVER_ROOT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;http://127.0.0.1:8082&#39;</span>
-<span class="n">SERVICE_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;http://127.0.0.1:8000&#39;</span>
+<span class="n">FILE_SERVER_ROOT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'http://127.0.0.1:8082'</span>
+<span class="n">SERVICE_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'http://127.0.0.1:8000'</span>
 <span class="n">EOF</span>
 </code></pre></div>
 
@@ -5131,12 +5131,12 @@ git checkout master
 
 <p>2, add the following configration to /root/dev/conf/seahub_settings.py</p>
 <div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="n">PROJECT_ROOT</span> <span class="o">=</span> <span class="s1">&#39;/root/dev/source-code/seahub&#39;</span>
+<span class="n">PROJECT_ROOT</span> <span class="o">=</span> <span class="s1">'/root/dev/source-code/seahub'</span>
 <span class="n">WEBPACK_LOADER</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;DEFAULT&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;BUNDLE_DIR_NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;frontend/&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;STATS_FILE&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PROJECT_ROOT</span><span class="p">,</span>
-                                   <span class="s1">&#39;frontend/webpack-stats.dev.json&#39;</span><span class="p">),</span>
+    <span class="s1">'DEFAULT'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'BUNDLE_DIR_NAME'</span><span class="p">:</span> <span class="s1">'frontend/'</span><span class="p">,</span>
+        <span class="s1">'STATS_FILE'</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PROJECT_ROOT</span><span class="p">,</span>
+                                   <span class="s1">'frontend/webpack-stats.dev.json'</span><span class="p">),</span>
     <span class="p">}</span>
 <span class="p">}</span>
 <span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">True</span>
@@ -5224,10 +5224,10 @@ npm run dev
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

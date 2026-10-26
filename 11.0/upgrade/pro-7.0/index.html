@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -27,10 +27,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -4657,7 +4657,7 @@
 
 <h3 id="create-seafile-user">Create seafile user<a class="headerlink" href="#create-seafile-user" title="Permanent link">&para;</a></h3>
 <p>Create a system account to run the Seafile service. The suggested user name is seafile：</p>
-<div class="codehilite"><pre><span></span><code>useradd --system --comment &quot;seafile&quot; seafile --create-home --home-dir  /home/seafile
+<div class="codehilite"><pre><span></span><code>useradd --system --comment "seafile" seafile --create-home --home-dir  /home/seafile
 </code></pre></div>
 
 <h3 id="modify-directory-permissions">Modify directory permissions<a class="headerlink" href="#modify-directory-permissions" title="Permanent link">&para;</a></h3>
@@ -4731,14 +4731,14 @@ cd /opt/seafile/seafile-server-latest
 
 <span class="c1"># Author: Alexander Jackson &lt;alexander.jackson@seafile.com.de&gt;</span>
 
-<span class="c1"># Change the value of &quot;seafile_dir&quot; to your path of seafile installation</span>
+<span class="c1"># Change the value of "seafile_dir" to your path of seafile installation</span>
 <span class="nv">user</span><span class="o">=</span>seafile
 <span class="nv">seafile_dir</span><span class="o">=</span>/opt/seafile
 <span class="nv">script_path</span><span class="o">=</span><span class="si">${</span><span class="nv">seafile_dir</span><span class="si">}</span>/seafile-server-latest
 <span class="nv">seafile_init_log</span><span class="o">=</span><span class="si">${</span><span class="nv">seafile_dir</span><span class="si">}</span>/logs/seafile.init.log
 <span class="nv">seahub_init_log</span><span class="o">=</span><span class="si">${</span><span class="nv">seafile_dir</span><span class="si">}</span>/logs/seahub.init.log
 
-<span class="k">case</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">in</span>
+<span class="k">case</span><span class="w"> </span><span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span><span class="w"> </span><span class="k">in</span>
 <span class="w">        </span>start<span class="o">)</span>
 <span class="w">                </span>sudo<span class="w"> </span>-u<span class="w"> </span><span class="si">${</span><span class="nv">user</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">script_path</span><span class="si">}</span>/seafile.sh<span class="w"> </span><span class="nv">$1</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="si">${</span><span class="nv">seafile_init_log</span><span class="si">}</span>
 <span class="w">                </span>sudo<span class="w"> </span>-u<span class="w"> </span><span class="si">${</span><span class="nv">user</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">script_path</span><span class="si">}</span>/seahub.sh<span class="w"> </span><span class="nv">$1</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="si">${</span><span class="nv">seahub_init_log</span><span class="si">}</span>
@@ -4752,7 +4752,7 @@ cd /opt/seafile/seafile-server-latest
 <span class="w">                </span>sudo<span class="w"> </span>-u<span class="w"> </span><span class="si">${</span><span class="nv">user</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">script_path</span><span class="si">}</span>/seahub.sh<span class="w"> </span><span class="nv">$1</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="si">${</span><span class="nv">seahub_init_log</span><span class="si">}</span>
 <span class="w">        </span><span class="p">;;</span>
 <span class="w">        </span>*<span class="o">)</span>
-<span class="w">                </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Usage: /etc/init.d/seafile-server {start|stop|restart}&quot;</span>
+<span class="w">                </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Usage: /etc/init.d/seafile-server {start|stop|restart}"</span>
 <span class="w">                </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
 <span class="w">        </span><span class="p">;;</span>
 <span class="k">esac</span>
@@ -4898,10 +4898,10 @@ cd /opt/seafile/seafile-server-latest
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -31,10 +31,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -5022,10 +5022,10 @@
 <span class="nb">cd</span><span class="w"> </span>/opt/seafile
 
 <span class="c1"># Seafile CE 10.0</span>
-wget<span class="w"> </span>-O<span class="w"> </span><span class="s2">&quot;docker-compose.yml&quot;</span><span class="w"> </span><span class="s2">&quot;https://manual.seafile.com/11.0/docker/docker-compose/ce/10.0/docker-compose.yml&quot;</span>
+wget<span class="w"> </span>-O<span class="w"> </span><span class="s2">"docker-compose.yml"</span><span class="w"> </span><span class="s2">"https://manual.seafile.com/11.0/docker/docker-compose/ce/10.0/docker-compose.yml"</span>
 
 <span class="c1"># Seafile CE 11.0</span>
-wget<span class="w"> </span>-O<span class="w"> </span><span class="s2">&quot;docker-compose.yml&quot;</span><span class="w"> </span><span class="s2">&quot;https://manual.seafile.com/11.0/docker/docker-compose/ce/11.0/docker-compose.yml&quot;</span>
+wget<span class="w"> </span>-O<span class="w"> </span><span class="s2">"docker-compose.yml"</span><span class="w"> </span><span class="s2">"https://manual.seafile.com/11.0/docker/docker-compose/ce/11.0/docker-compose.yml"</span>
 
 nano<span class="w"> </span>docker-compose.yml
 </code></pre></div>
@@ -5079,84 +5079,84 @@ docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> 
 <h3 id="custom-admin-username-and-password">Custom admin username and password<a class="headerlink" href="#custom-admin-username-and-password" title="Permanent link">&para;</a></h3>
 <p>The default admin account is <code>me@example.com</code> and the password is <code>asecret</code>. You can use a different password  by setting the container's environment variables in the <code>docker-compose.yml</code>:
 e.g.</p>
-<div class="codehilite"><pre><span></span><code><span class="nl">seafile</span><span class="p">:</span>
-<span class="w">    </span><span class="p">...</span>
+<div class="codehilite"><pre><span></span><code><span class="nt">seafile</span><span class="p">:</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 
-<span class="w">    </span><span class="nl">environment</span><span class="p">:</span>
-<span class="w">        </span><span class="p">...</span>
-<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="n">SEAFILE_ADMIN_EMAIL</span><span class="o">=</span><span class="n">me</span><span class="nv">@example</span><span class="p">.</span><span class="n">com</span>
-<span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="n">SEAFILE_ADMIN_PASSWORD</span><span class="o">=</span><span class="n">a_very_secret_password</span>
-<span class="w">        </span><span class="p">...</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">- SEAFILE_ADMIN_EMAIL=me@example.com</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">- SEAFILE_ADMIN_PASSWORD=a_very_secret_password</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </code></pre></div>
 
 <h3 id="lets-encrypt-ssl-certificate">Let's Encrypt SSL certificate<a class="headerlink" href="#lets-encrypt-ssl-certificate" title="Permanent link">&para;</a></h3>
 <p>If you set <code>SEAFILE_SERVER_LETSENCRYPT</code> to <code>true</code>, the container would request a letsencrypt-signed SSL certificate for you automatically.</p>
 <p>e.g.</p>
-<div class="codehilite"><pre><span></span><code>seafile:
-    ...
-    ports:
-        <span class="k">-</span> &quot;80:80&quot;
-        <span class="k">-</span> &quot;443:443&quot;
-    ...
-    environment:
-        ...
-        <span class="k">-</span> SEAFILE_SERVER_LETSENCRYPT=true
-        <span class="k">-</span> SEAFILE_SERVER_HOSTNAME=seafile.example.com
-        ...
+<div class="codehilite"><pre><span></span><code><span class="nt">seafile</span><span class="p">:</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">ports</span><span class="p p-Indicator">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"80:80"</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"443:443"</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">- SEAFILE_SERVER_LETSENCRYPT=true</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">- SEAFILE_SERVER_HOSTNAME=seafile.example.com</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </code></pre></div>
 
 <p>Since version 10.0.x, if you want to use a reverse proxy and apply for a certificate outside docker, you can use <code>FORCE_HTTPS_IN_CONF</code> to force write <code>https://&lt;your_host&gt;</code> in the configuration file.</p>
 <p>e.g.</p>
-<div class="codehilite"><pre><span></span><code>seafile:
-    ...
-    environment:
-        ...
-        <span class="k">-</span> SEAFILE_SERVER_LETSENCRYPT=false
-        <span class="k">-</span> SEAFILE_SERVER_HOSTNAME=seafile.example.com
-        <span class="k">-</span> FORCE_HTTPS_IN_CONF=true
-        ...
+<div class="codehilite"><pre><span></span><code><span class="nt">seafile</span><span class="p">:</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">- SEAFILE_SERVER_LETSENCRYPT=false</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">- SEAFILE_SERVER_HOSTNAME=seafile.example.com</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">- FORCE_HTTPS_IN_CONF=true</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </code></pre></div>
 
 <p>If you want to use your own SSL certificate, you can mount the certificate into the docker container by setting the container's volumes variables in the <code>docker-compose.yml</code>.</p>
 <p>⚠️ Assuming your site name is <code>seafile.example.com</code>, then your certificate must have the name <code>seafile.example.com.crt</code>, and the private key must have the name <code>seafile.example.com.key</code> in container.</p>
 <p>e.g.</p>
-<div class="codehilite"><pre><span></span><code>seafile:
-    ...
-    ports:
-        <span class="k">-</span> &quot;80:80&quot;
-        <span class="k">-</span> &quot;443:443&quot;
-    ...
-    volumes:
-      ...
-      <span class="k">-</span> /etc/letsencrypt/live/seafile.example.com/fullchain.pem:/shared/ssl/seafile.example.com.crt
-      <span class="k">-</span> /etc/letsencrypt/live/seafile.example.com/privkey.pem:/shared/ssl/seafile.example.com.key
-    environment:
-        ...
-        <span class="k">-</span> SEAFILE_SERVER_LETSENCRYPT=false
-        <span class="k">-</span> SEAFILE_SERVER_HOSTNAME=seafile.example.com
-        <span class="k">-</span> FORCE_HTTPS_IN_CONF=true
-        ...
-    ...
+<div class="codehilite"><pre><span></span><code><span class="nt">seafile</span><span class="p">:</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">ports</span><span class="p p-Indicator">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"80:80"</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"443:443"</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">- /etc/letsencrypt/live/seafile.example.com/fullchain.pem:/shared/ssl/seafile.example.com.crt</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">- /etc/letsencrypt/live/seafile.example.com/privkey.pem:/shared/ssl/seafile.example.com.key</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">- SEAFILE_SERVER_LETSENCRYPT=false</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">- SEAFILE_SERVER_HOSTNAME=seafile.example.com</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">- FORCE_HTTPS_IN_CONF=true</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </code></pre></div>
 
 <h3 id="use-an-existing-mysql-server">Use an existing mysql-server<a class="headerlink" href="#use-an-existing-mysql-server" title="Permanent link">&para;</a></h3>
 <p>If you want to use an existing mysql-server, you can modify the <code>docker-compose.yml</code> as follows</p>
-<div class="codehilite"><pre><span></span><code>services:
-  #db:
-    #image: mariadb:10.11
-    #...
+<div class="codehilite"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="c1">#db:</span>
+<span class="w">    </span><span class="c1">#image: mariadb:10.11</span>
+<span class="w">    </span><span class="c1">#...</span>
 
-  seafile:
-    ...
-    environment:
-        ...
-        <span class="k">-</span> DB_HOST=192.168.0.2
-        <span class="k">-</span> DB_PORT=3306
-        <span class="k">-</span> DB_ROOT_PASSWD=mysql_root_password
-        ...
-    depends_on:
-      #- db
-      <span class="k">-</span> memcached
+<span class="w">  </span><span class="nt">seafile</span><span class="p">:</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">- DB_HOST=192.168.0.2</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">- DB_PORT=3306</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">- DB_ROOT_PASSWD=mysql_root_password</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="c1">#- db</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">memcached</span>
 </code></pre></div>
 
 <ul>
@@ -5182,12 +5182,12 @@ e.g.</p>
 <h3 id="run-seafile-as-non-root-user-inside-docker">Run Seafile as non root user inside docker<a class="headerlink" href="#run-seafile-as-non-root-user-inside-docker" title="Permanent link">&para;</a></h3>
 <p>Since version 10.0, you can use run seafile as non root user in docker. (<strong>NOTE:</strong> Programs such as <code>my_init</code>, Nginx are still run as <code>root</code> inside docker.)</p>
 <p>First add the <code>NON_ROOT=true</code> to the <code>docker-compose.yml</code>.</p>
-<div class="codehilite"><pre><span></span><code>seafile:
-    ...
-    environment:
-        ...
-        <span class="k">-</span> NON_ROOT=true
-        ...
+<div class="codehilite"><pre><span></span><code><span class="nt">seafile</span><span class="p">:</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">- NON_ROOT=true</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </code></pre></div>
 
 <p>Then modify <code>/opt/seafile-data/seafile/</code> permissions.</p>
@@ -5215,20 +5215,20 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 <p>The required scripts can be found in the <code>/scripts</code> folder of the docker container. To perform garbage collection, simply run <code>docker exec seafile /scripts/gc.sh</code>. For the community edition, this process will stop the seafile server, but it is a relatively quick process and the seafile server will start automatically once the process has finished. The Professional supports an online garbage collection.</p>
 <h2 id="deploy-seafile-docker-with-custom-port">Deploy Seafile docker with custom port<a class="headerlink" href="#deploy-seafile-docker-with-custom-port" title="Permanent link">&para;</a></h2>
 <p>Assume your custom port is 8001, when it is a new installation, you only need to modify the <code>docker-compose.yml</code> and start the Seafile docker.</p>
-<div class="codehilite"><pre><span></span><code>  seafile:
-    ...
-    ports:
-      <span class="k">-</span> &quot;8001:80&quot;
-    environment:
-      ...
-      <span class="k">-</span> SEAFILE_SERVER_HOSTNAME=seafile.example.com:8001
-      ...
-    ...
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="nt">seafile</span><span class="p">:</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">ports</span><span class="p p-Indicator">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"8001:80"</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">- SEAFILE_SERVER_HOSTNAME=seafile.example.com:8001</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </code></pre></div>
 
 <p>If you have installed the Seafile docker, besides modifying the <code>docker-compose.yml</code>, you also need to modify the already generated configuration file <code>conf/seahub_settings.py</code>, then restart Seafile:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">SERVICE_URL</span> <span class="o">=</span> <span class="s2">&quot;http://seafile.example.com:8001&quot;</span>
-<span class="n">FILE_SERVER_ROOT</span> <span class="o">=</span> <span class="s2">&quot;http://seafile.example.com:8001/seafhttp&quot;</span>
+<div class="codehilite"><pre><span></span><code><span class="n">SERVICE_URL</span> <span class="o">=</span> <span class="s2">"http://seafile.example.com:8001"</span>
+<span class="n">FILE_SERVER_ROOT</span> <span class="o">=</span> <span class="s2">"http://seafile.example.com:8001/seafhttp"</span>
 </code></pre></div>
 
 <h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
@@ -5346,10 +5346,10 @@ docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </spa
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

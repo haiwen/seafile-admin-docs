@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -31,10 +31,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -4681,13 +4681,13 @@
 <p><strong>Note:</strong> We assume you have read <a href="deploy_with_nginx.md">Deploy Seafile with nginx</a> or <a href="deploy_with_apache.md">Deploy Seafile with apache</a>.</p>
 <h3 id="configure-seahub">Configure Seahub<a class="headerlink" href="#configure-seahub" title="Permanent link">&para;</a></h3>
 <p>First, we need to overwrite some variables in seahub_settings.py:</p>
-<div class="codehilite"><pre><span></span><code>MEDIA_URL = &#39;/seafmedia/&#39;
+<div class="codehilite"><pre><span></span><code>MEDIA_URL = '/seafmedia/'
 COMPRESS_URL = MEDIA_URL
-STATIC_URL = MEDIA_URL + &#39;assets/&#39;
-SITE_ROOT = &#39;/seafile/&#39;
-LOGIN_URL = &#39;/seafile/accounts/login/&#39;
-FILE_SERVER_ROOT = &#39;http://www.myseafile.com/seafhttp&#39;
-SERVICE_URL = &#39;http://www.myseafile.com/seafile&#39;
+STATIC_URL = MEDIA_URL + 'assets/'
+SITE_ROOT = '/seafile/'
+LOGIN_URL = '/seafile/accounts/login/'
+FILE_SERVER_ROOT = 'http://www.myseafile.com/seafhttp'
+SERVICE_URL = 'http://www.myseafile.com/seafile'
 </code></pre></div>
 
 <p><code>MEDIA_URL</code> can be anything you like, just make sure a trailing slash is appended at the end.</p>
@@ -4759,7 +4759,7 @@ SERVICE_URL = &#39;http://www.myseafile.com/seafile&#39;
 <span class="w">  </span>#<span class="w"> </span>seahub
 <span class="w">  </span>#
 <span class="w">  </span>SetEnvIf<span class="w"> </span>Request_URI<span class="w"> </span>.<span class="w"> </span>proxy-fcgi-pathinfo=unescape
-<span class="w">  </span>SetEnvIf<span class="w"> </span>Authorization<span class="w"> </span>&quot;(.*)&quot;<span class="w"> </span>HTTP_AUTHORIZATION=$1
+<span class="w">  </span>SetEnvIf<span class="w"> </span>Authorization<span class="w"> </span>"(.*)"<span class="w"> </span>HTTP_AUTHORIZATION=$1
 <span class="w">  </span>ProxyPreserveHost<span class="w"> </span>On
 <span class="w">  </span>ProxyPass<span class="w"> </span>/seafile<span class="w"> </span>http://127.0.0.1:8000/seafile
 <span class="w">  </span>ProxyPassReverse<span class="w"> </span>/seafile<span class="w"> </span>http://127.0.0.1:8000/seafile
@@ -4843,10 +4843,10 @@ SERVICE_URL = &#39;http://www.myseafile.com/seafile&#39;
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

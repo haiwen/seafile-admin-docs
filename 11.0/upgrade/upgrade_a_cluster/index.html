@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -31,10 +31,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -4873,9 +4873,9 @@
 <p>The way of how office converter work is changed. The Seahub in front end nodes directly access a service in background node.</p>
 <h4 id="for-front-end-nodes">For front-end nodes<a class="headerlink" href="#for-front-end-nodes" title="Permanent link">&para;</a></h4>
 <p><strong>seahub_settings.py</strong></p>
-<div class="codehilite"><pre><span></span><code>OFFICE_CONVERTOR_ROOT = &#39;http://&lt;ip of node background&gt;&#39;
+<div class="codehilite"><pre><span></span><code>OFFICE_CONVERTOR_ROOT = 'http://&lt;ip of node background&gt;'
 ⬇️
-OFFICE_CONVERTOR_ROOT = &#39;http://&lt;ip of node background&gt;:6000&#39;
+OFFICE_CONVERTOR_ROOT = 'http://&lt;ip of node background&gt;:6000'
 </code></pre></div>
 
 <p><strong>seafevents.conf</strong></p>
@@ -4894,7 +4894,7 @@ OFFICE_CONVERTOR_ROOT = &#39;http://&lt;ip of node background&gt;:6000&#39;
 </code></pre></div>
 
 <h4 id="for-backend-node">For backend node<a class="headerlink" href="#for-backend-node" title="Permanent link">&para;</a></h4>
-<p><strong>seahub_settings.py is not needed. </strong>But you can leave it unchanged.</p>
+<p>**seahub_settings.py is not needed. **But you can leave it unchanged.</p>
 <p><strong>seafevents.conf</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="k">[OFFICE CONVERTER]</span>
 <span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
@@ -4915,26 +4915,26 @@ OFFICE_CONVERTOR_ROOT = &#39;http://&lt;ip of node background&gt;:6000&#39;
 <h3 id="from-62-to-63">From 6.2 to 6.3<a class="headerlink" href="#from-62-to-63" title="Permanent link">&para;</a></h3>
 <p>In version 6.2.11, the included Django was upgraded. The memcached configuration needed to be upgraded if you were using a cluster. If you upgrade from a version below 6.1.11, don't forget to change your memcache configuration. If the configuration in your <code>seahub_settings.py</code> is:</p>
 <div class="codehilite"><pre><span></span><code><span class="n">CACHES</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&#39;BACKEND&#39;</span><span class="p">:</span> <span class="s">&#39;django_pylibmc.memcached.PyLibMCCache&#39;</span><span class="p">,</span>
-        <span class="s">&#39;LOCATION&#39;</span><span class="p">:</span> <span class="s">&#39;&lt;MEMCACHED SERVER IP&gt;:11211&#39;</span><span class="p">,</span>
+    <span class="s">'default'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">'BACKEND'</span><span class="p">:</span> <span class="s">'django_pylibmc.memcached.PyLibMCCache'</span><span class="p">,</span>
+        <span class="s">'LOCATION'</span><span class="p">:</span> <span class="s">'&lt;MEMCACHED SERVER IP&gt;:11211'</span><span class="p">,</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="n">COMPRESS_CACHE_BACKEND</span> <span class="o">=</span> <span class="s">&#39;django.core.cache.backends.locmem.LocMemCache&#39;</span>
+<span class="n">COMPRESS_CACHE_BACKEND</span> <span class="o">=</span> <span class="s">'django.core.cache.backends.locmem.LocMemCache'</span>
 </code></pre></div>
 
 <p>Now you need to change to:</p>
 <div class="codehilite"><pre><span></span><code><span class="n">CACHES</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&#39;BACKEND&#39;</span><span class="p">:</span> <span class="s">&#39;django_pylibmc.memcached.PyLibMCCache&#39;</span><span class="p">,</span>
-        <span class="s">&#39;LOCATION&#39;</span><span class="p">:</span> <span class="s">&#39;&lt;MEMCACHED SERVER IP&gt;:11211&#39;</span><span class="p">,</span>
+    <span class="s">'default'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">'BACKEND'</span><span class="p">:</span> <span class="s">'django_pylibmc.memcached.PyLibMCCache'</span><span class="p">,</span>
+        <span class="s">'LOCATION'</span><span class="p">:</span> <span class="s">'&lt;MEMCACHED SERVER IP&gt;:11211'</span><span class="p">,</span>
     <span class="p">},</span>
-    <span class="s">&#39;locmem&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&#39;BACKEND&#39;</span><span class="p">:</span> <span class="s">&#39;django.core.cache.backends.locmem.LocMemCache&#39;</span><span class="p">,</span>
+    <span class="s">'locmem'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">'BACKEND'</span><span class="p">:</span> <span class="s">'django.core.cache.backends.locmem.LocMemCache'</span><span class="p">,</span>
     <span class="p">},</span>
 <span class="p">}</span>
-<span class="n">COMPRESS_CACHE_BACKEND</span> <span class="o">=</span> <span class="s">&#39;locmem&#39;</span>
+<span class="n">COMPRESS_CACHE_BACKEND</span> <span class="o">=</span> <span class="s">'locmem'</span>
 </code></pre></div>
 
 <h3 id="from-61-to-62">From 6.1 to 6.2<a class="headerlink" href="#from-61-to-62" title="Permanent link">&para;</a></h3>
@@ -4950,8 +4950,8 @@ ln -s /nfs-share/seafile-httptemp seafile-data/httptemp
 <p>The httptemp folder only contains temp files for downloading/uploading file on web UI. So there is no reliability requirement for the NFS share. You can export it from any node in the cluster.</p>
 <h3 id="from-v50-to-v51">From v5.0 to v5.1<a class="headerlink" href="#from-v50-to-v51" title="Permanent link">&para;</a></h3>
 <p>Because Django is upgraded to 1.8, the COMPRESS_CACHE_BACKEND should be changed</p>
-<div class="codehilite"><pre><span></span><code>   <span class="o">-</span>    <span class="n">COMPRESS_CACHE_BACKEND</span> <span class="o">=</span> <span class="s">&#39;locmem://&#39;</span>
-   <span class="o">+</span>    <span class="n">COMPRESS_CACHE_BACKEND</span> <span class="o">=</span> <span class="s">&#39;django.core.cache.backends.locmem.LocMemCache&#39;</span>
+<div class="codehilite"><pre><span></span><code>   <span class="o">-</span>    <span class="n">COMPRESS_CACHE_BACKEND</span> <span class="o">=</span> <span class="s">'locmem://'</span>
+   <span class="o">+</span>    <span class="n">COMPRESS_CACHE_BACKEND</span> <span class="o">=</span> <span class="s">'django.core.cache.backends.locmem.LocMemCache'</span>
 </code></pre></div>
 
 <h3 id="from-v44-to-v50">From v4.4 to v5.0<a class="headerlink" href="#from-v44-to-v50" title="Permanent link">&para;</a></h3>
@@ -5064,10 +5064,10 @@ ln -s /nfs-share/seafile-httptemp seafile-data/httptemp
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -31,10 +31,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -4731,8 +4731,8 @@ $<span class="w"> </span>sudo<span class="w"> </span>a2enmod<span class="w"> </s
 <p>Modify Apache config file. For CentOS, this is <code>vhost.conf.</code> For Debian/Ubuntu, this is <code>sites-enabled/000-default</code>. </p>
 <div class="codehilite"><pre><span></span><code><span class="nt">&lt;VirtualHost</span><span class="w"> </span><span class="s">*:80</span><span class="nt">&gt;</span>
 <span class="w">    </span><span class="nb">ServerName</span><span class="w"> </span>seafile.example.com
-<span class="w">    </span><span class="c"># Use &quot;DocumentRoot /var/www/html&quot; for CentOS</span>
-<span class="w">    </span><span class="c"># Use &quot;DocumentRoot /var/www&quot; for Debian/Ubuntu</span>
+<span class="w">    </span><span class="c"># Use "DocumentRoot /var/www/html" for CentOS</span>
+<span class="w">    </span><span class="c"># Use "DocumentRoot /var/www" for Debian/Ubuntu</span>
 <span class="w">    </span><span class="nb">DocumentRoot</span><span class="w"> </span><span class="sx">/var/www</span>
 <span class="w">    </span><span class="nb">Alias</span><span class="w"> </span><span class="sx">/media</span><span class="w">  </span><span class="sx">/opt/seafile/seafile-server-latest/seahub/media</span>
 
@@ -4754,7 +4754,7 @@ $<span class="w"> </span>sudo<span class="w"> </span>a2enmod<span class="w"> </s
 <span class="w">    </span><span class="c">#</span>
 <span class="w">    </span><span class="c"># seahub</span>
 <span class="w">    </span><span class="c">#</span>
-<span class="w">    </span><span class="nb">SetEnvIf</span><span class="w"> </span>Authorization<span class="w"> </span><span class="s2">&quot;(.*)&quot;</span><span class="w"> </span>HTTP_AUTHORIZATION=$1
+<span class="w">    </span><span class="nb">SetEnvIf</span><span class="w"> </span>Authorization<span class="w"> </span><span class="s2">"(.*)"</span><span class="w"> </span>HTTP_AUTHORIZATION=$1
 <span class="w">    </span><span class="nb">ProxyPreserveHost</span><span class="w"> </span><span class="k">On</span>
 <span class="w">    </span><span class="nb">ProxyPass</span><span class="w"> </span>/<span class="w"> </span>http://127.0.0.1:8000/
 <span class="w">    </span><span class="nb">ProxyPassReverse</span><span class="w"> </span>/<span class="w"> </span>http://127.0.0.1:8000/
@@ -4805,7 +4805,7 @@ $<span class="w"> </span>sudo<span class="w"> </span>a2enmod<span class="w"> </s
 <span class="w">  </span><span class="c">#</span>
 <span class="w">  </span><span class="c"># seahub</span>
 <span class="w">  </span><span class="c">#</span>
-<span class="w">  </span><span class="nb">SetEnvIf</span><span class="w"> </span>Authorization<span class="w"> </span><span class="s2">&quot;(.*)&quot;</span><span class="w"> </span>HTTP_AUTHORIZATION=$1
+<span class="w">  </span><span class="nb">SetEnvIf</span><span class="w"> </span>Authorization<span class="w"> </span><span class="s2">"(.*)"</span><span class="w"> </span>HTTP_AUTHORIZATION=$1
 <span class="w">  </span><span class="nb">ProxyPreserveHost</span><span class="w"> </span><span class="k">On</span>
 <span class="w">  </span><span class="nb">ProxyPass</span><span class="w"> </span>/<span class="w"> </span>http://127.0.0.1:8000/
 <span class="w">  </span><span class="nb">ProxyPassReverse</span><span class="w"> </span>/<span class="w"> </span>http://127.0.0.1:8000/
@@ -4818,11 +4818,11 @@ $<span class="w"> </span>sudo<span class="w"> </span>a2enmod<span class="w"> </s
 
 <h3 id="modifying-seahub_settingspy">Modifying seahub_settings.py<a class="headerlink" href="#modifying-seahub_settingspy" title="Permanent link">&para;</a></h3>
 <p>The <code>SERVICE_URL</code> in <a href="../config/seahub_settings_py/">seahub_settings.py</a> informs Seafile about the chosen domain, protocol and port. Change the <code>SERVICE_URL</code>so as to account for the switch from HTTP to HTTPS and to correspond to your host name (the <code>http://</code>must not be removed):</p>
-<div class="codehilite"><pre><span></span><code><span class="n">SERVICE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://seafile.example.com&#39;</span>
+<div class="codehilite"><pre><span></span><code><span class="n">SERVICE_URL</span> <span class="o">=</span> <span class="s1">'https://seafile.example.com'</span>
 </code></pre></div>
 
 <p>The <code>FILE_SERVER_ROOT</code> in <a href="../config/seahub_settings_py/">seahub_settings.py</a> informs Seafile about the location of and the protocol used by the file server. Change the <code>FILE_SERVER_ROOT</code>so as to account for the switch from HTTP to HTTPS and to correspond to your host name (the trailing <code>/seafhttp</code> must not be removed):</p>
-<div class="codehilite"><pre><span></span><code><span class="n">FILE_SERVER_ROOT</span> <span class="o">=</span> <span class="s1">&#39;https://seafile.example.com/seafhttp&#39;</span>
+<div class="codehilite"><pre><span></span><code><span class="n">FILE_SERVER_ROOT</span> <span class="o">=</span> <span class="s1">'https://seafile.example.com/seafhttp'</span>
 </code></pre></div>
 
 <p>Note: The <code>SERVICE_URL</code> and <code>FILE_SERVER_ROOT</code> can also be modified in Seahub via System Admininstration &gt; Settings.  If they are configured via System Admin and in seahub_settings.py, the value in System Admin will take precedence.</p>
@@ -4919,10 +4919,10 @@ $<span class="w"> </span>./seahub.sh<span class="w"> </span>restart
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

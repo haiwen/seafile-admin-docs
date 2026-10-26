@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -31,10 +31,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -5224,13 +5224,13 @@ GRANT<span class="w"> </span>ALL<span class="w"> </span>PRIVILEGES<span class="w
 <li>Seafile service URL (SEAHUB_SERVICE_URL)</li>
 </ul>
 <p>The <code>ports</code> need to be modified additionally:</p>
-<div class="codehilite"><pre><span></span><code>sdoc-server:
-    ...
-    ports:
-        # - &quot;80:80&quot;
-        # - &quot;443:443&quot;
-        - &quot;7070:7070&quot;
-        - &quot;8888:8888&quot;
+<div class="codehilite"><pre><span></span><code><span class="nt">sdoc-server</span><span class="p">:</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">ports</span><span class="p p-Indicator">:</span>
+<span class="w">        </span><span class="c1"># - "80:80"</span>
+<span class="w">        </span><span class="c1"># - "443:443"</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"7070:7070"</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"8888:8888"</span>
 </code></pre></div>
 
 <h4 id="create-the-seadoc-database-manually_1">Create the SeaDoc database manually<a class="headerlink" href="#create-the-seadoc-database-manually_1" title="Permanent link">&para;</a></h4>
@@ -5246,11 +5246,11 @@ GRANT<span class="w"> </span>ALL<span class="w"> </span>PRIVILEGES<span class="w
 <div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="nx">location</span><span class="w"> </span><span class="o">/</span><span class="nx">sdoc</span><span class="o">-</span><span class="nx">server</span><span class="o">/</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nx">add_header</span><span class="w"> </span><span class="nx">Access</span><span class="o">-</span><span class="nx">Control</span><span class="o">-</span><span class="nx">Allow</span><span class="o">-</span><span class="nx">Origin</span><span class="w"> </span><span class="o">*</span><span class="p">;</span>
 <span class="w">        </span><span class="nx">add_header</span><span class="w"> </span><span class="nx">Access</span><span class="o">-</span><span class="nx">Control</span><span class="o">-</span><span class="nx">Allow</span><span class="o">-</span><span class="nx">Methods</span><span class="w"> </span><span class="nx">GET</span><span class="p">,</span><span class="nx">POST</span><span class="p">,</span><span class="nx">PUT</span><span class="p">,</span><span class="nx">DELETE</span><span class="p">,</span><span class="nx">OPTIONS</span><span class="p">;</span>
-<span class="w">        </span><span class="nx">add_header</span><span class="w"> </span><span class="nx">Access</span><span class="o">-</span><span class="nx">Control</span><span class="o">-</span><span class="nx">Allow</span><span class="o">-</span><span class="nx">Headers</span><span class="w"> </span><span class="s">&quot;deviceType,token, authorization, content-type&quot;</span><span class="p">;</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="err">$</span><span class="nx">request_method</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">OPTIONS</span><span class="err">&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">add_header</span><span class="w"> </span><span class="nx">Access</span><span class="o">-</span><span class="nx">Control</span><span class="o">-</span><span class="nx">Allow</span><span class="o">-</span><span class="nx">Headers</span><span class="w"> </span><span class="s">"deviceType,token, authorization, content-type"</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="err">$</span><span class="nx">request_method</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="err">'</span><span class="nx">OPTIONS</span><span class="err">'</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="nx">add_header</span><span class="w"> </span><span class="nx">Access</span><span class="o">-</span><span class="nx">Control</span><span class="o">-</span><span class="nx">Allow</span><span class="o">-</span><span class="nx">Origin</span><span class="w"> </span><span class="o">*</span><span class="p">;</span>
 <span class="w">            </span><span class="nx">add_header</span><span class="w"> </span><span class="nx">Access</span><span class="o">-</span><span class="nx">Control</span><span class="o">-</span><span class="nx">Allow</span><span class="o">-</span><span class="nx">Methods</span><span class="w"> </span><span class="nx">GET</span><span class="p">,</span><span class="nx">POST</span><span class="p">,</span><span class="nx">PUT</span><span class="p">,</span><span class="nx">DELETE</span><span class="p">,</span><span class="nx">OPTIONS</span><span class="p">;</span>
-<span class="w">            </span><span class="nx">add_header</span><span class="w"> </span><span class="nx">Access</span><span class="o">-</span><span class="nx">Control</span><span class="o">-</span><span class="nx">Allow</span><span class="o">-</span><span class="nx">Headers</span><span class="w"> </span><span class="s">&quot;deviceType,token, authorization, content-type&quot;</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">add_header</span><span class="w"> </span><span class="nx">Access</span><span class="o">-</span><span class="nx">Control</span><span class="o">-</span><span class="nx">Allow</span><span class="o">-</span><span class="nx">Headers</span><span class="w"> </span><span class="s">"deviceType,token, authorization, content-type"</span><span class="p">;</span>
 <span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="mi">204</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 
@@ -5269,7 +5269,7 @@ GRANT<span class="w"> </span>ALL<span class="w"> </span>PRIVILEGES<span class="w
 <span class="w">        </span><span class="nx">proxy_pass</span><span class="w"> </span><span class="nx">http</span><span class="p">:</span><span class="c1">//127.0.0.1:7070;</span>
 <span class="w">        </span><span class="nx">proxy_http_version</span><span class="w"> </span><span class="m m-Double">1.1</span><span class="p">;</span>
 <span class="w">        </span><span class="nx">proxy_set_header</span><span class="w"> </span><span class="nx">Upgrade</span><span class="w"> </span><span class="err">$</span><span class="nx">http_upgrade</span><span class="p">;</span>
-<span class="w">        </span><span class="nx">proxy_set_header</span><span class="w"> </span><span class="nx">Connection</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">upgrade</span><span class="err">&#39;</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">proxy_set_header</span><span class="w"> </span><span class="nx">Connection</span><span class="w"> </span><span class="err">'</span><span class="nx">upgrade</span><span class="err">'</span><span class="p">;</span>
 <span class="w">        </span><span class="nx">proxy_redirect</span><span class="w"> </span><span class="nx">off</span><span class="p">;</span>
 
 <span class="w">        </span><span class="nx">proxy_buffers</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="mi">32</span><span class="nx">k</span><span class="p">;</span>
@@ -5290,22 +5290,22 @@ GRANT<span class="w"> </span>ALL<span class="w"> </span>PRIVILEGES<span class="w
 <h3 id="seadoc-and-seafile-docker-are-deployed-on-the-same-host">SeaDoc and Seafile docker are deployed on the same host<a class="headerlink" href="#seadoc-and-seafile-docker-are-deployed-on-the-same-host" title="Permanent link">&para;</a></h3>
 <h4 id="modify-seafile-docker-composeyml">Modify Seafile docker-compose.yml<a class="headerlink" href="#modify-seafile-docker-composeyml" title="Permanent link">&para;</a></h4>
 <p>Add the SeaDoc <a href="https://manual.seafile.com/11.0/docker/docker-compose/seadoc/0.8/docker-compose.yml">docker-compose.yml</a> contents to the Seafile docker-compose.yml, and the <code>ports</code> need to be modified additionally:</p>
-<div class="codehilite"><pre><span></span><code>services:
-  ...
-  seafile:
-    ...
+<div class="codehilite"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">seafile</span><span class="p p-Indicator">:</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 
-  sdoc-server:
-    image: seafileltd/sdoc-server:0.8.0
-    container_name: sdoc-server
-    # ports:
-      # - 80:80
-      # - 443:443
-      # - 7070:7070
-      # - 8888:8888
-    networks:
-      <span class="k">-</span> seafile-net
-    ...
+<span class="w">  </span><span class="nt">sdoc-server</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafileltd/sdoc-server:0.8.0</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sdoc-server</span>
+<span class="w">    </span><span class="c1"># ports:</span>
+<span class="w">      </span><span class="c1"># - 80:80</span>
+<span class="w">      </span><span class="c1"># - 443:443</span>
+<span class="w">      </span><span class="c1"># - 7070:7070</span>
+<span class="w">      </span><span class="c1"># - 8888:8888</span>
+<span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">seafile-net</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </code></pre></div>
 
 <h4 id="create-the-seadoc-database-manually_2">Create the SeaDoc database manually<a class="headerlink" href="#create-the-seadoc-database-manually_2" title="Permanent link">&para;</a></h4>
@@ -5321,11 +5321,11 @@ GRANT<span class="w"> </span>ALL<span class="w"> </span>PRIVILEGES<span class="w
 <div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="nx">location</span><span class="w"> </span><span class="o">/</span><span class="nx">sdoc</span><span class="o">-</span><span class="nx">server</span><span class="o">/</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="nx">add_header</span><span class="w"> </span><span class="nx">Access</span><span class="o">-</span><span class="nx">Control</span><span class="o">-</span><span class="nx">Allow</span><span class="o">-</span><span class="nx">Origin</span><span class="w"> </span><span class="o">*</span><span class="p">;</span>
 <span class="w">        </span><span class="nx">add_header</span><span class="w"> </span><span class="nx">Access</span><span class="o">-</span><span class="nx">Control</span><span class="o">-</span><span class="nx">Allow</span><span class="o">-</span><span class="nx">Methods</span><span class="w"> </span><span class="nx">GET</span><span class="p">,</span><span class="nx">POST</span><span class="p">,</span><span class="nx">PUT</span><span class="p">,</span><span class="nx">DELETE</span><span class="p">,</span><span class="nx">OPTIONS</span><span class="p">;</span>
-<span class="w">        </span><span class="nx">add_header</span><span class="w"> </span><span class="nx">Access</span><span class="o">-</span><span class="nx">Control</span><span class="o">-</span><span class="nx">Allow</span><span class="o">-</span><span class="nx">Headers</span><span class="w"> </span><span class="s">&quot;deviceType,token, authorization, content-type&quot;</span><span class="p">;</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="err">$</span><span class="nx">request_method</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">OPTIONS</span><span class="err">&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">add_header</span><span class="w"> </span><span class="nx">Access</span><span class="o">-</span><span class="nx">Control</span><span class="o">-</span><span class="nx">Allow</span><span class="o">-</span><span class="nx">Headers</span><span class="w"> </span><span class="s">"deviceType,token, authorization, content-type"</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="err">$</span><span class="nx">request_method</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="err">'</span><span class="nx">OPTIONS</span><span class="err">'</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="nx">add_header</span><span class="w"> </span><span class="nx">Access</span><span class="o">-</span><span class="nx">Control</span><span class="o">-</span><span class="nx">Allow</span><span class="o">-</span><span class="nx">Origin</span><span class="w"> </span><span class="o">*</span><span class="p">;</span>
 <span class="w">            </span><span class="nx">add_header</span><span class="w"> </span><span class="nx">Access</span><span class="o">-</span><span class="nx">Control</span><span class="o">-</span><span class="nx">Allow</span><span class="o">-</span><span class="nx">Methods</span><span class="w"> </span><span class="nx">GET</span><span class="p">,</span><span class="nx">POST</span><span class="p">,</span><span class="nx">PUT</span><span class="p">,</span><span class="nx">DELETE</span><span class="p">,</span><span class="nx">OPTIONS</span><span class="p">;</span>
-<span class="w">            </span><span class="nx">add_header</span><span class="w"> </span><span class="nx">Access</span><span class="o">-</span><span class="nx">Control</span><span class="o">-</span><span class="nx">Allow</span><span class="o">-</span><span class="nx">Headers</span><span class="w"> </span><span class="s">&quot;deviceType,token, authorization, content-type&quot;</span><span class="p">;</span>
+<span class="w">            </span><span class="nx">add_header</span><span class="w"> </span><span class="nx">Access</span><span class="o">-</span><span class="nx">Control</span><span class="o">-</span><span class="nx">Allow</span><span class="o">-</span><span class="nx">Headers</span><span class="w"> </span><span class="s">"deviceType,token, authorization, content-type"</span><span class="p">;</span>
 <span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="mi">204</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 
@@ -5344,7 +5344,7 @@ GRANT<span class="w"> </span>ALL<span class="w"> </span>PRIVILEGES<span class="w
 <span class="w">        </span><span class="nx">proxy_pass</span><span class="w"> </span><span class="nx">http</span><span class="p">:</span><span class="c1">//sdoc-server:7070;</span>
 <span class="w">        </span><span class="nx">proxy_http_version</span><span class="w"> </span><span class="m m-Double">1.1</span><span class="p">;</span>
 <span class="w">        </span><span class="nx">proxy_set_header</span><span class="w"> </span><span class="nx">Upgrade</span><span class="w"> </span><span class="err">$</span><span class="nx">http_upgrade</span><span class="p">;</span>
-<span class="w">        </span><span class="nx">proxy_set_header</span><span class="w"> </span><span class="nx">Connection</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">upgrade</span><span class="err">&#39;</span><span class="p">;</span>
+<span class="w">        </span><span class="nx">proxy_set_header</span><span class="w"> </span><span class="nx">Connection</span><span class="w"> </span><span class="err">'</span><span class="nx">upgrade</span><span class="err">'</span><span class="p">;</span>
 <span class="w">        </span><span class="nx">proxy_redirect</span><span class="w"> </span><span class="nx">off</span><span class="p">;</span>
 
 <span class="w">        </span><span class="nx">proxy_buffers</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="mi">32</span><span class="nx">k</span><span class="p">;</span>
@@ -5371,11 +5371,11 @@ GRANT<span class="w"> </span>ALL<span class="w"> </span>PRIVILEGES<span class="w
 <h3 id="configure-seafile">Configure Seafile<a class="headerlink" href="#configure-seafile" title="Permanent link">&para;</a></h3>
 <p>Modify seahub_settings.py:</p>
 <div class="codehilite"><pre><span></span><code><span class="n">ENABLE_SEADOC</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">SEADOC_PRIVATE_KEY</span> <span class="o">=</span> <span class="s1">&#39;***&#39;</span>  <span class="c1"># sdoc-server private_key</span>
-<span class="n">SEADOC_SERVER_URL</span> <span class="o">=</span> <span class="s1">&#39;https://sdoc-server.example.com&#39;</span>  <span class="c1"># sdoc-server service url</span>
-<span class="c1"># When SeaDoc and Seafile/Seafile docker are deployed on the same host, SEADOC_SERVER_URL should be &#39;https://seafile.example.com/sdoc-server&#39;</span>
-<span class="n">FILE_CONVERTER_SERVER_URL</span> <span class="o">=</span> <span class="s1">&#39;https://sdoc-server.example.com/seadoc-converter&#39;</span>  <span class="c1"># converter-server url</span>
-<span class="c1"># When SeaDoc and Seafile are deployed on the same host, FILE_CONVERTER_SERVER_URL should be LAN address &#39;http://127.0.0.1:8888&#39;</span>
+<span class="n">SEADOC_PRIVATE_KEY</span> <span class="o">=</span> <span class="s1">'***'</span>  <span class="c1"># sdoc-server private_key</span>
+<span class="n">SEADOC_SERVER_URL</span> <span class="o">=</span> <span class="s1">'https://sdoc-server.example.com'</span>  <span class="c1"># sdoc-server service url</span>
+<span class="c1"># When SeaDoc and Seafile/Seafile docker are deployed on the same host, SEADOC_SERVER_URL should be 'https://seafile.example.com/sdoc-server'</span>
+<span class="n">FILE_CONVERTER_SERVER_URL</span> <span class="o">=</span> <span class="s1">'https://sdoc-server.example.com/seadoc-converter'</span>  <span class="c1"># converter-server url</span>
+<span class="c1"># When SeaDoc and Seafile are deployed on the same host, FILE_CONVERTER_SERVER_URL should be LAN address 'http://127.0.0.1:8888'</span>
 <span class="c1"># When SeaDoc and Seafile docker are deployed on the same host, FILE_CONVERTER_SERVER_URL should be http://sdoc-server:8888</span>
 </code></pre></div>
 
@@ -5391,8 +5391,8 @@ GRANT<span class="w"> </span>ALL<span class="w"> </span>PRIVILEGES<span class="w
 <div class="codehilite"><pre><span></span><code>sdoc-server:
     ...
     ports:
-        <span class="k">-</span> &quot;80:80&quot;
-        <span class="k">-</span> &quot;443:443&quot;
+        <span class="k">-</span> "80:80"
+        <span class="k">-</span> "443:443"
     ...
     environment:
         ...
@@ -5498,10 +5498,10 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

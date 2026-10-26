@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -31,10 +31,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -5142,16 +5142,16 @@ docker pull docker.seadrive.org/seafileltd/seafile-pro-mc:latest
 cd /opt/seafile
 
 <span class="gh">#</span> Seafile PE 7.1 and 8.0
-wget -O &quot;docker-compose.yml&quot; &quot;https://manual.seafile.com/11.0/docker/docker-compose/pro/7.1_8.0/docker-compose.yml&quot;
+wget -O "docker-compose.yml" "https://manual.seafile.com/11.0/docker/docker-compose/pro/7.1_8.0/docker-compose.yml"
 
 <span class="gh">#</span> Seafile PE 9.0
-wget -O &quot;docker-compose.yml&quot; &quot;https://manual.seafile.com/11.0/docker/docker-compose/pro/9.0/docker-compose.yml&quot;
+wget -O "docker-compose.yml" "https://manual.seafile.com/11.0/docker/docker-compose/pro/9.0/docker-compose.yml"
 
 <span class="gh">#</span> Seafile PE 10.0
-wget -O &quot;docker-compose.yml&quot; &quot;https://manual.seafile.com/11.0/docker/docker-compose/pro/10.0/docker-compose.yml&quot;
+wget -O "docker-compose.yml" "https://manual.seafile.com/11.0/docker/docker-compose/pro/10.0/docker-compose.yml"
 
 <span class="gh">#</span> Seafile PE 11.0
-wget -O &quot;docker-compose.yml&quot; &quot;https://manual.seafile.com/11.0/docker/docker-compose/pro/11.0/docker-compose.yml&quot;
+wget -O "docker-compose.yml" "https://manual.seafile.com/11.0/docker/docker-compose/pro/11.0/docker-compose.yml"
 
 nano docker-compose.yml
 </code></pre></div>
@@ -5278,7 +5278,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 </code></pre></div>
 
 <p>NOTE: If you got the following error when SEAFILE_SERVER_LETSENCRYPT=true is set:</p>
-<div class="codehilite"><pre><span></span><code><span class="nv">subprocess</span>.<span class="nv">CalledProcessError</span>:<span class="w"> </span><span class="nv">Command</span><span class="w"> </span><span class="s1">&#39;/scripts/ssl.sh /shared/ssl cloud.seafile-demo.de&#39;</span><span class="w"> </span><span class="nv">returned</span><span class="w"> </span><span class="nv">non</span><span class="o">-</span><span class="nv">zero</span><span class="w"> </span><span class="k">exit</span><span class="w"> </span><span class="nv">status</span><span class="w"> </span><span class="mi">128</span>.
+<div class="codehilite"><pre><span></span><code><span class="nv">subprocess</span>.<span class="nv">CalledProcessError</span>:<span class="w"> </span><span class="nv">Command</span><span class="w"> </span><span class="s1">'/scripts/ssl.sh /shared/ssl cloud.seafile-demo.de'</span><span class="w"> </span><span class="nv">returned</span><span class="w"> </span><span class="nv">non</span><span class="o">-</span><span class="nv">zero</span><span class="w"> </span><span class="k">exit</span><span class="w"> </span><span class="nv">status</span><span class="w"> </span><span class="mi">128</span>.
 </code></pre></div>
 
 <p>In /scripts/ssl.sh (script in seafile container), <code>git clone git://</code> has to be replaced with <code>git clone https://</code>.</p>
@@ -5301,22 +5301,22 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 
 <h2 id="use-an-existing-mysql-server">Use an existing mysql-server<a class="headerlink" href="#use-an-existing-mysql-server" title="Permanent link">&para;</a></h2>
 <p>If you want to use an existing mysql-server, you can modify the <code>docker-compose.yml</code> as follows</p>
-<div class="codehilite"><pre><span></span><code>services:
-  #db:
-    #image: mariadb:10.11
-    #...
+<div class="codehilite"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="c1">#db:</span>
+<span class="w">    </span><span class="c1">#image: mariadb:10.11</span>
+<span class="w">    </span><span class="c1">#...</span>
 
-  seafile:
-    ...
-    environment:
-        ...
-        <span class="k">-</span> DB_HOST=192.168.0.2
-        <span class="k">-</span> DB_PORT=3306
-        <span class="k">-</span> DB_ROOT_PASSWD=mysql_root_password
-        ...
-    depends_on:
-      #- db
-      <span class="k">-</span> memcached
+<span class="w">  </span><span class="nt">seafile</span><span class="p">:</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">- DB_HOST=192.168.0.2</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">- DB_PORT=3306</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">- DB_ROOT_PASSWD=mysql_root_password</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="c1">#- db</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">memcached</span>
 </code></pre></div>
 
 <ul>
@@ -5330,12 +5330,12 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 <h2 id="run-seafile-as-non-root-user-inside-docker">Run Seafile as non root user inside docker<a class="headerlink" href="#run-seafile-as-non-root-user-inside-docker" title="Permanent link">&para;</a></h2>
 <p>Since version 10.0, you can use run seafile as non root user in docker. (NOTE: Programs such as my_init, Nginx are still run as root inside docker.)</p>
 <p>First add the <code>NON_ROOT=true</code> to the docker-compose.yml.</p>
-<div class="codehilite"><pre><span></span><code>seafile:
-    ...
-    environment:
-        ...
-        <span class="k">-</span> NON_ROOT=true
-        ...
+<div class="codehilite"><pre><span></span><code><span class="nt">seafile</span><span class="p">:</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">environment</span><span class="p p-Indicator">:</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">- NON_ROOT=true</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </code></pre></div>
 
 <p>Then modify <code>/opt/seafile-data/seafile/</code> permissions.</p>
@@ -5509,10 +5509,10 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

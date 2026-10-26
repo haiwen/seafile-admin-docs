@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -31,10 +31,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -4807,16 +4807,16 @@
 <span class="na">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">8080</span>
 <span class="na">debug</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
 
-<span class="c1"># If you deploy seafdav behind nginx/apache, you need to modify &quot;share_name&quot;.</span>
+<span class="c1"># If you deploy seafdav behind nginx/apache, you need to modify "share_name".</span>
 <span class="na">share_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/seafdav</span>
 
 <span class="c1"># SeafDAV uses Gunicorn as web server.</span>
-<span class="c1"># This option maps to Gunicorn&#39;s &#39;workers&#39; setting. https://docs.gunicorn.org/en/stable/settings.html?#workers</span>
-<span class="c1"># By default it&#39;s set to 5 processes.</span>
+<span class="c1"># This option maps to Gunicorn's 'workers' setting. https://docs.gunicorn.org/en/stable/settings.html?#workers</span>
+<span class="c1"># By default it's set to 5 processes.</span>
 <span class="na">workers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">5</span>
 
-<span class="c1"># This option maps to Gunicorn&#39;s &#39;timeout&#39; setting. https://docs.gunicorn.org/en/stable/settings.html?#timeout</span>
-<span class="c1"># By default it&#39;s set to 1200 seconds, to support large file uploads.</span>
+<span class="c1"># This option maps to Gunicorn's 'timeout' setting. https://docs.gunicorn.org/en/stable/settings.html?#timeout</span>
+<span class="c1"># By default it's set to 1200 seconds, to support large file uploads.</span>
 <span class="na">timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1200</span>
 </code></pre></div>
 
@@ -4860,7 +4860,7 @@
 <p>For Seafdav, the configuration of Apache is as follows:</p>
 <div class="codehilite"><pre><span></span><code>......
 <span class="w">    </span><span class="nt">&lt;Location</span><span class="w"> </span><span class="err">/seafdav</span><span class="nt">&gt;</span>
-<span class="w">        </span>ProxyPass<span class="w"> </span>&quot;http://127.0.0.1:8080/seafdav&quot;
+<span class="w">        </span>ProxyPass<span class="w"> </span>"http://127.0.0.1:8080/seafdav"
 <span class="w">    </span><span class="nt">&lt;/Location&gt;</span>
 </code></pre></div>
 
@@ -4895,15 +4895,15 @@ If not, modify it and restart seafile server.</p>
 <p>If you deploy SeafDAV behind Nginx/Apache, make sure to change the value of <code>share_name</code> as the sample configuration above. Restart your seafile server and try again.</p>
 <h3 id="cant-renamemove-filefolder">Can't rename/move file/folder<a class="headerlink" href="#cant-renamemove-filefolder" title="Permanent link">&para;</a></h3>
 <p>First, check the <code>seafdav.log</code> to see if there is log like the following.</p>
-<div class="codehilite"><pre><span></span><code><span class="s">&quot;MOVE ... -&gt; 502 Bad Gateway</span>
+<div class="codehilite"><pre><span></span><code><span class="s">"MOVE ... -&gt; 502 Bad Gateway</span>
 </code></pre></div>
 
 <p>If you have enabled <strong>debug</strong>, there will also be the following log.</p>
-<div class="codehilite"><pre><span></span><code><span class="mi">09</span><span class="o">:</span><span class="mi">47</span><span class="o">:</span><span class="mf">06.533</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">DEBUG</span><span class="w">   </span><span class="o">:</span><span class="w"> </span><span class="n">Raising</span><span class="w"> </span><span class="n">DAVError</span><span class="w"> </span><span class="mi">502</span><span class="w"> </span><span class="n">Bad</span><span class="w"> </span><span class="n">Gateway</span><span class="o">:</span><span class="w"> </span><span class="n">Source</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">destination</span><span class="w"> </span><span class="n">must</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">same</span><span class="w"> </span><span class="n">scheme</span><span class="o">.</span>
-<span class="n">If</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="n">behind</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">reverse</span><span class="w"> </span><span class="n">proxy</span><span class="o">,</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">may</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">rewrite</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="s1">&#39;Destination&#39;</span><span class="w"> </span><span class="n">header</span><span class="o">.</span>
-<span class="o">(</span><span class="n">See</span><span class="w"> </span><span class="n">https</span><span class="o">://</span><span class="n">github</span><span class="o">.</span><span class="na">com</span><span class="sr">/mar10/wsgidav/issues/</span><span class="mi">183</span><span class="o">)</span>
+<div class="codehilite"><pre><span></span><code><span class="mf">09</span><span class="p">:</span><span class="mf">47</span><span class="p">:</span><span class="mf">06.533</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">DEBUG</span><span class="w">   </span><span class="p">:</span><span class="w"> </span><span class="n">Raising</span><span class="w"> </span><span class="n">DAVError</span><span class="w"> </span><span class="mf">502</span><span class="w"> </span><span class="n">Bad</span><span class="w"> </span><span class="n">Gateway</span><span class="p">:</span><span class="w"> </span><span class="n">Source</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">destination</span><span class="w"> </span><span class="n">must</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">same</span><span class="w"> </span><span class="n">scheme</span><span class="mf">.</span>
+<span class="kr">If</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="kr">run</span><span class="n">ning</span><span class="w"> </span><span class="n">behind</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">reverse</span><span class="w"> </span><span class="n">proxy</span><span class="p">,</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">may</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="n">rewrite</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="err">'</span><span class="n">Destination</span><span class="err">'</span><span class="w"> </span><span class="n">header</span><span class="mf">.</span>
+<span class="p">(</span><span class="n">See</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="mf">.</span><span class="n">com</span><span class="o">/</span><span class="n">mar10</span><span class="o">/</span><span class="n">wsgidav</span><span class="o">/</span><span class="n">issues</span><span class="o">/</span><span class="mf">183</span><span class="p">)</span>
 
-<span class="mi">09</span><span class="o">:</span><span class="mi">47</span><span class="o">:</span><span class="mf">06.533</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">DEBUG</span><span class="w">   </span><span class="o">:</span><span class="w"> </span><span class="n">Caught</span><span class="w"> </span><span class="o">(</span><span class="mi">502</span><span class="o">,</span><span class="w"> </span><span class="s2">&quot;Source and destination must have the same scheme.\nIf you are running behind a reverse proxy, you may have to rewrite the &#39;Destination&#39; header.\n(See https://github.com/mar10/wsgidav/issues/183)&quot;</span><span class="o">)</span>
+<span class="mf">09</span><span class="p">:</span><span class="mf">47</span><span class="p">:</span><span class="mf">06.533</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">DEBUG</span><span class="w">   </span><span class="p">:</span><span class="w"> </span><span class="n">Caught</span><span class="w"> </span><span class="p">(</span><span class="mf">502</span><span class="p">,</span><span class="w"> </span><span class="s">"Source and destination must have the same scheme.\nIf you are running behind a reverse proxy, you may have to rewrite the 'Destination' header.\n(See https://github.com/mar10/wsgidav/issues/183)"</span><span class="p">)</span>
 </code></pre></div>
 
 <p>This issue usually occurs when you have configured HTTPS, but the request was forwarded, resulting in the <code>HTTP_X_FORWARDED_PROTO</code> value in the request received by Seafile not being HTTPS.</p>
@@ -4987,10 +4987,10 @@ If not, modify it and restart seafile server.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

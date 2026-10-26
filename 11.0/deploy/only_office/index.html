@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -31,10 +31,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -4913,11 +4913,11 @@
 <li>Add this configuration: </li>
 </ul>
 <div class="codehilite"><pre><span></span><code>{
-    &quot;services&quot;: {
-        &quot;CoAuthoring&quot;: {
-             &quot;autoAssembly&quot;: {
-                 &quot;enable&quot;: true,
-                 &quot;interval&quot;: &quot;5m&quot;
+    "services": {
+        "CoAuthoring": {
+             "autoAssembly": {
+                 "enable": true,
+                 "interval": "5m"
              }
         }
     }
@@ -4935,7 +4935,7 @@
 </code></pre></div>
 
 <p>Config seahub_settings.py:</p>
-<div class="codehilite"><pre><span></span><code>ONLYOFFICE_JWT_SECRET = &#39;your-secret-string&#39;
+<div class="codehilite"><pre><span></span><code>ONLYOFFICE_JWT_SECRET = 'your-secret-string'
 </code></pre></div>
 
 <p>Then run OnlyOffice docker image via the following command:</p>
@@ -4955,15 +4955,15 @@
 <div class="codehilite"><pre><span></span><code><span class="c1"># Enable OnlyOffice</span>
 <span class="n">ENABLE_ONLYOFFICE</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">VERIFY_ONLYOFFICE_CERTIFICATE</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="n">ONLYOFFICE_APIJS_URL</span> <span class="o">=</span> <span class="s1">&#39;http</span><span class="si">{s}</span><span class="s1">://{your OnlyOffice server&#39;</span><span class="n">s</span> <span class="n">domain</span> <span class="ow">or</span> <span class="n">IP</span><span class="p">}</span><span class="o">/</span><span class="n">web</span><span class="o">-</span><span class="n">apps</span><span class="o">/</span><span class="n">apps</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="n">api</span><span class="o">.</span><span class="n">js</span><span class="s1">&#39;</span>
-<span class="n">ONLYOFFICE_FILE_EXTENSION</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;doc&#39;</span><span class="p">,</span> <span class="s1">&#39;docx&#39;</span><span class="p">,</span> <span class="s1">&#39;ppt&#39;</span><span class="p">,</span> <span class="s1">&#39;pptx&#39;</span><span class="p">,</span> <span class="s1">&#39;xls&#39;</span><span class="p">,</span> <span class="s1">&#39;xlsx&#39;</span><span class="p">,</span> <span class="s1">&#39;odt&#39;</span><span class="p">,</span> <span class="s1">&#39;fodt&#39;</span><span class="p">,</span> <span class="s1">&#39;odp&#39;</span><span class="p">,</span> <span class="s1">&#39;fodp&#39;</span><span class="p">,</span> <span class="s1">&#39;ods&#39;</span><span class="p">,</span> <span class="s1">&#39;fods&#39;</span><span class="p">)</span>
-<span class="n">ONLYOFFICE_EDIT_FILE_EXTENSION</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;docx&#39;</span><span class="p">,</span> <span class="s1">&#39;pptx&#39;</span><span class="p">,</span> <span class="s1">&#39;xlsx&#39;</span><span class="p">)</span>
+<span class="n">ONLYOFFICE_APIJS_URL</span> <span class="o">=</span> <span class="s1">'http</span><span class="si">{s}</span><span class="s1">://{your OnlyOffice server'</span><span class="n">s</span> <span class="n">domain</span> <span class="ow">or</span> <span class="n">IP</span><span class="p">}</span><span class="o">/</span><span class="n">web</span><span class="o">-</span><span class="n">apps</span><span class="o">/</span><span class="n">apps</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="n">api</span><span class="o">.</span><span class="n">js</span><span class="s1">'</span>
+<span class="n">ONLYOFFICE_FILE_EXTENSION</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'doc'</span><span class="p">,</span> <span class="s1">'docx'</span><span class="p">,</span> <span class="s1">'ppt'</span><span class="p">,</span> <span class="s1">'pptx'</span><span class="p">,</span> <span class="s1">'xls'</span><span class="p">,</span> <span class="s1">'xlsx'</span><span class="p">,</span> <span class="s1">'odt'</span><span class="p">,</span> <span class="s1">'fodt'</span><span class="p">,</span> <span class="s1">'odp'</span><span class="p">,</span> <span class="s1">'fodp'</span><span class="p">,</span> <span class="s1">'ods'</span><span class="p">,</span> <span class="s1">'fods'</span><span class="p">)</span>
+<span class="n">ONLYOFFICE_EDIT_FILE_EXTENSION</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'docx'</span><span class="p">,</span> <span class="s1">'pptx'</span><span class="p">,</span> <span class="s1">'xlsx'</span><span class="p">)</span>
 
 <span class="c1"># Enable force save to let user can save file when he/she press the save button on OnlyOffice file edit page.</span>
 <span class="n">ONLYOFFICE_FORCE_SAVE</span> <span class="o">=</span> <span class="kc">True</span>
 
 <span class="c1"># if JWT enabled</span>
-<span class="n">ONLYOFFICE_JWT_SECRET</span> <span class="o">=</span> <span class="s1">&#39;your-secret-string&#39;</span>
+<span class="n">ONLYOFFICE_JWT_SECRET</span> <span class="o">=</span> <span class="s1">'your-secret-string'</span>
 </code></pre></div>
 
 <p>Then restart the Seafile Server</p>
@@ -4989,17 +4989,17 @@ service seahub-server restart
 <div class="codehilite"><pre><span></span><code><span class="gh">#</span> Required for only office document server
 map $http_x_forwarded_proto $the_scheme {
         default $http_x_forwarded_proto;
-        &quot;&quot; $scheme;
+        "" $scheme;
     }
 
 map $http_x_forwarded_host $the_host {
         default $http_x_forwarded_host;
-        &quot;&quot; $host;
+        "" $host;
     }
 
 map $http_upgrade $proxy_connection {
         default upgrade;
-        &quot;&quot; close;
+        "" close;
     }
 </code></pre></div>
 
@@ -5009,7 +5009,7 @@ map $http_upgrade $proxy_connection {
 <span class="nt">location</span><span class="w"> </span><span class="o">/</span><span class="nt">onlyofficeds</span><span class="o">/</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="err">THIS</span><span class="w"> </span><span class="err">ONE</span><span class="w"> </span><span class="err">IS</span><span class="w"> </span><span class="err">IMPORTANT</span><span class="w"> </span><span class="err">!</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">Trailing</span><span class="w"> </span><span class="err">slash</span><span class="w"> </span><span class="err">!</span>
-<span class="w">        </span><span class="err">proxy_pass</span><span class="w"> </span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="err">{</span><span class="n">your</span><span class="w"> </span><span class="n">Seafile</span><span class="w"> </span><span class="n">server</span><span class="err">&#39;</span><span class="n">s</span><span class="w"> </span><span class="n">domain</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="n">IP</span><span class="p">}:</span><span class="nd">88</span><span class="o">/;</span>
+<span class="w">        </span><span class="err">proxy_pass</span><span class="w"> </span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="err">{</span><span class="n">your</span><span class="w"> </span><span class="n">Seafile</span><span class="w"> </span><span class="n">server</span><span class="err">'</span><span class="n">s</span><span class="w"> </span><span class="n">domain</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="n">IP</span><span class="p">}:</span><span class="nd">88</span><span class="o">/;</span>
 
 <span class="w">        </span><span class="nt">proxy_http_version</span><span class="w"> </span><span class="nt">1</span><span class="p">.</span><span class="nc">1</span><span class="o">;</span>
 <span class="w">        </span><span class="nt">client_max_body_size</span><span class="w"> </span><span class="nt">100M</span><span class="o">;</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="nt">Limit</span><span class="w"> </span><span class="nt">Document</span><span class="w"> </span><span class="nt">size</span><span class="w"> </span><span class="nt">to</span><span class="w"> </span><span class="nt">100MB</span>
@@ -5053,19 +5053,19 @@ LoadModule<span class="w"> </span>setenvif_module<span class="w"> </span>modules
 <div class="codehilite"><pre><span></span><code>...
 
 Define<span class="w"> </span>VPATH<span class="w"> </span>/onlyofficeds
-Define<span class="w"> </span>DS_ADDRESS<span class="w"> </span>{your<span class="w"> </span>Seafile<span class="w"> </span>server&#39;s<span class="w"> </span>domain<span class="w"> </span>or<span class="w"> </span>IP}:88
+Define<span class="w"> </span>DS_ADDRESS<span class="w"> </span>{your<span class="w"> </span>Seafile<span class="w"> </span>server's<span class="w"> </span>domain<span class="w"> </span>or<span class="w"> </span>IP}:88
 
 ...
 
 <span class="nt">&lt;Location</span> <span class="err">${VPATH}</span><span class="nt">&gt;</span>
 <span class="w">  </span>Require<span class="w"> </span>all<span class="w"> </span>granted
-<span class="w">  </span>SetEnvIf<span class="w"> </span>Host<span class="w"> </span>&quot;^(.*)$&quot;<span class="w"> </span>THE_HOST=$1
+<span class="w">  </span>SetEnvIf<span class="w"> </span>Host<span class="w"> </span>"^(.*)$"<span class="w"> </span>THE_HOST=$1
 <span class="w">  </span>RequestHeader<span class="w"> </span>setifempty<span class="w"> </span>X-Forwarded-Proto<span class="w"> </span>http
 <span class="w">  </span>RequestHeader<span class="w"> </span>setifempty<span class="w"> </span>X-Forwarded-Host<span class="w"> </span>%{THE_HOST}e
 <span class="w">  </span>RequestHeader<span class="w"> </span>edit<span class="w"> </span>X-Forwarded-Host<span class="w"> </span>(.*)<span class="w"> </span>$1<span class="cp">${</span><span class="n">VPATH</span><span class="cp">}</span>
 <span class="w">  </span>ProxyAddHeaders<span class="w"> </span>Off
-<span class="w">  </span>ProxyPass<span class="w"> </span>&quot;http://<span class="cp">${</span><span class="n">DS_ADDRESS</span><span class="cp">}</span>/&quot;
-<span class="w">  </span>ProxyPassReverse<span class="w"> </span>&quot;http://<span class="cp">${</span><span class="n">DS_ADDRESS</span><span class="cp">}</span>/&quot;
+<span class="w">  </span>ProxyPass<span class="w"> </span>"http://<span class="cp">${</span><span class="n">DS_ADDRESS</span><span class="cp">}</span>/"
+<span class="w">  </span>ProxyPassReverse<span class="w"> </span>"http://<span class="cp">${</span><span class="n">DS_ADDRESS</span><span class="cp">}</span>/"
 <span class="nt">&lt;/Location&gt;</span>
 
 ...
@@ -5078,15 +5078,15 @@ Define<span class="w"> </span>DS_ADDRESS<span class="w"> </span>{your<span class
 <div class="codehilite"><pre><span></span><code><span class="c1"># Enable Only Office</span>
 <span class="n">ENABLE_ONLYOFFICE</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">VERIFY_ONLYOFFICE_CERTIFICATE</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">ONLYOFFICE_APIJS_URL</span> <span class="o">=</span> <span class="s1">&#39;http</span><span class="si">{s}</span><span class="s1">://{your Seafile server&#39;</span><span class="n">s</span> <span class="n">domain</span> <span class="ow">or</span> <span class="n">IP</span><span class="p">}</span><span class="o">/</span><span class="p">{</span><span class="n">your</span> <span class="n">subdolder</span><span class="p">}</span><span class="o">/</span><span class="n">web</span><span class="o">-</span><span class="n">apps</span><span class="o">/</span><span class="n">apps</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="n">api</span><span class="o">.</span><span class="n">js</span><span class="s1">&#39;</span>
-<span class="n">ONLYOFFICE_FILE_EXTENSION</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;doc&#39;</span><span class="p">,</span> <span class="s1">&#39;docx&#39;</span><span class="p">,</span> <span class="s1">&#39;ppt&#39;</span><span class="p">,</span> <span class="s1">&#39;pptx&#39;</span><span class="p">,</span> <span class="s1">&#39;xls&#39;</span><span class="p">,</span> <span class="s1">&#39;xlsx&#39;</span><span class="p">,</span> <span class="s1">&#39;odt&#39;</span><span class="p">,</span> <span class="s1">&#39;fodt&#39;</span><span class="p">,</span> <span class="s1">&#39;odp&#39;</span><span class="p">,</span> <span class="s1">&#39;fodp&#39;</span><span class="p">,</span> <span class="s1">&#39;ods&#39;</span><span class="p">,</span> <span class="s1">&#39;fods&#39;</span><span class="p">)</span>
-<span class="n">ONLYOFFICE_EDIT_FILE_EXTENSION</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;docx&#39;</span><span class="p">,</span> <span class="s1">&#39;pptx&#39;</span><span class="p">,</span> <span class="s1">&#39;xlsx&#39;</span><span class="p">)</span>
+<span class="n">ONLYOFFICE_APIJS_URL</span> <span class="o">=</span> <span class="s1">'http</span><span class="si">{s}</span><span class="s1">://{your Seafile server'</span><span class="n">s</span> <span class="n">domain</span> <span class="ow">or</span> <span class="n">IP</span><span class="p">}</span><span class="o">/</span><span class="p">{</span><span class="n">your</span> <span class="n">subdolder</span><span class="p">}</span><span class="o">/</span><span class="n">web</span><span class="o">-</span><span class="n">apps</span><span class="o">/</span><span class="n">apps</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">documents</span><span class="o">/</span><span class="n">api</span><span class="o">.</span><span class="n">js</span><span class="s1">'</span>
+<span class="n">ONLYOFFICE_FILE_EXTENSION</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'doc'</span><span class="p">,</span> <span class="s1">'docx'</span><span class="p">,</span> <span class="s1">'ppt'</span><span class="p">,</span> <span class="s1">'pptx'</span><span class="p">,</span> <span class="s1">'xls'</span><span class="p">,</span> <span class="s1">'xlsx'</span><span class="p">,</span> <span class="s1">'odt'</span><span class="p">,</span> <span class="s1">'fodt'</span><span class="p">,</span> <span class="s1">'odp'</span><span class="p">,</span> <span class="s1">'fodp'</span><span class="p">,</span> <span class="s1">'ods'</span><span class="p">,</span> <span class="s1">'fods'</span><span class="p">)</span>
+<span class="n">ONLYOFFICE_EDIT_FILE_EXTENSION</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'docx'</span><span class="p">,</span> <span class="s1">'pptx'</span><span class="p">,</span> <span class="s1">'xlsx'</span><span class="p">)</span>
 
 <span class="c1"># Enable force save to let user can save file when he/she press the save button on OnlyOffice file edit page.</span>
 <span class="n">ONLYOFFICE_FORCE_SAVE</span> <span class="o">=</span> <span class="kc">True</span>
 
 <span class="c1"># if JWT enabled</span>
-<span class="n">ONLYOFFICE_JWT_SECRET</span> <span class="o">=</span> <span class="s1">&#39;your-secret-string&#39;</span>
+<span class="n">ONLYOFFICE_JWT_SECRET</span> <span class="o">=</span> <span class="s1">'your-secret-string'</span>
 </code></pre></div>
 
 <p>Then restart the Seafile Server</p>
@@ -5104,17 +5104,17 @@ service seahub-server restart
 <div class="codehilite"><pre><span></span><code><span class="c1"># Required for OnlyOffice DocumentServer</span>
 <span class="n">map</span><span class="w"> </span><span class="o">$</span><span class="n">http_x_forwarded_proto</span><span class="w"> </span><span class="o">$</span><span class="n">the_scheme</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">default</span><span class="w"> </span><span class="o">$</span><span class="n">http_x_forwarded_proto</span><span class="p">;</span>
-<span class="w">    </span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="o">$</span><span class="n">scheme</span><span class="p">;</span>
+<span class="w">    </span><span class="s2">""</span><span class="w"> </span><span class="o">$</span><span class="n">scheme</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="n">map</span><span class="w"> </span><span class="o">$</span><span class="n">http_x_forwarded_host</span><span class="w"> </span><span class="o">$</span><span class="n">the_host</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">default</span><span class="w"> </span><span class="o">$</span><span class="n">http_x_forwarded_host</span><span class="p">;</span>
-<span class="w">    </span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="o">$</span><span class="n">host</span><span class="p">;</span>
+<span class="w">    </span><span class="s2">""</span><span class="w"> </span><span class="o">$</span><span class="n">host</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="n">map</span><span class="w"> </span><span class="o">$</span><span class="n">http_upgrade</span><span class="w"> </span><span class="o">$</span><span class="n">proxy_connection</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">default</span><span class="w"> </span><span class="n">upgrade</span><span class="p">;</span>
-<span class="w">    </span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="n">close</span><span class="p">;</span>
+<span class="w">    </span><span class="s2">""</span><span class="w"> </span><span class="n">close</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="n">server</span><span class="w"> </span><span class="p">{</span>
@@ -5131,7 +5131,7 @@ service seahub-server restart
 <span class="w">        </span><span class="n">ssl_certificate_key</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ssl</span><span class="o">/</span><span class="n">privkey</span><span class="o">.</span><span class="n">pem</span><span class="p">;</span><span class="w">    </span><span class="c1"># path to your privkey.pem</span>
 <span class="w">        </span><span class="n">server_name</span><span class="w"> </span><span class="n">seafile</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span><span class="p">;</span>
 <span class="w">        </span><span class="n">proxy_set_header</span><span class="w"> </span><span class="n">X</span><span class="o">-</span><span class="n">Forwarded</span><span class="o">-</span><span class="n">For</span><span class="w"> </span><span class="o">$</span><span class="n">remote_addr</span><span class="p">;</span>
-<span class="w">        </span><span class="n">add_header</span><span class="w"> </span><span class="n">Strict</span><span class="o">-</span><span class="n">Transport</span><span class="o">-</span><span class="n">Security</span><span class="w"> </span><span class="s2">&quot;max-age=31536000; includeSubDomains&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">add_header</span><span class="w"> </span><span class="n">Strict</span><span class="o">-</span><span class="n">Transport</span><span class="o">-</span><span class="n">Security</span><span class="w"> </span><span class="s2">"max-age=31536000; includeSubDomains"</span><span class="p">;</span>
 <span class="w">        </span><span class="n">server_tokens</span><span class="w"> </span><span class="n">off</span><span class="p">;</span>
 
 <span class="w">    </span><span class="c1">#</span>
@@ -5141,11 +5141,11 @@ service seahub-server restart
 <span class="w">        </span><span class="n">proxy_pass</span><span class="w"> </span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">8000</span><span class="o">/</span><span class="p">;</span>
 <span class="w">        </span><span class="n">proxy_read_timeout</span><span class="w"> </span><span class="mi">310</span><span class="n">s</span><span class="p">;</span>
 <span class="w">        </span><span class="n">proxy_set_header</span><span class="w"> </span><span class="n">Host</span><span class="w"> </span><span class="o">$</span><span class="n">http_host</span><span class="p">;</span>
-<span class="w">        </span><span class="n">proxy_set_header</span><span class="w"> </span><span class="n">Forwarded</span><span class="w"> </span><span class="s2">&quot;for=$remote_addr;proto=$scheme&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">proxy_set_header</span><span class="w"> </span><span class="n">Forwarded</span><span class="w"> </span><span class="s2">"for=$remote_addr;proto=$scheme"</span><span class="p">;</span>
 <span class="w">        </span><span class="n">proxy_set_header</span><span class="w"> </span><span class="n">X</span><span class="o">-</span><span class="n">Forwarded</span><span class="o">-</span><span class="n">For</span><span class="w"> </span><span class="o">$</span><span class="n">proxy_add_x_forwarded_for</span><span class="p">;</span>
 <span class="w">        </span><span class="n">proxy_set_header</span><span class="w"> </span><span class="n">X</span><span class="o">-</span><span class="n">Forwarded</span><span class="o">-</span><span class="n">Proto</span><span class="w"> </span><span class="o">$</span><span class="n">scheme</span><span class="p">;</span>
 <span class="w">        </span><span class="n">proxy_set_header</span><span class="w"> </span><span class="n">X</span><span class="o">-</span><span class="n">Real</span><span class="o">-</span><span class="n">IP</span><span class="w"> </span><span class="o">$</span><span class="n">remote_addr</span><span class="p">;</span>
-<span class="w">        </span><span class="n">proxy_set_header</span><span class="w"> </span><span class="n">Connection</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">proxy_set_header</span><span class="w"> </span><span class="n">Connection</span><span class="w"> </span><span class="s2">""</span><span class="p">;</span>
 <span class="w">        </span><span class="n">proxy_http_version</span><span class="w"> </span><span class="mf">1.1</span><span class="p">;</span>
 
 <span class="w">        </span><span class="n">client_max_body_size</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
@@ -5268,7 +5268,7 @@ LoadModule<span class="w"> </span>ssl_module<span class="w"> </span>modules/mod_
 <span class="w">  </span>#<span class="w"> </span>seahub
 <span class="w">  </span>#
 <span class="w">  </span>SetEnvIf<span class="w"> </span>Request_URI<span class="w"> </span>.<span class="w"> </span>proxy-fcgi-pathinfo=unescape
-<span class="w">  </span>SetEnvIf<span class="w"> </span>Authorization<span class="w"> </span>&quot;(.*)&quot;<span class="w"> </span>HTTP_AUTHORIZATION=$1
+<span class="w">  </span>SetEnvIf<span class="w"> </span>Authorization<span class="w"> </span>"(.*)"<span class="w"> </span>HTTP_AUTHORIZATION=$1
 <span class="w">  </span>ProxyPreserveHost<span class="w"> </span>On
 <span class="w">  </span>ProxyPass<span class="w"> </span>/<span class="w"> </span>fcgi://127.0.0.1:8000/
 
@@ -5276,17 +5276,17 @@ LoadModule<span class="w"> </span>ssl_module<span class="w"> </span>modules/mod_
 <span class="w">  </span>#<span class="w"> </span>onlyofficeds
 <span class="w">  </span>#
 <span class="w">  </span>Define<span class="w"> </span>VPATH<span class="w"> </span>/onlyofficeds
-<span class="w">  </span>Define<span class="w"> </span>DS_ADDRESS<span class="w"> </span>{your<span class="w"> </span>Seafile<span class="w"> </span>server&#39;s<span class="w"> </span>domain<span class="w"> </span>or<span class="w"> </span>IP}:88
+<span class="w">  </span>Define<span class="w"> </span>DS_ADDRESS<span class="w"> </span>{your<span class="w"> </span>Seafile<span class="w"> </span>server's<span class="w"> </span>domain<span class="w"> </span>or<span class="w"> </span>IP}:88
 
 <span class="w">  </span><span class="nt">&lt;Location</span> <span class="err">${VPATH}</span><span class="nt">&gt;</span>
 <span class="w">  </span>Require<span class="w"> </span>all<span class="w"> </span>granted
-<span class="w">  </span>SetEnvIf<span class="w"> </span>Host<span class="w"> </span>&quot;^(.*)$&quot;<span class="w"> </span>THE_HOST=$1
+<span class="w">  </span>SetEnvIf<span class="w"> </span>Host<span class="w"> </span>"^(.*)$"<span class="w"> </span>THE_HOST=$1
 <span class="w">  </span>RequestHeader<span class="w"> </span>setifempty<span class="w"> </span>X-Forwarded-Proto<span class="w"> </span>http
 <span class="w">  </span>RequestHeader<span class="w"> </span>setifempty<span class="w"> </span>X-Forwarded-Host<span class="w"> </span>%{THE_HOST}e
 <span class="w">  </span>RequestHeader<span class="w"> </span>edit<span class="w"> </span>X-Forwarded-Host<span class="w"> </span>(.*)<span class="w"> </span>$1<span class="cp">${</span><span class="n">VPATH</span><span class="cp">}</span>
 <span class="w">  </span>ProxyAddHeaders<span class="w"> </span>Off
-<span class="w">  </span>ProxyPass<span class="w"> </span>&quot;http://<span class="cp">${</span><span class="n">DS_ADDRESS</span><span class="cp">}</span>/&quot;
-<span class="w">  </span>ProxyPassReverse<span class="w"> </span>&quot;http://<span class="cp">${</span><span class="n">DS_ADDRESS</span><span class="cp">}</span>/&quot;
+<span class="w">  </span>ProxyPass<span class="w"> </span>"http://<span class="cp">${</span><span class="n">DS_ADDRESS</span><span class="cp">}</span>/"
+<span class="w">  </span>ProxyPassReverse<span class="w"> </span>"http://<span class="cp">${</span><span class="n">DS_ADDRESS</span><span class="cp">}</span>/"
 <span class="w">  </span><span class="nt">&lt;/Location&gt;</span>
 
 <span class="nt">&lt;/VirtualHost&gt;</span>
@@ -5375,10 +5375,10 @@ LoadModule<span class="w"> </span>ssl_module<span class="w"> </span>modules/mod_
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

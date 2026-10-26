@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -31,10 +31,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -4980,28 +4980,28 @@ However, if your storage backup mechanism can finish quickly enough, using the f
 <p>It's recommended to backup the database to a separate file each time. Don't overwrite older database backups for at least a week.</p>
 <p><strong>MySQL</strong></p>
 <p>Assume your database names are <code>ccnet_db</code>, <code>seafile_db</code> and <code>seahub_db</code>. mysqldump automatically locks the tables so you don't need to stop Seafile server when backing up MySQL databases. Since the database tables are usually very small, it won't take long to dump.</p>
-<div class="codehilite"><pre><span></span><code><span class="n">mysqldump</span><span class="w"> </span><span class="o">-</span><span class="n">h</span><span class="w"> </span><span class="o">[</span><span class="n">mysqlhost</span><span class="o">]</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="o">[</span><span class="n">username</span><span class="o">]</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="o">[</span><span class="n">password</span><span class="o">]</span><span class="w"> </span><span class="c1">--opt ccnet_db &gt; /backup/databases/ccnet-db.sql.`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`</span>
+<div class="codehilite"><pre><span></span><code><span class="n">mysqldump</span><span class="w"> </span><span class="o">-</span><span class="n">h</span><span class="w"> </span><span class="o">[</span><span class="n">mysqlhost</span><span class="o">]</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="o">[</span><span class="n">username</span><span class="o">]</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="o">[</span><span class="n">password</span><span class="o">]</span><span class="w"> </span><span class="c1">--opt ccnet_db &gt; /backup/databases/ccnet-db.sql.`date +"%Y-%m-%d-%H-%M-%S"`</span>
 
-<span class="n">mysqldump</span><span class="w"> </span><span class="o">-</span><span class="n">h</span><span class="w"> </span><span class="o">[</span><span class="n">mysqlhost</span><span class="o">]</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="o">[</span><span class="n">username</span><span class="o">]</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="o">[</span><span class="n">password</span><span class="o">]</span><span class="w"> </span><span class="c1">--opt seafile_db &gt; /backup/databases/seafile-db.sql.`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`</span>
+<span class="n">mysqldump</span><span class="w"> </span><span class="o">-</span><span class="n">h</span><span class="w"> </span><span class="o">[</span><span class="n">mysqlhost</span><span class="o">]</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="o">[</span><span class="n">username</span><span class="o">]</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="o">[</span><span class="n">password</span><span class="o">]</span><span class="w"> </span><span class="c1">--opt seafile_db &gt; /backup/databases/seafile-db.sql.`date +"%Y-%m-%d-%H-%M-%S"`</span>
 
-<span class="n">mysqldump</span><span class="w"> </span><span class="o">-</span><span class="n">h</span><span class="w"> </span><span class="o">[</span><span class="n">mysqlhost</span><span class="o">]</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="o">[</span><span class="n">username</span><span class="o">]</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="o">[</span><span class="n">password</span><span class="o">]</span><span class="w"> </span><span class="c1">--opt seahub_db &gt; /backup/databases/seahub-db.sql.`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`</span>
+<span class="n">mysqldump</span><span class="w"> </span><span class="o">-</span><span class="n">h</span><span class="w"> </span><span class="o">[</span><span class="n">mysqlhost</span><span class="o">]</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="o">[</span><span class="n">username</span><span class="o">]</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="o">[</span><span class="n">password</span><span class="o">]</span><span class="w"> </span><span class="c1">--opt seahub_db &gt; /backup/databases/seahub-db.sql.`date +"%Y-%m-%d-%H-%M-%S"`</span>
 </code></pre></div>
 
 <p><strong>SQLite</strong></p>
 <p>You need to stop Seafile server first before backing up SQLite database.</p>
-<div class="codehilite"><pre><span></span><code>sqlite3 /opt/seafile/ccnet/GroupMgr/groupmgr.db .dump &gt; /backup/databases/groupmgr.db.bak.`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`
+<div class="codehilite"><pre><span></span><code>sqlite3 /opt/seafile/ccnet/GroupMgr/groupmgr.db .dump &gt; /backup/databases/groupmgr.db.bak.`date +"%Y-%m-%d-%H-%M-%S"`
 
-sqlite3 /opt/seafile/ccnet/PeerMgr/usermgr.db .dump &gt; /backup/databases/usermgr.db.bak.`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`
+sqlite3 /opt/seafile/ccnet/PeerMgr/usermgr.db .dump &gt; /backup/databases/usermgr.db.bak.`date +"%Y-%m-%d-%H-%M-%S"`
 
-sqlite3 /opt/seafile/seafile-data/seafile.db .dump &gt; /backup/databases/seafile.db.bak.`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`
+sqlite3 /opt/seafile/seafile-data/seafile.db .dump &gt; /backup/databases/seafile.db.bak.`date +"%Y-%m-%d-%H-%M-%S"`
 
-sqlite3 /opt/seafile/seahub.db .dump &gt; /backup/databases/seahub.db.bak.`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`
+sqlite3 /opt/seafile/seahub.db .dump &gt; /backup/databases/seahub.db.bak.`date +"%Y-%m-%d-%H-%M-%S"`
 </code></pre></div>
 
 <h3 id="backing-up-seafile-library-data">Backing up Seafile library data<a class="headerlink" href="#backing-up-seafile-library-data" title="Permanent link">&para;</a></h3>
 <p>The data files are all stored in the <code>/opt/seafile</code> directory, so just back up the whole directory. You can directly copy the whole directory to the backup destination, or you can use rsync to do incremental backup. </p>
 <p>To directly copy the whole data directory,</p>
-<div class="codehilite"><pre><span></span><code>cp -R /opt/seafile /backup/data/seafile-`date +&quot;%Y-%m-%d-%H-%M-%S&quot;`
+<div class="codehilite"><pre><span></span><code>cp -R /opt/seafile /backup/data/seafile-`date +"%Y-%m-%d-%H-%M-%S"`
 </code></pre></div>
 
 <p>This produces a separate copy of the data directory each time. You can delete older backup copies after a new one is completed.</p>
@@ -5047,7 +5047,7 @@ sqlite3 seahub.db &lt; seahub.db.bak.xxxx
 </code></pre></div>
 
 <h3 id="backing-up-database">Backing up Database<a class="headerlink" href="#backing-up-database" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="c1"># It&#39;s recommended to backup the database to a separate file each time. Don&#39;t overwrite older database backups for at least a week.</span>
+<div class="codehilite"><pre><span></span><code><span class="c1"># It's recommended to backup the database to a separate file each time. Don't overwrite older database backups for at least a week.</span>
 <span class="nb">cd</span><span class="w"> </span>/backup/databases
 docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-mysql<span class="w"> </span>mysqldump<span class="w">  </span>-u<span class="o">[</span>username<span class="o">]</span><span class="w"> </span>-p<span class="o">[</span>password<span class="o">]</span><span class="w"> </span>--opt<span class="w"> </span>ccnet_db<span class="w"> </span>&gt;<span class="w"> </span>ccnet_db.sql
 docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-mysql<span class="w"> </span>mysqldump<span class="w">  </span>-u<span class="o">[</span>username<span class="o">]</span><span class="w"> </span>-p<span class="o">[</span>password<span class="o">]</span><span class="w"> </span>--opt<span class="w"> </span>seafile_db<span class="w"> </span>&gt;<span class="w"> </span>seafile_db.sql
@@ -5069,9 +5069,9 @@ docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </spa
 docker<span class="w"> </span>cp<span class="w"> </span>/backup/databases/seafile_db.sql<span class="w"> </span>seafile-mysql:/tmp/seafile_db.sql
 docker<span class="w"> </span>cp<span class="w"> </span>/backup/databases/seahub_db.sql<span class="w"> </span>seafile-mysql:/tmp/seahub_db.sql
 
-docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-mysql<span class="w"> </span>/bin/sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;mysql -u[username] -p[password] ccnet_db &lt; /tmp/ccnet_db.sql&quot;</span>
-docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-mysql<span class="w"> </span>/bin/sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;mysql -u[username] -p[password] seafile_db &lt; /tmp/seafile_db.sql&quot;</span>
-docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-mysql<span class="w"> </span>/bin/sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;mysql -u[username] -p[password] seahub_db &lt; /tmp/seahub_db.sql&quot;</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-mysql<span class="w"> </span>/bin/sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">"mysql -u[username] -p[password] ccnet_db &lt; /tmp/ccnet_db.sql"</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-mysql<span class="w"> </span>/bin/sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">"mysql -u[username] -p[password] seafile_db &lt; /tmp/seafile_db.sql"</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>seafile-mysql<span class="w"> </span>/bin/sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">"mysql -u[username] -p[password] seahub_db &lt; /tmp/seahub_db.sql"</span>
 </code></pre></div>
 
 <h3 id="restore-the-seafile-data">Restore the seafile data<a class="headerlink" href="#restore-the-seafile-data" title="Permanent link">&para;</a></h3>
@@ -5163,10 +5163,10 @@ sudo<span class="w"> </span>rsync<span class="w"> </span>-aHAX<span class="w"> <
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -31,10 +31,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -4653,18 +4653,18 @@ drwxr-xr-x<span class="w"> </span><span class="m">2</span><span class="w"> </spa
 <p>Assume we want to mount to <code>/data/seafile-fuse</code> in host.</p>
 <h5 id="modify-docker-composeyml">Modify docker-compose.yml<a class="headerlink" href="#modify-docker-composeyml" title="Permanent link">&para;</a></h5>
 <p>Add the following content</p>
-<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="nx">seafile</span><span class="p">:</span>
-<span class="w">    </span><span class="o">...</span>
-<span class="w">    </span><span class="nx">volumes</span><span class="p">:</span>
-<span class="w">      </span><span class="o">...</span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="k">type</span><span class="p">:</span><span class="w"> </span><span class="nx">bind</span>
-<span class="w">        </span><span class="nx">source</span><span class="p">:</span><span class="w"> </span><span class="o">/</span><span class="nx">data</span><span class="o">/</span><span class="nx">seafile</span><span class="o">-</span><span class="nx">fuse</span>
-<span class="w">        </span><span class="nx">target</span><span class="p">:</span><span class="w"> </span><span class="o">/</span><span class="nx">seafile</span><span class="o">-</span><span class="nx">fuse</span>
-<span class="w">        </span><span class="nx">bind</span><span class="p">:</span>
-<span class="w">          </span><span class="nx">propagation</span><span class="p">:</span><span class="w"> </span><span class="nx">rshared</span>
-<span class="w">    </span><span class="nx">privileged</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
-<span class="w">    </span><span class="nx">cap_add</span><span class="p">:</span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="nx">SYS_ADMIN</span>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="nt">seafile</span><span class="p">:</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">- type</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bind</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">source</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data/seafile-fuse</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">target</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/seafile-fuse</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">bind</span><span class="p p-Indicator">:</span>
+<span class="w">          </span><span class="nt">propagation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rshared</span>
+<span class="w">    </span><span class="nt">privileged</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">cap_add</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SYS_ADMIN</span>
 </code></pre></div>
 
 <h5 id="start-seaf-fuse-with-the-script-in-docker">Start seaf-fuse with the script in docker<a class="headerlink" href="#start-seaf-fuse-with-the-script-in-docker" title="Permanent link">&para;</a></h5>
@@ -4748,10 +4748,10 @@ docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </spa
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

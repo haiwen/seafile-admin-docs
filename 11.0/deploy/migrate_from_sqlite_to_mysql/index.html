@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -31,10 +31,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -4564,9 +4564,9 @@
 
 <p>This script will produce three files: <code>ccnet-db.sql</code>, <code>seafile-db.sql</code>, <code>seahub-db.sql</code>.</p>
 <p>Then create 3 databases ccnet_db, seafile_db, seahub_db and seafile user.</p>
-<div class="codehilite"><pre><span></span><code>mysql&gt; create database ccnet_db character set = &#39;utf8&#39;;
-mysql&gt; create database seafile_db character set = &#39;utf8&#39;;
-mysql&gt; create database seahub_db character set = &#39;utf8&#39;;
+<div class="codehilite"><pre><span></span><code>mysql&gt; create database ccnet_db character set = 'utf8';
+mysql&gt; create database seafile_db character set = 'utf8';
+mysql&gt; create database seahub_db character set = 'utf8';
 </code></pre></div>
 
 <p>Import ccnet data to MySql.</p>
@@ -4609,17 +4609,17 @@ mysql&gt; source seahub-db.sql;
 
 <p>Append following lines to <code>seahub_settings.py</code>:</p>
 <div class="codehilite"><pre><span></span><code>DATABASES = {
-    &#39;default&#39;: {
-        &#39;ENGINE&#39;: &#39;django.db.backends.mysql&#39;,
-        &#39;USER&#39; : &#39;root&#39;,
-        &#39;PASSWORD&#39; : &#39;root&#39;,
-        &#39;NAME&#39; : &#39;seahub_db&#39;,
-        &#39;HOST&#39; : &#39;127.0.0.1&#39;,
-        &#39;PORT&#39;: &#39;3306&#39;,
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'USER' : 'root',
+        'PASSWORD' : 'root',
+        'NAME' : 'seahub_db',
+        'HOST' : '127.0.0.1',
+        'PORT': '3306',
         # This is only needed for MySQL older than 5.5.5.
         # For MySQL newer than 5.5.5 INNODB is the default already.
-        &#39;OPTIONS&#39;: {
-            &quot;init_command&quot;: &quot;SET storage_engine=INNODB&quot;,
+        'OPTIONS': {
+            "init_command": "SET storage_engine=INNODB",
         }
     }
 }
@@ -4718,10 +4718,10 @@ post_office_attachment_emails
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

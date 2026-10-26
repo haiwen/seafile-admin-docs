@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -31,10 +31,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -4596,7 +4596,7 @@
 <span class="w">    </span><span class="n">location</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="o">^/</span><span class="n">cool</span><span class="o">/</span><span class="p">(</span><span class="o">.*</span><span class="p">)</span><span class="o">/</span><span class="n">ws</span><span class="o">$</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">proxy_pass</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">9980</span><span class="p">;</span>
 <span class="w">        </span><span class="n">proxy_set_header</span><span class="w"> </span><span class="n">Upgrade</span><span class="w"> </span><span class="o">$</span><span class="n">http_upgrade</span><span class="p">;</span>
-<span class="w">        </span><span class="n">proxy_set_header</span><span class="w"> </span><span class="n">Connection</span><span class="w"> </span><span class="s2">&quot;Upgrade&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">proxy_set_header</span><span class="w"> </span><span class="n">Connection</span><span class="w"> </span><span class="s2">"Upgrade"</span><span class="p">;</span>
 <span class="w">        </span><span class="n">proxy_set_header</span><span class="w"> </span><span class="n">Host</span><span class="w"> </span><span class="o">$</span><span class="n">http_host</span><span class="p">;</span>
 <span class="w">        </span><span class="n">proxy_read_timeout</span><span class="w"> </span><span class="mi">36000</span><span class="n">s</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
@@ -4611,7 +4611,7 @@
 <span class="w">    </span><span class="n">location</span><span class="w"> </span><span class="o">^~</span><span class="w"> </span><span class="o">/</span><span class="n">cool</span><span class="o">/</span><span class="n">adminws</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">proxy_pass</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">9980</span><span class="p">;</span>
 <span class="w">        </span><span class="n">proxy_set_header</span><span class="w"> </span><span class="n">Upgrade</span><span class="w"> </span><span class="o">$</span><span class="n">http_upgrade</span><span class="p">;</span>
-<span class="w">        </span><span class="n">proxy_set_header</span><span class="w"> </span><span class="n">Connection</span><span class="w"> </span><span class="s2">&quot;Upgrade&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="n">proxy_set_header</span><span class="w"> </span><span class="n">Connection</span><span class="w"> </span><span class="s2">"Upgrade"</span><span class="p">;</span>
 <span class="w">        </span><span class="n">proxy_set_header</span><span class="w"> </span><span class="n">Host</span><span class="w"> </span><span class="o">$</span><span class="n">http_host</span><span class="p">;</span>
 <span class="w">        </span><span class="n">proxy_read_timeout</span><span class="w"> </span><span class="mi">36000</span><span class="n">s</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
@@ -4620,12 +4620,12 @@
 
 <p>then use the following command to setup/start Collabora Online (source https://sdk.collaboraonline.com/docs/installation/CODE_Docker_image.html#code-docker-image):</p>
 <div class="codehilite"><pre><span></span><code>docker pull collabora/code
-docker run -t -d -p 127.0.0.1:9980:9980 -e &quot;aliasgroup1=https://&lt;your-dot-escaped-domain&gt;:443&quot; -e &quot;username=***&quot; -e &quot;password=***&quot; --name code --restart always collabora/code
+docker run -t -d -p 127.0.0.1:9980:9980 -e "aliasgroup1=https://&lt;your-dot-escaped-domain&gt;:443" -e "username=***" -e "password=***" --name code --restart always collabora/code
 </code></pre></div>
 
 <p><strong>NOTE:</strong> the <code>domain</code> args is the domain name of your Seafile server, if your
 Seafile server's domain name is <em>demo.seafile.com</em>, the command should be:</p>
-<div class="codehilite"><pre><span></span><code>docker run -t -d -p 127.0.0.1:9980:9980 -e &quot;aliasgroup1=https://demo.seafile.com:443&quot; -e &quot;username=***&quot; -e &quot;password=***&quot; --name code --restart always collabora/code
+<div class="codehilite"><pre><span></span><code>docker run -t -d -p 127.0.0.1:9980:9980 -e "aliasgroup1=https://demo.seafile.com:443" -e "username=***" -e "password=***" --name code --restart always collabora/code
 </code></pre></div>
 
 <p>For more information about Collabora Online and how to deploy it, please refer to https://www.collaboraoffice.com</p>
@@ -4634,18 +4634,18 @@ Seafile server's domain name is <em>demo.seafile.com</em>, the command should be
 <p>Add following config option to seahub_settings.py:</p>
 <div class="codehilite"><pre><span></span><code><span class="c1"># From 6.1.0 CE version on, Seafile support viewing/editing **doc**, **ppt**, **xls** files via LibreOffice</span>
 <span class="c1"># Add this setting to view/edit **doc**, **ppt**, **xls** files</span>
-<span class="n">OFFICE_SERVER_TYPE</span> <span class="o">=</span> <span class="s1">&#39;CollaboraOffice&#39;</span>
+<span class="n">OFFICE_SERVER_TYPE</span> <span class="o">=</span> <span class="s1">'CollaboraOffice'</span>
 
 <span class="c1"># Enable LibreOffice Online</span>
 <span class="n">ENABLE_OFFICE_WEB_APP</span> <span class="o">=</span> <span class="kc">True</span>
 
-<span class="c1"># Url of LibreOffice Online&#39;s discovery page</span>
+<span class="c1"># Url of LibreOffice Online's discovery page</span>
 <span class="c1"># The discovery page tells Seafile how to interact with LibreOffice Online when view file online</span>
 <span class="c1"># You should change `https://collabora-online.seafile.com/hosting/discovery` to your actual LibreOffice Online server address</span>
-<span class="n">OFFICE_WEB_APP_BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://collabora-online.seafile.com/hosting/discovery&#39;</span>
+<span class="n">OFFICE_WEB_APP_BASE_URL</span> <span class="o">=</span> <span class="s1">'https://collabora-online.seafile.com/hosting/discovery'</span>
 
 <span class="c1"># Expiration of WOPI access token</span>
-<span class="c1"># WOPI access token is a string used by Seafile to determine the file&#39;s</span>
+<span class="c1"># WOPI access token is a string used by Seafile to determine the file's</span>
 <span class="c1"># identity and permissions when use LibreOffice Online view it online</span>
 <span class="c1"># And for security reason, this token should expire after a set time period</span>
 <span class="n">WOPI_ACCESS_TOKEN_EXPIRATION</span> <span class="o">=</span> <span class="mi">30</span> <span class="o">*</span> <span class="mi">60</span>   <span class="c1"># seconds</span>
@@ -4654,13 +4654,13 @@ Seafile server's domain name is <em>demo.seafile.com</em>, the command should be
 <span class="c1"># You can change this value according to your preferences</span>
 <span class="c1"># And of course you should make sure your LibreOffice Online supports to preview</span>
 <span class="c1"># the files with the specified extensions</span>
-<span class="n">OFFICE_WEB_APP_FILE_EXTENSION</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;odp&#39;</span><span class="p">,</span> <span class="s1">&#39;ods&#39;</span><span class="p">,</span> <span class="s1">&#39;odt&#39;</span><span class="p">,</span> <span class="s1">&#39;xls&#39;</span><span class="p">,</span> <span class="s1">&#39;xlsb&#39;</span><span class="p">,</span> <span class="s1">&#39;xlsm&#39;</span><span class="p">,</span> <span class="s1">&#39;xlsx&#39;</span><span class="p">,</span><span class="s1">&#39;ppsx&#39;</span><span class="p">,</span> <span class="s1">&#39;ppt&#39;</span><span class="p">,</span> <span class="s1">&#39;pptm&#39;</span><span class="p">,</span> <span class="s1">&#39;pptx&#39;</span><span class="p">,</span> <span class="s1">&#39;doc&#39;</span><span class="p">,</span> <span class="s1">&#39;docm&#39;</span><span class="p">,</span> <span class="s1">&#39;docx&#39;</span><span class="p">)</span>
+<span class="n">OFFICE_WEB_APP_FILE_EXTENSION</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'odp'</span><span class="p">,</span> <span class="s1">'ods'</span><span class="p">,</span> <span class="s1">'odt'</span><span class="p">,</span> <span class="s1">'xls'</span><span class="p">,</span> <span class="s1">'xlsb'</span><span class="p">,</span> <span class="s1">'xlsm'</span><span class="p">,</span> <span class="s1">'xlsx'</span><span class="p">,</span><span class="s1">'ppsx'</span><span class="p">,</span> <span class="s1">'ppt'</span><span class="p">,</span> <span class="s1">'pptm'</span><span class="p">,</span> <span class="s1">'pptx'</span><span class="p">,</span> <span class="s1">'doc'</span><span class="p">,</span> <span class="s1">'docm'</span><span class="p">,</span> <span class="s1">'docx'</span><span class="p">)</span>
 
 <span class="c1"># Enable edit files through LibreOffice Online</span>
 <span class="n">ENABLE_OFFICE_WEB_APP_EDIT</span> <span class="o">=</span> <span class="kc">True</span>
 
 <span class="c1"># types of files should be editable through LibreOffice Online</span>
-<span class="n">OFFICE_WEB_APP_EDIT_FILE_EXTENSION</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;odp&#39;</span><span class="p">,</span> <span class="s1">&#39;ods&#39;</span><span class="p">,</span> <span class="s1">&#39;odt&#39;</span><span class="p">,</span> <span class="s1">&#39;xls&#39;</span><span class="p">,</span> <span class="s1">&#39;xlsb&#39;</span><span class="p">,</span> <span class="s1">&#39;xlsm&#39;</span><span class="p">,</span> <span class="s1">&#39;xlsx&#39;</span><span class="p">,</span><span class="s1">&#39;ppsx&#39;</span><span class="p">,</span> <span class="s1">&#39;ppt&#39;</span><span class="p">,</span> <span class="s1">&#39;pptm&#39;</span><span class="p">,</span> <span class="s1">&#39;pptx&#39;</span><span class="p">,</span> <span class="s1">&#39;doc&#39;</span><span class="p">,</span> <span class="s1">&#39;docm&#39;</span><span class="p">,</span> <span class="s1">&#39;docx&#39;</span><span class="p">)</span>
+<span class="n">OFFICE_WEB_APP_EDIT_FILE_EXTENSION</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'odp'</span><span class="p">,</span> <span class="s1">'ods'</span><span class="p">,</span> <span class="s1">'odt'</span><span class="p">,</span> <span class="s1">'xls'</span><span class="p">,</span> <span class="s1">'xlsb'</span><span class="p">,</span> <span class="s1">'xlsm'</span><span class="p">,</span> <span class="s1">'xlsx'</span><span class="p">,</span><span class="s1">'ppsx'</span><span class="p">,</span> <span class="s1">'ppt'</span><span class="p">,</span> <span class="s1">'pptm'</span><span class="p">,</span> <span class="s1">'pptx'</span><span class="p">,</span> <span class="s1">'doc'</span><span class="p">,</span> <span class="s1">'docm'</span><span class="p">,</span> <span class="s1">'docx'</span><span class="p">)</span>
 </code></pre></div>
 
 <p>Then restart Seafile.</p>
@@ -4744,10 +4744,10 @@ Seafile server's domain name is <em>demo.seafile.com</em>, the command should be
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

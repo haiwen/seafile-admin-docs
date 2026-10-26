@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -31,10 +31,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -4688,10 +4688,10 @@
 <span class="n">ORG_ENABLE_ADMIN_CUSTOM_LOGO</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># Default is False, if set to True, organization logo can be customized</span>
 
 <span class="n">ENABLE_MULTI_ADFS</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># Default is False, if set to True, support per organization custom ADFS/SAML2 login</span>
-<span class="n">LOGIN_REDIRECT_URL</span> <span class="o">=</span> <span class="s1">&#39;/saml2/complete/&#39;</span>
+<span class="n">LOGIN_REDIRECT_URL</span> <span class="o">=</span> <span class="s1">'/saml2/complete/'</span>
 <span class="n">SAML_ATTRIBUTE_MAPPING</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;display_name&#39;</span><span class="p">,</span> <span class="p">),</span>
-    <span class="s1">&#39;mail&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;contact_email&#39;</span><span class="p">,</span> <span class="p">),</span>
+    <span class="s1">'name'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'display_name'</span><span class="p">,</span> <span class="p">),</span>
+    <span class="s1">'mail'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'contact_email'</span><span class="p">,</span> <span class="p">),</span>
     <span class="o">...</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -4721,16 +4721,16 @@ $<span class="w"> </span>openssl<span class="w"> </span>req<span class="w"> </sp
 <p><strong>Note</strong>: The <code>days</code> option indicates the validity period of the generated certificate. The unit is day. The system admin needs to update the certificate regularly.</p>
 <p><strong>Finally</strong>, add the following configuration to seahub_settings.py and then restart Seafile:</p>
 <div class="codehilite"><pre><span></span><code><span class="n">ENABLE_MULTI_ADFS</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">LOGIN_REDIRECT_URL</span> <span class="o">=</span> <span class="s1">&#39;/saml2/complete/&#39;</span>
+<span class="n">LOGIN_REDIRECT_URL</span> <span class="o">=</span> <span class="s1">'/saml2/complete/'</span>
 <span class="n">SAML_ATTRIBUTE_MAPPING</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;display_name&#39;</span><span class="p">,</span> <span class="p">),</span>
-    <span class="s1">&#39;mail&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;contact_email&#39;</span><span class="p">,</span> <span class="p">),</span>
+    <span class="s1">'name'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'display_name'</span><span class="p">,</span> <span class="p">),</span>
+    <span class="s1">'mail'</span><span class="p">:</span> <span class="p">(</span><span class="s1">'contact_email'</span><span class="p">,</span> <span class="p">),</span>
     <span class="o">...</span>
 <span class="p">}</span>
 </code></pre></div>
 
 <p><strong>Note</strong>: If the xmlsec1 binary is <strong>not located in</strong> <code>/usr/bin/xmlsec1</code>, you need to add the following configuration in seahub_settings.py:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">SAML_XMLSEC_BINARY_PATH</span> <span class="o">=</span> <span class="s1">&#39;/path/to/xmlsec1&#39;</span>
+<div class="codehilite"><pre><span></span><code><span class="n">SAML_XMLSEC_BINARY_PATH</span> <span class="o">=</span> <span class="s1">'/path/to/xmlsec1'</span>
 </code></pre></div>
 
 <p>View where the xmlsec1 binary is located:</p>
@@ -4738,7 +4738,7 @@ $<span class="w"> </span>openssl<span class="w"> </span>req<span class="w"> </sp
 </code></pre></div>
 
 <p><strong>Note</strong>: If certificates are <strong>not placed in</strong> <code>/opt/seafile/seahub-data/certs</code>, you need to add the following configuration in seahub_settings.py:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">SAML_CERTS_DIR</span> <span class="o">=</span> <span class="s1">&#39;/path/to/certs&#39;</span>
+<div class="codehilite"><pre><span></span><code><span class="n">SAML_CERTS_DIR</span> <span class="o">=</span> <span class="s1">'/path/to/certs'</span>
 </code></pre></div>
 
 <h3 id="integration-with-adfssaml-single-sign-on">Integration with ADFS/SAML single sign-on<a class="headerlink" href="#integration-with-adfssaml-single-sign-on" title="Permanent link">&para;</a></h3>
@@ -4812,10 +4812,10 @@ $<span class="w"> </span>openssl<span class="w"> </span>req<span class="w"> </sp
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>

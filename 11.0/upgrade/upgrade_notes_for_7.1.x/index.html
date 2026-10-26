@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
     
     
       
@@ -31,10 +31,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -4879,7 +4879,7 @@ Please always follow the main <a href="../upgrade/">upgrade guide</a>.</p>
 <h2 id="important-release-changes">Important release changes<a class="headerlink" href="#important-release-changes" title="Permanent link">&para;</a></h2>
 <p>From 7.1.0 version, Seafile will depend on the Python 3 and is not compatible with Python 2.</p>
 <p>Therefore you cannot upgrade directly from Seafile 6.x.x to 7.1.x.</p>
-<p><strong>If your current version of Seafile is not 7.0.x, you must first download the 7.0.x installation package and </strong><a href="../upgrade_notes_for_7.0.x/"><strong>upgrade to 7.0.x</strong></a><strong> before performing the subsequent operations.</strong></p>
+<p><strong>If your current version of Seafile is not 7.0.x, you must first download the 7.0.x installation package and <strong><a href="../upgrade_notes_for_7.0.x/"><strong>upgrade to 7.0.x</strong></a></strong> before performing the subsequent operations.</strong></p>
 <p>To support both Python 3.6 and 3.7, we no longer bundle python libraries with Seafile package. You need to install most of the libraries by your own as bellow.</p>
 <h3 id="deploy-python3">Deploy Python3<a class="headerlink" href="#deploy-python3" title="Permanent link">&para;</a></h3>
 <p>Note, you should install Python libraries system wide using root user or sudo mode.</p>
@@ -4965,7 +4965,7 @@ systemctl restart memcached
 <p>For Seafdav, the configuration of Apache is as follows:</p>
 <div class="codehilite"><pre><span></span><code>......
 <span class="w">    </span><span class="nt">&lt;Location</span><span class="w"> </span><span class="err">/seafdav</span><span class="nt">&gt;</span>
-<span class="w">        </span>ProxyPass<span class="w"> </span>&quot;http://127.0.0.1:8080/seafdav&quot;
+<span class="w">        </span>ProxyPass<span class="w"> </span>"http://127.0.0.1:8080/seafdav"
 <span class="w">    </span><span class="nt">&lt;/Location&gt;</span>
 </code></pre></div>
 
@@ -4986,13 +4986,13 @@ systemctl restart memcached
 </blockquote>
 <p>We have two customers reported that after upgrading to version 7.1, users login via Shibboleth single sign on have a wrong name if the name contains a special character. We suspect it is a Shibboleth problem as it does not sending the name in UTF-8 encoding to Seafile. (<a href="https://issues.shibboleth.net/jira/browse/SSPCPP-2">https://issues.shibboleth.net/jira/browse/SSPCPP-2</a>)</p>
 <p>The solution is to modify the code in seahub/thirdpart/shibboleth/middleware.py:</p>
-<div class="codehilite"><pre><span></span><code><span class="mf">158</span><span class="w">         </span><span class="kr">if</span><span class="w"> </span><span class="n">nickname</span><span class="mf">.</span><span class="n">strip</span><span class="p">():</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">set</span><span class="w"> </span><span class="n">nickname</span><span class="w"> </span><span class="n">when</span><span class="w"> </span><span class="n">it</span><span class="err">&#39;</span><span class="n">s</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">empty</span>
+<div class="codehilite"><pre><span></span><code><span class="mf">158</span><span class="w">         </span><span class="kr">if</span><span class="w"> </span><span class="n">nickname</span><span class="mf">.</span><span class="n">strip</span><span class="p">():</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">set</span><span class="w"> </span><span class="n">nickname</span><span class="w"> </span><span class="n">when</span><span class="w"> </span><span class="n">it</span><span class="err">'</span><span class="n">s</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">empty</span>
 <span class="mf">159</span><span class="w">             </span><span class="n">p</span><span class="mf">.</span><span class="n">nickname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nickname</span>
 
 <span class="kr">to</span><span class="w"> </span>
 
-<span class="mf">158</span><span class="w">         </span><span class="kr">if</span><span class="w"> </span><span class="n">nickname</span><span class="mf">.</span><span class="n">strip</span><span class="p">():</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">set</span><span class="w"> </span><span class="n">nickname</span><span class="w"> </span><span class="n">when</span><span class="w"> </span><span class="n">it</span><span class="err">&#39;</span><span class="n">s</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">empty</span>
-<span class="mf">159</span><span class="w">             </span><span class="n">p</span><span class="mf">.</span><span class="n">nickname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nickname</span><span class="mf">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&quot;iso-8859-1”).decode(&#39;utf8&#39;)</span>
+<span class="mf">158</span><span class="w">         </span><span class="kr">if</span><span class="w"> </span><span class="n">nickname</span><span class="mf">.</span><span class="n">strip</span><span class="p">():</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">set</span><span class="w"> </span><span class="n">nickname</span><span class="w"> </span><span class="n">when</span><span class="w"> </span><span class="n">it</span><span class="err">'</span><span class="n">s</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">empty</span>
+<span class="mf">159</span><span class="w">             </span><span class="n">p</span><span class="mf">.</span><span class="n">nickname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nickname</span><span class="mf">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"iso-8859-1”).decode('utf8')</span>
 </code></pre></div>
 
 <p>If you have this problem too, please let us know.</p>
@@ -5000,20 +5000,20 @@ systemctl restart memcached
 <h3 id="sql-error-during-upgrade">SQL Error during upgrade<a class="headerlink" href="#sql-error-during-upgrade" title="Permanent link">&para;</a></h3>
 <p>The upgrade script will try to create a missing table and remove an used index. The following SQL errors are jus warnings and can be ignored:</p>
 <div class="codehilite"><pre><span></span><code><span class="o">[</span><span class="n">INFO</span><span class="o">]</span><span class="w"> </span><span class="n">updating</span><span class="w"> </span><span class="n">seahub</span><span class="w"> </span><span class="k">database</span><span class="p">...</span>
-<span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">seafile</span><span class="o">/</span><span class="n">seafile</span><span class="o">-</span><span class="n">server</span><span class="o">-</span><span class="mf">7.1.1</span><span class="o">/</span><span class="n">seahub</span><span class="o">/</span><span class="n">thirdpart</span><span class="o">/</span><span class="n">pymysql</span><span class="o">/</span><span class="n">cursors</span><span class="p">.</span><span class="nl">py</span><span class="p">:</span><span class="mi">170</span><span class="err">:</span><span class="w"> </span><span class="nl">Warning</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="mi">1050</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;Table &#39;base_reposecretkey&#39; already exists&quot;</span><span class="p">)</span>
+<span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">seafile</span><span class="o">/</span><span class="n">seafile</span><span class="o">-</span><span class="n">server</span><span class="o">-</span><span class="mf">7.1.1</span><span class="o">/</span><span class="n">seahub</span><span class="o">/</span><span class="n">thirdpart</span><span class="o">/</span><span class="n">pymysql</span><span class="o">/</span><span class="n">cursors</span><span class="p">.</span><span class="nl">py</span><span class="p">:</span><span class="mi">170</span><span class="err">:</span><span class="w"> </span><span class="nl">Warning</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="mi">1050</span><span class="p">,</span><span class="w"> </span><span class="ss">"Table 'base_reposecretkey' already exists"</span><span class="p">)</span>
 <span class="w">  </span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">_query</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-<span class="o">[</span><span class="n">WARNING</span><span class="o">]</span><span class="w"> </span><span class="n">Failed</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">execute</span><span class="w"> </span><span class="k">sql</span><span class="err">:</span><span class="w"> </span><span class="p">(</span><span class="mi">1091</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;Can&#39;t DROP &#39;drafts_draft_origin_file_uuid_7c003c98_uniq&#39;; check that column/key exists&quot;</span><span class="p">)</span>
+<span class="o">[</span><span class="n">WARNING</span><span class="o">]</span><span class="w"> </span><span class="n">Failed</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">execute</span><span class="w"> </span><span class="k">sql</span><span class="err">:</span><span class="w"> </span><span class="p">(</span><span class="mi">1091</span><span class="p">,</span><span class="w"> </span><span class="ss">"Can't DROP 'drafts_draft_origin_file_uuid_7c003c98_uniq'; check that column/key exists"</span><span class="p">)</span>
 </code></pre></div>
 
 <h3 id="internal-server-error-after-upgrade-to-version-71">Internal server error after upgrade to version 7.1<a class="headerlink" href="#internal-server-error-after-upgrade-to-version-71" title="Permanent link">&para;</a></h3>
 <p>Please check whether the seahub process is running in your server. If it is running, there should be an error log in seahub.log for internal server error.</p>
 <p>If seahub process is not running, you can modify conf/gunicorn.conf, change <code>daemon = True</code>  to <code>daemon = False</code>  , then run ./seahub.sh again. If there are missing Python dependencies, the error will be reported in the terminal.</p>
 <p>The most common issue is that you use an old memcache configuration that depends on python-memcache. The new way is</p>
-<div class="codehilite"><pre><span></span><code><span class="s">&#39;BACKEND&#39;</span><span class="p">:</span> <span class="s">&#39;django_pylibmc.memcached.PyLibMCCache&#39;</span>
+<div class="codehilite"><pre><span></span><code><span class="s">'BACKEND'</span><span class="p">:</span> <span class="s">'django_pylibmc.memcached.PyLibMCCache'</span>
 </code></pre></div>
 
 <p>The old way is</p>
-<div class="codehilite"><pre><span></span><code><span class="s">&#39;BACKEND&#39;</span><span class="p">:</span> <span class="s">&#39;django.core.cache.backends.memcached.MemcachedCache&#39;</span><span class="p">,</span>
+<div class="codehilite"><pre><span></span><code><span class="s">'BACKEND'</span><span class="p">:</span> <span class="s">'django.core.cache.backends.memcached.MemcachedCache'</span><span class="p">,</span>
 </code></pre></div>
 
 
@@ -5084,10 +5084,10 @@ systemctl restart memcached
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
       
     
   </body>
