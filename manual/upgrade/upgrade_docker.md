@@ -251,9 +251,9 @@ Download `.env`, `seafile-server.yml` and `caddy.yml`, and modify `.env` file ac
 
     | Variable                        | Description                                                                                                   | Default Value                   |  
     | ------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------- |  
-    | `SEAFILE_VOLUME`                | The volume directory of Seafile data                                                                          | `/opt/seafile-data`             |  
-    | `SEAFILE_MYSQL_VOLUME`          | The volume directory of MySQL data                                                                            | `/opt/seafile-mysql/db`         |  
-    | `SEAFILE_CADDY_VOLUME`          | The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's                    | `/opt/seafile-caddy`            |  
+    | `SEAFILE_VOLUME`                | The volume directory of Seafile data                                                                          | `/opt/seafile/seafile-data`             |  
+    | `SEAFILE_MYSQL_VOLUME`          | The volume directory of MySQL data                                                                            | `/opt/seafile/seafile-mysql/db`         |  
+    | `SEAFILE_CADDY_VOLUME`          | The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's                    | `/opt/seafile/seafile-caddy`            |  
     | `SEAFILE_MYSQL_DB_USER`         | The user of MySQL (`database` - `user` can be found in `conf/seafile.conf`)                                    | `seafile`  |  
     | `SEAFILE_MYSQL_DB_PASSWORD`     | The user `seafile` password of MySQL                                                                          | (required)  |  
     | `SEAFILE_MYSQL_DB_CCNET_DB_NAME`     | The database name of ccnet | `ccnet_db`  |
@@ -274,9 +274,9 @@ Download `.env`, `seafile-server.yml` and `caddy.yml`, and modify `.env` file ac
 
     | Variable                        | Description                                                                                                   | Default Value                   |  
     | ------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------- |  
-    | `SEAFILE_VOLUME`                | The volume directory of Seafile data                                                                          | `/opt/seafile-data`             |  
-    | `SEAFILE_MYSQL_VOLUME`          | The volume directory of MySQL data                                                                            | `/opt/seafile-mysql/db`         |  
-    | `SEAFILE_CADDY_VOLUME`          | The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's                    | `/opt/seafile-caddy`            |  
+    | `SEAFILE_VOLUME`                | The volume directory of Seafile data                                                                          | `/opt/seafile/seafile-data`             |  
+    | `SEAFILE_MYSQL_VOLUME`          | The volume directory of MySQL data                                                                            | `/opt/seafile/seafile-mysql/db`         |  
+    | `SEAFILE_CADDY_VOLUME`          | The volume directory of Caddy data used to store certificates obtained from Let's Encrypt's                    | `/opt/seafile/seafile-caddy`            |  
     | `SEAFILE_ELASTICSEARCH_VOLUME`  | (Only valid for Seafile PE) The volume directory of Elasticsearch data | `/opt/seafile-elasticsearch/data` |   
     | `SEAFILE_MYSQL_DB_USER`         | The user of MySQL (`database` - `user` can be found in `conf/seafile.conf`)                                    | `seafile`  |  
     | `SEAFILE_MYSQL_DB_PASSWORD`     | The user `seafile` password of MySQL                                                                          | (required)  |  
