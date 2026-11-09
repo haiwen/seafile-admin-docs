@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -31,10 +31,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -5819,7 +5819,7 @@ systemctl restart memcached
 <p>For Seafdav, the configuration of Apache is as follows:</p>
 <div class="highlight"><pre><span></span><code>......
     &lt;Location /seafdav&gt;
-        ProxyPass &quot;http://127.0.0.1:8080/seafdav&quot;
+        ProxyPass "http://127.0.0.1:8080/seafdav"
     &lt;/Location&gt;
 </code></pre></div>
 <h3 id="builtin-office-file-preview">Builtin office file preview<a class="headerlink" href="#builtin-office-file-preview" title="Permanent link">&para;</a></h3>
@@ -5838,31 +5838,31 @@ systemctl restart memcached
 </blockquote>
 <p>We have two customers reported that after upgrading to version 7.1, users login via Shibboleth single sign on have a wrong name if the name contains a special character. We suspect it is a Shibboleth problem as it does not sending the name in UTF-8 encoding to Seafile. (<a href="https://issues.shibboleth.net/jira/browse/SSPCPP-2">https://issues.shibboleth.net/jira/browse/SSPCPP-2</a>)</p>
 <p>The solution is to modify the code in seahub/thirdpart/shibboleth/middleware.py:</p>
-<div class="highlight"><pre><span></span><code>158         if nickname.strip():  # set nickname when it&#39;s not empty
+<div class="highlight"><pre><span></span><code>158         if nickname.strip():  # set nickname when it's not empty
 159             p.nickname = nickname
 
 to 
 
-158         if nickname.strip():  # set nickname when it&#39;s not empty
-159             p.nickname = nickname.encode(&quot;iso-8859-1”).decode(&#39;utf8&#39;)
+158         if nickname.strip():  # set nickname when it's not empty
+159             p.nickname = nickname.encode("iso-8859-1”).decode('utf8')
 </code></pre></div>
 <p>If you have this problem too, please let us know.</p>
 <h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
 <h3 id="sql-error-during-upgrade">SQL Error during upgrade<a class="headerlink" href="#sql-error-during-upgrade" title="Permanent link">&para;</a></h3>
 <p>The upgrade script will try to create a missing table and remove an used index. The following SQL errors are jus warnings and can be ignored:</p>
 <div class="highlight"><pre><span></span><code>[INFO] updating seahub database...
-/opt/seafile/seafile-server-7.1.1/seahub/thirdpart/pymysql/cursors.py:170: Warning: (1050, &quot;Table &#39;base_reposecretkey&#39; already exists&quot;)
+/opt/seafile/seafile-server-7.1.1/seahub/thirdpart/pymysql/cursors.py:170: Warning: (1050, "Table 'base_reposecretkey' already exists")
   result = self._query(query)
-[WARNING] Failed to execute sql: (1091, &quot;Can&#39;t DROP &#39;drafts_draft_origin_file_uuid_7c003c98_uniq&#39;; check that column/key exists&quot;)
+[WARNING] Failed to execute sql: (1091, "Can't DROP 'drafts_draft_origin_file_uuid_7c003c98_uniq'; check that column/key exists")
 </code></pre></div>
 <h3 id="internal-server-error-after-upgrade-to-version-71">Internal server error after upgrade to version 7.1<a class="headerlink" href="#internal-server-error-after-upgrade-to-version-71" title="Permanent link">&para;</a></h3>
 <p>Please check whether the seahub process is running in your server. If it is running, there should be an error log in seahub.log for internal server error.</p>
 <p>If seahub process is not running, you can modify conf/gunicorn.conf, change <code>daemon = True</code>  to <code>daemon = False</code>  , then run ./seahub.sh again. If there are missing Python dependencies, the error will be reported in the terminal.</p>
 <p>The most common issue is that you use an old memcache configuration that depends on python-memcache. The new way is</p>
-<div class="highlight"><pre><span></span><code>&#39;BACKEND&#39;: &#39;django_pylibmc.memcached.PyLibMCCache&#39;
+<div class="highlight"><pre><span></span><code>'BACKEND': 'django_pylibmc.memcached.PyLibMCCache'
 </code></pre></div>
 <p>The old way is</p>
-<div class="highlight"><pre><span></span><code>&#39;BACKEND&#39;: &#39;django.core.cache.backends.memcached.MemcachedCache&#39;,
+<div class="highlight"><pre><span></span><code>'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
 </code></pre></div>
 
 
@@ -5979,10 +5979,10 @@ to
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share", "math", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share", "math", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
       

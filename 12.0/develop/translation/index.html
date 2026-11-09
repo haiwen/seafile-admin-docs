@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -31,10 +31,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -5513,7 +5513,7 @@
 <p>4. (Only necessary when you created a new language code folder) Add a new entry for your language to the language block in the <code>/seafile-server-latest/seahub/seahub/settings.py</code> file and save it. </p>
 <div class="highlight"><pre><span></span><code>LANGUAGES = (
     ...
-    (&#39;ru&#39;, &#39;Русский&#39;),
+    ('ru', 'Русский'),
     ...
 )
 </code></pre></div>
@@ -5540,18 +5540,18 @@
 <h2 id="faq">FAQ<a class="headerlink" href="#faq" title="Permanent link">&para;</a></h2>
 <h3 id="filenotfounderror">FileNotFoundError<a class="headerlink" href="#filenotfounderror" title="Permanent link">&para;</a></h3>
 <p><code>FileNotFoundError</code> occurred when executing the command <code>manage.py collectstatic</code>.</p>
-<div class="highlight"><pre><span></span><code>FileNotFoundError: [Errno 2] No such file or directory: &#39;/opt/seafile/seafile-server-latest/seahub/frontend/build&#39;
+<div class="highlight"><pre><span></span><code>FileNotFoundError: [Errno 2] No such file or directory: '/opt/seafile/seafile-server-latest/seahub/frontend/build'
 </code></pre></div>
 <p>Steps:</p>
 <ol>
 <li>
 <p>Modify <code>STATICFILES_DIRS</code> in <code>/opt/seafile/seafile-server-latest/seahub/seahub/settings.py</code> manually</p>
 <div class="highlight"><pre><span></span><code><span class="n">STATICFILES_DIRS</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="c1"># Put strings here, like &quot;/home/html/static&quot; or &quot;C:/www/django/static&quot;.</span>
+    <span class="c1"># Put strings here, like "/home/html/static" or "C:/www/django/static".</span>
     <span class="c1"># Always use forward slashes, even on Windows.</span>
-    <span class="c1"># Don&#39;t forget to use absolute paths, not relative paths.</span>
-    <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">/static&#39;</span> <span class="o">%</span> <span class="n">PROJECT_ROOT</span><span class="p">,</span>
-<span class="c1">#    &#39;%s/frontend/build&#39; % PROJECT_ROOT,</span>
+    <span class="c1"># Don't forget to use absolute paths, not relative paths.</span>
+    <span class="s1">'</span><span class="si">%s</span><span class="s1">/static'</span> <span class="o">%</span> <span class="n">PROJECT_ROOT</span><span class="p">,</span>
+<span class="c1">#    '%s/frontend/build' % PROJECT_ROOT,</span>
 <span class="p">)</span>
 </code></pre></div>
 </li>
@@ -5693,10 +5693,10 @@ STATICFILES_DIRS = (
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share", "math", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share", "math", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
       

@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -31,10 +31,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -5504,18 +5504,18 @@ openssl<span class="w"> </span>req<span class="w"> </span>-x509<span class="w"> 
 nano<span class="w"> </span>seafile-server.yml
 </code></pre></div>
 <p>and</p>
-<div class="highlight"><pre><span></span><code>services:
-  ...
-  seafile:
-    ...
-    volumes:
-      ...
-      # If you use a self-generated certificate, please add it to the Seafile server trusted directory (i.e. remove the comment symbol below)
-      # - &quot;/opt/seafile-caddy/certs/cert.pem:/usr/local/share/ca-certificates/cert.crt&quot;
-    labels:
-      caddy: ${SEAFILE_SERVER_HOSTNAME:?Variable is not set or empty} # leave this variables only
-      caddy.tls: &quot;/data/caddy/certs/cert.pem /data/caddy/certs/key.pem&quot;
-      ...
+<div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">seafile</span><span class="p p-Indicator">:</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain"># If you use a self-generated certificate, please add it to the Seafile server trusted directory (i.e. remove the comment symbol below)</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain"># - "/opt/seafile-caddy/certs/cert.pem:/usr/local/share/ca-certificates/cert.crt"</span>
+<span class="w">    </span><span class="nt">labels</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">caddy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${SEAFILE_SERVER_HOSTNAME:?Variable is not set or empty}</span><span class="w"> </span><span class="c1"># leave this variables only</span>
+<span class="w">      </span><span class="nt">caddy.tls</span><span class="p">:</span><span class="w"> </span><span class="s">"/data/caddy/certs/cert.pem</span><span class="nv"> </span><span class="s">/data/caddy/certs/key.pem"</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">DNS resolution must work inside the container</p>
@@ -5644,10 +5644,10 @@ nano<span class="w"> </span>seafile-server.yml
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share", "math", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share", "math", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
       

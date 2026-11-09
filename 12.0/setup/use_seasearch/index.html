@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -31,10 +31,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -5506,9 +5506,9 @@
 <div class="highlight"><pre><span></span><code><span class="nv">SEASEARCH_IMAGE</span><span class="o">=</span>seafileltd/seasearch-nomkl:latest
 </code></pre></div>
 </div>
-<div class="highlight"><pre><span></span><code><span class="nv">COMPOSE_FILE</span><span class="o">=</span><span class="s1">&#39;...,seasearch.yml&#39;</span><span class="w"> </span><span class="c1"># ... means other docker-compose files</span>
+<div class="highlight"><pre><span></span><code><span class="nv">COMPOSE_FILE</span><span class="o">=</span><span class="s1">'...,seasearch.yml'</span><span class="w"> </span><span class="c1"># ... means other docker-compose files</span>
 
-<span class="c1">#SEASEARCH_IMAGE=seafileltd/seasearch-nomkl:0.9-latest  # for Apple&#39;s Chip</span>
+<span class="c1">#SEASEARCH_IMAGE=seafileltd/seasearch-nomkl:0.9-latest  # for Apple's Chip</span>
 <span class="nv">SEASEARCH_IMAGE</span><span class="o">=</span>seafileltd/seasearch:0.9-latest
 
 <span class="nv">SS_DATA_PATH</span><span class="o">=</span>/opt/seasearch-data
@@ -5517,23 +5517,23 @@
 </code></pre></div>
 <h2 id="modify-seafile-serveryml-to-disable-elasticsearch-service">Modify <code>seafile-server.yml</code> to disable <code>elasticSearch</code> service<a class="headerlink" href="#modify-seafile-serveryml-to-disable-elasticsearch-service" title="Permanent link">&para;</a></h2>
 <p>If you would like to use <em>SeaSearch</em> as the search engine, the <code>elasticSearch</code> service can be removed or noted in <code>seafile-server.yml</code>, which is no longer used:</p>
-<div class="highlight"><pre><span></span><code>services:
-  seafile:
-    ...
-    depends_on:
-      ...
-      #elasticsearch: # remove or note the `elasticsearch` service Dependency
-        #condition: service_started
+<div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">seafile</span><span class="p">:</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">depends_on</span><span class="p p-Indicator">:</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">#elasticsearch</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="c1"># remove or note the `elasticsearch` service Dependency</span>
+<span class="w">        </span><span class="c1">#condition: service_started</span>
 
 
-  #elasticsearch: # remove or note the whole `elasticsearch` section
-    #... 
+<span class="w">  </span><span class="c1">#elasticsearch: # remove or note the whole `elasticsearch` section</span>
+<span class="w">    </span><span class="c1">#... </span>
 </code></pre></div>
 <h2 id="modify-seafeventsconf">Modify <code>seafevents.conf</code><a class="headerlink" href="#modify-seafeventsconf" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
 <p>Get your authorization token by base64 code consist of <code>INIT_SS_ADMIN_USER</code> and <code>INIT_SS_ADMIN_PASSWORD</code> defined in <code>.env</code> firsly, which is used to authorize when calling the SeaSearch API:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;username:password&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s1">'username:password'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64
 
 <span class="c1"># example output</span>
 <span class="nv">YWRtaW46YWRtaW5fcGFzc3dvcmQ</span><span class="o">=</span>
@@ -5688,10 +5688,10 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share", "math", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share", "math", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
       

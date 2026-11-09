@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -31,10 +31,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
       
       
 
@@ -5441,7 +5441,7 @@
 <h2 id="turn-on-the-feature">Turn on the feature<a class="headerlink" href="#turn-on-the-feature" title="Permanent link">&para;</a></h2>
 <p>In <code>seahub_settings.py</code>, add <code>MULTI_INSTITUTION = True</code> to enable multi-institution feature, and add</p>
 <div class="highlight"><pre><span></span><code>    <span class="n">EXTRA_MIDDLEWARE</span> <span class="o">+=</span> <span class="p">(</span>
-        <span class="s1">&#39;seahub.institutions.middleware.InstitutionMiddleware&#39;</span><span class="p">,</span>
+        <span class="s1">'seahub.institutions.middleware.InstitutionMiddleware'</span><span class="p">,</span>
     <span class="p">)</span>
 </code></pre></div>
 <div class="admonition tip">
@@ -5452,10 +5452,10 @@
 <h2 id="assign-users-to-institutions">Assign users to institutions<a class="headerlink" href="#assign-users-to-institutions" title="Permanent link">&para;</a></h2>
 <p>If you are using Shibboleth, you can map a Shibboleth attribute into institution. For example, the following configuration maps organization attribute to institution.</p>
 <div class="highlight"><pre><span></span><code>SHIBBOLETH_ATTRIBUTE_MAP = {
-    &quot;givenname&quot;: (False, &quot;givenname&quot;),
-    &quot;sn&quot;: (False, &quot;surname&quot;),
-    &quot;mail&quot;: (False, &quot;contact_email&quot;),
-    &quot;organization&quot;: (False, &quot;institution&quot;),
+    "givenname": (False, "givenname"),
+    "sn": (False, "surname"),
+    "mail": (False, "contact_email"),
+    "organization": (False, "institution"),
 }
 </code></pre></div>
 
@@ -5573,10 +5573,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share", "math", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.footer", "navigation.tracking", "navigation.sections", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "search.share", "math", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
       
