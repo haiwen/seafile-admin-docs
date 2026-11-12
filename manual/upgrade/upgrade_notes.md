@@ -9,7 +9,7 @@ These notes give an overview about changes for each major version.
 
 Seafile version 14.0 has the following configuration changes:
 
-* WebDAV is configured via environment variables in the Seafile server `.env`. For details, refer to [WebDAV extension](../extension/webdav.md).
+* WebDAV is configured via environment variables in the Seafile server `.env`. In Docker deployments, change the WebDAV URL is no longer supported. For details, refer to [WebDAV extension](../extension/webdav.md).
 * Metadata server is configured via environment variables in the Seafile server `.env`. For details, refer to [Metadata server](../extension/metadata-server.md).
 * Seafile AI models are configured via `seafile_ai_config.yaml`. For details, refer to [Seafile AI extension](../extension/seafile-ai.md).
 * Face recognition has been removed. For cleanup instructions, refer to [Seafile obsolete configurations](./seafile_obsolete_configurations.md#env).
