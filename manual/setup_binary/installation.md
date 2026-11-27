@@ -32,6 +32,34 @@ Seafile uses the `mysql_native_password` plugin for authentication. The versions
 
 2. Install Python and related libraries
 
+    === "Ubuntu 26.04"
+        ```sh
+        sudo apt-get update
+        sudo apt-get install -y \
+            ca-certificates python3.14-dev python3.14-venv \
+            python3-ldap python3-rados ldap-utils \
+            build-essential pkg-config libmariadb-dev-compat libmemcached-dev \
+            libldap-dev libsasl2-dev libffi-dev libcairo2 libjpeg-dev zlib1g-dev
+
+        # Create the installation directory if it does not exist.
+        if [ ! -d /opt/seafile ]; then
+            sudo install -d -o "$(id -u)" -g "$(id -g)" /opt/seafile
+        fi
+        cd /opt/seafile
+
+        # Create and activate the Python 3.14 virtual environment.
+        python3.14 -m venv python-venv
+        source python-venv/bin/activate
+
+        # Install the Python packages into the active virtual environment.
+        pip3 install --timeout=3600 boto3 oss2 twilio configparser pytz \
+            'sqlalchemy==2.0.*' 'pymysql==1.1.*' jinja2 django-pylibmc pylibmc psd-tools lxml \
+            'django==5.2.*' 'cffi==2.0.*' 'future==1.0.*' 'mysqlclient==2.2.*' \
+            'captcha==0.7.*' 'django_simple_captcha==0.6.*' \
+            'pyjwt==2.15.*' 'djangosaml2==1.11.*' 'pysaml2==7.5.*' \
+            'pycryptodome==3.23.*' 'python-ldap==3.4.*' \
+            'pillow==13.0.*' 'pillow-heif==1.1.*' 'cairosvg==2.8.*' 'scikit-learn==1.7.*'
+        ```
     === "Ubuntu 24.04"
         !!! note
             Debian 12 and Ubuntu 24.04 are now discouraging system-wide installation of python modules with pip.  It is preferred now to install modules into a virtual environment which keeps them separate from the files installed by the system package manager, and enables different versions to be installed for different applications.  With these python virtual environments (venv for short) to work, you have to activate the venv to make the packages installed in it available to the programs you run.  That is done here with `source python-venv/bin/activate`.
@@ -53,7 +81,7 @@ Seafile uses the `mysql_native_password` plugin for authentication. The versions
         pip3 install --timeout=3600 boto3 oss2 twilio configparser pytz \
             sqlalchemy==2.0.* pymysql==1.1.* jinja2 django-pylibmc pylibmc psd-tools lxml \
             django==5.2.* cffi==1.17.1 future==1.0.* mysqlclient==2.2.* captcha==0.7.* django_simple_captcha==0.6.* \
-            pyjwt==2.10.* djangosaml2==1.11.* pysaml2==7.5.* pycryptodome==3.23.* python-ldap==3.4.* pillow==11.3.* pillow-heif==1.0.* cairosvg==2.8.* scikit-learn==1.7.*
+            pyjwt==2.15.* djangosaml2==1.11.* pysaml2==7.5.* pycryptodome==3.23.* python-ldap==3.4.* pillow==13.0.* pillow-heif==1.0.* cairosvg==2.8.* scikit-learn==1.7.*
 
         ```
     === "Debian 13"
@@ -77,7 +105,7 @@ Seafile uses the `mysql_native_password` plugin for authentication. The versions
         pip3 install --timeout=3600 boto3 oss2 twilio configparser pytz \
             sqlalchemy==2.0.* pymysql==1.1.* jinja2 django-pylibmc pylibmc psd-tools lxml \
             django==5.2.* cffi==1.17.1 future==1.0.* mysqlclient==2.2.* captcha==0.7.* django_simple_captcha==0.6.* \
-            pyjwt==2.10.* djangosaml2==1.11.* pysaml2==7.5.* pycryptodome==3.23.* python-ldap==3.4.* pillow==11.3.* pillow-heif==1.0.* cairosvg==2.8.* scikit-learn==1.7.*
+            pyjwt==2.15.* djangosaml2==1.11.* pysaml2==7.5.* pycryptodome==3.23.* python-ldap==3.4.* pillow==13.0.* pillow-heif==1.0.* cairosvg==2.8.* scikit-learn==1.7.*
         ```
     === "Debian 12"
         !!! note
@@ -100,7 +128,7 @@ Seafile uses the `mysql_native_password` plugin for authentication. The versions
         pip3 install --timeout=3600 boto3 oss2 twilio configparser pytz \
             sqlalchemy==2.0.* pymysql==1.1.* jinja2 django-pylibmc pylibmc psd-tools lxml \
             django==5.2.* cffi==1.17.1 future==1.0.* mysqlclient==2.2.* captcha==0.7.* django_simple_captcha==0.6.* \
-            pyjwt==2.10.* djangosaml2==1.11.* pysaml2==7.5.* pycryptodome==3.23.* python-ldap==3.4.* pillow==11.3.* pillow-heif==1.0.* cairosvg==2.8.* scikit-learn==1.7.*
+            pyjwt==2.15.* djangosaml2==1.11.* pysaml2==7.5.* pycryptodome==3.23.* python-ldap==3.4.* pillow==13.0.* pillow-heif==1.0.* cairosvg==2.8.* scikit-learn==1.7.*
         ```
 
 ### Creating user seafile
