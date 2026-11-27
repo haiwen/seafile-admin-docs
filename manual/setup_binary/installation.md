@@ -36,7 +36,7 @@ Seafile uses the `mysql_native_password` plugin for authentication. The versions
         ```sh
         sudo apt-get update
         sudo apt-get install -y \
-            ca-certificates python3.14 python3.14-dev python3.14-venv \
+            ca-certificates python3.14-dev python3.14-venv \
             python3-ldap python3-rados ldap-utils \
             build-essential pkg-config libmariadb-dev-compat libmemcached-dev \
             libldap-dev libsasl2-dev libffi-dev libcairo2 libjpeg-dev zlib1g-dev
