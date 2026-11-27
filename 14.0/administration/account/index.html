@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../media/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
     
     
       
@@ -4217,10 +4217,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#forgot-admin-account-or-password" class="md-nav__link">
+  <a href="#forgot-admin-account" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Forgot Admin Account or Password?
+        Forgot Admin Account?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forgot-admin-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forgot Admin Password?
       
     </span>
   </a>
@@ -6023,10 +6034,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#forgot-admin-account-or-password" class="md-nav__link">
+  <a href="#forgot-admin-account" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Forgot Admin Account or Password?
+        Forgot Admin Account?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forgot-admin-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forgot Admin Password?
       
     </span>
   </a>
@@ -6072,12 +6094,14 @@
 <h4 id="resetting-user-password">Resetting User Password<a class="headerlink" href="#resetting-user-password" title="Permanent link">&para;</a></h4>
 <p>Administrator can reset password for a user in "System Admin" page.</p>
 <p>In a private server, the default settings doesn't support users to reset their password by email. If you want to enable this, you have first to <a href="../../config/sending_email/">set up notification email</a>.</p>
-<h4 id="forgot-admin-account-or-password">Forgot Admin Account or Password?<a class="headerlink" href="#forgot-admin-account-or-password" title="Permanent link">&para;</a></h4>
-<p>You may run <code>reset-admin.sh</code> script under seafile-server-latest directory. This script would help you reset the admin account and password.
-Your data will not be deleted from the admin account, this only unlocks and changes the password for the admin account.</p>
+<h4 id="forgot-admin-account">Forgot Admin Account?<a class="headerlink" href="#forgot-admin-account" title="Permanent link">&para;</a></h4>
+<p>If you do not know the email address of an existing system administrator, run <code>./reset-admin.sh</code> from the <code>seafile-server-latest</code> directory to create a new system administrator. The script does not unlock existing accounts, change their passwords, or delete their data.</p>
+<h4 id="forgot-admin-password">Forgot Admin Password?<a class="headerlink" href="#forgot-admin-password" title="Permanent link">&para;</a></h4>
+<p>If you know the email address of an existing local system administrator, run <code>./reset-admin-password.sh</code> from the <code>seafile-server-latest</code> directory. Enter the administrator's email address, then enter the new password twice. The password is not displayed as you type.</p>
+<p>The script does not create an account or reactivate an inactive account. It cannot reset an LDAP password.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Enter into the docker image, then go to <code>/opt/seafile/seafile-server-latest</code></p>
+<p>For Docker deployments, enter the Seafile container and change to <code>/opt/seafile/seafile-server-latest</code> before running either script.</p>
 </div>
 <h4 id="user-quota-notice">User Quota Notice<a class="headerlink" href="#user-quota-notice" title="Permanent link">&para;</a></h4>
 <p>Under the seafile-server-latest directory, run <code>./seahub.sh python-env python seahub/manage.py check_user_quota</code> , when the user quota exceeds 90%, an email will be sent. If you want to enable this, you have first to <a href="../../config/sending_email/">set up notification email</a>.</p>
