@@ -15,13 +15,18 @@ Administrator can reset password for a user in "System Admin" page.
 
 In a private server, the default settings doesn't support users to reset their password by email. If you want to enable this, you have first to [set up notification email](../config/sending_email.md).
 
-#### Forgot Admin Account or Password?
+#### Forgot Admin Account?
 
-You may run `reset-admin.sh` script under seafile-server-latest directory. This script would help you reset the admin account and password.
-Your data will not be deleted from the admin account, this only unlocks and changes the password for the admin account.
+If you do not know the email address of an existing system administrator, run `./reset-admin.sh` from the `seafile-server-latest` directory to create a new system administrator. The script does not unlock existing accounts, change their passwords, or delete their data.
+
+#### Forgot Admin Password?
+
+If you know the email address of an existing local system administrator, run `./reset-admin-password.sh` from the `seafile-server-latest` directory. Enter the administrator's email address, then enter the new password twice. The password is not displayed as you type.
+
+The script does not create an account or reactivate an inactive account. It cannot reset an LDAP password.
 
 !!! tip
-    Enter into the docker image, then go to `/opt/seafile/seafile-server-latest`
+    For Docker deployments, enter the Seafile container and change to `/opt/seafile/seafile-server-latest` before running either script.
 
 
 #### User Quota Notice
